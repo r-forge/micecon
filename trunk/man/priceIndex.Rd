@@ -31,6 +31,10 @@
    and quantities.
 }
 
+\value{
+   a vector containing the price indices.
+}
+
 \seealso{\code{\link{quantityIndex}}.}
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
