@@ -29,13 +29,13 @@ snqProfitCoef <- function( coef, nNetput, nFix, form = 0, coefCov=NULL, df=1 ) {
          }
       } else if( form == 1 ) {
          result$gamma <- array( 0, c( nNetput, nFix, nFix ) )
-         for( n in 1:nNetput ) {
-            for( i in 1:nFix ) {
-               for( j in 1:nFix ) {
-                  result$gamma[ n, i, j ] <- coef[ nNetput +
+         for( i in 1:nNetput ) {
+            for( j in 1:nFix ) {
+               for( k in 1:nFix ) {
+                  result$gamma[ i, j, k ] <- coef[ nNetput +
                      nNetput * ( nNetput - 1 ) / 2 + nNetput * nFix +
-                     ( n - 1 ) * ( nFix + 1 ) * nFix / 2 +
-                     veclipos( i, j, nFix ) ]
+                     ( i - 1 ) * ( nFix + 1 ) * nFix / 2 +
+                     veclipos( j, k, nFix ) ]
                }
             }
          }

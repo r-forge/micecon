@@ -47,8 +47,10 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
          estData[[ qNames[ i ] ]] <- data[[ qNames[ i ] ]] *
             mean( data[[ pNames[ i ] ]][ base ] )
       }
-      for( i in 1:nFix ) {
-         estData[[ fNames[ i ] ]] <- data[[ fNames[ i ] ]]
+      if( !is.null( fNames ) ) {
+         for( i in 1:nFix ) {
+            estData[[ fNames[ i ] ]] <- data[[ fNames[ i ] ]]
+         }
       }
    } else {
       estData <- data
