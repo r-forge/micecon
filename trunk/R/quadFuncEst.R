@@ -37,5 +37,6 @@ quadFuncEst <- function( yName, xNames, data, quadHalf = TRUE, exVarScale = 1 ) 
    result$nObs  <- length( result$lm$residuals )
    result$model.matrix <- cbind( rep( 1, result$nObs ),
       as.matrix( estData[ , 2:( ncol( estData ) ) ] ) )
+   class( result ) <- "quadFuncEst"
    return( result )
 }
