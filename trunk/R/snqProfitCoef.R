@@ -1,4 +1,5 @@
-snqProfitCoef <- function( coef, nNetput, nFix, form = 0, coefCov=NULL, df=1 ) {
+snqProfitCoef <- function( coef, nNetput, nFix, form = 0, coefCov = NULL, 
+   df = 1, pNames = NULL, qNames = NULL, fNames = NULL ) {
 
    nCoef    <- nNetput + nNetput * ( nNetput - 1 )/2 + nNetput * nFix
       # number of coefficients
@@ -154,6 +155,35 @@ snqProfitCoef <- function( coef, nNetput, nFix, form = 0, coefCov=NULL, df=1 ) {
       rownames( result$stats ) <- snqProfitCoefNames( nNetput, nFix,
          form = form, all = TRUE )
       colnames( result$stats ) <- c( "value", "std.err", "t-value", "prob" )
+   }
+   if( !is.null( qNames ) ) {
+      if( length( qNames ) != nNetput ) {
+         stop( paste( "argument 'qNames' must have as many elements as",
+            "there are netputs" ) )
+      }
+      names( result$alpha ) <- qNames
+      rownames( result$beta ) <- qNames
+      if( nFix > 0 ) {
+         rownames( result$delta ) <- qNames
+      }
+   }
+   if( !is.null( pNames ) ) {
+      if( length( pNames ) != nNetput ) {
+         stop( paste( "argument 'pNames' must have as many elements as",
+            "there are netputs" ) )
+      }
+      colnames( result$beta ) <- pNames
+   }
+   if( !is.null( fNames ) ) {
+      if( length( fNames ) != nFix ) {
+         stop( paste( "argument 'fNames' must have as many elements as",
+            "there are fixed inputs" ) )
+      }
+      colnames( result$delta ) <- fNames
+      if( form == 0 ) {
+         rownames( result$gamma ) <- fNames
+         colnames( result$gamma ) <- fNames
+      }
    }
    return( result )
 }

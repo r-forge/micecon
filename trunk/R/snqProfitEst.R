@@ -127,7 +127,8 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
       TX = restrict, inst = inst, ... )
    result$coef <- snqProfitCoef( coef = result$est$bt, nNetput = nNetput,
       nFix = nFix, form = form, coefCov = result$est$btcov,
-      df = nNetput * nObs - nCoef )
+      df = nNetput * nObs - nCoef, 
+      qNames = qNames, pNames = pNames, fNames = fNames )
       # estimated coefficients
    result$coef$liCoef <- result$est$bt
    result$coef$liCoefCov <- result$est$btcov
@@ -239,6 +240,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    for( i in 1:nNetput ) {
       result$r2[ i ] <- result$est$eq[[ i ]]$r2
    }
+   names( result$r2 ) <- qNames
 
    result$hessian <- snqProfitHessian( result$coef$beta, result$pMeans, weights )
       # Hessian matrix
