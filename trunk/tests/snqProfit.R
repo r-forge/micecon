@@ -33,8 +33,9 @@ estResultEla <- snqProfitEla( estResult$coef$beta,
    estResult$weights )
 print( estResultEla )
 
-estResultHderiv <- snqProfitHderiv( estResult$pMean, estResult$weights, 2 )
-print( estResultHderiv )
+estResultHessianDeriv <- snqProfitHessianDeriv( estResult$pMean,
+   estResult$weights, 2 )
+print( estResultHessianDeriv )
 
 estResultHessian <- snqProfitHessian( estResult$coef$beta,
    estResult$estData[ 20, pNamesT ], estResult$weights )
@@ -58,8 +59,9 @@ estResultEla <- snqProfitEla( estResult$coef$beta,
    estResult$weights )
 print( estResultEla )
 
-estResultHderiv <- snqProfitHderiv( estResult$pMean, estResult$weights, 2 )
-print( estResultHderiv )
+estResultHessianDeriv <- snqProfitHessianDeriv( estResult$pMean,
+   estResult$weights, 2 )
+print( estResultHessianDeriv )
 
 estResultHessian <- snqProfitHessian( estResult$coef$beta,
    estResult$estData[ 20, pNamesT ], estResult$weights )
@@ -86,8 +88,9 @@ estResultEla <- snqProfitEla( estResult$coef$beta,
    estResult$weights )
 print( estResultEla )
 
-estResultHderiv <- snqProfitHderiv( estResult$pMean, estResult$weights, 2 )
-print( estResultHderiv )
+estResultHessianDeriv <- snqProfitHessianDeriv( estResult$pMean,
+   estResult$weights, 2 )
+print( estResultHessianDeriv )
 
 estResultHessian <- snqProfitHessian( estResult$coef$beta,
    estResult$estData[ 20, pNamesT ], estResult$weights )
