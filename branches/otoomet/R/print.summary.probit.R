@@ -1,15 +1,20 @@
-print.summary.probit <- function(x, ...) {
+print.summary.probit <- function(x) {
    cat("--------------------------------------------\n")
-   cat("Probit model\n")
-   cat("Number of iterations:", x$opt$iterations, "\n")
-   cat("Return code:", x$opt$code, "\n")
-   cat(x$opt$message, "\n")
-   if(!is.null(x$opt$estimate)) {
-      cat("Log-likelihood:", x$opt$estimate$value, "\n")
-      cat("Estimates:")
-      print(x$opt$estimate$results)
+   cat("Probit binary choice model/Maximum Likelihood estimation\n")
+   cat(x$type, ", ", x$iterations, " iterations\n", sep="")
+   cat("Return code ", x$code, ": ", x$message, "\n", sep="")
+   if(!is.null(x$estimate)) {
+      cat("Log-Likelihood:", x$estimate$value, "\n")
+      cat(x$NObs, " observations and ", x$NActivePar, " free parameters (df =",
+          x$NObs - x$NActivePar, ")\n", sep="")
+      cat("Estimates:\n")
+      print(x$estimate)
+      if(!is.null(x$Hessian)) {
+         cat("Hessian:\n")
+         print(x$Hessian)
+      }
    }
-   cat("LRT H0: no dependence on covariates\n")
-   cat("chi2(", x$LRT$df, ") =", x$LRT$LRT, " (p=", x$LRT$pchi2, ")\n")
+   cat("Significance test:\n")
+   cat("chi2(", x$LRT$df, ") = ", x$LRT$LRT, " (p=", x$LRT$pchi2, ")\n", sep="")
    cat("--------------------------------------------\n")
 }

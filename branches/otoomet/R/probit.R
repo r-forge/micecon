@@ -5,7 +5,7 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    ## formula: model formula, response must be either a logical or numeric vector containing only 0-s and
    ##          1-s 
    ## b0:      initial value of the parameters
-   ## ...       further arguments for the maximisation algorithm
+   ## ...      further arguments for the maxLik algorithm
    ##
    ## return: a list with following components.
    ##  $results: maximisation results
@@ -36,33 +36,35 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
          t( x0) %*% ( x0 * ( -f0*xb0*yF0 + f0*f0)/yF0/yF0)
                     # note that df/db' = -f (x'b) x'
    }
-   x <- model.matrix( formula, data=data)
+   x <- model.matrix(formula, data=data)
    y <- as.numeric(model.response( model.frame( formula, data=data)))
-   df <- ncol( x)
-                                        # df on X koos konstandiga
-   T <- length( y)
+   NParam <- ncol( x)
+   NObs <- length( y)
    N1 <- length( y[y==1])
    x0 <- x[y==0,]
    x1 <- x[y==1,]
-                                        # partial data, for speed
    if(is.null(b0)) {
-      b0 <- rep( 0, df)
+      b0 <- rep( 0, NParam)
+   }
+   if(is.null(names(b0))) {
+      names(b0) <- dimnames(x)[[2]]
    }
    ## Main estimation
-   estimation <- maxNR(loglik, gradlik, hesslik, b0, print.level, ...)
+   estimation <- maxLik(loglik, gradlik, hesslik, b0,
+                        method="Newton-Raphson", print.level, ...)
    ## compare.derivatives(gradlik, hesslik, t0=b0)
-   ## Now names for the variables
-   muutujate.nimed <- dimnames(x)[[2]]
-   muutujate.nimed[1] <- "konst"
-   names(estimation$estimate) <- muutujate.nimed
+                                        #
    ## Likelihood ratio test: H0 -- all the coefficients, except intercept
-   ## are zeros.  ML estimate for the intercept is qnorm(N1/T)
-   ll.bar <- loglik(c(qnorm(N1/T), rep(0, df-1)))
+   ## are zeros.  ML estimate for this model is qnorm(N1/NObs)
+   ll.bar <- loglik(c(qnorm(N1/NObs), rep(0, NParam-1)))
    LRT <- 2*(estimation$maximum - ll.bar)
-   ### Lõppvastus
-   result <- list(results=estimation,
-                   LRT=list(LRT=LRT, df=df-1))
+                                        #
+   result <- c(estimation,
+               LRT=list(list(LRT=LRT, df=NParam-1)),
+               NParam=NParam,
+               NObs=NObs,
+               df=NObs - NParam)
                                         # there are df-1 constraints
-   class(result) <- "probit"
-   return( result )
+   class(result) <- c("probit", class(estimation))
+   result
 }

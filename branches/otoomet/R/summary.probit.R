@@ -1,8 +1,12 @@
 summary.probit <- function(object, ...) {
-   opt <- summary(object$results)
-                                        # class maximisation
+   ## summary for probit -- adds Likelihood Ratio Test to summary.maxLik
+   summaryML <- summary.maxLik(object, ...)
    pchi2 <- pchisq(object$LRT$LRT, object$LRT$df, lower.tail=FALSE)
-   a <- list(opt=opt, LRT=c(object$LRT, pchi2=pchi2))
-   class(a) <- "summary.probit"
-   return( a )
+   a <- c(summaryML,
+          LRT=list(c(object$LRT, pchi2=pchi2)),
+          NParam=object$NParam,
+          NObs=object$NObs,
+          df=object$df)
+   class(a) <- c("summary.probit", class(summaryML))
+   a
 }
