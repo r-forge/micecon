@@ -1,4 +1,4 @@
-tobit2 <- function(selection, reg, data=sys.frame(sys.parent()),
+tobit2 <- function(selection, formula, data=sys.frame(sys.parent()),
                    init=NULL, print.level=0, ...) {
    ### The model (Amemiya 1985):
    ### The latent variables are:
@@ -12,7 +12,7 @@ tobit2 <- function(selection, reg, data=sys.frame(sys.parent()),
    ###
    ### PARAMETERS:
    ### selection: formula for the selection equation (y1)
-   ### reg        main model
+   ### formula    main model
    ### data       dataset
    ### init       initial value of coefficients.  The order is as follows:
    ###            init = (gamma', beta', sigma, rho)'
@@ -117,8 +117,8 @@ tobit2 <- function(selection, reg, data=sys.frame(sys.parent()),
    Z <- model.matrix(selection, data=data)
    y1 <- model.response(model.frame(selection, data=data))
    NZ <- ncol( Z)
-   X <- model.matrix(reg, data=data)
-   y2 <- model.response(model.frame(reg, data=data))
+   X <- model.matrix(formula, data=data)
+   y2 <- model.response(model.frame(formula, data=data))
    NX <- ncol( X)
    NParam <- NZ + NX + 2
                                         # Total # of parameters

@@ -1,4 +1,4 @@
-heckit <- function( formula, probitformula, data ) {
+heckit <- function( selection, formula, data ) {
 
    if( class( formula ) != "formula" ) {
       stop( "argument 'formula' must be a formula" )
@@ -7,28 +7,28 @@ heckit <- function( formula, probitformula, data ) {
    } else if( "probit" %in% substr( all.vars( formula ), 1, 6 ) ) {
       stop( paste( "argument 'formula' may not include variable names",
       "starting with 'probit'" ) )
-   } else if( class( probitformula ) != "formula" ) {
-      stop( "argument 'probitformula' must be a formula" )
-   } else if( length( probitformula ) != 3 ) {
-      stop( "argument 'probitformula' must be a 2-sided formula" )
-   } else if( "probit" %in% substr( all.vars( probitformula ), 1, 6 ) ) {
-      stop( paste( "argument 'probitformula' may not include a variable",
+   } else if( class( selection ) != "formula" ) {
+      stop( "argument 'selection' must be a formula" )
+   } else if( length( selection ) != 3 ) {
+      stop( "argument 'selection' must be a 2-sided formula" )
+   } else if( "probit" %in% substr( all.vars( selection ), 1, 6 ) ) {
+      stop( paste( "argument 'selection' may not include a variable",
          "names starting with 'probit'" ) )
    }
 
    result <- list()
 
-   data$probitdummy <- model.frame( probitformula, data = data )[ , 1 ]
+   data$probitdummy <- model.frame( selection, data = data )[ , 1 ]
    test <- levels( as.factor( as.numeric( data$probitdummy ) ) )
    if( length( test ) != 2 ) {
-      stop( paste( "The left hand side of 'probitformula' may only contain",
+      stop( paste( "The left hand side of 'selection' may only contain",
          "1 and 0 or TRUE and FALSE" ) )
    } else if( !all.equal( test, c( "0", "1" ) ) ) {
-      stop( paste( "The left hand side of 'probitformula' may only contain",
+      stop( paste( "The left hand side of 'selection' may only contain",
          "1 and 0 or TRUE and FALSE" ) )
    }
 
-   result$probit <- glm( probitformula, binomial( link = "probit" ), data )
+   result$probit <- glm( selection, binomial( link = "probit" ), data )
 
    data$probitLambda <- dnorm( result$probit$linear.predictors ) /
       pnorm( result$probit$linear.predictors )
