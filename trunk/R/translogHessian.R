@@ -1,5 +1,5 @@
 translogHessian <- function( xNames, data, allCoef, quadHalf = TRUE,
-   logValues = TRUE, bordered = FALSE ) {
+   logValues = FALSE, bordered = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
 
