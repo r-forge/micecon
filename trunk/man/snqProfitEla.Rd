@@ -50,8 +50,8 @@
    estResult$ela  # price elasticities at mean prices and mean quantities
 
    # price elasticities at the last observation (1994/95)
-   snqProfitEla( estResult$coef$beta, estResult$scaledData[ 20, pNames ],
-      estResult$scaledData[ 20, qNames ], estResult$weights )
+   snqProfitEla( estResult$coef$beta, estResult$estData[ 20, pNames ],
+      estResult$estData[ 20, qNames ], estResult$weights )
 }
 
 \keyword{models}
