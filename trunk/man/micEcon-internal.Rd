@@ -3,10 +3,12 @@
 \alias{aidsRestr}
 \alias{aidsSystem}
 \alias{print.aidsEst}
+\alias{checkNames}
 \alias{snqProfitCoef}
 \alias{snqProfitCoefNames}
 \alias{snqProfitSystem}
 \alias{snqProfitRestrict}
+\alias{translogMonoRestr}
 
 
 \title{ Internal micEcon Functions }
