@@ -12,9 +12,13 @@ fNamesT <- c( "land", "time" )
 
 estResult <- snqProfitEst( pNamesT, qNamesT, "land", data = germanFarms )
 print( estResult )
+class( estResult ) <- NULL
+print( estResult )
 
 ################ without fix inputs ##############################
 estResult <- snqProfitEst( pNamesT, qNamesT, NULL, data = germanFarms )
+print( estResult )
+class( estResult ) <- NULL
 print( estResult )
 
 estResultCalc <- snqProfitCalc( pNamesT, NULL, estResult$estData,
@@ -38,6 +42,8 @@ print( estResultHessian )
 
 ########### with fix inputs, form = 0 ########################
 estResult <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms )
+print( estResult )
+class( estResult ) <- NULL
 print( estResult )
 
 estResultCalc <- snqProfitCalc( pNamesT, fNamesT, estResult$estData,
@@ -65,6 +71,8 @@ print( estResultShadowprices )
 
 ####################################################
 estResult <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms, form = 1 )
+print( estResult )
+class( estResult ) <- NULL
 print( estResult )
 
 estResultCalc <- snqProfitCalc( pNamesT, fNamesT, estResult$estData,
