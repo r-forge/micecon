@@ -32,7 +32,7 @@ snqProfitShadowPrices <- function( pNames, fNames, estResult = NULL,
             for( k in 1:nFix ) {
                shadowPrices[ , j ] <- shadowPrices[ , j ] +
                   coef$gamma[ i, j, k ] * data[[ pNames[ i ] ]] *
-                  data[[ fNames[ j ] ]]
+                  data[[ fNames[ k ] ]]
             }
          }
       }
