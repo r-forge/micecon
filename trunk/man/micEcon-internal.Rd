@@ -5,6 +5,7 @@
 \alias{micEconIndex}
 \alias{print.aidsEst}
 \alias{print.aidsTestConsist}
+\alias{print.snqProfitImposeConvexity}
 \alias{checkNames}
 \alias{snqProfitCoef}
 \alias{snqProfitCoefNames}
