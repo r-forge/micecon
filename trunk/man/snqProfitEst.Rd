@@ -23,8 +23,8 @@
    \item{form}{the functional form to be estimated (see details).}
    \item{base}{the base period(s) for scaling prices (see details).}
    \item{weights}{vector of weights of the prices for normalization.}
-   \item{method}{the estimation method (passed to \code{\link{systemfit}}).}
-   \item{...}{arguments passed to \code{\link{systemfit}}}
+   \item{method}{the estimation method (passed to \code{systemfit}).}
+   \item{...}{arguments passed to \code{systemfit}}
 }
 
 \details{
@@ -102,7 +102,7 @@
       evaluated at mean prices.}
    \item{convexity}{logical. Convexity of the profit function.}
    \item{r2}{\eqn{R^2}-values of all netput equations.}
-   \item{est}{estimation results returned by \code{\link{systemfit}}.}
+   \item{est}{estimation results returned by \code{systemfit}.}
    \item{weights}{the weights of prices used for normalization.}
    \item{normPrice}{vector used for normalization of prices.}
    \item{estData}{data frame used for estimation (contains the
