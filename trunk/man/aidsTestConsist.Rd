@@ -7,8 +7,8 @@
 }
 
 \usage{
-   aidsTestConsist( pNames, wNames, xtName, data,
-      alpha0, alpha, beta, gamma )
+   aidsTestConsist( pNames, wNames, xtName, data, coef = NULL,
+      alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 )
 }
 
 \arguments{
@@ -17,10 +17,8 @@
       shares.}
    \item{xtName}{a name of the total expenditure variable.}
    \item{data}{a data frame containing the data.}
-   \item{alpha0}{coefficient \eqn{\alpha_0}. }
-   \item{alpha}{vector of \eqn{\alpha} coefficients.}
-   \item{beta}{vector of \eqn{\beta} coefficients.}
-   \item{gamma}{matrix of \eqn{\gamma} coefficients.}
+   \item{coef}{a list containing the coefficients alpha, beta and gamma.}
+   \item{alpha0}{coefficient \eqn{\alpha_0} in the translog price index.}
 }
 
 \value{
@@ -58,8 +56,7 @@
    estResult <- aidsEst( pNames, wNames, "xFood",
       data = Blanciforti86, method = "MK:L" )
    tc <- aidsTestConsist( pNames, wNames, "xFood", Blanciforti86,
-      alpha0 = 0, alpha = estResult$coef$alpha,
-      beta = estResult$coef$beta, gamma = estResult$coef$gamma )
+      coef = estResult$coef )
    tc$mPercent   # great!
    tc$cPercent   # Oh, that is bad!
 }

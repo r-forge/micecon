@@ -1,5 +1,5 @@
-aidsTestConsist <- function( pNames, wNames, xtName,
-      data = NULL, alpha0, alpha, beta, gamma ) {
+aidsTestConsist <- function( pNames, wNames, xtName, data = NULL,
+   coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) ) {
 
    if( length( pNames ) != length( wNames ) ) {
       stop( "arguments 'pNames' and 'wNames' must have the same length." )
@@ -16,7 +16,7 @@ aidsTestConsist <- function( pNames, wNames, xtName,
       prices[ , i ] <- with( data, get( pNames[ i ] ) )
       shares[ , i ] <- with( data, get( wNames[ i ] ) )
    }
-   fitted <- aidsShares( pNames, xtName, data, alpha0, alpha, beta, gamma )
+   fitted <- aidsShares( pNames, xtName, data, alpha0 = alpha0, coef = coef )
 
    # testing for monotonicity
    mono <- array( TRUE, c( nObs ) )
@@ -24,11 +24,11 @@ aidsTestConsist <- function( pNames, wNames, xtName,
    conc <- array( TRUE, c( nObs ) )
 
    lnp <- aidsPx( "TL", pNames, data = data,
-      alpha0 = alpha0, alpha=alpha, gamma=gamma )
+      alpha0 = alpha0, coef = coef )
 
    for( t in 1:nObs ) {
       mono[ t ] <- ( min( fitted$shares[ t, ] ) >= 0 )
-      cMatrices[[ t ]] <- gamma + ( beta %*% t( beta ) ) *
+      cMatrices[[ t ]] <- coef$gamma + ( coef$beta %*% t( coef$beta ) ) *
          ( log( xt[ t ] ) - lnp[ t ] ) -
          diag( shares[ t, ] ) + shares[ t, ] %*% t( shares[ t, ] )
 
