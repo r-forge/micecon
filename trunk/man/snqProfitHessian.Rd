@@ -16,7 +16,7 @@
 }
 
 \seealso{\code{\link{snqProfitEst}}, \code{\link{snqProfitEla}} and
-   \code{\link{snqProfitHderiv}}.}
+   \code{\link{snqProfitHessianDeriv}}.}
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
