@@ -64,7 +64,7 @@ Price elasticities of the netputs:
   qVarInput -0.556325  0.406594 0.14973151
   qLabor    -0.336577  0.331602 0.00497498
 
-warning: this profit function is not convex in netputs.
+warning: this profit function is not convex in netput prices.
 
 > class( estResult ) <- NULL
 > print( estResult )
@@ -465,7 +465,7 @@ Price elasticities of the netputs:
   qVarInput -0.433837 0.0261529 0.407684
   qLabor    -2.153572 0.9028734 1.250698
 
-warning: this profit function is not convex in netputs.
+warning: this profit function is not convex in netput prices.
 
 > class( estResult ) <- NULL
 > print( estResult )
