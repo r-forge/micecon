@@ -1,5 +1,5 @@
-\name{snqProfitEst}
-\alias{snqProfitEst}
+\name{snqProfitImposeConvexity}
+\alias{snqProfitImposeConvexity}
 \title{Imposing Convexity on a SNQ Profit function}
 \description{
    Imposing Convexity on a Symmetric Normalized Quadratic (SNQ) Profit function.
@@ -25,7 +25,7 @@
 
 \value{
    a list of class \code{snqProfitImposeConvexity} containing following objects:
-   \item{mindist}{object returned by \code{\link{\optim}}.}
+   \item{mindist}{object returned by \code{\optim}.}
    \item{coef}{a list containing the vectors/matrix of the estimated
       coefficients:\cr
       * alpha = \eqn{\alpha_i}.\cr
@@ -33,6 +33,7 @@
       * delta =  \eqn{\delta_{ij}} (only if quasi-fix inputs are present).\cr
       * gamma = \eqn{\gamma_{ij}} (only if quasi-fix inputs are present).\cr
       * allCoef = vector of all coefficients.\cr
+   }
    \item{ela}{matrix with the price elasticities at mean prices and mean quantities.}
    \item{hessian}{hessian matrix of the profit function with respect to prices
       evaluated at mean prices.}
