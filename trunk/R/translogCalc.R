@@ -1,4 +1,5 @@
-translogCalc <- function( xNames, data, allCoef, quadHalf = TRUE, logValues = TRUE ) {
+translogCalc <- function( xNames, data, allCoef, quadHalf = TRUE,
+   logValues = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
 
