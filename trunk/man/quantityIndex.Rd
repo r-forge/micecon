@@ -7,7 +7,7 @@
 }
 
 \usage{quantityIndex( prices, quantities, base, data, method = "Laspeyres",
-   na.rm = FALSE )}
+   na.rm = FALSE, na.0 = FALSE )}
 
 \arguments{
    \item{prices}{Vector that contains the names of the prices.}
@@ -18,6 +18,7 @@
    \item{method}{Which quantity index: "Laspeyres", "Paasche" or "Fisher".}
    \item{na.rm}{a logical value passed to '\code{mean()}' when
       calculating the \code{base}.}
+   \item{na.0}{logical. Setting all NA values to 0 (after calculating the base)?}
 }
 
 \details{
