@@ -140,13 +140,13 @@
    pNames <- c( "pOutput", "pVarInput", "pLabor" )
    qNames <- c( "qOutput", "qVarInput", "qLabor" )
 
-   result <- snqProfitEst( pNames, qNames, "land", data = germanFarms )
-   result$ela   # Oh, that looks bad!
+   estResult <- snqProfitEst( pNames, qNames, "land", data = germanFarms )
+   estResult$ela   # Oh, that looks bad!
 
    # it it reasonable to account for technological progress
    germanFarms$time <- c( 0:19 )
-   result2 <- snqProfitEst( pNames, qNames, c("land","time"), data=germanFarms )
-   result2$ela   # Ah, that looks good!
+   estResult2 <- snqProfitEst( pNames, qNames, c("land","time"), data=germanFarms )
+   estResult2$ela   # Ah, that looks good!
 }
 
 \keyword{models}

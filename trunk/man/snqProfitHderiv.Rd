@@ -34,9 +34,9 @@
    pNames <- c( "pOutput", "pVarInput", "pLabor" )
    qNames <- c( "qOutput", "qVarInput", "qLabor" )
 
-   result <- snqProfitEst( pNames, qNames, c("land","time"), data=germanFarms )
+   estResult <- snqProfitEst( pNames, qNames, c("land","time"), data=germanFarms )
 
-   snqProfitHderiv( result$pMean, result$weights, 2 )
+   snqProfitHderiv( estResult$pMean, estResult$weights, 2 )
 }
 
 \keyword{models}
