@@ -95,4 +95,6 @@ if( max( abs( fittedLA$quant[ -1, ] - estResultLA$qFitted[ -1, ] ) ) > 1e-5 ) {
 consist <- aidsTestConsist( pNames, wNames, "xFood", Blanciforti86,
    coef = estResultAIDS$coef )
 print( consist )
+class( consist ) <- NULL
+print( consist )
 

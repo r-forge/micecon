@@ -47,5 +47,6 @@ aidsTestConsist <- function( pNames, wNames, xtName, data = NULL,
    result$cPercent <- 100 * sum( conc ) / nObs
    result$concavity <- conc
    result$cMatrices <- cMatrices
+   class( result ) <- "aidsTestConsist"
    return( result )
 }
