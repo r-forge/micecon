@@ -1,5 +1,5 @@
 aidsEst <- function( pNames, wNames, xtName,
-      data = NULL, ivNames = NULL,
+      data = NULL, ivNames = NULL, qNames = wNames,
       method = "LA:L", hom = TRUE, sym = TRUE,
       elaFormula = "Ch", pxBase = 1,
       estMethod = ifelse( is.null( ivNames ), "SUR", "3SLS" ),
@@ -87,7 +87,7 @@ aidsEst <- function( pNames, wNames, xtName,
          pMeans <- NULL
       }
       result$ela  <- aidsEla( result$coef, wMeans, pMeans,
-         formula = elaFormula ) # elasticities
+         formula = elaFormula, pNames = pNames, qNames = qNames ) # elasticities
       result$wFitted <- aidsCalc( pNames, xtName, data = data,
          coef = result$coef, lnp = lnp )$shares   # estimated budget shares
       iter <- est$iter
@@ -116,7 +116,7 @@ aidsEst <- function( pNames, wNames, xtName,
          wNames = wNames, df = est$df )  # coefficients
       result$coef$alpha0 <- alpha0
       result$ela  <- aidsEla( result$coef, wMeans, pMeans,
-         formula = "AIDS" )   # elasticities
+         formula = "AIDS", pNames = pNames, qNames = qNames )   # elasticities
       result$wFitted <- aidsCalc( pNames, xtName, data = data,
          coef = result$coef, alpha0 = alpha0, px = "TL" )$shares
          # estimated budget shares

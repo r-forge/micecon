@@ -9,7 +9,8 @@
 }
 
 \usage{ aidsEst( pNames, wNames, xtName, data = NULL,
-      ivNames = NULL, method = "LA:L", hom = TRUE, sym = TRUE,
+      ivNames = NULL, qNames = wNames,
+      method = "LA:L", hom = TRUE, sym = TRUE,
       elaFormula = "Ch", pxBase,
       estMethod = ifelse( is.null( ivNames ), "SUR", "3SLS" ),
       maxiterMk = 50, tolMk = 1e-5, alpha0 = 0, ... )
@@ -23,6 +24,8 @@
    \item{data}{a data frame containing the data.}
    \item{ivNames}{a vector of strings containing the names of instrumental
       variables.}
+   \item{qNames}{an optional vector of strings containing the names of
+      the quantities (just to label elasticities).}
    \item{method}{the method to estimate the aids (see details).}
    \item{hom}{should the homogeneity condition be imposed?}
    \item{sym}{should the symmetry condition be imposed?}
