@@ -1,4 +1,4 @@
-heckit <- function( formula, probitformula, data ) {
+heckit <- function( formula, probitformula, data, print.level = 0 ) {
 
    if( class( formula ) != "formula" ) {
       stop( "argument 'formula' must be a formula" )
@@ -28,7 +28,11 @@ heckit <- function( formula, probitformula, data ) {
          "1 and 0 or TRUE and FALSE" ) )
    }
 
+   if( print.level > 0 ) {
+      cat ( "\nEstimating 1st step Probit model . . ." )
+   }
    result$probit <- glm( probitformula, binomial( link = "probit" ), data )
+   if( print.level > 0 ) cat( " OK\n" )
 
    data$probitLambda <- dnorm( result$probit$linear.predictors ) /
       pnorm( result$probit$linear.predictors )
@@ -39,7 +43,11 @@ heckit <- function( formula, probitformula, data ) {
    step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
       "+ probitLambda" ) )
 
+   if( print.level > 0 ) {
+      cat ( "Estimating 2nd step OLS model . . ." )
+   }
    result$lm <- lm( step2formula, data, data$probitdummy == 1 )
+   if( print.level > 0 ) cat( " OK\n" )
 
    result$sigma <- as.numeric( sqrt( crossprod( residuals( result$lm ) ) /
       sum( data$probitdummy == 1 ) +
@@ -49,6 +57,9 @@ heckit <- function( formula, probitformula, data ) {
    result$rho <- coefficients( result$lm )[ "probitLambda" ] / result$sigma
    result$probitLambda <- data$probitLambda
    result$probitDelta  <- data$probitDelta
+   if( print.level > 0 ) {
+      cat ( "Calculating coefficient covariance matrix . . ." )
+   }
    # the foolowing variables are named according to Greene (2003), p. 785
    xMat <- model.matrix( result$lm )
    wMat <- model.matrix( result$probit )[ data$probitdummy == 1, ]
@@ -80,6 +91,7 @@ heckit <- function( formula, probitformula, data ) {
       ( txd2Mat %*% 
       xMat + qMat ) %*% solve( crossprod( xMat ) )
    rm( txd2Mat, d2Vec )
+   if( print.level > 0 ) cat( " OK\n" )
    result$coef <- matrix( NA, nrow = length( coef( result$lm ) ), ncol = 4 )
    rownames( result$coef ) <- names( coef( result$lm ) )
    colnames( result$coef ) <- c( "Estimate", "Std. Error", "t value",
