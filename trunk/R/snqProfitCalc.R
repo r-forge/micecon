@@ -34,8 +34,9 @@ snqProfitCalc <- function( pNames, fNames, data, weights, coef, form = 0 ) {
                   qNetput[ , i ] <- qNetput[ , i ] + 0.5 * weights[ i ] *
                      coef$gamma[ j, k ] * data[[ fNames[ j ] ]] * data[[ fNames[ k ] ]]
                } else {
-                  qNetput[ , i ] <- qNetput[ , i ] + 0.5 * weights[ i ] *
-                     coef$gamma[ i, j, k ] * data[[ fNames[ j ] ]] * data[[ fNames[ k ] ]]
+                  qNetput[ , i ] <- qNetput[ , i ] + 0.5 *
+                     coef$gamma[ i, j, k ] * data[[ fNames[ j ] ]] *
+                     data[[ fNames[ k ] ]]
                }
             }
          }

@@ -102,7 +102,8 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
             for( k in 1:nFix ) {
                modelData[[ paste( "fq", as.character( i ), ".", as.character( j ), ".",
                as.character( k ), sep = "" ) ]] <-
-                  0.5 * weights[ i ] * with( data, get( fNames[ j ] ) ) *
+                  0.5 * ifelse( form == 0, weights[ i ], 1 ) *
+                  with( data, get( fNames[ j ] ) ) *
                   with( data, get( fNames[ k ] ) )
             }
          }
