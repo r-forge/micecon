@@ -65,8 +65,7 @@ estResultHessian <- snqProfitHessian( estResult$coef$beta,
    estResult$estData[ 20, pNamesT ], estResult$weights )
 print( estResultHessian )
 
-estResultShadowprices <- snqProfitShadowPrices( pNamesT, fNamesT, estResult$estData,
-   estResult$weights, estResult$coef )
+estResultShadowprices <- snqProfitShadowPrices( pNamesT, fNamesT, estResult )
 print( estResultShadowprices )
 
 ####################################################
@@ -94,6 +93,5 @@ estResultHessian <- snqProfitHessian( estResult$coef$beta,
    estResult$estData[ 20, pNamesT ], estResult$weights )
 print( estResultHessian )
 
-estResultShadowprices <- snqProfitShadowPrices( pNamesT, fNamesT, estResult$estData,
-   estResult$weights, estResult$coef, form = 1 )
+estResultShadowprices <- snqProfitShadowPrices( pNamesT, fNamesT, estResult )
 print( estResultShadowprices )

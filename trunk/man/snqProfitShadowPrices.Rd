@@ -8,13 +8,16 @@
 }
 
 \usage{
-   snqProfitShadowPrices( pNames, fNames, data, weights, coef, form = 0 )
+   snqProfitShadowPrices( pNames, fNames, estResult = NULL,
+   data = estResult$estData, weights = estResult$weights,
+   coef = estResult$coef, form = estResult$form )
 }
 
 \arguments{
    \item{pNames}{a vector of strings containing the names of netput prices.}
    \item{fNames}{an optional vector of strings containing the names of the
       quantities of (quasi-)fix inputs.}
+   \item{estResult}{object returned by \code{\link{snqProfitEst}}.}
    \item{data}{a data frame containing the data.}
    \item{weights}{vector of weights of prices used for normalization.}
    \item{coef}{a list containing the coefficients (at least delta and gamma).}
@@ -40,8 +43,7 @@
 
    estResult <- snqProfitEst( pNames, qNames, fNames, data = germanFarms )
 
-   snqProfitShadowPrices( pNames, fNames, estResult$estData, estResult$weights,
-      estResult$coef )
+   snqProfitShadowPrices( pNames, fNames, estResult )
 }
 
 \keyword{models}
