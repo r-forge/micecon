@@ -1,0 +1,412 @@
+\documentclass[a4paper]{article}
+\usepackage{natbib}
+\usepackage{bm}
+\usepackage{amsmath}
+\input{isomath}
+\allowdisplaybreaks
+
+\newcommand{\iid}{\textit{i.i.d.} }
+\bibliographystyle{econometrica}
+
+\title{Package \texttt{econ}\\
+\normalsize Various econometric functions}
+\author{Ott Toomet}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+Various functions, useful for econometrics.
+
+\section{Tobit-5 models}
+
+Definition: let there be following latent variables:
+\begin{eqnarray}
+y_1^* &=& \bm{Z}'\bm{\gamma} + u_1\\
+y_2^* &=& \bm{X}'\bm{\beta_2} + u_2\\
+y_3^* &=& \bm{X}'\bm{\beta_3} + u_3
+\end{eqnarray}
+and corresponding observables:
+\begin{eqnarray}
+y_1 &=& \left\{
+ \begin{array}{c@{\quad}l@{\quad}l}
+ 0     & \mathrm{if}  & y_1^* \le 0\\
+ 1     &              & y_1^* > 0
+ \end{array} \right. \label{eq:tobit5_selection}\\
+y_2 &=& \left\{
+ \begin{array}{c@{\quad}l@{\quad}l}
+ y_2^*  & \mathrm{if} & y_1 = 0\\
+ 0      &             & y_1 = 1
+ \end{array} \right.\\
+y_3 &=& \left\{
+ \begin{array}{c@{\quad}l@{\quad}l}
+ 0      & \mathrm{if} & y_1 = 0\\
+ y_3^*  &             & y_1 = 1
+ \end{array}\right.
+\end{eqnarray}
+The error terms have jointly 3-variate normal distribution:
+\begin{equation} \left(
+ \begin{array}{c}
+ u_1\\
+ u_2\\
+ u_3
+ \end{array} \right) \sim N \left(
+ \left( \begin{array}{c}
+ 0 \\
+ 0 \\
+ 0
+ \end{array} \right),
+ \left( \begin{array}{ccc}
+ 1                      & \varrho_2\sigma_2     & \varrho_3\sigma_3\\
+ \varrho_2\sigma_2      & \sigma^2_2            & \sigma_{23}\\
+ \varrho_3\sigma_3      & \sigma_{23}           & \sigma^2_3
+ \end{array} \right) \right).
+\end{equation}
+We want to estimate parameters $\vec{\gamma}$, $\vec{\beta}_2$ and
+$\vec{\beta}_3$.
+This is \emph{tobit-5} model following \citet{amemiya1985} notation. 
+
+
+\subsection{Heckman's two-step estimator}
+
+A consistent estimator for $\gamma$ may be found using probit model
+for equation~\ref{eq:tobit5_selection}.  Further we may write
+\begin{equation}
+  \begin{split}
+    y_2 &= \bm{X}'\bm{\beta_2} - \varrho_2\sigma_2 \lambda(
+    -\bm{Z}'\bm{\gamma}) + e_2 \\
+    y_3 &= \bm{X}'\bm{\beta_3} + \varrho_3\sigma_3 \lambda(
+    \bm{Z}'\bm{\gamma}) + e_3
+  \end{split}
+\label{eq:tobit5_H2s}
+\end{equation}
+where the variances may be expressed \citet{amemiya1985} as
+\begin{equation}
+  \begin{split}
+\sigma_{e2} &= \sigma_2^2 \left\{
+  1 - \varrho_2^2 \left[
+    \lambda^2( -\bm{Z}'\bm{\gamma}) -
+    \bm{Z}'\bm{\gamma} \lambda( -\bm{Z}'\bm{\gamma}) \right]
+  \right\} \\
+\sigma_{e3} &= \sigma_3^2 \left\{
+  1 - \varrho_3^2 \left[
+    \lambda^2( \bm{Z}'\bm{\gamma}) +
+    \bm{Z}'\bm{\gamma} \lambda( -\bm{Z}'\bm{\gamma}) \right] \right\}
+  \end{split}
+\label{eq:tobit5_H2s_variance}
+\end{equation} 
+The system~\eqref{eq:tobit5_H2s} may be estimated using OLS.  From the
+estimates of the coefficients of $\lambda$ and the expressions for the
+variances~\eqref{eq:tobit5_H2s_variance} one can find estimate for
+$\varrho$.  The estimate $\hat\varrho$ need not to lie between -1 and
+1.  Note that OLS standard error may not directly used for the
+estimator.  
+
+
+\subsection{Maximum-likelihood estimation}
+
+The log-likelihood can be expressed as:
+\begin{eqnarray}
+  l &=& -\frac{N}{2}\log 2\pi + \nonumber\\
+  &+& 
+  \sum_{y_1=0} \left\{
+  -\log\sigma_2
+  -\frac{1}{2}\left( \frac{u_2}{\sigma_2} \right)^2
+  +\log \Phi \left[ -\frac
+    {\bm{Z}'\bm{\gamma} + \displaystyle \frac{\varrho_2}{\sigma_2}
+      \left( y_2 - \vec{X}_i'\vec{\beta}_2 \right)}
+    {\sqrt{ 1 - \varrho_2^2}} \right] \right\} \nonumber\\
+&+& 
+\sum_{y_1=1} \left\{
+  -\log\sigma_3
+  -\frac{1}{2}\left( \frac{y_3 - \bm{X\beta}_3}{\sigma_3} \right)^2
+  +\log \Phi \left[ \frac
+    {\bm{Z'}\bm{\gamma} + \displaystyle \frac{\varrho_3}{\sigma_3}
+      \left( y_3 - \vec{X}_i'\vec{\beta}_3 \right)}
+    {\sqrt{ 1 - \varrho_3^2}} \right] \right\}. \nonumber\\
+&&
+\end{eqnarray}
+Choices 2 and 3 differ only by the sign of the argument for $\Phi$.
+
+The gradient vector is:
+\begin{eqnarray}
+%dl/dg
+\frac{\partial l}{\partial \gamma} & = &
+  -\sum_2 \frac{\phi(B_2)}{\Phi(B_2)}
+    \frac{\bm{Z}}{\sqrt{1-\varrho_2^2}}
+  +\sum_3 \frac{\phi(B_3)}{\Phi(B_3)}
+    \frac{\bm{Z}}{\sqrt{1-\varrho_3^2}} \\
+% dl/db2
+\frac{\partial l}{\partial \bm{\beta}_2} & = &
+  \sum_2 \left[
+    \frac{\phi(B_2)}{\Phi(B_2)} \left(
+      \frac{\varrho_2}{\sigma_2}
+      \frac{\bm{X}}{\sqrt{1-\varrho_2^2}} \right)
+    +\frac{u_2}{\sigma_2^2}\bm{X}
+    \right] \\
+% dl/dsigma2
+\frac{\partial l}{\partial \sigma_2} & = &
+  \sum_2 \left[
+    -\frac{1}{\sigma_2}
+    +\frac{ \left( y_2 - \bm{X}'\bm{\beta}_2 \right)^2}
+      {\sigma_2^3}
+    +\frac{\phi(B_2)}{\Phi(B_2)}
+    \frac{\varrho_2}{\sigma_2^2}
+    \frac{y_2 - \bm{X}'\bm{\beta}_2}{\sqrt{1-\varrho_2^2}}
+    \right] \\
+% dl/droo2
+\frac{\partial l}{\partial \varrho_2} & = &
+  -\sum_2
+    \frac{\phi(B_2)}{\Phi(B_2)}
+    \frac{ \displaystyle \frac{1}{\sigma_2}
+        ( y_2 - \bm{X}'\bm{\beta}_2) + \varrho_2 \bm{Z}'\bm{\gamma}}
+      {( 1 - \varrho_2^2)^{\frac{3}{2}}}\\
+% dl/db_3
+\frac{\partial l}{\partial \bm{\beta}_3} & = &
+  \sum_3 \left[
+    -\frac{\phi(B_3)}{\Phi(B_3)} \left(
+      \frac{\varrho_3}{\sigma_3}
+      \frac{\bm{X}}{\sqrt{1-\varrho_3^2}} \right)
+    +\frac{u_3}{\sigma_3^2}\bm{X}
+    \right] \\
+% dl/dsigma_3
+\frac{\partial l}{\partial \sigma_3} & = &
+  \sum_3 \left[
+    -\frac{1}{\sigma_3}
+    +\frac{ \left( y_3 - \bm{X}'\bm{\beta}_3 \right)^2}
+      {\sigma_3^3}
+    -\frac{\phi(B_3)}{\Phi(B_3)}
+    \frac{\varrho_3}{\sigma_3^2}
+    \frac{y_3 - \bm{X}'\bm{\beta}_3}{\sqrt{1-\varrho_3^2}}
+    \right] \\
+% dl/droo_3
+\frac{\partial l}{\partial \varrho_3} & = &
+  \sum_3
+    \frac{\phi(B_3)}{\Phi(B_3)}
+    \frac{ \displaystyle \frac{1}{\sigma_3}
+        ( y_3 - \bm{X}'\bm{\beta}_3) + \varrho_3 \bm{Z}'\bm{\gamma}}
+      {( 1 - \varrho_3^2)^{\frac{3}{2}}}
+\end{eqnarray}
+
+And the components of the hessian:
+\begin{eqnarray}
+% d2l/ dg dg
+\frac{ \partial^2 l}{\partial\bm{\gamma}^2} &=&
+  \sum_2 \frac{C(B_2)}{1-\varrho_2^2}\bm{ZZ}'
+  + \sum_3 \frac{C(B_3)}{1-\varrho_3^2}\bm{ZZ}'\\
+% d2l/ dg db2
+\frac{ \partial^2 l}{\partial\bm{\gamma} \partial\bm{\beta}_2'} &=&
+  - \sum_2 C(B_2) \frac{1}{\sigma_2} \frac{\varrho_2}{1-\varrho_2^2}
+  \bm{Z}\bm{X}' \\
+% d2l/ dg ds2
+\frac{ \partial^2 l}{\partial\bm{\gamma} \partial \sigma_2} &=&
+  - \sum_2
+    \frac{\varrho_2 u_2}{\sigma_2^2 ( 1- \varrho_2^2)}
+    C(B_2) \bm{Z} \\
+% d2l/ dg dr2
+\frac{ \partial^2 l}{\partial\bm{\gamma} \partial \varrho_2} &=&
+  \sum_2 \left[
+    C(B_2) \frac
+      {\displaystyle \frac{u_2}{\sigma_2}
+        \varrho_2 \bm{Z}'\bm{\gamma}}
+      {( 1 - \varrho_2^2)^2}
+    - \lambda(B_2) \frac{\varrho_2}
+      {(1 - \varrho_2^2)^\frac{3}{2}}
+    \right] \bm{Z} \\
+% d2l/ dg db3
+\frac{ \partial^2 l}{\partial\bm{\gamma} \partial\bm{\beta}_3'} &=&
+  - \sum_3 C(B_3) \frac{1}{\sigma_3} \frac{\varrho_3}{1-\varrho_3^2}
+  \bm{Z}\bm{X}' \\
+% d2l/ dg ds3
+\frac{ \partial^2 l}{\partial\bm{\gamma} \partial \sigma_3} &=&
+  - \sum_3
+    \frac{\varrho_3 u_3}{\sigma_3^2 ( 1- \varrho_3^2)}
+    C(B_3) \bm{Z} \\
+% d2l/ dg dr_3
+\frac{ \partial^2 l}{\partial\bm{\gamma} \partial \varrho_3} &=&
+  \sum_3 \left[
+    C(B_3) \frac
+      {\displaystyle \frac{u_3}{\sigma_3}
+        \varrho_3 \bm{Z}'\bm{\gamma}}
+      {( 1 - \varrho_3^2)^2}
+    + \lambda(B_3) \frac{\varrho_3}
+      {(1 - \varrho_3^2)^\frac{3}{2}}
+    \right] \bm{Z} \\
+% d2l / db_2 db_2
+\frac{ \partial^2 l}{\partial\bm{\beta}_2 \partial\bm{\beta}_2'} &=&
+  \sum_2 \frac{1}{\sigma_2^2} \left[
+  \frac{\varrho_2^2}{1 - \varrho_2^2}C(B_2) - 1 \right]
+  \bm{X}\bm{X}' \\
+% d2l / db2 ds2
+\frac{ \partial^2 l}{\partial\bm{\beta}_2 \partial\sigma_2} &=&
+  \sum_2 \left[
+    C(B_2) \frac{u_2}{\sigma_2^3}
+      \frac{\varrho_2^2}{1 - \varrho_2^2}
+    - \frac{\lambda(B_2)}{\sigma_2^2}
+      \frac{\varrho_2}{\sqrt{1 - \varrho_2^2}}
+    - 2\frac{u_2}{\sigma_2^3}
+    \right] \bm{X} \\
+% d2l / db_2 dr_2
+\frac{ \partial^2 l}{\partial\bm{\beta}_2 \partial\varrho_2} &=&
+  \sum_2 \left[
+    -C(B_2) \frac
+      {\displaystyle \frac{u_2}{\sigma_2} +
+        \varrho_2\bm{Z}'\bm{\gamma}}
+      {(1 - \varrho_2^2)^2}
+      \frac{\varrho_2}{\sigma_2}
+    + \frac{\lambda(B_2)}{\sigma_2}
+      \frac{1}{(1 - \varrho_2^2)^\frac{3}{2}}
+    \right] \bm{X}\\
+% d2l / db2 db3
+\frac{ \partial^2 l}{\partial\bm{\beta}_2 \partial\bm{\beta}_3}
+  &=& 0\\
+% d2l / db2 ds3
+\frac{ \partial^2 l}{\partial\bm{\beta}_2 \partial\sigma_3}
+  &=& 0 \\
+% d2l / db2 dr3
+\frac{ \partial^2 l}{\partial\bm{\beta}_2 \partial\varrho_3}
+  &=& 0 \\
+% d2l/ ds_2 ds_2
+\frac{ \partial^2 l}{\partial \sigma_2^2} &=&
+  \sum_2 \left[
+    \frac{1}{\sigma_2^2}
+    - 3 \frac{ u_2^2}{\sigma_2^4}
+    + \frac{u_2}{\sigma_2^4}
+      \frac{\varrho_2^2}{1 - \varrho_2^2}
+      C(B_2) \right] - \nonumber\\
+&-&   2 \sum_2
+      \lambda( B_2)
+      \frac{u_2}{\sigma_2^3}
+      \frac{\varrho_2}{\sqrt{1- \varrho_2^2}} \\
+% d2l/ ds2 dr2
+\frac{ \partial^2 l}{\partial \sigma_2 \partial\varrho_2} &=&
+  \frac{1}{(1 - \varrho_2^2)^\frac{3}{2}}
+  \sum_2  \frac{u_2}{\sigma_2^2} \left[
+    -C(B_2) \frac
+      {\varrho_2 \left(
+      \displaystyle \frac{u_2}{\sigma_2} +
+        \varrho_2 \bm{Z}'\bm{\gamma} \right)}
+      {\sqrt{1-\varrho_2^2}}
+    + \lambda( B_2)
+    \right]\\
+% d2l / ds2 db3
+\frac{ \partial^2 l}{\partial\sigma_2 \partial\bm{\beta}_3}
+  &=& 0\\
+% d2l / ds2 ds3
+\frac{ \partial^2 l}{\partial\sigma_2 \partial\sigma_3}
+  &=& 0 \\
+% d2l / ds2 dr3
+\frac{ \partial^2 l}{\partial\sigma_2 \partial\varrho_3}
+  &=& 0 \\
+% d2l/dr_2 dr_2
+\frac{ \partial^2 l}{\partial \varrho_2^2} &=&
+  \sum_2
+    C(B_2) \left[ \frac
+      {\displaystyle \frac{u_2}{\sigma_2}
+        + \varrho_2 \bm{Z}'\bm{\gamma}}
+      {( 1 - \varrho_2^2)^\frac{3}{2}}
+      \right]^2 - \nonumber\\
+&&  - \sum_2 \frac{\phi(B_2)}{\Phi(B_2)}
+      \frac
+        {\bm{Z}'\bm{\gamma}( 1 + 2 \varrho_2^2) +
+          3 \varrho_2 \displaystyle \frac{u_2}{\sigma_2}}
+        {(1-\varrho_2^2)^\frac{5}{2}}\\
+% d2l / dr2 db3
+\frac{ \partial^2 l}{\partial\varrho_2 \partial\bm{\beta}_3}
+  &=& 0\\
+% d2l / dr2 ds3
+\frac{ \partial^2 l}{\partial\varrho_2 \partial\sigma_3}
+  &=& 0 \\
+% d2l / dr2 dr3
+\frac{ \partial^2 l}{\partial\varrho_2 \partial\varrho_3}
+  &=& 0 \\
+% d2l / db_3 db_3
+\frac{ \partial^2 l}{\partial\bm{\beta}_3 \partial\bm{\beta}_3'} &=&
+  \sum_3 \frac{1}{\sigma_3^2} \left[
+  \frac{\varrho_3^2}{1 - \varrho_3^2}C(B_3) - 1 \right]
+  \bm{X}\bm{X}' \\
+% d2l / db_3 ds_3
+\frac{ \partial^2 l}{\partial\bm{\beta}_3 \partial\sigma_3} &=&
+  \sum_3 \left[
+    C(B_3) \frac{\varrho_3^2}{\sigma_3^3}
+      \frac{u_3}{1 - \varrho_3^2}
+    + \frac{\varrho_3}{\sigma_3^2}
+      \frac{\lambda(B_3)}{\sqrt{1 - \varrho_3^2}}
+    - 2\frac{u_3}{\sigma_3^3}
+    \right] \bm{X} \\
+% d2l / db_3 dr_3
+\frac{ \partial^2 l}{\partial\bm{\beta}_3 \partial\varrho_3} &=&
+  \sum_3 \left[
+    -C(B_3) \frac
+      {\displaystyle \frac{u_3}{\sigma_3} +
+        \varrho_3\bm{Z}'\bm{\gamma}}
+      {(1 - \varrho_3^2)^2}
+      \frac{\varrho_3}{\sigma_3}
+    - \frac{\lambda(B_3)}{\sigma_3}
+      \frac{1}{(1 - \varrho_3^2)^\frac{3}{2}}
+    \right] \bm{X}\\
+% d2l/ ds_3 ds_3
+\frac{ \partial^2 l}{\partial \sigma_3^2} &=&
+  \sum_3 \left[
+    \frac{1}{\sigma_3^2}
+    - 3 \frac{ u_3^2}{\sigma_3^4}
+    + 2 \lambda( B_3)
+      \frac{y_3 - \bm{X}'\bm{\beta_3}}{\sqrt{1- \varrho_3^2}}
+      \frac{\varrho_3}{\sigma_3^3}
+    \right] + \nonumber\\
+&&  + \sum_3
+      \frac{\varrho_3^2}{\sigma_3^4}
+      \frac{ u_3^2}{1 - \varrho_3^2}
+      C(B_3) \\
+% d2l/ ds_3 dr_3
+\frac{ \partial^2 l}{\partial \sigma_3 \partial\varrho_3} &=&
+  -\frac{1}{(1 - \varrho_3^2)^\frac{3}{2}}
+  \sum_3  \frac{u_3}{\sigma_3^2} \left[
+    C(B_3) \frac
+      {\varrho_3 \left(
+      \displaystyle \frac{u_3}{\sigma_3} +
+        \varrho_3 \bm{Z}'\bm{\gamma} \right)}
+      {\sqrt{1-\varrho_3^2}}
+    + \lambda( B_3)
+    \right]\\
+% d2l/dr_3 dr_3
+\frac{ \partial^2 l}{\partial \varrho_3^2} &=&
+  \sum_3
+    C(B_3) \left[ \frac
+      {\displaystyle \frac{1}{\sigma_3}u_3
+        + \varrho_3 \bm{Z}'\bm{\gamma}}
+      {( 1 - \varrho_3^2)^\frac{3}{2}}
+      \right]^2 + \nonumber\\
+&&  + \sum_3 \lambda( B_3)
+      \frac
+        {\bm{Z}'\bm{\gamma}( 1 + 2 \varrho_3^2) +
+          3 \varrho_3 \displaystyle \frac{1}{\sigma_3} u_3}
+        {(1-\varrho_3^2)^\frac{7}{2}}
+%
+\end{eqnarray}
+
+Here the following notation was used
+\begin{eqnarray}
+B_2 &=& -\frac
+    {\bm{Z}'\bm{\gamma} + \displaystyle \frac{\varrho_2}{\sigma_2}
+      \left( y_2 - \bm{X}'\bm{\beta_2} \right)}
+    {\sqrt{ 1 - \varrho_2^2}} \\
+% B_3
+B_3 &=& \frac
+    {\bm{Z}'\bm{\gamma} + \displaystyle \frac{\varrho_3}{\sigma_3}
+      \left( y_3 - \bm{X}'\bm{\beta_3} \right)}
+    {\sqrt{ 1 - \varrho_3^2}}\\
+% lambda
+\lambda( B) &=& \frac{\phi(B)}{\Phi(B)}\\
+% u_2
+u_2 &=& y_2 - \bm{X}'\bm{\beta_2}\\
+u_3 &=& y_3 - \bm{X}'\bm{\beta_3}\\
+% C
+C(B) &=& -\frac{\Phi(B) \phi(B) B + \phi(B)^2}{\Phi(B)^2}
+\end{eqnarray}
+
+\bibliography{/home/otoomet/proge/tex/majandus}
+
+\end{document}
+
