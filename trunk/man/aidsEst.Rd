@@ -33,12 +33,12 @@
    \item{pxBase}{The base to calculate the LA-AIDS price indices
       (see \code{\link{aidsPx}}).}
    \item{estMethod}{estimation method (e.g. "SUR",
-      see \code{\link{systemfit}}).}
+      see \code{systemfit}).}
    \item{maxiterMk}{maximum number of iterations of the
       Michalek and Keyzer estimation}
    \item{tolMk}{tolerance level of the Michalek and Keyzer iteration}
    \item{alpha0}{the intercept of the translog price index (\eqn{\alpha_0})}
-   \item{...}{argunents passed to \code{\link{systemfit}}}
+   \item{...}{argunents passed to \code{systemfit}}
 }
 
 \details{
@@ -80,9 +80,9 @@
    \item{lnp}{log of the price index used for estimation.}
    \item{hom}{was the homogeneity condition imposed?}
    \item{sym}{was the symmetry condition imposed?}
-   \item{estMethod}{estimation method (see \code{\link{systemfit}}).}
+   \item{estMethod}{estimation method (see \code{systemfit}).}
    \item{rcovformula}{formula used to calculate the estimated residual
-      covariance matrix (see \code{\link{systemfit}}).}
+      covariance matrix (see \code{systemfit}).}
 }
 
 \references{
