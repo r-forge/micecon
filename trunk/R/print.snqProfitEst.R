@@ -41,7 +41,7 @@ print.snqProfitEst <- function( x, digits=6,... ) {
    if( x$convexity ) {
       #cat( "\nThis profit function is convex in netputs." )
    } else {
-      cat( "\nwarning: this profit function is not convex in netputs.\n" )
+      cat( "\nwarning: this profit function is not convex in netput prices.\n" )
    }
    cat( "\n" )
 
