@@ -9,20 +9,18 @@
 }
 
 \usage{
-   aidsShares( pNames, xtName, data = NULL,
-   alpha0 = 0, alpha, beta, gamma, px = "TL", lnp = NULL )
+   aidsShares( pNames, xtName, data = NULL, px = "TL", lnp = NULL,
+      coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) )
 }
 
 \arguments{
    \item{pNames}{vector containing the names of the prices. }
    \item{xtName}{name of the total expenditure variable. }
    \item{data}{data frame containing the variables. }
-   \item{alpha0}{coefficient \eqn{\alpha_0}. }
-   \item{alpha}{vector of \eqn{\alpha} coefficients. }
-   \item{beta}{vector of \eqn{\beta} coefficients. }
-   \item{gamma}{matrix of \eqn{\gamma} coefficients. }
    \item{px}{prices index (see \code{\link{aidsPx}}) }
    \item{lnp}{log of the price index.}
+   \item{coef}{a list containing the coefficients alpha, beta and gamma.}
+   \item{alpha0}{coefficient \eqn{\alpha_0} in the translog price index.}
 }
 
 \value{
@@ -47,28 +45,26 @@
    wNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 
    ## LA-AIDS
-   result <- aidsEst( pNames, wNames, "xFood",
+   estResult <- aidsEst( pNames, wNames, "xFood",
       data = Blanciforti86, method = "LA:L" )
 
    lnp <- aidsPx( "L", pNames, wNames, Blanciforti86 )
 
    fitted <- aidsShares( pNames, "xFood", Blanciforti86,
-      alpha = result$coef$alpha, beta = result$coef$beta,
-      gamma = result$coef$gamma, lnp = lnp )
+      coef = estResult$coef, lnp = lnp )
 
-   fitted$shares  # equal to result$wFitted
-   fitted$quant   # equal to result$qFitted
+   fitted$shares  # equal to estResult$wFitted
+   fitted$quant   # equal to estResult$qFitted
 
    ## AIDS
-   result <- aidsEst( pNames, wNames, "xFood",
+   estResult <- aidsEst( pNames, wNames, "xFood",
       data = Blanciforti86, method = "MK:L" )
 
    fitted <- aidsShares( pNames, "xFood", Blanciforti86,
-      alpha = result$coef$alpha, beta = result$coef$beta,
-      gamma = result$coef$gamma )
+      coef = estResult$coef )
 
-   fitted$shares  # equal to result$wFitted
-   fitted$quant   # equal to result$qFitted
+   fitted$shares  # equal to estResult$wFitted
+   fitted$quant   # equal to estResult$qFitted
 
 }
 

@@ -1,5 +1,5 @@
-aidsShares <- function( pNames, xtName, data = NULL,
-      alpha0 = 0, alpha, beta, gamma, px = "TL", lnp = NULL ) {
+aidsShares <- function( pNames, xtName, data = NULL, px = "TL", lnp = NULL,
+   coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) ) {
 
    if( px != "TL" && is.null( lnp ) ) {
       stop( paste( "At the moment only the translog (TL) price index works",
@@ -9,7 +9,7 @@ aidsShares <- function( pNames, xtName, data = NULL,
 
    if( is.null( lnp ) ) {
       lnp <- aidsPx( px, pNames, pNames, data = data,
-         alpha0 = alpha0, alpha = alpha, gamma = gamma)
+         alpha0 = alpha0, coef = coef )
    }
    shares <- as.data.frame( matrix( 0, nrow = nrow( data ), ncol = nGoods ) )
    names( shares ) <- paste( "w", as.character( 1:nGoods ), sep = "" )
@@ -18,10 +18,10 @@ aidsShares <- function( pNames, xtName, data = NULL,
    names( quant ) <- paste( "q", as.character( 1:nGoods ), sep = "" )
    rownames( quant ) <- rownames( data )
    for( i in 1:nGoods ) {
-      shares[ , i ] <- alpha[ i ] + beta[ i ] *
+      shares[ , i ] <- coef$alpha[ i ] + coef$beta[ i ] *
          ( log( with( data, get( xtName ) ) ) - lnp )
       for( j in 1:nGoods ) {
-         shares[ , i ] <- shares[ , i ] + 0.5 * gamma[ i, j ] *
+         shares[ , i ] <- shares[ , i ] + 0.5 * coef$gamma[ i, j ] *
             log( with( data, get( pNames[ j ] ) ) )
       }
       quant[ , i ] <- shares[ , i ] * with( data, get( xtName ) ) /
