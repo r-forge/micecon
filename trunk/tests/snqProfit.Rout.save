@@ -1349,8 +1349,7 @@ $form
   [2,] -12205.214   5320.418  1056.5079
   [3,]  -2973.386   1056.508   344.6469
 > 
-> estResultShadowprices <- snqProfitShadowPrices( pNamesT, fNamesT, estResult$estData,
-+    estResult$weights, estResult$coef )
+> estResultShadowprices <- snqProfitShadowPrices( pNamesT, fNamesT, estResult )
 > print( estResultShadowprices )
          land       time
 1  -428.43639  6014.9903
@@ -2088,8 +2087,7 @@ $form
   [2,] -10681.427   5307.1172   687.5584
   [3,]  -2200.959    687.5584   289.5241
 > 
-> estResultShadowprices <- snqProfitShadowPrices( pNamesT, fNamesT, estResult$estData,
-+    estResult$weights, estResult$coef, form = 1 )
+> estResultShadowprices <- snqProfitShadowPrices( pNamesT, fNamesT, estResult )
 > print( estResultShadowprices )
        land      time
 1  22636.33 -20135.86

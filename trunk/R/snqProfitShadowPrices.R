@@ -1,4 +1,6 @@
-snqProfitShadowPrices <- function( pNames, fNames, data, weights, coef, form = 0 ) {
+snqProfitShadowPrices <- function( pNames, fNames, estResult = NULL,
+   data = estResult$estData, weights = estResult$weights,
+   coef = estResult$coef, form = estResult$form ) {
 
    checkNames( c( pNames, fNames ), names( data ) )
 
