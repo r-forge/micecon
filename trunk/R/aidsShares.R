@@ -1,4 +1,4 @@
-aidsShares <- function( pNames, xtName, data = NULL, px = "TL", lnp = NULL,
+aidsCalc <- function( pNames, xtName, data = NULL, px = "TL", lnp = NULL,
    coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) ) {
 
    if( px != "TL" && is.null( lnp ) ) {

@@ -16,7 +16,7 @@ aidsTestConsist <- function( pNames, wNames, xtName, data = NULL,
       prices[ , i ] <- with( data, get( pNames[ i ] ) )
       shares[ , i ] <- with( data, get( wNames[ i ] ) )
    }
-   fitted <- aidsShares( pNames, xtName, data, alpha0 = alpha0, coef = coef )
+   fitted <- aidsCalc( pNames, xtName, data, alpha0 = alpha0, coef = coef )
 
    # testing for monotonicity
    mono <- array( TRUE, c( nObs ) )
