@@ -112,6 +112,7 @@ aidsEst <- function( pNames, wNames, xtName,
                          # and previous step
       }
       result$coef <- aidsCoef( est$b, est$bcov )  # coefficients
+      result$coef$alpha0 <- alpha0
       result$ela  <- aidsEla( result$coef, wMeans, pMeans,
          formula = "AIDS" )   # elasticities
       result$wFitted <- aidsCalc( pNames, xtName, data = data,
