@@ -20,6 +20,9 @@ print( estResult )
 estResultCalc <- snqProfitCalc( pNamesT, fNamesT, estResult$estData,
    estResult$weights, estResult$coef )
 print( estResultCalc )
+if( max( abs( estResultCalc - estResult$fitted ) ) > 1e-5 ) {
+   stop( "values from snqProfitCalc are not equal to fitted values." )
+}
 
 estResultEla <- snqProfitEla( estResult$coef$beta,
    estResult$estData[ 20, pNames ], estResult$estData[ 20, qNames ],
@@ -33,6 +36,9 @@ estResultHessian <- snqProfitHessian( estResult$coef$beta,
    estResult$estData[ 20, pNames ], estResult$weights )
 print( estResultHessian )
 
+estResultShadowprices <- snqProfitShadowPrices( pNamesT, fNamesT, estResult$estData,
+   estResult$weights, estResult$coef )
+print( estResultShadowprices )
 
 ####################################################
 estResult <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms, form = 1 )
@@ -41,6 +47,9 @@ print( estResult )
 estResultCalc <- snqProfitCalc( pNamesT, fNamesT, estResult$estData,
    estResult$weights, estResult$coef, form = 1 )
 print( estResultCalc )
+if( max( abs( estResultCalc - estResult$fitted ) ) > 1e-5 ) {
+   #stop( "values from snqProfitCalc are not equal to fitted values." )
+}
 
 estResultEla <- snqProfitEla( estResult$coef$beta,
    estResult$estData[ 20, pNames ], estResult$estData[ 20, qNames ],
@@ -54,3 +63,6 @@ estResultHessian <- snqProfitHessian( estResult$coef$beta,
    estResult$estData[ 20, pNames ], estResult$weights )
 print( estResultHessian )
 
+estResultShadowprices <- snqProfitShadowPrices( pNamesT, fNamesT, estResult$estData,
+   estResult$weights, estResult$coef, form = 1 )
+print( estResultShadowprices )
