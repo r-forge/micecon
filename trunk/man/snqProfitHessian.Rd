@@ -38,7 +38,7 @@
    estResult$hessian  # the Hessian at mean prices and mean quantities
 
    # Hessian at the last observation (1994/95)
-   snqProfitHessian( estResult$coef$beta, estResult$scaledData[ 20, pNames ],
+   snqProfitHessian( estResult$coef$beta, estResult$estData[ 20, pNames ],
       estResult$weights )
 }
 

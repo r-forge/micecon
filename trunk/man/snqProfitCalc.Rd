@@ -58,7 +58,7 @@
    fNames <- c( "land", "time" )
 
    estResult <- snqProfitEst( pNames, qNames, fNames, data = germanFarms )
-   snqProfitCalc( pNames, fNames, estResult$scaledData, estResult$weights,
+   snqProfitCalc( pNames, fNames, estResult$estData, estResult$weights,
       estResult$coef )
 }
 
