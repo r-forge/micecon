@@ -5,8 +5,7 @@ print.summary.maxLik <- function( x, ... ) {
    cat("Return code ", x$code, ": ", x$message, "\n", sep="")
    if(!is.null(x$estimate)) {
       cat("Log-Likelihood:", x$loglik, "\n")
-      cat(x$Obs, " observations and ", x$NActivePar, " free parameters (df =",
-          x$NObs - x$NActivePar, ")\n")
+      cat(x$NActivePar, " free parameters\n")
       cat("Estimates:")
       print(x$estimate)
       if(!is.null(x$Hessian)) {

@@ -1,4 +1,4 @@
-summary.maximisation <- function( object, hessian=FALSE, unsucc.step=FALSE, ... ) {
+summary.maximisation <- function(object, Hessian=FALSE, unsucc.step=FALSE) {
    ### The object of class "maximisation" should include following components:
    ### maximum    : function value at optimum
    ### estimate   : estimated parameter values at optimum
@@ -25,50 +25,20 @@ summary.maximisation <- function( object, hessian=FALSE, unsucc.step=FALSE, ... 
    } else {
       unsucc.step <- NULL
    }
-   if(object$code < 100) {
-      if(min(abs(eigen(object$hessian[activePar,activePar],
-            symmetric=TRUE, only.values=TRUE)$values)) > 1e-6) {
-         varcovar <- matrix(0, NParam, NParam)
-         varcovar[activePar,activePar] <-
-            solve(-object$hessian[activePar,activePar])
-         hdiag <- diag(varcovar)
-         if(any(hdiag < 0)) {
-            warning("Diagonal of variance-covariance matrix not positive!\n")
-         }
-         stdh <- sqrt(hdiag)
-         t <- object$estimate/stdh
-         p <- 2*pnorm( -abs( t))
-      } else {
-         stdh <- 0
-         t <- 0
-         p <- 0
-      }
-      if(!is.null(object$gradient)) {
-         results <- cbind(object$estimate, stdh, t, p,
-                       as.numeric(object$gradient))
-         dimnames(results) <- list(parameter=names(object$estimate),
-                                list("coeff.", "stdd", "t",
-                                     "P(|b|>t)", "gradient"))
-      } else {
-         results <- cbind(object$estimate, stdh, t, p, 1 - as.integer(activeParam))
-         dimnames(results) <- list(parameter=object$names,
-                                list("coeff.", "stdd", "t",
-                                     "P(|b|>t)", "constant"))
-      }
-      estimate <- list(value=object$maximum,
-                     results=results)
-      if(hessian) {
-         estimate <- c(estimate, list(hessian=object$hessian))
-      }
-   } else {
-      estimate <- NULL
+   estimate <- cbind(object$estimate, object$gradient)
+   if(Hessian) {
+      H <- object$hessian
+   }
+   else {
+      H <- NULL
    }
    summary <- list(type=object$type,
                   iterations=object$iterations,
                   code=object$code,
                   message=object$message,
-                  unsucc.step=unsucc.step,
-                  estimate=estimate)
+                   unsucc.step=unsucc.step,
+                  estimate=estimate,
+                   Hessian=H)
    class(summary) <- "summary.maximisation"
    summary
 }
