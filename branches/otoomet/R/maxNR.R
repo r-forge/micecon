@@ -80,11 +80,12 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
       if(!is.null(grad)) {  # use user-supplied if present
          gr <- grad(theta, ...)
       } else {
-         gr <- numeric.gradient(fn, theta, ...)
+         gr <- t(numericGradient(fn, theta, ...))
+                                        # Note we need NObs rows x NParam cols
       }
       ## Now check if the gradient is vector or matrix...
       if(!is.null(dim(gr))) {
-         if(dim(gr)[1] > 1 & dim(gr)[2] > 1) {
+         if(dim(gr)[1] > 1 & dim(gr)[2] == NParam) {
             # it was matrix -- row correspond to
             # observations
             return(colSums(gr))
@@ -101,7 +102,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
       if(!is.null(hess)) {
          return(as.matrix(hess(theta, ...)))
       }
-      return(numeric.hessian(fn, gradient, theta, ...))
+      return(numericHessian(fn, gradient, theta, ...))
    }
    ## -------------------------------------------------
    maximisation.type <- "Newton-Raphson maximisation"
