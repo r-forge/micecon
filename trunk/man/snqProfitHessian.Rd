@@ -33,14 +33,13 @@
    pNames <- c( "pOutput", "pVarInput", "pLabor" )
    qNames <- c( "qOutput", "qVarInput", "qLabor" )
 
-   result <- snqProfitEst( pNames, qNames, c("land","time"), data=germanFarms )
+   estResult <- snqProfitEst( pNames, qNames, c("land","time"), data=germanFarms )
 
-   result$hessian  # the Hessian at mean prices and mean quantities
+   estResult$hessian  # the Hessian at mean prices and mean quantities
 
    # Hessian at the last observation (1994/95)
-   snqProfitHessian( result$coef$beta,
-      result$scaledData[ 20, c( "pOutput", "pVarInput", "pLabor" )],
-      result$weights )
+   snqProfitHessian( estResult$coef$beta, estResult$scaledData[ 20, pNames ],
+      estResult$weights )
 }
 
 \keyword{models}

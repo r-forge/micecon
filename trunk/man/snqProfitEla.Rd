@@ -41,19 +41,17 @@
    germanFarms$qOutput   <- germanFarms$vOutput   / germanFarms$pOutput
    germanFarms$qVarInput <- -germanFarms$vVarInput / germanFarms$pVarInput
    germanFarms$qLabor    <- -germanFarms$qLabor
-   germanFarms$time <- c( 0:19 )
+   germanFarms$time      <- c( 0:19 )
    pNames <- c( "pOutput", "pVarInput", "pLabor" )
    qNames <- c( "qOutput", "qVarInput", "qLabor" )
 
-   result <- snqProfitEst( pNames, qNames, c("land","time"), data=germanFarms )
+   estResult <- snqProfitEst( pNames, qNames, c("land","time"), data=germanFarms )
 
-   result$ela  # price elasticities at mean prices and mean quantities
+   estResult$ela  # price elasticities at mean prices and mean quantities
 
    # price elasticities at the last observation (1994/95)
-   snqProfitEla( result$coef$beta,
-      result$scaledData[ 20, c( "pOutput", "pVarInput", "pLabor" )],
-      result$scaledData[ 20, c( "qOutput", "qVarInput", "qLabor" )],
-      result$weights )
+   snqProfitEla( estResult$coef$beta, estResult$scaledData[ 20, pNames ],
+      estResult$scaledData[ 20, qNames ], estResult$weights )
 }
 
 \keyword{models}
