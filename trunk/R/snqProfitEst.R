@@ -40,25 +40,25 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
 
    ## scaling data
    if( !is.null( base ) ) {
-      scaledData <- data.frame( nr = 1:nObs )
+      estData <- data.frame( nr = 1:nObs )
       for( i in 1:nNetput ) {
-         scaledData[[ pNames[ i ] ]] <- data[[ pNames[ i ] ]] /
+         estData[[ pNames[ i ] ]] <- data[[ pNames[ i ] ]] /
             mean( data[[ pNames[ i ] ]][ base ] )
-         scaledData[[ qNames[ i ] ]] <- data[[ qNames[ i ] ]] *
+         estData[[ qNames[ i ] ]] <- data[[ qNames[ i ] ]] *
             mean( data[[ pNames[ i ] ]][ base ] )
       }
       for( i in 1:nFix ) {
-         scaledData[[ fNames[ i ] ]] <- data[[ fNames[ i ] ]]
+         estData[[ fNames[ i ] ]] <- data[[ fNames[ i ] ]]
       }
    } else {
-      scaledData <- data
+      estData <- data
    }
 
    ## price index for normalization
    modelData <- data.frame( nr = 1:nObs, normPrice = 0 )
    for( i in 1:nNetput ) {
       modelData$normPrice <- modelData$normPrice +
-         with( scaledData, get( pNames[ i ] ) ) * weights[ i ]
+         with( estData, get( pNames[ i ] ) ) * weights[ i ]
    }
 
    ## real/normalized netput prices and netput quantities
@@ -66,11 +66,11 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    result$qMeans <- array( NA, nNetput )
    for( i in 1:nNetput ) {
       modelData[[ paste( "pr", as.character( i ), sep = "" ) ]] <-
-         with( scaledData, get( pNames[ i ] ) ) / modelData$normPrice
-      result$pMeans[ i ] <- mean( with( scaledData, get( pNames[ i ] ) ) )
+         with( estData, get( pNames[ i ] ) ) / modelData$normPrice
+      result$pMeans[ i ] <- mean( with( estData, get( pNames[ i ] ) ) )
       modelData[[ paste( "q", as.character( i ), sep = "" ) ]] <-
-         with( scaledData, get( qNames[ i ] ) )
-      result$qMeans[ i ] <- mean( with( scaledData, get( qNames[ i ] ) ) )
+         with( estData, get( qNames[ i ] ) )
+      result$qMeans[ i ] <- mean( with( estData, get( qNames[ i ] ) ) )
    }
    names( result$pMeans ) <- pNames
    names( result$qMeans ) <- qNames
@@ -81,8 +81,8 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
          for( k in 1:nNetput ) {
             modelData[[ paste( "pq", as.character( i ), ".", as.character( j ), ".",
                as.character( k ), sep = "" ) ]] <-
-               -0.5 * weights[ i ] * with( scaledData, get( pNames[ j ] ) ) *
-               with( scaledData, get( pNames[ k ] ) ) / modelData$normPrice^2
+               -0.5 * weights[ i ] * with( estData, get( pNames[ j ] ) ) *
+               with( estData, get( pNames[ k ] ) ) / modelData$normPrice^2
          }
       }
    }
@@ -134,7 +134,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
       # Hessian matrix
    result$ela <- snqProfitEla( result$coef$beta, result$pMeans,
       result$qMeans, weights )   # estimated elasticities
-   result$scaledData  <- scaledData
+   result$estData  <- estData
    result$coef$liCoef <- result$est$bt
    result$coef$liCoefCov <- result$est$btcov
    result$weights  <- weights
