@@ -82,7 +82,7 @@ aidsEst <- function( pNames, wNames, xtName,
       inst = ivFormula, ... )   # estimate system
    if( substr( method, 1, 2 ) == "LA" ) {
       result$coef <- aidsCoef( est$b, est$bcov, pNames = pNames,
-         wNames = wNames )   # coefficients
+         wNames = wNames, df = est$df )   # coefficients
       if( !( elaFormula %in% c( "AIDS" ) ) ) {
          pMeans <- NULL
       }
@@ -113,7 +113,7 @@ aidsEst <- function( pNames, wNames, xtName,
                          # and previous step
       }
       result$coef <- aidsCoef( est$b, est$bcov, pNames = pNames,
-         wNames = wNames )  # coefficients
+         wNames = wNames, df = est$df )  # coefficients
       result$coef$alpha0 <- alpha0
       result$ela  <- aidsEla( result$coef, wMeans, pMeans,
          formula = "AIDS" )   # elasticities
