@@ -1,5 +1,3 @@
-
-## ==== calculation of coefficient matrices and vectors ======
 snqProfitCoef <- function( coef, nNetput, nFix, form = 0, coefCov=NULL, df=1 ) {
    result <- list()
    result$alpha <- coef[ 1:nNetput ]
