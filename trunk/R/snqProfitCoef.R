@@ -1,4 +1,20 @@
 snqProfitCoef <- function( coef, nNetput, nFix, form = 0, coefCov=NULL, df=1 ) {
+
+   nCoef    <- nNetput + nNetput * ( nNetput - 1 )/2 + nNetput * nFix
+      # number of coefficients
+   if( form == 0 ) {
+      nCoef <- nCoef + ( nFix + 1 ) * nFix / 2
+   } else if ( form == 1 ) {
+      nCoef <- nCoef + nNetput * ( nFix + 1 ) * nFix / 2
+   } else {
+      stop( "argument 'form' must be either 0 or 1" )
+   }
+   if( length( coef ) != nCoef ) {
+      stop( paste( "A SNQ profit function of form =", form, "with", nNetput,
+         "Netputs and", nFix, "fix inputs must have exactly", nCoef,
+         "linear independent coefficients (argument 'coef')." ) )
+   }
+
    result <- list()
    result$alpha <- coef[ 1:nNetput ]
    result$beta <- array( 0, c( nNetput, nNetput ) )
