@@ -4,6 +4,7 @@
 \alias{aidsSystem}
 \alias{micEconIndex}
 \alias{print.aidsEst}
+\alias{print.aidsTestConsist}
 \alias{checkNames}
 \alias{snqProfitCoef}
 \alias{snqProfitCoefNames}
