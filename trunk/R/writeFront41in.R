@@ -1,9 +1,9 @@
 writeFront41in <- function( data, crossSectionName, timePeriodName,
    yName, xNames = NULL, zNames = NULL,
    translog = FALSE, quadHalf = TRUE,
-   functionType = 1, modelType = 1, logDepVar = "y", mu = "y", eta = "y",
-   insFilename = "front41.ins", dtaFilename = sub( "\.ins$", ".dta", insFilename ),
-   outFilename = sub( "\.ins$", ".out", insFilename ) ) {
+   functionType = 1, modelType = 1, logDepVar = TRUE, mu = TRUE, eta = TRUE,
+   insFile = "front41.ins", dtaFile = sub( "\.ins$", ".dta", insFile ),
+   outFile = sub( "\.ins$", ".out", insFile ) ) {
 
    checkNames( c( crossSectionName, timePeriodName, yName, xNames, zNames ),
       names( data ) )
@@ -14,15 +14,15 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
    if( !functionType %in% c( 1, 2 ) ) {
       stop( "Argument 'functionType' must be either 1 or 2." )
    }
-   if( !logDepVar %in% c( "y", "n" ) ) {
-      stop( "Argument 'logDepVar' must be either 'y' or 'n'." )
+   if( !is.logical( logDepVar ) ) {
+      stop( "Argument 'logDepVar' must be logical." )
    }
-   if( !mu %in% c( "y", "n" ) ) {
-      stop( "Argument 'mu' must be either 'y' or 'n'." )
+   if( !is.logical( mu ) ) {
+      stop( "Argument 'mu' must be logical." )
    }
    if( modelType == 1 ) {
-      if( !eta %in% c( "y", "n" ) ) {
-         stop( "Argument 'eta' must be either 'y' or 'n'." )
+      if( !is.logical( eta ) ) {
+         stop( "Argument 'eta' must be logical." )
       }
    }
 
@@ -37,48 +37,50 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
 
    if( modelType == 2 ) {
       eta <- nZvars
+   } else {
+      eta <- ifelse( eta, "y", "n" )
    }
 
-   commentRow <- max( 16, nchar( dtaFilename ) + 1 )
+   commentRow <- max( 16, nchar( dtaFile ) + 1 )
 
    cat( modelType, rep( " ", commentRow - 1 ),
       "1=ERROR COMPONENTS MODEL, 2=TE EFFECTS MODEL\n",
-      file = insFilename, sep = "" )
-   cat( dtaFilename, rep( " ", commentRow - nchar( dtaFilename ) ),
-      "DATA FILE NAME\n", file = insFilename, append = TRUE, sep = "" )
-   cat( outFilename, rep( " ", commentRow - nchar( outFilename ) ),
-      "OUTPUT FILE NAME\n", file = insFilename, append = TRUE, sep = "" )
+      file = insFile, sep = "" )
+   cat( dtaFile, rep( " ", commentRow - nchar( dtaFile ) ),
+      "DATA FILE NAME\n", file = insFile, append = TRUE, sep = "" )
+   cat( outFile, rep( " ", commentRow - nchar( outFile ) ),
+      "OUTPUT FILE NAME\n", file = insFile, append = TRUE, sep = "" )
    cat( functionType, rep( " ", commentRow - 1 ),
       "1=PRODUCTION FUNCTION, 2=COST FUNCTION\n",
-      file = insFilename, append = TRUE, sep = "" )
-   cat( logDepVar, rep( " ", commentRow - 1 ),
+      file = insFile, append = TRUE, sep = "" )
+   cat( ifelse( logDepVar, "y", "n" ), rep( " ", commentRow - 1 ),
       "LOGGED DEPENDENT VARIABLE (Y/N)\n",
-      file = insFilename, append = TRUE, sep = "" )
+      file = insFile, append = TRUE, sep = "" )
    cat( nCrossSection,
       rep( " ", commentRow - nchar( as.character( nCrossSection ) ) ),
       "NUMBER OF CROSS-SECTIONS\n",
-      file = insFilename, append = TRUE, sep = "" )
+      file = insFile, append = TRUE, sep = "" )
    cat( nTimePeriods,
       rep( " ", commentRow - nchar( as.character( nTimePeriods ) ) ),
       "NUMBER OF TIME PERIODS\n",
-      file = insFilename, append = TRUE, sep = "" )
+      file = insFile, append = TRUE, sep = "" )
    cat( nTotalObs,
       rep( " ", commentRow - nchar( as.character( nTotalObs ) ) ),
       "NUMBER OF OBSERVATIONS IN TOTAL\n",
-      file = insFilename, append = TRUE, sep = "" )
+      file = insFile, append = TRUE, sep = "" )
    cat( nXtotal,
       rep( " ", commentRow - nchar( as.character( nXtotal ) ) ),
       "NUMBER OF REGRESSOR VARIABLES (Xs)\n",
-      file = insFilename, append = TRUE, sep = "" )
-   cat( mu, rep( " ", commentRow - 1 ),
+      file = insFile, append = TRUE, sep = "" )
+   cat( ifelse( mu, "y", "n" ), rep( " ", commentRow - 1 ),
       "MU (Y/N) [OR DELTA0 (Y/N) IF USING TE EFFECTS MODEL]\n",
-      file = insFilename, append = TRUE, sep = "" )
+      file = insFile, append = TRUE, sep = "" )
    cat( eta, rep( " ", commentRow - nchar( as.character( eta ) ) ),
       "ETA (Y/N) [OR NUMBER OF TE EFFECTS REGRESSORS (Zs)]\n",
-      file = insFilename, append = TRUE, sep = "" )
+      file = insFile, append = TRUE, sep = "" )
    cat( "n", rep( " ", commentRow - 1 ),
       "STARTING VALUES (Y/N)\n",
-      file = insFilename, append = TRUE, sep = "" )
+      file = insFile, append = TRUE, sep = "" )
 
    dataTable <- cbind( data[[ crossSectionName ]], data[[ timePeriodName ]],
       data[[ yName ]] )
@@ -102,6 +104,6 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
          dataTable <- cbind( dataTable, data[[ zNames[ i ] ]] )
       }
    }
-   write.table( dataTable, file = dtaFilename, row.names = FALSE,
+   write.table( dataTable, file = dtaFile, row.names = FALSE,
       col.names = FALSE, sep = "\t" )
 }
