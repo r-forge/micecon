@@ -1,5 +1,5 @@
-\name{snqProfitHderiv}
-\alias{snqProfitHderiv}
+\name{snqProfitHessianDeriv}
+\alias{snqProfitHessianDeriv}
 \title{SNQ Profit function: Derivatives of the Hessian}
 
 \description{
@@ -8,7 +8,7 @@
    coefficients.
 }
 
-\usage{ snqProfitHderiv( prices, weights, nFix = 0 )}
+\usage{ snqProfitHessianDeriv( prices, weights, nFix = 0 )}
 
 \arguments{
    \item{prices}{vector of netput prices at which the derivatives
@@ -23,7 +23,7 @@
 
 \examples{
    # just a stupid simple example
-   snqProfitHderiv( c(1,2,3),c(0.4,0.3,0.3) )
+   snqProfitHessianDeriv( c(1,2,3),c(0.4,0.3,0.3) )
 
    # now with real data
    data( germanFarms )
@@ -36,7 +36,7 @@
 
    estResult <- snqProfitEst( pNames, qNames, c("land","time"), data=germanFarms )
 
-   snqProfitHderiv( estResult$pMean, estResult$weights, 2 )
+   snqProfitHessianDeriv( estResult$pMean, estResult$weights, 2 )
 }
 
 \keyword{models}

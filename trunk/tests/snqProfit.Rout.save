@@ -784,8 +784,9 @@ $form
   qVarInput -0.2611314 -0.08611829 0.3472496
   qLabor    -2.0235509  0.59871553 1.4248354
 > 
-> estResultHderiv <- snqProfitHderiv( estResult$pMean, estResult$weights, 2 )
-> print( estResultHderiv )
+> estResultHessianDeriv <- snqProfitHessianDeriv( estResult$pMean,
++    estResult$weights, 2 )
+> print( estResultHessianDeriv )
      [,1] [,2] [,3]      [,4]      [,5]      [,6] [,7] [,8] [,9] [,10] [,11]
 [1,]    0    0    0 2.8517975 2.1771146 0.4155123    0    0    0     0     0
 [2,]    0    0    0 0.5384073 2.2188259 0.7684992    0    0    0     0     0
@@ -1329,8 +1330,9 @@ $form
   qVarInput 0.1778510 -0.11509188 -0.06275908
   qLabor    0.2051378 -0.10820699 -0.09693081
 > 
-> estResultHderiv <- snqProfitHderiv( estResult$pMean, estResult$weights, 2 )
-> print( estResultHderiv )
+> estResultHessianDeriv <- snqProfitHessianDeriv( estResult$pMean,
++    estResult$weights, 2 )
+> print( estResultHessianDeriv )
      [,1] [,2] [,3]      [,4]      [,5]      [,6] [,7] [,8] [,9] [,10] [,11]
 [1,]    0    0    0 2.8517975 2.1771146 0.4155123    0    0    0     0     0
 [2,]    0    0    0 0.5384073 2.2188259 0.7684992    0    0    0     0     0
@@ -2067,8 +2069,9 @@ $form
   qVarInput 0.1556468 -0.11480417 -0.04084261
   qLabor    0.1518471 -0.07041937 -0.08142771
 > 
-> estResultHderiv <- snqProfitHderiv( estResult$pMean, estResult$weights, 2 )
-> print( estResultHderiv )
+> estResultHessianDeriv <- snqProfitHessianDeriv( estResult$pMean,
++    estResult$weights, 2 )
+> print( estResultHessianDeriv )
      [,1] [,2] [,3]      [,4]      [,5]      [,6] [,7] [,8] [,9] [,10] [,11]
 [1,]    0    0    0 2.8517975 2.1771146 0.4155123    0    0    0     0     0
 [2,]    0    0    0 0.5384073 2.2188259 0.7684992    0    0    0     0     0

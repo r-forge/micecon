@@ -1,5 +1,5 @@
 ## --- derivatives of the Hessian with respect to the betas ---
-snqProfitHderiv <- function( prices, weights, nFix = 0 ) {
+snqProfitHessianDeriv <- function( prices, weights, nFix = 0 ) {
    prices   <- array( prices )
    weights <- array( weights )
    nNetput  <- dim(array(prices))
