@@ -19,9 +19,9 @@
 
 \value{
    a list of class \code{front41out} containing following objects:
-   \item{version}{the version of front41 that produced the output.}
-   \item{insFile}{name of the instruction file used by front41.}
-   \item{dtaFile}{name of the data file used by front41.}
+   \item{version}{the version of Frontier 4.1 that produced the output.}
+   \item{insFile}{name of the instruction file used by Frontier 4.1.}
+   \item{dtaFile}{name of the data file used by Frontier 4.1.}
    \item{modelType}{model type: either 1 for 'Error Components Frontier' or
       2 for 'Tech. Eff. Effects Frontier'.}
    \item{modelTypeName}{model type: 'Error Components Frontier' or 'Tech. Eff.
