@@ -57,4 +57,4 @@
    borderedHessians[[ 1 ]]
 }
 
-\keyword{array}
+\keyword{models}

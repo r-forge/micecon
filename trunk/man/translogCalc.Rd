@@ -45,4 +45,4 @@
    #equal to estResult$fitted
 }
 
-\keyword{array}
+\keyword{models}

@@ -59,4 +59,4 @@
    estResult$r2
 }
 
-\keyword{array}
+\keyword{models}

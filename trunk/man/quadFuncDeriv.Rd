@@ -51,4 +51,4 @@
    margProducts$deriv
 }
 
-\keyword{array}
+\keyword{models}
