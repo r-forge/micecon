@@ -53,8 +53,10 @@
       \emph{Empirical Economics}, 20, 325-332.
 
    Coelli, T. (1996) A Guide to FRONTIER Version 4.1: A Computer
-        Program for Stochastic Frontier Production and Cost Function
-        Estimation, CEPA Working Paper 96/08, University of New England.
+      Program for Stochastic Frontier Production and Cost Function
+      Estimation, CEPA Working Paper 96/08,
+      \url{http://www.uq.edu.au/economics/cepa/frontier.htm},
+      University of New England.
 }
 
 \seealso{\code{\link{writeFront41in}}}
@@ -62,6 +64,20 @@
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
 \examples{
+   data( Coelli )
+   Coelli$logOutput  <- log( Coelli$output )
+   Coelli$logCapital <- log( Coelli$capital )
+   Coelli$logLabour  <- log( Coelli$labour )
+
+   writeFront41in( Coelli, "firm", "time", "logOutput",
+      c( "logCapital", "logLabour" ) )
+
+   \dontrun{
+   system( "wine front41.exe" )
+   sfa <- readFront41out()
+   sfa$mleResults
+   sfa$efficiency
+   }
 }
 
 \keyword{models}
