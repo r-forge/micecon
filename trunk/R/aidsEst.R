@@ -81,7 +81,8 @@ aidsEst <- function( pNames, wNames, xtName,
    est <- systemfit( estMethod, system, data = sysData, R.restr = restr,
       inst = ivFormula, ... )   # estimate system
    if( substr( method, 1, 2 ) == "LA" ) {
-      result$coef <- aidsCoef( est$b, est$bcov )   # coefficients
+      result$coef <- aidsCoef( est$b, est$bcov, pNames = pNames,
+         wNames = wNames )   # coefficients
       if( !( elaFormula %in% c( "AIDS" ) ) ) {
          pMeans <- NULL
       }
@@ -111,7 +112,8 @@ aidsEst <- function( pNames, wNames, xtName,
          bd   <- b - bl  # difference between coefficients from this
                          # and previous step
       }
-      result$coef <- aidsCoef( est$b, est$bcov )  # coefficients
+      result$coef <- aidsCoef( est$b, est$bcov, pNames = pNames,
+         wNames = wNames )  # coefficients
       result$coef$alpha0 <- alpha0
       result$ela  <- aidsEla( result$coef, wMeans, pMeans,
          formula = "AIDS" )   # elasticities
@@ -149,6 +151,7 @@ aidsEst <- function( pNames, wNames, xtName,
    }
    result$r2[ nGoods ] <- rSquared( data[[ wNames[ nGoods ] ]],
       result$wResid[ , nGoods ] )
+   names( result$r2 ) <- wNames
    result$r2q <- array( 0, c( nGoods ) ) # R2 values for consumed quantities
    for( i in 1:nGoods ) {
       result$r2q[ i ] <- rSquared( result$qObs[ , i ], result$qResid[ , i ] )
