@@ -29,7 +29,7 @@ quadFuncDeriv <- function( xNames, data, allCoef, allCoefCov = NULL,
    result$deriv    <- as.data.frame( deriv )
 
    if( !is.null( allCoefCov ) ) {
-      ## variances of marginal products of unconstrained model
+      ## variances of the derivatives
       variance <- array( NA, c( nrow( data ), nExog ) )
       for(i in 1:nExog ) {
          variance[ , i ] <- allCoefCov[ i + 1, i + 1 ]   # variance of aplha(i)
@@ -57,5 +57,6 @@ quadFuncDeriv <- function( xNames, data, allCoef, allCoefCov = NULL,
       result$stdDev   <- as.data.frame( stdDev )
    }
 
+   class( result ) <- "quadFuncDeriv"
    return( result )
 }
