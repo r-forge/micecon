@@ -68,6 +68,7 @@ for( i in 1:4 ) {
    Blanciforti86[[ qNames[ i ] ]] <- Blanciforti86[[ wNames[ i ] ]] *
       Blanciforti86[[ "xFood" ]] / Blanciforti86[[ pNames[ i ] ]]
 }
+allObs <- rep( TRUE, nrow( Blanciforti86 ) )
 
 ## price indices for Blanciforti
 cat( "\nLaspeyres Price Indices for Blanciforti\n" )
@@ -89,4 +90,221 @@ print( quantityIndex( pNames, qNames, 1, Blanciforti86, "Paasche" ) )
 cat( "\nFisher Quantity Indices for Blanciforti\n" )
 print( quantityIndex( pNames, qNames, 1, Blanciforti86, "Fisher" ) )
 
+## price indices for Blanciforti and base=mean
+cat( "\nLaspeyres Price Indices for Blanciforti and base=mean\n" )
+print( priceIndex( pNames, qNames, allObs, Blanciforti86 ) )
+
+cat( "\nPaasche Price Indices for Blanciforti and base=mean\n" )
+print( priceIndex( pNames, qNames, allObs, Blanciforti86, "Paasche" ) )
+
+cat( "\nFisher Price Indices for Blanciforti and base=mean\n" )
+print( priceIndex( pNames, qNames, allObs, Blanciforti86, "Fisher" ) )
+
+## quantity indices for Blanciforti and base=mean
+cat( "\nLaspeyres Quantity Indices for Blanciforti and base=mean\n" )
+print( quantityIndex( pNames, qNames, allObs, Blanciforti86 ) )
+
+cat( "\nPaasche Quantity Indices for Blanciforti and base=mean\n" )
+print( quantityIndex( pNames, qNames, allObs, Blanciforti86, "Paasche" ) )
+
+cat( "\nFisher Quantity Indices for Blanciforti and base=mean\n" )
+print( quantityIndex( pNames, qNames, allObs, Blanciforti86, "Fisher" ) )
+
+
+## Blanciforti with some NA prices
+## manipulating data of Blanciforti
+for( i in 1:4 ) {
+   Blanciforti86[[ pNames[ i ] ]][ c( 2, i * 4, i * 8 ) ] <- NA
+}
+
+## price indices for Blanciforti with some NA prices
+cat( "\nLaspeyres Price Indices for Blanciforti with some NA prices\n" )
+print( priceIndex( pNames, qNames, 1, Blanciforti86 ) )
+
+cat( "\nPaasche Price Indices for Blanciforti with some NA prices\n" )
+print( priceIndex( pNames, qNames, 1, Blanciforti86, "Paasche" ) )
+
+cat( "\nFisher Price Indices for Blanciforti with some NA prices\n" )
+print( priceIndex( pNames, qNames, 1, Blanciforti86, "Fisher" ) )
+
+## quantity indices for Blanciforti with some NA prices
+cat( "\nLaspeyres Quantity Indices for Blanciforti with some NA prices\n" )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86 ) )
+
+cat( "\nPaasche Quantity Indices for Blanciforti with some NA prices\n" )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86, "Paasche" ) )
+
+cat( "\nFisher Quantity Indices for Blanciforti with some NA prices\n" )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86, "Fisher" ) )
+
+## price indices for Blanciforti with some NA prices and na.rm=TRUE
+cat( "\nLaspeyres Price Indices for Blanciforti with some NA prices and na.rm=TRUE\n" )
+print( priceIndex( pNames, qNames, 1, Blanciforti86, na.rm = TRUE ) )
+
+cat( "\nPaasche Price Indices for Blanciforti with some NA prices and na.rm=TRUE\n" )
+print( priceIndex( pNames, qNames, 1, Blanciforti86, "Paasche", na.rm = TRUE ) )
+
+cat( "\nFisher Price Indices for Blanciforti with some NA prices and na.rm=TRUE\n" )
+print( priceIndex( pNames, qNames, 1, Blanciforti86, "Fisher", na.rm = TRUE ) )
+
+## quantity indices for Blanciforti with some NA prices and na.rm=TRUE
+cat( "\nLaspeyres Quantity Indices for Blanciforti with some NA prices and na.rm=TRUE\n" )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86, na.rm = TRUE ) )
+
+cat( "\nPaasche Quantity Indices for Blanciforti with some NA prices and na.rm=TRUE\n" )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86, "Paasche", na.rm = TRUE ) )
+
+cat( "\nFisher Quantity Indices for Blanciforti with some NA prices and na.rm=TRUE\n" )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86, "Fisher", na.rm = TRUE ) )
+
+## price indices for Blanciforti with some NA prices and base=16
+cat( "\nLaspeyres Price Indices for Blanciforti with some NA prices and base=16\n" )
+print( priceIndex( pNames, qNames, 16, Blanciforti86 ) )
+
+cat( "\nPaasche Price Indices for Blanciforti with some NA prices and base=16\n" )
+print( priceIndex( pNames, qNames, 16, Blanciforti86, "Paasche" ) )
+
+cat( "\nFisher Price Indices for Blanciforti with some NA prices and base=16\n" )
+print( priceIndex( pNames, qNames, 16, Blanciforti86, "Fisher" ) )
+
+## quantity indices for Blanciforti with some NA prices and base=16
+cat( "\nLaspeyres Quantity Indices for Blanciforti with some NA prices and base=16\n" )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86 ) )
+
+cat( "\nPaasche Quantity Indices for Blanciforti with some NA prices and base=16\n" )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86, "Paasche" ) )
+
+cat( "\nFisher Quantity Indices for Blanciforti with some NA prices and base=16\n" )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86, "Fisher" ) )
+
+## price indices for Blanciforti with some NA prices and na.rm=TRUE and base=16
+cat( paste( "\nLaspeyres Price Indices for Blanciforti with some NA prices",
+   "and na.rm=TRUE and base=16\n" ) )
+print( priceIndex( pNames, qNames, 16, Blanciforti86, na.rm = TRUE ) )
+
+cat( paste( "\nPaasche Price Indices for Blanciforti with some NA prices",
+   "and na.rm=TRUE and base=16\n" ) )
+print( priceIndex( pNames, qNames, 16, Blanciforti86, "Paasche", na.rm = TRUE ) )
+
+cat( paste( "\nFisher Price Indices for Blanciforti with some NA prices",
+   "and na.rm=TRUE and base=16\n" ) )
+print( priceIndex( pNames, qNames, 16, Blanciforti86, "Fisher", na.rm = TRUE ) )
+
+## quantity indices for Blanciforti with some NA prices and na.rm=TRUE and base=16
+cat( paste( "\nLaspeyres Quantity Indices for Blanciforti with some NA prices",
+   "and na.rm=TRUE and base=16\n" ) )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86, na.rm = TRUE ) )
+
+cat( paste( "\nPaasche Quantity Indices for Blanciforti with some NA prices",
+   "and na.rm=TRUE and base=16\n" ) )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86, "Paasche", na.rm = TRUE ) )
+
+cat( paste( "\nFisher Quantity Indices for Blanciforti with some NA prices",
+   "and na.rm=TRUE and base=16\n" ) )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86, "Fisher", na.rm = TRUE ) )
+
+
+## Blanciforti with some NA prices and quantities
+## manipulating data of Blanciforti
+for( i in 1:4 ) {
+   Blanciforti86[[ qNames[ i ] ]][ c( 2, ( i + 1 ) * 4, i * 8 ) ] <- NA
+}
+
+## price indices for Blanciforti with some NA prices and quantities
+cat( "\nLaspeyres Price Indices for Blanciforti with NA prices and quantities\n" )
+print( priceIndex( pNames, qNames, 1, Blanciforti86 ) )
+
+cat( "\nPaasche Price Indices for Blanciforti with NA prices and quantities\n" )
+print( priceIndex( pNames, qNames, 1, Blanciforti86, "Paasche" ) )
+
+cat( "\nFisher Price Indices for Blanciforti with NA prices and quantities\n" )
+print( priceIndex( pNames, qNames, 1, Blanciforti86, "Fisher" ) )
+
+## quantity indices for Blanciforti with some NA prices and quantities
+cat( "\nLaspeyres Quantity Indices for Blanciforti with NA prices and quantities\n" )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86 ) )
+
+cat( "\nPaasche Quantity Indices for Blanciforti with NA prices and quantities\n" )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86, "Paasche" ) )
+
+cat( "\nFisher Quantity Indices for Blanciforti with NA prices and quantities\n" )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86, "Fisher" ) )
+
+## price indices for Blanciforti with some NA prices and quantities and na.rm=TRUE
+cat( paste( "\nLaspeyres Price Indices for Blanciforti with NA prices and",
+   "quantities and na.rm=TRUE\n" ) )
+print( priceIndex( pNames, qNames, 1, Blanciforti86, na.rm = TRUE ) )
+
+cat( paste( "\nPaasche Price Indices for Blanciforti with NA prices and",
+   "quantities and na.rm=TRUE\n" ) )
+print( priceIndex( pNames, qNames, 1, Blanciforti86, "Paasche", na.rm = TRUE ) )
+
+cat( paste( "\nFisher Price Indices for Blanciforti with NA prices and",
+   "quantities and na.rm=TRUE\n" ) )
+print( priceIndex( pNames, qNames, 1, Blanciforti86, "Fisher", na.rm = TRUE ) )
+
+## quantity indices for Blanciforti with some NA prices and quantities and na.rm=TRUE
+cat( paste( "\nLaspeyres Quantity Indices for Blanciforti with NA prices and",
+   "quantities and na.rm=TRUE\n" ) )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86, na.rm = TRUE ) )
+
+cat( paste( "\nPaasche Quantity Indices for Blanciforti with NA prices and",
+   "quantities and na.rm=TRUE\n" ) )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86, "Paasche", na.rm = TRUE ) )
+
+cat( paste( "\nFisher Quantity Indices for Blanciforti with some NA prices and",
+   "na.rm=TRUE\n" ) )
+print( quantityIndex( pNames, qNames, 1, Blanciforti86, "Fisher", na.rm = TRUE ) )
+
+## price indices for Blanciforti with some NA prices and quantities and base=16
+cat( paste( "\nLaspeyres Price Indices for Blanciforti with NA prices and",
+   "quantities and base=16\n" ) )
+print( priceIndex( pNames, qNames, 16, Blanciforti86 ) )
+
+cat( paste( "\nPaasche Price Indices for Blanciforti with NA prices and",
+   "quantities and base=16\n" ) )
+print( priceIndex( pNames, qNames, 16, Blanciforti86, "Paasche" ) )
+
+cat( paste( "\nFisher Price Indices for Blanciforti with NA prices and",
+   "quantities and base=16\n" ) )
+print( priceIndex( pNames, qNames, 16, Blanciforti86, "Fisher" ) )
+
+## quantity indices for Blanciforti with some NA prices and quantities and base=16
+cat( paste( "\nLaspeyres Quantity Indices for Blanciforti with NA prices and",
+   "quantities and base=16\n" ) )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86 ) )
+
+cat( paste( "\nPaasche Quantity Indices for Blanciforti with NA prices and",
+   "quantities and base=16\n" ) )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86, "Paasche" ) )
+
+cat( paste( "\nFisher Quantity Indices for Blanciforti with NA prices and",
+   "quantities and base=16\n" ) )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86, "Fisher" ) )
+
+## price indices for Blanciforti with some NA prices and quantities and na.rm=TRUE and base=16
+cat( paste( "\nLaspeyres Price Indices for Blanciforti with NA prices and quantities",
+   "and na.rm=TRUE and base=16\n" ) )
+print( priceIndex( pNames, qNames, 16, Blanciforti86, na.rm = TRUE ) )
+
+cat( paste( "\nPaasche Price Indices for Blanciforti with NA prices and quantities",
+   "and na.rm=TRUE and base=16\n" ) )
+print( priceIndex( pNames, qNames, 16, Blanciforti86, "Paasche", na.rm = TRUE ) )
+
+cat( paste( "\nFisher Price Indices for Blanciforti with NA prices and quantities",
+   "and na.rm=TRUE and base=16\n" ) )
+print( priceIndex( pNames, qNames, 16, Blanciforti86, "Fisher", na.rm = TRUE ) )
+
+## quantity indices for Blanciforti with some NA prices and quantities and na.rm=TRUE and base=16
+cat( paste( "\nLaspeyres Quantity Indices for Blanciforti with NA prices and quantities",
+   "and na.rm=TRUE and base=16\n" ) )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86, na.rm = TRUE ) )
+
+cat( paste( "\nPaasche Quantity Indices for Blanciforti with NA prices and quantities",
+   "and na.rm=TRUE and base=16\n" ) )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86, "Paasche", na.rm = TRUE ) )
+
+cat( paste( "\nFisher Quantity Indices for Blanciforti with NA prices and quantities",
+   "and na.rm=TRUE and base=16\n" ) )
+print( quantityIndex( pNames, qNames, 16, Blanciforti86, "Fisher", na.rm = TRUE ) )
 
