@@ -6,21 +6,7 @@ snqProfitCalc <- function( pNames, fNames, data, weights, coef, form = 0 ) {
    nFix    <- length( fNames )
    nObs    <- nrow( data )
 
-   if( !is.list( coef ) ) {
-      stop( "Argument 'coef' must be a list containing the coefficients." )
-   }
-   if( length( coef$alpha ) != nNetput ) {
-      stop( "coef$alpha must have as many elements as argument 'pNames'." )
-   }
-   if( !is.matrix( coef$beta ) ) {
-      stop( "coef$beta must be a matrix." )
-   }
-   if( nrow( coef$beta ) != ncol( coef$beta ) ) {
-      stop( "coef$beta must be a _symmetric_ matrix." )
-   }
-   if( nrow( coef$beta ) != nNetput ) {
-      stop( "coef$beta must have as many rows as argument 'pNames' has elements." )
-   }
+   snqProfitTestCoef( nNetput, nFix, coef, form = form )
 
    normPrice <- numeric( nObs )
    for( i in 1:nNetput ) {
