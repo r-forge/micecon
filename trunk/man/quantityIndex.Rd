@@ -30,6 +30,10 @@
    and quantities.
 }
 
+\value{
+   a vector containing the quantity indices.
+}
+
 \seealso{\code{\link{quantityIndex}}.}
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
