@@ -1,4 +1,4 @@
-numeric.gradient <- function(f, t0, eps=1e-6, ...) {
+numericGradient <- function(f, t0, eps=1e-6, ...) {
    ### numeric gradient of a vector-valued function
    ### f    : function, return Nval x 1 vector of values
    ### t0   : Npar x 1 vector of parameters
