@@ -1,0 +1,42 @@
+\name{snqProfitHderiv}
+\alias{snqProfitHderiv}
+\title{SNQ Profit function: Derivatives of the Hessian}
+
+\description{
+   Returns the matrix of derivatives of the vector of linear independent
+   values of the Hessian with respect to the vector of the linear independent
+   coefficients.
+}
+
+\usage{ snqProfitHderiv( prices, weights, nFix = 0 )}
+
+\arguments{
+   \item{prices}{vector of netput prices at which the derivatives
+      should be calculated.}
+   \item{weights}{vector of weights for normalizing prices.}
+   \item{nFix}{number of (quasi-)fix inputs.}
+}
+
+\seealso{\code{\link{snqProfitHessian}}.}
+
+\author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
+
+\examples{
+   # just a stupid simple example
+   snqProfitHderiv( c(1,2,3),c(0.4,0.3,0.3) )
+
+   # now with real data
+   data( germanFarms )
+   germanFarms$qOutput   <- germanFarms$vOutput   / germanFarms$pOutput
+   germanFarms$qVarInput <- -germanFarms$vVarInput / germanFarms$pVarInput
+   germanFarms$qLabor    <- -germanFarms$qLabor
+   germanFarms$time <- c( 0:19 )
+   pNames <- c( "pOutput", "pVarInput", "pLabor" )
+   qNames <- c( "qOutput", "qVarInput", "qLabor" )
+
+   result <- snqProfitEst( pNames, qNames, c("land","time"), data=germanFarms )
+
+   snqProfitHderiv( result$pMean, result$weights, 2 )
+}
+
+\keyword{models}
