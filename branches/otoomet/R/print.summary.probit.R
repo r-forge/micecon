@@ -1,4 +1,4 @@
-print.summary.probit <- function(x) {
+print.summary.probit <- function( x, ... ) {
    cat("--------------------------------------------\n")
    cat("Probit binary choice model/Maximum Likelihood estimation\n")
    cat(x$type, ", ", x$iterations, " iterations\n", sep="")

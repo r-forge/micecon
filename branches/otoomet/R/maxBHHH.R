@@ -9,7 +9,7 @@ maxBHHH <- function(fn, grad=NULL, theta,
       if(!is.null(grad)) {
          g <- grad(theta, ...)
       } else {
-         g <- numeric.gradient(fn, theta, ...)
+         g <- numericGradient(fn, theta, ...)
       }
       assign("gradVal", g, inherits=TRUE)
       return( g )

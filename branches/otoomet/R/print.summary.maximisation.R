@@ -1,4 +1,5 @@
-print.summary.maximisation <- function(summary) {
+print.summary.maximisation <- function( x, ... ) {
+   summary <- x
    cat("--------------------------------------------\n")
    cat(summary$type, "\n")
    cat("Number of iterations:", summary$iterations, "\n")

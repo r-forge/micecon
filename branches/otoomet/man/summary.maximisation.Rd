@@ -7,14 +7,15 @@
   \eqn{t}-values, and presents in a suitable form.
 }
 \usage{
-summary.maximisation(result, hessian=FALSE, unsucc.step=FALSE)
+summary.maximisation( object, hessian=FALSE, unsucc.step=FALSE, \ldots )
 }
 \arguments{
-  \item{result}{optimisation result, object of class
+  \item{object}{optimisation result, object of class
     \code{maximisation}.  See \code{\link{maxNR}}.}
   \item{hessian}{logical, whether to display Hessian matrix.}
   \item{unsucc.step}{logical, whether to describe last unsuccesful step
     if \code{code} == 3}
+  \item{\ldots}{currently not used.}
 }
 \value{
   Object of class \code{summary.maximisation}, intended to print with
@@ -27,10 +28,10 @@ summary.maximisation(result, hessian=FALSE, unsucc.step=FALSE)
     requested and \code{code} == 3}
   \item{estimate}{list with following components:
     \itemize{
-      \item{value:} function value at maximum
-      \item{results:} matrix of results, including estimated values,
-      std-deviations, t-values and corresponding probabilities
-      \item{hessian:} hessian matrix at maximum, only if requested.
+      \item{value:}{function value at maximum}
+      \item{results:}{matrix of results, including estimated values,
+      std-deviations, t-values and corresponding probabilities}
+      \item{hessian:}{hessian matrix at maximum, only if requested.}
     }
   }
 }
@@ -49,9 +50,11 @@ f <- function(b) { x <- b[1]; y <- b[2];
 ## Note that NR finds the minimum of a quadratic function with a single
 ## iteration.  Use c(0,0) as initial value.  Note that standard
 ## deviations, t-values and probabilities are not appropriate here.
-summary(maxNR(f, c(0,0)))
+result1 <- maxNR( f, theta = c(0,0) ) 
+summary( result1 )
 ## Now use c(1000000, -777777) as initial value and ask for hessian
-summary(maxNR(f, c(1000000,-777777)), hessian=TRUE)
+result2 <- maxNR( f, theta = c( 1000000,-777777 ) ) 
+summary( result2 )
 }
 \keyword{methods}% at least one, from doc/KEYWORDS
 \keyword{print}

@@ -1,15 +1,15 @@
-\name{numeric.gradient}
-\alias{numeric.gradient}
-\alias{numeric.hessian}
+\name{numericGradient}
+\alias{numericGradient}
+\alias{numericHessian}
 
 \title{Functions to Calculate Numeric Derivatives}
 \description{
   Calculate (central) numeric gradient and hessian of a function.
-  \code{numeric.gradient} accepts vector-valued functions.
+  \code{numericGradient} accepts vector-valued functions.
 }
 \usage{
-numeric.gradient(f, t0, eps=1e-06, ...)
-numeric.hessian(f, grad=NULL, t0, eps=1e-06, ...)
+numericGradient(f, t0, eps=1e-06, ...)
+numericHessian(f, grad=NULL, t0, eps=1e-06, ...)
 }
 %- maybe also `usage' for other objects documented here.
 \arguments{
@@ -26,11 +26,11 @@ numeric.hessian(f, grad=NULL, t0, eps=1e-06, ...)
   the \code{f}.
 }
 \value{
-  Matrix.  For \code{numeric.gradient}, the number of rows is equal to the
+  Matrix.  For \code{numericGradient}, the number of rows is equal to the
   length of the function value vector, and the number of columns is
   equal to the length of the parameter vector.
 
-  For the \code{numeric.hessian}, both numer of rows and columns is
+  For the \code{numericHessian}, both numer of rows and columns is
   equal to the length of the parameter vector.
 }
 \section{Warning}{
@@ -44,12 +44,12 @@ numeric.hessian(f, grad=NULL, t0, eps=1e-06, ...)
 \examples{
 # A simple example with Gaussian bell
 f0 <- function(t0) exp(-t0[1]^2 - t0[2]^2)
-numeric.gradient(f0, c(1,2))
-numeric.hessian(f0, t0=c(1,2))
+numericGradient(f0, c(1,2))
+numericHessian(f0, t0=c(1,2))
 
 # An example with the analytic gradient
 gradf0 <- function(t0) -2*t0*f0(t0)
-numeric.hessian(f0, gradf0, t0=c(1,2))
+numericHessian(f0, gradf0, t0=c(1,2))
 # The results should be similar as in the previous case
 
 # The central numeric derivatives have usually quite a high precision
