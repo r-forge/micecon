@@ -125,6 +125,16 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
       nFix = nFix, form = form, coefCov = result$est$btcov,
       df = nNetput * nObs - nCoef )
       # estimated coefficients
+
+   result$fitted <- data.frame( profit0 = rep( 0, nObs ) )
+   for( i in 1:nNetput ) {
+      result$fitted[[ qNames[ i ] ]] <- result$est$eq[[ i ]]$fitted
+      result$fitted[[ "profit0" ]] <- result$fitted[[ "profit0" ]] +
+         result$fitted[[ qNames[ i ] ]] * estData[[ pNames[ i ] ]]
+   }
+   result$fitted[[ "profit" ]] <- result$fitted[[ "profit0" ]]
+   result$fitted[[ "profit0" ]] <- NULL
+
    result$r2 <- array( NA, c( nNetput ) )
    for( i in 1:nNetput ) {
       result$r2[ i ] <- result$est$eq[[ i ]]$r2
