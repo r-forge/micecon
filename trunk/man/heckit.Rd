@@ -18,26 +18,33 @@
   \item{data}{a data frame containing the variables in the model}
 }
 
-\details{
-   At the moment \code{heckit} returns the usual OLS standard errors.
-   This is not exactly correct, because they do not account for the
-   estimation of \eqn{\gamma} in the 1st step estimation (see
-   Wooldridge, 2003, p. 589).
-}
-
 \value{
    \code{heckit} returns an object of class 'heckit' containing
    following elements:
+
+   \item{coef}{estimated coefficients, standard errors, t-values and
+   p-values}
+
+   \item{vcov}{variance covariance matrix of the estimated coefficients}
 
    \item{probit}{object of class 'glm' that contains the results of the
    1st step (probit estimation).}
 
    \item{lm}{object of class 'lm' that contains the results of the
-   2nd step (linear estimation).}
+   2nd step (linear estimation). Note: the standard errors of this
+   estimation are biased, because they do not account for the
+   estimation of \eqn{\gamma} in the 1st step estimation
+   (the correct standard errors are returned in \code{coef}}.
 
    \item{sigma}{the estimated \eqn{\sigma}, the standard error of the residuals.}
 
    \item{rho}{the estimated \eqn{\rho}, see Greene (2003, p. 784).}
+
+   \item{probitLambda}{the \eqn{\lambda}s based on the results of the
+   1sr step probit estimation (also known as inverse Mills ratio).}
+
+   \item{probitDelta}{the \eqn{\delta}s based on the results of the
+   1sr step probit estimation.}
 }
 
 \references{
@@ -63,7 +70,7 @@ data( Mroz87 )
 Mroz87$kids  <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
 greene <- heckit( wage ~ exper + I( exper^2 ) + educ + city,
    lfp ~ age + I( age^2 ) + faminc + kids + educ, Mroz87 )
-summary( greene )        # summary of the 2nd step OLS regression
+summary( greene )        # print summary
 summary( greene$probit ) # summary of the 1st step probit estimation
                          # this is Example 21.4, p. 681f
 greene$sigma             # estimated sigma
