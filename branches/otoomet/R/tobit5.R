@@ -1,0 +1,315 @@
+tobit5 <- function(selection, reg2, reg3, data=sys.frame(sys.parent()),
+                   beta0=NULL, print.level=0, ...) {
+### The model is as follows (Amemiya 1985):
+### The latent variables are:
+### y1* = Z'g + u1
+### y2* = X'b + u2
+### y3* = X'b + u3
+### The observables are:
+###      / 1  if  y1* > 0
+### y1 = \ 0  if  y1* <= 0
+###      / y2*  if  y1 = 0
+### y2 = \ 0    if  y1 = 1
+###      / 0    if  y1 = 0
+### y3 = \ y3*  if  y1 = 1
+###
+###  y - 1-0 massiiv, 0 vastab y2-le ja 1 y3-le
+###  y1, y2 - valitud variantide v‰‰rtused
+###  X      - millest y2 ja y3 sıltub (ilma konstandita)
+###  Z      - millest y sıltub (ilma konstandita)
+###  ...    - lisaparameetrid minimeerimisele
+### TULEMUSED:
+### Tulemuseks on list, mille komponendid on:
+### probit  - y1 probit koefitsentide maatriks
+### H2S2    - Hekmani kahesammulise meetodiga leitud lahend teisele valikule.
+###           See on list, mille komponendid on:
+###  tulemused - OLS koefitsentide maatriks,
+###  sigma     - j‰‰kliikmete dispersioon
+### H2S3    - analoogiline lahend kolmandale valikule
+### tulemused - ML keofitsentide ja veahinnangute maatriks
+### minimeerimine - minimeerimisalgoritmi tulemused
+    loglik <- function( beta) {
+        g <- beta[igamma]
+        b2 <- beta[ibeta2]
+        sigma2 <- beta[isigma2]
+        rho2 <- beta[irho2]
+        if( ( rho2 < -1) || ( rho2 > 1)) return(NA)
+        b3 <- beta[ibeta3]
+        sigma3 <- beta[isigma3]
+        rho3 <- beta[irho3]
+        if((rho3 < -1) || (rho3 > 1)) return(NA)
+                                        # check the range
+        Z2g <- Z2%*%g
+        Z3g <- Z3%*%g
+        X2b2 <- X2%*%b2
+        X3b3 <- X3%*%b3
+        u2 <- Y2 - X2b2
+        u3 <- Y3 - X3b3
+        sqrt1r22 <- sqrt( 1 - rho2^2)
+        sqrt1r32 <- sqrt( 1 - rho3^2)
+        B2 <- -(Z2g + rho2/sigma2*u2)/sqrt1r22
+        B3 <- (Z3g + rho3/sigma3*u3)/sqrt1r32
+    l2 <- sum(
+              -log( sigma2) - 0.5*( u2/sigma2)^2 +
+              log( pnorm( B2)))
+    l3 <- sum(
+              -log( sigma3) - 0.5*( u3/sigma3)^2 +
+              log( pnorm( B3)))
+    loglik <- l2 + l3 - Nobs/2*log( 2*pi)
+}
+    gradlik <- function(beta) {
+        ## N¸¸d gradient. S‰‰l on kokku 7 komponenti, neist 3
+        ## vektorit. J‰rjekord j‰‰b samaks mis enne: g b_2, s_2, r_2, b_3,
+        ## s_3, r_3
+        g <- beta[igamma]
+        b2 <- beta[ibeta2]
+        sigma2 <- beta[isigma2]
+        rho2 <- beta[irho2]
+        b3 <- beta[ibeta3]
+        sigma3 <- beta[isigma3]
+        rho3 <- beta[irho3]
+        Z2g <- Z2%*%g
+        Z3g <- Z3%*%g
+        X2b2 <- X2%*%b2
+        X3b3 <- X3%*%b3
+        u2 <- Y2 - X2b2
+        u3 <- Y3 - X3b3
+        sqrt1r22 <- sqrt( 1 - rho2^2)
+        sqrt1r32 <- sqrt( 1 - rho3^2)
+        B2 <- -(Z2g + rho2/sigma2*u2)/sqrt1r22
+        B3 <- (Z3g + rho3/sigma3*u3)/sqrt1r32
+        fB2 <- dnorm( B2)
+        FB2 <- pnorm( B2)
+        fB3 <- dnorm( B3)
+        FB3 <- pnorm( B3)
+        lambda2 <- fB2/FB2
+        lambda3 <- fB3/FB3
+                                        # now the calculation
+        l.g <- -t( Z2)%*%lambda2/sqrt1r22 + t( Z3)%*%lambda3/sqrt1r32
+        l.b2 <- t( X2)%*%( lambda2*rho2/sigma2/sqrt1r22 + u2/sigma2^2)
+        l.b3 <- t( X3)%*%( -lambda3*rho3/sigma3/sqrt1r32 + u3/sigma3^2)
+        l.s2 <- sum( -1/sigma2 + u2^2/sigma2^3
+                    +lambda2*rho2/sigma2^2*u2/sqrt1r22)
+        l.s3 <- sum( -1/sigma3 + u3^2/sigma3^3
+                    -lambda3*rho3/sigma3^2*u3/sqrt1r32)
+        l.r2 <- -sum( lambda2*( u2/sigma2 + rho2*Z2g)/sqrt1r22^3)
+        l.r3 <- sum( lambda3*( u3/sigma3 + rho3*Z3g)/sqrt1r32^3)
+        gradient <- rbind( l.g, l.b2, l.s2, l.r2, l.b3, l.s3, l.r3)
+    }
+    hesslik <- function(beta) {
+        ## N¸¸d 28 Hessi maatriksi komponenti
+        g <- beta[igamma]
+        b2 <- beta[ibeta2]
+        sigma2 <- beta[isigma2]
+        rho2 <- beta[irho2]
+        b3 <- beta[ibeta3]
+        sigma3 <- beta[isigma3]
+        rho3 <- beta[irho3]
+        Z2g <- Z2%*%g
+        Z3g <- Z3%*%g
+        X2b2 <- X2%*%b2
+        X3b3 <- X3%*%b3
+        u2 <- Y2 - X2b2
+        u3 <- Y3 - X3b3
+        sqrt1r22 <- sqrt( 1 - rho2^2)
+        sqrt1r32 <- sqrt( 1 - rho3^2)
+        B2 <- -(Z2g + rho2/sigma2*u2)/sqrt1r22
+        B3 <- (Z3g + rho3/sigma3*u3)/sqrt1r32
+        fB2 <- dnorm( B2)
+        FB2 <- pnorm( B2)
+        fB3 <- dnorm( B3)
+        FB3 <- pnorm( B3)
+        lambda2 <- fB2/FB2
+        lambda3 <- fB3/FB3
+        CB2 <- as.vector( -(FB2*fB2*B2 + fB2*fB2)/FB2/FB2)
+        CB3 <- as.vector( -(FB3*fB3*B3 + fB3*fB3)/FB3/FB3)
+                                        # now the calculation
+        l.gg <- t( Z2) %*% ( Z2 * CB2)/sqrt1r22^2 +
+            t( Z3) %*% ( Z3 * CB3)/sqrt1r32^2
+        l.gb2 <- -t( Z2) %*%
+            ( X2 * CB2)*rho2/sqrt1r22^2/sigma2
+        l.gs2 <- -rho2/sigma2^2/sqrt1r22^2*
+            t( Z2) %*% ( CB2*u2)
+        l.gr2 <- t( Z2) %*%
+            ( CB2*( u2/sigma2 + rho2*Z2g)/sqrt1r22^4 -
+             lambda2*rho2/sqrt1r22^3)
+        l.gb3 <- -t( Z3) %*%
+            ( X3 * CB3)*rho3/sqrt1r32^2/sigma3
+        l.gs3 <- -rho3/sigma3^2/sqrt1r32^2*
+            t( Z3) %*% ( CB3*u3)
+        l.gr3 <- t( Z3) %*%
+            ( CB3*( u3/sigma3 + rho3*Z3g)/sqrt1r32^4 +
+             lambda3*rho3/sqrt1r32^3)
+        l.b2b2 <- t( X2) %*%
+            (X2 * ( (rho2/sqrt1r22)^2 * CB2 - 1))/sigma2^2
+        l.b2s2 <- t( X2) %*%
+            ( CB2*rho2^2/sigma2^3*u2/sqrt1r22^2 -
+             rho2/sigma2^2*lambda2/sqrt1r22 -
+             2*u2/sigma2^3)
+        l.b2r2 <- t( X2) %*%
+            ( -CB2*( u2/sigma2 + rho2*Z2g)/sqrt1r22^4*rho2 +
+             lambda2/sqrt1r22^3)/sigma2
+        ## l.b2x3 is zero
+        l.s2s2 <- sum(
+                      1/sigma2^2
+                      -3*u2*u2/sigma2^4
+                      + u2*u2/sigma2^4 *rho2^2/sqrt1r22^2 *CB2
+                      -2*lambda2* u2/sqrt1r22 *rho2/sigma2^3)
+        l.s2r2 <- sum(
+                      ( -CB2*rho2*(u2/sigma2 + rho2*Z2g)/sqrt1r22 +
+                       lambda2)
+                      *u2/sigma2^2)/sqrt1r22^3
+        ## l.s2x3 is zero
+        l.r2r2 <- sum(
+                      CB2*( ( u2/sigma2 + rho2*Z2g)/sqrt1r22^3)^2
+                      -lambda2*( Z2g*( 1 + 2*rho2^2) + 3*rho2*u2/sigma2) /
+                      sqrt1r22^5
+                      )
+        ## l.r2x3 is zero
+        l.b3b3 <- t( X3) %*%
+            (X3 * ( (rho3/sqrt1r32)^2 * CB3 - 1))/sigma3^2
+        l.b3s3 <- t( X3) %*%
+            ( CB3*rho3^2/sigma3^3*u3/sqrt1r32^2 +
+             rho3/sigma3^2*lambda3/sqrt1r32 - 2*u3/sigma3^3)
+        l.b3r3 <- t( X3) %*%
+            ( -CB3*( u3/sigma3 + rho3*Z3g)/sqrt1r32^4*rho3 -
+             lambda3/sqrt1r32^3)/sigma3
+        l.s3s3 <- sum(
+                      1/sigma3^2
+                      -3*u3*u3/sigma3^4
+                      +2*lambda3* u3/sqrt1r32 *rho3/sigma3^3
+                      +rho3^2/sigma3^4 *u3*u3/sqrt1r32^2 *CB3)
+        l.s3r3 <- -sum(
+                       ( CB3*rho3*(u3/sigma3 + rho3*Z3g)/sqrt1r32 +
+                        lambda3)
+                       *u3/sigma3^2)/sqrt1r32^3
+        l.r3r3 <- sum(
+                      CB3*( ( u3/sigma3 + rho3*Z3g)/sqrt1r32^3)^2
+                      + lambda3*( Z3g*( 1 + 2*rho3^2) + 3*rho3*u3/sigma3) /
+                      sqrt1r32^5
+                      )
+        hess <- array(NA, c( NParam, NParam))
+        hess[igamma,igamma] <- l.gg
+        hess[igamma,ibeta2] <- l.gb2; hess[ibeta2,igamma] <- t( l.gb2)
+        hess[igamma,isigma2] <- l.gs2; hess[isigma2,igamma] <- t( l.gs2)
+        hess[igamma,irho2] <- l.gr2; hess[irho2,igamma] <- t( l.gr2)
+        hess[igamma,ibeta3] <- l.gb3; hess[ibeta3,igamma] <- t( l.gb3)
+        hess[igamma,isigma3] <- l.gs3; hess[isigma3,igamma] <- t( l.gs3)
+        hess[igamma,irho3] <- l.gr3; hess[irho3,igamma] <- t( l.gr3)
+        hess[ibeta2,ibeta2] <- l.b2b2
+        hess[ibeta2,isigma2] <- l.b2s2; hess[isigma2,ibeta2] <- t( l.b2s2)
+        hess[ibeta2,irho2] <- l.b2r2; hess[irho2,ibeta2] <- t( l.b2r2)
+        hess[ibeta2,ibeta3] <- 0; hess[ibeta3,ibeta2] <- 0
+        hess[ibeta2,isigma3] <- 0; hess[isigma3,ibeta2] <- 0
+        hess[ibeta2,irho3] <- 0; hess[irho3,ibeta2] <- 0
+        hess[isigma2,isigma2] <- l.s2s2
+        hess[isigma2,irho2] <- l.s2r2; hess[irho2,isigma2] <- l.s2r2
+        hess[isigma2,ibeta3] <- 0; hess[ibeta3,isigma2] <- 0
+        hess[isigma2,isigma3] <- 0; hess[isigma3,isigma2] <- 0
+        hess[isigma2,irho3] <- 0; hess[irho3,isigma2] <- 0
+        hess[irho2,irho2] <- l.r2r2
+        hess[irho2,ibeta3] <- 0; hess[ibeta3,irho2] <- 0
+        hess[irho2,isigma3] <- 0; hess[isigma3,irho2] <- 0
+        hess[irho2,irho3] <- 0; hess[irho3,irho2] <- 0
+        hess[ibeta3,ibeta3] <- l.b3b3
+        hess[ibeta3,isigma3] <- l.b3s3; hess[isigma3,ibeta3] <- t( l.b3s3)
+        hess[ibeta3,irho3] <- l.b3r3; hess[irho3,ibeta3] <- t( l.b3r3)
+        hess[isigma3,isigma3] <- l.s3s3
+        hess[isigma3,irho3] <- l.s3r3; hess[irho3,isigma3] <- t( l.s3r3)
+        hess[irho3,irho3] <- l.r3r3
+        hess
+    }
+    Z <- model.matrix(selection, data=data)
+    y1 <- model.response(model.frame(selection, data=data))
+    NZ <- ncol( Z)
+    if(is.null(colnames(Z)))
+        colnames(Z) <- c("const", rep("z", NZ-1))
+    X2 <- model.matrix(reg2, data=data)
+    y2 <- model.response(model.frame(reg2, data=data))
+    NX2 <- ncol( X2)
+    if(is.null(colnames(X2)))
+        colnames(X2) <- rep("x", NX2)
+    X3 <- model.matrix(reg3, data=data)
+    y3 <- model.response(model.frame(reg3, data=data))
+    NX3 <- ncol( X3)
+    if(is.null(colnames(X3)))
+        colnames(X3) <- rep("x", NX3)
+    NParam <- NZ + NX2 + NX3 + 4
+                                        # Total # of parameters
+    Nobs <- length( y1)
+    N2 <- length( y1[y1==0])
+    N3 <- length( y1[y1==1])
+    ## indices in for the parameter vector
+    igamma <- 1:NZ
+    ibeta2 <- seq(last(igamma)+1, length=NX2)
+    isigma2 <- last(ibeta2) + 1
+    irho2 <- last(isigma2) + 1
+    ibeta3 <- seq(last(irho2) + 1, length=NX3)
+    isigma3 <- last(ibeta3) + 1
+    irho3 <- last(isigma3) + 1
+    ## divide data by choices
+    Y2 <- y2[y1==0]
+    Y3 <- y3[y1==1]
+    X2 <- X2[y1==0,,drop=FALSE]
+    X3 <- X3[y1==1,,drop=FALSE]
+    Z2 <- Z[y1==0,,drop=FALSE]
+    Z3 <- Z[y1==1,,drop=FALSE]
+    if(print.level > 0) {
+        cat( "Choice 2:", N2, "time; choice 3:", N3, "times\n")
+    }
+    if(is.null(beta0)) {
+        beta0 <- numeric(NParam)
+        ## initial values.  First probit part w/probit model
+        probit <- probit(selection)
+        if( print.level > 0) {
+            cat("The probit part of the model:\n")
+            print(summary(probit))
+        }
+        gamma.0 <- probit$results$estimate
+        beta0[igamma] <- gamma.0
+        ## regression parts by Heckman's two-step method
+        lambda.2 <- dnorm( -Z2%*%gamma.0)/pnorm( -Z2%*%gamma.0)
+        lambda.3 <- dnorm( Z3%*%gamma.0)/pnorm( Z3%*%gamma.0)
+        delta.2 <- mean( lambda.2^2 - Z2%*%gamma.0 *lambda.2)
+        delta.3 <- mean( lambda.3^2 + Z3%*%gamma.0 *lambda.3)
+        twoStep.2 <- summary( lm( y2[y1==0]~X2+lambda.2))
+        twoStep.3 <- summary( lm( y3[y1==1]~X3+lambda.3))
+        beta0[ibeta2] <- twoStep.2$coefficients[1:NX2,1]
+        beta0[ibeta3] <- twoStep.3$coefficients[1:NX3,1]
+        se.2 <- twoStep.2$sigma
+                                        # See on j‰‰kliige
+        se.3 <- twoStep.3$sigma
+        bl.2 <- twoStep.2$coefficients[NX2+1,1]
+        bl.3 <- twoStep.3$coefficients[NX3+1,1]
+        sigma.20 <- sqrt( se.2^2 + ( bl.2*delta.2)^2)
+        sigma.30 <- sqrt( se.3^2 + ( bl.3*delta.3)^2)
+        beta0[isigma2] <- sigma.20
+        beta0[isigma3] <- sigma.30
+        rho2.0 <- -bl.2/sigma.20
+        rho3.0 <- bl.3/sigma.30
+        if( rho2.0 <= -1) rho2.0 <- -0.99
+        if( rho3.0 <= -1) rho3.0 <- -0.99
+        if( rho2.0 >= 1) rho2.0 <- 0.99
+        if( rho3.0 >= 1) rho3.0 <- 0.99
+        beta0[irho2] <- rho2.0
+        beta0[irho3] <- rho3.0
+    }
+    if(is.null(names(beta0))) {
+        names(beta0) <- c(colnames(Z),
+                          colnames(X2), "sigma2", "rho2",
+                          colnames(X3), "sigma3", "rho3")
+    }
+    if( print.level > 0) {
+        cat( "Y2 algv‰‰rtused (Heckmani kahesammuline mudel):\n")
+        cat( beta0[ibeta2], " ", beta0[isigma2], " ", beta0[irho2], "\n")
+        cat( "y3 algv‰‰rtused (Heckmani kahesammuline mudel):\n")
+        cat( beta0[ibeta3], " ", beta0[isigma3], " ", beta0[irho3], "\n")
+    }
+    results <- maxNR(loglik, gradlik, hesslik, beta0,
+                     print.level=print.level, ...)
+    tobit5 <- list(probit=probit,
+                   results=results)
+    class(tobit5) <- "tobit5"
+    tobit5
+}
+
