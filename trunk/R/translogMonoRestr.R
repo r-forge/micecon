@@ -1,5 +1,5 @@
-translogMonoRestr <- function( xNames, data, quadHalf = TRUE, logValues = TRUE,
-   area = FALSE ) {
+translogMonoRestr <- function( xNames, data, quadHalf = TRUE,
+   logValues = FALSE, area = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
 
