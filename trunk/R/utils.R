@@ -1,5 +1,3 @@
-library( systemfit )
-
 ## ----- insert a column into a matrix --------------
 insertCol <- function( m, c, v = NA ) {
    nr <- nrow( m )
