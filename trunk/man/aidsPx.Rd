@@ -7,8 +7,8 @@
 }
 
 \usage{
-   aidsPx( px, pNames, wNames = NULL, data = NULL, base = 1,
-   alpha0 = 0, alpha = NULL, gamma = NULL)
+   aidsPx( px, pNames, wNames = NULL, data = NULL, base = 1, coef = NULL,
+      alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) )
 }
 
 \arguments{
@@ -18,18 +18,18 @@
       shares.}
    \item{data}{a data frame containing the data.}
    \item{base}{The base to calculate the indices (see details).}
-   \item{alpha0}{the \eqn{\alpha_0} in the translog price index.}
-   \item{alpha}{the \eqn{\alpha}s in the translog price index.}
-   \item{gamma}{the \eqn{\gamma}s in the translog price index.}
+   \item{coef}{a list containing the coefficients alpha, beta and gamma
+      (only needed for the translog price index).}
+   \item{alpha0}{coefficient \eqn{\alpha_0} in the translog price index.}
 }
 \details{
    Currently 6 different price indices are implemented: \cr
    * translog price index ('TL'),\cr
-   * Stone price index ('LA:S'),\cr
-   * Stone price index with lagged shares ('LA:SL'),\cr
-   * loglinear analogue to the Paasche price index ('LA:P'),\cr
-   * loglinear analogue of the Laspeyres price index ('LA:L'), and\cr
-   * Tornqvist price index ('LA:T').
+   * Stone price index ('S'),\cr
+   * Stone price index with lagged shares ('SL'),\cr
+   * loglinear analogue to the Paasche price index ('P'),\cr
+   * loglinear analogue of the Laspeyres price index ('L'), and\cr
+   * Tornqvist price index ('T').
    \cr
    The argument \code{base} can be either \cr
    (a) a single number: the row number of the base prices and quantities, \cr
