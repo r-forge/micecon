@@ -62,7 +62,7 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
    result$fMeans <- estResult$fMeans
    result$mindist <- mindist
    result$coef <- snqProfitCoef( coef, nNetput, nFix, form = estResult$form,
-      qNames = names( estResult$qMeans ), pNames = names( estResult$pMeans ), 
+      qNames = names( estResult$qMeans ), pNames = names( estResult$pMeans ),
       fNames = names( estResult$fMeans ) )
       # constrained coefficients
    result$fitted <- snqProfitCalc( pNames, fNames, data = estResult$estData,
@@ -81,7 +81,7 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
          result$residuals[[ qNames[ i ] ]] )
    }
    names( result$r2 ) <- names( estResult$qMeans )
-   
+
    result$hessian <- snqProfitHessian( result$coef$beta, estResult$pMean,
       estResult$weights ) # constrained Hessian matrix
    result$ela <- snqProfitEla( result$coef$beta, estResult$pMean, estResult$qMean,
@@ -92,6 +92,6 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
    result$convexity <- TRUE
    result$form      <- estResult$form
 
-   class( result ) <- "snqProfitImposeCovexity"
+   class( result ) <- "snqProfitImposeConvexity"
    return( result )
 }
