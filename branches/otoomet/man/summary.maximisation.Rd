@@ -7,7 +7,7 @@
   \eqn{t}-values, and presents in a suitable form.
 }
 \usage{
-summary.maximisation( object, hessian=FALSE, unsucc.step=FALSE, \ldots )
+summary.maximisation( object, hessian=FALSE, unsucc.step=FALSE, ... )
 }
 \arguments{
   \item{object}{optimisation result, object of class

@@ -45,6 +45,7 @@ maxNR(fn, grad = NULL, hess = NULL, theta, print.level = 0,
     largest of the eigenvalues of the hessian is larger than
     \code{-lambdatol}, a suitable diagonal matrix is subtracted from the
     hessian (quadratic hill-climbing).}
+  \item{qrtol}{?}
   \item{iterlim}{stopping condition.  Stop if more than \code{iterlim}
     iterations, return \code{code=4}.}
   \item{constPar}{index vector.  Which of the parameters must be treated
