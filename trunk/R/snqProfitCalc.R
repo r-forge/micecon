@@ -25,16 +25,18 @@ snqProfitCalc <- function( pNames, fNames, data, weights, coef, form = 0 ) {
                data[[ pNames[ k ] ]] / normPrice^2
          }
       }
-      for( j in 1:nFix ) {
-         qNetput[ , i ] <- qNetput[ , i ] +
-            coef$delta[ i, j ] * data[[ fNames[ j ] ]]
-         for( k in 1:nFix ) {
-            if( form == 0 ) {
-               qNetput[ , i ] <- qNetput[ , i ] + 0.5 * weights[ i ] *
-                  coef$gamma[ j, k ] * data[[ fNames[ j ] ]] * data[[ fNames[ k ] ]]
-            } else {
-               qNetput[ , i ] <- qNetput[ , i ] + 0.5 * weights[ i ] *
-                  coef$gamma[ i, j, k ] * data[[ fNames[ j ] ]] * data[[ fNames[ k ] ]]
+      if( nFix > 0 ) {
+         for( j in 1:nFix ) {
+            qNetput[ , i ] <- qNetput[ , i ] +
+               coef$delta[ i, j ] * data[[ fNames[ j ] ]]
+            for( k in 1:nFix ) {
+               if( form == 0 ) {
+                  qNetput[ , i ] <- qNetput[ , i ] + 0.5 * weights[ i ] *
+                     coef$gamma[ j, k ] * data[[ fNames[ j ] ]] * data[[ fNames[ k ] ]]
+               } else {
+                  qNetput[ , i ] <- qNetput[ , i ] + 0.5 * weights[ i ] *
+                     coef$gamma[ i, j, k ] * data[[ fNames[ j ] ]] * data[[ fNames[ k ] ]]
+               }
             }
          }
       }
@@ -54,26 +56,28 @@ snqProfitCalc <- function( pNames, fNames, data, weights, coef, form = 0 ) {
             data[[ pNames[ j ] ]] / normPrice
       }
    }
-   for( i in 1:nNetput ) {
-      for( j in 1:nFix ) {
-         profit <- profit + coef$delta[ i, j ] * data[[ pNames[ i ] ]] *
-            data[[ fNames[ j ] ]]
-      }
-   }
-   if( form == 0 ) {
-      for( i in 1:nFix ) {
+   if( nFix > 0 ) {
+      for( i in 1:nNetput ) {
          for( j in 1:nFix ) {
-            profit <- profit + 0.5 * normPrice * coef$gamma[ i, j ] *
-               data[[ fNames[ i ] ]] * data[[ fNames[ j ] ]]
+            profit <- profit + coef$delta[ i, j ] * data[[ pNames[ i ] ]] *
+               data[[ fNames[ j ] ]]
          }
       }
-   } else {
-       for( i in 1:nNetput ) {
-         for( j in 1:nFix ) {
-            for( k in 1:nFix ) {
-               profit <- profit + 0.5 * coef$gamma[ i, j, k ] *
-                  data[[ pNames[ i ] ]] * data[[ fNames[ j ] ]] *
-                  data[[ fNames[ k ] ]]
+      if( form == 0 ) {
+         for( i in 1:nFix ) {
+            for( j in 1:nFix ) {
+               profit <- profit + 0.5 * normPrice * coef$gamma[ i, j ] *
+                  data[[ fNames[ i ] ]] * data[[ fNames[ j ] ]]
+            }
+         }
+      } else {
+         for( i in 1:nNetput ) {
+            for( j in 1:nFix ) {
+               for( k in 1:nFix ) {
+                  profit <- profit + 0.5 * coef$gamma[ i, j, k ] *
+                     data[[ pNames[ i ] ]] * data[[ fNames[ j ] ]] *
+                     data[[ fNames[ k ] ]]
+               }
             }
          }
       }

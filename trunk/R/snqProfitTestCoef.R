@@ -20,7 +20,7 @@ snqProfitTestCoef <- function( nNetput, nFix, coef, form = 0,
          stop( "coef$beta must have as many rows as argument 'pNames' has elements." )
       }
    }
-   if( "delta" %in% coefNames ) {
+   if( "delta" %in% coefNames && nFix > 0 ) {
       if( !is.matrix( coef$delta ) ) {
          stop( "coef$delta must be a matrix." )
       }
@@ -33,7 +33,7 @@ snqProfitTestCoef <- function( nNetput, nFix, coef, form = 0,
             "has elements." ) )
       }
    }
-   if( "gamma" %in% coefNames ) {
+   if( "gamma" %in% coefNames && nFix > 0 ) {
       if( form == 0 ) {
          if( !is.matrix( coef$gamma ) ) {
             stop( "coef$gamma must be a matrix." )
