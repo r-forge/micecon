@@ -1,4 +1,4 @@
-
+library( micEcon )
 data( germanFarms )
 
 germanFarms$qOutput   <- germanFarms$vOutput / germanFarms$pOutput
