@@ -2,6 +2,7 @@
 \alias{aidsCoef}
 \alias{aidsRestr}
 \alias{aidsSystem}
+\alias{micEconIndex}
 \alias{print.aidsEst}
 \alias{checkNames}
 \alias{snqProfitCoef}
