@@ -1,8 +1,8 @@
-readFront41out <- function( filename = "front41.out", translog = FALSE ) {
+readFront41out <- function( file = "front41.out", translog = FALSE ) {
 
    result <- list()
 
-   output <- readLines( filename )
+   output <- readLines( file )
    line <- 0
 
    lineSearch <- function( start, regexp, stop = length( output ) ) {
@@ -91,11 +91,11 @@ readFront41out <- function( filename = "front41.out", translog = FALSE ) {
       "Version", "[ \(\)]" ), output[ line ] )
 
    line <- lineSearch( line, "instruction file" )
-   result$insFilename <- rmParts( c( "instruction file", "[ =]" ),
+   result$insFile <- rmParts( c( "instruction file", "[ =]" ),
       output[ line ] )
 
    line <- lineSearch( line, "data file" )
-   result$dtaFilename <- rmParts( c( "data file", "[ =]" ),
+   result$dtaFile <- rmParts( c( "data file", "[ =]" ),
       output[ line ] )
 
    line <- lineSearch( line, "Frontier .see B.C" )
@@ -121,9 +121,9 @@ readFront41out <- function( filename = "front41.out", translog = FALSE ) {
 
    line <- lineSearch( line, "The dependent variable is" )
    if( length( grep( "not logged", output[ line ] ) ) > 0 ) {
-      result$logDepVar <- "n"
+      result$logDepVar <- FALSE
    } else {
-      result$logDepVar <- "y"
+      result$logDepVar <- TRUE
    }
 
    line <- lineSearch( line, "the ols estimates are" )
@@ -199,5 +199,6 @@ readFront41out <- function( filename = "front41.out", translog = FALSE ) {
       names( result$efficiency ) <- c( "firm", "eff.-est." )
    }
 
+   class( result ) <- "front41out"
    return( result )
 }
