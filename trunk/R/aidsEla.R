@@ -1,4 +1,5 @@
-aidsEla <- function( coef, W, P = NULL, formula = "AIDS" ) {
+aidsEla <- function( coef, W, P = NULL, formula = "AIDS",
+   qNames = NULL, pNames = NULL ) {
 
    if( length( coef$alpha ) != length( coef$beta ) ) {
       stop( "Arguments 'alpha' and 'beta' must have the same length." )
@@ -74,6 +75,15 @@ aidsEla <- function( coef, W, P = NULL, formula = "AIDS" ) {
    } else {
       stop( paste( "Formula '", as.character( formula ), "' is not supported.",
          sep = "" ) )
+   }
+   if( !is.null( qNames ) ) {
+      rownames( ela$hicks ) <- qNames
+      rownames( ela$marshall ) <- qNames
+      names( ela$exp ) <- qNames
+   }
+   if( !is.null( pNames ) ) {
+      colnames( ela$hicks ) <- pNames
+      colnames( ela$marshall ) <- pNames
    }
    return( ela )
 }
