@@ -18,50 +18,31 @@ micEconIndex <- function( prices, quantities, base, data, method, na.rm, what ) 
          qt <- with( data, get( quantities[ i ] ) )
          q0 <- mean( with( data, get( quantities[ i ] ) )[ base ], na.rm = na.rm )
          if( method == "Laspeyres" ) {
-            if( na.rm ) {
-               if( !is.na( q0 ) && !is.na( p0 ) ) {
-                  selection <- !is.na( pt )
-                  numerator[ selection ] <- numerator[ selection ] +
-                     pt[ selection ] * q0
-                  denominator[ selection ] <- denominator[ selection ] + p0 * q0
-               }
+            if( is.na( q0 ) || is.na( p0 ) || all( is.na( pt ) ) ) {
+               numerator <- NA
+               numerator <- NA
             } else {
-               if( is.na( q0 ) || is.na( p0 ) ) {
-                  numerator <- NA
-                  numerator <- NA
-               } else {
-                  selection <- !is.na( pt )
-                  numerator[ selection ] <- numerator[ selection ] +
-                     pt[ selection ] * q0
-                  denominator[ selection ] <- denominator[ selection ] + p0 * q0
-                  if( q0 > 0 ) {
-                     numerator[ is.na( pt ) ] <- NA
-                  }
+               selection <- !is.na( pt )
+               numerator[ selection ] <- numerator[ selection ] +
+                  pt[ selection ] * q0
+               denominator[ selection ] <- denominator[ selection ] + p0 * q0
+               if( q0 > 0 ) {
+                  numerator[ is.na( pt ) ] <- NA
                }
             }
          } else if( method == "Paasche" ) {
-            if( na.rm ) {
-               if( !is.na( p0 ) ) {
-                  selection <- qt > 0 & !is.na( qt ) & !is.na( pt )
-                  numerator[ selection ] <- numerator[ selection ] +
-                     pt[ selection ] * qt[ selection ]
-                  denominator[ selection ] <- denominator[ selection ] +
-                     p0 * qt[ selection ]
-               }
+            if( is.na( p0 ) || all( is.na( pt ) ) || all( is.na( qt ) )  ) {
+               numerator <- NA
+               numerator <- NA
             } else {
-               if( is.na( p0 ) ) {
-                  numerator <- NA
-                  numerator <- NA
-               } else {
-                  selection <- qt > 0 & !is.na( qt ) & !is.na( pt )
-                  numerator[ selection ] <- numerator[ selection ] +
-                     pt[ selection ] * qt[ selection ]
-                  denominator[ selection ] <- denominator[ selection ] +
-                     p0 * qt[ selection ]
-                  numerator[ is.na( qt ) ] <- NA
-                  numerator[ qt > 0  & !is.na( pt ) ] <- NA
-                  denominator[ is.na( qt ) ] <- NA
-               }
+               selection <- qt > 0 & !is.na( qt ) & !is.na( pt )
+               numerator[ selection ] <- numerator[ selection ] +
+                  pt[ selection ] * qt[ selection ]
+               denominator[ selection ] <- denominator[ selection ] +
+                  p0 * qt[ selection ]
+               numerator[ is.na( qt ) ] <- NA
+               numerator[ qt > 0  & is.na( pt ) ] <- NA
+               denominator[ is.na( qt ) ] <- NA
             }
          }
       }
