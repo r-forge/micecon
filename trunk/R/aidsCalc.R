@@ -8,7 +8,7 @@ aidsCalc <- function( pNames, xtName, data = NULL, px = "TL", lnp = NULL,
    nGoods <- length( pNames )
 
    if( is.null( lnp ) ) {
-      lnp <- aidsPx( px, pNames, pNames, data = data,
+      lnp <- aidsPx( px, pNames, data = data,
          alpha0 = alpha0, coef = coef )
    }
    shares <- as.data.frame( matrix( 0, nrow = nrow( data ), ncol = nGoods ) )
@@ -21,7 +21,7 @@ aidsCalc <- function( pNames, xtName, data = NULL, px = "TL", lnp = NULL,
       shares[ , i ] <- coef$alpha[ i ] + coef$beta[ i ] *
          ( log( data[[ xtName ]] ) - lnp )
       for( j in 1:nGoods ) {
-         shares[ , i ] <- shares[ , i ] + 0.5 * coef$gamma[ i, j ] *
+         shares[ , i ] <- shares[ , i ] + coef$gamma[ i, j ] *
             log( data[[ pNames[ j ] ]] )
       }
       quant[ , i ] <- shares[ , i ] * data[[ xtName ]] / data[[ pNames[ i ] ]]
