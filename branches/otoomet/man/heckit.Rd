@@ -9,12 +9,12 @@
 }
 
 \usage{
-   heckit( formula, probitformula, data )
+   heckit( selection, formula, data )
 }
 
 \arguments{
+  \item{selection}{formula for the probit estimation (1st step)}
   \item{formula}{formula to be estimated}
-  \item{probitformula}{formula for the probit estimation (1st step)}
   \item{data}{a data frame containing the variables in the model}
 }
 
@@ -68,8 +68,8 @@
 ## Greene( 2003 ): example 22.8, page 786
 data( Mroz87 )
 Mroz87$kids  <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
-greene <- heckit( wage ~ exper + I( exper^2 ) + educ + city,
-   lfp ~ age + I( age^2 ) + faminc + kids + educ, Mroz87 )
+greene <- heckit( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+   wage ~ exper + I( exper^2 ) + educ + city, Mroz87 )
 summary( greene )        # print summary
 summary( greene$probit ) # summary of the 1st step probit estimation
                          # this is Example 21.4, p. 681f
@@ -78,8 +78,8 @@ greene$rho               # estimated rho
 
 ## Wooldridge( 2003 ): example 17.5, page 590
 data( Mroz87 )
-wooldridge <- heckit( log( wage ) ~ educ + exper + I( exper^2 ),
-   lfp ~ nwifeinc + educ + exper + I( exper^2 ) + age + kids5 + kids618, Mroz87 )
+wooldridge <- heckit( lfp ~ nwifeinc + educ + exper + I( exper^2 ) + age +
+   kids5 + kids618, log( wage ) ~ educ + exper + I( exper^2 ), Mroz87 )
 summary( wooldridge )        # summary of the 1st step probit estimation
                              # (Example 17.1, p. 562f) and 2nd step OLS regression
 wooldridge$sigma             # estimated sigma
