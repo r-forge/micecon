@@ -80,8 +80,8 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
          if(length(gr) > NParam) {
             return(sum(gr))
          }
-         return(gr)
       }
+      return(gr)
    }
    hessian <- function(theta, ...) {
       if(!is.null(hess)) {
