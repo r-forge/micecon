@@ -23,5 +23,6 @@ quadFuncCalc <- function( xNames, data, allCoef, quadHalf = TRUE ) {
       }
    }
 
+   names( result ) <- rownames( data )
    return( result )
 }
