@@ -11,7 +11,7 @@
    writeFront41in( data, crossSectionName, timePeriodName,
    yName, xNames = NULL, zNames = NULL,
    translog = FALSE, quadHalf = TRUE,
-   functionType = 1, modelType = 1, logDepVar = TRUE, mu = TRUE, eta = TRUE,
+   functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\.ins$", ".dta", insFile ),
    outFile = sub( "\.ins$", ".out", insFile ) )
 }
@@ -56,15 +56,28 @@
       \emph{Empirical Economics}, 20, 325-332.
 
    Coelli, T. (1996) A Guide to FRONTIER Version 4.1: A Computer
-        Program for Stochastic Frontier Production and Cost Function
-        Estimation, CEPA Working Paper 96/08, University of New England.
+      Program for Stochastic Frontier Production and Cost Function
+      Estimation, CEPA Working Paper 96/08,
+      \url{http://www.uq.edu.au/economics/cepa/frontier.htm},
+      University of New England.
 }
 
-\seealso{\code{\link{writeFront41in}}}
+\seealso{\code{\link{readFront41out}}}
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
 \examples{
+   data( Coelli )
+   Coelli$logOutput  <- log( Coelli$output )
+   Coelli$logCapital <- log( Coelli$capital )
+   Coelli$logLabour  <- log( Coelli$labour )
+
+   writeFront41in( Coelli, "firm", "time", "logOutput",
+      c( "logCapital", "logLabour" ) )
+
+   \dontrun{
+   system( "wine front41.exe" )
+   }
 }
 
 \keyword{models}
