@@ -1,4 +1,5 @@
-snqProfitImposeConvexity <- function( estResult, rankReduction = 0, start = 10 ) {
+snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
+   start = 10, ... ) {
 
    if( class( estResult ) != "snqProfitEst" ) {
       stop( "argument 'estResult' must be of class 'snqProfitEst'." )
@@ -35,11 +36,18 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0, start = 10 )
       rankReduction * ( rankReduction + 1 ) / 2
       # number of non-zero values in the Cholesky matrix
    cholVec <- array( start, c( nCholValues ) ) # starting values
-   mindist <- nlm( hessianDistance, cholVec, iterlim=500, gradtol=1e-6 )
+   mindist <- optim( cholVec, hessianDistance, ... )
+   if( mindist$convergence != 0 ) {
+      if( mindist$convergence == 1 ) {
+         stop( "non-linear minimization with optim(): iteration limit exceeded." )
+      } else {
+         stop( "non-linear minimization: 'optim' did not converge." )
+      }
+   }
 
    ## asymptotic least squares (ALS)
    ## (all coefficients may adjust to best fit of the model)
-   cholMat <- triang( mindist$estimate, nNetput - 1 )
+   cholMat <- triang( mindist$par, nNetput - 1 )
       # triangular Cholesky Matrix
    cVecliHessian <- vecli( t(cholMat) %*% cholMat )
       # vector of linear independent values of constrained Hessian
