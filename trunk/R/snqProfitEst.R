@@ -96,6 +96,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
          modelData[[ paste( "f", as.character( i ), sep = "" ) ]] <-
             data[[ fNames[ i ] ]] / result$fMeans[ i ]
       }
+      names( result$fMeans ) <- fNames
       ## quadratic quasi-fix inputs
       for( i in 1:nNetput ) {
          for( j in 1:nFix ) {
