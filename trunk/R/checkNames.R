@@ -5,5 +5,5 @@ checkNames <- function( testNames, allNames ) {
          paste( testNames[ !inAllNames ], collapse = "', '" ),
          "' not found.", sep = "" ) )
    }
-
 }
+
