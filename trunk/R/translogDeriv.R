@@ -1,4 +1,5 @@
-translogDeriv <- function( xNames, data, allCoef, quadHalf = TRUE, logValues = TRUE ) {
+translogDeriv <- function( xNames, data, allCoef, allCoefCov = NULL,
+   quadHalf = TRUE, logValues = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
 
@@ -40,5 +41,6 @@ translogDeriv <- function( xNames, data, allCoef, quadHalf = TRUE, logValues = T
    colnames( deriv ) <- xNames
    result$deriv      <- as.data.frame( deriv )
 
+   class( result ) <- "translogDeriv"
    return( result )
 }
