@@ -7,13 +7,11 @@
 }
 
 \usage{
-   aidsEla( alpha, beta, gamma, W, P = NULL, formula = "AIDS" )
+   aidsEla( coef, W, P = NULL, formula = "AIDS" )
 }
 
 \arguments{
-   \item{alpha}{a vector of the \eqn{\alpha} coefficients.}
-   \item{beta}{a vector of the \eqn{\beta} coefficients.}
-   \item{gamma}{a matrix of the \eqn{\gamma} coefficients.}
+   \item{coef}{a list containing the coefficients alpha, beta and gamma.}
    \item{W}{a vector of the shares at which the elasticities should be calculated.}
    \item{P}{a vector of the prices at which the elasticities should be calculated.}
    \item{formula}{the elsticity formulas to be used (see details).}
@@ -58,8 +56,7 @@
       data = Blanciforti86, method = "LA:L" )
    wMeans <- colMeans( Blanciforti86[ , c( "wFood1", "wFood2",
       "wFood3", "wFood4" ) ] )
-   aidsEla( estResult$coef$alpha, estResult$coef$beta,
-      estResult$coef$gamma, wMeans, formula = "Ch" )
+   aidsEla( estResult$coef, wMeans, formula = "Ch" )
 }
 
 \keyword{ models }

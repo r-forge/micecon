@@ -85,9 +85,8 @@ aidsEst <- function( pNames, wNames, xtName,
       if( !( elaFormula %in% c( "AIDS" ) ) ) {
          pMeans <- NULL
       }
-      result$ela  <- aidsEla( result$coef$alpha, result$coef$beta,
-         result$coef$gamma, wMeans, pMeans, formula = elaFormula )
-            # elasticities
+      result$ela  <- aidsEla( result$coef, wMeans, pMeans,
+         formula = elaFormula ) # elasticities
       result$wFitted <- aidsCalc( pNames, xtName, data = data,
          coef = result$coef, lnp = lnp )$shares   # estimated budget shares
       iter <- est$iter
@@ -113,8 +112,8 @@ aidsEst <- function( pNames, wNames, xtName,
                          # and previous step
       }
       result$coef <- aidsCoef( est$b, est$bcov )  # coefficients
-      result$ela  <- aidsEla( result$coef$alpha, result$coef$beta,
-         result$coef$gamma, wMeans, pMeans, formula = "AIDS" )   # elasticities
+      result$ela  <- aidsEla( result$coef, wMeans, pMeans,
+         formula = "AIDS" )   # elasticities
       result$wFitted <- aidsCalc( pNames, xtName, data = data,
          coef = result$coef, alpha0 = alpha0, px = "TL" )$shares
          # estimated budget shares

@@ -117,8 +117,7 @@ Hicksian (compensated) Price Elasticities
 
 AIDS: Elasticities
 > wMeans <- colMeans( Blanciforti86[ , wNames ] )
-> ela <- aidsEla( estResultAIDS$coef$alpha, estResultAIDS$coef$beta,
-+    estResultAIDS$coef$gamma, wMeans, pMeans, formula = "AIDS" )
+> ela <- aidsEla( estResultAIDS$coef, wMeans, pMeans, formula = "AIDS" )
 > print( ela )
 $formula
 [1] "AIDS"
@@ -145,8 +144,7 @@ $marshall
 
 LA: Elasticity formula of non-linear AIDS
 > wMeans <- colMeans( Blanciforti86[ , wNames ] )
-> ela <- aidsEla( estResultLA$coef$alpha, estResultLA$coef$beta,
-+    estResultLA$coef$gamma, wMeans, pMeans, formula = "AIDS" )
+> ela <- aidsEla( estResultLA$coef, wMeans, pMeans, formula = "AIDS" )
 > print( ela )
 $formula
 [1] "AIDS"
@@ -174,8 +172,7 @@ $marshall
 ********** Elasticities ***************> cat( "\nLA: Elasticity formula of Chalfant / Goddard\n" )
 
 LA: Elasticity formula of Chalfant / Goddard
-> ela <- aidsEla( estResultLA$coef$alpha, estResultLA$coef$beta,
-+    estResultLA$coef$gamma, wMeans, formula = "Ch" )
+> ela <- aidsEla( estResultLA$coef, wMeans, formula = "Ch" )
 > print( ela )
 $formula
 [1] "Ch"
@@ -202,8 +199,7 @@ $marshall
 
 LA: Elasticity formula of Eales + Unnevehr
 > wMeans <- colMeans( Blanciforti86[ , wNames ] )
-> ela <- aidsEla( estResultLA$coef$alpha, estResultLA$coef$beta,
-+    estResultLA$coef$gamma, wMeans, formula = "EU" )
+> ela <- aidsEla( estResultLA$coef, wMeans, formula = "EU" )
 > print( ela )
 $formula
 [1] "EU"

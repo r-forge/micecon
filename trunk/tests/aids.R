@@ -24,26 +24,22 @@ print( estResultAIDS )
 ########## Elasticities ###############
 cat( "\nAIDS: Elasticities\n" )
 wMeans <- colMeans( Blanciforti86[ , wNames ] )
-ela <- aidsEla( estResultAIDS$coef$alpha, estResultAIDS$coef$beta,
-   estResultAIDS$coef$gamma, wMeans, pMeans, formula = "AIDS" )
+ela <- aidsEla( estResultAIDS$coef, wMeans, pMeans, formula = "AIDS" )
 print( ela )
 
 cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
 wMeans <- colMeans( Blanciforti86[ , wNames ] )
-ela <- aidsEla( estResultLA$coef$alpha, estResultLA$coef$beta,
-   estResultLA$coef$gamma, wMeans, pMeans, formula = "AIDS" )
+ela <- aidsEla( estResultLA$coef, wMeans, pMeans, formula = "AIDS" )
 print( ela )
 
 cat( "\n********** Elasticities ***************" )
 cat( "\nLA: Elasticity formula of Chalfant / Goddard\n" )
-ela <- aidsEla( estResultLA$coef$alpha, estResultLA$coef$beta,
-   estResultLA$coef$gamma, wMeans, formula = "Ch" )
+ela <- aidsEla( estResultLA$coef, wMeans, formula = "Ch" )
 print( ela )
 
 cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
 wMeans <- colMeans( Blanciforti86[ , wNames ] )
-ela <- aidsEla( estResultLA$coef$alpha, estResultLA$coef$beta,
-   estResultLA$coef$gamma, wMeans, formula = "EU" )
+ela <- aidsEla( estResultLA$coef, wMeans, formula = "EU" )
 print( ela )
 
 
