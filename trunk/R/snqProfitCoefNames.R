@@ -1,5 +1,3 @@
-
-## =============== coefficient names =====================
 snqProfitCoefNames <- function( nNetput, nFix, form = 0, all=FALSE ) {
    names <- NULL
    for( i in 1:nNetput ) {
