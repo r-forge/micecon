@@ -5,6 +5,8 @@ priceIndex <- function( prices, quantities, base, data, method = "Laspeyres",
       stop( "arguments 'prices' and 'quantities' must have the same length." )
    }
 
+   checkNames( c( prices, quantities ), names( data ) )
+
    n <- length( prices )
 
    numerator <- numeric( nrow( data ) )
@@ -44,6 +46,8 @@ priceIndex <- function( prices, quantities, base, data, method = "Laspeyres",
 
 quantityIndex <- function( prices, quantities, base, data,
    method = "Laspeyres", na.rm = FALSE ) {
+
+   checkNames( c( prices, quantities ), names( data ) )
 
    result <- priceIndex( quantities, prices, base, data, method, na.rm )
 
