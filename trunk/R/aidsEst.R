@@ -89,8 +89,7 @@ aidsEst <- function( pNames, wNames, xtName,
          result$coef$gamma, wMeans, pMeans, formula = elaFormula )
             # elasticities
       result$wFitted <- aidsShares( pNames, xtName, data = data,
-         alpha = result$coef$alpha, beta = result$coef$beta,
-         gamma = result$coef$gamma, lnp = lnp )$shares   # estimated budget shares
+         coef = result$coef, lnp = lnp )$shares   # estimated budget shares
       iter <- est$iter
    } else if( substr( method, 1, 2 ) == "MK" ) {
       b       <- est$b      # coefficients
@@ -104,8 +103,7 @@ aidsEst <- function( pNames, wNames, xtName,
          bl     <- b              # coefficients of previous step
          sysData$lxtr <- log( with( data, get( xtName ) ) ) -
             aidsPx( "TL", pNames, wNames, data = data,
-            alpha0 = alpha0, alpha = aidsCoef( est$b )$alpha,
-            gamma=aidsCoef(est$b)$gamma )
+            alpha0 = alpha0, coef = aidsCoef( est$b ) )
             # real total expenditure using Translog price index
          est <- systemfit( estMethod, system, data = sysData, R.restr = restr,
             inst = ivFormula, ... )    # estimate system
@@ -118,8 +116,8 @@ aidsEst <- function( pNames, wNames, xtName,
       result$ela  <- aidsEla( result$coef$alpha, result$coef$beta,
          result$coef$gamma, wMeans, pMeans, formula = "AIDS" )   # elasticities
       result$wFitted <- aidsShares( pNames, xtName, data = data,
-         alpha0 = alpha0, alpha = result$coef$alpha, beta = result$coef$beta,
-         gamma = result$coef$gamma, px = "TL" )$shares   # estimated budget shares
+         coef = result$coef, alpha0 = alpha0, px = "TL" )$shares
+         # estimated budget shares
       result$iterMk <- iterMk
    }
    names( result$wFitted ) <- paste( "wFitted", as.character( 1:nGoods ),
@@ -157,9 +155,10 @@ aidsEst <- function( pNames, wNames, xtName,
       result$r2q[ i ] <- rSquared( result$qObs[ , i ], result$qResid[ , i ] )
    }
    result$iter <- iter
-   result$est  <- est
+   result$est <- est
    result$method <- method
-   result$px <- px
+   result$px  <- px
+   result$lnp <- lnp
    class( result ) <- "aidsEst"
    return( result )
 }

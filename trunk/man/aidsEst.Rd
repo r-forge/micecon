@@ -74,6 +74,7 @@
       estimation.}
    \item{iterMk}{iterations of the Michalek and Keyzer estimation.}
    \item{method}{the method used to estimate the aids (see details).}
+   \item{lnp}{log of the price index used for estimation.}
    \item{hom}{was the homogeneity condition imposed?}
    \item{sym}{was the symmetry condition imposed?}
    \item{estMethod}{estimation method (see \code{\link{systemfit}}).}
@@ -99,11 +100,11 @@
 \examples{
    ## Repeating the demand analysis of Blanciforti, Green & King (1986)
    data( Blanciforti86 )
-   result <- aidsEst( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
+   estResult <- aidsEst( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
       data = Blanciforti86, method = "LA:SL", elaFormula = "Ch",
       maxiter = 1, rcovformula = 1, tol = 1e-7 )
-   print( result )
+   print( estResult )
 
    ## Repeating the evaluation of different elasticity formulas of
    ## Green & Alston (1990)
@@ -112,29 +113,29 @@
    wNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 
    # AIDS
-   resultA <- aidsEst( pNames, wNames, "xFood",
+   estResultA <- aidsEst( pNames, wNames, "xFood",
     data = Blanciforti86[ 2:nrow( Blanciforti86 ), ], maxiter = 1,
       elaFormula = "AIDS", rcovformula=1, tol=1e-7,
    method = "MK:L" )
-   print( diag( resultA$ela$marshall ) )
+   print( diag( estResultA$ela$marshall ) )
 
    # LA-AIDS + formula of AIDS
-   resultL1 <- aidsEst( pNames, wNames, "xFood",
+   estResultL1 <- aidsEst( pNames, wNames, "xFood",
       data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
       rcovformula=1, tol=1e-7, method = "LA:SL" )
-   print( diag( resultL1$ela$marshall ) )
+   print( diag( estResultL1$ela$marshall ) )
 
    # LA-AIDS + formula of Eales + Unnevehr
-   resultL2 <- aidsEst( pNames, wNames, "xFood",
+   estResultL2 <- aidsEst( pNames, wNames, "xFood",
       data = Blanciforti86, maxiter = 1, elaFormula = "EU",
       rcovformula=1, tol=1e-7, method = "LA:SL" )
-   print( diag( resultL2$ela$marshall ) )
+   print( diag( estResultL2$ela$marshall ) )
 
    # LA-AIDS + formula of Chalfant:
-   resultL3 <- aidsEst( pNames, wNames, "xFood",
+   estResultL3 <- aidsEst( pNames, wNames, "xFood",
       data = Blanciforti86, maxiter = 1, elaFormula = "Ch",
       rcovformula=1, tol=1e-7, method = "LA:SL" )
-   print( diag( resultL3$ela$marshall ) )
+   print( diag( estResultL3$ela$marshall ) )
 }
 
 \keyword{models}
