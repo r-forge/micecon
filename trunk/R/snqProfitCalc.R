@@ -71,7 +71,7 @@ snqProfitCalc <- function( pNames, fNames, data, weights, coef, form = 0 ) {
        for( i in 1:nNetput ) {
          for( j in 1:nFix ) {
             for( k in 1:nFix ) {
-               profit <- profit + 0.5 * normPrice * coef$gamma[ i, j, k ] *
+               profit <- profit + 0.5 * coef$gamma[ i, j, k ] *
                   data[[ pNames[ i ] ]] * data[[ fNames[ j ] ]] *
                   data[[ fNames[ k ] ]]
             }
