@@ -8,13 +8,15 @@
    coefficients.
 }
 
-\usage{ snqProfitHessianDeriv( prices, weights, nFix = 0 )}
+\usage{ snqProfitHessianDeriv( prices, weights, nFix = 0, form = 0 )}
 
 \arguments{
    \item{prices}{vector of netput prices at which the derivatives
       should be calculated.}
    \item{weights}{vector of weights for normalizing prices.}
    \item{nFix}{number of (quasi-)fix inputs.}
+   \item{form}{the functional form to be estimated (see
+      \code{\link{snqProfitEst}}).}
 }
 
 \seealso{\code{\link{snqProfitHessian}}.}
