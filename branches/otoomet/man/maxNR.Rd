@@ -1,18 +1,16 @@
 \name{maxNR}
 \alias{maxNR}
-\alias{maxBHHH}
 %- Also NEED an `\alias' for EACH other topic documented here.
-\title{functions for maximisation}
+\title{Newton-Raphson maximisation}
 \description{
-  unconstrained maximisation algorithms based on Newton-Raphson method.
-  maxBHHH is the
-  same as maxNR, except the hessian is defined as -t(grad) \%*\% grad.
+  unconstrained maximisation algorithm based on Newton-Raphson method.
 }
 \usage{
-maxBHHH(fn, grad=NULL, theta, print.level=0, iterlim=100, ...)
 maxNR(fn, grad = NULL, hess = NULL, theta, print.level = 0,
       tol = 1e-06, gradtol = 1e-06, steptol = 1e-06, lambdatol = 1e-06,
-      iterlim = 15, constPar = NULL, ...)
+      qrtol = 1e-10,
+      iterlim = 15,
+      constPar = NULL, activePar=rep(TRUE, NParam), ...)
 }
 \arguments{
   \item{fn}{function to be maximised.  In order to use numeric gradient
@@ -51,14 +49,15 @@ maxNR(fn, grad = NULL, hess = NULL, theta, print.level = 0,
     iterations, return \code{code=4}.}
   \item{constPar}{index vector.  Which of the parameters must be treated
     as constants.}
+  \item{activePar}{logical vector, which parameters are treated as free
+    (resp constant)}
   \item{\dots}{further argument to \code{fn}, \code{grad} and
     \code{hess}.}
 }
 \details{
 The algorithm can treat constant parameters and related changes of
 parameter values.  Constant parameters are useful if a parameter value
-is converging toward the edge of support where the \code{fn}'s value is
-singular.  
+is converging toward the edge of support or for testing.  
 
 One way is to put
 \code{constPar} to non-NULL.  Second possibility is to signal by
@@ -93,6 +92,7 @@ the previous one.
     \item{3}{last step could not find higher value (probably not
       converged).}
     \item{4}{iteration limit exceeded.}
+    \item{100}{Initial value out of range.}
   }
   \item{message}{a short message, describing \code{code}.}
   \item{last.step}{list describing the last unsuccessful step if
@@ -104,16 +104,15 @@ the previous one.
   }
   \item{activePar}{logical vector, which parameters are not constants.}
   \item{iterations}{number of iterations.}
-  \item{type}{character, type of maximisation.}
+  \item{type}{character string, type of maximisation.}
 }
 \references{W. Green: "Advanced Econometrics"; S.M. Goldfeld,
   R.E. Quandt: "Nonlinear Methods in Econometrics".  Amsterdam,
   North-Holland 1972.}
 \author{Ott Toomet \email{siim@obs.ee}}
 \note{Newton-Raphson algorithm with analytic gradient and hessian
-  supplied should converge with no more than 20 iterations.}
-\section{WARNING}{BHHH method is only appropriate for maximum
-  likelihood estimation.  Use good inital values!}
+  supplied should converge with no more than 20 iterations on a
+  well-specified model.}
 \seealso{\code{\link{nlm}} for Newton-Raphson optimisation,
   \code{\link{optim}} for different gradient-based optimisation
   methods.}

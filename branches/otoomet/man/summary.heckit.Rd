@@ -11,7 +11,7 @@
 }
 
 \arguments{
-   \item{object}{an object of calss \code{heckit}.}
+   \item{object}{an object of class \code{heckit}.}
    \item{...}{further arguments passed to \code{\link{summary.glm}}
       and \code{\link{summary.lm}}.}
 }

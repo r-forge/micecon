@@ -7,37 +7,51 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
                   constPar=NULL,
                   activePar=rep(TRUE, NParam),
                   ...) {
-   ### Newton-Raphson maximisation
-   ### Parameters:
-   ### fn          - the function to be minimized.  Returns either scalar or
-   ###               vector value with possible attributes constPar and
-   ###               constVal
-   ### grad        - gradient function (numeric used if missing).  Must return either
-   ###               * vector, length=NParam
-   ###               * matrix, dim=c(NObs, 1).  Treated as vector
-   ###               * matrix, dim=c(NObs, NParam).  In this case the rows are simply
-   ###                 summed (useful for maxBHHH).
-   ### hess        - hessian function (numeric used if missing)
-   ### theta       - initial parameter vector (eventually w/names)
-   ### steptol     - minimum step size
-   ### lambdatol   - max lowest eigenvalue when forcing pos. definite H
-   ### qrtol       - tolerance for qr decomposition
-   ### ...         - extra arguments for fn()
-   ### The stopping criteria
-   ### tol         - maximum allowed difference between sequential values
-   ### gradtol     - maximum allowed norm of gradient vector
-   ### iterlim     - maximum # of iterations
-   ### constPar    - NULL or an index vector -- which parameters are taken as
-   ###               constants
-   ###
-   ### results:
-   ### samm        - antakse siis, kui tuleb sammu viga (tulemus
-   ###             - 3). list, mis sisaldab:
-   ###  teeta0     - parameetrid, millel viga tuli
-   ###  f0         - funktsiooni väärtus nende parameetritega (koos
-   ###               gradiendi ja hessi maatriksiga)
-   ###  teeta1     - ruutpolünoomi järgi õige uus parameetri väärtus
-   ### activePar   - logical vector, which parameters are active (not constant)
+   ## Newton-Raphson maximisation
+   ## Parameters:
+   ## fn          - the function to be minimized.  Returns either scalar or
+   ##               vector value with possible attributes constPar and
+   ##               constVal
+   ## grad        - gradient function (numeric used if missing).  Must return either
+   ##               * vector, length=NParam
+   ##               * matrix, dim=c(NObs, 1).  Treated as vector
+   ##               * matrix, dim=c(NObs, NParam).  In this case the rows are simply
+   ##                 summed (useful for maxBHHH).
+   ## hess        - hessian function (numeric used if missing)
+   ## theta       - initial parameter vector (eventually w/names)
+   ## steptol     - minimum step size
+   ## lambdatol   - max lowest eigenvalue when forcing pos. definite H
+   ## qrtol       - tolerance for qr decomposition
+   ## ...         - extra arguments for fn()
+   ## The stopping criteria
+   ## tol         - maximum allowed difference between sequential values
+   ## gradtol     - maximum allowed norm of gradient vector
+   ## iterlim     - maximum # of iterations
+   ## constPar    - NULL or an index vector -- which parameters are taken as
+   ##               constants
+   
+   ## RESULTS:
+   ## a list of class "maximisation":
+   ## maximum     function value at maximum
+   ## estimate    the parameter value at maximum
+   ## gradient        gradient
+   ## hessian         Hessian
+   ## code        integer code of success:
+   ##             1 - gradient close to zero
+   ##             2 - successive values within tolerance limit
+   ##             3 - could not find a higher point (step error)
+   ##             4 - iteration limit exceeded
+   ##             100 - initial value out of range
+   ## message     character message describing the code
+   ## last.step   only present if code == 3 (step error).  A list with following components: 
+   ##             teeta0 - parameetrid, millel viga tuli
+   ##             f0 - funktsiooni väärtus nende parameetritega (koos
+   ##                  gradiendi ja hessi maatriksiga)
+   ##             teeta1 - ruutpolünoomi järgi õige uus parameetri väärtus
+   ##             activePar - logical vector, which parameters are active (not constant)
+   ## activePar   logical vector, which parameters were treated as free (resp fixed)
+   ## iterations  number of iterations
+   ## type        "Newton-Raphson maximisation"
    maximisation.message <- function(code) {
       message <- switch(code,
          "1" = "gradient close to zero. May be a solution",
@@ -245,7 +259,6 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
    } else {
       samm <- NULL
    }
-
    names(theta1) <- nimed
    result <-list(
                   maximum=as.vector( f1),
@@ -263,4 +276,3 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
    class(result) <- "maximisation"
    invisible(result)
 }
-
