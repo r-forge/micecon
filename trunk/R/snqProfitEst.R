@@ -5,6 +5,8 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    weights = snqProfitWeights( pNames, qNames, data, "DW92", base = base ),
    method = ifelse( is.null( ivNames ), "SUR", "3SLS" ), ... ) {
 
+   checkNames( c( pNames, qNames, fNames, ivNames ), names( data ) )
+
    if( length( qNames ) != length( pNames ) ) {
       stop( "arguments 'qNames' and 'pNames' must have the same length." )
    }
@@ -46,6 +48,9 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
             mean( data[[ pNames[ i ] ]][ base ] )
          scaledData[[ qNames[ i ] ]] <- data[[ qNames[ i ] ]] *
             mean( data[[ pNames[ i ] ]][ base ] )
+      }
+      for( i in 1:nFix ) {
+         scaledData[[ fNames[ i ] ]] <- data[[ fNames[ i ] ]]
       }
    } else {
       scaledData <- data
