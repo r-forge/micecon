@@ -1,5 +1,3 @@
-
-## ========= Estimation =============
 snqProfitEst <- function( pNames, qNames, fNames = NULL,
    ivNames = NULL, data,  form = 0, base = 1,
    weights = snqProfitWeights( pNames, qNames, data, "DW92", base = base ),
@@ -57,9 +55,9 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    }
 
    ## price index for normalization
-   estData <- data.frame( nr = 1:nObs, normPrice = 0 )
+   modelData <- data.frame( nr = 1:nObs, normPrice = 0 )
    for( i in 1:nNetput ) {
-      estData$normPrice <- estData$normPrice +
+      modelData$normPrice <- modelData$normPrice +
          with( scaledData, get( pNames[ i ] ) ) * weights[ i ]
    }
 
@@ -67,10 +65,10 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    result$pMeans <- array( NA, nNetput )
    result$qMeans <- array( NA, nNetput )
    for( i in 1:nNetput ) {
-      estData[[ paste( "pr", as.character( i ), sep = "" ) ]] <-
-         with( scaledData, get( pNames[ i ] ) ) / estData$normPrice
+      modelData[[ paste( "pr", as.character( i ), sep = "" ) ]] <-
+         with( scaledData, get( pNames[ i ] ) ) / modelData$normPrice
       result$pMeans[ i ] <- mean( with( scaledData, get( pNames[ i ] ) ) )
-      estData[[ paste( "q", as.character( i ), sep = "" ) ]] <-
+      modelData[[ paste( "q", as.character( i ), sep = "" ) ]] <-
          with( scaledData, get( qNames[ i ] ) )
       result$qMeans[ i ] <- mean( with( scaledData, get( qNames[ i ] ) ) )
    }
@@ -81,10 +79,10 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    for( i in 1:nNetput ) {
       for( j in 1:nNetput ) {
          for( k in 1:nNetput ) {
-            estData[[ paste( "pq", as.character( i ), ".", as.character( j ), ".",
+            modelData[[ paste( "pq", as.character( i ), ".", as.character( j ), ".",
                as.character( k ), sep = "" ) ]] <-
                -0.5 * weights[ i ] * with( scaledData, get( pNames[ j ] ) ) *
-               with( scaledData, get( pNames[ k ] ) ) / estData$normPrice^2
+               with( scaledData, get( pNames[ k ] ) ) / modelData$normPrice^2
          }
       }
    }
@@ -92,7 +90,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    ## quasi-fix inputs
    if( nFix > 0 ) {
       for( i in 1:nFix ) {
-         estData[[ paste( "f", as.character( i ), sep = "" ) ]] <-
+         modelData[[ paste( "f", as.character( i ), sep = "" ) ]] <-
             with( data, get( fNames[ i ] ) )
          result$fMeans[ i ] <- mean( with( data, get( fNames[ i ] ) ) )
       }
@@ -100,7 +98,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
       for( i in 1:nNetput ) {
          for( j in 1:nFix ) {
             for( k in 1:nFix ) {
-               estData[[ paste( "fq", as.character( i ), ".", as.character( j ), ".",
+               modelData[[ paste( "fq", as.character( i ), ".", as.character( j ), ".",
                as.character( k ), sep = "" ) ]] <-
                   0.5 * weights[ i ] * with( data, get( fNames[ j ] ) ) *
                   with( data, get( fNames[ k ] ) )
@@ -115,13 +113,13 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    } else {
       inst <- as.formula( paste( "~", paste( ivNames, collapse = "+" ) ) )
       for( i in 1:nIV ) {
-         estData[[ paste( "iv", as.character( i ), sep = "" ) ]] <-
+         modelData[[ paste( "iv", as.character( i ), sep = "" ) ]] <-
             with( data, get( ivNames[ i ] ) )
       }
    }
    system <- snqProfitSystem( nNetput, nFix )    # equation system
    restrict <- snqProfitRestrict( nNetput, nFix, form )    # restrictions
-   result$est <- systemfit( method = method, eqns = system, data = estData,
+   result$est <- systemfit( method = method, eqns = system, data = modelData,
       TX = restrict, inst = inst, ... )
    result$coef <- snqProfitCoef( coef = result$est$bt, nNetput = nNetput,
       nFix = nFix, form = form, coefCov = result$est$btcov,
@@ -140,7 +138,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    result$coef$liCoef <- result$est$bt
    result$coef$liCoefCov <- result$est$btcov
    result$weights  <- weights
-   result$normPrice <- estData$normPrice
+   result$normPrice <- modelData$normPrice
    result$convexity  <- semidefiniteness( result$hessian[
       1:( nNetput - 1 ), 1:( nNetput - 1 ) ] )$positive
    class( result )  <- "snqProfitEst"
