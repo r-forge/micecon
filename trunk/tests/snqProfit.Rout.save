@@ -77,7 +77,8 @@ $qMeans
 136088.33 -56707.54 -12862.20 
 
 $fMeans
-[1] 28.9555
+   land 
+28.9555 
 
 $est
 
@@ -785,7 +786,7 @@ $form
   qLabor    -2.0235509  0.59871553 1.4248354
 > 
 > estResultHessianDeriv <- snqProfitHessianDeriv( estResult$pMean,
-+    estResult$weights, 2 )
++    estResult$weights, nFix = 2 )
 > print( estResultHessianDeriv )
      [,1] [,2] [,3]      [,4]      [,5]      [,6] [,7] [,8] [,9] [,10] [,11]
 [1,]    0    0    0 2.8517975 2.1771146 0.4155123    0    0    0     0     0
@@ -858,7 +859,8 @@ $qMeans
 136088.33 -56707.54 -12862.20 
 
 $fMeans
-[1] 28.9555  9.5000
+   land    time 
+28.9555  9.5000 
 
 $est
 
@@ -1331,7 +1333,7 @@ $form
   qLabor    0.2051378 -0.10820699 -0.09693081
 > 
 > estResultHessianDeriv <- snqProfitHessianDeriv( estResult$pMean,
-+    estResult$weights, 2 )
++    estResult$weights, nFix = 2 )
 > print( estResultHessianDeriv )
      [,1] [,2] [,3]      [,4]      [,5]      [,6] [,7] [,8] [,9] [,10] [,11]
 [1,]    0    0    0 2.8517975 2.1771146 0.4155123    0    0    0     0     0
@@ -1436,7 +1438,8 @@ $qMeans
 136088.33 -56707.54 -12862.20 
 
 $fMeans
-[1] 28.9555  9.5000
+   land    time 
+28.9555  9.5000 
 
 $est
 
@@ -2070,16 +2073,16 @@ $form
   qLabor    0.1518471 -0.07041937 -0.08142771
 > 
 > estResultHessianDeriv <- snqProfitHessianDeriv( estResult$pMean,
-+    estResult$weights, 2 )
++    estResult$weights, nFix = 2, form = 1 )
 > print( estResultHessianDeriv )
      [,1] [,2] [,3]      [,4]      [,5]      [,6] [,7] [,8] [,9] [,10] [,11]
 [1,]    0    0    0 2.8517975 2.1771146 0.4155123    0    0    0     0     0
 [2,]    0    0    0 0.5384073 2.2188259 0.7684992    0    0    0     0     0
 [3,]    0    0    0 0.1016490 0.7602092 1.4213564    0    0    0     0     0
-     [,12] [,13] [,14] [,15]
-[1,]     0     0     0     0
-[2,]     0     0     0     0
-[3,]     0     0     0     0
+     [,12] [,13] [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21]
+[1,]     0     0     0     0     0     0     0     0     0     0
+[2,]     0     0     0     0     0     0     0     0     0     0
+[3,]     0     0     0     0     0     0     0     0     0     0
 > 
 > estResultHessian <- snqProfitHessian( estResult$coef$beta,
 +    estResult$estData[ 20, pNamesT ], estResult$weights )
