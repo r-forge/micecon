@@ -1,4 +1,4 @@
-front41Write <- function( data, crossSectionName, timePeriodName,
+writeFront41in <- function( data, crossSectionName, timePeriodName,
    yName, xNames = NULL, zNames = NULL,
    translog = FALSE, quadHalf = TRUE,
    functionType = 1, modelType = 1, logDepVar = "y", mu = "y", eta = "y",
