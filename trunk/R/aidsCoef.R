@@ -1,4 +1,5 @@
-aidsCoef <- function( b, cov = NULL, df = 1, LA = TRUE ) {
+aidsCoef <- function( b, cov = NULL, df = 1, LA = TRUE,
+   pNames = NULL, wNames = NULL ) {
    nGoods <- -0.5 + ( 2.25 + nrow( array( b ) ) )^0.5
    if( LA ) {
       M <- matrix( 0, nGoods * ( nGoods + 2 ), ( nGoods - 1 ) * ( nGoods + 2 ) )
@@ -30,6 +31,14 @@ aidsCoef <- function( b, cov = NULL, df = 1, LA = TRUE ) {
          stat[,3] <- abs(stat[,1])/stat[,2]
          stat[,4] <- 2*(1-pt(stat[,3],df))
       }
+   }
+   if( !is.null( wNames ) ) {
+      names( alpha ) <- wNames
+      names( beta ) <- wNames
+      rownames( gamma ) <- wNames
+   }
+   if( !is.null( pNames ) ) {
+      colnames( gamma ) <- pNames
    }
    coef <- list()
    coef$alpha <- alpha
