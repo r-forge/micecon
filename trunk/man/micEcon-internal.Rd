@@ -6,8 +6,9 @@
 \alias{checkNames}
 \alias{snqProfitCoef}
 \alias{snqProfitCoefNames}
-\alias{snqProfitSystem}
 \alias{snqProfitRestrict}
+\alias{snqProfitSystem}
+\alias{snqProfitTestCoef}
 \alias{translogMonoRestr}
 
 
