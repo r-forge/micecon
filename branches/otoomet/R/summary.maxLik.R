@@ -1,4 +1,4 @@
-summary.maxLik <- function(object, hessian=FALSE) {
+summary.maxLik <- function( object, hessian=FALSE, ... ) {
    ## object      object of class "maxLik"
    ## hessian     logical, whether to include hessian in summary
    ## 

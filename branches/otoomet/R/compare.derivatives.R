@@ -14,7 +14,7 @@ compare.derivatives <- function(f, grad, hess=NULL, t0, eps=1e-6, ...) {
   }
   cat("Function value:", a, "\n")
   cat("Dim of analytic gradient:", dim(analytic), "\n")
-  numeric <- numeric.gradient(f, t0, eps, ...)
+  numeric <- numericGradient(f, t0, eps, ...)
   cat("       numeric          :", dim(numeric), "\n")
   rDiff <- (analytic - numeric)/analytic
   if(ncol(analytic) < 2) {
@@ -36,7 +36,7 @@ compare.derivatives <- function(f, grad, hess=NULL, t0, eps=1e-6, ...) {
   if(!is.null(hess)) {
       cat("Comparing hessians: relative dfference\n")
     analytic <- hess(t0, ...)
-    numeric <- numeric.gradient(grad, t0, eps, ...)
+    numeric <- numericGradient(grad, t0, eps, ...)
     print((analytic - numeric)/analytic)
   }
   cat("-------- END of compare derivatives -------- \n")

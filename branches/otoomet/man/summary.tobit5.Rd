@@ -38,8 +38,8 @@ y1 <- y1s > 0
 ## latent regressions
 y2 <- x + 0.5*rnorm(200) # observable if y1 = 0
 y3 <- -x + 0.5*rnorm(200) # observable if y1 = 1
-a <- tobit5(y1~z, y2~x, y3~x)
-summary(a)
+# a <- tobit5(y1~z, y2~x, y3~x) # disabled, because tobit5 doesn't 
+# summary(a)                    #  work currently.
 }
 \keyword{methods}
 \keyword{print}

@@ -1,4 +1,4 @@
-print.summary.maxLik <- function(x) {
+print.summary.maxLik <- function( x, ... ) {
    cat("--------------------------------------------\n")
    cat("Maximum Likelihood estimation\n")
    cat(x$type, ", ", x$iterations, " iterations\n", sep="")

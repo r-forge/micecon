@@ -31,7 +31,7 @@ compare.derivatives(f, grad, hess=NULL, t0, eps=1e-6, ...)
   looks nice, expect the relative differences to be less than 1e-7.
 }
 \author{Ott Toomet \email{siim@obs.ee}}
-\seealso{\code{\link{numeric.gradient}}}
+\seealso{\code{\link{numericGradient}}}
 
 \examples{
 ## A simple example with sin(x)' = cos(x)

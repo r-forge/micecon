@@ -6,13 +6,14 @@
   and t-values.
 }
 \usage{
-summary.maxLik(object, hessian = FALSE)
+summary.maxLik(object, hessian = FALSE, ... )
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{object}{object of class 'maxLik', most probably a result from
     Maximum-Likelihood estimation.}
   \item{hessian}{logical, whether to print the Hessian matrix.}
+  \item{\ldots}{currently not used.}
 }
 \value{
   object of class 'summary.maxLik' with following components:
@@ -43,5 +44,4 @@ summary(a)
 a <- maxLik(loglik, gradlik, hesslik, theta=1)
 summary(a)
 }
-\keyword{ ~kwd1 }% at least one, from doc/KEYWORDS
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{models}

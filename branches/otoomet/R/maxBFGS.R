@@ -24,7 +24,7 @@ maxBFGS <- function(fn, grad=NULL, theta,
             return(g)
          }
       }
-      g <- numeric.gradient(fn, theta, ...)
+      g <- numericGradient(fn, theta, ...)
       if(!is.null(dim(g))) {
          return(rowSums(g))
       } else {
