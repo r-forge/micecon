@@ -92,9 +92,9 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    ## quasi-fix inputs
    if( nFix > 0 ) {
       for( i in 1:nFix ) {
-         modelData[[ paste( "f", as.character( i ), sep = "" ) ]] <-
-            data[[ fNames[ i ] ]]
          result$fMeans[ i ] <- mean( data[[ fNames[ i ] ]] )
+         modelData[[ paste( "f", as.character( i ), sep = "" ) ]] <-
+            data[[ fNames[ i ] ]] / result$fMeans[ i ]
       }
       ## quadratic quasi-fix inputs
       for( i in 1:nNetput ) {
@@ -103,7 +103,8 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
                modelData[[ paste( "fq", as.character( i ), ".", as.character( j ), ".",
                as.character( k ), sep = "" ) ]] <-
                   0.5 * ifelse( form == 0, weights[ i ], 1 ) *
-                  data[[ fNames[ j ] ]] * data[[ fNames[ k ] ]]
+                  ( data[[ fNames[ j ] ]] / result$fMeans[ j ] ) *
+                  ( data[[ fNames[ k ] ]] / result$fMeans[ k ] )
             }
          }
       }
@@ -127,6 +128,102 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
       nFix = nFix, form = form, coefCov = result$est$btcov,
       df = nNetput * nObs - nCoef )
       # estimated coefficients
+   result$coef$liCoef <- result$est$bt
+   result$coef$liCoefCov <- result$est$btcov
+
+   if( nFix > 0 ) {
+      # delta[ i, j ]
+      for( i in 1:nNetput ) {
+         for( j in 1:nFix ) {
+            result$coef$delta[ i, j ] <- result$coef$delta[ i, j ] /
+               result$fMeans[ j ]
+            # all coefficients
+            k <- nNetput + nNetput^2 + ( i - 1 ) * nFix + j
+            result$coef$allCoef[ k ] <- result$coef$allCoef[ k ] /
+               result$fMeans[ j ]
+            result$coef$allCoefCov[ k, ] <- result$coef$allCoefCov[ k, ] /
+               result$fMeans[ j ]
+            result$coef$allCoefCov[ , k ] <- result$coef$allCoefCov[ , k ] /
+               result$fMeans[ j ]
+            result$coef$stats[ k, c( 1, 2 ) ] <- result$coef$stats[ k, c( 1, 2 ) ] /
+               result$fMeans[ j ]
+            # linear independent coefficients
+            k <- nNetput + ( nNetput * ( nNetput - 1 ) ) / 2 +
+               ( i - 1 ) * nFix + j
+            result$coef$liCoef[ k ] <- result$coef$liCoef[ k ] /
+               result$fMeans[ j ]
+            result$coef$liCoefCov[ k, ] <- result$coef$liCoefCov[ k, ] /
+               result$fMeans[ j ]
+            result$coef$liCoefCov[ , k ] <- result$coef$liCoefCov[ , k ] /
+               result$fMeans[ j ]
+         }
+      }
+      if( form == 0 ) {
+         # gamma[ i, j ]
+         for( i in 1:nFix ) {
+            for( j in 1:nFix ) {
+               # delta[ i, j ]
+               result$coef$gamma[ i, j ] <- result$coef$gamma[ i, j ] /
+                  ( result$fMeans[ i ] * result$fMeans[ j ] )
+               # all coefficients
+               k <- nNetput + nNetput^2 + nNetput * nFix + ( i - 1 ) * nFix + j
+               result$coef$allCoef[ k ] <- result$coef$allCoef[ k ] /
+                  ( result$fMeans[ i ] * result$fMeans[ j ] )
+               result$coef$allCoefCov[ k, ] <- result$coef$allCoefCov[ k, ] /
+                  ( result$fMeans[ i ] * result$fMeans[ j ] )
+               result$coef$allCoefCov[ , k ] <- result$coef$allCoefCov[ , k ] /
+                  ( result$fMeans[ i ] * result$fMeans[ j ] )
+               result$coef$stats[ k, c( 1, 2 ) ] <- result$coef$stats[ k, c( 1, 2 ) ] /
+                  ( result$fMeans[ i ] * result$fMeans[ j ] )
+               # linear independent coefficients
+               if( j >= i ) {
+                  k <- nNetput + nNetput * (nNetput - 1 ) / 2 +
+                     nNetput * nFix + veclipos( i, j, nFix )
+                  result$coef$liCoef[ k ] <- result$coef$liCoef[ k ] /
+                     ( result$fMeans[ i ] * result$fMeans[ j ] )
+                  result$coef$liCoefCov[ k, ] <- result$coef$liCoefCov[ k, ] /
+                     ( result$fMeans[ i ] * result$fMeans[ j ] )
+                  result$coef$liCoefCov[ , k ] <- result$coef$liCoefCov[ , k ] /
+                     ( result$fMeans[ i ] * result$fMeans[ j ] )
+               }
+            }
+         }
+      } else {
+         # gamma[ n, i, j ]
+         for( n in 1:nNetput ) {
+            for( i in 1:nFix ) {
+               for( j in 1:nFix ) {
+                  # delta[ i, j ]
+                  result$coef$gamma[ n, i, j ] <- result$coef$gamma[ n, i, j ] /
+                     ( result$fMeans[ i ] * result$fMeans[ j ] )
+                  # all coefficients
+                  k <- nNetput + nNetput^2 + nNetput * nFix +
+                     ( n - 1 ) * nFix^2 + ( i - 1 ) * nFix + j
+                  result$coef$allCoef[ k ] <- result$coef$allCoef[ k ] /
+                     ( result$fMeans[ i ] * result$fMeans[ j ] )
+                  result$coef$allCoefCov[ k, ] <- result$coef$allCoefCov[ k, ] /
+                     ( result$fMeans[ i ] * result$fMeans[ j ] )
+                  result$coef$allCoefCov[ , k ] <- result$coef$allCoefCov[ , k ] /
+                     ( result$fMeans[ i ] * result$fMeans[ j ] )
+                  result$coef$stats[ k, c( 1, 2 ) ] <- result$coef$stats[ k, c( 1, 2 ) ] /
+                     ( result$fMeans[ i ] * result$fMeans[ j ] )
+                  # linear independent coefficients
+                  if( j >= i ) {
+                     k <- nNetput + ( nNetput * (nNetput - 1 ) ) / 2 +
+                        nNetput * nFix + ( n - 1 ) * nFix * ( nFix + 1 ) / 2 +
+                        veclipos( i, j, nFix )
+                     result$coef$liCoef[ k ] <- result$coef$liCoef[ k ] /
+                        ( result$fMeans[ i ] * result$fMeans[ j ] )
+                     result$coef$liCoefCov[ k, ] <- result$coef$liCoefCov[ k, ] /
+                        ( result$fMeans[ i ] * result$fMeans[ j ] )
+                     result$coef$liCoefCov[ , k ] <- result$coef$liCoefCov[ , k ] /
+                        ( result$fMeans[ i ] * result$fMeans[ j ] )
+                  }
+               }
+            }
+         }
+      }
+   }
 
    result$fitted <- data.frame( profit0 = rep( 0, nObs ) )
    for( i in 1:nNetput ) {
@@ -147,8 +244,6 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    result$ela <- snqProfitEla( result$coef$beta, result$pMeans,
       result$qMeans, weights )   # estimated elasticities
    result$estData  <- estData
-   result$coef$liCoef <- result$est$bt
-   result$coef$liCoefCov <- result$est$btcov
    result$weights  <- weights
    result$normPrice <- modelData$normPrice
    result$convexity  <- semidefiniteness( result$hessian[
