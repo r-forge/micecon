@@ -93,7 +93,7 @@
    \emph{European Review of Agricultural Economics}, 19 (2), p. 137-163.
 }
 
-\seealso{\code{\link{aidsEla}}, \code{\link{aidsShares}}.}
+\seealso{\code{\link{aidsEla}}, \code{\link{aidsCalc}}.}
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 

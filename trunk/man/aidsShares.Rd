@@ -1,6 +1,6 @@
-\name{aidsShares}
-\alias{aidsShares}
-\title{ Expenditure Shares of the Almost Ideal Demand System }
+\name{aidsCalc}
+\alias{aidsCalc}
+\title{ Shares and Quantities of the Almost Ideal Demand System }
 
 \description{
   Given prices, total expenditure and coefficients this function
@@ -9,7 +9,7 @@
 }
 
 \usage{
-   aidsShares( pNames, xtName, data = NULL, px = "TL", lnp = NULL,
+   aidsCalc( pNames, xtName, data = NULL, px = "TL", lnp = NULL,
       coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) )
 }
 
@@ -24,7 +24,7 @@
 }
 
 \value{
-   \code{aidsShares} returns a list with following elements:
+   \code{aidsCalc} returns a list with following elements:
    \item{shares}{a data frame containing the calculated expenditure shares}
    \item{quantities}{a data frame containing the calculated quantites}
 }
@@ -50,7 +50,7 @@
 
    lnp <- aidsPx( "L", pNames, wNames, Blanciforti86 )
 
-   fitted <- aidsShares( pNames, "xFood", Blanciforti86,
+   fitted <- aidsCalc( pNames, "xFood", Blanciforti86,
       coef = estResult$coef, lnp = lnp )
 
    fitted$shares  # equal to estResult$wFitted
@@ -60,7 +60,7 @@
    estResult <- aidsEst( pNames, wNames, "xFood",
       data = Blanciforti86, method = "MK:L" )
 
-   fitted <- aidsShares( pNames, "xFood", Blanciforti86,
+   fitted <- aidsCalc( pNames, "xFood", Blanciforti86,
       coef = estResult$coef )
 
    fitted$shares  # equal to estResult$wFitted

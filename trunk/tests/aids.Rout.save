@@ -297,7 +297,7 @@ Translog index
 [25] 4.624164 4.605170 4.643388 4.892591 4.997976 5.081918 5.214489 5.231228
 > 
 > ########### fitted values #################
-> fittedAIDS <- aidsShares( pNames, "xFood", Blanciforti86[ -1, ],
+> fittedAIDS <- aidsCalc( pNames, "xFood", Blanciforti86[ -1, ],
 +    coef = estResultAIDS$coef )
 > print( fittedAIDS )
 $shares
@@ -375,7 +375,7 @@ $quant
 +    stop( "Fitted quantities of AIDS are wrong." )
 + }
 > 
-> fittedLA <- aidsShares( pNames, "xFood", Blanciforti86,
+> fittedLA <- aidsCalc( pNames, "xFood", Blanciforti86,
 +    coef = estResultLA$coef, lnp = estResultLA$lnp )
 > print( fittedLA )
 $shares
