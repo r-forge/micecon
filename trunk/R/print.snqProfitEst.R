@@ -33,9 +33,10 @@ print.snqProfitEst <- function( x, digits=6,... ) {
    cat( "\nEstimated coefficients:\n" )
    print( x$coef$stats )
 
-   cat( "\nR-squared values of the netput equations:\n", x$r2, "\n" )
+   cat( "\nR-squared values of the netput equations:\n" )
+   print( x$r2 )
 
-   cat( "\nPrice elasticities of the netputs:" )
+   cat( "\nPrice elasticities of the netputs:\n" )
    print( x$ela )
 
    if( x$convexity ) {
