@@ -1,6 +1,6 @@
 ### -*- ess-indent-level: 3 -*-
 probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
-                   print.level=0, ...) {
+                   ...) {
    ## Probit binary choice model
    ## formula: model formula, response must be either a logical or numeric vector containing only 0-s and
    ##          1-s 
@@ -40,7 +40,11 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    y <- as.numeric(model.response( model.frame( formula, data=data)))
    NParam <- ncol( x)
    NObs <- length( y)
-   N1 <- length( y[y==1])
+   N1 <- length( y[y != 0])
+   N0 <- NObs - N1
+   if(N0 == 0 | N1 == 0) {
+      stop("only zero or one observations")
+   }
    x0 <- x[y==0,]
    x1 <- x[y==1,]
    if(is.null(b0)) {
@@ -51,7 +55,7 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    }
    ## Main estimation
    estimation <- maxLik(loglik, gradlik, hesslik, b0,
-                        method="Newton-Raphson", print.level, ...)
+                        method="Newton-Raphson", ...)
    ## compare.derivatives(gradlik, hesslik, t0=b0)
                                         #
    ## Likelihood ratio test: H0 -- all the coefficients, except intercept
@@ -63,6 +67,8 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
                LRT=list(list(LRT=LRT, df=NParam-1)),
                NParam=NParam,
                NObs=NObs,
+               N1=N1,
+               N0=N0,
                df=NObs - NParam)
                                         # there are df-1 constraints
    class(result) <- c("probit", class(estimation))
