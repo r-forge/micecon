@@ -7,14 +7,14 @@ aidsTestConsist <- function( pNames, wNames, xtName, data = NULL,
 
    result <- list()
    nGoods <- length( pNames )
-   nObs <- length( with( data, get( pNames[ 1 ] ) ) )
+   nObs <- nrow( data )
 
-   xt <- with( data, get( xtName ) )
+   xt <- data[[ xtName ]]
    prices <- array( NA, c( nObs, nGoods ) )
    shares <- array( NA, c( nObs, nGoods ) )
    for( i in 1: nGoods ) {
-      prices[ , i ] <- with( data, get( pNames[ i ] ) )
-      shares[ , i ] <- with( data, get( wNames[ i ] ) )
+      prices[ , i ] <- data[[ pNames[ i ] ]]
+      shares[ , i ] <- data[[ wNames[ i ] ]]
    }
    fitted <- aidsCalc( pNames, xtName, data, alpha0 = alpha0, coef = coef )
 

@@ -60,7 +60,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    modelData <- data.frame( nr = 1:nObs, normPrice = 0 )
    for( i in 1:nNetput ) {
       modelData$normPrice <- modelData$normPrice +
-         with( estData, get( pNames[ i ] ) ) * weights[ i ]
+         estData[[ pNames[ i ] ]] * weights[ i ]
    }
 
    ## real/normalized netput prices and netput quantities
@@ -68,11 +68,11 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    result$qMeans <- array( NA, nNetput )
    for( i in 1:nNetput ) {
       modelData[[ paste( "pr", as.character( i ), sep = "" ) ]] <-
-         with( estData, get( pNames[ i ] ) ) / modelData$normPrice
-      result$pMeans[ i ] <- mean( with( estData, get( pNames[ i ] ) ) )
+         estData[[ pNames[ i ] ]] / modelData$normPrice
+      result$pMeans[ i ] <- mean( estData[[ pNames[ i ] ]] )
       modelData[[ paste( "q", as.character( i ), sep = "" ) ]] <-
-         with( estData, get( qNames[ i ] ) )
-      result$qMeans[ i ] <- mean( with( estData, get( qNames[ i ] ) ) )
+         estData[[ qNames[ i ] ]]
+      result$qMeans[ i ] <- mean( estData[[ qNames[ i ] ]] )
    }
    names( result$pMeans ) <- pNames
    names( result$qMeans ) <- qNames
@@ -83,8 +83,8 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
          for( k in 1:nNetput ) {
             modelData[[ paste( "pq", as.character( i ), ".", as.character( j ), ".",
                as.character( k ), sep = "" ) ]] <-
-               -0.5 * weights[ i ] * with( estData, get( pNames[ j ] ) ) *
-               with( estData, get( pNames[ k ] ) ) / modelData$normPrice^2
+               -0.5 * weights[ i ] * estData[[ pNames[ j ] ]] *
+               estData[[ pNames[ k ] ]] / modelData$normPrice^2
          }
       }
    }
@@ -93,8 +93,8 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    if( nFix > 0 ) {
       for( i in 1:nFix ) {
          modelData[[ paste( "f", as.character( i ), sep = "" ) ]] <-
-            with( data, get( fNames[ i ] ) )
-         result$fMeans[ i ] <- mean( with( data, get( fNames[ i ] ) ) )
+            data[[ fNames[ i ] ]]
+         result$fMeans[ i ] <- mean( data[[ fNames[ i ] ]] )
       }
       ## quadratic quasi-fix inputs
       for( i in 1:nNetput ) {
@@ -103,8 +103,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
                modelData[[ paste( "fq", as.character( i ), ".", as.character( j ), ".",
                as.character( k ), sep = "" ) ]] <-
                   0.5 * ifelse( form == 0, weights[ i ], 1 ) *
-                  with( data, get( fNames[ j ] ) ) *
-                  with( data, get( fNames[ k ] ) )
+                  data[[ fNames[ j ] ]] * data[[ fNames[ k ] ]]
             }
          }
       }
@@ -117,7 +116,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
       inst <- as.formula( paste( "~", paste( ivNames, collapse = "+" ) ) )
       for( i in 1:nIV ) {
          modelData[[ paste( "iv", as.character( i ), sep = "" ) ]] <-
-            with( data, get( ivNames[ i ] ) )
+            data[[ ivNames[ i ] ]]
       }
    }
    system <- snqProfitSystem( nNetput, nFix )    # equation system

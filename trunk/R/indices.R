@@ -13,10 +13,10 @@ micEconIndex <- function( prices, quantities, base, data, method, na.rm, what ) 
 
    if( method %in% c( "Laspeyres", "Paasche" ) ) {
       for( i in 1:n ) {
-         pt <- with( data, get( prices[ i ] ) )
-         p0 <- mean( with( data, get( prices[ i ] ) )[ base ], na.rm = na.rm )
-         qt <- with( data, get( quantities[ i ] ) )
-         q0 <- mean( with( data, get( quantities[ i ] ) )[ base ], na.rm = na.rm )
+         pt <- data[[ prices[ i ] ]]
+         p0 <- mean( data[[ prices[ i ] ]][ base ], na.rm = na.rm )
+         qt <- data[[ quantities[ i ] ]]
+         q0 <- mean( data[[ quantities[ i ] ]][ base ], na.rm = na.rm )
          if( method == "Laspeyres" ) {
             if( is.na( q0 ) || is.na( p0 ) || all( is.na( pt ) ) ) {
                numerator <- NA
