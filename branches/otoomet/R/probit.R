@@ -1,35 +1,28 @@
+### -*- ess-indent-level: 3 -*-
 probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
                    print.level=0, ...) {
-   ### Probit binary choice model
-   ### formula: model formula, response must be logical or 0/1 variable
-   ### b0       initial value of the parameters.
-   ### marginal - kas anda ka piirefektid
-   ### ... - argumendid minimeerimisalgoritmile
-   ###
-   ### vastuseks annab listi ,probit.tulemus', mis sisaldab:
-   ###  $tulemused: Nx4 maatriks, mis sisaldab koeftisente,
-   ###   standardhälbeid, t-väärtuse ja tõenäosusi
-   ###  $LRT - laiklihuud reitiõu test tolle kohta, et kogu probit mudel
-   ###   on jama
-   ###  $minimeerimine - minimeerimisalgoritmi tulemus
-   ###  $marginal - piirefektid (juhul kui)
-   ###
+   ## Probit binary choice model
+   ## formula: model formula, response must be either a logical or numeric vector containing only 0-s and
+   ##          1-s 
+   ## b0:      initial value of the parameters
+   ## ...       further arguments for the maximisation algorithm
+   ##
+   ## return: a list with following components.
+   ##  $results: maximisation results
+   ##  $LRT:     list with two components:
+   ##            LRT: likelihood ration test H0 - none of the variables significant
+   ##            df:  corresponding degrees of freedom
+   ##
    loglik <- function( beta) {
-      xb0 <- as.vector( x0 %*% beta)
-      xb1 <- as.vector( x1 %*% beta)
-      logF0 <- pnorm( xb0, log=TRUE)
-      logF1 <- pnorm( xb1, log=TRUE)
-      loglik <- sum( logF1) + sum( logF0)
+      xb0 <- x0 %*% beta
+      xb1 <- x1 %*% beta
+      loglik <- sum(pnorm( xb0, log=TRUE, lower.tail=FALSE)) + sum(pnorm( xb1, log.p=TRUE))
    }
    gradlik <- function(beta) {
-      xb0 <- as.vector( x0 %*% beta)
-      xb1 <- as.vector( x1 %*% beta)
-      F0 <- pnorm( xb0)
-      F1 <- pnorm( xb1)
-      f0 <- dnorm( xb0)
-      f1 <- dnorm( xb1)
-      yF0 <- pnorm( xb0, lower.tail=FALSE)
-      loglik1 <- t( x1) %*% ( f1/F1) - t( x0) %*% ( f0/yF0)
+      xb0 <- x0 %*% beta
+      xb1 <- x1 %*% beta
+      gradlik <- - t(x0) %*% (dnorm(xb0)/pnorm(xb0, lower.tail=FALSE)) +
+          t(x1) %*% (dnorm(xb1)/pnorm(xb1))
    }
    hesslik <- function(beta) {
       xb0 <- as.vector( x0 %*% beta)
@@ -57,6 +50,7 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    }
    ## Main estimation
    estimation <- maxNR(loglik, gradlik, hesslik, b0, print.level, ...)
+   ## compare.derivatives(gradlik, hesslik, t0=b0)
    ## Now names for the variables
    muutujate.nimed <- dimnames(x)[[2]]
    muutujate.nimed[1] <- "konst"
@@ -72,4 +66,3 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    class(result) <- "probit"
    return( result )
 }
-
