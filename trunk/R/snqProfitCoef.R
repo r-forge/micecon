@@ -43,7 +43,14 @@ snqProfitCoef <- function( coef, nNetput, nFix, form = 0, coefCov=NULL, df=1 ) {
          stop( "argument 'form' must be either 0 or 1." )
       }
       result$allCoef <- c( result$alpha, array( result$beta ),
-         array( t( result$delta ) ), array( result$gamma ) )
+         array( t( result$delta ) ) )
+      if( form == 0 ) {
+         result$allCoef <- c( result$allCoef, array( result$gamma ) )
+      } else {
+         for( i in 1:nNetput ) {
+            result$allCoef <- c( result$allCoef, array( result$gamma[ i, , ] ) )
+         }
+      }
    } else {
       result$allCoef <- c( result$alpha, array( result$beta ) )
    }
@@ -104,11 +111,9 @@ snqProfitCoef <- function( coef, nNetput, nFix, form = 0, coefCov=NULL, df=1 ) {
                      for( j in 1:(i-1) ) {
                         # gamma(j,i)
                         k  <- nNetput + nNetput^2 + nNetput * nFix +
-                           ( n - 1 ) * ( nFix + 1 ) * nFix / 2 +
-                           ( i - 1 ) * nFix + j
+                           ( n - 1 ) * nFix^2 + ( i - 1 ) * nFix + j
                         k2 <- nNetput + nNetput^2 + nNetput * nFix +
-                           ( n - 1 ) * ( nFix + 1 ) * nFix / 2 +
-                           ( j - 1 ) * nFix + i
+                           ( n - 1 ) * nFix^2 + ( j - 1 ) * nFix + i
                         result$allCoefCov <- insertRow( result$allCoefCov, k )
                         result$allCoefCov[ k, ] <- result$allCoefCov[ k2, ]
                         result$allCoefCov <- insertCol( result$allCoefCov, k )
