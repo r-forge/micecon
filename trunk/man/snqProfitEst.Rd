@@ -24,7 +24,7 @@
    \item{base}{the base period(s) for scaling prices (see details).}
    \item{weights}{vector of weights of the prices for normalization.}
    \item{method}{the estimation method (passed to \code{\link{systemfit}}).}
-   \item{...}{argunents passed to \code{\link{systemfit}}}
+   \item{...}{arguments passed to \code{\link{systemfit}}}
 }
 
 \details{
