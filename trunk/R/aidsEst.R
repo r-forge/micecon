@@ -46,19 +46,19 @@ aidsEst <- function( pNames, wNames, xtName,
    wMeans <- numeric( nGoods )  # mean expenditure shares
    pMeans <- numeric( nGoods )  # mean prices
    for( i in seq( nGoods ) ) {
-      wMeans[ i ] <- mean( with( data, get( wNames[ i ] ) )[ sample ] )
-      pMeans[ i ] <- mean( with( data, get( pNames[ i ] ) )[ sample ] )
+      wMeans[ i ] <- mean( data[[ wNames[ i ] ]][ sample ] )
+      pMeans[ i ] <- mean( data[[ pNames[ i ] ]][ sample ] )
    }
    # log of price index
    lnp  <- aidsPx( px, pNames, wNames, data, base = pxBase )
    # prepare data.frame
-   sysData <- data.frame( lxtr = ( log( with( data, get( xtName ) ) ) - lnp ) )
+   sysData <- data.frame( lxtr = ( log( data[[ xtName ]] ) - lnp ) )
    for( i in 1:nGoods ) {
-      sysData <- cbind( sysData, with( data, get( wNames[ i ] ) ) )
+      sysData <- cbind( sysData, data[[ wNames[ i ] ]] )
       names( sysData )[ length( sysData ) ] <-
          paste( "w", as.character( i ), sep = "" )
 
-      sysData <- cbind( sysData, log( with( data, get( pNames[ i ] ) ) ) )
+      sysData <- cbind( sysData, log( data[[ pNames[ i ] ]] ) )
       names( sysData )[ length( sysData ) ] <-
          paste( "lp", as.character( i ), sep = "" )
    }
@@ -68,7 +68,7 @@ aidsEst <- function( pNames, wNames, xtName,
       estMethod <- "3SLS"
       ivFormula <- "~"
       for( i in 1:length( ivNames ) ) {
-         sysData <- cbind( sysData, with( data, get( ivNames[ i ] ) ) )
+         sysData <- cbind( sysData, data[[ ivNames[ i ] ]] )
          names( sysData )[ length( sysData ) ] <-
             paste( "i", as.character( i ), sep = "" )
          ivFormula <- paste( ivFormula, " + i", as.character( i ), sep = "" )
@@ -100,7 +100,7 @@ aidsEst <- function( pNames, wNames, xtName,
             iterMk < maxiterMk ) {
          iterMk <- iterMk + 1      # iterations of M+K Loop
          bl     <- b              # coefficients of previous step
-         sysData$lxtr <- log( with( data, get( xtName ) ) ) -
+         sysData$lxtr <- log( data[[ xtName ]] ) -
             aidsPx( "TL", pNames, wNames, data = data,
             alpha0 = alpha0, coef = aidsCoef( est$b ) )
             # real total expenditure using Translog price index
@@ -135,19 +135,18 @@ aidsEst <- function( pNames, wNames, xtName,
       # observed quantities
    names( result$qResid ) <- paste( "qResid", as.character( 1:nGoods ), sep = "" )
    for( i in 1:nGoods ) {
-      result$wResid[ , i ] <- with( data, get( wNames[ i ] ) ) -
-         result$wFitted[ , i ]
-      result$qObs[ , i ]   <- with( data, get( wNames[ i ] ) ) *
-         with( data, get( xtName ) ) / with( data, get( pNames[ i ] ) )
-      result$qFitted[ , i ] <- result$wFitted[ i ] * with( data, get( xtName ) ) /
-         with( data, get( pNames[ i ] ) )
+      result$wResid[ , i ] <- data[[ wNames[ i ] ]] - result$wFitted[ , i ]
+      result$qObs[ , i ]   <- data[[ wNames[ i ] ]] * data[[ xtName ]] /
+         data[[ pNames[ i ] ]]
+      result$qFitted[ , i ] <- result$wFitted[ i ] * data[[ xtName ]] /
+         data[[ pNames[ i ] ]]
       result$qResid[ , i ] <- result$qObs[ , i ] - result$qFitted[ , i ]
    }
    result$r2 <- array( 0, c( nGoods ) )
    for( i in 1:( nGoods - 1 ) ) {
       result$r2[ i ] <- est$eq[[ i ]]$r2
    }
-   result$r2[ nGoods ] <- rSquared( with( data, get( wNames[ nGoods ] ) ),
+   result$r2[ nGoods ] <- rSquared( data[[ wNames[ nGoods ] ]],
       result$wResid[ , nGoods ] )
    result$r2q <- array( 0, c( nGoods ) ) # R2 values for consumed quantities
    for( i in 1:nGoods ) {

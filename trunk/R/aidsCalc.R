@@ -19,13 +19,12 @@ aidsCalc <- function( pNames, xtName, data = NULL, px = "TL", lnp = NULL,
    rownames( quant ) <- rownames( data )
    for( i in 1:nGoods ) {
       shares[ , i ] <- coef$alpha[ i ] + coef$beta[ i ] *
-         ( log( with( data, get( xtName ) ) ) - lnp )
+         ( log( data[[ xtName ]] ) - lnp )
       for( j in 1:nGoods ) {
          shares[ , i ] <- shares[ , i ] + 0.5 * coef$gamma[ i, j ] *
-            log( with( data, get( pNames[ j ] ) ) )
+            log( data[[ pNames[ j ] ]] )
       }
-      quant[ , i ] <- shares[ , i ] * with( data, get( xtName ) ) /
-         with( data, get( pNames[ i ] ) )
+      quant[ , i ] <- shares[ , i ] * data[[ xtName ]] / data[[ pNames[ i ] ]]
    }
    result <- list()
    result$shares <- shares
