@@ -5,7 +5,7 @@
   The functions calculates probit binary choice model
 }
 \usage{
-probit(formula, b0 = NULL, data = sys.frame(sys.parent()), print.level = 0, ...)
+probit(formula, b0 = NULL, data = sys.frame(sys.parent()), ... )
 }
 \arguments{
   \item{formula}{a symbolic description of the model to be fit in the
@@ -42,8 +42,8 @@ probit(formula, b0 = NULL, data = sys.frame(sys.parent()), print.level = 0, ...)
 \author{Ott Toomet \email{otoomet@ut.ee}}
 \seealso{\code{\link{maxLik}} for ready-packaged likelihood maximisation
   routines and methods, \code{\link{glm}} for generalised linear models,
-  including probit.}
-\seealso{\code{\link{glm}}, \code{\link{binomial}} and \code{\link{maxLik}}}
+  including probit, \code{\link{binomial}}.
+}
 \examples{
 ## A simple MC trial: note probit assumes normal errors
 x <- runif(100)

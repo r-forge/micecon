@@ -1,4 +1,5 @@
-summary.maximisation <- function(object, Hessian=FALSE, unsucc.step=FALSE) {
+summary.maximisation <- function(object, hessian=FALSE, unsucc.step=FALSE,
+   ... ) {
    ### The object of class "maximisation" should include following components:
    ### maximum    : function value at optimum
    ### estimate   : estimated parameter values at optimum
@@ -26,7 +27,7 @@ summary.maximisation <- function(object, Hessian=FALSE, unsucc.step=FALSE) {
       unsucc.step <- NULL
    }
    estimate <- cbind(object$estimate, object$gradient)
-   if(Hessian) {
+   if(hessian) {
       H <- object$hessian
    }
    else {
@@ -38,7 +39,7 @@ summary.maximisation <- function(object, Hessian=FALSE, unsucc.step=FALSE) {
                   message=object$message,
                    unsucc.step=unsucc.step,
                   estimate=estimate,
-                   Hessian=H)
+                   hessian=H)
    class(summary) <- "summary.maximisation"
    summary
 }
