@@ -31,6 +31,43 @@ Please send bug reports to ahenningsen@agric-econ.uni-kiel.de
 > 
 > estResult <- snqProfitEst( pNamesT, qNamesT, "land", data = germanFarms )
 > print( estResult )
+
+Estimation results of the SNQ profit function:
+Functional form: default (0)
+Estimation method: SUR
+
+Estimated coefficients:
+               value   std.err   t-value        prob
+alpha 1   -97327.403 37623.949 -2.586847 1.26424e-02
+alpha 2   -86797.958 17777.564 -4.882444 1.11410e-05
+alpha 3   -19345.179  3775.342 -5.124087 4.83575e-06
+beta 1 1  -38029.073 17199.220 -2.211093 3.16309e-02
+beta 1 2   32859.360 15743.503  2.087169 4.19905e-02
+beta 1 3    5169.713  2414.634  2.140992 3.71737e-02
+beta 2 1   32859.360 15743.503  2.087169 4.19905e-02
+beta 2 2  -27854.149 14709.693 -1.893591 6.40727e-02
+beta 2 3   -5005.211  2293.559 -2.182290 3.38134e-02
+beta 3 1    5169.713  2414.634  2.140992 3.71737e-02
+beta 3 2   -5005.211  2293.559 -2.182290 3.38134e-02
+beta 3 3    -164.502   607.317 -0.270867 7.87608e-01
+delta 1 1  10459.618  2429.963  4.304435 7.79074e-05
+delta 2 1   2621.174  1081.741  2.423106 1.90513e-02
+delta 3 1    532.542   239.320  2.225232 3.06058e-02
+gamma 1 1   -294.138   115.219 -2.552867 1.37831e-02
+
+R-squared values of the netput equations:
+ 0.974694 0.448809 0.350862 
+
+Price elasticities of the netputs:           
+              pOutput pVarInput     pLabor
+  qOutput   -0.362253  0.284526 0.07772727
+  qVarInput -0.556325  0.406594 0.14973151
+  qLabor    -0.336577  0.331602 0.00497498
+
+warning: this profit function is not convex in netputs.
+
+> class( estResult ) <- NULL
+> print( estResult )
 $pMeans
   pOutput pVarInput    pLabor 
  1.016748  1.247919  2.484324 
@@ -391,11 +428,45 @@ $normPrice
 $convexity
 [1] FALSE
 
-attr(,"class")
-[1] "snqProfitEst"
+$form
+[1] 0
+
 > 
 > ################ without fix inputs ##############################
 > estResult <- snqProfitEst( pNamesT, qNamesT, NULL, data = germanFarms )
+> print( estResult )
+
+Estimation results of the SNQ profit function:
+Functional form: default (0)
+Estimation method: SUR
+
+Estimated coefficients:
+              value   std.err   t-value        prob
+alpha 1   90397.986  4317.656  20.93682 0.00000e+00
+alpha 2  -38324.236  2426.227 -15.79582 0.00000e+00
+alpha 3     952.129  1786.290   0.53302 5.96207e-01
+beta 1 1 -53397.619 10694.372  -4.99306 6.56942e-06
+beta 1 2  28019.803 11602.052   2.41507 1.91477e-02
+beta 1 3  25377.816  2710.446   9.36297 6.66578e-13
+beta 2 1  28019.803 11602.052   2.41507 1.91477e-02
+beta 2 2 -12003.694 13484.709  -0.89017 3.77323e-01
+beta 2 3 -16016.109  2776.439  -5.76858 3.99675e-07
+beta 3 1  25377.816  2710.446   9.36297 6.66578e-13
+beta 3 2 -16016.109  2776.439  -5.76858 3.99675e-07
+beta 3 3  -9361.707   857.097 -10.92258 2.66454e-15
+
+R-squared values of the netput equations:
+ 0.891179 0.306743 -54.3599 
+
+Price elasticities of the netputs:           
+              pOutput pVarInput   pLabor
+  qOutput   -0.719215 0.2218805 0.497335
+  qVarInput -0.433837 0.0261529 0.407684
+  qLabor    -2.153572 0.9028734 1.250698
+
+warning: this profit function is not convex in netputs.
+
+> class( estResult ) <- NULL
 > print( estResult )
 $pMeans
   pOutput pVarInput    pLabor 
@@ -671,8 +742,9 @@ $normPrice
 $convexity
 [1] FALSE
 
-attr(,"class")
-[1] "snqProfitEst"
+$form
+[1] 0
+
 > 
 > estResultCalc <- snqProfitCalc( pNamesT, NULL, estResult$estData,
 +    estResult$weights, estResult$coef )
@@ -734,6 +806,47 @@ attr(,"class")
 > 
 > ########### with fix inputs, form = 0 ########################
 > estResult <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms )
+> print( estResult )
+
+Estimation results of the SNQ profit function:
+Functional form: default (0)
+Estimation method: SUR
+
+Estimated coefficients:
+               value    std.err   t-value      prob
+alpha 1   -79970.160 115640.382 -0.691542 0.4927777
+alpha 2   -85851.756  50774.663 -1.690839 0.0977837
+alpha 3   -20576.017  11157.915 -1.844074 0.0717622
+beta 1 1   16779.682  24973.790  0.671892 0.5050877
+beta 1 2  -13637.946  23692.257 -0.575629 0.5677337
+beta 1 3   -3141.736   3092.598 -1.015889 0.3151134
+beta 2 1  -13637.946  23692.257 -0.575629 0.5677337
+beta 2 2   11197.866  22868.522  0.489663 0.6267511
+beta 2 3    2440.079   2881.515  0.846804 0.4015853
+beta 3 1   -3141.736   3092.598 -1.015889 0.3151134
+beta 3 2    2440.079   2881.515  0.846804 0.4015853
+beta 3 3     701.657    637.154  1.101236 0.2766495
+delta 1 1  13791.919  12077.545  1.141947 0.2595161
+delta 1 2  -8643.882  11738.089 -0.736396 0.4653115
+delta 2 1   4059.062   5083.015  0.798554 0.4287435
+delta 2 2  -5696.827   5113.424 -1.114093 0.2711548
+delta 3 1    943.218   1145.543  0.823381 0.4146340
+delta 3 2  -1261.977   1133.470 -1.113375 0.2714594
+gamma 1 1   -821.480    937.186 -0.876539 0.3853923
+gamma 1 2    923.832    860.806  1.073218 0.2888948
+gamma 2 1    923.832    860.806  1.073218 0.2888948
+gamma 2 2  -1063.775    684.655 -1.553739 0.1272523
+
+R-squared values of the netput equations:
+ 0.988057 0.501829 0.609083 
+
+Price elasticities of the netputs:           
+             pOutput pVarInput     pLabor
+  qOutput   0.170447 -0.115728 -0.0547190
+  qVarInput 0.226279 -0.159635 -0.0666437
+  qLabor    0.236946 -0.147592 -0.0893538
+
+> class( estResult ) <- NULL
 > print( estResult )
 $pMeans
   pOutput pVarInput    pLabor 
@@ -1174,8 +1287,9 @@ $normPrice
 $convexity
 [1] TRUE
 
-attr(,"class")
-[1] "snqProfitEst"
+$form
+[1] 0
+
 > 
 > estResultCalc <- snqProfitCalc( pNamesT, fNamesT, estResult$estData,
 +    estResult$weights, estResult$coef )
@@ -1262,6 +1376,55 @@ attr(,"class")
 > 
 > ####################################################
 > estResult <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms, form = 1 )
+> print( estResult )
+
+Estimation results of the SNQ profit function:
+Functional form: extended (1)
+Estimation method: SUR
+
+Estimated coefficients:
+                  value     std.err    t-value        prob
+alpha 1     -97025.2241 145396.3457  -0.667315 5.08500e-01
+alpha 2     -71025.0925  54697.9148  -1.298497 2.01743e-01
+alpha 3     -11870.8459  11669.4798  -1.017256 3.15301e-01
+beta 1 1     14322.9021  13808.9271   1.037220 3.06022e-01
+beta 1 2    -12003.4312  13583.3555  -0.883687 3.82281e-01
+beta 1 3     -2319.4709   1535.4629  -1.510600 1.38951e-01
+beta 2 1    -12003.4312  13583.3555  -0.883687 3.82281e-01
+beta 2 2     10256.5891  13547.4131   0.757088 4.53547e-01
+beta 2 3      1746.8421   1451.9703   1.203084 2.36197e-01
+beta 3 1     -2319.4709   1535.4629  -1.510600 1.38951e-01
+beta 3 2      1746.8421   1451.9703   1.203084 2.36197e-01
+beta 3 3       572.6288    352.7088   1.623517 1.12536e-01
+delta 1 1    11648.0787  15202.0210   0.766219 4.48159e-01
+delta 1 2    -3070.6790  14795.8009  -0.207537 8.36670e-01
+delta 2 1     8511.2423   5814.3245   1.463840 1.51252e-01
+delta 2 2   -14762.7535   5830.4742  -2.531999 1.54809e-02
+delta 3 1     1002.4899   1220.3782   0.821458 4.16379e-01
+delta 3 2    -2302.4309   1186.3636  -1.940746 5.95420e-02
+gamma 1 1 1   -312.9681    780.0446  -0.401218 6.90449e-01
+gamma 1 1 2   -635.9042    713.2306  -0.891583 3.78085e-01
+gamma 1 2 1    -85.5004    713.2306  -0.119878 9.05196e-01
+gamma 1 2 2    374.7010    567.6890   0.660046 5.13104e-01
+gamma 2 1 1    617.9411    303.9742   2.032874 4.89126e-02
+gamma 2 1 2    104.7444    303.9742   0.344583 7.32259e-01
+gamma 2 2 1    374.7010    288.0799   1.300684 2.01000e-01
+gamma 2 2 2    617.9411    235.9657   2.618776 1.25027e-02
+gamma 3 1 1    104.7444    235.9657   0.443897 6.59570e-01
+gamma 3 1 2   -760.0590     62.6056 -12.140429 7.99361e-15
+gamma 3 2 1   -127.0162     57.3834  -2.213467 3.27835e-02
+gamma 3 2 2    -61.6661     46.1213  -1.337041 1.88956e-01
+
+R-squared values of the netput equations:
+ 0.993245 0.971902 0.939135 
+
+Price elasticities of the netputs:           
+             pOutput pVarInput     pLabor
+  qOutput   0.141766 -0.101234 -0.0405321
+  qVarInput 0.197940 -0.152042 -0.0458975
+  qLabor    0.175513 -0.101647 -0.0738665
+
+> class( estResult ) <- NULL
 > print( estResult )
 $pMeans
   pOutput pVarInput    pLabor 
@@ -1863,8 +2026,9 @@ $normPrice
 $convexity
 [1] TRUE
 
-attr(,"class")
-[1] "snqProfitEst"
+$form
+[1] 1
+
 > 
 > estResultCalc <- snqProfitCalc( pNamesT, fNamesT, estResult$estData,
 +    estResult$weights, estResult$coef, form = 1 )

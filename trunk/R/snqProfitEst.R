@@ -153,6 +153,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    result$normPrice <- modelData$normPrice
    result$convexity  <- semidefiniteness( result$hessian[
       1:( nNetput - 1 ), 1:( nNetput - 1 ) ] )$positive
+   result$form <- form
    class( result )  <- "snqProfitEst"
    return( result )
 }
