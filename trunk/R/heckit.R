@@ -30,23 +30,24 @@ heckit <- function( formula, probitformula, data ) {
 
    result$probit <- glm( probitformula, binomial( link = "probit" ), data )
 
-   data$probitlambda <- dnorm( result$probit$linear.predictors ) /
+   data$probitLambda <- dnorm( result$probit$linear.predictors ) /
       pnorm( result$probit$linear.predictors )
 
-   data$probitdelta <- data$probitlambda * ( data$probitlambda +
+   data$probitDelta <- data$probitLambda * ( data$probitLambda +
       result$probit$linear.predictors )
 
    step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
-      "+ probitlambda" ) )
+      "+ probitLambda" ) )
 
    result$lm <- lm( step2formula, data, data$probitdummy == 1 )
 
    result$sigma <- sqrt( crossprod( residuals( result$lm ) ) /
       sum( data$probitdummy == 1 ) +
-      mean( data$probitdelta[ data$probitdummy == 1 ] ) *
-      coefficients( result$lm )[ "probitlambda" ]^2 )
+      mean( data$probitDelta[ data$probitdummy == 1 ] ) *
+      coefficients( result$lm )[ "probitLambda" ]^2 )
 
-   result$rho <- coefficients( result$lm )[ "probitlambda" ] / result$sigma
+   result$rho <- coefficients( result$lm )[ "probitLambda" ] / result$sigma
+   result$probitLambda <- data$probitLambda
 
    class( result ) <- "heckit"
    return( result )
