@@ -56,9 +56,11 @@ delta 3 1    532.542   239.320  2.225232 3.06058e-02
 gamma 1 1   -294.138   115.219 -2.552867 1.37831e-02
 
 R-squared values of the netput equations:
- 0.974694 0.448809 0.350862 
+  qOutput qVarInput    qLabor 
+ 0.974694  0.448809  0.350862 
 
-Price elasticities of the netputs:            pOutput pVarInput     pLabor
+Price elasticities of the netputs:
+            pOutput pVarInput     pLabor
 qOutput   -0.362253  0.284526 0.07772727
 qVarInput -0.556325  0.406594 0.14973151
 qLabor    -0.336577  0.331602 0.00497498
@@ -456,9 +458,11 @@ beta 3 2 -16016.109  2776.439  -5.76858 3.99675e-07
 beta 3 3  -9361.707   857.097 -10.92258 2.66454e-15
 
 R-squared values of the netput equations:
- 0.891179 0.306743 -54.3599 
+   qOutput  qVarInput     qLabor 
+  0.891179   0.306743 -54.359883 
 
-Price elasticities of the netputs:            pOutput pVarInput   pLabor
+Price elasticities of the netputs:
+            pOutput pVarInput   pLabor
 qOutput   -0.719215 0.2218805 0.497335
 qVarInput -0.433837 0.0261529 0.407684
 qLabor    -2.153572 0.9028734 1.250698
@@ -836,9 +840,11 @@ gamma 2 1    923.832    860.806  1.073218 0.2888948
 gamma 2 2  -1063.775    684.655 -1.553739 0.1272523
 
 R-squared values of the netput equations:
- 0.988057 0.501829 0.609083 
+  qOutput qVarInput    qLabor 
+ 0.988057  0.501829  0.609083 
 
-Price elasticities of the netputs:           pOutput pVarInput     pLabor
+Price elasticities of the netputs:
+           pOutput pVarInput     pLabor
 qOutput   0.170447 -0.115728 -0.0547190
 qVarInput 0.226279 -0.159635 -0.0666437
 qLabor    0.236946 -0.147592 -0.0893538
@@ -1412,9 +1418,11 @@ gamma 3 2 1    104.7444     57.3834  1.825345 0.0756143
 gamma 3 2 2    -61.6661     46.1213 -1.337041 0.1889561
 
 R-squared values of the netput equations:
- 0.993245 0.971902 0.939135 
+  qOutput qVarInput    qLabor 
+ 0.993245  0.971902  0.939135 
 
-Price elasticities of the netputs:           pOutput pVarInput     pLabor
+Price elasticities of the netputs:
+           pOutput pVarInput     pLabor
 qOutput   0.141766 -0.101234 -0.0405321
 qVarInput 0.197940 -0.152042 -0.0458975
 qLabor    0.175513 -0.101647 -0.0738665
