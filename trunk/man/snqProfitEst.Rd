@@ -110,6 +110,7 @@
       (not scaled) fix inputs and the price index used for normalization.}
    \item{fitted}{data frame that contains the fitted netput quantities and
       the fitted profit.}
+   \item{form}{the functional form (see details).}
    \item{pMeans}{means of the (scaled) netput prices.}
    \item{qMeans}{means of the (scaled) netput quantities.}
    \item{fMeans}{means of the (quasi-)fix input quantities.}
