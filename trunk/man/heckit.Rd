@@ -84,6 +84,14 @@ summary( wooldridge )        # summary of the 1st step probit estimation
                              # (Example 17.1, p. 562f) and 2nd step OLS regression
 wooldridge$sigma             # estimated sigma
 wooldridge$rho               # estimated rho
+
+## example using random numbers
+nObs <- 1000
+myData <- data.frame( no = c( 1:nObs ), x1 = rnorm( nObs ), x2 = rnorm( nObs ) )
+myData$y <- 2 + myData$x1 + 0.9 * rnorm( nObs )
+myData$s <- ( 2 * myData$x1 + myData$x2 + 4 * rnorm( nObs ) - 0.2 ) > 0
+myData$y[ !myData$s ] <- NA
+myHeckit <- heckit( y ~ x1, s ~ x1 + x2, myData )
 }
 
 \keyword{models}
