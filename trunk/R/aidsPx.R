@@ -1,5 +1,5 @@
 aidsPx <- function( px, pNames, wNames = NULL, data = NULL, base = 1,
-            alpha0 = 0, alpha = NULL, gamma = NULL ) {
+   coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) ) {
 
    nGoods <- length( pNames )
    if( !is.null( wNames ) ) {
@@ -33,17 +33,19 @@ aidsPx <- function( px, pNames, wNames = NULL, data = NULL, base = 1,
             log( with( data, get( pNames[ i ] ) ) )
       }
    } else if(px=="T") {      # Tornqvist index
-      for( i in 1:nGoods) lnp <- lnp + 0.5 * ( with( data, get( wNames[ i ] ) ) +
-         mean( with( data, get( wNames[ i ] ) )[ base ] ) *
-         matrix( 1, nrow = nObs ) ) *
-         log( with( data, get( pNames[ i ] ) ) /
-         mean( with( data, get( pNames[ i ] ) )[ base ] ) )
+      for( i in 1:nGoods) {
+         lnp <- lnp + c( 0.5 * ( with( data, get( wNames[ i ] ) ) +
+            mean( with( data, get( wNames[ i ] ) )[ base ] ) *
+            matrix( 1, nrow = nObs ) ) *
+            log( with( data, get( pNames[ i ] ) ) /
+            mean( with( data, get( pNames[ i ] ) )[ base ] ) ) )
+      }
    } else if(px=="TL") {      # Translog index
       lnp <- array( alpha0, c( nObs ) )
       for( i in 1:nGoods ) {
-         lnp <- lnp + alpha[ i ] * log( with( data, get( pNames[ i ] ) ) )
+         lnp <- lnp + coef$alpha[ i ] * log( with( data, get( pNames[ i ] ) ) )
          for( j in 1:nGoods ) {
-            lnp <- lnp + 0.5 * gamma[ i, j ] *
+            lnp <- lnp + 0.5 * coef$gamma[ i, j ] *
                log( with( data, get( pNames[ i ] ) ) ) *
                log( with( data, get( pNames[ j ] ) ) )
          }
