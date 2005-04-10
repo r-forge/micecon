@@ -118,7 +118,7 @@ tobit2 <- function(selection, formula, method="ml",
    ## heckit -- two-step method
    heckit <- function( selection, formula, data ) {
       result <- list()
-      result$probit <- probit( selection, data )
+      result$probit <- probit( selection, data=data, x=TRUE)
       
       data$probitLambda <- dnorm( result$probit$linear.predictors ) /
           pnorm( result$probit$linear.predictors )
