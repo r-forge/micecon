@@ -5,7 +5,8 @@
   The functions calculates probit binary choice model
 }
 \usage{
-probit(formula, b0 = NULL, data = sys.frame(sys.parent()), ... )
+probit(formula, b0 = NULL, data = sys.frame(sys.parent()),
+       x=FALSE, method="ML", ... )
 }
 \arguments{
   \item{formula}{a symbolic description of the model to be fit in the
@@ -18,6 +19,13 @@ probit(formula, b0 = NULL, data = sys.frame(sys.parent()), ... )
     model. If not found in data, the
     variables are taken from environment(formula), typically the
     environment from which \code{probit} is called.}
+  \item{x, y, model}{logicals. If TRUE the corresponding components of
+    the fit (the
+    model matrix, the response, the model frame) are returned.
+  \item{method}{the method to be used; for fitting,
+    currently only method = "ML" (Maximum Likelihood) is supported;
+    method = "model.frame" returns the model frame (the same as
+    with model = TRUE, see below).}
   \item{\dots}{further arguments for \code{maxLik}.}
 }
 \details{
@@ -36,6 +44,9 @@ probit(formula, b0 = NULL, data = sys.frame(sys.parent()), ... )
   \item{N1}{Number of observations with non-zero (true) response}
   \item{N0}{Number of observations with zero (false) response}
   \item{df}{Number of free parameters}
+  \item{x}{if requested, the model matrix used.}
+  \item{y}{if requested, the response used.}
+  \item{model}{if requested, the model frame used.}
   Other components are inherited from \code{\link{maxLik}}.
 }
 \references{W. Greene: Advanced Econometrics, 2000, p ....}
