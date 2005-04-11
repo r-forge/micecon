@@ -1,4 +1,5 @@
-heckit <- function( formula, probitformula, data, print.level = 0 ) {
+heckit <- function( formula, probitformula, data, inst = NULL, 
+   print.level = 0 ) {
 
    if( class( formula ) != "formula" ) {
       stop( "argument 'formula' must be a formula" )
@@ -43,11 +44,21 @@ heckit <- function( formula, probitformula, data, print.level = 0 ) {
    step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
       "+ probitLambda" ) )
 
-   if( print.level > 0 ) {
-      cat ( "Estimating 2nd step OLS model . . ." )
+   if( is.null( inst ) ) {
+      if( print.level > 0 ) {
+         cat ( "Estimating 2nd step OLS model . . ." )
+      }
+      result$lm <- lm( step2formula, data, data$probitdummy == 1 )
+      if( print.level > 0 ) cat( " OK\n" )
+   } else {
+      if( print.level > 0 ) {
+         cat ( "Estimating 2nd step 2SLS/IV model . . ." )
+      }
+      formulaList <- list( step2formula )
+      result$lm <- systemfit( "2SLS", formulaList, inst = inst, 
+         data = data[ data$probitdummy == 1, ] )
+      if( print.level > 0 ) cat( " OK\n" )
    }
-   result$lm <- lm( step2formula, data, data$probitdummy == 1 )
-   if( print.level > 0 ) cat( " OK\n" )
 
    result$sigma <- as.numeric( sqrt( crossprod( residuals( result$lm ) ) /
       sum( data$probitdummy == 1 ) +
@@ -75,11 +86,11 @@ heckit <- function( formula, probitformula, data, print.level = 0 ) {
    fMat <- txdMat %*% wMat
    rm( txdMat, dVec )
    qMat <- result$rho^2 * ( fMat %*% vcov( result$probit )%*% t( fMat ) )
-   #result$vcov <- result$sigma^2 * solve( crossprod( xMat ) ) %*%
-   #   ( t( xMat ) %*% diag( 1 - result$rho^2 * 
-   #   result$probitDelta[ data$probitdummy == 1 ] ) %*% 
-   #   ( txd2Mat %*%  
-   #    xMat + qMat ) %*% solve( crossprod( xMat ) )
+   #result$vcov<-result$sigma^2*solve(crossprod(xMat))%*%
+   #(t(xMat)%*%diag(1-result$rho^2* 
+   #result$probitDelta[data$probitdummy==1])%*% 
+   #(txd2Mat%*% 
+   #xMat+qMat)%*%solve(crossprod(xMat))
    # replaced the previous lines by the following to avoid the 
    # diagonal matrix that gets too large for large data sets.
    txd2Mat <- t( xMat )
