@@ -9,13 +9,15 @@
 }
 
 \usage{
-   heckit( formula, probitformula, data, print.level = 0 )
+   heckit( formula, probitformula, data, inst = NULL, print.level = 0 )
 }
 
 \arguments{
   \item{formula}{formula to be estimated}
   \item{probitformula}{formula for the probit estimation (1st step)}
   \item{data}{a data frame containing the variables in the model}
+  \item{inst}{one-sided formula specifying instrumental variables for a
+    2SLS/IV estimation on the second step.}
   \item{print.level}{this argument determines the level of printing which is
     done during the minimization process.  The default value of
     '0' means that no printing occurs, a value of '1' means that
@@ -96,6 +98,17 @@ myData$y <- 2 + myData$x1 + 0.9 * rnorm( nObs )
 myData$s <- ( 2 * myData$x1 + myData$x2 + 4 * rnorm( nObs ) - 0.2 ) > 0
 myData$y[ !myData$s ] <- NA
 myHeckit <- heckit( y ~ x1, s ~ x1 + x2, myData, print.level = 1 )
+
+## example using random numbers with IV/2SLS estimation
+nObs <- 1000
+myData <- data.frame( no = c( 1:nObs ), x1 = rnorm( nObs ), x2 = rnorm( nObs ),
+   u = 0.5 * rnorm( nObs ) )
+myData$w <- 1 + myData$x1 + 0.2 * myData$u + 0.1 * rnorm( nObs )
+myData$y <- 2 + myData$w + myData$u
+myData$s <- ( 2 * myData$x1 + myData$x2 + 4 * rnorm( nObs ) - 0.2 ) > 0
+myData$y[ !myData$s ] <- NA
+myHeckit <- heckit( y ~ w, s ~ x1 + x2, data = myData,
+   inst = ~ x1, print.level = 1 )
 }
 
 \keyword{models}
