@@ -249,6 +249,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
       result$qMeans, weights )   # estimated elasticities
    result$estData  <- estData
    result$weights  <- weights
+   names( result$weights ) <- pNames
    result$normPrice <- modelData$normPrice
    result$convexity  <- semidefiniteness( result$hessian[
       1:( nNetput - 1 ), 1:( nNetput - 1 ) ] )$positive
