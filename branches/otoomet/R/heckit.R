@@ -1,4 +1,4 @@
-heckit <- function( selection, formula, data ) {
+heckit <- function( selection, formula, data, print.level = 0 ) {
 
    if( class( formula ) != "formula" ) {
       stop( "argument 'formula' must be a formula" )
@@ -28,7 +28,11 @@ heckit <- function( selection, formula, data ) {
          "1 and 0 or TRUE and FALSE" ) )
    }
 
+   if( print.level > 0 ) {
+      cat ( "\nEstimating 1st step Probit model . . ." )
+   }
    result$probit <- glm( selection, binomial( link = "probit" ), data )
+   if( print.level > 0 ) cat( " OK\n" )
 
    data$probitLambda <- dnorm( result$probit$linear.predictors ) /
       pnorm( result$probit$linear.predictors )
@@ -39,7 +43,11 @@ heckit <- function( selection, formula, data ) {
    step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
       "+ probitLambda" ) )
 
+   if( print.level > 0 ) {
+      cat ( "Estimating 2nd step OLS model . . ." )
+   }
    result$lm <- lm( step2formula, data, data$probitdummy == 1 )
+   if( print.level > 0 ) cat( " OK\n" )
 
    result$sigma <- as.numeric( sqrt( crossprod( residuals( result$lm ) ) /
       sum( data$probitdummy == 1 ) +
@@ -49,17 +57,41 @@ heckit <- function( selection, formula, data ) {
    result$rho <- coefficients( result$lm )[ "probitLambda" ] / result$sigma
    result$probitLambda <- data$probitLambda
    result$probitDelta  <- data$probitDelta
-
+   if( print.level > 0 ) {
+      cat ( "Calculating coefficient covariance matrix . . ." )
+   }
    # the foolowing variables are named according to Greene (2003), p. 785
    xMat <- model.matrix( result$lm )
    wMat <- model.matrix( result$probit )[ data$probitdummy == 1, ]
-   fMat <- t( xMat ) %*% diag( result$probitDelta[
-      data$probitdummy == 1 ] ) %*% wMat
+   #fMat <- t( xMat ) %*% diag( result$probitDelta[
+   #   data$probitdummy == 1 ] ) %*% wMat
+   # replaced the previous lines by the following to avoid the
+   # diagonal matrix that gets too large for large data sets.
+   txdMat <- t( xMat )
+   dVec <- result$probitDelta[  data$probitdummy == 1 ]
+   for( i in 1:nrow( txdMat ) ) {
+      txdMat[ i, ] <- txdMat[ i, ] * dVec
+   }
+   fMat <- txdMat %*% wMat
+   rm( txdMat, dVec )
    qMat <- result$rho^2 * ( fMat %*% vcov( result$probit )%*% t( fMat ) )
+   #result$vcov <- result$sigma^2 * solve( crossprod( xMat ) ) %*%
+   #   ( t( xMat ) %*% diag( 1 - result$rho^2 *
+   #   result$probitDelta[ data$probitdummy == 1 ] ) %*%
+   #   ( txd2Mat %*%
+   #    xMat + qMat ) %*% solve( crossprod( xMat ) )
+   # replaced the previous lines by the following to avoid the
+   # diagonal matrix that gets too large for large data sets.
+   txd2Mat <- t( xMat )
+   d2Vec <-  1 - result$rho^2 * result$probitDelta[ data$probitdummy == 1 ]
+   for( i in 1:nrow( txd2Mat ) ) {
+      txd2Mat[ i, ] <- txd2Mat[ i, ] * d2Vec
+   }
    result$vcov <- result$sigma^2 * solve( crossprod( xMat ) ) %*%
-      ( t( xMat ) %*% diag( 1 - result$rho^2 *
-      result$probitDelta[ data$probitdummy == 1 ] ) %*%
+      ( txd2Mat %*%
       xMat + qMat ) %*% solve( crossprod( xMat ) )
+   rm( txd2Mat, d2Vec )
+   if( print.level > 0 ) cat( " OK\n" )
    result$coef <- matrix( NA, nrow = length( coef( result$lm ) ), ncol = 4 )
    rownames( result$coef ) <- names( coef( result$lm ) )
    colnames( result$coef ) <- c( "Estimate", "Std. Error", "t value",
