@@ -1,4 +1,5 @@
-heckit <- function( selection, formula, data, print.level = 0 ) {
+heckit <- function( selection, formula, data, inst = NULL,
+   print.level = 0 ) {
 
    if( class( formula ) != "formula" ) {
       stop( "argument 'formula' must be a formula" )
@@ -14,7 +15,12 @@ heckit <- function( selection, formula, data, print.level = 0 ) {
    } else if( "probit" %in% substr( all.vars( selection ), 1, 6 ) ) {
       stop( paste( "argument 'selection' may not include a variable",
          "names starting with 'probit'" ) )
+   } else if( !is.null( inst ) ) {
+      if( class ( inst ) != "formula" || length( inst ) != 2 ) {
+         stop( "argument 'inst' must be a 1-sided formula" )
+      }
    }
+
 
    result <- list()
 
@@ -43,25 +49,45 @@ heckit <- function( selection, formula, data, print.level = 0 ) {
    step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
       "+ probitLambda" ) )
 
-   if( print.level > 0 ) {
-      cat ( "Estimating 2nd step OLS model . . ." )
+   if( is.null( inst ) ) {
+      if( print.level > 0 ) {
+         cat ( "Estimating 2nd step OLS model . . ." )
+      }
+      result$lm <- lm( step2formula, data, data$probitdummy == 1 )
+      resid <- residuals( result$lm )
+       step2coef <- coefficients( result$lm )
+      if( print.level > 0 ) cat( " OK\n" )
+   } else {
+      if( print.level > 0 ) {
+         cat ( "Estimating 2nd step 2SLS/IV model . . ." )
+      }
+      formulaList <- list( step2formula )
+      instImr <- as.formula( paste( "~", inst[ 2 ], "+ probitLambda" ) )
+      library( systemfit )
+      result$lm <- systemfit( "2SLS", formulaList, inst = instImr,
+         data = data[ data$probitdummy == 1, ] )
+      resid <- residuals( result$lm )[ , 1 ]
+       step2coef <- coefficients( result$lm$eq[[ 1 ]] )
+      if( print.level > 0 ) cat( " OK\n" )
    }
-   result$lm <- lm( step2formula, data, data$probitdummy == 1 )
-   if( print.level > 0 ) cat( " OK\n" )
 
-   result$sigma <- as.numeric( sqrt( crossprod( residuals( result$lm ) ) /
+   result$sigma <- as.numeric( sqrt( crossprod( resid ) /
       sum( data$probitdummy == 1 ) +
       mean( data$probitDelta[ data$probitdummy == 1 ] ) *
-      coefficients( result$lm )[ "probitLambda" ]^2 ) )
+       step2coef[ "probitLambda" ]^2 ) )
 
-   result$rho <- coefficients( result$lm )[ "probitLambda" ] / result$sigma
+   result$rho <-  step2coef[ "probitLambda" ] / result$sigma
    result$probitLambda <- data$probitLambda
    result$probitDelta  <- data$probitDelta
    if( print.level > 0 ) {
       cat ( "Calculating coefficient covariance matrix . . ." )
    }
    # the foolowing variables are named according to Greene (2003), p. 785
-   xMat <- model.matrix( result$lm )
+   if( is.null( inst ) ) {
+      xMat <- model.matrix( result$lm )
+   } else {
+      xMat <- result$lm$eq[[ 1 ]]$x
+   }
    wMat <- model.matrix( result$probit )[ data$probitdummy == 1, ]
    #fMat <- t( xMat ) %*% diag( result$probitDelta[
    #   data$probitdummy == 1 ] ) %*% wMat
@@ -92,11 +118,11 @@ heckit <- function( selection, formula, data, print.level = 0 ) {
       xMat + qMat ) %*% solve( crossprod( xMat ) )
    rm( txd2Mat, d2Vec )
    if( print.level > 0 ) cat( " OK\n" )
-   result$coef <- matrix( NA, nrow = length( coef( result$lm ) ), ncol = 4 )
-   rownames( result$coef ) <- names( coef( result$lm ) )
+   result$coef <- matrix( NA, nrow = length( step2coef ), ncol = 4 )
+   rownames( result$coef ) <- names( step2coef )
    colnames( result$coef ) <- c( "Estimate", "Std. Error", "t value",
       "Pr(>|t|)" )
-   result$coef[ , 1 ] <- coef( result$lm )
+   result$coef[ , 1 ] <- step2coef
    result$coef[ , 2 ] <- sqrt( diag( result$vcov ) )
    result$coef[ , 3 ] <- result$coef[ , 1 ] / result$coef[ , 2 ]
    result$coef[ , 4 ] <- 2 * ( 1 - pt( abs( result$coef[ , 3 ] ),
@@ -125,9 +151,14 @@ print.heckit <- function( x, digits = 6, ... ) {
    print.matrix( table, quote = FALSE, right = TRUE )
    cat( "---\nSignif. codes: ", attr( Signif, "legend" ), "\n" )
 
+   if( class( x$lm ) == "lm" ) {
+      rSquared <- c( summary( x$lm )$r.squared, summary( x$lm )$adj.r.squared )
+   } else {
+      rSquared <- c( x$lm$eq[[ 1 ]]$r2, x$lm$eq[[ 1 ]]$adjr2 )
+   }
    cat( paste(
-      "Multiple R-Squared:", round( summary( x$lm )$r.squared, digits),
-      "Adjusted R-Squared:", round( summary( x$lm )$adj.r.squared, digits),
+      "Multiple R-Squared:", round( rSquared[ 1 ], digits),
+      "Adjusted R-Squared:", round( rSquared[ 2 ], digits),
       "\n" ) )
    cat("\n")
    invisible( x )
