@@ -82,7 +82,7 @@ heckit <- function( selection, formula, data, inst = NULL,
    if( print.level > 0 ) {
       cat ( "Calculating coefficient covariance matrix . . ." )
    }
-   # the foolowing variables are named according to Greene (2003), p. 785
+   # the following variables are named according to Greene (2003), p. 785
    if( is.null( inst ) ) {
       xMat <- model.matrix( result$lm )
    } else {

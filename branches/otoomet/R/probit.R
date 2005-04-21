@@ -1,4 +1,3 @@
-### -*- ess-indent-level: 3 -*-
 probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
                    x=FALSE, y=FALSE, model=FALSE,
                    method="ML",
@@ -7,7 +6,13 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    ## formula: model formula, response must be either a logical or numeric vector containing only 0-s and
    ##          1-s
    ## b0:      initial value of the parameters
+   ## data     dataframe where the variables are defined
    ## x        whether to return model matrix
+   ## y                                response vector
+   ## model                            frame
+   ## method   method for evaluation:
+   ##          ML            maximum likelihood
+   ##          model.frame   don't evaluate, only return the frame
    ## ...      further arguments for the maxLik algorithm
    ##
    ## return: a list with following components.
@@ -81,12 +86,9 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    ll.bar <- loglik(c(qnorm(N1/NObs), rep(0, NParam-1)))
    LRT <- 2*(estimation$maximum - ll.bar)
                                         #
-   ## linear predictors (glm clone)
-   linear.predictors <- X %*% coefficients(estimation)
-                                        #
    result <- c(estimation,
                LRT=list(list(LRT=LRT, df=NParam-1)),
-               linear.predictors=list(linear.predictors),
+                                        # there are df-1 constraints
                NParam=NParam,
                NObs=NObs,
                N1=N1,
@@ -94,10 +96,9 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
                df=NObs - NParam,
                call=cl,
                terms=mt,
-               x=switch(x, "1"=X, "0"=NULL),
-               y=switch(y, "1"=Y, "0"=NULL),
-               model=switch(model, "1"=mf, "0"=NULL))
-                                        # there are df-1 constraints
+               x=switch(x, "1"=list(X), "0"=NULL),
+               y=switch(y, "1"=list(Y), "0"=NULL),
+               model=switch(model, "1"=list(mf), "0"=NULL))
    class(result) <- c("probit", class(estimation))
    result
 }
