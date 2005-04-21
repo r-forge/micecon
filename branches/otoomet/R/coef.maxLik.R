@@ -1,2 +1,3 @@
-coef.maxLik <- function(x)
-    x$estimate
+coef.maxLik <- function( object, ... ) {
+   return( object$estimate )
+}
