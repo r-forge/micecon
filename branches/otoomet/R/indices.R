@@ -2,7 +2,7 @@ micEconIndex <- function( prices, quantities, base, data, method, na.rm,
    na.0, what ) {
 
    if( length( prices ) != length( quantities ) ) {
-      stop( "arguments 'prices' and 'quantities' must have the same length." )
+      stop( "arguments 'prices' and 'quantities' must have the same length" )
    }
 
    checkNames( c( prices, quantities ), names( data ) )
@@ -61,8 +61,8 @@ micEconIndex <- function( prices, quantities, base, data, method, na.rm,
          na.rm = na.rm, na.0 = na.0 )
       result <- sqrt( pL * pP )
    } else {
-      stop( paste( "argument 'method' must be either 'Laspeyres', 'Paasche'",
-         "or 'Fisher'" ) )
+      stop( "argument 'method' must be either 'Laspeyres', 'Paasche'",
+         " or 'Fisher'" )
    }
    names( result ) <- rownames( data )
    return( result )

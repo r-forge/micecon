@@ -2,7 +2,7 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
    start = 10, ... ) {
 
    if( class( estResult ) != "snqProfitEst" ) {
-      stop( "argument 'estResult' must be of class 'snqProfitEst'." )
+      stop( "argument 'estResult' must be of class 'snqProfitEst'" )
    }
    pNames  <- names( estResult$pMeans )
    qNames  <- names( estResult$qMeans )
@@ -39,9 +39,9 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
    mindist <- optim( cholVec, hessianDistance, ... )
    if( mindist$convergence != 0 ) {
       if( mindist$convergence == 1 ) {
-         stop( "non-linear minimization with optim(): iteration limit exceeded." )
+         stop( "non-linear minimization with optim(): iteration limit exceeded" )
       } else {
-         stop( "non-linear minimization: 'optim' did not converge." )
+         stop( "non-linear minimization: 'optim' did not converge" )
       }
    }
 

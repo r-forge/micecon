@@ -1,7 +1,7 @@
 maxLik <- function(logLik, gradLik=NULL, HessLik=NULL, theta,
                    method="Newton-Raphson",
                    ...) {
-   ## Maximum Likelihood estimation. 
+   ## Maximum Likelihood estimation.
 
    ## Newton-Raphson maximisation
    ## Parameters:
@@ -30,7 +30,7 @@ maxLik <- function(logLik, gradLik=NULL, HessLik=NULL, theta,
    ##             4 - iteration limit exceeded
    ##             100 - initial value out of range
    ## message     character message describing the code
-   ## last.step   only present if code == 3 (step error).  A list with following components: 
+   ## last.step   only present if code == 3 (step error).  A list with following components:
    ##             teeta0 - parameetrid, millel viga tuli
    ##             f0 - funktsiooni väärtus nende parameetritega (koos
    ##                  gradiendi ja hessi maatriksiga)
@@ -44,7 +44,7 @@ maxLik <- function(logLik, gradLik=NULL, HessLik=NULL, theta,
                         "newton-raphson" =,
                         "NR" =,
                         "nr" = maxNR,
-                        "Otherwise" = stop(paste("Unknown method", method))
+                        "Otherwise" = stop( "unknown method ", method )
                         )
    result <- maxRoutine(logLik, gradLik, HessLik, theta, ...)
    class(result) <- c("maxLik", class(result))
