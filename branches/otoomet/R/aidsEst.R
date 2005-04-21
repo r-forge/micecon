@@ -6,13 +6,13 @@ aidsEst <- function( pNames, wNames, xtName,
       maxiterMk = 50, tolMk = 1e-5, alpha0 = 0, ... ) {
 
    if( length( pNames ) != length( wNames ) ) {
-      stop( "arguments 'pNames' and 'wNames' must have the same length." )
+      stop( "arguments 'pNames' and 'wNames' must have the same length" )
    }
    nGoods <- length( pNames )
    extractPx <- function( method ) {
       px <- substr( method, 4, nchar( method ) )
       if( !( px %in% c( "S", "SL", "P", "L", "T" ) ) ) {
-         stop( "No valid price index specified!" )
+         stop( "no valid price index specified!" )
       }
       return( px )
    }
@@ -26,15 +26,15 @@ aidsEst <- function( pNames, wNames, xtName,
       }
    } else if ( substr( method, 1, 2 ) != "MK" ) {
       if( nchar( method ) < 4 ) {
-         warning( paste( "No initial price index specified:",
-            "using Laspeyres price index" ) )
+         warning( "No initial price index specified:",
+            " using Laspeyres price index" )
          px <- "L"
       } else {
          px <- extractPx( method )
       }
    } else {
-      stop( paste( "At the moment only the methods 'Linear Approximation'",
-         "(LA) and 'Michalek & Keyzer' (MK) are supported" ) )
+      stop( "at the moment only the methods 'Linear Approximation'",
+         " (LA) and 'Michalek & Keyzer' (MK) are supported" )
    }
    if( sym && !hom ) {
       hom <- TRUE  # symmetry implies homogeneity

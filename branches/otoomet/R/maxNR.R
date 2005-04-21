@@ -29,7 +29,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
    ## iterlim     - maximum # of iterations
    ## constPar    - NULL or an index vector -- which parameters are taken as
    ##               constants
-   
+
    ## RESULTS:
    ## a list of class "maximisation":
    ## maximum     function value at maximum
@@ -43,7 +43,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
    ##             4 - iteration limit exceeded
    ##             100 - initial value out of range
    ## message     character message describing the code
-   ## last.step   only present if code == 3 (step error).  A list with following components: 
+   ## last.step   only present if code == 3 (step error).  A list with following components:
    ##             teeta0 - parameetrid, millel viga tuli
    ##             f0 - funktsiooni väärtus nende parameetritega (koos
    ##                  gradiendi ja hessi maatriksiga)
@@ -125,8 +125,8 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
       stop("Na in the initial gradient")
    }
    if(length(G1) != NParam) {
-      stop(paste("length of gradient (", length(G1),
-         ") not equal to the no. of parameters (", NParam, ")", sep=""))
+      stop( "length of gradient (", length(G1),
+         ") not equal to the no. of parameters (", NParam, ")" )
    }
    H1 <- hessian(theta)
    if(any(is.na(H1))) {

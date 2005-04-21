@@ -6,15 +6,15 @@ heckit <- function( selection, formula, data, inst = NULL,
    } else if( length( formula ) != 3 ) {
       stop( "argument 'formula' must be a 2-sided formula" )
    } else if( "probit" %in% substr( all.vars( formula ), 1, 6 ) ) {
-      stop( paste( "argument 'formula' may not include variable names",
-      "starting with 'probit'" ) )
+      stop( "argument 'formula' may not include variable names",
+         " starting with 'probit'" )
    } else if( class( selection ) != "formula" ) {
       stop( "argument 'selection' must be a formula" )
    } else if( length( selection ) != 3 ) {
       stop( "argument 'selection' must be a 2-sided formula" )
    } else if( "probit" %in% substr( all.vars( selection ), 1, 6 ) ) {
-      stop( paste( "argument 'selection' may not include a variable",
-         "names starting with 'probit'" ) )
+      stop( "argument 'selection' may not include a variable",
+         " names starting with 'probit'" )
    } else if( !is.null( inst ) ) {
       if( class ( inst ) != "formula" || length( inst ) != 2 ) {
          stop( "argument 'inst' must be a 1-sided formula" )
@@ -27,11 +27,11 @@ heckit <- function( selection, formula, data, inst = NULL,
    data$probitdummy <- model.frame( selection, data = data )[ , 1 ]
    test <- levels( as.factor( as.numeric( data$probitdummy ) ) )
    if( length( test ) != 2 ) {
-      stop( paste( "The left hand side of 'selection' may only contain",
-         "1 and 0 or TRUE and FALSE" ) )
+      stop( "the left hand side of 'selection' may only contain",
+         " 1 and 0 or TRUE and FALSE" )
    } else if( !all.equal( test, c( "0", "1" ) ) ) {
-      stop( paste( "The left hand side of 'selection' may only contain",
-         "1 and 0 or TRUE and FALSE" ) )
+      stop( "the left hand side of 'selection' may only contain",
+         " 1 and 0 or TRUE and FALSE" )
    }
 
    if( print.level > 0 ) {

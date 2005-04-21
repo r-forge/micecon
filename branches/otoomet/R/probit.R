@@ -5,7 +5,7 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
                    ...) {
    ## Probit binary choice model
    ## formula: model formula, response must be either a logical or numeric vector containing only 0-s and
-   ##          1-s 
+   ##          1-s
    ## b0:      initial value of the parameters
    ## x        whether to return model matrix
    ## ...      further arguments for the maxLik algorithm
@@ -43,16 +43,16 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    }
    cl <- match.call()
    mf <- match.call(expand.dots = FALSE)
-   m <- match(c("formula", "data", "subset", "weights", "na.action", 
+   m <- match(c("formula", "data", "subset", "weights", "na.action",
                 "offset"), names(mf), 0)
    mf <- mf[c(1, m)]
    mf$drop.unused.levels <- TRUE
    mf[[1]] <- as.name("model.frame")
    mf <- eval(mf, parent.frame())
-   if (method == "model.frame") 
+   if (method == "model.frame")
        return(mf)
-   else if (method != "ML") 
-       warning("method = ", method, " is not supported. Using \"qr\".")
+   else if (method != "ML")
+       warning("method = ", method, " is not supported. Using \"qr\"")
    mt <- attr(mf, "terms")
    Y <- model.response(mf, "numeric")
    X <- model.matrix(mt, mf, contrasts)

@@ -33,16 +33,16 @@ quasiconcavity <- function( m, tol = .Machine$double.eps ) {
       }
    } else {
       if( !is.matrix( m ) ) {
-         stop( "Argument 'm' must be a matrix." )
+         stop( "argument 'm' must be a matrix" )
       }
       if( nrow( m ) != ncol( m ) ) {
-         stop( "Argument 'm' must be a _quadratic_ matrix." )
+         stop( "argument 'm' must be a _quadratic_ matrix" )
       }
       if( nrow( m ) < 2 ) {
-         stop( "A bordered Hessian has at least 2 columns/rows." )
+         stop( "a bordered Hessian has at least 2 columns/rows" )
       }
       if( m[ 1, 1 ] != 0 ) {
-         stop( "Element [1,1] of a bordered Hessian must be 0." )
+         stop( "element [1,1] of a bordered Hessian must be 0" )
       }
 
       n <- nrow( m )
@@ -65,16 +65,16 @@ quasiconvexity <- function( m, tol = .Machine$double.eps ) {
       }
    } else {
       if( !is.matrix( m ) ) {
-         stop( "Argument 'm' must be a matrix." )
+         stop( "argument 'm' must be a matrix" )
       }
       if( nrow( m ) != ncol( m ) ) {
-         stop( "Argument 'm' must be a _quadratic_ matrix." )
+         stop( "argument 'm' must be a _quadratic_ matrix" )
       }
       if( nrow( m ) < 2 ) {
-         stop( "A bordered Hessian has at least 2 columns/rows." )
+         stop( "a bordered Hessian has at least 2 columns/rows" )
       }
       if( m[ 1, 1 ] != 0 ) {
-         stop( "Element [1,1] of a bordered Hessian must be 0." )
+         stop( "element [1,1] of a bordered Hessian must be 0" )
       }
 
       n <- nrow( m )
@@ -97,10 +97,10 @@ rSquared <- function( y, resid ) {
 ## ----- test positive / negative semidefiniteness
 semidefiniteness <- function( m, tol = .Machine$double.eps, method = "det" ) {
    if( !is.matrix( m ) ) {
-      stop( "Argument 'm' must be a matrix." )
+      stop( "argument 'm' must be a matrix" )
    }
    if( nrow( m ) != ncol( m ) ) {
-      stop( "Argument 'm' must be a _quadratic_ matrix." )
+      stop( "argument 'm' must be a _quadratic_ matrix" )
    }
    n <- nrow( m )
    result <- list()
@@ -119,7 +119,7 @@ semidefiniteness <- function( m, tol = .Machine$double.eps, method = "det" ) {
       result$negative <- ( max( eigen( m )$values ) < tol )
       result$positive <- ( min( eigen( m )$values ) > -tol )
    } else {
-      stop( "argument 'method' must be either 'det' or 'eigen'." )
+      stop( "argument 'method' must be either 'det' or 'eigen'" )
    }
    return( result )
 }

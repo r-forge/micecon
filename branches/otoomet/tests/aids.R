@@ -76,20 +76,20 @@ fittedAIDS <- aidsCalc( pNames, "xFood", Blanciforti86[ -1, ],
    coef = estResultAIDS$coef )
 print( fittedAIDS )
 if( max( abs( fittedAIDS$shares - estResultAIDS$wFitted ) ) > 1e-5 ) {
-   stop( "Fitted shares of AIDS are wrong." )
+   stop( "fitted shares of AIDS are wrong" )
 }
 if( max( abs( fittedAIDS$quant - estResultAIDS$qFitted ) ) > 1e-5 ) {
-   stop( "Fitted quantities of AIDS are wrong." )
+   stop( "fitted quantities of AIDS are wrong" )
 }
 
 fittedLA <- aidsCalc( pNames, "xFood", Blanciforti86,
    coef = estResultLA$coef, lnp = estResultLA$lnp )
 print( fittedLA )
 if( max( abs( fittedLA$shares[ -1, ] - estResultLA$wFitted[ -1, ] ) ) > 1e-5 ) {
-   stop( "Fitted shares of LA-AIDS are wrong." )
+   stop( "fitted shares of LA-AIDS are wrong" )
 }
 if( max( abs( fittedLA$quant[ -1, ] - estResultLA$qFitted[ -1, ] ) ) > 1e-5 ) {
-   stop( "Fitted quantities of LA-AIDS are wrong." )
+   stop( "fitted quantities of LA-AIDS are wrong" )
 }
 
 ####### consistency ###################

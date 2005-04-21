@@ -4,13 +4,13 @@ aidsBestA0 <- function( pNames, wNames, xtName,
       verbose = FALSE, ... ) {
 
    if( length( pNames ) != length( wNames ) ) {
-      stop( "arguments 'pNames' and 'wNames' must have the same length." )
+      stop( "arguments 'pNames' and 'wNames' must have the same length" )
    }
    nGoods <- length( pNames )
 
    if( substr( method, 1, 2 ) != "MK" ) {
-      stop( paste( "At the moment this function only works with",
-         "the method of Michalek & Keyzer (MK)" ) )
+      stop( "at the moment this function only works with",
+         " the method of Michalek & Keyzer (MK)" )
    }
    if( a0min >= a0max ) stop( "a0min must be smaller than a0max" )
 
