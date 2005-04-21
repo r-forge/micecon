@@ -120,11 +120,11 @@ tobit2 <- function(selection, formula, method="ml",
       result <- list()
       result$probit <- probit( selection, data=data, x=TRUE)
 
-      data$probitLambda <- dnorm( result$probit$linear.predictors ) /
-          pnorm( result$probit$linear.predictors )
+      data$probitLambda <- dnorm(linearPredictors(result$probit)) /
+          pnorm(linearPredictors(result$probit))
 
       data$probitDelta <- data$probitLambda * ( data$probitLambda +
-                                               result$probit$linear.predictors )
+                                               linearPredictors(result$probit))
 
       step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
                                         "+ probitLambda" ) )
