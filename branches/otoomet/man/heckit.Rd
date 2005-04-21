@@ -97,7 +97,7 @@ myData <- data.frame( no = c( 1:nObs ), x1 = rnorm( nObs ), x2 = rnorm( nObs ) )
 myData$y <- 2 + myData$x1 + 0.9 * rnorm( nObs )
 myData$s <- ( 2 * myData$x1 + myData$x2 + 4 * rnorm( nObs ) - 0.2 ) > 0
 myData$y[ !myData$s ] <- NA
-myHeckit <- heckit( y ~ x1, s ~ x1 + x2, myData, print.level = 1 )
+myHeckit <- heckit( s ~ x1 + x2, y ~ x1, myData, print.level = 1 )
 
 ## example using random numbers with IV/2SLS estimation
 nObs <- 1000
@@ -107,8 +107,8 @@ myData$w <- 1 + myData$x1 + 0.2 * myData$u + 0.1 * rnorm( nObs )
 myData$y <- 2 + myData$w + myData$u
 myData$s <- ( 2 * myData$x1 + myData$x2 + 4 * rnorm( nObs ) - 0.2 ) > 0
 myData$y[ !myData$s ] <- NA
-myHeckit <- heckit( y ~ w, s ~ x1 + x2, data = myData,
-   inst = ~ x1, print.level = 1 )
+myHeckit <- heckit( s ~ x1 + x2, y ~ w, data = myData ) # biased
+myHeckitIv <- heckit( s ~ x1 + x2, y ~ w, data = myData, inst = ~ x1 ) # unbiased
 }
 
 \keyword{models}

@@ -1,6 +1,6 @@
 
 R : Copyright 2004, The R Foundation for Statistical Computing
-Version 2.0.1  (2004-11-15), ISBN 3-900051-07-0
+Version 2.0.0 alpha (2004-09-16), ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -23,8 +23,8 @@ Please send bug reports to ahenningsen@agric-econ.uni-kiel.de
 > 
 > ## Greene( 2003 ): example 22.8, page 786
 > Mroz87$kids  <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
-> greene <- heckit( wage ~ exper + I( exper^2 ) + educ + city,
-+    lfp ~ age + I( age^2 ) + faminc + kids + educ, Mroz87 )
+> greene <- heckit( lfp ~ age + I( age^2 ) + faminc + kids + educ,
++    wage ~ exper + I( exper^2 ) + educ + city, Mroz87 )
 > print( summary( greene ) )
               Estimate Std. Error   t value Pr(>|t|)    
 (Intercept)  -0.971247   2.059352 -0.471628 0.637436    
@@ -76,7 +76,7 @@ F-statistic: 12.2 on 5 and 422 DF,  p-value: 4.58e-11
 > print( summary( greene$probit ) )
 
 Call:
-glm(formula = probitformula, family = binomial(link = "probit"), 
+glm(formula = selection, family = binomial(link = "probit"), 
     data = data)
 
 Deviance Residuals: 
@@ -127,8 +127,8 @@ probitLambda
 > 
 > ## Wooldridge( 2003 ): example 17.5, page 590
 > data( Mroz87 )
-> wooldridge <- heckit( log( wage ) ~ educ + exper + I( exper^2 ),
-+    lfp ~ nwifeinc + educ + exper + I( exper^2 ) + age + kids5 + kids618, Mroz87 )
+> wooldridge <- heckit( lfp ~ nwifeinc + educ + exper + I( exper^2 ) + age +
++    kids5 + kids618, log( wage ) ~ educ + exper + I( exper^2 ), Mroz87 )
 > print( summary( wooldridge ) )
               Estimate Std. Error   t value Pr(>|t|)    
 (Intercept)  -0.578102   0.305007 -1.895375 0.058724   .
@@ -177,7 +177,7 @@ F-statistic: 19.7 on 4 and 423 DF,  p-value: 7.14e-15
 > print( summary( wooldridge$probit ) )
 
 Call:
-glm(formula = probitformula, family = binomial(link = "probit"), 
+glm(formula = selection, family = binomial(link = "probit"), 
     data = data)
 
 Deviance Residuals: 

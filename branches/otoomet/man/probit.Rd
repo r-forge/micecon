@@ -6,7 +6,7 @@
 }
 \usage{
 probit(formula, b0 = NULL, data = sys.frame(sys.parent()),
-       x=FALSE, method="ML", ... )
+       x=FALSE, y = FALSE, model = FALSE, method="ML", ... )
 }
 \arguments{
   \item{formula}{a symbolic description of the model to be fit in the
@@ -21,7 +21,7 @@ probit(formula, b0 = NULL, data = sys.frame(sys.parent()),
     environment from which \code{probit} is called.}
   \item{x, y, model}{logicals. If TRUE the corresponding components of
     the fit (the
-    model matrix, the response, the model frame) are returned.
+    model matrix, the response, the model frame) are returned.}
   \item{method}{the method to be used; for fitting,
     currently only method = "ML" (Maximum Likelihood) is supported;
     method = "model.frame" returns the model frame (the same as
@@ -29,7 +29,7 @@ probit(formula, b0 = NULL, data = sys.frame(sys.parent()),
   \item{\dots}{further arguments for \code{maxLik}.}
 }
 \details{
-  The model is estimated using Maximum Likelihood method. 
+  The model is estimated using Maximum Likelihood method.
 }
 \value{
   An object of class "probit".  It is a list with following components:
