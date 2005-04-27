@@ -40,11 +40,9 @@ heckit <- function( selection, formula, data, inst = NULL,
    result$probit <- glm( selection, binomial( link = "probit" ), data )
    if( print.level > 0 ) cat( " OK\n" )
 
-   data$probitLambda <- dnorm( result$probit$linear.predictors ) /
-      pnorm( result$probit$linear.predictors )
-
-   data$probitDelta <- data$probitLambda * ( data$probitLambda +
-      result$probit$linear.predictors )
+   imrData <- invMillsRatio( result$probit )
+   data$probitLambda <- imrData$IMR1
+   data$probitDelta <- imrData$delta1
 
    step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
       "+ probitLambda" ) )
