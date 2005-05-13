@@ -49,6 +49,56 @@ myProbit2 <- glm( nolfp ~ nwifeinc + educ + exper + I( exper^2 ) + age +
    kids5 + kids618, family = binomial( link = "probit" ), data=Mroz87 )
 all.equal( invMillsRatio( myProbit )$IMR1, invMillsRatio( myProbit2 )$IMR0 )
    # should be true
+
+# example for bivariate probit
+\dontrun{
+library( MASS )
+library( VGAM, pos = 1e7, warn.conflicts = FALSE )
+
+nObs <- 10000
+
+# error terms (trivariate normal)
+sigma <- symMatrix( c( 2, 0.7, 1.2, 1, 0.5, 1 ) )
+myData <- as.data.frame( mvrnorm( nObs, c( 0, 0, 0 ), sigma ) )
+names( myData ) <- c( "e0", "e1", "e2" )
+
+# exogenous variables (indepently normal)
+myData$x0 <- rnorm( nObs )
+myData$x1 <- rnorm( nObs )
+myData$x2 <- rnorm( nObs )
+
+# endogenous variables
+myData$y0 <-   -1.5 + 0.8 * myData$x1 + myData$e0
+myData$y1 <- (  0.3 + 0.4 * myData$x1 + 0.3 * myData$x2 + myData$e1 ) > 0
+myData$y2 <- ( -0.1 + 0.6 * myData$x1 + 0.7 * myData$x2 + myData$e2 ) > 0
+
+# bivariate probit
+bProbit <- vglm( cbind( y1, y2 ) ~ x1 + x2, family = binom2.rho,
+   data = myData )
+summary( bProbit )
+
+# inverse Mills Ratios
+bProbit@predictors[ , 3 ] <- sigma[ 2, 3 ]
+imr <- invMillsRatio( bProbit )
+
+mean( myData$e0[ myData$y1 & myData$y2 ] )
+
+# OLS and heckman type estimations
+selection <- myData$y1 & myData$y2
+ols11 <- lm( y0 ~ x1, data = myData, subset = selection )
+summary( ols11 )
+heckit11 <- lm( y0 ~ x1 + IMR11a + IMR11b, data = cbind( myData, imr ),
+   subset = selection )
+summary( heckit11 )
+
+# with true coefficients
+bProbit@predictors[ , 1 ] <-  0.3 + 0.4 * myData$x1 + 0.3 * myData$x2
+bProbit@predictors[ , 2 ] <- -0.1 + 0.6 * myData$x1 + 0.7 * myData$x2
+imr2 <- invMillsRatio( bProbit )
+heckit11 <- lm( y0 ~ x1 + IMR11a + IMR11b, data = cbind( myData, imr2 ),
+   subset = selection )
+summary( heckit11 )
+}
 }
 
 \keyword{models}
