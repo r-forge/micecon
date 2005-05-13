@@ -14,29 +14,63 @@ invMillsRatio <- function( x ) {
          ( 1 - pnorm( x$linear.predictors ) )
       result$delta0 <- result$IMR0 * ( result$IMR0 + x$linear.predictors )
    } else if( class( x ) == "vglm" ) {
+      library( VGAM )
       if( x@family@blurb[1] != "Bivariate probit model\n"  ) {
          stop( errorMessage )
       }
       library( mvtnorm )
       result <- data.frame( no = 1:nrow( x@predictors ),
          row.names = rownames( x@predictors ) )
-      ya <- rowSums( x@y[ , c( "10", "11" ) ] )
-      yb <- rowSums( x@y[ , c( "01", "11" ) ] )
       rho <- x@predictors[ , 3 ]
-      pmvnormValues <- rep( NA, nrow( result ) )
-      for( i in seq( along = pmvnormValues ) ) {
-         corr <- matrix( c( 1, rho[ i ], rho[ i ], 1 ), ncol = 2 )
-         pmvnormValues[ i ] <- pmvnorm( upper = - x@predictors[ i, 1:2 ],
-            corr = corr )
+
+      if( max( rho ) > 1 ) {
+         stop( "the correlation between the error terms (rho) is larger",
+            " than 1" )
       }
-      result$IMRa1 <- dnorm( x@predictors[ , 1 ] ) *
-         pnorm( ( - x@predictors[ , 2 ] - rho * ya ) / ( 1 - rho^2 )^0.5 ) /
-         pmvnormValues
-      result$IMR1 <- dnorm( x@predictors[ , 1 ] ) /
-         pnorm( x@predictors[ , 1 ] )
+      pmvnormValues11 <- rep( NA, nrow( result ) )
+      pmvnormValues10 <- rep( NA, nrow( result ) )
+      pmvnormValues01 <- rep( NA, nrow( result ) )
+      pmvnormValues00 <- rep( NA, nrow( result ) )
+      for( i in 1:nrow( result ) ) {
+         corrEq <- matrix( c( 1, rho[ i ], rho[ i ], 1 ), ncol = 2 )
+         corrUneq <- matrix( c( 1, -rho[ i ], -rho[ i ], 1 ), ncol = 2 )
+         pmvnormValues11[ i ] <- pmvnorm( upper = x@predictors[ i, 1:2 ],
+            corr = corrEq )
+         pmvnormValues10[ i ] <- pmvnorm( upper = c( x@predictors[ i, 1 ],
+            -x@predictors[ i, 2 ] ), corr = corrUneq )
+         pmvnormValues01[ i ] <- pmvnorm( upper = c( -x@predictors[ i, 1 ],
+            x@predictors[ i, 2 ] ), corr = corrUneq )
+         pmvnormValues00[ i ] <- pmvnorm( upper = -x@predictors[ i, 1:2 ],
+            corr = corrEq )
+      }
+
+      result$IMR11a <- dnorm( x@predictors[ , 1 ] ) *
+         pnorm( ( x@predictors[ , 2 ] - rho * x@predictors[ , 1 ] ) /
+            ( 1 - rho^2 )^0.5 ) / pmvnormValues11
+      result$IMR11b <- dnorm( x@predictors[ , 2 ] ) *
+         pnorm( ( x@predictors[ , 1 ] - rho * x@predictors[ , 2 ] ) /
+            ( 1 - rho^2 )^0.5 ) / pmvnormValues11
+      result$IMR10a <- dnorm( x@predictors[ , 1 ] ) *
+         pnorm( ( -x@predictors[ , 2 ] + rho * x@predictors[ , 1 ] ) /
+            ( 1 - rho^2 )^0.5 ) / pmvnormValues10
+      result$IMR10b <- -dnorm( x@predictors[ , 2 ] ) *
+         pnorm( ( x@predictors[ , 1 ] - rho * x@predictors[ , 2 ] ) /
+            ( 1 - rho^2 )^0.5 ) / pmvnormValues10
+      result$IMR01a <- -dnorm( x@predictors[ , 1 ] ) *
+         pnorm( ( x@predictors[ , 2 ] - rho * x@predictors[ , 1 ] ) /
+            ( 1 - rho^2 )^0.5 ) / pmvnormValues01
+      result$IMR01b <- dnorm( x@predictors[ , 2 ] ) *
+         pnorm( ( -x@predictors[ , 1 ] + rho * x@predictors[ , 2 ] ) /
+            ( 1 - rho^2 )^0.5 ) / pmvnormValues01
+      result$IMR00a <- -dnorm( x@predictors[ , 1 ] ) *
+         pnorm( ( -x@predictors[ , 2 ] + rho * x@predictors[ , 1 ] ) /
+            ( 1 - rho^2 )^0.5 ) / pmvnormValues00
+      result$IMR00b <- -dnorm( x@predictors[ , 2 ] ) *
+         pnorm( ( -x@predictors[ , 1 ] + rho * x@predictors[ , 2 ] ) /
+            ( 1 - rho^2 )^0.5 ) / pmvnormValues00
    } else {
       stop( errorMessage )
    }
+   result$no <- NULL
    return( result )
 }
-
