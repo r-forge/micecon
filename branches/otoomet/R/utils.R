@@ -124,6 +124,31 @@ semidefiniteness <- function( m, tol = .Machine$double.eps, method = "det" ) {
    return( result )
 }
 
+## --- creates a symmetric matrix ----
+symMatrix <- function( data = NA, ndim = NULL, byrow = FALSE,
+   upper = FALSE ) {
+
+   nDim <- ndim; rm( ndim )
+   nData <- length( data )
+   if( is.null( nDim ) ) {
+      nDim <- ceiling( -0.5 + ( 0.25 + 2 * nData )^0.5 - .Machine$double.eps^0.5 )
+   }
+   nElem <- round( nDim * ( nDim + 1 ) / 2 )
+   if( nData < nElem ) {
+      data <- c( data, rep( NA, nElem - nData ) )
+   }
+
+   result <- matrix( NA, nrow = nDim, ncol = nDim )
+   if( byrow != upper ) {
+      result[ upper.tri( result, diag = TRUE ) ] <- data
+      result[ lower.tri( result ) ] <- result[ upper.tri( result ) ]
+   } else {
+      result[ lower.tri( result, diag = TRUE ) ] <- data
+      result[ upper.tri( result ) ] <- result[ lower.tri( result ) ]
+   }
+   return( result )
+}
+
 ## --- creates an upper triangular matrix from a vector ----
 triang <- function( v, n ) {
    m <- array( 0, c( n, n ) )
