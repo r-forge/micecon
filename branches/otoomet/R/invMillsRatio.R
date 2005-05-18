@@ -1,4 +1,4 @@
-invMillsRatio <- function( x ) {
+invMillsRatio <- function( x, all = FALSE ) {
    errorMessage <- paste( "calculating the 'Inverse Mills Ratio' only works",
       "for probit models estimated by 'glm' or 'vglm'." )
    if( class( x )[ 1 ] == "glm" ) {
@@ -21,8 +21,14 @@ invMillsRatio <- function( x ) {
       library( mvtnorm )
       result <- data.frame( no = 1:nrow( x@predictors ),
          row.names = rownames( x@predictors ) )
-      rho <- x@predictors[ , 3 ]
-
+      if( x@misc$link == "identity" ) {
+         rho <- x@predictors[ , 3 ]
+      } else if( x@misc$link == "rhobit" ){
+         rho <- rhobit( x@predictors[ , 3 ], inv = TRUE )
+      } else {
+         stop( "the bivariate probit (binom2.rho) must be either estimated",
+            " with link 'rhobit' or 'identity'" )
+      }
       if( max( rho ) > 1 ) {
          stop( "the correlation between the error terms (rho) is larger",
             " than 1" )
@@ -34,14 +40,22 @@ invMillsRatio <- function( x ) {
       for( i in 1:nrow( result ) ) {
          corrEq <- matrix( c( 1, rho[ i ], rho[ i ], 1 ), ncol = 2 )
          corrUneq <- matrix( c( 1, -rho[ i ], -rho[ i ], 1 ), ncol = 2 )
-         pmvnormValues11[ i ] <- pmvnorm( upper = x@predictors[ i, 1:2 ],
-            corr = corrEq )
-         pmvnormValues10[ i ] <- pmvnorm( upper = c( x@predictors[ i, 1 ],
-            -x@predictors[ i, 2 ] ), corr = corrUneq )
-         pmvnormValues01[ i ] <- pmvnorm( upper = c( -x@predictors[ i, 1 ],
-            x@predictors[ i, 2 ] ), corr = corrUneq )
-         pmvnormValues00[ i ] <- pmvnorm( upper = -x@predictors[ i, 1:2 ],
-            corr = corrEq )
+         if( x@y[ i, "11" ] == 1 | all ) {
+            pmvnormValues11[ i ] <- pmvnorm( upper = x@predictors[ i, 1:2 ],
+               corr = corrEq )
+         }
+         if( x@y[ i, "10" ] == 1 | all ) {
+            pmvnormValues10[ i ] <- pmvnorm( upper = c( x@predictors[ i, 1 ],
+               -x@predictors[ i, 2 ] ), corr = corrUneq )
+         }
+         if( x@y[ i, "01" ] == 1 | all ) {
+            pmvnormValues01[ i ] <- pmvnorm( upper = c( -x@predictors[ i, 1 ],
+               x@predictors[ i, 2 ] ), corr = corrUneq )
+         }
+         if( x@y[ i, "00" ] == 1 | all ) {
+            pmvnormValues00[ i ] <- pmvnorm( upper = -x@predictors[ i, 1:2 ],
+               corr = corrEq )
+         }
       }
 
       result$IMR11a <- dnorm( x@predictors[ , 1 ] ) *
