@@ -7,12 +7,14 @@
 }
 
 \usage{
-   invMillsRatio( x )
+   invMillsRatio( x, all = FALSE )
 }
 
 \arguments{
    \item{x}{probit model estimated by \code{\link{glm}} or
       \code{\link[VGAM]{vglm}}}
+   \item{all}{a logical value indicating whether the inverse Mill's Ratios
+      should be calculated for all observations}
 }
 
 \value{
@@ -72,32 +74,74 @@ myData$y0 <-   -1.5 + 0.8 * myData$x1 + myData$e0
 myData$y1 <- (  0.3 + 0.4 * myData$x1 + 0.3 * myData$x2 + myData$e1 ) > 0
 myData$y2 <- ( -0.1 + 0.6 * myData$x1 + 0.7 * myData$x2 + myData$e2 ) > 0
 
-# bivariate probit
+# bivariate probit (using rhobit transformation)
 bProbit <- vglm( cbind( y1, y2 ) ~ x1 + x2, family = binom2.rho,
    data = myData )
 summary( bProbit )
 
+# bivariate probit (NOT using rhobit transformation)
+bProbit2 <- vglm( cbind( y1, y2 ) ~ x1 + x2, family = binom2.rho(
+   lrho = "identity" ), data = myData )
+summary( bProbit2 )
+
 # inverse Mills Ratios
-bProbit@predictors[ , 3 ] <- sigma[ 2, 3 ]
-imr <- invMillsRatio( bProbit )
+imr  <- invMillsRatio( bProbit )
+imr2 <- invMillsRatio( bProbit2 )
+all.equal( imr, imr2, tolerance = .Machine$double.eps ^ 0.25)
 
+# tests
+# E[ e0 | y1* > 0 & y2* > 0 ]
 mean( myData$e0[ myData$y1 & myData$y2 ] )
+mean( sigma[1,2] * imr$IMR11a + sigma[1,3] * imr$IMR11b, na.rm = TRUE )
+# E[ e0 | y1* > 0 & y2* <= 0 ]
+mean( myData$e0[ myData$y1 & !myData$y2 ] )
+mean( sigma[1,2] * imr$IMR10a + sigma[1,3] * imr$IMR10b, na.rm = TRUE )
+# E[ e0 | y1* <= 0 & y2* > 0 ]
+mean( myData$e0[ !myData$y1 & myData$y2 ] )
+mean( sigma[1,2] * imr$IMR01a + sigma[1,3] * imr$IMR01b, na.rm = TRUE )
+# E[ e0 | y1* <= 0 & y2* <= 0 ]
+mean( myData$e0[ !myData$y1 & !myData$y2 ] )
+mean( sigma[1,2] * imr$IMR00a + sigma[1,3] * imr$IMR00b, na.rm = TRUE )
 
-# OLS and heckman type estimations
+# estimation for y1* > 0 and y2* > 0
 selection <- myData$y1 & myData$y2
+# OLS estimation
 ols11 <- lm( y0 ~ x1, data = myData, subset = selection )
 summary( ols11 )
+# heckman type estimation
 heckit11 <- lm( y0 ~ x1 + IMR11a + IMR11b, data = cbind( myData, imr ),
    subset = selection )
 summary( heckit11 )
 
-# with true coefficients
-bProbit@predictors[ , 1 ] <-  0.3 + 0.4 * myData$x1 + 0.3 * myData$x2
-bProbit@predictors[ , 2 ] <- -0.1 + 0.6 * myData$x1 + 0.7 * myData$x2
-imr2 <- invMillsRatio( bProbit )
-heckit11 <- lm( y0 ~ x1 + IMR11a + IMR11b, data = cbind( myData, imr2 ),
+# estimation for y1* > 0 and y2* <= 0
+selection <- myData$y1 & !myData$y2
+# OLS estimation
+ols10 <- lm( y0 ~ x1, data = myData, subset = selection )
+summary( ols10 )
+# heckman type estimation
+heckit10 <- lm( y0 ~ x1 + IMR10a + IMR10b, data = cbind( myData, imr ),
    subset = selection )
-summary( heckit11 )
+summary( heckit10 )
+
+# estimation for y1* <= 0 and y2* > 0
+selection <- !myData$y1 & myData$y2
+# OLS estimation
+ols01 <- lm( y0 ~ x1, data = myData, subset = selection )
+summary( ols01 )
+# heckman type estimation
+heckit01 <- lm( y0 ~ x1 + IMR01a + IMR01b, data = cbind( myData, imr ),
+   subset = selection )
+summary( heckit01 )
+
+# estimation for y1* <= 0 and y2* <= 0
+selection <- !myData$y1 & !myData$y2
+# OLS estimation
+ols00 <- lm( y0 ~ x1, data = myData, subset = selection )
+summary( ols00 )
+# heckman type estimation
+heckit00 <- lm( y0 ~ x1 + IMR00a + IMR00b, data = cbind( myData, imr ),
+   subset = selection )
+summary( heckit00 )
 }
 }
 
