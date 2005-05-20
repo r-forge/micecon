@@ -102,6 +102,18 @@ mean( sigma[1,2] * imr$IMR01a + sigma[1,3] * imr$IMR01b, na.rm = TRUE )
 # E[ e0 | y1* <= 0 & y2* <= 0 ]
 mean( myData$e0[ !myData$y1 & !myData$y2 ] )
 mean( sigma[1,2] * imr$IMR00a + sigma[1,3] * imr$IMR00b, na.rm = TRUE )
+# E[ e0 | y1* > 0 ]
+mean( myData$e0[ myData$y1 ] )
+mean( sigma[1,2] * imr$IMR1X, na.rm = TRUE )
+# E[ e0 | y1* <= 0 ]
+mean( myData$e0[ !myData$y1 ] )
+mean( sigma[1,2] * imr$IMR0X, na.rm = TRUE )
+# E[ e0 | y2* > 0 ]
+mean( myData$e0[ myData$y2 ] )
+mean( sigma[1,3] * imr$IMRX1, na.rm = TRUE )
+# E[ e0 | y2* <= 0 ]
+mean( myData$e0[ !myData$y2 ] )
+mean( sigma[1,3] * imr$IMRX0, na.rm = TRUE )
 
 # estimation for y1* > 0 and y2* > 0
 selection <- myData$y1 & myData$y2
@@ -142,6 +154,46 @@ summary( ols00 )
 heckit00 <- lm( y0 ~ x1 + IMR00a + IMR00b, data = cbind( myData, imr ),
    subset = selection )
 summary( heckit00 )
+
+# estimation for y1* > 0
+selection <- myData$y1
+# OLS estimation
+ols1X <- lm( y0 ~ x1, data = myData, subset = selection )
+summary( ols1X )
+# heckman type estimation
+heckit1X <- lm( y0 ~ x1 + IMR1X, data = cbind( myData, imr ),
+   subset = selection )
+summary( heckit1X )
+
+# estimation for y1* <= 0
+selection <- !myData$y1
+# OLS estimation
+ols0X <- lm( y0 ~ x1, data = myData, subset = selection )
+summary( ols0X )
+# heckman type estimation
+heckit0X <- lm( y0 ~ x1 + IMR0X, data = cbind( myData, imr ),
+   subset = selection )
+summary( heckit0X )
+
+# estimation for y2* > 0
+selection <- myData$y2
+# OLS estimation
+olsX1 <- lm( y0 ~ x1, data = myData, subset = selection )
+summary( olsX1 )
+# heckman type estimation
+heckitX1 <- lm( y0 ~ x1 + IMRX1, data = cbind( myData, imr ),
+   subset = selection )
+summary( heckitX1 )
+
+# estimation for y2* <= 0
+selection <- !myData$y2
+# OLS estimation
+olsX0 <- lm( y0 ~ x1, data = myData, subset = selection )
+summary( olsX0 )
+# heckman type estimation
+heckitX0 <- lm( y0 ~ x1 + IMRX0, data = cbind( myData, imr ),
+   subset = selection )
+summary( heckitX0 )
 }
 }
 
