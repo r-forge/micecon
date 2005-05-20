@@ -11,7 +11,7 @@ invMillsRatio <- function( x, all = FALSE ) {
          pnorm( x$linear.predictors )
       result$delta1 <- result$IMR1 * ( result$IMR1 + x$linear.predictors )
       result$IMR0 <- dnorm( x$linear.predictors ) /
-         ( 1 - pnorm( x$linear.predictors ) )
+         pnorm( -x$linear.predictors ) 
       result$delta0 <- result$IMR0 * ( result$IMR0 + x$linear.predictors )
    } else if( class( x ) == "vglm" ) {
       library( VGAM )
@@ -82,6 +82,30 @@ invMillsRatio <- function( x, all = FALSE ) {
       result$IMR00b <- -dnorm( x@predictors[ , 2 ] ) *
          pnorm( ( -x@predictors[ , 1 ] + rho * x@predictors[ , 2 ] ) /
             ( 1 - rho^2 )^0.5 ) / pmvnormValues00
+      # only considering the first probit equation
+      result$IMR1X <- NA
+      result$IMR0X <- NA
+      if( all ) {
+         selection <- rep( TRUE, nrow( result ) )
+      } else {
+         selection <- ( x@y[ , "11" ] + x@y[ , "10" ] ) == 1
+      }
+      result$IMR1X[ selection ] <- dnorm( x@predictors[ selection, 1 ] ) / 
+         pnorm( x@predictors[ selection, 1 ] ) 
+      result$IMR0X[ !selection ] <- -dnorm( x@predictors[ !selection, 1 ] ) / 
+         pnorm( -x@predictors[ !selection, 1 ] ) 
+      # only considering the second probit equation
+      result$IMRX1 <- NA
+      result$IMRX0 <- NA
+      if( all ) {
+         selection <- rep( TRUE, nrow( result ) )
+      } else {
+         selection <- ( x@y[ , "11" ] + x@y[ , "01" ] ) == 1
+      }
+      result$IMRX1[ selection ] <- dnorm( x@predictors[ selection, 2 ] ) / 
+         pnorm( x@predictors[ selection, 2 ] ) 
+      result$IMRX0[ !selection ] <- -dnorm( x@predictors[ !selection, 2 ] ) / 
+         pnorm( -x@predictors[ !selection, 2 ] ) 
    } else {
       stop( errorMessage )
    }
