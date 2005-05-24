@@ -86,35 +86,15 @@ heckit <- function( selection, formula, data, inst = NULL,
    } else {
       xMat <- result$lm$eq[[ 1 ]]$x
    }
-   wMat <- model.matrix( result$probit )[ data$probitdummy == 1, ]
-   #fMat <- t( xMat ) %*% diag( result$probitDelta[
-   #   data$probitdummy == 1 ] ) %*% wMat
-   # replaced the previous lines by the following to avoid the
-   # diagonal matrix that gets too large for large data sets.
-   txdMat <- t( xMat )
-   dVec <- result$probitDelta[  data$probitdummy == 1 ]
-   for( i in 1:nrow( txdMat ) ) {
-      txdMat[ i, ] <- txdMat[ i, ] * dVec
-   }
-   fMat <- txdMat %*% wMat
-   rm( txdMat, dVec )
-   qMat <- result$rho^2 * ( fMat %*% vcov( result$probit )%*% t( fMat ) )
-   #result$vcov <- result$sigma^2 * solve( crossprod( xMat ) ) %*%
-   #   ( t( xMat ) %*% diag( 1 - result$rho^2 *
-   #   result$probitDelta[ data$probitdummy == 1 ] ) %*%
-   #   ( txd2Mat %*%
-   #    xMat + qMat ) %*% solve( crossprod( xMat ) )
-   # replaced the previous lines by the following to avoid the
-   # diagonal matrix that gets too large for large data sets.
-   txd2Mat <- t( xMat )
-   d2Vec <-  1 - result$rho^2 * result$probitDelta[ data$probitdummy == 1 ]
-   for( i in 1:nrow( txd2Mat ) ) {
-      txd2Mat[ i, ] <- txd2Mat[ i, ] * d2Vec
-   }
-   result$vcov <- result$sigma^2 * solve( crossprod( xMat ) ) %*%
-      ( txd2Mat %*%
-      xMat + qMat ) %*% solve( crossprod( xMat ) )
-   rm( txd2Mat, d2Vec )
+   wMat <-
+
+   result$vcov <- vcovHeckit( xMat,
+      model.matrix( result$probit )[ data$probitdummy == 1, ],
+      vcov( result$probit ),
+      result$rho,
+      result$probitDelta[ data$probitdummy == 1 ],
+      result$sigma )
+
    if( print.level > 0 ) cat( " OK\n" )
    result$coef <- matrix( NA, nrow = length( step2coef ), ncol = 4 )
    rownames( result$coef ) <- names( step2coef )
