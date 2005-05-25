@@ -101,15 +101,15 @@ invMillsRatio <- function( x, all = FALSE ) {
          pnorm( x@predictors[ selection1X, 1 ] )
 
       result$delta1X <- NA
-      result$delta1X[ selection1X ] <- result$IMR1X *
-         ( result$IMR1X + x$predictors[ selection1X, 1 ] )
+      result$delta1X[ selection1X ] <- result$IMR1X[ selection1X ] *
+         ( result$IMR1X[ selection1X ] + x@predictors[ selection1X, 1 ] )
 
       result$IMR0X <- NA
       result$IMR0X[ selection0X ] <- -dnorm( x@predictors[ selection0X, 1 ] ) /
          pnorm( -x@predictors[ selection0X, 1 ] )
       result$delta0X <- NA
-      result$delta0X[ selection0X ] <- result$IMR0X *
-         ( result$IMR0X + x$predictors[ selection0X, 1 ] )
+      result$delta0X[ selection0X ] <- result$IMR0X[ selection0X ] *
+         (result$IMR0X[ selection0X ] + x@predictors[ selection0X, 1 ] )
 
       # only considering the second probit equation
       result$IMRX1 <- NA
@@ -117,16 +117,16 @@ invMillsRatio <- function( x, all = FALSE ) {
          pnorm( x@predictors[ selectionX1, 2 ] )
 
       result$deltaX1 <- NA
-      result$deltaX1[ selectionX1 ] <- result$IMRX1 *
-         ( result$IMRX1 + x$predictors[ selectionX1, 2 ] )
+      result$deltaX1[ selectionX1 ] <- result$IMRX1[ selectionX1 ] *
+         ( result$IMRX1[ selectionX1 ] + x@predictors[ selectionX1, 2 ] )
 
       result$IMRX0 <- NA
       result$IMRX0[ selectionX0 ] <- -dnorm( x@predictors[ selectionX0, 2 ] ) /
          pnorm( -x@predictors[ selectionX0, 2 ] )
 
       result$deltaX0 <- NA
-      result$deltaX0[ selectionX0 ] <- result$IMRX0 *
-         ( result$IMRX0 + x$predictors[ selectionX0, 2 ] )
+      result$deltaX0[ selectionX0 ] <- result$IMRX0[ selectionX0 ] *
+         ( result$IMRX0[ selectionX0 ] + x@predictors[ selectionX0, 2 ] )
 
    } else {
       stop( errorMessage )
