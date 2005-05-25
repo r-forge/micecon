@@ -46,11 +46,11 @@
 
    \item{rho}{the estimated \eqn{\rho}, see Greene (2003, p. 784).}
 
-   \item{probitLambda}{the \eqn{\lambda}s based on the results of the
-   1sr step probit estimation (also known as inverse Mills ratio).}
+   \item{invMillsRatio}{the inverse Mills Ratios calculated from the results of
+   the 1sr step probit estimation.}
 
-   \item{probitDelta}{the \eqn{\delta}s based on the results of the
-   1sr step probit estimation.}
+   \item{imrDelta}{the \eqn{\delta}s calculated from the inverse Mills Ratios and
+   the results of the 1sr step probit estimation.}
 }
 
 \references{
