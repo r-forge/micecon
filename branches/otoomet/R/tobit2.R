@@ -1,6 +1,8 @@
 tobit2 <- function(selection, formula, method="ml",
                    data=sys.frame(sys.parent()),
-                   b0=NULL, print.level=0, ...) {
+                   b0=NULL, print.level=0,
+                   y1=FALSE, z=FALSE, y2=FALSE, x=FALSE, model=FALSE,
+                   ...) {
    ## The model (Amemiya 1985):
    ## The latent variables are:
    ## y1* = z'gamma + u1
@@ -19,6 +21,8 @@ tobit2 <- function(selection, formula, method="ml",
    ## b0       initial value of coefficients.  The order is as follows:
    ##            b0 = (gamma', beta', sigma, rho)'
    ## print.level: 0 - nothing printed, as larger, as more information printed
+   ## y1..z        whether to return corresponding matrixis of explanatory and dependent variables
+   ## model        whether to return model frames
    ##  ...         additional parameters form maximisation
    ##
    ## RESULTS:
@@ -34,13 +38,14 @@ tobit2 <- function(selection, formula, method="ml",
       Z1.g <- Z1 %*% g
       Z2.g <- Z2 %*% g
       X2.b <- X2 %*% b
-      u2 <- Y2 - X2.b
+      u2 <- Y21 - X2.b
       r <- sqrt( 1 - rho^2)
       B <- (Z2.g + rho/sigma*u2)/r
       l1 <- sum(pnorm(-Z1.g, log.p=TRUE))
-      # loglik related with unobserved cases
+                                        # loglik related with unobserved cases ...
       l2 <- -N2/2*log(2*pi) - N2*log(sigma) +
-         sum(-0.5*(u2/sigma)^2 + pnorm(B, log.p=TRUE))
+         sum(pnorm(B, log.p=TRUE) - 0.5*(u2/sigma)^2)
+                                        # ... and observed cases
       loglik <- l1 + l2
    }
    gradlik <- function(beta) {
@@ -53,7 +58,7 @@ tobit2 <- function(selection, formula, method="ml",
       Z1.g <- Z1 %*% g
       Z2.g <- Z2 %*% g
       X2.b <- X2 %*% b
-      u2 <- Y2 - X2.b
+      u2 <- Y21 - X2.b
       r <- sqrt( 1 - rho^2)
       B <- (Z2.g + rho/sigma*u2)/r
       lambdaB <- dnorm(B)/pnorm(B)
@@ -61,7 +66,7 @@ tobit2 <- function(selection, formula, method="ml",
       gradient[igamma] <- t(Z1) %*% (-dnorm(-Z1.g)/pnorm(-Z1.g)) +
          (t(Z2) %*% lambdaB)/r
       gradient[ibeta] <- t(X2) %*% (u2/sigma^2 - lambdaB*rho/sigma/r)
-      gradient[isigma] <- sum(u2^2/sigma^3 - 1/sigma - lambdaB*rho*u2/sigma^2/r)
+      gradient[isigma] <- sum(u2^2/sigma^3 - lambdaB*rho*u2/sigma^2/r) - N2/sigma
       gradient[irho] <- sum(lambdaB*(u2/sigma + rho*Z2.g))/r^3
       gradient
    }
@@ -75,7 +80,7 @@ tobit2 <- function(selection, formula, method="ml",
       Z1.g <- as.vector(Z1 %*% g)
       Z2.g <- as.vector(Z2 %*% g)
       X2.b <- as.vector(X2 %*% b)
-      u2 <- Y2 - X2.b
+      u2 <- Y21 - X2.b
       r <- sqrt( 1 - rho^2)
       B <- (Z2.g + rho/sigma*u2)/r
       lambdaB <- dnorm(B)/pnorm(B)
@@ -103,10 +108,10 @@ tobit2 <- function(selection, formula, method="ml",
             lambdaB/r^3)/sigma
       hess[irho,ibeta] <- t(hess[ibeta,irho])
       hess[isigma,isigma] <- sum(
-                                   1/sigma^2
                                    -3*u2*u2/sigma^4
                                    +2*lambdaB* u2/r *rho/sigma^3
-                                   +rho^2/sigma^4 *u2*u2/r^2 *C)
+                                   +rho^2/sigma^4 *u2*u2/r^2 *C) +
+                                       N2/sigma^2
       hess[isigma,irho] <- hess[irho,isigma] <-
          -sum((C*rho*(u2/sigma + rho*Z2.g)/r + lambdaB)*
          u2/sigma^2)/r^3
@@ -114,54 +119,6 @@ tobit2 <- function(selection, formula, method="ml",
          sum(C*((u2/sigma + rho*Z2.g)/r^3)^2 +
          lambdaB*(Z2.g*(1 + 2*rho^2) + 3*rho*u2/sigma) / r^5 )
       return( hess )
-   }
-   ## heckit -- two-step method
-   heckit <- function( selection, formula, data ) {
-      result <- list()
-      result$probit <- probit( selection, data=data, x=TRUE)
-
-      data$probitLambda <- dnorm(linearPredictors(result$probit)) /
-          pnorm(linearPredictors(result$probit))
-
-      data$probitDelta <- data$probitLambda * ( data$probitLambda +
-                                               linearPredictors(result$probit))
-
-      step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
-                                        "+ probitLambda" ) )
-
-      result$lm <- lm( step2formula, data, data$probitdummy == 1 )
-
-      result$sigma <- as.numeric( sqrt( crossprod( residuals( result$lm ) ) /
-                                       sum( data$probitdummy == 1 ) +
-                                       mean( data$probitDelta[ data$probitdummy == 1 ] ) *
-                                       coefficients( result$lm )[ "probitLambda" ]^2 ) )
-
-      result$rho <- coefficients( result$lm )[ "probitLambda" ] / result$sigma
-      result$probitLambda <- data$probitLambda
-      result$probitDelta  <- data$probitDelta
-
-                                        # the foolowing variables are named according to Greene (2003), p. 785
-      xMat <- model.matrix( result$lm )
-      wMat <- model.matrix( result$probit )[ data$probitdummy == 1, ]
-      fMat <- t( xMat ) %*% diag( result$probitDelta[
-                                                     data$probitdummy == 1 ] ) %*% wMat
-      qMat <- result$rho^2 * ( fMat %*% vcov( result$probit )%*% t( fMat ) )
-      result$vcov <- result$sigma^2 * solve( crossprod( xMat ) ) %*%
-          ( t( xMat ) %*% diag( 1 - result$rho^2 *
-                               result$probitDelta[ data$probitdummy == 1 ] ) %*%
-           xMat + qMat ) %*% solve( crossprod( xMat ) )
-      result$coef <- matrix( NA, nrow = length( coef( result$lm ) ), ncol = 4 )
-      rownames( result$coef ) <- names( coef( result$lm ) )
-      colnames( result$coef ) <- c( "Estimate", "Std. Error", "t value",
-                                   "Pr(>|t|)" )
-      result$coef[ , 1 ] <- coef( result$lm )
-      result$coef[ , 2 ] <- sqrt( diag( result$vcov ) )
-      result$coef[ , 3 ] <- result$coef[ , 1 ] / result$coef[ , 2 ]
-      result$coef[ , 4 ] <- 2 * ( 1 - pt( abs( result$coef[ , 3 ] ),
-                                         result$lm$df ) )
-
-      class( result ) <- "heckit"
-      return( result )
    }
    ## --- the main program ---
    ## First the consistency checks
@@ -201,45 +158,87 @@ tobit2 <- function(selection, formula, method="ml",
       if(method == "2step") {
          return(twoStep)
       }
-      b0 <- coefficients(twoStep)
       if(print.level > 0) {
-         cat("two-step estimate:\n")
-         print(summary(twoStep))
+         cat("Initial values by 2-step method:results\n")
+         print(twoStep)
+      }
+      b0 <- coef(twoStep)
+      b0 <- b0[-which(names(b0) == "invMillsRatio")]
+                                        # inverse Mills ratio is not needed for ML
+      if(print.level > 0) {
+         cat("Initial values:\n")
+         print(b0)
       }
    }
-   Z <- model.matrix(selection, data=data)
-   y1 <- model.response(model.frame(selection, data=data))
+   ## Now extract model frames etc
+   ## Y1 (selection equation)
+   cl <- match.call()
+   mf <- match.call(expand.dots = FALSE)
+   m <- match(c("selection", "data", "subset", "weights", "na.action",
+                "offset"), names(mf), 0)
+   mf1 <- mf[c(1, m)]
+   mf1$drop.unused.levels <- TRUE
+   mf1[[1]] <- as.name("model.frame")
+   names(mf1)[2] <- "formula"
+                                        # model.frame requires the parameter to be 'formula'
+   mf1 <- eval(mf1, parent.frame())
+   mt1 <- attr(mf1, "terms")
+   Z <- model.matrix(mt1, mf1)
+   Y1 <- model.response(mf1, "numeric")
+   ## Y2 (regression)
+   m <- match(c("formula", "data", "subset", "weights", "na.action",
+                "offset"), names(mf), 0)
+   mf2 <- mf[c(1, m)]
+   mf2$drop.unused.levels <- TRUE
+   mf2[[1]] <- as.name("model.frame")
+   mf2 <- eval(mf2, parent.frame())
+   mt2 <- attr(mf2, "terms")
+   X <- model.matrix(mt2, mf2)
+   Y2 <- model.response(mf2, "numeric")
+                                        #
    NZ <- ncol( Z)
-   X <- model.matrix(formula, data=data)
-   y2 <- model.response(model.frame(formula, data=data))
    NX <- ncol( X)
    NParam <- NZ + NX + 2
                                         # Total # of parameters
-   NObs <- length( y1)
-   N1 <- length( y1[y1==0])
-   N2 <- length( y1[y1==1])
+   NObs <- length(Y1)
+   N1 <- length( Y1[Y1==0])
+   N2 <- length( Y1[Y1==1])
    ## indices in for the parameter vector
    igamma <- 1:NZ
    ibeta <- max(igamma) + seq(length=NX)
    isigma <- max(ibeta) + 1
    irho <- max(isigma) + 1
    ## divide data by choices
-   Y2 <- y2[y1==1]
-   X2 <- X[y1==1,,drop=FALSE]
-   Z1 <- Z[y1==0,,drop=FALSE]
-   Z2 <- Z[y1==1,,drop=FALSE]
+   Y21 <- Y2[Y1==1]
+   X2 <- X[Y1==1,,drop=FALSE]
+   Z1 <- Z[Y1==0,,drop=FALSE]
+   Z2 <- Z[Y1==1,,drop=FALSE]
    if(print.level > 0) {
       cat( "Not observed:", N1, "; observed:", N2,"\n", sep="")
    }
-   results <- maxLik(loglik, gradlik, hesslik,
-                     theta=b0,
-                     print.level=print.level - 1, ...)
-   # compare.derivatives(gradlik, hesslik, t0=b0, ...)
-   results$twoStep <- twoStep
-   results$NZ <- NZ
-   results$NX <- NX
-   results$N1 <- N1
-   results$N2 <- N2
-   class(results) <- c("tobit2", class(results))
-   return(results)
+   estimation <- maxLik(loglik, gradlik, hesslik,
+                        theta=b0,
+                        print.level=print.level - 1, ...)
+   ## The following commented lines are for testing analytic gradient and Hessian
+#    compare.derivatives(loglik, gradlik, t0=b0, ...)
+#    compare.derivatives(gradlik, hesslik, t0=b0, ...)
+   result <- c(estimation,
+               twoStep=list(twoStep),
+               NParam=NParam,
+               NObs=NObs,
+               N1=N1,
+               N2=N2,
+               NZ=NZ,
+               NX=NX,
+               df=NObs - NParam,
+               call=cl,
+               terms1=mt1,
+               terms2=mt2,
+               y1=switch(y1, "1"=list(Y1), "0"=NULL),
+               z=switch(z, "1"=list(X), "0"=NULL),
+               y2=switch(y2, "1"=list(Y2), "0"=NULL),
+               x=switch(x, "1"=list(X), "0"=NULL),
+               model=switch(model, "1"=list(selection=mf1, formula=mf2), "0"=NULL))
+   class(result) <- c("tobit2", class(estimation))
+   return(result)
 }

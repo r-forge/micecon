@@ -43,7 +43,7 @@ summary.maxLik <- function( object, hessian=FALSE, ... ) {
          Hess <- object$hessian
       }
    } else {
-      results <- NULL
+      estimate <- NULL
       Hess <- NULL
    }
    summary <- list(type=object$type,

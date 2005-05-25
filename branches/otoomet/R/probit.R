@@ -57,7 +57,7 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    if (method == "model.frame")
        return(mf)
    else if (method != "ML")
-       warning("method = ", method, " is not supported. Using \"qr\"")
+       warning("method = ", method, " is not supported. Using \"ML\"")
    mt <- attr(mf, "terms")
    Y <- model.response(mf, "numeric")
    X <- model.matrix(mt, mf, contrasts)
