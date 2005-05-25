@@ -16,7 +16,7 @@ tobit2(selection, formula, method="ml", data = sys.frame(sys.parent()),
   \item{selection}{a symbolic formula for the selection equation}
   \item{formula}{a symbolic formula for the equation of interest}
   \item{method}{the method of calculation: Maximum Likelihood (\code{ml}) or
-    Heckman 2-step (\code{2step})
+    Heckman 2-step (\code{2step})}
   \item{data}{an optional data frame containing the variables in
     the model. By default the variables are
     taken from environment(formula), typically the environment from
@@ -31,7 +31,7 @@ tobit2(selection, formula, method="ml", data = sys.frame(sys.parent()),
   \item{y1, z, y2, x, model}{logicals. If TRUE the corresponding
     components of the fit (the selection response, the selection model
     matrix, the equation response, the equation model matrix and both
-    model frames) are returned.
+    model frames) are returned.}
   \item{\dots}{further arguments to the maximisation algorithm,
     see \code{\link{maxNR}}.}
 }
