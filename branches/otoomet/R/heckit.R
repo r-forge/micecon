@@ -5,9 +5,9 @@ heckit <- function( selection, formula, data, inst = NULL,
       stop( "argument 'formula' must be a formula" )
    } else if( length( formula ) != 3 ) {
       stop( "argument 'formula' must be a 2-sided formula" )
-   } else if( "probit" %in% substr( all.vars( formula ), 1, 6 ) ) {
-      stop( "argument 'formula' may not include variable names",
-         " starting with 'probit'" )
+   } else if( "invMillsRatio" %in% all.vars( formula ) ) {
+      stop( "argument 'formula' may not include a variable name",
+         " 'invMillsRatio'" )
    } else if( class( selection ) != "formula" ) {
       stop( "argument 'selection' must be a formula" )
    } else if( length( selection ) != 3 ) {
@@ -41,11 +41,11 @@ heckit <- function( selection, formula, data, inst = NULL,
    if( print.level > 0 ) cat( " OK\n" )
 
    imrData <- invMillsRatio( result$probit )
-   data$probitLambda <- imrData$IMR1
-   data$probitDelta <- imrData$delta1
+   data$invMillsRatio <- imrData$IMR1
+   result$imrDelta <- imrData$delta1
 
    step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
-      "+ probitLambda" ) )
+      "+ invMillsRatio" ) )
 
    if( is.null( inst ) ) {
       if( print.level > 0 ) {
@@ -60,7 +60,7 @@ heckit <- function( selection, formula, data, inst = NULL,
          cat ( "Estimating 2nd step 2SLS/IV model . . ." )
       }
       formulaList <- list( step2formula )
-      instImr <- as.formula( paste( "~", inst[ 2 ], "+ probitLambda" ) )
+      instImr <- as.formula( paste( "~", inst[ 2 ], "+ invMillsRatio" ) )
       library( systemfit )
       result$lm <- systemfit( "2SLS", formulaList, inst = instImr,
          data = data[ data$probitdummy == 1, ] )
@@ -71,12 +71,11 @@ heckit <- function( selection, formula, data, inst = NULL,
 
    result$sigma <- as.numeric( sqrt( crossprod( resid ) /
       sum( data$probitdummy == 1 ) +
-      mean( data$probitDelta[ data$probitdummy == 1 ] ) *
-       step2coef[ "probitLambda" ]^2 ) )
+      mean( result$imrDelta[ data$probitdummy == 1 ] ) *
+       step2coef[ "invMillsRatio" ]^2 ) )
 
-   result$rho <-  step2coef[ "probitLambda" ] / result$sigma
-   result$probitLambda <- data$probitLambda
-   result$probitDelta  <- data$probitDelta
+   result$rho <-  step2coef[ "invMillsRatio" ] / result$sigma
+   result$invMillsRatio <- data$invMillsRatio
    if( print.level > 0 ) {
       cat ( "Calculating coefficient covariance matrix . . ." )
    }
@@ -91,7 +90,7 @@ heckit <- function( selection, formula, data, inst = NULL,
       model.matrix( result$probit )[ data$probitdummy == 1, ],
       vcov( result$probit ),
       result$rho,
-      result$probitDelta[ data$probitdummy == 1 ],
+      result$imrDelta[ data$probitdummy == 1 ],
       result$sigma )
 
    if( print.level > 0 ) cat( " OK\n" )
