@@ -86,9 +86,8 @@ heckit <- function( selection, formula, data, inst = NULL,
    } else {
       xMat <- result$lm$eq[[ 1 ]]$x
    }
-   wMat <-
 
-   result$vcov <- vcovHeckit( xMat,
+   result$vcov <- heckitVcov( xMat,
       model.matrix( result$probit )[ data$probitdummy == 1, ],
       vcov( result$probit ),
       result$rho,
