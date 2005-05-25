@@ -1,4 +1,4 @@
-vcovHeckit <- function( xMat, wMat, vcovProbit, rho, delta, sigma,
+heckitVcov <- function( xMat, wMat, vcovProbit, rho, delta, sigma,
    saveMemory = TRUE ) {
 
    if( saveMemory ) {
