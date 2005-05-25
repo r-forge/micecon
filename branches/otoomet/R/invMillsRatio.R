@@ -1,6 +1,6 @@
 invMillsRatio <- function( x, all = FALSE ) {
    errorMessage <- paste( "calculating the 'Inverse Mills Ratio' only works",
-      "for probit models estimated by 'glm' or 'vglm'." )
+      "for probit models estimated by 'glm' or 'vglm' or 'probit'." )
    if( class( x )[ 1 ] == "glm" ) {
       if( x$family$family != "binomial" || x$family$link != "probit" ) {
          stop( errorMessage )
@@ -13,7 +13,17 @@ invMillsRatio <- function( x, all = FALSE ) {
       result$IMR0 <- dnorm( x$linear.predictors ) /
          pnorm( -x$linear.predictors )
       result$delta0 <- result$IMR0 * ( result$IMR0 + x$linear.predictors )
-   } else if( class( x ) == "vglm" ) {
+   }
+   else if("probit" %in% class(x)) {
+      # Note: 'probit' need not to be the first component in the class
+      result <- data.frame( no = seq(length=x$NObs))
+                                        # no is row number.  There is no row names
+      result$IMR1 <- dnorm(linearPredictors(x))/pnorm(linearPredictors(x))
+      result$delta1 <- result$IMR1 * ( result$IMR1 + linearPredictors(x))
+      result$IMR0 <- dnorm(linearPredictors(x))/pnorm(-linearPredictors(x))
+      result$delta0 <- result$IMR0 * ( result$IMR0 + linearPredictors(x))
+      
+   } else if("vglm" %in% class( x )) {
       library( VGAM )
       if( x@family@blurb[1] != "Bivariate probit model\n"  ) {
          stop( errorMessage )
