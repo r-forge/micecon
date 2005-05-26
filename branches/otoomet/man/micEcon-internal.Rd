@@ -7,12 +7,15 @@
 \alias{print.aidsTestConsist}
 \alias{print.heckit}
 \alias{print.snqProfitImposeConvexity}
+\alias{print.summary.maxLik}
+\alias{print.summary.tobit2}
 \alias{checkNames}
 \alias{snqProfitCoef}
 \alias{snqProfitCoefNames}
 \alias{snqProfitRestrict}
 \alias{snqProfitSystem}
 \alias{snqProfitTestCoef}
+\alias{summary.tobit2}
 \alias{translogMonoRestr}
 
 

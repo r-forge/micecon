@@ -1,5 +1,7 @@
 \name{maxLik}
 \alias{maxLik}
+\alias{coef.maxLik}
+
 \title{Maximum likelihood estimation}
 \description{
   This is just a wrapper for maximisation routines which return object

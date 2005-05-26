@@ -1,5 +1,6 @@
 \name{heckit}
 \alias{heckit}
+\alias{coef.heckit}
 
 \title{2-step Heckman (heckit) estimation}
 
