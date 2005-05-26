@@ -77,7 +77,7 @@ y1 <- y1s > 0
 y2s <- x + 0.5*rnorm(500)
 y2 <- ifelse(y1==1, y2s, 0)
 plot(z, y2)
-a <- tobit2(y1~z, y2~x, print.level=print.level)
+a <- tobit2(y1~z, y2~x)
 summary(a)
 }
 \keyword{models}

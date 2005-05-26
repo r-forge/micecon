@@ -88,10 +88,10 @@ heckit <- function( selection, formula, data, inst = NULL,
       xMat <- result$lm$eq[[ 1 ]]$x
    }
    result$vcov <- heckitVcov( xMat,
-      model.matrix( result$probit )[ data$probitdummy == 1, ],
+      model.matrix( result$probit )[ probitdummy == 1, ],
       vcov( result$probit ),
       result$rho,
-      result$imrDelta[ data$probitdummy == 1 ],
+      result$imrDelta[ probitdummy == 1 ],
       result$sigma )
 # result$vcov <- result$sigma^2 * solve( crossprod( xMat ) ) %*%
 #      ( txd2Mat %*%
