@@ -77,6 +77,8 @@ heckit <- function( selection, formula, data, inst = NULL,
       mean(result$imrDelta[ probitdummy == 1 ] ) *
        step2coef[ "invMillsRatio" ]^2 ) )
    result$rho <-  step2coef[ "invMillsRatio" ] / result$sigma
+   names(result$rho) <- NULL
+                                        # otherwise the name of step2coef is left...
    result$invMillsRatio <- data$invMillsRatio
    if( print.level > 0 ) {
       cat ( "Calculating coefficient covariance matrix . . ." )

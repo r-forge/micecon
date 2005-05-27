@@ -1,5 +1,6 @@
-tobit2 <- function(selection, formula, method="ml",
+tobit2 <- function(selection, formula, 
                    data=sys.frame(sys.parent()),
+                   method="ml",
                    b0=NULL, print.level=0,
                    y1=FALSE, z=FALSE, y2=FALSE, x=FALSE, model=FALSE,
                    ...) {
@@ -192,6 +193,8 @@ tobit2 <- function(selection, formula, method="ml",
    mf2$drop.unused.levels <- TRUE
    mf2[[1]] <- as.name("model.frame")
    mf2 <- eval(mf2, parent.frame())
+                                        # Note: if unobserved variables are marked as NA, eval returns a
+                                        # subframe of visible variables only.  We have to check it later
    mt2 <- attr(mf2, "terms")
    X <- model.matrix(mt2, mf2)
    Y2 <- model.response(mf2, "numeric")
@@ -209,8 +212,17 @@ tobit2 <- function(selection, formula, method="ml",
    isigma <- max(ibeta) + 1
    irho <- max(isigma) + 1
    ## divide data by choices
-   Y21 <- Y2[Y1==1]
-   X2 <- X[Y1==1,,drop=FALSE]
+   if(dim(X)[1] == N2) {
+                                        # unobserved variables marked as NA
+      Y21 <- Y2
+      X2 <- X
+    }
+   else {
+                                        # unobserved variables are (technically) correct numbers, e.g.
+                                        # zeros
+      Y21 <- Y2[Y1==1]
+      X2 <- X[Y1==1,,drop=FALSE]
+   }
    Z1 <- Z[Y1==0,,drop=FALSE]
    Z2 <- Z[Y1==1,,drop=FALSE]
    if(print.level > 0) {
