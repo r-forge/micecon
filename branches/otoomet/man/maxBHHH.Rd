@@ -16,8 +16,10 @@ maxBHHH(fn, grad = NULL, theta, print.level = 0, iterlim = 100, ...)
     return \code{NA}.  See details for constant parameters.}
   \item{grad}{gradient of the function.  If \code{NULL}, numeric
     gradient is used.  It must return a matrix, where
-    rows corresponds to the gradient vectors of individual observations.
-    Summed over
+    rows corresponds to the gradient vectors of individual
+    observations.  Note that this corresponds to
+    \code{t(numericGradient(fn))}, not \code{numericGradient(fn)}.
+    It is summed over
     observations in order to get a single gradient vector.}
   \item{theta}{Initial values for the parameters to be optimized over.}
   \item{print.level}{A larger number prints more working information}
@@ -42,5 +44,15 @@ maxBHHH(fn, grad = NULL, theta, print.level = 0, iterlim = 100, ...)
 \seealso{\code{\link{maxNR}}, \code{\link{maxBFGS}},
   \code{\link{optim}}, \code{\link{nlm}}}
 \examples{
+## ML estimation of exponential duration model:
+t <- rexp(100, 2)
+loglik <- function(theta) log(theta) - theta*t
+gradlik <- function(theta) 1/theta - t
+## Estimate with numeric gradient and hessian
+a <- maxBHHH(loglik, theta=1, print.level=2)
+summary(a)
+## Estimate with analytic gradient
+a <- maxBHHH(loglik, gradlik, theta=1)
+summary(a)
 }
 \keyword{optimize}
