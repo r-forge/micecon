@@ -95,13 +95,15 @@ wooldridge$rho               # estimated rho
 ## example using random numbers
 library( MASS )
 nObs <- 1000
-sigma <- matrix( c( 1, -0.3, -0.3, 1 ), ncol = 2 )
+sigma <- matrix( c( 1, -0.7, -0.7, 1 ), ncol = 2 )
 errorTerms <- mvrnorm( nObs, c( 0, 0 ), sigma )
 myData <- data.frame( no = c( 1:nObs ), x1 = rnorm( nObs ), x2 = rnorm( nObs ),
    u1 = errorTerms[ , 1 ], u2 =  errorTerms[ , 2 ] )
 myData$y <- 2 + myData$x1 + myData$u1
 myData$s <- ( 2 * myData$x1 + myData$x2 + myData$u2 - 0.2 ) > 0
 myData$y[ !myData$s ] <- NA
+myOls <- lm( y ~ x1, data = myData)
+summary( myOls )
 myHeckit <- heckit( s ~ x1 + x2, y ~ x1, myData, print.level = 1 )
 summary( myHeckit )
 
