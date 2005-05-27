@@ -11,7 +11,7 @@ numericHessian <- function(f, grad=NULL, t0, eps=1e-6, ...) {
 
 numericNHessian <- function( f, t0, eps=1e-6, ...) {
    ### Numeric Hessian without gradient
-   f00 <- f( t00, ...)
+   f00 <- f( t0, ...)
    eps2 <- eps*eps
    N <- length( t0)
    H <- matrix(NA, N, N)
