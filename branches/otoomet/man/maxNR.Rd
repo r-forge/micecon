@@ -20,7 +20,11 @@ maxNR(fn, grad = NULL, hess = NULL, theta, print.level = 0,
     return \code{NA}.  See details for constant parameters.}
   \item{grad}{gradient of the function.  If \code{NULL}, numeric
     gradient is used.  For BHHH method it must return a matrix, where
-    rows corresponds to the gradients of the observations. Summed over
+    rows corresponds to the gradients of the observations.  Note that
+    this corresponds to
+    \code{t(numericGradient(fn))}, not \code{numericGradient(fn)}.
+    It is summed over
+    observations in order to get a single gradient vector.  It is summed over
     observations by maxNR if necessary.}
   \item{hess}{hessian matrix of the function.  If missing, numeric
     hessian, based on gradient, is used.  }
@@ -107,7 +111,7 @@ the previous one.
   \item{iterations}{number of iterations.}
   \item{type}{character string, type of maximisation.}
 }
-\references{W. Green: "Advanced Econometrics"; S.M. Goldfeld,
+\references{W. Greene: "Advanced Econometrics"; S.M. Goldfeld,
   R.E. Quandt: "Nonlinear Methods in Econometrics".  Amsterdam,
   North-Holland 1972.}
 \author{Ott Toomet \email{siim@obs.ee}}
@@ -120,12 +124,14 @@ the previous one.
 \examples{
 ## ML estimation of exponential duration model:
 t <- rexp(100, 2)
-loglik <- function(theta) log(theta) - theta*t
-gradlik <- function(theta) 1/theta - t
+loglik <- function(theta) sum(log(theta) - theta*t)
+## Note the log-likelihood and gradient are summed over observations
+gradlik <- function(theta) sum(1/theta - t)
 hesslik <- function(theta) -100/theta^2
 ## Estimate with numeric gradient and hessian
 a <- maxNR(loglik, theta=1, print.level=2)
 summary(a)
+## You would probably prefer 1/mean(t) instead ;-)
 ## Estimate with analytic gradient and hessian
 a <- maxNR(loglik, gradlik, hesslik, theta=1)
 summary(a)

@@ -86,8 +86,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
       ## Now check if the gradient is vector or matrix...
       if(!is.null(dim(gr))) {
          if(dim(gr)[1] > 1 & dim(gr)[2] == NParam) {
-            # it was matrix -- row correspond to
-            # observations
+            # it was matrix -- columns correspond to observations
             return(colSums(gr))
          }
       } else {

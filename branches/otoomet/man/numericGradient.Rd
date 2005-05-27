@@ -1,6 +1,7 @@
 \name{numericGradient}
 \alias{numericGradient}
 \alias{numericHessian}
+\alias{numericNHessian}
 
 \title{Functions to Calculate Numeric Derivatives}
 \description{
@@ -8,8 +9,10 @@
   \code{numericGradient} accepts vector-valued functions.
 }
 \usage{
-numericGradient(f, t0, eps=1e-06, ...)
-numericHessian(f, grad=NULL, t0, eps=1e-06, ...)
+numericGradient(f, t0, eps=1e-06, \dots)
+numericHessian(f, grad=NULL, t0, eps=1e-06, \dots)
+numericNHessian(f, t0, eps=1e-6, \dots)
+
 }
 %- maybe also `usage' for other objects documented here.
 \arguments{
@@ -21,9 +24,14 @@ numericHessian(f, grad=NULL, t0, eps=1e-06, ...)
   \item{\dots}{furter arguments for \code{f}}
 }
 \details{
-  If the argument \code{grad} is present, hessian takes the numeric
-  gradient of the gradient, otherwise the numeric second derivative of
-  the \code{f}.
+  \code{numericGradient} numerically differentiates a (vector valued)
+  function with respect to it's (vector valued) argument.  \code{Nval *
+    1} vector function differentiated w.r.t. parameter vector of length
+  \code{Npar} results in \code{Npar * Nval} gradient.
+
+  \code{numericHessian} checks whether a gradient function is present
+  and calculates a gradient of the gradient (if present), or full
+  numeric Hessian (\code{numericNHessian}) if not present.
 }
 \value{
   Matrix.  For \code{numericGradient}, the number of rows is equal to the
