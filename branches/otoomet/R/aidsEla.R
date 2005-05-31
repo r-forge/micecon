@@ -84,5 +84,6 @@ aidsEla <- function( coef, W, P = NULL, formula = "AIDS",
       colnames( ela$hicks ) <- pNames
       colnames( ela$marshall ) <- pNames
    }
+   class( ela ) <- "aidsEla"
    return( ela )
 }

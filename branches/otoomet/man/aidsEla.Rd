@@ -29,7 +29,7 @@
 }
 
 \value{
-  a list containing following elements:
+  a list of class \code{aidsEla} containing following elements:
   \item{formula}{the elasticity formula used to calculate these elasticities}
   \item{exp}{vector of expenditure elasticities}
   \item{marshall}{matrix of Marshallian (uncompensated) price elasticities}
