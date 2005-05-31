@@ -6,7 +6,7 @@
 }
 
 \usage{snqProfitImposeConvexity( estResult, rankReduction = 0,
-   start = 10, ... )
+   start = 10, optimMethod = "BFGS", control = list( maxit=5000 ) )
 }
 
 \arguments{
@@ -14,7 +14,8 @@
    \item{rankReduction}{an integer specifying the reduction of the rank
       of the \eqn{\beta} matrix.}
    \item{start}{starting values of the triangular Cholesky matrix.}
-   \item{...}{arguments passed to \code{\link{optim}}}
+   \item{optimMethod}{method to be used by \code{\link{optim}}.}
+   \item{control}{list of control parameters passed to \code{\link{optim}}.}
 }
 
 \details{

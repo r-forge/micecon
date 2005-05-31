@@ -1,5 +1,5 @@
 snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
-   start = 10, ... ) {
+   start = 10, optimMethod = "BFGS", control = list( maxit=5000 ) ) {
 
    if( class( estResult ) != "snqProfitEst" ) {
       stop( "argument 'estResult' must be of class 'snqProfitEst'" )
@@ -36,7 +36,8 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
       rankReduction * ( rankReduction + 1 ) / 2
       # number of non-zero values in the Cholesky matrix
    cholVec <- array( start, c( nCholValues ) ) # starting values
-   mindist <- optim( cholVec, hessianDistance, ... )
+   mindist <- optim( cholVec, hessianDistance, method = optimMethod,
+      control = control )
    if( mindist$convergence != 0 ) {
       if( mindist$convergence == 1 ) {
          stop( "non-linear minimization with optim(): iteration limit exceeded" )
