@@ -125,26 +125,35 @@ semidefiniteness <- function( m, tol = .Machine$double.eps, method = "det" ) {
 }
 
 ## --- creates a symmetric matrix ----
-symMatrix <- function( data = NA, ndim = NULL, byrow = FALSE,
+symMatrix <- function( data = NA, nrow = NULL, byrow = FALSE,
    upper = FALSE ) {
 
-   nDim <- ndim; rm( ndim )
    nData <- length( data )
-   if( is.null( nDim ) ) {
-      nDim <- ceiling( -0.5 + ( 0.25 + 2 * nData )^0.5 - .Machine$double.eps^0.5 )
+   if( is.null( nrow ) ) {
+      nrow <- ceiling( -0.5 + ( 0.25 + 2 * nData )^0.5 - .Machine$double.eps^0.5 )
    }
-   nElem <- round( nDim * ( nDim + 1 ) / 2 )
+   nElem <- round( nrow * ( nrow + 1 ) / 2 )
    if( nData < nElem ) {
-      data <- c( data, rep( NA, nElem - nData ) )
+      nRep <- nElem / nData
+      data <- rep( data, ceiling( nRep ) )[ 1:nElem ]
+      if( round( nRep ) != nRep ) {
+         warning( "number of required values [", nElem, 
+            "] is not a multiple of data length [", nData, "]" )
+      }
+   }
+   if( nData > nElem ) {
+      data <- data[ 1:nElem ]
+      warning( "data length [", nData, "] is greater than number of ",
+         "required values [", nElem, "]" )
    }
 
-   result <- matrix( NA, nrow = nDim, ncol = nDim )
+   result <- matrix( NA, nrow = nrow, ncol = nrow )
    if( byrow != upper ) {
       result[ upper.tri( result, diag = TRUE ) ] <- data
-      result[ lower.tri( result ) ] <- result[ upper.tri( result ) ]
+      result[ lower.tri( result ) ] <- t( result )[ lower.tri( result ) ]
    } else {
       result[ lower.tri( result, diag = TRUE ) ] <- data
-      result[ upper.tri( result ) ] <- result[ lower.tri( result ) ]
+      result[ upper.tri( result ) ] <- t( result )[ upper.tri( result ) ]
    }
    return( result )
 }
