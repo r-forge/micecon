@@ -2,6 +2,7 @@
 \alias{aidsCoef}
 \alias{aidsRestr}
 \alias{aidsSystem}
+\alias{coef.summary.probit}
 \alias{micEconIndex}
 \alias{model.frame.probit}
 \alias{model.matrix.probit}
