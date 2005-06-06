@@ -7,7 +7,7 @@
   Tobit-2 model is one particular type of those models (Amemiya 1985).
 }
 \usage{
-tobit2(selection, formula, method="ml", data = sys.frame(sys.parent()),
+tobit2(selection, formula, data = sys.frame(sys.parent()), method="ml",
        b0=NULL, print.level=0,
        y1=FALSE, z=FALSE, y2=FALSE, x=FALSE, model=FALSE,
        ...)
@@ -15,12 +15,12 @@ tobit2(selection, formula, method="ml", data = sys.frame(sys.parent()),
 \arguments{
   \item{selection}{a symbolic formula for the selection equation}
   \item{formula}{a symbolic formula for the equation of interest}
-  \item{method}{the method of calculation: Maximum Likelihood (\code{ml}) or
-    Heckman 2-step (\code{2step})}
   \item{data}{an optional data frame containing the variables in
     the model. By default the variables are
     taken from environment(formula), typically the environment from
     which the function is called}
+  \item{method}{the method of calculation: Maximum Likelihood (\code{ml}) or
+    Heckman 2-step (\code{2step})}
   \item{b0}{numeric, initial values of the parameters.  The order is
     as follows: gamma (selection equation), beta (the equation of
     interest), sigma, rho (distribution of the error terms)}
@@ -64,7 +64,8 @@ tobit2(selection, formula, method="ml", data = sys.frame(sys.parent()),
 \author{Ott Toomet \email{siim@obs.ee}}
 \section{WARNING}{These models rely heavily on the parametric
   assumptions.  Do not use them unless the exclusion restriction holds!}
-\seealso{\code{\link{probit}} for probit models}
+\seealso{\code{\link{heckit}} for the two-step estimation and
+   \code{\link{probit}} for probit models}
 \examples{
 ## uniform observable covariates (note that exclusion restriction is
 ## fulfilled)! 
