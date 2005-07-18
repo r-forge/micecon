@@ -1,6 +1,6 @@
 
-R : Copyright 2004, The R Foundation for Statistical Computing
-Version 2.0.0 alpha (2004-09-16), ISBN 3-900051-07-0
+R : Copyright 2005, The R Foundation for Statistical Computing
+Version 2.1.1  (2005-06-20), ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -15,7 +15,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEcon )
-Loading required package: systemfit 
+Loading required package: systemfit
 This package is still an alpha version. This means that this package has not been thoroughly tested yet. Thus, there might be several bugs in it and I do not guarantee that all results are correct. 
 Please send bug reports to ahenningsen@agric-econ.uni-kiel.de
 > data( Mroz87 )
@@ -34,7 +34,7 @@ educ           0.417017    0.10025  4.159787  3.9e-05 ***
 city           0.443838   0.315898  1.405002 0.160756    
 invMillsRatio -1.097619   1.265986 -0.867008  0.38643    
 ---
-Signif. codes:  0 `***' 0.001 `**' 0.01 `*' 0.05 `.' 0.1 ` ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 Multiple R-Squared: 0.126368 Adjusted R-Squared: 0.116017 
 
                Estimate Std. Error   t value Pr(>|t|)    
@@ -45,7 +45,7 @@ educ           0.417017    0.10025  4.159787  3.9e-05 ***
 city           0.443838   0.315898  1.405002 0.160756    
 invMillsRatio -1.097619   1.265986 -0.867008  0.38643    
 ---
-Signif. codes:  0 `***' 0.001 `**' 0.01 `*' 0.05 `.' 0.1 ` ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 Multiple R-Squared: 0.126368 Adjusted R-Squared: 0.116017 
 
 > print( summary( greene$lm ) )
@@ -67,7 +67,7 @@ educ           0.417017   0.099003    4.21  3.1e-05 ***
 city           0.443838   0.317921    1.40     0.16    
 invMillsRatio -1.097619   1.252900   -0.88     0.38    
 ---
-Signif. codes:  0 `***' 0.001 `**' 0.01 `*' 0.05 `.' 0.1 ` ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 3.11 on 422 degrees of freedom
 Multiple R-Squared: 0.126,	Adjusted R-squared: 0.116 
@@ -96,22 +96,20 @@ chi2(5) = 48.0507 (p=3.46824e-09)
 > print( greene$rho )
 [1] -0.342999
 > print( greene$vcov, digits = 5 )
-               
-                (Intercept)       exper  I(exper^2)        educ        city
-  (Intercept)     4.2409246 -0.04377095  1.3047e-03 -0.19039195 -2.7472e-02
-  exper          -0.0437709  0.00390183 -1.1194e-04  0.00072475 -8.6059e-04
-  I(exper^2)      0.0013047 -0.00011194  3.5276e-06 -0.00002529  2.3146e-05
-  educ           -0.1903920  0.00072475 -2.5290e-05  0.01005000 -2.8238e-03
-  city           -0.0274723 -0.00086059  2.3146e-05 -0.00282383  9.9792e-02
-  invMillsRatio  -2.3214104  0.01606513 -5.6015e-04  0.09357545  7.7948e-03
-               
-                invMillsRatio
-  (Intercept)     -2.32141041
-  exper            0.01606513
-  I(exper^2)      -0.00056015
-  educ             0.09357545
-  city             0.00779477
-  invMillsRatio    1.60271957
+              (Intercept)       exper  I(exper^2)        educ        city
+(Intercept)     4.2409246 -0.04377095  1.3047e-03 -0.19039195 -2.7472e-02
+exper          -0.0437709  0.00390183 -1.1194e-04  0.00072475 -8.6059e-04
+I(exper^2)      0.0013047 -0.00011194  3.5276e-06 -0.00002529  2.3146e-05
+educ           -0.1903920  0.00072475 -2.5290e-05  0.01005000 -2.8238e-03
+city           -0.0274723 -0.00086059  2.3146e-05 -0.00282383  9.9792e-02
+invMillsRatio  -2.3214104  0.01606513 -5.6015e-04  0.09357545  7.7948e-03
+              invMillsRatio
+(Intercept)     -2.32141041
+exper            0.01606513
+I(exper^2)      -0.00056015
+educ             0.09357545
+city             0.00779477
+invMillsRatio    1.60271957
 > 
 > ## Wooldridge( 2003 ): example 17.5, page 590
 > data( Mroz87 )
@@ -125,7 +123,7 @@ exper          0.043887   0.016261  2.698923 0.007235  **
 I(exper^2)    -0.000859   0.000439 -1.957354 0.050963   .
 invMillsRatio  0.032262   0.133625  0.241436 0.809334    
 ---
-Signif. codes:  0 `***' 0.001 `**' 0.01 `*' 0.05 `.' 0.1 ` ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 Multiple R-Squared: 0.156935 Adjusted R-Squared: 0.148963 
 
                Estimate Std. Error   t value Pr(>|t|)    
@@ -135,7 +133,7 @@ exper          0.043887   0.016261  2.698923 0.007235  **
 I(exper^2)    -0.000859   0.000439 -1.957354 0.050963   .
 invMillsRatio  0.032262   0.133625  0.241436 0.809334    
 ---
-Signif. codes:  0 `***' 0.001 `**' 0.01 `*' 0.05 `.' 0.1 ` ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 Multiple R-Squared: 0.156935 Adjusted R-Squared: 0.148963 
 
 > print( summary( wooldridge$lm ) )
@@ -156,7 +154,7 @@ exper          0.043887   0.016353    2.68   0.0076 **
 I(exper^2)    -0.000859   0.000441   -1.95   0.0523 .  
 invMillsRatio  0.032262   0.134388    0.24   0.8104    
 ---
-Signif. codes:  0 `***' 0.001 `**' 0.01 `*' 0.05 `.' 0.1 ` ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.667 on 423 degrees of freedom
 Multiple R-Squared: 0.157,	Adjusted R-squared: 0.149 
@@ -187,11 +185,10 @@ chi2(7) = 227.142 (p=2.00867e-45)
 > print( wooldridge$rho )
 [1] 0.0486143
 > print( wooldridge$vcov, digits = 5 )
-               
-                (Intercept)        educ       exper  I(exper^2) invMillsRatio
-  (Intercept)    0.09302878 -3.9693e-03 -3.1849e-03  6.9110e-05   -3.1031e-02
-  educ          -0.00396930  2.4096e-04  5.1544e-05 -9.1792e-07    8.7226e-04
-  exper         -0.00318491  5.1544e-05  2.6442e-04 -6.7995e-06    1.2845e-03
-  I(exper^2)     0.00006911 -9.1792e-07 -6.7995e-06  1.9265e-07   -2.6522e-05
-  invMillsRatio -0.03103081  8.7226e-04  1.2845e-03 -2.6522e-05    1.7856e-02
+              (Intercept)        educ       exper  I(exper^2) invMillsRatio
+(Intercept)    0.09302878 -3.9693e-03 -3.1849e-03  6.9110e-05   -3.1031e-02
+educ          -0.00396930  2.4096e-04  5.1544e-05 -9.1792e-07    8.7226e-04
+exper         -0.00318491  5.1544e-05  2.6442e-04 -6.7995e-06    1.2845e-03
+I(exper^2)     0.00006911 -9.1792e-07 -6.7995e-06  1.9265e-07   -2.6522e-05
+invMillsRatio -0.03103081  8.7226e-04  1.2845e-03 -2.6522e-05    1.7856e-02
 > 
