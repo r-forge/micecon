@@ -13,7 +13,7 @@
       method = "LA:L", hom = TRUE, sym = TRUE,
       elaFormula = "Ch", pxBase,
       estMethod = ifelse( is.null( ivNames ), "SUR", "3SLS" ),
-      maxiterMk = 50, tolMk = 1e-5, alpha0 = 0, ... )
+      maxiterMk = 50, tolMk = 1e-5, alpha0 = 0, TX = FALSE, ... )
 }
 
 \arguments{
@@ -38,6 +38,9 @@
       Michalek and Keyzer estimation.}
    \item{tolMk}{tolerance level of the Michalek and Keyzer iteration.}
    \item{alpha0}{the intercept of the translog price index (\eqn{\alpha_0}).}
+   \item{TX}{method to impose homogeneity and symmetry restrictions:
+      either via R.restr (default) or via TX, see
+      \code{\link[systemfit]{systemfit}}.}
    \item{...}{arguments passed to \code{\link[systemfit]{systemfit}}.}
 }
 
