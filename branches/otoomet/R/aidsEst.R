@@ -54,13 +54,8 @@ aidsEst <- function( pNames, wNames, xtName,
    # prepare data.frame
    sysData <- data.frame( lxtr = ( log( data[[ xtName ]] ) - lnp ) )
    for( i in 1:nGoods ) {
-      sysData <- cbind( sysData, data[[ wNames[ i ] ]] )
-      names( sysData )[ length( sysData ) ] <-
-         paste( "w", as.character( i ), sep = "" )
-
-      sysData <- cbind( sysData, log( data[[ pNames[ i ] ]] ) )
-      names( sysData )[ length( sysData ) ] <-
-         paste( "lp", as.character( i ), sep = "" )
+      sysData[[ paste( "w", i, sep = "" ) ]] <- data[[ wNames[ i ] ]]
+      sysData[[ paste( "lp", i, sep = "" ) ]] <- log( data[[ pNames[ i ] ]] )
    }
    if( is.null( ivNames )) {
       ivFormula <- NULL
@@ -68,9 +63,7 @@ aidsEst <- function( pNames, wNames, xtName,
       estMethod <- "3SLS"
       ivFormula <- "~"
       for( i in 1:length( ivNames ) ) {
-         sysData <- cbind( sysData, data[[ ivNames[ i ] ]] )
-         names( sysData )[ length( sysData ) ] <-
-            paste( "i", as.character( i ), sep = "" )
+         sysData[[ paste( "i", i, sep = "" ) ]] <- data[[ ivNames[ i ] ]]
          ivFormula <- paste( ivFormula, " + i", as.character( i ), sep = "" )
       }
       ivFormula <- as.formula( ivFormula )
