@@ -3,7 +3,7 @@ aidsEst <- function( pNames, wNames, xtName,
       method = "LA:L", hom = TRUE, sym = TRUE,
       elaFormula = "Ch", pxBase = 1,
       estMethod = ifelse( is.null( ivNames ), "SUR", "3SLS" ),
-      maxiterMk = 50, tolMk = 1e-5, alpha0 = 0, ... ) {
+      maxiterMk = 50, tolMk = 1e-5, alpha0 = 0, TX = FALSE, ... ) {
 
    if( length( pNames ) != length( wNames ) ) {
       stop( "arguments 'pNames' and 'wNames' must have the same length" )
@@ -75,11 +75,17 @@ aidsEst <- function( pNames, wNames, xtName,
       }
       ivFormula <- as.formula( ivFormula )
    }
-   restr <- aidsRestr( nGoods, hom, sym )
+   restr <- aidsRestr( nGoods, hom, sym, TX = TX )
       # restrictions for homogeneity and symmetry
    system <- aidsSystem( nGoods )    # LA-AIDS equation system
-   est <- systemfit( estMethod, system, data = sysData, R.restr = restr,
-      inst = ivFormula, ... )   # estimate system
+   # estimate system
+   if( TX ) {
+      est <- systemfit( estMethod, system, data = sysData, TX = restr,
+         inst = ivFormula, ... )
+   } else {
+      est <- systemfit( estMethod, system, data = sysData, R.restr = restr,
+         inst = ivFormula, ... )
+   }
    if( substr( method, 1, 2 ) == "LA" ) {
       result$coef <- aidsCoef( est$b, est$bcov, pNames = pNames,
          wNames = wNames, df = est$df )   # coefficients
@@ -105,8 +111,13 @@ aidsEst <- function( pNames, wNames, xtName,
             aidsPx( "TL", pNames, wNames, data = data,
             alpha0 = alpha0, coef = aidsCoef( est$b ) )
             # real total expenditure using Translog price index
-         est <- systemfit( estMethod, system, data = sysData, R.restr = restr,
-            inst = ivFormula, ... )    # estimate system
+         if( TX ) {
+            est <- systemfit( estMethod, system, data = sysData, TX = restr,
+               inst = ivFormula, ... )    # estimate system
+         } else {
+            est <- systemfit( estMethod, system, data = sysData, R.restr = restr,
+               inst = ivFormula, ... )    # estimate system
+         }
          iter <- c( iter, est$iter ) # iterations of each estimation
          b    <- est$b   # coefficients
          bd   <- b - bl  # difference between coefficients from this
