@@ -322,12 +322,12 @@ Repeating the evaluation of different elasticity formulas of Green & Alston (199
 > estResultAIDS <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86[ -1, ], maxiter = 1,
 +    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-+    method = "MK:L" )
++    method = "IL:L" )
 > print( estResultAIDS )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 
-Estimation Method: Michalek & Keyzer (MK) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
 
 Estimated Coefficients
 alpha
@@ -365,12 +365,12 @@ wFood4  0.00712658  0.0964751  0.2319667 -0.33556844
 > estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86[ -1, ], maxiter = 1,
 +    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-+    method = "MK:L", TX = TRUE )
++    method = "IL:L", TX = TRUE )
 > print( estResultAIDSTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 
-Estimation Method: Michalek & Keyzer (MK) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
 
 Estimated Coefficients
 alpha
@@ -419,12 +419,12 @@ wFood4  0.00712658  0.0964751  0.2319667 -0.33556844
 > estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
 +    data = Blanciforti86[ -1, ], maxiter = 1,
 +    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-+    method = "MK:L" )
++    method = "IL:L" )
 > print( estResultAIDShom )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 
-Estimation Method: Michalek & Keyzer (MK) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
 
 Estimated Coefficients
 alpha
@@ -462,12 +462,12 @@ wFood4 -0.126710329  0.2046827  0.195253 -0.27322507
 > estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
 +    data = Blanciforti86[ -1, ], maxiter = 1,
 +    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-+    method = "MK:L", TX = TRUE )
++    method = "IL:L", TX = TRUE )
 > print( estResultAIDShomTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 
-Estimation Method: Michalek & Keyzer (MK) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
 
 Estimated Coefficients
 alpha
@@ -516,12 +516,12 @@ wFood4 -0.126710329  0.2046827  0.195253 -0.27322507
 > estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
 +    data = Blanciforti86[ -1, ], maxiter = 1,
 +    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-+    method = "MK:L" )
++    method = "IL:L" )
 > print( estResultAIDSunr )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 
-Estimation Method: Michalek & Keyzer (MK) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
 
 Estimated Coefficients
 alpha
@@ -559,12 +559,12 @@ wFood4  0.296069 -0.0212473  0.1425479 -0.540973
 > estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
 +    data = Blanciforti86[ -1, ], maxiter = 1,
 +    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-+    method = "MK:L", TX = TRUE )
++    method = "IL:L", TX = TRUE )
 > print( estResultAIDSunrTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 
-Estimation Method: Michalek & Keyzer (MK) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
 
 Estimated Coefficients
 alpha

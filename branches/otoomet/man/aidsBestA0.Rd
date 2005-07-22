@@ -12,7 +12,7 @@
 
 \usage{
    aidsBestA0( pNames, wNames, xtName,
-      data = NULL, ivNames = NULL, method = "MK:L",
+      data = NULL, ivNames = NULL, method = "IL:L",
       a0min = -50, a0max = 50, stoprange = 3, stopiter = 10,
       verbose = FALSE, ... )
 }

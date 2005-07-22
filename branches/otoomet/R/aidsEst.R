@@ -3,7 +3,7 @@ aidsEst <- function( pNames, wNames, xtName,
       method = "LA:L", hom = TRUE, sym = TRUE,
       elaFormula = "Ch", pxBase = 1,
       estMethod = ifelse( is.null( ivNames ), "SUR", "3SLS" ),
-      maxiterMk = 50, tolMk = 1e-5, alpha0 = 0, TX = FALSE, ... ) {
+      maxiterIL = 50, tolIL = 1e-5, alpha0 = 0, TX = FALSE, ... ) {
 
    if( length( pNames ) != length( wNames ) ) {
       stop( "arguments 'pNames' and 'wNames' must have the same length" )
@@ -17,14 +17,14 @@ aidsEst <- function( pNames, wNames, xtName,
       return( px )
    }
 
-   if( substr( method, 1, 2 ) != "LA" ) {
+   if( substr( method, 1, 2 ) == "LA" ) {
       if( nchar( method ) < 4 ) {
          warning( "No price index specified: using Laspeyres price index" )
          px <- "L"
       } else {
          px <- extractPx( method )
       }
-   } else if ( substr( method, 1, 2 ) != "MK" ) {
+   } else if ( substr( method, 1, 2 ) %in% c( "MK", "IL" ) ) {
       if( nchar( method ) < 4 ) {
          warning( "No initial price index specified:",
             " using Laspeyres price index" )
@@ -33,8 +33,10 @@ aidsEst <- function( pNames, wNames, xtName,
          px <- extractPx( method )
       }
    } else {
-      stop( "at the moment only the methods 'Linear Approximation'",
-         " (LA) and 'Michalek & Keyzer' (MK) are supported" )
+      stop( "at the moment only the methods",
+         " 'Linear Approximation' (LA) and",
+         " 'Iterated Linear Least Squares' (IL)",
+         " are supported" )
    }
    if( sym && !hom ) {
       hom <- TRUE  # symmetry implies homogeneity
@@ -52,7 +54,8 @@ aidsEst <- function( pNames, wNames, xtName,
    # log of price index
    lnp  <- aidsPx( px, pNames, wNames, data, base = pxBase )
    # prepare data.frame
-   sysData <- data.frame( lxtr = ( log( data[[ xtName ]] ) - lnp ) )
+   sysData <- data.frame( xt = data[[ xtName ]],
+      lxtr = ( log( data[[ xtName ]] ) - lnp ) )
    for( i in 1:nGoods ) {
       sysData[[ paste( "w", i, sep = "" ) ]] <- data[[ wNames[ i ] ]]
       sysData[[ paste( "lp", i, sep = "" ) ]] <- log( data[[ pNames[ i ] ]] )
@@ -90,15 +93,15 @@ aidsEst <- function( pNames, wNames, xtName,
       result$wFitted <- aidsCalc( pNames, xtName, data = data,
          coef = result$coef, lnp = lnp )$shares   # estimated budget shares
       iter <- est$iter
-   } else if( substr( method, 1, 2 ) == "MK" ) {
+   } else if( substr( method, 1, 2 ) %in% c( "MK", "IL" ) ) {
       b       <- est$b      # coefficients
       bd      <- est$b      # difference of coefficients between
                             # this and previous step
       iter    <- est$iter   # iterations of each SUR estimation
-      iterMk <- 1          # iterations of M+K Loop
-      while( ( ( t( bd ) %*% bd ) / ( t( b ) %*% b ) )^0.5 > tolMk &&
-            iterMk < maxiterMk ) {
-         iterMk <- iterMk + 1      # iterations of M+K Loop
+      iterIL <- 1          # iterations of IL Loop
+      while( ( ( t( bd ) %*% bd ) / ( t( b ) %*% b ) )^0.5 > tolIL &&
+            iterIL < maxiterIL ) {
+         iterIL <- iterIL + 1      # iterations of IL Loop
          bl     <- b              # coefficients of previous step
          sysData$lxtr <- log( data[[ xtName ]] ) -
             aidsPx( "TL", pNames, wNames, data = data,
@@ -116,7 +119,35 @@ aidsEst <- function( pNames, wNames, xtName,
          bd   <- b - bl  # difference between coefficients from this
                          # and previous step
       }
-      result$coef <- aidsCoef( est$b, est$bcov, pNames = pNames,
+      # calculating log of "real" (deflated) total expenditure
+      sysData$lxtr <- log( data[[ xtName ]] ) -
+         aidsPx( "TL", pNames, data = data,
+         alpha0 = alpha0, coef = aidsCoef( est$b ) )
+      # calculating matrix G
+      Gmat <- cbind( rep( 1, nObs ), sysData$lxtr )
+      for( i in 1:( nGoods ) ) {
+         Gmat <- cbind( Gmat, sysData[[ paste( "lp", i, sep = "" ) ]] )
+      }
+      # testing matrix G
+      if( FALSE ) {
+         for( i in 1:( nGoods - 1 ) ) {
+            print( est$eq[[ i ]]$fitted - Gmat %*%
+               est$b[ ( ( i - 1 ) * ( nGoods + 2 ) + 1 ):( i * (nGoods + 2 ) ) ] )
+         }
+      }
+      # calculating matrix J
+      jacobian <- aidsJacobian( est$b, pNames, xtName, data = data,
+         alpha0 = alpha0 )
+      if( hom ) {
+         TXmat <- aidsRestr( nGoods, hom, sym, TX = TRUE )
+      } else {
+         TXmat <- diag( ( nGoods - 1 ) * ( nGoods + 2 ) )
+      }
+      Jmat <- t( TXmat ) %*% ( diag( nGoods - 1 ) %x% t( Gmat ) ) %*% jacobian
+      JmatInv <- TXmat %*% solve( Jmat ) %*% t( TXmat )
+      bcov <- JmatInv  %*% ( est$rcov %x% ( t( Gmat ) %*% Gmat ) ) %*%
+         t( JmatInv )
+      result$coef <- aidsCoef( est$b, bcov, pNames = pNames,
          wNames = wNames, df = est$df )  # coefficients
       result$coef$alpha0 <- alpha0
       result$ela  <- aidsEla( result$coef, wMeans, pMeans,
@@ -124,7 +155,7 @@ aidsEst <- function( pNames, wNames, xtName,
       result$wFitted <- aidsCalc( pNames, xtName, data = data,
          coef = result$coef, alpha0 = alpha0, px = "TL" )$shares
          # estimated budget shares
-      result$iterMk <- iterMk
+      result$iterIL <- iterIL
    }
    names( result$wFitted ) <- paste( "wFitted", as.character( 1:nGoods ),
       sep = "" )

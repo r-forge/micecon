@@ -1,5 +1,6 @@
 \name{micEcon-internal}
 \alias{aidsCoef}
+\alias{aidsJacobian}
 \alias{aidsRestr}
 \alias{aidsSystem}
 \alias{coef.summary.probit}
