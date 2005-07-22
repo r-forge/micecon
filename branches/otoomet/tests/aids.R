@@ -74,13 +74,13 @@ cat( paste( "\nRepeating the evaluation of different elasticity formulas",
 estResultAIDS <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ -1, ], maxiter = 1,
    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "MK:L" )
+   method = "IL:L" )
 print( estResultAIDS )
 # imposing reestrictions via TX
 estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ -1, ], maxiter = 1,
    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "MK:L", TX = TRUE )
+   method = "IL:L", TX = TRUE )
 print( estResultAIDSTX )
 estResultAIDSTX$est$bt <- NULL
 estResultAIDSTX$est$btcov <- NULL
@@ -96,13 +96,13 @@ print( all.equal( estResultAIDS, estResultAIDSTX ) )
 estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ -1, ], maxiter = 1,
    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "MK:L" )
+   method = "IL:L" )
 print( estResultAIDShom )
 # imposing reestrictions via TX
 estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ -1, ], maxiter = 1,
    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "MK:L", TX = TRUE )
+   method = "IL:L", TX = TRUE )
 print( estResultAIDShomTX )
 estResultAIDShomTX$est$bt <- NULL
 estResultAIDShomTX$est$btcov <- NULL
@@ -118,13 +118,13 @@ print( all.equal( estResultAIDShom, estResultAIDShomTX ) )
 estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ -1, ], maxiter = 1,
    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "MK:L" )
+   method = "IL:L" )
 print( estResultAIDSunr )
 # imposing reestrictions via TX
 estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ -1, ], maxiter = 1,
    elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "MK:L", TX = TRUE )
+   method = "IL:L", TX = TRUE )
 print( estResultAIDSunrTX )
 estResultAIDSunrTX$est$bt <- NULL
 estResultAIDSunrTX$est$btcov <- NULL
