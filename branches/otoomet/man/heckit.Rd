@@ -14,15 +14,15 @@
 }
 
 \arguments{
-  \item{selection}{formula for the probit estimation (1st step)}
-  \item{formula}{formula to be estimated}
-  \item{data}{a data frame containing the variables in the model}
-  \item{inst}{one-sided formula specifying instrumental variables for a
-    2SLS/IV estimation on the second step.}
+  \item{selection}{formula for the probit estimation (1st step).}
+  \item{formula}{formula to be estimated.}
+  \item{data}{a data frame containing the data.}
+  \item{inst}{an optional one-sided formula specifying instrumental variables
+    for a 2SLS/IV estimation on the 2nd step.}
   \item{print.level}{this argument determines the level of printing which is
-    done during the minimization process.  The default value of
+    done during the estimation process.  The default value of
     '0' means that no printing occurs, a value of '1' means that
-    heckit reports what is currently done.}
+    \code{heckit} reports what is currently done.}
 }
 
 \value{
@@ -30,9 +30,9 @@
    following elements:
 
    \item{coef}{estimated coefficients, standard errors, t-values and
-   p-values}
+   P-values.}
 
-   \item{vcov}{variance covariance matrix of the estimated coefficients}
+   \item{vcov}{variance covariance matrix of the estimated coefficients.}
 
    \item{probit}{object of class 'glm' that contains the results of the
    1st step (probit estimation).}
@@ -41,17 +41,17 @@
    2nd step (linear estimation). Note: the standard errors of this
    estimation are biased, because they do not account for the
    estimation of \eqn{\gamma} in the 1st step estimation
-   (the correct standard errors are returned in \code{coef}}.
+   (the correct standard errors are returned in \code{coef}.}
 
    \item{sigma}{the estimated \eqn{\sigma}, the standard error of the residuals.}
 
    \item{rho}{the estimated \eqn{\rho}, see Greene (2003, p. 784).}
 
    \item{invMillsRatio}{the inverse Mills Ratios calculated from the results of
-   the 1sr step probit estimation.}
+   the 1st step probit estimation.}
 
    \item{imrDelta}{the \eqn{\delta}s calculated from the inverse Mills Ratios and
-   the results of the 1sr step probit estimation.}
+   the results of the 1st step probit estimation.}
 }
 
 \references{
@@ -61,6 +61,11 @@
 
   Johnston, J. and J. DiNardo (1997)
   \emph{Econometric Methods, Fourth Edition}, McGraw-Hill.
+
+  Lee, L., G. Maddala and R. Trost (1980)
+  Asymetric covariance matrices of two-stage probit and two-stage tobit
+  methods for simultaneous equations models with selectivity.
+  \emph{Econometrica}, 48, p. 491-503.
 
   Wooldridge, J. M. (2003)
   \emph{Introductory Econometrics: A Modern Approach, 2e}, Thomson South-Western.
