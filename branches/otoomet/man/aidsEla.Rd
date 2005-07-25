@@ -14,8 +14,9 @@
 \arguments{
    \item{coef}{a list containing the coefficients alpha, beta and gamma.}
    \item{W}{a vector of the shares at which the elasticities should be calculated.}
-   \item{P}{a vector of the prices at which the elasticities should be calculated.}
-   \item{formula}{the elsticity formulas to be used (see details).}
+   \item{P}{a vector of the prices at which the elasticities should be calculated
+      (only needed if formula 'AIDS' is used).}
+   \item{formula}{the elsticity formula to be used (see details).}
    \item{qNames}{an optional vector of strings containing the names of
       the quantities to label elasticities.}
    \item{pNames}{an optional vector of strings containing the names of
@@ -30,10 +31,10 @@
 
 \value{
   a list of class \code{aidsEla} containing following elements:
-  \item{formula}{the elasticity formula used to calculate these elasticities}
-  \item{exp}{vector of expenditure elasticities}
-  \item{marshall}{matrix of Marshallian (uncompensated) price elasticities}
-  \item{hicks}{matrix of Hicksian (compensated) price elasticities}
+  \item{formula}{the elasticity formula used to calculate these elasticities.}
+  \item{exp}{vector of expenditure elasticities.}
+  \item{marshall}{matrix of Marshallian (uncompensated) price elasticities.}
+  \item{hicks}{matrix of Hicksian (compensated) price elasticities.}
 }
 
 \references{

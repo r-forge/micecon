@@ -1,9 +1,10 @@
 \name{invMillsRatio}
 \alias{invMillsRatio}
-\title{Calculates the 'Inverse Mills Ratio' of probit models}
+\title{Inverse Mill's Ratio of probit models}
 
 \description{
-   Calculates the 'Inverse Mills Ratio' of probit models.
+   Calculates the 'Inverse Mill's Ratios' of univariate and bivariate
+   probit models.
 }
 
 \usage{
@@ -12,17 +13,24 @@
 
 \arguments{
    \item{x}{probit model estimated by \code{\link{glm}} or
-      \code{\link[VGAM]{vglm}}}
+      \code{\link[VGAM]{vglm}}.}
    \item{all}{a logical value indicating whether the inverse Mill's Ratios
-      should be calculated for all observations}
+      should be calculated for all observations.}
+}
+
+\details{
+   The formula to calculate the inverse Mill's ratios for univariate probit
+   models is taken from Greene (2003, p. 785),
+   whereas the formulas for bivariate probit models are derived in
+   Henning and Henningsen (2005).
 }
 
 \value{
-   A data frame that contains the Inverse Mills Ratio (IMR) and the delta
-   values.
+   A data frame that contains the Inverse Mill's Ratios (IMR) and the delta
+   values (see Greene, 2003, p. 784).
 
    If a univariate probit estimation is provided, the variables
-   \code{IMR1} and \code{IMR0} are the Inverse Mills Ratios to correct
+   \code{IMR1} and \code{IMR0} are the Inverse Mill's Ratios to correct
    for a sample selection bias of y = 1 and y = 0, respectively.
    Accordingly, 'delta1' and 'delta0' are the corresponding delta values.
 
@@ -32,6 +40,18 @@
    of y = 1 and y = 0 in equations 'a' and 'b', respectively.
    Accordingly, 'deltaa1', 'deltaa0', 'deltab1' and 'deltab0' are the
    corresponding delta values.
+}
+
+\references{
+  Greene, W. H. (2003)
+  \emph{Econometric Analysis, Fifth Edition}, Prentice Hall.
+
+  Henning, C.H.C.A and A. Henningsen (2005)
+  Modeling Price Response of Farm Households in Imperfect
+  Labor Markets in Poland:
+  Incorporating Transaction Costs and Heterogeneity into a Farm
+  Household Approach.
+  Unpublished, University of Kiel, Germany.
 }
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
