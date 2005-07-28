@@ -6,9 +6,10 @@ This function is essentially \code{\link{maxNR}} where the hessian is
 approximated by the information equation.}
 }
 \usage{
-maxBHHH(fn, grad = NULL, theta, print.level = 0, iterlim = 100, ...)
+maxBHHH(fn, grad = NULL, theta, print.level = 0, iterlim = 100,
+   ...)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{fn}{function to be maximised, must return vector of
     observation-specific likelihood values.  Those are summed for a
@@ -21,28 +22,32 @@ maxBHHH(fn, grad = NULL, theta, print.level = 0, iterlim = 100, ...)
     \code{t(numericGradient(fn))}, not \code{numericGradient(fn)}.
     It is summed over
     observations in order to get a single gradient vector.}
-  \item{theta}{Initial values for the parameters to be optimized over.}
-  \item{print.level}{A larger number prints more working information}
-  \item{iterlim}{Maximum number of iterations}
-  \item{\dots}{Further arguments for \code{\link{maxNR}}, \code{fn} and \code{grad}}
+  \item{theta}{initial values for the parameters to be optimized over.}
+  \item{print.level}{a larger number prints more working information.}
+  \item{iterlim}{maximum number of iterations.}
+  \item{\dots}{further arguments for \code{\link{maxNR}}, \code{fn} and \code{grad}.}
 }
 \details{
   \code{maxBHHH} uses information equality in order to approximate the
   hessian of the log-likelihood function.  This must be average (summed)
   over individual observations.  Hence we need log-likelihood and
   gradient by observations, hessian is calculated as \code{-t(gradient)
-    \%*\% gradient}. 
+    \%*\% gradient}.
 }
 \value{
   Object of class "maximisation":
   \item{type}{Character string: "BHHH maximisation"}
-  Plus the other components inherited from \code{\link{maxNR}}}
+  Plus the other components inherited from \code{\link{maxNR}}.
 }
+
 \author{Ott Toomet \email{otoomet@ut.ee}}
+
 \section{Warning }{As \code{maxBHHH} uses likelihood-specific
   information equation, it is only suitable for maximising log-likelihood!}
+
 \seealso{\code{\link{maxNR}}, \code{\link{maxBFGS}},
-  \code{\link{optim}}, \code{\link{nlm}}}
+  \code{\link{optim}}, \code{\link{nlm}}.}
+
 \examples{
 ## ML estimation of exponential duration model:
 t <- rexp(100, 2)
