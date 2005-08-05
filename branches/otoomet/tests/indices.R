@@ -68,7 +68,7 @@ for( i in 1:4 ) {
    Blanciforti86[[ qNames[ i ] ]] <- Blanciforti86[[ wNames[ i ] ]] *
       Blanciforti86[[ "xFood" ]] / Blanciforti86[[ pNames[ i ] ]]
 }
-allObs <- rep( TRUE, nrow( Blanciforti86 ) )
+allObs <- !is.na( Blanciforti86$pFood1 )
 
 ## price indices for Blanciforti
 cat( "\nLaspeyres Price Indices for Blanciforti\n" )
