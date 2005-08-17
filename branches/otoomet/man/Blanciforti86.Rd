@@ -19,12 +19,8 @@
    (1) beef and veal, (2) pork, (3) fish, and (4) poultry.
    For each of these groups the consumption expenditures, price indices,
    and expenditure shares are available.
-}
 
-\usage{data(Blanciforti86)}
-
-\format{
-   This data frame contains the following columns:
+   This data frame contains the following variables / columns:
    \describe{
       \item{year}{The year.}
       \item{xAggX}{Expenditure on the aggregate commodity group X
@@ -64,6 +60,9 @@
       \item{population12}{Population as presented in Table 5.A.12 (in  Millions).}
    }
 }
+
+\usage{data(Blanciforti86)}
+
 
 \source{
    Blanciforti, Laura. A., Richard D. Green and Gordon A. King (1986)
