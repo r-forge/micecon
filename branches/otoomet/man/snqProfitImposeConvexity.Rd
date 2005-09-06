@@ -35,7 +35,9 @@
       * gamma = \eqn{\gamma_{ij}} (only if quasi-fix inputs are present).\cr
       * allCoef = vector of all coefficients.\cr
    }
-   \item{ela}{matrix with the price elasticities at mean prices and mean quantities.}
+   \item{ela}{matrix of the price elasticities at mean prices and mean quantities.}
+   \item{ela}{matrix of the fixed factor elasticities at mean prices and mean
+      quantities.}
    \item{hessian}{hessian matrix of the profit function with respect to prices
       evaluated at mean prices.}
    \item{convexity}{logical. Convexity of the profit function.}
