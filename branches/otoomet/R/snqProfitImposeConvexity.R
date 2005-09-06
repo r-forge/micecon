@@ -87,6 +87,10 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
       estResult$weights ) # constrained Hessian matrix
    result$ela <- snqProfitEla( result$coef$beta, estResult$pMean, estResult$qMean,
       estResult$weights ) # elasticities of constrained model
+   if( nFix > 0 && estResult$form == 0 ) {
+      result$fixEla <- snqProfitFixEla( result$coef$delta, result$coef$gamma,
+         result$qMeans, result$fMeans, estResult$weights )
+   }
    result$estData <- estResult$estData
    result$weights <- estResult$weights
    result$normPrice <- estResult$normPrice
