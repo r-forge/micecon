@@ -5,11 +5,15 @@ printIndices <- function( what, ... ) {
    for( i in c( "Laspeyres", "Paasche", "Fisher" ) ) {
       cat( "\n", i, "\n" )
       if( what == "p" ) {
-         index <- priceIndex( ..., method = i )
+         index <- priceIndex( ..., method = i, weights = TRUE )
       } else {
-         index <- quantityIndex( ..., method = i )
+         index <- quantityIndex( ..., method = i, weights = TRUE )
       }
       print( index )
+      if( all.equal( rowSums( attributes( index )$weights[ !is.na( index ), ] ),
+         rep( 1, sum( !is.na( index ) ) ) ) != TRUE ) {
+         cat( "\nrowSums are not equal to one!!!\n\n" )
+      }
    }
 }
 
