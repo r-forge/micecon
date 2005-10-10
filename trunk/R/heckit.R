@@ -23,15 +23,13 @@ heckit <- function( selection, formula, data, inst = NULL,
 
    result <- list()
 
-   probitdummy <- model.frame( selection, data = data )[ , 1 ]
-   test <- levels( as.factor( as.numeric( probitdummy ) ) )
-   if( length( test ) != 2 ) {
-      stop( "the left hand side of 'selection' may only contain",
-         " 1 and 0 or TRUE and FALSE" )
-   } else if( !all.equal( test, c( "0", "1" ) ) ) {
-      stop( "the left hand side of 'selection' may only contain",
-         " 1 and 0 or TRUE and FALSE" )
+   probitEndogenous <- model.frame( selection, data = data )[ , 1 ]
+   probitLevels <- levels( as.factor( probitEndogenous ) )
+   if( length( probitLevels ) != 2 ) {
+      stop( "the left hand side of 'selection' has to contain",
+         " exactly two levels (e.g. FALSE and TRUE)" )
    }
+   probitDummy <- probitEndogenous == probitLevels[ 2 ]
 
    if( print.level > 0 ) {
       cat ( "\nEstimating 1st step Probit model . . ." )
@@ -55,7 +53,7 @@ heckit <- function( selection, formula, data, inst = NULL,
       if( print.level > 0 ) {
          cat ( "Estimating 2nd step OLS model . . ." )
       }
-      result$lm <- lm( step2formula, data, subset=probitdummy == 1 )
+      result$lm <- lm( step2formula, data, subset = probitDummy )
       resid <- residuals( result$lm )
        step2coef <- coefficients( result$lm )
       if( print.level > 0 ) cat( " OK\n" )
@@ -67,14 +65,14 @@ heckit <- function( selection, formula, data, inst = NULL,
       instImr <- as.formula( paste( "~", inst[ 2 ], "+ invMillsRatio" ) )
       library( systemfit )
       result$lm <- systemfit( "2SLS", formulaList, inst = instImr,
-         data = data[ probitdummy == 1, ] )
+         data = data[ probitDummy, ] )
       resid <- residuals( result$lm )[ , 1 ]
        step2coef <- coefficients( result$lm$eq[[ 1 ]] )
       if( print.level > 0 ) cat( " OK\n" )
    }
    result$sigma <- as.numeric( sqrt( crossprod( resid ) /
-      sum( probitdummy == 1 ) +
-      mean(result$imrDelta[ probitdummy == 1 ] ) *
+      sum( probitDummy ) +
+      mean(result$imrDelta[ probitDummy ] ) *
        step2coef[ "invMillsRatio" ]^2 ) )
    result$rho <-  step2coef[ "invMillsRatio" ] / result$sigma
    names(result$rho) <- NULL
@@ -90,10 +88,10 @@ heckit <- function( selection, formula, data, inst = NULL,
       xMat <- result$lm$eq[[ 1 ]]$x
    }
    result$vcov <- heckitVcov( xMat,
-      model.matrix( result$probit )[ probitdummy == 1, ],
+      model.matrix( result$probit )[ probitDummy, ],
       vcov( result$probit ),
       result$rho,
-      result$imrDelta[ probitdummy == 1 ],
+      result$imrDelta[ probitDummy ],
       result$sigma )
 # result$vcov <- result$sigma^2 * solve( crossprod( xMat ) ) %*%
 #      ( txd2Mat %*%

@@ -14,8 +14,8 @@
 }
 
 \arguments{
-  \item{selection}{formula for the probit estimation (1st step).}
-  \item{formula}{formula to be estimated.}
+  \item{selection}{formula for the probit estimation (1st step) (see details).}
+  \item{formula}{formula to be estimated (2nd step).}
   \item{data}{a data frame containing the data.}
   \item{inst}{an optional one-sided formula specifying instrumental variables
     for a 2SLS/IV estimation on the 2nd step.}
@@ -23,6 +23,19 @@
     done during the estimation process.  The default value of
     '0' means that no printing occurs, a value of '1' means that
     \code{heckit} reports what is currently done.}
+}
+
+\details{
+   The endogenous variable of the argument 'selection' must have exactly
+   two levels (e.g. 'FALSE' and 'TRUE', or '0' and '1').
+   Only those observations are included in the second step estimation
+   (argument 'formula'), where this variable equals the second element
+   of its levels.
+   By default the levels are sorted in increasing order
+   ('FALSE' is before 'TRUE', and '0' is before '1').
+   Hence, the second step is generally estimated for those
+   observations, where the endogenous variable of the first step
+   estimation equals 'TRUE' or '1'.
 }
 
 \value{

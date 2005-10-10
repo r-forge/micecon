@@ -51,8 +51,7 @@ Multiple R-Squared: 0.126368 Adjusted R-Squared: 0.116017
 > print( summary( greene$lm ) )
 
 Call:
-lm(formula = step2formula, data = data, subset = probitdummy == 
-    1)
+lm(formula = step2formula, data = data, subset = probitDummy)
 
 Residuals:
    Min     1Q Median     3Q    Max 
@@ -139,8 +138,7 @@ Multiple R-Squared: 0.156935 Adjusted R-Squared: 0.148963
 > print( summary( wooldridge$lm ) )
 
 Call:
-lm(formula = step2formula, data = data, subset = probitdummy == 
-    1)
+lm(formula = step2formula, data = data, subset = probitDummy)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
