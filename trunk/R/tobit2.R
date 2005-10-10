@@ -1,4 +1,4 @@
-tobit2 <- function(selection, formula, 
+tobit2 <- function(selection, formula,
                    data=sys.frame(sys.parent()),
                    method="ml",
                    b0=NULL, print.level=0,
@@ -143,16 +143,13 @@ tobit2 <- function(selection, formula,
       stop( "argument 'selection' may not include a variable",
                   " names starting with 'probit'" )
    }
-   data$probitdummy <- model.frame( selection, data = data )[ , 1 ]
-   test <- levels( as.factor( as.numeric( data$probitdummy ) ) )
-   if( length( test ) != 2 ) {
-      stop( "the left hand side of 'selection' may only contain",
-                  " 1 and 0 or TRUE and FALSE" )
+   probitEndogenous <- model.frame( selection, data = data )[ , 1 ]
+   probitLevels <- levels( as.factor( probitEndogenous ) )
+   if( length( probitLevels ) != 2 ) {
+      stop( "the left hand side of 'selection' has to contain",
+         " exactly two levels (e.g. FALSE and TRUE)" )
    }
-   if( !all.equal( test, c( "0", "1" ) ) ) {
-      stop( "the left hand side of 'selection' may only contain",
-                  " 1 and 0 or TRUE and FALSE" )
-   }
+   data$probitDummy <- probitEndogenous == probitLevels[ 2 ]
    ## now check whether two-step method is needed: either for final estimate or initial parameters
    if(method == "2step" | is.null(b0)) {
       twoStep <- heckit(selection, formula, data)
