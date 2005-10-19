@@ -5,7 +5,7 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
       stop( "argument 'estResult' must be of class 'snqProfitEst'" )
    }
    if( estResult$convexity ) {
-      warning( "This profit function is already convex" )
+      warning( "This profit function is already convex in prices" )
       return( estResult )
    }
    pNames  <- names( estResult$pMeans )
