@@ -1,4 +1,4 @@
-maxLik <- function(logLik, gradLik=NULL, HessLik=NULL, theta,
+maxLik <- function(logLik, grad=NULL, hess=NULL, theta,
                    method="Newton-Raphson",
                    ...) {
    ## Maximum Likelihood estimation.
@@ -6,12 +6,12 @@ maxLik <- function(logLik, gradLik=NULL, HessLik=NULL, theta,
    ## Newton-Raphson maximisation
    ## Parameters:
    ## logLik     log-likelihood function.  First argument must be the vector of parameters.
-   ## gradLik    gradient of log-likelihood.  If NULL, numeric gradient is used.  Must return either
+   ## grad       gradient of log-likelihood.  If NULL, numeric gradient is used.  Must return either
    ##               * vector, length=NParam
    ##               * matrix, dim=c(NObs, 1).  Treated as vector
    ##               * matrix, dim=c(NObs, NParam).  In this case the rows are simply
    ##                 summed (useful for maxBHHH).
-   ## HessLik    Hessian function (numeric used if NULL)
+   ## hess       Hessian function (numeric used if NULL)
    ## theta      initial vector of parameters (eventually w/names)
    ## method     maximisation method (Newton-Raphson)
    ## ...        additional arguments for the maximisation routine
@@ -46,7 +46,7 @@ maxLik <- function(logLik, gradLik=NULL, HessLik=NULL, theta,
                         "nr" = maxNR,
                         "Otherwise" = stop( "unknown method ", method )
                         )
-   result <- maxRoutine(logLik, gradLik, HessLik, theta, ...)
+   result <- maxRoutine(logLik, grad, hess, theta, ...)
    class(result) <- c("maxLik", class(result))
    result
 }

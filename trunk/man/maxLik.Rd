@@ -10,19 +10,19 @@
   inverse of negative hessian is the variance-covariance matrix.
 }
 \usage{
-maxLik(logLik, gradLik = NULL, HessLik = NULL, theta, method = "Newton-Raphson", ...)
+maxLik(logLik, grad = NULL, hess = NULL, theta, method = "Newton-Raphson", ...)
 }
 \arguments{
   \item{logLik}{log-likelihood function.  Must have the parameter vector
     as the first argument.  Must return either a single log-likelihood
     value or a numeric vector where each component is log-likelihood
     corresponding to individual observations.}
-  \item{gradLik}{gradient of log-likelihood.  Must have the parameter
+  \item{grad}{gradient of log-likelihood.  Must have the parameter
     vector as the first argument.  Must return either single gradient
     vector with length equal to the number of parameters, or a matrix
     where each row corresponds to gradient vector of individual
     observations.  If \code{NULL}, numeric gradient will be used.}
-  \item{HessLik}{hessian of log-likelihood.  Must have the parameter
+  \item{hess}{hessian of log-likelihood.  Must have the parameter
     vector as the first argument.  Must return a square matrix.  If
     \code{NULL}, numeric gradient will be used.}
   \item{theta}{numeric vector, initial value of parameters.}
@@ -31,7 +31,8 @@ maxLik(logLik, gradLik = NULL, HessLik = NULL, theta, method = "Newton-Raphson",
 }
 \value{
   object of class 'maxLik' which inherits from class 'maximisation'.
-  Exactly equal to class 'maximisation', see \code{\link{maxNR}}.
+  Components are identical to those of class 'maximisation',
+  see \code{\link{maxNR}}.
 }
 \author{Ott Toomet \email{otoomet@ut.ee}}
 \seealso{\code{\link{maxNR}}, \code{\link{nlm}} and \code{\link{optim}}

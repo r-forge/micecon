@@ -19,13 +19,15 @@ maxNR(fn, grad = NULL, hess = NULL, theta, print.level = 0,
     if necessary.  If the parameters are out of range, \code{fn} should
     return \code{NA}.  See details for constant parameters.}
   \item{grad}{gradient of the function.  If \code{NULL}, numeric
-    gradient is used.  For BHHH method it must return a matrix, where
-    rows corresponds to the gradients of the observations.  Note that
-    this corresponds to
-    \code{t(numericGradient(fn))}, not \code{numericGradient(fn)}.
-    It is summed over
-    observations in order to get a single gradient vector.  It is summed over
-    observations by maxNR if necessary.}
+    gradient is used.  It must return a gradient vector, or matrix where
+    \emph{columns} correspond to individual parameters.  Note that this corresponds to
+    \code{t(numericGradient(fn))}, not \code{numericGradient(fn)}.  For
+    BHHH method,
+    the rows must correspond to the likelihood gradients of the individual
+    observations, it will be summed over
+    observations in order to get a single gradient vector.  Similar
+    observation-wise matrix is allowed for \code{maxNR} too, it will be
+    simply summed over observations.}
   \item{hess}{hessian matrix of the function.  If missing, numeric
     hessian, based on gradient, is used.  }
   \item{theta}{initial value for the parameter vector}

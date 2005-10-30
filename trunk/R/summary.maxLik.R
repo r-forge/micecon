@@ -1,3 +1,25 @@
+
+coef.maxLik <- function(object, ...)
+    object$estimate
+
+print.summary.maxLik <- function( x, ... ) {
+   cat("--------------------------------------------\n")
+   cat("Maximum Likelihood estimation\n")
+   cat(x$type, ", ", x$iterations, " iterations\n", sep="")
+   cat("Return code ", x$code, ": ", x$message, "\n", sep="")
+   if(!is.null(x$estimate)) {
+      cat("Log-Likelihood:", x$loglik, "\n")
+      cat(x$NActivePar, " free parameters\n")
+      cat("Estimates:\n")
+      print(x$estimate)
+      if(!is.null(x$Hessian)) {
+         cat("Hessian:\n")
+         print(x$Hessian)
+      }
+   }
+   cat("--------------------------------------------\n")
+}
+
 summary.maxLik <- function( object, hessian=FALSE, ... ) {
    ## object      object of class "maxLik"
    ## hessian     logical, whether to include hessian in summary
@@ -13,31 +35,32 @@ summary.maxLik <- function( object, hessian=FALSE, ... ) {
    ## iterations : number of iterations
    ## type       : type of optimisation
    ##
-   NParam <- length(object$estimate)
-   if(!is.null(object$acivePar)) {
-      activePar <- object$activeParp
+   result <- object$maximisation
+   NParam <- length(coef <- coefficients(object))
+   if(!is.null(object$activePar)) {
+      activePar <- object$activePar
    } else {
       activePar <- rep(TRUE, NParam)
    }
    if(object$code < 100) {
       if(min(abs(eigen(object$hessian[activePar,activePar],
-            symmetric=TRUE, only.values=TRUE)$values)) > 1e-6) {
+                       symmetric=TRUE, only.values=TRUE)$values)) > 1e-6) {
          varcovar <- matrix(0, NParam, NParam)
          varcovar[activePar,activePar] <-
-            solve(-object$hessian[activePar,activePar])
+             solve(-object$hessian[activePar,activePar])
          hdiag <- diag(varcovar)
          if(any(hdiag < 0)) {
             warning("Diagonal of variance-covariance matrix not positive!\n")
          }
          stdd <- sqrt(hdiag)
-         t <- object$estimate/stdd
+         t <- coef/stdd
          p <- 2*pnorm( -abs( t))
       } else {
          stdd <- 0
          t <- 0
          p <- 0
       }
-      results <- cbind(coef=object$estimate, stdd, t, "P(|b| > t)"=p)
+      results <- cbind(coef, stdd, t, "P(|b| > t)"=p)
       Hess <- NULL
       if(hessian) {
          Hess <- object$hessian
