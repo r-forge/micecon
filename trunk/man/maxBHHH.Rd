@@ -6,7 +6,7 @@ This function is essentially \code{\link{maxNR}} where the hessian is
 approximated by the information equation.}
 }
 \usage{
-maxBHHH(fn, grad = NULL, theta, print.level = 0, iterlim = 100,
+maxBHHH(fn, grad = NULL, hess=NULL, theta, print.level = 0, iterlim = 100,
    ...)
 }
 
@@ -22,6 +22,8 @@ maxBHHH(fn, grad = NULL, theta, print.level = 0, iterlim = 100,
     \code{t(numericGradient(fn))}, not \code{numericGradient(fn)}.
     It is summed over
     observations in order to get a single gradient vector.}
+  \item{hess}{Hessian of the function.  Not used, for argument
+    compatibility reasons.}
   \item{theta}{initial values for the parameters to be optimized over.}
   \item{print.level}{a larger number prints more working information.}
   \item{iterlim}{maximum number of iterations.}

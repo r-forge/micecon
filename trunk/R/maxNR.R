@@ -29,7 +29,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
    ## iterlim     - maximum # of iterations
    ## constPar    - NULL or an index vector -- which parameters are taken as
    ##               constants
-
+   ##
    ## RESULTS:
    ## a list of class "maximisation":
    ## maximum     function value at maximum
@@ -85,10 +85,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
       }
       ## Now check if the gradient is vector or matrix...
       if(!is.null(dim(gr))) {
-         if(dim(gr)[1] > 1 & dim(gr)[2] == NParam) {
-            # it was matrix -- columns correspond to observations
-            return(colSums(gr))
-         }
+         return(colSums(gr))
       } else {
          ## ... or vector if only one parameter
          if(length(gr) > NParam) {
@@ -104,6 +101,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
       return(numericHessian(fn, gradient, theta, ...))
    }
    ## -------------------------------------------------
+   cat(" ")
    maximisation.type <- "Newton-Raphson maximisation"
    nimed <- names(theta)
    NParam <- length(theta)
@@ -132,7 +130,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
       stop("NA in the initial Hessian")
    }
    if( print.level > 1) {
-      cat( "----- Inital parameters: -----\n")
+      cat( "----- Initial parameters: -----\n")
       cat( "fcn value:",
       as.vector(f1), "\n")
       a <- cbind(theta, G1, as.integer(activePar))
@@ -144,7 +142,6 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
          print( H1)
       }
    }
-   cat(" ")
    repeat {
       iter <- iter + 1
       lambda <- 0
@@ -273,6 +270,6 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
                   activePar=activePar,
                   iterations=iter,
                   type=maximisation.type)
-   class(result) <- "maximisation"
+   class(result) <- c("maximisation", class(result))
    invisible(result)
 }

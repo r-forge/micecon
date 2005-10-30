@@ -31,8 +31,8 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    gradlik <- function(beta) {
       xb0 <- x0 %*% beta
       xb1 <- x1 %*% beta
-      gradlik <- - t(x0) %*% (dnorm(xb0)/pnorm(xb0, lower.tail=FALSE)) +
-          t(x1) %*% (dnorm(xb1)/pnorm(xb1))
+      gradlik <- - t(dnorm(xb0)/pnorm(xb0, lower.tail=FALSE)) %*% x0 +
+          t(dnorm(xb1)/pnorm(xb1)) %*% x1
    }
    hesslik <- function(beta) {
       xb0 <- as.vector( x0 %*% beta)

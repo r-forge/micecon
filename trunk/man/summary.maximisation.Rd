@@ -26,14 +26,14 @@ summary.maximisation( object, hessian=FALSE, unsucc.step=FALSE, ... )
   \item{message}{a brief message, explaining code.}
   \item{unsucc.step}{description of last unsuccessful step, only if
     requested and \code{code} == 3}
-  \item{estimate}{list with following components:
+  \item{maximum}{function value at maximum}
+  \item{estimate}{matrix with following columns:
     \itemize{
-      \item{value:}{function value at maximum}
-      \item{results:}{matrix of results, including estimated values,
-      std-deviations, t-values and corresponding probabilities}
-      \item{hessian:}{hessian matrix at maximum, only if requested.}
+      \item{results:}{coefficient estimates at maximum}
+      \item{gradient:}{estimated gradient at maximum}
     }
   }
+  \item{hessian}{estimated hessian at maximum, only if requested}
 }
 \author{Ott Toomet \email{siim@obs.ee}}
 \section{WARNING }{Probabilities of t-values depend on several
