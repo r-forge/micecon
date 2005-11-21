@@ -44,13 +44,13 @@
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
 \examples{
-   data( Missong77 )
+   data( Missong03E7.7 )
    # Laspeyres Price Indices
    priceIndex( c( "p.beef", "p.veal", "p.pork" ),
-      c( "q.beef", "q.veal", "q.pork" ), 1, Missong77 )
+      c( "q.beef", "q.veal", "q.pork" ), 1, Missong03E7.7 )
    # Paasche Price Indices
    priceIndex( c( "p.beef", "p.veal", "p.pork" ),
-      c( "q.beef", "q.veal", "q.pork" ), 1, Missong77, "Paasche" )
+      c( "q.beef", "q.veal", "q.pork" ), 1, Missong03E7.7, "Paasche" )
 
    data( Bleymueller79E25.1 )
    # Laspeyres Price Indices

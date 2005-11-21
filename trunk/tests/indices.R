@@ -17,15 +17,15 @@ printIndices <- function( what, ... ) {
    }
 }
 
-## Missong77
-data( Missong77 )
-## price indices for Missong77
+## Missong03E7.7
+data( Missong03E7.7 )
+## price indices for Missong03E7.7
 printIndices( "p",  c( "p.beef", "p.veal", "p.pork" ),
-   c( "q.beef", "q.veal", "q.pork" ), 1, Missong77 )
+   c( "q.beef", "q.veal", "q.pork" ), 1, Missong03E7.7 )
 
-## quantity indices for Missong77
+## quantity indices for Missong03E7.7
 printIndices( "q",  c( "p.beef", "p.veal", "p.pork" ),
-   c( "q.beef", "q.veal", "q.pork" ), 1, Missong77 )
+   c( "q.beef", "q.veal", "q.pork" ), 1, Missong03E7.7 )
 
 
 ## Bleymueller79E25.1
