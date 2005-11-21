@@ -1,6 +1,6 @@
-\name{Bleymueller251}
+\name{Bleymueller79E25.1}
 \docType{data}
-\alias{Bleymueller251}
+\alias{Bleymueller79E25.1}
 
 \title{Artificial Prices and Quantities}
 
@@ -10,7 +10,7 @@
    This data are part of Exercise 25.1 of Bleymueller, Gehler und Guetlicher (1979).
 }
 
-\usage{data(Bleymueller251)}
+\usage{data(Bleymueller79E25.1)}
 
 \format{
    This data frame contains the following columns:
