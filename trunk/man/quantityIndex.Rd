@@ -50,13 +50,13 @@
    quantityIndex( c( "p.beef", "p.veal", "p.pork" ),
       c( "q.beef", "q.veal", "q.pork" ), 1, Missong77, "Paasche" )
 
-   data( Bleymueller251 )
+   data( Bleymueller79E25.1 )
    # Laspeyres Quantity Indices
    quantityIndex( c( "p.A", "p.B", "p.C", "p.D" ), c("q.A", "q.B", "q.C", "q.D" ),
-      1, Bleymueller251 )
+      1, Bleymueller79E25.1 )
    # Paasche Quantity Indices
    quantityIndex( c( "p.A", "p.B", "p.C", "p.D" ), c("q.A", "q.B", "q.C", "q.D" ),
-      1, Bleymueller251, "Paasche" )
+      1, Bleymueller79E25.1, "Paasche" )
 }
 
 \keyword{models}

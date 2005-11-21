@@ -107,11 +107,11 @@ attr(,"weights")
 1989 0.3115465 0.01329645 0.6751570
 > 
 > 
-> ## Bleymueller251
-> data( Bleymueller251 )
-> ## price indices for Bleymueller251
+> ## Bleymueller79E25.1
+> data( Bleymueller79E25.1 )
+> ## price indices for Bleymueller79E25.1
 > printIndices( "p",  c( "p.A", "p.B", "p.C", "p.D" ),
-+    c( "q.A", "q.B", "q.C", "q.D" ),  1, Bleymueller251 )
++    c( "q.A", "q.B", "q.C", "q.D" ),  1, Bleymueller79E25.1 )
 
  Laspeyres 
     1970     1974     1978 
@@ -140,9 +140,9 @@ attr(,"weights")
 1974 0.3110574 0.1743807 0.1932931 0.3212689
 1978 0.3311273 0.1828717 0.1602046 0.3257964
 > 
-> ## quantity indices for Bleymueller251
+> ## quantity indices for Bleymueller79E25.1
 > printIndices( "q",  c( "p.A", "p.B", "p.C", "p.D" ),
-+    c("q.A", "q.B", "q.C", "q.D" ), 1, Bleymueller251 )
++    c("q.A", "q.B", "q.C", "q.D" ), 1, Bleymueller79E25.1 )
 
  Laspeyres 
     1970     1974     1978 
