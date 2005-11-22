@@ -7,7 +7,7 @@ aidsEst                 Estimation of the Almost Ideal Demand System
 aidsPx                  Price Index for the AIDS
 aidsTestConsist         Consistency Test of the AIDS
 Blanciforti86           U.S. consumption data
-Bleymueller251          Artificial Prices and Quantities
+Bleymueller79E25.1      Artificial Prices and Quantities
 coefTable               Coefficient Table
 Coelli                  Data provided with Coelli's Frontier 4.1
 compare.derivatives     function to compare analytic and numeric
@@ -24,7 +24,7 @@ maxBFGS                 BFGS maximisation
 maxBHHH                 BHHH maximisation
 maxLik                  Maximum likelihood estimation
 maxNR                   Newton-Raphson maximisation
-Missong77               Meat Prices and Quantities in Germany
+Missong03E7.7           Meat Prices and Quantities in Germany
 Mroz87                  U.S. Women's Labor Force Participation
 numericGradient         Functions to Calculate Numeric Derivatives
 priceIndex              Calculate Price Indices
