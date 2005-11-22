@@ -143,9 +143,13 @@ aidsEst <- function( pNames, wNames, xtName,
       } else {
          TXmat <- diag( ( nGoods - 1 ) * ( nGoods + 2 ) )
       }
-      Jmat <- t( TXmat ) %*% ( diag( nGoods - 1 ) %x% t( Gmat ) ) %*% jacobian
-      JmatInv <- TXmat %*% solve( Jmat ) %*% t( TXmat )
-      bcov <- JmatInv  %*% ( est$rcov %x% ( t( Gmat ) %*% Gmat ) ) %*%
+      # Jmat <- t( TXmat ) %*% ( diag( nGoods - 1 ) %x% t( Gmat ) ) %*% jacobian
+      # JmatInv <- TXmat %*% solve( Jmat ) %*% t( TXmat )
+      # bcov <- JmatInv  %*% ( est$rcov %x% ( t( Gmat ) %*% Gmat ) ) %*%
+      #    t( JmatInv )
+      Jmat <- crossprod( TXmat, ( diag( nGoods - 1 ) %x% t( Gmat ) ) ) %*% jacobian
+      JmatInv <- TXmat %*% solve( Jmat, t( TXmat ) )
+      bcov <- JmatInv  %*% ( est$rcov %x% crossprod( Gmat ) ) %*%
          t( JmatInv )
       result$coef <- aidsCoef( est$b, bcov, pNames = pNames,
          wNames = wNames, df = est$df )  # coefficients
