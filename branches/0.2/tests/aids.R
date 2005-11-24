@@ -138,6 +138,28 @@ estResultAIDSunr$est$R.restr <- NULL
 estResultAIDSunr$est$q.restr <- NULL
 print( all.equal( estResultAIDSunr, estResultAIDSunrTX ) )
 
+## with NAs
+estResultLaSNa <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
+   rcovformula=1, tol=1e-7, method = "LA:S" )
+print( estResultLaSNa )
+
+estResultLaSlNa <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
+   rcovformula=1, tol=1e-7, method = "LA:SL" )
+print( estResultLaSlNa )
+
+estResultLaLNa <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
+   rcovformula=1, tol=1e-7, method = "LA:L" )
+print( estResultLaLNa )
+
+estResultAIDSNa <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
+   rcovformula=1, tol=1e-7, method = "IL:L" )
+print( estResultAIDSNa )
+
+
 ########## Elasticities ###############
 cat( "\nAIDS: Elasticities\n" )
 wMeans <- colMeans( Blanciforti86[ set, wNames ] )
