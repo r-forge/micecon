@@ -42,6 +42,12 @@ aidsEst <- function( pNames, wNames, xtName,
       hom <- TRUE  # symmetry implies homogeneity
       warning( "symmetry implies homogeneity: imposing additionally homogeniety" )
    }
+   allVarNames <- c( pNames, wNames, xtName, ivNames )
+   if( sum( is.na( data[ , allVarNames ] ) ) > 0 ) {
+      warning( "there are some NAs in the data,",
+         " all observations (rows) with NAs are excluded from the analysis" )
+      data <- data[ !is.na( rowSums( data[ , allVarNames ] ) ), ]
+   }
    nObs   <- nrow( data )      # number of observations
    sample <- if( px == "SL") c( 2:nObs ) else c( 1:nObs )
    result <- list()
