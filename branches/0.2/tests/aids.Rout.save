@@ -1,6 +1,7 @@
 
 R : Copyright 2005, The R Foundation for Statistical Computing
-Version 2.1.1  (2005-06-20), ISBN 3-900051-07-0
+Version 2.2.0  (2005-10-06 r35749)
+ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -610,6 +611,184 @@ wFood4  0.301850 -0.0329480  0.1462191 -0.536803
 > estResultAIDSunr$est$q.restr <- NULL
 > print( all.equal( estResultAIDSunr, estResultAIDSunrTX ) )
 [1] TRUE
+> 
+> ## with NAs
+> estResultLaSNa <- aidsEst( pNames, wNames, "xFood",
++    data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
++    rcovformula=1, tol=1e-7, method = "LA:S" )
+Warning message:
+there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, maxiter = 1,  
+> print( estResultLaSNa )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+
+Estimation Method: Linear Approximation (LA) with Stone Index (S)
+
+Estimated Coefficients
+alpha
+   wFood1    wFood2    wFood3    wFood4 
+-0.247298  0.109249  0.268238  0.869811 
+beta
+    wFood1     wFood2     wFood3     wFood4 
+ 0.3239892  0.0558632 -0.0786261 -0.3012262 
+gamma
+           pFood1      pFood2      pFood3      pFood4
+wFood1  0.1041502 -0.13988015 -0.01156184  0.04729179
+wFood2 -0.1398802  0.15690865  0.00347272 -0.02050122
+wFood3 -0.0115618  0.00347272  0.01248986 -0.00440074
+wFood4  0.0472918 -0.02050122 -0.00440074 -0.02238983
+
+Demand Elasticities (original AIDS formula)
+Expenditure Elasticities
+  wFood1   wFood2   wFood3   wFood4 
+2.043864 1.278837 0.413785 0.152073 
+
+Marshallian (uncompensated) Price Elasticities
+           pFood1     pFood2     pFood3    pFood4
+wFood1 -0.4094737 -0.5618985 -0.3176258 -0.754866
+wFood2 -0.6300948 -0.2465112 -0.0575598 -0.344671
+wFood3 -0.2293851  0.0883493 -0.7494256  0.476676
+wFood4 -0.0739839  0.0326323  0.2153598 -0.326081
+
+Hicksian (compensated) Price Elasticities
+           pFood1      pFood2     pFood3     pFood4
+wFood1  0.2248905 -0.15242319 -0.0434926 -0.0287831
+wFood2 -0.2331759  0.00969569  0.1139642  0.1096360
+wFood3 -0.1009566  0.17124856 -0.6939267  0.6236735
+wFood4 -0.0267844  0.06309907  0.2357565 -0.2720570
+> 
+> estResultLaSlNa <- aidsEst( pNames, wNames, "xFood",
++    data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
++    rcovformula=1, tol=1e-7, method = "LA:SL" )
+Warning message:
+there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, maxiter = 1,  
+> print( estResultLaSlNa )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+
+Estimated Coefficients
+alpha
+   wFood1    wFood2    wFood3    wFood4 
+-0.254562  0.109799  0.261220  0.883543 
+beta
+    wFood1     wFood2     wFood3     wFood4 
+ 0.3287045  0.0559462 -0.0747412 -0.3099095 
+gamma
+           pFood1     pFood2       pFood3       pFood4
+wFood1  0.1106597 -0.1385111 -0.011880976  0.039732388
+wFood2 -0.1385111  0.1582026 -0.003475903 -0.016215554
+wFood3 -0.0118810 -0.0034759  0.014588532  0.000768347
+wFood4  0.0397324 -0.0162156  0.000768347 -0.024285180
+
+Demand Elasticities (original AIDS formula)
+Expenditure Elasticities
+  wFood1   wFood2   wFood3   wFood4 
+2.057696 1.277982 0.442766 0.124310 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1     pFood2     pFood3    pFood4
+wFood1 -0.377319 -0.5590602 -0.3153373 -0.805980
+wFood2 -0.618158 -0.2437258 -0.0900999 -0.325999
+wFood3 -0.229036  0.0338094 -0.7452447  0.497705
+wFood4 -0.108458  0.0480368  0.2315942 -0.295483
+
+Hicksian (compensated) Price Elasticities
+           pFood1     pFood2     pFood3     pFood4
+wFood1  0.2621601 -0.1449323 -0.0393406 -0.0777545
+wFood2 -0.2209938  0.0134785  0.0813147  0.1262831
+wFood3 -0.0914354  0.1229196 -0.6858569  0.6544012
+wFood4 -0.0698259  0.0730552  0.2482678 -0.2514890
+> 
+> estResultLaLNa <- aidsEst( pNames, wNames, "xFood",
++    data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
++    rcovformula=1, tol=1e-7, method = "LA:L" )
+Warning message:
+there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, maxiter = 1,  
+> print( estResultLaLNa )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+
+Estimation Method: Linear Approximation (LA) with Laspeyres Index (L)
+
+Estimated Coefficients
+alpha
+   wFood1    wFood2    wFood3    wFood4 
+-0.248142  0.122700  0.272973  0.852469 
+beta
+    wFood1     wFood2     wFood3     wFood4 
+ 0.3251278  0.0480922 -0.0815534 -0.2916666 
+gamma
+           pFood1      pFood2      pFood3      pFood4
+wFood1  0.0910392 -0.14571191 -0.00963310  0.06430579
+wFood2 -0.1457119  0.15852428  0.00593944 -0.01875181
+wFood3 -0.0096331  0.00593944  0.01289060 -0.00919693
+wFood4  0.0643058 -0.01875181 -0.00919693 -0.03635704
+
+Demand Elasticities (original AIDS formula)
+Expenditure Elasticities
+  wFood1   wFood2   wFood3   wFood4 
+2.047532 1.240049 0.391959 0.178982 
+
+Marshallian (uncompensated) Price Elasticities
+           pFood1    pFood2     pFood3    pFood4
+wFood1 -0.4507322 -0.595325 -0.3171641 -0.684311
+wFood2 -0.6686575 -0.237579 -0.0359216 -0.297891
+wFood3 -0.2203868  0.117335 -0.7378085  0.448901
+wFood4 -0.0195870  0.045855  0.1983675 -0.403618
+
+Hicksian (compensated) Price Elasticities
+           pFood1     pFood2     pFood3     pFood4
+wFood1  0.1847706 -0.1851143 -0.0425389  0.0430745
+wFood2 -0.2837774  0.0108572  0.1303999  0.1426366
+wFood3 -0.0987324  0.1958615 -0.6852370  0.5881446
+wFood4  0.0359646  0.0817130  0.2223735 -0.3400343
+> 
+> estResultAIDSNa <- aidsEst( pNames, wNames, "xFood",
++    data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
++    rcovformula=1, tol=1e-7, method = "IL:L" )
+Warning message:
+there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, maxiter = 1,  
+> print( estResultAIDSNa )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+
+Estimated Coefficients
+alpha
+   wFood1    wFood2    wFood3    wFood4 
+-0.248142  0.122700  0.272973  0.852469 
+beta
+    wFood1     wFood2     wFood3     wFood4 
+ 0.3251278  0.0480922 -0.0815534 -0.2916666 
+gamma
+           pFood1      pFood2      pFood3      pFood4
+wFood1  0.0910392 -0.14571191 -0.00963310  0.06430579
+wFood2 -0.1457119  0.15852428  0.00593944 -0.01875181
+wFood3 -0.0096331  0.00593944  0.01289060 -0.00919693
+wFood4  0.0643058 -0.01875181 -0.00919693 -0.03635704
+
+Demand Elasticities (original AIDS formula)
+Expenditure Elasticities
+  wFood1   wFood2   wFood3   wFood4 
+2.047532 1.240049 0.391959 0.178982 
+
+Marshallian (uncompensated) Price Elasticities
+           pFood1    pFood2     pFood3    pFood4
+wFood1 -0.4507322 -0.595325 -0.3171641 -0.684311
+wFood2 -0.6686575 -0.237579 -0.0359216 -0.297891
+wFood3 -0.2203868  0.117335 -0.7378085  0.448901
+wFood4 -0.0195870  0.045855  0.1983675 -0.403618
+
+Hicksian (compensated) Price Elasticities
+           pFood1     pFood2     pFood3     pFood4
+wFood1  0.1847706 -0.1851143 -0.0425389  0.0430745
+wFood2 -0.2837774  0.0108572  0.1303999  0.1426366
+wFood3 -0.0987324  0.1958615 -0.6852370  0.5881446
+wFood4  0.0359646  0.0817130  0.2223735 -0.3400343
+> 
 > 
 > ########## Elasticities ###############
 > cat( "\nAIDS: Elasticities\n" )
