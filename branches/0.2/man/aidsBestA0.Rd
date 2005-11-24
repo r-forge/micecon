@@ -81,6 +81,9 @@
 
 \examples{
    data( Blanciforti86 )
+   # Data on food consumption are available only for the first 32 years
+   Blanciforti86 <- Blanciforti86[ 1:32, ]
+
    bestA0 <- aidsBestA0( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
       data = Blanciforti86, method = "IL:L" ) # may take some time
