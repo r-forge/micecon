@@ -42,6 +42,12 @@ aidsEst <- function( pNames, wNames, xtName,
       hom <- TRUE  # symmetry implies homogeneity
       warning( "symmetry implies homogeneity: imposing additionally homogeniety" )
    }
+   allVarNames <- c( pNames, wNames, xtName, ivNames )
+   if( sum( is.na( data[ , allVarNames ] ) ) > 0 ) {
+      warning( "there are some NAs in the data,",
+         " all observations (rows) with NAs are excluded from the analysis" )
+      data <- data[ !is.na( rowSums( data[ , allVarNames ] ) ), ]
+   }
    nObs   <- nrow( data )      # number of observations
    sample <- if( px == "SL") c( 2:nObs ) else c( 1:nObs )
    result <- list()
@@ -143,9 +149,13 @@ aidsEst <- function( pNames, wNames, xtName,
       } else {
          TXmat <- diag( ( nGoods - 1 ) * ( nGoods + 2 ) )
       }
-      Jmat <- t( TXmat ) %*% ( diag( nGoods - 1 ) %x% t( Gmat ) ) %*% jacobian
-      JmatInv <- TXmat %*% solve( Jmat ) %*% t( TXmat )
-      bcov <- JmatInv  %*% ( est$rcov %x% ( t( Gmat ) %*% Gmat ) ) %*%
+      # Jmat <- t( TXmat ) %*% ( diag( nGoods - 1 ) %x% t( Gmat ) ) %*% jacobian
+      # JmatInv <- TXmat %*% solve( Jmat ) %*% t( TXmat )
+      # bcov <- JmatInv  %*% ( est$rcov %x% ( t( Gmat ) %*% Gmat ) ) %*%
+      #    t( JmatInv )
+      Jmat <- crossprod( TXmat, ( diag( nGoods - 1 ) %x% t( Gmat ) ) ) %*% jacobian
+      JmatInv <- TXmat %*% solve( Jmat, t( TXmat ) )
+      bcov <- JmatInv  %*% ( est$rcov %x% crossprod( Gmat ) ) %*%
          t( JmatInv )
       result$coef <- aidsCoef( est$b, bcov, pNames = pNames,
          wNames = wNames, df = est$df )  # coefficients

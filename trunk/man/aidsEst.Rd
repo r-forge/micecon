@@ -108,8 +108,11 @@
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
 \examples{
-   ## Repeating the demand analysis of Blanciforti, Green & King (1986)
    data( Blanciforti86 )
+   # Data on food consumption are available only for the first 32 years
+   Blanciforti86 <- Blanciforti86[ 1:32, ]
+
+   ## Repeating the demand analysis of Blanciforti, Green & King (1986)
    estResult <- aidsEst( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
       data = Blanciforti86, method = "LA:SL", elaFormula = "Ch",
@@ -124,9 +127,9 @@
 
    # AIDS
    estResultA <- aidsEst( pNames, wNames, "xFood",
-    data = Blanciforti86[ 2:nrow( Blanciforti86 ), ], maxiter = 1,
+      data = Blanciforti86[ -1, ], maxiter = 1,
       elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "IL:L" )
+      method = "IL:L" )
    print( diag( estResultA$ela$marshall ) )
 
    # LA-AIDS + formula of AIDS

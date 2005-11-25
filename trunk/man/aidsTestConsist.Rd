@@ -50,6 +50,9 @@
 
 \examples{
    data( Blanciforti86 )
+   # Data on food consumption are available only for the first 32 years
+   Blanciforti86 <- Blanciforti86[ 1:32, ]
+
    pNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
    wNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 
