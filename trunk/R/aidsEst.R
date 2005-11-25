@@ -206,6 +206,8 @@ aidsEst <- function( pNames, wNames, xtName,
    result$method <- method
    result$px  <- px
    result$lnp <- lnp
+   result$wMeans <- wMeans
+   result$pMeans <- pMeans
    class( result ) <- "aidsEst"
    return( result )
 }
