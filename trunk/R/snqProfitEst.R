@@ -246,7 +246,8 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    result$hessian <- snqProfitHessian( result$coef$beta, result$pMeans, weights )
       # Hessian matrix
    result$ela <- snqProfitEla( result$coef$beta, result$pMeans,
-      result$qMeans, weights )   # estimated elasticities
+      result$qMeans, weights, coefVcov = result$coef$allCoefCov,
+      df = result$est$df )   # estimated elasticities
    if( nFix > 0 && form == 0 ) {
       result$fixEla <- snqProfitFixEla( result$coef$delta, result$coef$gamma,
          result$qMeans, result$fMeans, weights )
