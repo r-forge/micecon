@@ -19,6 +19,7 @@
 \alias{checkNames}
 \alias{snqProfitCoef}
 \alias{snqProfitCoefNames}
+\alias{snqProfitElaJacobian}
 \alias{snqProfitRestrict}
 \alias{snqProfitSystem}
 \alias{snqProfitTestCoef}
