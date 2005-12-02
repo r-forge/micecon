@@ -254,12 +254,20 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    }
 
    result$estData  <- estData
+   result$data     <- data
    result$weights  <- weights
    names( result$weights ) <- pNames
    result$normPrice <- modelData$normPrice
    result$convexity  <- semidefiniteness( result$hessian[
       1:( nNetput - 1 ), 1:( nNetput - 1 ) ] )$positive
-   result$form <- form
+   result$pNames  <- pNames
+   result$qNames  <- qNames
+   result$fNames  <- fNames
+   result$ivNames <- ivNames
+   result$form    <- form
+   result$base    <- base
+   result$method  <- method
+
    class( result )  <- "snqProfitEst"
    return( result )
 }
