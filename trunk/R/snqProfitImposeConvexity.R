@@ -1,8 +1,13 @@
 snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
-   start = 10, optimMethod = "BFGS", control = list( maxit=5000 ) ) {
+   start = 10, optimMethod = "BFGS", control = list( maxit=5000 ),
+   stErMethod = "none", nRep = 1000 ) {
 
    if( class( estResult ) != "snqProfitEst" ) {
       stop( "argument 'estResult' must be of class 'snqProfitEst'" )
+   }
+   if( !( stErMethod %in% c( "none", "jackknife", "resample" ) ) ) {
+      stop( "argument 'stErMethod' must be either 'none',",
+         " 'resample' or 'jackknife'" )
    }
    if( estResult$convexity ) {
       warning( "This profit function is already convex in prices" )
@@ -61,6 +66,50 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
       t( hessianDeriv ) ) %*% ( cVecliHessian - uVecliHessian )
       # vector of li indep. constrained coefficients
 
+   ## computation of the coefficient variance covariance matrix
+   if( stErMethod != "none" ) {
+      data <- estResult$data
+      nObs <- nrow( data )
+      nCoef <- length( estResult$coef$liCoef )
+      nAllCoef <- length( estResult$coef$allCoef )
+      if( stErMethod == "jackknife" ) {
+         nRep <- nObs
+      }
+      result$simCoef    <- matrix( NA, nCoef, nRep )
+      result$simAllCoef <- matrix( NA, nAllCoef, nRep )
+      for( repNo in 1:nRep ) {
+         if( stErMethod == "jackknife" ) {
+            simData <- data[ -repNo, ]
+         } else if( stErMethod == "resample" ) {
+            simData <- data[ ceiling( runif( nObs, 0, nObs ) ), ]
+         }
+         simResult <- snqProfitEst( pNames = estResult$pNames,
+            qNames = estResult$qNames, fNames = estResult$fNames,
+            ivNames = estResult$ivNames, data = simData, form = estResult$form,
+            base = estResult$base, weights = estResult$weights,
+            method = estResult$method )
+         result$simCoef[ , repNo ] <- simResult$coef$liCoef
+         result$simAllCoef[ , repNo ] <- simResult$coef$allCoef
+      }
+      result$simCoefMean    <- rowMeans( result$simCoef )
+      result$simAllCoefMean <- rowMeans( result$simAllCoef )
+      result$simCoefDev     <- result$simCoef -
+         matrix( result$simCoefMean, nCoef, nRep )
+      result$simAllCoefDev  <- result$simAllCoef -
+         matrix( result$simAllCoefMean, nAllCoef, nRep )
+      result$coefVcov    <- result$simCoefDev    %*% t( result$simCoefDev )
+      result$allCoefVcov <- result$simAllCoefDev %*% t( result$simAllCoefDev )
+      if( stErMethod == "jackknife" ) {
+         result$coefVcov    <- ( ( nRep - 1 ) / nRep ) * result$coefVcov
+         result$allCoefVcov <- ( ( nRep - 1 ) / nRep ) * result$allCoefVcov
+      } else if( stErMethod == "resample" ) {
+         result$coefVcov    <- result$coefVcov    / nRep
+         result$allCoefVcov <- result$allCoefVcov / nRep
+      }
+   } else {
+      result$coefVcov <- NULL
+   }
+
    ## results of constrained model
    result$pMeans <- estResult$pMeans
    result$qMeans <- estResult$qMeans
@@ -68,7 +117,7 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
    result$mindist <- mindist
    result$coef <- snqProfitCoef( coef, nNetput, nFix, form = estResult$form,
       qNames = names( estResult$qMeans ), pNames = names( estResult$pMeans ),
-      fNames = names( estResult$fMeans ) )
+      fNames = names( estResult$fMeans ), coefCov = result$coefVcov )
       # constrained coefficients
    result$fitted <- snqProfitCalc( pNames, fNames, data = estResult$estData,
       weights = estResult$weights, coef = result$coef, form = estResult$form )
