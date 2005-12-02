@@ -35,8 +35,8 @@
       * gamma = \eqn{\gamma_{ij}} (only if quasi-fix inputs are present).\cr
       * allCoef = vector of all coefficients.\cr
    }
-   \item{ela}{a list of class \code{snqProfitEla} that contains 
-      (amongst others) the price elasticities at mean prices and mean 
+   \item{ela}{a list of class \code{snqProfitEla} that contains
+      (amongst others) the price elasticities at mean prices and mean
       quantities (see \code{\link{snqProfitEla}}).}
    \item{fixEla}{matrix of the fixed factor elasticities at mean prices and mean
       quantities.}
@@ -82,8 +82,7 @@
    germanFarms$time <- c( 0:19 )
    pNames <- c( "pOutput", "pVarInput", "pLabor" )
    qNames <- c( "qOutput", "qVarInput", "qLabor" )
-   fNames <- c( "land", "time" )
-   estResult <- snqProfitEst( pNames, qNames, fNames, data = germanFarms )
+   estResult <- snqProfitEst( pNames, qNames, "land", data = germanFarms )
    estResult  # Note: it is NOT convex in netput prices
    estResultConvex <- snqProfitImposeConvexity( estResult )
    estResultConvex  # now it is convex
