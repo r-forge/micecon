@@ -68,7 +68,7 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
 
    ## computation of the coefficient variance covariance matrix
    if( stErMethod != "none" ) {
-      data <- estResult$data
+      data <- estResult$estData
       nObs <- nrow( data )
       nCoef <- length( estResult$coef$liCoef )
       nAllCoef <- length( estResult$coef$allCoef )
@@ -77,6 +77,7 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
       }
       result$simCoef    <- matrix( NA, nCoef, nRep )
       result$simAllCoef <- matrix( NA, nAllCoef, nRep )
+      result$simResults <- list()
       for( repNo in 1:nRep ) {
          if( stErMethod == "jackknife" ) {
             simData <- data[ -repNo, ]
@@ -86,10 +87,16 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
          simResult <- snqProfitEst( pNames = estResult$pNames,
             qNames = estResult$qNames, fNames = estResult$fNames,
             ivNames = estResult$ivNames, data = simData, form = estResult$form,
-            base = estResult$base, weights = estResult$weights,
+            base = NULL, weights = estResult$weights,
             method = estResult$method )
+#          if( !simResult$convexity ) {
+#             simResult <- snqProfitImposeConvexity( simResult, 
+#                rankReduction = rankReduction, start = start, 
+#                optimMethod = optimMethod, control = control, ... )
+#          }
          result$simCoef[ , repNo ] <- simResult$coef$liCoef
          result$simAllCoef[ , repNo ] <- simResult$coef$allCoef
+#          result$simResult[[ repNo ]] <- simResult
       }
       result$simCoefMean    <- rowMeans( result$simCoef )
       result$simAllCoefMean <- rowMeans( result$simAllCoef )
