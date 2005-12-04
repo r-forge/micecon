@@ -73,6 +73,7 @@ snqProfitCoef <- function( coef, nNetput, nFix, form = 0, coefCov = NULL,
    }
    names( result$allCoef ) <- snqProfitCoefNames( nNetput, nFix,
          form = form, all = TRUE )
+   
    ## completing the coefficient covariance matrix
    if( !is.null( coefCov ) ) {
       result$allCoefCov <- coefCov  # covariance matrix of all coefficients
@@ -156,6 +157,18 @@ snqProfitCoef <- function( coef, nNetput, nFix, form = 0, coefCov = NULL,
          form = form, all = TRUE )
       colnames( result$stats ) <- c( "value", "std.err", "t-value", "prob" )
    }
+
+   ## linear independent coefficients
+   result$liCoef <- c( coef )
+   liCoefNames <- snqProfitCoefNames( nNetput = nNetput, nFix = nFix, 
+      form = form, all = FALSE )
+   names( result$liCoef ) <- liCoefNames
+   if( !is.null( coefCov ) ) {
+      result$liCoefCov <- coefCov 
+      rownames( result$liCoefCov ) <- liCoefNames
+      colnames( result$liCoefCov ) <- liCoefNames
+   }
+   
    if( !is.null( qNames ) ) {
       if( length( qNames ) != nNetput ) {
          stop( "argument 'qNames' must have as many elements as ",
