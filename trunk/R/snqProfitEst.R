@@ -131,8 +131,6 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
       df = nNetput * nObs - nCoef,
       qNames = qNames, pNames = pNames, fNames = fNames )
       # estimated coefficients
-   result$coef$liCoef <- result$est$bt
-   result$coef$liCoefCov <- result$est$btcov
    result$coef <- .snqProfitRescaleCoef( result$coef, nNetput, result$fMeans, 
       form )
 
