@@ -6,7 +6,8 @@
 }
 
 \usage{snqProfitImposeConvexity( estResult, rankReduction = 0,
-   start = 10, optimMethod = "BFGS", control = list( maxit=5000 ) )
+   start = 10, optimMethod = "BFGS", control = list( maxit=5000 ),
+   stErMethod = "none", nRep = 1000 )
 }
 
 \arguments{
@@ -16,12 +17,22 @@
    \item{start}{starting values of the triangular Cholesky matrix.}
    \item{optimMethod}{method to be used by \code{\link{optim}}.}
    \item{control}{list of control parameters passed to \code{\link{optim}}.}
+   \item{stErMethod}{method to compute standard errors, either
+      'none', 'resample', 'jackknife' or 'coefSim' (see details).}
+   \item{nRep}{number of replications to compute the standard errors
+      if \code{stErMethod} is either 'resample' or 'coefSim'.}
 }
 
 \details{
    The procedure proposed by Koebel, Falk and Laisney (2000, 2003) is
    applied to impose convexity in prices on an estimated symmetric
-   normalized quadratic (SNQ) profit function.
+   normalized quadratic (SNQ) profit function.\cr
+   The standard errors of the restricted coefficients can be either
+   calculated by
+   bootstrap resampling ('resampling'),
+   jackknife ('jacknife') or
+   by simulating the distribution of the unrestricted coefficients
+   using its variance covariance matrix ('coefSim').
 }
 
 \value{
@@ -57,6 +68,8 @@
    \item{pMeans}{means of the (scaled) netput prices.}
    \item{qMeans}{means of the (scaled) netput quantities.}
    \item{fMeans}{means of the (quasi-)fix input quantities.}
+   \item{sim}{results of the simulation to obtain the standard errors
+      of the estimated coefficients.}
 }
 
 \references{
