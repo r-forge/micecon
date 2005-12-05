@@ -52,6 +52,11 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
             estData[[ fNames[ i ] ]] <- data[[ fNames[ i ] ]]
          }
       }
+      if( !is.null( ivNames ) ) {
+         for( i in 1:nIV ) {
+            estData[[ ivNames[ i ] ]] <- data[[ ivNames[ i ] ]]
+         }
+      }
    } else {
       estData <- data
    }
