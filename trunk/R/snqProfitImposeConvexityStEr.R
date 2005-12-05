@@ -1,0 +1,110 @@
+.snqProfitImposeConvexityStEr <- function( estResult, rankReduction,
+   start, optimMethod, control, stErMethod, nRep ) {
+
+   ## computation of the coefficient variance covariance matrix
+   data <- estResult$estData
+   nObs <- nrow( data )
+   nCoef <- length( estResult$coef$liCoef )
+   nAllCoef <- length( estResult$coef$allCoef )
+   nNetput  <- length( estResult$pMeans )
+   nFix     <- length( estResult$fMeans )
+   sim <- list()
+   if( stErMethod == "jackknife" ) {
+      nRep <- nObs
+   }
+   sim$coef    <- matrix( NA, nCoef, nRep )
+   sim$allCoef <- matrix( NA, nAllCoef, nRep )
+   sim$status  <- rep( NA, nRep )
+   sim$results <- list()
+   if( stErMethod %in% c( "jackknife", "resample" ) ) {
+      for( repNo in 1:nRep ) {
+         if( stErMethod == "jackknife" ) {
+            simData <- data[ -repNo, ]
+         } else if( stErMethod == "resample" ) {
+            simData <- data[ ceiling( runif( nObs, 0, nObs ) ), ]
+         }
+         simResult <- snqProfitEst( pNames = estResult$pNames,
+            qNames = estResult$qNames, fNames = estResult$fNames,
+            ivNames = estResult$ivNames, data = simData, form = estResult$form,
+            base = NULL, weights = estResult$weights,
+            method = estResult$method )
+         if( simResult$convexity ) {
+            sim$status[ repNo ] <- -1
+         } else {
+            simResult <- try( snqProfitImposeConvexity( simResult,
+               rankReduction = rankReduction, start = start,
+               optimMethod = optimMethod, control = control ),
+               silent = TRUE )
+            if( class( simResult) == "try-error" ) {
+               sim$status[ repNo ] <- 999
+            } else {
+               sim$status[ repNo ] <- simResult$mindist$convergence
+            }
+         }
+         if( sim$status[ repNo ] <= 0 ) {
+            sim$coef[ , repNo ] <- simResult$coef$liCoef
+            sim$allCoef[ , repNo ] <- simResult$coef$allCoef
+            # sim$results[[ repNo ]] <- simResult
+         }
+      }
+   } else if( stErMethod == "coefSim" ) {
+      library( MASS )
+      fakeResult <- list()
+      class( fakeResult )  <- "snqProfitEst"
+      fakeResult$qMeans    <- estResult$qMeans
+      fakeResult$pMeans    <- estResult$pMeans
+      fakeResult$fMeans    <- estResult$fMeans
+      fakeResult$weights   <- estResult$weights
+      fakeResult$form      <- estResult$form
+      fakeResult$estData   <- estResult$estData
+      fakeResult$normPrice <- estResult$normPrice
+      for( repNo in 1:nRep ) {
+         liCoef <- mvrnorm( mu = estResult$coef$liCoef,
+            Sigma = estResult$coef$liCoefCov )
+         fakeResult$coef <- snqProfitCoef( liCoef, nNetput, nFix,
+            form = estResult$form, coefCov = estResult$coef$liCoefCov )
+         fakeResult$hessian <- snqProfitHessian( fakeResult$coef$beta,
+            fakeResult$pMeans, fakeResult$weights )
+         fakeResult$convexity <- semidefiniteness( fakeResult$hessian[
+            1:( nNetput - 1 ), 1:( nNetput - 1 ) ] )$positive
+         if( fakeResult$convexity ) {
+            simResult <- fakeResult
+            sim$status[ repNo ] <- -1
+         } else {
+            simResult <- try( snqProfitImposeConvexity( fakeResult,
+               rankReduction = rankReduction, start = start,
+               optimMethod = optimMethod, control = control ),
+               silent = TRUE )
+            if( class( simResult) == "try-error" ) {
+               sim$status[ repNo ] <- 999
+            } else {
+               sim$status[ repNo ] <- simResult$mindist$convergence
+            }
+         }
+         if( sim$status[ repNo ] <= 0 ) {
+            sim$coef[ , repNo ]    <- simResult$coef$liCoef
+            sim$allCoef[ , repNo ] <- simResult$coef$allCoef
+            # sim$results[[ repNo ]] <- simResult
+         }
+      }
+   }
+   nValidRep       <- sum( sim$status <= 0 )
+   sim$coef        <- sim$coef[ , sim$status <= 0 ]
+   sim$allCoef     <- sim$allCoef[ , sim$status <= 0 ]
+   sim$coefMean    <- rowMeans( sim$coef )
+   sim$allCoefMean <- rowMeans( sim$allCoef )
+   sim$coefDev     <- sim$coef - matrix( sim$coefMean, nCoef, nValidRep )
+   sim$allCoefDev  <- sim$allCoef - matrix( sim$allCoefMean, nAllCoef,
+      nValidRep )
+   sim$coefVcov    <- sim$coefDev    %*% t( sim$coefDev )
+   sim$allCoefVcov <- sim$allCoefDev %*% t( sim$allCoefDev )
+   if( stErMethod == "jackknife" ) {
+      sim$coefVcov    <- ( ( nValidRep - 1 ) / nValidRep ) * sim$coefVcov
+      sim$allCoefVcov <- ( ( nValidRep - 1 ) / nValidRep ) *
+         sim$allCoefVcov
+   } else if( stErMethod %in% c( "resample", "coefSim" ) ) {
+      sim$coefVcov    <- sim$coefVcov    / nValidRep
+      sim$allCoefVcov <- sim$allCoefVcov / nValidRep
+   }
+   return( sim )
+}
