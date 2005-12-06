@@ -70,6 +70,9 @@
       fakeResult$estData   <- estResult$estData
       fakeResult$normPrice <- estResult$normPrice
       for( repNo in 1:nRep ) {
+         if( verbose >= 2 ) {
+            cat( repNo, " / ", nRep, sep = "" )
+         }
          liCoef <- mvrnorm( mu = estResult$coef$liCoef,
             Sigma = estResult$coef$liCoefCov )
          fakeResult$coef <- snqProfitCoef( liCoef, nNetput, nFix,
@@ -96,6 +99,9 @@
             sim$coef[ , repNo ]    <- simResult$coef$liCoef
             sim$allCoef[ , repNo ] <- simResult$coef$allCoef
             # sim$results[[ repNo ]] <- simResult
+         }
+         if( verbose >= 2 ) {
+            cat( ", status: ", sim$status[ repNo ], "\n", sep = "" )
          }
       }
    }
