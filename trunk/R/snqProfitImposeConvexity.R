@@ -84,7 +84,8 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
    result$mindist <- mindist
    result$coef <- snqProfitCoef( coef, nNetput, nFix, form = estResult$form,
       qNames = names( estResult$qMeans ), pNames = names( estResult$pMeans ),
-      fNames = names( estResult$fMeans ), coefCov = coefVcov )
+      fNames = names( estResult$fMeans ), coefCov = coefVcov,
+      df = estResult$est$df )
       # constrained coefficients
    result$fitted <- snqProfitCalc( pNames, fNames, data = estResult$estData,
       weights = estResult$weights, coef = result$coef, form = estResult$form )
