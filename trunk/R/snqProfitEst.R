@@ -54,7 +54,9 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
       }
       if( !is.null( ivNames ) ) {
          for( i in 1:nIV ) {
-            estData[[ ivNames[ i ] ]] <- data[[ ivNames[ i ] ]]
+            if( !( ivNames[ i ] %in% names( estData ) ) ) {
+               estData[[ ivNames[ i ] ]] <- data[[ ivNames[ i ] ]]
+            }
          }
       }
    } else {
@@ -136,7 +138,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
       df = nNetput * nObs - nCoef,
       qNames = qNames, pNames = pNames, fNames = fNames )
       # estimated coefficients
-   result$coef <- .snqProfitRescaleCoef( result$coef, nNetput, result$fMeans, 
+   result$coef <- .snqProfitRescaleCoef( result$coef, nNetput, result$fMeans,
       form )
 
    result$fitted <- data.frame( profit0 = rep( 0, nObs ) )
