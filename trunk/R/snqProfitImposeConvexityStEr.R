@@ -23,22 +23,27 @@
          } else if( stErMethod == "resample" ) {
             simData <- data[ ceiling( runif( nObs, 0, nObs ) ), ]
          }
-         simResult <- snqProfitEst( pNames = estResult$pNames,
+         simResult <- try( snqProfitEst( pNames = estResult$pNames,
             qNames = estResult$qNames, fNames = estResult$fNames,
             ivNames = estResult$ivNames, data = simData, form = estResult$form,
             base = NULL, weights = estResult$weights,
-            method = estResult$method )
-         if( simResult$convexity ) {
-            sim$status[ repNo ] <- -1
+            method = estResult$method ),
+            silent = FALSE )
+         if( class( simResult) == "try-error" ) {
+            sim$status[ repNo ] <- 888
          } else {
-            simResult <- try( snqProfitImposeConvexity( simResult,
-               rankReduction = rankReduction, start = start,
-               optimMethod = optimMethod, control = control ),
-               silent = TRUE )
-            if( class( simResult) == "try-error" ) {
-               sim$status[ repNo ] <- 999
+            if( simResult$convexity ) {
+               sim$status[ repNo ] <- -1
             } else {
-               sim$status[ repNo ] <- simResult$mindist$convergence
+               simResult <- try( snqProfitImposeConvexity( simResult,
+                  rankReduction = rankReduction, start = start,
+                  optimMethod = optimMethod, control = control ),
+                  silent = TRUE )
+               if( class( simResult) == "try-error" ) {
+                  sim$status[ repNo ] <- 999
+               } else {
+                  sim$status[ repNo ] <- simResult$mindist$convergence
+               }
             }
          }
          if( sim$status[ repNo ] <= 0 ) {
