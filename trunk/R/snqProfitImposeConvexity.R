@@ -1,6 +1,6 @@
 snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
    start = 10, optimMethod = "BFGS", control = list( maxit=5000 ),
-   stErMethod = "none", nRep = 1000 ) {
+   stErMethod = "none", nRep = 1000, verbose = 0 ) {
 
    if( class( estResult ) != "snqProfitEst" ) {
       stop( "argument 'estResult' must be of class 'snqProfitEst'" )
@@ -41,6 +41,9 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
    }
 
    ## non-linear minimization of the distance function
+   if( verbose >= 1 ) {
+      cat( "Starting minimization of the distance function\n" )
+   }
    nCholValues <- nNetput * ( nNetput - 1 ) / 2 -
       rankReduction * ( rankReduction + 1 ) / 2
       # number of non-zero values in the Cholesky matrix
@@ -70,10 +73,13 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
    if( stErMethod == "none" ) {
       coefVcov <- NULL
    } else {
+      if( verbose >= 1 ) {
+         cat( "Starting simulation to obtain standard errors\n" )
+      }
       result$sim <- .snqProfitImposeConvexityStEr( estResult = estResult,
          rankReduction = rankReduction, start = start,
          optimMethod = optimMethod, control = control,
-         stErMethod = stErMethod, nRep = nRep )
+         stErMethod = stErMethod, nRep = nRep, verbose = verbose )
       coefVcov <- result$sim$coefVcov
    }
 

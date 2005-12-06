@@ -1,5 +1,5 @@
 .snqProfitImposeConvexityStEr <- function( estResult, rankReduction,
-   start, optimMethod, control, stErMethod, nRep ) {
+   start, optimMethod, control, stErMethod, nRep, verbose ) {
 
    ## computation of the coefficient variance covariance matrix
    data <- estResult$estData
@@ -18,6 +18,9 @@
    sim$results <- list()
    if( stErMethod %in% c( "jackknife", "resample" ) ) {
       for( repNo in 1:nRep ) {
+         if( verbose >= 2 ) {
+            cat( repNo, " / ", nRep, sep = "" )
+         }
          if( stErMethod == "jackknife" ) {
             simData <- data[ -repNo, ]
          } else if( stErMethod == "resample" ) {
@@ -28,7 +31,7 @@
             ivNames = estResult$ivNames, data = simData, form = estResult$form,
             base = NULL, weights = estResult$weights,
             method = estResult$method ),
-            silent = FALSE )
+            silent = TRUE )
          if( class( simResult) == "try-error" ) {
             sim$status[ repNo ] <- 888
          } else {
@@ -50,6 +53,9 @@
             sim$coef[ , repNo ] <- simResult$coef$liCoef
             sim$allCoef[ , repNo ] <- simResult$coef$allCoef
             # sim$results[[ repNo ]] <- simResult
+         }
+         if( verbose >= 2 ) {
+            cat( ", status: ", sim$status[ repNo ], "\n", sep = "" )
          }
       }
    } else if( stErMethod == "coefSim" ) {
