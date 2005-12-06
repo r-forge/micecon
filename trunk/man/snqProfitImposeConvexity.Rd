@@ -7,7 +7,7 @@
 
 \usage{snqProfitImposeConvexity( estResult, rankReduction = 0,
    start = 10, optimMethod = "BFGS", control = list( maxit=5000 ),
-   stErMethod = "none", nRep = 1000 )
+   stErMethod = "none", nRep = 1000, verbose = 0 )
 }
 
 \arguments{
@@ -21,6 +21,7 @@
       'none', 'resample', 'jackknife' or 'coefSim' (see details).}
    \item{nRep}{number of replications to compute the standard errors
       if \code{stErMethod} is either 'resample' or 'coefSim'.}
+   \item{verbose}{an integer idicating the verbose level.}
 }
 
 \details{
