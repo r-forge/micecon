@@ -2,8 +2,7 @@
    start, optimMethod, control, stErMethod, nRep, verbose ) {
 
    ## computation of the coefficient variance covariance matrix
-   data <- estResult$estData
-   nObs <- nrow( data )
+   nObs <- nrow( estResult$data )
    nCoef <- length( estResult$coef$liCoef )
    nAllCoef <- length( estResult$coef$allCoef )
    nNetput  <- length( estResult$pMeans )
@@ -22,15 +21,15 @@
             cat( repNo, " / ", nRep, sep = "" )
          }
          if( stErMethod == "jackknife" ) {
-            simData <- data[ -repNo, ]
+            simData <- estResult$data[ -repNo, ]
          } else if( stErMethod == "resample" ) {
-            simData <- data[ ceiling( runif( nObs, 0, nObs ) ), ]
+            simData <- estResult$data[ ceiling( runif( nObs, 0, nObs ) ), ]
          }
          simResult <- try( snqProfitEst( pNames = estResult$pNames,
             qNames = estResult$qNames, fNames = estResult$fNames,
             ivNames = estResult$ivNames, data = simData, form = estResult$form,
-            base = NULL, weights = estResult$weights,
-            method = estResult$method ),
+            scalingFactors = estResult$scalingFactors,
+            weights = estResult$weights, method = estResult$method ),
             silent = TRUE )
          if( class( simResult) == "try-error" ) {
             sim$status[ repNo ] <- 888
@@ -54,7 +53,7 @@
             sim$allCoef[ , repNo ] <- simResult$coef$allCoef
             # sim$results[[ repNo ]] <- simResult
          }
-         if( verbose >= 2 ) {
+         if( verbose >= 3 ) {
             cat( ", status: ", sim$status[ repNo ], "\n", sep = "" )
          }
       }
@@ -67,8 +66,9 @@
       fakeResult$fMeans    <- estResult$fMeans
       fakeResult$weights   <- estResult$weights
       fakeResult$form      <- estResult$form
-      fakeResult$estData   <- estResult$estData
+      fakeResult$data      <- estResult$data
       fakeResult$normPrice <- estResult$normPrice
+      fakeResult$scalingFactors <- estResult$scalingFactors
       for( repNo in 1:nRep ) {
          if( verbose >= 2 ) {
             cat( repNo, " / ", nRep, sep = "" )
@@ -88,7 +88,7 @@
             simResult <- try( snqProfitImposeConvexity( fakeResult,
                rankReduction = rankReduction, start = start,
                optimMethod = optimMethod, control = control ),
-               silent = TRUE )
+               silent = ( verbose < 2 ) )
             if( class( simResult) == "try-error" ) {
                sim$status[ repNo ] <- 999
             } else {
