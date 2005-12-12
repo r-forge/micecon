@@ -18,6 +18,7 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
    fNames  <- names( estResult$fMeans )
    nNetput <- length( pNames )
    nFix    <- length( fNames )
+   nObs    <- nrow( estResult$data )
    result  <- list()
 
    ## preparations for minimum distance estimation
@@ -93,20 +94,21 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
       fNames = names( estResult$fMeans ), coefCov = coefVcov,
       df = estResult$est$df )
       # constrained coefficients
-   result$fitted <- snqProfitCalc( pNames, fNames, data = estResult$estData,
-      weights = estResult$weights, coef = result$coef, form = estResult$form )
-   result$residuals <- data.frame( nr = c( 1:nrow( estResult$estData ) ) )
+   result$fitted <- snqProfitCalc( pNames, fNames, data = estResult$data,
+      weights = estResult$weights, scalingFactors = estResult$scalingFactors,
+      coef = result$coef, form = estResult$form )
+   result$residuals <- data.frame( nr = c( 1:nObs ) )
    for( i in 1:nNetput ) {
-      result$residuals[[ qNames[ i ] ]] <- estResult$estData[[ qNames[ i ] ]] -
-         result$fitted[ , i ]
+      result$residuals[[ qNames[ i ] ]] <- estResult$data[[ qNames[ i ] ]] /
+         estResult$scalingFactors[ i ] - result$fitted[ , i ]
    }
    if( !( "nr" %in% qNames ) ) {
       result$residuals[[ "nr" ]] <- NULL
    }
    result$r2 <- array( NA, c( nNetput ) )
    for( i in 1:nNetput ) {
-      result$r2[ i ] <- rSquared( estResult$estData[[ qNames[ i ] ]],
-         result$residuals[[ qNames[ i ] ]] )
+      result$r2[ i ] <- rSquared( estResult$data[[ qNames[ i ] ]] /
+         estResult$scalingFactors[ i ], result$residuals[[ qNames[ i ] ]] )
    }
    names( result$r2 ) <- names( estResult$qMeans )
 
@@ -119,9 +121,10 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
       result$fixEla <- snqProfitFixEla( result$coef$delta, result$coef$gamma,
          result$qMeans, result$fMeans, estResult$weights )
    }
-   result$estData <- estResult$estData
-   result$weights <- estResult$weights
+   result$data      <- estResult$data
+   result$weights   <- estResult$weights
    result$normPrice <- estResult$normPrice
+   result$scalingFactors <- estResult$scalingFactors
    result$convexity <- TRUE
    result$form      <- estResult$form
 

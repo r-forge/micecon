@@ -48,7 +48,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
 
    result  <- list()
 
-   ## scaling data
+   ## scaling factors
    if( is.null( scalingFactors ) ) {
       scalingFactors <- rep( 1, nNetput )
       if( !is.null( base ) ) {
@@ -57,31 +57,13 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
          }
       }
    }
-   estData <- data.frame( nr = 1:nObs )
-   for( i in 1:nNetput ) {
-      estData[[ pNames[ i ] ]] <- data[[ pNames[ i ] ]] * scalingFactors[ i ]
-      estData[[ qNames[ i ] ]] <- data[[ qNames[ i ] ]] / scalingFactors[ i ]
-   }
-   if( !is.null( fNames ) ) {
-      for( i in 1:nFix ) {
-         estData[[ fNames[ i ] ]] <- data[[ fNames[ i ] ]]
-      }
-   }
-   if( !is.null( ivNames ) ) {
-      for( i in 1:nIV ) {
-         if( !( ivNames[ i ] %in% names( estData ) ) ) {
-            estData[[ ivNames[ i ] ]] <- data[[ ivNames[ i ] ]]
-         }
-      }
-   }
-
 
    ## mean Values
    result$pMeans <- array( NA, nNetput )
    result$qMeans <- array( NA, nNetput )
    for( i in 1:nNetput ) {
-      result$pMeans[ i ] <- mean( estData[[ pNames[ i ] ]] )
-      result$qMeans[ i ] <- mean( estData[[ qNames[ i ] ]] )
+      result$pMeans[ i ] <- mean( data[[ pNames[ i ] ]] ) * scalingFactors[ i ]
+      result$qMeans[ i ] <- mean( data[[ qNames[ i ] ]] ) / scalingFactors[ i ]
    }
    names( result$pMeans ) <- pNames
    names( result$qMeans ) <- qNames
@@ -102,9 +84,9 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    }
 
    ## prepare and estimate the model
-   modelData <- .snqProfitModelData( data = estData, weights = weights,
+   modelData <- .snqProfitModelData( data = data, weights = weights,
       pNames = pNames, qNames = qNames, fNames = fNames, ivNames = ivNames,
-      form = form, fixedScale = result$fMeans )
+      form = form, netputScale = scalingFactors, fixedScale = result$fMeans )
    system <- snqProfitSystem( nNetput, nFix )    # equation system
    restrict <- snqProfitRestrict( nNetput, nFix, form )    # restrictions
    result$est <- systemfit( method = method, eqns = system, data = modelData,
@@ -121,7 +103,8 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    for( i in 1:nNetput ) {
       result$fitted[[ qNames[ i ] ]] <- result$est$eq[[ i ]]$fitted
       result$fitted[[ "profit0" ]] <- result$fitted[[ "profit0" ]] +
-         result$fitted[[ qNames[ i ] ]] * estData[[ pNames[ i ] ]]
+         result$fitted[[ qNames[ i ] ]] * data[[ pNames[ i ] ]] *
+         scalingFactors[ i ]
    }
    result$fitted[[ "profit" ]] <- result$fitted[[ "profit0" ]]
    result$fitted[[ "profit0" ]] <- NULL
@@ -142,7 +125,6 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
          result$qMeans, result$fMeans, weights )
    }
 
-   result$estData  <- estData
    result$data     <- data
    result$weights  <- weights
    names( result$weights ) <- pNames
@@ -157,6 +139,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    result$base    <- base
    result$method  <- method
    result$scalingFactors <- scalingFactors
+   names( result$scalingFactors ) <- pNames
 
    class( result )  <- "snqProfitEst"
    return( result )

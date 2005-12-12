@@ -1,5 +1,5 @@
 .snqProfitModelData <- function( data, weights, pNames, qNames, fNames,
-   ivNames, form, fixedScale ){
+   ivNames, form, netputScale, fixedScale ){
 
    nNetput <- length( qNames )  # number of netputs
    nFix    <- length( fNames )  # number of fixed inputs
@@ -10,15 +10,15 @@
    result <- data.frame( nr = 1:nObs, normPrice = 0 )
    for( i in 1:nNetput ) {
       result$normPrice <- result$normPrice +
-         data[[ pNames[ i ] ]] * weights[ i ]
+         data[[ pNames[ i ] ]] * netputScale[ i ] * weights[ i ]
    }
 
    ## real/normalized netput prices and netput quantities
    for( i in 1:nNetput ) {
       result[[ paste( "pr", as.character( i ), sep = "" ) ]] <-
-         data[[ pNames[ i ] ]] / result$normPrice
+         data[[ pNames[ i ] ]] * netputScale[ i ] / result$normPrice
       result[[ paste( "q", as.character( i ), sep = "" ) ]] <-
-         data[[ qNames[ i ] ]]
+         data[[ qNames[ i ] ]] / netputScale[ i ]
    }
 
    ## quadratic netput prices
@@ -27,8 +27,8 @@
          for( k in 1:nNetput ) {
             result[[ paste( "pq", as.character( i ), ".", as.character( j ), ".",
                as.character( k ), sep = "" ) ]] <-
-               -0.5 * weights[ i ] * data[[ pNames[ j ] ]] *
-               data[[ pNames[ k ] ]] / result$normPrice^2
+               -0.5 * weights[ i ] * data[[ pNames[ j ] ]] * netputScale[ j ] *
+               data[[ pNames[ k ] ]] * netputScale[ k ] / result$normPrice^2
          }
       }
    }

@@ -1,5 +1,6 @@
 ## ===== calculation of elasticities from beta matrix ===
 snqProfitEla <- function( beta, prices, quant, weights,
+   scalingFactors = rep( 1, length( weights ) ),
    coefVcov = NULL, df = NULL ) {
    if( !is.matrix( beta ) ) {
       stop( "argument 'beta' must be a matrix" )
@@ -18,8 +19,8 @@ snqProfitEla <- function( beta, prices, quant, weights,
          " argument 'beta' has rows" )
    }
    nNetput  <- ncol( beta )
-   prices   <- unlist( prices )
-   quant    <- unlist( quant )
+   prices   <- unlist( prices ) * scalingFactors
+   quant    <- unlist( quant ) / scalingFactors
    hessian  <- snqProfitHessian( beta, prices, weights )
    result   <- list()
    result$ela <- hessian * array( 1, c( nNetput ) ) %*% t( prices ) /

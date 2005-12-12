@@ -113,14 +113,11 @@
    \item{est}{estimation results returned by \code{\link[systemfit]{systemfit}}.}
    \item{weights}{the weights of prices used for normalization.}
    \item{normPrice}{vector used for normalization of prices.}
-   \item{estData}{data frame used for estimation (contains the
-      (scaled) netput prices, (scaled) netput quantities,
-      (not scaled) fix inputs and the price index used for normalization.}
    \item{data}{data frame of originally supplied data.}
    \item{fitted}{data frame that contains the fitted netput quantities and
       the fitted profit.}
-   \item{pMeans}{means of the (scaled) netput prices.}
-   \item{qMeans}{means of the (scaled) netput quantities.}
+   \item{pMeans}{means of the scaled netput prices.}
+   \item{qMeans}{means of the scaled netput quantities.}
    \item{fMeans}{means of the (quasi-)fixed input quantities.}
    \item{pNames}{a vector of strings containing the names of netput prices.}
    \item{qNames}{a vector of strings containing the names of netput quantities

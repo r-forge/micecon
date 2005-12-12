@@ -58,9 +58,6 @@
    \item{r2}{\eqn{R^2}-values of all netput equations.}
    \item{weights}{the weights of prices used for normalization.}
    \item{normPrice}{vector used for normalization of prices.}
-   \item{estData}{data frame used for estimation (contains the
-      (scaled) netput prices, (scaled) netput quantities,
-      (not scaled) fix inputs and the price index used for normalization.}
    \item{fitted}{data frame that contains the fitted netput quantities and
       the fitted profit.}
    \item{residuals}{data frame that contains the residuals of the netput
@@ -93,7 +90,6 @@
    germanFarms$qOutput   <- germanFarms$vOutput / germanFarms$pOutput
    germanFarms$qVarInput <- -germanFarms$vVarInput / germanFarms$pVarInput
    germanFarms$qLabor    <- -germanFarms$qLabor
-   germanFarms$time <- c( 0:19 )
    pNames <- c( "pOutput", "pVarInput", "pLabor" )
    qNames <- c( "qOutput", "qVarInput", "qLabor" )
    estResult <- snqProfitEst( pNames, qNames, "land", data = germanFarms )

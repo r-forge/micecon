@@ -8,7 +8,8 @@
 }
 
 \usage{
-   snqProfitCalc( pNames, fNames, data, weights, coef, form = 0  )
+   snqProfitCalc( pNames, fNames, data, weights,
+      scalingFactors = rep( 1, length( weights ) ), coef, form = 0  )
 }
 
 \arguments{
@@ -17,6 +18,7 @@
       quantities of (quasi-)fix inputs.}
    \item{data}{a data frame containing the data.}
    \item{weights}{vector of weights of the prices for normalization.}
+   \item{scalingFactors}{factors to scale prices (and quantities).}
    \item{coef}{a list containing the coefficients alpha, beta, delta and gamma.}
    \item{form}{the functional form to be estimated (see \code{\link{snqProfitEst}}).}
 }
@@ -58,8 +60,8 @@
    fNames <- c( "land", "time" )
 
    estResult <- snqProfitEst( pNames, qNames, fNames, data = germanFarms )
-   snqProfitCalc( pNames, fNames, estResult$estData, estResult$weights,
-      estResult$coef )
+   snqProfitCalc( pNames, fNames, estResult$data, estResult$weights,
+      estResult$scalingFactors, estResult$coef )
 }
 
 \keyword{models}

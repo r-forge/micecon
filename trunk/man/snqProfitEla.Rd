@@ -7,7 +7,8 @@
    profit function.
 }
 
-\usage{ snqProfitEla(  beta, prices, quant, weights, 
+\usage{ snqProfitEla(  beta, prices, quant, weights,
+   scalingFactors = rep( 1, length( weights ) ),
    coefVcov = NULL, df = NULL )}
 
 \arguments{
@@ -17,8 +18,9 @@
    \item{quant}{vector of netput quantities at which the elasticities
       should be calculated.}
    \item{weights}{vector of weights of prices used for normalization.}
+   \item{scalingFactors}{factors to scale prices (and quantities).}
    \item{coefVcov}{variance covariance matrix of the coefficients (optional).}
-   \item{df}{degrees of freedom to calculate P-values of the elasticities 
+   \item{df}{degrees of freedom to calculate P-values of the elasticities
       (optional).}
 }
 
@@ -63,8 +65,9 @@
    estResult$ela  # price elasticities at mean prices and mean quantities
 
    # price elasticities at the last observation (1994/95)
-   snqProfitEla( estResult$coef$beta, estResult$estData[ 20, pNames ],
-      estResult$estData[ 20, qNames ], estResult$weights )
+   snqProfitEla( estResult$coef$beta, estResult$data[ 20, pNames ],
+      estResult$data[ 20, qNames ], estResult$weights,
+      estResult$scalingFactors )
 }
 
 \keyword{models}
