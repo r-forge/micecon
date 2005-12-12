@@ -6,7 +6,7 @@
 }
 
 \usage{snqProfitEst( pNames, qNames, fNames = NULL, ivNames = NULL,
-   data, form = 0, base = 1,
+   data, form = 0, base = 1, scalingFactors = NULL,
    weights = snqProfitWeights( pNames, qNames, data, "DW92", base = base ),
    method = ifelse( is.null( ivNames ), "SUR", "3SLS" ), ...  )
 }
@@ -22,6 +22,7 @@
    \item{data}{a data frame containing the data.}
    \item{form}{the functional form to be estimated (see details).}
    \item{base}{the base period(s) for scaling prices (see details).}
+   \item{scalingFactors}{factors to scale prices (see details).}
    \item{weights}{vector of weights of the prices for normalization.}
    \item{method}{the estimation method (passed to
       \code{\link[systemfit]{systemfit}}).}
@@ -82,7 +83,9 @@
    observations are used as base prices, \cr
    (c) a logical vector with the same length as the \code{data}: The
    means of the observations indicated as 'TRUE' are used as base prices, or\cr
-   (d) \code{NULL}: prices are not scaled.
+   (d) \code{NULL}: prices are not scaled.\cr
+   If the scaling factors are explicitly specified (argument 'scalingFactors'),
+   the argument 'base' is ignored.
 }
 
 \value{
@@ -129,6 +132,7 @@
    \item{form}{the functional form (see details).}
    \item{base}{the base period(s) for scaling prices (see details).}
    \item{weights}{vector of weights of the prices for normalization.}
+   \item{scalingFactors}{factors to scale prices (and quantities).}
    \item{method}{the estimation method.}
 }
 

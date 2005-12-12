@@ -1,5 +1,5 @@
 snqProfitEst <- function( pNames, qNames, fNames = NULL,
-   ivNames = NULL, data,  form = 0, base = 1,
+   ivNames = NULL, data,  form = 0, base = 1, scalingFactors = NULL,
    weights = snqProfitWeights( pNames, qNames, data, "DW92", base = base ),
    method = ifelse( is.null( ivNames ), "SUR", "3SLS" ), ... ) {
 
@@ -20,6 +20,16 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
          " semidefiniteness of the 'beta' matrix does not ensure",
          " a convex profit function." )
    }
+   if( !is.null( scalingFactors ) ) {
+      if( length( scalingFactors ) != length( pNames ) ) {
+         stop( "arguments 'pNames' and 'scalingFactors' must have the",
+            " same length" )
+      }
+      if( base != 1 ) {
+         warning( "argument 'base' is ignored because argument",
+            " 'scalingFactors' is provided" )
+      }
+   }
 
    nNetput <- length( qNames )  # number of netputs
    nFix    <- length( fNames )  # number of fixed inputs
@@ -39,28 +49,30 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    result  <- list()
 
    ## scaling data
-   if( !is.null( base ) ) {
-      estData <- data.frame( nr = 1:nObs )
-      for( i in 1:nNetput ) {
-         estData[[ pNames[ i ] ]] <- data[[ pNames[ i ] ]] /
-            mean( data[[ pNames[ i ] ]][ base ] )
-         estData[[ qNames[ i ] ]] <- data[[ qNames[ i ] ]] *
-            mean( data[[ pNames[ i ] ]][ base ] )
-      }
-      if( !is.null( fNames ) ) {
-         for( i in 1:nFix ) {
-            estData[[ fNames[ i ] ]] <- data[[ fNames[ i ] ]]
+   if( is.null( scalingFactors ) ) {
+      scalingFactors <- rep( 1, nNetput )
+      if( !is.null( base ) ) {
+         for( i in 1:nNetput ) {
+            scalingFactors[ i ] <- 1 / mean( data[[ pNames[ i ] ]][ base ] )
          }
       }
-      if( !is.null( ivNames ) ) {
-         for( i in 1:nIV ) {
-            if( !( ivNames[ i ] %in% names( estData ) ) ) {
-               estData[[ ivNames[ i ] ]] <- data[[ ivNames[ i ] ]]
-            }
+   }
+   estData <- data.frame( nr = 1:nObs )
+   for( i in 1:nNetput ) {
+      estData[[ pNames[ i ] ]] <- data[[ pNames[ i ] ]] * scalingFactors[ i ]
+      estData[[ qNames[ i ] ]] <- data[[ qNames[ i ] ]] / scalingFactors[ i ]
+   }
+   if( !is.null( fNames ) ) {
+      for( i in 1:nFix ) {
+         estData[[ fNames[ i ] ]] <- data[[ fNames[ i ] ]]
+      }
+   }
+   if( !is.null( ivNames ) ) {
+      for( i in 1:nIV ) {
+         if( !( ivNames[ i ] %in% names( estData ) ) ) {
+            estData[[ ivNames[ i ] ]] <- data[[ ivNames[ i ] ]]
          }
       }
-   } else {
-      estData <- data
    }
 
    ## price index for normalization
@@ -180,6 +192,7 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
    result$form    <- form
    result$base    <- base
    result$method  <- method
+   result$scalingFactors <- scalingFactors
 
    class( result )  <- "snqProfitEst"
    return( result )
