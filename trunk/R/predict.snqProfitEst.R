@@ -15,7 +15,7 @@ predict.snqProfitEst <- function( object, newdata = object$data,
       profit = TRUE )
    restrict <- snqProfitRestrict( nNetput, nFixed, object$form )
    nCoefPerEq <- nrow( restrict ) / nNetput
-   
+
    x <- list()
    result <- data.frame( obsNo = 1:nObsNew )
    for( i in 1:nNetput ) {
@@ -91,6 +91,34 @@ predict.snqProfitEst <- function( object, newdata = object$data,
       if( !se.fit && interval == "confidence" ) result[[ seName ]] <- NULL
       if( !se.pred && interval == "prediction" ) result[[ seName ]] <- NULL
    }
-   
+
+   return( result )
+}
+
+predict.snqProfitImposeConvexity <- function( object, newdata = object$data,
+   se.fit = FALSE, se.pred = FALSE, interval = "none", level = 0.95, ... ) {
+
+   if( is.null( object$sim ) ) {
+      if( se.fit ) {
+         warning( "setting argument 'se.fit' to 'FALSE' because",
+            " standard errors are not available" )
+         se.fit <- FALSE
+      }
+      if( se.pred ) {
+         warning( "setting argument 'se.pred' to 'FALSE' because",
+            " standard errors are not available" )
+         se.pred <- FALSE
+      }
+      if( interval != "none" ) {
+         warning( "setting argument 'interval' to 'none' because",
+            " standard errors are not available" )
+         interval <- "none"
+      }
+   }
+
+   result <- predict.snqProfitEst( object, newdata = newdata,
+      se.fit = se.fit, se.pred = se.pred, interval = interval,
+      level = level, ... )
+
    return( result )
 }
