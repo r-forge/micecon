@@ -1,5 +1,6 @@
 \name{predict.snqProfitEst}
 \alias{predict.snqProfitEst}
+\alias{predict.snqProfitImposeConvexity}
 
 \title{Predictions from an SNQ profit function}
 
@@ -12,10 +13,14 @@
 \usage{
 \method{predict}{snqProfitEst}( object, newdata = object$data,
    se.fit = FALSE, se.pred = FALSE, interval = "none", level = 0.95, ... )
+
+\method{predict}{snqProfitImposeConvexity}( object, newdata = object$data,
+   se.fit = FALSE, se.pred = FALSE, interval = "none", level = 0.95, ... )
 }
 
 \arguments{
-  \item{object}{an object of type \code{snqProfitEst}.}
+  \item{object}{an object of type \code{snqProfitEst} or
+      \code{snqProfitImposeConvexity}.}
   \item{newdata}{data frame in which to predict.}
   \item{se.fit}{logical. Return the standard error of the fitted values?}
   \item{se.pred}{logical. Return the standard error of prediction?}
@@ -37,7 +42,8 @@
 }
 
 \value{
-   \code{predict.snqProfitEst} returns a dataframe that
+   \code{predict.snqProfitEst} and \code{predict.snqProfitEst} return
+   a dataframe that
    contains for each netput and the profit the predicted quantities
    (e.g. "quant1" ) and if requested
    the standard errors of the fitted values (e.g. "quant1.se.fit"),
