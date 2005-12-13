@@ -65,7 +65,7 @@ predict.snqProfitEst <- function( object, newdata = object$data,
          object$coef$allCoefCov %*% t( x[[ i ]] ) )^0.5
    }
    if( se.pred || interval == "prediction" ) {
-      s2 <- sum( residuals( estResult )$profit^2 ) / nObsOld
+      s2 <- sum( residuals( object )$profit^2 ) / nObsOld
       result[[ "profit.se.pred" ]] <- diag( x[[ i ]] %*%
          object$coef$allCoefCov %*% t( x[[ i ]] ) +
          s2 )^0.5
