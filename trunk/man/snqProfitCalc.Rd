@@ -9,7 +9,8 @@
 
 \usage{
    snqProfitCalc( pNames, fNames, data, weights,
-      scalingFactors = rep( 1, length( weights ) ), coef, form = 0  )
+      scalingFactors = rep( 1, length( weights ) ), coef,
+      qNames = NULL, form = 0 )
 }
 
 \arguments{
@@ -18,6 +19,8 @@
       quantities of (quasi-)fix inputs.}
    \item{data}{a data frame containing the data.}
    \item{weights}{vector of weights of the prices for normalization.}
+   \item{qNames}{optional vector of strings containing the names of netput
+      quantities.}
    \item{scalingFactors}{factors to scale prices (and quantities).}
    \item{coef}{a list containing the coefficients alpha, beta, delta and gamma.}
    \item{form}{the functional form to be estimated (see \code{\link{snqProfitEst}}).}
