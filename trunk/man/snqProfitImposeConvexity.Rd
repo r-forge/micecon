@@ -37,35 +37,10 @@
 }
 
 \value{
-   a list of class \code{snqProfitImposeConvexity} containing following objects:
+   a list of class \code{snqProfitImposeConvexity} containing the same
+   objects as an object of class \code{\link{snqProfitEst}}
+   and additionally the objects:
    \item{mindist}{object returned by \code{\optim}.}
-   \item{coef}{a list containing the vectors/matrix of the estimated
-      coefficients:\cr
-      * alpha = \eqn{\alpha_i}.\cr
-      * beta = \eqn{\beta_{ij}}.\cr
-      * delta =  \eqn{\delta_{ij}} (only if quasi-fix inputs are present).\cr
-      * gamma = \eqn{\gamma_{ij}} (only if quasi-fix inputs are present).\cr
-      * allCoef = vector of all coefficients.\cr
-   }
-   \item{ela}{a list of class \code{snqProfitEla} that contains
-      (amongst others) the price elasticities at mean prices and mean
-      quantities (see \code{\link{snqProfitEla}}).}
-   \item{fixEla}{matrix of the fixed factor elasticities at mean prices and mean
-      quantities.}
-   \item{hessian}{hessian matrix of the profit function with respect to prices
-      evaluated at mean prices.}
-   \item{convexity}{logical. Convexity of the profit function.}
-   \item{r2}{\eqn{R^2}-values of all netput equations.}
-   \item{weights}{the weights of prices used for normalization.}
-   \item{normPrice}{vector used for normalization of prices.}
-   \item{fitted}{data frame that contains the fitted netput quantities and
-      the fitted profit.}
-   \item{residuals}{data frame that contains the residuals of the netput
-      quantities.}
-   \item{form}{the functional form (see \code{\link{snqProfitEst}}).}
-   \item{pMeans}{means of the (scaled) netput prices.}
-   \item{qMeans}{means of the (scaled) netput quantities.}
-   \item{fMeans}{means of the (quasi-)fix input quantities.}
    \item{sim}{results of the simulation to obtain the standard errors
       of the estimated coefficients.}
 }
