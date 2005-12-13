@@ -1,5 +1,6 @@
 .snqProfitModelData <- function( data, weights, pNames, qNames, fNames,
-   ivNames, form, netputScale, fixedScale ){
+   ivNames, form, netputScale = rep( 1, length( weights ) ),
+   fixedScale = rep( 1, length( fNames ) ) ){
 
    nNetput <- length( qNames )  # number of netputs
    nFix    <- length( fNames )  # number of fixed inputs
@@ -60,5 +61,59 @@
             data[[ ivNames[ i ] ]] / mean( data[[ ivNames[ i ] ]] )
       }
    }
+
+   ## model data for the profit function (not for the netput equations)
+   ## current netput prices
+   for( i in 1:nNetput ) {
+      result[[ paste( "tp", as.character( i ), sep = "" ) ]] <-
+         data[[ pNames[ i ] ]] * netputScale[ i ]
+   }
+   ## quadratic netput prices
+   for( i in 1:nNetput ) {
+      for( j in 1:nNetput ) {
+         result[[ paste( "tpq", as.character( i ), ".", as.character( j ),
+            sep = "" ) ]] <- 0.5 * data[[ pNames[ i ] ]] * netputScale[ i ] *
+            data[[ pNames[ j ] ]] * netputScale[ j ] / result$normPrice
+      }
+   }
+   if( nFix > 0 ) {
+      ## netput prices x quasi-fix inputs
+      for( i in 1:nNetput ) {
+         for( j in 1:nFix ) {
+            result[[ paste( "tpf", as.character( i ), ".", as.character( j ),
+               sep = "" ) ]] <- data[[ pNames[ i ] ]] * netputScale[ i ] *
+               data[[ fNames[ j ] ]] / fixedScale[ j ]
+         }
+      }
+      ## quadratic quasi-fix inputs
+      if( form == 0 ) {
+         for( i in 1:nFix ) {
+            for( j in 1:nFix ) {
+               result[[ paste( "tfq", as.character( i ), ".", as.character( j ),
+                  sep = "" ) ]] <- 0.5 * result$normPrice *
+                  ( data[[ fNames[ i ] ]] / fixedScale[ i ] ) *
+                  ( data[[ fNames[ j ] ]] / fixedScale[ j ] )
+            }
+         }
+      } else {
+         for( i in 1:nNetput ) {
+            for( j in 1:nFix ) {
+               for( k in 1:nFix ) {
+                  result[[ paste( "tfq", as.character( i ), ".",
+                     as.character( j ), ".", as.character( k ), sep = "" ) ]] <-
+                     0.5 * data[[ pNames[ i ] ]] * netputScale[ i ] *
+                     ( data[[ fNames[ j ] ]] / fixedScale[ j ] ) *
+                     ( data[[ fNames[ k ] ]] / fixedScale[ k ] )
+               }
+            }
+         }
+      }
+   }
+   result$profit <- 0
+   for( i in 1:nNetput ) {
+      result$profit <- result$profit +
+         data[[ pNames[ i ] ]] * data[[ qNames[ i ] ]]
+   }
+
    return( result )
 }
