@@ -1,5 +1,6 @@
 snqProfitCalc <- function( pNames, fNames, data, weights,
-      scalingFactors = rep( 1, length( weights ) ), coef, form = 0 ) {
+      scalingFactors = rep( 1, length( weights ) ), coef,
+      qNames = NULL, form = 0 ) {
 
    checkNames( c( pNames, fNames ), names( data ) )
 
@@ -9,6 +10,9 @@ snqProfitCalc <- function( pNames, fNames, data, weights,
 
    snqProfitTestCoef( nNetput, nFix, coef, form = form )
 
+   if( is.null( qNames ) ) {
+      qNames <- paste( "X", 1:nNetput, sep = "" )
+   }
    normPrice <- numeric( nObs )
    for( i in 1:nNetput ) {
       normPrice <- normPrice + data[[ pNames[ i ] ]] * scalingFactors[ i ] *
@@ -90,7 +94,7 @@ snqProfitCalc <- function( pNames, fNames, data, weights,
       }
    }
    result <- as.data.frame( cbind( qNetput, profit ) )
-   names( result ) <- c( paste( "X", 1:nNetput, sep = "" ), "profit" )
+   names( result ) <- c( qNames, "profit" )
 
    return( result )
 }
