@@ -13,9 +13,9 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
       warning( "This profit function is already convex in prices" )
       return( estResult )
    }
-   pNames  <- names( estResult$pMeans )
-   qNames  <- names( estResult$qMeans )
-   fNames  <- names( estResult$fMeans )
+   pNames  <- estResult$pNames
+   qNames  <- estResult$qNames
+   fNames  <- estResult$fNames
    nNetput <- length( pNames )
    nFix    <- length( fNames )
    nObs    <- nrow( estResult$data )
@@ -96,7 +96,7 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
       # constrained coefficients
    result$fitted <- snqProfitCalc( pNames, fNames, data = estResult$data,
       weights = estResult$weights, scalingFactors = estResult$scalingFactors,
-      coef = result$coef, form = estResult$form )
+      coef = result$coef, form = estResult$form, qNames = qNames )
    result$residuals <- data.frame( nr = c( 1:nObs ) )
    for( i in 1:nNetput ) {
       result$residuals[[ qNames[ i ] ]] <- estResult$data[[ qNames[ i ] ]] /
@@ -121,12 +121,18 @@ snqProfitImposeConvexity <- function( estResult, rankReduction = 0,
       result$fixEla <- snqProfitFixEla( result$coef$delta, result$coef$gamma,
          result$qMeans, result$fMeans, estResult$weights )
    }
+   result$est       <- estResult$est
    result$data      <- estResult$data
    result$weights   <- estResult$weights
    result$normPrice <- estResult$normPrice
-   result$scalingFactors <- estResult$scalingFactors
    result$convexity <- TRUE
+   result$pNames    <- estResult$pNames
+   result$qNames    <- estResult$qNames
+   result$fNames    <- estResult$fNames
    result$form      <- estResult$form
+   result$base      <- estResult$base
+   result$method    <- estResult$method
+   result$scalingFactors <- estResult$scalingFactors
 
    class( result ) <- "snqProfitImposeConvexity"
    return( result )
