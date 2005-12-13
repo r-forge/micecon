@@ -17,6 +17,14 @@ residuals.snqProfitEst <- function( object, scaled = TRUE, ... ) {
    }
    result$profit <- result$profit0 - object$fitted$profit
    result$profit0 <- NULL
-   
+
+   return( result )
+}
+
+## the same for snqProfitImposeConvexity
+residuals.snqProfitImposeConvexity <- function( object, scaled = TRUE, ... ) {
+
+   result <- residuals.snqProfitEst( object, scaled = scaled, ... )
+
    return( result )
 }
