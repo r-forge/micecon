@@ -100,20 +100,30 @@ snqProfitEst <- function( pNames, qNames, fNames = NULL,
       form )
 
    result$fitted <- data.frame( profit0 = rep( 0, nObs ) )
+   result$residuals <- data.frame( profit0 = rep( 0, nObs ) )
    for( i in 1:nNetput ) {
       result$fitted[[ qNames[ i ] ]] <- result$est$eq[[ i ]]$fitted
       result$fitted[[ "profit0" ]] <- result$fitted[[ "profit0" ]] +
          result$fitted[[ qNames[ i ] ]] * data[[ pNames[ i ] ]] *
          scalingFactors[ i ]
+      result$residuals[[ qNames[ i ] ]] <- data[[ qNames[ i ] ]] /
+         scalingFactors[ i ] - result$fitted[[ qNames[ i ] ]]
    }
    result$fitted[[ "profit" ]] <- result$fitted[[ "profit0" ]]
    result$fitted[[ "profit0" ]] <- NULL
+   result$residuals[[ "profit" ]] <- modelData[[ "profit" ]] -
+      result$fitted[[ "profit" ]]
+   result$residuals[[ "profit0" ]] <- NULL
 
-   result$r2 <- array( NA, c( nNetput ) )
+   result$r2 <- array( NA, c( nNetput + 1 ) )
    for( i in 1:nNetput ) {
-      result$r2[ i ] <- result$est$eq[[ i ]]$r2
+      # result$r2[ i ] <- result$est$eq[[ i ]]$r2
+      result$r2[ i ] <- rSquared( data[[ qNames[ i ] ]] / scalingFactors[ i ],
+         result$residuals[[ qNames[ i ] ]] )
    }
-   names( result$r2 ) <- qNames
+   result$r2[ nNetput + 1 ] <- rSquared( modelData[[ "profit" ]],
+      result$residuals[[ "profit" ]] )
+   names( result$r2 ) <- c( qNames, "profit" )
 
    result$hessian <- snqProfitHessian( result$coef$beta, result$pMeans, weights )
       # Hessian matrix
