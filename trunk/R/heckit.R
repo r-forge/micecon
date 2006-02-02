@@ -33,9 +33,12 @@ heckit <- function( selection, formula, data, inst = NULL,
    probitDummy <- probitEndogenous == probitLevels[ 2 ]
 
    # NA action
-   firstStepData <- data[ , all.vars( selection ) ]
-   secondStepData <- data[ , unique( c( all.vars( formula ),
-      all.vars( inst ) ) ) ]
+   firstStepData <- model.frame( selection, data = data, na.action = NULL )
+   secondStepData <- model.frame( formula, data = data, na.action = NULL )
+   if( !is.null( inst ) ) {
+      secondStepData <- cbind( secondStepData,
+         model.frame( inst, data = data, na.action = NULL ) )
+   }
    firstStepOk <- rowSums( is.na( firstStepData ) ) == 0
    secondStepOk <- rowSums( is.na( secondStepData ) ) == 0
    result$dataOk <- firstStepOk & ( secondStepOk | !probitDummy )
