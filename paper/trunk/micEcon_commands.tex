@@ -1,16 +1,29 @@
 \usepackage{pslatex}
 \usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
 \usepackage{geometry}
 \geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=2.5cm,headheight=0cm,headsep=0cm,footskip=0cm}
 \pagestyle{empty}
-\setlength\parskip{\medskipamount}
-\setlength\parindent{0pt}
+
 \usepackage{setspace}
 \onehalfspacing
+
 \usepackage[authoryear]{natbib}
+
+\usepackage{csquotes}
+\MakeOuterQuote{°}
 
 \makeatletter
 \usepackage{url}
 
 \usepackage{babel}
+
+\newcommand{\pkg}[1]{{\normalfont\fontseries{b}\selectfont #1}}
+\let\proglang=\textsf
+
+\clubpenalty=10000
+\widowpenalty=10000
+
 \makeatother
+
+

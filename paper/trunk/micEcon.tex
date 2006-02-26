@@ -3,68 +3,64 @@
 \makeatother
 
 \begin{document}
-\begin{center}\textbf{\LARGE Microeconomic Analysis with R}\end{center}{\LARGE \par}
+\begin{center}
+\textbf{\LARGE
+Microeconomic Analysis with \proglang{R}
+}
 
 \bigskip
-% \begin{center}Arne Henningsen\\
-% Department of Agricultural Economics\\
-% University of Kiel, Germany\end{center}
+{\Large
+Arne Henningsen and Ott Toomet
+}
+\end{center}
 
 Since its first public release in 1993, the free open source statistical
-language and development environment ``R'' \citep{r-project} has been used more
-and more for statistical analysis.
-While it is already prelevant in many scientific disciplines, 
-it is not yet wide used in economics.
+language and development environment °\proglang{R}° \citep{r-project}
+has been increasingly used for statistical analysis.
+While it has been prelevant in many scientific disciplines for a long time,
+it was not very widespread in economics in the first years.
 However, this situation has changed in recent years.
-One cornerstone was the article ``R: Yet another econometric programming
-environment'' by \citet{cribari99}.
-Three years later \citet{racine02} published the article ``Using R to teach
-econometrics''. 
-\citet{arai02} has presented a ``A brief guide to R for beginners in econometrics''
-in the web that has been continuously updated and improved since that time.
+Consequently, the number of extension packages for \proglang{R}
+that are suitable for economists
+has strongly increased in the last few years.
+One of these packages is called °\pkg{micEcon}° \citep{r-micecon} and provides
+tools for microeconomic analysis.
 
-The number of extension packages for special purposes has also considerably 
-increased in recent years.
-Merely the official website for R packages (\url{http://cran.r-project.org})
-provides more than 450 different packages.
-The packages cover a lot of different areas and many of these packages are also
-useful for economists.
-
-Over the last years the number of R packages that are useful for economists
-has also strongly increased. 
-One of these packages is called ``micEcon'' \citep{r-micecon} and provides
-tools mainly for microeconomic analysis and modeling.
-For example, it includes functions for demand analysis with the
-``Almost Ideal Demand System'' (AIDS) \citep{deaton80a}.
-These functions enable the econometric estimation, calculation of price and
-income (expenditure) elasticities and checks for theoretical consistency
-by one single R command.
-Second, micEcon contains tools for production analysis with the
-``symmetric normalized quadratic'' (SNQ) profit function
+Initially, the \pkg{micEcon} package included only tools
+for microeconomic modeling.
+For example, it provides functions for demand analysis with the
+°Almost Ideal Demand System° (AIDS) \citep{deaton80a}.
+These functions enable the econometric estimation,
+calculation of demand (price and income/expenditure) elasticities and
+checks for theoretical consistency
+by one single \proglang{R} command.
+Second, \pkg{micEcon} contains tools for production analysis with the
+°Symmetric Normalized Quadratic° (SNQ) profit function
 \citep{diewert87,diewert92,kohli93}.  
-Additionally to econometric estimation and calculation of price elasticities
-and shadow prices, it includes a function that imposes convexity on the 
+Additionally to the econometric estimation and calculation of price elasticities,
+it includes a function that imposes convexity on the
 estimated profit function using a new sophisticated method proposed by
 \citet{koebel03}.
-Third, this package provides a convenient interface to ``FRONTIER 4.1'', Tim
+Third, this package provides a convenient interface to °FRONTIER 4.1°, Tim
 Coelli's software for stochastic frontier analysis \citep{coelli96}.
-Furthermore, micEcon includes tools for other functional forms, namely
-translog and quadratic functions, and some other tools that are useful
-for economists.
+Furthermore, \pkg{micEcon} includes tools for other functional forms, namely 
+translog and quadratic functions.
 
-Free open source software like R and its packages have many advantages
-for scientists compared to commercial software.
-The most important advantages are that
-(a) the algorithms used by the software are publicly available and, thus,
-can be checked and (peer) reviewed,
-(b) these algorithms can be altered or extended to meet own requirements, and
-(c) this software can be given to colleagues and students free of charge and
-without any legal or other restrictions.
+About a year ago, we have added tools for sample selection models
+that are also often applied in microeconomic analyses.
+The \pkg{micEcon} package now includes functions to estimate these models
+using the two-step Heckman or an efficient maximum likelihood procedure.
+Furthermore, tools to calculate selectivity terms (°inverse Mill's ratios°)
+even from bivariate probit models have been added.
 
-Hence, R is a very suitable platform for applied economists who perform
-statistical and econometric analysis or develop new algorithms.
+On the useR! conference,
+we would like to present the capabilities of the \pkg{micEcon} package.
+Applied economists interested in microeconomic modeling will be invited to
+join our team and contribute to this package
+by providing tools for other types of microeconomic analyses.
 
-\bibliographystyle{apalike}
+
+\bibliographystyle{jss}
 %\bibliography{/home/suapm095/Documents/Literatur/arne}
 \bibliography{micEcon}
 
