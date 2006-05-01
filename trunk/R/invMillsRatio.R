@@ -30,9 +30,14 @@ invMillsRatio <- function( x, all = FALSE ) {
       library( mvtnorm )
       result <- data.frame( no = 1:nrow( x@predictors ),
          row.names = rownames( x@predictors ) )
-      if( x@misc$link == "identity" ) {
+      if( length( x@misc$link ) == 1 ) {
+         vglmLink <- x@misc$link
+      } else {
+         vglmLink <- x@misc$link[ "rho" ]
+      }
+      if( vglmLink == "identity" ) {
          rho <- x@predictors[ , 3 ]
-      } else if( x@misc$link == "rhobit" ){
+      } else if( vglmLink == "rhobit" ){
          rho <- rhobit( x@predictors[ , 3 ], inv = TRUE )
       } else {
          stop( "the bivariate probit (binom2.rho) must be either estimated",
