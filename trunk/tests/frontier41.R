@@ -16,8 +16,20 @@ writeFront41in( Coelli, "firm", "time", "logOutput",
 
 print( readLines( insFile ) )
 print( readLines( dtaFile ) )
+
+# irregular firm (cross section) identifier
+set.seed( 20061705 )
+Coelli$firm <- sample( c( 1:( nrow( Coelli ) + 20 ) ) )[ 1:nrow( Coelli ) ]
+
+writeFront41in( Coelli, "firm", "time", "logOutput",
+   c( "logCapital", "logLabour" ), insFile = insFile, dtaFile = dtaFile  )
+
+print( readLines( insFile ) )
+print( readLines( dtaFile ) )
+
 close( insFile )
 close( dtaFile )
+
 
 ## *****************************
 ## Testing readFront41out
