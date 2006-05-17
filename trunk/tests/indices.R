@@ -10,7 +10,9 @@ printIndices <- function( what, ... ) {
          index <- quantityIndex( ..., method = i, weights = TRUE )
       }
       print( index )
-      if( all.equal( rowSums( attributes( index )$weights[ !is.na( index ), ] ),
+      testRowSums <- rowSums( attributes( index )$weights[ !is.na( index ), ] )
+      names( testRowSums ) <- NULL
+      if( all.equal( testRowSums,
          rep( 1, sum( !is.na( index ) ) ) ) != TRUE ) {
          cat( "\nrowSums are not equal to one!!!\n\n" )
       }
