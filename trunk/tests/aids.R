@@ -28,6 +28,9 @@ estResultLATX$est$q.restr <- NULL
 estResultLA$est$x <- NULL
 estResultLA$est$R.restr <- NULL
 estResultLA$est$q.restr <- NULL
+dimnames(estResultLA$est$eq[[ 1 ]]$bcov) <- NULL
+dimnames(estResultLA$est$eq[[ 2 ]]$bcov) <- NULL
+dimnames(estResultLA$est$eq[[ 3 ]]$bcov) <- NULL
 print( all.equal( estResultLA, estResultLATX ) )
 
 ## only homogeneity (no symmetry imposed)
@@ -48,6 +51,9 @@ estResultLAhomTX$est$q.restr <- NULL
 estResultLAhom$est$x <- NULL
 estResultLAhom$est$R.restr <- NULL
 estResultLAhom$est$q.restr <- NULL
+dimnames(estResultLAhom$est$eq[[ 1 ]]$bcov) <- NULL
+dimnames(estResultLAhom$est$eq[[ 2 ]]$bcov) <- NULL
+dimnames(estResultLAhom$est$eq[[ 3 ]]$bcov) <- NULL
 print( all.equal( estResultLAhom, estResultLAhomTX ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
@@ -92,6 +98,9 @@ estResultAIDSTX$est$q.restr <- NULL
 estResultAIDS$est$x <- NULL
 estResultAIDS$est$R.restr <- NULL
 estResultAIDS$est$q.restr <- NULL
+dimnames(estResultAIDS$est$eq[[ 1 ]]$bcov) <- NULL
+dimnames(estResultAIDS$est$eq[[ 2 ]]$bcov) <- NULL
+dimnames(estResultAIDS$est$eq[[ 3 ]]$bcov) <- NULL
 print( all.equal( estResultAIDS, estResultAIDSTX ) )
 
 ## only homogeneity (no symmetry imposed)
@@ -114,6 +123,9 @@ estResultAIDShomTX$est$q.restr <- NULL
 estResultAIDShom$est$x <- NULL
 estResultAIDShom$est$R.restr <- NULL
 estResultAIDShom$est$q.restr <- NULL
+dimnames(estResultAIDShom$est$eq[[ 1 ]]$bcov) <- NULL
+dimnames(estResultAIDShom$est$eq[[ 2 ]]$bcov) <- NULL
+dimnames(estResultAIDShom$est$eq[[ 3 ]]$bcov) <- NULL
 print( all.equal( estResultAIDShom, estResultAIDShomTX ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
