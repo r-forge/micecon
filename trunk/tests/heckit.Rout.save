@@ -1,6 +1,7 @@
 
-R : Copyright 2005, The R Foundation for Statistical Computing
-Version 2.1.1  (2005-06-20), ISBN 3-900051-07-0
+R : Copyright 2006, The R Foundation for Statistical Computing
+Version 2.3.0 (2006-04-24)
+ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -11,13 +12,11 @@ Type 'contributors()' for more information and
 'citation()' on how to cite R or R packages in publications.
 
 Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for a HTML browser interface to help.
+'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
 > library( micEcon )
 Loading required package: systemfit
-This package is still an alpha version. This means that this package has not been thoroughly tested yet. Thus, there might be several bugs in it and I do not guarantee that all results are correct. 
-Please send bug reports to ahenningsen@agric-econ.uni-kiel.de
 > data( Mroz87 )
 > options( digits = 6 )
 > 
@@ -25,7 +24,7 @@ Please send bug reports to ahenningsen@agric-econ.uni-kiel.de
 > Mroz87$kids  <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
 > greene <- heckit( lfp ~ age + I( age^2 ) + faminc + kids + educ,
 +    wage ~ exper + I( exper^2 ) + educ + city, Mroz87 )
- > print( summary( greene ) )
+> print( summary( greene ) )
                Estimate Std. Error   t value Pr(>|t|)    
 (Intercept)     -0.9712   2.059351 -0.471605 0.637452    
 exper          0.021061   0.062465  0.337166 0.736159    
@@ -114,7 +113,7 @@ invMillsRatio    1.60271957
 > data( Mroz87 )
 > wooldridge <- heckit( lfp ~ nwifeinc + educ + exper + I( exper^2 ) + age +
 +    kids5 + kids618, log( wage ) ~ educ + exper + I( exper^2 ), Mroz87 )
- > print( summary( wooldridge ) )
+> print( summary( wooldridge ) )
                Estimate Std. Error   t value Pr(>|t|)    
 (Intercept)   -0.578103   0.305006 -1.895382 0.058723   .
 educ           0.109066   0.015523   7.02608        0 ***
