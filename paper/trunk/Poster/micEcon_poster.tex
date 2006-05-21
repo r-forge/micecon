@@ -1,0 +1,229 @@
+\documentclass[portrait,a0b,final]{a0poster}
+\usepackage{pstricks,pst-grad}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{csquotes}
+\MakeOuterQuote{°}
+\usepackage{setspace}
+% \usepackage{showframe}
+
+% define poster column
+\newenvironment{postercolumn}[1]{
+   \begin{minipage}[t]{#1\textwidth}
+   \begin{center}
+}{
+   \end{center}
+   \end{minipage}
+}
+
+% define command for boxes
+\newcommand{\posterbox}[4]{
+\psshadowbox[#3]{
+\begin{minipage}[t][#2][t]{#1}
+\vspace{10mm}
+\begin{spacing}{1.2}
+#4
+\end{spacing}
+\end{minipage}
+}}
+
+% define some colors
+\definecolor{lightblue}{rgb}{0, 0, 0.8}
+\definecolor{white}{rgb}{1, 1, 1}
+\definecolor{whiteblue}{rgb}{0.75, 0.8, 1}
+
+% define font sizes
+\newcommand{\standardfontsize}{\LARGE}
+\newcommand{\boxheaderfontsize}{\huge}
+
+\setlength{\fboxsep}{0pt}
+
+\begin{document}
+% set background color (gradient)
+\psframe[fillstyle=gradient, gradbegin=white, gradend=whiteblue,
+   gradmidpoint=1.0](-3,3)(1.1\textwidth,-1.1\textheight)
+
+\sffamily
+\begin{center}
+% \fbox{
+\begin{postercolumn}{1}
+% main header
+\posterbox{0.96\textwidth}{}{linewidth=2mm, framearc=0.3,
+   linecolor=lightblue, fillstyle=gradient, gradangle=0,
+   gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
+   framesep=1em}{
+% left useR logo
+\begin{minipage}[c][9cm][c]{0.2\textwidth}
+  \begin{center}
+    \includegraphics[width=12cm]{useR-large}
+  \end{center}
+\end{minipage}
+% title etc
+\begin{minipage}[c][13cm][c]{0.59\textwidth}
+  \begin{center}
+    {\VeryHuge \textbf{micEcon}}\\[12mm]
+    {\Huge R Package for Microeconomic Analyses}\\[8mm]
+    {\Huge Arne Henningsen and Ott Toomet}\\[8mm]
+    {\LARGE University of Kiel (Germany) and University of \AA rhus (Denmark)}
+  \end{center}
+\end{minipage}
+% right useR logo
+\begin{minipage}[c][9cm][c]{0.2\textwidth}
+  \begin{center}
+    \includegraphics[width=12cm]{useR-large}
+  \end{center}
+\end{minipage}
+}
+\end{postercolumn}
+
+\vspace{15mm}
+
+% \fbox{
+\begin{postercolumn}{0.49}
+% Demand Analysis
+\posterbox{0.92\textwidth}{31cm}{linewidth=2mm, framearc=0.1,
+   linecolor=lightblue, fillstyle=gradient, gradangle=0,
+   gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
+   framesep=1em}{
+{\boxheaderfontsize \textbf{Demand Analysis with the
+°Almost Ideal Demand System° (AIDS)}}
+{\standardfontsize
+\begin{itemize}
+\item econometric estimation using the
+\begin{itemize}
+\item popular but inaccurate °Linear Approximation° (LA-AIDS)
+\item accurate °Iterated Linear Least Squares Estimator° (ILLE)
+\end{itemize}
+\item searching for the intercept of the translog price index ($\alpha_0$)
+   that gives the best fit to the model
+\item optional imposition homogeneity and symmetry
+\item checking for monotonicity and concavity
+\item calculation of predicted quantities and expenditure shares
+\item calculation of price elasticities, income elasticities,
+   and their standard errors
+\end{itemize}
+}}
+
+\vspace{15mm}
+
+% SNQ Profit Function
+\posterbox{0.92\textwidth}{31cm}{linewidth=2mm, framearc=0.1,
+   linecolor=lightblue, fillstyle=gradient, gradangle=0,
+   gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
+   framesep=1em}{
+{\boxheaderfontsize \textbf{Production Analysis with the
+°Symmetric Normalized Quadratic° (SNQ) profit function}}
+{\standardfontsize
+\begin{itemize}
+\item econometric estimation
+\item imposition of global convexity using a two-step estimation
+   procedure
+\item calculation of price elasticities and their standard errors
+\item calculation of fixed factor elasticities
+\item calculation of shadow prices
+\item calculation of the Hessian matrix and
+   its derivatives with respect to coefficients
+\item calculation of predicted profits and netput quantities
+   including the standard errors and the confidence limits of prediction
+\end{itemize}
+}}
+\end{postercolumn}
+% }
+\hfill
+% \fbox{
+\begin{postercolumn}{0.49}
+% Sample selection models
+\posterbox{0.92\textwidth}{23cm}{linewidth=2mm, framearc=0.1,
+   linecolor=lightblue, fillstyle=gradient, gradangle=0,
+   gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
+   framesep=1em}{
+{\boxheaderfontsize \textbf{Sample Selection Models}}
+{\standardfontsize
+\begin{itemize}
+\item two-step Heckman estimation
+\item Maximum Likelihood estimation
+\item calculation of variance covariance matrices for
+Heckman-type estimations
+\item calculation of °Inverse Mill's Ratios° for selection models
+(from unviratiate probit estimations)
+\item calculation of °Inverse Mill's Ratios° for double-selection models
+(from bivariate probit estimations)
+\end{itemize}
+}}
+
+\vspace{15mm}
+
+% Matrix Tools
+\posterbox{0.92\textwidth}{17cm}{linewidth=2mm, framearc=0.1,
+   linecolor=lightblue, fillstyle=gradient, gradangle=0,
+   gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
+   framesep=1em}{
+{\boxheaderfontsize \textbf{Tools for Matrices}}
+{\standardfontsize
+\begin{itemize}
+\item inserting additional rows and columns into matrices
+\item creating symmetric and triangular matrices
+\item conversion between a symmetric matrix and a vector
+   of its linear independent values
+\item tests for positive and negative semidefiniteness
+% \item checking quasiconcavity and quasiconvexity
+\end{itemize}
+}}
+
+\vspace{15mm}
+
+% Miscellaneous Tools
+\posterbox{0.92\textwidth}{18cm}{linewidth=2mm, framearc=0.1,
+   linecolor=lightblue, fillstyle=gradient, gradangle=0,
+   gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
+   framesep=1em}{
+{\boxheaderfontsize \textbf{Miscellaneous Tools}}
+{\standardfontsize
+\begin{itemize}
+\item quadratic functions: e.g.\ estimation,
+   calculation of derivatives
+\item translog functions: e.g.\ estimation,
+   calculation of derivatives and Hessian matrix
+\item write input files and read output files of
+FRONTIER~4.1 (software for stochastic frontier analysis)
+\item maximization using the Newton-Raphson and BHHH algorithm
+\end{itemize}
+}}
+
+\end{postercolumn}
+% }
+
+\vspace{15mm}
+
+\begin{postercolumn}{1}
+\posterbox{0.96\textwidth}{}{linewidth=2mm, framearc=0.3,
+   linecolor=lightblue, fillstyle=gradient, gradangle=0,
+   gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
+   framesep=1em}{
+\begin{spacing}{1.5}
+{\Large
+\textbf{Arne Henningsen} $\cdot$
+Department of Agricultural Economics $\cdot$
+University of Kiel $\cdot$
+Olshausenstr.~40 $\cdot$
+D-24098 Kiel (Germany) $\cdot$
+Phone~+49-431-880 4445 $\cdot$
+Fax~+49-431-880 1397 $\cdot$
+\url{ahenningsen@agric-econ.uni-kiel.de} $\cdot$
+\url{http://www.uni-kiel.de/agrarpol/ahenningsen/}\\[5mm]
+\textbf{Ott Toomet} $\cdot$
+Department of Economics $\cdot$
+University of \AA rhus $\cdot$
+Building~1322 $\cdot$
+DK-8000 \AA rhus C (Denmark) $\cdot$
+Phone~+45-8942-1589 $\cdot$
+Fax~+45-8613-6334 $\cdot$
+\url{otoomet@econ.au.dk} $\cdot$
+\url{http://www.econ.au.dk/afn/PhD/toometo.htm}%
+}%
+\end{spacing}%
+}
+\end{postercolumn}
+% }
+\end{center}
+\end{document}
