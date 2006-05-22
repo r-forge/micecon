@@ -1,42 +1,5 @@
 \documentclass[portrait,a0b,final]{a0poster}
-\usepackage{pstricks,pst-grad}
-\usepackage{graphicx}
-\usepackage{url}
-\usepackage{csquotes}
-\MakeOuterQuote{°}
-\usepackage{setspace}
-% \usepackage{showframe}
-
-% define poster column
-\newenvironment{postercolumn}[1]{
-   \begin{minipage}[t]{#1\textwidth}
-   \begin{center}
-}{
-   \end{center}
-   \end{minipage}
-}
-
-% define command for boxes
-\newcommand{\posterbox}[4]{
-\psshadowbox[#3]{
-\begin{minipage}[t][#2][t]{#1}
-\vspace{10mm}
-\begin{spacing}{1.2}
-#4
-\end{spacing}
-\end{minipage}
-}}
-
-% define some colors
-\definecolor{lightblue}{rgb}{0, 0, 0.8}
-\definecolor{white}{rgb}{1, 1, 1}
-\definecolor{whiteblue}{rgb}{0.75, 0.8, 1}
-
-% define font sizes
-\newcommand{\standardfontsize}{\LARGE}
-\newcommand{\boxheaderfontsize}{\huge}
-
-\setlength{\fboxsep}{0pt}
+\input{micEcon_poster_commands}
 
 \begin{document}
 % set background color (gradient)
