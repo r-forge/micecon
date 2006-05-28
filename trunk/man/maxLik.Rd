@@ -5,7 +5,7 @@
 \title{Maximum likelihood estimation}
 \description{
   This is just a wrapper for maximisation routines which return object
-  of calss "maxLik".  Corresponding methods can correctly handle the
+  of class "maxLik".  Corresponding methods can correctly handle the
   likelihood-specific properties of the estimate, e.g. the fact that
   inverse of negative hessian is the variance-covariance matrix.
 }
