@@ -48,8 +48,10 @@
    gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
    framesep=1em}{
 {\boxheaderfontsize \textbf{Demand Analysis with the
-°Almost Ideal Demand System° (AIDS)}}
+°Almost Ideal Demand System° (AIDS)}}\\[5mm]
 {\standardfontsize
+The AIDS is the most popular demand system in empirical demand analysis.
+\texttt{micEcon} provides functions for:
 \begin{itemize}
 \item econometric estimation using the
 \begin{itemize}
@@ -61,7 +63,9 @@
 \item optional imposition homogeneity and symmetry
 \item checking for monotonicity and concavity
 \item predicted quantities and expenditure shares
-\item price elasticities, income elasticities,
+\item Marshallian (uncompensated) price elasticities, 
+   Hicksian (compensated) price elasticities, 
+   income elasticities,
    and their standard errors
 \end{itemize}
 }}
@@ -74,13 +78,16 @@
    gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
    framesep=1em}{
 {\boxheaderfontsize \textbf{Production Analysis with the
-°Symmetric Normalized Quadratic° (SNQ) profit function}}
+°Symmetric Normalized Quadratic° (SNQ) profit function}}\\[5mm]
 {\standardfontsize
+The SNQ profit function is often used in microeconomic production models
+because it enables the imposition of global convexity.
+\texttt{micEcon} provides functions for:
 \begin{itemize}
 \item econometric estimation
 \item imposition of global convexity using a two-step estimation
    procedure
-\item price elasticities and their standard errors
+\item price elasticities of inputs and outputs and their standard errors
 \item fixed factor elasticities
 \item shadow prices of fixed factors
 \item Hessian matrix and
@@ -99,8 +106,11 @@
    linecolor=lightblue, fillstyle=gradient, gradangle=0,
    gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
    framesep=1em}{
-{\boxheaderfontsize \textbf{Heckman Selection Models}}
+{\boxheaderfontsize \textbf{Heckman Selection Models}}\\[5mm]
 {\standardfontsize
+If a non-random (sub)sample is used for econometric estimation,
+Heckman selection models are required to obtain unbiased estimates.
+\texttt{micEcon} provides functions for:
 \begin{itemize}
 \item two-step Heckman estimation
 \item Maximum Likelihood estimation
@@ -120,8 +130,9 @@ Heckman-type estimations
    linecolor=lightblue, fillstyle=gradient, gradangle=0,
    gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
    framesep=1em}{
-{\boxheaderfontsize \textbf{Tools for Matrices}}
+{\boxheaderfontsize \textbf{Tools for Matrices}}\\[5mm]
 {\standardfontsize
+\texttt{micEcon} provides functions for:
 \begin{itemize}
 \item inserting additional rows and columns into matrices
 \item creating symmetric and triangular matrices
@@ -139,8 +150,9 @@ Heckman-type estimations
    linecolor=lightblue, fillstyle=gradient, gradangle=0,
    gradbegin=white, gradend=whiteblue, gradmidpoint=1.0,
    framesep=1em}{
-{\boxheaderfontsize \textbf{Miscellaneous Tools}}
+{\boxheaderfontsize \textbf{Miscellaneous Tools}}\\[5mm]
 {\standardfontsize
+\texttt{micEcon} provides functions for:
 \begin{itemize}
 \item quadratic functions: e.g.\ estimation,
    derivatives with respect to regressors
