@@ -1,0 +1,253 @@
+\documentclass{beamer}
+%\documentclass[notes=show,handout]{beamer}
+%\documentclass[handout]{beamer}
+
+\input{micEcon_slides_commands.tex}
+
+
+\title[micEcon]{
+   \textbf{micEcon}\\ Microeconomic Analysis with R}
+\author{Arne Henningsen and Ott Toomet}
+\date{University of Kiel (Germany) and\\ University of Aarhus (Denmark)}
+
+\begin{document}
+\frame{ \titlepage }
+\note{
+\begin{itemize}
+\item Welcome!
+\item authors
+\item package micEcon: Tools for Microeconomic Analysis with R
+\end{itemize}
+}
+
+% ============== Introduction ==============================
+\section{Introduction}
+
+\frame{
+   \frametitle{Introduction}
+\texttt{R} for Economists
+\begin{itemize}
+\setlength{\itemsep}{0.5em}
+\item first years: \texttt{R} was not very widespread in economics
+\item this situation has changed in recent years,\\
+\item many new packages for economists
+\item \texttt{micEcon}: tools for microeconomic analysis
+\end{itemize}
+}
+\note{
+\begin{itemize}
+\item \texttt{R} has been prelevant in many scientific disciplines
+   for a long time.
+\item However, it was not very widespread in economics in the first years,
+\item but this situation has changed in recent years.
+\item For instance, the number of extension packages for \texttt{R}
+   that are suitable for economists
+   has strongly increased in the last few years.
+\item One of these packages is called °\pkg{micEcon}°
+\item and provides tools for microeconomic analysis.
+\end{itemize}
+}
+
+% ----------------- Tools ----------------------------
+\section{Tools}
+\subsection{Main}
+\frame{
+   \frametitle{Main Tools}
+\texttt{micEcon} provides mainly tools for
+\begin{itemize}
+\setlength{\itemsep}{0.5em}
+\item demand analysis with the °Almost Ideal Demand System°~(AIDS)
+\item production analysis with the °Symmetric Normalized Quadratic°~(SNQ)
+   profit function
+\item Heckman selection models
+\end{itemize}
+}
+\note{
+\begin{itemize}
+\item The AIDS is the most popular demand system in empirical demand analysis.
+\item The SNQ profit function is often used in microeconomic production models
+because it allows the imposition of global convexity.
+\item If a non-random (sub)sample is used for econometric estimation,
+Heckman selection models are required to obtain unbiased estimates.
+\end{itemize}
+}
+
+\subsection{Miscellaneous}
+\frame{
+   \frametitle{Miscellaneous Tools}
+\texttt{micEcon} provides some further tools for
+\begin{itemize}
+\item creating and modifying matrices
+\item quadratic functions
+\item translog functions
+\item FRONTIER~4.1 (software for stochastic frontier analysis)
+\item maximization using the Newton-Raphson and BHHH algorithm
+\end{itemize}
+}
+\note{
+\begin{itemize}
+\item quadratic functions: e.g.\ estimation,
+   derivatives with respect to regressors
+\item translog functions: e.g.\ estimation,
+   derivatives and (bordered) Hessian matrix with respect to regressors
+\item writing input files and reading output files of
+FRONTIER~4.1 (software for stochastic frontier analysis)
+\item optimization using the Newton-Raphson and BHHH algorithm
+\end{itemize}
+}
+
+% ============== Demand Analysis ==============================
+\section{Demand Analysis}
+\frame{
+   \frametitle{°Almost Ideal Demand System°}
+\texttt{micEcon} provides functions for
+\begin{itemize}
+\item econometric estimation using the
+\begin{itemize}
+\item popular but inaccurate °Linear Approximation° (LA-AIDS)
+\item accurate °Iterated Linear Least Squares Estimator° (ILLE)
+\end{itemize}
+\item searching for the °best° intercept of the translog price
+   index~($\alpha_0$)
+\item optional imposition homogeneity and symmetry
+\item checking for monotonicity and concavity
+\item predicted quantities and expenditure shares
+\item price elasticities, income elasticities,
+   and their standard errors
+\end{itemize}
+}
+\note{
+\begin{itemize}
+\item econometric estimation using the
+\begin{itemize}
+\item popular but inaccurate °Linear Approximation° (LA-AIDS)
+\item accurate °Iterated Linear Least Squares Estimator° (ILLE)
+\end{itemize}
+\item searching for the intercept of the translog price index ($\alpha_0$)
+   that gives the best fit to the model
+\item optional imposition homogeneity and symmetry
+\item checking for monotonicity and concavity
+\item predicted quantities and expenditure shares
+\item Marshallian (uncompensated) price elasticities,
+   Hicksian (compensated) price elasticities,
+   income elasticities,
+   and their standard errors
+\end{itemize}
+}
+
+
+% ----------------- Demand Analysis: Commands ----------------------------
+\subsection{Commands}
+\begin{SaveVerbatim}{specNames}
+prices <- c("pFood1", "pFood2", "pFood3", "pFood4")
+shares <- c("wFood1", "wFood2", "wFood3", "wFood4")
+\end{SaveVerbatim}
+% \end{Verbatim}
+\begin{SaveVerbatim}{estSystem}
+estResult <- aidsEst( prices, shares, "xFood",
+   data = Blanciforti86 )
+\end{SaveVerbatim}
+% \end{Verbatim}
+\begin{SaveVerbatim}{printResults}
+print( estResult )
+\end{SaveVerbatim}
+% \end{Verbatim}
+\frame{
+   \frametitle{Demand Analysis: Commands}
+\begin{itemize}
+\setlength{\itemsep}{0.9em}
+\item specification of the variable names:\\[0.3em]
+   {\small \BUseVerbatim{specNames}}
+\item estimation of the °Almost Ideal Demand System°:\\[0.3em]
+   {\small \BUseVerbatim{estSystem}}
+\item printing estimation results:\\[0.3em]
+   {\small \BUseVerbatim{printResults}}
+\end{itemize}
+}
+\note{
+\begin{itemize}
+\item ?
+\end{itemize}
+}
+
+% ----------------- Demand Analysis: Output ----------------------------
+\subsection{Coefficients}
+\begin{SaveVerbatim}{coefficients}
+Estimation Method: Linear Approximation (LA)
+with Laspeyres Index (L)
+
+Estimated Coefficients
+alpha
+wFood1 wFood2 wFood3 wFood4
+-0.248  0.123  0.273  0.852
+beta
+ wFood1  wFood2  wFood3  wFood4
+ 0.3251  0.0481 -0.0816 -0.2917
+gamma
+         pFood1   pFood2   pFood3  pFood4
+wFood1  0.09104 -0.14571 -0.00963  0.0643
+wFood2 -0.14571  0.15852  0.00594 -0.0188
+wFood3 -0.00963  0.00594  0.01289 -0.0092
+wFood4  0.06431 -0.01875 -0.00920 -0.0364
+\end{SaveVerbatim}
+% \end{Verbatim}
+\frame{
+   \frametitle{Demand Analysis: Estimated Coefficients}
+{\small \BUseVerbatim{coefficients}}
+}
+\note{
+\begin{itemize}
+\item ?
+\end{itemize}
+}
+
+
+% ----------------- Demand Analysis: Output ----------------------------
+\subsection{Elasticities}
+\begin{SaveVerbatim}{elasticities}
+Demand Elasticities (Formula of Chalfant / Goddard)
+Expenditure Elasticities
+wFood1 wFood2 wFood3 wFood4
+ 2.048  1.240  0.392  0.179
+
+Marshallian (uncompensated) Price Elasticities
+       pFood1 pFood2 pFood3 pFood4
+wFood1 -1.032 -0.679 -0.172 -0.165
+wFood2 -0.802 -0.257 -0.003 -0.179
+wFood3  0.117  0.166 -0.822  0.147
+wFood4  0.436  0.112  0.084 -0.811
+
+Hicksian (compensated) Price Elasticities
+       pFood1 pFood2 pFood3 pFood4
+wFood1 -0.396 -0.269  0.103  0.562
+wFood2 -0.417 -0.008  0.164  0.262
+wFood3  0.239  0.245 -0.770  0.287
+wFood4  0.491  0.148  0.108 -0.747
+\end{SaveVerbatim}
+% \end{Verbatim}
+\frame{
+   \frametitle{Demand Analysis: Estimated Elasticities}
+{\small \BUseVerbatim{elasticities}}
+}
+\note{
+\begin{itemize}
+\item ?
+\end{itemize}
+}
+
+% ==================== The End ===========================
+\section{ }
+\frame{
+   \frametitle{The End . . .}
+
+\begin{center}
+{\LARGE \emph{Thank you for your attention!}}
+\end{center}
+}
+\note{
+   Thank you for your attention!
+}
+
+% ------------ End -------------
+
+\end{document}
