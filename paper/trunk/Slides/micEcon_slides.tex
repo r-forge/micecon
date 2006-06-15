@@ -1,5 +1,5 @@
-\documentclass{beamer}
-%\documentclass[notes=show,handout]{beamer}
+%\documentclass{beamer}
+\documentclass[notes=show,handout]{beamer}
 %\documentclass[handout]{beamer}
 
 \input{micEcon_slides_commands.tex}
@@ -7,46 +7,48 @@
 
 \title[micEcon]{
    \textbf{micEcon}\\ Microeconomic Analysis with R}
-\author{Arne Henningsen and Ott Toomet}
-\date{University of Kiel (Germany) and\\ University of Aarhus (Denmark)}
+\author{Arne Henningsen (University of Kiel, Germany)\\[0.4em]
+   Ott Toomet (University of Aarhus, Denmark)}
+\date{Vienna, June 16, 2006}
 
 \begin{document}
 \frame{ \titlepage }
 \note{
 \begin{itemize}
-\item Welcome!
-\item authors
-\item package micEcon: Tools for Microeconomic Analysis with R
+\item Now I will shortly present the R package micEcon.
+\item This package provides tools for microeconomic analysis.
+\item It is written by me and by my co-author Ott Toomet.
 \end{itemize}
 }
 
 % ============== Introduction ==============================
-\section{Introduction}
-
-\frame{
-   \frametitle{Introduction}
-\texttt{R} for Economists
-\begin{itemize}
-\setlength{\itemsep}{0.5em}
-\item first years: \texttt{R} was not very widespread in economics
-\item this situation has changed in recent years,\\
-\item many new packages for economists
-\item \texttt{micEcon}: tools for microeconomic analysis
-\end{itemize}
-}
-\note{
-\begin{itemize}
-\item \texttt{R} has been prelevant in many scientific disciplines
-   for a long time.
-\item However, it was not very widespread in economics in the first years,
-\item but this situation has changed in recent years.
-\item For instance, the number of extension packages for \texttt{R}
-   that are suitable for economists
-   has strongly increased in the last few years.
-\item One of these packages is called °\texttt{micEcon}°
-\item and provides tools for microeconomic analysis.
-\end{itemize}
-}
+% \section{Introduction}
+% 
+% \frame{
+%    \frametitle{Introduction}
+% \texttt{R} for Economists
+% \begin{itemize}
+% \setlength{\itemsep}{0.5em}
+% \item first years: \texttt{R} was not very widespread in economics
+% \item this situation has changed in recent years,\\
+% \item many new packages for economists
+% \item \texttt{micEcon}: tools for microeconomic analysis
+% \end{itemize}
+% }
+% \note{
+% \begin{itemize}
+% \item \texttt{R} has been prelevant in many scientific disciplines
+%    for a long time.
+% \item However, in the first years it was not very widespread in economics
+% \item but this situation has changed in recent years.
+% \item For instance, the number of extension packages on CRAN
+%    that are suitable for economists and econometricians
+%    has strongly increased in the last few years.
+% \item One of these packages is called \texttt{micEcon}
+% \item and it provides -- as I have already said -- tools for microeconomic 
+%    analysis.
+% \end{itemize}
+% }
 
 % ----------------- Tools ----------------------------
 \section{Tools}
@@ -56,19 +58,33 @@
 \texttt{micEcon} provides mainly tools for
 \begin{itemize}
 \setlength{\itemsep}{0.5em}
-\item demand analysis with the °Almost Ideal Demand System°~(AIDS)
-\item production analysis with the °Symmetric Normalized Quadratic°~(SNQ)
+\item demand analysis with the Almost Ideal Demand System~(AIDS)
+\item production analysis with the Symmetric Normalized Quadratic~(SNQ)
    profit function
 \item Heckman selection models
 \end{itemize}
 }
 \note{
 \begin{itemize}
-\item The AIDS is the most popular demand system in empirical demand analysis.
-\item The SNQ profit function is often used in microeconomic production models
-because it allows the imposition of global convexity.
-\item If a non-random (sub)sample is used for econometric estimation,
-Heckman selection models are required to obtain unbiased estimates.
+\item This package provides tools mainly for three types of analyses.
+\item First, it includes several functions for econometric demand analysis
+   with the °Almost Ideal Demand System°, AIDS, of Deaton and Muellbauer.
+\item The AIDS has many desirable properties and is, therefore,
+   the most popular demand system in empirical demand analysis.
+\item Second, micEcon provides functions for production analysis
+   with the °Symmetric Normalized Quadratic° profit function
+   of Diewert and Wales.
+% \item Formerly, this functional form was also traded under the name
+%    °symmetric generalized McFadden° function.
+\item This profit function is often used in microeconomic production models
+   because it allows the imposition of global convexity,
+   which is required by microeconomic theory.
+\item Third, micEcon provides functions for Heckman selection models.
+\item These selection models are required to obtain unbiased estimates,
+   if a non-random subsample is used for econometric estimation.
+\item These models can be estimated
+   either with the traditional two-step procedure of Heckman
+   or with an efficient Maximum Likelihood procedure.
 \end{itemize}
 }
 
@@ -77,61 +93,76 @@ Heckman selection models are required to obtain unbiased estimates.
    \frametitle{Miscellaneous Tools}
 \texttt{micEcon} provides some further tools for
 \begin{itemize}
-\item creating and modifying matrices
 \item quadratic functions
 \item translog functions
 \item FRONTIER~4.1 (software for stochastic frontier analysis)
-\item maximization using the Newton-Raphson and BHHH algorithm
+\item Optimization using the Newton-Raphson and BHHH algorithm
+\item creating and modifying matrices
 \end{itemize}
 }
 \note{
 \begin{itemize}
-\item quadratic functions: e.g.\ estimation,
-   derivatives with respect to regressors
-\item translog functions: e.g.\ estimation,
-   derivatives and (bordered) Hessian matrix with respect to regressors
-\item writing input files and reading output files of
-FRONTIER~4.1 (software for stochastic frontier analysis)
-\item optimization using the Newton-Raphson and BHHH algorithm
+\item Additionally, micEcon includes several miscellaneous functions
+   that also might be useful in microeconomic analyses.
+\item For instance, micEcon can be used to easily estimate
+   quadratic and translog functions,
+   and to do some calculations on the results
+   that are relevant for economists.
+%    and to calculate their derivatives with respect to the arguments.
+% \item In economics, these derivatives are for instance marginal products
+%    or marginal costs, 
+%    which play an important role in many microeconomic analyses.
+\item Moreover, micEcon provides functions to conveniently write input files
+   and read output files of FRONTIER~4.1 -- a widely used software 
+   for stochastic frontier analysis.
+\item Optimization using the Newton-Raphson and the Berndt-Hall-Hall-and-Hausman
+   algorithm can also be performed with micEcon.
+\item Finally, micEcon includes some functions to create and modify matrices.
 \end{itemize}
 }
 
 % ============== Demand Analysis ==============================
 \section{Demand Analysis}
 \frame{
-   \frametitle{°Almost Ideal Demand System°}
+   \frametitle{Almost Ideal Demand System}
 \texttt{micEcon} provides functions for
 \begin{itemize}
 \item econometric estimation using the
 \begin{itemize}
-\item popular but inaccurate °Linear Approximation° (LA-AIDS)
-\item accurate °Iterated Linear Least Squares Estimator° (ILLE)
+\item popular but inaccurate Linear Approximation (LA-AIDS)
+\item accurate Iterated Linear Least Squares Estimator (ILLE)
 \end{itemize}
-\item searching for the °best° intercept of the translog price
-   index~($\alpha_0$)
-\item optional imposition homogeneity and symmetry
+\item optional imposition homogeneity and/or symmetry
 \item checking for monotonicity and concavity
-\item predicted quantities and expenditure shares
 \item price elasticities, income elasticities,
    and their standard errors
+\item \ldots
 \end{itemize}
 }
 \note{
 \begin{itemize}
-\item econometric estimation using the
-\begin{itemize}
-\item popular but inaccurate °Linear Approximation° (LA-AIDS)
-\item accurate °Iterated Linear Least Squares Estimator° (ILLE)
-\end{itemize}
-\item searching for the intercept of the translog price index ($\alpha_0$)
-   that gives the best fit to the model
-\item optional imposition homogeneity and symmetry
-\item checking for monotonicity and concavity
-\item predicted quantities and expenditure shares
-\item Marshallian (uncompensated) price elasticities,
+\item Since the time constraint doesn't allow 
+   that I explain all features of micEcon in-depth,
+\item I focus on my favorite tool in micEcon:
+   demand analysis with the °Almost Ideal Demand System°.
+\item Most empirical studies estimate the non-linear demand equations of
+   the AIDS by applying a linear approximation.
+\item However, some studies have showed that this approximation
+   leads to rather inaccurate results.
+\item Therefore, Blundell and Robin proposed an Iterated Linear Least
+   Squares Estimator that gives very accurate results.
+\item micEcon can apply both estimation methods.
+\item Moreover, the user can specify if the homogeneity and symmetry conditions
+   that are derived from microeconomic theory should be imposed.
+\item After estimation, it can be checked to what extent the monotonicity and
+   concavity conditions that are also derived from microeconomic theory
+   are fulfilled.
+\item Finally, micEcon calculates income elasticities,
+   Marshallian (uncompensated) price elasticities,
    Hicksian (compensated) price elasticities,
-   income elasticities,
-   and their standard errors
+   and their standard errors.
+\item There are some more features available
+   that I won't describe here.
 \end{itemize}
 }
 
@@ -139,8 +170,8 @@ FRONTIER~4.1 (software for stochastic frontier analysis)
 % ----------------- Demand Analysis: Commands ----------------------------
 \subsection{Commands}
 \begin{SaveVerbatim}{specNames}
-prices <- c("pFood1", "pFood2", "pFood3", "pFood4")
-shares <- c("wFood1", "wFood2", "wFood3", "wFood4")
+prices <- c("pMeat", "pFruit", "pCereal", "pMisc")
+shares <- c("wMeat", "wFruit", "wCereal", "wMisc")
 \end{SaveVerbatim}
 % \end{Verbatim}
 \begin{SaveVerbatim}{estSystem}
@@ -158,7 +189,7 @@ print( estResult )
 \setlength{\itemsep}{0.9em}
 \item specification of the variable names:\\[0.3em]
    {\small \BUseVerbatim{specNames}}
-\item estimation of the °Almost Ideal Demand System°:\\[0.3em]
+\item estimation of the Almost Ideal Demand System:\\[0.3em]
    {\small \BUseVerbatim{estSystem}}
 \item printing estimation results:\\[0.3em]
    {\small \BUseVerbatim{printResults}}
@@ -166,8 +197,19 @@ print( estResult )
 }
 \note{
 \begin{itemize}
-\item ?
+\item Now, I will give an example of a very simple demand analysis.
+\item This example comes from a paper from Blanciforti, Green and King
+   that analyzes the food demand in the U.S.
+\item First, the names of the variables that contain the prices and the
+   expenditure shares are specified.
+\item There are four food categories: meat, fruit and vegetables,
+   cereal and bakery products, as well as miscellaneous food.
+\item Then, the demand system is estimated.
+\item The arguments are the names of the prices, the names of the expenditure
+   shares, the variable name of total expenditure, and the data set.
+\item Finally, the estimation results are printed.
 \end{itemize}
+\myhrule
 }
 
 % ----------------- Demand Analysis: Output ----------------------------
@@ -178,17 +220,17 @@ with Laspeyres Index (L)
 
 Estimated Coefficients
 alpha
-wFood1 wFood2 wFood3 wFood4
--0.248  0.123  0.273  0.852
+ wMeat wFruit wCereal  wMisc
+-0.248  0.123   0.273  0.852
 beta
- wFood1  wFood2  wFood3  wFood4
+  wMeat  wFruit wCereal   wMisc
  0.3251  0.0481 -0.0816 -0.2917
 gamma
-         pFood1   pFood2   pFood3  pFood4
-wFood1  0.09104 -0.14571 -0.00963  0.0643
-wFood2 -0.14571  0.15852  0.00594 -0.0188
-wFood3 -0.00963  0.00594  0.01289 -0.0092
-wFood4  0.06431 -0.01875 -0.00920 -0.0364
+           pMeat    pFruit  pCereal   pMisc
+wMeat    0.09104  -0.14571 -0.00963  0.0643
+wFruit  -0.14571   0.15852  0.00594 -0.0188
+wCereal -0.00963   0.00594  0.01289 -0.0092
+wMisc    0.06431  -0.01875 -0.00920 -0.0364
 \end{SaveVerbatim}
 % \end{Verbatim}
 \frame{
@@ -197,7 +239,13 @@ wFood4  0.06431 -0.01875 -0.00920 -0.0364
 }
 \note{
 \begin{itemize}
-\item ?
+\item The estimated coefficients are printed first.
+\item The functional form is specified with
+   a vector of so-called $\alpha$ coefficients,
+   a vector of $\beta$ coefficients
+   and a matrix of $\gamma$ coefficients.
+\item However, the interpretation of these coefficients
+   is rather limited.
 \end{itemize}
 }
 
@@ -207,22 +255,22 @@ wFood4  0.06431 -0.01875 -0.00920 -0.0364
 \begin{SaveVerbatim}{elasticities}
 Demand Elasticities (Formula of Chalfant / Goddard)
 Expenditure Elasticities
-wFood1 wFood2 wFood3 wFood4
- 2.048  1.240  0.392  0.179
+ wMeat wFruit wCereal  wMisc
+ 2.048  1.240   0.392  0.179
 
 Marshallian (uncompensated) Price Elasticities
-       pFood1 pFood2 pFood3 pFood4
-wFood1 -1.032 -0.679 -0.172 -0.165
-wFood2 -0.802 -0.257 -0.003 -0.179
-wFood3  0.117  0.166 -0.822  0.147
-wFood4  0.436  0.112  0.084 -0.811
+         pMeat pFruit pCereal  pMisc
+wMeat   -1.032 -0.679  -0.172 -0.165
+wFruit  -0.802 -0.257  -0.003 -0.179
+wCereal  0.117  0.166  -0.822  0.147
+wMisc    0.436  0.112   0.084 -0.811
 
 Hicksian (compensated) Price Elasticities
-       pFood1 pFood2 pFood3 pFood4
-wFood1 -0.396 -0.269  0.103  0.562
-wFood2 -0.417 -0.008  0.164  0.262
-wFood3  0.239  0.245 -0.770  0.287
-wFood4  0.491  0.148  0.108 -0.747
+         pMeat pFruit pCereal  pMisc
+wMeat   -0.396 -0.269   0.103  0.562
+wFruit  -0.417 -0.008   0.164  0.262
+wCereal  0.239  0.245  -0.770  0.287
+wMisc    0.491  0.148   0.108 -0.747
 \end{SaveVerbatim}
 % \end{Verbatim}
 \frame{
@@ -231,7 +279,18 @@ wFood4  0.491  0.148  0.108 -0.747
 }
 \note{
 \begin{itemize}
-\item ?
+\item Economists like so-called elasticities very much.
+\item They generally indicate a percentage change in one variable
+   if another variable changes by one percent.
+\item Here, the expenditure elasticities and two kinds of price elasticities
+   are presented.
+\item For instance, if the household increases total food expenditure by 1\%,
+   the demand for meat increases by more than 2\%,
+   while the demand for miscellaneous food increases only by less than .2\%.
+\item Furthermore, one can see from the Marshallian Price Elasticities
+   that if the price of meat increases by 1\%,
+   the household buys less meat and less fruit and vegetables,
+   but more cereals and more miscellaneous food.
 \end{itemize}
 }
 
@@ -241,11 +300,16 @@ wFood4  0.491  0.148  0.108 -0.747
    \frametitle{The End . . .}
 
 \begin{center}
+{\LARGE You are invited to provide\\[0.5em]
+further tools for micEcon!}\\[3em]
 {\LARGE \emph{Thank you for your attention!}}
 \end{center}
 }
 \note{
-   Thank you for your attention!
+\begin{itemize}
+\item You are invited to provide further tools for micEcon!
+\item Thank you very much for your attention!
+\end{itemize}
 }
 
 % ------------ End -------------
