@@ -1,5 +1,5 @@
-%\documentclass{beamer}
-\documentclass[notes=show,handout]{beamer}
+\documentclass{beamer}
+%\documentclass[notes=show,handout]{beamer}
 %\documentclass[handout]{beamer}
 
 \input{micEcon_slides_commands.tex}
@@ -7,9 +7,10 @@
 
 \title[micEcon]{
    \textbf{micEcon}\\ Microeconomic Analysis with R}
-\author{Arne Henningsen (University of Kiel, Germany)\\[0.4em]
+\author[Arne Henningsen and Ott Toomet]{
+   Arne Henningsen (University of Kiel, Germany)\\[0.4em]
    Ott Toomet (University of Aarhus, Denmark)}
-\date{Vienna, June 16, 2006}
+\date{useR!, Vienna, June 16, 2006}
 
 \begin{document}
 \frame{ \titlepage }
@@ -83,8 +84,8 @@
 \item These selection models are required to obtain unbiased estimates,
    if a non-random subsample is used for econometric estimation.
 \item These models can be estimated
-   either with the traditional two-step procedure of Heckman
-   or with an efficient Maximum Likelihood procedure.
+   either by the traditional two-step procedure of Heckman
+   or by an efficient Maximum Likelihood procedure.
 \end{itemize}
 }
 
@@ -157,9 +158,7 @@
 \item After estimation, it can be checked to what extent the monotonicity and
    concavity conditions that are also derived from microeconomic theory
    are fulfilled.
-\item Finally, micEcon calculates income elasticities,
-   Marshallian (uncompensated) price elasticities,
-   Hicksian (compensated) price elasticities,
+\item Finally, micEcon calculates income elasticities, price elasticities,
    and their standard errors.
 \item There are some more features available
    that I won't describe here.
@@ -279,7 +278,7 @@ wMisc    0.491  0.148   0.108 -0.747
 }
 \note{
 \begin{itemize}
-\item Economists like so-called elasticities very much.
+\item Economists prefer so-called elasticities.
 \item They generally indicate a percentage change in one variable
    if another variable changes by one percent.
 \item Here, the expenditure elasticities and two kinds of price elasticities
