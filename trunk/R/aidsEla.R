@@ -1,5 +1,5 @@
-aidsEla <- function( coef, W, P = NULL, formula = "AIDS",
-   qNames = NULL, pNames = NULL, coefVcov = NULL, df = NULL ) {
+aidsEla <- function( coef, shares, prices = NULL, formula = "AIDS",
+   quantNames = NULL, priceNames = NULL, coefVcov = NULL, df = NULL ) {
 
    nGoods <- length( coef$alpha )
 
@@ -10,94 +10,94 @@ aidsEla <- function( coef, W, P = NULL, formula = "AIDS",
    } else if( length( coef$alpha ) != nrow( coef$gamma ) ) {
       stop( "number of rows of argument 'gamma' must be equal",
          " to the length of argument 'alpha'" )
-   } else if(  length( coef$alpha ) != length( W ) ) {
-      stop( "arguments 'alpha' and 'W' must have the same length" )
-   } else if(  length( coef$alpha ) != length( P ) && !is.null( P ) ) {
-      stop( "arguments 'alpha' and 'P' must have the same length" )
+   } else if(  length( coef$alpha ) != length( shares ) ) {
+      stop( "arguments 'alpha' and 'shares' must have the same length" )
+   } else if(  length( coef$alpha ) != length( prices ) && !is.null( prices ) ) {
+      stop( "arguments 'alpha' and 'prices' must have the same length" )
    }
-   if( is.null( qNames ) ) {
-      qNames <- .aidsQuantNames( W, coef, nGoods )
+   if( is.null( quantNames ) ) {
+      quantNames <- .aidsQuantNames( shares, coef, nGoods )
    } else {
-      if( length( qNames ) != nGoods ) {
-         stop( "argument 'qNames' must have ", nGoods, " elements" )
+      if( length( quantNames ) != nGoods ) {
+         stop( "argument 'quantNames' must have ", nGoods, " elements" )
       }
    }
-   if( is.null( pNames ) ) {
-      pNames <- .aidsPriceNames( P, coef, nGoods )
+   if( is.null( priceNames ) ) {
+      priceNames <- .aidsPriceNames( prices, coef, nGoods )
    } else {
-      if( length( pNames ) != nGoods ) {
-         stop( "argument 'pNames' must have ", nGoods, " elements" )
+      if( length( priceNames ) != nGoods ) {
+         stop( "argument 'priceNames' must have ", nGoods, " elements" )
       }
    }
 
 
    if( formula %in% c( "AIDS" ) ) {
-      if( is.null( P ) ) {
-         stop( "the 'AIDS' formula requires argument 'P' (prices)" )
+      if( is.null( prices ) ) {
+         stop( "the 'AIDS' formula requires argument 'prices'" )
       }
    } else if( formula %in% c( "Ch", "EU" ) ) {
-      if( !is.null( P ) ) {
-         warning( "the 'Ch' and 'EU' formulas do not require argument 'P' (prices)" )
+      if( !is.null( prices ) ) {
+         warning( "the 'Ch' and 'EU' formulas do not require argument 'prices'" )
       }
    }
 
    ela <- list()
    ela$formula <- formula
 
-   W <- array(W)
+   shares <- array(shares)
 
    if( formula == "AIDS" ) {
-      P <- array(P)
-      ela$exp <- array( 1, c( nGoods ) ) + coef$beta/W
+      prices <- array(prices)
+      ela$exp <- array( 1, c( nGoods ) ) + coef$beta/shares
       ela$hicks <- -diag( 1, nGoods, nGoods ) +
-         array( 1, c( nGoods )) %*% t( W ) +
-         coef$gamma / ( W %*% t( array( 1, c( nGoods )))) -
+         array( 1, c( nGoods )) %*% t( shares ) +
+         coef$gamma / ( shares %*% t( array( 1, c( nGoods )))) -
          coef$beta %*% t( array( 1, c( nGoods ))) *
          ( array( 1, c( nGoods )) %*% t( coef$alpha ) -
-         array( 1, c( nGoods )) %*% t( W )+
-         array( 1, c( nGoods )) %*% t( coef$gamma %*% log( P ))) /
-         ( W %*% t( array( 1, c( nGoods ))))
+         array( 1, c( nGoods )) %*% t( shares )+
+         array( 1, c( nGoods )) %*% t( coef$gamma %*% log( prices ))) /
+         ( shares %*% t( array( 1, c( nGoods ))))
       ela$marshall <- ela$hicks - ( ela$exp %*% t( array( 1, c( nGoods )))) *
-         ( array( 1, c( nGoods )) %*% t( W ))
+         ( array( 1, c( nGoods )) %*% t( shares ))
    } else if(formula=="Ch") {
-      ela$exp <- array( 1, c( nGoods ) ) + coef$beta / W
+      ela$exp <- array( 1, c( nGoods ) ) + coef$beta / shares
       ela$hicks <- -diag( 1, nGoods, nGoods ) + coef$gamma /
-         ( W %*% t( array( 1, c( nGoods ) ) ) ) +
-         array( 1, c( nGoods )) %*% t( W )
+         ( shares %*% t( array( 1, c( nGoods ) ) ) ) +
+         array( 1, c( nGoods )) %*% t( shares )
       ela$marshall <- ela$hicks - ( ela$exp %*% t( array( 1, c( nGoods ) ) ) ) *
-         ( array( 1, c( nGoods )) %*% t(W))
+         ( array( 1, c( nGoods )) %*% t(shares))
    } else if( formula == "EU" ) {
-      ela$exp <- array( 1, c( nGoods ) ) + coef$beta / W
+      ela$exp <- array( 1, c( nGoods ) ) + coef$beta / shares
       ela$marshall <- -diag( 1, nGoods, nGoods ) + coef$gamma /
-         ( W %*% t( array( 1, c( nGoods ) ) ) )
+         ( shares %*% t( array( 1, c( nGoods ) ) ) )
       ela$hicks <- ela$marshall + ( ela$exp %*% t( array( 1, c( nGoods ) ) ) ) *
-         ( array( 1, c( nGoods )) %*% t(W))
+         ( array( 1, c( nGoods )) %*% t(shares))
    } else if( formula == "B1 not implemented" ) {
-      ela$exp <- array( 1, c( nGoods ) ) + coef$beta / W
+      ela$exp <- array( 1, c( nGoods ) ) + coef$beta / shares
       ela$marshall <- matrix( NA, nGoods, nGoods )
       for( i in 1:nGoods ) {
          for( j in 1:nGoods ) {
-            ela$marshall[ i, j ] <- -( i == j ) + coef$gamma[ i, j ] / W[ i ] -
-               coef$beta[ i ] * W[ j ] / W[ i ]
+            ela$marshall[ i, j ] <- -( i == j ) + coef$gamma[ i, j ] / shares[ i ] -
+               coef$beta[ i ] * shares[ j ] / shares[ i ]
             for( k in 1:nGoods ) {
                ela$marshall[ i, j ] <- ela$marshall[ i, j ] - coef$beta[ i ] *
-                  W[ k ] * log( P[ k ] ) * ( 0 + ( k == j ) ) / W[ i ]
+                  shares[ k ] * log( prices[ k ] ) * ( 0 + ( k == j ) ) / shares[ i ]
             }
          }
       }
       ela$hicks <- ela$marshall + ( ela$exp %*% t( array( 1, c( nGoods ) ) ) ) *
-         ( array( 1, c( nGoods )) %*% t(W))
+         ( array( 1, c( nGoods )) %*% t(shares))
    } else {
       stop( "formula '", as.character( formula ), "' is not supported" )
    }
-   names( ela$exp )         <- qNames
-   rownames( ela$hicks )    <- qNames
-   colnames( ela$hicks )    <- pNames
-   rownames( ela$marshall ) <- qNames
-   colnames( ela$marshall ) <- pNames
+   names( ela$exp )         <- quantNames
+   rownames( ela$hicks )    <- quantNames
+   colnames( ela$hicks )    <- priceNames
+   rownames( ela$marshall ) <- quantNames
+   colnames( ela$marshall ) <- priceNames
    if( !is.null( coefVcov ) && formula %in% c( "AIDS" ) ) {
-      jacobian <- aidsElaJacobian( coef = coef, share = W, price = P,
-         formula = formula, qNames = qNames, pNames = pNames )
+      jacobian <- aidsElaJacobian( coef = coef, share = shares, price = prices,
+         formula = formula, quantNames = quantNames, priceNames = priceNames )
       ela$allVcov      <- jacobian$all      %*% coefVcov %*% t( jacobian$all )
       ela$expVcov      <- jacobian$exp      %*% coefVcov %*% t( jacobian$exp )
       ela$hicksVcov    <- jacobian$hicks    %*% coefVcov %*% t( jacobian$hicks )

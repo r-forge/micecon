@@ -1,6 +1,6 @@
-aidsCoef <- function( b, cov = NULL, df = 1, LA = TRUE,
-   pNames = NULL, wNames = NULL ) {
-   nGoods <- -0.5 + ( 2.25 + nrow( array( b ) ) )^0.5
+aidsCoef <- function( coef, cov = NULL, df = 1, LA = TRUE,
+   priceNames = NULL, shareNames = NULL ) {
+   nGoods <- -0.5 + ( 2.25 + nrow( array( coef ) ) )^0.5
    if( LA ) {
       M <- matrix( 0, nGoods * ( nGoods + 2 ), ( nGoods - 1 ) * ( nGoods + 2 ) )
       for(i in 1:( nGoods - 1 ) ) {
@@ -16,7 +16,7 @@ aidsCoef <- function( b, cov = NULL, df = 1, LA = TRUE,
                ( i - 1 ) * ( nGoods + 2 ) + 2 + j ] <- -1   # gamma[nGoods,j]
          }
       }
-      all     <- c( M %*% b )
+      all     <- c( M %*% coef )
       all[nGoods]  <- all[nGoods]+1
       names( all ) <- c(
             paste( "alpha", c( 1:nGoods ) ),
@@ -35,20 +35,20 @@ aidsCoef <- function( b, cov = NULL, df = 1, LA = TRUE,
          stat     <- coefTable( all, sqrt( diag( allcov ) ), df )
       }
    }
-   if( !is.null( wNames ) ) {
-      names( alpha ) <- wNames
-      names( beta ) <- wNames
-      rownames( gamma ) <- wNames
+   if( !is.null( shareNames ) ) {
+      names( alpha ) <- shareNames
+      names( beta ) <- shareNames
+      rownames( gamma ) <- shareNames
    }
-   if( !is.null( pNames ) ) {
-      colnames( gamma ) <- pNames
+   if( !is.null( priceNames ) ) {
+      colnames( gamma ) <- priceNames
    }
-   coef <- list()
-   coef$alpha <- alpha
-   coef$beta  <- beta
-   coef$gamma <- gamma
-   coef$all   <- all
-   coef$allcov <- allcov
-   coef$stat  <- stat
-   return( coef )
+   result <- list()
+   result$alpha <- alpha
+   result$beta  <- beta
+   result$gamma <- gamma
+   result$all   <- all
+   result$allcov <- allcov
+   result$stat  <- stat
+   return( result )
 }

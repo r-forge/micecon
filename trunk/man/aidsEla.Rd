@@ -7,19 +7,19 @@
 }
 
 \usage{
-   aidsEla( coef, W, P = NULL, formula = "AIDS",
-      qNames = NULL, pNames = NULL, coefVcov = NULL, df = NULL )
+   aidsEla( coef, shares, prices = NULL, formula = "AIDS",
+      quantNames = NULL, priceNames = NULL, coefVcov = NULL, df = NULL )
 }
 
 \arguments{
    \item{coef}{a list containing the coefficients alpha, beta and gamma.}
-   \item{W}{a vector of the shares at which the elasticities should be calculated.}
-   \item{P}{a vector of the prices at which the elasticities should be calculated
+   \item{shares}{a vector of the shares at which the elasticities should be calculated.}
+   \item{prices}{a vector of the prices at which the elasticities should be calculated
       (only needed if formula 'AIDS' is used).}
    \item{formula}{the elsticity formula to be used (see details).}
-   \item{qNames}{an optional vector of strings containing the names of
+   \item{quantNames}{an optional vector of strings containing the names of
       the quantities to label elasticities.}
-   \item{pNames}{an optional vector of strings containing the names of
+   \item{priceNames}{an optional vector of strings containing the names of
       the prices to label elasticities.}
    \item{coefVcov}{variance covariance matrix of the coefficients (optional).}
    \item{df}{degrees of freedom to calculate P-values of the elasticities 
