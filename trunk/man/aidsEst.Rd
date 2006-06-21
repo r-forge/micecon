@@ -8,23 +8,23 @@
    of elasticities, ...
 }
 
-\usage{ aidsEst( pNames, wNames, xtName, data = NULL,
-      ivNames = NULL, qNames = wNames,
+\usage{ aidsEst( priceNames, shareNames, totExpName, data = NULL,
+      instNames = NULL, quantNames = shareNames,
       method = "LA:L", hom = TRUE, sym = TRUE,
       elaFormula = "Ch", pxBase,
-      estMethod = ifelse( is.null( ivNames ), "SUR", "3SLS" ),
+      estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
       maxiterIL = 50, tolIL = 1e-5, alpha0 = 0, TX = FALSE, ... )
 }
 
 \arguments{
-   \item{pNames}{a vector of strings containing the names of the prices.}
-   \item{wNames}{a vector of strings containing the names of the expenditure
+   \item{priceNames}{a vector of strings containing the names of the prices.}
+   \item{shareNames}{a vector of strings containing the names of the expenditure
       shares.}
-   \item{xtName}{a string containing the variable name of total expenditure.}
+   \item{totExpName}{a string containing the variable name of total expenditure.}
    \item{data}{a data frame containing the data.}
-   \item{ivNames}{a vector of strings containing the names of instrumental
+   \item{instNames}{a vector of strings containing the names of instrumental
       variables.}
-   \item{qNames}{an optional vector of strings containing the names of
+   \item{quantNames}{an optional vector of strings containing the names of
       the quantities (just to label elasticities).}
    \item{method}{the method to estimate the aids (see details).}
    \item{hom}{logical. Should the homogeneity condition be imposed?}
@@ -124,30 +124,30 @@
 
    ## Repeating the evaluation of different elasticity formulas of
    ## Green & Alston (1990)
-   pNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
-   wNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
+   priceNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
+   shareNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 
    # AIDS
-   estResultA <- aidsEst( pNames, wNames, "xFood",
+   estResultA <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86[ -1, ], maxiter = 1,
       elaFormula = "AIDS", rcovformula=1, tol=1e-7,
       method = "IL:L" )
    print( diag( estResultA$ela$marshall ) )
 
    # LA-AIDS + formula of AIDS
-   estResultL1 <- aidsEst( pNames, wNames, "xFood",
+   estResultL1 <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
       rcovformula=1, tol=1e-7, method = "LA:SL" )
    print( diag( estResultL1$ela$marshall ) )
 
    # LA-AIDS + formula of Eales + Unnevehr
-   estResultL2 <- aidsEst( pNames, wNames, "xFood",
+   estResultL2 <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, maxiter = 1, elaFormula = "EU",
       rcovformula=1, tol=1e-7, method = "LA:SL" )
    print( diag( estResultL2$ela$marshall ) )
 
    # LA-AIDS + formula of Chalfant:
-   estResultL3 <- aidsEst( pNames, wNames, "xFood",
+   estResultL3 <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, maxiter = 1, elaFormula = "Ch",
       rcovformula=1, tol=1e-7, method = "LA:SL" )
    print( diag( estResultL3$ela$marshall ) )

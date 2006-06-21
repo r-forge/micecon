@@ -7,15 +7,15 @@
 }
 
 \usage{
-   aidsTestConsist( pNames, wNames, xtName, data, coef = NULL,
+   aidsTestConsist( priceNames, shareNames, totExpName, data, coef = NULL,
       alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) )
 }
 
 \arguments{
-   \item{pNames}{a vector of strings containing the names of the prices.}
-   \item{wNames}{a vector of strings containing the names of the expenditure
+   \item{priceNames}{a vector of strings containing the names of the prices.}
+   \item{shareNames}{a vector of strings containing the names of the expenditure
       shares.}
-   \item{xtName}{a string containing the variable name of total expenditure.}
+   \item{totExpName}{a string containing the variable name of total expenditure.}
    \item{data}{a data frame containing the data.}
    \item{coef}{a list containing the coefficients alpha, beta and gamma.}
    \item{alpha0}{coefficient \eqn{\alpha_0} of the translog price index.}
@@ -53,12 +53,12 @@
    # Data on food consumption are available only for the first 32 years
    Blanciforti86 <- Blanciforti86[ 1:32, ]
 
-   pNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
-   wNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
+   priceNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
+   shareNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 
-   estResult <- aidsEst( pNames, wNames, "xFood",
+   estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, method = "IL:L" )
-   tc <- aidsTestConsist( pNames, wNames, "xFood", Blanciforti86,
+   tc <- aidsTestConsist( priceNames, shareNames, "xFood", Blanciforti86,
       coef = estResult$coef )
    tc$mPercent   # great!
    tc$cPercent   # Oh, that is bad!

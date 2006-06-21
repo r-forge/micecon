@@ -1,11 +1,11 @@
-aidsJacobian <- function( allCoef, pNames, xtName, data = NULL,
+aidsJacobian <- function( allCoef, priceNames, totExpName, data = NULL,
       omitLast = TRUE, alpha0 = 0 ) {
    nObs <- nrow( data )
    coef <- aidsCoef( allCoef )
    nGoods <- length( coef$alpha )
    hom <- all.equal( rowSums( coef$gamma ), rep( 0, nGoods ) ) == TRUE
    sym <- all.equal( coef$gamma, t( coef$gamma ) ) == TRUE
-   lnp <- aidsPx( "TL", pNames, coef = coef, data = data, alpha0 = alpha0 )
+   lnp <- aidsPx( "TL", priceNames, coef = coef, data = data, alpha0 = alpha0 )
    result <- matrix( 0, nrow = nObs * ( nGoods - 1 ),
       ncol = ( nGoods + 2 ) * ( nGoods - 1 ) )
    for( eq in 1:( nGoods - 1 ) ) {
@@ -15,24 +15,24 @@ aidsJacobian <- function( allCoef, pNames, xtName, data = NULL,
          myCol <- ( i - 1 ) * ( nGoods + 2 ) + 1
          result[ myRows, myCol ] <- ( i == eq ) -
             coef$beta[ eq ] *
-            ( log( data[[ pNames[ i ] ]] ) -
-            log( data[[ pNames[ nGoods ] ]] ) )
+            ( log( data[[ priceNames[ i ] ]] ) -
+            log( data[[ priceNames[ nGoods ] ]] ) )
       }
       # derivatives of betas
       myCol <- ( eq - 1 ) * ( nGoods + 2 ) + 2
-      result[ myRows, myCol ] <- log( data[[ xtName ]] ) - lnp
+      result[ myRows, myCol ] <- log( data[[ totExpName ]] ) - lnp
       # derivatives of gammas
       for( i in 1:( nGoods - 1 ) ) {
          for( j in 1:( nGoods - hom ) ) {
             myCol <- ( i - 1 ) * ( nGoods + 2 ) + 2 + j
             result[ myRows, myCol ] <-
-               ( i == eq ) * ( log( data[[ pNames[ j ] ]] ) -
-                  hom * log( data[[ pNames[ nGoods ] ]] ) ) -
+               ( i == eq ) * ( log( data[[ priceNames[ j ] ]] ) -
+                  hom * log( data[[ priceNames[ nGoods ] ]] ) ) -
                0.5 * coef$beta[ eq ] *
-               ( log( data[[ pNames[ i ] ]] ) -
-                  log( data[[ pNames[ nGoods ] ]] ) ) *
-               ( log( data[[ pNames[ j ] ]] ) -
-                  hom * log( data[[ pNames[ nGoods ] ]] ) )
+               ( log( data[[ priceNames[ i ] ]] ) -
+                  log( data[[ priceNames[ nGoods ] ]] ) ) *
+               ( log( data[[ priceNames[ j ] ]] ) -
+                  hom * log( data[[ priceNames[ nGoods ] ]] ) )
          }
       }
    }
