@@ -1,4 +1,6 @@
-aidsRestr <- function( nGoods, hom = TRUE, sym = TRUE, LA = TRUE, TX = FALSE ) {
+aidsRestr <- function( nGoods, nShifter = 0, hom = TRUE, sym = TRUE,
+      LA = TRUE, TX = FALSE ) {
+
    if( sym && !hom ) {
       hom <- TRUE  # symmetry implies homogeneity
       warning( "symmetry implies homogeneity: imposing additionally homogeniety" )

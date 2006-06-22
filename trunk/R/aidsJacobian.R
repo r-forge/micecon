@@ -1,8 +1,8 @@
 aidsJacobian <- function( allCoef, priceNames, totExpName, data = NULL,
       omitLast = TRUE, alpha0 = 0 ) {
    nObs <- nrow( data )
-   coef <- aidsCoef( allCoef )
-   nGoods <- length( coef$alpha )
+   nGoods <- length( priceNames )
+   coef <- aidsCoef( allCoef, nGoods = nGoods, nShifter = nShifter )
    hom <- all.equal( rowSums( coef$gamma ), rep( 0, nGoods ) ) == TRUE
    sym <- all.equal( coef$gamma, t( coef$gamma ) ) == TRUE
    lnp <- aidsPx( "TL", priceNames, coef = coef, data = data, alpha0 = alpha0 )
