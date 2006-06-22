@@ -10,7 +10,7 @@
 
 \usage{ aidsEst( priceNames, shareNames, totExpName, data = NULL,
       instNames = NULL, quantNames = shareNames,
-      method = "LA:L", hom = TRUE, sym = TRUE,
+      shifterNames = NULL, method = "LA:L", hom = TRUE, sym = TRUE,
       elaFormula = "Ch", pxBase,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
       maxiterIL = 50, tolIL = 1e-5, alpha0 = 0, TX = FALSE, ... )
@@ -26,6 +26,8 @@
       variables.}
    \item{quantNames}{an optional vector of strings containing the names of
       the quantities (just to label elasticities).}
+   \item{shifterNames}{an optional vector of strings containing the names of
+      the demand shifters.}
    \item{method}{the method to estimate the aids (see details).}
    \item{hom}{logical. Should the homogeneity condition be imposed?}
    \item{sym}{logical. Should the symmetry condition be imposed?}

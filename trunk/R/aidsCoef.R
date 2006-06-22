@@ -1,6 +1,6 @@
-aidsCoef <- function( coef, cov = NULL, df = 1, LA = TRUE,
-   priceNames = NULL, shareNames = NULL ) {
-   nGoods <- -0.5 + ( 2.25 + nrow( array( coef ) ) )^0.5
+aidsCoef <- function( coef, nGoods, nShifter = 0, cov = NULL, df = 1,
+      LA = TRUE, priceNames = NULL, shareNames = NULL ) {
+   # nGoods <- -0.5 + ( 2.25 + nrow( array( coef ) ) )^0.5
    if( LA ) {
       M <- matrix( 0, nGoods * ( nGoods + 2 ), ( nGoods - 1 ) * ( nGoods + 2 ) )
       for(i in 1:( nGoods - 1 ) ) {

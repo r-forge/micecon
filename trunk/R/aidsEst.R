@@ -1,6 +1,6 @@
 aidsEst <- function( priceNames, shareNames, totExpName,
       data = NULL, instNames = NULL, quantNames = shareNames,
-      method = "LA:L", hom = TRUE, sym = TRUE,
+      shifterNames = NULL, method = "LA:L", hom = TRUE, sym = TRUE,
       elaFormula = "Ch", pxBase = 1,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
       maxiterIL = 50, tolIL = 1e-5, alpha0 = 0, TX = FALSE, ... ) {
@@ -9,6 +9,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       stop( "arguments 'priceNames' and 'shareNames' must have the same length" )
    }
    nGoods <- length( priceNames )
+   nShifter <- length( shifterNames )
    extractPx <- function( method ) {
       px <- substr( method, 4, nchar( method ) )
       if( !( px %in% c( "S", "SL", "P", "L", "T" ) ) ) {
@@ -42,7 +43,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       hom <- TRUE  # symmetry implies homogeneity
       warning( "symmetry implies homogeneity: imposing additionally homogeniety" )
    }
-   allVarNames <- c( priceNames, shareNames, totExpName, instNames )
+   allVarNames <- c( priceNames, shareNames, totExpName, instNames, shifterNames )
    if( sum( is.na( data[ , allVarNames ] ) ) > 0 ) {
       warning( "there are some NAs in the data,",
          " all observations (rows) with NAs are excluded from the analysis" )
@@ -77,9 +78,16 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       }
       ivFormula <- as.formula( ivFormula )
    }
-   restr <- aidsRestr( nGoods, hom, sym, TX = TX )
+   if( is.null( shifterNames )) {
+      shifterFormula <- NULL
+   } else {
+      for( i in 1:length( shifterNames ) ) {
+         sysData[[ paste( "s", i, sep = "" ) ]] <- data[[ shifterNames[ i ] ]]
+      }
+   }
+   restr <- aidsRestr( nGoods = nGoods, hom = hom, sym = sym, TX = TX, nShifter = nShifter )
       # restrictions for homogeneity and symmetry
-   system <- aidsSystem( nGoods )    # LA-AIDS equation system
+   system <- aidsSystem( nGoods = nGoods, nShifter = nShifter ) # LA-AIDS equation system
    # estimate system
    if( TX ) {
       est <- systemfit( estMethod, system, data = sysData, TX = restr,
@@ -89,7 +97,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
          inst = ivFormula, ... )
    }
    if( substr( method, 1, 2 ) == "LA" ) {
-      result$coef <- aidsCoef( est$b, est$bcov, priceNames = priceNames,
+      result$coef <- aidsCoef( est$b, nGoods = nGoods, nShifter = nShifter,
+         cov = est$bcov, priceNames = priceNames,
          shareNames = shareNames, df = est$df )   # coefficients
       if( !( elaFormula %in% c( "AIDS" ) ) ) {
          pMeans <- NULL
@@ -111,7 +120,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
          bl     <- b              # coefficients of previous step
          sysData$lxtr <- log( data[[ totExpName ]] ) -
             aidsPx( "TL", priceNames, shareNames, data = data,
-            alpha0 = alpha0, coef = aidsCoef( est$b ) )
+            alpha0 = alpha0,
+            coef = aidsCoef( est$b, nGoods = nGoods, nShifter = nShifter ) )
             # real total expenditure using Translog price index
          if( TX ) {
             est <- systemfit( estMethod, system, data = sysData, TX = restr,
@@ -128,7 +138,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       # calculating log of "real" (deflated) total expenditure
       sysData$lxtr <- log( data[[ totExpName ]] ) -
          aidsPx( "TL", priceNames, data = data,
-         alpha0 = alpha0, coef = aidsCoef( est$b ) )
+         alpha0 = alpha0,
+         coef = aidsCoef( est$b, nGoods = nGoods, nShifter = nShifter ) )
       # calculating matrix G
       Gmat <- cbind( rep( 1, nObs ), sysData$lxtr )
       for( i in 1:( nGoods ) ) {
@@ -145,7 +156,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       jacobian <- aidsJacobian( est$b, priceNames, totExpName, data = data,
          alpha0 = alpha0 )
       if( hom ) {
-         TXmat <- aidsRestr( nGoods, hom, sym, TX = TRUE )
+         TXmat <- aidsRestr( nGoods = nGoods, hom = hom, sym = sym, TX = TRUE )
       } else {
          TXmat <- diag( ( nGoods - 1 ) * ( nGoods + 2 ) )
       }
@@ -157,7 +168,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       JmatInv <- TXmat %*% solve( Jmat, t( TXmat ) )
       bcov <- JmatInv  %*% ( est$rcov %x% crossprod( Gmat ) ) %*%
          t( JmatInv )
-      result$coef <- aidsCoef( est$b, bcov, priceNames = priceNames,
+      result$coef <- aidsCoef( est$b, nGoods = nGoods, nShifter = nShifter,
+         cov = bcov, priceNames = priceNames,
          shareNames = shareNames, df = est$df )  # coefficients
       result$coef$alpha0 <- alpha0
       result$ela  <- aidsEla( result$coef, wMeans, pMeans,
