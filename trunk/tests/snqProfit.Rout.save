@@ -538,13 +538,13 @@ $normPrice
 $convexity
 [1] FALSE
 
-$pNames
+$priceNames
 [1] "pOutput"   "pVarInput" "pLabor"   
 
-$qNames
+$quantNames
 [1] "qOutput"   "qVarInput" "qLabor"   
 
-$fNames
+$fixNames
 [1] "land"
 
 $form
@@ -976,10 +976,10 @@ $normPrice
 $convexity
 [1] FALSE
 
-$pNames
+$priceNames
 [1] "pOutput"   "pVarInput" "pLabor"   
 
-$qNames
+$quantNames
 [1] "qOutput"   "qVarInput" "qLabor"   
 
 $form
@@ -1648,13 +1648,13 @@ $normPrice
 $convexity
 [1] TRUE
 
-$pNames
+$priceNames
 [1] "pOutput"   "pVarInput" "pLabor"   
 
-$qNames
+$quantNames
 [1] "qOutput"   "qVarInput" "qLabor"   
 
-$fNames
+$fixNames
 [1] "land" "time"
 
 $form
@@ -2528,13 +2528,13 @@ $normPrice
 $convexity
 [1] TRUE
 
-$pNames
+$priceNames
 [1] "pOutput"   "pVarInput" "pLabor"   
 
-$qNames
+$quantNames
 [1] "qOutput"   "qVarInput" "qLabor"   
 
-$fNames
+$fixNames
 [1] "land" "time"
 
 $form
