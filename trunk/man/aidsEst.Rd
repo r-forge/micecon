@@ -153,6 +153,32 @@
       data = Blanciforti86, maxiter = 1, elaFormula = "Ch",
       rcovformula=1, tol=1e-7, method = "LA:SL" )
    print( diag( estResultL3$ela$marshall ) )
+
+   # Estimations with a demand shifter: linear trend
+   # LA-AIDS 
+   Blanciforti86$trend <- c( 0:( nrow( Blanciforti86 ) - 1 ) )
+   estResult <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, shifterNames = "trend" )
+   print( estResult )
+
+   # AIDS
+   estResult <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, shifterNames = "trend",
+      maxiter = 1, elaFormula = "AIDS", method = "IL:L" )
+   print( estResult )
+
+   # Estimations with two demand shifters: linear + quadratic trend
+   # LA-AIDS
+   Blanciforti86$trend2 <- c( 0:( nrow( Blanciforti86 ) - 1 ) )^2
+   estResult <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, shifterNames = c( "trend", "trend2" ) )
+   print( estResult )
+
+   # AIDS
+   estResult <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, shifterNames = c( "trend", "trend2" ),
+      maxiter = 1, elaFormula = "AIDS", method = "IL:L" )
+   print( estResult )
 }
 
 \keyword{models}
