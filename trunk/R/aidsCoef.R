@@ -18,11 +18,7 @@ aidsCoef <- function( coef, nGoods, nShifter = 0, cov = NULL, df = 1,
       }
       all     <- c( M %*% coef )
       all[nGoods]  <- all[nGoods]+1
-      names( all ) <- c(
-            paste( "alpha", c( 1:nGoods ) ),
-            paste( "beta", c( 1:nGoods ) ),
-            paste( "gamma", rep( 1:nGoods, each = nGoods ),
-               rep( 1:nGoods, nGoods ) ) )
+      names( all ) <- .aidsCoefNamesAll( nGoods, nShifter )
       alpha   <- all[1:nGoods]
       beta    <- all[(nGoods+1):(2*nGoods)]
       gamma   <- t(array(all[(2*nGoods+1):(nGoods*(nGoods+2))],c(nGoods,nGoods)))
