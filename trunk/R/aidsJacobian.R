@@ -1,7 +1,8 @@
 aidsJacobian <- function( allCoef, priceNames, totExpName, data = NULL,
-      omitLast = TRUE, alpha0 = 0 ) {
+      shifterNames = NULL, omitLast = TRUE, alpha0 = 0 ) {
    nObs <- nrow( data )
    nGoods <- length( priceNames )
+   nShifter <- length( shifterNames )
    coef <- aidsCoef( allCoef, nGoods = nGoods, nShifter = nShifter )
    hom <- all.equal( rowSums( coef$gamma ), rep( 0, nGoods ) ) == TRUE
    sym <- all.equal( coef$gamma, t( coef$gamma ) ) == TRUE
