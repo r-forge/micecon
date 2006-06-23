@@ -98,8 +98,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    }
    if( substr( method, 1, 2 ) == "LA" ) {
       result$coef <- aidsCoef( est$b, nGoods = nGoods, nShifter = nShifter,
-         cov = est$bcov, priceNames = priceNames,
-         shareNames = shareNames, df = est$df )   # coefficients
+         cov = est$bcov, priceNames = priceNames, shareNames = shareNames,
+         shifterNames = shifterNames, df = est$df )   # coefficients
       if( !( elaFormula %in% c( "AIDS" ) ) ) {
          pMeans <- NULL
       }
@@ -145,6 +145,11 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       for( i in 1:( nGoods ) ) {
          Gmat <- cbind( Gmat, sysData[[ paste( "lp", i, sep = "" ) ]] )
       }
+      if( nShifter > 0 ) {
+         for( i in 1:nShifter ) {
+            Gmat <- cbind( Gmat, sysData[[ paste( "s", i, sep = "" ) ]] )
+         }
+      }
       # testing matrix G
       if( FALSE ) {
          for( i in 1:( nGoods - 1 ) ) {
@@ -156,9 +161,10 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       jacobian <- aidsJacobian( est$b, priceNames, totExpName, data = data,
          shifterNames = shifterNames, alpha0 = alpha0 )
       if( hom ) {
-         TXmat <- aidsRestr( nGoods = nGoods, hom = hom, sym = sym, TX = TRUE )
+         TXmat <- aidsRestr( nGoods = nGoods, nShifter = nShifter,
+            hom = hom, sym = sym, TX = TRUE )
       } else {
-         TXmat <- diag( ( nGoods - 1 ) * ( nGoods + 2 ) )
+         TXmat <- diag( ( nGoods - 1 ) * ( nGoods + 2 + nShifter ) )
       }
       # Jmat <- t( TXmat ) %*% ( diag( nGoods - 1 ) %x% t( Gmat ) ) %*% jacobian
       # JmatInv <- TXmat %*% solve( Jmat ) %*% t( TXmat )
@@ -169,8 +175,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       bcov <- JmatInv  %*% ( est$rcov %x% crossprod( Gmat ) ) %*%
          t( JmatInv )
       result$coef <- aidsCoef( est$b, nGoods = nGoods, nShifter = nShifter,
-         cov = bcov, priceNames = priceNames,
-         shareNames = shareNames, df = est$df )  # coefficients
+         cov = bcov, priceNames = priceNames, shareNames = shareNames,
+         shifterNames = shifterNames, df = est$df )  # coefficients
       result$coef$alpha0 <- alpha0
       result$ela  <- aidsEla( result$coef, wMeans, pMeans,
          formula = "AIDS", priceNames = priceNames, quantNames = quantNames,

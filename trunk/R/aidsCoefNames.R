@@ -24,7 +24,9 @@
       paste( "gamma", rep( 1:nGoods, each = nGoods ),
          rep( 1:nGoods, nGoods ) ) )
    if( nShifter > 0 ) {
-      result <- c( result, paste( "delta", c( 1:nShifter ) ) )
+      result <- c( result,
+         paste( "delta", rep( 1:nGoods, each = nShifter ),
+         rep( 1:nShifter, nGoods ) ) )
    }
    return( result )
 }
