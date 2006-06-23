@@ -122,9 +122,6 @@ wFood4  0.423043  0.1554389  0.1363001 -0.714718
 > estResultLA$est$x <- NULL
 > estResultLA$est$R.restr <- NULL
 > estResultLA$est$q.restr <- NULL
-> dimnames(estResultLA$est$eq[[ 1 ]]$bcov) <- NULL
-> dimnames(estResultLA$est$eq[[ 2 ]]$bcov) <- NULL
-> dimnames(estResultLA$est$eq[[ 3 ]]$bcov) <- NULL
 > print( all.equal( estResultLA, estResultLATX ) )
 [1] TRUE
 > 
@@ -220,9 +217,6 @@ wFood4  0.383200  0.2624863  0.0872247 -0.732846
 > estResultLAhom$est$x <- NULL
 > estResultLAhom$est$R.restr <- NULL
 > estResultLAhom$est$q.restr <- NULL
-> dimnames(estResultLAhom$est$eq[[ 1 ]]$bcov) <- NULL
-> dimnames(estResultLAhom$est$eq[[ 2 ]]$bcov) <- NULL
-> dimnames(estResultLAhom$est$eq[[ 3 ]]$bcov) <- NULL
 > print( all.equal( estResultLAhom, estResultLAhomTX ) )
 [1] TRUE
 > 
@@ -419,9 +413,6 @@ wFood4  0.0151461  0.09030770  0.232351 -0.3377934
 > estResultAIDS$est$x <- NULL
 > estResultAIDS$est$R.restr <- NULL
 > estResultAIDS$est$q.restr <- NULL
-> dimnames(estResultAIDS$est$eq[[ 1 ]]$bcov) <- NULL
-> dimnames(estResultAIDS$est$eq[[ 2 ]]$bcov) <- NULL
-> dimnames(estResultAIDS$est$eq[[ 3 ]]$bcov) <- NULL
 > print( all.equal( estResultAIDS, estResultAIDSTX ) )
 [1] TRUE
 > 
@@ -519,9 +510,6 @@ wFood4 -0.1088482  0.18912991  0.201757 -0.2820335
 > estResultAIDShom$est$x <- NULL
 > estResultAIDShom$est$R.restr <- NULL
 > estResultAIDShom$est$q.restr <- NULL
-> dimnames(estResultAIDShom$est$eq[[ 1 ]]$bcov) <- NULL
-> dimnames(estResultAIDShom$est$eq[[ 2 ]]$bcov) <- NULL
-> dimnames(estResultAIDShom$est$eq[[ 3 ]]$bcov) <- NULL
 > print( all.equal( estResultAIDShom, estResultAIDShomTX ) )
 [1] TRUE
 > 
