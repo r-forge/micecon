@@ -40,6 +40,10 @@ print.aidsEst <- function( x, ... ) {
    print( x$coef$beta )
    cat( "gamma\n" )
    print( x$coef$gamma )
+   if( !is.null( x$coef$delta ) ){
+      cat( "delta\n" )
+      print( x$coef$delta )
+   }
 
    cat( "\nDemand Elasticities " )
    if( x$ela$formula == "Ch" ) {
