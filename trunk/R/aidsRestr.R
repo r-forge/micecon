@@ -34,6 +34,12 @@ aidsRestr <- function( nGoods, nShifter = 0, hom = TRUE, sym = TRUE,
       } else {
          restr <- NULL
       }
+      if( !is.null( restr ) ) {
+         rownames( restr ) <- .aidsCoefNamesEst( nGoods = nGoods,
+            nShifter = nShifter, hom = FALSE, sym = FALSE )
+         colnames( restr ) <- .aidsCoefNamesEst( nGoods = nGoods,
+            nShifter = nShifter, hom = hom, sym = sym )
+      }
    } else {
       restr <- NULL
       if( LA ) {
@@ -59,6 +65,10 @@ aidsRestr <- function( nGoods, nShifter = 0, hom = TRUE, sym = TRUE,
                }
             }
          }
+      }
+      if( !is.null( restr ) ) {
+         colnames( restr ) <- .aidsCoefNamesEst( nGoods = nGoods,
+            nShifter = nShifter, hom = FALSE, sym = FALSE )
       }
    }
    return( restr )
