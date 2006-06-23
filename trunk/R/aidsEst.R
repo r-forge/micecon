@@ -154,7 +154,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       }
       # calculating matrix J
       jacobian <- aidsJacobian( est$b, priceNames, totExpName, data = data,
-         alpha0 = alpha0 )
+         shifterNames = shifterNames, alpha0 = alpha0 )
       if( hom ) {
          TXmat <- aidsRestr( nGoods = nGoods, hom = hom, sym = sym, TX = TRUE )
       } else {

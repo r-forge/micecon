@@ -1,5 +1,5 @@
 aidsBestA0 <- function( priceNames, shareNames, totExpName,
-      data = NULL, instNames = NULL, method = "IL:L",
+      data = NULL, instNames = NULL, shifterNames = NULL, method = "IL:L",
       a0min = -50, a0max = 50, stoprange = 3, stopiter = 10,
       verbose = FALSE, ... ) {
 
@@ -7,6 +7,7 @@ aidsBestA0 <- function( priceNames, shareNames, totExpName,
       stop( "arguments 'priceNames' and 'shareNames' must have the same length" )
    }
    nGoods <- length( priceNames )
+   nShifter <- length( shifterNames )
 
    if( !( substr( method, 1, 2 ) %in% c( "MK", "IL" ) ) ) {
       stop( "at the moment this function works only with",
@@ -16,7 +17,7 @@ aidsBestA0 <- function( priceNames, shareNames, totExpName,
 
    deta0 <- function( a0, ... ) {
       estResult <- aidsEst( priceNames, shareNames, totExpName, data = data,
-         method = method, instNames = instNames,
+         method = method, instNames = instNames, shifterNames = shifterNames,
          alpha0 = a0, ... )
       det <- estResult$est$drcov
       assign( "allValues", rbind( allValues, c( a0, det ) ),
