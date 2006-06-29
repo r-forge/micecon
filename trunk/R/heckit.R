@@ -112,7 +112,6 @@ heckit <- function( selection, formula, data, inst = NULL,
    } else {
       xMat <- result$lm$eq[[ 1 ]]$x
    }
-browser()
    result$vcov <- heckitVcov( xMat,
       model.matrix( result$probit )[ probitDummy, ],
       vcov( result$probit ),
