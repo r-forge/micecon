@@ -1,6 +1,5 @@
 heckitVcov <- function( xMat, wMat, vcovProbit, rho, delta, sigma,
    saveMemory = TRUE ) {
-
    if( saveMemory ) {
       txdMat <- t( xMat )
       for( i in 1:nrow( txdMat ) ) {
