@@ -1,20 +1,19 @@
-
-coef.maxLik <- function(object, ...)
-    object$estimate
+### summary methods for 'maxLik' class, i.e. 'raw' ML estimation results.  Class 'MLEstimate' is for
+### complete models.
 
 print.summary.maxLik <- function( x, ... ) {
    cat("--------------------------------------------\n")
    cat("Maximum Likelihood estimation\n")
    cat(x$type, ", ", x$iterations, " iterations\n", sep="")
-   cat("Return code ", x$code, ": ", x$message, "\n", sep="")
+   cat("Return code ", returnCode(x), ": ", x$message, "\n", sep="")
    if(!is.null(x$estimate)) {
       cat("Log-Likelihood:", x$loglik, "\n")
       cat(x$NActivePar, " free parameters\n")
       cat("Estimates:\n")
       print(x$estimate)
-      if(!is.null(x$Hessian)) {
+      if(!is.null(Hessian(x))) {
          cat("Hessian:\n")
-         print(x$Hessian)
+         print(Hessian(x))
       }
    }
    cat("--------------------------------------------\n")
@@ -42,12 +41,12 @@ summary.maxLik <- function( object, hessian=FALSE, ... ) {
    } else {
       activePar <- rep(TRUE, NParam)
    }
-   if(object$code < 100) {
-      if(min(abs(eigen(object$hessian[activePar,activePar],
+   if(returnCode(object) < 100) {
+      if(min(abs(eigen(Hessian(object)[activePar,activePar],
                        symmetric=TRUE, only.values=TRUE)$values)) > 1e-6) {
          varcovar <- matrix(0, NParam, NParam)
          varcovar[activePar,activePar] <-
-             solve(-object$hessian[activePar,activePar])
+             solve(-Hessian(object)[activePar,activePar])
          hdiag <- diag(varcovar)
          if(any(hdiag < 0)) {
             warning("Diagonal of variance-covariance matrix not positive!\n")
@@ -63,7 +62,7 @@ summary.maxLik <- function( object, hessian=FALSE, ... ) {
       results <- cbind(coef, stdd, t, "P(|b| > t)"=p)
       Hess <- NULL
       if(hessian) {
-         Hess <- object$hessian
+         Hess <- Hessian(object)
       }
    } else {
       results <- NULL
@@ -71,7 +70,7 @@ summary.maxLik <- function( object, hessian=FALSE, ... ) {
    }
    summary <- list(type=object$type,
                    iterations=object$iterations,
-                   code=object$code,
+                   code=returnCode(object),
                    message=object$message,
                    loglik=object$maximum,
                    estimate=results,

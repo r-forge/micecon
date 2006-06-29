@@ -15,7 +15,7 @@ invMillsRatio <- function( x, all = FALSE ) {
       result$delta0 <- result$IMR0 * ( result$IMR0 + x$linear.predictors )
    } else if("probit" %in% class(x)) {
       # Note: 'probit' need not to be the first component in the class
-      result <- data.frame( no = seq(length=x$NObs))
+      result <- data.frame( no = seq(length=NObs(x)))
                                         # no is row number.  There is no row names
       result$IMR1 <- dnorm(linearPredictors(x))/pnorm(linearPredictors(x))
       result$delta1 <- result$IMR1 * ( result$IMR1 + linearPredictors(x))
