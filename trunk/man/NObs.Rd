@@ -1,23 +1,26 @@
 \name{NObs}
 \alias{NObs}
 \alias{NObs.default}
+\alias{NObs.lm}
 \title{Return number of observations for statistical models} 
 \description{
   Returns number of observations for statistical models.  The default
   method assumes presence of a component \code{$param$NObs} in {x}.
 }
 \usage{
-NObs(x, ...)
-NObs.defalt(x, ...)
+NObs(x, \dots)
+NObs.default(x, \dots)
+NObs.lm(x, \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{a statistical model, such as created by \link{\code{lm}}}
+  \item{x}{a statistical model, such as created by \code{\link{lm}}}
   \item{\dots}{further arguments for methods}
 }
 \details{
-  This is a generic function. Functions with names beginning in
-  NObs. will be methods for this function.  
+  This is a generic function.  The default method returns the component
+  \code{x$param$NObs}.  The \code{lm}-method is based on
+  qr-decomposition, in the same way as the does \code{\link{summary.lm}}.}  
 }
 \value{
   A numeric, number of observations
