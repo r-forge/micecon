@@ -1,3 +1,4 @@
+activePar               free parameters under maximisation
 aidsBestA0              Find 'best' Value for alpha 0 in the AIDS
 aidsCalc                Shares and Quantities of the Almost Ideal
                         Demand System
@@ -15,6 +16,7 @@ compare.derivatives     function to compare analytic and numeric
 germanFarms             Output and Inputs of Farms in West-Germany
 heckit                  2-step Heckman (heckit) estimation
 heckitVcov              Heckit Variance Covariance Matrix
+Hessian                 Hessian of the model
 insertCol               Insert Column into a Matrix
 insertRow               Insert Row into a Matrix
 invMillsRatio           Inverse Mill's Ratio of probit models
@@ -26,6 +28,8 @@ maxLik                  Maximum likelihood estimation
 maxNR                   Newton-Raphson maximisation
 Missong03E7.7           Meat Prices and Quantities in Germany
 Mroz87                  U.S. Women's Labor Force Participation
+NObs                    Return number of observations for statistical
+                        models
 numericGradient         Functions to Calculate Numeric Derivatives
 predict.snqProfitEst    Predictions from an SNQ profit function
 priceIndex              Calculate Price Indices
