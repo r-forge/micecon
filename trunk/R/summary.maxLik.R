@@ -1,19 +1,20 @@
-### summary methods for 'maxLik' class, i.e. 'raw' ML estimation results.  Class 'MLEstimate' is for
-### complete models.
+
+coef.maxLik <- function(object, ...)
+    object$estimate
 
 print.summary.maxLik <- function( x, ... ) {
    cat("--------------------------------------------\n")
    cat("Maximum Likelihood estimation\n")
    cat(x$type, ", ", x$iterations, " iterations\n", sep="")
-   cat("Return code ", returnCode(x), ": ", x$message, "\n", sep="")
+   cat("Return code ", x$code, ": ", x$message, "\n", sep="")
    if(!is.null(x$estimate)) {
       cat("Log-Likelihood:", x$loglik, "\n")
       cat(x$NActivePar, " free parameters\n")
       cat("Estimates:\n")
       print(x$estimate)
-      if(!is.null(Hessian(x))) {
+      if(!is.null(h <- Hessian(x))) {
          cat("Hessian:\n")
-         print(Hessian(x))
+         print(h)
       }
    }
    cat("--------------------------------------------\n")
@@ -41,7 +42,7 @@ summary.maxLik <- function( object, hessian=FALSE, ... ) {
    } else {
       activePar <- rep(TRUE, NParam)
    }
-   if(returnCode(object) < 100) {
+   if(object$code < 100) {
       if(min(abs(eigen(Hessian(object)[activePar,activePar],
                        symmetric=TRUE, only.values=TRUE)$values)) > 1e-6) {
          varcovar <- matrix(0, NParam, NParam)
@@ -70,7 +71,7 @@ summary.maxLik <- function( object, hessian=FALSE, ... ) {
    }
    summary <- list(type=object$type,
                    iterations=object$iterations,
-                   code=returnCode(object),
+                   code=object$code,
                    message=object$message,
                    loglik=object$maximum,
                    estimate=results,

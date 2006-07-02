@@ -6,7 +6,7 @@ print.summary.probit <- function( x, ... ) {
    if(!is.null(x$estimate)) {
       cat("Log-Likelihood:", x$estimate$value, "\n")
       cat(x$NObs, " observations (", x$N0, " zeros and ", x$N1, " ones) and ",
-          x$NActivePar, " free parameters (df =",
+          x$NActivePar, " free parameters (df = ",
           x$NObs - x$NActivePar, ")\n", sep="")
       cat("Estimates:\n")
       print(x$estimate)

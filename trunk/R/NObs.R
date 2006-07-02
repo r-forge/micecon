@@ -7,5 +7,6 @@ NObs <- function(x, ...)
 NObs.lm <- function(x, ...)
     nrow(x$qr$qr)
 
-NObs.probit <- function(x)
+NObs.default <- function(x, ...)
     x$param$NObs
+
