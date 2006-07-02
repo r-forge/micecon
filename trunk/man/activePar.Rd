@@ -14,6 +14,7 @@ activePar.default(x, \dots)
   \item{x}{object, created by a maximisation routine, or derived from a
     maximisation object.  Currently only \code{\link{maxNR}} and it's
     derivations support \code{activePar}}
+  \item{\dots}{further arguments for methods}
 }
 \details{
   Several optimisation routines allow the user to fix some parameter
@@ -39,4 +40,4 @@ cons <- maxNR(f, theta=1:2, activePar=c(FALSE,TRUE))
 summary(cons) # result should be around (1,0)
 }
 \keyword{methods}
-\keyword{optimise}
+\keyword{optimize}
