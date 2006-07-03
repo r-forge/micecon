@@ -18,8 +18,8 @@ activePar.default(x, \dots)
 }
 \details{
   Several optimisation routines allow the user to fix some parameter
-  values (or do it automatically in some cases).  Which parameters where
-  free is important to know for any gradient or Hessian based inference,
+  values (or do it automatically in some cases).  One has to know know
+  which parameters are free for any gradient or Hessian based inference,
   e.g. for inverting Hessian in order to find standard errors.
 }
 \value{
