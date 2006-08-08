@@ -26,7 +26,6 @@
 \alias{summary.probit}
 \alias{summary.tobit2}
 \alias{translogMonoRestr}
-\alias{vcov.maxLik}
 
 \title{ Internal micEcon Functions }
 

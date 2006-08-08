@@ -170,25 +170,6 @@ triang <- function( v, n ) {
    return( m )
 }
 
-vcov.default <- function(object, ...)
-    object$varcovar
-
-vcov.maxLik <- function(object, ...) {
-   ## if exists $varcovar, take it
-   if(!is.null(object$varcovar))
-       return(object$varcovar)
-   ## otherwise invert hessian
-   activePar <- activePar(object)
-   if(min(abs(eigen(Hessian(object)[activePar,activePar],
-                    symmetric=TRUE, only.values=TRUE)$values)) > 1e-6) {
-      varcovar <- matrix(0, NParam(object), NParam(object))
-      varcovar[activePar,activePar] <- solve(-Hessian(object)[activePar,activePar])
-   }
-   else
-       varcovar <- NULL
-   varcovar
-}
-
 ## creates a vector of linear indep. values from a symmetric matrix (of full rank)
 vecli <- function( m ) {
    n <- dim( m )[ 1 ]
