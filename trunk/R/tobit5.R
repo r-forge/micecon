@@ -1,10 +1,12 @@
-tobit5 <- function(selection, reg2, reg3, data=sys.frame(sys.parent()),
-                   beta0=NULL, print.level=0, ...) {
+tobit5 <- function(selection, formula2, formula3,
+                   data=sys.frame(sys.parent()),
+                   beta0=NULL,
+                   print.level=0, ...) {
 ### The model is as follows (Amemiya 1985):
 ### The latent variables are:
 ### y1* = Z'g + u1
-### y2* = X'b + u2
-### y3* = X'b + u3
+### y2* = X'b2 + u2
+### y3* = X'b3 + u3
 ### The observables are:
 ###      / 1  if  y1* > 0
 ### y1 = \ 0  if  y1* <= 0
@@ -13,21 +15,17 @@ tobit5 <- function(selection, reg2, reg3, data=sys.frame(sys.parent()),
 ###      / 0    if  y1 = 0
 ### y3 = \ y3*  if  y1 = 1
 ### 
-###  y - 1-0 massiiv, 0 vastab y2-le ja 1 y3-le
-###  y1, y2 - valitud variantide väärtused
-###  X      - millest y2 ja y3 sõltub (ilma konstandita)
-###  Z      - millest y sõltub (ilma konstandita)
-###  ...    - lisaparameetrid minimeerimisele
-### TULEMUSED:
-### Tulemuseks on list, mille komponendid on:
-### probit  - y1 probit koefitsentide maatriks
-### H2S2    - Hekmani kahesammulise meetodiga leitud lahend teisele valikule.
-###           See on list, mille komponendid on:
-###  tulemused - OLS koefitsentide maatriks,
-###  sigma     - jääkliikmete dispersioon
-### H2S3    - analoogiline lahend kolmandale valikule
-### tulemused - ML keofitsentide ja veahinnangute maatriks
-### minimeerimine - minimeerimisalgoritmi tulemused
+###  y1      binary or logical vector, 0 (FALSE) corresponds to observable y2*,
+###          1 (TRUE) to observable y3*
+###  y2, y3  numeric vector, outcomes
+###  X       explanatory variables for outcomes
+###  Z              -"-                selection, should include exclusion restriction
+###  ...     additional parameters for maxLik
+### Result:
+### Object of class 'tobit5', derived from 'maxLik'.
+### Includes all the components of maxLik and additionally
+### twoStep   Results for Heckman two-step estimator, used for initial values
+### 
     loglik <- function( beta) {
         g <- beta[igamma]
         b2 <- beta[ibeta2]
@@ -58,8 +56,7 @@ tobit5 <- function(selection, reg2, reg3, data=sys.frame(sys.parent()),
     loglik <- l2 + l3 - Nobs/2*log( 2*pi)
 }
     gradlik <- function(beta) {
-        ## Nüüd gradient. Sääl on kokku 7 komponenti, neist 3
-        ## vektorit. Järjekord jääb samaks mis enne: g b_2, s_2, r_2, b_3,
+        ## components of the gradient are ordered as: g b_2, s_2, r_2, b_3,
         ## s_3, r_3
         g <- beta[igamma]
         b2 <- beta[ibeta2]
@@ -85,19 +82,19 @@ tobit5 <- function(selection, reg2, reg3, data=sys.frame(sys.parent()),
         lambda2 <- fB2/FB2
         lambda3 <- fB3/FB3
                                         # now the calculation
-        l.g <- -t( Z2)%*%lambda2/sqrt1r22 + t( Z3)%*%lambda3/sqrt1r32
-        l.b2 <- t( X2)%*%( lambda2*rho2/sigma2/sqrt1r22 + u2/sigma2^2)
-        l.b3 <- t( X3)%*%( -lambda3*rho3/sigma3/sqrt1r32 + u3/sigma3^2)
+        l.g <- t(lambda2) %*% Z2/sqrt1r22 + t(lambda3) %*% Z3/sqrt1r32
+        l.b2 <-  t(lambda2*rho2/sigma2/sqrt1r22 + u2/sigma2^2) %*% X2
+        l.b3 <- t(-lambda3*rho3/sigma3/sqrt1r32 + u3/sigma3^2) %*% X3
         l.s2 <- sum( -1/sigma2 + u2^2/sigma2^3
                     +lambda2*rho2/sigma2^2*u2/sqrt1r22)
         l.s3 <- sum( -1/sigma3 + u3^2/sigma3^3
                     -lambda3*rho3/sigma3^2*u3/sqrt1r32)
         l.r2 <- -sum( lambda2*( u2/sigma2 + rho2*Z2g)/sqrt1r22^3)
         l.r3 <- sum( lambda3*( u3/sigma3 + rho3*Z3g)/sqrt1r32^3)
-        gradient <- rbind( l.g, l.b2, l.s2, l.r2, l.b3, l.s3, l.r3)
+        gradient <- cbind( l.g, l.b2, l.s2, l.r2, l.b3, l.s3, l.r3)
+        gradient
     }
     hesslik <- function(beta) {
-        ## Nüüd 28 Hessi maatriksi komponenti
         g <- beta[igamma]
         b2 <- beta[ibeta2]
         sigma2 <- beta[isigma2]
@@ -224,13 +221,13 @@ tobit5 <- function(selection, reg2, reg3, data=sys.frame(sys.parent()),
     NZ <- ncol( Z)
     if(is.null(colnames(Z)))
         colnames(Z) <- c("const", rep("z", NZ-1))
-    X2 <- model.matrix(reg2, data=data)
-    y2 <- model.response(model.frame(reg2, data=data))
+    X2 <- model.matrix(formula2, data=data)
+    y2 <- model.response(model.frame(formula2, data=data))
     NX2 <- ncol( X2)
     if(is.null(colnames(X2)))
         colnames(X2) <- rep("x", NX2)
-    X3 <- model.matrix(reg3, data=data)
-    y3 <- model.response(model.frame(reg3, data=data))
+    X3 <- model.matrix(formula3, data=data)
+    y3 <- model.response(model.frame(formula3, data=data))
     NX3 <- ncol( X3)
     if(is.null(colnames(X3)))
         colnames(X3) <- rep("x", NX3)
@@ -241,13 +238,13 @@ tobit5 <- function(selection, reg2, reg3, data=sys.frame(sys.parent()),
     N3 <- length( y1[y1==1])
     ## indices in for the parameter vector
     igamma <- 1:NZ
-    ibeta2 <- seq(last(igamma)+1, length=NX2)
-    isigma2 <- last(ibeta2) + 1
-    irho2 <- last(isigma2) + 1
-    ibeta3 <- seq(last(irho2) + 1, length=NX3)
-    isigma3 <- last(ibeta3) + 1
-    irho3 <- last(isigma3) + 1
-    ## divide data by choices
+    ibeta2 <- seq(tail(igamma, 1)+1, length=NX2)
+    isigma2 <- tail(ibeta2, 1) + 1
+    irho2 <- tail(isigma2, 1) + 1
+    ibeta3 <- seq(tail(irho2, 1) + 1, length=NX3)
+    isigma3 <- tail(ibeta3, 1) + 1
+    irho3 <- tail(isigma3, 1) + 1
+    ## split data by selection
     Y2 <- y2[y1==0]
     Y3 <- y3[y1==1]
     X2 <- X2[y1==0,,drop=FALSE]
@@ -265,7 +262,7 @@ tobit5 <- function(selection, reg2, reg3, data=sys.frame(sys.parent()),
             cat("The probit part of the model:\n")
             print(summary(probit))
         }
-        gamma.0 <- probit$results$estimate
+        gamma.0 <- coefficients(probit)
         beta0[igamma] <- gamma.0
         ## regression parts by Heckman's two-step method
         lambda.2 <- dnorm( -Z2%*%gamma.0)/pnorm( -Z2%*%gamma.0)
@@ -277,7 +274,7 @@ tobit5 <- function(selection, reg2, reg3, data=sys.frame(sys.parent()),
         beta0[ibeta2] <- twoStep.2$coefficients[1:NX2,1]
         beta0[ibeta3] <- twoStep.3$coefficients[1:NX3,1]
         se.2 <- twoStep.2$sigma
-                                        # See on jääkliige
+                                        # This is residual
         se.3 <- twoStep.3$sigma
         bl.2 <- twoStep.2$coefficients[NX2+1,1]
         bl.3 <- twoStep.3$coefficients[NX3+1,1]
@@ -300,30 +297,17 @@ tobit5 <- function(selection, reg2, reg3, data=sys.frame(sys.parent()),
                           colnames(X3), "sigma3", "rho3")
     }
     if( print.level > 0) {
-        cat( "Y2 algväärtused (Heckmani kahesammuline mudel):\n")
+        cat( "Initial beta2 (Heckman two-step estimates):\n")
         cat( beta0[ibeta2], " ", beta0[isigma2], " ", beta0[irho2], "\n")
-        cat( "y3 algväärtused (Heckmani kahesammuline mudel):\n")
+        cat( "Initial beta3 (Heckman two-step estimates):\n")
         cat( beta0[ibeta3], " ", beta0[isigma3], " ", beta0[irho3], "\n")
     }
-    results <- maxNR(loglik, gradlik, hesslik, beta0,
+    estimation <- maxLik(loglik, grad=gradlik, hess=hesslik, theta=beta0,
                      print.level=print.level, ...)
-    tobit5 <- list(probit=probit,
-                   results=results)
-    class(tobit5) <- "tobit5"
-    tobit5
-}
-
-
-
-print.summary.tobit5 <- function(x, ...) {
-    cat("--------------------------------------------\n")
-    cat("Tobit 5 model\n")
-    cat("Number of iterations:", x$opt$iterations, "\n")
-    cat("Return code:", x$opt$code, "(", x$opt$message, ")\n")
-    if(!is.null(x$opt$estimate)) {
-        cat("Log-likelihood:", x$opt$estimate$value, "\n")
-        cat("Estimates:")
-        print(x$opt$estimate$results)
-    }
-    cat("--------------------------------------------\n")
+    result <- c(estimation,
+                twoStep=probit
+                                        # should be something like heckit5
+                )
+    class(result) <- c("tobit5", class(estimation))
+    result
 }

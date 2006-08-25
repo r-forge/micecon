@@ -123,7 +123,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
       class(result) <- "maximisation"
       return(result)
    }
-   G1 <- gradient(theta)
+   G1 <- gradient(theta, ...)
    if(print.level > 2) {
       cat("Initial gradient value:\n")
       print(G1)
