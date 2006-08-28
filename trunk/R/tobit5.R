@@ -1,6 +1,6 @@
 tobit5 <- function(selection, formula2, formula3,
                    data=sys.frame(sys.parent()),
-                   beta0=NULL,
+                   init=NULL,
                    print.level=0, ...) {
 ### The model is as follows (Amemiya 1985):
 ### The latent variables are:
@@ -254,8 +254,8 @@ tobit5 <- function(selection, formula2, formula3,
     if(print.level > 0) {
         cat( "Choice 2:", N2, "time; choice 3:", N3, "times\n")
     }
-    if(is.null(beta0)) {
-        beta0 <- numeric(Nparam)
+    if(is.null(init)) {
+        init <- numeric(Nparam)
         ## initial values.  First probit part w/probit model
         probit <- probit(selection)
         if( print.level > 0) {
@@ -263,7 +263,7 @@ tobit5 <- function(selection, formula2, formula3,
             print(summary(probit))
         }
         gamma.0 <- coefficients(probit)
-        beta0[igamma] <- gamma.0
+        init[igamma] <- gamma.0
         ## regression parts by Heckman's two-step method
         lambda.2 <- dnorm( -Z2%*%gamma.0)/pnorm( -Z2%*%gamma.0)
         lambda.3 <- dnorm( Z3%*%gamma.0)/pnorm( Z3%*%gamma.0)
@@ -271,8 +271,8 @@ tobit5 <- function(selection, formula2, formula3,
         delta.3 <- mean( lambda.3^2 + Z3%*%gamma.0 *lambda.3)
         twoStep.2 <- summary( lm( y2[y1==0]~X2+lambda.2))
         twoStep.3 <- summary( lm( y3[y1==1]~X3+lambda.3))
-        beta0[ibeta2] <- twoStep.2$coefficients[1:NX2,1]
-        beta0[ibeta3] <- twoStep.3$coefficients[1:NX3,1]
+        init[ibeta2] <- twoStep.2$coefficients[1:NX2,1]
+        init[ibeta3] <- twoStep.3$coefficients[1:NX3,1]
         se.2 <- twoStep.2$sigma
                                         # This is residual
         se.3 <- twoStep.3$sigma
@@ -280,29 +280,29 @@ tobit5 <- function(selection, formula2, formula3,
         bl.3 <- twoStep.3$coefficients[NX3+1,1]
         sigma.20 <- sqrt( se.2^2 + ( bl.2*delta.2)^2)
         sigma.30 <- sqrt( se.3^2 + ( bl.3*delta.3)^2)
-        beta0[isigma2] <- sigma.20
-        beta0[isigma3] <- sigma.30
+        init[isigma2] <- sigma.20
+        init[isigma3] <- sigma.30
         rho2.0 <- -bl.2/sigma.20
         rho3.0 <- bl.3/sigma.30
         if( rho2.0 <= -1) rho2.0 <- -0.99
         if( rho3.0 <= -1) rho3.0 <- -0.99
         if( rho2.0 >= 1) rho2.0 <- 0.99
         if( rho3.0 >= 1) rho3.0 <- 0.99
-        beta0[irho2] <- rho2.0
-        beta0[irho3] <- rho3.0
+        init[irho2] <- rho2.0
+        init[irho3] <- rho3.0
     }
-    if(is.null(names(beta0))) {
-        names(beta0) <- c(colnames(Z),
+    if(is.null(names(init))) {
+        names(init) <- c(colnames(Z),
                           colnames(X2), "sigma2", "rho2",
                           colnames(X3), "sigma3", "rho3")
     }
     if( print.level > 0) {
         cat( "Initial beta2 (Heckman two-step estimates):\n")
-        cat( beta0[ibeta2], " ", beta0[isigma2], " ", beta0[irho2], "\n")
+        cat( init[ibeta2], " ", init[isigma2], " ", init[irho2], "\n")
         cat( "Initial beta3 (Heckman two-step estimates):\n")
-        cat( beta0[ibeta3], " ", beta0[isigma3], " ", beta0[irho3], "\n")
+        cat( init[ibeta3], " ", init[isigma3], " ", init[irho3], "\n")
     }
-    estimation <- maxLik(loglik, grad=gradlik, hess=hesslik, theta=beta0,
+    estimation <- maxLik(loglik, grad=gradlik, hess=hesslik, theta=init,
                      print.level=print.level, ...)
     result <- c(estimation,
                 twoStep=probit

@@ -1,7 +1,7 @@
 tobit2 <- function(selection, formula,
                    data=sys.frame(sys.parent()),
                    method="ml",
-                   b0=NULL, print.level=0,
+                   init=NULL, print.level=0,
                    y1=FALSE, z=FALSE, y2=FALSE, x=FALSE, model=FALSE,
                    ...) {
    ## The model (Amemiya 1985):
@@ -19,8 +19,8 @@ tobit2 <- function(selection, formula,
    ## formula    main model
    ## method     maximum likelihood (ml) or two-step (2step)
    ## data       dataset
-   ## b0       initial value of coefficients.  The order is as follows:
-   ##            b0 = (gamma', beta', sigma, rho)'
+   ## init       initial value of coefficients.  The order is as follows:
+   ##            init = (gamma', beta', sigma, rho)'
    ## print.level: 0 - nothing printed, as larger, as more information printed
    ## y1..z        whether to return corresponding matrixis of explanatory and dependent variables
    ## model        whether to return model frames
@@ -155,7 +155,7 @@ tobit2 <- function(selection, formula,
    }
    data$probitDummy <- probitEndogenous == probitLevels[ 2 ]
    ## now check whether two-step method is needed: either for final estimate or initial parameters
-   if(method == "2step" | is.null(b0)) {
+   if(method == "2step" | is.null(init)) {
       twoStep <- heckit(selection, formula, data)
       if(method == "2step") {
          return(twoStep)
@@ -219,29 +219,29 @@ tobit2 <- function(selection, formula,
       cat( "Not observed:", N1, "; observed:", N2,"\n", sep="")
    }
    ## initial values for parameters.  Note that 'twoStep' is calculated before
-   if(is.null(b0)) {
+   if(is.null(init)) {
       if(print.level > 0) {
          cat("Initial values by 2-step method:results\n")
          print(twoStep)
       }
-      b0 <- coef(twoStep)
-      b0 <- b0[-which(names(b0) == "invMillsRatio")]
+      init <- coef(twoStep)
+      init <- init[-which(names(init) == "invMillsRatio")]
                                         # inverse Mills ratio is not needed for ML
-      if(b0[irho] > 0.99)
-          b0[irho] <- 0.99
-      else if(b0[irho] < -0.99)
-          b0[irho] <- -0.99
+      if(init[irho] > 0.99)
+          init[irho] <- 0.99
+      else if(init[irho] < -0.99)
+          init[irho] <- -0.99
       if(print.level > 0) {
          cat("Initial values:\n")
-         print(b0)
+         print(init)
       }
    }
    estimation <- maxLik(loglik, gradlik, hesslik,
-                        theta=b0,
+                        theta=init,
                         print.level=print.level - 1, ...)
    ## The following commented lines are for testing analytic gradient and Hessian
-#    compare.derivatives(loglik, gradlik, t0=b0, ...)
-#    compare.derivatives(gradlik, hesslik, t0=b0, ...)
+#    compare.derivatives(loglik, gradlik, t0=init, ...)
+#    compare.derivatives(gradlik, hesslik, t0=init, ...)
    result <- c(estimation,
                twoStep=list(twoStep),
                NParam=NParam,

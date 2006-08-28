@@ -26,6 +26,15 @@
 \alias{summary.probit}
 \alias{summary.tobit2}
 \alias{translogMonoRestr}
+% Document the following:
+\alias{maximisationType}
+\alias{returnCode}
+\alias{returnCode.default}
+\alias{returnCode.maximisation}
+\alias{returnCode.MLEstimate}
+\alias{returnMessage.maximisation}
+%%%%
+
 
 \title{ Internal micEcon Functions }
 

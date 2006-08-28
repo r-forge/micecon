@@ -1,5 +1,3 @@
-maximisationType.maximisation <- function(x)
-    x$type
 
 maxNR <- function(fn, grad=NULL, hess=NULL, theta,
                   print.level=0,
