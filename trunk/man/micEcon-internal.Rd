@@ -27,12 +27,12 @@
 \alias{summary.tobit2}
 \alias{translogMonoRestr}
 % Document the following:
-\alias{maximisationType}
 \alias{returnCode}
 \alias{returnCode.default}
 \alias{returnCode.maximisation}
 \alias{returnCode.MLEstimate}
 \alias{returnMessage.maximisation}
+\alias{summary.tobit5}
 %%%%
 
 
