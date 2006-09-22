@@ -6,7 +6,7 @@ Author: Arne Henningsen <ahenningsen@agric-econ.uni-kiel.de>,
    Ott Toomet <otoomet@ut.ee>
 Maintainer: Arne Henningsen <ahenningsen@agric-econ.uni-kiel.de>
 Depends: R, systemfit
-Suggests: MASS
+Suggests: MASS, VGAM, mvtnorm
 Description: Tools for microeconomic analysis and microeconomic modelling
 License: GPL version 2 or newer
 URL: http://www.uni-kiel.de/agrarpol/ahenningsen/
