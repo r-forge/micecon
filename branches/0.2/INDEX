@@ -41,16 +41,14 @@ readFront41out          Read output of Frontier 4.1
 residuals.snqProfitEst
                         Residuals of an SNQ profit function
 rSquared                Calculate R squared value
-semidefiniteness        Test for negative and positive
-                        semidefiniteness
+semidefiniteness        Test for negative and positive semidefiniteness
 snqProfitCalc           Calculations with the SNQ Profit function
 snqProfitEla            Price Elasticities of SNQ Profit function
 snqProfitEst            Estimation of a SNQ Profit function
 snqProfitFixEla         Fixed Factor Elasticities of SNQ Profit
                         function
 snqProfitHessian        SNQ Profit function: Hessian matrix
-snqProfitHessianDeriv   SNQ Profit function: Derivatives of the
-                        Hessian
+snqProfitHessianDeriv   SNQ Profit function: Derivatives of the Hessian
 snqProfitImposeConvexity
                         Imposing Convexity on a SNQ Profit function
 snqProfitShadowPrices   Shadow Prices of a SNQ Profit function
