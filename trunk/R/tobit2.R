@@ -87,9 +87,15 @@ tobit2 <- function(selection, formula,
       lambdaB <- dnorm(B)/pnorm(B)
       fZ1.g <- dnorm(-Z1.g)
       FZ1.g <- pnorm(-Z1.g)
-      C <- ifelse(B > -25,
-                  -(pnorm(B)*dnorm(B)*B + dnorm(B)^2)/pnorm(B)^2,
+                                        # the previous code
+                                        #       C <- ifelse(B > -25,
+                                        #                   -(pnorm(B)*dnorm(B)*B + dnorm(B)^2)/pnorm(B)^2,
+                                        #                   -1)
+      C <- ifelse(B > -500,
+                  -exp(dnorm(B, log = TRUE) - pnorm(B, log.p = TRUE))*B -
+                  exp(2 * (dnorm(B, log = TRUE) - pnorm(B, log.p = TRUE))),
                   -1)
+                                        # recommended by Dimitrios Rizopoulos, KULeuven
                                         # This is a hack in order to avoid numerical problems.  How to do
                                         # it better?  How to prove the limit value?
       hess <- matrix(0, NParam, NParam)
