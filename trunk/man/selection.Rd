@@ -7,24 +7,26 @@
 }
 \usage{
 selection(selection, outcome, data = sys.frame(sys.parent()),
-method = "ml", init = NULL, print.level = 0,
+method = "ml", init = NULL, 
 ySelection = FALSE, xSelection = FALSE,
 yOutcome = FALSE, xOutcome = FALSE,
-model = FALSE, ...)
+model = FALSE, print.level = 0, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{selection}{formula, the selection equation}
-  \item{outcome}{ ~~Describe \code{outcome} here~~ }
+  \item{outcome}{the outcome equation(s).  Either a single equation (for
+  tobit 2 models), or a list of two equations (tobit 5 models).}
   \item{data}{ ~~Describe \code{data} here~~ }
   \item{method}{ ~~Describe \code{method} here~~ }
   \item{init}{ ~~Describe \code{init} here~~ }
-  \item{print.level}{ ~~Describe \code{print.level} here~~ }
   \item{ySelection}{ ~~Describe \code{ySelection} here~~ }
   \item{xSelection}{ ~~Describe \code{xSelection} here~~ }
   \item{yOutcome}{ ~~Describe \code{yOutcome} here~~ }
   \item{xOutcome}{ ~~Describe \code{xOutcome} here~~ }
   \item{model}{ ~~Describe \code{model} here~~ }
+  \item{print.level}{integer.  Various debugging information, higher
+    value gives more information.}
   \item{\dots}{ ~~Describe \code{\dots} here~~ }
 }
 \details{

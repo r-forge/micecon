@@ -1,10 +1,11 @@
 selection <- function(selection, outcome,
                       data=sys.frame(sys.parent()),
                       method="ml",
-                      init=NULL, print.level=0,
+                      init=NULL,
                       ySelection=FALSE, xSelection=FALSE,
                       yOutcome=FALSE, xOutcome=FALSE,
                       model=FALSE,
+                      print.level=0,
                       ...) {
    ## Heckman-style sample-selection models
    ## selection:   formula
@@ -58,6 +59,8 @@ selection <- function(selection, outcome,
    }
    else
        stop( "argument 'selection' must be either a formula or a list of two formulas" )
+   if(print.level > 0)
+       cat("Tobit", type, "model\n")
    probitEndogenous <- model.frame( selection, data = data )[ , 1 ]
    probitLevels <- levels( as.factor( probitEndogenous ) )
    if( length( probitLevels ) != 2 ) {
@@ -81,16 +84,16 @@ selection <- function(selection, outcome,
    mf <- match.call(expand.dots = FALSE)
    m <- match(c("selection", "data", "subset", "weights", "na.action",
                 "offset"), names(mf), 0)
-   mf1 <- mf[c(1, m)]
-   mf1$drop.unused.levels <- TRUE
-   mf1[[1]] <- as.name("model.frame")
-   names(mf1)[2] <- "formula"
+   mfS <- mf[c(1, m)]
+   mfS$drop.unused.levels <- TRUE
+   mfS[[1]] <- as.name("model.frame")
+   names(mfS)[2] <- "formula"
                                         # model.frame requires the parameter to
                                         # be 'formula'
-   mf1 <- eval(mf1, parent.frame())
-   mt1 <- attr(mf1, "terms")
-   XS <- model.matrix(mt1, mf1)
-   YS <- model.response(mf1, "numeric")
+   mfS <- eval(mfS, parent.frame())
+   mtS <- attr(mfS, "terms")
+   XS <- model.matrix(mtS, mfS)
+   YS <- model.response(mfS, "numeric")
    ## YO (outcome equation)
    if(type == 2) {
       m <- match(c("outcome", "data", "subset", "weights", "na.action",
@@ -112,6 +115,9 @@ selection <- function(selection, outcome,
    if(type == 5) {
       m <- match(c("outcome", "data", "subset", "weights", "na.action",
                    "offset"), names(mf), 0)
+                                        # mf is 'match.call'
+      formula1 <- as.list(mf[m])[[2]]
+      # ....
       mf2 <- mf[c(1, m)]
       mf2$drop.unused.levels <- TRUE
       mf2[[1]] <- as.name("model.frame")
@@ -137,13 +143,13 @@ selection <- function(selection, outcome,
                NX=NX,
                df=NObs - NParam,
                call=cl,
-               terms1=mt1,
+               terms1=mtS,
                terms2=mt2,
                y1=switch(y1, "1"=list(Y1), "0"=NULL),
                z=switch(z, "1"=list(X), "0"=NULL),
                y2=switch(y2, "1"=list(Y2), "0"=NULL),
                x=switch(x, "1"=list(X), "0"=NULL),
-               model=switch(model, "1"=list(selection=mf1, formula=mf2), "0"=NULL))
+               model=switch(model, "1"=list(selection=mfS, formula=mf2), "0"=NULL))
    class(result) <- c("sampleSelection", "tobit2", class(estimation))
    return(result)
 }
