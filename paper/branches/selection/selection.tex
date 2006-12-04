@@ -1,0 +1,110 @@
+\documentclass[article]{jss}
+
+\author{Arne Henningsen\\Kiel University
+  \And
+  Ott Toomet\\Tartu University}
+\title{Sample Selection Models in \proglang{R}:\\
+  Package \pkg{micEcon}}
+
+%% for pretty printing and a nice hypersummary also set:
+\Plainauthor{Arne Henningsen, Ott Toomet} %% comma-separated
+\Plaintitle{Sample Selection Models in R: Package micEcon} %% without formatting
+\Shorttitle{Sample Selection Models in R} %% a short title (if necessary)
+
+%% an abstract and keywords
+\Abstract{
+  Heckman-style sample selection models, and their implementation in package
+  \pkg{micEcon} for \proglang{R}, are discussed.
+}
+\Keywords{sample-selection models, Heckman selection models, econometrics, \proglang{R}}
+\Plainkeywords{sample-selection models, Heckman selection models, econometrics, R}
+
+%% publication information
+%% NOTE: This needs to filled out ONLY IF THE PAPER WAS ACCEPTED.
+%% If it was not (yet) accepted, leave them commented.
+%% \Volume{13}
+%% \Issue{9}
+%% \Month{September}
+%% \Year{2004}
+%% \Submitdate{2004-09-29}
+%% \Acceptdate{2004-09-29}
+
+%% The address of (at least) one author should be given
+%% in the following format:
+\Address{
+  Ott Toomet\\
+  Department of Economics\\
+  Tartu University\\
+  Narva 4-A123\\
+  Tartu 51009, Estonia\\
+  Telephone: +372 737 6348\\
+  E-mail: \email{otoomet@ut.ee}\\
+  URL: \url{http://www.obs.ee/~siim/}
+}
+%% It is also possible to add a telephone and fax number
+%% before the e-mail in the following format:
+%% Telephone: +43/1/31336-5053
+%% Fax: +43/1/31336-734
+
+%% for those who use Sweave please include the following line (with % symbols):
+%% need no \usepackage{Sweave.sty}
+
+%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%% include your article here, just as usual
+%% Note that you should use the \pkg{}, \proglang{} and \code{} commands.
+
+
+\section{Sample selection}
+
+
+\subsection{The problem}
+
+Almost always, the humans can to a certain degree affect their fate.
+Almoust never can we control for all the information they used for
+their decisions.  Hence endogeneity problems are there in every micro
+dataset.
+
+
+\subsection{Possible solutions}
+
+Because we want to break the endogeneity problem, we have to use
+additional information.
+
+\begin{itemize}
+\item Randomisation: experiment, where humans \emph{cannot} affect
+  their fate.  Seldom feasible for ethical or pracitcal reasons.
+\item Instruments (exclusion restrictions): more-or-less
+  randomisation.  Just not explicit, based on background, institutions
+  etc.
+\item Information about the functional form.  For instance,
+  assumptions about the distribution of the error terms.
+\end{itemize}
+
+
+\subsection{Heckman models}
+
+Heckman (1976) proposed a two-step solution to the fully-parametric
+model.  He assumed bivariate normal error distribution.
+
+The original article suggests using the (less efficient) two-step
+solution for exploratory work and as the initial value for maximum
+likelihood estimation -- two-step solution costs \$15 while the
+maximum-likelihood solution costs \$700.
+
+
+
+\section[Implementation]{Implementation in \pkg{micEcon}}
+
+
+
+\section[Usage]{Using the \code{selection} function}
+
+
+
+%% Note: If there is markup in \(sub)section, then it has to be escape as above.
+
+\end{document}
