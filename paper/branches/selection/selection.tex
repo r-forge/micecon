@@ -57,53 +57,13 @@
 %% include your article here, just as usual
 %% Note that you should use the \pkg{}, \proglang{} and \code{} commands.
 
+\input{selection_intro}
 
-\section{Sample selection}
+\input{selection_implement}
 
+\input{selection_usage}
 
-\subsection{The problem}
-
-Almost always, the humans can to a certain degree affect their fate.
-Almoust never can we control for all the information they used for
-their decisions.  Hence endogeneity problems are there in every micro
-dataset.
-
-
-\subsection{Possible solutions}
-
-Because we want to break the endogeneity problem, we have to use
-additional information.
-
-\begin{itemize}
-\item Randomisation: experiment, where humans \emph{cannot} affect
-  their fate.  Seldom feasible for ethical or pracitcal reasons.
-\item Instruments (exclusion restrictions): more-or-less
-  randomisation.  Just not explicit, based on background, institutions
-  etc.
-\item Information about the functional form.  For instance,
-  assumptions about the distribution of the error terms.
-\end{itemize}
-
-
-\subsection{Heckman models}
-
-Heckman (1976) proposed a two-step solution to the fully-parametric
-model.  He assumed bivariate normal error distribution.
-
-The original article suggests using the (less efficient) two-step
-solution for exploratory work and as the initial value for maximum
-likelihood estimation -- two-step solution costs \$15 while the
-maximum-likelihood solution costs \$700.
-
-
-
-\section[Implementation]{Implementation in \pkg{micEcon}}
-
-
-
-\section[Usage]{Using the \code{selection} function}
-
-
+\input{selection_conclusion}
 
 %% Note: If there is markup in \(sub)section, then it has to be escape as above.
 
