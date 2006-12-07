@@ -26,6 +26,7 @@
 \alias{summary.probit}
 \alias{summary.tobit2}
 \alias{translogMonoRestr}
+\alias{tobit5fit}
 % Document the following:
 \alias{returnCode}
 \alias{returnCode.default}
