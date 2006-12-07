@@ -113,14 +113,35 @@ selection <- function(selection, outcome,
       estimation <- tobit2.fit(YS, XS, YO, XO, init)
    }
    if(type == 5) {
+      oArg <- match("outcome", names(mf), 0)
+                                        # find the outcome argument
+      ocome <- as.list(mf[[oArg]])
+      formula1 <- ocome[[2]]
+      formula2 <- ocome[[3]]
+                                        # Now we have extracted both formulas
       m <- match(c("outcome", "data", "subset", "weights", "na.action",
                    "offset"), names(mf), 0)
-                                        # mf is 'match.call'
-      formula1 <- as.list(mf[m])[[2]]
-      # ....
+      ## replace the outcome list by the first equation and evaluate it
+      mf[[oArg]] <- formula1
+      mf1 <- mf[c(1, m)]
+      mf1$drop.unused.levels <- TRUE
+      mf1[[1]] <- as.name("model.frame")
+                                        # eval it as model frame
+      names(mf1)[2] <- "formula"
+      mf1 <- eval(mf1, parent.frame())
+                                        # Note: if unobserved variables are
+                                        # marked as NA, eval returns a
+                                        # subframe of visible variables only.
+                                        # We have to check it later
+      mt1 <- attr(mf1, "terms")
+      XO1 <- model.matrix(mt1, mf1)
+      YO1 <- model.response(mf1, "numeric")
+      ## repeat all the stuff with second equation
+      mf[[oArg]] <- formula2
       mf2 <- mf[c(1, m)]
       mf2$drop.unused.levels <- TRUE
       mf2[[1]] <- as.name("model.frame")
+                                        # eval it as model frame
       names(mf2)[2] <- "formula"
       mf2 <- eval(mf2, parent.frame())
                                         # Note: if unobserved variables are
@@ -128,8 +149,8 @@ selection <- function(selection, outcome,
                                         # subframe of visible variables only.
                                         # We have to check it later
       mt2 <- attr(mf2, "terms")
-      XO1 <- model.matrix(mt2, mf2)
-      YO1 <- model.response(mf2, "numeric")
+      XO2 <- model.matrix(mt2, mf2)
+      YO2 <- model.response(mf2, "numeric")
       estimation <- tobit5.fit(YS, XS, YO1, XO1, YO2, XO2, init)
    }
    ## now fit the model
