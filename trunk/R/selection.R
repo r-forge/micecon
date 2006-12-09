@@ -110,7 +110,7 @@ selection <- function(selection, outcome,
       mt2 <- attr(mf2, "terms")
       XO <- model.matrix(mt2, mf2)
       YO <- model.response(mf2, "numeric")
-      estimation <- tobit2.fit(YS, XS, YO, XO, init)
+      estimation <- tobit2fit(YS, XS, YO, XO, init)
    }
    if(type == 5) {
       oArg <- match("outcome", names(mf), 0)
@@ -151,7 +151,34 @@ selection <- function(selection, outcome,
       mt2 <- attr(mf2, "terms")
       XO2 <- model.matrix(mt2, mf2)
       YO2 <- model.response(mf2, "numeric")
-      estimation <- tobit5.fit(YS, XS, YO1, XO1, YO2, XO2, init)
+      ## indices in for the parameter vector.  These are returned in order to provide the user a way
+      ## to extract certain components from the coefficients
+      NXS <- ncol(XS)
+      NXO1 <- ncol(XO1)
+      NXO2 <- ncol(XO2)
+      igamma <- 1:NXS
+      ibeta1 <- seq(tail(igamma, 1)+1, length=NXO1)
+      isigma1 <- tail(ibeta1, 1) + 1
+      irho1 <- tail(isigma1, 1) + 1
+      ibeta2 <- seq(tail(irho1, 1) + 1, length=NXO2)
+      isigma2 <- tail(ibeta2, 1) + 1
+      irho2 <- tail(isigma2, 1) + 1
+      NParam <- irho2
+      if(is.null(init)) {
+         init <- numeric(NParam)
+         heckit <- heckit5(selection, as.formula(formula1), as.formula(formula2),
+                           data, print.level)
+         init[igamma] <- coef(heckit$probit)
+         b1 <- coef(heckit$twoStep1)
+         init[ibeta1] <- b1[names(b1) != "invMillsRatio"]
+         init[isigma1] <- heckit$sigma1
+         init[irho1] <- heckit$rho1
+         b2 <- coef(heckit$twoStep2)
+         init[ibeta2] <- b2[names(b2) != "invMillsRatio"]
+         init[isigma2] <- heckit$sigma2
+         init[irho2] <- heckit$rho2
+      }
+      estimation <- tobit5fit(YS, XS, YO1, XO1, YO2, XO2, init)
    }
    ## now fit the model
    result <- c(estimation,
