@@ -166,40 +166,42 @@ selection <- function(selection, outcome,
       NParam <- irho2
       if(is.null(init)) {
          init <- numeric(NParam)
+         if(print.level > 0) {
+            cat("Inital values by Heckman 2-step method (", NParam, " componenets)\n", sep="")
+         }
          heckit <- heckit5(selection, as.formula(formula1), as.formula(formula2),
                            data, print.level)
          init[igamma] <- coef(heckit$probit)
+         names(init)[igamma] <- names(coef(heckit$probit))
          b1 <- coef(heckit$twoStep1)
-         init[ibeta1] <- b1[names(b1) != "invMillsRatio"]
+         init[ibeta1] <- b1[names(b1) != "X1invMillsRatio"]
+         names(init)[ibeta1] <- names(b1[names(b1) != "X1invMillsRatio"])
          init[isigma1] <- heckit$sigma1
+         names(init)[isigma1] <- "sigma1"
          init[irho1] <- heckit$rho1
+         names(init)[irho1] <- "rho1"
          b2 <- coef(heckit$twoStep2)
-         init[ibeta2] <- b2[names(b2) != "invMillsRatio"]
+         init[ibeta2] <- b2[names(b2) != "X2invMillsRatio"]
+         names(init)[ibeta2] <- names(b2[names(b2) != "X2invMillsRatio"])
          init[isigma2] <- heckit$sigma2
+         names(init)[isigma2] <- "sigma2"
          init[irho2] <- heckit$rho2
+         names(init)[irho2] <- "rho2"
       }
-      estimation <- tobit5fit(YS, XS, YO1, XO1, YO2, XO2, init)
+      estimation <- tobit5fit(YS, XS, YO1, XO1, YO2, XO2, init,
+                              print.level=print.level)
    }
    ## now fit the model
    result <- c(estimation,
-               twoStep=list(twoStep),
-               NParam=NParam,
-               NObs=NObs,
-               N1=N1,
-               N2=N2,
-               NZ=NZ,
-               NX=NX,
-               df=NObs - NParam,
+               twoStep=switch(type, "2"=list(twoStep), "5"=list(twoStep1, twoStep2)),
                call=cl,
                terms1=mtS,
                terms2=mt2,
-               y1=switch(y1, "1"=list(Y1), "0"=NULL),
-               z=switch(z, "1"=list(X), "0"=NULL),
-               y2=switch(y2, "1"=list(Y2), "0"=NULL),
-               x=switch(x, "1"=list(X), "0"=NULL),
+               ySelection=switch(ySelection, "1"=list(YS), "0"=NULL),
+               xSelection=switch(xSelection, "1"=list(XS), "0"=NULL),
+               yOutcome=switch(yOutcome, "1"=switch(type, "2"=list(YO), "5"=list(YO1, YO2)), "0"=NULL),
+               xOutcome=switch(xOutcome, "1"=switch(type, "2"=list(XO), "5"=list(XO1, XO2)), "0"=NULL),
                model=switch(model, "1"=list(selection=mfS, formula=mf2), "0"=NULL))
    class(result) <- c("sampleSelection", "tobit2", class(estimation))
    return(result)
 }
-
-   

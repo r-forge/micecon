@@ -3,8 +3,7 @@ heckit5 <- function(selection, outcome1, outcome2,
                     ySelection=FALSE, xSelection=FALSE,
                     yOutcome=FALSE, xOutcome=FALSE,
                     model=FALSE,
-                    print.level=0,
-                    ...) {
+                    print.level=0) {
    ## Do a few sanity checks...
    if( class( selection ) != "formula" ) {
       stop( "argument 'selection' must be a formula" )
@@ -33,7 +32,6 @@ heckit5 <- function(selection, outcome1, outcome2,
          " exactly two levels (e.g. FALSE and TRUE)" )
    }
    ## Now extract model frames etc.  We only need model information for the selection equation
-   cl <- match.call()
    mf <- match.call(expand.dots = FALSE)
    m <- match(c("selection", "data", "subset", "weights", "na.action",
                 "offset"), names(mf), 0)
@@ -47,8 +45,10 @@ heckit5 <- function(selection, outcome1, outcome2,
    mtS <- attr(mfS, "terms")
    XS <- model.matrix(mtS, mfS)
    YS <- factor(model.response(mfS, "numeric"))
-   XS1 <- XS[YS == levels(YS)[1],]
-   XS2 <- XS[YS == levels(YS)[2],]
+   i1 <- YS == levels(YS)[1]
+   i2 <- YS == levels(YS)[2]
+   XS1 <- XS[i1,]
+   XS2 <- XS[i2,]
    ## and run the model
    probit <- probit(selection)
    if( print.level > 0) {
@@ -59,16 +59,44 @@ heckit5 <- function(selection, outcome1, outcome2,
    ## regression parts by Heckman's two-step method
    lambda1 <- dnorm( -XS1%*%gamma)/pnorm( -XS1%*%gamma)
    lambda2 <- dnorm( XS2%*%gamma)/pnorm( XS2%*%gamma)
+   colnames(lambda1) <- colnames(lambda2) <- "invMillsRatio"
                                         # lambdas are inverse Mills ratios
-   twoStep1 <- lm(update(outcome1, ~ . + lambda1), data=data)
-   twoStep2 <- lm(update(outcome2, ~ . + lambda2), data=data)
-   se1 <- twoStep1$sigma
-   se2 <- twoStep2$sigma
+   ## We need here to run OLS on outcome1 expression and lambda1.  Outcome1 must be evaluated in the
+   ## parent frame, lambda1 here -> we must evaluate it here
+   m <- match(c("outcome1", "data", "subset", "weights", "na.action",
+                "offset"), names(mf), 0)
+   mf1 <- mf[c(1, m)]
+   mf1$drop.unused.levels <- TRUE
+   mf1[[1]] <- as.name("model.frame")
+   names(mf1)[2] <- "formula"
+   mf1 <- eval(mf1, parent.frame())
+   mt1 <- attr(mf1, "terms")
+   X1 <- model.matrix(mt1, mf1)[i1,]
+   Y1 <- model.response(mf1, "numeric")[i1]
+   X1 <- cbind(X1, lambda1)
+                                        # lambda1 is a matrix -- we need to remove the dim in order to 
+   m <- match(c("outcome2", "data", "subset", "weights", "na.action",
+                "offset"), names(mf), 0)
+   mf2 <- mf[c(1, m)]
+   mf2$drop.unused.levels <- TRUE
+   mf2[[1]] <- as.name("model.frame")
+   names(mf2)[2] <- "formula"
+   mf2 <- eval(mf2, parent.frame())
+   mt2 <- attr(mf2, "terms")
+   X2 <- model.matrix(mt2, mf2)[i2,]
+   Y2 <- model.response(mf2, "numeric")[i2]
+   X2 <- cbind(X2, lambda2)
+                                        #
+   twoStep1 <- lm(Y1 ~ -1 + X1)
+   twoStep2 <- lm(Y2 ~ -1 + X2)
+                                        # X includes the constant
+   se1 <- summary(twoStep1)$sigma
+   se2 <- summary(twoStep2)$sigma
                                         # residual variance
    delta1 <- mean( lambda1^2 - XS1%*%gamma *lambda1)
    delta2 <- mean( lambda2^2 + XS2%*%gamma *lambda2)
-   betaL1 <- coef(twoStep1)["lambda1"]
-   betaL2 <- coef(twoStep2)["lambda2"]
+   betaL1 <- coef(twoStep1)["X1invMillsRatio"]
+   betaL2 <- coef(twoStep2)["X2invMillsRatio"]
    sigma1 <- sqrt( se1^2 + ( betaL1*delta1)^2)
    sigma2 <- sqrt( se2^2 + ( betaL2*delta2)^2)
    rho1 <- -betaL1/sigma1
@@ -84,4 +112,6 @@ heckit5 <- function(selection, outcome1, outcome2,
                   twoStep2=twoStep2,
                   rho2=rho2,
                   sigma2=sigma2)
+   class(result) <- c("heckit5", "heckit", class(result))
+   invisible(result)
 }

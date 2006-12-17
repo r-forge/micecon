@@ -26,21 +26,21 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, init,
 ### 
     loglik <- function( beta) {
         g <- beta[igamma]
-        b2 <- beta[ibeta2]
-        sigma2 <- beta[isigma2]
-        rho2 <- beta[irho2]
+        b2 <- beta[ibeta1]
+        sigma2 <- beta[isigma1]
+        rho2 <- beta[irho1]
         if( ( rho2 < -1) || ( rho2 > 1)) return(NA)
-        b3 <- beta[ibeta3]
-        sigma3 <- beta[isigma3]
-        rho3 <- beta[irho3]
+        b3 <- beta[ibeta2]
+        sigma3 <- beta[isigma2]
+        rho3 <- beta[irho2]
         if((rho3 < -1) || (rho3 > 1)) return(NA)
                                         # check the range
         Z2g <- XS1%*%g
         Z3g <- XS2%*%g
-        X2b2 <- X2%*%b2
-        X3b3 <- X3%*%b3
-        u2 <- Y2 - X2b2
-        u3 <- Y3 - X3b3
+        XO1b2 <- XO1%*%b2
+        XO2b3 <- XO2%*%b3
+        u2 <- YO1 - XO1b2
+        u3 <- YO2 - XO2b3
         sqrt1r22 <- sqrt( 1 - rho2^2)
         sqrt1r32 <- sqrt( 1 - rho3^2)
         B2 <- -(Z2g + rho2/sigma2*u2)/sqrt1r22
@@ -57,18 +57,18 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, init,
         ## components of the gradient are ordered as: g b_2, s_2, r_2, b_3,
         ## s_3, r_3
         g <- beta[igamma]
-        b2 <- beta[ibeta2]
-        sigma2 <- beta[isigma2]
-        rho2 <- beta[irho2]
-        b3 <- beta[ibeta3]
-        sigma3 <- beta[isigma3]
-        rho3 <- beta[irho3]
+        b2 <- beta[ibeta1]
+        sigma2 <- beta[isigma1]
+        rho2 <- beta[irho1]
+        b3 <- beta[ibeta2]
+        sigma3 <- beta[isigma2]
+        rho3 <- beta[irho2]
         Z2g <- XS1%*%g
         Z3g <- XS2%*%g
-        X2b2 <- X2%*%b2
-        X3b3 <- X3%*%b3
-        u2 <- Y2 - X2b2
-        u3 <- Y3 - X3b3
+        XO1b2 <- XO1%*%b2
+        XO2b3 <- XO2%*%b3
+        u2 <- YO1 - XO1b2
+        u3 <- YO2 - XO2b3
         sqrt1r22 <- sqrt( 1 - rho2^2)
         sqrt1r32 <- sqrt( 1 - rho3^2)
         B2 <- -(Z2g + rho2/sigma2*u2)/sqrt1r22
@@ -81,8 +81,8 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, init,
         lambda3 <- fB3/FB3
                                         # now the calculation
         l.g <- t(lambda2) %*% XS1/sqrt1r22 + t(lambda3) %*% XS2/sqrt1r32
-        l.b2 <-  t(lambda2*rho2/sigma2/sqrt1r22 + u2/sigma2^2) %*% X2
-        l.b3 <- t(-lambda3*rho3/sigma3/sqrt1r32 + u3/sigma3^2) %*% X3
+        l.b2 <-  t(lambda2*rho2/sigma2/sqrt1r22 + u2/sigma2^2) %*% XO1
+        l.b3 <- t(-lambda3*rho3/sigma3/sqrt1r32 + u3/sigma3^2) %*% XO2
         l.s2 <- sum( -1/sigma2 + u2^2/sigma2^3
                     +lambda2*rho2/sigma2^2*u2/sqrt1r22)
         l.s3 <- sum( -1/sigma3 + u3^2/sigma3^3
@@ -94,18 +94,18 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, init,
     }
     hesslik <- function(beta) {
         g <- beta[igamma]
-        b2 <- beta[ibeta2]
-        sigma2 <- beta[isigma2]
-        rho2 <- beta[irho2]
-        b3 <- beta[ibeta3]
-        sigma3 <- beta[isigma3]
-        rho3 <- beta[irho3]
+        b2 <- beta[ibeta1]
+        sigma2 <- beta[isigma1]
+        rho2 <- beta[irho1]
+        b3 <- beta[ibeta2]
+        sigma3 <- beta[isigma2]
+        rho3 <- beta[irho2]
         Z2g <- XS1%*%g
         Z3g <- XS2%*%g
-        X2b2 <- X2%*%b2
-        X3b3 <- X3%*%b3
-        u2 <- Y2 - X2b2
-        u3 <- Y3 - X3b3
+        XO1b2 <- XO1%*%b2
+        XO2b3 <- XO2%*%b3
+        u2 <- YO1 - XO1b2
+        u3 <- YO2 - XO2b3
         sqrt1r22 <- sqrt( 1 - rho2^2)
         sqrt1r32 <- sqrt( 1 - rho3^2)
         B2 <- -(Z2g + rho2/sigma2*u2)/sqrt1r22
@@ -122,26 +122,26 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, init,
         l.gg <- t( XS1) %*% ( XS1 * CB2)/sqrt1r22^2 +
             t( XS2) %*% ( XS2 * CB3)/sqrt1r32^2
         l.gb2 <- -t( XS1) %*%
-            ( X2 * CB2)*rho2/sqrt1r22^2/sigma2
+            ( XO1 * CB2)*rho2/sqrt1r22^2/sigma2
         l.gs2 <- -rho2/sigma2^2/sqrt1r22^2*
             t( XS1) %*% ( CB2*u2)
         l.gr2 <- t( XS1) %*%
             ( CB2*( u2/sigma2 + rho2*Z2g)/sqrt1r22^4 -
              lambda2*rho2/sqrt1r22^3)
         l.gb3 <- -t( XS2) %*%
-            ( X3 * CB3)*rho3/sqrt1r32^2/sigma3
+            ( XO2 * CB3)*rho3/sqrt1r32^2/sigma3
         l.gs3 <- -rho3/sigma3^2/sqrt1r32^2*
             t( XS2) %*% ( CB3*u3)
         l.gr3 <- t( XS2) %*%
             ( CB3*( u3/sigma3 + rho3*Z3g)/sqrt1r32^4 +
              lambda3*rho3/sqrt1r32^3)
-        l.b2b2 <- t( X2) %*%
-            (X2 * ( (rho2/sqrt1r22)^2 * CB2 - 1))/sigma2^2
-        l.b2s2 <- t( X2) %*%
+        l.b2b2 <- t( XO1) %*%
+            (XO1 * ( (rho2/sqrt1r22)^2 * CB2 - 1))/sigma2^2
+        l.b2s2 <- t( XO1) %*%
             ( CB2*rho2^2/sigma2^3*u2/sqrt1r22^2 -
              rho2/sigma2^2*lambda2/sqrt1r22 -
              2*u2/sigma2^3)
-        l.b2r2 <- t( X2) %*%
+        l.b2r2 <- t( XO1) %*%
             ( -CB2*( u2/sigma2 + rho2*Z2g)/sqrt1r22^4*rho2 +
              lambda2/sqrt1r22^3)/sigma2
         ## l.b2x3 is zero
@@ -161,12 +161,12 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, init,
                       sqrt1r22^5
                       )
         ## l.r2x3 is zero
-        l.b3b3 <- t( X3) %*%
-            (X3 * ( (rho3/sqrt1r32)^2 * CB3 - 1))/sigma3^2
-        l.b3s3 <- t( X3) %*%
+        l.b3b3 <- t( XO2) %*%
+            (XO2 * ( (rho3/sqrt1r32)^2 * CB3 - 1))/sigma3^2
+        l.b3s3 <- t( XO2) %*%
             ( CB3*rho3^2/sigma3^3*u3/sqrt1r32^2 +
              rho3/sigma3^2*lambda3/sqrt1r32 - 2*u3/sigma3^3)
-        l.b3r3 <- t( X3) %*%
+        l.b3r3 <- t( XO2) %*%
             ( -CB3*( u3/sigma3 + rho3*Z3g)/sqrt1r32^4*rho3 -
              lambda3/sqrt1r32^3)/sigma3
         l.s3s3 <- sum(
@@ -185,33 +185,33 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, init,
                       )
         hess <- array(NA, c( Nparam, Nparam))
         hess[igamma,igamma] <- l.gg
-        hess[igamma,ibeta2] <- l.gb2; hess[ibeta2,igamma] <- t( l.gb2)
-        hess[igamma,isigma2] <- l.gs2; hess[isigma2,igamma] <- t( l.gs2)
-        hess[igamma,irho2] <- l.gr2; hess[irho2,igamma] <- t( l.gr2)
-        hess[igamma,ibeta3] <- l.gb3; hess[ibeta3,igamma] <- t( l.gb3)
-        hess[igamma,isigma3] <- l.gs3; hess[isigma3,igamma] <- t( l.gs3)
-        hess[igamma,irho3] <- l.gr3; hess[irho3,igamma] <- t( l.gr3)
-        hess[ibeta2,ibeta2] <- l.b2b2
-        hess[ibeta2,isigma2] <- l.b2s2; hess[isigma2,ibeta2] <- t( l.b2s2)
-        hess[ibeta2,irho2] <- l.b2r2; hess[irho2,ibeta2] <- t( l.b2r2)
-        hess[ibeta2,ibeta3] <- 0; hess[ibeta3,ibeta2] <- 0
-        hess[ibeta2,isigma3] <- 0; hess[isigma3,ibeta2] <- 0
-        hess[ibeta2,irho3] <- 0; hess[irho3,ibeta2] <- 0
-        hess[isigma2,isigma2] <- l.s2s2
-        hess[isigma2,irho2] <- l.s2r2; hess[irho2,isigma2] <- l.s2r2
-        hess[isigma2,ibeta3] <- 0; hess[ibeta3,isigma2] <- 0
-        hess[isigma2,isigma3] <- 0; hess[isigma3,isigma2] <- 0
-        hess[isigma2,irho3] <- 0; hess[irho3,isigma2] <- 0
-        hess[irho2,irho2] <- l.r2r2
-        hess[irho2,ibeta3] <- 0; hess[ibeta3,irho2] <- 0
-        hess[irho2,isigma3] <- 0; hess[isigma3,irho2] <- 0
-        hess[irho2,irho3] <- 0; hess[irho3,irho2] <- 0
-        hess[ibeta3,ibeta3] <- l.b3b3
-        hess[ibeta3,isigma3] <- l.b3s3; hess[isigma3,ibeta3] <- t( l.b3s3)
-        hess[ibeta3,irho3] <- l.b3r3; hess[irho3,ibeta3] <- t( l.b3r3)
-        hess[isigma3,isigma3] <- l.s3s3
-        hess[isigma3,irho3] <- l.s3r3; hess[irho3,isigma3] <- t( l.s3r3)
-        hess[irho3,irho3] <- l.r3r3
+        hess[igamma,ibeta1] <- l.gb2; hess[ibeta1,igamma] <- t( l.gb2)
+        hess[igamma,isigma1] <- l.gs2; hess[isigma1,igamma] <- t( l.gs2)
+        hess[igamma,irho1] <- l.gr2; hess[irho1,igamma] <- t( l.gr2)
+        hess[igamma,ibeta2] <- l.gb3; hess[ibeta2,igamma] <- t( l.gb3)
+        hess[igamma,isigma2] <- l.gs3; hess[isigma2,igamma] <- t( l.gs3)
+        hess[igamma,irho2] <- l.gr3; hess[irho2,igamma] <- t( l.gr3)
+        hess[ibeta1,ibeta1] <- l.b2b2
+        hess[ibeta1,isigma1] <- l.b2s2; hess[isigma1,ibeta1] <- t( l.b2s2)
+        hess[ibeta1,irho1] <- l.b2r2; hess[irho1,ibeta1] <- t( l.b2r2)
+        hess[ibeta1,ibeta2] <- 0; hess[ibeta2,ibeta1] <- 0
+        hess[ibeta1,isigma2] <- 0; hess[isigma2,ibeta1] <- 0
+        hess[ibeta1,irho2] <- 0; hess[irho2,ibeta1] <- 0
+        hess[isigma1,isigma1] <- l.s2s2
+        hess[isigma1,irho1] <- l.s2r2; hess[irho1,isigma1] <- l.s2r2
+        hess[isigma1,ibeta2] <- 0; hess[ibeta2,isigma1] <- 0
+        hess[isigma1,isigma2] <- 0; hess[isigma2,isigma1] <- 0
+        hess[isigma1,irho2] <- 0; hess[irho2,isigma1] <- 0
+        hess[irho1,irho1] <- l.r2r2
+        hess[irho1,ibeta2] <- 0; hess[ibeta2,irho1] <- 0
+        hess[irho1,isigma2] <- 0; hess[isigma2,irho1] <- 0
+        hess[irho1,irho2] <- 0; hess[irho2,irho1] <- 0
+        hess[ibeta2,ibeta2] <- l.b3b3
+        hess[ibeta2,isigma2] <- l.b3s3; hess[isigma2,ibeta2] <- t( l.b3s3)
+        hess[ibeta2,irho2] <- l.b3r3; hess[irho2,ibeta2] <- t( l.b3r3)
+        hess[isigma2,isigma2] <- l.s3s3
+        hess[isigma2,irho2] <- l.s3r3; hess[irho2,isigma2] <- t( l.s3r3)
+        hess[irho2,irho2] <- l.r3r3
         hess
     }
     ## ---------------
@@ -231,12 +231,12 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, init,
     NO2 <- length( YS[YS==1])
     ## indices in for the parameter vector
     igamma <- 1:NXS
-    ibeta2 <- seq(tail(igamma, 1)+1, length=NXO1)
+    ibeta1 <- seq(tail(igamma, 1)+1, length=NXO1)
+    isigma1 <- tail(ibeta1, 1) + 1
+    irho1 <- tail(isigma1, 1) + 1
+    ibeta2 <- seq(tail(irho1, 1) + 1, length=NXO2)
     isigma2 <- tail(ibeta2, 1) + 1
     irho2 <- tail(isigma2, 1) + 1
-    ibeta3 <- seq(tail(irho2, 1) + 1, length=NXO2)
-    isigma3 <- tail(ibeta3, 1) + 1
-    irho3 <- tail(isigma3, 1) + 1
     ## split data by selection
     YO1 <- YO1[YS==0]
     YO2 <- YO2[YS==1]
@@ -248,10 +248,19 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, init,
         cat( "Choice 2:", NO1, "times; choice 3:", NO2, "times\n")
     }
     if( print.level > 0) {
-        cat( "Initial beta2 (Heckman two-step estimates):\n")
-        cat( init[ibeta2], " ", init[isigma2], " ", init[irho2], "\n")
-        cat( "Initial beta3 (Heckman two-step estimates):\n")
-        cat( init[ibeta3], " ", init[isigma3], " ", init[irho3], "\n")
+        cat( "Initial values:\n")
+        cat("beta1\n")
+        print(init[ibeta1])
+        cat("sigma1\n")
+        print(init[isigma1])
+        cat("rho1\n")
+        print(init[irho1])
+        cat("beta2\n")
+        print(init[ibeta2])
+        cat("sigma2\n")
+        print(init[isigma2])
+        cat("rho2\n")
+        print(init[irho2])
     }
     estimation <- maxLik(loglik, grad=gradlik, hess=hesslik, theta=init,
                      print.level=print.level, ...)
