@@ -22,12 +22,31 @@ additional information.
   etc.
 \item Information about the functional form.  For instance,
   assumptions about the distribution of the error terms.
+\item Timing information.  In some cases, relative timing of the
+  events may give us information, necessary for identification of the
+  causal effect.
 \end{itemize}
+
+During the recent decades, either randomisation or the
+pseudo-randimisation (natural experiments) has become the state-of-the
+art while estimating the causal effects.  The methods, relying on the
+distributional assumptions are becoming less widely used.  The reason
+is obvious -- the parametric assumptions can only seldom be justified,
+and we don't want our results to rely on dubious assumptions.  Even if
+we have valid instruments or exclusion restrictions, the parametric
+hypothesis add their interference which may be sometimes hard to
+detect.  
+
+However, even if these models are not popular in research any more,
+they still serve as excellent teaching tools.  Heckman-type selection
+models easily allow us to experiment with selection bias,
+misspecification, exclusion restrictions etc.  These models are easy
+to visualise and understand.
 
 
 \subsection{Heckman models}
 
-\citet{heckman76} proposed a two-step solution to the fully-parametric
+\citet{heckman1976} proposed a two-step solution to the fully-parametric
 model.  He assumed bivariate normal error distribution.
 
 The original article suggests using the (less efficient) two-step
