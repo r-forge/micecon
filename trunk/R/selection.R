@@ -96,20 +96,40 @@ selection <- function(selection, outcome,
    YS <- model.response(mfS, "numeric")
    ## YO (outcome equation)
    if(type == 2) {
+      oArg <- match("outcome", names(mf), 0)
+                                        # find the outcome argument
       m <- match(c("outcome", "data", "subset", "weights", "na.action",
                    "offset"), names(mf), 0)
-      mf2 <- mf[c(1, m)]
-      mf2$drop.unused.levels <- TRUE
-      mf2[[1]] <- as.name("model.frame")
-      names(mf2)[2] <- "formula"
-      mf2 <- eval(mf2, parent.frame())
+      ## replace the outcome list by the first equation and evaluate it
+      mfO <- mf[c(1, m)]
+      mfO$drop.unused.levels <- TRUE
+      mfO[[1]] <- as.name("model.frame")
+                                        # eval it as model frame
+      names(mfO)[2] <- "formula"
+      mfO <- eval(mfO, parent.frame())
                                         # Note: if unobserved variables are
                                         # marked as NA, eval returns a
                                         # subframe of visible variables only.
                                         # We have to check it later
-      mt2 <- attr(mf2, "terms")
-      XO <- model.matrix(mt2, mf2)
-      YO <- model.response(mf2, "numeric")
+      mtO <- attr(mfO, "terms")
+      XO <- model.matrix(mtO, mfO)
+      YO <- model.response(mfO, "numeric")
+      if(is.null(init)) {
+         NXS <- ncol(XS)
+         NXO <- ncol(XO)
+         igamma <- 1:NXS
+         ibeta <- max(igamma) + seq(length=NXO)
+         isigma <- max(ibeta) + 1
+         irho <- max(isigma) + 1
+         heckit <- heckit(selection, outcome, data)
+         init <- coef(twoStep)
+         init <- init[-which(names(init) == "invMillsRatio")]
+                                        # inverse Mills ratio is not needed for ML
+         if(init[irho] > 0.99)
+             init[irho] <- 0.99
+         else if(init[irho] < -0.99)
+             init[irho] <- -0.99
+      }
       estimation <- tobit2fit(YS, XS, YO, XO, init)
    }
    if(type == 5) {
@@ -156,15 +176,15 @@ selection <- function(selection, outcome,
       NXS <- ncol(XS)
       NXO1 <- ncol(XO1)
       NXO2 <- ncol(XO2)
-      igamma <- 1:NXS
-      ibeta1 <- seq(tail(igamma, 1)+1, length=NXO1)
-      isigma1 <- tail(ibeta1, 1) + 1
-      irho1 <- tail(isigma1, 1) + 1
-      ibeta2 <- seq(tail(irho1, 1) + 1, length=NXO2)
-      isigma2 <- tail(ibeta2, 1) + 1
-      irho2 <- tail(isigma2, 1) + 1
-      NParam <- irho2
       if(is.null(init)) {
+         igamma <- 1:NXS
+         ibeta1 <- seq(tail(igamma, 1)+1, length=NXO1)
+         isigma1 <- tail(ibeta1, 1) + 1
+         irho1 <- tail(isigma1, 1) + 1
+         ibeta2 <- seq(tail(irho1, 1) + 1, length=NXO2)
+         isigma2 <- tail(ibeta2, 1) + 1
+         irho2 <- tail(isigma2, 1) + 1
+         NParam <- irho2
          init <- numeric(NParam)
          if(print.level > 0) {
             cat("Inital values by Heckman 2-step method (", NParam, " componenets)\n", sep="")
