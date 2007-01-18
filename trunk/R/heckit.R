@@ -22,19 +22,46 @@ heckit <- function( selection, formula, data, inst = NULL,
    }
 
    result <- list()
-
-   probitEndogenous <- model.frame( selection, data = data,
-      na.action = NULL )[ , 1 ]
+   ## Now extract model frames etc.
+   ## Selection equation
+   mf <- match.call(expand.dots = FALSE)
+   m <- match(c("selection", "data", "subset", "weights", "na.action",
+                "offset"), names(mf), 0)
+   mfS <- mf[c(1, m)]
+   mfS$drop.unused.levels <- TRUE
+   mfS[[1]] <- as.name("model.frame")
+   names(mfS)[2] <- "formula"
+                                        # model.frame requires the parameter to
+                                        # be 'formula'
+   mfS <- eval(mfS, parent.frame())
+   mtS <- attr(mfS, "terms")
+   firstStepData <- model.matrix(mtS, mfS)
+   probitEndogenous <- factor(model.response(mfS, "numeric"))
    probitLevels <- levels( as.factor( probitEndogenous ) )
    if( length( probitLevels ) != 2 ) {
       stop( "the left hand side of 'selection' has to contain",
          " exactly two levels (e.g. FALSE and TRUE)" )
    }
    probitDummy <- probitEndogenous == probitLevels[ 2 ]
-
+   ## Outcome equation
+   m <- match(c("formula", "data", "subset", "weights", "na.action",
+                "offset"), names(mf), 0)
+   mfO <- mf[c(1, m)]
+   mfO$drop.unused.levels <- TRUE
+   mfO[[1]] <- as.name("model.frame")
+                                        # eval it as model frame
+   names(mfO)[2] <- "formula"
+   mfO <- eval(mfO, parent.frame(), na.action=na.pass)
+                                        # Note: if unobserved variables are
+                                        # marked as NA, eval returns a
+                                        # subframe of visible variables only.
+                                        # We have to check it later
+   mtO <- attr(mfO, "terms")
+   secondStepData <- model.matrix(mtO, mfO)
+                                        # the explanatory variables in matrix form
+   secondStepEndogenous <- model.response(mfO, "numeric")
+browser()
    # NA action
-   firstStepData <- model.frame( selection, data = data, na.action = NULL )
-   secondStepData <- model.frame( formula, data = data, na.action = NULL )
    if( !is.null( inst ) ) {
       secondStepData <- cbind( secondStepData,
          model.frame( inst, data = data, na.action = NULL ) )
@@ -42,19 +69,6 @@ heckit <- function( selection, formula, data, inst = NULL,
    firstStepOk <- rowSums( is.na( firstStepData ) ) == 0
    secondStepOk <- rowSums( is.na( secondStepData ) ) == 0
    result$dataOk <- firstStepOk & ( secondStepOk | !probitDummy )
-
-   if( na.action == "na.omit" ) {
-      data <- data[ result$dataOk, ]
-      probitDummy <- probitDummy[ result$dataOk ]
-   } else if( na.action == "na.fail" ) {
-      if( sum( !firstStepOk ) > 0 ) {
-         stop( "missing values at the first step" )
-      }
-      if( sum( !( secondStepOk | !probitDummy ) ) > 0 ) {
-         stop( "missing values at the second step" )
-      }
-   }
-
    if( print.level > 0 ) {
       cat ( "\nEstimating 1st step Probit model . . ." )
    }
@@ -68,24 +82,26 @@ heckit <- function( selection, formula, data, inst = NULL,
 #    data$probitDelta <- data$probitLambda * ( data$probitLambda +
 #                                             linearPredictors(result$probit))
    imrData <- invMillsRatio( result$probit )
-   data$invMillsRatio <- imrData$IMR1
    result$imrDelta <- imrData$delta1
-
-   step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
-                                     "+ invMillsRatio" ) )
 
    if( is.null( inst ) ) {
       if( print.level > 0 ) {
          cat ( "Estimating 2nd step OLS model . . ." )
       }
-      result$lm <- lm( step2formula, data, subset = probitDummy )
+      result$lm <- lm(secondStepEndogenous ~ -1 + secondStepData + imrData$IMR1,
+                      subset = probitDummy )
       resid <- residuals( result$lm )
-       step2coef <- coefficients( result$lm )
+       step2coef <- coef( result$lm )
+      names(step2coef) <- c(colnames(secondStepData), "invMillsRatio")
       if( print.level > 0 ) cat( " OK\n" )
-   } else {
+   }
+   else {
+      data$invMillsRatio <- imrData$IMR1
       if( print.level > 0 ) {
          cat ( "Estimating 2nd step 2SLS/IV model . . ." )
       }
+      step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
+                                        "+ invMillsRatio" ) )
       formulaList <- list( step2formula )
       instImr <- as.formula( paste( "~", inst[ 2 ], "+ invMillsRatio" ) )
       library( systemfit )
@@ -102,7 +118,7 @@ heckit <- function( selection, formula, data, inst = NULL,
    result$rho <-  step2coef[ "invMillsRatio" ] / result$sigma
    names(result$rho) <- NULL
                                         # otherwise the name of step2coef is left...
-   result$invMillsRatio <- data$invMillsRatio
+   result$invMillsRatio <- invMillsRatio
    if( print.level > 0 ) {
       cat ( "Calculating coefficient covariance matrix . . ." )
    }

@@ -121,8 +121,9 @@ selection <- function(selection, outcome,
          ibeta <- max(igamma) + seq(length=NXO)
          isigma <- max(ibeta) + 1
          irho <- max(isigma) + 1
-         heckit <- heckit(selection, outcome, data)
-         init <- coef(twoStep)
+         heckit <- heckit(selection, outcome, data=data)
+         init <- coef(heckit)
+browser()
          init <- init[-which(names(init) == "invMillsRatio")]
                                         # inverse Mills ratio is not needed for ML
          if(init[irho] > 0.99)

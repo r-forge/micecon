@@ -20,6 +20,7 @@ heckit5 <- function(selection, outcome1, outcome2,
        stop("argument 'outcome1' must be a formula")
    if("formula" %in% class( outcome2 )) {
       if( length( outcome2 ) != 3 ) {
+
          stop( "argument 'outcome2' must be a 2-sided formula" )
       }
    }
