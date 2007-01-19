@@ -121,11 +121,11 @@ selection <- function(selection, outcome,
          ibeta <- max(igamma) + seq(length=NXO)
          isigma <- max(ibeta) + 1
          irho <- max(isigma) + 1
-         heckit <- heckit(selection, outcome, data=data)
-         init <- coef(heckit)
-         init <- init[-which(names(init) == "invMillsRatio")]
-                                        # inverse Mills ratio is not needed for ML
-browser()
+         twoStep <- heckit(selection, outcome, data=data)
+         init[igamma] <- coef(twoStep)[twoStep$param$index$betaS]
+         init[ibeta] <- coef(twoStep)[twoStep$param$index$betaO]
+         init[isigma] <- coef(twoStep)[twoStep$param$index$sigma]
+         init[irho] <- coef(twoStep)[twoStep$param$index$rho]
          if(init[irho] > 0.99)
              init[irho] <- 0.99
          else if(init[irho] < -0.99)
@@ -133,7 +133,7 @@ browser()
       }
       estimation <- tobit2fit(YS, XS, YO, XO, init)
    }
-   if(type == 5) {
+   else if(type == 5) {
       oArg <- match("outcome", names(mf), 0)
                                         # find the outcome argument
       ocome <- as.list(mf[[oArg]])
@@ -214,15 +214,17 @@ browser()
    }
    ## now fit the model
    result <- c(estimation,
-               twoStep=switch(type, "2"=list(twoStep), "5"=list(twoStep1, twoStep2)),
+               twoStep=switch(as.character(type), "2"=list(twoStep), "5"=list(twoStep1, twoStep2)),
                call=cl,
-               terms1=mtS,
-               terms2=mt2,
-               ySelection=switch(ySelection, "1"=list(YS), "0"=NULL),
-               xSelection=switch(xSelection, "1"=list(XS), "0"=NULL),
-               yOutcome=switch(yOutcome, "1"=switch(type, "2"=list(YO), "5"=list(YO1, YO2)), "0"=NULL),
-               xOutcome=switch(xOutcome, "1"=switch(type, "2"=list(XO), "5"=list(XO1, XO2)), "0"=NULL),
-               model=switch(model, "1"=list(selection=mfS, formula=mf2), "0"=NULL))
-   class(result) <- c("sampleSelection", "tobit2", class(estimation))
+               termsSelection=mtS,
+               termsO=switch(as.character(type), "1"=mtO, "5"=list(mtO1, mtO2), "0"=NULL),
+               ySelection=switch(as.character(ySelection), "1"=list(YS), "0"=NULL),
+               xSelection=switch(as.character(xSelection), "1"=list(XS), "0"=NULL),
+               yOutcome=switch(as.character(yOutcome),
+               "1"=switch(as.character(type), "2"=list(YO), "5"=list(YO1, YO2)), "0"=NULL),
+               xOutcome=switch(as.character(xOutcome),
+               "1"=switch(as.character(type), "2"=list(XO), "5"=list(XO1, XO2)), "0"=NULL),
+               model=switch(as.character(model), "1"=list(selection=mfS, formula=mf2), "0"=NULL))
+   class(result) <- c("sampleSelection", class(estimation))
    return(result)
 }
