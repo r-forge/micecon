@@ -123,7 +123,6 @@ selection <- function(selection, outcome,
          irho <- max(isigma) + 1
          heckit <- heckit(selection, outcome, data=data)
          init <- coef(heckit)
-browser()
          init <- init[-which(names(init) == "invMillsRatio")]
                                         # inverse Mills ratio is not needed for ML
          if(init[irho] > 0.99)
