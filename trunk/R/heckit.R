@@ -39,6 +39,7 @@ heckit <- function( selection, formula, data, inst = NULL,
    mfS <- eval(mfS, parent.frame())
    mtS <- attr(mfS, "terms")
    firstStepData <- model.matrix(mtS, mfS)
+   NXS <- ncol(firstStepData)
    probitEndogenous <- factor(model.response(mfS, "numeric"))
    probitLevels <- levels( as.factor( probitEndogenous ) )
    if( length( probitLevels ) != 2 ) {
@@ -61,6 +62,7 @@ heckit <- function( selection, formula, data, inst = NULL,
    mtO <- attr(mfO, "terms")
    secondStepData <- model.matrix(mtO, mfO)
                                         # the explanatory variables in matrix form
+   NXO <- ncol(secondStepData)
    secondStepEndogenous <- model.response(mfO, "numeric")
    # NA action
    if( !is.null( inst ) ) {
@@ -149,6 +151,9 @@ heckit <- function( selection, formula, data, inst = NULL,
    result$coef[ , 3 ] <- result$coef[ , 1 ] / result$coef[ , 2 ]
    result$coef[ , 4 ] <- 2 * ( 1 - pt( abs( result$coef[ , 3 ] ),
       result$lm$df ) )
+   result$param <- list(index=list(betaS=seq(length=NXS), betaO=NXS + seq(length=NXO),
+                        invMillsRation=NXS + NXO + 1, sigma=NXS + NXO + 2, rho=NXS + NXO + 3))
+                                        # The location of results in the coef vector
 
    class( result ) <- "heckit"
    return( result )
