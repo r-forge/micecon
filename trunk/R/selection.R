@@ -125,6 +125,7 @@ selection <- function(selection, outcome,
          init <- coef(heckit)
          init <- init[-which(names(init) == "invMillsRatio")]
                                         # inverse Mills ratio is not needed for ML
+browser()
          if(init[irho] > 0.99)
              init[irho] <- 0.99
          else if(init[irho] < -0.99)
