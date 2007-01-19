@@ -1,6 +1,9 @@
 heckit <- function( selection, formula, data, inst = NULL,
-   na.action = options( "na.action" ), print.level = 0 ) {
-
+                   print.level = 0 ) {
+   # What is the role of na.action here?  We cannot use na.omit -- we must not omit the observation
+   # where outcome is not observed.  na-s cannot be passed either.
+   # However, we can (and should?) omit the na-s in explanatory and probit outcomes.  This needs
+   # a bit of refinement.
    if( class( formula ) != "formula" ) {
       stop( "argument 'formula' must be a formula" )
    } else if( length( formula ) != 3 ) {
@@ -48,19 +51,17 @@ heckit <- function( selection, formula, data, inst = NULL,
                 "offset"), names(mf), 0)
    mfO <- mf[c(1, m)]
    mfO$drop.unused.levels <- TRUE
+   mfO$na.action <- na.pass
+                                        # Here we have to keep NA-s: unobserved outcome variables may
+                                        # be marked as NA-s.
    mfO[[1]] <- as.name("model.frame")
                                         # eval it as model frame
    names(mfO)[2] <- "formula"
-   mfO <- eval(mfO, parent.frame(), na.action=na.pass)
-                                        # Note: if unobserved variables are
-                                        # marked as NA, eval returns a
-                                        # subframe of visible variables only.
-                                        # We have to check it later
+   mfO <- eval(mfO, parent.frame())
    mtO <- attr(mfO, "terms")
    secondStepData <- model.matrix(mtO, mfO)
                                         # the explanatory variables in matrix form
    secondStepEndogenous <- model.response(mfO, "numeric")
-browser()
    # NA action
    if( !is.null( inst ) ) {
       secondStepData <- cbind( secondStepData,
