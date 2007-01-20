@@ -2,7 +2,7 @@ maxLik <- function(logLik, grad=NULL, hess=NULL, theta,
                    method="Newton-Raphson",
                    ...) {
    ## Maximum Likelihood estimation.
-
+   ##
    ## Newton-Raphson maximisation
    ## Parameters:
    ## logLik     log-likelihood function.  First argument must be the vector of parameters.

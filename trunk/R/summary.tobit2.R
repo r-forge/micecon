@@ -1,4 +1,5 @@
-summary.tobit2 <- function(object, ...) {
+summary.tobit2 <- function(object, hessian=FALSE,
+                           ...) {
    ## object      object of class "tobit2"
    ## ...         additional arguments for "summary.maxLik"
    ## 
@@ -11,16 +12,18 @@ summary.tobit2 <- function(object, ...) {
    ## + additional components of "summary.maxLik"
    ## 
    sl <- summary.maxLik(object, ...)
-   iZ <- seq(length=object$NZ)
-   iX <- tail(iZ, n=1) + seq(length=object$NX)
-   iSigma <- tail(iX, n=1) + 1
-   iRho <- iSigma + 1
    s <- c(sl,
-          estimateProbit=list(sl$estimate[iZ,]),
-          estimateEquation=list(sl$estimate[iX,]),
-          estimateEps=list(sl$estimate[c(iSigma, iRho),]),
-          NObs=object$NObs, N1=object$N1, N2=object$N2, NZ=object$NZ, NX=object$NX, df=object$df
+          estimateS=list(sl$estimate[object$param$index$betaS,]),
+          estimateO=list(sl$estimate[object$param$index$betaO,]),
+          estimateErr=list(sl$estimate[c(object$param$index$sigma,
+                                         object$param$index$rho),]),
+          NObs=object$param$NObs, NActivePar=object$param$NActivePar,
+          N0=object$param$N0, N1=object$param$N1,
+          NXS=object$NXS, NXO=object$NXO, df=object$df
           )
+   if(hessian) {
+      s <- c(s, Hessian=Hessian(object))
+   }
    class(s) <- c("summary.tobit2", class(sl))
    s
 }
@@ -31,16 +34,16 @@ print.summary.tobit2 <- function(x, ...) {
    cat(x$type, ", ", x$iterations, " iterations\n", sep="")
    cat("Return code ", x$code, ": ", x$message, "\n", sep="")
    if(!is.null(x$estimate)) {
-      cat("Log-Likelihood:", x$estimate$value, "\n")
-      cat(x$NObs, " observations (", x$N1, " censored and ", x$N2, " observed) and ",
+      cat("Log-Likelihood:", loglikValue(x), "\n")
+      cat(x$NObs, " observations (", x$N0, " censored and ", x$N1, " observed) and ",
           x$NActivePar, " free parameters (df =",
           x$NObs - x$NActivePar, ")\n", sep="")
       cat("\nProbit selection equation:\n")
-      print(x$estimateProbit)
+      print(x$estimateS)
       cat("\nOLS equation:\n")
-      print(x$estimateEquation)
+      print(x$estimateO)
       cat("\nError terms data:\n")
-      print(x$estimateEps)
+      print(x$estimateErr)
       if(!is.null(x$Hessian)) {
          cat("Hessian:\n")
          print(x$Hessian)
