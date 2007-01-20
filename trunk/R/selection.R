@@ -164,8 +164,8 @@ selection <- function(selection, outcome,
                                         # marked as NA, eval returns a
                                         # subframe of visible variables only.
                                         # We have to check it later
-      mt1 <- attr(mf1, "terms")
-      XO1 <- model.matrix(mt1, mf1)
+      mtO1 <- attr(mf1, "terms")
+      XO1 <- model.matrix(mtO1, mf1)
       YO1 <- model.response(mf1, "numeric")
       ## repeat all the stuff with second equation
       mf[[oArg]] <- formula2
@@ -179,8 +179,8 @@ selection <- function(selection, outcome,
                                         # marked as NA, eval returns a
                                         # subframe of visible variables only.
                                         # We have to check it later
-      mt2 <- attr(mf2, "terms")
-      XO2 <- model.matrix(mt2, mf2)
+      mtO2 <- attr(mf2, "terms")
+      XO2 <- model.matrix(mtO2, mf2)
       YO2 <- model.response(mf2, "numeric")
       ## indices in for the parameter vector.  These are returned in order to provide the user a way
       ## to extract certain components from the coefficients
@@ -200,23 +200,23 @@ selection <- function(selection, outcome,
          if(print.level > 0) {
             cat("Inital values by Heckman 2-step method (", NParam, " componenets)\n", sep="")
          }
-         heckit <- heckit5(selection, as.formula(formula1), as.formula(formula2),
+         twoStep <- heckit5(selection, as.formula(formula1), as.formula(formula2),
                            data, print.level)
-         init[igamma] <- coef(heckit$probit)
-         names(init)[igamma] <- names(coef(heckit$probit))
-         b1 <- coef(heckit$twoStep1)
+         init[igamma] <- coef(twoStep$probit)
+         names(init)[igamma] <- names(coef(twoStep$probit))
+         b1 <- coef(twoStep$twoStep1)
          init[ibeta1] <- b1[names(b1) != "X1invMillsRatio"]
          names(init)[ibeta1] <- names(b1[names(b1) != "X1invMillsRatio"])
-         init[isigma1] <- heckit$sigma1
+         init[isigma1] <- twoStep$sigma1
          names(init)[isigma1] <- "sigma1"
-         init[irho1] <- heckit$rho1
+         init[irho1] <- twoStep$rho1
          names(init)[irho1] <- "rho1"
-         b2 <- coef(heckit$twoStep2)
+         b2 <- coef(twoStep$twoStep2)
          init[ibeta2] <- b2[names(b2) != "X2invMillsRatio"]
          names(init)[ibeta2] <- names(b2[names(b2) != "X2invMillsRatio"])
-         init[isigma2] <- heckit$sigma2
+         init[isigma2] <- twoStep$sigma2
          names(init)[isigma2] <- "sigma2"
-         init[irho2] <- heckit$rho2
+         init[irho2] <- twoStep$rho2
          names(init)[irho2] <- "rho2"
       }
       estimation <- tobit5fit(YS, XS, YO1, XO1, YO2, XO2, init,
@@ -228,8 +228,7 @@ selection <- function(selection, outcome,
    }
    ## now fit the model
    result <- c(estimation,
-               twoStep=switch(as.character(type), "2"=list(twoStep),
-                      "5"=list(twoStep1, twoStep2)),
+               twoStep=twoStep,
                init=list(init),
                param=list(param),
                call=cl,

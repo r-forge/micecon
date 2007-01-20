@@ -1,5 +1,4 @@
-summary.tobit2 <- function(object, hessian=FALSE,
-                           ...) {
+summary.tobit2 <- function(object, ...) {
    ## object      object of class "tobit2"
    ## ...         additional arguments for "summary.maxLik"
    ## 
@@ -19,11 +18,8 @@ summary.tobit2 <- function(object, hessian=FALSE,
                                          object$param$index$rho),]),
           NObs=object$param$NObs, NActivePar=object$param$NActivePar,
           N0=object$param$N0, N1=object$param$N1,
-          NXS=object$NXS, NXO=object$NXO, df=object$df
+          NXS=object$param$NXS, NXO=object$param$NXO, df=object$param$df
           )
-   if(hessian) {
-      s <- c(s, Hessian=Hessian(object))
-   }
    class(s) <- c("summary.tobit2", class(sl))
    s
 }
@@ -44,10 +40,6 @@ print.summary.tobit2 <- function(x, ...) {
       print(x$estimateO)
       cat("\nError terms data:\n")
       print(x$estimateErr)
-      if(!is.null(x$Hessian)) {
-         cat("Hessian:\n")
-         print(x$Hessian)
-      }
    }
    cat("--------------------------------------------\n")
 }

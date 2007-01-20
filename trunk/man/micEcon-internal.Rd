@@ -16,6 +16,7 @@
 \alias{print.summary.maxLik}
 \alias{print.summary.probit}
 \alias{print.summary.tobit2}
+\alias{print.summary.tobit5}
 \alias{checkNames}
 \alias{snqProfitCoef}
 \alias{snqProfitCoefNames}
@@ -25,6 +26,7 @@
 \alias{snqProfitTestCoef}
 \alias{summary.probit}
 \alias{summary.tobit2}
+\alias{summary.tobit5}
 \alias{translogMonoRestr}
 \alias{tobit5fit}
 % Document the following:
