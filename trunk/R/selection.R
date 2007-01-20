@@ -2,9 +2,9 @@ selection <- function(selection, outcome,
                       data=sys.frame(sys.parent()),
                       method="ml",
                       init=NULL,
-                      ySelection=FALSE, xSelection=FALSE,
-                      yOutcome=FALSE, xOutcome=FALSE,
-                      model=FALSE,
+                      ys=FALSE, xs=FALSE,
+                      yo=FALSE, xo=FALSE,
+                      mfs=FALSE, mfo=FALSE,
                       print.level=0,
                       ...) {
    ## Heckman-style sample-selection models
@@ -17,6 +17,8 @@ selection <- function(selection, outcome,
    ##              of selection (e.g. "0", "1" or "A" in the examples above).
    ##              If the outcome contains two formulas, we assume that the first one is observed if
    ##              selection equals to the first level, otherwise the second formula.
+   ## ys, xs, yo, xo, mfs, mfo: whether to return the response, model matrix or
+   ##              the model frame of outcome and selection equation(s)
    ## First the consistency checks
    type <- 0
    if( class( selection ) != "formula" ) {
@@ -130,8 +132,16 @@ selection <- function(selection, outcome,
              init[irho] <- 0.99
          else if(init[irho] < -0.99)
              init[irho] <- -0.99
+         names(init) <- c(colnames(XS), colnames(XO), "sigma", "rho")
       }
-      estimation <- tobit2fit(YS, XS, YO, XO, init)
+      estimation <- tobit2fit(YS, XS, YO, XO, init,
+                              print.level=print.level, ...)
+      param <- list(index=list(betaS=igamma,
+                    betaO=ibeta, sigma=isigma, rho=irho),
+                    NXS=ncol(XS), NXO=ncol(XO),
+                    N0=sum(YS==0), N1=sum(YS==1),
+                    NObs=length(YS), NParam=length(init),
+                    df=length(YS) - length(init))
    }
    else if(type == 5) {
       oArg <- match("outcome", names(mf), 0)
@@ -210,21 +220,33 @@ selection <- function(selection, outcome,
          names(init)[irho2] <- "rho2"
       }
       estimation <- tobit5fit(YS, XS, YO1, XO1, YO2, XO2, init,
-                              print.level=print.level)
+                              print.level=print.level, ...)
+      param <- list(index=list(betaS=igamma,
+                    betaO1=ibeta1, sigma1=isigma1, rho1=irho1,
+                    betaO2=ibeta2, sigma2=isigma2, rho2=irho2),
+                    NXS=ncol(XS))
    }
    ## now fit the model
    result <- c(estimation,
-               twoStep=switch(as.character(type), "2"=list(twoStep), "5"=list(twoStep1, twoStep2)),
+               twoStep=switch(as.character(type), "2"=list(twoStep),
+                      "5"=list(twoStep1, twoStep2)),
+               init=list(init),
+               param=list(param),
                call=cl,
-               termsSelection=mtS,
+               termsS=mtS,
                termsO=switch(as.character(type), "1"=mtO, "5"=list(mtO1, mtO2), "0"=NULL),
-               ySelection=switch(as.character(ySelection), "1"=list(YS), "0"=NULL),
-               xSelection=switch(as.character(xSelection), "1"=list(XS), "0"=NULL),
-               yOutcome=switch(as.character(yOutcome),
-               "1"=switch(as.character(type), "2"=list(YO), "5"=list(YO1, YO2)), "0"=NULL),
-               xOutcome=switch(as.character(xOutcome),
-               "1"=switch(as.character(type), "2"=list(XO), "5"=list(XO1, XO2)), "0"=NULL),
-               model=switch(as.character(model), "1"=list(selection=mfS, formula=mf2), "0"=NULL))
+               ys=switch(as.character(ys), "TRUE"=list(YS), "FALSE"=NULL),
+               xs=switch(as.character(xs), "TRUE"=list(XS), "FALSE"=NULL),
+               yo=switch(as.character(yo),
+               "TRUE"=switch(as.character(type), "2"=list(YO), "5"=list(YO1,
+                                                               YO2)), "FALSE"=NULL),
+               xo=switch(as.character(xo),
+               "TRUE"=switch(as.character(type), "2"=list(XO), "5"=list(XO1, XO2)), "FALSE"=NULL),
+               mfs=switch(as.character(mfs), "TRUE"=list(mfS), "FALSE"=NULL),
+               mfo=switch(as.character(mfs),
+               "TRUE"=switch(as.character(type), "2"=list(mfO), "5"=list(mf1,
+                      mf2), "FALSE"=NULL))
+               )
    class(result) <- c("sampleSelection", class(estimation))
    return(result)
 }
