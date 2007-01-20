@@ -262,12 +262,8 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, init,
         cat("rho2\n")
         print(init[irho2])
     }
-    estimation <- maxLik(loglik, grad=gradlik, hess=hesslik, theta=init,
+    result <- maxLik(loglik, grad=gradlik, hess=hesslik, theta=init,
                      print.level=print.level, ...)
-    result <- c(estimation,
-                twoStep=probit
-                                        # should be something like heckit5
-                )
-    class(result) <- c("tobit5", class(estimation))
+    class(result) <- c("tobit5", class(result))
     result
 }
