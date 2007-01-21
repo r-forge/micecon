@@ -1,10 +1,10 @@
 ### Methods for accessing loglik value maximum likelihood estimates
 
-loglikValue <- function(x)
+loglikValue <- function(x, ...)
     UseMethod("loglikValue")
 
-loglikValue.default <- function(x)
+loglikValue.default <- function(x, ...)
     x$loglik
 
-loglikValue.MLEstimate <- function(x)
+loglikValue.MLEstimate <- function(x, ...)
     loglikValue(x$maxLik)

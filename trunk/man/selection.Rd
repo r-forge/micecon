@@ -10,7 +10,8 @@ selection(selection, outcome, data = sys.frame(sys.parent()),
 method = "ml", init = NULL, 
 ys = FALSE, xs = FALSE,
 yo = FALSE, xo = FALSE,
-model = FALSE, print.level = 0, ...)
+mfs = FALSE, mfo = FALSE,
+print.level = 0, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
