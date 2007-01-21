@@ -28,7 +28,6 @@
 \alias{summary.tobit2}
 \alias{summary.tobit5}
 \alias{translogMonoRestr}
-\alias{tobit5fit}
 % Document the following:
 \alias{heckit5.R}
 \alias{returnCode}

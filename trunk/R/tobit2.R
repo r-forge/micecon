@@ -230,13 +230,15 @@ tobit2 <- function(selection, formula,
          cat("Initial values by 2-step method:results\n")
          print(twoStep)
       }
-      init <- coef(twoStep)
-      init <- init[-which(names(init) == "invMillsRatio")]
-                                        # inverse Mills ratio is not needed for ML
+      init[igamma] <- coef(twoStep)[twoStep$param$index$betaS]
+      init[ibeta] <- coef(twoStep)[twoStep$param$index$betaO]
+      init[isigma] <- coef(twoStep)[twoStep$param$index$sigma]
+      init[irho] <- coef(twoStep)[twoStep$param$index$rho]
       if(init[irho] > 0.99)
-          init[irho] <- 0.99
+        init[irho] <- 0.99
       else if(init[irho] < -0.99)
-          init[irho] <- -0.99
+        init[irho] <- -0.99
+      names(init) <- c(colnames(Z), colnames(X), "sigma", "rho")
       if(print.level > 0) {
          cat("Initial values:\n")
          print(init)
@@ -248,15 +250,18 @@ tobit2 <- function(selection, formula,
    ## The following commented lines are for testing analytic gradient and Hessian
 #    compare.derivatives(loglik, gradlik, t0=init, ...)
 #    compare.derivatives(gradlik, hesslik, t0=init, ...)
+   param <- list(index=list(betaS=igamma, betaO=ibeta,
+                   sigma=isigma, rho=irho),
+                 NParam=NParam,
+                 NObs=NObs,
+                 N0=N1,
+                 N1=N2,
+                 NXS=NZ,
+                 NXO=NX,
+                 df=NObs - estimation$NActiveParam)
    result <- c(estimation,
                twoStep=list(twoStep),
-               NParam=NParam,
-               NObs=NObs,
-               N1=N1,
-               N2=N2,
-               NZ=NZ,
-               NX=NX,
-               df=NObs - NParam,
+               param=list(param),
                call=cl,
                terms1=mt1,
                terms2=mt2,

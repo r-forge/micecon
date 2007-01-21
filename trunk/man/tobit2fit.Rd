@@ -10,9 +10,8 @@
 }
 \usage{
 tobit2fit(YS, XS, YO, XO, init, print.level = 0, ...)
-tobit5fit(YS, XS, YO1, XO1, YO2, XO2, print.level=0, ...) {
+tobit5fit(YS, XS, YO1, XO1, YO2, XO2, init, print.level=0, ...) 
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{YS}{numeric 0/1 vector, where 0 denotes unobserved outcome
 (tobit 2) or outcome 1 observed (tobit 5)}

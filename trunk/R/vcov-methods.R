@@ -1,6 +1,6 @@
 ## probit
 vcov.probit <- function(object, ...) {
-   result <- vcov.maxLik( object )
+  result <- vcov.maxLik( object )
    rownames( result ) <- colnames( result ) <- names( object$estimate )
    return( result )
 }

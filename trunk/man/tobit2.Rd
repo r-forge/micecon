@@ -95,27 +95,6 @@ myData$y2  <- ifelse( myData$y1 == 1, myData$y2s, 0)
 plot( myData$z, myData$y2 )
 a <- tobit2( y1~z, y2~x, data = myData )
 summary(a)
-##
-##
-## Tobit 5 example
-## uniform observable covariates (note that exclusion restriction is
-## fulfilled)!
-## The errors are uncorrelated, so we could use simple OLS instead.
-N <- 1000
-z <- runif(N)
-x <- runif(N)
-## latent selection variable
-y1s <- 2*z + rnorm(N)
-y1 <- y1s > 0
-## latent regressions
-y2s <- x + 0.5*rnorm(N)
-y3s <- -x + 0.2*rnorm(N)
-## instead of three rnorm(), we should use rmvnorm for correlated errors.
-y <- ifelse(y1==0, y2s, y3s)
-plot(z[y1==0], y[y1==0])
-points(z[y1==1], y[y1==1], col=2)
-a <- tobit5(y1~z, y~x, y~x)
-summary(a)
 }
 \keyword{models}
 \keyword{regression}
