@@ -14,6 +14,7 @@ Arne Henningsen and Ott Toomet
 }
 \end{center}
 
+\section{Introduction}
 Since its first public release in 1993, the free open source statistical
 language and development environment °\proglang{R}° \citep{r-project}
 has been increasingly used for statistical analysis.
@@ -26,25 +27,79 @@ has strongly increased in the last few years.
 One of these packages is called °\pkg{micEcon}° \citep{r-micecon} and provides
 tools for microeconomic analysis.
 
-Initially, the \pkg{micEcon} package included only tools
-for microeconomic modeling.
-For example, it provides functions for demand analysis with the
-°Almost Ideal Demand System° (AIDS) \citep{deaton80a}.
-These functions enable the econometric estimation,
-calculation of demand (price and income/expenditure) elasticities and
-checks for theoretical consistency
-by one single \proglang{R} command.
-Second, \pkg{micEcon} contains tools for production analysis with the
-°Symmetric Normalized Quadratic° (SNQ) profit function
-\citep{diewert87,diewert92,kohli93}.  
-Additionally to the econometric estimation and calculation of price elasticities,
-it includes a function that imposes convexity on the
-estimated profit function using a new sophisticated method proposed by
-\citet{koebel03}.
-Third, this package provides a convenient interface to °FRONTIER 4.1°, Tim
-Coelli's software for stochastic frontier analysis \citep{coelli96}.
-Furthermore, \pkg{micEcon} includes tools for other functional forms, namely 
-translog and quadratic functions.
+
+\section{Microeconomic Modeling}
+
+The \pkg{micEcon} package includes several tools for microeconomic modeling.
+For instance, these models include
+the °Almost Ideal Demand System° (AIDS) \citep{deaton80a},
+the °Symmetric Normalized Quadratic° (SNQ) profit function
+\citep{diewert87,diewert92,kohli93},
+and stochastic frontier models \citep{coelli96}.
+
+
+\subsection{Almost Ideal Demand System}
+
+The °Almost Ideal Demand System° (AIDS) \citep{deaton80a}
+is the most popular demand system in empirical demand analysis.
+\pkg{micEcon} provides functions for:
+\begin{itemize}
+\item econometric estimation using
+   the popular but inaccurate °Linear Approximation° (LA-AIDS)
+   and the accurate °Iterated Linear Least Squares Estimator° (ILLE)
+   \citep{blundell99}
+\item searching for the intercept of the translog price index ($alpha_0$)
+   that gives the best fit to the model
+\item optional imposition homogeneity and symmetry
+\item checking for monotonicity and concavity
+\item predicted quantities and expenditure shares
+\item Marshallian (uncompensated) price elasticities,
+   Hicksian (compensated) price elasticities,
+   income (expenditure) elasticities, and their standard errors
+\end{itemize}
+
+
+\subsection{Symmetric Normalized Quadratic Profit Function}
+
+The °Symmetric Normalized Quadratic° (SNQ) profit function
+\citep{diewert87,diewert92,kohli93}
+is an advanced model for production analysis.
+It is often used in microeconomic production models
+because it allows the imposition of global convexity.
+\pkg{micEcon} provides functions for:
+\begin{itemize}
+\item econometric estimation
+\item imposition of global convexity using a new  sophisticated two-step
+   estimation procedure \citep{koebel03}
+\item price elasticities of inputs and outputs and their standard errors
+\item fixed factor elasticities
+\item shadow prices of fixed factors
+\item Hessian matrix and its derivatives with respect to coefficients
+\item predicted profits and netput quantities including the standard errors
+   and the confidence limits of prediction
+\end{itemize}
+
+
+\subsection{Stochastic Frontier Models}
+
+Stochastic frontier analysis is a popular tool for production analysis.
+It can simultaneously model production technology
+as well as possible technical (or allocative) inefficiencies.
+\pkg{micEcon} provides a convenient interface to °FRONTIER 4.1°,
+Tim Coelli's software for stochastic frontier analysis \citep{coelli96}.
+It can be used to write input files and read output files of °FRONTIER 4.1°.
+Hence, the model or the data can be easily modified in \proglang{R}
+and the estimation results can be conveniently used
+for further analysis.
+
+
+\subsection{Other Microeconomic Model}
+
+Furthermore, \pkg{micEcon} includes tools for other functional forms,
+namely translog and quadratic functions.
+
+
+\section{Sample Selection Models}
 
 About a year ago, we have added tools for sample selection models
 that are also often applied in microeconomic analyses.
@@ -53,6 +108,7 @@ using the two-step Heckman or an efficient maximum likelihood procedure.
 Furthermore, tools to calculate selectivity terms (°inverse Mill's ratios°)
 even from bivariate probit models have been added.
 
+\section{Conclusion}
 On the useR! conference,
 we would like to present the capabilities of the \pkg{micEcon} package.
 Applied economists interested in microeconomic modeling will be invited to
@@ -61,7 +117,7 @@ by providing tools for other types of microeconomic analyses.
 
 
 \bibliographystyle{jss}
-%\bibliography{/home/suapm095/Documents/Literatur/arne}
+%\bibliography{/home/suapm095/Documents/Literatur/literatur}
 \bibliography{micEcon}
 
 \end{document}
