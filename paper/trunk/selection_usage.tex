@@ -4,7 +4,8 @@ In this subsection we show a few examples on the typical usage of
 \code{selection}.  The first example uses a correctly specified model
 with exclusion restriction:
 
-\begin{Code}
+\begin{Schunk}
+\begin{Sinput}
   N <- 1000
   library(mvtnorm)
   vc <- diag(3)
@@ -19,7 +20,8 @@ with exclusion restriction:
   yo2 <- xo2 + eps[,3]
   a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), print.level=print.level)
   summary(a)
-\end{Code}
+\end{Sinput}
+\end{Schunk}
 
 Here we use the \pkg{mvtnorm} library, in order to create 3D normal
 error terms.  We specify the correlation between the selection error
@@ -34,7 +36,8 @@ selection, we have to transform the continuous outcome to a binary
 one.
 
 The result should look something like that:
-\begin{Code}
+\begin{Schunk}
+\begin{Soutput}
    --------------------------------------------
    Maximum Likelihood estimation
    Newton-Raphson maximisation, 2 iterations
@@ -55,7 +58,8 @@ The result should look something like that:
    sigma2         1.01090379 0.027895950  36.2383712 1.515094e-287
    rho2           0.84162026 0.021087135  39.9115503  0.000000e+00
    --------------------------------------------
-\end{Code}
+\end{Soutput}
+\end{Schunk}
 One can see, that the main parameters of interest -- \code{X1xo1} and
 \code{X2xo2} are quite precisely estimated.  However, in the current
 example, the estimate for probit intercept, and the parameters for the

@@ -7,11 +7,28 @@
 \textbf{\LARGE
 Microeconomic Analysis with \proglang{R}
 }
-
-\bigskip
-{\Large
-Arne Henningsen and Ott Toomet
+\vspace{3em}\\
+\parbox[t]{0.49 \textwidth}{\centering
+\textbf{Arne Henningsen}\\
+Department of Agricultural Economics\\
+University of Kiel\\
+Olshausenstr. 40\\
+D-24098 Kiel (Germany)\\
+Telephone: +49-431-880 4445\\
+E-mail: \url{ahenningsen@email.uni-kiel.de}\\
+URL: \url{http://www.uni-kiel.de/agrarpol/ahenningsen/}
 }
+\parbox[t]{0.49 \textwidth}{\centering
+\textbf{Ott Toomet}\\
+Department of Economics\\
+Tartu University\\
+Narva 4-A123\\
+Tartu 51009, Estonia\\
+Telephone: +372 737 6348\\
+E-mail: \url{otoomet@ut.ee}\\
+URL: \url{http://www.obs.ee/~siim/}
+}
+\vspace{3em}\\
 \end{center}
 
 \section{Introduction}
@@ -52,8 +69,8 @@ is the most popular demand system in empirical demand analysis.
    that gives the best fit to the model
 \item optional imposition homogeneity and symmetry
 \item checking for monotonicity and concavity
-\item predicted quantities and expenditure shares
-\item Marshallian (uncompensated) price elasticities,
+\item calculating predicted quantities and expenditure shares
+\item calculating Marshallian (uncompensated) price elasticities,
    Hicksian (compensated) price elasticities,
    income (expenditure) elasticities, and their standard errors
 \end{itemize}
@@ -69,14 +86,15 @@ because it allows the imposition of global convexity.
 \pkg{micEcon} provides functions for:
 \begin{itemize}
 \item econometric estimation
-\item imposition of global convexity using a new  sophisticated two-step
+\item imposition of global convexity using a recent two-step
    estimation procedure \citep{koebel03}
-\item price elasticities of inputs and outputs and their standard errors
-\item fixed factor elasticities
-\item shadow prices of fixed factors
-\item Hessian matrix and its derivatives with respect to coefficients
-\item predicted profits and netput quantities including the standard errors
-   and the confidence limits of prediction
+\item calculating price elasticities of inputs and outputs and their standard errors
+\item calculating fixed factor elasticities
+\item calculating shadow prices of fixed factors
+\item calculating Hessian matrices and their derivatives with respect
+   to coefficients
+\item calculating predicted profits and netput quantities including
+   standard errors and confidence limits of prediction
 \end{itemize}
 
 
@@ -84,10 +102,11 @@ because it allows the imposition of global convexity.
 
 Stochastic frontier analysis is a popular tool for production analysis.
 It can simultaneously model production technology
-as well as possible technical (or allocative) inefficiencies.
-\pkg{micEcon} provides a convenient interface to °FRONTIER 4.1°,
-Tim Coelli's software for stochastic frontier analysis \citep{coelli96}.
-It can be used to write input files and read output files of °FRONTIER 4.1°.
+as well as possible technical (and allocative) inefficiencies.
+\pkg{micEcon} provides a convenient interface to
+Tim Coelli's software for stochastic frontier analysis
+°FRONTIER 4.1° \citep{coelli96}.
+It can be used to write input files for and read output files of °FRONTIER 4.1°.
 Hence, the model or the data can be easily modified in \proglang{R}
 and the estimation results can be conveniently used
 for further analysis.
@@ -97,12 +116,19 @@ for further analysis.
 
 Furthermore, \pkg{micEcon} includes tools for other functional forms,
 namely translog and quadratic functions.
-
+\pkg{micEon} provides functions for
+\begin{itemize}
+\item econometric estimation
+\item calculating derivatives with respect to regressors
+\item calculating (bordered) Hessian matrices with respect to regressors
+\end{itemize}
 
 \section{Sample Selection Models}
 
-About a year ago, we have added tools for sample selection models
-that are also often applied in microeconomic analyses.
+\input{selection_intro.tex}
+\input{selection_implement.tex}
+\input{selection_usage.tex}
+
 The \pkg{micEcon} package now includes functions to estimate these models
 using the two-step Heckman or an efficient maximum likelihood procedure.
 Furthermore, tools to calculate selectivity terms (°inverse Mill's ratios°)
