@@ -59,7 +59,74 @@ and stochastic frontier models \citep{coelli96}.
 
 The °Almost Ideal Demand System° (AIDS) \citep{deaton80a}
 is the most popular demand system in empirical demand analysis.
-\pkg{micEcon} provides functions for:
+It is based on the following expenditure function:
+\begin{equation}
+\ln e( p , U )
+= \alpha_0
++ \sum_{i=1}^n \alpha_i \ln p_i
++ \frac{1}{2} \sum_{i=1}^n \sum_{j=1}^n \gamma_{ij}^* \ln p_i \ln p_j
++ \beta_0 U \prod_{i=1}^n p_i^{\beta_i}
+\end{equation}
+where
+$e( p , U )$ is the minimum expenditure to obtain
+utility level $U$
+given consumer prices $p$,
+$n$ is the number of goods,
+$p = (p_1 , \ldots , p_n )$ are consumer prices,
+and all $\alpha$s, $\beta$s und $\gamma$s are parameters.
+Based on this expenditure function,
+following Marshallian demand functions can be derived:
+\begin{align}
+x_i ( p, m )
+& = \frac{m}{p_i}
+   \left( \alpha_i + \sum_{j=1}^n \gamma_{ij} \ln p_j
+   + \beta_i \ln \left( \frac{m}{\mathcal{P}} \right) \right)
+\label{eq:aidsDemand}\\
+\text{with } \ln \mathcal{P}
+& = \sum_{i=1}^n \alpha_i \ln p_i
++ \frac{1}{2} \sum_{i=1}^n \sum_{j=1}^n \gamma_{ij} \ln p_i \ln p_j
+\label{eq:aidsTranslog}
+\end{align}
+where $x_i$ is the demand for the $i$th good,
+$m = \sum_{i=1}^n p_i x_i$ is total expenditure,
+and $\gamma_{ij} = ( \gamma_{ij}^* + \gamma_{ji}^* ) / 2$.
+These demand functions can be simplified
+by multiplying both sides by $p_i / m$.
+Now, we have expenditure shares $s_i = p_i x_i / m$ on the left hand side:
+\begin{equation}
+s_i ( p, m ) = \alpha_i + \sum_{j=1}^n \gamma_{ij} \ln p_j
+   + \beta_i \ln \left( \frac{m}{\mathcal{P}} \right)
+   \label{eq:aidsShares}
+\end{equation}
+The °adding up° restriction,
+i.e.\ the expenditure shares have to sum up to one,
+requires
+\begin{align}
+& \sum_{i=1}^n \alpha_i = 1\\
+& \sum_{i=1}^n \beta_i = 0\\
+& \sum_{i=1}^n \gamma_{ij} = 0 \; \forall \, j
+\end{align}
+Homogeneity of degree zero in prices requires
+\begin{equation}
+\sum_{j=1}^n \gamma_{ij} = 0 \; \forall \, i
+\end{equation}
+And symmetry requires
+\begin{equation}
+\gamma_{ij} = \gamma_{ji} \; \forall \, i,j
+\end{equation}
+
+The demand functions~(\ref{eq:aidsShares}) are non-linear in parameters
+due to the translog price index~(\ref{eq:aidsTranslog}).
+However, if the translog price index~(\ref{eq:aidsTranslog})
+is approximated by a price index
+that does not depend on any estimated parameters,
+the demand functions become linear in parameters.
+Althoug this °Linear Approximation° (LA-AIDS) simplifies econometric estimation,
+it introduces several other theoretical and econometric problems.
+
+The package \pkg{micEcon} provides many functions for demand analysis
+with the AIDS.
+For instance, it can be used for:
 \begin{itemize}
 \item econometric estimation using
    the popular but inaccurate °Linear Approximation° (LA-AIDS)
@@ -67,7 +134,7 @@ is the most popular demand system in empirical demand analysis.
    \citep{blundell99}
 \item searching for the intercept of the translog price index ($\alpha_0$)
    that gives the best fit to the model
-\item optional imposition homogeneity and symmetry
+\item optional imposition of homogeneity and symmetry
 \item checking for monotonicity and concavity
 \item calculating predicted quantities and expenditure shares
 \item calculating Marshallian (uncompensated) price elasticities,
