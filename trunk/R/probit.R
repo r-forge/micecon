@@ -53,7 +53,8 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    mf <- mf[c(1, m)]
    mf$drop.unused.levels <- TRUE
    mf[[1]] <- as.name("model.frame")
-   mf <- eval(mf, parent.frame())
+browser()
+   mf <- eval(mf, envir=parent.frame())
    if (method == "model.frame")
        return(mf)
    else if (method != "ML")
@@ -66,7 +67,7 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    N1 <- length( y[Y != 0])
    N0 <- NObs - N1
    if(N0 == 0 | N1 == 0) {
-      stop("only zero or one observations")
+      stop("No variance in the response variable")
    }
    x0 <- X[Y==0,]
    x1 <- X[Y==1,]

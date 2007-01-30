@@ -1,4 +1,6 @@
-heckit <- function( selection, formula, data, inst = NULL,
+heckit <- function( selection, formula,
+                   data=sys.frame(sys.parent()),
+                   inst = NULL,
                    print.level = 0 ) {
    # What is the role of na.action here?  We cannot use na.omit -- we must not omit the observation
    # where outcome is not observed.  na-s cannot be passed either.
@@ -75,7 +77,6 @@ heckit <- function( selection, formula, data, inst = NULL,
    if( print.level > 0 ) {
       cat ( "\nEstimating 1st step Probit model . . ." )
    }
-#   result$probit <- glm( selection, binomial( link = "probit" ), data )
    result$probit <- probit(selection, data=data, x=TRUE, print.level=print.level - 1)
    if( print.level > 0 ) {
        cat( " OK\n" )
@@ -89,13 +90,17 @@ heckit <- function( selection, formula, data, inst = NULL,
 
    if( is.null( inst ) ) {
       if( print.level > 0 ) {
-         cat ( "Estimating 2nd step OLS model . . ." )
+         cat ( "Estimating 2nd step (outcome) OLS model . . ." )
       }
       result$lm <- lm(secondStepEndogenous ~ -1 + secondStepData + imrData$IMR1,
                       subset = probitDummy )
       resid <- residuals( result$lm )
        step2coef <- coef( result$lm )
       names(step2coef) <- c(colnames(secondStepData), "invMillsRatio")
+      intercept <- any(apply(model.matrix(result$lm), 2,
+                             function(v) (v[1] > 0) & (all(v == v[1]))))
+                                        # we have determine whether the outcome model has intercept.
+                                        # This is necessary later for calculating R^2
       if( print.level > 0 ) cat( " OK\n" )
    }
    else {
@@ -154,17 +159,34 @@ heckit <- function( selection, formula, data, inst = NULL,
    result$param <- list(index=list(betaS=seq(length=NXS), betaO=NXS + seq(length=NXO),
                         invMillsRation=NXS + NXO + 1, sigma=NXS + NXO + 2, rho=NXS + NXO + 3))
                                         # The location of results in the coef vector
-
+   result <- c(result,
+               list(outcome=list(intercept=intercept))
+                                        # The 'oucome' component is intended for holding all kind of
+                                        # stuff, related to the outcome equation
+               )
    class( result ) <- "heckit"
    return( result )
 }
 
 summary.heckit <- function( object, ... ) {
-   print( object, ... )
-   invisible( object )
+   ## Calculate r-squared.  Note that the way lm() finds R2 is a bit naive -- it checks for intercept
+   ## in the formula, but not whether the intercept is present in any of the data vectors (or matrices)
+   oModel <- object$lm
+   y <- model.response(model.frame(object$lm))
+   if(object$outcome$intercept) {
+      R2 <- sum(residuals(oModel)^2)/sum((y - mean(y))^2)
+      R2adj <- 1 - (1 - R2)*(NObs(oModel) - 1)/(NObs(oModel) - NParam(oModel))
+   }
+   else {
+      R2 <- sum(residuals(oModel)^2)/sum(y^2)
+      R2adj <- 1 - (1 - R2)*(NObs(oModel))/(NObs(oModel) - NParam(oModel))
+   }
+   s <- c(object, r.squared=list(c(R2, R2adj)))
+   class(s) <- c("summary.heckit", class(s))
+   s
 }
 
-print.heckit <- function( x, digits = 6, ... ) {
+print.summary.heckit <- function( x, digits = 6, ... ) {
    Signif <- symnum( x$coef[ , 4 ], corr = FALSE, na = FALSE,
       cutpoints = c( 0, 0.001, 0.01, 0.05, 0.1, 1 ),
       symbols   = c( "***", "**", "*", "." ," " ))
