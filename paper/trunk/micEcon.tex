@@ -148,9 +148,55 @@ For instance, it can be used for:
 The °Symmetric Normalized Quadratic° (SNQ) profit function
 \citep{diewert87,diewert92,kohli93}
 is an advanced model for production analysis.
-It is often used in microeconomic production models
+This functional form,
+which is also traded under the name of
+°symmetric generalized McFadden function° \citep{diewert92},
+is often used in microeconomic production models
 because it allows the imposition of global convexity.
-\pkg{micEcon} provides functions for:
+The profit function is defined as follows:
+\begin{equation}
+\pi ( p, r )
+= \sum_{i = 1}^n \alpha_i p_i
+   + \frac{1}{2} w^{-1} \sum_{i = 1}^n \sum_{j = 1}^n \beta_{ij} p_i p_j
+   + \sum_{i = 1}^n \sum_{j = 1}^m \delta_{ij} p_i r_j
+   + \frac{1}{2} w \sum_{i = 1}^m \sum_{j = 1}^m \gamma_{ij} r_i r_j
+   \label{eq:snqProfit}
+\end{equation}
+where
+$\pi ( p, r )$ is the maximum profit that can be obtained given
+netput prices $p = ( p_1 , \ldots , p_n )$
+and quasi-fixed inputs $r = ( r_1 , \ldots , r_m )$,
+$w = \sum_{i = 1}^n \theta_i p_i$
+is a factor to normalize prices,
+$\theta_i = \left. \overline{p_i \left| x_i \right|} \right/$
+$\sum_{j = 1}^n \overline{ p_j \left| x_j \right| }$
+are predetermined weights of the individual netput prices,
+$x = ( x_1 , \ldots , x_n )$ represents the netput quantities,
+$\overline{ p_i \left| x_i \right| }$ denotes the average absolute
+value of netput $i$,
+and all $\alpha$s, $\beta$s, $\delta$s, and $\gamma$s are the parameters.
+To identify all parameters, the restrictions
+$\gamma_{ij} = \gamma_{ji} \; \forall \, i,j$,
+$\beta_{ij} = \beta_{ji} \; \forall \, i,j$, and
+$\sum_{j = 1}^n \beta_{ij} \overline{p_j} = 0 \; \forall \, i$
+are generally imposed,
+where $\overline{p_j}$ are the mean prices \citep[p. 54]{diewert87}.
+
+The corresponding netput equations can be obtained using Hotelling's Lemma:
+\begin{equation}
+x_i ( p , r )
+= \alpha_i
+   + w^{-1} \sum_{j = 1}^n \beta_{ij} p_j
+   - \frac{1}{2} \theta_i w^{-2} \sum_{j = 1}^n \sum_{k = 1}^n
+      \beta_{jk} p_j p_k
+   + \sum_{j = 1}^m \delta_{ij} r_j
+   + \frac{1}{2} \theta_i \sum_{j = 1}^m \sum_{k = 1}^m \gamma_{jk} r_j r_k
+   \label{eq:snqNetput}
+\end{equation}
+
+The package \pkg{micEcon} provides many tools for production analysis
+with the SNQ profit function
+For instance, it can be used for:
 \begin{itemize}
 \item econometric estimation
 \item imposition of global convexity using a recent two-step
