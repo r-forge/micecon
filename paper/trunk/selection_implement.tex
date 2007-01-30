@@ -1,4 +1,4 @@
-\section[Implementation]{Implementation in \pkg{micEcon}}
+\subsection[Implementation]{Implementation in \pkg{micEcon}}
 
 The estimation of the Heckman selection models are done by maximum
 likelihood (ML).  The initial values are calculated by two-step methods,
@@ -7,9 +7,9 @@ unless the user prevides the values herself.
 The main frontend for the selection models is the command
 \code{selection}.  It needs a formula for the selection equation, and
 one (or a list of two for tobit-5 models) for the outcome equation.
-One can choose the method to be either ``ml'' for the MLf estimation,
+One can choose the method to be either ``ml'' for the ML estimation,
 or ``2step'' for two-step results.  If the user does not provide the
-initial values for the ML estimate (which is probably almoust always
+initial values for the ML estimate (which is probably almost always
 the case), the \code{selection} calculates the consistent initial
 values by either \code{heckit2} or \code{heckit5}.  These initial
 values are transfer further to the ML estimation function
