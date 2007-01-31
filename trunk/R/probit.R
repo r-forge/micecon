@@ -53,7 +53,10 @@ probit <- function( formula, b0=NULL, data=sys.frame(sys.parent()),
    mf <- mf[c(1, m)]
    mf$drop.unused.levels <- TRUE
    mf[[1]] <- as.name("model.frame")
-browser()
+   eval(data)
+                                        # we need to eval() data here, otherwise the evaluation of the
+                                        # model frame will be wrong if called from inside a function
+                                        # inside a function (sorry, I can't understand it either :-(
    mf <- eval(mf, envir=parent.frame())
    if (method == "model.frame")
        return(mf)
