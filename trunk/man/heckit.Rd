@@ -66,7 +66,10 @@
    \item{imrDelta}{the \eqn{\delta}s calculated from the inverse Mills Ratios and
      the results of the 1st step probit estimation.}
    \item{param}{a list with following components: \code{index}, a list of
-       numeric vectors: where in the \code{coef} the component are located}
+     numeric vectors: where in the \code{coef} the component are
+     located;
+     \code{oIntercept}, a logical: whether the outcome equation includes intercept.
+   }
 }
 
 \references{

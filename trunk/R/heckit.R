@@ -81,26 +81,22 @@ heckit <- function( selection, formula,
    if( print.level > 0 ) {
        cat( " OK\n" )
    }
-#    data$probitLambda <- dnorm(linearPredictors(result$probit)) /
-#        pnorm(linearPredictors(result$probit))
-#    data$probitDelta <- data$probitLambda * ( data$probitLambda +
-#                                             linearPredictors(result$probit))
    imrData <- invMillsRatio( result$probit )
    result$imrDelta <- imrData$delta1
-
+   ## ---- Outcome estimation -----
    if( is.null( inst ) ) {
       if( print.level > 0 ) {
          cat ( "Estimating 2nd step (outcome) OLS model . . ." )
       }
       result$lm <- lm(secondStepEndogenous ~ -1 + secondStepData + imrData$IMR1,
                       subset = probitDummy )
-      resid <- residuals( result$lm )
-       step2coef <- coef( result$lm )
-      names(step2coef) <- c(colnames(secondStepData), "invMillsRatio")
       intercept <- any(apply(model.matrix(result$lm), 2,
                              function(v) (v[1] > 0) & (all(v == v[1]))))
                                         # we have determine whether the outcome model has intercept.
                                         # This is necessary later for calculating R^2
+      resid <- residuals( result$lm )
+      step2coef <- coef( result$lm )
+      names(step2coef) <- c(colnames(secondStepData), "invMillsRatio")
       if( print.level > 0 ) cat( " OK\n" )
    }
    else {
@@ -114,15 +110,17 @@ heckit <- function( selection, formula,
       instImr <- as.formula( paste( "~", inst[ 2 ], "+ invMillsRatio" ) )
       library( systemfit )
       result$lm <- systemfit( "2SLS", formulaList, inst = instImr,
-         data = data[ probitDummy, ] )
+                             data = data[ probitDummy, ] )
+      intercept = FALSE
+                                        # we calculate R^2 differently here (hopefully)
       resid <- residuals( result$lm )[ , 1 ]
-       step2coef <- coefficients( result$lm$eq[[ 1 ]] )
+      step2coef <- coefficients( result$lm$eq[[ 1 ]] )
       if( print.level > 0 ) cat( " OK\n" )
    }
    result$sigma <- as.numeric( sqrt( crossprod( resid ) /
-      sum( probitDummy ) +
-      mean(result$imrDelta[ probitDummy ] ) *
-       step2coef[ "invMillsRatio" ]^2 ) )
+                                    sum( probitDummy ) +
+                                    mean(result$imrDelta[ probitDummy ] ) *
+                                    step2coef[ "invMillsRatio" ]^2 ) )
    result$rho <-  step2coef[ "invMillsRatio" ] / result$sigma
    names(result$rho) <- NULL
                                         # otherwise the name of step2coef is left...
@@ -130,40 +128,37 @@ heckit <- function( selection, formula,
    if( print.level > 0 ) {
       cat ( "Calculating coefficient covariance matrix . . ." )
    }
-   # the following variables are named according to Greene (2003), p. 785
+                                        # the following variables are named according to Greene (2003), p. 785
    if( is.null( inst ) ) {
       xMat <- model.matrix( result$lm )
    } else {
       xMat <- result$lm$eq[[ 1 ]]$x
    }
    result$vcov <- heckitVcov( xMat,
-      model.matrix( result$probit )[ probitDummy, ],
-      vcov( result$probit ),
-      result$rho,
-      result$imrDelta[ probitDummy ],
-      result$sigma )
-# result$vcov <- result$sigma^2 * solve( crossprod( xMat ) ) %*%
-#      ( txd2Mat %*%
-#      xMat + qMat ) %*% solve( crossprod( xMat ) )
-#   rm( txd2Mat, d2Vec )
+                             model.matrix( result$probit )[ probitDummy, ],
+                             vcov( result$probit ),
+                             result$rho,
+                             result$imrDelta[ probitDummy ],
+                             result$sigma )
+                                        # result$vcov <- result$sigma^2 * solve( crossprod( xMat ) ) %*%
+                                        #      ( txd2Mat %*%
+                                        #      xMat + qMat ) %*% solve( crossprod( xMat ) )
+                                        #   rm( txd2Mat, d2Vec )
    if( print.level > 0 ) cat( " OK\n" )
    result$coef <- matrix( NA, nrow = length( step2coef ), ncol = 4 )
    rownames( result$coef ) <- names( step2coef )
    colnames( result$coef ) <- c( "Estimate", "Std. Error", "t value",
-      "Pr(>|t|)" )
+                                "Pr(>|t|)" )
    result$coef[ , 1 ] <- step2coef
    result$coef[ , 2 ] <- sqrt( diag( result$vcov ) )
    result$coef[ , 3 ] <- result$coef[ , 1 ] / result$coef[ , 2 ]
    result$coef[ , 4 ] <- 2 * ( 1 - pt( abs( result$coef[ , 3 ] ),
-      result$lm$df ) )
+                                      result$lm$df ) )
+   ## the 'param' component is intended to all kind of technical info
    result$param <- list(index=list(betaS=seq(length=NXS), betaO=NXS + seq(length=NXO),
-                        invMillsRation=NXS + NXO + 1, sigma=NXS + NXO + 2, rho=NXS + NXO + 3))
+                        invMillsRatio=NXS + NXO + 1, sigma=NXS + NXO + 2, rho=NXS + NXO + 3),
                                         # The location of results in the coef vector
-   result <- c(result,
-               list(outcome=list(intercept=intercept))
-                                        # The 'oucome' component is intended for holding all kind of
-                                        # stuff, related to the outcome equation
-               )
+                        oIntercept=intercept)
    class( result ) <- "heckit"
    return( result )
 }
@@ -172,16 +167,22 @@ summary.heckit <- function( object, ... ) {
    ## Calculate r-squared.  Note that the way lm() finds R2 is a bit naive -- it checks for intercept
    ## in the formula, but not whether the intercept is present in any of the data vectors (or matrices)
    oModel <- object$lm
-   y <- model.response(model.frame(object$lm))
-   if(object$outcome$intercept) {
-      R2 <- sum(residuals(oModel)^2)/sum((y - mean(y))^2)
-      R2adj <- 1 - (1 - R2)*(NObs(oModel) - 1)/(NObs(oModel) - NParam(oModel))
+   if(class(oModel) == "lm") {
+      y <- model.response(model.frame(object$lm))
+      if(object$param$oIntercept) {
+         R2 <- 1 - sum(residuals(oModel)^2)/sum((y - mean(y))^2)
+         R2adj <- 1 - (1 - R2)*(NObs(oModel) - 1)/(NObs(oModel) - NParam(oModel))
+      }
+      else {
+         R2 <- 1 - sum(residuals(oModel)^2)/sum(y^2)
+         R2adj <- 1 - (1 - R2)*(NObs(oModel))/(NObs(oModel) - NParam(oModel))
+      }
    }
    else {
-      R2 <- sum(residuals(oModel)^2)/sum(y^2)
-      R2adj <- 1 - (1 - R2)*(NObs(oModel))/(NObs(oModel) - NParam(oModel))
+      R2 <- object$lm$eq[[ 1 ]]$r2
+      R2adj <- object$lm$eq[[ 1 ]]$adjr2
    }
-   s <- c(object, r.squared=list(c(R2, R2adj)))
+   s <- c(object, rSquared=list(c(R2, R2adj)))
    class(s) <- c("summary.heckit", class(s))
    s
 }
@@ -199,16 +200,8 @@ print.summary.heckit <- function( x, digits = 6, ... ) {
 
    print( table, quote = FALSE, right = TRUE )
    cat( "---\nSignif. codes: ", attr( Signif, "legend" ), "\n" )
-
-   if( class( x$lm ) == "lm" ) {
-      rSquared <- c( summary( x$lm )$r.squared, summary( x$lm )$adj.r.squared )
-   } else {
-      rSquared <- c( x$lm$eq[[ 1 ]]$r2, x$lm$eq[[ 1 ]]$adjr2 )
-   }
-   cat( paste(
-      "Multiple R-Squared:", round( rSquared[ 1 ], digits),
-      "Adjusted R-Squared:", round( rSquared[ 2 ], digits),
-      "\n" ) )
+   cat("Multiple R-Squared:", round(x$rSquared[ 1 ], digits),
+       ",\tAdjusted R-Squared:", round(x$rSquared[ 2 ], digits), "\n", sep="")
    cat("\n")
    invisible( x )
 }
