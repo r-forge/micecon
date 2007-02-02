@@ -1,5 +1,29 @@
 % -*- tex-pdf-mode -*-
 \documentclass[article]{jss}
+\usepackage{amsmath}
+\usepackage{bbm}
+
+% ------- a few definitions ---------
+\newcommand{\dnorm}{\phi}
+\newcommand{\idiv}{\mathtt{//}}% integer division
+\newcommand{\Natural}{\mathbb{N}}% Natural numbers.  needs ams-fonts
+\newcommand{\pderiv}[2][]{\frac{\partial #1}{\partial #2}}
+\newcommand{\Real}{\mathbb{R}}% Real numbers.  needs ams-fonts
+\newcommand{\cov}{\mathrm{Cov}}
+\newcommand{\pnorm}{\Phi}
+\newcommand{\var}{\mathrm{Var}\,}
+\newcommand{\corr}{\mathrm{Corr}}
+\DeclareMathOperator*{\Exp}{\mathbbm{E}}% expectation
+%\newcommand{\Exp}[1][]{\mathrm{E}_{#1}}
+\newcommand{\indic}{\mathbbm{1}}% indicator function
+\newcommand{\laplace}{\mathcal{L}}% Laplace transform
+\newcommand{\lik}{\mathcal{L}}% likelihood
+\newcommand{\loglik}{\ell}% log likelihood
+\newcommand*{\mat}[1]{\mathsf{#1}}
+\renewcommand*{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\dif}{\mathrm{d}} % diferentsiaalimärk
+\newcommand{\me}{\mathrm{e}} % Konstant e=2,71828
+% -----------------------
 
 \author{Arne Henningsen\\Kiel University
   \And
@@ -58,7 +82,128 @@
 %% include your article here, just as usual
 %% Note that you should use the \pkg{}, \proglang{} and \code{} commands.
 
-\input{selection_intro}
+\section{Sample selection}
+
+
+\subsection{The problem}
+
+Social scientists are often interested in causal effects -- what is
+the impact of a new drug, a certain type of school or eg being born as
+a twin.  Many of these cases are under our (partial) control.  In most
+cases, we can decide ourselves, whether we take the drug or which
+school we attend.  We cannot control whether we are twins, but neither
+can the reasearcher -- if the twins tend to be born in a different
+types of families, the researcher never has all the relevant
+information in order to control for the difference.
+
+This problem -- people who are ``treated'' are different that the rest
+of the population -- is usually refered to as the \emph{sample
+  selection} problem.  We cannot estimate the causal effect, unless we
+solve the selection problem.  Otherwise, we never know which part of
+the outcome is related to the fact that different people were selected
+to the treatment and control groups, and which part is due to the
+causal relationship.
+
+
+\subsection{Possible solutions}
+
+All the solutions involve using additional information.  There are
+several possibilites which may or may not be useful for any particular
+case. 
+
+\begin{itemize}
+\item Randomisation: experiment, where the participants \emph{do not}
+  have control over their treatment status.  Although easy to analyse,
+  this way is seldom feasible for pracitcal and ethical reasons.
+\item Instruments (exclusion restrictions): more-or-less
+  randomisation.  Just not explicit, based on background, institutions
+  etc.
+\item Information about the functional form.  For instance,
+  assumptions about the distribution of the error terms.
+\item Timing information.  In some cases, relative timing of the
+  events may give us information, necessary for identification of the
+  causal effect.
+\end{itemize}
+
+During the recent decades, either randomisation or the
+pseudo-randimisation (natural experiments) has become the state-of-the
+art while estimating the causal effects.  The methods, relying on the
+distributional assumptions are becoming less widely used.  The reason
+is obvious -- the parametric assumptions can only seldom be justified,
+and we don't want our results to rely on dubious assumptions.  Even if
+we have valid instruments or exclusion restrictions, the parametric
+hypothesis add their interference which may be sometimes hard to
+detect.  
+
+However, even if these models are not popular in research any more,
+they still serve as excellent teaching tools.  Heckman-type selection
+models easily allow us to experiment with selection bias,
+misspecification, exclusion restrictions etc.  These models are easy
+to visualise and understand.
+
+
+\subsection{Heckman models}
+
+\citet{heckman1976} proposed a two-step solution to the sample
+selection model where the selection and outcome equations have a
+common bivariate-normal error term.  The original article suggests
+using the (less efficient) two-step solution for exploratory work and
+as the initial value for maximum likelihood estimation -- two-step
+solution costs \$15 while the maximum-likelihood solution costs
+\$700. %footnote 18, page 490
+
+Formally, we may write the
+underlying (unobserved) structural process as:
+\begin{align}
+  y_i^{S*} &= \beta^S x_i^S + \varepsilon_i^S\\
+  y_i^{O*} &= \beta^O x_i^O + \varepsilon_i^O,
+\end{align}
+where $y_i^{S*}$ is the latent value of the selection process and
+$y_i^{O*}$ is the latent outcome.  $\vec{x}_i^S$ and $\vec{x}_i^O$ are
+explanatory variables for the selection and outcome processes.  Those
+may or may not be equal.  We observe
+\begin{align}
+  y_i^S 
+  &= 
+  \begin{cases}
+    0 & \quad \text{if} y_i^{S*} < 0\\
+    1 & \quad \text{otherwise}
+  \end{cases}
+  \\
+  y_i^O
+  &= 
+  \begin{cases}
+    0 & \quad \text{if} y_i^{S} = 0\\
+    y_i^{O*} & \quad \text{otherwise},
+  \end{cases}
+\end{align}
+i.e. we observe the outcome only if the latent selection variable is
+positive.  The error term is assumed to follow a bi-variate normal
+distribution: 
+\begin{equation}
+  \begin{pmatrix}
+    \varepsilon^S\\
+    \varepsilon^O
+  \end{pmatrix}
+  \sim
+  N\left(
+    \begin{pmatrix}
+      0\\
+      0
+    \end{pmatrix},
+    \begin{pmatrix}
+      1 & \varrho\\
+      \varrho & \sigma^2
+    \end{pmatrix}
+  \right).
+\end{equation}
+The observed dependence between $y^O$ and $x^O$ can now be written as
+\begin{equation}
+  \Exp [y^O|\vec{x}_i^O, y_i^S = 1] =
+  \beta^O \vec{x}_i^O + \Exp [ \varepsilon^O|\varepsilon^S \ge
+  -\beta^S \vec{x}_i^S ]
+\end{equation}
+
 
 \input{selection_implement}
 
