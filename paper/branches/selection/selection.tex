@@ -1,4 +1,4 @@
-% -*- tex-pdf-mode -*-
+% -*- mode: TeX-PDF-mode -*-
 \documentclass[article]{jss}
 \usepackage{amsmath}
 \usepackage{bbm}
@@ -144,18 +144,11 @@ to visualise and understand.
 
 \subsection{Heckman models}
 
-\citet{heckman1976} proposed a two-step solution to the sample
-selection model where the selection and outcome equations have a
-common bivariate-normal error term.  The original article suggests
-using the (less efficient) two-step solution for exploratory work and
-as the initial value for maximum likelihood estimation -- two-step
-solution costs \$15 while the maximum-likelihood solution costs
-\$700. %footnote 18, page 490
-
-Formally, we may write the
-underlying (unobserved) structural process as:
+Look at the following (unobserved) structural process:
 \begin{align}
-  y_i^{S*} &= \beta^S x_i^S + \varepsilon_i^S\\
+  y_i^{S*} &= \beta^S x_i^S + \varepsilon_i^S
+  \label{eq:probit*}
+  \\
   y_i^{O*} &= \beta^O x_i^O + \varepsilon_i^O,
 \end{align}
 where $y_i^{S*}$ is the latent value of the selection process and
@@ -166,7 +159,9 @@ may or may not be equal.  We observe
   y_i^S 
   &= 
   \begin{cases}
-    0 & \quad \text{if} y_i^{S*} < 0\\
+    0 & \quad \text{if } y_i^{S*} < 0
+    \label{eq:probit}
+    \\
     1 & \quad \text{otherwise}
   \end{cases}
   \\
@@ -200,9 +195,65 @@ distribution:
 The observed dependence between $y^O$ and $x^O$ can now be written as
 \begin{equation}
   \Exp [y^O|\vec{x}_i^O, y_i^S = 1] =
-  \beta^O \vec{x}_i^O + \Exp [ \varepsilon^O|\varepsilon^S \ge
-  -\beta^S \vec{x}_i^S ]
+  \beta^O \vec{x}_i^O 
+  +
+  \Exp [ \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ].
 \end{equation}
+Estimating the equation above by ordinary OLS we get in general biased
+results, as $\Exp [ \varepsilon^O|\varepsilon^S \ge -\beta^S
+\vec{x}_i^S ] \not = 0$, unless $\varrho = 0$.  However, we may employ
+the follwing simple strategy: we can find the expectations $\Exp [
+\varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ]$ by estimating
+the selection equations \eqref{eq:probit*} and \eqref{eq:probit} by
+probit, and thereafter insert these expectations into the OLS equation
+as additional covariates (see e.g. \citet{greene2002} for details):
+\begin{equation}
+  y_i^O
+  =
+  \beta^O \vec{x}_i^O 
+  + 
+  \Exp [ \varepsilon^O|\varepsilon^S \ge
+  -\beta^S \vec{x}_i^S ]
+  +
+  \eta_i
+  \equiv
+  \beta^O \vec{x}_i^O 
+  + 
+  \beta^\lambda \lambda(-\beta^S \vec{x}_i^S)
+  +
+  \eta_i
+\end{equation}
+where $\lambda \lambda(\cdot)$ is commonly referred to as inverse
+Mill's ratio.  
+
+This is the original idea by \citet{heckman1976}.  As the model is
+fully parametric, the more efficient ML estiation is straightforward
+(see \citet{amemiya1985} for details).  The original article suggests
+using the two-step solution for exploratory work and as the initial
+value for maximum likelihood estimation -- the two-step solution costs
+\$15 while the maximum-likelihood solution costs
+\$700. %footnote 18, page 490
+Nowadays, the costs are no issue any more.  However, two-step solution
+allows certain generalisations to be done much more easiliy than ML.
+
+The model allows a number of straightforward generalisations.  E.g. we
+may assume that we have two outcome variables, one of which is
+observable, depending on the selection process.  These models (a
+version of Roy (....) model) are relevant for treatment effect
+analyses.
+
+This model, and it's derivations, were widely used in 1970s and 1980s.
+Later, it has fallen into disfavour due to the reliance on the
+parametric assumptions.  These are almoust never justified in social
+sciences.  The model is well identified if the exclusion restriction
+is fulfilled $\vec{x}^S$ includes a component, not present in
+$\vec{x}^O$.  This means essentially that we have a valid instrument.
+If this is not the case, the identification is related to the
+non-linearity of the inverse Mill's ratio $\lambda(\cdot)$.  In order
+to identify $\beta^\lambda$ and $\beta^O$, $\lambda(\cdot)$ must
+differ from a linear combination of $\vec{x}^O$ components.
+
+
 
 
 \input{selection_implement}
