@@ -51,7 +51,11 @@ print.level = 0, ...)
   \item{twoStep}{(only if initial values not given)
     results of the 2-step estimation, used for initial values}
   \item{init}{initial values for ML estimation}
-  \item{param}{various parameters, including}
+  \item{param}{various parameters, including ....}
+  \item{termsS, termsO}{terms for the selection and outcome equation}
+  \item{ys, xs, yo, xo, mfs, mfo}{response, matrix and frame of the
+    selection- and outcome equations (as a list of two for the latter).
+    NULL, if not requested.}
 }
 \references{ ~put references to the literature/web site here ~ }
 \author{ ~~who you are~~ }

@@ -1,8 +1,8 @@
 heckit5 <- function(selection, outcome1, outcome2,
                     data=sys.frame(sys.parent()),
-                    ySelection=FALSE, xSelection=FALSE,
-                    yOutcome=FALSE, xOutcome=FALSE,
-                    model=FALSE,
+                    ys=FALSE, yo=FALSE,
+                    xs=FALSE, xo=FALSE,
+                    mfs=FALSE, mfo=FALSE,
                     print.level=0) {
    ## Do a few sanity checks...
    if( class( selection ) != "formula" ) {
@@ -112,7 +112,16 @@ heckit5 <- function(selection, outcome1, outcome2,
                   sigma1=sigma1,
                   twoStep2=twoStep2,
                   rho2=rho2,
-                  sigma2=sigma2)
+                  sigma2=sigma2,
+                  termsS=mtS,
+                  termsO=mtO,
+                  ys=switch(as.character(ys), "TRUE"=YS, "FALSE"=NULL),
+                  xs=switch(as.character(xs), "TRUE"=XS, "FALSE"=NULL),
+                  yo=switch(as.character(yo), "TRUE"=list(YO1, YO2), "FALSE"=NULL),
+                  xo=switch(as.character(xo), "TRUE"=list(XO1, XO2), "FALSE"=NULL),
+                  mfs=switch(as.character(mfs), "TRUE"=list(mfS), "FALSE"=NULL),
+                  mfo=switch(as.character(mfs), "TRUE"=list(mf1, mf2), "FALSE"=NULL)
+                  )
    class(result) <- c("heckit5", "heckit", class(result))
    invisible(result)
 }

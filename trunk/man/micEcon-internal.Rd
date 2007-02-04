@@ -29,7 +29,6 @@
 \alias{summary.tobit5}
 \alias{translogMonoRestr}
 % Document the following:
-\alias{heckit5.R}
 \alias{returnCode}
 \alias{returnCode.default}
 \alias{returnCode.maximisation}
