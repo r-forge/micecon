@@ -144,16 +144,9 @@ heckit <- function( selection, formula,
                                         #      ( txd2Mat %*%
                                         #      xMat + qMat ) %*% solve( crossprod( xMat ) )
                                         #   rm( txd2Mat, d2Vec )
-   if( print.level > 0 ) cat( " OK\n" )
-   result$coef <- matrix( NA, nrow = length( step2coef ), ncol = 4 )
-   rownames( result$coef ) <- names( step2coef )
-   colnames( result$coef ) <- c( "Estimate", "Std. Error", "t value",
-                                "Pr(>|t|)" )
-   result$coef[ , 1 ] <- step2coef
-   result$coef[ , 2 ] <- sqrt( diag( result$vcov ) )
-   result$coef[ , 3 ] <- result$coef[ , 1 ] / result$coef[ , 2 ]
-   result$coef[ , 4 ] <- 2 * ( 1 - pt( abs( result$coef[ , 3 ] ),
-                                      result$lm$df ) )
+   if( print.level > 0 )
+       cat( " OK\n" )
+   result$step2coef <- step2coef
    ## the 'param' component is intended to all kind of technical info
    result$param <- list(index=list(betaS=seq(length=NXS), betaO=NXS + seq(length=NXO),
                         invMillsRatio=NXS + NXO + 1, sigma=NXS + NXO + 2, rho=NXS + NXO + 3),
@@ -182,26 +175,31 @@ summary.heckit <- function( object, ... ) {
       R2 <- object$lm$eq[[ 1 ]]$r2
       R2adj <- object$lm$eq[[ 1 ]]$adjr2
    }
-   s <- c(object, rSquared=list(c(R2, R2adj)))
+   coefficients <- matrix( NA, nrow = length(object$step2coef), ncol = 4 )
+   rownames(coefficients) <- names(object$step2coef)
+   colnames(coefficients) <- c( "Estimate", "Std. Error", "t value", "Pr(>|t|)" )
+   coefficients[ , 1 ] <- object$step2coef
+   coefficients[ , 2 ] <- sqrt( diag(vcov(object)))
+   coefficients[ , 3 ] <- object$step2coef/coefficients[, 2 ]
+   coefficients[ , 4 ] <- 2*pt(abs(coefficients[,3]), object$lm$df, lower.tail=FALSE)
+   object$coefficients <- coefficients
+   s <- c(object,
+          sp=list(summary(object$probit)),
+          rSquared=list(c(R2, R2adj)))
    class(s) <- c("summary.heckit", class(s))
    s
 }
 
-print.summary.heckit <- function( x, digits = 6, ... ) {
-   Signif <- symnum( x$coef[ , 4 ], corr = FALSE, na = FALSE,
-      cutpoints = c( 0, 0.001, 0.01, 0.05, 0.1, 1 ),
-      symbols   = c( "***", "**", "*", "." ," " ))
-
-   table <- cbind( round( x$coef, digits ), Signif )
-
-   rownames( table ) <- rownames( x$coef )
-   colnames( table ) <- c( "Estimate", "Std. Error", "t value",
-      "Pr(>|t|)", "" )
-
-   print( table, quote = FALSE, right = TRUE )
-   cat( "---\nSignif. codes: ", attr( Signif, "legend" ), "\n" )
+print.summary.heckit <- function( x,
+                                 digits=max(3, getOption("digits") - 3),
+                                 signif.stars=getOption("show.signif.stars"),
+                                 ...) {
+   cat("Selection (first step) probit estimates:\n")
+   printCoefmat(x$sp$estimate)
+   cat("Outcome (second step) OLS estimates:\n")
+   printCoefmat(x$coefficients)
    cat("Multiple R-Squared:", round(x$rSquared[ 1 ], digits),
        ",\tAdjusted R-Squared:", round(x$rSquared[ 2 ], digits), "\n", sep="")
-   cat("\n")
+   cat("Error correlation: ", x$rho, ", variance: ", x$sigma, "\n", sep="")
    invisible( x )
 }

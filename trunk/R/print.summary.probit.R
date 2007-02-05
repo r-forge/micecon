@@ -10,10 +10,6 @@ print.summary.probit <- function( x, ... ) {
           x$NObs - x$NActivePar, ")\n", sep="")
       cat("Estimates:\n")
       print(x$estimate)
-      if(!is.null(x$Hessian)) {
-         cat("Hessian:\n")
-         print(x$Hessian)
-      }
    }
    cat("Significance test:\n")
    cat("chi2(", x$LRT$df, ") = ", x$LRT$LRT, " (p=", x$LRT$pchi2, ")\n", sep="")
