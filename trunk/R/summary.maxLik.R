@@ -60,7 +60,7 @@ summary.maxLik <- function( object, hessian=FALSE, ... ) {
          t <- 0
          p <- 0
       }
-      results <- cbind(coef, stdd, t, "P(|b| > t)"=p)
+      results <- cbind("Estimate"=coef, "Std. error"=stdd, "t value"=t, "Pr(> t)"=p)
       Hess <- NULL
       if(hessian) {
          Hess <- Hessian(object)
