@@ -142,7 +142,7 @@ misspecification, exclusion restrictions etc.  These models are easy
 to visualise and understand.
 
 
-\subsection{Heckman models}
+\subsection{Heckman's solution}
 
 Look at the following (unobserved) structural process:
 \begin{align}
@@ -199,14 +199,14 @@ The observed dependence between $y^O$ and $x^O$ can now be written as
   +
   \Exp [ \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ].
 \end{equation}
-Estimating the equation above by ordinary OLS we get in general biased
-results, as $\Exp [ \varepsilon^O|\varepsilon^S \ge -\beta^S
-\vec{x}_i^S ] \not = 0$, unless $\varrho = 0$.  However, we may employ
-the follwing simple strategy: we can find the expectations $\Exp [
+Estimating the equation above by OLS gives in general biased results,
+as $\Exp [ \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ] \not
+= 0$, unless $\varrho = 0$.  However, we may employ the follwing
+simple strategy: we can find the expectations $\Exp [
 \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ]$ by estimating
 the selection equations \eqref{eq:probit*} and \eqref{eq:probit} by
 probit, and thereafter insert these expectations into the OLS equation
-as additional covariates (see e.g. \citet{greene2002} for details):
+as additional covariates \citep[see][for details]{greene2002}:
 \begin{equation}
   y_i^O
   =
@@ -223,8 +223,10 @@ as additional covariates (see e.g. \citet{greene2002} for details):
   +
   \eta_i
 \end{equation}
-where $\lambda \lambda(\cdot)$ is commonly referred to as inverse
-Mill's ratio.  
+where $\lambda(\cdot)$ is commonly referred to as inverse Mill's
+ratio, and $\beta^\lambda = \varrho\sigma$.  Essentially, we describe
+the selection problem as an omitted variable problem, with
+$\lambda(\cdot)$ the omitted variable.
 
 This is the original idea by \citet{heckman1976}.  As the model is
 fully parametric, the more efficient ML estiation is straightforward
@@ -234,29 +236,31 @@ value for maximum likelihood estimation -- the two-step solution costs
 \$15 while the maximum-likelihood solution costs
 \$700. %footnote 18, page 490
 Nowadays, the costs are no issue any more.  However, two-step solution
-allows certain generalisations to be done much more easiliy than ML.
+allows certain generalisations more easily than ML.
 
 The model allows a number of straightforward generalisations.  E.g. we
 may assume that we have two outcome variables, one of which is
 observable, depending on the selection process.  These models (a
 version of Roy (....) model) are relevant for treatment effect
-analyses.
+analysis.
 
 This model, and it's derivations, were widely used in 1970s and 1980s.
 Later, it has fallen into disfavour due to the reliance on the
 parametric assumptions.  These are almoust never justified in social
 sciences.  The model is well identified if the exclusion restriction
-is fulfilled $\vec{x}^S$ includes a component, not present in
+is fulfilled -- $\vec{x}^S$ includes a component, not present in
 $\vec{x}^O$.  This means essentially that we have a valid instrument.
 If this is not the case, the identification is related to the
 non-linearity of the inverse Mill's ratio $\lambda(\cdot)$.  In order
 to identify $\beta^\lambda$ and $\beta^O$, $\lambda(\cdot)$ must
-differ from a linear combination of $\vec{x}^O$ components.  The
-practical conclusion from that fact is that standard errors of the
-estimates depend on the variation in the latent selection equation
-\eqref{eq:probit*}.  More variation gives smaller standard
-errors\footnote{This is related to the identification on the
-  margin....}
+differ from a linear combination of $\vec{x}^O$ components
+\citep{leung+yu1996}.  The practical conclusion here is that standard
+errors of the estimates depend on the variation in the latent
+selection equation \eqref{eq:probit*}.  More variation gives smaller
+standard errors\footnote{This is related to the identification on the
+  margin....}.  During the recent decades, various semiparametric
+estimation techinques have been increasingly used instead of the
+Heckman model.
 
 
 
