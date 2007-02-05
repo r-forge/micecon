@@ -1,10 +1,10 @@
 ## Returns return (error) code
 
-returnCode <- function(x)
+returnCode <- function(x, ...)
     UseMethod("returnCode")
 
-returnCode.default <- function(x)
+returnCode.default <- function(x, ...)
     x$returnCode
 
-returnCode.MLEstimate <- function(x)
+returnCode.MLEstimate <- function(x, ...)
     returnCode(x$maxLik)

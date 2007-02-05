@@ -4,6 +4,7 @@
 \alias{aidsJacobian}
 \alias{aidsRestr}
 \alias{aidsSystem}
+\alias{checkNames}
 \alias{coef.summary.probit}
 \alias{micEconIndex}
 \alias{model.frame.probit}
@@ -17,7 +18,8 @@
 \alias{print.summary.probit}
 \alias{print.summary.tobit2}
 \alias{print.summary.tobit5}
-\alias{checkNames}
+\alias{returnCode.maximisation}
+\alias{returnCode.MLEstimate}
 \alias{snqProfitCoef}
 \alias{snqProfitCoefNames}
 \alias{snqProfitElaJacobian}
@@ -29,10 +31,6 @@
 \alias{summary.tobit5}
 \alias{translogMonoRestr}
 % Document the following:
-\alias{returnCode}
-\alias{returnCode.default}
-\alias{returnCode.maximisation}
-\alias{returnCode.MLEstimate}
 \alias{returnMessage.maximisation}
 \alias{summary.tobit5}
 %%%%
