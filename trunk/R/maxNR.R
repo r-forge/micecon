@@ -282,8 +282,8 @@ maxNR <- function(fn, grad=NULL, hess=NULL, theta,
    invisible(result)
 }
 
-returnCode.maximisation <- function(x)
+returnCode.maximisation <- function(x, ...)
     x$code
 
-returnMessage.maximisation <- function(x)
+returnMessage.maximisation <- function(x, ...)
     x$message
