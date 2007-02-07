@@ -7,7 +7,7 @@
   compatible with \code{\link{maxNR}}
 }
 \usage{
-maxBFGS(fn, grad = NULL, theta, print.level = 0, iterlim = 200,
+maxBFGS(fn, grad = NULL, start, print.level = 0, iterlim = 200,
    tol = 1e-06, ... )
 }
 
@@ -24,7 +24,7 @@ maxBFGS(fn, grad = NULL, theta, print.level = 0, iterlim = 200,
     \code{t(numericGradient(fn))}, not \code{numericGradient(fn)}.
     It is summed over
     observations in order to get a single gradient vector.}
-  \item{theta}{initial values for the parameters to be optimized over.}
+  \item{start}{initial values for the parameters to be optimized over.}
   \item{print.level}{a larger number prints more working information.}
   \item{iterlim}{maximum number of iterations.}
   \item{tol}{the absolute convergence tolerance (see \code{\link{optim}}).}
@@ -52,11 +52,11 @@ maxBFGS(fn, grad = NULL, theta, print.level = 0, iterlim = 200,
 \seealso{\code{\link{optim}}, \code{\link{nlm}}, \code{\link{maxNR}}, \code{\link{maxBHHH}}.}
 
 \examples{
-# Maximum Likelihood estimation of Poissonian distribution
+# Maximum Likelihood estimation of the parameter of Poissonian distribution
 n <- rpois(100, 3)
 loglik <- function(l) n*log(l) - l - lfactorial(n)
 # we use numeric gradient
-summary(maxBFGS(loglik, theta=1))
+summary(maxBFGS(loglik, start=1))
 # you would probably prefer mean(n) instead of that ;-)
 # Note also that maxLik is better suited for Maximum Likelihood
 }

@@ -33,10 +33,10 @@ activePar.default(x, \dots)
 f <- function(a) exp(-a[1]^2 - a[2]^2)
 #
 # maximize wrt. both parameters 
-free <- maxNR(f, theta=1:2) 
+free <- maxNR(f, start=1:2) 
 summary(free)  # results should be close to (0,0)
 # allow only the second parameter to vary
-cons <- maxNR(f, theta=1:2, activePar=c(FALSE,TRUE))
+cons <- maxNR(f, start=1:2, activePar=c(FALSE,TRUE))
 summary(cons) # result should be around (1,0)
 }
 \keyword{methods}

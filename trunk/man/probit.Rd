@@ -5,7 +5,7 @@
   The functions calculates probit binary choice model
 }
 \usage{
-probit(formula, b0 = NULL, data = sys.frame(sys.parent()),
+probit(formula, start = NULL, data = sys.frame(sys.parent()),
        x=FALSE, y = FALSE, model = FALSE, method="ML", ... )
 }
 \arguments{
@@ -14,7 +14,7 @@ probit(formula, b0 = NULL, data = sys.frame(sys.parent()),
     response variable should be either logical or numeric with values
     only 0-1.  See
     e.g. \code{\link{lm}} for details.}
-  \item{b0}{inital value of parameters.}
+  \item{start}{inital value of parameters.}
   \item{data}{an optional data frame containing the variables in the
     model. If not found in data, the
     variables are taken from environment(formula), typically the
