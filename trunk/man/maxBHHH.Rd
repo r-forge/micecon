@@ -6,7 +6,7 @@ This function is essentially \code{\link{maxNR}} where the hessian is
 approximated by the information equation.}
 }
 \usage{
-maxBHHH(fn, grad = NULL, hess=NULL, theta, print.level = 0, iterlim = 100,
+maxBHHH(fn, grad = NULL, hess=NULL, start, print.level = 0, iterlim = 100,
    ...)
 }
 
@@ -24,7 +24,7 @@ maxBHHH(fn, grad = NULL, hess=NULL, theta, print.level = 0, iterlim = 100,
     observations in order to get a single gradient vector.}
   \item{hess}{Hessian of the function.  Not used, for argument
     compatibility reasons.}
-  \item{theta}{initial values for the parameters to be optimized over.}
+  \item{start}{initial values for the parameters to be optimized over.}
   \item{print.level}{a larger number prints more working information.}
   \item{iterlim}{maximum number of iterations.}
   \item{\dots}{further arguments for \code{\link{maxNR}}, \code{fn} and \code{grad}.}
@@ -56,10 +56,10 @@ t <- rexp(100, 2)
 loglik <- function(theta) log(theta) - theta*t
 gradlik <- function(theta) 1/theta - t
 ## Estimate with numeric gradient and hessian
-a <- maxBHHH(loglik, theta=1, print.level=2)
+a <- maxBHHH(loglik, start=1, print.level=2)
 summary(a)
 ## Estimate with analytic gradient
-a <- maxBHHH(loglik, gradlik, theta=1)
+a <- maxBHHH(loglik, gradlik, start=1)
 summary(a)
 }
 \keyword{optimize}

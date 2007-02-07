@@ -1,43 +1,31 @@
 \name{tobit2}
 \alias{tobit2}
 \alias{tobit5}
-\title{function to calculate Heckman-type selection models}
+\title{Heckman-type selection models}
 \description{
-  Heckman-type selection models are regressions with at least two latent
+  Heckman-type selection models are regressions with two latent
   equations and multivariate normal error terms.
   Tobit-2 model (Amemiya 1985) includes latent outcome equation, which
-  may or may not be visible according to selection equation.
-  Tobit-5 has two latent outcomes, one of which is always visible,
-  according to selection.
+  may or may not be visible according to the selection equation.
 }
-\usage{
-tobit2(selection, formula, data = sys.frame(sys.parent()), method="ml",
-       init=NULL, print.level=0,
+\usage{ tobit2(selection, formula, data = sys.frame(sys.parent()),
+method="ml",
+       start=NULL, print.level=0,
        y1=FALSE, z=FALSE, y2=FALSE, x=FALSE, model=FALSE,
-       ...)
-tobit5(selection, formula2, formula3,
-       data = sys.frame(sys.parent()),
-       init = NULL,
-       print.level = 0,
        ...)
 }
 \arguments{
   \item{selection}{a symbolic formula for the selection equation.  The
     response must be binary variable where 0 corresponds to invisibility
-    of the outcome and 1 to visibility (tobit2); or 0 to visibility of
-    outcome2 and 1 to visibility of outcome3 (tobit5).}
-  \item{formula}{a symbolic formula for the equation of interest
-    (tobit2)}
-  \item{formula2}{a symbolic formula for the first latent outcome
-    equation (tobit5)}
-  \item{formula3}{the same for the second latent outcome}
+    of the outcome and 1 to visibility.}
+  \item{formula}{a symbolic formula for the equation of interest.}
   \item{data}{an optional data frame containing the variables in
     the model. By default the variables are
     taken from environment(formula), typically the environment from
     which the function is called}
-  \item{method}{the method of calculation: Maximum Likelihood (\code{ml}) or
-    Heckman 2-step (\code{2step})}
-  \item{init}{numeric, initial values of the parameters.  The order is
+  \item{method}{the method of calculation: Maximum Likelihood ("\code{ml}") or
+    Heckman 2-step (\code{"2step"})}
+  \item{start}{numeric, initial values of the parameters.  The order is
     as follows: gamma (selection equation), beta (the equation of
     interest), sigma, rho (distribution of the error terms) for tobit2;}
   \item{print.level}{information about calculations.  0 -- nothing is

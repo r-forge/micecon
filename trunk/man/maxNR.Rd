@@ -6,7 +6,7 @@
   unconstrained maximisation algorithm based on Newton-Raphson method.
 }
 \usage{
-maxNR(fn, grad = NULL, hess = NULL, theta, print.level = 0,
+maxNR(fn, grad = NULL, hess = NULL, start, print.level = 0,
       tol = 1e-06, gradtol = 1e-06, steptol = 1e-06, lambdatol = 1e-06,
       qrtol = 1e-10,
       iterlim = 15,
@@ -30,7 +30,7 @@ maxNR(fn, grad = NULL, hess = NULL, theta, print.level = 0,
     simply summed over observations.}
   \item{hess}{hessian matrix of the function.  If missing, numeric
     hessian, based on gradient, is used.  }
-  \item{theta}{initial value for the parameter vector}
+  \item{start}{initial value for the parameter vector}
   \item{print.level}{this argument determines the level of
     printing which is done during the minimization process. The default
     value of 0 means that no printing occurs, a value of 1 means that
@@ -106,8 +106,7 @@ the previous one.
     \code{code=3} with following components:
     \item{theta0}{previous parameter value}
     \item{f0}{\code{fn} value at \code{theta0}}
-    \item{theta1}{new parameter value.  Probably close to the previous
-      one.}
+    \item{theta1}{new parameter value.  Should be close to \code{theta0}.}
   }
   \item{activePar}{logical vector, which parameters are not constants.}
   \item{iterations}{number of iterations.}
@@ -131,11 +130,11 @@ loglik <- function(theta) sum(log(theta) - theta*t)
 gradlik <- function(theta) sum(1/theta - t)
 hesslik <- function(theta) -100/theta^2
 ## Estimate with numeric gradient and hessian
-a <- maxNR(loglik, theta=1, print.level=2)
+a <- maxNR(loglik, start=1, print.level=2)
 summary(a)
 ## You would probably prefer 1/mean(t) instead ;-)
 ## Estimate with analytic gradient and hessian
-a <- maxNR(loglik, gradlik, hesslik, theta=1)
+a <- maxNR(loglik, gradlik, hesslik, start=1)
 summary(a)
 }
 \keyword{optimize}

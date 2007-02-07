@@ -36,14 +36,14 @@ Hessian.default(x, \dots)
 # a[2] - standard deviation
 ll <- function(a) sum(-log(a[2]) - (x - a[1])^2/(2*a[2]^2))
 x <- rnorm(1000) # sample from standard normal
-ml <- maxLik(ll, theta=c(1,1))
+ml <- maxLik(ll, start=c(1,1))
 # ignore eventual warnings "NaNs produced in: log(x)"
 summary(ml) # result should be close to c(0,1)
 Hessian(ml) # How the Hessian looks like
 sqrt(-solve(Hessian(ml))) # Note: standard deviations are on the diagonal
 #
 # Now run the same example while fixing a[2] = 1
-mlf <- maxLik(ll, theta=c(1,1), activePar=c(TRUE, FALSE))
+mlf <- maxLik(ll, start=c(1,1), activePar=c(TRUE, FALSE))
 summary(mlf) # first parameter close to 0, the second exactly 1.0
 Hessian(mlf)
 sqrt(-solve(Hessian(mlf))) # works in current case
