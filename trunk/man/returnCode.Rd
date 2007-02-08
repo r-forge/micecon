@@ -28,11 +28,11 @@ returnCode.default(x, ...)
 \examples{
 ## maximise the exponential bell
 f1 <- function(x) exp(-x^2)
-a <- maxNR(f1, theta=2)
-returnCode(a) # should be success (0 or 1)
+a <- maxNR(f1, start=2)
+returnCode(a) # should be success (1 or 2)
 ## Now try to maximise log() function
 f2 <- function(x) log(x)
-a <- maxNR(f2, theta=2)
+a <- maxNR(f2, start=2)
 returnCode(a) # should give a failure (4)
 }
 \keyword{methods}

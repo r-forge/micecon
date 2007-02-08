@@ -1,0 +1,91 @@
+
+R : Copyright 2005, The R Foundation for Statistical Computing
+Version 2.1.0  (2005-04-18), ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for a HTML browser interface to help.
+Type 'q()' to quit R.
+
+> invisible(options(echo = TRUE))
+> library(micEcon)
+Loading required package: systemfit
+> library(mvtnorm)
+> N <- 1500
+> vc <- diag(3)
+> vc[lower.tri(vc)] <- c(0.9, 0.5, 0.6)
+> vc[upper.tri(vc)] <- vc[lower.tri(vc)]
+> set.seed(1)
+> ## Tobit-5 example
+> eps <- rmvnorm(N, rep(0, 3), vc)
+> xs <- runif(N)
+> ys <- xs + eps[,1] > 0
+> xo1 <- runif(N)
+> yo1 <- xo1 + eps[,2]
+> xo2 <- runif(N)
+> yo2 <- xo2 + eps[,3]
+> a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2))
+  > print(summary(a))
+--------------------------------------------
+Maximum Likelihood estimation
+Newton-Raphson maximisation, 9 iterations
+Return code 2: successive function values within tolerance limit.
+ May be a solution
+Log-Likelihood: -2811.213 
+10  free parameters
+Estimates:
+                 Estimate Std. error     t value       Pr(> t)
+(Intercept)   0.004863323 0.05673901  0.08571392  9.316938e-01
+xs            0.957654558 0.09350307 10.24195882  1.286058e-24
+X1(Intercept) 0.062546294 0.11664804  0.53619669  5.918226e-01
+X1xo1         0.996784076 0.11505250  8.66373269  4.565632e-18
+sigma1        1.117456940 0.06691381 16.69994488  1.311859e-62
+rho1          0.902563330 0.02648763 34.07490162 1.736622e-254
+X2(Intercept) 0.073815412 0.11120344  0.66378714  5.068266e-01
+X2xo2         0.938380273 0.10057472  9.33017986  1.056914e-20
+sigma2        0.998238828 0.04795460 20.81632901  3.078888e-96
+rho2          0.477045376 0.15840047  3.01164112  2.598396e-03
+--------------------------------------------
+> ## Toit-2 exmple
+> vc <- diag(2)
+> vc[2,1] <- vc[1,2] <- -0.7
+> eps <- rmvnorm(N, rep(0, 2), vc)
+> xs <- runif(N)
+> ys <- xs + eps[,1] > 0
+> xo <- runif(N)
+> yo <- (xo + eps[,2])*(ys > 0)
+> a <- selection(ys~xs, yo ~xo)
+  > print(summary(a))
+--------------------------------------------
+Tobit 2 selection model/Maximum Likelihood estimation
+Newton-Raphson maximisation, 5 iterations
+Return code 1: gradient close to zero. May be a solution
+Log-Likelihood: -2170.018 
+1500 observations (463 censored and 1037 observed) and 6 free parameters (df =1494)
+
+Probit selection equation:
+               Estimate Std. error    t value      Pr(> t)
+(Intercept) -0.04246831 0.06148921 -0.6906628 4.897775e-01
+xs           1.13560804 0.11255852 10.0890459 6.176692e-24
+
+OLS equation:
+              Estimate Std. error    t value      Pr(> t)
+(Intercept) 0.03748543 0.06131208  0.6113873 5.409432e-01
+xo          0.95868620 0.08813289 10.8777344 1.471754e-27
+
+Error terms data:
+        Estimate Std. error   t value       Pr(> t)
+sigma  0.9949523 0.03632214  27.39244 3.374263e-165
+rho   -0.7623214 0.05147802 -14.80868  1.287489e-49
+--------------------------------------------
+> 
+> proc.time()
+[1] 2.88 0.05 4.01 0.00 0.00
+> 

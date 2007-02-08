@@ -49,16 +49,20 @@ quasiconcavity          Test for quasiconcavity / quasiconvexity
 readFront41out          Read output of Frontier 4.1
 residuals.snqProfitEst
                         Residuals of an SNQ profit function
+returnCode              Return code for optimisation and other objects
+returnMessage           Information about the optimisation process
 rSquared                Calculate R squared value
 selection               Heckman-style selection models
-semidefiniteness        Test for negative and positive semidefiniteness
+semidefiniteness        Test for negative and positive
+                        semidefiniteness
 snqProfitCalc           Calculations with the SNQ Profit function
 snqProfitEla            Price Elasticities of SNQ Profit function
 snqProfitEst            Estimation of a SNQ Profit function
 snqProfitFixEla         Fixed Factor Elasticities of SNQ Profit
                         function
 snqProfitHessian        SNQ Profit function: Hessian matrix
-snqProfitHessianDeriv   SNQ Profit function: Derivatives of the Hessian
+snqProfitHessianDeriv   SNQ Profit function: Derivatives of the
+                        Hessian
 snqProfitImposeConvexity
                         Imposing Convexity on a SNQ Profit function
 snqProfitShadowPrices   Shadow Prices of a SNQ Profit function
@@ -68,8 +72,7 @@ summary.heckit          Print output of heckit estimation
 summary.maximisation    Summary method for maximisation/minimisation
 summary.maxLik          summary the Maximum-Likelihood estimation
 symMatrix               Symmetric Matrix
-tobit2                  function to calculate Heckman-type selection
-                        models
+tobit2                  Heckman-type selection models
 translogCalc            Calculate dependent variable of a translog
                         function
 translogDeriv           Derivatives of a translog function

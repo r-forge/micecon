@@ -1,12 +1,14 @@
 \name{returnMessage}
 \alias{returnMessage}
+\alias{returnMessage.default}
 \alias{returnMessage.maximisation}
 \alias{returnMessage.maxLik}
 \title{Information about the optimisation process}
 \description{
   This function returns a short message, summarising the outcome of the
-  optimisation process.  This should be either the type of convergence,
-  or problem.  \code{returnMessage} is a generic function, with methods
+  statistical process, typically optimisation.  The message should describe either
+  the type of the convergence,
+  or the problem.  \code{returnMessage} is a generic function, with methods
   for various optimisation algorithms.
 }
 \usage{
@@ -20,32 +22,23 @@ returnMessage.maxLik(x, ...)
   \item{...}{further arguments to other methods}.
 }
 \details{
-  ~~ If necessary, more details than the description above ~~
+  The default methods returns component \code{returnMessage}.
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+  Character string, the message describing the success or failure of the
+  statistical procedure.
 }
-\references{ ~put references to the literature/web site here ~ }
-\author{ ~~who you are~~ }
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\author{Ott Toomet, \email{otoomet@ut.ee}}
+\seealso{\code{\link{returnCode}}, \code{\link{maxNR}}}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x) 
-x$message
+## maximise the exponential bell
+f1 <- function(x) exp(-x^2)
+a <- maxNR(f1, start=2)
+returnCode(a) # should be success (1 or 2)
+## Now try to maximise log() function
+f2 <- function(x) log(x)
+a <- maxNR(f2, start=2)
+returnCode(a) # should give a failure (4)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{methods}
+\keyword{utilities}

@@ -1,7 +1,7 @@
 tobit2 <- function(selection, formula,
                    data=sys.frame(sys.parent()),
                    method="ml",
-                   init=NULL, print.level=0,
+                   start=NULL, print.level=0,
                    y1=FALSE, z=FALSE, y2=FALSE, x=FALSE, model=FALSE,
                    ...) {
    ## The model (Amemiya 1985):
@@ -19,8 +19,8 @@ tobit2 <- function(selection, formula,
    ## formula    main model
    ## method     maximum likelihood (ml) or two-step (2step)
    ## data       dataset
-   ## init       initial value of coefficients.  The order is as follows:
-   ##            init = (gamma', beta', sigma, rho)'
+   ## start      initial value of coefficients.  The order is as follows:
+   ##            start = (gamma', beta', sigma, rho)'
    ## print.level: 0 - nothing printed, as larger, as more information printed
    ## y1..z        whether to return corresponding matrixis of explanatory and dependent variables
    ## model        whether to return model frames
@@ -133,6 +133,7 @@ tobit2 <- function(selection, formula,
    }
    ## --- the main program ---
    ## First the consistency checks
+   .Deprecated("Use 'selection()' instead")
    if( class( formula ) != "formula" ) {
       stop( "argument 'formula' must be a formula" )
    }
@@ -161,7 +162,7 @@ tobit2 <- function(selection, formula,
    }
    data$probitDummy <- probitEndogenous == probitLevels[ 2 ]
    ## now check whether two-step method is needed: either for final estimate or initial parameters
-   if(method == "2step" | is.null(init)) {
+   if(method == "2step" | is.null(start)) {
       twoStep <- heckit(selection, formula, data)
       if(method == "2step") {
          return(twoStep)
@@ -225,27 +226,27 @@ tobit2 <- function(selection, formula,
       cat( "Not observed:", N1, "; observed:", N2,"\n", sep="")
    }
    ## initial values for parameters.  Note that 'twoStep' is calculated before
-   if(is.null(init)) {
+   if(is.null(start)) {
       if(print.level > 0) {
          cat("Initial values by 2-step method:results\n")
          print(twoStep)
       }
-      init[igamma] <- coef(twoStep)[twoStep$param$index$betaS]
-      init[ibeta] <- coef(twoStep)[twoStep$param$index$betaO]
-      init[isigma] <- coef(twoStep)[twoStep$param$index$sigma]
-      init[irho] <- coef(twoStep)[twoStep$param$index$rho]
-      if(init[irho] > 0.99)
-        init[irho] <- 0.99
-      else if(init[irho] < -0.99)
-        init[irho] <- -0.99
-      names(init) <- c(colnames(Z), colnames(X), "sigma", "rho")
+      start[igamma] <- coef(twoStep)[twoStep$param$index$betaS]
+      start[ibeta] <- coef(twoStep)[twoStep$param$index$betaO]
+      start[isigma] <- coef(twoStep)[twoStep$param$index$sigma]
+      start[irho] <- coef(twoStep)[twoStep$param$index$rho]
+      if(start[irho] > 0.99)
+        start[irho] <- 0.99
+      else if(start[irho] < -0.99)
+        start[irho] <- -0.99
+      names(start) <- c(colnames(Z), colnames(X), "sigma", "rho")
       if(print.level > 0) {
          cat("Initial values:\n")
-         print(init)
+         print(start)
       }
    }
    estimation <- maxLik(loglik, gradlik, hesslik,
-                        theta=init,
+                        start=start,
                         print.level=print.level - 1, ...)
    ## The following commented lines are for testing analytic gradient and Hessian
 #    compare.derivatives(loglik, gradlik, t0=init, ...)

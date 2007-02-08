@@ -1,5 +1,5 @@
-\name{compare.derivatives}
-\alias{compare.derivatives}
+\name{compareDerivatives}
+\alias{compareDerivatives}
 \title{function to compare analytic and numeric derivatives}
 \description{
   This function compares analytic and numerical derivative and prints
@@ -7,7 +7,7 @@
   for maximisation algorithm.
 }
 \usage{
-compare.derivatives(f, grad, hess=NULL, t0, eps=1e-6, ...)
+compareDerivatives(f, grad, hess=NULL, t0, eps=1e-6, ...)
 }
 \arguments{
   \item{f}{function to be differentiated. The parameter (vector) of interest
@@ -39,7 +39,7 @@ compare.derivatives(f, grad, hess=NULL, t0, eps=1e-6, ...)
 \examples{
 ## A simple example with sin(x)' = cos(x)
 f <- sin
-compare.derivatives(f, cos, t0=1)
+compareDerivatives(f, cos, t0=1)
 ##
 ## Example of log-likelihood of normal density.  Two-parameter
 ## function.
@@ -50,7 +50,7 @@ gradl <- function(b) {
 c(sum(x - b[1])/b[2]^2,
 sum((x - b[1])^2/b[2]^3 - 1/b[2]))
 }
-compare.derivatives(l, gradl, t0=c(1,2))
+compareDerivatives(l, gradl, t0=c(1,2))
 }
 \keyword{math}
 \keyword{utilities}

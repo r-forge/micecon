@@ -24,11 +24,11 @@
 \examples{
 ## maximise two-dimensional exponential hat.  Maximum is at c(2,1):
 f <- function(a) exp(-(a[1] - 2)^2 - (a[2] - 1)^2)
-m <- maxNR(f, theta=c(0,0))
+m <- maxNR(f, start=c(0,0))
 summary(m)
 maximisationType(m)
 ## Now try BHHH maximisation.  It shouldn't work but does anway. 
-m <- maxBHHH(f, theta=c(0,0))
+m <- maxBHHH(f, start=c(0,0))
 summary(m)
 maximisationType(m)
 }

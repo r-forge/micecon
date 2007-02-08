@@ -1,4 +1,4 @@
-tobit2fit <- function(YS, XS, YO, XO, init,
+tobit2fit <- function(YS, XS, YO, XO, start,
                       print.level=0, ...) {
 ### The model is as follows (Amemiya 1985):
 ### The latent variables are:
@@ -148,13 +148,13 @@ tobit2fit <- function(YS, XS, YO, XO, init,
       cat( "Yo observed:", NO, "times; not observed:", NObs - NO, "times\n")
       cat( "Initial values:\n")
       cat("Selection\n")
-      print(init[ibetaS])
+      print(start[ibetaS])
       cat("Outcome\n")
-      print(init[ibetaO])
+      print(start[ibetaO])
       cat("sigma1\n")
-      print(init[isigma])
+      print(start[isigma])
       cat("rho1\n")
-      print(init[irho])
+      print(start[irho])
    }
    ## pre-calculate a few values:
    XS0 <- XS[YS==0,,drop=FALSE]
@@ -164,7 +164,7 @@ tobit2fit <- function(YS, XS, YO, XO, init,
    N0 <- sum(YS==0)
    N1 <- sum(YS==1)
    ## estimate
-   result <- maxLik(loglik, grad=gradlik, hess=hesslik, theta=init,
+   result <- maxLik(loglik, grad=gradlik, hess=hesslik, start=start,
                      print.level=print.level, ...)
     class(result) <- c("tobit2", class(result))
     result
