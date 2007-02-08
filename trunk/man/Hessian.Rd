@@ -46,7 +46,10 @@ sqrt(-solve(Hessian(ml))) # Note: standard deviations are on the diagonal
 mlf <- maxLik(ll, start=c(1,1), activePar=c(TRUE, FALSE))
 summary(mlf) # first parameter close to 0, the second exactly 1.0
 Hessian(mlf)
-sqrt(-solve(Hessian(mlf))) # works in current case
+# Now look at the Hessian.  Note that the second component has no
+# meaning here
+sqrt(-solve(Hessian(mlf))) # works in current case, although you may get
+                           # warnings.  
 # now invert only the free parameter part of the Hessian
 sqrt(-solve(Hessian(mlf)[activePar(mlf), activePar(mlf)]))
 # gives the standard deviation for the mean

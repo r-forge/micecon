@@ -1,4 +1,4 @@
-maxBFGS <- function(fn, grad=NULL, theta,
+maxBFGS <- function(fn, grad=NULL, start,
                     print.level=0,
                     iterlim=200,
                     tol=1e-6,
@@ -26,7 +26,7 @@ maxBFGS <- function(fn, grad=NULL, theta,
       }
       g <- numericGradient(fn, theta, ...)
       if(!is.null(dim(g))) {
-         return(rowSums(g))
+         return(colSums(g))
       } else {
          return(g)
       }
@@ -37,7 +37,7 @@ maxBFGS <- function(fn, grad=NULL, theta,
                     fnscale=-1,
                     abstol=tol,
                     maxit=iterlim)
-   a <- optim(theta, func, gr=gradient, control=control, method="BFGS",
+   a <- optim(start, func, gr=gradient, control=control, method="BFGS",
       hessian=TRUE, ...)
    result <- list(
                    maximum=a$value,

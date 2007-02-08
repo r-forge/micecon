@@ -38,10 +38,10 @@ loglik <- function(theta) log(theta) - theta*t
 gradlik <- function(theta) 1/theta - t
 hesslik <- function(theta) -100/theta^2
 ## Estimate with numeric gradient and hessian
-a <- maxLik(loglik, theta=1, print.level=2)
+a <- maxLik(loglik, start=1, print.level=2)
 summary(a)
 ## Estimate with analytic gradient and hessian
-a <- maxLik(loglik, gradlik, hesslik, theta=1)
+a <- maxLik(loglik, gradlik, hesslik, start=1)
 summary(a)
 }
 \keyword{models}
