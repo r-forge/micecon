@@ -1,6 +1,11 @@
-coef.heckit <- function(object, ...) {
-   b <- c(coef(object$probit), object$step2coef, object$sigma, object$rho)
-   N <- length(b)
-   names(b)[(N-1):N] <- c("sigma", "rho")
+coef.heckit <- function(object, part="outcome", ...) {
+   if(part=="outcome") {
+      b <- object$coefficients[c(object$param$index$betaO, object$param$index$invMillsRatio)]
+   }
+   else if(part=="full") {
+      b <- object$coefficients
+   }
+   else
+       stop("'part' must be either 'outcome' or 'full'")
    b
 }
