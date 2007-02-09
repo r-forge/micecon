@@ -1,7 +1,5 @@
 \name{heckit}
 \alias{heckit}
-\alias{coef.heckit}
-
 \title{2-step Heckman (heckit) estimation}
 
 \description{
@@ -42,9 +40,7 @@
    \code{heckit} returns an object of class 'heckit' containing
    following elements:
 
-   \item{coef}{estimated coefficients, standard errors, t-values and
-   P-values.}
-
+   \item{coefficients}{estimated coefficients, the complete model}
    \item{vcov}{variance covariance matrix of the estimated coefficients.}
 
    \item{probit}{object of class 'glm' that contains the results of the
@@ -54,7 +50,8 @@
    2nd step (linear estimation). Note: the standard errors of this
    estimation are biased, because they do not account for the
    estimation of \eqn{\gamma} in the 1st step estimation
-   (the correct standard errors are returned in \code{coef}).}
+   (the correct standard errors are returned by \code{summary} and they
+   are contained in \code{vcov} component).}
 
    \item{sigma}{the estimated \eqn{\sigma}, the standard error of the residuals.}
 
@@ -91,8 +88,8 @@
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
-\seealso{\code{\link{lm}}, \code{\link{glm}}, \code{\link{binomial}}}
-
+\seealso{\code{\link{lm}}, \code{\link{glm}}, \code{\link{binomial}},
+\code{\link{coef.heckit}}}
 
 \examples{
 ## Greene( 2003 ): example 22.8, page 786

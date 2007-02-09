@@ -84,10 +84,11 @@ selection <- function(selection, outcome,
    ## YS (selection equation)
    cl <- match.call()
    mf <- match.call(expand.dots = FALSE)
-   m <- match(c("selection", "data", "subset", "weights", "na.action",
+   m <- match(c("selection", "data", "subset", "weights",
                 "offset"), names(mf), 0)
    mfS <- mf[c(1, m)]
    mfS$drop.unused.levels <- TRUE
+   mfS$na.action <- na.pass
    mfS[[1]] <- as.name("model.frame")
    names(mfS)[2] <- "formula"
                                         # model.frame requires the parameter to
@@ -96,15 +97,19 @@ selection <- function(selection, outcome,
    mtS <- attr(mfS, "terms")
    XS <- model.matrix(mtS, mfS)
    YS <- model.response(mfS, "numeric")
+   ## check for NA-s.  Because we have to find NA-s in several frames, we cannot use the standard na.
+   ## functions here.  Find bad rows and remove them later.
+   badRow <- apply(mfS, 1, function(v) any(is.na(v)))
    ## YO (outcome equation)
    if(type == 2) {
       oArg <- match("outcome", names(mf), 0)
                                         # find the outcome argument
-      m <- match(c("outcome", "data", "subset", "weights", "na.action",
+      m <- match(c("outcome", "data", "subset", "weights", 
                    "offset"), names(mf), 0)
       ## replace the outcome list by the first equation and evaluate it
       mfO <- mf[c(1, m)]
       mfO$drop.unused.levels <- TRUE
+      mfO$na.action <- na.pass
       mfO[[1]] <- as.name("model.frame")
                                         # eval it as model frame
       names(mfO)[2] <- "formula"
@@ -116,6 +121,15 @@ selection <- function(selection, outcome,
       mtO <- attr(mfO, "terms")
       XO <- model.matrix(mtO, mfO)
       YO <- model.response(mfO, "numeric")
+      badRow <- badRow | (apply(mfO, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==1))
+                                        # rows in outcome, which contain NA and are observable -> bad too
+      if(print.level > 0) {
+         cat(sum(badRow), "invalid observations\n")
+      }
+      XS <- XS[!badRow,]
+      YS <- YS[!badRow]
+      XO <- XO[!badRow,]
+      YO <- YO[!badRow]
       if(is.null(init)) {
          NXS <- ncol(XS)
          NXO <- ncol(XO)
@@ -124,10 +138,11 @@ selection <- function(selection, outcome,
          isigma <- max(ibeta) + 1
          irho <- max(isigma) + 1
          twoStep <- heckit(selection, outcome, data=data)
-         init[igamma] <- coef(twoStep)[twoStep$param$index$betaS]
-         init[ibeta] <- coef(twoStep)[twoStep$param$index$betaO]
-         init[isigma] <- coef(twoStep)[twoStep$param$index$sigma]
-         init[irho] <- coef(twoStep)[twoStep$param$index$rho]
+         coefs <- coef(twoStep, part="full")
+         init[igamma] <- coefs[twoStep$param$index$betaS]
+         init[ibeta] <- coefs[twoStep$param$index$betaO]
+         init[isigma] <- coefs[twoStep$param$index$sigma]
+         init[irho] <- coefs[twoStep$param$index$rho]
          if(init[irho] > 0.99)
              init[irho] <- 0.99
          else if(init[irho] < -0.99)
@@ -228,7 +243,7 @@ selection <- function(selection, outcome,
    }
    ## now fit the model
    result <- c(estimation,
-               twoStep=twoStep,
+               twoStep=list(twoStep),
                init=list(init),
                param=list(param),
                call=cl,

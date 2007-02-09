@@ -6,5 +6,5 @@ loglikValue <- function(x, ...)
 loglikValue.default <- function(x, ...)
     x$loglik
 
-loglikValue.MLEstimate <- function(x, ...)
-    loglikValue(x$maxLik)
+loglikValue.maxLik <- function(x, ...)
+    x$maximum

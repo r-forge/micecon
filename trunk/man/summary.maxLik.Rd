@@ -6,13 +6,12 @@
   and t-values.
 }
 \usage{
-summary.maxLik(object, hessian = FALSE, ... )
+summary.maxLik(object, ... )
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{object}{object of class 'maxLik', most probably a result from
     Maximum-Likelihood estimation.}
-  \item{hessian}{logical, whether to print the Hessian matrix.}
   \item{\ldots}{currently not used.}
 }
 \value{
@@ -25,7 +24,6 @@ summary.maxLik(object, hessian = FALSE, ... )
   \item{estimate}{numeric matrix, the first column contains the parameters
     estimates, the second the standard errors, third t-values and fourth
     corresponding probabilities.}
-  \item{Hessian}{Hessian at the maximum (if requested).}
   \item{activePar}{logical vector, which parameters are treated as free.}
   \item{NActivePar}{number of free parameters.}
 }

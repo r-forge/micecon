@@ -30,29 +30,35 @@ heckit <- function( selection, formula,
    ## Now extract model frames etc.
    ## Selection equation
    mf <- match.call(expand.dots = FALSE)
-   m <- match(c("selection", "data", "subset", "weights", "na.action",
+   m <- match(c("selection", "data", "subset", "weights", 
                 "offset"), names(mf), 0)
    mfS <- mf[c(1, m)]
+   mfS$na.action <- na.pass
    mfS$drop.unused.levels <- TRUE
    mfS[[1]] <- as.name("model.frame")
    names(mfS)[2] <- "formula"
                                         # model.frame requires the parameter to
                                         # be 'formula'
    mfS <- eval(mfS, parent.frame())
+   badRowS <- apply(mfS, 1, function(v) any(is.na(v)))
+                                        # check for NA-s.  Because we have to find NA-s in several
+                                        # frames, we cannot use the standard na.* functions here.
+                                        # Find bad rows and remove them later.
    mtS <- attr(mfS, "terms")
-   firstStepData <- model.matrix(mtS, mfS)
-   NXS <- ncol(firstStepData)
-   probitEndogenous <- factor(model.response(mfS, "numeric"))
-   probitLevels <- levels( as.factor( probitEndogenous ) )
+   XS <- model.matrix(mtS, mfS)
+   NXS <- ncol(XS)
+   YS <- factor(model.response(mfS, "numeric"))
+   probitLevels <- levels( as.factor( YS ) )
    if( length( probitLevels ) != 2 ) {
       stop( "the left hand side of 'selection' has to contain",
          " exactly two levels (e.g. FALSE and TRUE)" )
    }
-   probitDummy <- probitEndogenous == probitLevels[ 2 ]
+   probitDummy <- YS == probitLevels[ 2 ]
    ## Outcome equation
-   m <- match(c("formula", "data", "subset", "weights", "na.action",
+   m <- match(c("formula", "data", "subset", "weights",
                 "offset"), names(mf), 0)
    mfO <- mf[c(1, m)]
+   mfO$na.action <- na.pass
    mfO$drop.unused.levels <- TRUE
    mfO$na.action <- na.pass
                                         # Here we have to keep NA-s: unobserved outcome variables may
@@ -62,25 +68,29 @@ heckit <- function( selection, formula,
    names(mfO)[2] <- "formula"
    mfO <- eval(mfO, parent.frame())
    mtO <- attr(mfO, "terms")
-   secondStepData <- model.matrix(mtO, mfO)
+   XO <- model.matrix(mtO, mfO)
                                         # the explanatory variables in matrix form
-   NXO <- ncol(secondStepData)
-   secondStepEndogenous <- model.response(mfO, "numeric")
+   NXO <- ncol(XO)
+   YO <- model.response(mfO, "numeric")
+   ## Remove NA observations
+   badRowO <- apply(mfO, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==1)
+   badRow <- badRowS | badRowO
+                                        # rows in outcome, which contain NA and are observable -> bad too
+   if(print.level > 0) {
+      cat(sum(badRow), "invalid observations\n")
+   }
+   XS <- XS[!badRow,]
+   YS <- YS[!badRow]
+   XO <- XO[!badRow,]
+   YO <- YO[!badRow]
    ##
    NParam <- NXS + NXO + 3
                                         # invMillsRation, sigma, rho = 3
-   # NA action
-   if( !is.null( inst ) ) {
-      secondStepData <- cbind( secondStepData,
-         model.frame( inst, data = data, na.action = NULL ) )
-   }
-   firstStepOk <- rowSums( is.na( firstStepData ) ) == 0
-   secondStepOk <- rowSums( is.na( secondStepData ) ) == 0
-   result$dataOk <- firstStepOk & ( secondStepOk | !probitDummy )
    if( print.level > 0 ) {
       cat ( "\nEstimating 1st step Probit model . . ." )
    }
-   result$probit <- probit(selection, data=data, x=TRUE, print.level=print.level - 1)
+   result$probit <- probit(selection, data=data, x=TRUE, print.level=print.level - 1,
+                           subset=eval(!badRow))
    if( print.level > 0 ) {
        cat( " OK\n" )
    }
@@ -91,7 +101,7 @@ heckit <- function( selection, formula,
       if( print.level > 0 ) {
          cat ( "Estimating 2nd step (outcome) OLS model . . ." )
       }
-      result$lm <- lm(secondStepEndogenous ~ -1 + secondStepData + imrData$IMR1,
+      result$lm <- lm(YO ~ -1 + XO + imrData$IMR1,
                       subset = probitDummy )
       intercept <- any(apply(model.matrix(result$lm), 2,
                              function(v) (v[1] > 0) & (all(v == v[1]))))
@@ -99,7 +109,7 @@ heckit <- function( selection, formula,
                                         # This is necessary later for calculating R^2
       resid <- residuals( result$lm )
       step2coef <- coef( result$lm )
-      names(step2coef) <- c(colnames(secondStepData), "invMillsRatio")
+      names(step2coef) <- c(colnames(XO), "invMillsRatio")
       if( print.level > 0 ) cat( " OK\n" )
    }
    else {
@@ -155,6 +165,7 @@ heckit <- function( selection, formula,
                                                         result$rho,
                                                         result$imrDelta[ probitDummy ],
                                                         result$sigma )
+   result$vcov <- vc
    ##
    if( print.level > 0 )
        cat( " OK\n" )
@@ -170,7 +181,7 @@ heckit <- function( selection, formula,
    return( result )
 }
 
-summary.heckit <- function( object, ... ) {
+summary.heckit <- function( object, part="outcome", ... ) {
    ## Calculate r-squared.  Note that the way lm() finds R2 is a bit naive -- it checks for intercept
    ## in the formula, but not whether the intercept is present in any of the data vectors (or matrices)
    oModel <- object$lm
@@ -189,16 +200,22 @@ summary.heckit <- function( object, ... ) {
       R2 <- object$lm$eq[[ 1 ]]$r2
       R2adj <- object$lm$eq[[ 1 ]]$adjr2
    }
-   coefficients <- matrix( NA, nrow = length(object$step2coef), ncol = 4 )
-   rownames(coefficients) <- names(object$step2coef)
+   if(part=="full") {
+      i <- c(object$param$index$betaS, object$param$index$betaO, object$param$invMillsRatio)
+   }
+   else if(part=="outcome") {
+      i <- object$param$index$betaO
+   }
+   coefs <- coef(object, part="full")[i]
+   coefficients <- matrix(0, nrow = length(coefs), ncol = 4 )
+   rownames(coefficients) <- names(coefs)
    colnames(coefficients) <- c( "Estimate", "Std. Error", "t value", "Pr(>|t|)" )
-   coefficients[ , 1 ] <- object$step2coef
-   coefficients[ , 2 ] <- sqrt( diag(vcov(object)))
-   coefficients[ , 3 ] <- object$step2coef/coefficients[, 2 ]
+   coefficients[ , 1 ] <- coefs
+   coefficients[ , 2 ] <- sqrt( diag(vcov(object, part="full")[i,i]))
+   coefficients[ , 3 ] <- coefs/coefficients[, 2 ]
    coefficients[ , 4 ] <- 2*pt(abs(coefficients[,3]), object$lm$df, lower.tail=FALSE)
    object$coefficients <- coefficients
    s <- c(object,
-          sp=list(summary(object$probit)),
           rSquared=list(c(R2, R2adj)))
    class(s) <- c("summary.heckit", class(s))
    s
@@ -208,12 +225,10 @@ print.summary.heckit <- function( x,
                                  digits=max(3, getOption("digits") - 3),
                                  signif.stars=getOption("show.signif.stars"),
                                  ...) {
-   cat("Selection (first step) probit estimates:\n")
-   printCoefmat(x$sp$estimate)
-   cat("Outcome (second step) OLS estimates:\n")
+   cat("Estimates:\n")
    printCoefmat(x$coefficients)
    cat("Multiple R-Squared:", round(x$rSquared[ 1 ], digits),
        ",\tAdjusted R-Squared:", round(x$rSquared[ 2 ], digits), "\n", sep="")
-   cat("Error correlation: ", x$rho, ", variance: ", x$sigma, "\n", sep="")
+   cat("Residual correlation: ", x$rho, ", variance: ", x$sigma, "\n", sep="")
    invisible( x )
 }

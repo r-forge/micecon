@@ -11,25 +11,19 @@ print.summary.maxLik <- function( x, ... ) {
       cat("Log-Likelihood:", x$loglik, "\n")
       cat(x$NActivePar, " free parameters\n")
       cat("Estimates:\n")
-      print(x$estimate)
-      if(!is.null(h <- Hessian(x))) {
-         cat("Hessian:\n")
-         print(h)
-      }
+      printCoefmat(x$estimate)
    }
    cat("--------------------------------------------\n")
 }
 
-summary.maxLik <- function( object, hessian=FALSE, ... ) {
+summary.maxLik <- function( object, ... ) {
    ## object      object of class "maxLik"
-   ## hessian     logical, whether to include hessian in summary
    ## 
    ## RESULTS:
    ## list of class "summary.maxLik" with following components:
    ## maximum    : function value at optimum
    ## estimate   : estimated parameter values at optimum
    ## gradient   :           gradient at optimum
-   ## hessian    :           hessian
    ## code       : code of convergence
    ## message    : message, description of the code
    ## iterations : number of iterations
@@ -62,9 +56,6 @@ summary.maxLik <- function( object, hessian=FALSE, ... ) {
       }
       results <- cbind("Estimate"=coef, "Std. error"=stdd, "t value"=t, "Pr(> t)"=p)
       Hess <- NULL
-      if(hessian) {
-         Hess <- Hessian(object)
-      }
    } else {
       results <- NULL
       Hess <- NULL
