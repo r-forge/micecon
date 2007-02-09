@@ -40,8 +40,6 @@ method="ml",
 \details{
   The original help page for these functions is often
   available at \code{help("oldName-deprecated")} (note the quotes).
-  Functions in packages other than the base package are listed in
-  \code{help("pkg-deprecated")}.
 
   Function \code{tobit2} are for historical
   compatibility with old versions of micEcon.  Use

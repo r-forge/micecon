@@ -6,8 +6,17 @@ vcov.probit <- function(object, ...) {
 }
 
 ## heckit
-vcov.heckit <- function(object, ...)
-     object$vcov
+vcov.heckit <- function(object, part="outcome", ...) {
+   if(part=="outcome") {
+      i <- c(object$param$index$betaO, object$param$index$invMillsRatio)
+      vc <- object$vcov[i,i]
+   }
+   else if(part=="full") {
+      vc <- object$vcov
+   }
+   else
+       stop("'part' must be either 'outcome' or 'full'")
+  }
 
 ## maxLik
 vcov.maxLik <- function(object, ...) {

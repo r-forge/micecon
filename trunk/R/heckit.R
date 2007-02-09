@@ -66,6 +66,9 @@ heckit <- function( selection, formula,
                                         # the explanatory variables in matrix form
    NXO <- ncol(secondStepData)
    secondStepEndogenous <- model.response(mfO, "numeric")
+   ##
+   NParam <- NXS + NXO + 3
+                                        # invMillsRation, sigma, rho = 3
    # NA action
    if( !is.null( inst ) ) {
       secondStepData <- cbind( secondStepData,
@@ -125,6 +128,7 @@ heckit <- function( selection, formula,
    names(result$rho) <- NULL
                                         # otherwise the name of step2coef is left...
    result$invMillsRatio <- invMillsRatio
+   coefs <- c(coef(result$probit), step2coef, sigma=result$sigma, rho=result$rho)
    if( print.level > 0 ) {
       cat ( "Calculating coefficient covariance matrix . . ." )
    }
@@ -134,24 +138,34 @@ heckit <- function( selection, formula,
    } else {
       xMat <- result$lm$eq[[ 1 ]]$x
    }
-   result$vcov <- heckitVcov( xMat,
-                             model.matrix( result$probit )[ probitDummy, ],
-                             vcov( result$probit ),
-                             result$rho,
-                             result$imrDelta[ probitDummy ],
-                             result$sigma )
-                                        # result$vcov <- result$sigma^2 * solve( crossprod( xMat ) ) %*%
-                                        #      ( txd2Mat %*%
-                                        #      xMat + qMat ) %*% solve( crossprod( xMat ) )
-                                        #   rm( txd2Mat, d2Vec )
+   ## Now indices for packing the separate outcomes into full outcome vectors
+   iBetaS <- seq(length=NXS)
+   iBetaO <- NXS + seq(length=NXO)
+   iMills <- NXS + NXO + 1
+   iSigma <- iMills + 1
+   iRho <- iSigma + 1
+   ## Varcovar matrix.  Fill only a few parts, rest will remain NA
+   vc <- matrix(0, NParam, NParam)
+   colnames(vc) <- row.names(vc) <- names(coefs)
+   vc[] <- NA
+   vc[iBetaS,iBetaS] <- vcov(result$probit)
+   vc[c(iBetaO,iMills), c(iBetaO,iMills)] <- heckitVcov( xMat,
+                                                        model.matrix( result$probit )[ probitDummy, ],
+                                                        vcov( result$probit ),
+                                                        result$rho,
+                                                        result$imrDelta[ probitDummy ],
+                                                        result$sigma )
+   ##
    if( print.level > 0 )
        cat( " OK\n" )
-   result$step2coef <- step2coef
+   result$coefficients <- coefs
+                                        # for coef() etc. methods
    ## the 'param' component is intended to all kind of technical info
-   result$param <- list(index=list(betaS=seq(length=NXS), betaO=NXS + seq(length=NXO),
-                        invMillsRatio=NXS + NXO + 1, sigma=NXS + NXO + 2, rho=NXS + NXO + 3),
+   result$param <- list(index=list(betaS=iBetaS, betaO=iBetaO, invMillsRatio=iMills,
+                                   sigma=iSigma, rho=iRho),
                                         # The location of results in the coef vector
-                        oIntercept=intercept)
+                        oIntercept=intercept,
+                        NParam=NParam)
    class( result ) <- "heckit"
    return( result )
 }
