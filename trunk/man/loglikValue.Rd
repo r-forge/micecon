@@ -1,7 +1,7 @@
 \name{loglikValue}
 \alias{loglikValue}
 \alias{loglikValue.default}
-\alias{loglikValue.MLEstimate}
+\alias{loglikValue.maxLik}
 \title{Return the log likelihood value}
 \description{
   Return the log likelihood value of objects.  Objects should be models,

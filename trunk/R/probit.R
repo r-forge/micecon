@@ -1,6 +1,6 @@
-probit <- function( formula, start=NULL, data=sys.frame(sys.parent()),
+probit <- function( formula, subset, start=NULL, data=sys.frame(sys.parent()),
                    x=FALSE, y=FALSE, model=FALSE,
-                   method="ML",
+                   method="ML", 
                    ...) {
    ## Probit binary choice model
    ## formula: model formula, response must be either a logical or numeric vector containing only 0-s and
