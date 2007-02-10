@@ -84,8 +84,7 @@ selection <- function(selection, outcome,
    ## YS (selection equation)
    cl <- match.call()
    mf <- match.call(expand.dots = FALSE)
-   m <- match(c("selection", "data", "subset", "weights",
-                "offset"), names(mf), 0)
+   m <- match(c("selection", "data", "subset"), names(mf), 0)
    mfS <- mf[c(1, m)]
    mfS$drop.unused.levels <- TRUE
    mfS$na.action <- na.pass

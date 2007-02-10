@@ -83,14 +83,18 @@ heckit <- function( selection, formula,
    YS <- YS[!badRow]
    XO <- XO[!badRow,]
    YO <- YO[!badRow]
+   probitDummy <- probitDummy[!badRow]
    ##
    NParam <- NXS + NXO + 3
                                         # invMillsRation, sigma, rho = 3
    if( print.level > 0 ) {
       cat ( "\nEstimating 1st step Probit model . . ." )
    }
-   result$probit <- probit(selection, data=data, x=TRUE, print.level=print.level - 1,
-                           subset=eval(!badRow))
+   pdf <- data.frame(model.frame(selection, data=data, na.action=na.pass), badRow)
+                                        # construct a temporary data frame for data and 'badRow'
+   result$probit <- probit(selection, data=pdf, x=TRUE, print.level=print.level - 1,
+                           subset=!badRow)
+   rm(pdf)
    if( print.level > 0 ) {
        cat( " OK\n" )
    }
