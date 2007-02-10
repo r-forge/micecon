@@ -36,6 +36,11 @@ print.level = 0, ...)
     functions \code{\link{tobit2fit}} and \code{\link{tobit5fit}}}
 }
 \details{
+  \code{NA}-s are allowed in the data.  These are ignored if they denote
+  unobserved outcome, otherwise observations which contain \code{NA}
+  (either in selection or outcome) are
+  removed.
+  
   These selection models assume a known (multivariate normal)
   distribution
   of error terms.  Because of this, the instruments (exclusion
