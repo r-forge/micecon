@@ -1,7 +1,7 @@
 selection <- function(selection, outcome,
                       data=sys.frame(sys.parent()),
                       method="ml",
-                      init=NULL,
+                      start=NULL,
                       ys=FALSE, xs=FALSE,
                       yo=FALSE, xo=FALSE,
                       mfs=FALSE, mfo=FALSE,
@@ -129,7 +129,7 @@ selection <- function(selection, outcome,
       YS <- YS[!badRow]
       XO <- XO[!badRow,]
       YO <- YO[!badRow]
-      if(is.null(init)) {
+      if(is.null(start)) {
          NXS <- ncol(XS)
          NXO <- ncol(XO)
          igamma <- 1:NXS
@@ -138,24 +138,24 @@ selection <- function(selection, outcome,
          irho <- max(isigma) + 1
          twoStep <- heckit(selection, outcome, data=data)
          coefs <- coef(twoStep, part="full")
-         init[igamma] <- coefs[twoStep$param$index$betaS]
-         init[ibeta] <- coefs[twoStep$param$index$betaO]
-         init[isigma] <- coefs[twoStep$param$index$sigma]
-         init[irho] <- coefs[twoStep$param$index$rho]
-         if(init[irho] > 0.99)
-             init[irho] <- 0.99
-         else if(init[irho] < -0.99)
-             init[irho] <- -0.99
-         names(init) <- c(colnames(XS), colnames(XO), "sigma", "rho")
+         start[igamma] <- coefs[twoStep$param$index$betaS]
+         start[ibeta] <- coefs[twoStep$param$index$betaO]
+         start[isigma] <- coefs[twoStep$param$index$sigma]
+         start[irho] <- coefs[twoStep$param$index$rho]
+         if(start[irho] > 0.99)
+             start[irho] <- 0.99
+         else if(start[irho] < -0.99)
+             start[irho] <- -0.99
+         names(start) <- c(colnames(XS), colnames(XO), "sigma", "rho")
       }
-      estimation <- tobit2fit(YS, XS, YO, XO, init,
+      estimation <- tobit2fit(YS, XS, YO, XO, start,
                               print.level=print.level, ...)
       param <- list(index=list(betaS=igamma,
                     betaO=ibeta, sigma=isigma, rho=irho),
                     NXS=ncol(XS), NXO=ncol(XO),
                     N0=sum(YS==0), N1=sum(YS==1),
-                    NObs=length(YS), NParam=length(init),
-                    df=length(YS) - length(init))
+                    NObs=length(YS), NParam=length(start),
+                    df=length(YS) - length(start))
    }
    else if(type == 5) {
       oArg <- match("outcome", names(mf), 0)
@@ -164,20 +164,18 @@ selection <- function(selection, outcome,
       formula1 <- ocome[[2]]
       formula2 <- ocome[[3]]
                                         # Now we have extracted both formulas
-      m <- match(c("outcome", "data", "subset", "weights", "na.action",
+      m <- match(c("outcome", "data", "subset", "weights",
                    "offset"), names(mf), 0)
       ## replace the outcome list by the first equation and evaluate it
       mf[[oArg]] <- formula1
       mf1 <- mf[c(1, m)]
       mf1$drop.unused.levels <- TRUE
+      mf1$na.action = na.pass
       mf1[[1]] <- as.name("model.frame")
                                         # eval it as model frame
       names(mf1)[2] <- "formula"
       mf1 <- eval(mf1, parent.frame())
-                                        # Note: if unobserved variables are
-                                        # marked as NA, eval returns a
-                                        # subframe of visible variables only.
-                                        # We have to check it later
+      badRow <- badRow | (apply(mf1, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==0))
       mtO1 <- attr(mf1, "terms")
       XO1 <- model.matrix(mtO1, mf1)
       YO1 <- model.response(mf1, "numeric")
@@ -185,14 +183,12 @@ selection <- function(selection, outcome,
       mf[[oArg]] <- formula2
       mf2 <- mf[c(1, m)]
       mf2$drop.unused.levels <- TRUE
+      mf2$na.action <- na.pass
       mf2[[1]] <- as.name("model.frame")
                                         # eval it as model frame
       names(mf2)[2] <- "formula"
       mf2 <- eval(mf2, parent.frame())
-                                        # Note: if unobserved variables are
-                                        # marked as NA, eval returns a
-                                        # subframe of visible variables only.
-                                        # We have to check it later
+      badRow <- badRow | (apply(mf2, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==1))
       mtO2 <- attr(mf2, "terms")
       XO2 <- model.matrix(mtO2, mf2)
       YO2 <- model.response(mf2, "numeric")
@@ -201,39 +197,46 @@ selection <- function(selection, outcome,
       NXS <- ncol(XS)
       NXO1 <- ncol(XO1)
       NXO2 <- ncol(XO2)
-      if(is.null(init)) {
-         igamma <- 1:NXS
-         ibeta1 <- seq(tail(igamma, 1)+1, length=NXO1)
-         isigma1 <- tail(ibeta1, 1) + 1
-         irho1 <- tail(isigma1, 1) + 1
-         ibeta2 <- seq(tail(irho1, 1) + 1, length=NXO2)
-         isigma2 <- tail(ibeta2, 1) + 1
-         irho2 <- tail(isigma2, 1) + 1
-         NParam <- irho2
-         init <- numeric(NParam)
+      XS <- XS[!badRow,]
+      YS <- YS[!badRow]
+      XO1 <- XO1[!badRow,]
+      YO1 <- YO1[!badRow]
+      XO2 <- XO2[!badRow,]
+      YO2 <- YO2[!badRow]
+      igamma <- 1:NXS
+      ibeta1 <- seq(tail(igamma, 1)+1, length=NXO1)
+      isigma1 <- tail(ibeta1, 1) + 1
+      irho1 <- tail(isigma1, 1) + 1
+      ibeta2 <- seq(tail(irho1, 1) + 1, length=NXO2)
+      isigma2 <- tail(ibeta2, 1) + 1
+      irho2 <- tail(isigma2, 1) + 1
+      NParam <- irho2
+      twoStep <- NULL
+      if(is.null(start)) {
+         start <- numeric(NParam)
          if(print.level > 0) {
-            cat("Inital values by Heckman 2-step method (", NParam, " componenets)\n", sep="")
+            cat("Start values by Heckman 2-step method (", NParam, " componenets)\n", sep="")
          }
          twoStep <- heckit5(selection, as.formula(formula1), as.formula(formula2),
                            data, print.level)
-         init[igamma] <- coef(twoStep$probit)
-         names(init)[igamma] <- names(coef(twoStep$probit))
+         start[igamma] <- coef(twoStep$probit)
+         names(start)[igamma] <- names(coef(twoStep$probit))
          b1 <- coef(twoStep$twoStep1)
-         init[ibeta1] <- b1[names(b1) != "X1invMillsRatio"]
-         names(init)[ibeta1] <- names(b1[names(b1) != "X1invMillsRatio"])
-         init[isigma1] <- twoStep$sigma1
-         names(init)[isigma1] <- "sigma1"
-         init[irho1] <- twoStep$rho1
-         names(init)[irho1] <- "rho1"
+         start[ibeta1] <- b1[names(b1) != "X1invMillsRatio"]
+         names(start)[ibeta1] <- names(b1[names(b1) != "X1invMillsRatio"])
+         start[isigma1] <- twoStep$sigma1
+         names(start)[isigma1] <- "sigma1"
+         start[irho1] <- twoStep$rho1
+         names(start)[irho1] <- "rho1"
          b2 <- coef(twoStep$twoStep2)
-         init[ibeta2] <- b2[names(b2) != "X2invMillsRatio"]
-         names(init)[ibeta2] <- names(b2[names(b2) != "X2invMillsRatio"])
-         init[isigma2] <- twoStep$sigma2
-         names(init)[isigma2] <- "sigma2"
-         init[irho2] <- twoStep$rho2
-         names(init)[irho2] <- "rho2"
+         start[ibeta2] <- b2[names(b2) != "X2invMillsRatio"]
+         names(start)[ibeta2] <- names(b2[names(b2) != "X2invMillsRatio"])
+         start[isigma2] <- twoStep$sigma2
+         names(start)[isigma2] <- "sigma2"
+         start[irho2] <- twoStep$rho2
+         names(start)[irho2] <- "rho2"
       }
-      estimation <- tobit5fit(YS, XS, YO1, XO1, YO2, XO2, init,
+      estimation <- tobit5fit(YS, XS, YO1, XO1, YO2, XO2, start=start,
                               print.level=print.level, ...)
       param <- list(index=list(betaS=igamma,
                     betaO1=ibeta1, sigma1=isigma1, rho1=irho1,
@@ -243,7 +246,7 @@ selection <- function(selection, outcome,
    ## now fit the model
    result <- c(estimation,
                twoStep=list(twoStep),
-               init=list(init),
+               start=list(start),
                param=list(param),
                call=cl,
                termsS=mtS,
