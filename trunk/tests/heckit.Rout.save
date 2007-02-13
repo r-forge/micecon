@@ -39,21 +39,20 @@ Residual correlation: -0.342999, variance: 3.20006
 > print( summary( greene$lm ) )
 
 Call:
-lm(formula = secondStepEndogenous ~ -1 + secondStepData + imrData$IMR1, 
-    subset = probitDummy)
+lm(formula = YO ~ -1 + XO + imrData$IMR1, subset = probitDummy)
 
 Residuals:
    Min     1Q Median     3Q    Max 
 -5.690 -1.601 -0.496  0.848 21.204 
 
 Coefficients:
-                           Estimate Std. Error t value Pr(>|t|)    
-secondStepData(Intercept) -0.971200   2.038714   -0.48     0.63    
-secondStepDataexper        0.021061   0.062972    0.33     0.74    
-secondStepDataI(exper^2)   0.000137   0.001893    0.07     0.94    
-secondStepDataeduc         0.417017   0.099003    4.21  3.1e-05 ***
-secondStepDatacity         0.443838   0.317921    1.40     0.16    
-imrData$IMR1              -1.097619   1.252900   -0.88     0.38    
+               Estimate Std. Error t value Pr(>|t|)    
+XO(Intercept) -0.971200   2.038714   -0.48     0.63    
+XOexper        0.021061   0.062972    0.33     0.74    
+XOI(exper^2)   0.000137   0.001893    0.07     0.94    
+XOeduc         0.417017   0.099003    4.21  3.1e-05 ***
+XOcity         0.443838   0.317921    1.40     0.16    
+imrData$IMR1  -1.097619   1.252900   -0.88     0.38    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
@@ -148,20 +147,19 @@ Residual correlation: 0.0486143, variance: 0.663629
 > print( summary( wooldridge$lm ) )
 
 Call:
-lm(formula = secondStepEndogenous ~ -1 + secondStepData + imrData$IMR1, 
-    subset = probitDummy)
+lm(formula = YO ~ -1 + XO + imrData$IMR1, subset = probitDummy)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
 -3.0805 -0.3069  0.0483  0.3770  2.3735 
 
 Coefficients:
-                           Estimate Std. Error t value Pr(>|t|)    
-secondStepData(Intercept) -0.578103   0.306723   -1.88   0.0601 .  
-secondStepDataeduc         0.109066   0.015610    6.99  1.1e-11 ***
-secondStepDataexper        0.043887   0.016353    2.68   0.0076 ** 
-secondStepDataI(exper^2)  -0.000859   0.000441   -1.95   0.0523 .  
-imrData$IMR1               0.032262   0.134388    0.24   0.8104    
+               Estimate Std. Error t value Pr(>|t|)    
+XO(Intercept) -0.578103   0.306723   -1.88   0.0601 .  
+XOeduc         0.109066   0.015610    6.99  1.1e-11 ***
+XOexper        0.043887   0.016353    2.68   0.0076 ** 
+XOI(exper^2)  -0.000859   0.000441   -1.95   0.0523 .  
+imrData$IMR1   0.032262   0.134388    0.24   0.8104    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 

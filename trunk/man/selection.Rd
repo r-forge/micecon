@@ -7,7 +7,7 @@
 }
 \usage{
 selection(selection, outcome, data = sys.frame(sys.parent()),
-method = "ml", init = NULL, 
+method = "ml", start = NULL, 
 ys = FALSE, xs = FALSE,
 yo = FALSE, xo = FALSE,
 mfs = FALSE, mfo = FALSE,
@@ -25,7 +25,7 @@ print.level = 0, ...)
           the environment from which \code{selection} is called.}
   \item{method}{how to estimate the model.  Either "ml" for Maximum
     Likelihood, or "2step" for 2-step estimation}
-  \item{init}{initial values for the ML estimation.  Should have names}
+  \item{start}{initial values for the ML estimation.  Should have names}
   \item{ys, yo, xs, xo, mfs, mfo}{logicals.  If true, the response (\code{y}),
     model matrix (\code{x}) or the model frame (\code{mf})
     of the selection (\code{s}) or outcome
@@ -36,9 +36,9 @@ print.level = 0, ...)
     functions \code{\link{tobit2fit}} and \code{\link{tobit5fit}}}
 }
 \details{
-  \code{NA}-s are allowed in the data.  These are ignored if they denote
-  unobserved outcome, otherwise observations which contain \code{NA}
-  (either in selection or outcome) are
+  \code{NA}-s are allowed in the data.  These are ignored if the
+  corresponding outcome is unobserved, otherwise observations which
+  contain \code{NA} (either in selection or outcome) are
   removed.
   
   These selection models assume a known (multivariate normal)
