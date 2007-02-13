@@ -222,15 +222,15 @@ selection <- function(selection, outcome,
          start[igamma] <- coef(twoStep$probit)
          names(start)[igamma] <- names(coef(twoStep$probit))
          b1 <- coef(twoStep$twoStep1)
-         start[ibeta1] <- b1[names(b1) != "X1invMillsRatio"]
-         names(start)[ibeta1] <- names(b1[names(b1) != "X1invMillsRatio"])
+         start[ibeta1] <- b1[names(b1) != "XO1invMillsRatio"]
+         names(start)[ibeta1] <- names(b1[names(b1) != "XO1invMillsRatio"])
          start[isigma1] <- twoStep$sigma1
          names(start)[isigma1] <- "sigma1"
          start[irho1] <- twoStep$rho1
          names(start)[irho1] <- "rho1"
          b2 <- coef(twoStep$twoStep2)
-         start[ibeta2] <- b2[names(b2) != "X2invMillsRatio"]
-         names(start)[ibeta2] <- names(b2[names(b2) != "X2invMillsRatio"])
+         start[ibeta2] <- b2[names(b2) != "XO2invMillsRatio"]
+         names(start)[ibeta2] <- names(b2[names(b2) != "XO2invMillsRatio"])
          start[isigma2] <- twoStep$sigma2
          names(start)[isigma2] <- "sigma2"
          start[irho2] <- twoStep$rho2

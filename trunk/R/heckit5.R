@@ -34,10 +34,10 @@ heckit5 <- function(selection, outcome1, outcome2,
    }
    ## Now extract model frames etc.  We only need model information for the selection equation
    mf <- match.call(expand.dots = FALSE)
-   m <- match(c("selection", "data", "subset", "weights", "na.action",
-                "offset"), names(mf), 0)
+   m <- match(c("selection", "data", "subset"), names(mf), 0)
    mfS <- mf[c(1, m)]
    mfS$drop.unused.levels <- TRUE
+   mfS$na.action <- na.pass
    mfS[[1]] <- as.name("model.frame")
    names(mfS)[2] <- "formula"
                                         # model.frame requires the parameter to
@@ -46,58 +46,74 @@ heckit5 <- function(selection, outcome1, outcome2,
    mtS <- attr(mfS, "terms")
    XS <- model.matrix(mtS, mfS)
    YS <- factor(model.response(mfS, "numeric"))
+   ## check for NA-s.  Because we have to find NA-s in several frames, we cannot use the standard na.
+   ## functions here.  Find bad rows and remove them later.
+   badRow <- apply(mfS, 1, function(v) any(is.na(v)))
+   ## We need here to run OLS on outcome1 expression and invMillsRatio1.  Outcome1 must be evaluated in the
+   ## parent frame, invMillsRatio1 here -> we must evaluate it here
+   m <- match(c("outcome1", "data", "subset"), names(mf), 0)
+   mf1 <- mf[c(1, m)]
+   mf1$drop.unused.levels <- TRUE
+   mf1$na.action <- na.pass
+   mf1[[1]] <- as.name("model.frame")
+   names(mf1)[2] <- "formula"
+   mf1 <- eval(mf1, parent.frame())
+   badRow <- badRow | (apply(mf1, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==0))
+   mt1 <- attr(mf1, "terms")
+   XO1 <- model.matrix(mt1, mf1)
+   YO1 <- model.response(mf1, "numeric")
+   m <- match(c("outcome2", "data", "subset"), names(mf), 0)
+   mf2 <- mf[c(1, m)]
+   mf2$drop.unused.levels <- TRUE
+   mf2$na.action <- na.pass
+   mf2[[1]] <- as.name("model.frame")
+   names(mf2)[2] <- "formula"
+   mf2 <- eval(mf2, parent.frame())
+   badRow <- badRow | (apply(mf2, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==1))
+   mt2 <- attr(mf2, "terms")
+   XO2 <- model.matrix(mt2, mf2)
+   YO2 <- model.response(mf2, "numeric")
+   # Remove rows w/NA-s
+   XS <- XS[!badRow,]
+   YS <- YS[!badRow]
+   XO1 <- XO1[!badRow,]
+   YO1 <- YO1[!badRow]
+   XO2 <- XO2[!badRow,]
+   YO2 <- YO2[!badRow]
+   # few pre-calculations: split according to selection
    i1 <- YS == levels(YS)[1]
    i2 <- YS == levels(YS)[2]
    XS1 <- XS[i1,]
    XS2 <- XS[i2,]
-   ## and run the model
+   XO1 <- XO1[i1,]
+   XO2 <- XO2[i2,]
+   YO1 <- YO1[i1]
+   YO2 <- YO2[i2]
+   ## and run the model: selection
    probit <- probit(selection)
    if( print.level > 0) {
       cat("The probit part of the model:\n")
       print(summary(probit))
    }
    gamma <- coefficients(probit)
-   ## regression parts by Heckman's two-step method
-   lambda1 <- dnorm( -XS1%*%gamma)/pnorm( -XS1%*%gamma)
-   lambda2 <- dnorm( XS2%*%gamma)/pnorm( XS2%*%gamma)
-   colnames(lambda1) <- colnames(lambda2) <- "invMillsRatio"
+   ## outcome
+   invMillsRatio1 <- dnorm( -XS1%*%gamma)/pnorm( -XS1%*%gamma)
+   invMillsRatio2 <- dnorm( XS2%*%gamma)/pnorm( XS2%*%gamma)
+   colnames(invMillsRatio1) <- colnames(invMillsRatio2) <- "invMillsRatio"
                                         # lambdas are inverse Mills ratios
-   ## We need here to run OLS on outcome1 expression and lambda1.  Outcome1 must be evaluated in the
-   ## parent frame, lambda1 here -> we must evaluate it here
-   m <- match(c("outcome1", "data", "subset", "weights", "na.action",
-                "offset"), names(mf), 0)
-   mf1 <- mf[c(1, m)]
-   mf1$drop.unused.levels <- TRUE
-   mf1[[1]] <- as.name("model.frame")
-   names(mf1)[2] <- "formula"
-   mf1 <- eval(mf1, parent.frame())
-   mt1 <- attr(mf1, "terms")
-   X1 <- model.matrix(mt1, mf1)[i1,]
-   Y1 <- model.response(mf1, "numeric")[i1]
-   X1 <- cbind(X1, lambda1)
+   XO1 <- cbind(XO1, invMillsRatio1)
+   XO2 <- cbind(XO2, invMillsRatio2)
                                         # lambda1 is a matrix -- we need to remove the dim in order to 
-   m <- match(c("outcome2", "data", "subset", "weights", "na.action",
-                "offset"), names(mf), 0)
-   mf2 <- mf[c(1, m)]
-   mf2$drop.unused.levels <- TRUE
-   mf2[[1]] <- as.name("model.frame")
-   names(mf2)[2] <- "formula"
-   mf2 <- eval(mf2, parent.frame())
-   mt2 <- attr(mf2, "terms")
-   X2 <- model.matrix(mt2, mf2)[i2,]
-   Y2 <- model.response(mf2, "numeric")[i2]
-   X2 <- cbind(X2, lambda2)
-                                        #
-   twoStep1 <- lm(Y1 ~ -1 + X1)
-   twoStep2 <- lm(Y2 ~ -1 + X2)
+   twoStep1 <- lm(YO1 ~ -1 + XO1)
+   twoStep2 <- lm(YO2 ~ -1 + XO2)
                                         # X includes the constant
    se1 <- summary(twoStep1)$sigma
    se2 <- summary(twoStep2)$sigma
                                         # residual variance
-   delta1 <- mean( lambda1^2 - XS1%*%gamma *lambda1)
-   delta2 <- mean( lambda2^2 + XS2%*%gamma *lambda2)
-   betaL1 <- coef(twoStep1)["X1invMillsRatio"]
-   betaL2 <- coef(twoStep2)["X2invMillsRatio"]
+   delta1 <- mean( invMillsRatio1^2 - XS1%*%gamma *invMillsRatio1)
+   delta2 <- mean( invMillsRatio2^2 + XS2%*%gamma *invMillsRatio2)
+   betaL1 <- coef(twoStep1)["XO1invMillsRatio"]
+   betaL2 <- coef(twoStep2)["XO2invMillsRatio"]
    sigma1 <- sqrt( se1^2 + ( betaL1*delta1)^2)
    sigma2 <- sqrt( se2^2 + ( betaL2*delta2)^2)
    rho1 <- -betaL1/sigma1
