@@ -1,4 +1,4 @@
-% -*- mode: TeX-PDF-mode -*-
+% -*- mode: TeX-PDF -*-
 \documentclass[article]{jss}
 \usepackage{amsmath}
 \usepackage{bbm}
@@ -38,8 +38,12 @@
 
 %% an abstract and keywords
 \Abstract{
-  Heckman-style sample selection models, and their implementation in package
-  \pkg{micEcon} for \proglang{R}, are discussed.
+  We discuss the Heckman-style sample selection models and argue that
+  although they are unreliable in many cases, they still serve as
+  excellent teaching tools.  We describe the implementation of these models in package
+  \pkg{micEcon} for \proglang{R}, and illustrate the use of the package by showing
+  Heckman selection models' strong and weak sides on several Monte
+  Carlo examples.
 }
 \Keywords{sample-selection models, Heckman selection models, econometrics, \proglang{R}}
 \Plainkeywords{sample-selection models, Heckman selection models, econometrics, R}
@@ -88,13 +92,17 @@
 \subsection{The problem}
 
 Social scientists are often interested in causal effects -- what is
-the impact of a new drug, a certain type of school or eg being born as
-a twin.  Many of these cases are under our (partial) control.  In most
+the impact of a new drug, a certain type of school or being born as a
+twin.  Many of these cases are under our (partial) control.  In most
 cases, we can decide ourselves, whether we take the drug or which
 school we attend.  We cannot control whether we are twins, but neither
-can the reasearcher -- if the twins tend to be born in a different
-types of families, the researcher never has all the relevant
-information in order to control for the difference.
+can the reasearcher -- the twins may tend to be born in a different
+types of families.  These cases, usually refered to as
+\emph{self-selection} and \emph{sample-selection}, are similar from
+the statistical point of view.  Whatever is the sampling mechanism,
+from an initial ``random'' sample we extract a sample of interest,
+which is not any more ``randome'' (see \citet[p
+1937]{heckman+macurdy1986} for a discussion).
 
 This problem -- people who are ``treated'' are different that the rest
 of the population -- is usually refered to as the \emph{sample
@@ -108,8 +116,8 @@ causal relationship.
 \subsection{Possible solutions}
 
 All the solutions involve using additional information.  There are
-several possibilites which may or may not be useful for any particular
-case. 
+several possibilites which may or may not be feasible or useful for
+any particular case.
 
 \begin{itemize}
 \item Randomisation: experiment, where the participants \emph{do not}
@@ -130,10 +138,10 @@ pseudo-randimisation (natural experiments) has become the state-of-the
 art while estimating the causal effects.  The methods, relying on the
 distributional assumptions are becoming less widely used.  The reason
 is obvious -- the parametric assumptions can only seldom be justified,
-and we don't want our results to rely on dubious assumptions.  Even if
-we have valid instruments or exclusion restrictions, the parametric
+and we do not want our results to rely on dubious assumptions.  Even
+if we have valid instruments or exclusion restrictions, the parametric
 hypothesis add their interference which may be sometimes hard to
-detect.  
+disentangle from the estimate.
 
 However, even if these models are not popular in research any more,
 they still serve as excellent teaching tools.  Heckman-type selection
@@ -201,7 +209,7 @@ The observed dependence between $y^O$ and $x^O$ can now be written as
 \end{equation}
 Estimating the equation above by OLS gives in general biased results,
 as $\Exp [ \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ] \not
-= 0$, unless $\varrho = 0$.  However, we may employ the follwing
+= 0$, unless $\varrho = 0$.  However, we may employ the following
 simple strategy: we can find the expectations $\Exp [
 \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ]$ by estimating
 the selection equations \eqref{eq:probit*} and \eqref{eq:probit} by
@@ -240,9 +248,13 @@ allows certain generalisations more easily than ML.
 
 The model allows a number of straightforward generalisations.  E.g. we
 may assume that we have two outcome variables, one of which is
-observable, depending on the selection process.  These models (a
-version of Roy (....) model) are relevant for treatment effect
-analysis.
+observable, depending on the selection process (switching regression).
+This model may be relevant for treatment effect analysis.  Another
+types of generalisations include less restrictive parametric forms for
+the conditional mean of the residual term $\Exp [
+\varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ]$ (see \citet[p
+1938]{heckman+macurdy1986} for references and
+\citet{klaauw+koning2003} for an application).
 
 This model, and it's derivations, were widely used in 1970s and 1980s.
 Later, it has fallen into disfavour due to the reliance on the
@@ -257,10 +269,10 @@ differ from a linear combination of $\vec{x}^O$ components
 \citep{leung+yu1996}.  The practical conclusion here is that standard
 errors of the estimates depend on the variation in the latent
 selection equation \eqref{eq:probit*}.  More variation gives smaller
-standard errors\footnote{This is related to the identification on the
-  margin....}.  During the recent decades, various semiparametric
-estimation techinques have been increasingly used instead of the
-Heckman model.
+standard errors\footnote{This is related to the identification at
+  infinity \citep{chamberlain1986}}.  During the recent decades,
+various semiparametric estimation techinques have been increasingly
+used instead of the Heckman model.
 
 
 
