@@ -280,7 +280,153 @@ used instead of the Heckman model (see \citet{powell1994} and
 
 \input{selection_implement}
 
-\input{selection_usage}
+
+\section[Usage]{Using the \code{selection} function}
+
+In this subsection we show a few examples on the typical usage of
+\code{selection}.  The first example uses a correctly specified model
+with exclusion restriction:
+
+\begin{Code}
+  N <- 1000
+  library(mvtnorm)
+  vc <- diag(3)
+  vc[lower.tri(vc)] <- c(0.9, 0.5, 0.6)
+  vc[upper.tri(vc)] <- vc[lower.tri(vc)]
+  eps <- rmvnorm(N, rep(0, 3), vc)
+  xs <- runif(N)
+  ys <- xs + eps[,1] > 0
+  xo1 <- runif(N)
+  yo1 <- xo1 + eps[,2]
+  xo2 <- runif(N)
+  yo2 <- xo2 + eps[,3]
+  a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), print.level=print.level)
+  summary(a)
+\end{Code}
+
+Here we use the \pkg{mvtnorm} library, in order to create 3D normal
+error terms.  We specify the correlation between the selection error
+term and the outcome errors as $0.9$ and $0.6$ respectively.  Further,
+we generate the explanatory variable \code{xs} for the selection
+equation.  Here we have the exclusion restriction as the \code{xs} is
+distinct from the explanatory variables in the outcome equation,
+\code{xo1} and \code{xo2}.  All the three regressions are done in the
+simplest possible for with only one explanatory variable where we add
+a normal error term with variance equal to unity.  In the case of
+selection, we have to transform the continuous outcome to a binary
+pone.
+
+The result should look something like that:
+\begin{Code}
+   --------------------------------------------
+   Maximum Likelihood estimation
+   Newton-Raphson maximisation, 2 iterations
+   Return code 3: Last step could not find a value above the current.
+   May be near a solution
+   Log-Likelihood: -1892.149 
+   10  free parameters
+   Estimates:
+   coef        stdd           t    P(|b| > t)
+   (Intercept)    0.13296701 0.056933090   2.3354961  1.951752e-02
+   xs             0.85615385 0.083559336  10.2460585  1.232681e-24
+   X1(Intercept)  0.02640296 0.059200948   0.4459888  6.556053e-01
+   X1xo1          0.95331865 0.080630715  11.8232692  2.959396e-32
+   sigma1         0.91644892 0.029150613  31.4384098 6.045596e-217
+   rho1           0.96879226 0.003442300 281.4375216  0.000000e+00
+   X2(Intercept) -0.11349697 0.065541444  -1.7316825  8.333011e-02
+   X2xo2          1.06464221 0.104674935  10.1709375  2.673233e-24
+   sigma2         1.01090379 0.027895950  36.2383712 1.515094e-287
+   rho2           0.84162026 0.021087135  39.9115503  0.000000e+00
+   --------------------------------------------
+\end{Code}
+One can see, that the main parameters of interest -- \code{X1xo1} and
+\code{X2xo2} are quite precisely estimated.  However, in the current
+example, the estimate for probit intercept, and the parameters for the
+error distributions, are biased.
+
+In general, one should prefer \code{method="ml"} instead of
+\code{"2step"}.  However, ML may have problems at the boundary of the
+parameter space.  Consider the following problem: suppose we are
+investigating the dependence of weight on individual characteristic
+$x$.  However, our weight has an upper limit (say, $\bar w$).  Assume
+the linear model and normal errors.  This creates the following
+tobit-problem:
+\begin{align}
+  w_i^* &= \beta_0 + \beta x_i + \varepsilon_i\\
+  w_i &=
+  \begin{cases}
+    w_i^* \quad & \text{if } w_i^* < \bar w\\
+    \bar w      & \text{otherwise.}
+  \end{cases}
+\end{align}
+The tobit model can be rewritten in the form of a tobit-2 equation
+\begin{align}
+  z_i^* &= \bar w_i - \beta_0 - \beta x_i - \varepsilon_i\\
+  w_i^* &= \beta_0 + \beta x_i + \varepsilon_i\\
+  z_i &=
+  \begin{cases}
+    1 \quad & \text{if } z_i^* > 0\\
+    0       & \text{otherwise}
+  \end{cases}\\
+  w_i &=
+  \begin{cases}
+    w_i^* \quad & \text{if } w_i^* < \bar w\\
+    \bar w      & \text{otherwise,}
+  \end{cases}
+\end{align}
+where one can see, that the correlation of the error terms is $-1$.
+In this case, the ML does not converge:
+\begin{Code}
+  x <- runif(500, -2, 2)
+  e <- rnorm(500)
+  z <- x + e > 0
+  y <- (x - e)*z
+  summary(selection(z ~ x, y ~ x, method="ml"))
+\end{Code}
+will give something like:
+\begin{Code}
+  Tobit 2 selection model/Maximum Likelihood estimation
+  Newton-Raphson maximisation, 1 iterations
+  Return code 3: Last step could not find a value above the current.
+  May be near a solution
+  Log-Likelihood: -984.8554 
+  1000 observations (516 censored and 484 observed) and 6 free parameters (df =994)
+
+  Probit selection equation:
+  Estimate Std. error    t value      Pr(> t)
+  (Intercept) -0.07032504 0.07274238 -0.9667685 3.336598e-01
+  x            0.99332164 0.07956116 12.4850077 9.013464e-36
+
+  OLS equation:
+  Estimate Std. error t value Pr(> t)
+  (Intercept) 0.3922726        NaN     NaN     NaN
+  x           0.7454347        NaN     NaN     NaN
+
+  Error terms data:
+  Estimate Std. error   t value Pr(> t)
+  sigma  1.185191        NaN       NaN     NaN
+  rho   -0.999245 0.01348266 -74.11337       0
+  --------------------------------------------
+  Warning messages:
+  1: Diagonal of variance-covariance matrix not positive!
+  in: summary.maxLik(object, ...) 
+  2: NaNs produced in: sqrt(hdiag) 
+\end{Code}
+while the two-step method works:
+\begin{Code}
+  summary(selection(z ~ x, y ~ x, method="2step"))
+  Estimates:
+  Estimate Std. Error t value  Pr(>|t|)    
+  (Intercept) -0.34297    0.22213  -1.544    0.1232    
+  x            1.17892    0.13976   8.435 3.517e-16 ***
+  ---
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+  Multiple R-Squared:0.7437,	Adjusted R-Squared:0.7427
+  Residual correlation: -0.7143789, variance: 0.8260205
+\end{Code}
+
+
+
 
 \input{selection_conclusion}
 
