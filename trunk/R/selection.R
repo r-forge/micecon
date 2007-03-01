@@ -73,7 +73,7 @@ selection <- function(selection, outcome,
    ## now check whether two-step method was requested
    if(method == "2step") {
       if(type == 2)
-          twoStep <- heckit2(selection, outcome, data)
+          twoStep <- heckit(selection, outcome, data)
       else if(type == 5)
           twoStep <- heckit5(selection, outcome, data)
       else
