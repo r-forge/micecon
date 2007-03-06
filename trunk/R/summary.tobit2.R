@@ -32,14 +32,14 @@ print.summary.tobit2 <- function(x, ...) {
    if(!is.null(x$estimate)) {
       cat("Log-Likelihood:", loglikValue(x), "\n")
       cat(x$NObs, " observations (", x$N0, " censored and ", x$N1, " observed) and ",
-          x$NActivePar, " free parameters (df =",
+          x$NActivePar, " free parameters (df = ",
           x$NObs - x$NActivePar, ")\n", sep="")
       cat("\nProbit selection equation:\n")
-      print(x$estimateS)
+      printCoefmat(x$estimateS, signif.legend=FALSE)
       cat("\nOLS equation:\n")
-      print(x$estimateO)
+      printCoefmat(x$estimateO, signif.legend=FALSE)
       cat("\nError terms data:\n")
-      print(x$estimateErr)
+      printCoefmat(x$estimateErr)
    }
    cat("--------------------------------------------\n")
 }
