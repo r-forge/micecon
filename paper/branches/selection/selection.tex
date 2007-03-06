@@ -277,72 +277,183 @@ used instead of the Heckman model (see \citet{powell1994} and
 
 
 
+\section[Implementation]{Implementation in \pkg{micEcon}}
 
-\input{selection_implement}
+The estimation of the Heckman selection models are done by maximum
+likelihood (ML).  The initial values are calculated by two-step methods,
+unless the user provides the values herself.  
+
+The main frontend for the selection models is the command
+\code{selection}.  It needs a formula for the selection equation, and
+one (or a list of two for tobit-5 models) for the outcome equation.
+One can choose the method to be either ``ml'' for the ML estimation,
+or ``2step'' for two-step results.  If the user does not provide the
+initial values for the ML estimate (which is usually the case), the
+\code{selection} calculates the consistent initial values by either
+\code{heckit2} or \code{heckit5}.  These initial values are used in
+the corresponding ML estimation functions \code{tobit2fit} or
+\code{tobit5fit}.  Note that as the log-likelihood functions of the
+selection models are, in general, not globally concave, one should use
+as good initial values as possible.
+
+The likelihood maximisation is done by Newton-Raphson maximisation
+(implemented as \code{maxNR} in \pkg{micEcon}) where analytic score
+vector and Hessian matrix are given.  This results in reasonably fast
+computation times even in the case of tens of thousands observations.
+A well-defined model should converge in less than 15 iterations, in
+the case of weak identification, this number may be considerably
+larger.  Convergence issues may appear at the boundary of the
+parameter space (eg if $\varrho \to 1$) or if the algorithm does not
+find the global maximum.
+
 
 
 \section[Usage]{Using the \code{selection} function}
 
 In this subsection we show a few examples on the typical usage of
-\code{selection}.  The first example uses a correctly specified model
-with exclusion restriction:
+\code{selection}.  
 
+First, estimate a correctly specified tobit2 model with exclusion
+restriction: 
 \begin{Code}
-  N <- 1000
   library(mvtnorm)
-  vc <- diag(3)
-  vc[lower.tri(vc)] <- c(0.9, 0.5, 0.6)
-  vc[upper.tri(vc)] <- vc[lower.tri(vc)]
-  eps <- rmvnorm(N, rep(0, 3), vc)
-  xs <- runif(N)
+  eps <- rmvnorm(500, c(0,0), matrix(c(1,-0.7,-0.7,1), 2, 2))
+  xs <- runif(500)
   ys <- xs + eps[,1] > 0
-  xo1 <- runif(N)
-  yo1 <- xo1 + eps[,2]
-  xo2 <- runif(N)
-  yo2 <- xo2 + eps[,3]
-  a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), print.level=print.level)
-  summary(a)
+  xo <- runif(500)
+  yo <- (xo + eps[,2])*(ys > 0)
 \end{Code}
-
-Here we use the \pkg{mvtnorm} library, in order to create 3D normal
-error terms.  We specify the correlation between the selection error
-term and the outcome errors as $0.9$ and $0.6$ respectively.  Further,
-we generate the explanatory variable \code{xs} for the selection
-equation.  Here we have the exclusion restriction as the \code{xs} is
-distinct from the explanatory variables in the outcome equation,
-\code{xo1} and \code{xo2}.  All the three regressions are done in the
-simplest possible for with only one explanatory variable where we add
-a normal error term with variance equal to unity.  In the case of
-selection, we have to transform the continuous outcome to a binary
-pone.
-
-The result should look something like that:
+We use \pkg{mvtnorm} in order to create bivariate normal
+disturbances with correlation $-0.7$.  Next, we generate a uniformly
+distributed explanatory variable for the selection process, \code{xs}
+and the selection outcome by a probit data generating process (DGP).
+Note that the explanatory variables for the selection process
+(\code{xs}) and outcome process (\code{xo}) are different and hence
+we have an exclusion restriction.  This can be seen from the fact that
+the estimates are quite precise:
 \begin{Code}
-   --------------------------------------------
-   Maximum Likelihood estimation
-   Newton-Raphson maximisation, 2 iterations
-   Return code 3: Last step could not find a value above the current.
-   May be near a solution
-   Log-Likelihood: -1892.149 
-   10  free parameters
-   Estimates:
-   coef        stdd           t    P(|b| > t)
-   (Intercept)    0.13296701 0.056933090   2.3354961  1.951752e-02
-   xs             0.85615385 0.083559336  10.2460585  1.232681e-24
-   X1(Intercept)  0.02640296 0.059200948   0.4459888  6.556053e-01
-   X1xo1          0.95331865 0.080630715  11.8232692  2.959396e-32
-   sigma1         0.91644892 0.029150613  31.4384098 6.045596e-217
-   rho1           0.96879226 0.003442300 281.4375216  0.000000e+00
-   X2(Intercept) -0.11349697 0.065541444  -1.7316825  8.333011e-02
-   X2xo2          1.06464221 0.104674935  10.1709375  2.673233e-24
-   sigma2         1.01090379 0.027895950  36.2383712 1.515094e-287
-   rho2           0.84162026 0.021087135  39.9115503  0.000000e+00
-   --------------------------------------------
+  summary(selection(ys~xs, yo ~xo))
+  --------------------------------------------
+  Tobit 2 selection model/Maximum Likelihood estimation
+  Newton-Raphson maximisation, 12 iterations
+  Return code 1: gradient close to zero. May be a solution
+  Log-Likelihood: -1468.684 
+  1000 observations (307 censored and 693 observed) and 6 free parameters (df = 994)
+
+  Probit selection equation:
+  Estimate Std. error t value Pr(> t)    
+  (Intercept) -0.048139   0.072973 -0.6597  0.5095    
+  xs           1.124157   0.128294  8.7623  <2e-16 ***
+
+  OLS equation:
+  Estimate Std. error t value   Pr(> t)    
+  (Intercept) 0.084933   0.081687  1.0397    0.2985    
+  xo          0.865771   0.113052  7.6582 1.886e-14 ***
+
+  Error terms data:
+  Estimate Std. error t value   Pr(> t)    
+  sigma  1.011997   0.045668  22.160 < 2.2e-16 ***
+  rho   -0.745585   0.065040 -11.463 < 2.2e-16 ***
+  ---
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+  --------------------------------------------
 \end{Code}
-One can see, that the main parameters of interest -- \code{X1xo1} and
-\code{X2xo2} are quite precisely estimated.  However, in the current
-example, the estimate for probit intercept, and the parameters for the
-error distributions, are biased.
+One can see, that all the true values are within the confidence
+intervals of the corresponding estimates.
+
+Now we repeat the same excercise, but without exclusion restriction:
+\begin{Code}
+  yo <- (xs + eps[,2])*(ys > 0)
+  print(summary(selection(ys ~ xs, yo ~ xs)))
+  --------------------------------------------
+  Tobit 2 selection model/Maximum Likelihood estimation
+  Newton-Raphson maximisation, 8 iterations
+  Return code 1: gradient close to zero. May be a solution
+  Log-Likelihood: -727.3016 
+  500 observations (167 censored and 333 observed) and 6 free parameters (df = 494)
+
+  Probit selection equation:
+  Estimate Std. error t value  Pr(> t)    
+  (Intercept) -0.29028    0.11788 -2.4625  0.01380 *  
+  xs           1.44622    0.20974  6.8952 5.38e-12 ***
+
+  OLS equation:
+  Estimate Std. error t value  Pr(> t)   
+  (Intercept)  0.17811    0.21658  0.8224 0.410865   
+  xs           0.64473    0.23145  2.7856 0.005344 **
+
+  Error terms data:
+  Estimate Std. error t value   Pr(> t)    
+  sigma  1.011806   0.080393 12.5857 < 2.2e-16 ***
+  rho   -0.680477   0.148594 -4.5794 4.662e-06 ***
+  ---
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+  --------------------------------------------
+\end{Code}
+We can see, that the standard errors are substantially larger in this
+case.  The exclusion restriction -- information about the selection
+process -- has a certain identifying power which we have lost now.  We
+are solely relying on the functional form identifycation.  Note that
+the true parameters of the selection process are not in the 95\%
+confidence intervals of the estimates any more.
+
+However, we can improve the identification if the selection process
+has a lot of explanatory power.  Change the support of \code{xs} from
+$[0,1]$ to $[-5,5]$:
+\begin{Code}
+  xs <- runif(500, -5, 5)
+  ys <- xs + eps[,1] > 0
+  yo <- (xs + eps[,2])*(ys > 0)
+  print(summary(selection(ys ~ xs, yo ~ xs)))
+  --------------------------------------------
+  Tobit 2 selection model/Maximum Likelihood estimation
+  Newton-Raphson maximisation, 3 iterations
+  Return code 1: gradient close to zero. May be a solution
+  Log-Likelihood: -431.7964 
+  500 observations (244 censored and 256 observed) and 6 free parameters (df = 494)
+
+  Probit selection equation:
+  Estimate Std. error t value Pr(> t)    
+  (Intercept)  0.16107    0.11254  1.4312  0.1524    
+  xs           1.04419    0.10464  9.9790  <2e-16 ***
+
+  OLS equation:
+  Estimate Std. error t value Pr(> t)    
+  (Intercept) -0.145156   0.135833 -1.0686  0.2852    
+  xs           1.043117   0.045938 22.7072  <2e-16 ***
+
+  Error terms data:
+  Estimate Std. error t value   Pr(> t)    
+  sigma  1.007358   0.046933 21.4640 < 2.2e-16 ***
+  rho   -0.730630   0.112471 -6.4962  8.24e-11 ***
+  ---
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+  --------------------------------------------
+\end{Code}
+Now all the parameters are precisely estimated, even more precisely as
+in the case of exclusion restriction.  The reason is simple: the
+probability that $Y^O$ is observable, given $x^S$, is $\Pr(X^S + E^O >
+0) = 1 - \Phi(-x^S)$ as $E^O \sim N(0,1)$.  As one can see from the
+Figure~\ref{fig:pnorm}, selection is probably not an issue if $x^S >
+2$.  Hence the model can be precisely estimated for relatively large
+values of $x^S$.  Due to the linearity assumption, the parameters are
+the same everywhere.
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\linewidth]{pnorm.pdf}
+  \caption{Probability that $y^O$ is observable depending on the value
+    of $x^S$ (given the standard normal disturbances).}
+  \label{fig:pnorm}
+\end{figure}
+
+
+
+
+
+\section{Addtional notes}
+\label{sec:additional}
+
 
 In general, one should prefer \code{method="ml"} instead of
 \code{"2step"}.  However, ML may have problems at the boundary of the
