@@ -241,7 +241,11 @@ selection <- function(selection, outcome,
       param <- list(index=list(betaS=igamma,
                     betaO1=ibeta1, sigma1=isigma1, rho1=irho1,
                     betaO2=ibeta2, sigma2=isigma2, rho2=irho2),
-                    NXS=ncol(XS))
+                    NXS=ncol(XS),
+                    NXO1=ncol(XO1), NXO2=ncol(XO2),
+                    N1=sum(YS==0), N2=sum(YS==1),
+                    NObs=length(YS), NParam=length(start),
+                    df=length(YS) - length(start))
    }
    ## now fit the model
    result <- c(estimation,

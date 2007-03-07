@@ -20,7 +20,7 @@ tobit2fit <- function(YS, XS, YO, XO, start,
 ###  XS              -"-                selection, should include exclusion restriction
 ###  ...     additional parameters for maxLik
 ### Result:
-### Object of class 'tobit5', derived from 'maxLik'.
+### Object of class 'tobit2', derived from 'maxLik'.
 ### Includes all the components of maxLik and additionally
 ### twoStep   Results for Heckman two-step estimator, used for initial values
 ### 
