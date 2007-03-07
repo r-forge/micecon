@@ -37,14 +37,14 @@
 \Shorttitle{Sample Selection Models in R} %% a short title (if necessary)
 
 %% an abstract and keywords
-\Abstract{
-  We discuss the Heckman-style sample selection models and argue that
-  although they are unreliable in many cases, they still serve as
-  excellent teaching tools.  We describe the implementation of these models in package
-  \pkg{micEcon} for \proglang{R}, and illustrate the use of the package by showing
-  Heckman selection models' strong and weak sides on several Monte
-  Carlo examples.
-}
+\Abstract{ 
+  We discuss the Heckman-style sample selection models and
+  argue that although they are unreliable in many cases, they still
+  serve as excellent teaching tools.  We describe the implementation
+  of these models in package \pkg{micEcon} for \proglang{R}, and
+  illustrate the use of the package by showing Heckman selection
+  models' strong and weak sides on several Monte Carlo examples.  }
+
 \Keywords{sample-selection models, Heckman selection models, econometrics, \proglang{R}}
 \Plainkeywords{sample-selection models, Heckman selection models, econometrics, R}
 
@@ -104,7 +104,7 @@ from an initial ``random'' sample we extract a sample of interest,
 which is not any more ``random'' (see \citet[p
 1937]{heckman+macurdy1986} for a discussion).
 
-This problem -- people who are ``treated'' are different that the rest
+This problem -- people who are ``treated'' are different than the rest
 of the population -- is usually refered to as the \emph{sample
   selection} problem.  We cannot estimate the causal effect, unless we
 solve the selection problem.  Otherwise, we never know which part of
@@ -147,7 +147,7 @@ However, even if these models are not popular in research any more,
 they still serve as excellent teaching tools.  Heckman-type selection
 models easily allow us to experiment with selection bias,
 misspecification, exclusion restrictions etc.  These models are easy
-to visualise and understand.
+to implement, to visualise and to understand.
 
 
 \subsection{Heckman's solution}
@@ -248,10 +248,10 @@ allows certain generalisations more easily than ML.
 
 The model allows a number of straightforward generalisations.  E.g. we
 may assume that we have two outcome variables, one of which is
-observable, depending on the selection process (switching regression).
-This model may be relevant for treatment effect analysis.  Another
-types of generalisations include less restrictive parametric forms for
-the conditional mean of the residual term $\Exp [
+observable, depending on the selection process (switching regression
+or tobit-5 model).  This model may be relevant for treatment effect
+analysis.  Another types of generalisations include less restrictive
+parametric forms for the conditional mean of the residual term $\Exp [
 \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ]$ (see \citet[p
 1938]{heckman+macurdy1986} for references and
 \citet{klaauw+koning2003} for an application).
@@ -284,17 +284,18 @@ likelihood (ML).  The initial values are calculated by two-step methods,
 unless the user provides the values herself.  
 
 The main frontend for the selection models is the command
-\code{selection}.  It needs a formula for the selection equation, and
-one (or a list of two for tobit-5 models) for the outcome equation.
-One can choose the method to be either ``ml'' for the ML estimation,
-or ``2step'' for two-step results.  If the user does not provide the
-initial values for the ML estimate (which is usually the case), the
-\code{selection} calculates the consistent initial values by either
-\code{heckit2} or \code{heckit5}.  These initial values are used in
-the corresponding ML estimation functions \code{tobit2fit} or
-\code{tobit5fit}.  Note that as the log-likelihood functions of the
-selection models are, in general, not globally concave, one should use
-as good initial values as possible.
+\code{selection}.  It needs a formula (argument \code{selection}) for
+the selection equation, and one (or a list of two for tobit-5 models)
+for the outcome equation (\code{outcome}).  One can choose the method
+(\code{method}) to be either ``ml'' for the ML estimation, or
+``2step'' for two-step results.  If the user does not provide the
+initial values (\code{start}) for the ML estimate (which is usually
+the case), the \code{selection} calculates the consistent initial
+values by either \code{heckit2} or \code{heckit5}.  These initial
+values are used in the corresponding ML estimation functions
+\code{tobit2fit} or \code{tobit5fit}.  Note that as the log-likelihood
+functions of the selection models are, in general, not globally
+concave, one should use as good initial values as possible.  
 
 The likelihood maximisation is done by Newton-Raphson maximisation
 (implemented as \code{maxNR} in \pkg{micEcon}) where analytic score
@@ -310,8 +311,12 @@ find the global maximum.
 
 \section[Usage]{Using the \code{selection} function}
 
-In this subsection we show a few examples on the typical usage of
+In this section we show a few examples on the typical usage of
 \code{selection}.  
+
+
+\subsection{Tobit-2 models}
+\label{sec:tobit2}
 
 First, estimate a correctly specified tobit2 model with exclusion
 restriction: 
@@ -434,10 +439,14 @@ Now all the parameters are precisely estimated, even more precisely as
 in the case of exclusion restriction.  The reason is simple: the
 probability that $Y^O$ is observable, given $x^S$, is $\Pr(X^S + E^O >
 0) = 1 - \Phi(-x^S)$ as $E^O \sim N(0,1)$.  As one can see from the
-Figure~\ref{fig:pnorm}, selection is probably not an issue if $x^S >
-2$.  Hence the model can be precisely estimated for relatively large
-values of $x^S$.  Due to the linearity assumption, the parameters are
-the same everywhere.
+Figure~\ref{fig:pnorm}, selection is not an issue if $x^S > 2$.  In
+that case $\Exp [\varepsilon^O|y_i^S = 1] \approx 0$ and hence the
+model can be precisely estimated for relatively large values of $x^S$.
+Due to the linearity assumption, the same parameters are valid
+everywhere.  In the former case, the variation in $x^S$ was low and
+hence one could not disentangle the selection bias from the true
+causal dependence.  Technically, there was a multicollinearity problem
+between $x$ and $\lambda(\cdot)$.
 
 \begin{figure}[tb]
   \centering
@@ -449,7 +458,257 @@ the same everywhere.
 
 
 
+\subsection{Tobit-5 models}
+\label{sec:tobit5}
 
+Now let us look at the tobit5 examples.  This type of problems arise
+in wide variety of contexts, e.g. in treatment effect or schooling
+choice analysis.  The problem can be written as
+\begin{align}
+  y_i^{S*} &= \beta^S x_i^S + \varepsilon_i^S
+  \label{eq:probit*}
+  \\
+  y_i^{O1*} &= \beta^{O1} x_i^O + \varepsilon_i^{O1}
+  \\
+  y_i^{O2*} &= \beta^{O2} x_i^O + \varepsilon_i^{O2}.
+\end{align}
+We observe
+\begin{align}
+  y_i^S 
+  &= 
+  \begin{cases}
+    0 & \quad \text{if } y_i^{S*} < 0
+    \label{eq:probit}
+    \\
+    1 & \quad \text{otherwise}
+  \end{cases}
+  \\
+  y_i^O
+  &= 
+  \begin{cases}
+    y_i^{O1*} & \quad \text{if} y_i^{S} = 0\\
+    y_i^{O2*} & \quad \text{otherwise},
+  \end{cases}
+\end{align}
+We assume the disturbance terms have a 3-dimensional normal
+distribution:
+\begin{equation}
+  \begin{pmatrix}
+    \varepsilon^S\\
+    \varepsilon^{O1}\\
+    \varepsilon^{O2}
+  \end{pmatrix}
+  \sim
+  N\left(
+    \begin{pmatrix}
+      0\\
+      0\\
+      0
+    \end{pmatrix},
+    \begin{pmatrix}
+      1                 & \varrho_1\sigma_1 & \varrho_2\sigma_2 \\
+      \varrho_1\sigma_1 & \sigma_1^2        & \varrho_{12}\sigma_1\sigma_2\\
+      \varrho_2\sigma_2 & \varrho_{12}\sigma_1\sigma_2 & \sigma_2^2
+    \end{pmatrix}
+  \right).
+\end{equation}
+Note, that $\varrho_2$ plays no role in this model, the observable
+distributions are determined by the correlation between the
+disturbances of the selection equation ($\varepsilon^S$) and the
+corresponding outcome eqution ($\varepsilon^{O1}$ and
+$\varepsilon^{O2}$).  
+
+We create a simple switching regression problem:
+\begin{Code}
+  vc <- diag(3)
+  vc[lower.tri(vc)] <- c(0.9, 0.5, 0.1)
+  vc[upper.tri(vc)] <- vc[lower.tri(vc)]
+  eps <- rmvnorm(500, rep(0, 3), vc)
+  xs <- runif(500)
+  ys <- xs + eps[,1] > 0
+  xo1 <- runif(500)
+  yo1 <- xo1 + eps[,2]
+  xo2 <- runif(500)
+  yo2 <- xo2 + eps[,3]
+\end{Code}
+We generate a 3-dimensional disturbance vector by \code{rmvnorm}.  We
+set the correlation between $\varepsilon^S$ and $\varepsilon^{O1}$ to
+be 0.9 and between $\varepsilon^S$ and $\varepsilon^{O2}$ to 0.5.  The
+third correlation, 0.1, takes care for the positive definiteness of
+the covariance matrix and does not affect the results.  Further, we
+create three independent explanatory variables (\code{xs}, \code{xo1}
+and \code{xo2}, and hence exclusion restriction is fulfilled).  Note
+that we don not have to remove the unobserved values from outcome
+vectors, those are simply ignored.  The results look as follows:
+\begin{Code}
+  summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2)))
+  --------------------------------------------
+  Maximum Likelihood estimation
+  Newton-Raphson maximisation, 10 iterations
+  Return code 1: gradient close to zero. May be a solution
+  Log-Likelihood: -914.8608 
+  10  free parameters
+  Estimates:
+  Estimate Std. error t value   Pr(> t)    
+  (Intercept)    -0.0996681  0.1064597 -0.9362    0.3492    
+  xs              1.1998507  0.1830628  6.5543 5.590e-11 ***
+  XO1(Intercept) -0.0023541  0.1759002 -0.0134    0.9893    
+  XO1xo1          0.9962613  0.1613625  6.1741 6.656e-10 ***
+  sigma1          0.9682766  0.1029538  9.4050 < 2.2e-16 ***
+  rho1            0.9198042  0.0463521 19.8439 < 2.2e-16 ***
+  XO2(Intercept)  0.1582970  0.1996373  0.7929    0.4278    
+  XO2xo2          1.0700911  0.1851863  5.7785 7.539e-09 ***
+  sigma2          0.9772406  0.0402416 24.2843 < 2.2e-16 ***
+  rho2            0.0897737  0.3626054  0.2476    0.8045    
+  ---
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+  --------------------------------------------
+\end{Code}
+We can see, that the parameters are fairly well estimated.  All the
+estimates are close to the true values.
+
+Next, take an example of functional form misspecification.  We create
+the disturbances as 3-variate $\chi_1^2$ random variables (we subtract
+1 in order to get the mean zero disturbances):
+\begin{Code}
+  eps <- rmvnorm(1000, rep(0, 3), vc)
+  eps <- eps^2 - 1
+  xs <- runif(1000, -1, 0)
+  ys <- xs + eps[,1] > 0
+  xo1 <- runif(1000)
+  yo1 <- xo1 + eps[,2]
+  xo2 <- runif(1000)
+  yo2 <- xo2 + eps[,3]
+  summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2)))
+\end{Code}
+Note that we still have exclusion restriction.  The results may look
+something like the following:
+\begin{Code}
+  --------------------------------------------
+  Tobit 5 selection model/Maximum Likelihood estimation
+  Newton-Raphson maximisation, 6 iterations
+  Return code 2: successive function values within tolerance limit.
+  May be a solution
+  Log-Likelihood: -1936.482 
+  1000 observations (630 selection 1 and 370 selection 2) and 10 free parameters (df = 990)
+
+  Probit selection equation:
+  Estimate Std. error t value   Pr(> t)    
+  (Intercept) -0.371496   0.043297 -8.5801 < 2.2e-16 ***
+  xs           1.006582   0.075731 13.2915 < 2.2e-16 ***
+
+  outcome equation 1:
+  Estimate Std. error t value   Pr(> t)    
+  XO1(Intercept) -0.448971   0.057011 -7.8752 3.401e-15 ***
+  XO1xo1          1.081742   0.089731 12.0554 < 2.2e-16 ***
+
+  outcome equation 2:
+  Estimate Std. error t value Pr(> t)  
+  XO2(Intercept)  0.19247    0.35055  0.5491 0.58297  
+  XO2xo2          0.77696    0.32582  2.3846 0.01710 *
+
+  Error terms data:
+  Estimate Std. error t value   Pr(> t)    
+  sigma1 0.680366   0.021709 31.3401 < 2.2e-16 ***
+  sigma2 1.785611   0.067001 26.6503 < 2.2e-16 ***
+  rho1   0.367688   0.072069  5.1019 3.363e-07 ***
+  rho2   0.079379   0.176667  0.4493    0.6532    
+  ---
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+  --------------------------------------------
+\end{Code}
+Now we can see a substantial bias -- all the intercepts are
+statistically significant, although the true values are zero.  The
+model has serious convergence problems, often it does not converge at
+all.
+
+Last, repeat the previous example without the exclusion restriction:
+\begin{Code}
+  xs <- runif(N, -1, 1)
+  ys <- xs + eps[,1] > 0
+  yo1 <- xs + eps[,2]
+  yo2 <- xs + eps[,3]
+\end{Code}
+Now, in most cases the model does not converge.  However, even if it
+does, the results may be seriously biased:
+\begin{Code}
+  summary(selection(ys~xs, list(yo1 ~ xs, yo2 ~ xs))
+  --------------------------------------------
+  Tobit 5 selection model/Maximum Likelihood estimation
+  Newton-Raphson maximisation, 16 iterations
+  Return code 4: Iteration limit exceeded.
+  Log-Likelihood: -3846.808 
+  2000 observations (1268 selection 1 and 732 selection 2) and 10 free parameters (df = 1990)
+
+  Probit selection equation:
+  Estimate Std. error t value   Pr(> t)    
+  (Intercept) -0.372690   0.029937 -12.449 < 2.2e-16 ***
+  xs           0.791920   0.053402  14.829 < 2.2e-16 ***
+
+  outcome equation 1:
+  Estimate Std. error t value   Pr(> t)    
+  XO1(Intercept) -0.519895   0.048183 -10.790 < 2.2e-16 ***
+  XO1xo1          0.857694   0.044153  19.425 < 2.2e-16 ***
+
+  outcome equation 2:
+  Estimate Std. error t value Pr(> t)  
+  XO2(Intercept)  0.46813    0.61645  0.7594 0.44762  
+  XO2xo2          0.75279    0.33547  2.2440 0.02483 *
+
+  Error terms data:
+  Estimate Std. error t value Pr(> t)    
+  sigma1  0.6171979  0.0136160 45.3289  <2e-16 ***
+  sigma2  1.8031690  0.0471536 38.2403  <2e-16 ***
+  rho1    0.1490846  0.1194592  1.2480  0.2120    
+  rho2   -0.0041608  0.3181243 -0.0131  0.9896    
+  ---
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+  --------------------------------------------
+\end{Code}
+Note that first outcome parameters have low standard errors, but a
+serious bias.  It is instructive to estimate the same model as a two
+independent OLS equations:
+\begin{Code}
+  print(summary(lm(yo1~xs, subset=ys==0)))
+  Call:
+  lm(formula = yo1 ~ xs, subset = ys == 0)
+
+  Residuals:
+  Min      1Q  Median      3Q     Max 
+  -0.6651 -0.3922 -0.2057  0.1749  4.1320 
+
+  Coefficients:
+  Estimate Std. Error t value Pr(>|t|)    
+  (Intercept) -0.55711    0.01786  -31.19   <2e-16 ***
+  xs           0.77348    0.03256   23.76   <2e-16 ***
+  ---
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+  Residual standard error: 0.6141 on 1243 degrees of freedom
+  Multiple R-Squared: 0.3123,	Adjusted R-squared: 0.3117 
+  F-statistic: 564.4 on 1 and 1243 DF,  p-value: < 2.2e-16 
+
+  print(summary(lm(yo2~xs, subset=ys==1)))
+  Call:
+  lm(formula = yo2 ~ xs, subset = ys == 1)
+
+  Residuals:
+  Min      1Q  Median      3Q     Max 
+  -1.9699 -1.1357 -0.6511  0.5484 11.0663 
+
+  Coefficients:
+  Estimate Std. Error t value Pr(>|t|)    
+  (Intercept)  0.89031    0.07053  12.622   <2e-16 ***
+  xs          -0.15977    0.11881  -1.345    0.179    
+  ---
+  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+  Residual standard error: 1.74 on 753 degrees of freedom
+  Multiple R-Squared: 0.002396,	Adjusted R-squared: 0.001071 
+  F-statistic: 1.808 on 1 and 753 DF,  p-value: 0.1791 
+\end{Code}
+One can see, that in case 2 OLS cannot even get the correct sign of
+the parameter.  
 
 \section{Addtional notes}
 \label{sec:additional}

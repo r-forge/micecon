@@ -36,17 +36,59 @@ tstB <- function() {
 tst5 <- function(N=500, print.level=0) {
    library(mvtnorm)
    vc <- diag(3)
-   vc[lower.tri(vc)] <- c(0.9, 0.5, 0.6)
+   vc[lower.tri(vc)] <- c(0.9, 0.5, 0.1)
    vc[upper.tri(vc)] <- vc[lower.tri(vc)]
    eps <- rmvnorm(N, rep(0, 3), vc)
    xs <- runif(N)
    ys <- xs + eps[,1] > 0
    xo1 <- runif(N)
+#   xo1 <- xs
    yo1 <- xo1 + eps[,2]
    xo2 <- runif(N)
+#   xo2 <- xs
    yo2 <- xo2 + eps[,3]
    a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), print.level=print.level)
    invisible(a)
+}
+
+tstChi <- function(N=500, ...) {
+   library(mvtnorm)
+   vc <- diag(3)
+   vc[lower.tri(vc)] <- c(0.9, 0.5, 0.1)
+   vc[upper.tri(vc)] <- vc[lower.tri(vc)]
+   eps <- rmvnorm(N, rep(0, 3), vc)
+   eps <- eps^2 - 1
+   print(colMeans(eps))
+   print(cor(eps))
+   xs <- runif(N, -1, 1)
+   ys <- xs + eps[,1] > 0
+   xo1 <- runif(N)
+   xo1 <- xs
+   yo1 <- xo1 + eps[,2]
+   xo2 <- runif(N)
+   xo2 <- xs
+   yo2 <- xo2 + eps[,3]
+   a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), ...)
+   invisible(a)
+}
+
+tstChiOLS <- function(N=500, ...) {
+   library(mvtnorm)
+   vc <- diag(3)
+   vc[lower.tri(vc)] <- c(0.9, 0.5, 0.1)
+   vc[upper.tri(vc)] <- vc[lower.tri(vc)]
+   eps <- rmvnorm(N, rep(0, 3), vc)
+   eps <- eps^2 - 1
+   print(colMeans(eps))
+   print(cor(eps))
+   xs <- runif(N, -1, 1)
+   ys <- xs + eps[,1] > 0
+   xo1 <- xs
+   yo1 <- xo1 + eps[,2]
+   xo2 <- runif(N)
+   yo2 <- xo2 + eps[,3]
+   print(summary(lm(yo1~xs, subset=ys==0)))
+   print(summary(lm(yo2~xs, subset=ys==1)))
 }
 
 tstOne <- function(N=1000, print.level=0) {
