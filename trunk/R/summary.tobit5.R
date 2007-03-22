@@ -23,11 +23,11 @@ summary.tobit5 <- function(object, ...) {
           N1=object$param$N1, N2=object$param$N2,
           NXS=object$param$NXS, NXO1=object$param$NXO1, NXO2=object$param$NXO2, df=object$param$df
           )
-   class(s) <- c("summary.tobit2", class(sl))
+   class(s) <- c("summary.tobit5", class(sl))
    s
 }
 
-print.summary.tobit2 <- function(x, ...) {
+print.summary.tobit5 <- function(x, ...) {
    cat("--------------------------------------------\n")
    cat("Tobit 5 selection model/Maximum Likelihood estimation\n")
    cat(x$type, ", ", x$iterations, " iterations\n", sep="")
