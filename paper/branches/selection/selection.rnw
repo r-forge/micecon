@@ -2,6 +2,7 @@
 \documentclass[article]{jss}
 \usepackage{amsmath}
 \usepackage{bbm}
+%% need no \usepackage{Sweave.sty}
 
 % ------- a few definitions ---------
 \newcommand{\dnorm}{\phi}
@@ -9,7 +10,6 @@
 \newcommand{\Natural}{\mathbb{N}}% Natural numbers.  needs ams-fonts
 \newcommand{\pderiv}[2][]{\frac{\partial #1}{\partial #2}}
 \newcommand{\Real}{\mathbb{R}}% Real numbers.  needs ams-fonts
-\newcommand{\cov}{\mathrm{Cov}}
 \newcommand{\pnorm}{\Phi}
 \newcommand{\var}{\mathrm{Var}\,}
 \newcommand{\corr}{\mathrm{Corr}}
@@ -320,14 +320,15 @@ In this section we show a few examples on the typical usage of
 
 First, estimate a correctly specified tobit2 model with exclusion
 restriction: 
-\begin{Code}
+<<code:t2generate>>=
+  library(micEcon)
   library(mvtnorm)
   eps <- rmvnorm(500, c(0,0), matrix(c(1,-0.7,-0.7,1), 2, 2))
   xs <- runif(500)
   ys <- xs + eps[,1] > 0
   xo <- runif(500)
   yo <- (xo + eps[,2])*(ys > 0)
-\end{Code}
+@
 We use \pkg{mvtnorm} in order to create bivariate normal
 disturbances with correlation $-0.7$.  Next, we generate a uniformly
 distributed explanatory variable for the selection process, \code{xs}
@@ -336,65 +337,17 @@ Note that the explanatory variables for the selection process
 (\code{xs}) and outcome process (\code{xo}) are different and hence
 we have an exclusion restriction.  This can be seen from the fact that
 the estimates are quite precise:
-\begin{Code}
+<<code:t2summary>>=
   summary(selection(ys~xs, yo ~xo))
-  --------------------------------------------
-  Tobit 2 selection model/Maximum Likelihood estimation
-  Newton-Raphson maximisation, 12 iterations
-  Return code 1: gradient close to zero. May be a solution
-  Log-Likelihood: -1468.684 
-  1000 observations (307 censored and 693 observed) and 6 free parameters (df = 994)
-
-  Probit selection equation:
-  Estimate Std. error t value Pr(> t)    
-  (Intercept) -0.048139   0.072973 -0.6597  0.5095    
-  xs           1.124157   0.128294  8.7623  <2e-16 ***
-
-  OLS equation:
-  Estimate Std. error t value   Pr(> t)    
-  (Intercept) 0.084933   0.081687  1.0397    0.2985    
-  xo          0.865771   0.113052  7.6582 1.886e-14 ***
-
-  Error terms data:
-  Estimate Std. error t value   Pr(> t)    
-  sigma  1.011997   0.045668  22.160 < 2.2e-16 ***
-  rho   -0.745585   0.065040 -11.463 < 2.2e-16 ***
-  ---
-  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-  --------------------------------------------
-\end{Code}
+@ 
 One can see, that all the true values are within the confidence
 intervals of the corresponding estimates.
 
 Now we repeat the same excercise, but without exclusion restriction:
-\begin{Code}
-  yo <- (xs + eps[,2])*(ys > 0)
-  print(summary(selection(ys ~ xs, yo ~ xs)))
-  --------------------------------------------
-  Tobit 2 selection model/Maximum Likelihood estimation
-  Newton-Raphson maximisation, 8 iterations
-  Return code 1: gradient close to zero. May be a solution
-  Log-Likelihood: -727.3016 
-  500 observations (167 censored and 333 observed) and 6 free parameters (df = 494)
-
-  Probit selection equation:
-  Estimate Std. error t value  Pr(> t)    
-  (Intercept) -0.29028    0.11788 -2.4625  0.01380 *  
-  xs           1.44622    0.20974  6.8952 5.38e-12 ***
-
-  OLS equation:
-  Estimate Std. error t value  Pr(> t)   
-  (Intercept)  0.17811    0.21658  0.8224 0.410865   
-  xs           0.64473    0.23145  2.7856 0.005344 **
-
-  Error terms data:
-  Estimate Std. error t value   Pr(> t)    
-  sigma  1.011806   0.080393 12.5857 < 2.2e-16 ***
-  rho   -0.680477   0.148594 -4.5794 4.662e-06 ***
-  ---
-  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-  --------------------------------------------
-\end{Code}
+<<>>=
+yo <- (xs + eps[,2])*(ys > 0)
+print(summary(selection(ys ~ xs, yo ~ xs)))
+@ 
 We can see, that the standard errors are substantially larger in this
 case.  The exclusion restriction -- information about the selection
 process -- has a certain identifying power which we have lost now.  We
@@ -405,36 +358,12 @@ confidence intervals of the estimates any more.
 However, we can improve the identification if the selection process
 has a lot of explanatory power.  Change the support of \code{xs} from
 $[0,1]$ to $[-5,5]$:
-\begin{Code}
+<<>>=
   xs <- runif(500, -5, 5)
   ys <- xs + eps[,1] > 0
   yo <- (xs + eps[,2])*(ys > 0)
   print(summary(selection(ys ~ xs, yo ~ xs)))
-  --------------------------------------------
-  Tobit 2 selection model/Maximum Likelihood estimation
-  Newton-Raphson maximisation, 3 iterations
-  Return code 1: gradient close to zero. May be a solution
-  Log-Likelihood: -431.7964 
-  500 observations (244 censored and 256 observed) and 6 free parameters (df = 494)
-
-  Probit selection equation:
-  Estimate Std. error t value Pr(> t)    
-  (Intercept)  0.16107    0.11254  1.4312  0.1524    
-  xs           1.04419    0.10464  9.9790  <2e-16 ***
-
-  OLS equation:
-  Estimate Std. error t value Pr(> t)    
-  (Intercept) -0.145156   0.135833 -1.0686  0.2852    
-  xs           1.043117   0.045938 22.7072  <2e-16 ***
-
-  Error terms data:
-  Estimate Std. error t value   Pr(> t)    
-  sigma  1.007358   0.046933 21.4640 < 2.2e-16 ***
-  rho   -0.730630   0.112471 -6.4962  8.24e-11 ***
-  ---
-  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-  --------------------------------------------
-\end{Code}
+@ 
 Now all the parameters are precisely estimated, even more precisely as
 in the case of exclusion restriction.  The reason is simple: the
 probability that $Y^O$ is observable, given $x^S$, is $\Pr(X^S + E^O >
@@ -450,7 +379,9 @@ between $x$ and $\lambda(\cdot)$.
 
 \begin{figure}[tb]
   \centering
-  \includegraphics[width=\linewidth]{pnorm.pdf}
+<<fig=TRUE,height=4,echo=FALSE>>=
+curve(pnorm, -5, 5, ylab=expression(1 - Phi(-x^S)), xlab=expression(x^S))
+@ 
   \caption{Probability that $y^O$ is observable depending on the value
     of $x^S$ (given the standard normal disturbances).}
   \label{fig:pnorm}
@@ -466,7 +397,6 @@ in wide variety of contexts, e.g. in treatment effect or schooling
 choice analysis.  The problem can be written as
 \begin{align}
   y_i^{S*} &= \beta^S x_i^S + \varepsilon_i^S
-  \label{eq:probit*}
   \\
   y_i^{O1*} &= \beta^{O1} x_i^O + \varepsilon_i^{O1}
   \\
@@ -478,7 +408,6 @@ We observe
   &= 
   \begin{cases}
     0 & \quad \text{if } y_i^{S*} < 0
-    \label{eq:probit}
     \\
     1 & \quad \text{otherwise}
   \end{cases}
@@ -519,7 +448,7 @@ corresponding outcome eqution ($\varepsilon^{O1}$ and
 $\varepsilon^{O2}$).  
 
 We create a simple switching regression problem:
-\begin{Code}
+<<>>=
   vc <- diag(3)
   vc[lower.tri(vc)] <- c(0.9, 0.5, 0.1)
   vc[upper.tri(vc)] <- vc[lower.tri(vc)]
@@ -530,7 +459,7 @@ We create a simple switching regression problem:
   yo1 <- xo1 + eps[,2]
   xo2 <- runif(500)
   yo2 <- xo2 + eps[,3]
-\end{Code}
+@ 
 We generate a 3-dimensional disturbance vector by \code{rmvnorm}.  We
 set the correlation between $\varepsilon^S$ and $\varepsilon^{O1}$ to
 be 0.9 and between $\varepsilon^S$ and $\varepsilon^{O2}$ to 0.5.  The
@@ -540,173 +469,57 @@ create three independent explanatory variables (\code{xs}, \code{xo1}
 and \code{xo2}, and hence exclusion restriction is fulfilled).  Note
 that we don not have to remove the unobserved values from outcome
 vectors, those are simply ignored.  The results look as follows:
-\begin{Code}
+<<>>=
   summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2)))
-  --------------------------------------------
-  Maximum Likelihood estimation
-  Newton-Raphson maximisation, 10 iterations
-  Return code 1: gradient close to zero. May be a solution
-  Log-Likelihood: -914.8608 
-  10  free parameters
-  Estimates:
-  Estimate Std. error t value   Pr(> t)    
-  (Intercept)    -0.0996681  0.1064597 -0.9362    0.3492    
-  xs              1.1998507  0.1830628  6.5543 5.590e-11 ***
-  XO1(Intercept) -0.0023541  0.1759002 -0.0134    0.9893    
-  XO1xo1          0.9962613  0.1613625  6.1741 6.656e-10 ***
-  sigma1          0.9682766  0.1029538  9.4050 < 2.2e-16 ***
-  rho1            0.9198042  0.0463521 19.8439 < 2.2e-16 ***
-  XO2(Intercept)  0.1582970  0.1996373  0.7929    0.4278    
-  XO2xo2          1.0700911  0.1851863  5.7785 7.539e-09 ***
-  sigma2          0.9772406  0.0402416 24.2843 < 2.2e-16 ***
-  rho2            0.0897737  0.3626054  0.2476    0.8045    
-  ---
-  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-  --------------------------------------------
-\end{Code}
+@ 
 We can see, that the parameters are fairly well estimated.  All the
 estimates are close to the true values.
 
 Next, take an example of functional form misspecification.  We create
 the disturbances as 3-variate $\chi_1^2$ random variables (we subtract
 1 in order to get the mean zero disturbances):
-\begin{Code}
-  eps <- rmvnorm(1000, rep(0, 3), vc)
-  eps <- eps^2 - 1
-  xs <- runif(1000, -1, 0)
-  ys <- xs + eps[,1] > 0
-  xo1 <- runif(1000)
-  yo1 <- xo1 + eps[,2]
-  xo2 <- runif(1000)
-  yo2 <- xo2 + eps[,3]
-  summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2)))
-\end{Code}
+<<>>=  
+set.seed(5)
+eps <- rmvnorm(1000, rep(0, 3), vc)
+eps <- eps^2 - 1
+xs <- runif(1000, -1, 0)
+ys <- xs + eps[,1] > 0
+xo1 <- runif(1000)
+yo1 <- xo1 + eps[,2]
+xo2 <- runif(1000)
+yo2 <- xo2 + eps[,3]
+@ 
 Note that we still have exclusion restriction.  The results may look
 something like the following:
-\begin{Code}
-  --------------------------------------------
-  Tobit 5 selection model/Maximum Likelihood estimation
-  Newton-Raphson maximisation, 6 iterations
-  Return code 2: successive function values within tolerance limit.
-  May be a solution
-  Log-Likelihood: -1936.482 
-  1000 observations (630 selection 1 and 370 selection 2) and 10 free parameters (df = 990)
-
-  Probit selection equation:
-  Estimate Std. error t value   Pr(> t)    
-  (Intercept) -0.371496   0.043297 -8.5801 < 2.2e-16 ***
-  xs           1.006582   0.075731 13.2915 < 2.2e-16 ***
-
-  outcome equation 1:
-  Estimate Std. error t value   Pr(> t)    
-  XO1(Intercept) -0.448971   0.057011 -7.8752 3.401e-15 ***
-  XO1xo1          1.081742   0.089731 12.0554 < 2.2e-16 ***
-
-  outcome equation 2:
-  Estimate Std. error t value Pr(> t)  
-  XO2(Intercept)  0.19247    0.35055  0.5491 0.58297  
-  XO2xo2          0.77696    0.32582  2.3846 0.01710 *
-
-  Error terms data:
-  Estimate Std. error t value   Pr(> t)    
-  sigma1 0.680366   0.021709 31.3401 < 2.2e-16 ***
-  sigma2 1.785611   0.067001 26.6503 < 2.2e-16 ***
-  rho1   0.367688   0.072069  5.1019 3.363e-07 ***
-  rho2   0.079379   0.176667  0.4493    0.6532    
-  ---
-  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-  --------------------------------------------
-\end{Code}
+<<>>=
+summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2)))
+@ 
 Now we can see a substantial bias -- all the intercepts are
 statistically significant, although the true values are zero.  The
 model has serious convergence problems, often it does not converge at
-all.
+all (this is why the example above uses \code{set.seed(5)}).
 
-Last, repeat the previous example without the exclusion restriction:
-\begin{Code}
-  xs <- runif(N, -1, 1)
+Last, we repeat the previous example without the exclusion
+restriction:
+<<code:t5chi_woER>>=
+set.seed(6)
+xs <- runif(1000, -1, 1)
   ys <- xs + eps[,1] > 0
   yo1 <- xs + eps[,2]
   yo2 <- xs + eps[,3]
-\end{Code}
+@ 
 Now, in most cases the model does not converge.  However, even if it
 does, the results may be seriously biased:
-\begin{Code}
-  summary(selection(ys~xs, list(yo1 ~ xs, yo2 ~ xs))
-  --------------------------------------------
-  Tobit 5 selection model/Maximum Likelihood estimation
-  Newton-Raphson maximisation, 16 iterations
-  Return code 4: Iteration limit exceeded.
-  Log-Likelihood: -3846.808 
-  2000 observations (1268 selection 1 and 732 selection 2) and 10 free parameters (df = 1990)
-
-  Probit selection equation:
-  Estimate Std. error t value   Pr(> t)    
-  (Intercept) -0.372690   0.029937 -12.449 < 2.2e-16 ***
-  xs           0.791920   0.053402  14.829 < 2.2e-16 ***
-
-  outcome equation 1:
-  Estimate Std. error t value   Pr(> t)    
-  XO1(Intercept) -0.519895   0.048183 -10.790 < 2.2e-16 ***
-  XO1xo1          0.857694   0.044153  19.425 < 2.2e-16 ***
-
-  outcome equation 2:
-  Estimate Std. error t value Pr(> t)  
-  XO2(Intercept)  0.46813    0.61645  0.7594 0.44762  
-  XO2xo2          0.75279    0.33547  2.2440 0.02483 *
-
-  Error terms data:
-  Estimate Std. error t value Pr(> t)    
-  sigma1  0.6171979  0.0136160 45.3289  <2e-16 ***
-  sigma2  1.8031690  0.0471536 38.2403  <2e-16 ***
-  rho1    0.1490846  0.1194592  1.2480  0.2120    
-  rho2   -0.0041608  0.3181243 -0.0131  0.9896    
-  ---
-  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-  --------------------------------------------
-\end{Code}
+<<>>=
+summary(selection(ys~xs, list(yo1 ~ xs, yo2 ~ xs), iterlim=50))
+@ 
 Note that first outcome parameters have low standard errors, but a
 serious bias.  It is instructive to estimate the same model as a two
 independent OLS equations:
-\begin{Code}
+<<>>=
   print(summary(lm(yo1~xs, subset=ys==0)))
-  Call:
-  lm(formula = yo1 ~ xs, subset = ys == 0)
-
-  Residuals:
-  Min      1Q  Median      3Q     Max 
-  -0.6651 -0.3922 -0.2057  0.1749  4.1320 
-
-  Coefficients:
-  Estimate Std. Error t value Pr(>|t|)    
-  (Intercept) -0.55711    0.01786  -31.19   <2e-16 ***
-  xs           0.77348    0.03256   23.76   <2e-16 ***
-  ---
-  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-
-  Residual standard error: 0.6141 on 1243 degrees of freedom
-  Multiple R-Squared: 0.3123,	Adjusted R-squared: 0.3117 
-  F-statistic: 564.4 on 1 and 1243 DF,  p-value: < 2.2e-16 
-
   print(summary(lm(yo2~xs, subset=ys==1)))
-  Call:
-  lm(formula = yo2 ~ xs, subset = ys == 1)
-
-  Residuals:
-  Min      1Q  Median      3Q     Max 
-  -1.9699 -1.1357 -0.6511  0.5484 11.0663 
-
-  Coefficients:
-  Estimate Std. Error t value Pr(>|t|)    
-  (Intercept)  0.89031    0.07053  12.622   <2e-16 ***
-  xs          -0.15977    0.11881  -1.345    0.179    
-  ---
-  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-
-  Residual standard error: 1.74 on 753 degrees of freedom
-  Multiple R-Squared: 0.002396,	Adjusted R-squared: 0.001071 
-  F-statistic: 1.808 on 1 and 753 DF,  p-value: 0.1791 
-\end{Code}
+@ 
 One can see, that in case 2 OLS cannot even get the correct sign of
 the parameter.  
 
@@ -798,7 +611,7 @@ while the two-step method works:
 
 
 
-\input{selection_conclusion}
+\section{Conclusions}
 
 %% Note: If there is markup in \(sub)section, then it has to be escape as above.
 
