@@ -163,26 +163,73 @@ e1 <- function(N=200000, alpha=0.6) {
    cat("t: E[X^2|Y^2 <", alpha, "]=", t, "\n")
 }
 
-plotIVM <- function(N=100000) {
+plotIVM <- function(N=1000, res=50,
+                    hats1=0.6166, hatr1=0.1459, hats2=1.8922, hatr2=-0.0063)
+{
    EUlower <- function(alpha) {
-      alpha <- sqrt(-alpha)
+      alpha[alpha >= 1] <- NA
+      alpha <- sqrt(-alpha + 1)
       EUalpha <- ss^2 - 2*ss*alpha*dnorm(alpha/ss)/(1 - 2*pnorm(-alpha/ss))
-      s1s^2/ss^2*EUalpha + s1s^2 - s1s^2/ss^2
+      s1s^2/ss^2*EUalpha + s1^2 - s1s^2/ss^2 - 1
+   }
+   EUupper <- function(alpha) {
+      alpha[alpha >= 1] <- 1
+      alpha <- sqrt(-alpha + 1)
+      EUalpha <- (ss*alpha*dnorm(alpha/ss) + ss^2*(1 - pnorm(alpha/ss)))/(1 - pnorm(alpha/ss))
+      s2s^2/ss^2*EUalpha + s2^2 - s2s^2/ss^2 - 1
+   }
+   Nlower <- function(alpha) {
+      alpha <- -alpha
+      -Ns1s*dnorm(alpha)/pnorm(alpha)
+   }
+   Nupper <- function(alpha) {
+      alpha <- -alpha
+      Ns2s*dnorm(-alpha)/pnorm(-alpha)
    }
    library(mvtnorm)
    vc <- diag(3)
    vc[lower.tri(vc)] <- c(0.9, 0.5, 0.1)
    vc[upper.tri(vc)] <- vc[lower.tri(vc)]
    ss <- sqrt(vc[1,1])
-   s1s <- sqrt(vc[2,2])
-   s12 <- vc[1,2]
+   s1 <- sqrt(vc[2,2])
+   s2 <- sqrt(vc[3,3])
+   s1s <- vc[1,2]
+   s2s <- vc[1,3]
+   Ns1s <- hats1*hatr1
+   Ns2s <- hats2*hatr2
    u <- rmvnorm(N, rep(0, 3), vc)
-   eps <- u^2
+   eps <- u^2 - 1
+   hatb1O <- coef(tmp)[c("XO1(Intercept)", "XO1xo1")]
+   hatb2O <- coef(tmp)[c("XO2(Intercept)", "XO2xo2")]
    es <- eps[,1]
    e1 <- eps[,2]
    e2 <- eps[,3]
-   curve(EUlower, -5, 0)
-   for(alpha in seq(-5, 0, length=50)) {
-      points(alpha, mean(e1[es < -alpha]))
+   xs <- seq(-5, 5, length=res)
+   ey <- cbind(EUlower(xs), EUupper(xs),
+#               Nupper(cbind(1, xs)%*%hatb1O), Nlower(cbind(1,xs)%*%hatb2O),
+               -s1s*dnorm(-xs)/pnorm(-xs), s2s*dnorm(xs)/pnorm(xs))
+   mcy <- matrix(0, length(xs), 2)
+   for(i in seq(length=nrow(mcy))) {
+      mcy[i,1] <- mean(e1[es < -xs[i]])
+      mcy[i,2] <- mean(e2[es > -xs[i]])
    }
+   matplot(xs, ey, type="l", lty=c(1,1,2,2,3,3), col=1,
+           xlab=expression(x^S), ylab="",
+           ylim=c(-1.5,2.5))
+   matpoints(xs, mcy, pch=c(1,2), cex=0.5, col=1)
+   axis(4)
+   legend(0, 2.4,
+          legend=c(expression(
+              paste("correct  ")*E*group("[", Epsilon^{O1}*group("|", Epsilon^S < -x^S, ""), "]")*
+              paste("  (lower curve)"),
+              phantom(paste("correct  "))*E*group("[", Epsilon^{O1}*group("|", Epsilon^S > -x^S, ""), "]")*
+              paste("  (upper)"),
+              E*group("[", Epsilon^{O1}*group("|", Epsilon^S < -bold(beta)^S*minute*bold(x)^S, ""), "]")*
+              paste("  assumed normal (lower curve)"),
+              E*group("[", Epsilon^{O1}*group("|", Epsilon^S > -bold(beta)^S*minute*bold(x)^S, ""), "]")*
+              phantom(paste("  assumed normal "))*paste("  (upper)")
+              )
+                   ),
+          bty="n", lty=c(1,1,2,2), col=1
+          )
 }

@@ -511,17 +511,101 @@ xs <- runif(1000, -1, 1)
 Now, in most cases the model does not converge.  However, even if it
 does, the results may be seriously biased:
 <<>>=
-summary(selection(ys~xs, list(yo1 ~ xs, yo2 ~ xs), iterlim=50))
+summary(tmp <- selection(ys~xs, list(yo1 ~ xs, yo2 ~ xs), iterlim=50))
 @ 
+%
 Note that first outcome parameters have low standard errors, but a
-serious bias.  It is instructive to estimate the same model as a two
-independent OLS equations:
+serious bias.  We present the graph of the correct control function,
+and one where we assume the normal distribution of the disturbance
+terms (Figure~\ref{fig:cfunctions}).  We use the estimated parameters
+for constructing the latter, however, we scale the normal control
+functions (inverse Mill's rations) to a rougly similar scale, as the
+correct ones.
+\begin{figure}[tb]
+  \centering
+<<fig=TRUE,height=4,echo=FALSE>>=
+   EUlower <- function(alpha) {
+      alpha[alpha >= 1] <- NA
+      alpha <- sqrt(-alpha + 1)
+      EUalpha <- ss^2 - 2*ss*alpha*dnorm(alpha/ss)/(1 - 2*pnorm(-alpha/ss))
+      s1s^2/ss^2*EUalpha + s1^2 - s1s^2/ss^2 - 1
+   }
+   EUupper <- function(alpha) {
+      alpha[alpha >= 1] <- 1
+      alpha <- sqrt(-alpha + 1)
+      EUalpha <- (ss*alpha*dnorm(alpha/ss) + ss^2*(1 - pnorm(alpha/ss)))/(1 - pnorm(alpha/ss))
+      s2s^2/ss^2*EUalpha + s2^2 - s2s^2/ss^2 - 1
+   }
+   Nlower <- function(alpha) {
+      alpha <- -alpha
+      -Ns1s*dnorm(alpha)/pnorm(alpha)
+   }
+   Nupper <- function(alpha) {
+      alpha <- -alpha
+      Ns2s*dnorm(-alpha)/pnorm(-alpha)
+   }
+   ss <- sqrt(vc[1,1])
+   s1 <- sqrt(vc[2,2])
+   s2 <- sqrt(vc[3,3])
+   s1s <- vc[1,2]
+   s2s <- vc[1,3]
+   Ns1s <- coef(tmp)["sigma1"]*coef(tmp)["rho1"]
+   Ns2s <- coef(tmp)["sigma2"]*coef(tmp)["rho2"]
+hatb1O <- coef(tmp)[c("XO1(Intercept)", "XO1xs")]
+hatb2O <- coef(tmp)[c("XO2(Intercept)", "XO2xs")]
+   es <- eps[,1]
+   e1 <- eps[,2]
+   e2 <- eps[,3]
+   ex <- seq(-5, 5, length=200)
+ey <- cbind(EUlower(ex), EUupper(ex),
+            -31*Nupper(cbind(1, ex)%*%hatb1O), 5.5*Nlower(cbind(1,ex)%*%hatb2O)
+###         -s1s*dnorm(-ex)/pnorm(-ex), s2s*dnorm(ex)/pnorm(ex)
+            )
+   mcy <- matrix(0, length(ex), 2)
+   for(i in seq(length=nrow(mcy))) {
+      mcy[i,1] <- mean(e1[es < -ex[i]])
+      mcy[i,2] <- mean(e2[es > -ex[i]])
+   }
+par(cex=0.8, mar=c(3,3,0,0) + 0.1, mgp=c(2,1,0))
+   matplot(ex, ey, type="l", lty=c(1,1,2,2,3,3), col=1,
+           xlab=expression(x^S), ylab="",
+           ylim=c(-1.5,2.5))
+abline(v=-1,lty=3)
+abline(v=1, lty=3)
+#   matpoints(ex, mcy, pch=c(1,2), cex=0.5, col=1)
+   axis(4)
+text(-3.5, 0.8, 
+     expression(paste("correct  ")*E*group("[", Epsilon^{O1}*group("|", Epsilon^S > -x^S, ""), "]")))
+text(-3.6, -0.4,
+     expression(paste("correct  ")*E*group("[", Epsilon^{O1}*group("|", Epsilon^S < -x^S, ""), "]")))
+text(-0.5, 1.5,
+     expression(E*group("[", Epsilon^{O1}*group("|", 
+         Epsilon^S > -bold(beta)^S*minute*bold(x)^S, ""), "]")*
+         paste("  assumed normal")))
+text(2.5, -1.4,
+     expression(E*group("[", Epsilon^{O1}*group("|", 
+         Epsilon^S < -bold(beta)^S*minute*bold(x)^S, ""), "]")*
+         paste("  assumed normal")))
+@ 
+  \caption{Correct, and assumed normal, control functions.  Vertical
+    lines denote the support of $x^S$ in the MC experiment.}
+  \label{fig:cfunctions}
+\end{figure}
+One can see, that the functions differ substantially in the relevant
+range of $x^S \in [-1, 1]$.  In particular, the upper mean rises
+substantially faster close to $x^S = 1$ than the normal
+approximation.  The correct lower mean is decreasing slightly faster
+than the approximation.
+
+It is instructive to estimate the same model as a two independent OLS
+equations:
 <<>>=
   print(summary(lm(yo1~xs, subset=ys==0)))
   print(summary(lm(yo2~xs, subset=ys==1)))
 @ 
-One can see, that in case 2 OLS cannot even get the correct sign of
-the parameter.  
+%
+One can see, that OLS estimates are very close to the ML ones because
+none of the $\varrho$-s is statistically significant.
 
 \section{Addtional notes}
 \label{sec:additional}
