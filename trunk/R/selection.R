@@ -129,13 +129,14 @@ selection <- function(selection, outcome,
       YS <- YS[!badRow]
       XO <- XO[!badRow,]
       YO <- YO[!badRow]
+      NXS <- ncol(XS)
+      NXO <- ncol(XO)
+      igamma <- 1:NXS
+      ibeta <- max(igamma) + seq(length=NXO)
+      isigma <- max(ibeta) + 1
+      irho <- max(isigma) + 1
+      twoStep <- NULL
       if(is.null(start)) {
-         NXS <- ncol(XS)
-         NXO <- ncol(XO)
-         igamma <- 1:NXS
-         ibeta <- max(igamma) + seq(length=NXO)
-         isigma <- max(ibeta) + 1
-         irho <- max(isigma) + 1
          twoStep <- heckit(selection, outcome, data=data)
          coefs <- coef(twoStep, part="full")
          start[igamma] <- coefs[twoStep$param$index$betaS]
