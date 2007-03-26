@@ -91,6 +91,18 @@ tstChiOLS <- function(N=500, ...) {
    print(summary(lm(yo2~xs, subset=ys==1)))
 }
 
+tstMroz <- function() {
+   library(micEcon)
+   data(Mroz87)
+   start <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0)
+   a <- selection(lfp ~ kids5 + poly(age, 2) + educ + log(huswage) + mtr + fatheduc + city + unem,
+                  log(hours) ~ kids5 + poly(age, 2) + educ + wage + mtr + city + poly(exper, 2),
+                  data=Mroz87, 
+                  start=start)
+   print(summary(a))
+   invisible(a)
+}
+
 tstOne <- function(N=1000, print.level=0) {
    x <- runif(N, -2, 2)
    e <- rnorm(N)
