@@ -20,6 +20,7 @@ selection <- function(selection, outcome,
    ## ys, xs, yo, xo, mfs, mfo: whether to return the response, model matrix or
    ##              the model frame of outcome and selection equation(s)
    ## First the consistency checks
+   ## ...          additional arguments for tobit2fit and tobit5fit
    type <- 0
    if( class( selection ) != "formula" ) {
       stop( "argument 'selection' must be a formula" )
@@ -98,7 +99,10 @@ selection <- function(selection, outcome,
    YS <- model.response(mfS, "numeric")
    ## check for NA-s.  Because we have to find NA-s in several frames, we cannot use the standard na.
    ## functions here.  Find bad rows and remove them later.
-   badRow <- apply(mfS, 1, function(v) any(is.na(v)))
+   ## We check XS and YS separately, because mfS may be a data frame with complex structure (e.g.
+   ## including matrices)
+   badRow <- is.na(YS)
+   badRow <- badRow | apply(XS, 1, function(v) any(is.na(v)))
    ## YO (outcome equation)
    if(type == 2) {
       oArg <- match("outcome", names(mf), 0)
@@ -120,7 +124,8 @@ selection <- function(selection, outcome,
       mtO <- attr(mfO, "terms")
       XO <- model.matrix(mtO, mfO)
       YO <- model.response(mfO, "numeric")
-      badRow <- badRow | (apply(mfO, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==1))
+      badRow <- badRow | (is.na(YO) & (!is.na(YS) & YS == 1))
+      badRow <- badRow | (apply(XO, 1, function(v) any(is.na(v))) & (!is.na(YS) & YS == 1))
                                         # rows in outcome, which contain NA and are observable -> bad too
       if(print.level > 0) {
          cat(sum(badRow), "invalid observations\n")
@@ -176,10 +181,11 @@ selection <- function(selection, outcome,
                                         # eval it as model frame
       names(mf1)[2] <- "formula"
       mf1 <- eval(mf1, parent.frame())
-      badRow <- badRow | (apply(mf1, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==0))
       mtO1 <- attr(mf1, "terms")
       XO1 <- model.matrix(mtO1, mf1)
       YO1 <- model.response(mf1, "numeric")
+      badRow <- badRow | (is.na(YO1) & (!is.na(YS) & YS == 0))
+      badRow <- badRow | (apply(XO1, 1, function(v) any(is.na(v))) & (!is.na(YS) & YS == 0))
       ## repeat all the stuff with second equation
       mf[[oArg]] <- formula2
       mf2 <- mf[c(1, m)]
@@ -189,10 +195,11 @@ selection <- function(selection, outcome,
                                         # eval it as model frame
       names(mf2)[2] <- "formula"
       mf2 <- eval(mf2, parent.frame())
-      badRow <- badRow | (apply(mf2, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==1))
       mtO2 <- attr(mf2, "terms")
       XO2 <- model.matrix(mtO2, mf2)
       YO2 <- model.response(mf2, "numeric")
+      badRow <- badRow | (is.na(YO2) & (!is.na(YS) & YS == 1))
+      badRow <- badRow | (apply(XO2, 1, function(v) any(is.na(v))) & (!is.na(YS) & YS == 1))
       ## indices in for the parameter vector.  These are returned in order to provide the user a way
       ## to extract certain components from the coefficients
       NXS <- ncol(XS)

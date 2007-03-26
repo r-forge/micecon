@@ -1,7 +1,7 @@
 heckit <- function( selection, formula,
                    data=sys.frame(sys.parent()),
                    inst = NULL,
-                   print.level = 0 ) {
+                   print.level = 0) {
    # What is the role of na.action here?  We cannot use na.omit -- we must not omit the observation
    # where outcome is not observed.  na-s cannot be passed either.
    # However, we can (and should?) omit the na-s in explanatory and probit outcomes.  This needs
@@ -40,14 +40,15 @@ heckit <- function( selection, formula,
                                         # model.frame requires the parameter to
                                         # be 'formula'
    mfS <- eval(mfS, parent.frame())
-   badRowS <- apply(mfS, 1, function(v) any(is.na(v)))
-                                        # check for NA-s.  Because we have to find NA-s in several
-                                        # frames, we cannot use the standard na.* functions here.
-                                        # Find bad rows and remove them later.
    mtS <- attr(mfS, "terms")
    XS <- model.matrix(mtS, mfS)
    NXS <- ncol(XS)
    YS <- factor(model.response(mfS, "numeric"))
+   badRow <- is.na(YS)
+   badRow <- badRow | apply(XS, 1, function(v) any(is.na(v)))
+                                        # check for NA-s.  Because we have to find NA-s in several
+                                        # frames, we cannot use the standard na.* functions here.
+                                        # Find bad rows and remove them later.
    probitLevels <- levels( as.factor( YS ) )
    if( length( probitLevels ) != 2 ) {
       stop( "the left hand side of 'selection' has to contain",
@@ -73,8 +74,8 @@ heckit <- function( selection, formula,
    NXO <- ncol(XO)
    YO <- model.response(mfO, "numeric")
    ## Remove NA observations
-   badRowO <- apply(mfO, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==1)
-   badRow <- badRowS | badRowO
+   badRow <- badRow | (is.na(YO) & (!is.na(YS) & YS == 1))
+   badRow <- badRow | (apply(XO, 1, function(v) any(is.na(v))) & (!is.na(YS) & YS == 1))
                                         # rows in outcome, which contain NA and are observable -> bad too
    if(print.level > 0) {
       cat(sum(badRow), "invalid observations\n")
@@ -90,11 +91,9 @@ heckit <- function( selection, formula,
    if( print.level > 0 ) {
       cat ( "\nEstimating 1st step Probit model . . ." )
    }
-   pdf <- data.frame(model.frame(selection, data=data, na.action=na.pass), badRow)
-                                        # construct a temporary data frame for data and 'badRow'
-   result$probit <- probit(selection, data=pdf, x=TRUE, print.level=print.level - 1,
-                           subset=!badRow)
-   rm(pdf)
+   result$probit <- probit(YS ~ XS - 1, x=TRUE, print.level=print.level - 1,
+                           subset=!badRow, iterlim=50)
+                                        # a large iterlim may help with weakly identified models
    if( print.level > 0 ) {
        cat( " OK\n" )
    }
@@ -114,7 +113,8 @@ heckit <- function( selection, formula,
       resid <- residuals( result$lm )
       step2coef <- coef( result$lm )
       names(step2coef) <- c(colnames(XO), "invMillsRatio")
-      if( print.level > 0 ) cat( " OK\n" )
+      if(print.level > 0)
+          cat( " OK\n" )
    }
    else {
       data$invMillsRatio <- imrData$IMR1
@@ -162,7 +162,8 @@ heckit <- function( selection, formula,
    vc <- matrix(0, NParam, NParam)
    colnames(vc) <- row.names(vc) <- names(coefs)
    vc[] <- NA
-   vc[iBetaS,iBetaS] <- vcov(result$probit)
+   if(!is.null(vcov(result$probit)))
+       vc[iBetaS,iBetaS] <- vcov(result$probit)
    vc[c(iBetaO,iMills), c(iBetaO,iMills)] <- heckitVcov( xMat,
                                                         model.matrix( result$probit )[ probitDummy, ],
                                                         vcov( result$probit ),
