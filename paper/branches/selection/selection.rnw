@@ -38,12 +38,18 @@
 
 %% an abstract and keywords
 \Abstract{ 
-  We discuss the Heckman-style sample selection models and
-  argue that although they are unreliable in many cases, they still
-  serve as excellent teaching tools.  We describe the implementation
-  of these models in package \pkg{micEcon} for \proglang{R}, and
-  illustrate the use of the package by showing Heckman selection
-  models' strong and weak sides on several Monte Carlo examples.  }
+  % 
+  This paper describes the implementation of Heckman-type sample
+  selection models in \proglang{R}.  We discuss the sample selection
+  problem, the Heckman solution and argue that although the modern
+  econometrics has superior non- and semiparametric estimation methods
+  in it's toolbox, the Heckman models still serve as excellent
+  teaching tools.  We describe the implementation of these models in
+  package \pkg{micEcon} and illustrate the use of the package by
+  showing Heckman selection models' strong and weak sides on several
+  Monte Carlo and real data examples.
+  %
+}
 
 \Keywords{sample-selection models, Heckman selection models, econometrics, \proglang{R}}
 \Plainkeywords{sample-selection models, Heckman selection models, econometrics, R}
@@ -93,41 +99,49 @@
 
 Social scientists are often interested in causal effects -- what is
 the impact of a new drug, a certain type of school or being born as a
-twin.  Many of these cases are under our (partial) control.  In most
-cases, we can decide ourselves, whether we take the drug or which
-school we attend.  We cannot control whether we are twins, but neither
-can the reasearcher -- the twins may tend to be born in a different
-types of families.  These cases, usually refered to as
-\emph{self-selection} and \emph{sample-selection}, are similar from
-the statistical point of view.  Whatever is the sampling mechanism,
-from an initial ``random'' sample we extract a sample of interest,
-which is not any more ``random'' (see \citet[p
+twin.  Many of these cases are not under researcher's control.  In
+most cases, the subjects can decide themselves, whether they take the
+drug or which school they attend.  They cannot control whether they
+are twins, but neither can the reasearcher -- the twins may tend to be
+born in a different types of families than singles.  All these cases
+are similar from the statistical point of view.  Whatever is the
+sampling mechanism, from an initial ``random'' sample we extract a
+sample of interest, which is not any more ``random'' (see \citet[p
 1937]{heckman+macurdy1986} for a discussion).
 
 This problem -- people who are ``treated'' are different than the rest
 of the population -- is usually refered to as the \emph{sample
-  selection} problem.  We cannot estimate the causal effect, unless we
-solve the selection problem.  Otherwise, we never know which part of
-the outcome is related to the fact that different people were selected
-to the treatment and control groups, and which part is due to the
-causal relationship.
+  selection} or \emph{self-selection} problem.  We cannot estimate the
+causal effect, unless we solve the selection problem.  Otherwise, we
+never know which part of the observable outcome is related to the
+causal relationship and which part is due to the fact that different
+people were selected to the treatment and control groups.
 
 
 \subsection{Possible solutions}
 
-All the solutions involve using additional information.  There are
-several possibilites which may or may not be feasible or useful for
-any particular case.
+Solving the sample selection problems requires additional information.
+The information can be in many possible forms which may or may not be
+feasible or useful for any particular case.  Here we list a few
+popular choices:
 
 \begin{itemize}
-\item Randomisation: experiment, where the participants \emph{do not}
-  have control over their treatment status.  Although easy to analyse,
-  this way is seldom feasible for pracitcal and ethical reasons.
-\item Instruments (exclusion restrictions): more-or-less
-  randomisation.  Just not explicit, based on background, institutions
-  etc.
-\item Information about the functional form.  For instance,
-  assumptions about the distribution of the error terms.
+\item Random experiment, the situation, where the participants
+  \emph{do not} have control over their status while the researcher
+  has.  Randomisation is in many cases the best of the possible
+  methods as it is easy to analyse and understand.  However, this
+  method is seldom feasible for pracitcal and ethical reasons.  The
+  experimental environment may add additional interference which
+  complicate the analysis.
+\item Instruments (exclusion restrictions) are in many ways similar to
+  randomisation.  These are variables which researcher can observe,
+  and which determine the treatment status but not the outcome.
+  Unfortunately, these are in most cases contradicting requirements in
+  the real life, and only seldom we have instruments of reasonable
+  quality.
+\item Information about the functional form of the selection or
+  outcome processes.  For instance, assumptions about the distribution
+  of the error terms.  These assumptions may be easy to investigate 
 \item Timing information.  In some cases, relative timing of the
   events may give us information, necessary for identification of the
   causal effect.
@@ -202,15 +216,15 @@ distribution:
 \end{equation}
 The observed dependence between $y^O$ and $x^O$ can now be written as
 \begin{equation}
-  \Exp [y^O|\vec{x}_i^O, y_i^S = 1] =
+  \E [y^O|\vec{x}_i^O, y_i^S = 1] =
   \beta^O \vec{x}_i^O 
   +
-  \Exp [ \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ].
+  \E [ \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ].
 \end{equation}
 Estimating the equation above by OLS gives in general biased results,
-as $\Exp [ \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ] \not
+as $\E [ \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ] \not
 = 0$, unless $\varrho = 0$.  However, we may employ the following
-simple strategy: we can find the expectations $\Exp [
+simple strategy: we can find the expectations $\E [
 \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ]$ by estimating
 the selection equations \eqref{eq:probit*} and \eqref{eq:probit} by
 probit, and thereafter insert these expectations into the OLS equation
@@ -220,7 +234,7 @@ as additional covariates \citep[see][for details]{greene2002}:
   =
   \beta^O \vec{x}_i^O 
   + 
-  \Exp [ \varepsilon^O|\varepsilon^S \ge
+  \E [ \varepsilon^O|\varepsilon^S \ge
   -\beta^S \vec{x}_i^S ]
   +
   \eta_i
@@ -251,7 +265,7 @@ may assume that we have two outcome variables, one of which is
 observable, depending on the selection process (switching regression
 or tobit-5 model).  This model may be relevant for treatment effect
 analysis.  Another types of generalisations include less restrictive
-parametric forms for the conditional mean of the residual term $\Exp [
+parametric forms for the conditional mean of the residual term $\E [
 \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ]$ (see \citet[p
 1938]{heckman+macurdy1986} for references and
 \citet{klaauw+koning2003} for an application).
@@ -369,7 +383,7 @@ in the case of exclusion restriction.  The reason is simple: the
 probability that $Y^O$ is observable, given $x^S$, is $\Pr(X^S + E^O >
 0) = 1 - \Phi(-x^S)$ as $E^O \sim N(0,1)$.  As one can see from the
 Figure~\ref{fig:pnorm}, selection is not an issue if $x^S > 2$.  In
-that case $\Exp [\varepsilon^O|y_i^S = 1] \approx 0$ and hence the
+that case $\E [\varepsilon^O|y_i^S = 1] \approx 0$ and hence the
 model can be precisely estimated for relatively large values of $x^S$.
 Due to the linearity assumption, the same parameters are valid
 everywhere.  In the former case, the variation in $x^S$ was low and
@@ -499,17 +513,18 @@ statistically significant, although the true values are zero.  The
 model has serious convergence problems, often it does not converge at
 all (this is why the example above uses \code{set.seed(5)}).
 
-Last, we repeat the previous example without the exclusion
-restriction:
+As the last tobit example, we repeat the previous model without the
+exclusion restriction:
 <<code:t5chi_woER>>=
 set.seed(6)
 xs <- runif(1000, -1, 1)
   ys <- xs + eps[,1] > 0
   yo1 <- xs + eps[,2]
   yo2 <- xs + eps[,3]
-@ 
-Now, in most cases the model does not converge.  However, even if it
-does, the results may be seriously biased:
+@
+%
+Now, in most cases the model does not converge.  However, if it does,
+the results may be seriously biased:
 <<>>=
 summary(tmp <- selection(ys~xs, list(yo1 ~ xs, yo2 ~ xs), iterlim=50))
 @ 
@@ -578,11 +593,11 @@ text(-3.5, 0.8,
      expression(paste("correct  ")*E*group("[", Epsilon^{O1}*group("|", Epsilon^S > -x^S, ""), "]")))
 text(-3.6, -0.4,
      expression(paste("correct  ")*E*group("[", Epsilon^{O1}*group("|", Epsilon^S < -x^S, ""), "]")))
-text(-0.5, 1.5,
+text(-0.7, 1.5,
      expression(E*group("[", Epsilon^{O1}*group("|", 
          Epsilon^S > -bold(beta)^S*minute*bold(x)^S, ""), "]")*
          paste("  assumed normal")))
-text(2.5, -1.4,
+text(2.2, -1.4,
      expression(E*group("[", Epsilon^{O1}*group("|", 
          Epsilon^S < -bold(beta)^S*minute*bold(x)^S, ""), "]")*
          paste("  assumed normal")))
@@ -607,99 +622,114 @@ equations:
 One can see, that OLS estimates are very close to the ML ones because
 none of the $\varrho$-s is statistically significant.
 
+
+
+
 \section{Addtional notes}
 \label{sec:additional}
 
+The log-likelihood of the models above is not globally concave.  It
+means, that the model may converge to different estimates (or not
+converge at all), if the initial values are not chosen well enough.
+We illustrate this behaviour on a real individual data.  Consider the
+following example:
+<<init_2step>>=
+data(Mroz87)
+mr <- selection(lfp ~ kids5 + poly(age, 2) + educ + log(huswage) + mtr + fatheduc + city + unem,
+log(hours) ~ kids5 + poly(age, 2) + educ + wage + mtr + city + poly(exper, 2),
+data=Mroz87)
+@ 
+%
+We use a supplied dataset, \code{Mroz87}, used for analysing the
+female labour supply by \citet{mroz1987}.  We model the labour force
+participation (described by dummy \code{lfp}) by presence of young
+children (\code{kids5}), quadratic polynomial in age, education in
+years (\code{educ}), log husbands wage (\code{huswage}), marginal tax
+rate (\code{mtr}), father education (in years, \code{fatheduc}),
+residence in a big city (\code{city}) and the local unemployment rate
+(\code{unem}).  The labour supply equation includes most of the
+variables above (leaving \code{huswage}, \code{fathedu} and
+\code{unem} for exclusion restrictions).  The new explanatory
+variables are woman's wage (\code{wage}) and quadratic polynomial in
+experience (\code{exper}).
+
+The model gives reasonable results:
+<<init_0>>=
+summary(mr)
+@ 
+%
+One may see, that small children in the family, high salary of the
+husband and high marginal tax rate decrease the participation
+probability whie education and residence in a big city increase it.
+The labour supply equation seems a bit less convincing with more
+education and income leading to less hours worked and small kids
+causing women to work more.  The correlation of error terms \code{rho}
+shows a nearly perfect negative correlation between the corresponding
+error terms, which means we estimate essentially a tobit model (see
+\citet{mroz1987} for more discussion).
+
+However, the results are sensitive to the start values:
+<<>>=
+mr <- selection(lfp ~ kids5 + poly(age, 2) + educ + log(huswage) + mtr + fatheduc + city + unem,
+log(hours) ~ kids5 + poly(age, 2) + educ + wage + mtr + city + poly(exper, 2),
+data=Mroz87, start=c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0))
+summary(mr)
+@ 
+%
+(note that you have to supply a positive initial value for the
+variance).  The maximisation routine gets stuck in a local feature and
+cannot find the global maximum.  Here another optimisation algorithm
+might be useful, however, switch of the algorithm is not yet
+implemented.  In far the most cases, the 2-step method, used for
+calculating the inital values, does a good job.
 
 In general, one should prefer \code{method="ml"} instead of
 \code{"2step"}.  However, ML may have problems at the boundary of the
-parameter space.  Consider the following problem: suppose we are
-investigating the dependence of weight on individual characteristic
-$x$.  However, our weight has an upper limit (say, $\bar w$).  Assume
-the linear model and normal errors.  This creates the following
-tobit-problem:
-\begin{align}
-  w_i^* &= \beta_0 + \beta x_i + \varepsilon_i\\
-  w_i &=
+parameter space.  Take a textbook tobit example: 
+\begin{equation}
+  \label{eq:tobit}
+  y_i^* = \vec{\beta}' \vec{x}_i + \varepsilon_i
+  y_i =
   \begin{cases}
-    w_i^* \quad & \text{if } w_i^* < \bar w\\
-    \bar w      & \text{otherwise.}
+    y_i^* \quad & \text{if } y_i^* > 0\\
+    0           & \text{otherwise.}
   \end{cases}
-\end{align}
-The tobit model can be rewritten in the form of a tobit-2 equation
-\begin{align}
-  z_i^* &= \bar w_i - \beta_0 - \beta x_i - \varepsilon_i\\
-  w_i^* &= \beta_0 + \beta x_i + \varepsilon_i\\
-  z_i &=
-  \begin{cases}
-    1 \quad & \text{if } z_i^* > 0\\
-    0       & \text{otherwise}
-  \end{cases}\\
-  w_i &=
-  \begin{cases}
-    w_i^* \quad & \text{if } w_i^* < \bar w\\
-    \bar w      & \text{otherwise,}
-  \end{cases}
-\end{align}
-where one can see, that the correlation of the error terms is $-1$.
-In this case, the ML does not converge:
-\begin{Code}
-  x <- runif(500, -2, 2)
-  e <- rnorm(500)
-  z <- x + e > 0
-  y <- (x - e)*z
-  summary(selection(z ~ x, y ~ x, method="ml"))
-\end{Code}
-will give something like:
-\begin{Code}
-  Tobit 2 selection model/Maximum Likelihood estimation
-  Newton-Raphson maximisation, 1 iterations
-  Return code 3: Last step could not find a value above the current.
-  May be near a solution
-  Log-Likelihood: -984.8554 
-  1000 observations (516 censored and 484 observed) and 6 free parameters (df =994)
-
-  Probit selection equation:
-  Estimate Std. error    t value      Pr(> t)
-  (Intercept) -0.07032504 0.07274238 -0.9667685 3.336598e-01
-  x            0.99332164 0.07956116 12.4850077 9.013464e-36
-
-  OLS equation:
-  Estimate Std. error t value Pr(> t)
-  (Intercept) 0.3922726        NaN     NaN     NaN
-  x           0.7454347        NaN     NaN     NaN
-
-  Error terms data:
-  Estimate Std. error   t value Pr(> t)
-  sigma  1.185191        NaN       NaN     NaN
-  rho   -0.999245 0.01348266 -74.11337       0
-  --------------------------------------------
-  Warning messages:
-  1: Diagonal of variance-covariance matrix not positive!
-  in: summary.maxLik(object, ...) 
-  2: NaNs produced in: sqrt(hdiag) 
-\end{Code}
-while the two-step method works:
-\begin{Code}
-  summary(selection(z ~ x, y ~ x, method="2step"))
-  Estimates:
-  Estimate Std. Error t value  Pr(>|t|)    
-  (Intercept) -0.34297    0.22213  -1.544    0.1232    
-  x            1.17892    0.13976   8.435 3.517e-16 ***
-  ---
-  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-  Multiple R-Squared:0.7437,	Adjusted R-Squared:0.7427
-  Residual correlation: -0.7143789, variance: 0.8260205
-\end{Code}
-
+\end{equation}
+This model can be written as a tobit-2 model where the error term of
+the selection and outcome equation are perfectly correlated.  In this
+case the ML may not converge:
+<<tobit_tobit2>>=
+set.seed(0)
+x <- runif(1000)
+y <- x + rnorm(1000)
+ys <- y > 0
+summary(selection(ys~x, y~x))
+@ 
+%
+However, the 2-step method still works:
+<<>>=
+summary(selection(ys~x, y~x, method="2step"))
+@ 
+%
 
 
 
 \section{Conclusions}
 
-%% Note: If there is markup in \(sub)section, then it has to be escape as above.
+This paper describes the Heckman-type selection models and their
+implementation in \pkg{micEcon} for programmin language \proglang{R}.
+We argue, that although there exist superior estimation methods for
+analysing censored data, these models still serve as useful teaching
+tools as they are easy to implement and understand.
+
+We briefly describe the implementation and usage, and demonstrate the
+virtues and caveats of these models using a number of examples.  Our
+implementation works well for correctly specified cases, in the case
+of severe misspecification a more robust maximisation algorithm might
+be useful.  This is left for the future work.
+
+
 
 \bibliography{selection}
-%\bibliography{/home/suapm095/Documents/Literatur/literatur}
 
 \end{document}
