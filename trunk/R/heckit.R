@@ -91,8 +91,7 @@ heckit <- function( selection, formula,
    if( print.level > 0 ) {
       cat ( "\nEstimating 1st step Probit model . . ." )
    }
-   result$probit <- probit(YS ~ XS - 1, x=TRUE, print.level=print.level - 1,
-                           subset=!badRow, iterlim=50)
+   result$probit <- probit(YS ~ XS - 1, x=TRUE, print.level=print.level - 1, iterlim=30)
                                         # a large iterlim may help with weakly identified models
    if( print.level > 0 ) {
        cat( " OK\n" )

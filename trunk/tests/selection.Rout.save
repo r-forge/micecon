@@ -1,5 +1,5 @@
 
-R version 2.4.1 (2006-12-18)
+R version 2.4.0 (2006-10-03)
 Copyright (C) 2006 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -42,26 +42,36 @@ Loading required package: systemfit
 > a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2))
   > print(summary(a))
 --------------------------------------------
-Maximum Likelihood estimation
+Tobit 5 selection model/Maximum Likelihood estimation
 Newton-Raphson maximisation, 9 iterations
 Return code 2: successive function values within tolerance limit.
  May be a solution
 Log-Likelihood: -2774.843 
-10  free parameters
-Estimates:
-                Estimate Std. error t value   Pr(> t)    
-(Intercept)    0.0020985  0.0570640  0.0368  0.970665    
-xs             0.9558618  0.0939042 10.1791 < 2.2e-16 ***
-XO1(Intercept) 0.0712029  0.1166143  0.6106  0.541475    
-XO1xo1         0.9869915  0.1158941  8.5163 < 2.2e-16 ***
-sigma1         1.1213988  0.0672176 16.6831 < 2.2e-16 ***
-rho1           0.9034608  0.0263014 34.3503 < 2.2e-16 ***
-XO2(Intercept) 0.0708691  0.1116397  0.6348  0.525558    
-XO2xo2         0.9361839  0.1016234  9.2123 < 2.2e-16 ***
-sigma2         0.9979964  0.0479670 20.8059 < 2.2e-16 ***
-rho2           0.4721812  0.1598734  2.9535  0.003142 ** 
+1479 observations (479 selection 1 and 1000 selection 2) and 10 free parameters (df = 1469)
+
+Probit selection equation:
+             Estimate Std. error t value Pr(> t)    
+(Intercept) 0.0020985  0.0570640  0.0368  0.9707    
+xs          0.9558618  0.0939042 10.1791  <2e-16 ***
+
+outcome equation 1:
+               Estimate Std. error t value Pr(> t)    
+XO1(Intercept) 0.071203   0.116614  0.6106  0.5415    
+XO1xo1         0.986992   0.115894  8.5163  <2e-16 ***
+
+outcome equation 2:
+               Estimate Std. error t value Pr(> t)    
+XO2(Intercept) 0.070869   0.111640  0.6348  0.5256    
+XO2xo2         0.936184   0.101623  9.2123  <2e-16 ***
+
+Error terms data:
+       Estimate Std. error t value   Pr(> t)    
+sigma1 1.121399   0.067218 16.6831 < 2.2e-16 ***
+sigma2 0.997996   0.047967 20.8059 < 2.2e-16 ***
+rho1   0.903461   0.026301 34.3503 < 2.2e-16 ***
+rho2   0.472181   0.159873  2.9535  0.003142 ** 
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 --------------------------------------------
 > ## ------- Tobit-2 exmple -----------
 > vc <- diag(2)
@@ -82,22 +92,24 @@ Tobit 2 selection model/Maximum Likelihood estimation
 Newton-Raphson maximisation, 5 iterations
 Return code 1: gradient close to zero. May be a solution
 Log-Likelihood: -2159.85 
-1481 observations (461 censored and 1020 observed) and 6 free parameters (df =1475)
+1481 observations (461 censored and 1020 observed) and 6 free parameters (df = 1475)
 
 Probit selection equation:
-              Estimate Std. error   t value      Pr(> t)
-(Intercept) 0.04198554 0.06039229 0.6952136 4.869215e-01
-xs          0.93125476 0.10844639 8.5872365 8.908615e-18
+            Estimate Std. error t value Pr(> t)    
+(Intercept) 0.041986   0.060392  0.6952  0.4869    
+xs          0.931255   0.108446  8.5872  <2e-16 ***
 
 OLS equation:
-             Estimate Std. error   t value      Pr(> t)
-(Intercept) 0.0697286 0.06165793  1.130894 2.580996e-01
-xo          0.9502578 0.08967288 10.596936 3.079031e-26
+            Estimate Std. error t value Pr(> t)    
+(Intercept) 0.069729   0.061658  1.1309  0.2581    
+xo          0.950258   0.089673 10.5969  <2e-16 ***
 
 Error terms data:
-        Estimate Std. error   t value       Pr(> t)
-sigma  1.0125371 0.03672398  27.57155 2.441746e-167
-rho   -0.7790971 0.04532607 -17.18872  3.225677e-66
+       Estimate Std. error t value   Pr(> t)    
+sigma  1.012537   0.036724  27.572 < 2.2e-16 ***
+rho   -0.779097   0.045326 -17.189 < 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 --------------------------------------------
 > 
 > 

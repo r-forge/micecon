@@ -17,6 +17,7 @@
 \alias{print.summary.maxLik}
 \alias{print.summary.probit}
 \alias{print.summary.tobit2}
+\alias{print.summary.tobit5}
 \alias{returnCode.maximisation}
 \alias{returnCode.MLEstimate}
 \alias{snqProfitCoef}
@@ -27,6 +28,7 @@
 \alias{snqProfitTestCoef}
 \alias{summary.probit}
 \alias{summary.tobit2}
+\alias{summary.tobit5}
 \alias{translogMonoRestr}
 % Document the following:
 

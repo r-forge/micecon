@@ -17,6 +17,7 @@ vcov.heckit <- function(object, part="outcome", ...) {
    }
    else
        stop("'part' must be either 'outcome' or 'full'")
+   vc
   }
 
 ## maxLik
