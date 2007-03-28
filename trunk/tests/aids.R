@@ -1,6 +1,6 @@
 library( micEcon )
 data( Blanciforti86 )
-options( digits = 6 )
+options( digits = 3 )
 
 set <- !is.na( Blanciforti86$pFood1 )
 setWo1 <- set & rownames( Blanciforti86 ) != 1947
@@ -190,6 +190,7 @@ print( ela )
 
 
 ############# Price indices ##############
+options( digits = 5 )
 cat( "\n************** Price indices **************\n" )
 cat( "\nStone index\n" )
 pxS <- aidsPx( "S", pNames, wNames, Blanciforti86 )
@@ -217,6 +218,7 @@ pxTL <- aidsPx( "TL", pNames, wNames, Blanciforti86,
 print( pxTL )
 
 ########### fitted values #################
+options( digits = 3 )
 fittedAIDS <- aidsCalc( pNames, "xFood", Blanciforti86[ -1, ],
    coef = estResultAIDS$coef )
 print( fittedAIDS )
