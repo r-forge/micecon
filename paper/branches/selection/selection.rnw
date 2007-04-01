@@ -343,6 +343,7 @@ In this section we show a few examples on the typical usage of
 First, estimate a correctly specified tobit2 model with exclusion
 restriction: 
 <<code:t2generate>>=
+  set.seed(0)
   library(micEcon)
   library(mvtnorm)
   eps <- rmvnorm(500, c(0,0), matrix(c(1,-0.7,-0.7,1), 2, 2))
@@ -373,9 +374,12 @@ print(summary(selection(ys ~ xs, yo ~ xs)))
 We can see, that the standard errors are substantially larger in this
 case.  The exclusion restriction -- information about the selection
 process -- has a certain identifying power which we have lost now.  We
-are solely relying on the functional form identifycation.  Note that
-the true parameters of the selection process are not in the 95\%
-confidence intervals of the estimates any more.
+are solely relying on the functional form identifycation. % Note that
+% the true parameters of the selection process are not in the 95\%
+% confidence intervals of the estimates any more.
+%% ARNE: I tried some different (random) seeds, but the true parameters
+%% were always in the 95\% confidence intervals.
+%% Therefore, I removed this sentence.
 
 However, we can improve the identification if the selection process
 has a lot of explanatory power.  Change the support of \code{xs} from
@@ -471,6 +475,7 @@ $\varepsilon^{O2}$).
 
 We create a simple switching regression problem:
 <<>>=
+  set.seed(0)
   vc <- diag(3)
   vc[lower.tri(vc)] <- c(0.9, 0.5, 0.1)
   vc[upper.tri(vc)] <- vc[lower.tri(vc)]
