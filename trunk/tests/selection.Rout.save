@@ -1,5 +1,5 @@
 
-R version 2.4.0 (2006-10-03)
+R version 2.4.1 (2006-12-18)
 Copyright (C) 2006 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -54,12 +54,12 @@ Probit selection equation:
 (Intercept) 0.0020985  0.0570640  0.0368  0.9707    
 xs          0.9558618  0.0939042 10.1791  <2e-16 ***
 
-outcome equation 1:
+Outcome equation 1:
                Estimate Std. error t value Pr(> t)    
 XO1(Intercept) 0.071203   0.116614  0.6106  0.5415    
 XO1xo1         0.986992   0.115894  8.5163  <2e-16 ***
 
-outcome equation 2:
+Outcome equation 2:
                Estimate Std. error t value Pr(> t)    
 XO2(Intercept) 0.070869   0.111640  0.6348  0.5256    
 XO2xo2         0.936184   0.101623  9.2123  <2e-16 ***
@@ -99,7 +99,7 @@ Probit selection equation:
 (Intercept) 0.041986   0.060392  0.6952  0.4869    
 xs          0.931255   0.108446  8.5872  <2e-16 ***
 
-OLS equation:
+Outcome equation:
             Estimate Std. error t value Pr(> t)    
 (Intercept) 0.069729   0.061658  1.1309  0.2581    
 xo          0.950258   0.089673 10.5969  <2e-16 ***

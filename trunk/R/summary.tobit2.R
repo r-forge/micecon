@@ -36,7 +36,7 @@ print.summary.tobit2 <- function(x, ...) {
           x$NObs - x$NActivePar, ")\n", sep="")
       cat("\nProbit selection equation:\n")
       printCoefmat(x$estimateS, signif.legend=FALSE)
-      cat("\nOLS equation:\n")
+      cat("\nOutcome equation:\n")
       printCoefmat(x$estimateO, signif.legend=FALSE)
       cat("\nError terms data:\n")
       printCoefmat(x$estimateErr)
