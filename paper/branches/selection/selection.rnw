@@ -25,9 +25,9 @@
 \newcommand{\me}{\mathrm{e}} % Konstant e=2,71828
 % -----------------------
 
-\author{Arne Henningsen\\Kiel University
+\author{Ott Toomet\\Tartu University
   \And
-  Ott Toomet\\Tartu University}
+  Arne Henningsen\\University of Kiel}
 \title{Sample Selection Models in \proglang{R}:\\
   Package \pkg{micEcon}}
 
@@ -74,7 +74,15 @@
   Tartu 51009, Estonia\\
   Telephone: +372 737 6348\\
   E-mail: \email{otoomet@ut.ee}\\
-  URL: \url{http://www.obs.ee/~siim/}
+  URL: \url{http://www.obs.ee/~siim/}\\
+  \\
+   Arne Henningsen\\
+   Department of Agricultural Economics\\
+   University of Kiel\\
+   24098 Kiel, Germany\\
+   Telephone: +49 431 880 4445\\
+   E-mail: \email{ahenningsen@agric-econ.uni-kiel.de}\\
+   URL: \url{http://www.uni-kiel.de/agrarpol/ahenningsen/}
 }
 %% It is also possible to add a telephone and fax number
 %% before the e-mail in the following format:
