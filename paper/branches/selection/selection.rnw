@@ -1,6 +1,6 @@
 % -*- mode: TeX-PDF-mode -*-
 \documentclass[article]{jss}
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
 \usepackage{bbm}
 %% need no \usepackage{Sweave.sty}
 
@@ -111,7 +111,7 @@ twin.  Many of these cases are not under researcher's control.  In
 most cases, the subjects can decide themselves, whether they take the
 drug or which school they attend.  They cannot control whether they
 are twins, but neither can the researcher --- the twins may tend to be
-born in different types of families than singles.  All these cases
+born in different type of families than singles.  All these cases
 are similar from the statistical point of view.  Whatever is the
 sampling mechanism, from an initial ``random'' sample we extract a
 sample of interest, which is not ``random'' any more
@@ -146,26 +146,24 @@ popular choices:
   and which determine the treatment status but not the outcome.
   Unfortunately, these are in most cases contradicting requirements in
   the real life, and only seldom we have instruments of reasonable
-  quality.
-\item Information about the functional form of the selection or
-  outcome processes.  For instance, assumptions about the distribution
-  of the error terms.  These assumptions may be easy to investigate 
-\item Timing information.  In some cases, relative timing of the
-  events may give us information, necessary for identification of the
-  causal effect.
+  quality.  
+\item Information about the functional form of the selection and
+  outcome processes, such as the distribution of the disturbance
+  terms.  The original Heckman's solution belong to this group.
+  However, the functional form assuptions are usually hard to justify.
 \end{itemize}
 
 During the recent decades, either randomisation or the
 pseudo-randomisation (natural experiments) has become the state-of-the
 art while estimating the causal effects.  The methods, relying on the
 distributional assumptions are becoming less widely used.  The reason
-is obvious --- the parametric assumptions can only seldom be justified,
-and we do not want our results to rely on dubious assumptions.  Even
-if we have valid instruments or exclusion restrictions, the parametric
-hypothesis add their interference which may be sometimes hard to
-disentangle from the estimate.
+is obvious --- the parametric assumptions can only seldom be
+justified, and we do not want our results to rely on dubious
+assumptions.  Even if we have valid instruments or exclusion
+restrictions, the parametric hypothesis add their interference which
+may be hard to disentangle from the estimates.
 
-However, even if these models are not popular in research any more,
+However, even if these models are less popular in research nowadays,
 they still serve as excellent teaching tools.  Heckman-type selection
 models easily allow us to experiment with selection bias,
 misspecification, exclusion restrictions etc.  These models are easy
@@ -174,17 +172,18 @@ to implement, to visualise and to understand.
 
 \subsection{Heckman's solution}
 
-Look at the following (unobserved) structural process:
+Look at the following (unobserved) structural model:
 \begin{align}
-  y_i^{S*} &= \beta^S x_i^S + \varepsilon_i^S
+  y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
   \label{eq:probit*}
   \\
-  y_i^{O*} &= \beta^O x_i^O + \varepsilon_i^O,
+  y_i^{O*} &= {\vec{\beta}^O}' \vec{x}_i^O + \varepsilon_i^O,
 \end{align}
-where $y_i^{S*}$ is the latent value of the selection process and
-$y_i^{O*}$ is the latent outcome.  $\vec{x}_i^S$ and $\vec{x}_i^O$ are
-explanatory variables for the selection and outcome processes.  Those
-may or may not be equal.  We observe
+where $y_i^{S*}$ is the realisation of the the latent value of the
+selection ``tendency'' for the individual $i$, and $y_i^{O*}$ is the
+latent outcome.  $\vec{x}_i^S$ and $\vec{x}_i^O$ are explanatory
+variables for the selection and outcome equations.  $\vec{x}^S$ and
+$\vec{x}^O$ may or may not be equal.  We observe
 \begin{align}
   y_i^S 
   &= 
@@ -198,13 +197,25 @@ may or may not be equal.  We observe
   y_i^O
   &= 
   \begin{cases}
-    0 & \quad \text{if} y_i^{S} = 0\\
+    0 & \quad \text{if } y_i^{S} = 0\\
     y_i^{O*} & \quad \text{otherwise},
   \end{cases}
 \end{align}
-i.e.\ we observe the outcome only if the latent selection variable is
-positive.  The error term is assumed to follow a bivariate normal
-distribution: 
+i.e. we observe the outcome only if the latent selection variable
+$y^{S*}$ is positive.  The observed dependence between $y^O$ and $x^O$
+can now be written as
+\begin{equation}
+  \E [y^O|\vec{x}^O = \vec{x}_i^O, \vec{x}^S = \vec{x}_i^S, y_i^S = 1] =
+  {\vec{\beta}^O}' \vec{x}_i^O 
+  +
+  \E [ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ].
+\end{equation}
+Estimating the model above by OLS gives in general biased results, as
+$\E [ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
+\not = 0$, unless $\varrho = 0$.
+
+However, assuming the error terms follow a bivariate normal
+distribution:
 \begin{equation}
   \begin{pmatrix}
     \varepsilon^S\\
@@ -220,83 +231,72 @@ distribution:
       1 & \varrho\\
       \varrho & \sigma^2
     \end{pmatrix}
-  \right).
+  \right),
 \end{equation}
-The observed dependence between $y^O$ and $x^O$ can now be written as
-\begin{equation}
-  \E [y^O|\vec{x}_i^O, y_i^S = 1] =
-  \beta^O \vec{x}_i^O 
-  +
-  \E [ \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ].
-\end{equation}
-Estimating the equation above by OLS gives in general biased results,
-as $\E [ \varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ] \not
-= 0$, unless $\varrho = 0$.  However, we may employ the following
-simple strategy: we can find the expectations $\E [
-\varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ]$ by estimating
-the selection equations \eqref{eq:probit*} and \eqref{eq:probit} by
-probit, and thereafter insert these expectations into the OLS equation
-as additional covariates \citep[see][for details]{greene2002}:
+we may employ the following simple strategy: we can find the
+expectations $\E [ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}'
+\vec{x}_i^S ]$ by estimating the selection equations
+\eqref{eq:probit*} and \eqref{eq:probit} by probit, and thereafter
+insert these expectations into the OLS equation below, as additional
+covariates (see \citet{greene2002} for details):
 \begin{equation}
   y_i^O
   =
-  \beta^O \vec{x}_i^O 
+  {\vec{\beta}^O}' \vec{x}_i^O 
   + 
   \E [ \varepsilon^O|\varepsilon^S \ge
-  -\beta^S \vec{x}_i^S ]
+  -{\vec{\beta}^S}' \vec{x}_i^S ]
   +
   \eta_i
   \equiv
-  \beta^O \vec{x}_i^O 
+  {\vec{\beta}^O}' \vec{x}_i^O 
   + 
-  \beta^\lambda \lambda(-\beta^S \vec{x}_i^S)
+  \beta^\lambda \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
   +
   \eta_i
+  \label{eq:tobit2_2step}
 \end{equation}
-where $\lambda(\cdot)$ is commonly referred to as inverse Mill's
-ratio, and $\beta^\lambda = \varrho\sigma$.  Essentially, we describe
-the selection problem as an omitted variable problem, with
+where $\lambda(\cdot) = \phi(\cdot)/\Phi(\cdot)$ is commonly referred
+to as inverse Mill's ratio, $\beta^\lambda = \varrho\sigma$, and
+$\phi(\cdot)$ and $\Phi(\cdot)$ are standard normal density and
+cumulative distribution functions.  Essentially, we describe the
+selection problem as an omitted variable problem, with
 $\lambda(\cdot)$ the omitted variable.
 
 This is the original idea by \citet{heckman1976}.  As the model is
-fully parametric, the more efficient ML estimation is straightforward
-\citep[see][for details]{amemiya1985}.  The original article suggests
-using the two-step solution for exploratory work and as initial
-values for maximum likelihood estimation,
-since in those days the two-step solution costs
-\$15 while the maximum-likelihood solution costs
-\$700 \citep[p.~490]{heckman1976}. %footnote 18, page 490
-Nowadays, the costs are no issue any more.  However, two-step solution
-allows certain generalisations more easily than ML.
+fully parametric, the more efficient ML estimatior is straightforward
+to construct \citep[see][for details]{amemiya1985}.  The original
+article suggests using the two-step solution for exploratory work and
+as initial values for maximum likelihood estimation, since in those
+days the cost of the two-step solution was \$15 while that of the
+maximum-likelihood solution was \$700
+\citep[p.~490]{heckman1976}. %footnote 18, page 490
+Nowadays, the costs are no issue any more, however, the two-step solution
+allows certain generalisations more easily than ML, and is more robust
+in certain circumstances (see section~\ref{sec:additional} below).
 
-The model allows a number of straightforward generalisations.
-For instance, we
-may assume that we have two outcome variables, one of which is
-observable, depending on the selection process (``switching regression''
-or ``tobit-5'' model, further details of this classification
-are available in \citealp{amemiya1985}).
-This model may be relevant for treatment effect
-analysis.  Other types of generalisations include less restrictive
-parametric forms for the conditional mean of the residual term $\E [
-\varepsilon^O|\varepsilon^S \ge -\beta^S \vec{x}_i^S ]$
-(see \citealp[p.~1938]{heckman+macurdy1986}, for references and
+The model allows a number of straightforward generalisations.  For
+instance, we may assume that we have two outcome variables, only one
+of which is observable, depending on the selection process
+(``switching regression'' or ``tobit-5'' model, further details of
+this classification are available in \citealp{amemiya1985}).  This
+model may be relevant for treatment effect analysis.  Other types of
+generalisations include less restrictive parametric forms for the
+conditional mean of the residual term $\E [
+\varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ (see
+\citealp[p.~1938]{heckman+macurdy1986}, for references and
 \citealp{klaauw+koning2003} for an application).
 
 This model and its derivations were widely used in 1970s and 1980s.
 Later, it has fallen into disfavour due to the reliance on the
 parametric assumptions.  These are almost never justified in social
 sciences.  The model is well identified if the exclusion restriction
-is fulfilled, i.e.\ if $\vec{x}^S$ includes a component, that is not present in
-$\vec{x}^O$.  This means essentially that we have a valid instrument.
-If this is not the case, the identification is related to the
-non-linearity of the inverse Mill's ratio $\lambda(\cdot)$.  In order
-to identify $\beta^\lambda$ and $\beta^O$, $\lambda(\cdot)$ must
-differ from a linear combination of $\vec{x}^O$ components
-\citep{leung+yu1996}.  The practical conclusion here is that standard
-errors of the estimates depend on the variation in the latent
-selection equation \eqref{eq:probit*}.  More variation gives smaller
-standard errors\footnote{This is related to the identification at
-  infinity \citep{chamberlain1986}}.  During the recent decades,
+is fulfilled, i.e.\ if $\vec{x}^S$ includes a component with a
+substantial explanatory power, which is not present in $\vec{x}^O$.
+This means essentially that we have a valid instrument.  If this is
+not the case, the identification is related to the non-linearity of
+the inverse Mill's ratio $\lambda(\cdot)$, exact form of which stems
+from the distributional assumptions.  During the recent decades,
 various semiparametric estimation techniques have been increasingly
 used instead of the Heckman model (see \citealp{powell1994} and
 \citealp{pagan+ullah1999} for a review).
@@ -305,22 +305,22 @@ used instead of the Heckman model (see \citealp{powell1994} and
 
 \section[Implementation]{Implementation in \pkg{micEcon}}
 
-The main frontend for the estimation of selection models
-in \pkg{micEcon} is the command \code{selection}.
-It needs a formula for the selection equation (argument \code{selection}),
-and one (or a list of two for tobit-5 models)
-for the outcome equation (\code{outcome}).  One can choose the method
-(\code{method}) to be either ``\code{ml}'' for the ML estimation, or
-``\code{2step}'' for the two-step method.  If the user does not provide
-initial values (\code{start}) for the ML estimation (which is usually
-the case), \code{selection} calculates consistent initial
-values by the two-step method. These initial
-values are used in the corresponding ML estimation functions
-\code{tobit2fit} or \code{tobit5fit}.  Note that the log-likelihood
-functions of the selection models are in general not globally
-concave, and hence, one should use as good initial values as possible.  
-The two-step estimations are done either by function
-\code{heckit2} or by function \code{heckit5}.
+The main frontend for the estimation of selection models in
+\pkg{micEcon} is the command \code{selection}.  It needs a formula for
+the selection equation (argument \code{selection}), and one (or a list
+of two for switching regression models) for the outcome equation
+(\code{outcome}).  One can choose the method (\code{method}) to be
+either ``\code{ml}'' for the ML estimation, or ``\code{2step}'' for
+the two-step method.  If the user does not provide initial values
+(\code{start}) for the ML estimation (which is usually the case),
+\code{selection} calculates consistent initial values by the two-step
+method. These initial values are used in the corresponding ML
+estimation functions \code{tobit2fit} or \code{tobit5fit}.  Note that
+the log-likelihood functions of the selection models are in general
+not globally concave, and hence, one should use good initial values
+(see the example in Secion~\ref{sec:additional}).  The two-step
+estimation is done by the function \code{heckit2} or \code{heckit5},
+depending on the model.
 
 The likelihood maximisation is done by the Newton-Raphson maximisation method
 (implemented as \code{maxNR} in \pkg{micEcon}), where an analytic score
@@ -336,15 +336,16 @@ find the global maximum.
 
 \section[Usage]{Using the \code{selection} function}
 
-In this section we show a few examples on the typical usage of
-\code{selection}.  
+This section provides selected illustrative Monte-Carlo experiments
+which illustrate both the strong and weak sides of the method, and the
+typical usage of \code{selection}.
 
 
 \subsection{Tobit-2 models}
 \label{sec:tobit2}
 
-First, estimate a correctly specified tobit-2 model with exclusion
-restriction: 
+First, we estimate a correctly specified tobit-2 model with exclusion
+restriction:
 <<code:t2generate>>=
   set.seed(0)
   library(micEcon)
@@ -355,83 +356,116 @@ restriction:
   xo <- runif(500)
   yo <- (xo + eps[,2])*(ys > 0)
 @
-We use \pkg{mvtnorm} in order to create bivariate normal
-disturbances with correlation $-0.7$.  Next, we generate a uniformly
-distributed explanatory variable for the selection process, \code{xs}
-and the selection outcome by a probit data generating process.
-Note that the explanatory variables for the selection process
-(\code{xs}) and outcome process (\code{xo}) are different and hence
-we have an exclusion restriction.  This can be seen from the fact that
-the estimates are quite precise:
+% -- please keep these comments.  These are necessary for auctex
+We use \pkg{mvtnorm} in order to create bivariate normal disturbances
+with correlation $-0.7$.  Next, we generate a uniformly distributed
+explanatory variable for the selection equation, \code{xs} and the
+selection outcome by a probit data generating process.  Note that the
+vectors of explanatory variables for the selection (\code{xs}) and
+outcome equation (\code{xo}) are independent and hence the exclusion
+restriction is fulfilled.  This can be seen from the fact that the
+estimates are reasonably precise:
 <<code:t2summary>>=
   summary(selection(ys~xs, yo ~xo))
 @ 
-One can see, that all the true values are within the confidence
+%
+One can see, that all the true values are within the 95\% confidence
 intervals of the corresponding estimates.
 
-Now we repeat the same exercise, but without exclusion restriction:
+Now we repeat the same exercise, but without exclusion restriction,
+generating \code{yo} using \code{xs} instead of \code{xo}.
 <<>>=
 yo <- (xs + eps[,2])*(ys > 0)
 print(summary(selection(ys ~ xs, yo ~ xs)))
-@ 
-We can see, that the standard errors are substantially larger in this
-case.  The exclusion restriction --- information about the selection
-process --- has a certain identifying power which we have lost now.  We
-are solely relying on the functional form identification. % Note that
-% the true parameters of the selection process are not in the 95\%
-% confidence intervals of the estimates any more.
-%% ARNE: I tried some different (random) seeds, but the true parameters
-%% were always in the 95\% confidence intervals.
-%% Therefore, I removed this sentence.
+@
+% 
+That the standard errors are substantially larger in this case.  The
+exclusion restriction --- information about the selection process ---
+has a certain identifying power which we have lost now.  We are solely
+relying on the functional form identification.  
 
-However, we can improve the identification if the selection process
-has a lot of explanatory power.  Change the support of \code{xs} from
-$[0,1]$ to $[-5,5]$:
+In order to identify $\beta^\lambda$ and ${\vec{\beta}^O}'$ without
+exclusion restriction, $\lambda(\cdot)$ must differ from a linear
+combination of $\vec{x}^O$ components \citep{leung+yu1996}.  The
+degree of non-linearity in $\lambda(\cdot)$ depends on the variability
+in ${\vec{\beta}^S}' \vec{x}^S$ as $\lambda(\cdot)$ is a smooth convex
+function (see Figure~\ref{fig:lambda()} below).  Hence the standard
+errors of the estimates depend on the variation in the latent
+selection equation \eqref{eq:probit*}, even without the exclusion
+restriction fulfilled.  More variation gives smaller standard
+errors\footnote{This is related to the identification at infinity
+  \citep{chamberlain1986}}.  We demonstrate it below: Change the
+support of \code{xs} from $[0,1]$ to $[-5,5]$:
 <<>>=
   xs <- runif(500, -5, 5)
   ys <- xs + eps[,1] > 0
-  yo <- (xs + eps[,2])*(ys > 0)
-  print(summary(selection(ys ~ xs, yo ~ xs)))
+yoX <- xs + eps[,2]
+  yo <- yoX*(ys > 0)
 @ 
-Now all the parameters are precisely estimated, even more precisely as
-in the case of exclusion restriction.  The reason is simple: the
-probability that $Y^O$ is observable, given $x^S$, is $\Pr(X^S + E^O >
-0) = 1 - \Phi(-x^S)$ as $E^O \sim N(0,1)$.  As one can see from
-Figure~\ref{fig:pnorm}, selection is not an issue if $x^S > 2$.  In
-that case $\E [\varepsilon^O|y_i^S = 1] \approx 0$ and hence the
-model can be precisely estimated for relatively large values of $x^S$.
-Due to the linearity assumption, the same parameters are valid
-everywhere.  In the former case, the variation in $x^S$ was low and
-hence one could not disentangle the selection bias from the true
-causal dependence.  Technically, there was a multicollinearity problem
-between $x$ and $\lambda(\cdot)$.
+%
+where we retain the unobserved outcome variable \code{yoX} for the
+figure below.
+<<>>=
+  print(summary(m <- selection(ys ~ xs, yo ~ xs)))
+@
+%
+Now all the parameters are precisely estimated, with higher precision
+than in the case of exclusion restriction.  The reason is simple: the
+probability that $Y^{O*}$ is observable, given $x_i^S$, is $\Pr(1
+\cdot x_i^S + \varepsilon^O > 0) = 1 - \Phi(-x_i^S)$ as $\varepsilon^O
+\sim N(0,1)$.  As one can see from Figure~\ref{fig:lambda()},
+selection is not an issue if $x^S \gtrsim 2$.  In that case $\E
+[\varepsilon^O|y^S = 1] \approx 0$ and hence the model can be
+precisely estimated for relatively large values of $x^S$.  Due to the
+linearity assumption, the same parameters are valid everywhere.  In
+the former example, the variation in $x^S$ was low and hence one could
+not disentangle the selection bias from the true causal dependence.
+Technically, there was a multicollinearity problem between $x$ and
+$\lambda(\cdot)$.
 
-\begin{figure}[htbp]
+\begin{figure}[tp]
   \centering
 <<fig=TRUE,height=4,echo=FALSE>>=
-curve(pnorm, -5, 5, ylab=expression(1 - Phi(-x^S)), xlab=expression(x^S))
+par(mar=c(3,3,0,0) + 0.1,
+    mgp=c(2,1,0))
+pch <- c(1, 16)
+plot(xs, yoX, pch=pch[1 + ys], cex=0.5, lwd=0.3)
+abline(a=0, b=1, lty=1)
+# True dependence
+abline(a=coef(m)[3], b=coef(m)[4], lty=2)
+# Heckman's model
+cf <- coef(lm(yo ~ xo, subset=ys==1))
+abline(a=cf[1], b=cf[2], lty=3)
+# OLS
 @ 
-  \caption{Probability that $y^O$ is observable depending on the value
-    of $x^S$ (given the standard normal disturbances).}
-  \label{fig:pnorm}
+%
+\caption{The observable (filled) and unobservable (empty circles),
+  given \code{xs}.  The solid line denote the true dependence, dashed
+  (almoust overlapping the solid) is the MLE estimate above, and
+  the dotted line is the corresponding OLS estimate}
+  \label{fig:lambda()}
 \end{figure}
 
 
 
-\subsection{Tobit-5 models}
+\subsection{Switching regression models}
 \label{sec:tobit5}
 
-Now let us look at the tobit-5 examples.  This type of problems arises
+Now let us focus on the tobit-5 examples.  This type of problems arise
 in a wide variety of contexts, e.g.\ in treatment effect or schooling
-choice analysis.  The problem can be written as
+choice analysis.  The problem can be written as a system of three
+latent simultaneous equations:
 \begin{align}
-  y_i^{S*} &= \beta^S x_i^S + \varepsilon_i^S
+  y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
   \\
-  y_i^{O1*} &= \beta^{O1} x_i^O + \varepsilon_i^{O1}
+  y_i^{O1*} &= {\vec{\beta}^{O1}}' \vec{x}_i^O + \varepsilon_i^{O1}
   \\
-  y_i^{O2*} &= \beta^{O2} x_i^O + \varepsilon_i^{O2}.
+  y_i^{O2*} &= {\vec{\beta}^{O2}}' \vec{x}_i^O + \varepsilon_i^{O2},
 \end{align}
-We observe
+where $y^{S*}$ is the selection ``tendency'' as in the case of tobit-2
+models, and $y^{O1*}$ and $y^{O2*}$ are the latent outcomes, only one
+of which is observable, depending on the sign of $y^{S*}$.  Hence we
+observe
 \begin{align}
   y_i^S 
   &= 
@@ -444,8 +478,8 @@ We observe
   y_i^O
   &= 
   \begin{cases}
-    y_i^{O1*} & \quad \text{if} y_i^{S} = 0\\
-    y_i^{O2*} & \quad \text{otherwise},
+    y_i^{O1*} & \quad \text{if } y_i^{S} = 0\\
+    y_i^{O2*} & \quad \text{otherwise}.
   \end{cases}
 \end{align}
 We assume the disturbance terms have a 3-dimensional normal
@@ -470,13 +504,15 @@ distribution:
     \end{pmatrix}
   \right).
 \end{equation}
-Note, that $\varrho_2$ plays no role in this model, the observable
-distributions are determined by the correlation between the
-disturbances of the selection equation ($\varepsilon^S$) and the
-corresponding outcome equation ($\varepsilon^{O1}$ and
-$\varepsilon^{O2}$).  
+It is straightforward to construct analogous two-step estimators
+as~\eqref{eq:tobit2_2step} and the corresponding ML estimator.  Note,
+that $\varrho_{12}$ plays no role in this model, the observable
+distributions are determined by the correlations $\varrho_1$ and
+$\varrho_2$ between the disturbances of the selection equation
+($\varepsilon^S$) and the corresponding outcome equation
+($\varepsilon^{O1}$ and $\varepsilon^{O2}$).
 
-We create a simple switching regression problem:
+We create the following simple switching regression problem:
 <<>>=
   set.seed(0)
   vc <- diag(3)
@@ -490,15 +526,17 @@ We create a simple switching regression problem:
   xo2 <- runif(500)
   yo2 <- xo2 + eps[,3]
 @ 
+%
 We generate a 3-dimensional disturbance vector by \code{rmvnorm}.  We
 set the correlation between $\varepsilon^S$ and $\varepsilon^{O1}$ to
-be 0.9 and between $\varepsilon^S$ and $\varepsilon^{O2}$ to 0.5.  The
-third correlation, 0.1, takes care for the positive definiteness of
-the covariance matrix and does not affect the results.  Further, we
+equal 0.9 and between $\varepsilon^S$ and $\varepsilon^{O2}$ to 0.5.
+The third correlation, 0.1, takes care for the positive definiteness
+of the covariance matrix and does not affect the results.  Further, we
 create three independent explanatory variables (\code{xs}, \code{xo1}
-and \code{xo2}, and hence exclusion restriction is fulfilled).  Note
-that we do not have to remove the unobserved values from outcome
-vectors, those are simply ignored.  The results look as follows:
+and \code{xo2}, uniformly distributed on $[0,1]$, and hence the
+exclusion restriction is fulfilled).  Note that we do not have to
+remove the unobserved values from outcome vectors, those are simply
+ignored.  The results look as follows:
 <<>>=
   summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2)))
 @ 
@@ -507,7 +545,9 @@ estimates are close to the true values.
 
 Next, take an example of functional form misspecification.  We create
 the disturbances as 3-variate $\chi_1^2$ random variables (we subtract
-1 in order to get the mean zero disturbances):
+1 in order to get the mean zero disturbances), and generate \code{xs}
+to be in the interval $[-1,0]$ in order to get asymmetric distribution
+over observed choices:
 <<>>=  
 set.seed(5)
 eps <- rmvnorm(1000, rep(0, 3), vc)
@@ -519,27 +559,24 @@ yo1 <- xo1 + eps[,2]
 xo2 <- runif(1000)
 yo2 <- xo2 + eps[,3]
 
-summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2)))
-@ 
-Although we still have an exclusion restriction,
-we can see a substantial bias --- most intercepts are
-statistically significant, whereas the true values are zero.  The
-model has serious convergence problems, often it does not converge at
-all (like in this case, where we use \code{set.seed(5)}).
+summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), iterlim=20))
+@
+%
+Although we still have an exclusion restriction, now serious problems
+appear --- most intercepts are statistically significant, whereas the
+true values are zero.  The model has serious convergence problems,
+often it does not converge at all (this is why we increased the
+\code{iterlim} here while using \code{set.seed(5)}).
 
-As the last tobit example, we repeat the previous model without the
-exclusion restriction:
+As the last tobit example, we repeat the previous excercise without
+the exclusion restriction, and a slightly larger variance of \code{xs}:
 <<code:t5chi_woER>>=
 set.seed(6)
 xs <- runif(1000, -1, 1)
   ys <- xs + eps[,1] > 0
   yo1 <- xs + eps[,2]
   yo2 <- xs + eps[,3]
-
-summary(selection(ys~xs, list(yo1 ~ xs, yo2 ~ xs), iterlim=50))
-@
-<<code:t5chi_woER_calc, echo=FALSE, results=hide>>=
-tmp <- selection(ys~xs, list(yo1 ~ xs, yo2 ~ xs), iterlim=50)
+summary(tmp <- selection(ys~xs, list(yo1 ~ xs, yo2 ~ xs), iterlim=20))
 @
 %
 In most cases, this model does not converge.  However, if it does
@@ -621,16 +658,16 @@ text(2.2, -1.4,
 @ 
   \medskip \\
   \small Note:
-  Vertical lines denote the support of $x^S$ in the MC experiment.
+  Dotted vertical lines denote the support of $x^S$ in the MC experiment.
   \caption{Control functions: correct ($\chi^2$ distributed)
     and assumed (normally distributed)}
   \label{fig:cfunctions}
 \end{figure}
 One can see, that the functions differ substantially in the relevant
-range of $x^S \in [-1, 1]$.  In particular, the upper mean rises
-substantially faster close to $x^S = 1$ than the normal
-approximation.  The correct lower mean is decreasing slightly faster
-than the approximation.
+range of $x^S \in [-1, 1]$.  In particular, the true upper mean rises
+substantially faster close to $x^S = 1$ than the normal approximation.
+The correct lower mean is decreasing slightly faster compared to the
+approximation.
 
 It is instructive to estimate the same model as a two independent OLS
 equations:
@@ -639,8 +676,9 @@ equations:
   summary(lm(yo2~xs, subset=ys==1))
 @ 
 %
-One can see that the OLS estimates are very close to the ML ones, because
-none of the $\varrho$s is statistically significant.
+One can see that the OLS estimates are very close to the ML ones.
+This is related to the fact that none of the $\varrho$-s is
+statistically significant.
 
 
 
@@ -648,11 +686,9 @@ none of the $\varrho$s is statistically significant.
 \section{Additional notes}
 \label{sec:additional}
 
-The log-likelihood of the models above is not globally concave.  It
-means, that the model may converge to different estimates (or not
-converge at all), if the initial values are not chosen well enough.
-We illustrate this behaviour on real individual data.  Consider the
-following example:
+The log-likelihood of the models above is not globally concave.  It means, that the model may not
+converge, if the initial values are not chosen well enough.  This may easily happen which we illustrate
+below, while we also give a taste of the real data.  Consider the following example:
 <<init_2step>>=
 data(Mroz87)
 mr <- selection(lfp ~ kids5 + poly(age, 2) + educ + log(huswage) + mtr + fatheduc + city + unem,
@@ -660,33 +696,33 @@ log(hours) ~ kids5 + poly(age, 2) + educ + wage + mtr + city + poly(exper, 2),
 data=Mroz87)
 @ 
 %
-We use a supplied dataset, \code{Mroz87}, used for analysing the
-female labour supply by \citet{mroz1987}.  We model the labour force
-participation (described by dummy \code{lfp}) by presence of young
-children (\code{kids5}), quadratic polynomial in age, education in
-years (\code{educ}), log husbands wage (\code{huswage}), marginal tax
-rate (\code{mtr}), father education (in years, \code{fatheduc}),
-residence in a big city (\code{city}) and the local unemployment rate
-(\code{unem}).  The labour supply equation includes most of the
-variables above (leaving \code{huswage}, \code{fathedu} and
-\code{unem} for exclusion restrictions).  The new explanatory
-variables are woman's wage (\code{wage}) and quadratic polynomial in
-experience (\code{exper}).
+We use a dataset, \code{Mroz87}, included in \pkg{micEcon}.  This data
+was used for analysing the female labour supply by \citet{mroz1987}.
+We model the labour force participation (described by dummy
+\code{lfp}) by presence of young children (\code{kids5}), quadratic
+polynomial in age, education in years (\code{educ}), log husbands wage
+(\code{huswage}), marginal tax rate (\code{mtr}), father education (in
+years, \code{fatheduc}), residence in a big city (\code{city}) and the
+local unemployment rate (\code{unem}).  The labour supply equation
+includes most of the variables above (leaving \code{huswage},
+\code{fathedu} and \code{unem} for exclusion restrictions).
+Additional explanatory variables are woman's wage (\code{wage}) and
+quadratic polynomial in experience (\code{exper}).
 
 The model gives reasonable results:
 <<init_0>>=
 summary(mr)
 @ 
 %
-One may see, that small children in the family, high salary of the
-husband and high marginal tax rate decrease the participation
-probability, while education and residence in a big city increase it.
-The labour supply equation seems a bit less convincing with more
-education and income leading to less hours worked and small kids
-causing women to work more.  The correlation of error terms \code{rho}
-shows a nearly perfect negative correlation between the corresponding
-error terms, which means we estimate essentially a tobit model (see
-\citet{mroz1987} for more discussion).
+One may see, that small children in the family, high salary of husband
+and high marginal tax rate decrease the participation probability,
+while more education and residence in a big city increase it.  The
+labour supply equation seems a bit less convincing with more education
+and income leading to less hours worked and small kids causing women
+to work more.  The correlation of error terms \code{rho} shows a
+nearly perfect negative correlation between the corresponding error
+terms, which means we estimate essentially a tobit model (see
+\citet{mroz1987} for more results and discussion).
 
 However, the results are sensitive to the start values
 (note that you have to supply a positive initial value for the
@@ -698,7 +734,7 @@ data=Mroz87, start=c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0))
 summary(mr)
 @ 
 %
-The maximisation routine gets stuck in a local feature and
+The maximisation routine gets stuck in a non-concave region and
 cannot find the global maximum.  Here another optimisation algorithm
 might be useful, however, switch of the algorithm is not yet
 implemented.  In far the most cases, the 2-step method, used for
@@ -706,7 +742,7 @@ calculating the initial values, does a good job.
 
 In general, one should prefer \code{method="ml"} instead of
 \code{"2step"}.  However, ML may have problems at the boundary of the
-parameter space.  Take a textbook tobit example: 
+parameter space.  Take the textbook tobit example: 
 \begin{equation}
   \label{eq:tobit}
   y_i^* = \vec{\beta}' \vec{x}_i + \varepsilon_i;
@@ -728,7 +764,9 @@ ys <- y > 0
 summary(selection(ys~x, y~x))
 @ 
 %
-However, the 2-step method still works:
+The reason is, that $\varrho = 1$ lies at the boundary of the
+parameter space.  However, the 2-step method still works, although
+standard errors are large:
 <<>>=
 summary(selection(ys~x, y~x, method="2step"))
 @ 
@@ -740,15 +778,17 @@ summary(selection(ys~x, y~x, method="2step"))
 
 This paper describes the Heckman-type selection models and their
 implementation in \pkg{micEcon} for programming language \proglang{R}.
-We argue, that although there exist superior estimation methods for
-analysing censored data, these models still serve as useful teaching
-tools as they are easy to implement and understand.
+We argue, that these models serve as useful teaching tools as they are
+easy to implement and understand, although nowadays there exist
+superior estimation methods for censored data.
 
-We briefly describe the implementation and usage, and demonstrate the
-virtues and caveats of these models using a number of examples.  Our
-implementation works well for correctly specified cases, in the case
-of severe misspecification a more robust maximisation algorithm might
-be useful.  This is left for the future work.
+We briefly describe the implementation and usage of tobit-2 and
+tobit-5 (switching regression) models in \pkg{micEcon}, and
+demonstrate the virtues and caveats of them using a number of
+examples.  Our implementation works well for correctly specified
+cases, in the case of severe misspecification or weak identification,
+a more robust maximisation algorithm might be useful.  This is left
+for the future work.
 
 
 
