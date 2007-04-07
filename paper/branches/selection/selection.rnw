@@ -681,8 +681,68 @@ This is related to the fact that none of the $\varrho$-s is
 statistically significant.
 
 
+\section{Testing Reliability}
+
+In this section we test the reliability of the results from \code{selection}
+applying the two-step and the maximum likelihood estimation method.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Greene( 2002 ): example 22.8, page 786}
+
+The first test is example 22.8 from \citet[p.~786]{greene2002}.
+The data set used in this example is included in \pkg{micEcon};
+it is called \code{Mroz87}.
+This data set was used by \citet{mroz1987} for analysing female labour supply.
+In this example, labour force participation (described by dummy \code{lfp})
+is modelled by a quadratic polynomial in age (\code{age}),
+family income (\code{faminc}, in 1975 dollars),
+presence of children (\code{kids}),
+and education in years (\code{educ}).
+The wage equation includes
+a quadratic polynomial in quadratic polynomial in experience (\code{exper}),
+education in years (\code{educ}),
+and residence in a big city (\code{city}).
+First, we have to create a dummy variable for presence of children.
+<<greene22.8start>>=
+data( Mroz87 )
+Mroz87$kids <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
+@
+Now, we estimate the model by the two-step method
+<<greene22.8TwoStep>>=
+summary( tmp <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+   wage ~ exper + I( exper^2 ) + educ + city,
+   data = Mroz87, method = "2step" ) )
+tmp$coefficients[ "invMillsRatio" ]
+tmp$vcov[ "invMillsRatio", "invMillsRatio" ]^0.5
+tmp$rho
+tmp$sigma
+@
+Most results are identical to the values reported by
+\citet[p.~786]{greene2002}.
+Only the coefficient of the inverse Mill's ratio ($\rho \sigma$),
+its standard error, and $\rho$ deviate from the published results,
+but all differences are less than one percent.%
+\footnote{
+Note that the standard error of the inverse Mill's ratio
+($\rho \sigma$) is wrong in \citet[p.~786]{greene2002}
+(see errata on
+http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm).
+}
+
+Finally, we repeat the analysis with the maximum likelihood estimation method:
+<<greene22.8ML>>=
+summary( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+   wage ~ exper + I( exper^2 ) + educ + city, data = Mroz87 ) )
+@
+While the estimated coefficients are almost identical to the values
+published in the errata of \citet{greene2002}
+(\url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}),
+the standard errors calculated by \code{selection} are considerably
+smaller.
+% WHY???? We have to check this!!!!!
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Additional notes}
 \label{sec:additional}
 
