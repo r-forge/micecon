@@ -1,5 +1,6 @@
 \name{coef.heckit}
 \alias{coef.heckit}
+\alias{coef.heckit5}
 \title{results of the heckit model}
 \description{
   This functions extract coefficients 
@@ -7,15 +8,15 @@
 }
 \usage{
 \method{coef}{heckit}(object, part = "outcome", ...)
+\method{coef}{heckit5}(object, part = "outcome", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{object}{object of class "heckit", heckit model}
   \item{part}{character string: which parts to extract: "full" for all
     the estimated parameters (probit selection estimates, outcome
-    estimates, including inverse Mills ratio), error variance and
-    correlation; or "outcome" for the outcome model results only
-    (including the inverse Mills ratio)}
+    estimates), error variance and
+    correlation; or "outcome" for the outcome model results only}
   \item{\dots}{further arguments for other methods}
 }
 \value{

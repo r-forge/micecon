@@ -1,10 +1,10 @@
 
-summary.heckit <- function( object) {
+summary.heckit <- function( object, ...) {
    ## Calculate r-squared.  Note that the way lm() finds R2 is a bit naive -- it checks for intercept
    ## in the formula, but not whether the intercept is present in any of the data vectors (or matrices)
    oModel <- object$lm
    if(class(oModel) == "lm") {
-      y <- model.response(model.frame(object$lm))
+      y <- model.response(model.frame(oModel))
       if(object$param$oIntercept) {
          R2 <- 1 - sum(residuals(oModel)^2)/sum((y - mean(y))^2)
          R2adj <- 1 - (1 - R2)*(NObs(oModel) - 1)/(NObs(oModel) - NParam(oModel))

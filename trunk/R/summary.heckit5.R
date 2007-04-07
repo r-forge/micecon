@@ -1,5 +1,5 @@
 
-summary.heckit5 <- function( object) {
+summary.heckit5 <- function( object, ...) {
    RSq <- function(model, intercept) {
       ## Calculate r-squared.  Note that the way lm() finds R2 is a bit naive -- it checks for intercept
       ## in the formula, but not whether the intercept is present in any of the data vectors (or matrices)
