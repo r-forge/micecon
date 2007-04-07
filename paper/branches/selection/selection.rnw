@@ -273,7 +273,7 @@ maximum-likelihood solution was \$700
 \citep[p.~490]{heckman1976}. %footnote 18, page 490
 Nowadays, the costs are no issue any more, however, the two-step solution
 allows certain generalisations more easily than ML, and is more robust
-in certain circumstances (see section~\ref{sec:additional} below).
+in certain circumstances (see section~\ref{sec:problems} below).
 
 The model allows a number of straightforward generalisations.  For
 instance, we may assume that we have two outcome variables, only one
@@ -318,7 +318,7 @@ method. These initial values are used in the corresponding ML
 estimation functions \code{tobit2fit} or \code{tobit5fit}.  Note that
 the log-likelihood functions of the selection models are in general
 not globally concave, and hence, one should use good initial values
-(see the example in Secion~\ref{sec:additional}).  The two-step
+(see the example in Secion~\ref{sec:convergence}).  The two-step
 estimation is done by the function \code{heckit2} or \code{heckit5},
 depending on the model.
 
@@ -682,12 +682,14 @@ statistically significant.
 
 
 \section{Testing Reliability}
+\label{sec:reliability}
 
 In this section we test the reliability of the results from \code{selection}
 applying the two-step and the maximum likelihood estimation method.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Greene( 2002 ): example 22.8, page 786}
+\label{sec:Greene22.8}
 
 The first test is example 22.8 from \citet[p.~786]{greene2002}.
 The data set used in this example is included in \pkg{micEcon};
@@ -743,62 +745,38 @@ smaller.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Additional notes}
-\label{sec:additional}
+\section{Problems}
+\label{sec:problems}
+
+\subsection{Convergence}
+\label{sec:convergence}
 
 The log-likelihood of the models above is not globally concave.  It means, that the model may not
 converge, if the initial values are not chosen well enough.  This may easily happen which we illustrate
-below, while we also give a taste of the real data.  Consider the following example:
-<<init_2step>>=
-data(Mroz87)
-mr <- selection(lfp ~ kids5 + poly(age, 2) + educ + log(huswage) + mtr + fatheduc + city + unem,
-log(hours) ~ kids5 + poly(age, 2) + educ + wage + mtr + city + poly(exper, 2),
-data=Mroz87)
-@ 
-%
-We use a dataset, \code{Mroz87}, included in \pkg{micEcon}.  This data
-was used for analysing the female labour supply by \citet{mroz1987}.
-We model the labour force participation (described by dummy
-\code{lfp}) by presence of young children (\code{kids5}), quadratic
-polynomial in age, education in years (\code{educ}), log husbands wage
-(\code{huswage}), marginal tax rate (\code{mtr}), father education (in
-years, \code{fatheduc}), residence in a big city (\code{city}) and the
-local unemployment rate (\code{unem}).  The labour supply equation
-includes most of the variables above (leaving \code{huswage},
-\code{fathedu} and \code{unem} for exclusion restrictions).
-Additional explanatory variables are woman's wage (\code{wage}) and
-quadratic polynomial in experience (\code{exper}).
-
-The model gives reasonable results:
-<<init_0>>=
-summary(mr)
-@ 
-%
-One may see, that small children in the family, high salary of husband
-and high marginal tax rate decrease the participation probability,
-while more education and residence in a big city increase it.  The
-labour supply equation seems a bit less convincing with more education
-and income leading to less hours worked and small kids causing women
-to work more.  The correlation of error terms \code{rho} shows a
-nearly perfect negative correlation between the corresponding error
-terms, which means we estimate essentially a tobit model (see
-\citet{mroz1987} for more results and discussion).
-
-However, the results are sensitive to the start values
+below, while we also give a taste of the real data.
+Recall example  22.8 from \citet[p.~786]{greene2002}
+(section:~\ref{sec:Greene22.8}).
+This model gives reasonable results,
+but the results are sensitive to the start values.
+Now we re-estimate the model specifying start values ``by hand''
 (note that you have to supply a positive initial value for the
 variance):
 <<>>=
-mr <- selection(lfp ~ kids5 + poly(age, 2) + educ + log(huswage) + mtr + fatheduc + city + unem,
-log(hours) ~ kids5 + poly(age, 2) + educ + wage + mtr + city + poly(exper, 2),
-data=Mroz87, start=c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0))
+mr <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+   wage ~ exper + I( exper^2 ) + educ + city,
+   data = Mroz87, start = c(0,0,0,0,0,0,0,1,0,0,0,1,0))
 summary(mr)
 @ 
 %
 The maximisation routine gets stuck in a non-concave region and
 cannot find the global maximum.  Here another optimisation algorithm
-might be useful, however, switch of the algorithm is not yet
+might be useful. However, a switch of the algorithm is not yet
 implemented.  In far the most cases, the 2-step method, used for
 calculating the initial values, does a good job.
+
+
+\subsection{Boundary of the parameter space}
+\label{sec:boundary}
 
 In general, one should prefer \code{method="ml"} instead of
 \code{"2step"}.  However, ML may have problems at the boundary of the
