@@ -105,14 +105,14 @@ heckit <- function( selection, formula,
       if( print.level > 0 ) {
          cat ( "Estimating 2nd step (outcome) OLS model . . ." )
       }
-      result$lm <- lm(YO ~ -1 + XO + imrData$IMR1,
+      outcomeMod <- lm(YO ~ -1 + XO + imrData$IMR1,
                       subset = probitDummy )
-      intercept <- any(apply(model.matrix(result$lm), 2,
+      intercept <- any(apply(model.matrix(outcomeMod), 2,
                              function(v) (v[1] > 0) & (all(v == v[1]))))
                                         # we have determine whether the outcome model has intercept.
                                         # This is necessary later for calculating R^2
-      resid <- residuals( result$lm )
-      step2coef <- coef( result$lm )
+      resid <- residuals( outcomeMod )
+      step2coef <- coef( outcomeMod )
       names(step2coef) <- c(colnames(XO), "invMillsRatio")
       if(print.level > 0)
           cat( " OK\n" )
@@ -127,12 +127,12 @@ heckit <- function( selection, formula,
       formulaList <- list( step2formula )
       instImr <- as.formula( paste( "~", inst[ 2 ], "+ invMillsRatio" ) )
       library( systemfit )
-      result$lm <- systemfit( "2SLS", formulaList, inst = instImr,
+      outcomeMod <- systemfit( "2SLS", formulaList, inst = instImr,
                              data = data[ probitDummy, ] )
       intercept = FALSE
                                         # we calculate R^2 differently here (hopefully)
-      resid <- residuals( result$lm )[ , 1 ]
-      step2coef <- coefficients( result$lm$eq[[ 1 ]] )
+      resid <- residuals( outcomeMod )[ , 1 ]
+      step2coef <- coefficients( outcomeMod$eq[[ 1 ]] )
       if( print.level > 0 ) cat( " OK\n" )
    }
    result$sigma <- as.numeric( sqrt( crossprod( resid ) /
@@ -143,24 +143,25 @@ heckit <- function( selection, formula,
    names(result$rho) <- NULL
                                         # otherwise the name of step2coef is left...
    result$invMillsRatio <- invMillsRatio
-   ## Stack all final coefficients to 'coefficients'
-   coefficients <- c(coef(result$probit),
-                     step2coef[names(step2coef) != "invMillsRatio"],
-                     sigma=result$sigma, rho=result$rho)
-   if( print.level > 0 ) {
-      cat ( "Calculating coefficient covariance matrix . . ." )
-   }
-                                        # the following variables are named according to Greene (2003), p. 785
-   if( is.null( inst ) ) {
-      xMat <- model.matrix( result$lm )
-   } else {
-      xMat <- result$lm$eq[[ 1 ]]$x
-   }
    ## Now indices for packing the separate outcomes into full outcome vectors
    iBetaS <- seq(length=NXS)
    iBetaO <- NXS + seq(length=NXO)
    iSigma <- NXS + NXO + 1
    iRho <- iSigma + 1
+   ## Stack all final coefficients to 'coefficients'
+   coefficients <- c(coef(result$probit),
+                     step2coef[names(step2coef) != "invMillsRatio"],
+                     sigma=result$sigma, rho=result$rho)
+   names(coefficients)[iBetaS] <- gsub("^XS", "", names(coefficients)[iBetaS])
+   if( print.level > 0 ) {
+      cat ( "Calculating coefficient covariance matrix . . ." )
+   }
+                                        # the following variables are named according to Greene (2003), p. 785
+   if( is.null( inst ) ) {
+      xMat <- model.matrix( outcomeMod )
+   } else {
+      xMat <- outcomeMod$eq[[ 1 ]]$x
+   }
    ## Varcovar matrix.  Fill only a few parts, rest will remain NA
    vc <- matrix(0, NParam, NParam)
    colnames(vc) <- row.names(vc) <- names(coefficients)
@@ -172,7 +173,7 @@ heckit <- function( selection, formula,
                                     vcov( result$probit ),
                                     result$rho,
                                     result$imrDelta[ probitDummy ],
-                                    result$sigma )[1:NXS,1:NXS]
+                                    result$sigma )[1:NXO,1:NXO]
                                         # here we drop invMillsRatio part
    result$vcov <- vc
    ##
@@ -187,6 +188,7 @@ heckit <- function( selection, formula,
                         oIntercept=intercept,
                         N0=N0, N1=N1,
                         NParam=NParam, NObs=NObs, df=NObs-NParam)
+   result$lm <- outcomeMod
    class( result ) <- "heckit"
    return( result )
 }

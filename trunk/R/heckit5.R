@@ -57,7 +57,7 @@ heckit5 <- function(selection, outcome1, outcome2,
          mf2[[1]] <- as.name("model.frame")
          names(mf2)[2] <- "formula"
          mf2 <- eval(mf2, parent.frame())
-         badRow2 <- badRow2 | (apply(mf2, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==1))
+         badRow2 <- apply(mf2, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==1)
          mt2 <- attr(mf2, "terms")
          XO2 <- model.matrix(mt2, mf2)
          YO2 <- model.response(mf2, "numeric")

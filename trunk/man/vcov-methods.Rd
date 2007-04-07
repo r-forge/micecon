@@ -1,6 +1,7 @@
 \name{vcov-methods}
 \alias{vcov.probit}
 \alias{vcov.heckit}
+\alias{vcov.heckit5}
 \alias{vcov.maxLik}
 
 \title{Methods for Function 'vcov' in Package 'micEcon'}
@@ -9,6 +10,7 @@
 }
 \usage{
 \method{vcov}{heckit}(object, part = "outcome", ...)
+\method{vcov}{heckit5}(object, part = "outcome", ...)
    \method{vcov}{probit}( object, ... )
    \method{vcov}{maxLik}( object, ... )
 }
