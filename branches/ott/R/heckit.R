@@ -190,7 +190,7 @@ heckit <- function( selection, formula,
                                         # The location of results in the coef vector
                         oIntercept=intercept,
                         N0=N0, N1=N1,
-                        NParam=NParam, NObs=NObs, df=NObs-NParam)
+                        NParam=NParam, NObs=NObs, df=NObs-NParam+1)
    result$lm <- outcomeMod
    class( result ) <- "heckit"
    return( result )
