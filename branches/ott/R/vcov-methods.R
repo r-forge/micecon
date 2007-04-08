@@ -9,7 +9,7 @@ vcov.probit <- function(object, ...) {
 ## heckit
 vcov.heckit <- function(object, part="outcome", ...) {
    if(part=="outcome") {
-      i <- c(object$param$index$betaO, object$param$index$invMillsRatio)
+      i <- c(object$param$index$betaO, object$param$index$Mills)
       vc <- object$vcov[i,i]
    }
    else if(part=="full") {
