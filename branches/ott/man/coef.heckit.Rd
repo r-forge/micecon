@@ -16,7 +16,8 @@
   \item{part}{character string: which parts to extract: "full" for all
     the estimated parameters (probit selection estimates, outcome
     estimates), error variance and
-    correlation; or "outcome" for the outcome model results only}
+    correlation; or "outcome" for the outcome model results only
+    (including the inverse Mill's ratio)}
   \item{\dots}{further arguments for other methods}
 }
 \value{

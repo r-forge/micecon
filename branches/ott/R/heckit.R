@@ -84,9 +84,16 @@ heckit <- function( selection, formula,
    XO <- XO[!badRow,]
    YO <- YO[!badRow]
    probitDummy <- probitDummy[!badRow]
+   ## Now indices for packing the separate outcomes into full outcome vectors.  Note we treat
+   ## invMillsRatio as a separate parameter
+   iBetaS <- seq(length=NXS)
+   iBetaO <- NXS + seq(length=NXO)
+   iMills <- NXS + NXO + 1
+   iSigma <- iMills + 1
+   iRho <- iSigma + 1
    ##
    NObs <- length(YS)
-   NParam <- NXS + NXO + 2
+   NParam <- iRho
    N0 <- sum(YS == levels(YS)[1])
    N1 <- NObs - N0
                                         # sigma, rho
@@ -143,14 +150,10 @@ heckit <- function( selection, formula,
    names(result$rho) <- NULL
                                         # otherwise the name of step2coef is left...
    result$invMillsRatio <- invMillsRatio
-   ## Now indices for packing the separate outcomes into full outcome vectors
-   iBetaS <- seq(length=NXS)
-   iBetaO <- NXS + seq(length=NXO)
-   iSigma <- NXS + NXO + 1
-   iRho <- iSigma + 1
    ## Stack all final coefficients to 'coefficients'
    coefficients <- c(coef(result$probit),
                      step2coef[names(step2coef) != "invMillsRatio"],
+                     step2coef["invMillsRatio"],
                      sigma=result$sigma, rho=result$rho)
    names(coefficients)[iBetaS] <- gsub("^XS", "", names(coefficients)[iBetaS])
    if( print.level > 0 ) {
@@ -168,12 +171,12 @@ heckit <- function( selection, formula,
    vc[] <- NA
    if(!is.null(vcov(result$probit)))
        vc[iBetaS,iBetaS] <- vcov(result$probit)
-   vc[iBetaO, iBetaO] <- heckitVcov( xMat,
-                                    model.matrix( result$probit )[ probitDummy, ],
-                                    vcov( result$probit ),
-                                    result$rho,
-                                    result$imrDelta[ probitDummy ],
-                                    result$sigma )[1:NXO,1:NXO]
+   vc[c(iBetaO, iMills), c(iBetaO, iMills)] <- heckitVcov( xMat,
+                                                          model.matrix( result$probit )[ probitDummy, ],
+                                                          vcov( result$probit ),
+                                                          result$rho,
+                                                          result$imrDelta[ probitDummy ],
+                                                          result$sigma )
                                         # here we drop invMillsRatio part
    result$vcov <- vc
    ##
@@ -183,7 +186,7 @@ heckit <- function( selection, formula,
                                         # for coef() etc. methods
    ## the 'param' component is intended to all kind of technical info
    result$param <- list(index=list(betaS=iBetaS, betaO=iBetaO, 
-                                   sigma=iSigma, rho=iRho),
+                        Mills=iMills, sigma=iSigma, rho=iRho),
                                         # The location of results in the coef vector
                         oIntercept=intercept,
                         N0=N0, N1=N1,

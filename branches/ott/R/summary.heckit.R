@@ -52,7 +52,7 @@ print.summary.heckit <- function( x,
        ",\tAdjusted R-Squared:", round(x$rSquared$R2adj, digits), "\n", sep="")
                                         #
    if(part=="full") {
-      i <- c(x$param$index$sigma, x$param$index$rho)
+      i <- c(x$param$index$Mills, x$param$index$sigma, x$param$index$rho)
       cat("Error terms:\n")
       printCoefmat(x$estimate[i,], signif.legend=TRUE)
                                         # Here we have a problem -- signif legend is only printed, if
