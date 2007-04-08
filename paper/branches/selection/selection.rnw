@@ -714,12 +714,8 @@ Now, we estimate the model by the two-step method
 summary( tmp <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
    data = Mroz87, method = "2step" ) )
-## tmp$coefficients[ "invMillsRatio" ]
-## tmp$vcov[ "invMillsRatio", "invMillsRatio" ]^0.5
-coef(tmp, part="full")
-sqrt(diag(vcov(tmp, part="full")))
-tmp$rho
-tmp$sigma
+coef(tmp, part="full")[ c( "invMillsRatio", "rho", "sigma" ) ]
+sqrt(diag(vcov(tmp, part="full")))[ "invMillsRatio" ]
 @
 Most results are identical to the values reported by
 \citet[p.~786]{greene2002}.
