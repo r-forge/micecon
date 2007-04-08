@@ -743,6 +743,90 @@ smaller.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cameron and Trivedi (2005): Section 16.6, page 553}
+\label{sec:Cameron16.6}
+
+The data set used in this example is based on the
+``RAND Health Insurance Experiment'' \citep{newhouse99}.
+It is included in \pkg{micEcon}, where it is called \code{RandHIE}.
+\citet[p.~553]{cameron05} use these data to analyse health expenditure.
+The endogenous variable of the outcome equation measures
+the log of the medical expenses of the individual (\code{lnmeddol})
+and the endogenous variable of the selection equation indicates
+whether the medical expenses are positive (\code{binexp}).
+The regressors are
+the log of the coinsurance rate plus 1 (\code{logc = log(coins+1)}),
+a dummy for individual deductible plans (\code{idp}),
+the log of the participation incentive payment (\code{lpi}),
+an artificial variable (\code{fmde} that is 0 if \code{idp}\,=\,1
+and \code{ln(max(1,mde/(0.01*coins)))} otherwise
+(where \code{mde} is the maximum expenditure offer),
+physical limitations (\code{physlm}),
+the number of chronic diseases (\code{disea}),
+dummy variables for good (\code{hlthg}, fair (\code{hlthf}), and
+poor (\code{hlthp}) self-rated health
+(where the baseline is excellent self-rated health),
+the log of family income (\code{linc}),
+the log of family size (\code{lfam}),
+education of household head in years (\code{educdec}),
+age of the individual in years (\code{xage}),
+a dummy variable for female individuals (\code{female}),
+a dummy variable for individuals younger than 18 years (\code{child}),
+a dummy variable for female individuals younger than 18 years (\code{fchild}),
+and a dummy variable for black household heads (\code{black}).
+First, we select the subsample that is used by \citet{cameron05}
+and specify the selection as well as the outcome equation.
+%
+<<cameron16.6start>>=
+data( RandHIE )
+subsample <- RandHIE$year == 2 & !is.na( RandHIE$educdec )
+selectEq <- binexp ~ logc + idp + lpi + fmde + physlm + disea +
+   hlthg + hlthf + hlthp + linc + lfam + educdec + xage + female +
+   child + fchild + black
+outcomeEq <- lnmeddol ~ logc + idp + lpi + fmde + physlm + disea +
+   hlthg + hlthf + hlthp + linc + lfam + educdec + xage + female +
+   child + fchild + black
+@
+%
+Now, we estimate the model by the two-step method
+<<cameron16.6TwoStep>>=
+summary( tmp <- selection( selectEq, outcomeEq, data = RandHIE[ subsample, ],
+   method = "2step" ), part="full" )
+coef(tmp, part="full")[ c( "invMillsRatio", "rho", "sigma" ) ]
+sqrt(diag(vcov(tmp, part="full")))[ "invMillsRatio" ]
+@
+%
+All coefficients, standard errors and t-values are fully identical
+to the results reported by \citet[p.~553]{cameron05}
+--- even if they are compared with the seven-digit values
+in the \proglang{Stata} output that is available on
+\url{http://cameron.econ.ucdavis.edu/mmabook/mma16p3selection.txt}.%
+\footnote{
+The coefficient and t-value of \code{idp} in column \code{lnmed}
+seem to be wrong,
+because they differ from the \proglang{Stata} output
+as well as from our results.
+}
+
+Again, we repeat the analysis with the maximum likelihood estimation method:
+<<cameron16.6ML>>=
+summary( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ] ),
+   part="full" )
+@
+%
+Unfortunately, the maximisation of the likelihood function does not converge.
+However, if we provide starting values for $\sigma$ and $\rho$
+that are close to the (generally unknown) ML estimates,
+the maximisation converges:
+<<cameron16.6ML2>>=
+summary( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ],
+   start = c( coef( tmp, part="full")[1:36], 1.6, 0.7 ) ), part="full" )
+@
+%
+These results are nearly identical to the values reported
+by \citet{cameron05}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problems}
 \label{sec:problems}
 
