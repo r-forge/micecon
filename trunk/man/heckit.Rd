@@ -70,6 +70,9 @@
 }
 
 \references{
+  Cameron, A. C. and Trivedi, P. K. (2005)
+  \emph{Microeconometrics: Methods and Applications},
+  Cambridge University Press.
 
   Greene, W. H. (2003)
   \emph{Econometric Analysis, Fifth Edition}, Prentice Hall.
@@ -111,6 +114,20 @@ summary( wooldridge )        # summary of the 1st step probit estimation
                              # (Example 17.1, p. 562f) and 2nd step OLS regression
 wooldridge$sigma             # estimated sigma
 wooldridge$rho               # estimated rho
+
+## Cameron and Trivedi (2005): Section 16.6, page 553ff
+data( RandHIE )
+subsample <- RandHIE$year == 2 & !is.na( RandHIE$educdec )
+selectEq <- binexp ~ logc + idp + lpi + fmde + physlm + disea +
+   hlthg + hlthf + hlthp + linc + lfam + educdec + xage + female +
+   child + fchild + black
+outcomeEq <- lnmeddol ~ logc + idp + lpi + fmde + physlm + disea +
+   hlthg + hlthf + hlthp + linc + lfam + educdec + xage + female +
+   child + fchild + black
+cameron <- heckit( selectEq, outcomeEq, data = RandHIE[ subsample, ] )
+summary( cameron, part="full" )
+coef( cameron, part="full" )[ c( "invMillsRatio", "rho", "sigma" ) ]
+sqrt( diag( vcov( cameron, part="full" )))[ "invMillsRatio" ]
 
 ## example using random numbers
 library( MASS )
