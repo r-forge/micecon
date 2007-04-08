@@ -47,6 +47,7 @@ quadFuncDeriv           Derivatives of a quadratic function
 quadFuncEst             Estimate a quadratic function
 quantityIndex           Calculate Quantity Indices
 quasiconcavity          Test for quasiconcavity / quasiconvexity
+RandHIE                 RAND Health Insurance Experiment
 readFront41out          Read output of Frontier 4.1
 residuals.snqProfitEst
                         Residuals of an SNQ profit function
