@@ -150,7 +150,7 @@ heckit5 <- function(selection, outcome1, outcome2,
       cat("The probit part of the model:\n")
       print(summary(probit))
    }
-   gamma <- coefficients(probit)
+   gamma <- coef(probit)
    ## outcome
    invMillsRatio1 <- dnorm( -XS1%*%gamma)/pnorm( -XS1%*%gamma)
    invMillsRatio2 <- dnorm( XS2%*%gamma)/pnorm( XS2%*%gamma)
@@ -159,22 +159,22 @@ heckit5 <- function(selection, outcome1, outcome2,
    XO1 <- cbind(XO1, invMillsRatio1)
    XO2 <- cbind(XO2, invMillsRatio2)
                                         # lambda1 is a matrix -- we need to remove the dim in order to 
-   twoStep1 <- lm(YO1 ~ -1 + XO1)
-   twoStep2 <- lm(YO2 ~ -1 + XO2)
+   lm1 <- lm(YO1 ~ -1 + XO1)
+   lm2 <- lm(YO2 ~ -1 + XO2)
                                         # XO includes the constant
-   intercept1 <- any(apply(model.matrix(twoStep1), 2,
+   intercept1 <- any(apply(model.matrix(lm1), 2,
                            function(v) (v[1] > 0) & (all(v == v[1]))))
-   intercept2 <- any(apply(model.matrix(twoStep2), 2,
+   intercept2 <- any(apply(model.matrix(lm2), 2,
                            function(v) (v[1] > 0) & (all(v == v[1]))))
                                         # we have determine whether the outcome model has intercept.
                                         # This is necessary later for calculating R^2
-   se1 <- summary(twoStep1)$sigma
-   se2 <- summary(twoStep2)$sigma
+   se1 <- summary(lm1)$sigma
+   se2 <- summary(lm2)$sigma
                                         # residual variance
    delta1 <- mean( invMillsRatio1^2 - XS1%*%gamma *invMillsRatio1)
    delta2 <- mean( invMillsRatio2^2 + XS2%*%gamma *invMillsRatio2)
-   betaL1 <- coef(twoStep1)["XO1invMillsRatio"]
-   betaL2 <- coef(twoStep2)["XO2invMillsRatio"]
+   betaL1 <- coef(lm1)["XO1invMillsRatio"]
+   betaL2 <- coef(lm2)["XO2invMillsRatio"]
    sigma1 <- sqrt( se1^2 + ( betaL1*delta1)^2)
    sigma2 <- sqrt( se2^2 + ( betaL2*delta2)^2)
    rho1 <- -betaL1/sigma1
@@ -187,10 +187,12 @@ heckit5 <- function(selection, outcome1, outcome2,
    ## indices in for the parameter vector
    iBetaS <- 1:NXS
    iBetaO1 <- seq(tail(iBetaS, 1)+1, length=NXO1)
-   iSigma1 <- tail(iBetaO1, 1) + 1
+   iMills1 <- tail(iBetaO1, 1) + 1
+   iSigma1 <- iMills1 + 1
    iRho1 <- tail(iSigma1, 1) + 1
    iBetaO2 <- seq(tail(iRho1, 1) + 1, length=NXO2)
-   iSigma2 <- tail(iBetaO2, 1) + 1
+   iMills2 <- tail(iBetaO2, 1) + 1
+   iSigma2 <- iMills2 + 1
    iRho2 <- tail(iSigma2, 1) + 1
    NParam <- iRho2
                                         # invMillsRatios are counted as parameter
@@ -198,13 +200,18 @@ heckit5 <- function(selection, outcome1, outcome2,
       ## Varcovar matrix.  Fill only a few parts, rest will remain NA
    coefficients <- numeric(NParam)
    coefficients[iBetaS] <- coef(probit)
-   names(coefficients)[iBetaS] <- names(coef(probit))
-   coefficients[iBetaO1] <- coef(twoStep1)[names(coef(twoStep1)) != "XO1invMillsRatio"]
-   names(coefficients)[iBetaO1] <- names(coef(twoStep1))[names(coef(twoStep1)) != "XO1invMillsRatio"]
-   coefficients[iBetaO2] <- coef(twoStep2)[names(coef(twoStep2)) != "XO2invMillsRatio"]
-   names(coefficients)[iBetaO2] <- names(coef(twoStep2))[names(coef(twoStep2)) != "XO2invMillsRatio"]
-   coefficients[c(iSigma1, iRho1, iSigma2, iRho2)] <- c(sigma1, rho1, sigma2, rho2)
-   names(coefficients)[c(iSigma1, iRho1, iSigma2, iRho2)] <- c("sigma1", "rho1", "sigma2", "rho2")
+   names(coefficients)[iBetaS] <- gsub("^XS", "", names(coef(probit)))
+   coefficients[iBetaO1] <- coef(lm1)[names(coef(lm1)) != "XO1invMillsRatio"]
+   names(coefficients)[iBetaO1] <- gsub("^XO1", "",
+                                        names(coef(lm1))[names(coef(lm1)) != "XO1invMillsRatio"])
+   coefficients[iBetaO2] <- coef(lm2)[names(coef(lm2)) != "XO2invMillsRatio"]
+   names(coefficients)[iBetaO2] <- gsub("^XO2", "",
+                                        names(coef(lm2))[names(coef(lm2)) != "XO2invMillsRatio"])
+   coefficients[c(iMills1, iSigma1, iRho1, iMills2, iSigma2, iRho2)] <-
+       c(coef(lm1)["XO1invMillsRatio"], sigma1, rho1,
+         coef(lm2)["XO2invMillsRatio"], sigma2, rho2)
+   names(coefficients)[c(iMills1, iSigma1, iRho1, iMills2, iSigma2, iRho2)] <-
+       c("invMillsRatio1", "sigma1", "rho1", "invMillsRatio2", "sigma2", "rho2")
    vc <- matrix(0, NParam, NParam)
    colnames(vc) <- row.names(vc) <- names(coefficients)
    vc[] <- NA
@@ -213,18 +220,18 @@ heckit5 <- function(selection, outcome1, outcome2,
    ## the 'param' component is intended to all kind of technical info
    param <- list(index=list(betaS=iBetaS,
                  betaO1=iBetaO1, betaO2=iBetaO2,
-                 sigma1=iSigma1, rho1=iRho1,
-                 sigma2=iSigma2, rho2=iRho2),
+                 Mills1=iMills1, sigma1=iSigma1, rho1=iRho1,
+                 Mills2=iMills2, sigma2=iSigma2, rho2=iRho2),
                                         # The location of results in the coef vector
                  oIntercept1=intercept1, oIntercept2=intercept2,
-                 NObs=NObs, NParam=NParam, df=NObs-NParam,
+                 NObs=NObs, NParam=NParam, df=NObs-NParam + 2,
                  NXS=NXS, NXO1=NXO1, NXO2=NXO2, N1=N1, N2=N2)
    #
    result <- list(probit=probit,
-                  twoStep1=twoStep1,
+                  lm1=lm1,
                   rho1=rho1,
                   sigma1=sigma1,
-                  twoStep2=twoStep2,
+                  lm2=lm2,
                   rho2=rho2,
                   sigma2=sigma2,
                   termsS=mtS,

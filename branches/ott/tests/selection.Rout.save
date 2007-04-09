@@ -1,5 +1,5 @@
 
-R version 2.4.1 (2006-12-18)
+R version 2.4.0 (2006-10-03)
 Copyright (C) 2006 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -18,6 +18,7 @@ Type 'q()' to quit R.
 > library(micEcon)
 Loading required package: systemfit
 > library(mvtnorm)
+> options(digits=6)
 > N <- 1500
 > NNA <- 5
 > vc <- diag(3)
@@ -39,37 +40,59 @@ Loading required package: systemfit
 > xo2[sample(N, NNA)] <- NA
 > yo1[sample(N, NNA)] <- NA
 > yo2[sample(N, NNA)] <- NA
-> a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2))
+> a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), method="2step")
+ > print(summary(a))
+2-step estimation of switching regression (tobit-5) model
+1479 observations (479 selection 1 and 1000 selection 2) and 12 free parameters (df = 1469)
+Probit selection equation:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.07977    0.06558   1.216    0.224    
+xs           0.78112    0.11766   6.639 4.43e-11 ***
+Outcome equation 1:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)   0.6189         NA      NA       NA
+xo1           0.9975         NA      NA       NA
+Multiple R-Squared:0.218,	Adjusted R-Squared:0.214
+Outcome equation 2:
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept) -0.003428         NA      NA       NA
+xo2          0.927595         NA      NA       NA
+Multiple R-Squared:0.083,	Adjusted R-Squared:0.081
+Error terms:
+               Estimate Std. Error t value Pr(>|t|)
+invMillsRatio1  -1.5153         NA      NA       NA
+invMillsRatio2   0.6186         NA      NA       NA
+sigma1           1.2926         NA      NA       NA
+sigma2           0.9929         NA      NA       NA
+rho1             0.9900         NA      NA       NA
+rho2             0.6230         NA      NA       NA
+> a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), method="ml")
   > print(summary(a))
 --------------------------------------------
 Tobit 5 selection model/Maximum Likelihood estimation
 Newton-Raphson maximisation, 9 iterations
 Return code 2: successive function values within tolerance limit.
  May be a solution
-Log-Likelihood: -2774.843 
+Log-Likelihood: -2774.84 
 1479 observations (479 selection 1 and 1000 selection 2) and 10 free parameters (df = 1469)
-
 Probit selection equation:
-             Estimate Std. error t value Pr(> t)    
-(Intercept) 0.0020985  0.0570640  0.0368  0.9707    
-xs          0.9558618  0.0939042 10.1791  <2e-16 ***
-
+            Estimate Std. error t value Pr(> t)    
+(Intercept) 0.002098   0.057064   0.037    0.97    
+xs          0.955862   0.093904  10.179  <2e-16 ***
 Outcome equation 1:
-               Estimate Std. error t value Pr(> t)    
-XO1(Intercept) 0.071203   0.116614  0.6106  0.5415    
-XO1xo1         0.986992   0.115894  8.5163  <2e-16 ***
-
+            Estimate Std. error t value Pr(> t)    
+(Intercept)   0.0712     0.1166   0.611   0.541    
+xo1           0.9870     0.1159   8.516  <2e-16 ***
 Outcome equation 2:
-               Estimate Std. error t value Pr(> t)    
-XO2(Intercept) 0.070869   0.111640  0.6348  0.5256    
-XO2xo2         0.936184   0.101623  9.2123  <2e-16 ***
-
+            Estimate Std. error t value Pr(> t)    
+(Intercept)  0.07087    0.11164   0.635   0.526    
+xo2          0.93618    0.10162   9.212  <2e-16 ***
 Error terms data:
-       Estimate Std. error t value   Pr(> t)    
-sigma1 1.121399   0.067218 16.6831 < 2.2e-16 ***
-sigma2 0.997996   0.047967 20.8059 < 2.2e-16 ***
-rho1   0.903461   0.026301 34.3503 < 2.2e-16 ***
-rho2   0.472181   0.159873  2.9535  0.003142 ** 
+       Estimate Std. error t value Pr(> t)    
+sigma1  1.12140    0.06722  16.683 < 2e-16 ***
+sigma2  0.99800    0.04797  20.806 < 2e-16 ***
+rho1    0.90346    0.02630  34.350 < 2e-16 ***
+rho2    0.47218    0.15987   2.953 0.00314 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 --------------------------------------------
@@ -85,7 +108,27 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > ys[sample(N, NNA)] <- NA
 > xo[sample(N, NNA)] <- NA
 > yo[sample(N, NNA)] <- NA
-> a <- selection(ys~xs, yo ~xo)
+> a <- selection(ys~xs, yo ~xo, method="2step")
+ > print(summary(a))
+2-step estimation of heckit (tobit-2) model
+1481 observations (461 censored and 1020 observed) and 7 parameters (df = 1475)
+Probit selection equation:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.06466    0.06690   0.967    0.334    
+xs           0.89105    0.12165   7.325 3.92e-13 ***
+Outcome equation:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   0.1283     0.1310    0.98    0.327    
+xo            0.9176     0.0910   10.08   <2e-16 ***
+Multiple R-Squared:0.104,	Adjusted R-Squared:0.102
+Error terms:
+              Estimate Std. Error t value Pr(>|t|)    
+invMillsRatio  -0.8714     0.2381   -3.66 0.000261 ***
+sigma           1.0458         NA      NA       NA    
+rho            -0.8333         NA      NA       NA    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+> a <- selection(ys~xs, yo ~xo, method="ml")
   > print(summary(a))
 --------------------------------------------
 Tobit 2 selection model/Maximum Likelihood estimation
@@ -93,21 +136,18 @@ Newton-Raphson maximisation, 5 iterations
 Return code 1: gradient close to zero. May be a solution
 Log-Likelihood: -2159.85 
 1481 observations (461 censored and 1020 observed) and 6 free parameters (df = 1475)
-
 Probit selection equation:
             Estimate Std. error t value Pr(> t)    
-(Intercept) 0.041986   0.060392  0.6952  0.4869    
-xs          0.931255   0.108446  8.5872  <2e-16 ***
-
+(Intercept)  0.04199    0.06039   0.695   0.487    
+xs           0.93125    0.10845   8.587  <2e-16 ***
 Outcome equation:
             Estimate Std. error t value Pr(> t)    
-(Intercept) 0.069729   0.061658  1.1309  0.2581    
-xo          0.950258   0.089673 10.5969  <2e-16 ***
-
+(Intercept)  0.06973    0.06166   1.131   0.258    
+xo           0.95026    0.08967  10.597  <2e-16 ***
 Error terms data:
-       Estimate Std. error t value   Pr(> t)    
-sigma  1.012537   0.036724  27.572 < 2.2e-16 ***
-rho   -0.779097   0.045326 -17.189 < 2.2e-16 ***
+      Estimate Std. error t value Pr(> t)    
+sigma  1.01254    0.03672   27.57  <2e-16 ***
+rho   -0.77910    0.04533  -17.19  <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 --------------------------------------------
