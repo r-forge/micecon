@@ -1,5 +1,5 @@
 
-R version 2.4.1 (2006-12-18)
+R version 2.4.0 (2006-10-03)
 Copyright (C) 2006 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -26,13 +26,13 @@ Loading required package: systemfit
 +    wage ~ exper + I( exper^2 ) + educ + city, Mroz87 )
  > print(summary( greene ))
 2-step estimation of heckit (tobit-2) model
-753 observations (325 censored and 428 observed) and 14 parameters (df = 739)
+753 observations (325 censored and 428 observed) and 14 parameters (df = 740)
 Probit selection equation:
               Estimate Std. Error t value Pr(>|t|)    
 (Intercept) -4.157e+00  1.402e+00  -2.965 0.003127 ** 
 age          1.854e-01  6.597e-02   2.810 0.005078 ** 
 I(age^2)    -2.426e-03  7.735e-04  -3.136 0.001780 ** 
-faminc       4.580e-06  4.206e-06   1.089 0.276545    
+faminc       4.580e-06  4.206e-06   1.089 0.276544    
 kidsTRUE    -4.490e-01  1.309e-01  -3.430 0.000638 ***
 educ         9.818e-02  2.298e-02   4.272 2.19e-05 ***
 Outcome equation:
@@ -66,7 +66,7 @@ XOeduc         0.417017   0.099003    4.21  3.1e-05 ***
 XOcity         0.443838   0.317921    1.40     0.16    
 imrData$IMR1  -1.097619   1.252900   -0.88     0.38    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 3.11 on 422 degrees of freedom
 Multiple R-Squared: 0.664,	Adjusted R-squared: 0.659 
@@ -116,21 +116,21 @@ invMillsRatio    1.60271957
 +    kids5 + kids618, log( wage ) ~ educ + exper + I( exper^2 ), Mroz87 )
  > print( summary( wooldridge ) )
 2-step estimation of heckit (tobit-2) model
-753 observations (325 censored and 428 observed) and 15 parameters (df = 738)
+753 observations (325 censored and 428 observed) and 15 parameters (df = 739)
 Probit selection equation:
              Estimate Std. Error t value Pr(>|t|)    
 (Intercept)  0.270077   0.508593   0.531  0.59556    
 nwifeinc    -0.012024   0.004840  -2.484  0.01320 *  
 educ         0.130905   0.025254   5.183 2.81e-07 ***
-exper        0.123348   0.018716   6.590 8.35e-11 ***
+exper        0.123348   0.018716   6.590 8.34e-11 ***
 I(exper^2)  -0.001887   0.000600  -3.145  0.00173 ** 
-age         -0.052853   0.008477  -6.235 7.62e-10 ***
-kids5       -0.868328   0.118522  -7.326 6.22e-13 ***
+age         -0.052853   0.008477  -6.235 7.61e-10 ***
+kids5       -0.868328   0.118522  -7.326 6.21e-13 ***
 kids618      0.036005   0.043477   0.828  0.40786    
 Outcome equation:
               Estimate Std. Error t value Pr(>|t|)    
 (Intercept) -0.5781032  0.3050062  -1.895  0.05843 .  
-educ         0.1090655  0.0155230   7.026 4.84e-12 ***
+educ         0.1090655  0.0155230   7.026 4.83e-12 ***
 exper        0.0438873  0.0162611   2.699  0.00712 ** 
 I(exper^2)  -0.0008591  0.0004389  -1.957  0.05068 .  
 Multiple R-Squared:0.157,	Adjusted R-Squared:0.149
@@ -156,7 +156,7 @@ XOexper        0.043887   0.016353    2.68   0.0076 **
 XOI(exper^2)  -0.000859   0.000441   -1.95   0.0523 .  
 imrData$IMR1   0.032262   0.134388    0.24   0.8104    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.667 on 423 degrees of freedom
 Multiple R-Squared: 0.773,	Adjusted R-squared: 0.77 

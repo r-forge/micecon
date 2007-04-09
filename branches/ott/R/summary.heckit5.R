@@ -20,10 +20,10 @@ summary.heckit5 <- function( object, ...) {
        }
        c(R2, R2adj)
    }
-   r <- RSq(object$twoStep1, object$param$oIntercept1)
+   r <- RSq(object$lm1, object$param$oIntercept1)
    R21 <- r[1]
    R2adj1 <- r[2]
-   r <- RSq(object$twoStep2, object$param$oIntercept2)
+   r <- RSq(object$lm2, object$param$oIntercept2)
    R22 <- r[1]
    R2adj2 <- r[2]
    iBetaS <- object$param$index$betaS
@@ -68,7 +68,8 @@ print.summary.heckit5 <- function( x,
        ",\tAdjusted R-Squared:", round(x$rSquared$R2adj2, digits), "\n", sep="")
                                         #
    if(part=="full") {
-      i <- c(x$param$index$sigma1, x$param$index$sigma2, x$param$index$rho1, x$param$index$rho2)
+      i <- c(x$param$index$Mills1, x$param$index$Mills2,
+             x$param$index$sigma1, x$param$index$sigma2, x$param$index$rho1, x$param$index$rho2)
       cat("Error terms:\n")
       printCoefmat(x$estimate[i,], signif.legend=TRUE)
                                         # Here we have a problem -- signif legend is only printed, if

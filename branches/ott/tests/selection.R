@@ -1,5 +1,6 @@
 library(micEcon)
 library(mvtnorm)
+options(digits=6)
 N <- 1500
 NNA <- 5
 vc <- diag(3)
@@ -21,7 +22,9 @@ xo1[sample(N, NNA)] <- NA
 xo2[sample(N, NNA)] <- NA
 yo1[sample(N, NNA)] <- NA
 yo2[sample(N, NNA)] <- NA
-a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2))
+a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), method="2step")
+print(summary(a))
+a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), method="ml")
 print(summary(a))
 ## ------- Tobit-2 exmple -----------
 vc <- diag(2)
@@ -35,6 +38,8 @@ xs[sample(N, NNA)] <- NA
 ys[sample(N, NNA)] <- NA
 xo[sample(N, NNA)] <- NA
 yo[sample(N, NNA)] <- NA
-a <- selection(ys~xs, yo ~xo)
+a <- selection(ys~xs, yo ~xo, method="2step")
+print(summary(a))
+a <- selection(ys~xs, yo ~xo, method="ml")
 print(summary(a))
 

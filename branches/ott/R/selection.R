@@ -211,14 +211,14 @@ selection <- function(selection, outcome,
       YO1 <- YO1[!badRow]
       XO2 <- XO2[!badRow,]
       YO2 <- YO2[!badRow]
-      igamma <- 1:NXS
-      ibeta1 <- seq(tail(igamma, 1)+1, length=NXO1)
-      isigma1 <- tail(ibeta1, 1) + 1
-      irho1 <- tail(isigma1, 1) + 1
-      ibeta2 <- seq(tail(irho1, 1) + 1, length=NXO2)
-      isigma2 <- tail(ibeta2, 1) + 1
-      irho2 <- tail(isigma2, 1) + 1
-      NParam <- irho2
+      iBetaS <- 1:NXS
+      iBetaO1 <- seq(tail(iBetaS, 1)+1, length=NXO1)
+      iSigma1 <- tail(iBetaO1, 1) + 1
+      iRho1 <- tail(iSigma1, 1) + 1
+      iBetaO2 <- seq(tail(iRho1, 1) + 1, length=NXO2)
+      iSigma2 <- tail(iBetaO2, 1) + 1
+      iRho2 <- tail(iSigma2, 1) + 1
+      NParam <- iRho2
       twoStep <- NULL
       if(is.null(start)) {
          start <- numeric(NParam)
@@ -227,28 +227,16 @@ selection <- function(selection, outcome,
          }
          twoStep <- heckit5(selection, as.formula(formula1), as.formula(formula2),
                            data, print.level)
-         start[igamma] <- coef(twoStep$probit)
-         names(start)[igamma] <- names(coef(twoStep$probit))
-         b1 <- coef(twoStep$twoStep1)
-         start[ibeta1] <- b1[names(b1) != "XO1invMillsRatio"]
-         names(start)[ibeta1] <- names(b1[names(b1) != "XO1invMillsRatio"])
-         start[isigma1] <- twoStep$sigma1
-         names(start)[isigma1] <- "sigma1"
-         start[irho1] <- twoStep$rho1
-         names(start)[irho1] <- "rho1"
-         b2 <- coef(twoStep$twoStep2)
-         start[ibeta2] <- b2[names(b2) != "XO2invMillsRatio"]
-         names(start)[ibeta2] <- names(b2[names(b2) != "XO2invMillsRatio"])
-         start[isigma2] <- twoStep$sigma2
-         names(start)[isigma2] <- "sigma2"
-         start[irho2] <- twoStep$rho2
-         names(start)[irho2] <- "rho2"
+         ind <- twoStep$param$index
+         start <- coef(twoStep, part="full")[c(ind$betaS,
+                                  ind$betaO1, ind$sigma1, ind$rho1,
+                                  ind$betaO2, ind$sigma2, ind$rho2)]
       }
       estimation <- tobit5fit(YS, XS, YO1, XO1, YO2, XO2, start=start,
                               print.level=print.level, ...)
-      param <- list(index=list(betaS=igamma,
-                    betaO1=ibeta1, sigma1=isigma1, rho1=irho1,
-                    betaO2=ibeta2, sigma2=isigma2, rho2=irho2),
+      param <- list(index=list(betaS=iBetaS,
+                    betaO1=iBetaO1, sigma1=iSigma1, rho1=iRho1,
+                    betaO2=iBetaO2, sigma2=iSigma2, rho2=iRho2),
                     NXS=ncol(XS),
                     NXO1=ncol(XO1), NXO2=ncol(XO2),
                     N1=sum(YS==0), N2=sum(YS==1),
