@@ -1,0 +1,430 @@
+% -*- latex-pdf-mode -*-
+%\documentclass[trans,gray,notes=hide]{beamer}
+\documentclass{beamer}
+\DeclareGraphicsRule{&star}{mps}{&star}{}
+\mode<presentation>
+{
+  \usetheme{Hannover}
+  \setbeamercovered{transparent}
+}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{pxfonts,eulervm}
+\usepackage[T1]{fontenc}
+\usepackage{array,xspace}
+\usepackage{graphicx}
+\input{isomath.tex}
+
+\newcommand{\YM}{weeks\xspace}
+\newcommand{\stdd}[1]{\small\textit{#1}}
+\long\def\GobbleColumnStart#1\GobbleColumnStop{}
+\let\GobbleColumnStop\relax
+\newcolumntype{i}{>{\GobbleColumnStart}c<{\GobbleColumnStop}}
+
+\title[selection models]{Sample selection models in \code{R}:}
+\subtitle{Package \code{micEcon}} 
+
+\author[Henningsen\\Toomet]{
+  \parbox{0.30\linewidth}{%
+    Arne Henningsen\\
+    Kiel University}
+  \and 
+  \parbox{0.30\linewidth}{%
+    Ott Toomet\\
+    Tartu University}}
+
+\date{LABOUR, April 2007}
+
+\subject{Labour Seminar}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents
+\end{frame}
+
+
+\section[Problem]{Selection problem}
+
+\begin{frame}
+  \frametitle{Sample selection problem} 
+  
+  Social scientists are interested in causal effects.  Often, however:
+  \begin{itemize}
+  \item Scientist cannot (completely) control who will be treated
+  \item Individual can (to a certain degree) choose whether to be
+    treated
+  \item[$\Rightarrow$] Control- and treatment group are not equal
+  \item Even worse, we don't know, what's the difference.
+  \end{itemize}
+  This is called \alert{self-selection}.  
+
+  \pause
+  Examples:
+  \begin{itemize}
+  \item Choice of schooling
+  \item \qquad smoking
+  \item Course participation
+  \item Filing for unemployment benefits
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Selection problem 2}
+  Sometimes:
+  \begin{itemize}
+  \item Scientist cannot (completely) control who will be treated
+  \item Neither can the individuals
+  \item But the selection may be non-random
+  \item As above, treatment and control groups not equal
+  \end{itemize}
+  This is usually refered to as \alert{sample selection}
+
+  \pause
+  Examples:
+  \begin{itemize}
+  \item Effect of family background (e.g. effect of siblings)
+  \item Impact of regional characteristics (e.g. effect of regional
+    unemployment of schooling choice)
+  \item Size of unemployment benefits
+  \end{itemize}
+\end{frame}
+
+
+
+\section[Solutions]{Possible solutions}
+
+\begin{frame}
+  \frametitle{Random experiments}
+
+  Randomize perfectly, who will be in treatment/control group
+  \pause
+  \begin{itemize}
+  \item Hard to play with humans
+  \item Ethical problems (you cannot treat unfairly \dots)
+  \item Infeasible (you cannot enforce 50 years smoking/non-smoking \dots)
+  \item Expensive (effect of inheriting \$1\,000\,000 \dots)
+  \item Hard to enforce compliance (attrition, dropout, substitution \dots)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Instruments (exclusion restrictions)}
+
+  \begin{itemize}
+  \item Additional information (variables), which determine who will
+    be treated, who will not.
+  \item \alert{Not related to the outcome!}
+  \end{itemize}
+  
+  \pause
+  \begin{itemize}
+  \item There are no such variables
+  \item Individuals can react to this information too (van den Berg, 2007)
+  \item Natural experiments (reforms)
+  \item timing
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Functional form}
+  
+  Assumptions about the functional form
+
+  \pause
+  \begin{itemize}
+  \item Functional form of the outcome and distribution of the
+    disturbances (Heckman's solution).
+  \item No-one believes them
+  \item Add their interference to the valid instruments
+  \end{itemize}
+\end{frame}
+
+
+
+\section[Heckman]{Heckman's solution}
+
+\begin{frame}
+  \frametitle{The model}
+  
+  Look at e.g. return to human capital
+  \begin{itemize}
+  \item But we observe the wage of those who work only
+  \end{itemize}
+
+  \pause
+  Assume the following unobserved process:
+  \begin{align}
+    y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
+    \label{eq:probit*}
+    \\
+    y_i^{O*} &= {\vec{\beta}^O}' \vec{x}_i^O + \varepsilon_i^O,
+  \end{align}
+
+  \pause
+  We observe
+  \begin{align}
+    y_i^S 
+    &= 
+    \begin{cases}
+      0 & \quad \text{if } y_i^{S*} < 0
+      \label{eq:probit}
+      \\
+      1 & \quad \text{otherwise}
+    \end{cases}
+    \\
+    y_i^O
+    &= 
+    \begin{cases}
+      0 & \quad \text{if} y_i^{S} = 0\\
+      y_i^{O*} & \quad \text{otherwise},
+    \end{cases}
+  \end{align}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{The Model 2}
+  
+  The observed dependence can now be written as
+  \begin{equation}
+    \E \left[y^O|\vec{x}_i^O, y_i^S = 1 \right] 
+    =
+    {\vec{\beta}^O}' \vec{x}_i^O 
+    +
+    \E \left[ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S \right].
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The model 3}
+  Assuming
+  \begin{equation}
+    \begin{pmatrix}
+      \varepsilon^S\\
+      \varepsilon^O
+    \end{pmatrix}
+    \sim
+    N\left(
+      \begin{pmatrix}
+        0\\
+        0
+      \end{pmatrix},
+      \begin{pmatrix}
+        1 & \varrho\\
+        \varrho & \sigma^2
+      \end{pmatrix}
+    \right)
+  \end{equation}
+  
+  We may write
+  \begin{align}
+    y_i^O
+    &=
+    {\vec{\beta}^O}' \vec{x}_i^O 
+    + 
+    \E \left[ \varepsilon^O|\varepsilon^S \ge
+    -{\vec{\beta}^S}' \vec{x}_i^S \right]
+    +
+    \eta_i
+    \\
+    &\equiv
+    {\vec{\beta}^O}' \vec{x}_i^O 
+    + 
+    \beta^\lambda \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
+    +
+    \eta_i,
+  \end{align}
+  where 
+  \begin{itemize}
+  \item 
+    \begin{math}
+      \lambda(\cdot) = \phi(\cdot)/\Phi(\cdot)
+    \end{math}
+  \item $\phi(\cdot)$, $\Phi(\cdot)$ are standard normal density and p.d.f.
+  \item $\eta$ is independent of $(\vec{x}^S, \vec{x}^O)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{2-step estimator}
+  
+  \begin{enumerate}
+  \item Estimate $\vec{\beta}^S$ (by probit)
+  \item calculate $\lambda(-{\vec{\beta}^S}' \vec{x}_i^S)$
+  \item Estimate
+    \begin{equation}
+      y_i^O
+      =
+      {\vec{\beta}^O}' \vec{x}_i^O 
+      + 
+      \beta^\lambda \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
+      +
+      \eta_i,
+    \end{equation}
+    by OLS
+  \end{enumerate}
+  
+  \pause
+  This is the original Heckman's 2-step estimator.
+  \begin{itemize}
+  \item Unbiased
+  \item Not efficient
+  \item You can do better with MLE
+  \item costs \$15, while MLE costs \$700.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Development}
+  \begin{itemize}
+  \item The model was widely used in 70s, 80s
+  \item Easy to generalise (e.g. tobit-5 switching regression)
+  \item different disturbance distributions
+    \pause
+  \item Not popular any more because of parametric assumptions
+  \item Use more modern semiparametric models instead
+  \item Well suited for teaching/visualisation
+  \end{itemize}
+\end{frame}
+
+
+
+\section{Implementation}
+
+\begin{frame}
+  \frametitle{\code{selection} function}
+  
+  Usage:
+  \begin{code}
+    selection(selection, outcome, data, method, start)
+  \end{code}
+  Where
+  \begin{description}
+  \item[selection] selection equation
+  \item[outcome] outcome equation (or list of two equation if tobit-5)
+  \item[data] (optional) data frame of variables
+  \item[method] (either) \code{ml} or \code{2step}, default is
+    \code{ml}
+  \item[start] (optional) initial values for the parameters
+  \end{description}
+\end{frame}
+
+
+\section{Examples}
+
+\begin{frame}
+  \frametitle{Example 1}
+  Example 1, correct specification, exclusion restriction
+
+  \begin{itemize}
+  \item MLE unbiased
+  \item OLS: intercept biased, $\beta$ not.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[width=\hsize]{ex1.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 2}
+  
+  Correct specification, no exclusion restriction
+  \begin{itemize}
+  \item MLE unbiased on large samples
+  \item OLS biased
+  \item OLS stable
+  \item MLE unstable on small samples
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[width=\hsize]{ex2.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 2a}
+  
+  Correct specification, no exclusion restriction, identification at
+  infinity
+  \begin{itemize}
+  \item OLS biased
+  \item MLE unbiased
+  \item Linearity assumption crucial
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[width=\hsize]{ex2a.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 3}
+  
+  Misspecified (true distribution $\chi^2(1)$), exclusion restriction
+  \begin{itemize}
+  \item MLE does not converge
+  \item slope unbiased
+  \item intercept, selection parameters biased
+  \item OLS -- no convergence issues!
+  \item intercept biased
+  \item slope unbiased
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[width=\hsize]{ex3.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example 4}
+  
+  Misspecified (true distribution $\chi^2(1)$), no exclusion restriction
+  \begin{itemize}
+  \item MLE and OLS similar
+  \item[$\Rightarrow$] everything biased.
+  \end{itemize}
+
+  \pause
+  Adding identification at infinity:
+  \begin{itemize}
+  \item MLE unbiased
+  \item OLS biased
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \includegraphics[width=\hsize]{ex4.pdf}
+\end{frame}
+
+
+
+\section{Conclusions}
+
+\begin{frame}
+  \frametitle{Conclusions}
+  
+  Heckman's selection model:
+  \begin{itemize}
+  \item Easy to understand
+  \item \qquad visualise
+  \item \qquad estimate
+  \end{itemize}
+
+  \pause
+  \code{selection}/\code{micEcon}:
+  \begin{itemize}
+  \item Easy to use
+  \item to play around with MC
+  \item to estimate
+  \end{itemize}
+\end{frame}
+
+\end{document}
