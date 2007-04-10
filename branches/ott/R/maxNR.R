@@ -1,7 +1,7 @@
 
 maxNR <- function(fn, grad=NULL, hess=NULL, start,
                   print.level=0,
-                  tol=1e-6, gradtol=1e-6, steptol=1e-6,
+                  tol=1e-6, gradtol=1e-6, steptol=1e-7,
                   lambdatol=1e-6,
                   qrtol=1e-10,
                   iterlim=15,
