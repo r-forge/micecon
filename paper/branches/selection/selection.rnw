@@ -629,11 +629,11 @@ hatb1O <- coef(tmp)[c("XO1(Intercept)", "XO1xs")]
 hatb2O <- coef(tmp)[c("XO2(Intercept)", "XO2xs")]
    es <- eps[,1]
    e1 <- eps[,2]
-   e2 <- eps[,3]
+e2 <- eps[,3]
    ex <- seq(-5, 5, length=200)
 ey <- cbind(EUlower(ex), EUupper(ex),
             -31*Nupper(cbind(1, ex)%*%hatb1O), 5.5*Nlower(cbind(1,ex)%*%hatb2O)
-###         -s1s*dnorm(-ex)/pnorm(-ex), s2s*dnorm(ex)/pnorm(ex)
+         -s1s*dnorm(-ex)/pnorm(-ex), s2s*dnorm(ex)/pnorm(ex)
             )
    mcy <- matrix(0, length(ex), 2)
    for(i in seq(length=nrow(mcy))) {
@@ -661,6 +661,7 @@ text(2.2, -1.4,
          Epsilon^S < -bold(beta)^S*minute*bold(x)^S, ""), "]")*
          paste("  assumed normal")))
 @ 
+%
   \medskip \\
   \small Note:
   Dotted vertical lines denote the support of $x^S$ in the MC experiment.
