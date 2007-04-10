@@ -164,7 +164,12 @@ restrictions, the parametric hypothesis add their interference which
 may be hard to disentangle from the estimates.
 
 However, even if these models are less popular in research nowadays,
-they still serve as excellent teaching tools.  Heckman-type selection
+they still serve as excellent teaching tools.
+They are extensively explained in many recent econometric
+text books \citep[e.g.][]{johnston97, verbeek00, greene2002, wooldridge03}
+and are standard procedures in popular software packages
+like \proglang{Limdep} and \proglang{Stata}.
+Heckman-type selection
 models easily allow us to experiment with selection bias,
 misspecification, exclusion restrictions etc.  These models are easy
 to implement, to visualise and to understand.
