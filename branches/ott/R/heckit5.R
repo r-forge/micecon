@@ -30,7 +30,8 @@ heckit5 <- function(selection, outcome1, outcome2,
    }
    ## check for NA-s.  Because we have to find NA-s in several frames, we cannot use the standard na.
    ## functions here.  Find bad rows and remove them later.
-   badRowS <- apply(mfS, 1, function(v) any(is.na(v)))
+   badRow <- is.na(YS)
+   badRow <- badRow | apply(XS, 1, function(v) any(is.na(v)))
    if("formula" %in% class( outcome1 )) {
       if( length( outcome1 ) != 3 ) {
          stop( "argument 'outcome1' must be a 2-sided formula" )
@@ -42,10 +43,11 @@ heckit5 <- function(selection, outcome1, outcome2,
       mf1[[1]] <- as.name("model.frame")
       names(mf1)[2] <- "formula"
       mf1 <- eval(mf1, parent.frame())
-      badRow1 <- apply(mf1, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==0)
       mt1 <- attr(mf1, "terms")
       XO1 <- model.matrix(mt1, mf1)
       YO1 <- model.response(mf1, "numeric")
+      badRow <- badRow | (is.na(YO1) & (!is.na(YS) & YS == 0))
+      badRow <- badRow | (apply(XO1, 1, function(v) any(is.na(v))) & (!is.na(YS) & YS == 0))
       if("formula" %in% class( outcome2 )) {
          if( length( outcome2 ) != 3 ) {
             stop( "argument 'outcome2' must be a 2-sided formula" )
@@ -57,10 +59,11 @@ heckit5 <- function(selection, outcome1, outcome2,
          mf2[[1]] <- as.name("model.frame")
          names(mf2)[2] <- "formula"
          mf2 <- eval(mf2, parent.frame())
-         badRow2 <- apply(mf2, 1, function(v) any(is.na(v))) & (!is.na(YS) &YS==1)
          mt2 <- attr(mf2, "terms")
          XO2 <- model.matrix(mt2, mf2)
          YO2 <- model.response(mf2, "numeric")
+         badRow <- badRow | (is.na(YO2) & (!is.na(YS) & YS == 1))
+         badRow <- badRow | (apply(XO2, 1, function(v) any(is.na(v))) & (!is.na(YS) & YS == 1))
       }
       else
           stop("argument 'outcome2' must be a formula")
@@ -99,8 +102,8 @@ heckit5 <- function(selection, outcome1, outcome2,
          mt1 <- attr(mf1, "terms")
          XO1 <- model.matrix(mt1, mf1)
          YO1 <- model.response(mf1, "numeric")
-         badRow1 <- (is.na(YO1) & (!is.na(YS) & YS == 0))
-         badRow1 <- badRow1 | (apply(XO1, 1, function(v) any(is.na(v))) & (!is.na(YS) & YS == 0))
+         badRow <- badRow | (is.na(YO1) & (!is.na(YS) & YS == 0))
+         badRow <- badRow | (apply(XO1, 1, function(v) any(is.na(v))) & (!is.na(YS) & YS == 0))
          ## repeat all the stuff with second equation
          mf[[oArg]] <- formula2
          mf2 <- mf[c(1, m)]
@@ -113,15 +116,14 @@ heckit5 <- function(selection, outcome1, outcome2,
          mt2 <- attr(mf2, "terms")
          XO2 <- model.matrix(mt2, mf2)
          YO2 <- model.response(mf2, "numeric")
-         badRow2 <- (is.na(YO2) & (!is.na(YS) & YS == 1))
-         badRow2 <- badRow2 | (apply(XO2, 1, function(v) any(is.na(v))) & (!is.na(YS) & YS == 1))
+         badRow <- badRow | (is.na(YO2) & (!is.na(YS) & YS == 1))
+         badRow <- badRow | (apply(XO2, 1, function(v) any(is.na(v))) & (!is.na(YS) & YS == 1))
       }
       else
           stop( "argument 'outcome[[2]]' must be a formula" )
    }
    else
        stop("argument 'outcome1' must be a formula or a list of two formulas")
-   badRow <- badRowS | badRow1 | badRow2
    NXS <- ncol(XS)
    NXO1 <- ncol(XO1)
    NXO2 <- ncol(XO2)

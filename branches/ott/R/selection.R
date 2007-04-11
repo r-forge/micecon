@@ -74,9 +74,9 @@ selection <- function(selection, outcome,
    ## now check whether two-step method was requested
    if(method == "2step") {
       if(type == 2)
-          twoStep <- heckit(selection, outcome, data)
+          twoStep <- heckit(selection, outcome, data=data)
       else if(type == 5)
-          twoStep <- heckit5(selection, outcome, data)
+          twoStep <- heckit5(selection, outcome, data=data)
       else
           stop("unknown type")
       return(twoStep)
@@ -226,7 +226,7 @@ selection <- function(selection, outcome,
             cat("Start values by Heckman 2-step method (", NParam, " componenets)\n", sep="")
          }
          twoStep <- heckit5(selection, as.formula(formula1), as.formula(formula2),
-                           data, print.level)
+                           data=data, print.level)
          ind <- twoStep$param$index
          start <- coef(twoStep, part="full")[c(ind$betaS,
                                   ind$betaO1, ind$sigma1, ind$rho1,
