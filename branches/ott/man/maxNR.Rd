@@ -7,7 +7,7 @@
 }
 \usage{
 maxNR(fn, grad = NULL, hess = NULL, start, print.level = 0,
-      tol = 1e-06, gradtol = 1e-06, steptol = 1e-06, lambdatol = 1e-06,
+      tol = 1e-06, gradtol = 1e-06, steptol = 1e-07, lambdatol = 1e-06,
       qrtol = 1e-10,
       iterlim = 15,
       constPar = NULL, activePar=rep(TRUE, NParam), ...)
@@ -28,8 +28,8 @@ maxNR(fn, grad = NULL, hess = NULL, start, print.level = 0,
     observations in order to get a single gradient vector.  Similar
     observation-wise matrix is allowed for \code{maxNR} too, it will be
     simply summed over observations.}
-  \item{hess}{hessian matrix of the function.  If missing, numeric
-    hessian, based on gradient, is used.  }
+  \item{hess}{Hessian matrix of the function.  If missing, numeric
+    Hessian, based on gradient, is used.  }
   \item{start}{initial value for the parameter vector}
   \item{print.level}{this argument determines the level of
     printing which is done during the minimization process. The default
@@ -42,15 +42,16 @@ maxNR(fn, grad = NULL, hess = NULL, start, print.level = 0,
     \code{code=2}.}
   \item{gradtol}{stopping condition.  Stop if the norm of the gradient
     less than \code{gradtol}, return \code{code=1}.}
-  \item{steptol}{stopping/error condition.  If not find
-    acceptable/higher value of the function with \code{step=1}, step is
-    divided by 2 and tried again.  This is repeated until \code{step <
-      steptol}, then \code{code=3} is returned.}
-  \item{lambdatol}{control whether the hessian is treated as negative
+  \item{steptol}{stopping/error condition.  If the quadratic
+    approximation leads to lower function value (or NA), the step length
+    is halved and a new attempt is made.  This procedure is repeated
+    until step < \code{steptol}, thereafter \code{code=3} is returned.}
+  \item{lambdatol}{control whether the Hessian is treated as negative
     definite.  If the
-    largest of the eigenvalues of the hessian is larger than
+    largest of the eigenvalues of the Hessian is larger than
     \code{-lambdatol}, a suitable diagonal matrix is subtracted from the
-    hessian (quadratic hill-climbing).}
+    Hessian (quadratic hill-climbing) in order to enforce nagetive
+    definiteness.}
   \item{qrtol}{?}
   \item{iterlim}{stopping condition.  Stop if more than \code{iterlim}
     iterations, return \code{code=4}.}
@@ -89,7 +90,7 @@ the previous one.
   \item{estimate}{estimated parameter value.}
   \item{gradient}{last gradient value which was calculated.  Should be
     close to 0 if normal convergence.}
-  \item{hessian}{hessian at the maximum (the last calculated value if
+  \item{Hessian}{Hessian at the maximum (the last calculated value if
     not converged).  May be used as basis for variance-covariance
     matrix.}
   \item{code}{return code:
@@ -116,7 +117,7 @@ the previous one.
   R.E. Quandt: "Nonlinear Methods in Econometrics".  Amsterdam,
   North-Holland 1972.}
 \author{Ott Toomet \email{siim@obs.ee}}
-\note{Newton-Raphson algorithm with analytic gradient and hessian
+\note{Newton-Raphson algorithm with analytic gradient and Hessian
   supplied should converge with no more than 20 iterations on a
   well-specified model.}
 \seealso{\code{\link{nlm}} for Newton-Raphson optimisation,
@@ -129,11 +130,11 @@ loglik <- function(theta) sum(log(theta) - theta*t)
 ## Note the log-likelihood and gradient are summed over observations
 gradlik <- function(theta) sum(1/theta - t)
 hesslik <- function(theta) -100/theta^2
-## Estimate with numeric gradient and hessian
+## Estimate with numeric gradient and Hessian
 a <- maxNR(loglik, start=1, print.level=2)
 summary(a)
 ## You would probably prefer 1/mean(t) instead ;-)
-## Estimate with analytic gradient and hessian
+## Estimate with analytic gradient and Hessian
 a <- maxNR(loglik, gradlik, hesslik, start=1)
 summary(a)
 }
