@@ -102,7 +102,6 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
       return(numericHessian(fn, gradient, theta, ...))
    }
    ## -------------------------------------------------
-   cat(" ")
    maximisation.type <- "Newton-Raphson maximisation"
    nimed <- names(start)
    NParam <- length(start)
