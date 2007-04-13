@@ -25,7 +25,6 @@ heckit <- function( selection, formula,
          stop( "argument 'inst' must be a 1-sided formula" )
       }
    }
-
    result <- list()
    ## Now extract model frames etc.
    ## Selection equation
@@ -85,9 +84,19 @@ heckit <- function( selection, formula,
    XO <- XO[!badRow,]
    YO <- YO[!badRow]
    probitDummy <- probitDummy[!badRow]
+   ## Now indices for packing the separate outcomes into full outcome vectors.  Note we treat
+   ## invMillsRatio as a separate parameter
+   iBetaS <- seq(length=NXS)
+   iBetaO <- NXS + seq(length=NXO)
+   iMills <- NXS + NXO + 1
+   iSigma <- iMills + 1
+   iRho <- iSigma + 1
    ##
-   NParam <- NXS + NXO + 3
-                                        # invMillsRation, sigma, rho = 3
+   NObs <- length(YS)
+   NParam <- iRho
+   N0 <- sum(YS == levels(YS)[1])
+   N1 <- NObs - N0
+                                        # sigma, rho
    if( print.level > 0 ) {
       cat ( "\nEstimating 1st step Probit model . . ." )
    }
@@ -103,14 +112,14 @@ heckit <- function( selection, formula,
       if( print.level > 0 ) {
          cat ( "Estimating 2nd step (outcome) OLS model . . ." )
       }
-      result$lm <- lm(YO ~ -1 + XO + imrData$IMR1,
+      outcomeMod <- lm(YO ~ -1 + XO + imrData$IMR1,
                       subset = probitDummy )
-      intercept <- any(apply(model.matrix(result$lm), 2,
+      intercept <- any(apply(model.matrix(outcomeMod), 2,
                              function(v) (v[1] > 0) & (all(v == v[1]))))
                                         # we have determine whether the outcome model has intercept.
                                         # This is necessary later for calculating R^2
-      resid <- residuals( result$lm )
-      step2coef <- coef( result$lm )
+      resid <- residuals( outcomeMod )
+      step2coef <- coef( outcomeMod )
       names(step2coef) <- c(colnames(XO), "invMillsRatio")
       if(print.level > 0)
           cat( " OK\n" )
@@ -125,12 +134,12 @@ heckit <- function( selection, formula,
       formulaList <- list( step2formula )
       instImr <- as.formula( paste( "~", inst[ 2 ], "+ invMillsRatio" ) )
       library( systemfit )
-      result$lm <- systemfit( "2SLS", formulaList, inst = instImr,
+      outcomeMod <- systemfit( "2SLS", formulaList, inst = instImr,
                              data = data[ probitDummy, ] )
       intercept = FALSE
                                         # we calculate R^2 differently here (hopefully)
-      resid <- residuals( result$lm )[ , 1 ]
-      step2coef <- coefficients( result$lm$eq[[ 1 ]] )
+      resid <- residuals( outcomeMod )[ , 1 ]
+      step2coef <- coefficients( outcomeMod$eq[[ 1 ]] )
       if( print.level > 0 ) cat( " OK\n" )
    }
    result$sigma <- as.numeric( sqrt( crossprod( resid ) /
@@ -141,98 +150,48 @@ heckit <- function( selection, formula,
    names(result$rho) <- NULL
                                         # otherwise the name of step2coef is left...
    result$invMillsRatio <- invMillsRatio
-   coefs <- c(coef(result$probit), step2coef, sigma=result$sigma, rho=result$rho)
+   ## Stack all final coefficients to 'coefficients'
+   coefficients <- c(coef(result$probit),
+                     step2coef[names(step2coef) != "invMillsRatio"],
+                     step2coef["invMillsRatio"],
+                     sigma=result$sigma, rho=result$rho)
+   names(coefficients)[iBetaS] <- gsub("^XS", "", names(coefficients)[iBetaS])
    if( print.level > 0 ) {
       cat ( "Calculating coefficient covariance matrix . . ." )
    }
                                         # the following variables are named according to Greene (2003), p. 785
    if( is.null( inst ) ) {
-      xMat <- model.matrix( result$lm )
+      xMat <- model.matrix( outcomeMod )
    } else {
-      xMat <- result$lm$eq[[ 1 ]]$x
+      xMat <- outcomeMod$eq[[ 1 ]]$x
    }
-   ## Now indices for packing the separate outcomes into full outcome vectors
-   iBetaS <- seq(length=NXS)
-   iBetaO <- NXS + seq(length=NXO)
-   iMills <- NXS + NXO + 1
-   iSigma <- iMills + 1
-   iRho <- iSigma + 1
    ## Varcovar matrix.  Fill only a few parts, rest will remain NA
    vc <- matrix(0, NParam, NParam)
-   colnames(vc) <- row.names(vc) <- names(coefs)
+   colnames(vc) <- row.names(vc) <- names(coefficients)
    vc[] <- NA
    if(!is.null(vcov(result$probit)))
        vc[iBetaS,iBetaS] <- vcov(result$probit)
-   vc[c(iBetaO,iMills), c(iBetaO,iMills)] <- heckitVcov( xMat,
-                                                        model.matrix( result$probit )[ probitDummy, ],
-                                                        vcov( result$probit ),
-                                                        result$rho,
-                                                        result$imrDelta[ probitDummy ],
-                                                        result$sigma )
+   vc[c(iBetaO, iMills), c(iBetaO, iMills)] <- heckitVcov( xMat,
+                                                          model.matrix( result$probit )[ probitDummy, ],
+                                                          vcov( result$probit ),
+                                                          result$rho,
+                                                          result$imrDelta[ probitDummy ],
+                                                          result$sigma )
+                                        # here we drop invMillsRatio part
    result$vcov <- vc
    ##
    if( print.level > 0 )
        cat( " OK\n" )
-   result$coefficients <- coefs
+   result$coefficients <- coefficients
                                         # for coef() etc. methods
    ## the 'param' component is intended to all kind of technical info
-   result$param <- list(index=list(betaS=iBetaS, betaO=iBetaO, invMillsRatio=iMills,
-                                   sigma=iSigma, rho=iRho),
+   result$param <- list(index=list(betaS=iBetaS, betaO=iBetaO, 
+                        Mills=iMills, sigma=iSigma, rho=iRho),
                                         # The location of results in the coef vector
                         oIntercept=intercept,
-                        NParam=NParam)
+                        N0=N0, N1=N1,
+                        NParam=NParam, NObs=NObs, df=NObs-NParam+1)
+   result$lm <- outcomeMod
    class( result ) <- "heckit"
    return( result )
-}
-
-summary.heckit <- function( object, part="outcome", ... ) {
-   ## Calculate r-squared.  Note that the way lm() finds R2 is a bit naive -- it checks for intercept
-   ## in the formula, but not whether the intercept is present in any of the data vectors (or matrices)
-   oModel <- object$lm
-   if(class(oModel) == "lm") {
-      y <- model.response(model.frame(object$lm))
-      if(object$param$oIntercept) {
-         R2 <- 1 - sum(residuals(oModel)^2)/sum((y - mean(y))^2)
-         R2adj <- 1 - (1 - R2)*(NObs(oModel) - 1)/(NObs(oModel) - NParam(oModel))
-      }
-      else {
-         R2 <- 1 - sum(residuals(oModel)^2)/sum(y^2)
-         R2adj <- 1 - (1 - R2)*(NObs(oModel))/(NObs(oModel) - NParam(oModel))
-      }
-   }
-   else {
-      R2 <- object$lm$eq[[ 1 ]]$r2
-      R2adj <- object$lm$eq[[ 1 ]]$adjr2
-   }
-   if(part=="full") {
-      i <- c(object$param$index$betaS, object$param$index$betaO, object$param$invMillsRatio)
-   }
-   else if(part=="outcome") {
-      i <- object$param$index$betaO
-   }
-   coefs <- coef(object, part="full")[i]
-   coefficients <- matrix(0, nrow = length(coefs), ncol = 4 )
-   rownames(coefficients) <- names(coefs)
-   colnames(coefficients) <- c( "Estimate", "Std. Error", "t value", "Pr(>|t|)" )
-   coefficients[ , 1 ] <- coefs
-   coefficients[ , 2 ] <- sqrt( diag(vcov(object, part="full")[i,i]))
-   coefficients[ , 3 ] <- coefs/coefficients[, 2 ]
-   coefficients[ , 4 ] <- 2*pt(abs(coefficients[,3]), object$lm$df, lower.tail=FALSE)
-   object$coefficients <- coefficients
-   s <- c(object,
-          rSquared=list(c(R2, R2adj)))
-   class(s) <- c("summary.heckit", class(s))
-   s
-}
-
-print.summary.heckit <- function( x,
-                                 digits=max(3, getOption("digits") - 3),
-                                 signif.stars=getOption("show.signif.stars"),
-                                 ...) {
-   cat("Estimates:\n")
-   printCoefmat(x$coefficients)
-   cat("Multiple R-Squared:", round(x$rSquared[ 1 ], digits),
-       ",\tAdjusted R-Squared:", round(x$rSquared[ 2 ], digits), "\n", sep="")
-   cat("Residual correlation: ", x$rho, ", variance: ", x$sigma, "\n", sep="")
-   invisible( x )
 }

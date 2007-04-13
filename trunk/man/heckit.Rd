@@ -40,10 +40,12 @@
    \code{heckit} returns an object of class 'heckit' containing
    following elements:
 
-   \item{coefficients}{estimated coefficients, the complete model}
+   \item{coefficients}{estimated coefficients, the complete model.
+     coefficient for the Inverse Mills ratio is treated as a parameter
+     (\eqn{=\varrho \sigma}{= rho * sigma}).}
    \item{vcov}{variance covariance matrix of the estimated coefficients.}
 
-   \item{probit}{object of class 'glm' that contains the results of the
+   \item{probit}{object of class 'probit' that contains the results of the
    1st step (probit estimation).}
 
    \item{lm}{object of class 'lm' that contains the results of the
@@ -65,7 +67,15 @@
    \item{param}{a list with following components: \code{index}, a list of
      numeric vectors: where in the \code{coef} the component are
      located;
-     \code{oIntercept}, a logical: whether the outcome equation includes intercept.
+     \code{oIntercept}, a logical: whether the outcome equation includes
+     intercept;
+     \code{N0, N1}, integer, number of observations with unobserved and
+     observed outcomes;
+     \code{NObs}, integer, number of valid observations;
+     \code{NParam}, integer, number of the parameters in the model (not
+     all are independent);
+     \code{df}, integer, degrees of freedom.  Note this is not equal to
+     \code{NObs - NParam} because of the parameters are not independent.
    }
 }
 

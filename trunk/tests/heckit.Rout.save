@@ -25,17 +25,29 @@ Loading required package: systemfit
 > greene <- heckit( lfp ~ age + I( age^2 ) + faminc + kids + educ,
 +    wage ~ exper + I( exper^2 ) + educ + city, Mroz87 )
  > print(summary( greene ))
-Estimates:
+2-step estimation of heckit (tobit-2) model
+753 observations (325 censored and 428 observed) and 14 parameters (df = 740)
+Probit selection equation:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -4.157e+00  1.402e+00  -2.965 0.003127 ** 
+age          1.854e-01  6.597e-02   2.810 0.005078 ** 
+I(age^2)    -2.426e-03  7.735e-04  -3.136 0.001780 ** 
+faminc       4.580e-06  4.206e-06   1.089 0.276544    
+kidsTRUE    -4.490e-01  1.309e-01  -3.430 0.000638 ***
+educ         9.818e-02  2.298e-02   4.272 2.19e-05 ***
+Outcome equation:
               Estimate Std. Error t value Pr(>|t|)    
 (Intercept) -0.9712003  2.0593505  -0.472    0.637    
 exper        0.0210610  0.0624646   0.337    0.736    
 I(exper^2)   0.0001371  0.0018782   0.073    0.942    
-educ         0.4170174  0.1002497   4.160 3.86e-05 ***
-city         0.4438379  0.3158984   1.405    0.161    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+educ         0.4170174  0.1002497   4.160 3.56e-05 ***
+city         0.4438379  0.3158984   1.405    0.160    
 Multiple R-Squared:0.126,	Adjusted R-Squared:0.116
-Residual correlation: -0.342999, variance: 3.20006
+Error terms:
+              Estimate Std. Error t value Pr(>|t|)
+invMillsRatio   -1.098      1.266  -0.867    0.386
+sigma            3.200         NA      NA       NA
+rho             -0.343         NA      NA       NA
 > print(summary( greene$lm ) )
 
 Call:
@@ -103,16 +115,30 @@ invMillsRatio    1.60271957
 > wooldridge <- heckit( lfp ~ nwifeinc + educ + exper + I( exper^2 ) + age +
 +    kids5 + kids618, log( wage ) ~ educ + exper + I( exper^2 ), Mroz87 )
  > print( summary( wooldridge ) )
-Estimates:
+2-step estimation of heckit (tobit-2) model
+753 observations (325 censored and 428 observed) and 15 parameters (df = 739)
+Probit selection equation:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.270077   0.508593   0.531  0.59556    
+nwifeinc    -0.012024   0.004840  -2.484  0.01320 *  
+educ         0.130905   0.025254   5.183 2.81e-07 ***
+exper        0.123348   0.018716   6.590 8.34e-11 ***
+I(exper^2)  -0.001887   0.000600  -3.145  0.00173 ** 
+age         -0.052853   0.008477  -6.235 7.61e-10 ***
+kids5       -0.868328   0.118522  -7.326 6.21e-13 ***
+kids618      0.036005   0.043477   0.828  0.40786    
+Outcome equation:
               Estimate Std. Error t value Pr(>|t|)    
-(Intercept) -0.5781032  0.3050062  -1.895  0.05872 .  
-educ         0.1090655  0.0155230   7.026 8.54e-12 ***
-exper        0.0438873  0.0162611   2.699  0.00724 ** 
-I(exper^2)  -0.0008591  0.0004389  -1.957  0.05096 .  
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+(Intercept) -0.5781032  0.3050062  -1.895  0.05843 .  
+educ         0.1090655  0.0155230   7.026 4.83e-12 ***
+exper        0.0438873  0.0162611   2.699  0.00712 ** 
+I(exper^2)  -0.0008591  0.0004389  -1.957  0.05068 .  
 Multiple R-Squared:0.157,	Adjusted R-Squared:0.149
-Residual correlation: 0.0486143, variance: 0.663629
+Error terms:
+              Estimate Std. Error t value Pr(>|t|)
+invMillsRatio  0.03226    0.13362   0.241     0.81
+sigma          0.66363         NA      NA       NA
+rho            0.04861         NA      NA       NA
 > print( summary( wooldridge$lm ) )
 
 Call:

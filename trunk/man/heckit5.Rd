@@ -33,13 +33,32 @@ print.level = 0)
   value of the error term is added as an additional explanatory variable.}
 \value{
   Object of class "heckit5": a list with following components:
+  \item{coefficients}{estimated coefficients, the complete model.
+     coefficient for the Inverse Mills ratios are treated as a parameters
+     (\eqn{=\varrho \sigma}{= rho * sigma}).}
+  \item{vcov}{variance covariance matrix of the estimated coefficients.}
   \item{probit}{obejct of class "probit", first-step selection estimates}
-  \item{twoStep1, twoStep2}{object of class "lm", second-step estimation of the
+  \item{lm1, lm2}{objects of class "lm", second-step estimations of the
     outcome equations}
   \item{rho1, rho2}{real, correlation coefficients between the error
     term of the selection equation and the outcome equations}
   \item{sigma1, sigma2}{real, error variance of the outcome equations}
   \item{termsS, termsO}{terms for the selection and outcome equation}
+  \item{param}{a list with following components:
+    \code{index}, a list of
+     numeric vectors: location of the different outcome components in
+     the coefficients' vector;
+     \code{oIntercept1, oIntercept2}, a logical: whether the outcome
+     equations include intercept;
+     \code{N1, N2}, integer, number of times outcome 1 and 2 selected;
+     \code{NObs}, integer, number of valid observations;
+     \code{NParam}, integer, number of the parameters in the model (not
+     all are independent);
+     \code{df}, integer, degrees of freedom.  Note this is not equal to
+     \code{NObs - NParam} because of the parameters are not independent;
+     \code{NXS, NXO1, NXO2}: number of explanatory variables in the
+     selection and outcome equations.
+   }
   \item{ys, xs, yo, xo, mfs, mfo}{response, matrix and frame of the
     selection- and outcome equations (as a list of two for the latter).
     NULL, if not requested.}
