@@ -803,14 +803,14 @@ sqrt(diag(vcov(tmp, part="full")))[ "invMillsRatio" ]
 @
 %
 All coefficients, standard errors and t-values are fully identical
-to the results reported by \citet[p.~553]{cameron05}
+to the results reported by \citet{cameron05}
 --- even if they are compared with the seven-digit values
-in the \proglang{Stata} output that is available on
+in their \proglang{Stata} output that is available on
 \url{http://cameron.econ.ucdavis.edu/mmabook/mma16p3selection.txt}.%
 \footnote{
 The coefficient and t-value of \code{idp} in column \code{lnmed}
-seem to be wrong,
-because they differ from the \proglang{Stata} output
+of Table~16.1 seem to be wrong,
+because they differ from \citeauthor{cameron05}'s \proglang{Stata} output
 as well as from our results.
 }
 
@@ -820,17 +820,12 @@ summary( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ] ),
    part="full" )
 @
 %
-Unfortunately, the maximisation of the likelihood function does not converge.
-However, if we provide starting values for $\sigma$ and $\rho$
-that are close to the (generally unknown) ML estimates,
-the maximisation converges:
-<<cameron16.6ML2>>=
-summary( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ],
-   start = c( coef( tmp, part="full")[1:36], 1.6, 0.7 ) ), part="full" )
-@
-%
-These results are nearly identical to the values reported
-by \citet{cameron05}.
+All coefficients, standard errors and t-values of the ML estimation
+are nearly identical to the values reported in Table~16.1 of \citet{cameron05}
+as well as to the seven-digit values in their \proglang{Stata} output.
+Only a very few coefficients deviate on the seventh decimal place.
+% outcome equation: hlthp, female, child, black
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problems}
