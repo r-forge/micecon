@@ -12,7 +12,6 @@
 \alias{print.aidsEst}
 \alias{print.aidsTestConsist}
 \alias{print.snqProfitImposeConvexity}
-\alias{print.summary.heckit}
 \alias{print.summary.maximisation}
 \alias{print.summary.maxLik}
 \alias{print.summary.probit}

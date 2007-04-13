@@ -34,11 +34,11 @@ print.summary.tobit2 <- function(x, ...) {
       cat(x$NObs, " observations (", x$N0, " censored and ", x$N1, " observed) and ",
           x$NActivePar, " free parameters (df = ",
           x$NObs - x$NActivePar, ")\n", sep="")
-      cat("\nProbit selection equation:\n")
+      cat("Probit selection equation:\n")
       printCoefmat(x$estimateS, signif.legend=FALSE)
-      cat("\nOutcome equation:\n")
+      cat("Outcome equation:\n")
       printCoefmat(x$estimateO, signif.legend=FALSE)
-      cat("\nError terms data:\n")
+      cat("Error terms data:\n")
       printCoefmat(x$estimateErr)
    }
    cat("--------------------------------------------\n")
