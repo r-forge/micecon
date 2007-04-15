@@ -270,6 +270,56 @@ $\phi(\cdot)$ and $\Phi(\cdot)$ are standard normal density and
 cumulative distribution functions.  Essentially, we describe the
 selection problem as an omitted variable problem, with
 $\lambda(\cdot)$ the omitted variable.
+Since the true $\lambda(\cdot)$s in equation \eqref{eq:tobit2_2step}
+are generally unknown,
+they are replaced by estimated values based on the probit estimation.
+
+An estimator of the variance of $\varepsilon^O$ can be obtained by
+\begin{equation}
+\hat{\sigma}^2
+= \frac{\hat{\vec{\eta}}' \hat{\vec{\eta}}}{n^O}
+   + \frac{\sum_i \hat{\delta}_i}{n^O} \left. \hat{\beta}^\lambda \right.^2
+\end{equation}
+where
+$\hat{\vec{\eta}}$ is the vector of residuals from the OLS estimation
+of~\eqref{eq:tobit2_2step},
+$n^O$ is the number of observations in this estimation, and
+$\hat{\delta}_i = \hat{\lambda}_i ( \hat{\lambda}_i
++ \left. \hat{\vec{\beta}}^S \right. ' \vec{x}_i^S )$.
+Finally, an estimator of the correlation between $\varepsilon^S$
+and $\varepsilon^O$ can be obtained by
+$\hat{\varrho} = \hat{\beta}^\lambda / \hat{\sigma}$.
+
+Since the estimation of \eqref{eq:tobit2_2step}
+is not based on the true $\lambda$s but on estimated values,
+the standard OLS formula for the coefficient variance covariance matrix
+is not appropriate.
+A consistent variance covariance matrix can be obtained by
+\begin{equation}
+\var \left[ \hat{\vec{\beta}}^O, \hat{\vec{\beta}}^\lambda \right]
+= \hat{\sigma}^2
+   \left[ {\mat{X}_\lambda^O}' \mat{X}_\lambda^O \right]^{-1}
+   \left[ {\mat{X}_\lambda^O}'
+      \left( \mat{I} - \hat{\varrho}^2 \hat{\mat{\Delta}} \right)
+      \mat{X}_\lambda^{O} + \mat{Q} \right]
+   \left[ {\mat{X}_\lambda^O}' \mat{X}_\lambda^O \right]^{-1}
+\end{equation}
+where
+\begin{equation}
+\mat{Q}
+= \hat{\varrho}^2
+   \left( {\mat{X}_\lambda^O}' \hat{\mat{\Delta}} \mat{X}^S \right)
+   \var \left[ \hat{\vec{\beta}}^S \right]
+   \left( {\mat{X}^S}' \hat{\mat{\Delta}} \mat{X}_\lambda^O \right),
+\end{equation}
+$\mat{X}^S$ is the matrix of all observations of $\vec{x}^S$,
+$\mat{X}_\lambda^O$ is the matrix of all observations
+of $\vec{x}^O$ and $\hat{\lambda}$,
+$\mat{I}$ is an identity matrix,
+$\hat{\mat{\Delta}}$ is a diagonal matrix with all $\hat{\delta}_i$
+on its diagonal, and
+$\var \left[ \hat{\vec{\beta}}^S \right]$ is the variance covariance matrix
+of the coefficients of the probit estimation.
 
 This is the original idea by \citet{heckman1976}.  As the model is
 fully parametric, the more efficient ML estimatior is straightforward
