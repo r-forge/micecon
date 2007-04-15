@@ -183,12 +183,13 @@ Look at the following (unobserved) structural model:
   \label{eq:probit*}
   \\
   y_i^{O*} &= {\vec{\beta}^O}' \vec{x}_i^O + \varepsilon_i^O,
+  \label{eq:outcome*}
 \end{align}
 where $y_i^{S*}$ is the realisation of the the latent value of the
 selection ``tendency'' for the individual $i$, and $y_i^{O*}$ is the
 latent outcome.  $\vec{x}_i^S$ and $\vec{x}_i^O$ are explanatory
-variables for the selection and outcome equations.  $\vec{x}^S$ and
-$\vec{x}^O$ may or may not be equal.  We observe
+variables for the selection and outcome equations, respectively.
+$\vec{x}^S$ and $\vec{x}^O$ may or may not be equal.  We observe
 \begin{align}
   y_i^S 
   &= 
@@ -206,18 +207,19 @@ $\vec{x}^O$ may or may not be equal.  We observe
     y_i^{O*} & \quad \text{otherwise},
   \end{cases}
 \end{align}
-i.e. we observe the outcome only if the latent selection variable
+i.e.\ we observe the outcome only if the latent selection variable
 $y^{S*}$ is positive.  The observed dependence between $y^O$ and $x^O$
 can now be written as
 \begin{equation}
-  \E [y^O|\vec{x}^O = \vec{x}_i^O, \vec{x}^S = \vec{x}_i^S, y_i^S = 1] =
+  \E [y_i^O | \vec{x}_i^O , \vec{x}_i^S , y_i^S = 1] =
   {\vec{\beta}^O}' \vec{x}_i^O 
   +
-  \E [ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ].
+  \E [ \varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ].
 \end{equation}
 Estimating the model above by OLS gives in general biased results, as
-$\E [ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
-\not = 0$, unless $\varrho = 0$.
+$\E [ \varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
+\not = 0$, unless $\varepsilon^O$ and $\varepsilon^S$ are uncorrelated
+(i.e.\ $\varrho = 0$ in equation~\eqref{eq:correlation}).
 
 However, assuming the error terms follow a bivariate normal
 distribution:
@@ -237,19 +239,20 @@ distribution:
       \varrho & \sigma^2
     \end{pmatrix}
   \right),
+   \label{eq:correlation}
 \end{equation}
 we may employ the following simple strategy: we can find the
-expectations $\E [ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}'
+expectations $\E [ \varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}'
 \vec{x}_i^S ]$ by estimating the selection equations
 \eqref{eq:probit*} and \eqref{eq:probit} by probit, and thereafter
-insert these expectations into the OLS equation below, as additional
+insert these expectations into equation \eqref{eq:outcome*} as additional
 covariates (see \citet{greene2002} for details):
 \begin{equation}
   y_i^O
   =
   {\vec{\beta}^O}' \vec{x}_i^O 
   + 
-  \E [ \varepsilon^O|\varepsilon^S \ge
+  \E [ \varepsilon_i^O|\varepsilon_i^S \ge
   -{\vec{\beta}^S}' \vec{x}_i^S ]
   +
   \eta_i
