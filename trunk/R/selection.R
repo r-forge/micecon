@@ -263,6 +263,6 @@ selection <- function(selection, outcome,
                "TRUE"=switch(as.character(type), "2"=list(mfO), "5"=list(mf1,
                       mf2), "FALSE"=NULL))
                )
-   class(result) <- c("sampleSelection", class(estimation))
+   class(result) <- c("selection", class(estimation))
    return(result)
 }
