@@ -30,7 +30,7 @@ summary.maxLik <- function( object, ... ) {
    ## type       : type of optimisation
    ##
    result <- object$maximisation
-   NParam <- length(coef <- coefficients(object))
+   NParam <- length(coef <- coef.maxLik(object))
    if(!is.null(object$activePar)) {
       activePar <- object$activePar
    } else {

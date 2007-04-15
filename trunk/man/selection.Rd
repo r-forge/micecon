@@ -1,5 +1,7 @@
 \name{selection}
 \alias{selection}
+\alias{coef.selection}
+\alias{print.selection}
 \title{Heckman-style selection models}
 \description{
   This functions calculates Heckman-style selection models either with
@@ -48,9 +50,17 @@ print.level = 0, ...)
   supplied, the results are based solely on the assumption on
   multivariate normality.  This may or may not be an appropriate
   assumption for a particular problem.
+
+  The (generic) function 'coef' (i.e. 'coef.selection')
+  can be used to extract the estimated coefficients.
+  The (generic) function 'print' (i.e. 'print.selection')
+  can be used to print a few results.
+  The (generic) function 'summary' (i.e. \code{\link{summary.tobit2}}
+  or \code{\link{summary.tobit5}})
+  can be used to obtain and print detailed results.
 }
 \value{
-  object of class 'sampleSelection', which inherits from class
+  object of class 'selection', which inherits from class
   'maxLik'.  A list, which has all the components of 'maxLik', and in
   addition
   \item{twoStep}{(only if initial values not given)
