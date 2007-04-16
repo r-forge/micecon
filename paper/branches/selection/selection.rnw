@@ -5,24 +5,8 @@
 %% need no \usepackage{Sweave.sty}
 
 % ------- a few definitions ---------
-\newcommand{\dnorm}{\phi}
-\newcommand{\idiv}{\mathtt{//}}% integer division
-\newcommand{\Natural}{\mathbb{N}}% Natural numbers.  needs ams-fonts
-\newcommand{\pderiv}[2][]{\frac{\partial #1}{\partial #2}}
-\newcommand{\Real}{\mathbb{R}}% Real numbers.  needs ams-fonts
-\newcommand{\pnorm}{\Phi}
-\newcommand{\var}{\mathrm{Var}\,}
-\newcommand{\corr}{\mathrm{Corr}}
-\DeclareMathOperator*{\Exp}{\mathbbm{E}}% expectation
-%\newcommand{\Exp}[1][]{\mathrm{E}_{#1}}
-\newcommand{\indic}{\mathbbm{1}}% indicator function
-\newcommand{\laplace}{\mathcal{L}}% Laplace transform
-\newcommand{\lik}{\mathcal{L}}% likelihood
-\newcommand{\loglik}{\ell}% log likelihood
-\newcommand*{\mat}[1]{\mathsf{#1}}
 \renewcommand*{\vec}[1]{\boldsymbol{#1}}
-\newcommand{\dif}{\mathrm{d}} % diferentsiaalimärk
-\newcommand{\me}{\mathrm{e}} % Konstant e=2,71828
+\newcommand*{\mat}[1]{\mathsf{#1}}
 % -----------------------
 
 \author{Ott Toomet\\Tartu University
@@ -97,8 +81,11 @@
 
 \begin{document}
 
-%% include your article here, just as usual
-%% Note that you should use the \pkg{}, \proglang{} and \code{} commands.
+<<echo=FALSE>>=
+## initialisation stuff
+options(width=75)
+@ 
+%
 
 \section{Sample selection}
 
@@ -135,7 +122,7 @@ popular choices:
 
 \begin{itemize}
 \item Random experiment, the situation, where the participants
-  \emph{do not} have control over their status while the researcher
+  do not have control over their status while the researcher
   has.  Randomisation is in many cases the best of the possible
   methods as it is easy to analyse and understand.  However, this
   method is seldom feasible for practical and ethical reasons.  The
@@ -144,9 +131,9 @@ popular choices:
 \item Instruments (exclusion restrictions) are in many ways similar to
   randomisation.  These are variables which researcher can observe,
   and which determine the treatment status but not the outcome.
-  Unfortunately, these are in most cases contradicting requirements in
-  the real life, and only seldom we have instruments of reasonable
-  quality.  
+  Unfortunately, these tend to be contradicting requirements in 
+  real life, and only seldom we have instruments of reasonable
+  quality.
 \item Information about the functional form of the selection and
   outcome processes, such as the distribution of the disturbance
   terms.  The original Heckman's solution belong to this group.
@@ -242,11 +229,12 @@ distribution:
    \label{eq:correlation}
 \end{equation}
 we may employ the following simple strategy: we can find the
-expectations $\E [ \varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}'
-\vec{x}_i^S ]$ by estimating the selection equations
-\eqref{eq:probit*} and \eqref{eq:probit} by probit, and thereafter
-insert these expectations into equation \eqref{eq:outcome*} as additional
-covariates (see \citet{greene2002} for details):
+expectations $\E [ \varepsilon_i^O|\varepsilon_i^S \ge
+-{\vec{\beta}^S}' \vec{x}_i^S ]$, also called \emph{control function},
+by estimating the selection equations \eqref{eq:probit*} and
+\eqref{eq:probit} by probit, and thereafter insert these expectations
+into equation \eqref{eq:outcome*} as additional covariates (see
+\citet{greene2002} for details):
 \begin{equation}
   y_i^O
   =
@@ -280,15 +268,14 @@ An estimator of the variance of $\varepsilon^O$ can be obtained by
 = \frac{\hat{\vec{\eta}}' \hat{\vec{\eta}}}{n^O}
    + \frac{\sum_i \hat{\delta}_i}{n^O} \left. \hat{\beta}^\lambda \right.^2
 \end{equation}
-where
-$\hat{\vec{\eta}}$ is the vector of residuals from the OLS estimation
-of~\eqref{eq:tobit2_2step},
-$n^O$ is the number of observations in this estimation, and
-$\hat{\delta}_i = \hat{\lambda}_i ( \hat{\lambda}_i
-+ \left. \hat{\vec{\beta}}^S \right. ' \vec{x}_i^S )$.
-Finally, an estimator of the correlation between $\varepsilon^S$
-and $\varepsilon^O$ can be obtained by
-$\hat{\varrho} = \hat{\beta}^\lambda / \hat{\sigma}$.
+where $\hat{\vec{\eta}}$ is the vector of residuals from the OLS
+estimation of~\eqref{eq:tobit2_2step}, $n^O$ is the number of
+observations in this estimation, and $\hat{\delta}_i = \hat{\lambda}_i
+( \hat{\lambda}_i + \left. \hat{\vec{\beta}}^S \right. ' \vec{x}_i^S
+)$.  Finally, an estimator of the correlation between $\varepsilon^S$
+and $\varepsilon^O$ can be obtained by $\hat{\varrho} =
+\hat{\beta}^\lambda / \hat{\sigma}$.  Note that $\hat{\varrho}$ can be
+outside of the $[-1, 1]$ interval.
 
 Since the estimation of \eqref{eq:tobit2_2step}
 is not based on the true $\lambda$s but on estimated values,
@@ -296,7 +283,7 @@ the standard OLS formula for the coefficient variance covariance matrix
 is not appropriate.
 A consistent variance covariance matrix can be obtained by
 \begin{equation}
-\var \left[ \hat{\vec{\beta}}^O, \hat{\vec{\beta}}^\lambda \right]
+\VAR \left[ \hat{\vec{\beta}}^O, \hat{\vec{\beta}}^\lambda \right]
 = \hat{\sigma}^2
    \left[ {\mat{X}_\lambda^O}' \mat{X}_\lambda^O \right]^{-1}
    \left[ {\mat{X}_\lambda^O}'
@@ -309,7 +296,7 @@ where
 \mat{Q}
 = \hat{\varrho}^2
    \left( {\mat{X}_\lambda^O}' \hat{\mat{\Delta}} \mat{X}^S \right)
-   \var \left[ \hat{\vec{\beta}}^S \right]
+   \VAR \left[ \hat{\vec{\beta}}^S \right]
    \left( {\mat{X}^S}' \hat{\mat{\Delta}} \mat{X}_\lambda^O \right),
 \end{equation}
 $\mat{X}^S$ is the matrix of all observations of $\vec{x}^S$,
@@ -318,7 +305,7 @@ of $\vec{x}^O$ and $\hat{\lambda}$,
 $\mat{I}$ is an identity matrix,
 $\hat{\mat{\Delta}}$ is a diagonal matrix with all $\hat{\delta}_i$
 on its diagonal, and
-$\var \left[ \hat{\vec{\beta}}^S \right]$ is the variance covariance matrix
+$\VAR \left[ \hat{\vec{\beta}}^S \right]$ is the variance covariance matrix
 of the coefficients of the probit estimation.
 
 This is the original idea by \citet{heckman1976}.  As the model is
@@ -390,6 +377,14 @@ larger.  Convergence issues may appear at the boundary of the
 parameter space (e.g.\ if $\varrho \to 1$) or if the algorithm does not
 find the global maximum.
 
+The package is written completely in \proglang{R} which should
+minimise the portability issues.  It depends on packages
+\pkg{systemfit} and \pkg{mvtnorm}, the latter for examples only.  Both
+are available from the Comprehensive R Archive Network (CRAN) at
+\url{http://CRAN.R-project.org/}.
+% Do you have a reference for systemfit? ....
+
+% A few words on coef() & unimplemented vcov parts ....
 
 
 \section[Usage]{Using the \code{selection} function}
@@ -417,7 +412,7 @@ restriction:
 % -- please keep these comments.  These are necessary for auctex
 We use \pkg{mvtnorm} in order to create bivariate normal disturbances
 with correlation $-0.7$.  Next, we generate a uniformly distributed
-explanatory variable for the selection equation, \code{xs} and the
+explanatory variable for the selection equation, \code{xs}, and the
 selection outcome by a probit data generating process.  Note that the
 vectors of explanatory variables for the selection (\code{xs}) and
 outcome equation (\code{xo}) are independent and hence the exclusion
@@ -439,7 +434,7 @@ print(summary(selection(ys ~ xs, yo ~ xs)))
 % 
 That the standard errors are substantially larger in this case.  The
 exclusion restriction --- information about the selection process ---
-has a certain identifying power which we have lost now.  We are solely
+has a certain identifying power which we now have lost.  We are solely
 relying on the functional form identification.  
 
 In order to identify $\beta^\lambda$ and ${\vec{\beta}^O}'$ without
@@ -447,12 +442,12 @@ exclusion restriction, $\lambda(\cdot)$ must differ from a linear
 combination of $\vec{x}^O$ components \citep{leung+yu1996}.  The
 degree of non-linearity in $\lambda(\cdot)$ depends on the variability
 in ${\vec{\beta}^S}' \vec{x}^S$ as $\lambda(\cdot)$ is a smooth convex
-function (see Figure~\ref{fig:lambda()} below).  Hence the standard
+function.  Hence the standard
 errors of the estimates depend on the variation in the latent
 selection equation \eqref{eq:probit*}, even without the exclusion
 restriction fulfilled.  More variation gives smaller standard
 errors\footnote{This is related to the identification at infinity
-  \citep{chamberlain1986}}.  We demonstrate it below: Change the
+  \citep{chamberlain1986}}.  We demonstrate this below: Change the
 support of \code{xs} from $[0,1]$ to $[-5,5]$:
 <<>>=
   xs <- runif(500, -5, 5)
@@ -467,7 +462,7 @@ figure below.
   print(summary(m <- selection(ys ~ xs, yo ~ xs)))
 @
 %
-Now all the parameters are precisely estimated, with higher precision
+Now all the parameters are precisely estimated, with even higher precision
 than in the case of exclusion restriction.  The reason is simple: the
 probability that $Y^{O*}$ is observable, given $x_i^S$, is $\Pr(1
 \cdot x_i^S + \varepsilon^O > 0) = 1 - \Phi(-x_i^S)$ as $\varepsilon^O
@@ -478,7 +473,7 @@ precisely estimated for relatively large values of $x^S$.  Due to the
 linearity assumption, the same parameters are valid everywhere.  In
 the former example, the variation in $x^S$ was low and hence one could
 not disentangle the selection bias from the true causal dependence.
-Technically, there was a multicollinearity problem between $x$ and
+Technically, there was a multicollinearity problem between $x^S$ and
 $\lambda(\cdot)$.
 
 \begin{figure}[tp]
@@ -492,7 +487,7 @@ abline(a=0, b=1, lty=1)
 # True dependence
 abline(a=coef(m)[3], b=coef(m)[4], lty=2)
 # Heckman's model
-cf <- coef(lm(yo ~ xo, subset=ys==1))
+cf <- coef(lm(yo ~ xs, subset=ys==1))
 abline(a=cf[1], b=cf[2], lty=3)
 # OLS
 @ 
@@ -500,7 +495,8 @@ abline(a=cf[1], b=cf[2], lty=3)
 \caption{The observable (filled) and unobservable (empty circles),
   given \code{xs}.  The solid line denote the true dependence, dashed
   (almoust overlapping the solid) is the MLE estimate above, and
-  the dotted line is the corresponding OLS estimate}
+  the dotted line is the corresponding OLS estimate, based on
+  observable outcomes only.}
   \label{fig:lambda()}
 \end{figure}
 
@@ -540,7 +536,7 @@ observe
     y_i^{O2*} & \quad \text{otherwise}.
   \end{cases}
 \end{align}
-We assume the disturbance terms have a 3-dimensional normal
+We assume that the disturbance terms have a 3-dimensional normal
 distribution:
 \begin{equation}
   \begin{pmatrix}
@@ -591,10 +587,12 @@ equal 0.9 and between $\varepsilon^S$ and $\varepsilon^{O2}$ to 0.5.
 The third correlation, 0.1, takes care for the positive definiteness
 of the covariance matrix and does not affect the results.  Further, we
 create three independent explanatory variables (\code{xs}, \code{xo1}
-and \code{xo2}, uniformly distributed on $[0,1]$, and hence the
-exclusion restriction is fulfilled).  Note that we do not have to
-remove the unobserved values from outcome vectors, those are simply
-ignored.  The results look as follows:
+and \code{xo2}, uniformly distributed on $[0,1]$), and hence the
+exclusion restriction is fulfilled.  \code{selection} now expects
+three formulas, one for the selection equation, as before, and a list
+of two for the outcome equation.  Note that we do not have to remove
+the unobserved values from outcome vectors, those are simply ignored.
+The results look as follows:
 <<>>=
   summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2)))
 @ 
@@ -638,14 +636,13 @@ summary(tmp <- selection(ys~xs, list(yo1 ~ xs, yo2 ~ xs), iterlim=20))
 @
 %
 In most cases, this model does not converge.  However, if it does
-(like in this case, where we use \code{set.seed(6)}),
-the results may be seriously biased.
-Note that first outcome parameters have low standard errors, but a
-serious bias.  We present the graph of the correct control function
-(based on the $\chi^2$ distribution),
-and one where we assume the normal distribution of the disturbance
-terms in Figure~\ref{fig:cfunctions}.  We use the estimated parameters
-for constructing the latter, however, we scale the normal control
+(like in this case, where we use \code{set.seed(6)}), the results be
+seriously biased.  Note that the first outcome parameters have low
+standard errors, but a substantial bias.  We present the graph of the
+correct control function (based on the $\chi^2$ distribution), and one
+where we assume the normal distribution of the disturbance terms in
+Figure~\ref{fig:cfunctions}.  We use the estimated parameters for
+constructing the latter, however, we scale the normal control
 functions (inverse Mill's ratios) to a roughly similar scale, as the
 correct ones.
 \begin{figure}[htbp]
@@ -685,8 +682,9 @@ hatb2O <- coef(tmp)[c("XO2(Intercept)", "XO2xs")]
 e2 <- eps[,3]
    ex <- seq(-5, 5, length=200)
 ey <- cbind(EUlower(ex), EUupper(ex),
-            -31*Nupper(cbind(1, ex)%*%hatb1O), 5.5*Nlower(cbind(1,ex)%*%hatb2O)
-         -s1s*dnorm(-ex)/pnorm(-ex), s2s*dnorm(ex)/pnorm(ex)
+##            -31*Nupper(cbind(1, ex)%*%hatb1O), 5.5*Nlower(cbind(1,ex)%*%hatb2O),
+            -s1s*dnorm(-ex)/pnorm(-ex), 
+            s2s*dnorm(ex)/pnorm(ex)
             )
    mcy <- matrix(0, length(ex), 2)
    for(i in seq(length=nrow(mcy))) {
@@ -694,9 +692,9 @@ ey <- cbind(EUlower(ex), EUupper(ex),
       mcy[i,2] <- mean(e2[es > -ex[i]])
    }
 par(cex=0.8, mar=c(3,3,0,0) + 0.1, mgp=c(2,1,0))
-   matplot(ex, ey, type="l", lty=c(1,1,2,2,3,3), col=1,
-           xlab=expression(x^S), ylab="",
-           ylim=c(-1.5,2.5))
+matplot(ex, ey, type="l", lty=c(1,1,2,2,3,3), col=1,
+        xlab=expression(x^S), ylab="",
+        ylim=c(-1.5,2.5))
 abline(v=-1,lty=3)
 abline(v=1, lty=3)
 #   matpoints(ex, mcy, pch=c(1,2), cex=0.5, col=1)
@@ -724,8 +722,8 @@ text(2.2, -1.4,
 \end{figure}
 One can see, that the functions differ substantially in the relevant
 range of $x^S \in [-1, 1]$.  In particular, the true upper mean rises
-substantially faster close to $x^S = 1$ than the normal approximation.
-The correct lower mean is decreasing slightly faster compared to the
+substantially faster close to $x^S = 1$ than the normal approximation
+while the correct lower mean is decreasing slower compared to the
 approximation.
 
 It is instructive to estimate the same model as a two independent OLS
@@ -850,7 +848,7 @@ outcomeEq <- lnmeddol ~ logc + idp + lpi + fmde + physlm + disea +
 Now, we estimate the model by the two-step method
 <<cameron16.6TwoStep>>=
 summary( tmp <- selection( selectEq, outcomeEq, data = RandHIE[ subsample, ],
-   method = "2step" ), part="full" )
+                          method = "2step" ), part="full" )
 coef(tmp, part="full")[ c( "invMillsRatio", "rho", "sigma" ) ]
 sqrt(diag(vcov(tmp, part="full")))[ "invMillsRatio" ]
 @
@@ -863,6 +861,7 @@ in their \proglang{Stata} output that is available on
 \footnote{
 The coefficient and t-value of \code{idp} in column \code{lnmed}
 of Table~16.1 seem to be wrong,
+% You mean in Cameron (2005)? ....
 because they differ from \citeauthor{cameron05}'s \proglang{Stata} output
 as well as from our results.
 }
@@ -887,16 +886,14 @@ Only a very few coefficients deviate on the seventh decimal place.
 \subsection{Convergence}
 \label{sec:convergence}
 
-The log-likelihood of the models above is not globally concave.  It means, that the model may not
-converge, if the initial values are not chosen well enough.  This may easily happen which we illustrate
-below, while we also give a taste of the real data.
-Recall example  22.8 from \citet[p.~786]{greene2002}
-(section:~\ref{sec:Greene22.8}).
-This model gives reasonable results,
-but the results are sensitive to the start values.
-Now we re-estimate the model specifying start values ``by hand''
-(note that you have to supply a positive initial value for the
-variance):
+The log-likelihood of the models above is not globally concave.  It
+means, that the model may not converge, if the initial values are not
+chosen well enough.  This may easily happen which we illustrate below.
+Recall example 22.8 from \citet[p.~786]{greene2002}
+(section:~\ref{sec:Greene22.8}).  This model gives reasonable results,
+but the results are sensitive to the start values.  Now we re-estimate
+the model specifying start values ``by hand'' (note that you have to
+supply a positive initial value for the variance):
 <<>>=
 mr <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
@@ -959,10 +956,11 @@ superior estimation methods for censored data.
 We briefly describe the implementation and usage of tobit-2 and
 tobit-5 (switching regression) models in \pkg{micEcon}, and
 demonstrate the virtues and caveats of them using a number of
-examples.  Our implementation works well for correctly specified
-cases, in the case of severe misspecification or weak identification,
-a more robust maximisation algorithm might be useful.  This is left
-for the future work.
+examples.  Our implementation works well for correctly specified cases
+-- where does the method.  In the case of severe misspecification or
+weak identification, a more robust maximisation algorithm might be
+useful, even if the problems lie elsewhere.  More robust optimisation
+is left for the future work.
 
 
 

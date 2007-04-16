@@ -218,8 +218,11 @@ plotIVM <- function(N=1000, res=50,
    e2 <- eps[,3]
    xs <- seq(-5, 5, length=res)
    ey <- cbind(EUlower(xs), EUupper(xs),
-#               Nupper(cbind(1, xs)%*%hatb1O), Nlower(cbind(1,xs)%*%hatb2O),
-               -s1s*dnorm(-xs)/pnorm(-xs), s2s*dnorm(xs)/pnorm(xs))
+               Nupper(cbind(1, xs)%*%hatb1O), Nlower(cbind(1,xs)%*%hatb2O),
+                                        # estimated normal curves
+               -s1s*dnorm(-xs)/pnorm(-xs), s2s*dnorm(xs)/pnorm(xs)
+                                        # norimal curves using true parameters
+               )
    mcy <- matrix(0, length(xs), 2)
    for(i in seq(length=nrow(mcy))) {
       mcy[i,1] <- mean(e1[es < -xs[i]])
