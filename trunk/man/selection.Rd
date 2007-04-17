@@ -2,6 +2,8 @@
 \alias{selection}
 \alias{coef.selection}
 \alias{print.selection}
+\alias{summary.selection}
+\alias{print.summary.selection}
 \title{Heckman-style selection models}
 \description{
   This functions calculates Heckman-style selection models either with
@@ -55,8 +57,7 @@ print.level = 0, ...)
   can be used to extract the estimated coefficients.
   The (generic) function 'print' (i.e. 'print.selection')
   can be used to print a few results.
-  The (generic) function 'summary' (i.e. \code{\link{summary.tobit2}}
-  or \code{\link{summary.tobit5}})
+  The (generic) function 'summary' (i.e. 'summary.selection')
   can be used to obtain and print detailed results.
 }
 \value{
