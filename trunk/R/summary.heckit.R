@@ -64,13 +64,13 @@ print.summary.heckit <- function( x,
    }
    cat( x$param$NObs, "observations" )
    if( x$tobitModel == 2 ) {
-      cat( " (", x$param$N0, " censored and ", x$param$N1, " observed) and ",
-       x$param$NParam, " parameters", sep = "" )
+      cat( " (", x$param$N0, " censored and ", x$param$N1, " observed)",
+         sep = "" )
    } else {
       cat( " (", x$param$N1, " selection 1 and ",
-         x$param$N2, " selection 2) and ",
-         x$param$NParam, " free parameters", sep = "" ) 
+         x$param$N2, " selection 2)", sep = "" )
    }
+   cat( " and", x$param$NParam, "free parameters" )
    cat( " (df = ", x$param$df, ")\n", sep="")
    if(part == "full") {
       i <- x$param$index$betaS
@@ -78,26 +78,20 @@ print.summary.heckit <- function( x,
       printCoefmat(x$estimate[i,], signif.legend=FALSE)
    }
    if( x$tobitModel == 2 ) {
-      i <- x$param$index$betaO
       cat("Outcome equation:\n")
-   } else {
-      i <- x$param$index$betaO1
-      cat("Outcome equation 1:\n")
-      printCoefmat(x$estimate[i,], signif.legend=FALSE)
-      cat("Multiple R-Squared:", round(x$rSquared$R21, digits),
-          ",\tAdjusted R-Squared:", round(x$rSquared$R2adj1, digits), "\n", sep="")
-      i <- x$param$index$betaO2
-      cat("Outcome equation 2:\n")
-   }
-   if(part == "full")
-       printCoefmat(x$estimate[i,], signif.legend=FALSE)
-   else
-       printCoefmat(x$estimate[i,], signif.legend=TRUE)
-
-   if( x$tobitModel == 2 ) {
+      printCoefmat( x$estimate[ x$param$index$betaO, ],
+         signif.legend = ( part != "full" ) )
       cat("Multiple R-Squared:", round(x$rSquared$R2, digits),
          ",\tAdjusted R-Squared:", round(x$rSquared$R2adj, digits), "\n", sep="")
    } else {
+      cat("Outcome equation 1:\n")
+      printCoefmat( x$estimate[ x$param$index$betaO1, ],
+         signif.legend = FALSE )
+      cat("Multiple R-Squared:", round(x$rSquared$R21, digits),
+          ",\tAdjusted R-Squared:", round(x$rSquared$R2adj1, digits), "\n", sep="")
+      cat("Outcome equation 2:\n")
+      printCoefmat( x$estimate[ x$param$index$betaO2, ],
+         signif.legend = ( part != "full" ) )
       cat("Multiple R-Squared:", round(x$rSquared$R22, digits),
          ",\tAdjusted R-Squared:", round(x$rSquared$R2adj2, digits), "\n", sep="")
    }

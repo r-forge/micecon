@@ -1,5 +1,5 @@
 
-R version 2.4.0 (2006-10-03)
+R version 2.4.1 (2006-12-18)
 Copyright (C) 2006 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -41,7 +41,7 @@ Loading required package: systemfit
 > yo1[sample(N, NNA)] <- NA
 > yo2[sample(N, NNA)] <- NA
 > a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), method="2step")
- > print(summary(a))
+> print(summary(a))
 2-step estimation of switching regression (tobit-5) model
 1479 observations (479 selection 1 and 1000 selection 2) and 12 free parameters (df = 1469)
 Probit selection equation:
@@ -67,7 +67,7 @@ sigma2           0.9929         NA      NA       NA
 rho1             0.9900         NA      NA       NA
 rho2             0.6230         NA      NA       NA
 > a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), method="ml")
-  > print(summary(a))
+> print(summary(a))
 --------------------------------------------
 Tobit 5 selection model/Maximum Likelihood estimation
 Newton-Raphson maximisation, 9 iterations
@@ -109,9 +109,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > xo[sample(N, NNA)] <- NA
 > yo[sample(N, NNA)] <- NA
 > a <- selection(ys~xs, yo ~xo, method="2step")
- > print(summary(a))
+> print(summary(a))
 2-step estimation of heckit (tobit-2) model
-1481 observations (461 censored and 1020 observed) and 7 parameters (df = 1475)
+1481 observations (461 censored and 1020 observed) and 7 free parameters (df = 1475)
 Probit selection equation:
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)  0.06466    0.06690   0.967    0.334    
@@ -129,7 +129,7 @@ rho            -0.8333         NA      NA       NA
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > a <- selection(ys~xs, yo ~xo, method="ml")
-  > print(summary(a))
+> print(summary(a))
 --------------------------------------------
 Tobit 2 selection model/Maximum Likelihood estimation
 Newton-Raphson maximisation, 5 iterations

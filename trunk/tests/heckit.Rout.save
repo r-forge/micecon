@@ -26,7 +26,7 @@ Loading required package: systemfit
 +    wage ~ exper + I( exper^2 ) + educ + city, Mroz87 )
 > print(summary( greene ))
 2-step estimation of heckit (tobit-2) model
-753 observations (325 censored and 428 observed) and 14 parameters (df = 740)
+753 observations (325 censored and 428 observed) and 14 free parameters (df = 740)
 Probit selection equation:
               Estimate Std. Error t value Pr(>|t|)    
 (Intercept) -4.157e+00  1.402e+00  -2.965 0.003127 ** 
@@ -116,7 +116,7 @@ invMillsRatio    1.60271957
 +    kids5 + kids618, log( wage ) ~ educ + exper + I( exper^2 ), Mroz87 )
 > print( summary( wooldridge ) )
 2-step estimation of heckit (tobit-2) model
-753 observations (325 censored and 428 observed) and 15 parameters (df = 739)
+753 observations (325 censored and 428 observed) and 15 free parameters (df = 739)
 Probit selection equation:
              Estimate Std. Error t value Pr(>|t|)    
 (Intercept)  0.270077   0.508593   0.531  0.59556    
