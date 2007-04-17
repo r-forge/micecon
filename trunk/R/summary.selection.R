@@ -10,29 +10,22 @@ summary.selection <- function(object, ...) {
    ## estimateEps      : sigma & rho part
    ## + additional components of "summary.maxLik"
    ##
-   if( "tobit2" %in% class( object ) ) {
-      model <- 2
-   } else if( "tobit5" %in% class( object ) ) {
-      model <- 5
-   } else {
-      stop( "summary.selection currently works for tobit2 and tobit5",
-         " models only" )
-   }
 
    sl <- summary.maxLik(object, ...)
+   sl$tobitType <- object$tobitType
    sl$estimateS <- sl$estimate[object$param$index$betaS,]
    sl$NObs <- object$param$NObs
    sl$N1   <- object$param$N1
    sl$NXS  <- object$param$NXS
    sl$df   <- object$param$df
 
-   if( model == 2 ){
+   if( object$tobitType == 2 ){
       sl$estimateO <- sl$estimate[object$param$index$betaO,]
       sl$estimateErr <- sl$estimate[c(object$param$index$sigma,
                                          object$param$index$rho),]
       sl$N0   <- object$param$N0
       sl$NXO  <- object$param$NXO
-   } else if( model == 5 ){
+   } else if( object$tobitType == 5 ){
       sl$estimateO1 <- sl$estimate[object$param$index$betaO1,]
       sl$estimateO2 <- sl$estimate[object$param$index$betaO2,]
       sl$estimateErr <- sl$estimate[c(object$param$index$sigma1,
@@ -44,32 +37,23 @@ summary.selection <- function(object, ...) {
       sl$NXO2 <- object$param$NXO2
    }
 
-   class(sl) <- c( "summary.selection", paste( "summary.tobit", model,
-      sep = "" ), class(sl) )
+   class(sl) <- c( "summary.selection", class(sl) )
    return( sl )
 }
 
 print.summary.selection <- function(x, ...) {
-   if( "summary.tobit2" %in% class( x ) ) {
-      model <- 2
-   } else if( "summary.tobit5" %in% class( x ) ) {
-      model <- 5
-   } else {
-      stop( "print.summary.selection currently works for tobit2 and tobit5",
-         " models only" )
-   }
 
    cat("--------------------------------------------\n")
-   cat("Tobit ", model, " selection model/Maximum Likelihood estimation\n",
+   cat("Tobit ", x$tobitType, " selection model/Maximum Likelihood estimation\n",
       sep = "" )
    cat(x$type, ", ", x$iterations, " iterations\n", sep="")
    cat("Return code ", x$code, ": ", x$message, "\n", sep="")
    if(!is.null(x$estimate)) {
       cat("Log-Likelihood:", loglikValue(x), "\n")
-      if( model == 2 ) {
+      if( x$tobitType == 2 ) {
          cat(x$NObs, " observations (", x$N0, " censored and ", x$N1,
             " observed)", sep = "" )
-      } else if( model == 5 ) {
+      } else if( x$tobitType == 5 ) {
          cat(x$NObs, " observations (", x$N1, " selection 1 and ", x$N2,
             " selection 2)", sep = "" )
       }
@@ -77,10 +61,10 @@ print.summary.selection <- function(x, ...) {
           x$NObs - x$NActivePar, ")\n", sep="")
       cat("Probit selection equation:\n")
       printCoefmat(x$estimateS, signif.legend=FALSE)
-      if( model == 2 ) {
+      if( x$tobitType == 2 ) {
          cat("Outcome equation:\n")
          printCoefmat(x$estimateO, signif.legend=FALSE)
-      } else if( model == 5 ) {
+      } else if( x$tobitType == 5 ) {
          cat("Outcome equation 1:\n")
          printCoefmat(x$estimateO1, signif.legend=FALSE)
          cat("Outcome equation 2:\n")
