@@ -245,6 +245,7 @@ selection <- function(selection, outcome,
    }
    ## now fit the model
    result <- c(estimation,
+               tobitType = list( type ),
                twoStep=list(twoStep),
                start=list(start),
                param=list(param),
