@@ -1,8 +1,6 @@
 \name{summary.heckit}
 \alias{summary.heckit}
-\alias{summary.heckit5}
 \alias{print.summary.heckit}
-\alias{print.summary.heckit5}
 
 \title{Print output of heckit estimation}
 
@@ -13,11 +11,7 @@
 
 \usage{
    \method{summary}{heckit}(object, ...)
-   \method{summary}{heckit5}(object, ...)
    \method{print}{summary.heckit}(x,
-digits=max(3, getOption("digits") - 3), signif.stars=getOption("show.signif.stars"),
-                                  part="full", ...)
-   \method{print}{summary.heckit5}(x,
 digits=max(3, getOption("digits") - 3), signif.stars=getOption("show.signif.stars"),
                                   part="full", ...)
 }

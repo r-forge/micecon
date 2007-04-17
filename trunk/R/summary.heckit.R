@@ -2,6 +2,12 @@
 summary.heckit <- function( object, ...) {
    s <- list()  # list for results that will be returned
 
+   if( "heckit5" %in% class( object ) ){
+      s$tobitModel <- 5
+   } else {
+      s$tobitModel <- 2
+   }
+
    RSq <- function(model, intercept) {
       ## Calculate r-squared.  Note that the way lm() finds R2 is a bit naive -- it checks for intercept
       ## in the formula, but not whether the intercept is present in any of the data vectors (or matrices)
@@ -22,15 +28,26 @@ summary.heckit <- function( object, ...) {
        }
        c(R2, R2adj)
    }
-   r <- RSq( object$lm, object$param$oIntercept )
-   R2 <- r[1]
-   R2adj <- r[2]
+   if( s$tobitModel == 2 ) {
+      r <- RSq( object$lm, object$param$oIntercept )
+      R2 <- r[1]
+      R2adj <- r[2]
+      s$rSquared <- list(R2=R2, R2adj=R2adj)
+   } else {
+      r <- RSq(object$lm1, object$param$oIntercept1)
+      R21 <- r[1]
+      R2adj1 <- r[2]
+      r <- RSq(object$lm2, object$param$oIntercept2)
+      R22 <- r[1]
+      R2adj2 <- r[2]
+      iBetaS <- object$param$index$betaS
+      s$rSquared <- list(R21=R21, R2adj1=R2adj1, R22=R22, R2adj2=R2adj2)
+   }
 
    stdd <- sqrt(diag(vcov(object, part="full")))
    s$estimate <- coefTable(coef(object, part="full"), stdd, object$param$df)
-   s$rSquared <- list(R2=R2, R2adj=R2adj)
    s$param    <- object$param
-   class(s) <- c("summary.heckit", class(s))
+   class(s) <- "summary.heckit"
    return( s )
 }
 
@@ -39,27 +56,59 @@ print.summary.heckit <- function( x,
                                  signif.stars=getOption("show.signif.stars"),
                                  part="full",
                                  ...) {
-   cat("2-step estimation of heckit (tobit-2) model\n")
-   cat(x$param$NObs, " observations (", x$param$N0, " censored and ", x$param$N1, " observed) and ",
-       x$param$NParam, " parameters (df = ",
-       x$param$df, ")\n", sep="")
+   cat("2-step estimation of" )
+   if( x$tobitModel == 2 ) {
+      cat( "heckit (tobit-2) model\n" )
+   } else {
+      cat( "switching regression (tobit-5) model\n" )
+   }
+   cat( x$param$NObs, " observations" )
+   if( x$tobitModel == 2 ) {
+      cat( " (", x$param$N0, " censored and ", x$param$N1, " observed) and ",
+       x$param$NParam, " parameters" )
+   } else {
+      cat( "(", x$param$N1, " selection 1 and ",
+         x$param$N2, " selection 2) and ",
+         x$param$NParam, " free parameters" ) 
+   }
+   cat( " (df = ", x$param$df, ")\n", sep="")
    if(part == "full") {
       i <- x$param$index$betaS
       cat("Probit selection equation:\n")
       printCoefmat(x$estimate[i,], signif.legend=FALSE)
    }
-                                        #
-   i <- x$param$index$betaO
-   cat("Outcome equation:\n")
+   if( x$tobitModel == 2 ) {
+      i <- x$param$index$betaO
+      cat("Outcome equation:\n")
+   } else {
+      i <- x$param$index$betaO1
+      cat("Outcome equation 1:\n")
+      printCoefmat(x$estimate[i,], signif.legend=FALSE)
+      cat("Multiple R-Squared:", round(x$rSquared$R21, digits),
+          ",\tAdjusted R-Squared:", round(x$rSquared$R2adj1, digits), "\n", sep="")
+      i <- x$param$index$betaO2
+      cat("Outcome equation 2:\n")
+   }
    if(part == "full")
        printCoefmat(x$estimate[i,], signif.legend=FALSE)
    else
        printCoefmat(x$estimate[i,], signif.legend=TRUE)
-   cat("Multiple R-Squared:", round(x$rSquared$R2, digits),
-       ",\tAdjusted R-Squared:", round(x$rSquared$R2adj, digits), "\n", sep="")
-                                        #
+
+   if( x$tobitModel == 2 ) {
+      cat("Multiple R-Squared:", round(x$rSquared$R2, digits),
+         ",\tAdjusted R-Squared:", round(x$rSquared$R2adj, digits), "\n", sep="")
+   } else {
+      cat("Multiple R-Squared:", round(x$rSquared$R22, digits),
+         ",\tAdjusted R-Squared:", round(x$rSquared$R2adj2, digits), "\n", sep="")
+   }
    if(part=="full") {
-      i <- c(x$param$index$Mills, x$param$index$sigma, x$param$index$rho)
+      if( x$tobitModel == 2 ) {
+         i <- c(x$param$index$Mills, x$param$index$sigma, x$param$index$rho)
+      } else {
+         i <- c( x$param$index$Mills1, x$param$index$Mills2,
+            x$param$index$sigma1, x$param$index$sigma2,
+            x$param$index$rho1, x$param$index$rho2 )
+      }
       cat("Error terms:\n")
       printCoefmat(x$estimate[i,], signif.legend=TRUE)
                                         # Here we have a problem -- signif legend is only printed, if
