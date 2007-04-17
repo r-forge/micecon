@@ -11,17 +11,19 @@ summary.tobit2 <- function(object, ...) {
    ## + additional components of "summary.maxLik"
    ## 
    sl <- summary.maxLik(object, ...)
-   s <- c(sl,
-          estimateS=list(sl$estimate[object$param$index$betaS,]),
-          estimateO=list(sl$estimate[object$param$index$betaO,]),
-          estimateErr=list(sl$estimate[c(object$param$index$sigma,
-                                         object$param$index$rho),]),
-          NObs=object$param$NObs, NActivePar=object$param$NActivePar,
-          N0=object$param$N0, N1=object$param$N1,
-          NXS=object$param$NXS, NXO=object$param$NXO, df=object$param$df
-          )
-   class(s) <- c("summary.tobit2", class(sl))
-   s
+   sl$estimateS <- sl$estimate[object$param$index$betaS,]
+   sl$estimateO <- sl$estimate[object$param$index$betaO,]
+   sl$estimateErr <- sl$estimate[c(object$param$index$sigma,
+                                         object$param$index$rho),]
+   sl$NObs <- object$param$NObs
+   sl$N0   <- object$param$N0
+   sl$N1   <- object$param$N1
+   sl$NXS  <- object$param$NXS
+   sl$NXO  <- object$param$NXO
+   sl$df   <- object$param$df
+
+   class(sl) <- c("summary.tobit2", class(sl))
+   return( sl )
 }
 
 print.summary.tobit2 <- function(x, ...) {
