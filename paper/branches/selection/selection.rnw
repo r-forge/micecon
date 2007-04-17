@@ -769,11 +769,9 @@ Mroz87$kids <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
 @
 Now, we estimate the model by the two-step method
 <<greene22.8TwoStep>>=
-summary( tmp <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+summary( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
    data = Mroz87, method = "2step" ) )
-coef(tmp, part="full")[ c( "invMillsRatio", "rho", "sigma" ) ]
-sqrt(diag(vcov(tmp, part="full")))[ "invMillsRatio" ]
 @
 Most results are identical to the values reported by
 \citet[p.~786]{greene2002}.
@@ -848,10 +846,8 @@ outcomeEq <- lnmeddol ~ logc + idp + lpi + fmde + physlm + disea +
 %
 Now, we estimate the model by the two-step method
 <<cameron16.6TwoStep>>=
-summary( tmp <- selection( selectEq, outcomeEq, data = RandHIE[ subsample, ],
+summary( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ],
                           method = "2step" ), part="full" )
-coef(tmp, part="full")[ c( "invMillsRatio", "rho", "sigma" ) ]
-sqrt(diag(vcov(tmp, part="full")))[ "invMillsRatio" ]
 @
 %
 All coefficients, standard errors and t-values are fully identical
