@@ -192,6 +192,7 @@ heckit <- function( selection, formula,
                         N0=N0, N1=N1,
                         NParam=NParam, NObs=NObs, df=NObs-NParam+1)
    result$lm <- outcomeMod
+   result$tobitType <- 2
    class( result ) <- "heckit"
    return( result )
 }

@@ -248,6 +248,7 @@ heckit5 <- function(selection, outcome1, outcome2,
                   coefficients=coefficients,
                   vcov=vc
                   )
-   class(result) <- c("heckit5", "heckit", class(result))
-   invisible(result)
+   result$tobitType <- 5
+   class( result ) <- c( "heckit", class(result))
+   return( result )
 }
