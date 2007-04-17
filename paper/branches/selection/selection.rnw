@@ -153,8 +153,8 @@ may be hard to disentangle from the estimates.
 However, even if these models are less popular in research nowadays,
 they still serve as excellent teaching tools.
 They are extensively explained in many recent econometric
-text books \citep[e.g.][]{johnston97, verbeek00, greene2002, wooldridge03}
-and are standard procedures in popular software packages
+text books \citep[e.g.][]{johnston97, verbeek00, greene2002, wooldridge03,
+cameron05} and are standard procedures in popular software packages
 like \proglang{Limdep} and \proglang{Stata}.
 Heckman-type selection
 models easily allow us to experiment with selection bias,
@@ -234,7 +234,7 @@ expectations $\E [ \varepsilon_i^O|\varepsilon_i^S \ge
 by estimating the selection equations \eqref{eq:probit*} and
 \eqref{eq:probit} by probit, and thereafter insert these expectations
 into equation \eqref{eq:outcome*} as additional covariates (see
-\citet{greene2002} for details):
+\citealp{greene2002} for details):
 \begin{equation}
   y_i^O
   =
@@ -280,10 +280,10 @@ outside of the $[-1, 1]$ interval.
 Since the estimation of \eqref{eq:tobit2_2step}
 is not based on the true $\lambda$s but on estimated values,
 the standard OLS formula for the coefficient variance covariance matrix
-is not appropriate.
-A consistent variance covariance matrix can be obtained by
+is not appropriate \citep[p.~157]{heckman79}.
+A consistent estimate of the variance covariance matrix can be obtained by
 \begin{equation}
-\VAR \left[ \hat{\vec{\beta}}^O, \hat{\vec{\beta}}^\lambda \right]
+\widehat{\VAR} \left[ \hat{\vec{\beta}}^O, \hat{\vec{\beta}}^\lambda \right]
 = \hat{\sigma}^2
    \left[ {\mat{X}_\lambda^O}' \mat{X}_\lambda^O \right]^{-1}
    \left[ {\mat{X}_\lambda^O}'
@@ -296,7 +296,7 @@ where
 \mat{Q}
 = \hat{\varrho}^2
    \left( {\mat{X}_\lambda^O}' \hat{\mat{\Delta}} \mat{X}^S \right)
-   \VAR \left[ \hat{\vec{\beta}}^S \right]
+   \widehat{\VAR} \left[ \hat{\vec{\beta}}^S \right]
    \left( {\mat{X}^S}' \hat{\mat{\Delta}} \mat{X}_\lambda^O \right),
 \end{equation}
 $\mat{X}^S$ is the matrix of all observations of $\vec{x}^S$,
@@ -305,8 +305,9 @@ of $\vec{x}^O$ and $\hat{\lambda}$,
 $\mat{I}$ is an identity matrix,
 $\hat{\mat{\Delta}}$ is a diagonal matrix with all $\hat{\delta}_i$
 on its diagonal, and
-$\VAR \left[ \hat{\vec{\beta}}^S \right]$ is the variance covariance matrix
-of the coefficients of the probit estimation.
+$\widehat{\VAR} \left[ \hat{\vec{\beta}}^S \right]$ is the estimated variance
+covariance matrix of the coefficients of the probit estimation
+\citep{greene81,greene2002}.
 
 This is the original idea by \citet{heckman1976}.  As the model is
 fully parametric, the more efficient ML estimatior is straightforward
@@ -328,7 +329,7 @@ this classification are available in \citealp{amemiya1985}).  This
 model may be relevant for treatment effect analysis.  Other types of
 generalisations include less restrictive parametric forms for the
 conditional mean of the residual term $\E [
-\varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ (see
+\varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ (see
 \citealp[p.~1938]{heckman+macurdy1986}, for references and
 \citealp{klaauw+koning2003} for an application).
 
@@ -860,9 +861,8 @@ in their \proglang{Stata} output that is available on
 \url{http://cameron.econ.ucdavis.edu/mmabook/mma16p3selection.txt}.%
 \footnote{
 The coefficient and t-value of \code{idp} in column \code{lnmed}
-of Table~16.1 seem to be wrong,
-% You mean in Cameron (2005)? ....
-because they differ from \citeauthor{cameron05}'s \proglang{Stata} output
+of \citeauthor{cameron05}'s Table~16.1 seem to be wrong,
+because they differ from their \proglang{Stata} output
 as well as from our results.
 }
 
