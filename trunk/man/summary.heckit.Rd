@@ -12,7 +12,7 @@
 \usage{
    \method{summary}{heckit}(object, ...)
    \method{print}{summary.heckit}(x,
-digits=max(3, getOption("digits") - 3), signif.stars=getOption("show.signif.stars"),
+digits=max(3, getOption("digits") - 3),
                                   part="full", ...)
 }
 
@@ -24,8 +24,6 @@ digits=max(3, getOption("digits") - 3), signif.stars=getOption("show.signif.star
     estimates, correlation and residual variance; or "outcome" for the outcome
     results only.}
   \item{digits}{numeric, (suggested) number of significant digits}
-  \item{signif.stars}{logical, whether to print the significance starts
-    and corresponding legend}
    \item{...}{further arguments passed to \code{\link{summary.glm}}
       and \code{\link{summary.lm}}.}
 }

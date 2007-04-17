@@ -42,7 +42,9 @@ Loading required package: systemfit
 > yo2[sample(N, NNA)] <- NA
 > a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), method="2step")
 > print(summary(a))
-2-step estimation of switching regression (tobit-5) model
+--------------------------------------------
+Tobit 5 model (switching regression model)
+2-step Heckman / heckit estimation
 1479 observations (479 selection 1 and 1000 selection 2) and 12 free parameters (df = 1469)
 Probit selection equation:
             Estimate Std. Error t value Pr(>|t|)    
@@ -66,10 +68,12 @@ sigma1           1.2926         NA      NA       NA
 sigma2           0.9929         NA      NA       NA
 rho1             0.9900         NA      NA       NA
 rho2             0.6230         NA      NA       NA
+--------------------------------------------
 > a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), method="ml")
 > print(summary(a))
 --------------------------------------------
-Tobit 5 selection model/Maximum Likelihood estimation
+Tobit 5 model (switching regression model)
+Maximum Likelihood estimation
 Newton-Raphson maximisation, 9 iterations
 Return code 2: successive function values within tolerance limit.
  May be a solution
@@ -87,7 +91,7 @@ Outcome equation 2:
             Estimate Std. error t value Pr(> t)    
 (Intercept)  0.07087    0.11164   0.635   0.526    
 xo2          0.93618    0.10162   9.212  <2e-16 ***
-Error terms data:
+Error terms:
        Estimate Std. error t value Pr(> t)    
 sigma1  1.12140    0.06722  16.683 < 2e-16 ***
 sigma2  0.99800    0.04797  20.806 < 2e-16 ***
@@ -110,7 +114,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > yo[sample(N, NNA)] <- NA
 > a <- selection(ys~xs, yo ~xo, method="2step")
 > print(summary(a))
-2-step estimation of heckit (tobit-2) model
+--------------------------------------------
+Tobit 2 model (sample selection model)
+2-step Heckman / heckit estimation
 1481 observations (461 censored and 1020 observed) and 7 free parameters (df = 1475)
 Probit selection equation:
             Estimate Std. Error t value Pr(>|t|)    
@@ -128,10 +134,12 @@ sigma           1.0458         NA      NA       NA
 rho            -0.8333         NA      NA       NA    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+--------------------------------------------
 > a <- selection(ys~xs, yo ~xo, method="ml")
 > print(summary(a))
 --------------------------------------------
-Tobit 2 selection model/Maximum Likelihood estimation
+Tobit 2 model (sample selection model)
+Maximum Likelihood estimation
 Newton-Raphson maximisation, 5 iterations
 Return code 1: gradient close to zero. May be a solution
 Log-Likelihood: -2159.85 
@@ -144,7 +152,7 @@ Outcome equation:
             Estimate Std. error t value Pr(> t)    
 (Intercept)  0.06973    0.06166   1.131   0.258    
 xo           0.95026    0.08967  10.597  <2e-16 ***
-Error terms data:
+Error terms:
       Estimate Std. error t value Pr(> t)    
 sigma  1.01254    0.03672   27.57  <2e-16 ***
 rho   -0.77910    0.04533  -17.19  <2e-16 ***
