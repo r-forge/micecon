@@ -58,18 +58,18 @@ print.summary.heckit <- function( x,
                                  ...) {
    cat("2-step estimation of" )
    if( x$tobitModel == 2 ) {
-      cat( "heckit (tobit-2) model\n" )
+      cat( " heckit (tobit-2) model\n" )
    } else {
-      cat( "switching regression (tobit-5) model\n" )
+      cat( " switching regression (tobit-5) model\n" )
    }
-   cat( x$param$NObs, " observations" )
+   cat( x$param$NObs, "observations" )
    if( x$tobitModel == 2 ) {
       cat( " (", x$param$N0, " censored and ", x$param$N1, " observed) and ",
-       x$param$NParam, " parameters" )
+       x$param$NParam, " parameters", sep = "" )
    } else {
-      cat( "(", x$param$N1, " selection 1 and ",
+      cat( " (", x$param$N1, " selection 1 and ",
          x$param$N2, " selection 2) and ",
-         x$param$NParam, " free parameters" ) 
+         x$param$NParam, " free parameters", sep = "" ) 
    }
    cat( " (df = ", x$param$df, ")\n", sep="")
    if(part == "full") {
