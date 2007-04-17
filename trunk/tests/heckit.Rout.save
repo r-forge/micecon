@@ -1,5 +1,5 @@
 
-R version 2.4.0 (2006-10-03)
+R version 2.4.1 (2006-12-18)
 Copyright (C) 2006 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -24,7 +24,7 @@ Loading required package: systemfit
 > Mroz87$kids  <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
 > greene <- heckit( lfp ~ age + I( age^2 ) + faminc + kids + educ,
 +    wage ~ exper + I( exper^2 ) + educ + city, Mroz87 )
- > print(summary( greene ))
+> print(summary( greene ))
 2-step estimation of heckit (tobit-2) model
 753 observations (325 censored and 428 observed) and 14 parameters (df = 740)
 Probit selection equation:
@@ -114,7 +114,7 @@ invMillsRatio    1.60271957
 > data( Mroz87 )
 > wooldridge <- heckit( lfp ~ nwifeinc + educ + exper + I( exper^2 ) + age +
 +    kids5 + kids618, log( wage ) ~ educ + exper + I( exper^2 ), Mroz87 )
- > print( summary( wooldridge ) )
+> print( summary( wooldridge ) )
 2-step estimation of heckit (tobit-2) model
 753 observations (325 censored and 428 observed) and 15 parameters (df = 739)
 Probit selection equation:
@@ -193,4 +193,44 @@ educ          -0.00396930  2.4096e-04  5.1544e-05 -9.1792e-07    8.7226e-04
 exper         -0.00318491  5.1544e-05  2.6442e-04 -6.7995e-06    1.2845e-03
 I(exper^2)     0.00006911 -9.1792e-07 -6.7995e-06  1.9265e-07   -2.6522e-05
 invMillsRatio -0.03103081  8.7226e-04  1.2845e-03 -2.6522e-05    1.7856e-02
+> 
+> ## Tobit 5 Example from the selection paper
+> library(mvtnorm)
+> set.seed(0)
+> vc <- diag(3)
+> vc[lower.tri(vc)] <- c(0.9, 0.5, 0.1)
+> vc[upper.tri(vc)] <- vc[lower.tri(vc)]
+> eps <- rmvnorm(500, rep(0, 3), vc)
+> xs <- runif(500)
+> ys <- xs + eps[,1] > 0
+> xo1 <- runif(500)
+> yo1 <- xo1 + eps[,2]
+> xo2 <- runif(500)
+> yo2 <- xo2 + eps[,3]
+> heckit5test <- heckit5( ys~xs, list( yo1 ~ xo1, yo2 ~ xo2 ) )
+> print( summary( heckit5test ) )
+2-step estimation of switching regression (tobit-5) model
+500 observations (162 selection 1 and 338 selection 2) and 12 free parameters (df = 490)
+Probit selection equation:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.02669    0.11159   0.239    0.811    
+xs           0.87546    0.19605   4.465 9.93e-06 ***
+Outcome equation 1:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  0.06649         NA      NA       NA
+xo1          0.91807         NA      NA       NA
+Multiple R-Squared:0.25,	Adjusted R-Squared:0.241
+Outcome equation 2:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  0.02421         NA      NA       NA
+xo2          1.04566         NA      NA       NA
+Multiple R-Squared:0.091,	Adjusted R-Squared:0.085
+Error terms:
+               Estimate Std. Error t value Pr(>|t|)
+invMillsRatio1  -0.9268         NA      NA       NA
+invMillsRatio2   0.2230         NA      NA       NA
+sigma1           0.8958         NA      NA       NA
+sigma2           0.9763         NA      NA       NA
+rho1             0.9900         NA      NA       NA
+rho2             0.2284         NA      NA       NA
 > 

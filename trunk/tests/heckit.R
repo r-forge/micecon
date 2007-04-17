@@ -23,3 +23,19 @@ print( summary( wooldridge$probit ) )
 print( wooldridge$sigma )
 print( wooldridge$rho )
 print(vcov(wooldridge), digits = 5 )
+
+## Tobit 5 Example from the selection paper
+library(mvtnorm)
+set.seed(0)
+vc <- diag(3)
+vc[lower.tri(vc)] <- c(0.9, 0.5, 0.1)
+vc[upper.tri(vc)] <- vc[lower.tri(vc)]
+eps <- rmvnorm(500, rep(0, 3), vc)
+xs <- runif(500)
+ys <- xs + eps[,1] > 0
+xo1 <- runif(500)
+yo1 <- xo1 + eps[,2]
+xo2 <- runif(500)
+yo2 <- xo2 + eps[,3]
+heckit5test <- heckit5( ys~xs, list( yo1 ~ xo1, yo2 ~ xo2 ) )
+print( summary( heckit5test ) )
