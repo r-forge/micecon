@@ -48,15 +48,18 @@ summary.heckit <- function( object, ...) {
 
 print.summary.heckit <- function( x,
                                  digits=max(3, getOption("digits") - 3),
-                                 signif.stars=getOption("show.signif.stars"),
                                  part="full",
                                  ...) {
-   cat("2-step estimation of" )
+
+   cat("--------------------------------------------\n")
+   cat("Tobit", x$tobitType, "model" )
    if( x$tobitType == 2 ) {
-      cat( " heckit (tobit-2) model\n" )
+      cat( " (sample selection model)\n" )
    } else {
-      cat( " switching regression (tobit-5) model\n" )
+      cat( " (switching regression model)\n" )
    }
+   cat( "2-step Heckman / heckit estimation\n" )
+
    cat( x$param$NObs, "observations" )
    if( x$tobitType == 2 ) {
       cat( " (", x$param$N0, " censored and ", x$param$N1, " observed)",
@@ -99,10 +102,11 @@ print.summary.heckit <- function( x,
             x$param$index$rho1, x$param$index$rho2 )
       }
       cat("Error terms:\n")
-      printCoefmat(x$estimate[i,], signif.legend=TRUE)
+      printCoefmat(x$estimate[i,])
                                         # Here we have a problem -- signif legend is only printed, if
                                         # any of the symbols are printed.  However, this part of the
                                         # vcov is unimplemented and hence it will not print the legend.
    }
+   cat("--------------------------------------------\n")
    invisible( x )
 }

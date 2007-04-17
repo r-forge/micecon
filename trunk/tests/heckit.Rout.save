@@ -25,7 +25,9 @@ Loading required package: systemfit
 > greene <- heckit( lfp ~ age + I( age^2 ) + faminc + kids + educ,
 +    wage ~ exper + I( exper^2 ) + educ + city, Mroz87 )
 > print(summary( greene ))
-2-step estimation of heckit (tobit-2) model
+--------------------------------------------
+Tobit 2 model (sample selection model)
+2-step Heckman / heckit estimation
 753 observations (325 censored and 428 observed) and 14 free parameters (df = 740)
 Probit selection equation:
               Estimate Std. Error t value Pr(>|t|)    
@@ -48,6 +50,7 @@ Error terms:
 invMillsRatio   -1.098      1.266  -0.867    0.386
 sigma            3.200         NA      NA       NA
 rho             -0.343         NA      NA       NA
+--------------------------------------------
 > print(summary( greene$lm ) )
 
 Call:
@@ -115,7 +118,9 @@ invMillsRatio    1.60271957
 > wooldridge <- heckit( lfp ~ nwifeinc + educ + exper + I( exper^2 ) + age +
 +    kids5 + kids618, log( wage ) ~ educ + exper + I( exper^2 ), Mroz87 )
 > print( summary( wooldridge ) )
-2-step estimation of heckit (tobit-2) model
+--------------------------------------------
+Tobit 2 model (sample selection model)
+2-step Heckman / heckit estimation
 753 observations (325 censored and 428 observed) and 15 free parameters (df = 739)
 Probit selection equation:
              Estimate Std. Error t value Pr(>|t|)    
@@ -139,6 +144,7 @@ Error terms:
 invMillsRatio  0.03226    0.13362   0.241     0.81
 sigma          0.66363         NA      NA       NA
 rho            0.04861         NA      NA       NA
+--------------------------------------------
 > print( summary( wooldridge$lm ) )
 
 Call:
@@ -209,7 +215,9 @@ invMillsRatio -0.03103081  8.7226e-04  1.2845e-03 -2.6522e-05    1.7856e-02
 > yo2 <- xo2 + eps[,3]
 > heckit5test <- heckit5( ys~xs, list( yo1 ~ xo1, yo2 ~ xo2 ) )
 > print( summary( heckit5test ) )
-2-step estimation of switching regression (tobit-5) model
+--------------------------------------------
+Tobit 5 model (switching regression model)
+2-step Heckman / heckit estimation
 500 observations (162 selection 1 and 338 selection 2) and 12 free parameters (df = 490)
 Probit selection equation:
             Estimate Std. Error t value Pr(>|t|)    
@@ -233,4 +241,5 @@ sigma1           0.8958         NA      NA       NA
 sigma2           0.9763         NA      NA       NA
 rho1             0.9900         NA      NA       NA
 rho2             0.2284         NA      NA       NA
+--------------------------------------------
 > 
