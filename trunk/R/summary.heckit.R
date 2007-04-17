@@ -1,5 +1,7 @@
 
 summary.heckit <- function( object, ...) {
+   s <- list()  # list for results that will be returned
+
    ## Calculate r-squared.  Note that the way lm() finds R2 is a bit naive -- it checks for intercept
    ## in the formula, but not whether the intercept is present in any of the data vectors (or matrices)
    oModel <- object$lm
@@ -19,12 +21,11 @@ summary.heckit <- function( object, ...) {
       R2adj <- object$lm$eq[[ 1 ]]$adjr2
    }
    stdd <- sqrt(diag(vcov(object, part="full")))
-   estimate <- coefTable(coef(object, part="full"), stdd, object$param$df)
-   s <- list(estimate=estimate,
-             rSquared=list(R2=R2, R2adj=R2adj),
-             param=object$param)
+   s$estimate <- coefTable(coef(object, part="full"), stdd, object$param$df)
+   s$rSquared <- list(R2=R2, R2adj=R2adj)
+   s$param    <- object$param
    class(s) <- c("summary.heckit", class(s))
-   s
+   return( s )
 }
 
 print.summary.heckit <- function( x,
