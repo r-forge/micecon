@@ -2,12 +2,6 @@
 summary.heckit <- function( object, ...) {
    s <- list()  # list for results that will be returned
 
-   if( "heckit5" %in% class( object ) ){
-      s$tobitModel <- 5
-   } else {
-      s$tobitModel <- 2
-   }
-
    RSq <- function(model, intercept) {
       ## Calculate r-squared.  Note that the way lm() finds R2 is a bit naive -- it checks for intercept
       ## in the formula, but not whether the intercept is present in any of the data vectors (or matrices)
@@ -28,7 +22,7 @@ summary.heckit <- function( object, ...) {
        }
        c(R2, R2adj)
    }
-   if( s$tobitModel == 2 ) {
+   if( object$tobitType == 2 ) {
       r <- RSq( object$lm, object$param$oIntercept )
       R2 <- r[1]
       R2adj <- r[2]
@@ -47,6 +41,7 @@ summary.heckit <- function( object, ...) {
    stdd <- sqrt(diag(vcov(object, part="full")))
    s$estimate <- coefTable(coef(object, part="full"), stdd, object$param$df)
    s$param    <- object$param
+   s$tobitType <- object$tobitType
    class(s) <- "summary.heckit"
    return( s )
 }
@@ -57,13 +52,13 @@ print.summary.heckit <- function( x,
                                  part="full",
                                  ...) {
    cat("2-step estimation of" )
-   if( x$tobitModel == 2 ) {
+   if( x$tobitType == 2 ) {
       cat( " heckit (tobit-2) model\n" )
    } else {
       cat( " switching regression (tobit-5) model\n" )
    }
    cat( x$param$NObs, "observations" )
-   if( x$tobitModel == 2 ) {
+   if( x$tobitType == 2 ) {
       cat( " (", x$param$N0, " censored and ", x$param$N1, " observed)",
          sep = "" )
    } else {
@@ -77,7 +72,7 @@ print.summary.heckit <- function( x,
       cat("Probit selection equation:\n")
       printCoefmat(x$estimate[i,], signif.legend=FALSE)
    }
-   if( x$tobitModel == 2 ) {
+   if( x$tobitType == 2 ) {
       cat("Outcome equation:\n")
       printCoefmat( x$estimate[ x$param$index$betaO, ],
          signif.legend = ( part != "full" ) )
@@ -96,7 +91,7 @@ print.summary.heckit <- function( x,
          ",\tAdjusted R-Squared:", round(x$rSquared$R2adj2, digits), "\n", sep="")
    }
    if(part=="full") {
-      if( x$tobitModel == 2 ) {
+      if( x$tobitType == 2 ) {
          i <- c(x$param$index$Mills, x$param$index$sigma, x$param$index$rho)
       } else {
          i <- c( x$param$index$Mills1, x$param$index$Mills2,
