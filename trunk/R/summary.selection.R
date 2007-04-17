@@ -60,19 +60,20 @@ print.summary.selection <- function(x, ...) {
    }
 
    cat("--------------------------------------------\n")
-   cat("Tobit ", model, " selection model/Maximum Likelihood estimation\n")
+   cat("Tobit ", model, " selection model/Maximum Likelihood estimation\n",
+      sep = "" )
    cat(x$type, ", ", x$iterations, " iterations\n", sep="")
    cat("Return code ", x$code, ": ", x$message, "\n", sep="")
    if(!is.null(x$estimate)) {
       cat("Log-Likelihood:", loglikValue(x), "\n")
       if( model == 2 ) {
          cat(x$NObs, " observations (", x$N0, " censored and ", x$N1,
-            " observed)" )
+            " observed)", sep = "" )
       } else if( model == 5 ) {
          cat(x$NObs, " observations (", x$N1, " selection 1 and ", x$N2,
-            " selection 2)" )
+            " selection 2)", sep = "" )
       }
-      cat( "and ", x$NActivePar, " free parameters (df = ",
+      cat( " and ", x$NActivePar, " free parameters (df = ",
           x$NObs - x$NActivePar, ")\n", sep="")
       cat("Probit selection equation:\n")
       printCoefmat(x$estimateS, signif.legend=FALSE)
