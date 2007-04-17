@@ -2,24 +2,30 @@
 summary.heckit <- function( object, ...) {
    s <- list()  # list for results that will be returned
 
-   ## Calculate r-squared.  Note that the way lm() finds R2 is a bit naive -- it checks for intercept
-   ## in the formula, but not whether the intercept is present in any of the data vectors (or matrices)
-   oModel <- object$lm
-   if(class(oModel) == "lm") {
-      y <- model.response(model.frame(oModel))
-      if(object$param$oIntercept) {
-         R2 <- 1 - sum(residuals(oModel)^2)/sum((y - mean(y))^2)
-         R2adj <- 1 - (1 - R2)*(NObs(oModel) - 1)/(NObs(oModel) - NParam(oModel))
-      }
-      else {
-         R2 <- 1 - sum(residuals(oModel)^2)/sum(y^2)
-         R2adj <- 1 - (1 - R2)*(NObs(oModel))/(NObs(oModel) - NParam(oModel))
-      }
+   RSq <- function(model, intercept) {
+      ## Calculate r-squared.  Note that the way lm() finds R2 is a bit naive -- it checks for intercept
+      ## in the formula, but not whether the intercept is present in any of the data vectors (or matrices)
+       if(class(model) == "lm") {
+          y <- model.response(model.frame(model))
+          if(intercept) {
+             R2 <- 1 - sum(residuals(model)^2)/sum((y - mean(y))^2)
+             R2adj <- 1 - (1 - R2)*(NObs(model) - 1)/(NObs(model) - NParam(model))
+          }
+          else {
+             R2 <- 1 - sum(residuals(model)^2)/sum(y^2)
+             R2adj <- 1 - (1 - R2)*(NObs(model))/(NObs(model) - NParam(model))
+          }
+       }
+       else {
+          R2 <- model$eq[[ 1 ]]$r2
+          R2adj <- model$eq[[ 1 ]]$adjr2
+       }
+       c(R2, R2adj)
    }
-   else {
-      R2 <- object$lm$eq[[ 1 ]]$r2
-      R2adj <- object$lm$eq[[ 1 ]]$adjr2
-   }
+   r <- RSq( object$lm, object$param$oIntercept )
+   R2 <- r[1]
+   R2adj <- r[2]
+
    stdd <- sqrt(diag(vcov(object, part="full")))
    s$estimate <- coefTable(coef(object, part="full"), stdd, object$param$df)
    s$rSquared <- list(R2=R2, R2adj=R2adj)
