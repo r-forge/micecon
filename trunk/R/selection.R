@@ -72,6 +72,7 @@ selection <- function(selection, outcome,
    }
    data$probitDummy <- probitEndogenous == probitLevels[ 2 ]
    ## now check whether two-step method was requested
+   cl <- match.call()
    if(method == "2step") {
       if(type == 2)
           twoStep <- heckit(selection, outcome, data=data)
@@ -79,11 +80,12 @@ selection <- function(selection, outcome,
           twoStep <- heckit5(selection, outcome, data=data)
       else
           stop("unknown type")
+      twoStep$call <- cl
+      class(twoStep) <- c("selection", class(twoStep))
       return(twoStep)
    }
    ## Now extract model frames etc
    ## YS (selection equation)
-   cl <- match.call()
    mf <- match.call(expand.dots = FALSE)
    m <- match(c("selection", "data", "subset"), names(mf), 0)
    mfS <- mf[c(1, m)]
