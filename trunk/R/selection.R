@@ -233,6 +233,7 @@ selection <- function(selection, outcome,
          start <- coef(twoStep, part="full")[c(ind$betaS,
                                   ind$betaO1, ind$sigma1, ind$rho1,
                                   ind$betaO2, ind$sigma2, ind$rho2)]
+         names( start ) <- sub( "^[SO][12]?:", "", names( start ) )
       }
       estimation <- tobit5fit(YS, XS, YO1, XO1, YO2, XO2, start=start,
                               print.level=print.level, ...)
@@ -247,7 +248,6 @@ selection <- function(selection, outcome,
    }
    ## now fit the model
    result <- c(estimation,
-               tobitType = list( type ),
                twoStep=list(twoStep),
                start=list(start),
                param=list(param),
@@ -266,6 +266,6 @@ selection <- function(selection, outcome,
                "TRUE"=switch(as.character(type), "2"=list(mfO), "5"=list(mf1,
                       mf2), "FALSE"=NULL))
                )
-   class(result) <- c("selection", class(estimation))
+   class( result ) <- class( estimation ) 
    return(result)
 }

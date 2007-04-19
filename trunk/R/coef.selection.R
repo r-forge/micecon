@@ -10,10 +10,10 @@ coef.selection <- function( object, ... ) {
       coefValues <- coef.maxLik(object)
    else
        coefValues <- object$coefficients
-   if(("tobit2" %in% class( object )) | ("heckit" %in% class(object) & object$tobitType == 2) ) {
+   if( object$tobitType == 2) {
       coefValues <- addToCoefNames( "S:", object$param$index$betaS )
       coefValues <- addToCoefNames( "O:", object$param$index$betaO )
-   } else if( ("tobit5" %in% class( object )) | ("heckit" %in% class(object) & object$tobitType == 5) ) {
+   } else if( object$tobitType == 5) {
       coefValues <- addToCoefNames( "S:",  object$param$index$betaS )
       coefValues <- addToCoefNames( "O1:", object$param$index$betaO1 )
       coefValues <- addToCoefNames( "O2:", object$param$index$betaO2 )

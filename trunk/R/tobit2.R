@@ -271,6 +271,7 @@ tobit2 <- function(selection, formula,
                y2=switch(y2, "1"=list(Y2), "0"=NULL),
                x=switch(x, "1"=list(X), "0"=NULL),
                model=switch(model, "1"=list(selection=mf1, formula=mf2), "0"=NULL))
-   class(result) <- c("tobit2", class(estimation))
+   result$tobitType <- 2
+   class(result) <- c("selection", class(estimation))
    return(result)
 }

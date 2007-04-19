@@ -4,6 +4,7 @@
 \alias{print.selection}
 \alias{summary.selection}
 \alias{print.summary.selection}
+\alias{vcov.selection}
 \title{Heckman-style selection models}
 \description{
   This functions calculates Heckman-style selection models either with
@@ -55,6 +56,9 @@ print.level = 0, ...)
 
   The (generic) function 'coef' (i.e. 'coef.selection')
   can be used to extract the estimated coefficients.
+  The (generic) function 'vcov' (i.e. 'vcov.selection')
+  can be used to extract the estimated variance covariance matrix 
+  of the coefficients.
   The (generic) function 'print' (i.e. 'print.selection')
   can be used to print a few results.
   The (generic) function 'summary' (i.e. 'summary.selection')
