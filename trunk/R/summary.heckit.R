@@ -39,10 +39,11 @@ summary.heckit <- function( object, ...) {
    }
 
    stdd <- sqrt(diag(vcov(object, part="full")))
-   s$estimate <- coefTable(coef(object, part="full"), stdd, object$param$df)
+   estcoef <- coef( object, part="full" )
+   names( estcoef ) <- sub( "^[SO][12]?:", "", names( estcoef ) )
+   s$estimate <- coefTable( estcoef, stdd, object$param$df)
    s$param    <- object$param
    s$tobitType <- object$tobitType
-   class(s) <- "summary.heckit"
    return( s )
 }
 
@@ -51,7 +52,6 @@ print.summary.heckit <- function( x,
                                  part="full",
                                  ...) {
 
-   cat("--------------------------------------------\n")
    cat("Tobit", x$tobitType, "model" )
    if( x$tobitType == 2 ) {
       cat( " (sample selection model)\n" )
@@ -107,6 +107,4 @@ print.summary.heckit <- function( x,
                                         # any of the symbols are printed.  However, this part of the
                                         # vcov is unimplemented and hence it will not print the legend.
    }
-   cat("--------------------------------------------\n")
-   invisible( x )
 }

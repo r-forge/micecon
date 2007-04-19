@@ -7,6 +7,20 @@ vcov.probit <- function(object, ...) {
 }
 
 ## heckit
+vcov.selection <- function( object, ... ) {
+   if( object$method == "ml" ){
+      result <- vcov.maxlik( object, ... )
+   } else if( object$method == "2step" ) {
+      if( object$tobitType == 2 ) {
+         result <- vcov.heckit( object, ... )
+      } else if( object$tobitType == 5 ) {
+         result <- vcov.heckit5( object, ... )
+      }
+   }
+   return( result )
+}
+
+## heckit
 vcov.heckit <- function(object, part="outcome", ...) {
    if(part=="outcome") {
       i <- c(object$param$index$betaO, object$param$index$Mills)

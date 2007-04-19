@@ -249,6 +249,7 @@ heckit5 <- function(selection, outcome1, outcome2,
                   vcov=vc
                   )
    result$tobitType <- 5
-   class( result ) <- c( "heckit", class(result))
+   result$method <- "2step"
+   class( result ) <- c( "selection", class(result))
    return( result )
 }

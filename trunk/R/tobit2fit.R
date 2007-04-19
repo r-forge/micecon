@@ -168,6 +168,8 @@ tobit2fit <- function(YS, XS, YO, XO, start,
    ## estimate
    result <- maxLik(loglik, grad=gradlik, hess=hesslik, start=start,
                      print.level=print.level, ...)
-    class(result) <- c("tobit2", class(result))
-    result
+   result$tobitType <- 2
+   result$method <- "ml"
+   class( result ) <- c( "selection", class( result ) )
+   return( result )
 }

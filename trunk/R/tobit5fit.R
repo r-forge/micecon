@@ -266,6 +266,8 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, start,
     result <- maxLik(loglik, grad=gradlik, hess=hesslik, start=start,
                      print.level=print.level, ...)
 #    compare.derivatives(loglik, gradlik, t0=start)
-    class(result) <- c("tobit5", class(result))
-    result
+   result$tobitType <- 5
+   result$method <- "ml"
+   class( result ) <- c( "selection", class( result ) )
+   return( result )
 }
