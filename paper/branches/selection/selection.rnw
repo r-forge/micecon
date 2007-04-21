@@ -25,13 +25,14 @@
   % 
   This paper describes the implementation of Heckman-type sample
   selection models in \proglang{R}.  We discuss the sample selection
-  problem as well as the Heckman solution and argue that although modern
-  econometrics has superior non- and semiparametric estimation methods
-  in its toolbox, the Heckman models still serve as excellent
-  teaching tools.  We describe the implementation of these models in
-  package \pkg{micEcon} and illustrate the use of the package by
-  showing Heckman selection models' strong and weak sides on several
-  Monte Carlo and real data examples.
+  problem as well as the Heckman solution and argue that although
+  modern econometrics has superior non- and semiparametric estimation
+  methods in its toolbox, the Heckman models are an integral part of
+  modern econometrics textbooks and syllabus as they serve as
+  excellent teaching tools.  We describe the implementation of these
+  models in package \pkg{micEcon} and illustrate the use of the
+  package by showing Heckman selection models' strong and weak sides
+  on several Monte Carlo and real data examples.
   %
 }
 
@@ -116,7 +117,7 @@ people were selected to the treatment and control groups.
 \subsection{Possible solutions}
 
 Solving the sample selection problems requires additional information.
-The information can be in many possible forms which may or may not be
+This information can be in many possible forms which may or may not be
 feasible or useful for any particular case.  Here we list a few
 popular choices:
 
@@ -136,7 +137,7 @@ popular choices:
   quality.
 \item Information about the functional form of the selection and
   outcome processes, such as the distribution of the disturbance
-  terms.  The original Heckman's solution belong to this group.
+  terms.  The original Heckman's solution belongs to this group.
   However, the functional form assuptions are usually hard to justify.
 \end{itemize}
 
@@ -164,7 +165,7 @@ to implement, to visualise and to understand.
 
 \subsection{Heckman's solution}
 
-Look at the following (unobserved) structural model:
+Consider the the following (unobserved) structural model:
 \begin{align}
   y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
   \label{eq:probit*}
