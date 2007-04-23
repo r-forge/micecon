@@ -11,24 +11,27 @@ tst2 <- function(N=1000, rho=-0.7, print.level=0) {
    invisible(a)
 }
 
-tstA <- function() {
-   library(mvtnorm)
-   eps <- rmvnorm(500, c(0,0), matrix(c(1,-0.7,-0.7,1), 2, 2))
-   xs <- runif(500)
-   ys <- xs + eps[,1] > 0
-   yo <- (xs + eps[,2])*(ys > 0)
-   print(summary(selection(ys ~ xs, yo ~ xs)))
+MC2 <- function(R=19, N=500, mod=tst2) {
+   a <- coef(mod(N=N))
+   m <- matrix(0, length(a), R)
+   row.names(m) <- names(a)
+   m[,1] <- a
+   for(i in 2:R) {
+      m[,i] <- coef(t <- mod(N=N))
+   }
+   print(summary(t))
+   print(apply(m, 1, function(v) sqrt(var(v))))
+   invisible(m)
 }
 
-tstB <- function() {
+tstA <- function(N=500) {
    library(mvtnorm)
-   eps <- rmvnorm(500, c(0,0), matrix(c(1,-0.7,-0.7,1), 2, 2))
-   xs <- runif(500, -5, 5)
+   eps <- rmvnorm(N, c(0,0), matrix(c(1,-0.7,-0.7,1), 2, 2))
+   xs <- runif(N)
    ys <- xs + eps[,1] > 0
    yo <- (xs + eps[,2])*(ys > 0)
-   curve(pnorm, -5, 5,
-         ylab=expression(1 - Phi(-x^S)), xlab=expression(x^S))
-   print(summary(selection(ys ~ xs, yo ~ xs)))
+   a <- selection(ys ~ xs, yo ~ xs, steptol=1e-10)
+   invisible(a)
 }
 
 tst5 <- function(N=500, print.level=0) {
@@ -91,25 +94,41 @@ tstChiOLS <- function(N=500, ...) {
    print(summary(lm(yo2~xs, subset=ys==1)))
 }
 
-tstMroz <- function() {
+tstMroz <- function(R=10, method="ml") {
+   bstat <- function(data, ind) {
+      dat <- data[ind,]
+      a <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+                     wage ~ exper + I( exper^2 ) + educ + city, data=dat)
+      coef(a)
+   }
    library(micEcon)
    data(Mroz87)
-   start <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0)
-   a <- selection(lfp ~ kids5 + poly(age, 2) + educ + log(huswage) + mtr + fatheduc + city + unem,
-                  log(hours) ~ kids5 + poly(age, 2) + educ + wage + mtr + city + poly(exper, 2),
-                  data=Mroz87, 
-                  start=start)
-   print(summary(a))
-   invisible(a)
+   Mroz87$kids <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
+#   b <- boot(Mroz87, bstat, R)
+   b <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+                  wage ~ exper + I( exper^2 ) + educ + city, data=Mroz87, method="ml")
+   b
 }
 
-tstOne <- function(N=1000, print.level=0) {
-   x <- runif(N, -2, 2)
-   e <- rnorm(N)
-   z <- x + e > 0
-   y <- (x - e)*z
-   a <- selection(z ~ x, y ~ x, method="2step")
-   print(summary(a))
+tstBoot <- function(R=10, N=500) {
+   bstat <- function(data, ind) {
+      dat <- data[ind,]
+      a <- selection(ys~xs, yo ~xo, data=dat)
+      coef(a)
+   }
+   library(micEcon)
+   library(mvtnorm)
+   library(boot)
+   vc <- diag(2)
+   vc[2,1] <- vc[1,2] <- -0.7
+   eps <- rmvnorm(N, rep(0, 2), vc)
+   xs <- runif(N)
+   ys <- xs + eps[,1] > 0
+   xo <- runif(N)
+   yo <- (xo + eps[,2])*(ys > 0)
+   data <- data.frame(xs,ys,xo,yo)
+   b <- boot(data, bstat, R)
+   b
 }
 
 e1 <- function(N=200000, alpha=0.6) {
