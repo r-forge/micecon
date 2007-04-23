@@ -2,8 +2,6 @@
 \alias{selection}
 \alias{coef.selection}
 \alias{print.selection}
-\alias{summary.selection}
-\alias{print.summary.selection}
 \alias{vcov.selection}
 \title{Heckman-style selection models}
 \description{
@@ -61,7 +59,7 @@ print.level = 0, ...)
   of the coefficients.
   The (generic) function 'print' (i.e. 'print.selection')
   can be used to print a few results.
-  The (generic) function 'summary' (i.e. 'summary.selection')
+  The (generic) function 'summary' (i.e. '\code{\link{summary.selection}}')
   can be used to obtain and print detailed results.
 }
 \value{
