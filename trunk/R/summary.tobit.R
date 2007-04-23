@@ -1,37 +1,16 @@
 summary.tobit <- function(object, ...) {
    ## object      object of class "selection" (only tobit2 and tobit5)
    ## ...         additional arguments for "summary.maxLik"
-   ## 
-   ## RESULTS:
-   ## list of class "summary.selection" with following components:
-   ## maximum    : function value at optimum
-   ## estimateProbit : probit part of the estimate
-   ## estimateEquation : equation -"-
-   ## estimateEps      : sigma & rho part
-   ## + additional components of "summary.maxLik"
-   ##
 
-   sl <- summary.maxLik(object, ...)
-   sl$tobitType <- object$tobitType
-   sl$estimateS <- sl$estimate[object$param$index$betaS,]
-
-   if( object$tobitType == 2 ){
-      sl$estimateO <- sl$estimate[object$param$index$betaO,]
-      sl$estimateErr <- sl$estimate[c(object$param$index$sigma,
-                                         object$param$index$rho),]
-   } else if( object$tobitType == 5 ){
-      sl$estimateO1 <- sl$estimate[object$param$index$betaO1,]
-      sl$estimateO2 <- sl$estimate[object$param$index$betaO2,]
-      sl$estimateErr <- sl$estimate[c(object$param$index$sigma1,
-                                         object$param$index$sigma2,
-                                         object$param$index$rho1,
-                                         object$param$index$rho2),]
-   }
-   sl$param <- object$param
-   return( sl )
+   s <- summary.maxLik(object, ...)
+   s$tobitType <- object$tobitType
+   s$param <- object$param
+   return( s )
 }
 
-print.summary.tobit <- function(x, ...) {
+print.summary.tobit <- function(x,
+                                 part="full",
+                                 ... ) {
 
    cat("Tobit", x$tobitType, "model" )
    if( x$tobitType == 2 ) {
@@ -54,18 +33,33 @@ print.summary.tobit <- function(x, ...) {
       }
       cat( " and", x$param$NParam, "free parameters" )
       cat( " (df = ", x$param$df, ")\n", sep="")
-      cat("Probit selection equation:\n")
-      printCoefmat(x$estimateS, signif.legend=FALSE)
+      if(part == "full") {
+         cat("Probit selection equation:\n")
+         printCoefmat( x$estimate[ x$param$index$betaS, ],
+            signif.legend = FALSE )
+      }
       if( x$tobitType == 2 ) {
          cat("Outcome equation:\n")
-         printCoefmat(x$estimateO, signif.legend=FALSE)
+         printCoefmat( x$estimate[ x$param$index$betaO, ],
+            signif.legend = ( part != "full" ) )
       } else if( x$tobitType == 5 ) {
          cat("Outcome equation 1:\n")
-         printCoefmat(x$estimateO1, signif.legend=FALSE)
+         printCoefmat( x$estimate[ x$param$index$betaO1, ],
+            signif.legend = FALSE )
          cat("Outcome equation 2:\n")
-         printCoefmat(x$estimateO2, signif.legend=FALSE)
+         printCoefmat( x$estimate[ x$param$index$betaO2, ],
+            signif.legend = ( part != "full" ) )
       }
-      cat("Error terms:\n")
-      printCoefmat(x$estimateErr)
+      if(part=="full") {
+         if( x$tobitType == 2 ) {
+            i <- c(x$param$index$Mills, x$param$index$sigma, x$param$index$rho)
+         } else if( x$tobitType == 5 ) {
+            i <- c( x$param$index$Mills1, x$param$index$Mills2,
+               x$param$index$sigma1, x$param$index$sigma2,
+               x$param$index$rho1, x$param$index$rho2 )
+         }
+         cat("Error terms:\n")
+         printCoefmat(x$estimate[i,])
+      }
    }
 }

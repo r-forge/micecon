@@ -71,9 +71,9 @@ print.summary.heckit <- function( x,
    cat( " and", x$param$NParam, "free parameters" )
    cat( " (df = ", x$param$df, ")\n", sep="")
    if(part == "full") {
-      i <- x$param$index$betaS
       cat("Probit selection equation:\n")
-      printCoefmat(x$estimate[i,], signif.legend=FALSE)
+      printCoefmat( x$estimate[ x$param$index$betaS, ],
+         signif.legend = FALSE )
    }
    if( x$tobitType == 2 ) {
       cat("Outcome equation:\n")
@@ -81,7 +81,7 @@ print.summary.heckit <- function( x,
          signif.legend = ( part != "full" ) )
       cat("Multiple R-Squared:", round(x$rSquared$R2, digits),
          ",\tAdjusted R-Squared:", round(x$rSquared$R2adj, digits), "\n", sep="")
-   } else {
+   } else if( x$tobitType == 5 ) {
       cat("Outcome equation 1:\n")
       printCoefmat( x$estimate[ x$param$index$betaO1, ],
          signif.legend = FALSE )
@@ -96,7 +96,7 @@ print.summary.heckit <- function( x,
    if(part=="full") {
       if( x$tobitType == 2 ) {
          i <- c(x$param$index$Mills, x$param$index$sigma, x$param$index$rho)
-      } else {
+      } else if( x$tobitType == 5 ) {
          i <- c( x$param$index$Mills1, x$param$index$Mills2,
             x$param$index$sigma1, x$param$index$sigma2,
             x$param$index$rho1, x$param$index$rho2 )
