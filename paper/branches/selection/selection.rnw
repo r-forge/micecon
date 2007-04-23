@@ -206,7 +206,7 @@ can now be written as
 \end{equation}
 Estimating the model above by OLS gives in general biased results, as
 $\E [ \varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
-\not = 0$, unless $\varepsilon^O$ and $\varepsilon^S$ are uncorrelated
+\not = 0$, unless $\varepsilon^O$ and $\varepsilon^S$ are mean independent
 (i.e.\ $\varrho = 0$ in equation~\eqref{eq:correlation}).
 
 However, assuming the error terms follow a bivariate normal
@@ -231,11 +231,11 @@ distribution:
 \end{equation}
 we may employ the following simple strategy: we can find the
 expectations $\E [ \varepsilon_i^O|\varepsilon_i^S \ge
--{\vec{\beta}^S}' \vec{x}_i^S ]$, also called \emph{control function},
-by estimating the selection equations \eqref{eq:probit*} and
-\eqref{eq:probit} by probit, and thereafter insert these expectations
-into equation \eqref{eq:outcome*} as additional covariates (see
-\citealp{greene2002} for details):
+-{\vec{\beta}^S}' \vec{x}_i^S ]$, also called the \emph{control
+  function}, by estimating the selection equations \eqref{eq:probit*}
+and \eqref{eq:probit} by probit, and thereafter inserting these
+expectations into equation \eqref{eq:outcome*} as additional
+covariates (see \citealp{greene2002} for details):
 \begin{equation}
   y_i^O
   =
@@ -261,7 +261,8 @@ selection problem as an omitted variable problem, with
 $\lambda(\cdot)$ the omitted variable.
 Since the true $\lambda(\cdot)$s in equation \eqref{eq:tobit2_2step}
 are generally unknown,
-they are replaced by estimated values based on the probit estimation.
+they are replaced by estimated values based on the probit estimation
+in the first step.
 
 An estimator of the variance of $\varepsilon^O$ can be obtained by
 \begin{equation}
@@ -307,7 +308,7 @@ $\mat{I}$ is an identity matrix,
 $\hat{\mat{\Delta}}$ is a diagonal matrix with all $\hat{\delta}_i$
 on its diagonal, and
 $\widehat{\VAR} \left[ \hat{\vec{\beta}}^S \right]$ is the estimated variance
-covariance matrix of the coefficients of the probit estimation
+covariance matrix of the probit estimate
 \citep{greene81,greene2002}.
 
 This is the original idea by \citet{heckman1976}.  As the model is
@@ -364,20 +365,20 @@ the two-step method.  If the user does not provide initial values
 method. These initial values are used in the corresponding ML
 estimation functions \code{tobit2fit} or \code{tobit5fit}.  Note that
 the log-likelihood functions of the selection models are in general
-not globally concave, and hence, one should use good initial values
-(see the example in Secion~\ref{sec:convergence}).  The two-step
-estimation is done by the function \code{heckit2} or \code{heckit5},
-depending on the model.
+not globally concave, and hence one should use a good choice of
+initial values (see the example in Secion~\ref{sec:convergence}).  The
+two-step estimation is done by the function \code{heckit2} or
+\code{heckit5}, depending on the model.
 
-The likelihood maximisation is done by the Newton-Raphson maximisation method
-(implemented as \code{maxNR} in \pkg{micEcon}), where an analytic score
-vector and an analytic Hessian matrix are used.  This results in reasonably fast
-computation times even in the case of tens of thousands observations.
-A well-defined model should converge in less than 15 iterations; in
-the case of weak identification, this number may be considerably
-larger.  Convergence issues may appear at the boundary of the
-parameter space (e.g.\ if $\varrho \to 1$) or if the algorithm does not
-find the global maximum.
+The likelihood maximisation is performed by the Newton-Raphson
+maximisation method (implemented as \code{maxNR} in \pkg{micEcon}),
+where an analytic score vector and an analytic Hessian matrix are
+used.  This results in a reasonably fast computation even in the
+case of tens of thousands observations.  A well-defined model should
+converge in less than 15 iterations; in the case of weak
+identification this number may be considerably larger.  Convergence
+issues may appear at the boundary of the parameter space (e.g.\ if
+$\varrho \to 1$) or if the algorithm does not find the global maximum.
 
 The package is written completely in \proglang{R} which should
 minimise the portability issues.  It depends on packages
@@ -418,10 +419,10 @@ explanatory variable for the selection equation, \code{xs}, and the
 selection outcome by a probit data generating process.  Note that the
 vectors of explanatory variables for the selection (\code{xs}) and
 outcome equation (\code{xo}) are independent and hence the exclusion
-restriction is fulfilled.  This can be seen from the fact that the
-estimates are reasonably precise:
+restriction is fulfilled.  This can also be seen from the fact that
+the estimates are reasonably precise:
 <<code:t2summary>>=
-  summary(selection(ys~xs, yo ~xo))
+  summary(selection(ys~xs, yo ~xo, steptol=1e-10))
 @ 
 %
 One can see, that all the true values are within the 95\% confidence
@@ -434,10 +435,11 @@ yo <- (xs + eps[,2])*(ys > 0)
 print(summary(selection(ys ~ xs, yo ~ xs)))
 @
 % 
-That the standard errors are substantially larger in this case.  The
-exclusion restriction --- information about the selection process ---
-has a certain identifying power which we now have lost.  We are solely
-relying on the functional form identification.  
+The estimates are still unbiased but standard errors are substantially
+larger in this case.  The exclusion restriction --- information about
+the selection process --- has a certain identifying power which we now
+have lost.  We are solely relying on the functional form
+identification.
 
 In order to identify $\beta^\lambda$ and ${\vec{\beta}^O}'$ without
 exclusion restriction, $\lambda(\cdot)$ must differ from a linear
@@ -464,19 +466,19 @@ figure below.
   print(summary(m <- selection(ys ~ xs, yo ~ xs)))
 @
 %
-Now all the parameters are precisely estimated, with even higher precision
-than in the case of exclusion restriction.  The reason is simple: the
-probability that $Y^{O*}$ is observable, given $x_i^S$, is $\Pr(1
-\cdot x_i^S + \varepsilon^O > 0) = 1 - \Phi(-x_i^S)$ as $\varepsilon^O
-\sim N(0,1)$.  As one can see from Figure~\ref{fig:lambda()},
-selection is not an issue if $x^S \gtrsim 2$.  In that case $\E
-[\varepsilon^O|y^S = 1] \approx 0$ and hence the model can be
-precisely estimated for relatively large values of $x^S$.  Due to the
-linearity assumption, the same parameters are valid everywhere.  In
-the former example, the variation in $x^S$ was low and hence one could
-not disentangle the selection bias from the true causal dependence.
-Technically, there was a multicollinearity problem between $x^S$ and
-$\lambda(\cdot)$.
+Now all the parameters are precisely estimated, with even higher
+precision than in the first example where the exclusion restriction
+was fulfilled.  The reason is simple: the probability that $Y^{O*}$ is
+observable, given $x_i^S$, is $\Pr(1 \cdot x_i^S + \varepsilon^O > 0)
+= 1 - \Phi(-x_i^S)$ as $\varepsilon^O \sim N(0,1)$.  As one can see
+from Figure~\ref{fig:lambda()}, selection is not an issue if $x^S
+\gtrsim 2$.  In that case $\E [\varepsilon^O|y^S = 1] \approx 0$ and
+hence the model can be precisely estimated for relatively large values
+of $x^S$.  The linearity assumption allows us to extrapolate the
+parameter values everywhere.  In the previous example, the variation
+in $x^S$ was low and hence one could not disentangle the selection
+bias from the true causal dependence.  Technically, there was a
+multicollinearity problem between $x^S$ and $\lambda(\cdot)$.
 
 \begin{figure}[tp]
   \centering
@@ -494,11 +496,11 @@ abline(a=cf[1], b=cf[2], lty=3)
 # OLS
 @ 
 %
-\caption{The observable (filled) and unobservable (empty circles),
-  given \code{xs}.  The solid line denote the true dependence, dashed
-  (almoust overlapping the solid) is the MLE estimate above, and
-  the dotted line is the corresponding OLS estimate, based on
-  observable outcomes only.}
+\caption{The observable (filled) and unobservable outcomes (empty
+  circles), depending on \code{xs}.  The solid line denotes the true
+  dependence, dashed (almoust overlapping the solid) is the MLE
+  estimate above, and the dotted line is the corresponding OLS
+  estimate, based on observable outcomes only.}
   \label{fig:lambda()}
 \end{figure}
 
@@ -510,7 +512,7 @@ abline(a=cf[1], b=cf[2], lty=3)
 Now let us focus on the tobit-5 examples.  This type of problems arise
 in a wide variety of contexts, e.g.\ in treatment effect or schooling
 choice analysis.  The problem can be written as a system of three
-latent simultaneous equations:
+simultaneous latent equations:
 \begin{align}
   y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
   \\
@@ -538,8 +540,8 @@ observe
     y_i^{O2*} & \quad \text{otherwise}.
   \end{cases}
 \end{align}
-We assume that the disturbance terms have a 3-dimensional normal
-distribution:
+Assuming that the disturbance terms have a 3-dimensional normal
+distribution,
 \begin{equation}
   \begin{pmatrix}
     \varepsilon^S\\
@@ -558,9 +560,9 @@ distribution:
       \varrho_1\sigma_1 & \sigma_1^2        & \varrho_{12}\sigma_1\sigma_2\\
       \varrho_2\sigma_2 & \varrho_{12}\sigma_1\sigma_2 & \sigma_2^2
     \end{pmatrix}
-  \right).
+  \right),
 \end{equation}
-It is straightforward to construct analogous two-step estimators
+it is straightforward to construct analogous two-step estimators
 as~\eqref{eq:tobit2_2step} and the corresponding ML estimator.  Note,
 that $\varrho_{12}$ plays no role in this model, the observable
 distributions are determined by the correlations $\varrho_1$ and
@@ -584,17 +586,17 @@ We create the following simple switching regression problem:
 @ 
 %
 We generate a 3-dimensional disturbance vector by \code{rmvnorm}.  We
-set the correlation between $\varepsilon^S$ and $\varepsilon^{O1}$ to
-equal 0.9 and between $\varepsilon^S$ and $\varepsilon^{O2}$ to 0.5.
-The third correlation, 0.1, takes care for the positive definiteness
-of the covariance matrix and does not affect the results.  Further, we
-create three independent explanatory variables (\code{xs}, \code{xo1}
-and \code{xo2}, uniformly distributed on $[0,1]$), and hence the
-exclusion restriction is fulfilled.  \code{selection} now expects
-three formulas, one for the selection equation, as before, and a list
-of two for the outcome equation.  Note that we do not have to remove
-the unobserved values from outcome vectors, those are simply ignored.
-The results look as follows:
+set the correlation between $\varepsilon^S$ and $\varepsilon^{O1}$
+equal to 0.9 and between $\varepsilon^S$ and $\varepsilon^{O2}$ to
+0.5.  The third correlation, 0.1, takes care for the positive
+definiteness of the covariance matrix and does not affect the results.
+Further, we create three independent explanatory variables (\code{xs},
+\code{xo1} and \code{xo2}, uniformly distributed on $[0,1]$), and
+hence the exclusion restriction is fulfilled.  \code{selection} now
+expects three formulas, one for the selection equation, as before, and
+a list of two for the outcome equation.  Note that we do not have to
+equalise the unobserved values to zero, those are simply ignored.  The
+results look as follows:
 <<>>=
   summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2)))
 @ 
@@ -638,10 +640,10 @@ summary(tmp <- selection(ys~xs, list(yo1 ~ xs, yo2 ~ xs), iterlim=20))
 @
 %
 In most cases, this model does not converge.  However, if it does
-(like in this case, where we use \code{set.seed(6)}), the results be
-seriously biased.  Note that the first outcome parameters have low
+(like in this case, where we use \code{set.seed(6)}), the results may
+be seriously biased.  Note that the first outcome parameters have low
 standard errors, but a substantial bias.  We present the graph of the
-correct control function (based on the $\chi^2$ distribution), and one
+correct control function, based on the $\chi^2$ distribution, and one
 where we assume the normal distribution of the disturbance terms in
 Figure~\ref{fig:cfunctions}.  We use the estimated parameters for
 constructing the latter, however, we scale the normal control
@@ -718,8 +720,8 @@ text(2.2, -1.4,
   \medskip \\
   \small Note:
   Dotted vertical lines denote the support of $x^S$ in the MC experiment.
-  \caption{Control functions: correct ($\chi^2$ distributed)
-    and assumed (normally distributed)}
+  \caption{Control functions: correct (based on $\chi^2(1)$ distribution)
+    and assumed (based on normal distribution)}
   \label{fig:cfunctions}
 \end{figure}
 One can see, that the functions differ substantially in the relevant
@@ -728,7 +730,7 @@ substantially faster close to $x^S = 1$ than the normal approximation
 while the correct lower mean is decreasing slower compared to the
 approximation.
 
-It is instructive to estimate the same model as a two independent OLS
+It is instructive to estimate the same model as two independent OLS
 equations:
 <<>>=
   summary(lm(yo1~xs, subset=ys==0))
@@ -747,33 +749,32 @@ In this section we test the reliability of the results from \code{selection}
 applying the two-step and the maximum likelihood estimation method.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Greene( 2002 ): example 22.8, page 786}
+\subsection{Greene (2002): example 22.8, page 786}
 \label{sec:Greene22.8}
 
-The first test is example 22.8 from \citet[p.~786]{greene2002}.
-The data set used in this example is included in \pkg{micEcon};
-it is called \code{Mroz87}.
-This data set was used by \citet{mroz1987} for analysing female labour supply.
-In this example, labour force participation (described by dummy \code{lfp})
-is modelled by a quadratic polynomial in age (\code{age}),
-family income (\code{faminc}, in 1975 dollars),
-presence of children (\code{kids}),
-and education in years (\code{educ}).
-The wage equation includes
-a quadratic polynomial in quadratic polynomial in experience (\code{exper}),
-education in years (\code{educ}),
-and residence in a big city (\code{city}).
-First, we have to create a dummy variable for presence of children.
+The first test is example 22.8 from \citet[p.~786]{greene2002}.  The
+data set used in this example is included in \pkg{micEcon}; it is
+called \code{Mroz87}.  This data set was used by \citet{mroz1987} for
+analysing female labour supply.  In this example, labour force
+participation (described by dummy \code{lfp}) is modelled by a
+quadratic polynomial in age (\code{age}), family income
+(\code{faminc}, in 1975 dollars), presence of children (\code{kids}),
+and education in years (\code{educ}).  The wage equation includes a
+quadratic polynomial in experience (\code{exper}), education in years
+(\code{educ}), and residence in a big city (\code{city}).  First, we
+have to create a dummy variable for presence of children.
 <<greene22.8start>>=
 data( Mroz87 )
 Mroz87$kids <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
 @
+%
 Now, we estimate the model by the two-step method
 <<greene22.8TwoStep>>=
 summary( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
    data = Mroz87, method = "2step" ) )
 @
+%
 Most results are identical to the values reported by
 \citet[p.~786]{greene2002}.
 Only the coefficient of the inverse Mill's ratio ($\rho \sigma$),
