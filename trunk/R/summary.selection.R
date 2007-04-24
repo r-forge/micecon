@@ -122,15 +122,8 @@ print.summary.selection <- function(x,
          }
       }
       if(part=="full") {
-         if( x$tobitType == 2 ) {
-            i <- c(x$param$index$Mills, x$param$index$sigma, x$param$index$rho)
-         } else if( x$tobitType == 5 ) {
-            i <- c( x$param$index$Mills1, x$param$index$Mills2,
-               x$param$index$sigma1, x$param$index$sigma2,
-               x$param$index$rho1, x$param$index$rho2 )
-         }
          cat("Error terms:\n")
-         printCoefmat(x$estimate[i,])
+         printCoefmat( x$estimate[ x$param$index$errTerms, ] )
       }
    }
    cat("--------------------------------------------\n")
