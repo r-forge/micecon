@@ -703,18 +703,18 @@ abline(v=-1,lty=3)
 abline(v=1, lty=3)
 #   matpoints(ex, mcy, pch=c(1,2), cex=0.5, col=1)
    axis(4)
-text(-3.5, 0.8, 
-     expression(paste("correct  ")*E*group("[", Epsilon^{O1}*group("|", Epsilon^S > -x^S, ""), "]")))
+text(-3.5, 0.8,
+     expression(paste("correct  ")*E*group("[", epsilon^{O1}*group("|", epsilon^S > -x^S, ""), "]")))
 text(-3.6, -0.4,
-     expression(paste("correct  ")*E*group("[", Epsilon^{O1}*group("|", Epsilon^S < -x^S, ""), "]")))
-text(-0.7, 1.5,
-     expression(E*group("[", Epsilon^{O1}*group("|", 
-         Epsilon^S > -bold(beta)^S*minute*bold(x)^S, ""), "]")*
-         paste("  assumed normal")))
-text(2.2, -1.4,
-     expression(E*group("[", Epsilon^{O1}*group("|", 
-         Epsilon^S < -bold(beta)^S*minute*bold(x)^S, ""), "]")*
-         paste("  assumed normal")))
+     expression(paste("correct  ")*E*group("[", epsilon^{O1}*group("|", epsilon^S < -x^S, ""), "]")))
+text(-2.5, 1.5,
+     expression(E*group("[", epsilon^{O1}*group("|",
+         epsilon^S > -bold(beta)^S*minute*bold(x)^S, ""), "]")*
+         paste("  assumed normal")), pos = 4 )
+text(1, -1.4,
+     expression(E*group("[", epsilon^{O1}*group("|",
+         epsilon^S < -bold(beta)^S*minute*bold(x)^S, ""), "]")*
+         paste("  assumed normal")), pos = 2 )
 @ 
 %
   \medskip \\
