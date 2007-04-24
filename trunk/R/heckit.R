@@ -186,7 +186,8 @@ heckit <- function( selection, formula,
                                         # for coef() etc. methods
    ## the 'param' component is intended to all kind of technical info
    result$param <- list(index=list(betaS=iBetaS, betaO=iBetaO, 
-                        Mills=iMills, sigma=iSigma, rho=iRho),
+                        Mills=iMills, sigma=iSigma, rho=iRho,
+                        errTerms = c( iMills, iSigma, iRho ) ),
                                         # The location of results in the coef vector
                         oIntercept=intercept,
                         N0=N0, N1=N1,
