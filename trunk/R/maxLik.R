@@ -44,9 +44,11 @@ maxLik <- function(logLik, grad=NULL, hess=NULL, start,
                         "newton-raphson" =,
                         "NR" =,
                         "nr" = maxNR,
-                        "Otherwise" = stop( "unknown method ", method )
+                        "BHHH" =,
+                        "bhhh" = maxBHHH,
+                        stop( "Maxlik: unknown maximisation method ", method )
                         )
-   result <- maxRoutine(logLik, grad, hess, start, ...)
+   result <- maxRoutine(fn=logLik, grad=grad, hess=hess, start=start, ...)
    class(result) <- c("maxLik", class(result))
    result
 }
