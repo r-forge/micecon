@@ -3,7 +3,7 @@ maxBHHH <- function(fn, grad=NULL, hess=NULL,
                     print.level=0,
                     iterlim=100,
                     ...) {
-   ## HessLik   Hessian, not used, for compatibility reasons
+   ## hess:   Hessian, not used, for compatibility with the other methods
    gradVal <- NULL
    # Save the value of gradient and use it later for hessian
    # Hessian must be called with the same parameter as gradient
