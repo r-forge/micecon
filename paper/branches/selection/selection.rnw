@@ -965,3 +965,46 @@ is left for the future work.
 \bibliography{selection}
 
 \end{document}
+
+1) add likelihood functions of tobit-2 and tobit-5 models
+[Ott?]
+
+2) add a short description of the two-step estimation of tobit-5 models
+[Ott?]
+
+3) Ask Bill Greene how the standard errors in the errata of example 22.8 are 
+obtained (e.g. robust standard errors or with an incorrect method)
+[Ott?]
+
+4) Explain in the paper why selection()'s standard errors differ from Greene's 
+or write that they are identical to Greene's (if he changes the errata)
+[Arne]
+
+5) Add/complete documentation of selection()
+[Arne]
+
+6) check (and if necessary improve or add) documentation of other functions 
+that are used for estimating selection functions (e.g. summary.selection, 
+coef.selection, maxNR, maxLik, ...)
+[Ott? + Arne]
+
+7) continue to clean up and simplify the code that the reviewers can 
+understand it more easily
+[Arne?]
+
+What else do we have to do?
+Do you agree with this division of tasks?
+
+And I have a few questions:
+1) Should we keep the documentation of "heckit5", "tobit2fit" and "tobit5fit" 
+although they shouldn't be used by the user?
+
+2) Is the code in "tobit2" obsolete? If we want to keep this functions for 
+backward compatibility, I suggest that "tobit2" should be a simple wrapper 
+function to "tobit2fit" or "selection". What do you think?
+
+3) I think that your figures in examples 1-4 of your presentation are very 
+demonstrative. As our paper advertises the heckman solution for teaching 
+purposes, it might be a good idea to include these figures into the paper. 
+What do you think? (BTW: I am not able to compile the presentation, because 
+the file isomath.tex is missing.)
