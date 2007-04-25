@@ -1,7 +1,5 @@
 summary.selection <- function(object, ...) {
-   ## wrapper function for "summary.tobit" and "summary.heckit"
    ## object      object of class "selection"
-   ## ...         additional arguments for "summary.tobit" and "summary.heckit"
 
    if( object$method == "ml" ) {
       s <- summary.maxLik(object, ...)
