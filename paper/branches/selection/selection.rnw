@@ -5,8 +5,11 @@
 %% need no \usepackage{Sweave.sty}
 
 % ------- a few definitions ---------
-\renewcommand*{\vec}[1]{\boldsymbol{#1}}
-\newcommand*{\mat}[1]{\mathsf{#1}}
+\newcommand{\dnorm}{\phi}% normal density
+\newcommand{\loglik}{\ell}% log likelihood
+\newcommand*{\mat}[1]{\mathsf{#1}}% Matrix
+\newcommand{\pnorm}{\Phi}% normal distribution function
+\renewcommand*{\vec}[1]{\boldsymbol{#1}}% vector
 % -----------------------
 
 \author{Ott Toomet\\Tartu University
@@ -86,7 +89,7 @@
 ## initialisation stuff
 options(width=75)
 @ 
-%
+
 
 \section{Sample selection}
 
@@ -248,21 +251,20 @@ covariates (see \citealp{greene2002} for details):
   \equiv
   {\vec{\beta}^O}' \vec{x}_i^O 
   + 
-  \beta^\lambda \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
+  \varrho \sigma \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
   +
   \eta_i
   \label{eq:tobit2_2step}
 \end{equation}
 where $\lambda(\cdot) = \phi(\cdot)/\Phi(\cdot)$ is commonly referred
-to as inverse Mill's ratio, $\beta^\lambda = \varrho\sigma$, and
-$\phi(\cdot)$ and $\Phi(\cdot)$ are standard normal density and
-cumulative distribution functions.  Essentially, we describe the
-selection problem as an omitted variable problem, with
-$\lambda(\cdot)$ the omitted variable.
-Since the true $\lambda(\cdot)$s in equation \eqref{eq:tobit2_2step}
-are generally unknown,
-they are replaced by estimated values based on the probit estimation
-in the first step.
+to as inverse Mill's ratio and $\phi(\cdot)$ and $\Phi(\cdot)$ are
+standard normal density and cumulative distribution functions.  The
+unknown multiplicator $\varrho \sigma$ can be estimated by OLS.
+Essentially, we describe the selection problem as an omitted variable
+problem, with $\lambda(\cdot)$ the omitted variable.  Since the true
+$\lambda(\cdot)$s in equation \eqref{eq:tobit2_2step} are generally
+unknown, they are replaced by estimated values based on the probit
+estimation in the first step.
 
 An estimator of the variance of $\varepsilon^O$ can be obtained by
 \begin{equation}
@@ -313,7 +315,25 @@ covariance matrix of the probit estimate
 
 This is the original idea by \citet{heckman1976}.  As the model is
 fully parametric, the more efficient ML estimatior is straightforward
-to construct \citep[see][for details]{amemiya1985}.  The original
+to construct.  Using the properties of the bivariate normal, it is
+easy to show that the log-likelihood can be written as
+\begin{align}
+  \loglik & = 
+  \sum_{i:y_i^S = 0} 
+  \log \pnorm(-{\vec{\beta}^S}' \vec{x}_i^S ) +
+  \\
+  & +
+  \sum_{i:y_i^S = 1} \left[
+    \log \pnorm \left(\frac{
+        {\vec{\beta}^S}' \vec{x}_i^S +
+        \displaystyle\frac{\varrho}{\sigma}(y_i^O - {\vec{\beta}^O}' \vec{x}_i^O)}
+      {\sqrt{1 - \varrho^2}}
+      \right)
+      -\frac{1}{2} \log 2\pi - 
+      \log \sigma -
+      \frac{1}{2} \frac{(y_i^O - {\vec{\beta}^O}' \vec{x}_i^O)^2}{\sigma^2} \right].
+\end{align}
+The original
 article suggests using the two-step solution for exploratory work and
 as initial values for maximum likelihood estimation, since in those
 days the cost of the two-step solution was \$15 while that of the
@@ -532,6 +552,7 @@ observe
     \\
     1 & \quad \text{otherwise}
   \end{cases}
+  \label{eq:t5_selection_obs}
   \\
   y_i^O
   &= 
@@ -563,7 +584,71 @@ distribution,
   \right),
 \end{equation}
 it is straightforward to construct analogous two-step estimators
-as~\eqref{eq:tobit2_2step} and the corresponding ML estimator.  Note,
+as~\eqref{eq:tobit2_2step}.  We may write
+\begin{align}
+  \E [y_i^O | \vec{x}_i^O , \vec{x}_i^S , y_i^S = 0] 
+  &=
+  {\vec{\beta}^{O1}}' \vec{x}_i^O 
+  +
+  \E [ \varepsilon_i^O|\varepsilon_i^S < -{\vec{\beta}^S}' \vec{x}_i^S ]
+  \\
+  \E [y_i^O | \vec{x}_i^O , \vec{x}_i^S , y_i^S = 1] 
+  &=
+  {\vec{\beta}^{O2}}' \vec{x}_i^O 
+  +
+  \E [ \varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
+\end{align}
+and hence
+\begin{equation}
+  y_i^O
+  =
+  \begin{cases}
+    {\vec{\beta}^{O1}}' \vec{x}_i^O 
+    -
+    \varrho_1 \sigma_1 \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
+    +
+    \eta_i^1
+    \qquad \text{if } y_i^{S} = 0\\
+    \\
+    {\vec{\beta}^{O2}}' \vec{x}_i^O 
+    + 
+    \varrho_2 \sigma_2 \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
+    +
+    \eta_i^2
+    \qquad \text{otherwise},
+  \end{cases}
+  \label{eq:tobit5_2step}
+\end{equation}
+where $\E \eta^1 = \E \eta^2 = 0$ and $\lambda(\cdot) =
+\phi(\cdot)/\Phi(\cdot)$ is the inverse Mill's ratio which can be
+calculated using the probit estimate of~\eqref{eq:t5_selection_obs}.
+This system can be estimated as two independent linear models, one for
+the case $y^S = 0$ and another for $y^S = 1$.  The corresponding ML
+estimator can be written as
+\begin{align}
+l &= -\frac{N}{2}\log 2\pi + \notag\\
+&+ \sum_{i:y_i^S = 0} \left\{
+  -\log\sigma_1
+  -\frac{1}{2}\left( \frac{y_i^O - {\vec{\beta}^{O1}}' \vec{x}_i^O}
+    {\sigma_1} \right)^2
+  +\log \pnorm \left[ 
+    -
+    \frac
+    {{\vec{\beta}^S}' \vec{x}_i^S + \displaystyle \frac{\varrho_1}{\sigma_1}
+      \left({y_i^O - {\vec{\beta}^{O1}}' \vec{x}_i^O} \right)}
+    {\sqrt{ 1 - \varrho_1^2}} \right] \right\} \notag\\
+&+ \sum_{i: y_i^S = 1} \left\{
+  -\log\sigma_2
+  -\frac{1}{2}\left( \frac{y_i^O - {\vec{\beta}^{O2}}' \vec{x}_i^O}
+    {\sigma_2} \right)^2
+  +\log \pnorm \left[ 
+    \phantom{-}
+    \frac
+    {{\vec{\beta}^S}' \vec{x}_i^S + \displaystyle \frac{\varrho_2}{\sigma_2}
+      \left({y_i^O - {\vec{\beta}^{O2}}' \vec{x}_i^O} \right)}
+    {\sqrt{ 1 - \varrho_2^2}} \right] \right\} \notag\\
+\end{align}
+where $N$ is the total number of observations.  Note,
 that $\varrho_{12}$ plays no role in this model, the observable
 distributions are determined by the correlations $\varrho_1$ and
 $\varrho_2$ between the disturbances of the selection equation
@@ -992,8 +1077,12 @@ coef.selection, maxNR, maxLik, ...)
 understand it more easily
 [Arne?]
 
+8) Reference for systemfit?
+ [Arne]
+
+9) A few words on coef() & unimplemented vcov parts ....
+
 What else do we have to do?
-Do you agree with this division of tasks?
 
 And I have a few questions:
 1) Should we keep the documentation of "heckit5", "tobit2fit" and "tobit5fit" 
