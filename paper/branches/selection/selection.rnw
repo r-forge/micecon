@@ -28,14 +28,14 @@
   % 
   This paper describes the implementation of Heckman-type sample
   selection models in \proglang{R}.  We discuss the sample selection
-  problem as well as the Heckman solution and argue that although
-  modern econometrics has superior non- and semiparametric estimation
-  methods in its toolbox, the Heckman models are an integral part of
-  modern econometrics textbooks and syllabus as they serve as
-  excellent teaching tools.  We describe the implementation of these
-  models in package \pkg{micEcon} and illustrate the use of the
-  package by showing Heckman selection models' strong and weak sides
-  on several Monte Carlo and real data examples.
+  problem as well as the Heckman solution to it, and argue that
+  although modern econometrics has superior non- and semiparametric
+  estimation methods in its toolbox, the Heckman models are an
+  integral part of modern econometrics textbooks and syllabus as they
+  serve as excellent teaching tools.  We describe the implementation
+  of these models in package \pkg{micEcon} and illustrate the use of
+  the package by showing Heckman selection models' strong and weak
+  sides on several Monte Carlo and real data examples.
   %
 }
 
@@ -244,7 +244,7 @@ covariates (see \citealp{greene2002} for details):
   =
   {\vec{\beta}^O}' \vec{x}_i^O 
   + 
-  \E [ \varepsilon_i^O|\varepsilon_i^S \ge
+  \E [ \varepsilon^O|\varepsilon^S \ge
   -{\vec{\beta}^S}' \vec{x}_i^S ]
   +
   \eta_i
@@ -430,28 +430,66 @@ restriction:
   xs <- runif(500)
   ys <- xs + eps[,1] > 0
   xo <- runif(500)
-  yo <- (xo + eps[,2])*(ys > 0)
+yoX <- xo + eps[,2]
+yo <- yoX*(ys > 0)
 @
 % -- please keep these comments.  These are necessary for auctex
 We use \pkg{mvtnorm} in order to create bivariate normal disturbances
 with correlation $-0.7$.  Next, we generate a uniformly distributed
-explanatory variable for the selection equation, \code{xs}, and the
-selection outcome by a probit data generating process.  Note that the
-vectors of explanatory variables for the selection (\code{xs}) and
-outcome equation (\code{xo}) are independent and hence the exclusion
-restriction is fulfilled.  This can also be seen from the fact that
-the estimates are reasonably precise:
+explanatory variable for the selection equation, \code{xs}, the
+selection outcome \code{ys} by probit data generating process and the
+explanatory variable for the outcome equation \code{xs}.  We retain
+the latent outcome variable (\code{yoX}) and calculate the observable
+\code{xo}.  Note that the vectors of explanatory variables for the
+selection (\code{xs}) and outcome equation (\code{xo}) are independent
+and hence the exclusion restriction is fulfilled.  This can also be
+seen from the fact that the estimates are reasonably precise
 <<code:t2summary>>=
-  summary(selection(ys~xs, yo ~xo, steptol=1e-10))
+  summary(m <- selection(ys~xs, yo ~xo))
 @ 
 %
 One can see, that all the true values are within the 95\% confidence
-intervals of the corresponding estimates.
+intervals of the corresponding estimates.  
+
+Now look at the graphical representation of the data
+(Figure~\ref{fig:t2ex}).  We can see that the unobserved values (empty
+circles) tend to have higher $y^{O*}$ values than the observed ones
+(filled circles).  This is because $\varrho < 0$.  The OLS estimate
+(dotted line) is substantially downward biased -- it does not take
+into account the fact, that we tend to observe the observations with
+low realisations of $\varepsilon^O$.  The slope, however, remains
+unbiased because $\E [ \varepsilon^O|\varepsilon^S \ge
+  -{\vec{\beta}^S}' \vec{x}_i^S ]$ does not depend on $\vec{x}^O$.
+
+\begin{figure}[tp]
+  \centering
+<<fig=TRUE,height=4,echo=FALSE>>=
+par(mar=c(3,3,0,0) + 0.1,
+    mgp=c(2,1,0))
+pch <- c(1, 16)
+plot(xo, yoX, pch=pch[1 + ys], cex=0.5, lwd=0.3)
+abline(a=0, b=1, lty=1)
+# True dependence
+abline(a=coef(m)[3], b=coef(m)[4], lty=2)
+# Heckman's model
+cf <- coef(lm(yo ~ xo, subset=ys==1))
+abline(a=cf[1], b=cf[2], lty=3)
+# OLS
+@ 
+%
+\caption{The observable (filled) and unobservable outcomes (empty
+  circles), depending on \code{xs}.  The solid line denotes the true
+  dependence, dashed (partly overlapping the solid) is the MLE
+  estimate above, and the dotted line is the corresponding OLS
+  estimate, based on observable outcomes only.}
+  \label{fig:t2ex}
+\end{figure}
 
 Now we repeat the same exercise, but without exclusion restriction,
 generating \code{yo} using \code{xs} instead of \code{xo}.
 <<>>=
-yo <- (xs + eps[,2])*(ys > 0)
+yoX <- xs + eps[,2]
+yo <- yoX*(ys > 0)
 print(summary(selection(ys ~ xs, yo ~ xs)))
 @
 % 
@@ -460,6 +498,37 @@ larger in this case.  The exclusion restriction --- information about
 the selection process --- has a certain identifying power which we now
 have lost.  We are solely relying on the functional form
 identification.
+
+We illustrate the case with an analogous figure (Figure~\ref{fig:t2}).
+The selection model uncovers the true dependence very well.  OLS
+estimate is downward biased because of $\varrho < 0$, as in the
+previous case.  However, now the slope is also biased becuse $\E [
+\varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ is
+increasing in the single explanatory variable in the modes, \code{xs}.
+
+\begin{figure}[tp]
+  \centering
+<<fig=TRUE,height=4,echo=FALSE>>=
+par(mar=c(3,3,0,0) + 0.1,
+    mgp=c(2,1,0))
+pch <- c(1, 16)
+plot(xs, yoX, pch=pch[1 + ys], cex=0.5, lwd=0.3)
+abline(a=0, b=1, lty=1)
+# True dependence
+abline(a=coef(m)[3], b=coef(m)[4], lty=2)
+# Heckman's model
+cf <- coef(lm(yo ~ xs, subset=ys==1))
+abline(a=cf[1], b=cf[2], lty=3)
+# OLS
+@ 
+%
+\caption{The observable (filled) and unobservable outcomes (empty
+  circles), depending on \code{xs}.  The solid line denotes the true
+  dependence, dashed (partly overlapping the solid) is the MLE
+  estimate above, and the dotted line is the corresponding OLS
+  estimate, based on observable outcomes only.}
+  \label{fig:t2}
+\end{figure}
 
 In order to identify $\beta^\lambda$ and ${\vec{\beta}^O}'$ without
 exclusion restriction, $\lambda(\cdot)$ must differ from a linear
@@ -492,13 +561,12 @@ was fulfilled.  The reason is simple: the probability that $Y^{O*}$ is
 observable, given $x_i^S$, is $\Pr(1 \cdot x_i^S + \varepsilon^O > 0)
 = 1 - \Phi(-x_i^S)$ as $\varepsilon^O \sim N(0,1)$.  As one can see
 from Figure~\ref{fig:lambda()}, selection is not an issue if $x^S
-\gtrsim 2$.  In that case $\E [\varepsilon^O|y^S = 1] \approx 0$ and
-hence the model can be precisely estimated for relatively large values
-of $x^S$.  The linearity assumption allows us to extrapolate the
-parameter values everywhere.  In the previous example, the variation
-in $x^S$ was low and hence one could not disentangle the selection
-bias from the true causal dependence.  Technically, there was a
-multicollinearity problem between $x^S$ and $\lambda(\cdot)$.
+\gtrsim 2$.  In that case $\E [\varepsilon^O|y^S = 1] \approx 0$ for a
+a substantial interval of $x^S$ and hence the $\lambda(\beta^S x^S)$
+differs enough from a linear function.  In the previous example, the
+variation in $x^S$ was low and hence one could not disentangle the
+selection bias from the true causal dependence.  Technically, there
+was a multicollinearity problem between $x^S$ and $\lambda(\cdot)$.
 
 \begin{figure}[tp]
   \centering
@@ -881,8 +949,12 @@ While the estimated coefficients are almost identical to the values
 published in the errata of \citet{greene2002}
 (\url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}),
 the standard errors calculated by \code{selection} are considerably
-smaller.
-% WHY???? We have to check this!!!!!
+smaller.  This is because of different ways of calculating the Hessian
+matrix -- while our implementation uses exact analytic Hessian, the
+implementation in the published errata uses information equality
+(BHHH) aproximation\footnote{\citet{calzola+fiorentini1992} show that
+  different was to calculate the Hessian matrix result in
+  substantially different estmates of standard errors.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1051,12 +1123,6 @@ is left for the future work.
 
 \end{document}
 
-1) add likelihood functions of tobit-2 and tobit-5 models
-[Ott?]
-
-2) add a short description of the two-step estimation of tobit-5 models
-[Ott?]
-
 3) Ask Bill Greene how the standard errors in the errata of example 22.8 are 
 obtained (e.g. robust standard errors or with an incorrect method)
 [Ott?]
@@ -1091,9 +1157,3 @@ although they shouldn't be used by the user?
 2) Is the code in "tobit2" obsolete? If we want to keep this functions for 
 backward compatibility, I suggest that "tobit2" should be a simple wrapper 
 function to "tobit2fit" or "selection". What do you think?
-
-3) I think that your figures in examples 1-4 of your presentation are very 
-demonstrative. As our paper advertises the heckman solution for teaching 
-purposes, it might be a good idea to include these figures into the paper. 
-What do you think? (BTW: I am not able to compile the presentation, because 
-the file isomath.tex is missing.)
