@@ -11,7 +11,7 @@ print(summary( greene$lm ) )
 print( summary( greene$probit ) )
 print( greene$sigma )
 print( greene$rho )
-print(vcov(greene), digits=5)
+print(vcov(greene, part = "outcome" ), digits=5)
 
 ## Wooldridge( 2003 ): example 17.5, page 590
 data( Mroz87 )
@@ -22,7 +22,7 @@ print( summary( wooldridge$lm ) )
 print( summary( wooldridge$probit ) )
 print( wooldridge$sigma )
 print( wooldridge$rho )
-print(vcov(wooldridge), digits = 5 )
+print(vcov(wooldridge, part = "outcome" ), digits = 5 )
 
 ## Tobit 5 Example from the selection paper
 library(mvtnorm)
