@@ -1,7 +1,6 @@
 \name{selection}
 \alias{selection}
 \alias{print.selection}
-\alias{vcov.selection}
 \title{Heckman-style selection models}
 \description{
   This functions calculates Heckman-style selection models either with

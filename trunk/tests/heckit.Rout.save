@@ -97,7 +97,7 @@ chi2(5) = 48.0507 (p=3.46824e-09)
 [1] 3.20006
 > print( greene$rho )
 [1] -0.342999
-> print(vcov(greene), digits=5)
+> print(vcov(greene, part = "outcome" ), digits=5)
               (Intercept)       exper  I(exper^2)        educ        city
 (Intercept)     4.2409246 -0.04377095  1.3047e-03 -0.19039195 -2.7472e-02
 exper          -0.0437709  0.00390183 -1.1194e-04  0.00072475 -8.6059e-04
@@ -192,7 +192,7 @@ chi2(7) = 227.142 (p=2.00867e-45)
 [1] 0.663629
 > print( wooldridge$rho )
 [1] 0.0486143
-> print(vcov(wooldridge), digits = 5 )
+> print(vcov(wooldridge, part = "outcome" ), digits = 5 )
               (Intercept)        educ       exper  I(exper^2) invMillsRatio
 (Intercept)    0.09302878 -3.9693e-03 -3.1849e-03  6.9110e-05   -3.1031e-02
 educ          -0.00396930  2.4096e-04  5.1544e-05 -9.1792e-07    8.7226e-04
