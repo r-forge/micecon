@@ -101,8 +101,7 @@
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
-\seealso{\code{\link{lm}}, \code{\link{glm}}, \code{\link{binomial}},
-\code{\link{coef.heckit}}}
+\seealso{\code{\link{lm}}, \code{\link{glm}}, \code{\link{binomial}}}
 
 \examples{
 ## Greene( 2003 ): example 22.8, page 786

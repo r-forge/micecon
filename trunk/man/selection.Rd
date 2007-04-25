@@ -1,6 +1,5 @@
 \name{selection}
 \alias{selection}
-\alias{coef.selection}
 \alias{print.selection}
 \alias{vcov.selection}
 \title{Heckman-style selection models}
@@ -52,7 +51,7 @@ print.level = 0, ...)
   multivariate normality.  This may or may not be an appropriate
   assumption for a particular problem.
 
-  The (generic) function 'coef' (i.e. 'coef.selection')
+  The (generic) function 'coef' (i.e. '\code{\link{coef.selection}}')
   can be used to extract the estimated coefficients.
   The (generic) function 'vcov' (i.e. 'vcov.selection')
   can be used to extract the estimated variance covariance matrix 
