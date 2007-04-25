@@ -26,6 +26,7 @@ heckit <- function( selection, formula,
       }
    }
    result <- list()
+   result$call <- match.call()
    ## Now extract model frames etc.
    ## Selection equation
    mf <- match.call(expand.dots = FALSE)

@@ -11,6 +11,7 @@ heckit5 <- function(selection, outcome1, outcome2,
    if( length( selection ) != 3 ) {
       stop( "argument 'selection' must be a 2-sided formula" )
    }
+   thisCall <- match.call()
    mf <- match.call(expand.dots = FALSE)
    m <- match(c("selection", "data", "subset"), names(mf), 0)
    mfS <- mf[c(1, m)]
@@ -237,6 +238,7 @@ heckit5 <- function(selection, outcome1, outcome2,
                   lm2=lm2,
                   rho2=rho2,
                   sigma2=sigma2,
+                  call = thisCall,
                   termsS=mtS,
                   termsO=list(mt1, mt2),
                   ys=switch(as.character(ys), "TRUE"=YS, "FALSE"=NULL),
