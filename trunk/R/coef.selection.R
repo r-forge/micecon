@@ -1,4 +1,9 @@
-coef.selection <- function( object, ... ) {
+coef.selection <- function( object, part="full", ... ) {
+
+   if( !( part %in% c( "full", "outcome" ) ) ) {
+      stop( "argument 'part' must be either 'full' or 'outcome'" )
+   }
+
    addToCoefNames <- function( prefix, index ) {
       if( !is.null( index ) ){
          names( coefValues )[ index ] <-
@@ -17,6 +22,17 @@ coef.selection <- function( object, ... ) {
       coefValues <- addToCoefNames( "S:",  object$param$index$betaS )
       coefValues <- addToCoefNames( "O1:", object$param$index$betaO1 )
       coefValues <- addToCoefNames( "O2:", object$param$index$betaO2 )
+   }
+
+   if( part == "outcome" ) {
+      if( object$tobitType == 2) {
+         coefValues <- coefValues[ c( object$param$index$betaO,
+            object$param$index$Mills ) ]
+      } else if( object$tobitType == 5) {
+         coefValues <- coefValues[ c(object$param$index$betaO1,
+            object$param$index$Mills1, object$param$index$betaO2,
+            object$param$index$Mills2 ) ]
+      }
    }
 
    return( coefValues )
