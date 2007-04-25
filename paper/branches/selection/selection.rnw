@@ -402,10 +402,10 @@ $\varrho \to 1$) or if the algorithm does not find the global maximum.
 
 The package is written completely in \proglang{R} which should
 minimise the portability issues.  It depends on packages
-\pkg{systemfit} and \pkg{mvtnorm}, the latter for examples only.  Both
+\pkg{systemfit} \citep{r-systemfit} and \pkg{mvtnorm} \citep{r-mvtnorm},
+the latter for examples only.  Both
 are available from the Comprehensive R Archive Network (CRAN) at
 \url{http://CRAN.R-project.org/}.
-% Do you have a reference for systemfit? ....
 
 % A few words on coef() & unimplemented vcov parts ....
 
@@ -1142,9 +1142,6 @@ coef.selection, maxNR, maxLik, ...)
 7) continue to clean up and simplify the code that the reviewers can 
 understand it more easily
 [Arne?]
-
-8) Reference for systemfit?
- [Arne]
 
 9) A few words on coef() & unimplemented vcov parts ....
 
