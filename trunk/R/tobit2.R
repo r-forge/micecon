@@ -30,11 +30,11 @@ tobit2 <- function(selection, formula,
    ## a list with the following components:
    ##
    loglik <- function( beta) {
-      g <- beta[igamma]
-      b <- beta[ibeta]
-      sigma <- beta[isigma]
+      g <- beta[iGamma]
+      b <- beta[iBeta]
+      sigma <- beta[iSigma]
       if(sigma < 0) return(NA)
-      rho <- beta[irho]
+      rho <- beta[iRho]
       if( ( rho < -1) || ( rho > 1)) return(NA)
       Z1.g <- Z1 %*% g
       Z2.g <- Z2 %*% g
@@ -50,11 +50,11 @@ tobit2 <- function(selection, formula,
       loglik <- l1 + l2
    }
    gradlik <- function(beta) {
-      g <- beta[igamma]
-      b <- beta[ibeta]
-      sigma <- beta[isigma]
+      g <- beta[iGamma]
+      b <- beta[iBeta]
+      sigma <- beta[iSigma]
       if(sigma < 0) return(NA)
-      rho <- beta[irho]
+      rho <- beta[iRho]
       if( ( rho < -1) || ( rho > 1)) return(NA)
       Z1.g <- Z1 %*% g
       Z2.g <- Z2 %*% g
@@ -64,19 +64,19 @@ tobit2 <- function(selection, formula,
       B <- (Z2.g + rho/sigma*u2)/r
       lambdaB <- dnorm(B)/pnorm(B)
       gradient <- numeric(NParam)
-      gradient[igamma] <- t(Z1) %*% (-dnorm(-Z1.g)/pnorm(-Z1.g)) +
+      gradient[iGamma] <- t(Z1) %*% (-dnorm(-Z1.g)/pnorm(-Z1.g)) +
          (t(Z2) %*% lambdaB)/r
-      gradient[ibeta] <- t(X2) %*% (u2/sigma^2 - lambdaB*rho/sigma/r)
-      gradient[isigma] <- sum(u2^2/sigma^3 - lambdaB*rho*u2/sigma^2/r) - N2/sigma
-      gradient[irho] <- sum(lambdaB*(u2/sigma + rho*Z2.g))/r^3
+      gradient[iBeta] <- t(X2) %*% (u2/sigma^2 - lambdaB*rho/sigma/r)
+      gradient[iSigma] <- sum(u2^2/sigma^3 - lambdaB*rho*u2/sigma^2/r) - N2/sigma
+      gradient[iRho] <- sum(lambdaB*(u2/sigma + rho*Z2.g))/r^3
       gradient
    }
    hesslik <- function(beta) {
-      g <- beta[igamma]
-      b <- beta[ibeta]
-      sigma <- beta[isigma]
+      g <- beta[iGamma]
+      b <- beta[iBeta]
+      sigma <- beta[iSigma]
       if(sigma < 0) return(NA)
-      rho <- beta[irho]
+      rho <- beta[iRho]
       if( ( rho < -1) || ( rho > 1)) return(NA)
       Z1.g <- as.vector(Z1 %*% g)
       Z2.g <- as.vector(Z2 %*% g)
@@ -100,33 +100,33 @@ tobit2 <- function(selection, formula,
                                         # it better?  How to prove the limit value?
       hess <- matrix(0, NParam, NParam)
       a <- (-fZ1.g*FZ1.g*Z1.g + fZ1.g^2)/FZ1.g^2
-      hess[igamma,igamma] <- -t(Z1) %*% (Z1*a) + t(Z2) %*% (Z2*C)/r^2
-      hess[igamma,ibeta] <- -t(Z2) %*% (X2*C)*rho/r^2/sigma
-      hess[ibeta,igamma] <- t(hess[igamma,ibeta])
-      hess[igamma,isigma] <- -rho/sigma^2/r^2*t(Z2) %*% (C*u2)
-      hess[isigma,igamma] <- t(hess[igamma,isigma])
-      hess[igamma,irho] <- t(Z2) %*%
+      hess[iGamma,iGamma] <- -t(Z1) %*% (Z1*a) + t(Z2) %*% (Z2*C)/r^2
+      hess[iGamma,iBeta] <- -t(Z2) %*% (X2*C)*rho/r^2/sigma
+      hess[iBeta,iGamma] <- t(hess[iGamma,iBeta])
+      hess[iGamma,iSigma] <- -rho/sigma^2/r^2*t(Z2) %*% (C*u2)
+      hess[iSigma,iGamma] <- t(hess[iGamma,iSigma])
+      hess[iGamma,iRho] <- t(Z2) %*%
          (C*(u2/sigma + rho*Z2.g)/r^4 + lambdaB*rho/r^3)
-      hess[irho,igamma] <- t(hess[igamma,irho])
-      hess[ibeta,ibeta] <- t(X2) %*%
+      hess[iRho,iGamma] <- t(hess[iGamma,iRho])
+      hess[iBeta,iBeta] <- t(X2) %*%
          (X2 * ((rho/r)^2*C - 1))/sigma^2
-      hess[ibeta,isigma] <- t(X2) %*%
+      hess[iBeta,iSigma] <- t(X2) %*%
          (C*rho^2/sigma^3*u2/r^2 +
             rho/sigma^2*lambdaB/r - 2*u2/sigma^3)
-      hess[isigma,ibeta] <- t(hess[ibeta,isigma])
-      hess[ibeta,irho] <- t(X2) %*%
+      hess[iSigma,iBeta] <- t(hess[iBeta,iSigma])
+      hess[iBeta,iRho] <- t(X2) %*%
          (-C*(u2/sigma + rho*Z2.g)/r^4*rho -
             lambdaB/r^3)/sigma
-      hess[irho,ibeta] <- t(hess[ibeta,irho])
-      hess[isigma,isigma] <- sum(
+      hess[iRho,iBeta] <- t(hess[iBeta,iRho])
+      hess[iSigma,iSigma] <- sum(
                                    -3*u2*u2/sigma^4
                                    +2*lambdaB* u2/r *rho/sigma^3
                                    +rho^2/sigma^4 *u2*u2/r^2 *C) +
                                        N2/sigma^2
-      hess[isigma,irho] <- hess[irho,isigma] <-
+      hess[iSigma,iRho] <- hess[iRho,iSigma] <-
          -sum((C*rho*(u2/sigma + rho*Z2.g)/r + lambdaB)*
          u2/sigma^2)/r^3
-      hess[irho,irho] <-
+      hess[iRho,iRho] <-
          sum(C*((u2/sigma + rho*Z2.g)/r^3)^2 +
          lambdaB*(Z2.g*(1 + 2*rho^2) + 3*rho*u2/sigma) / r^5 )
       return( hess )
@@ -204,10 +204,10 @@ tobit2 <- function(selection, formula,
    N1 <- length( Y1[Y1==0])
    N2 <- length( Y1[Y1==1])
    ## indices in for the parameter vector
-   igamma <- 1:NZ
-   ibeta <- max(igamma) + seq(length=NX)
-   isigma <- max(ibeta) + 1
-   irho <- max(isigma) + 1
+   iGamma <- 1:NZ
+   iBeta <- max(iGamma) + seq(length=NX)
+   iSigma <- max(iBeta) + 1
+   iRho <- max(iSigma) + 1
    ## divide data by choices
    if(dim(X)[1] == N2) {
                                         # unobserved variables marked as NA
@@ -231,14 +231,14 @@ tobit2 <- function(selection, formula,
          cat("Initial values by 2-step method:results\n")
          print(twoStep)
       }
-      start[igamma] <- coef(twoStep)[twoStep$param$index$betaS]
-      start[ibeta] <- coef(twoStep)[twoStep$param$index$betaO]
-      start[isigma] <- coef(twoStep)[twoStep$param$index$sigma]
-      start[irho] <- coef(twoStep)[twoStep$param$index$rho]
-      if(start[irho] > 0.99)
-        start[irho] <- 0.99
-      else if(start[irho] < -0.99)
-        start[irho] <- -0.99
+      start[iGamma] <- coef(twoStep)[twoStep$param$index$betaS]
+      start[iBeta] <- coef(twoStep)[twoStep$param$index$betaO]
+      start[iSigma] <- coef(twoStep)[twoStep$param$index$sigma]
+      start[iRho] <- coef(twoStep)[twoStep$param$index$rho]
+      if(start[iRho] > 0.99)
+        start[iRho] <- 0.99
+      else if(start[iRho] < -0.99)
+        start[iRho] <- -0.99
       names(start) <- c(colnames(Z), colnames(X), "sigma", "rho")
       if(print.level > 0) {
          cat("Initial values:\n")
@@ -251,8 +251,8 @@ tobit2 <- function(selection, formula,
    ## The following commented lines are for testing analytic gradient and Hessian
 #    compare.derivatives(loglik, gradlik, t0=init, ...)
 #    compare.derivatives(gradlik, hesslik, t0=init, ...)
-   param <- list(index=list(betaS=igamma, betaO=ibeta,
-                   sigma=isigma, rho=irho),
+   param <- list(index=list(betaS=iGamma, betaO=iBeta,
+                   sigma=iSigma, rho=iRho),
                  NParam=NParam,
                  NObs=NObs,
                  N0=N1,

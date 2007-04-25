@@ -25,11 +25,11 @@ tobit2fit <- function(YS, XS, YO, XO, start,
 ### twoStep   Results for Heckman two-step estimator, used for initial values
 ### 
    loglik <- function( beta) {
-      g <- beta[ibetaS]
-      b <- beta[ibetaO]
-      sigma <- beta[isigma]
+      g <- beta[iBetaS]
+      b <- beta[iBetaO]
+      sigma <- beta[iSigma]
       if(sigma < 0) return(NA)
-      rho <- beta[irho]
+      rho <- beta[iRho]
       if( ( rho < -1) || ( rho > 1)) return(NA)
       XS0.g <- XS0 %*% g
       XS1.g <- XS1 %*% g
@@ -45,11 +45,11 @@ tobit2fit <- function(YS, XS, YO, XO, start,
       loglik <- l1 + l2
    }
     gradlik <- function(beta) {
-       g <- beta[ibetaS]
-       b <- beta[ibetaO]
-       sigma <- beta[isigma]
+       g <- beta[iBetaS]
+       b <- beta[iBetaO]
+       sigma <- beta[iSigma]
        if(sigma < 0) return(NA)
-       rho <- beta[irho]
+       rho <- beta[iRho]
        if( ( rho < -1) || ( rho > 1)) return(NA)
        XS0.g <- XS0 %*% g
        XS1.g <- XS1 %*% g
@@ -60,19 +60,19 @@ tobit2fit <- function(YS, XS, YO, XO, start,
        lambdaB <- ifelse(B > -30, dnorm(B)/pnorm(B), B)
                                         # This is a hack in order to avoid numeric problems
        gradient <- numeric(NParam)
-       gradient[ibetaS] <- t(XS0) %*% (-dnorm(-XS0.g)/pnorm(-XS0.g)) +
+       gradient[iBetaS] <- t(XS0) %*% (-dnorm(-XS0.g)/pnorm(-XS0.g)) +
            (t(XS1) %*% lambdaB)/r
-       gradient[ibetaO] <- t(XO1) %*% (u2/sigma^2 - lambdaB*rho/sigma/r)
-       gradient[isigma] <- sum(u2^2/sigma^3 - lambdaB*rho*u2/sigma^2/r) - N1/sigma
-       gradient[irho] <- sum(lambdaB*(u2/sigma + rho*XS1.g))/r^3
+       gradient[iBetaO] <- t(XO1) %*% (u2/sigma^2 - lambdaB*rho/sigma/r)
+       gradient[iSigma] <- sum(u2^2/sigma^3 - lambdaB*rho*u2/sigma^2/r) - N1/sigma
+       gradient[iRho] <- sum(lambdaB*(u2/sigma + rho*XS1.g))/r^3
        gradient
     }
     hesslik <- function(beta) {
-       g <- beta[ibetaS]
-       b <- beta[ibetaO]
-       sigma <- beta[isigma]
+       g <- beta[iBetaS]
+       b <- beta[iBetaO]
+       sigma <- beta[iSigma]
        if(sigma < 0) return(NA)
-       rho <- beta[irho]
+       rho <- beta[iRho]
        if( ( rho < -1) || ( rho > 1)) return(NA)
        XS0.g <- as.vector(XS0 %*% g)
        XS1.g <- as.vector(XS1 %*% g)
@@ -97,33 +97,33 @@ tobit2fit <- function(YS, XS, YO, XO, start,
                                         # it better?  How to prove the limit value?
        hess <- matrix(0, NParam, NParam)
        a <- (-fXS0.g*FXS0.g*XS0.g + fXS0.g^2)/FXS0.g^2
-       hess[ibetaS,ibetaS] <- -t(XS0) %*% (XS0*a) + t(XS1) %*% (XS1*C)/r^2
-       hess[ibetaS,ibetaO] <- -t(XS1) %*% (XO1*C)*rho/r^2/sigma
-       hess[ibetaO,ibetaS] <- t(hess[ibetaS,ibetaO])
-       hess[ibetaS,isigma] <- -rho/sigma^2/r^2*t(XS1) %*% (C*u2)
-       hess[isigma,ibetaS] <- t(hess[ibetaS,isigma])
-       hess[ibetaS,irho] <- t(XS1) %*%
+       hess[iBetaS,iBetaS] <- -t(XS0) %*% (XS0*a) + t(XS1) %*% (XS1*C)/r^2
+       hess[iBetaS,iBetaO] <- -t(XS1) %*% (XO1*C)*rho/r^2/sigma
+       hess[iBetaO,iBetaS] <- t(hess[iBetaS,iBetaO])
+       hess[iBetaS,iSigma] <- -rho/sigma^2/r^2*t(XS1) %*% (C*u2)
+       hess[iSigma,iBetaS] <- t(hess[iBetaS,iSigma])
+       hess[iBetaS,iRho] <- t(XS1) %*%
            (C*(u2/sigma + rho*XS1.g)/r^4 + lambdaB*rho/r^3)
-       hess[irho,ibetaS] <- t(hess[ibetaS,irho])
-       hess[ibetaO,ibetaO] <- t(XO1) %*%
+       hess[iRho,iBetaS] <- t(hess[iBetaS,iRho])
+       hess[iBetaO,iBetaO] <- t(XO1) %*%
            (XO1 * ((rho/r)^2*C - 1))/sigma^2
-       hess[ibetaO,isigma] <- t(XO1) %*%
+       hess[iBetaO,iSigma] <- t(XO1) %*%
            (C*rho^2/sigma^3*u2/r^2 +
             rho/sigma^2*lambdaB/r - 2*u2/sigma^3)
-       hess[isigma,ibetaO] <- t(hess[ibetaO,isigma])
-       hess[ibetaO,irho] <- t(XO1) %*%
+       hess[iSigma,iBetaO] <- t(hess[iBetaO,iSigma])
+       hess[iBetaO,iRho] <- t(XO1) %*%
            (-C*(u2/sigma + rho*XS1.g)/r^4*rho -
             lambdaB/r^3)/sigma
-       hess[irho,ibetaO] <- t(hess[ibetaO,irho])
-       hess[isigma,isigma] <- sum(
+       hess[iRho,iBetaO] <- t(hess[iBetaO,iRho])
+       hess[iSigma,iSigma] <- sum(
                                   -3*u2*u2/sigma^4
                                   +2*lambdaB* u2/r *rho/sigma^3
                                   +rho^2/sigma^4 *u2*u2/r^2 *C) +
                                       N1/sigma^2
-       hess[isigma,irho] <- hess[irho,isigma] <-
+       hess[iSigma,iRho] <- hess[iRho,iSigma] <-
            -sum((C*rho*(u2/sigma + rho*XS1.g)/r + lambdaB)*
                 u2/sigma^2)/r^3
-       hess[irho,irho] <-
+       hess[iRho,iRho] <-
            sum(C*((u2/sigma + rho*XS1.g)/r^3)^2 +
                lambdaB*(XS1.g*(1 + 2*rho^2) + 3*rho*u2/sigma) / r^5 )
        return( hess )
@@ -141,22 +141,22 @@ tobit2fit <- function(YS, XS, YO, XO, start,
     NO <- length( YS[YS > 0])
    NParam <- NXS + NXO + 2
    ## parameter indices
-   ibetaS <- 1:NXS
-   ibetaO <- seq(tail(ibetaS, 1)+1, length=NXO)
-   isigma <- tail(ibetaO, 1) + 1
-   irho <- tail(isigma, 1) + 1
+   iBetaS <- 1:NXS
+   iBetaO <- seq(tail(iBetaS, 1)+1, length=NXO)
+   iSigma <- tail(iBetaO, 1) + 1
+   iRho <- tail(iSigma, 1) + 1
    ## output, if asked for it
    if( print.level > 0) {
       cat( "Yo observed:", NO, "times; not observed:", NObs - NO, "times\n")
       cat( "Initial values:\n")
       cat("Selection\n")
-      print(start[ibetaS])
+      print(start[iBetaS])
       cat("Outcome\n")
-      print(start[ibetaO])
+      print(start[iBetaO])
       cat("sigma1\n")
-      print(start[isigma])
+      print(start[iSigma])
       cat("rho1\n")
-      print(start[irho])
+      print(start[iRho])
    }
    ## pre-calculate a few values:
    XS0 <- XS[YS==0,,drop=FALSE]

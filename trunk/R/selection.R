@@ -138,29 +138,29 @@ selection <- function(selection, outcome,
       YO <- YO[!badRow]
       NXS <- ncol(XS)
       NXO <- ncol(XO)
-      igamma <- 1:NXS
-      ibeta <- max(igamma) + seq(length=NXO)
-      isigma <- max(ibeta) + 1
-      irho <- max(isigma) + 1
+      iGamma <- 1:NXS
+      iBeta <- max(iGamma) + seq(length=NXO)
+      iSigma <- max(iBeta) + 1
+      iRho <- max(iSigma) + 1
       twoStep <- NULL
       if(is.null(start)) {
          twoStep <- heckit(selection, outcome, data=data)
          coefs <- coef(twoStep, part="full")
-         start[igamma] <- coefs[twoStep$param$index$betaS]
-         start[ibeta] <- coefs[twoStep$param$index$betaO]
-         start[isigma] <- coefs[twoStep$param$index$sigma]
-         start[irho] <- coefs[twoStep$param$index$rho]
-         if(start[irho] > 0.99)
-             start[irho] <- 0.99
-         else if(start[irho] < -0.99)
-             start[irho] <- -0.99
+         start[iGamma] <- coefs[twoStep$param$index$betaS]
+         start[iBeta] <- coefs[twoStep$param$index$betaO]
+         start[iSigma] <- coefs[twoStep$param$index$sigma]
+         start[iRho] <- coefs[twoStep$param$index$rho]
+         if(start[iRho] > 0.99)
+             start[iRho] <- 0.99
+         else if(start[iRho] < -0.99)
+             start[iRho] <- -0.99
          names(start) <- c(colnames(XS), colnames(XO), "sigma", "rho")
       }
       estimation <- tobit2fit(YS, XS, YO, XO, start,
                               print.level=print.level, ...)
-      param <- list(index=list(betaS=igamma,
-                    betaO=ibeta, sigma=isigma, rho=irho,
-                    errTerms = c( isigma, irho ) ),
+      param <- list(index=list(betaS=iGamma,
+                    betaO=iBeta, sigma=iSigma, rho=iRho,
+                    errTerms = c( iSigma, iRho ) ),
                     NXS=ncol(XS), NXO=ncol(XO),
                     N0=sum(YS==0), N1=sum(YS==1),
                     NObs=length(YS), NParam=length(start),
