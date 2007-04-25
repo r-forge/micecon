@@ -1,15 +1,22 @@
 \name{coef.selection}
 \alias{coef.selection}
+\alias{coef.summary.selection}
+
 \title{Extract Coefficients from Selection Models}
+
 \description{
   This function extracts coefficients
   from sample selection models
 }
+
 \usage{
 \method{coef}{selection}(object, part = "full", ...)
+\method{coef}{summary.selection}(object, part = "full", ...)
 }
+
 \arguments{
-  \item{object}{object of class "selection".}
+  \item{object}{object of class \code{selection}
+    or \code{summary.selection}.}
   \item{part}{character string indication which parts to extract:
    "full" for all estimated parameters (selection estimates,
    outcome estimates, error variance and correlation)
@@ -19,13 +26,17 @@
   \item{\dots}{currently not used.}
 }
 \value{
-  numeric vector of coefficients.
+   \code{coef.selection} returns a vector of the estimated coefficients.
+
+   \code{coef.summary.selection} returns a matrix of the estimated coefficients,
+      their standard errors, t-values, and p-values.
 }
+
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de},
    Ott Toomet (\email{otoomet@ut.ee})}
 
-\seealso{\code{\link{selection}}, \code{\link{coefficients}},
-   and \code{\link{vcov}}}
+\seealso{\code{\link{coefficients}}, \code{\link{selection}},
+   \code{\link{summary.selection}}, and \code{\link{vcov.selection}}}
 
 \examples{
 ## Estimate a simple female wage model taking into account the labour
@@ -38,5 +49,14 @@ coef( a )
 
 ## now extract the coefficients of the outcome model only:
 coef( a, part="outcome")
+
+## extract all coefficients, standard errors, t-values
+## and p-values of the model:
+coef( summary( a ) )
+
+## now extract the coefficients, standard errors, t-values
+## and p-values of the outcome model only:
+coef( summary( a ), part="outcome")
 }
+
 \keyword{methods}
