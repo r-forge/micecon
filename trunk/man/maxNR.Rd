@@ -7,7 +7,7 @@
 }
 \usage{
 maxNR(fn, grad = NULL, hess = NULL, start, print.level = 0,
-      tol = 1e-06, gradtol = 1e-06, steptol = 1e-07, lambdatol = 1e-06,
+      tol = 1e-06, gradtol = 1e-06, steptol = 1e-10, lambdatol = 1e-06,
       qrtol = 1e-10,
       iterlim = 15,
       constPar = NULL, activePar=rep(TRUE, NParam), ...)
