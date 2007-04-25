@@ -1,7 +1,5 @@
 \name{vcov.selection}
 \alias{vcov.selection}
-\alias{vcov.heckit}
-\alias{vcov.heckit5}
 
 \title{Extract Variance Covariance Matrix}
 \description{
