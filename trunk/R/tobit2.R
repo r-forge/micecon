@@ -163,7 +163,7 @@ tobit2 <- function(selection, formula,
    data$probitDummy <- probitEndogenous == probitLevels[ 2 ]
    ## now check whether two-step method is needed: either for final estimate or initial parameters
    if(method == "2step" | is.null(start)) {
-      twoStep <- heckit(selection, formula, data)
+      twoStep <- heckit2fit(selection, formula, data)
       if(method == "2step") {
          return(twoStep)
       }

@@ -1,4 +1,4 @@
-heckit5 <- function(selection, outcome1, outcome2,
+heckit5fit <- function(selection, outcome1, outcome2,
                     data=sys.frame(sys.parent()),
                     ys=FALSE, yo=FALSE,
                     xs=FALSE, xo=FALSE,

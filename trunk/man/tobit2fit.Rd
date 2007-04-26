@@ -1,17 +1,24 @@
 \name{tobit2fit}
 \alias{tobit2fit}
 \alias{tobit5fit}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{Fitting parametric sample selection models}
+
 \description{
-  These models do the actual fitting of the sample selection models.
-  The arguments must be given as numeric vectors/matrices, initial value
-  of parameters must be specified.  Intended for \code{micEcon} internal use.  
+   These functions do the actual fitting of tobit-2
+   (sample selection) and tobit-5 (switching regression)
+   models by Maximum Likelihood (ML) estimation.
+   The arguments must be given as numeric vectors/matrices,
+   initial value of parameters must be specified.
+   These functions are called by \code{\link{selection}} and
+   are intended for \code{micEcon} internal use.
 }
+
 \usage{
 tobit2fit(YS, XS, YO, XO, start, print.level = 0, ...)
 tobit5fit(YS, XS, YO1, XO1, YO2, XO2, start, print.level=0, ...) 
 }
+
 \arguments{
   \item{YS}{numeric 0/1 vector, where 0 denotes unobserved outcome
 (tobit 2) or outcome 1 observed (tobit 5)}
@@ -25,15 +32,14 @@ betaO(1), sigma(1), rho(1), betaO2, sigma2, rho2}
 increasingly more debugging information}
   \item{\dots}{Additional parameters to \code{\link{maxLik}}}
 }
-\details{
-These functions estimate the models by ML method.
-}
+
 \value{
-the returned object is identical to \code{\link{maxLik}} returned object
-with an extra class \code{tobit2} or \code{tobit5}
+The returned object is identical to \code{\link{maxLik}} returned object.
 }
 \author{Ott Toomet \email{otoomet@ut.ee}}
+
 \seealso{\code{\link{selection}}, \code{\link{maxLik}}}
+
 \keyword{internal}
 \keyword{models}
 \keyword{regression}

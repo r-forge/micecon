@@ -27,7 +27,7 @@ Loading required package: systemfit
 > print( greene )
 
 Call:
- heckit(selection = lfp ~ age + I(age^2) + faminc + kids + educ,      formula = wage ~ exper + I(exper^2) + educ + city, data = Mroz87) 
+ heckit(selection = lfp ~ age + I(age^2) + faminc + kids + educ,      outcome = wage ~ exper + I(exper^2) + educ + city, data = Mroz87) 
 
 Coefficients:
 S:(Intercept)          S:age     S:I(age^2)       S:faminc     S:kidsTRUE  
@@ -215,7 +215,7 @@ invMillsRatio    1.60271957
 > print( wooldridge )
 
 Call:
- heckit(selection = lfp ~ nwifeinc + educ + exper + I(exper^2) +      age + kids5 + kids618, formula = log(wage) ~ educ + exper +      I(exper^2), data = Mroz87) 
+ heckit(selection = lfp ~ nwifeinc + educ + exper + I(exper^2) +      age + kids5 + kids618, outcome = log(wage) ~ educ + exper +      I(exper^2), data = Mroz87) 
 
 Coefficients:
 S:(Intercept)     S:nwifeinc         S:educ        S:exper   S:I(exper^2)  
@@ -404,11 +404,11 @@ invMillsRatio -0.03103081  8.7226e-04  1.2845e-03 -2.6522e-05    1.7856e-02
 > yo1 <- xo1 + eps[,2]
 > xo2 <- runif(500)
 > yo2 <- xo2 + eps[,3]
-> heckit5test <- heckit5( ys~xs, list( yo1 ~ xo1, yo2 ~ xo2 ) )
+> heckit5test <- heckit( ys~xs, list( yo1 ~ xo1, yo2 ~ xo2 ) )
 > print( heckit5test )
 
 Call:
- heckit5(selection = ys ~ xs, outcome1 = list(yo1 ~ xo1, yo2 ~      xo2)) 
+ heckit(selection = ys ~ xs, outcome = list(yo1 ~ xo1, yo2 ~ xo2)) 
 
 Coefficients:
  S:(Intercept)            S:xs  O1:(Intercept)          O1:xo1  invMillsRatio1  
