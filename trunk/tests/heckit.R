@@ -49,7 +49,7 @@ xo1 <- runif(500)
 yo1 <- xo1 + eps[,2]
 xo2 <- runif(500)
 yo2 <- xo2 + eps[,3]
-heckit5test <- heckit5( ys~xs, list( yo1 ~ xo1, yo2 ~ xo2 ) )
+heckit5test <- heckit( ys~xs, list( yo1 ~ xo1, yo2 ~ xo2 ) )
 print( heckit5test )
 print( summary( heckit5test ) )
 print( coef( wooldridge ), digits = 5 )
