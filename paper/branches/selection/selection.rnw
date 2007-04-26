@@ -952,7 +952,7 @@ the standard errors calculated by \code{selection} are considerably
 smaller.  This is because of different ways of calculating the Hessian
 matrix -- while our implementation uses exact analytic Hessian, the
 implementation in the published errata uses information equality
-(BHHH) aproximation\footnote{\citet{calzola+fiorentini1992} show that
+(BHHH) aproximation\footnote{\citet{calzolari+fiorentini1993} show that
   different was to calculate the Hessian matrix result in
   substantially different estmates of standard errors.}
 
