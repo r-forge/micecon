@@ -945,16 +945,16 @@ Finally, we repeat the analysis with the maximum likelihood estimation method:
 summary( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city, data = Mroz87 ) )
 @
+%
 While the estimated coefficients are almost identical to the values
 published in the errata of \citet{greene2002}
 (\url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}),
 the standard errors calculated by \code{selection} are considerably
 smaller.  This is because of different ways of calculating the Hessian
-matrix -- while our implementation uses exact analytic Hessian, the
-implementation in the published errata uses information equality
-(BHHH) aproximation\footnote{\citet{calzolari+fiorentini1993} show that
-  different was to calculate the Hessian matrix result in
-  substantially different estmates of standard errors.}
+matrix may result in substantially different standard errors
+\citep{calzolari+fiorentini1993}.  Our implementation uses exact
+analytic Hessian, the implementation in the published errata uses
+information equality (BHHH) approximation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1093,11 +1093,10 @@ summary(selection(ys~x, y~x))
 The reason is, that $\varrho = 1$ lies at the boundary of the
 parameter space.  However, the 2-step method still works, although
 standard errors are large:
-<<>>=
+<<tobit_tobit2_summary>>=
 summary(selection(ys~x, y~x, method="2step"))
 @ 
 %
-
 
 
 \section{Conclusions}
@@ -1111,25 +1110,18 @@ superior estimation methods for censored data.
 We briefly describe the implementation and usage of tobit-2 and
 tobit-5 (switching regression) models in \pkg{micEcon}, and
 demonstrate the virtues and caveats of them using a number of
-examples.  Our implementation works well for correctly specified cases
--- where does the method.  In the case of severe misspecification or
-weak identification, a more robust maximisation algorithm might be
-useful, even if the problems lie elsewhere.  More robust optimisation
-is left for the future work.
+Monte-Carlo and real data examples.  Our implementation works well for
+correctly specified cases, the problems appearing in the case of
+misspecification or weak identification are related to the model
+itself.  In these problematic cases a more robust maximisation
+algorithm might be useful, even if the problems lie elsewhere.  More
+robust optimisation is left for the future work.
 
 
 
 \bibliography{selection}
 
 \end{document}
-
-3) Ask Bill Greene how the standard errors in the errata of example 22.8 are 
-obtained (e.g. robust standard errors or with an incorrect method)
-[Ott?]
-
-4) Explain in the paper why selection()'s standard errors differ from Greene's 
-or write that they are identical to Greene's (if he changes the errata)
-[Arne]
 
 5) Add/complete documentation of selection()
 [Arne]

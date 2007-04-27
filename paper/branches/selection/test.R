@@ -11,19 +11,6 @@ tst2 <- function(N=1000, rho=-0.7, print.level=0) {
    invisible(a)
 }
 
-MC2 <- function(R=19, N=500, mod=tst2) {
-   a <- coef(mod(N=N))
-   m <- matrix(0, length(a), R)
-   row.names(m) <- names(a)
-   m[,1] <- a
-   for(i in 2:R) {
-      m[,i] <- coef(t <- mod(N=N))
-   }
-   print(summary(t))
-   print(apply(m, 1, function(v) sqrt(var(v))))
-   invisible(m)
-}
-
 tstA <- function(N=500) {
    library(mvtnorm)
    eps <- rmvnorm(N, c(0,0), matrix(c(1,-0.7,-0.7,1), 2, 2))
@@ -48,7 +35,7 @@ tst5 <- function(N=500, print.level=0) {
    xo2 <- runif(N)
 #   xo2 <- xs
    yo2 <- xo2 + eps[,3]
-   a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), print.level=print.level)
+   a <- selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), print.level=print.level, iterlim=30)
    invisible(a)
 }
 
