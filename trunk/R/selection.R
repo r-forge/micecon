@@ -76,10 +76,10 @@ selection <- function(selection, outcome,
    if(method == "2step") {
       if(type == 2)
           twoStep <- heckit2fit(selection, outcome, data=data,
-            print.level = print.level, ... )
+            print.level = print.level)
       else if(type == 5)
           twoStep <- heckit5fit(selection, outcome, data=data,
-            print.level = print.level, ... )
+            print.level = print.level)
       else
           stop("unknown type")
       twoStep$call <- cl
@@ -147,7 +147,7 @@ selection <- function(selection, outcome,
       twoStep <- NULL
       if(is.null(start)) {
          twoStep <- heckit2fit(selection, outcome, data=data,
-            print.level = print.level, ... )
+            print.level = print.level)
          coefs <- coef(twoStep, part="full")
          start[iGamma] <- coefs[twoStep$param$index$betaS]
          start[iBeta] <- coefs[twoStep$param$index$betaO]
@@ -233,7 +233,7 @@ selection <- function(selection, outcome,
             cat("Start values by Heckman 2-step method (", NParam, " componenets)\n", sep="")
          }
          twoStep <- heckit5fit(selection, as.formula(formula1), as.formula(formula2),
-                           data=data, print.level = print.level, ... )
+                           data=data, print.level = print.level)
          ind <- twoStep$param$index
          start <- coef(twoStep, part="full")[c(ind$betaS,
                                   ind$betaO1, ind$sigma1, ind$rho1,
