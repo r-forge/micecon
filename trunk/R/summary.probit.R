@@ -5,7 +5,7 @@ summary.probit <- function(object, ...) {
    a <- c(summaryML,
           LRT=list(c(object$LRT, pchi2=pchi2)),
           NParam=object$NParam,
-          NObs=NObs(object),
+          nObs=nObs(object),
           N0=object$param$N0,
           N1=object$param$N1,
           df=object$df)

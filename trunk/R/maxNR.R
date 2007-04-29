@@ -15,7 +15,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
    ##               constVal
    ## grad        - gradient function (numeric used if missing).  Must return either
    ##               * vector, length=NParam
-   ##               * matrix, dim=c(NObs, 1).  Treated as vector
+   ##               * matrix, dim=c(nObs, 1).  Treated as vector
    ##               * matrix, dim=c(M, NParam), where M is arbitrary.  In this case the
    ##                 rows are simply summed (useful for maxBHHH).
    ## hess        - hessian function (numeric used if missing)
@@ -82,7 +82,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
          gr <- grad(theta, ...)
       } else {
          gr <- numericGradient(fn, theta, ...)
-                                        # Note we need NObs rows x NParam cols
+                                        # Note we need nObs rows x NParam cols
       }
       ## Now check if the gradient is vector or matrix...
       if(!is.null(dim(gr))) {

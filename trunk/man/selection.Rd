@@ -123,11 +123,11 @@ heckit( selection, outcome, data = sys.frame(sys.parent()),
     intercept;
     \code{N0, N1}, integer, number of observations with unobserved and
     observed outcomes;
-    \code{NObs}, integer, number of valid observations;
+    \code{nObs}, integer, number of valid observations;
     \code{NParam}, integer, number of the parameters in the model (not
     all are independent);
     \code{df}, integer, degrees of freedom.  Note this is not equal to
-    \code{NObs - NParam} because of the parameters are not independent.
+    \code{nObs - NParam} because of the parameters are not independent.
   }
   \item{lm, lm1, lm2}{objects of class 'lm' that contain the results
     of the 2nd step estimation(s) of the outcome equation(s).

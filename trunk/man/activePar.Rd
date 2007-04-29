@@ -27,7 +27,7 @@ activePar.default(x, \dots)
   change during optimisation algorithm.
 }
 \author{Ott Toomet, \email{otoomet@econ.au.dk}}
-\seealso{\code{\link{maxNR}}, \code{\link{NObs}}}
+\seealso{\code{\link{maxNR}}, \code{\link{nObs}}}
 \examples{
 # a simple two-dimensional exponential hat
 f <- function(a) exp(-a[1]^2 - a[2]^2)

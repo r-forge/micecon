@@ -1,16 +1,16 @@
-\name{NObs}
-\alias{NObs}
-\alias{NObs.default}
-\alias{NObs.lm}
+\name{nObs}
+\alias{nObs}
+\alias{nObs.default}
+\alias{nObs.lm}
 \title{Return number of observations for statistical models} 
 \description{
   Returns number of observations for statistical models.  The default
-  method assumes presence of a component \code{$param$NObs} in {x}.
+  method assumes presence of a component \code{$param$nObs} in {x}.
 }
 \usage{
-NObs(x, \dots)
-NObs.default(x, \dots)
-NObs.lm(x, \dots)
+nObs(x, \dots)
+nObs.default(x, \dots)
+nObs.lm(x, \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,7 +19,7 @@ NObs.lm(x, \dots)
 }
 \details{
   This is a generic function.  The default method returns the component
-  \code{x$param$NObs}.  The \code{lm}-method is based on
+  \code{x$param$nObs}.  The \code{lm}-method is based on
   qr-decomposition, in the same way as the does \code{\link{summary.lm}}.}  
 }
 \value{
@@ -32,6 +32,6 @@ NObs.lm(x, \dots)
 x <- runif(100)
 y <- x + rnorm(100) > 0
 p <- probit(y ~ x)
-NObs(p)
+nObs(p)
 }
 \keyword{methods}
