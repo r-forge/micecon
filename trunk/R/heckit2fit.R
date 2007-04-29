@@ -1,4 +1,4 @@
-heckit2fit <- function( selection, formula,
+heckit2fit <- function( selection, outcome,
                    data=sys.frame(sys.parent()),
                    inst = NULL,
                    print.level = 0) {
@@ -6,12 +6,12 @@ heckit2fit <- function( selection, formula,
    # where outcome is not observed.  na-s cannot be passed either.
    # However, we can (and should?) omit the na-s in explanatory and probit outcomes.  This needs
    # a bit of refinement.
-   if( class( formula ) != "formula" ) {
-      stop( "argument 'formula' must be a formula" )
-   } else if( length( formula ) != 3 ) {
-      stop( "argument 'formula' must be a 2-sided formula" )
-   } else if( "invMillsRatio" %in% all.vars( formula ) ) {
-      stop( "argument 'formula' may not include a variable name",
+   if( class( outcome ) != "formula" ) {
+      stop( "argument 'outcome' must be a formula" )
+   } else if( length( outcome ) != 3 ) {
+      stop( "argument 'outcome' must be a 2-sided formula" )
+   } else if( "invMillsRatio" %in% all.vars( outcome ) ) {
+      stop( "argument 'outcome' may not include a variable name",
          " 'invMillsRatio'" )
    } else if( class( selection ) != "formula" ) {
       stop( "argument 'selection' must be a formula" )
@@ -56,7 +56,7 @@ heckit2fit <- function( selection, formula,
    }
    probitDummy <- YS == probitLevels[ 2 ]
    ## Outcome equation
-   m <- match(c("formula", "data", "subset", "weights",
+   m <- match(c("outcome", "data", "subset", "weights",
                 "offset"), names(mf), 0)
    mfO <- mf[c(1, m)]
    mfO$na.action <- na.pass
@@ -130,7 +130,7 @@ heckit2fit <- function( selection, formula,
       if( print.level > 0 ) {
          cat ( "Estimating 2nd step 2SLS/IV model . . ." )
       }
-      step2formula <- as.formula( paste( formula[ 2 ], "~", formula[ 3 ],
+      step2formula <- as.formula( paste( outcome[ 2 ], "~", outcome[ 3 ],
                                         "+ invMillsRatio" ) )
       formulaList <- list( step2formula )
       instImr <- as.formula( paste( "~", inst[ 2 ], "+ invMillsRatio" ) )
