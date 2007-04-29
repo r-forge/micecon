@@ -10,7 +10,7 @@ maxNR(fn, grad = NULL, hess = NULL, start, print.level = 0,
       tol = 1e-06, gradtol = 1e-06, steptol = 1e-10, lambdatol = 1e-06,
       qrtol = 1e-10,
       iterlim = 15,
-      constPar = NULL, activePar=rep(TRUE, NParam), ...)
+      constPar = NULL, activePar=rep(TRUE, nParam), ...)
 }
 \arguments{
   \item{fn}{function to be maximised.  In order to use numeric gradient

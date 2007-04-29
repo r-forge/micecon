@@ -94,7 +94,7 @@ heckit2fit <- function( selection, outcome,
    iRho <- iSigma + 1
    ##
    nObs <- length(YS)
-   NParam <- iRho
+   nParam <- iRho
    N0 <- sum(YS == levels(YS)[1])
    N1 <- nObs - N0
                                         # sigma, rho
@@ -167,7 +167,7 @@ heckit2fit <- function( selection, outcome,
       xMat <- outcomeMod$eq[[ 1 ]]$x
    }
    ## Varcovar matrix.  Fill only a few parts, rest will remain NA
-   vc <- matrix(0, NParam, NParam)
+   vc <- matrix(0, nParam, nParam)
    colnames(vc) <- row.names(vc) <- names(coefficients)
    vc[] <- NA
    if(!is.null(vcov(result$probit)))
@@ -193,7 +193,7 @@ heckit2fit <- function( selection, outcome,
                                         # The location of results in the coef vector
                         oIntercept=intercept,
                         N0=N0, N1=N1,
-                        NParam=NParam, nObs=nObs, df=nObs-NParam+1)
+                        nParam=nParam, nObs=nObs, df=nObs-nParam+1)
    result$lm <- outcomeMod
    result$tobitType <- 2
    result$method <- "2step"

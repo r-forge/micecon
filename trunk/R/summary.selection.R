@@ -13,11 +13,11 @@ summary.selection <- function(object, ...) {
             y <- model.response(model.frame(model))
             if(intercept) {
                R2 <- 1 - sum(residuals(model)^2)/sum((y - mean(y))^2)
-               R2adj <- 1 - (1 - R2)*(nObs(model) - 1)/(nObs(model) - NParam(model))
+               R2adj <- 1 - (1 - R2)*(nObs(model) - 1)/(nObs(model) - nParam(model))
             }
             else {
                R2 <- 1 - sum(residuals(model)^2)/sum(y^2)
-               R2adj <- 1 - (1 - R2)*(nObs(model))/(nObs(model) - NParam(model))
+               R2adj <- 1 - (1 - R2)*(nObs(model))/(nObs(model) - nParam(model))
             }
          }
          else {
@@ -85,7 +85,7 @@ print.summary.selection <- function(x,
          cat( " (", x$param$N1, " selection 1 and ",
             x$param$N2, " selection 2)", sep = "" )
       }
-      cat( " and", x$param$NParam, "free parameters" )
+      cat( " and", x$param$nParam, "free parameters" )
       cat( " (df = ", x$param$df, ")\n", sep="")
       if(part == "full") {
          cat("Probit selection equation:\n")

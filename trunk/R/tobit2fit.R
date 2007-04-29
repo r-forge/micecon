@@ -59,7 +59,7 @@ tobit2fit <- function(YS, XS, YO, XO, start,
        B <- (XS1.g + rho/sigma*u2)/r
        lambdaB <- ifelse(B > -30, dnorm(B)/pnorm(B), B)
                                         # This is a hack in order to avoid numeric problems
-       gradient <- numeric(NParam)
+       gradient <- numeric(nParam)
        gradient[iBetaS] <- t(XS0) %*% (-dnorm(-XS0.g)/pnorm(-XS0.g)) +
            (t(XS1) %*% lambdaB)/r
        gradient[iBetaO] <- t(XO1) %*% (u2/sigma^2 - lambdaB*rho/sigma/r)
@@ -95,7 +95,7 @@ tobit2fit <- function(YS, XS, YO, XO, start,
                                         # recommended by Dimitrios Rizopoulos, KULeuven
                                         # This is a hack in order to avoid numerical problems.  How to do
                                         # it better?  How to prove the limit value?
-       hess <- matrix(0, NParam, NParam)
+       hess <- matrix(0, nParam, nParam)
        a <- (-fXS0.g*FXS0.g*XS0.g + fXS0.g^2)/FXS0.g^2
        hess[iBetaS,iBetaS] <- -t(XS0) %*% (XS0*a) + t(XS1) %*% (XS1*C)/r^2
        hess[iBetaS,iBetaO] <- -t(XS1) %*% (XO1*C)*rho/r^2/sigma
@@ -139,7 +139,7 @@ tobit2fit <- function(YS, XS, YO, XO, start,
                                         # Total # of parameters
     nObs <- length( YS)
     NO <- length( YS[YS > 0])
-   NParam <- NXS + NXO + 2
+   nParam <- NXS + NXO + 2
    ## parameter indices
    iBetaS <- 1:NXS
    iBetaO <- seq(tail(iBetaS, 1)+1, length=NXO)

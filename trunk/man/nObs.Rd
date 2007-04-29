@@ -26,7 +26,7 @@ nObs.lm(x, \dots)
   A numeric, number of observations
 }
 \author{Ott Toomet, \email{otoomet@econ.au.dk}}
-\seealso{\code{\link{NParam}}}
+\seealso{\code{\link{nParam}}}
 \examples{
 ## Do a trivial probit example and find number of observations
 x <- runif(100)

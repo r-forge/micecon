@@ -30,7 +30,7 @@ probit <- function( formula, subset, start=NULL,
       loglik <- sum(pnorm( xb0, log=TRUE, lower.tail=FALSE)) + sum(pnorm( xb1, log.p=TRUE))
    }
    gradlik <- function(beta) {
-      ## gradient is 1xNParam matrix
+      ## gradient is 1 x nParam matrix
       xb0 <- x0 %*% beta
       xb1 <- x1 %*% beta
       gradlik <- - t(dnorm(xb0)/pnorm(xb0, lower.tail=FALSE)) %*% x0 +
@@ -67,7 +67,7 @@ probit <- function( formula, subset, start=NULL,
    mt <- attr(mf, "terms")
    Y <- model.response(mf, "numeric")
    X <- model.matrix(mt, mf, contrasts)
-   NParam <- ncol( X)
+   nParam <- ncol( X)
    nObs <- length( Y)
    N1 <- length( y[Y != 0])
    N0 <- nObs - N1
@@ -77,7 +77,7 @@ probit <- function( formula, subset, start=NULL,
    x0 <- X[Y==0,]
    x1 <- X[Y==1,]
    if(is.null(start)) {
-      start <- rep( 0, NParam)
+      start <- rep( 0, nParam)
    }
    if(is.null(names(start))) {
       names(start) <- dimnames(X)[[2]]
@@ -89,14 +89,14 @@ probit <- function( formula, subset, start=NULL,
                                         #
    ## Likelihood ratio test: H0 -- all the coefficients, except intercept
    ## are zeros.  ML estimate for this model is qnorm(N1/nObs)
-   ll.bar <- loglik(c(qnorm(N1/nObs), rep(0, NParam-1)))
+   ll.bar <- loglik(c(qnorm(N1/nObs), rep(0, nParam-1)))
    LRT <- 2*(estimation$maximum - ll.bar)
                                         #
    result <- c(estimation,
-               LRT=list(list(LRT=LRT, df=NParam-1)),
+               LRT=list(list(LRT=LRT, df=nParam-1)),
                                         # there are df-1 constraints
-               param=list(list(NParam=NParam,nObs=nObs, N1=N1, N0=N0)),
-               df=nObs - NParam,
+               param=list(list(nParam=nParam,nObs=nObs, N1=N1, N0=N0)),
+               df=nObs - nParam,
                call=cl,
                terms=mt,
                x=switch(x, "1"=list(X), "0"=NULL),

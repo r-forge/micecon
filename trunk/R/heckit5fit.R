@@ -197,11 +197,11 @@ heckit5fit <- function(selection, outcome1, outcome2,
    iMills2 <- tail(iBetaO2, 1) + 1
    iSigma2 <- iMills2 + 1
    iRho2 <- tail(iSigma2, 1) + 1
-   NParam <- iRho2
+   nParam <- iRho2
                                         # invMillsRatios are counted as parameter
    #
       ## Varcovar matrix.  Fill only a few parts, rest will remain NA
-   coefficients <- numeric(NParam)
+   coefficients <- numeric(nParam)
    coefficients[iBetaS] <- coef(probit)
    names(coefficients)[iBetaS] <- gsub("^XS", "", names(coef(probit)))
    coefficients[iBetaO1] <- coef(lm1)[names(coef(lm1)) != "XO1invMillsRatio"]
@@ -215,7 +215,7 @@ heckit5fit <- function(selection, outcome1, outcome2,
          coef(lm2)["XO2invMillsRatio"], sigma2, rho2)
    names(coefficients)[c(iMills1, iSigma1, iRho1, iMills2, iSigma2, iRho2)] <-
        c("invMillsRatio1", "sigma1", "rho1", "invMillsRatio2", "sigma2", "rho2")
-   vc <- matrix(0, NParam, NParam)
+   vc <- matrix(0, nParam, nParam)
    colnames(vc) <- row.names(vc) <- names(coefficients)
    vc[] <- NA
    if(!is.null(vcov(probit)))
@@ -229,7 +229,7 @@ heckit5fit <- function(selection, outcome1, outcome2,
                  outcome = c( iBetaO1, iMills1, iBetaO2, iMills2 ) ),
                                         # The location of results in the coef vector
                  oIntercept1=intercept1, oIntercept2=intercept2,
-                 nObs=nObs, NParam=NParam, df=nObs-NParam + 2,
+                 nObs=nObs, nParam=nParam, df=nObs-nParam + 2,
                  NXS=NXS, NXO1=NXO1, NXO2=NXO2, N1=N1, N2=N2)
    #
    result <- list(probit=probit,

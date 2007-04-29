@@ -63,7 +63,7 @@ tobit2 <- function(selection, formula,
       r <- sqrt( 1 - rho^2)
       B <- (Z2.g + rho/sigma*u2)/r
       lambdaB <- dnorm(B)/pnorm(B)
-      gradient <- numeric(NParam)
+      gradient <- numeric(nParam)
       gradient[iGamma] <- t(Z1) %*% (-dnorm(-Z1.g)/pnorm(-Z1.g)) +
          (t(Z2) %*% lambdaB)/r
       gradient[iBeta] <- t(X2) %*% (u2/sigma^2 - lambdaB*rho/sigma/r)
@@ -98,7 +98,7 @@ tobit2 <- function(selection, formula,
                                         # recommended by Dimitrios Rizopoulos, KULeuven
                                         # This is a hack in order to avoid numerical problems.  How to do
                                         # it better?  How to prove the limit value?
-      hess <- matrix(0, NParam, NParam)
+      hess <- matrix(0, nParam, nParam)
       a <- (-fZ1.g*FZ1.g*Z1.g + fZ1.g^2)/FZ1.g^2
       hess[iGamma,iGamma] <- -t(Z1) %*% (Z1*a) + t(Z2) %*% (Z2*C)/r^2
       hess[iGamma,iBeta] <- -t(Z2) %*% (X2*C)*rho/r^2/sigma
@@ -198,7 +198,7 @@ tobit2 <- function(selection, formula,
                                         #
    NZ <- ncol( Z)
    NX <- ncol( X)
-   NParam <- NZ + NX + 2
+   nParam <- NZ + NX + 2
                                         # Total # of parameters
    nObs <- length(Y1)
    N1 <- length( Y1[Y1==0])
@@ -253,7 +253,7 @@ tobit2 <- function(selection, formula,
 #    compare.derivatives(gradlik, hesslik, t0=init, ...)
    param <- list(index=list(betaS=iGamma, betaO=iBeta,
                    sigma=iSigma, rho=iRho),
-                 NParam=NParam,
+                 nParam=nParam,
                  nObs=nObs,
                  N0=N1,
                  N1=N2,

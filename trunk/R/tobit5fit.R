@@ -54,7 +54,7 @@ tobit5fit <- function(YS, XS, YO1, XO1, YO2, XO2, start,
     loglik <- l2 + l3 - Nobs/2*log( 2*pi)
 }
     gradlik <- function(beta) {
-       ## gradient is 1xNParam matrix
+       ## gradient is 1 x nParam matrix
         ## components of the gradient are ordered as: g b_2, s_2, r_2, b_3,
         ## s_3, r_3
         g <- beta[iGamma]
