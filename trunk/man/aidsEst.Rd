@@ -28,7 +28,7 @@
       the quantities (just to label elasticities).}
    \item{shifterNames}{an optional vector of strings containing the names of
       the demand shifters.}
-   \item{method}{the method to estimate the aids (see details).}
+   \item{method}{the method to estimate the AIDS (see details).}
    \item{hom}{logical. Should the homogeneity condition be imposed?}
    \item{sym}{logical. Should the symmetry condition be imposed?}
    \item{elaFormula}{the elasticity formula (see \code{\link{aidsEla}}).}
