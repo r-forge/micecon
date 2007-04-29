@@ -41,7 +41,7 @@ probit(formula, subset, start = NULL, data = sys.frame(sys.parent()),
     \item{LRT}{The LRT value}
     \item{df}{Degrees of freedom for LRT (= df of the model - 1)}
     LRT is distributed by chi2(df).}
-  \item{NParam}{Number of parameters of the model including constant}
+  \item{nParam}{Number of parameters of the model including constant}
   \item{nObs}{Number of the observations}
   \item{N1}{Number of observations with non-zero (true) response}
   \item{N0}{Number of observations with zero (false) response}

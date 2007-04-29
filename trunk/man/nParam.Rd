@@ -1,17 +1,17 @@
-\name{NParam}
-\alias{NParam}
-\alias{NParam.default}
-\alias{NParam.lm}
+\name{nParam}
+\alias{nParam}
+\alias{nParam.default}
+\alias{nParam.lm}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Number of model parameters}
 \description{
   This function returns the number of model parameters.  The default
-  method returns the component \code{x$param$NParam}.
+  method returns the component \code{x$param$nParam}.
 }
 \usage{
-NParam(x, ...)
-NParam.default(x, \dots)
-NParam.lm(x, \dots)
+nParam(x, ...)
+nParam.default(x, \dots)
+nParam.lm(x, \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \details{
@@ -34,6 +34,6 @@ x2 <- runif(100)
 y <- 3 + 4*x1 + 5*x2 + rnorm(100)
 m <- lm(y~x1+x2)  # estimate it
 summary(m)
-NParam(m) # you get 3
+nParam(m) # you get 3
 }
 \keyword{methods}

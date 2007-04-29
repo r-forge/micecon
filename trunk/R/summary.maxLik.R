@@ -30,16 +30,16 @@ summary.maxLik <- function( object, ... ) {
    ## type       : type of optimisation
    ##
    result <- object$maximisation
-   NParam <- length(coef <- coef.maxLik(object))
+   nParam <- length(coef <- coef.maxLik(object))
    if(!is.null(object$activePar)) {
       activePar <- object$activePar
    } else {
-      activePar <- rep(TRUE, NParam)
+      activePar <- rep(TRUE, nParam)
    }
    if(object$code < 100) {
       if(min(abs(eigen(Hessian(object)[activePar,activePar],
                        symmetric=TRUE, only.values=TRUE)$values)) > 1e-6) {
-         varcovar <- matrix(0, NParam, NParam)
+         varcovar <- matrix(0, nParam, nParam)
          varcovar[activePar,activePar] <-
              solve(-Hessian(object)[activePar,activePar])
          hdiag <- diag(varcovar)

@@ -34,11 +34,11 @@ summary.maximisation <- function(object, hessian=FALSE, unsucc.step=FALSE,
    ## iterations : number of iterations
    ## type       : type of optimisation
    ##
-   NParam <- length(object$estimate)
+   nParam <- length(object$estimate)
    if(!is.null(object$acivePar)) {
       activePar <- object$activePar
    } else {
-      activePar <- rep(TRUE, NParam)
+      activePar <- rep(TRUE, nParam)
    }
    if(object$code == 3 & unsucc.step) {
       a <- cbind(object$last.step$theta0, object$last.step$theta1)

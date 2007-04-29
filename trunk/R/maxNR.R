@@ -6,7 +6,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
                   qrtol=1e-10,
                   iterlim=15,
                   constPar=NULL,
-                  activePar=rep(TRUE, NParam),
+                  activePar=rep(TRUE, nParam),
                   ...) {
    ## Newton-Raphson maximisation
    ## Parameters:
@@ -14,9 +14,9 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
    ##               vector value with possible attributes constPar and
    ##               constVal
    ## grad        - gradient function (numeric used if missing).  Must return either
-   ##               * vector, length=NParam
+   ##               * vector, length=nParam
    ##               * matrix, dim=c(nObs, 1).  Treated as vector
-   ##               * matrix, dim=c(M, NParam), where M is arbitrary.  In this case the
+   ##               * matrix, dim=c(M, nParam), where M is arbitrary.  In this case the
    ##                 rows are simply summed (useful for maxBHHH).
    ## hess        - hessian function (numeric used if missing)
    ## start       - initial parameter vector (eventually w/names)
@@ -82,14 +82,14 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
          gr <- grad(theta, ...)
       } else {
          gr <- numericGradient(fn, theta, ...)
-                                        # Note we need nObs rows x NParam cols
+                                        # Note we need nObs rows x nParam cols
       }
       ## Now check if the gradient is vector or matrix...
       if(!is.null(dim(gr))) {
          return(colSums(gr))
       } else {
          ## ... or vector if only one parameter
-         if(length(gr) > NParam) {
+         if(length(gr) > nParam) {
             return(sum(gr))
          }
       }
@@ -104,8 +104,8 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
    ## -------------------------------------------------
    maximisation.type <- "Newton-Raphson maximisation"
    nimed <- names(start)
-   NParam <- length(start)
-   I <- diag(rep(1, NParam))     # I is unit matrix
+   nParam <- length(start)
+   I <- diag(rep(1, nParam))     # I is unit matrix
    activePar[constPar] <- FALSE
    start1 <- start
    iter <- 0
@@ -128,9 +128,9 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
    if(any(is.na(G1))) {
       stop("Na in the initial gradient")
    }
-   if(length(G1) != NParam) {
+   if(length(G1) != nParam) {
       stop( "length of gradient (", length(G1),
-         ") not equal to the no. of parameters (", NParam, ")" )
+         ") not equal to the no. of parameters (", nParam, ")" )
    }
    H1 <- hessian(start)
    if(any(is.na(H1))) {
@@ -172,7 +172,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
          H <- H - (abs(me) + lambdatol)*I
                                         # how to make it better?
       }
-      amount <- vector("numeric", NParam)
+      amount <- vector("numeric", nParam)
       amount[activePar] <- qr.solve(H[activePar,activePar,drop=FALSE],
                                     G0[activePar], tol=qrtol)
       start1 <- start0 - step*amount
@@ -183,7 +183,7 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
          if(any(is.na(constPar))) {
             stop("NA in the list of constants")
          }
-         activePar <- rep(TRUE, NParam)
+         activePar <- rep(TRUE, nParam)
          activePar[constPar] <- FALSE
          if(!is.null(attr(f1, "constVal"))) {
             start1[constPar] <- attr(f1, "constVal")

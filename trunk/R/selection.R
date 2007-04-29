@@ -167,7 +167,7 @@ selection <- function(selection, outcome,
                     outcome = iBeta ),
                     NXS=ncol(XS), NXO=ncol(XO),
                     N0=sum(YS==0), N1=sum(YS==1),
-                    nObs=length(YS), NParam=length(start),
+                    nObs=length(YS), nParam=length(start),
                     df=length(YS) - length(start))
    }
    else if(type == 5) {
@@ -225,12 +225,12 @@ selection <- function(selection, outcome,
       iBetaO2 <- seq(tail(iRho1, 1) + 1, length=NXO2)
       iSigma2 <- tail(iBetaO2, 1) + 1
       iRho2 <- tail(iSigma2, 1) + 1
-      NParam <- iRho2
+      nParam <- iRho2
       twoStep <- NULL
       if(is.null(start)) {
-         start <- numeric(NParam)
+         start <- numeric(nParam)
          if(print.level > 0) {
-            cat("Start values by Heckman 2-step method (", NParam, " componenets)\n", sep="")
+            cat("Start values by Heckman 2-step method (", nParam, " componenets)\n", sep="")
          }
          twoStep <- heckit5fit(selection, as.formula(formula1), as.formula(formula2),
                            data=data, print.level = print.level, ... )
@@ -250,7 +250,7 @@ selection <- function(selection, outcome,
                     NXS=ncol(XS),
                     NXO1=ncol(XO1), NXO2=ncol(XO2),
                     N1=sum(YS==0), N2=sum(YS==1),
-                    nObs=length(YS), NParam=length(start),
+                    nObs=length(YS), nParam=length(start),
                     df=length(YS) - length(start))
    }
    ## now fit the model
