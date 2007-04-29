@@ -1,7 +1,7 @@
 heckit2fit <- function( selection, outcome,
                    data=sys.frame(sys.parent()),
                    inst = NULL,
-                   print.level = 0) {
+                   print.level = 0, ... ) {
    # What is the role of na.action here?  We cannot use na.omit -- we must not omit the observation
    # where outcome is not observed.  na-s cannot be passed either.
    # However, we can (and should?) omit the na-s in explanatory and probit outcomes.  This needs
