@@ -52,6 +52,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    nObs   <- nrow( data )      # number of observations
    sample <- if( px == "SL") c( 2:nObs ) else c( 1:nObs )
    result <- list()
+   result$call <- match.call()
    wMeans <- numeric( nGoods )  # mean expenditure shares
    pMeans <- numeric( nGoods )  # mean prices
    for( i in seq( nGoods ) ) {
@@ -219,6 +220,10 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    result$lnp <- lnp
    result$wMeans <- wMeans
    result$pMeans <- pMeans
+   result$shareNames <- shareNames
+   result$priceNames <- priceNames
+   result$totExpName <- totExpName
+
    class( result ) <- "aidsEst"
    return( result )
 }

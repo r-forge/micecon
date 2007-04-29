@@ -94,6 +94,10 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
       covariance matrix (see \code{\link[systemfit]{systemfit}}).}
    \item{pMeans}{means of the prices.}
    \item{wMeans}{means of the expenditure shares.}
+   \item{call}{the call of \code{aidsEst}.}
+   \item{priceNames}{names of the prices.}
+   \item{shareNames}{names of the expenditure shares.}
+   \item{totExpName}{name of the variable for total expenditure.}
 }
 
 \references{
