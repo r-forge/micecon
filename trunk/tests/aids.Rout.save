@@ -37,10 +37,8 @@ Repeating the demand analysis of Blanciforti, Green & King (1986)
 > print( estResultLA )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
 -0.255  0.110  0.261  0.884 
@@ -79,10 +77,8 @@ wFood4  0.423  0.1554  0.1363 -0.715
 > print( estResultLATX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
 -0.255  0.110  0.261  0.884 
@@ -132,10 +128,8 @@ wFood4  0.423  0.1554  0.1363 -0.715
 > print( estResultLAhom )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
 -0.2600  0.0914  0.2441  0.9245 
@@ -174,10 +168,8 @@ wFood4  0.383  0.2625  0.0872 -0.733
 > print( estResultLAhomTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
 -0.2600  0.0914  0.2441  0.9245 
@@ -227,10 +219,8 @@ wFood4  0.383  0.2625  0.0872 -0.733
 > print( estResultLAunr )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
 -0.0755  0.1564  0.2428  0.6764 
@@ -269,10 +259,8 @@ wFood4  0.344 -0.0246  0.1205 -0.556
 > print( estResultLAunrTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
 -0.0755  0.1564  0.2428  0.6764 
@@ -327,10 +315,8 @@ Repeating the evaluation of different elasticity formulas of Green & Alston (199
 > print( estResultAIDS )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
 -0.240  0.120  0.267  0.854 
@@ -370,10 +356,8 @@ wFood4  0.0151  0.09031  0.2324 -0.3378
 > print( estResultAIDSTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
 -0.240  0.120  0.267  0.854 
@@ -424,10 +408,8 @@ wFood4  0.0151  0.09031  0.2324 -0.3378
 > print( estResultAIDShom )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
 -0.2614  0.0978  0.2507  0.9128 
@@ -467,10 +449,8 @@ wFood4 -0.1088  0.18913  0.202 -0.2820
 > print( estResultAIDShomTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
 -0.2614  0.0978  0.2507  0.9128 
@@ -521,10 +501,8 @@ wFood4 -0.1088  0.18913  0.202 -0.2820
 > print( estResultAIDSunr )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
 -0.0739  0.1649  0.2491  0.6599 
@@ -564,10 +542,8 @@ wFood4  0.302 -0.0329  0.1462 -0.537
 > print( estResultAIDSunrTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
 -0.0739  0.1649  0.2491  0.6599 
@@ -619,10 +595,8 @@ there are some NAs in the data, all observations (rows) with NAs are excluded fr
 > print( estResultLaSNa )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: Linear Approximation (LA) with Stone Index (S)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
 -0.247  0.109  0.268  0.870 
@@ -663,10 +637,8 @@ there are some NAs in the data, all observations (rows) with NAs are excluded fr
 > print( estResultLaSlNa )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
 -0.255  0.110  0.261  0.884 
@@ -707,10 +679,8 @@ there are some NAs in the data, all observations (rows) with NAs are excluded fr
 > print( estResultLaLNa )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: Linear Approximation (LA) with Laspeyres Index (L)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
 -0.248  0.123  0.273  0.852 
@@ -751,10 +721,8 @@ there are some NAs in the data, all observations (rows) with NAs are excluded fr
 > print( estResultAIDSNa )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-
-Estimated Coefficients
+Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
 -0.248  0.123  0.273  0.852 
