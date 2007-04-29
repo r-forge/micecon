@@ -21,16 +21,16 @@ tobit5fit(YS, XS, YO1, XO1, YO2, XO2, start, print.level=0, ...)
 
 \arguments{
   \item{YS}{numeric 0/1 vector, where 0 denotes unobserved outcome
-(tobit 2) or outcome 1 observed (tobit 5)}
+(tobit 2) or outcome 1 observed (tobit 5).}
   \item{XS, XO, XO1, XO2}{numeric matrix, model matrix for selection and
-outcome equations}
+outcome equations.}
   \item{YO}{numeric vector, observed outcomes.  Values for unobserved
-outcomes are ignored (they may or may not be NA)}
+outcomes are ignored (they may or may not be NA).}
   \item{start}{numeric vector of initial values.  The order is: betaS,
-betaO(1), sigma(1), rho(1), betaO2, sigma2, rho2}
+betaO(1), sigma(1), rho(1), betaO2, sigma2, rho2.}
   \item{print.level}{numeric, values greater than 0 will produce
-increasingly more debugging information}
-  \item{\dots}{Additional parameters to \code{\link{maxLik}}}
+increasingly more debugging information.}
+  \item{\dots}{Additional parameters to \code{\link{maxLik}}.}
 }
 
 \value{
