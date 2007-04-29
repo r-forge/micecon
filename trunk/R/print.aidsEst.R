@@ -1,7 +1,7 @@
 print.aidsEst <- function( x, ... ) {
    cat( "\nDemand analysis with the Almost Ideal " )
    cat( "Demand System (AIDS)\n" )
-   cat( "\nEstimation Method: " )
+   cat( "Estimation Method: " )
    if( substr( x$method, 1, 2 ) == "LA" ) {
       cat( "Linear Approximation (LA) with " )
       if( x$px == "S" ) {
@@ -33,7 +33,7 @@ print.aidsEst <- function( x, ... ) {
          cat( "unknown price index\n" )
       }
    }
-   cat( "\nEstimated Coefficients\n" )
+   cat( "Estimated Coefficients:\n" )
    cat( "alpha\n" )
    print( x$coef$alpha )
    cat( "beta\n" )
