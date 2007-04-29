@@ -14,9 +14,9 @@ print.summary.maximisation <- function( x, ... ) {
       cat("Function value:", summary$maximum, "\n")
       cat("Estimates:\n")
       print(summary$estimate)
-      if(!is.null(summary$Hessian)) {
+      if(!is.null(summary$hessian)) {
          cat("Hessian:\n")
-         print(summary$Hessian)
+         print(summary$hessian)
       }
    }
    cat("--------------------------------------------\n")

@@ -14,10 +14,10 @@ vcov.maxLik <- function(object, ...) {
        return(object$varcovar)
    ## otherwise invert hessian
    activePar <- activePar(object)
-   if(min(abs(eigen(Hessian(object)[activePar,activePar],
+   if(min(abs(eigen(hessian(object)[activePar,activePar],
                     symmetric=TRUE, only.values=TRUE)$values)) > 1e-6) {
       varcovar <- matrix(0, nParam(object), nParam(object))
-      varcovar[activePar,activePar] <- solve(-Hessian(object)[activePar,activePar])
+      varcovar[activePar,activePar] <- solve(-hessian(object)[activePar,activePar])
    }
    else
        varcovar <- NULL
