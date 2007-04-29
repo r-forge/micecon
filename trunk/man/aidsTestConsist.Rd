@@ -1,5 +1,6 @@
 \name{aidsTestConsist}
 \alias{aidsTestConsist}
+\alias{testConsist.aidsEst}
 \title{Consistency Test of the AIDS}
 \description{
    Test whether the specification of the AIDS is consistent
@@ -9,6 +10,8 @@
 \usage{
    aidsTestConsist( priceNames, shareNames, totExpName, data, coef = NULL,
       alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) )
+
+   \method{testConsist}{aidsEst}( object, ... )
 }
 
 \arguments{
@@ -19,6 +22,14 @@
    \item{data}{a data frame containing the data.}
    \item{coef}{a list containing the coefficients alpha, beta and gamma.}
    \item{alpha0}{coefficient \eqn{\alpha_0} of the translog price index.}
+   \item{object}{an object of class \code{aidsEst}.}
+   \item{...}{currently not used.}
+}
+
+\details{
+   \code{testConsist.aidsEst} is a wrapper function to \code{aidsTestConsist}
+   that extracts all relevant arguments for \code{aidsTestConsist}
+   from \code{object}.
 }
 
 \value{
@@ -62,6 +73,9 @@
       coef = estResult$coef )
    tc$mPercent   # great!
    tc$cPercent   # Oh, that is bad!
+
+   # the same can be obtained in an easier way
+   testConsist.aidsEst( estResult )
 }
 
 \keyword{models}
