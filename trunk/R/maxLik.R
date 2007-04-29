@@ -8,8 +8,8 @@ maxLik <- function(logLik, grad=NULL, hess=NULL, start,
    ## logLik     log-likelihood function.  First argument must be the vector of parameters.
    ## grad       gradient of log-likelihood.  If NULL, numeric gradient is used.  Must return either
    ##               * vector, length=NParam
-   ##               * matrix, dim=c(NObs, 1).  Treated as vector
-   ##               * matrix, dim=c(NObs, NParam).  In this case the rows are simply
+   ##               * matrix, dim=c(nObs, 1).  Treated as vector
+   ##               * matrix, dim=c(nObs, NParam).  In this case the rows are simply
    ##                 summed (useful for maxBHHH).
    ## hess       Hessian function (numeric used if NULL)
    ## start      initial vector of parameters (eventually w/names)

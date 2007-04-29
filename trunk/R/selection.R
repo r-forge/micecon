@@ -167,7 +167,7 @@ selection <- function(selection, outcome,
                     outcome = iBeta ),
                     NXS=ncol(XS), NXO=ncol(XO),
                     N0=sum(YS==0), N1=sum(YS==1),
-                    NObs=length(YS), NParam=length(start),
+                    nObs=length(YS), NParam=length(start),
                     df=length(YS) - length(start))
    }
    else if(type == 5) {
@@ -250,7 +250,7 @@ selection <- function(selection, outcome,
                     NXS=ncol(XS),
                     NXO1=ncol(XO1), NXO2=ncol(XO2),
                     N1=sum(YS==0), N2=sum(YS==1),
-                    NObs=length(YS), NParam=length(start),
+                    nObs=length(YS), NParam=length(start),
                     df=length(YS) - length(start))
    }
    ## now fit the model

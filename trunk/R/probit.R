@@ -68,9 +68,9 @@ probit <- function( formula, subset, start=NULL,
    Y <- model.response(mf, "numeric")
    X <- model.matrix(mt, mf, contrasts)
    NParam <- ncol( X)
-   NObs <- length( Y)
+   nObs <- length( Y)
    N1 <- length( y[Y != 0])
-   N0 <- NObs - N1
+   N0 <- nObs - N1
    if(N0 == 0 | N1 == 0) {
       stop("No variance in the response variable")
    }
@@ -88,15 +88,15 @@ probit <- function( formula, subset, start=NULL,
    ## compare.derivatives(gradlik, hesslik, t0=start)
                                         #
    ## Likelihood ratio test: H0 -- all the coefficients, except intercept
-   ## are zeros.  ML estimate for this model is qnorm(N1/NObs)
-   ll.bar <- loglik(c(qnorm(N1/NObs), rep(0, NParam-1)))
+   ## are zeros.  ML estimate for this model is qnorm(N1/nObs)
+   ll.bar <- loglik(c(qnorm(N1/nObs), rep(0, NParam-1)))
    LRT <- 2*(estimation$maximum - ll.bar)
                                         #
    result <- c(estimation,
                LRT=list(list(LRT=LRT, df=NParam-1)),
                                         # there are df-1 constraints
-               param=list(list(NParam=NParam,NObs=NObs, N1=N1, N0=N0)),
-               df=NObs - NParam,
+               param=list(list(NParam=NParam,nObs=nObs, N1=N1, N0=N0)),
+               df=nObs - NParam,
                call=cl,
                terms=mt,
                x=switch(x, "1"=list(X), "0"=NULL),

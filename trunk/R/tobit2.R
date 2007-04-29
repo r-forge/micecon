@@ -200,7 +200,7 @@ tobit2 <- function(selection, formula,
    NX <- ncol( X)
    NParam <- NZ + NX + 2
                                         # Total # of parameters
-   NObs <- length(Y1)
+   nObs <- length(Y1)
    N1 <- length( Y1[Y1==0])
    N2 <- length( Y1[Y1==1])
    ## indices in for the parameter vector
@@ -254,12 +254,12 @@ tobit2 <- function(selection, formula,
    param <- list(index=list(betaS=iGamma, betaO=iBeta,
                    sigma=iSigma, rho=iRho),
                  NParam=NParam,
-                 NObs=NObs,
+                 nObs=nObs,
                  N0=N1,
                  N1=N2,
                  NXS=NZ,
                  NXO=NX,
-                 df=NObs - estimation$NActiveParam)
+                 df=nObs - estimation$NActiveParam)
    result <- c(estimation,
                twoStep=list(twoStep),
                param=list(param),

@@ -137,7 +137,7 @@ tobit2fit <- function(YS, XS, YO, XO, start,
         colnames(XO) <- rep("XO", NXO)
     Nparam <- NXS + NXO + 2
                                         # Total # of parameters
-    NObs <- length( YS)
+    nObs <- length( YS)
     NO <- length( YS[YS > 0])
    NParam <- NXS + NXO + 2
    ## parameter indices
@@ -147,7 +147,7 @@ tobit2fit <- function(YS, XS, YO, XO, start,
    iRho <- tail(iSigma, 1) + 1
    ## output, if asked for it
    if( print.level > 0) {
-      cat( "Yo observed:", NO, "times; not observed:", NObs - NO, "times\n")
+      cat( "Yo observed:", NO, "times; not observed:", nObs - NO, "times\n")
       cat( "Initial values:\n")
       cat("Selection\n")
       print(start[iBetaS])

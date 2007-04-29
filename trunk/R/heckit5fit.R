@@ -135,7 +135,7 @@ heckit5fit <- function(selection, outcome1, outcome2,
    YO1 <- YO1[!badRow]
    XO2 <- XO2[!badRow,]
    YO2 <- YO2[!badRow]
-   NObs <- length(YS)
+   nObs <- length(YS)
    # few pre-calculations: split according to selection
    i1 <- YS == levels(YS)[1]
    i2 <- YS == levels(YS)[2]
@@ -229,7 +229,7 @@ heckit5fit <- function(selection, outcome1, outcome2,
                  outcome = c( iBetaO1, iMills1, iBetaO2, iMills2 ) ),
                                         # The location of results in the coef vector
                  oIntercept1=intercept1, oIntercept2=intercept2,
-                 NObs=NObs, NParam=NParam, df=NObs-NParam + 2,
+                 nObs=nObs, NParam=NParam, df=nObs-NParam + 2,
                  NXS=NXS, NXO1=NXO1, NXO2=NXO2, N1=N1, N2=N2)
    #
    result <- list(probit=probit,

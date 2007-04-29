@@ -26,7 +26,7 @@ NParam.lm(x, \dots)
   Number of parameters in the model
 }
 \author{Ott Toomet, \email{otoomet@econ.au.dk}}
-\seealso{\code{\link{NObs}} for number of observations}
+\seealso{\code{\link{nObs}} for number of observations}
 \examples{
 # Construct a simple OLS regression:
 x1 <- runif(100)

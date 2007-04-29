@@ -93,10 +93,10 @@ heckit2fit <- function( selection, outcome,
    iSigma <- iMills + 1
    iRho <- iSigma + 1
    ##
-   NObs <- length(YS)
+   nObs <- length(YS)
    NParam <- iRho
    N0 <- sum(YS == levels(YS)[1])
-   N1 <- NObs - N0
+   N1 <- nObs - N0
                                         # sigma, rho
    if( print.level > 0 ) {
       cat ( "\nEstimating 1st step Probit model . . ." )
@@ -193,7 +193,7 @@ heckit2fit <- function( selection, outcome,
                                         # The location of results in the coef vector
                         oIntercept=intercept,
                         N0=N0, N1=N1,
-                        NParam=NParam, NObs=NObs, df=NObs-NParam+1)
+                        NParam=NParam, nObs=nObs, df=nObs-NParam+1)
    result$lm <- outcomeMod
    result$tobitType <- 2
    result$method <- "2step"

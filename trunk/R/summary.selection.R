@@ -13,11 +13,11 @@ summary.selection <- function(object, ...) {
             y <- model.response(model.frame(model))
             if(intercept) {
                R2 <- 1 - sum(residuals(model)^2)/sum((y - mean(y))^2)
-               R2adj <- 1 - (1 - R2)*(NObs(model) - 1)/(NObs(model) - NParam(model))
+               R2adj <- 1 - (1 - R2)*(nObs(model) - 1)/(nObs(model) - NParam(model))
             }
             else {
                R2 <- 1 - sum(residuals(model)^2)/sum(y^2)
-               R2adj <- 1 - (1 - R2)*(NObs(model))/(NObs(model) - NParam(model))
+               R2adj <- 1 - (1 - R2)*(nObs(model))/(nObs(model) - NParam(model))
             }
          }
          else {
@@ -77,7 +77,7 @@ print.summary.selection <- function(x,
       cat( "2-step Heckman / heckit estimation\n" )
    }
    if(!is.null(x$estimate)) {
-      cat( x$param$NObs, "observations" )
+      cat( x$param$nObs, "observations" )
       if( x$tobitType == 2 ) {
          cat( " (", x$param$N0, " censored and ", x$param$N1, " observed)",
             sep = "" )
