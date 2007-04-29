@@ -82,19 +82,14 @@ tstChiOLS <- function(N=500, ...) {
 }
 
 tstMroz <- function(R=10, method="ml") {
-   bstat <- function(data, ind) {
-      dat <- data[ind,]
-      a <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
-                     wage ~ exper + I( exper^2 ) + educ + city, data=dat)
-      coef(a)
-   }
    library(micEcon)
    data(Mroz87)
    Mroz87$kids <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
-#   b <- boot(Mroz87, bstat, R)
-   b <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
-                  wage ~ exper + I( exper^2 ) + educ + city, data=Mroz87, method="ml")
-   b
+   mr <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+                   wage ~ exper + I( exper^2 ) + educ + city,
+                   data = Mroz87, start = c(0,0,0,0,0,0,0,0,0,0,0,0.5,-0.5),
+                   iterlim=100)
+   print(summary(mr))
 }
 
 tstBoot <- function(R=10, N=500) {
