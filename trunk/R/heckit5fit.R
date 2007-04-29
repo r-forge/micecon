@@ -3,7 +3,7 @@ heckit5fit <- function(selection, outcome1, outcome2,
                     ys=FALSE, yo=FALSE,
                     xs=FALSE, xo=FALSE,
                     mfs=FALSE, mfo=FALSE,
-                    print.level=0) {
+                    print.level=0, ... ) {
    ## Do a few sanity checks...
    if( class( selection ) != "formula" ) {
       stop( "argument 'selection' must be a formula" )

@@ -14,11 +14,11 @@
 }
 
 \usage{
-heckit2fit( selection, outcome, data, inst = NULL, print.level = 0 )
+heckit2fit( selection, outcome, data, inst = NULL, print.level = 0, ... )
 
 heckit5fit( selection, outcome1, outcome2, data = sys.frame(sys.parent()),
    ys = FALSE, yo = FALSE, xs = FALSE, xo = FALSE, mfs = FALSE,
-   mfo = FALSE, print.level = 0)
+   mfo = FALSE, print.level = 0, ... )
 }
 
 
@@ -36,6 +36,7 @@ heckit5fit( selection, outcome1, outcome2, data = sys.frame(sys.parent()),
     (\code{o}) equation(s) are returned}
   \item{print.level}{numeric, values greater than 0 will produce
     increasingly more debugging information}
+  \item{...}{currently not used.}
 }
 
 \value{
