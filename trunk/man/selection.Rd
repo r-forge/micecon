@@ -19,7 +19,7 @@ heckit( selection, outcome, data = sys.frame(sys.parent()),
 }
 
 \arguments{
-  \item{selection}{formula, the selection equation}
+  \item{selection}{formula, the selection equation.}
   \item{outcome}{the outcome equation(s).  Either a single equation (for
   tobit 2 models), or a list of two equations (tobit 5 models).}
   \item{data}{an optional data frame, list or environment (or object
@@ -28,17 +28,17 @@ heckit( selection, outcome, data = sys.frame(sys.parent()),
           variables are taken from \code{environment(formula)}, typically
           the environment from which \code{selection} is called.}
   \item{method}{how to estimate the model.  Either "ml" for Maximum
-    Likelihood, or "2step" for 2-step estimation}
-  \item{start}{initial values for the ML estimation.  Should have names}
+    Likelihood, or "2step" for 2-step estimation.}
+  \item{start}{initial values for the ML estimation.  Should have names.}
   \item{ys, yo, xs, xo, mfs, mfo}{logicals.  If true, the response (\code{y}),
     model matrix (\code{x}) or the model frame (\code{mf})
     of the selection (\code{s}) or outcome
-    (\code{o}) equation(s) are returned}
+    (\code{o}) equation(s) are returned.}
   \item{print.level}{integer.  Various debugging information, higher
     value gives more information.}
   \item{\dots}{additional parameters for the corresponding fitting
     functions \code{\link{tobit2fit}}, \code{\link{tobit5fit}},
-    \code{\link{heckit2fit}}, and \code{\link{heckit5fit}}}
+    \code{\link{heckit2fit}}, and \code{\link{heckit5fit}}.}
 }
 \details{
    The endogenous variable of the argument 'selection' must have exactly
