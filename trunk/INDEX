@@ -3,23 +3,20 @@ aidsBestA0              Find 'best' Value for alpha 0 in the AIDS
 aidsCalc                Shares and Quantities of the Almost Ideal
                         Demand System
 aidsEla                 Elasticities of the AIDS model
-aidsEst                 Estimation of the Almost Ideal Demand System
+aidsEst                 Estimating the Almost Ideal Demand System
                         (AIDS)
 aidsPx                  Price Index for the AIDS
 aidsTestConsist         Consistency Test of the AIDS
 Blanciforti86           U.S. consumption data
 Bleymueller79E25.1      Artificial Prices and Quantities
-coef.heckit             results of the heckit model
+coef.selection          Extract Coefficients from Selection Models
 coefTable               Coefficient Table
 Coelli                  Data provided with Coelli's Frontier 4.1
 compareDerivatives      function to compare analytic and numeric
                         derivatives
 germanFarms             Output and Inputs of Farms in West-Germany
-heckit                  2-step Heckman (heckit) estimation
-heckit5                 Heckman two-step estimator for tobit5 type of
-                        models
 heckitVcov              Heckit Variance Covariance Matrix
-Hessian                 Hessian of the model
+hessian                 hessian of the model
 insertCol               Insert Column into a Matrix
 insertRow               Insert Row into a Matrix
 invMillsRatio           Inverse Mill's Ratio of probit models
@@ -33,9 +30,9 @@ maxLik                  Maximum likelihood estimation
 maxNR                   Newton-Raphson maximisation
 Missong03E7.7           Meat Prices and Quantities in Germany
 Mroz87                  U.S. Women's Labor Force Participation
-NObs                    Return number of observations for statistical
+nObs                    Return number of observations for statistical
                         models
-NParam                  Number of model parameters
+nParam                  Number of model parameters
 numericGradient         Functions to Calculate Numeric Derivatives
 predict.snqProfitEst    Predictions from an SNQ profit function
 priceIndex              Calculate Price Indices
@@ -68,9 +65,11 @@ snqProfitImposeConvexity
 snqProfitShadowPrices   Shadow Prices of a SNQ Profit function
 snqProfitWeights        SNQ Profit function: Weights of prices for
                         normalization
-summary.heckit          Print output of heckit estimation
+summary.aidsEst         Summarizing the Estimation of an Almost Ideal
+                        Demand System
 summary.maximisation    Summary method for maximisation/minimisation
 summary.maxLik          summary the Maximum-Likelihood estimation
+summary.selection       Summarizing Selection Estimations
 symMatrix               Symmetric Matrix
 tobit2                  Deprecated Functions in micEcon package
 translogCalc            Calculate dependent variable of a translog
@@ -79,8 +78,9 @@ translogDeriv           Derivatives of a translog function
 translogEst             Estimate a translog function
 translogHessian         Hessian matrix of a translog function
 triang                  Upper triangular matrix from a vector
-vcov.probit             Methods for Function 'vcov' in Package
+vcov.probit             Methods for some 'vcov' methods in Package
                         'micEcon'
+vcov.selection          Extract Variance Covariance Matrix
 vecli                   Vector of linear independent values
 vecli2m                 Convert vector of linear independent values
                         into a Matrix
