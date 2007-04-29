@@ -1344,7 +1344,6 @@ $quant
 > print( consist )
 
 Tests for theoretical consistency of an estimated Almost Ideal Demand System (AIDS):
-
 Observation where monotonicity is fulfilled: 100 %
 Observation where concavity is fulfilled: 0 %
 > class( consist ) <- NULL
