@@ -20,11 +20,13 @@ estResultLATX <- summary( aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ set, ], method = "LA:SL",
    maxiter = 1, rcovformula = 1, tol = 1e-7, TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
 print( estResultLATX )
+estResultLATX$call <- NULL
 estResultLATX$est$bt <- NULL
 estResultLATX$est$btcov <- NULL
 estResultLATX$est$x <- NULL
 estResultLATX$est$TX <- NULL
 estResultLATX$est$q.restr <- NULL
+estResultLA$call <- NULL
 estResultLA$est$x <- NULL
 estResultLA$est$R.restr <- NULL
 estResultLA$est$q.restr <- NULL
@@ -40,11 +42,13 @@ estResultLAhomTX <- summary(  aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ set, ], method = "LA:SL",
    maxiter = 1, rcovformula = 1, tol = 1e-7, TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
 print( estResultLAhomTX )
+estResultLAhomTX$call <- NULL
 estResultLAhomTX$est$bt <- NULL
 estResultLAhomTX$est$btcov <- NULL
 estResultLAhomTX$est$x <- NULL
 estResultLAhomTX$est$TX <- NULL
 estResultLAhomTX$est$q.restr <- NULL
+estResultLAhom$call <- NULL
 estResultLAhom$est$x <- NULL
 estResultLAhom$est$R.restr <- NULL
 estResultLAhom$est$q.restr <- NULL
@@ -60,11 +64,13 @@ estResultLAunrTX <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym 
    data = Blanciforti86[ set, ], method = "LA:SL",
    maxiter = 1, rcovformula = 1, tol = 1e-7, TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
 print( estResultLAunrTX )
+estResultLAunrTX$call <- NULL
 estResultLAunrTX$est$bt <- NULL
 estResultLAunrTX$est$btcov <- NULL
 estResultLAunrTX$est$x <- NULL
 estResultLAunrTX$est$TX <- NULL
 estResultLAunrTX$est$q.restr <- NULL
+estResultLAunr$call <- NULL
 estResultLAunr$est$x <- NULL
 estResultLAunr$est$R.restr <- NULL
 estResultLAunr$est$q.restr <- NULL
@@ -84,11 +90,13 @@ estResultAIDSTX <- summary( aidsEst( pNames, wNames, "xFood",
    rcovformula=1, tol=1e-7,
    method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultAIDSTX )
+estResultAIDSTX$call <- NULL
 estResultAIDSTX$est$bt <- NULL
 estResultAIDSTX$est$btcov <- NULL
 estResultAIDSTX$est$x <- NULL
 estResultAIDSTX$est$TX <- NULL
 estResultAIDSTX$est$q.restr <- NULL
+estResultAIDS$call <- NULL
 estResultAIDS$est$x <- NULL
 estResultAIDS$est$R.restr <- NULL
 estResultAIDS$est$q.restr <- NULL
@@ -106,11 +114,13 @@ estResultAIDShomTX <- summary( aidsEst( pNames, wNames, "xFood", sym = FALSE,
    rcovformula=1, tol=1e-7,
    method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultAIDShomTX )
+estResultAIDShomTX$call <- NULL
 estResultAIDShomTX$est$bt <- NULL
 estResultAIDShomTX$est$btcov <- NULL
 estResultAIDShomTX$est$x <- NULL
 estResultAIDShomTX$est$TX <- NULL
 estResultAIDShomTX$est$q.restr <- NULL
+estResultAIDShom$call <- NULL
 estResultAIDShom$est$x <- NULL
 estResultAIDShom$est$R.restr <- NULL
 estResultAIDShom$est$q.restr <- NULL
@@ -128,11 +138,13 @@ estResultAIDSunrTX <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sy
    rcovformula=1, tol=1e-7,
    method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultAIDSunrTX )
+estResultAIDSunrTX$call <- NULL
 estResultAIDSunrTX$est$bt <- NULL
 estResultAIDSunrTX$est$btcov <- NULL
 estResultAIDSunrTX$est$x <- NULL
 estResultAIDSunrTX$est$TX <- NULL
 estResultAIDSunrTX$est$q.restr <- NULL
+estResultAIDSunr$call <- NULL
 estResultAIDSunr$est$x <- NULL
 estResultAIDSunr$est$R.restr <- NULL
 estResultAIDSunr$est$q.restr <- NULL
