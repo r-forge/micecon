@@ -1,7 +1,7 @@
 aidsEst <- function( priceNames, shareNames, totExpName,
-      data = NULL, instNames = NULL, quantNames = shareNames,
+      data = NULL, instNames = NULL,
       shifterNames = NULL, method = "LA:L", hom = TRUE, sym = TRUE,
-      elaFormula = "Ch", pxBase = 1,
+      pxBase = 1,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
       maxiterIL = 50, tolIL = 1e-5, alpha0 = 0, TX = FALSE, ... ) {
 
@@ -100,11 +100,6 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       result$coef <- aidsCoef( est$b, nGoods = nGoods, nShifter = nShifter,
          cov = est$bcov, priceNames = priceNames, shareNames = shareNames,
          shifterNames = shifterNames, df = est$df )   # coefficients
-      if( !( elaFormula %in% c( "AIDS" ) ) ) {
-         pMeans <- NULL
-      }
-      result$ela  <- aidsEla( result$coef, wMeans, pMeans,
-         formula = elaFormula, priceNames = priceNames, quantNames = quantNames ) # elasticities
       result$wFitted <- aidsCalc( priceNames, totExpName, data = data,
          coef = result$coef, lnp = lnp )$shares   # estimated budget shares
       iter <- est$iter
@@ -178,9 +173,6 @@ aidsEst <- function( priceNames, shareNames, totExpName,
          cov = bcov, priceNames = priceNames, shareNames = shareNames,
          shifterNames = shifterNames, df = est$df )  # coefficients
       result$coef$alpha0 <- alpha0
-      result$ela  <- aidsEla( result$coef, wMeans, pMeans,
-         formula = "AIDS", priceNames = priceNames, quantNames = quantNames,
-         coefVcov = result$coef$allcov, df = est$df )   # elasticities
       result$wFitted <- aidsCalc( priceNames, totExpName, data = data,
          coef = result$coef, alpha0 = alpha0, px = "TL" )$shares
          # estimated budget shares

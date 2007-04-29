@@ -11,14 +11,14 @@ pMeans <- colMeans( Blanciforti86[ set, pNames ] )
 
 cat( paste( "\nRepeating the demand analysis of Blanciforti, Green",
    "& King (1986)\n" ) )
-estResultLA <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86[ set, ], method = "LA:SL", elaFormula = "Ch",
-   maxiter = 1, rcovformula = 1, tol = 1e-7 )
+estResultLA <- summary( aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86[ set, ], method = "LA:SL",
+   maxiter = 1, rcovformula = 1, tol = 1e-7 ), elaFormula = "Ch", quantNames = wNames )
 print( estResultLA )
 # imposing restrictions via TX
-estResultLATX <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86[ set, ], method = "LA:SL", elaFormula = "Ch",
-   maxiter = 1, rcovformula = 1, tol = 1e-7, TX = TRUE )
+estResultLATX <- summary( aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86[ set, ], method = "LA:SL",
+   maxiter = 1, rcovformula = 1, tol = 1e-7, TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
 print( estResultLATX )
 estResultLATX$est$bt <- NULL
 estResultLATX$est$btcov <- NULL
@@ -31,14 +31,14 @@ estResultLA$est$q.restr <- NULL
 print( all.equal( estResultLA, estResultLATX ) )
 
 ## only homogeneity (no symmetry imposed)
-estResultLAhom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-   data = Blanciforti86[ set, ], method = "LA:SL", elaFormula = "Ch",
-   maxiter = 1, rcovformula = 1, tol = 1e-7 )
+estResultLAhom <- summary(  aidsEst( pNames, wNames, "xFood", sym = FALSE,
+   data = Blanciforti86[ set, ], method = "LA:SL",
+   maxiter = 1, rcovformula = 1, tol = 1e-7 ), elaFormula = "Ch", quantNames = wNames )
 print( estResultLAhom )
 # imposing restrictions via TX
-estResultLAhomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-   data = Blanciforti86[ set, ], method = "LA:SL", elaFormula = "Ch",
-   maxiter = 1, rcovformula = 1, tol = 1e-7, TX = TRUE )
+estResultLAhomTX <- summary(  aidsEst( pNames, wNames, "xFood", sym = FALSE,
+   data = Blanciforti86[ set, ], method = "LA:SL",
+   maxiter = 1, rcovformula = 1, tol = 1e-7, TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
 print( estResultLAhomTX )
 estResultLAhomTX$est$bt <- NULL
 estResultLAhomTX$est$btcov <- NULL
@@ -51,14 +51,14 @@ estResultLAhom$est$q.restr <- NULL
 print( all.equal( estResultLAhom, estResultLAhomTX ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
-estResultLAunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-   data = Blanciforti86[ set, ], method = "LA:SL", elaFormula = "Ch",
-   maxiter = 1, rcovformula = 1, tol = 1e-7 )
+estResultLAunr <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
+   data = Blanciforti86[ set, ], method = "LA:SL",
+   maxiter = 1, rcovformula = 1, tol = 1e-7 ), elaFormula = "Ch", quantNames = wNames )
 print( estResultLAunr )
 # imposing restrictions via TX
-estResultLAunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-   data = Blanciforti86[ set, ], method = "LA:SL", elaFormula = "Ch",
-   maxiter = 1, rcovformula = 1, tol = 1e-7, TX = TRUE )
+estResultLAunrTX <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
+   data = Blanciforti86[ set, ], method = "LA:SL",
+   maxiter = 1, rcovformula = 1, tol = 1e-7, TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
 print( estResultLAunrTX )
 estResultLAunrTX$est$bt <- NULL
 estResultLAunrTX$est$btcov <- NULL
@@ -73,16 +73,16 @@ print( all.equal( estResultLAunr, estResultLAunrTX ) )
 #####################################################
 cat( paste( "\nRepeating the evaluation of different elasticity formulas",
    "of Green & Alston (1990): iterated AIDS\n" ) )
-estResultAIDS <- aidsEst( pNames, wNames, "xFood",
+estResultAIDS <- summary( aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ setWo1, ], maxiter = 1,
-   elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "IL:L" )
+   rcovformula=1, tol=1e-7,
+   method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultAIDS )
 # imposing restrictions via TX
-estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
+estResultAIDSTX <- summary( aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ setWo1, ], maxiter = 1,
-   elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "IL:L", TX = TRUE )
+   rcovformula=1, tol=1e-7,
+   method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultAIDSTX )
 estResultAIDSTX$est$bt <- NULL
 estResultAIDSTX$est$btcov <- NULL
@@ -95,16 +95,16 @@ estResultAIDS$est$q.restr <- NULL
 print( all.equal( estResultAIDS, estResultAIDSTX ) )
 
 ## only homogeneity (no symmetry imposed)
-estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
+estResultAIDShom <- summary( aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ setWo1, ], maxiter = 1,
-   elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "IL:L" )
+   rcovformula=1, tol=1e-7,
+   method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultAIDShom )
 # imposing restrictions via TX
-estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
+estResultAIDShomTX <- summary( aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ setWo1, ], maxiter = 1,
-   elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "IL:L", TX = TRUE )
+   rcovformula=1, tol=1e-7,
+   method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultAIDShomTX )
 estResultAIDShomTX$est$bt <- NULL
 estResultAIDShomTX$est$btcov <- NULL
@@ -117,16 +117,16 @@ estResultAIDShom$est$q.restr <- NULL
 print( all.equal( estResultAIDShom, estResultAIDShomTX ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
-estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
+estResultAIDSunr <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ setWo1, ], maxiter = 1,
-   elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "IL:L" )
+   rcovformula=1, tol=1e-7,
+   method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultAIDSunr )
 # imposing restrictions via TX
-estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
+estResultAIDSunrTX <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ setWo1, ], maxiter = 1,
-   elaFormula = "AIDS", rcovformula=1, tol=1e-7,
-   method = "IL:L", TX = TRUE )
+   rcovformula=1, tol=1e-7,
+   method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultAIDSunrTX )
 estResultAIDSunrTX$est$bt <- NULL
 estResultAIDSunrTX$est$btcov <- NULL
@@ -139,24 +139,24 @@ estResultAIDSunr$est$q.restr <- NULL
 print( all.equal( estResultAIDSunr, estResultAIDSunrTX ) )
 
 ## with NAs
-estResultLaSNa <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
-   rcovformula=1, tol=1e-7, method = "LA:S" )
+estResultLaSNa <- summary( aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86, maxiter = 1,
+   rcovformula=1, tol=1e-7, method = "LA:S" ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultLaSNa )
 
-estResultLaSlNa <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
-   rcovformula=1, tol=1e-7, method = "LA:SL" )
+estResultLaSlNa <- summary( aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86, maxiter = 1,
+   rcovformula=1, tol=1e-7, method = "LA:SL" ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultLaSlNa )
 
-estResultLaLNa <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
-   rcovformula=1, tol=1e-7, method = "LA:L" )
+estResultLaLNa <- summary( aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86, maxiter = 1,
+   rcovformula=1, tol=1e-7, method = "LA:L" ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultLaLNa )
 
-estResultAIDSNa <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86, maxiter = 1, elaFormula = "AIDS",
-   rcovformula=1, tol=1e-7, method = "IL:L" )
+estResultAIDSNa <- summary( aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86, maxiter = 1,
+   rcovformula=1, tol=1e-7, method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
 print( estResultAIDSNa )
 
 
