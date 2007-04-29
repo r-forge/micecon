@@ -439,11 +439,12 @@ with correlation $-0.7$.  Next, we generate a uniformly distributed
 explanatory variable for the selection equation, \code{xs}, the
 selection outcome \code{ys} by probit data generating process and the
 explanatory variable for the outcome equation \code{xs}.  We retain
-the latent outcome variable (\code{yoX}) and calculate the observable
-\code{xo}.  Note that the vectors of explanatory variables for the
-selection (\code{xs}) and outcome equation (\code{xo}) are independent
-and hence the exclusion restriction is fulfilled.  This can also be
-seen from the fact that the estimates are reasonably precise
+the latent outcome variable (\code{yoX}) for the figure below, and
+calculate the observable \code{xo}.  Note that the vectors of
+explanatory variables for the selection (\code{xs}) and outcome
+equation (\code{xo}) are independent and hence the exclusion
+restriction is fulfilled.  This can also be seen from the fact that
+the estimates are reasonably precise:
 <<code:t2summary>>=
   summary(m <- selection(ys~xs, yo ~xo))
 @ 
@@ -504,7 +505,7 @@ The selection model uncovers the true dependence very well.  OLS
 estimate is downward biased because of $\varrho < 0$, as in the
 previous case.  However, now the slope is also biased becuse $\E [
 \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ is
-increasing in the single explanatory variable in the modes, \code{xs}.
+increasing in the single explanatory variable in the model, \code{xs}.
 
 \begin{figure}[tp]
   \centering
@@ -540,18 +541,13 @@ errors of the estimates depend on the variation in the latent
 selection equation \eqref{eq:probit*}, even without the exclusion
 restriction fulfilled.  More variation gives smaller standard
 errors\footnote{This is related to the identification at infinity
-  \citep{chamberlain1986}}.  We demonstrate this below: Change the
+  \citep{chamberlain1986}.}.  We demonstrate this below: Change the
 support of \code{xs} from $[0,1]$ to $[-5,5]$:
 <<>>=
   xs <- runif(500, -5, 5)
   ys <- xs + eps[,1] > 0
 yoX <- xs + eps[,2]
   yo <- yoX*(ys > 0)
-@ 
-%
-where we retain the unobserved outcome variable \code{yoX} for the
-figure below.
-<<>>=
   print(summary(m <- selection(ys ~ xs, yo ~ xs)))
 @
 %
@@ -564,9 +560,9 @@ from Figure~\ref{fig:lambda()}, selection is not an issue if $x^S
 \gtrsim 2$.  In that case $\E [\varepsilon^O|y^S = 1] \approx 0$ for a
 a substantial interval of $x^S$ and hence the $\lambda(\beta^S x^S)$
 differs enough from a linear function.  In the previous example, the
-variation in $x^S$ was low and hence one could not disentangle the
-selection bias from the true causal dependence.  Technically, there
-was a multicollinearity problem between $x^S$ and $\lambda(\cdot)$.
+variation in $x^S$ is low and one cannot disentangle the selection
+bias from the true causal dependence.  Technically, there is a
+multicollinearity problem between $x^S$ and $\lambda(\cdot)$.
 
 \begin{figure}[tp]
   \centering
@@ -729,7 +725,7 @@ We create the following simple switching regression problem:
   vc <- diag(3)
   vc[lower.tri(vc)] <- c(0.9, 0.5, 0.1)
   vc[upper.tri(vc)] <- vc[lower.tri(vc)]
-  eps <- rmvnorm(500, rep(0, 3), vc)
+  eps <- rmvnorm(500, c(0,0,0), vc)
   xs <- runif(500)
   ys <- xs + eps[,1] > 0
   xo1 <- runif(500)
@@ -930,14 +926,14 @@ summary( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
 %
 Most results are identical to the values reported by
 \citet[p.~786]{greene2002}.
-Only the coefficient of the inverse Mill's ratio ($\rho \sigma$),
-its standard error, and $\rho$ deviate from the published results,
+Only the coefficient of the inverse Mill's ratio ($\varrho \sigma$),
+its standard error, and $\varrho$ deviate from the published results,
 but all differences are less than one percent.%
 \footnote{
 Note that the standard error of the inverse Mill's ratio
-($\rho \sigma$) is wrong in \citet[p.~786]{greene2002}
+($\varrho \sigma$) is wrong in \citet[p.~786]{greene2002}
 (see errata on
-http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm).
+\url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}).
 }
 
 Finally, we repeat the analysis with the maximum likelihood estimation method:
@@ -954,7 +950,7 @@ smaller.  This is because of different ways of calculating the Hessian
 matrix may result in substantially different standard errors
 \citep{calzolari+fiorentini1993}.  Our implementation uses exact
 analytic Hessian, the implementation in the published errata uses
-information equality (BHHH) approximation.
+outer product (BHHH) approximation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1052,7 +1048,7 @@ supply a positive initial value for the variance):
 <<>>=
 mr <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
-   data = Mroz87, start = c(0,0,0,0,0,0,0,1,0,0,0,1,0))
+   data = Mroz87, start = c(0,0,0,0,0,0,0,0,0,0,0,0.5,-0.5))
 summary(mr)
 @ 
 %
