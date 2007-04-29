@@ -9,7 +9,6 @@
 \alias{micEconIndex}
 \alias{model.frame.probit}
 \alias{model.matrix.probit}
-\alias{print.aidsEst}
 \alias{print.aidsTestConsist}
 \alias{print.snqProfitImposeConvexity}
 \alias{print.summary.maximisation}
