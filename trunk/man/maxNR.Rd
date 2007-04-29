@@ -90,7 +90,7 @@ the previous one.
   \item{estimate}{estimated parameter value.}
   \item{gradient}{last gradient value which was calculated.  Should be
     close to 0 if normal convergence.}
-  \item{Hessian}{Hessian at the maximum (the last calculated value if
+  \item{hessian}{Hessian at the maximum (the last calculated value if
     not converged).  May be used as basis for variance-covariance
     matrix.}
   \item{code}{return code:

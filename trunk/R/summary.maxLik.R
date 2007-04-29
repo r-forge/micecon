@@ -37,11 +37,11 @@ summary.maxLik <- function( object, ... ) {
       activePar <- rep(TRUE, nParam)
    }
    if(object$code < 100) {
-      if(min(abs(eigen(Hessian(object)[activePar,activePar],
+      if(min(abs(eigen(hessian(object)[activePar,activePar],
                        symmetric=TRUE, only.values=TRUE)$values)) > 1e-6) {
          varcovar <- matrix(0, nParam, nParam)
          varcovar[activePar,activePar] <-
-             solve(-Hessian(object)[activePar,activePar])
+             solve(-hessian(object)[activePar,activePar])
          hdiag <- diag(varcovar)
          if(any(hdiag < 0)) {
             warning("Diagonal of variance-covariance matrix not positive!\n")
@@ -66,7 +66,7 @@ summary.maxLik <- function( object, ... ) {
                    message=object$message,
                    loglik=object$maximum,
                    estimate=results,
-                   Hessian=Hess,
+                   hessian=Hess,
                    activePar=object$activePar,
                    NActivePar=sum(object$activePar))
    class(summary) <- "summary.maxLik"

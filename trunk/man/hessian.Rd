@@ -1,24 +1,24 @@
-\name{Hessian}
-\alias{Hessian}
-\alias{Hessian.default}
+\name{hessian}
+\alias{hessian}
+\alias{hessian.default}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Hessian of the model}
+\title{hessian of the model}
 \description{
   This function extracts the Hessian of the M-estimator of the
   statistical model.  Supplied by the underlying optimisation algorithm,
   possibly using information equlity or other relevant relationships.
 }
 \usage{
-Hessian(x, \dots)
-Hessian.default(x, \dots)
+hessian(x, \dots)
+hessian.default(x, \dots)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{a M-estimator based statistical model}
   \item{\dots}{other arguments for methods}
 }
 \details{
-  Hessian is important for maximum likelihood estimation.  For other
+  The Hessian is important for maximum likelihood estimation.  For other
   estimators, it may or may not be relevant.
 }
 \value{
@@ -39,19 +39,19 @@ x <- rnorm(1000) # sample from standard normal
 ml <- maxLik(ll, start=c(1,1))
 # ignore eventual warnings "NaNs produced in: log(x)"
 summary(ml) # result should be close to c(0,1)
-Hessian(ml) # How the Hessian looks like
-sqrt(-solve(Hessian(ml))) # Note: standard deviations are on the diagonal
+hessian(ml) # How the Hessian looks like
+sqrt(-solve(hessian(ml))) # Note: standard deviations are on the diagonal
 #
 # Now run the same example while fixing a[2] = 1
 mlf <- maxLik(ll, start=c(1,1), activePar=c(TRUE, FALSE))
 summary(mlf) # first parameter close to 0, the second exactly 1.0
-Hessian(mlf)
+hessian(mlf)
 # Now look at the Hessian.  Note that the second component has no
 # meaning here
-sqrt(-solve(Hessian(mlf))) # works in current case, although you may get
+sqrt(-solve(hessian(mlf))) # works in current case, although you may get
                            # warnings.  
 # now invert only the free parameter part of the Hessian
-sqrt(-solve(Hessian(mlf)[activePar(mlf), activePar(mlf)]))
+sqrt(-solve(hessian(mlf)[activePar(mlf), activePar(mlf)]))
 # gives the standard deviation for the mean
 }
 \keyword{methods}
