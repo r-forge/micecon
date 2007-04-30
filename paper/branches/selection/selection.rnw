@@ -33,7 +33,7 @@
   estimation methods in its toolbox, the Heckman models are an
   integral part of modern econometrics textbooks and syllabus.  We
   describe the implementation of these models in package \pkg{micEcon}
-  and illustrate the use of the package on several Monte Carlo and
+  and illustrate the usage of the package on several Monte Carlo and
   real data examples.  Our examples demonstrate the effect of
   exclusion restrictions, identification at infinity and
   misspecification.  We demonstrate that the package can be used as an
@@ -163,7 +163,7 @@ misspecification, exclusion restrictions etc.  These models are easy
 to implement, to visualise and to understand.
 
 The aim of this paper is to describe the \proglang{R} \citep{r2007}
-package \pkg{micEcon}, which is available at CRAN
+package \pkg{micEcon}, which is available on CRAN
 (\url{http://CRAN.R-project.org/}).  The package implements two types
 of more popular Heckman selection models which, as far as we know,
 were not available for \proglang{R} before.  Our presentation is
@@ -196,7 +196,7 @@ Consider the the following (unobserved) structural model:
 where $y_i^{S*}$ is the realisation of the the latent value of the
 selection ``tendency'' for the individual $i$, and $y_i^{O*}$ is the
 latent outcome.  $\vec{x}_i^S$ and $\vec{x}_i^O$ are explanatory
-variables for the selection and outcome equations respectively.
+variables for the selection and outcome equations, respectively.
 $\vec{x}^S$ and $\vec{x}^O$ may or may not be equal.  We observe
 \begin{align}
   y_i^S 
@@ -420,12 +420,12 @@ be considerably larger.  Convergence issues may appear at the boundary
 of the parameter space (e.g.\ if $\varrho \to 1$) or if the algorithm
 does not find the global maximum (see Section~\ref{sec:convergence}).
 
-The \code{selection} returns an object of class \code{selection}.  The
-corresponding \code{summary}, \code{coef} and \code{vcov} methods
-include an extra argument \code{part} which specifies which part of
-the model to output.  One may choose either the full model (\code{part
-  = "full"}, default), or the outcome equation only (\code{part =
-  "outcome"}).
+The command \code{selection} returns an object of class \code{selection}.
+The corresponding \code{summary}, \code{coef}, \code{coef.summary}
+and \code{vcov} methods include an extra argument \code{part},
+which specifies which part of the model to output.
+One may choose either the full model (\code{part = "full"}, default),
+or the outcome equation only (\code{part = "outcome"}).
 
 Currently, the variance-covariance matrix of the two-step estimators
 is only partially implemented with \code{NA} in plac of the
@@ -587,7 +587,7 @@ Now all the parameters are precisely estimated, with even higher
 precision than in the first example where the exclusion restriction
 was fulfilled.  The reason is simple: As one can see from
 Figure~\ref{fig:lambda()}, selection is not an issue if $x^S \gtrsim
-2$.  In that case $\E [\varepsilon^O|y^S = 1] \approx 0$ for a a
+2$.  In that case $\E [\varepsilon^O|y^S = 1] \approx 0$ for a
 substantial interval of $x^S$ and hence the $\lambda(\beta^S x^S)$
 differs enough from a linear function.  In the previous example, the
 variation in $x^S$ is low and one cannot disentangle the selection
