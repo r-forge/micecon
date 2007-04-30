@@ -31,11 +31,13 @@
   problem as well as the Heckman solution to it, and argue that
   although modern econometrics has superior non- and semiparametric
   estimation methods in its toolbox, the Heckman models are an
-  integral part of modern econometrics textbooks and syllabus as they
-  serve as excellent teaching tools.  We describe the implementation
-  of these models in package \pkg{micEcon} and illustrate the use of
-  the package by showing Heckman selection models' strong and weak
-  sides on several Monte Carlo and real data examples.
+  integral part of modern econometrics textbooks and syllabus.  We
+  describe the implementation of these models in package \pkg{micEcon}
+  and illustrate the use of the package on several Monte Carlo and
+  real data examples.  Our examples include the effect of exclusion
+  restrictions, identification at infinity and specification problems,
+  and demonstrate that the package can be used as an excellent
+  teaching tool.
   %
 }
 
@@ -91,10 +93,8 @@ options(width=75)
 @ 
 
 
-\section{Sample selection}
-
-
-\subsection{The problem}
+\section{Introduction}
+\label{sec:intro}
 
 Social scientists are often interested in causal effects --- what is
 the impact of a new drug, a certain type of school or being born as a
@@ -116,13 +116,10 @@ never know which part of the observable outcome is related to the
 causal relationship and which part is due to the fact that different
 people were selected to the treatment and control groups.
 
-
-\subsection{Possible solutions}
-
-Solving the sample selection problems requires additional information.
-This information can be in many possible forms which may or may not be
-feasible or useful for any particular case.  Here we list a few
-popular choices:
+Solving the sample selection problems requires using additional
+information.  This information can be in many possible forms which may
+or may not be feasible or useful for any particular case.  Here we
+list a few popular choices:
 
 \begin{itemize}
 \item Random experiment, the situation, where the participants
@@ -165,8 +162,28 @@ models easily allow us to experiment with selection bias,
 misspecification, exclusion restrictions etc.  These models are easy
 to implement, to visualise and to understand.
 
+The aim of this paper is to describe the \proglang{R} \citep{r2007}
+package \pkg{micEcon}, which is available at CRAN
+(\url{http://CRAN.R-project.org/}).  The package implements two types
+of more popular Heckman selection models which, as far as we know,
+were not available for \proglang{R} before.  Our presentation is
+geared toward teaching because we believe that the main advantage of
+these type of models lies nowadays in econometrics training.
 
-\subsection{Heckman's solution}
+The paper is organized as follows: in the next section we introduce
+the \citet{heckman1976} solution to the sample selection problem.
+Section~\ref{sec:implementation} briefly describes the implementation
+of the model in \pkg{micEcon}.  In Section~\ref{sec:using} we
+illustrate the usage of the package on various Monte-Carlo and real
+data examples.  Section~\ref{sec:reliability} is devoted to comparison
+of our results to the other examples in the literature;
+Section~\ref{sec:problems} describes the problems, related to the
+method and our implementation of it; and the last section concludes.
+
+
+
+\section{Heckman's solution}
+\label{sec:heckman}
 
 Consider the the following (unobserved) structural model:
 \begin{align}
@@ -179,7 +196,7 @@ Consider the the following (unobserved) structural model:
 where $y_i^{S*}$ is the realisation of the the latent value of the
 selection ``tendency'' for the individual $i$, and $y_i^{O*}$ is the
 latent outcome.  $\vec{x}_i^S$ and $\vec{x}_i^O$ are explanatory
-variables for the selection and outcome equations, respectively.
+variables for the selection and outcome equations respectively.
 $\vec{x}^S$ and $\vec{x}^O$ may or may not be equal.  We observe
 \begin{align}
   y_i^S 
@@ -202,18 +219,18 @@ i.e.\ we observe the outcome only if the latent selection variable
 $y^{S*}$ is positive.  The observed dependence between $y^O$ and $x^O$
 can now be written as
 \begin{equation}
-  \E [y_i^O | \vec{x}_i^O , \vec{x}_i^S , y_i^S = 1] =
+  \E [y^O | \vec{x}^O = \vec{x}_i^O , \vec{x}^S = \vec{x}_i^S , y^S = 1] 
+  =
   {\vec{\beta}^O}' \vec{x}_i^O 
   +
-  \E [ \varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ].
+  \E [ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ].
 \end{equation}
 Estimating the model above by OLS gives in general biased results, as
 $\E [ \varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
 \not = 0$, unless $\varepsilon^O$ and $\varepsilon^S$ are mean independent
-(i.e.\ $\varrho = 0$ in equation~\eqref{eq:correlation}).
+(in this case $\varrho = 0$ in equation~\eqref{eq:correlation} below).
 
-However, assuming the error terms follow a bivariate normal
-distribution:
+Assuming the error terms follow a bivariate normal distribution:
 \begin{equation}
   \begin{pmatrix}
     \varepsilon^S\\
@@ -233,7 +250,7 @@ distribution:
    \label{eq:correlation}
 \end{equation}
 we may employ the following simple strategy: we can find the
-expectations $\E [ \varepsilon_i^O|\varepsilon_i^S \ge
+expectations $\E [ \varepsilon^O|\varepsilon^S \ge
 -{\vec{\beta}^S}' \vec{x}_i^S ]$, also called the \emph{control
   function}, by estimating the selection equations \eqref{eq:probit*}
 and \eqref{eq:probit} by probit, and thereafter inserting these
@@ -261,7 +278,7 @@ to as inverse Mill's ratio and $\phi(\cdot)$ and $\Phi(\cdot)$ are
 standard normal density and cumulative distribution functions.  The
 unknown multiplicator $\varrho \sigma$ can be estimated by OLS.
 Essentially, we describe the selection problem as an omitted variable
-problem, with $\lambda(\cdot)$ the omitted variable.  Since the true
+problem, with $\lambda(\cdot)$ as the omitted variable.  Since the true
 $\lambda(\cdot)$s in equation \eqref{eq:tobit2_2step} are generally
 unknown, they are replaced by estimated values based on the probit
 estimation in the first step.
@@ -281,11 +298,11 @@ and $\varepsilon^O$ can be obtained by $\hat{\varrho} =
 \hat{\beta}^\lambda / \hat{\sigma}$.  Note that $\hat{\varrho}$ can be
 outside of the $[-1, 1]$ interval.
 
-Since the estimation of \eqref{eq:tobit2_2step}
-is not based on the true $\lambda$s but on estimated values,
-the standard OLS formula for the coefficient variance covariance matrix
-is not appropriate \citep[p.~157]{heckman79}.
-A consistent estimate of the variance covariance matrix can be obtained by
+Since the estimation of \eqref{eq:tobit2_2step} is not based on the
+true but on estimated values of $\lambda(\cdot)$, the standard OLS
+formula for the coefficient variance-covariance matrix is not
+appropriate \citep[p.~157]{heckman79}.  A consistent estimate of the
+variance-covariance matrix can be obtained by
 \begin{equation}
 \widehat{\VAR} \left[ \hat{\vec{\beta}}^O, \hat{\vec{\beta}}^\lambda \right]
 = \hat{\sigma}^2
@@ -314,16 +331,18 @@ covariance matrix of the probit estimate
 \citep{greene81,greene2002}.
 
 This is the original idea by \citet{heckman1976}.  As the model is
-fully parametric, the more efficient ML estimatior is straightforward
-to construct.  Using the properties of the bivariate normal, it is
-easy to show that the log-likelihood can be written as
+fully parametric, the more efficient maximum likelihood (ML)
+estimatior is straightforward to construct.  Using the properties of
+the bivariate normal, it is easy to show that the log-likelihood can
+be written as
 \begin{align}
-  \loglik & = 
-  \sum_{i:y_i^S = 0} 
+  \loglik 
+  & = 
+  \sum_{\{i:y_i^S = 0\}} 
   \log \pnorm(-{\vec{\beta}^S}' \vec{x}_i^S ) +
   \\
   & +
-  \sum_{i:y_i^S = 1} \left[
+  \sum_{\{i:y_i^S = 1\}} \left[
     \log \pnorm \left(\frac{
         {\vec{\beta}^S}' \vec{x}_i^S +
         \displaystyle\frac{\varrho}{\sigma}(y_i^O - {\vec{\beta}^O}' \vec{x}_i^O)}
@@ -335,7 +354,7 @@ easy to show that the log-likelihood can be written as
 \end{align}
 The original
 article suggests using the two-step solution for exploratory work and
-as initial values for maximum likelihood estimation, since in those
+as initial values for ML estimation, since in those
 days the cost of the two-step solution was \$15 while that of the
 maximum-likelihood solution was \$700
 \citep[p.~490]{heckman1976}. %footnote 18, page 490
@@ -351,7 +370,7 @@ this classification are available in \citealp{amemiya1985}).  This
 model may be relevant for treatment effect analysis.  Other types of
 generalisations include less restrictive parametric forms for the
 conditional mean of the residual term $\E [
-\varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ (see
+\varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ (see
 \citealp[p.~1938]{heckman+macurdy1986}, for references and
 \citealp{klaauw+koning2003} for an application).
 
@@ -372,6 +391,7 @@ used instead of the Heckman model (see \citealp{powell1994} and
 
 
 \section[Implementation]{Implementation in \pkg{micEcon}}
+\label{sec:implementation}
 
 The main frontend for the estimation of selection models in
 \pkg{micEcon} is the command \code{selection}.  It needs a formula for
@@ -381,24 +401,35 @@ of two for switching regression models) for the outcome equation
 either ``\code{ml}'' for the ML estimation, or ``\code{2step}'' for
 the two-step method.  If the user does not provide initial values
 (\code{start}) for the ML estimation (which is usually the case),
-\code{selection} calculates consistent initial values by the two-step
-method. These initial values are used in the corresponding ML
-estimation functions \code{tobit2fit} or \code{tobit5fit}.  Note that
-the log-likelihood functions of the selection models are in general
-not globally concave, and hence one should use a good choice of
-initial values (see the example in Secion~\ref{sec:convergence}).  The
-two-step estimation is done by the function \code{heckit2} or
-\code{heckit5}, depending on the model.
+\code{selection} calculates consistent initial values by the
+corresponding two-step method. These initial values are used in the
+actual estimation functions \code{tobit2fit} and \code{tobit5fit}.
+Note that the log-likelihood functions of the selection models are in
+general not globally concave, and hence one should use a good choice
+of initial values (see the example in Secion~\ref{sec:convergence}).
+The two-step estimation is done by the function \code{heckit2fit} or
+\code{heckit5fit}, depending on the model.
 
-The likelihood maximisation is performed by the Newton-Raphson
-maximisation method (implemented as \code{maxNR} in \pkg{micEcon}),
-where an analytic score vector and an analytic Hessian matrix are
-used.  This results in a reasonably fast computation even in the
-case of tens of thousands observations.  A well-defined model should
-converge in less than 15 iterations; in the case of weak
-identification this number may be considerably larger.  Convergence
-issues may appear at the boundary of the parameter space (e.g.\ if
-$\varrho \to 1$) or if the algorithm does not find the global maximum.
+The likelihood maximisation is performed using Newton-Raphson
+maximisation (implemented as \code{maxNR} in \pkg{micEcon}), where
+analytic score vector and analytic Hessian matrix are used.  This
+results in a reasonably fast computation even in the case of tens of
+thousands observations.  A well-defined model should converge in less
+than 15 iterations; in the case of weak identification this number may
+be considerably larger.  Convergence issues may appear at the boundary
+of the parameter space (e.g.\ if $\varrho \to 1$) or if the algorithm
+does not find the global maximum (see Section~\ref{sec:convergence}).
+
+The \code{selection} returns an object of class \code{selection}.  The
+corresponding \code{summary}, \code{coef} and \code{vcov} methods
+include an extra argument \code{part} which specifies which part of
+the model to output.  One may choose either the full model (\code{part
+  = "full"}, default), or the outcome equation only (\code{part =
+  "outcome"}).
+
+Currently, the variance-covariance matrix of the two-step estimators
+is only partially implemented with \code{NA} in plac of the
+unimplemented components.
 
 The package is written completely in \proglang{R} which should
 minimise the portability issues.  It depends on packages
@@ -407,10 +438,9 @@ the latter for examples only.  Both
 are available from the Comprehensive R Archive Network (CRAN) at
 \url{http://CRAN.R-project.org/}.
 
-% A few words on coef() & unimplemented vcov parts ....
-
 
 \section[Usage]{Using the \code{selection} function}
+\label{sec:using}
 
 This section provides selected illustrative Monte-Carlo experiments
 which illustrate both the strong and weak sides of the method, and the
@@ -438,13 +468,14 @@ We use \pkg{mvtnorm} in order to create bivariate normal disturbances
 with correlation $-0.7$.  Next, we generate a uniformly distributed
 explanatory variable for the selection equation, \code{xs}, the
 selection outcome \code{ys} by probit data generating process and the
-explanatory variable for the outcome equation \code{xs}.  We retain
-the latent outcome variable (\code{yoX}) for the figure below, and
-calculate the observable \code{xo}.  Note that the vectors of
-explanatory variables for the selection (\code{xs}) and outcome
-equation (\code{xo}) are independent and hence the exclusion
-restriction is fulfilled.  This can also be seen from the fact that
-the estimates are reasonably precise:
+explanatory variable for the outcome equation \code{xs}.  All our true
+intercepts are equal to 0 and slopes to 1, both in this and the
+following examples.  We retain the latent outcome variable
+(\code{yoX}) for the figure below, and calculate the observable
+\code{xo}.  Note that the vectors of explanatory variables for the
+selection (\code{xs}) and outcome equation (\code{xo}) are independent
+and hence the exclusion restriction is fulfilled.  This can also be
+seen from the fact that the estimates are reasonably precise:
 <<code:t2summary>>=
   summary(m <- selection(ys~xs, yo ~xo))
 @ 
@@ -454,13 +485,13 @@ intervals of the corresponding estimates.
 
 Now look at the graphical representation of the data
 (Figure~\ref{fig:t2ex}).  We can see that the unobserved values (empty
-circles) tend to have higher $y^{O*}$ values than the observed ones
-(filled circles).  This is because $\varrho < 0$.  The OLS estimate
-(dotted line) is substantially downward biased -- it does not take
-into account the fact, that we tend to observe the observations with
-low realisations of $\varepsilon^O$.  The slope, however, remains
+circles) tend to have higher $y^{O*}$ realisations than the observed
+ones (filled circles).  This is because $\varrho < 0$.  The OLS
+estimate (dotted line) is substantially downward biased -- it does not
+take into account the fact, that we tend to observe the observations
+with low realisations of $\varepsilon^O$.  The slope, however, remains
 unbiased because $\E [ \varepsilon^O|\varepsilon^S \ge
-  -{\vec{\beta}^S}' \vec{x}_i^S ]$ does not depend on $\vec{x}^O$.
+-{\vec{\beta}^S}' \vec{x}_i^S ]$ does not depend on $\vec{x}^O$.
 
 \begin{figure}[tp]
   \centering
@@ -505,7 +536,8 @@ The selection model uncovers the true dependence very well.  OLS
 estimate is downward biased because of $\varrho < 0$, as in the
 previous case.  However, now the slope is also biased becuse $\E [
 \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ is
-increasing in the single explanatory variable in the model, \code{xs}.
+increasing in the single explanatory variable in the model,
+$\vec{x}^S$. 
 
 \begin{figure}[tp]
   \centering
@@ -542,7 +574,7 @@ selection equation \eqref{eq:probit*}, even without the exclusion
 restriction fulfilled.  More variation gives smaller standard
 errors\footnote{This is related to the identification at infinity
   \citep{chamberlain1986}.}.  We demonstrate this below: Change the
-support of \code{xs} from $[0,1]$ to $[-5,5]$:
+support of $\vec{x}^S$ from $[0,1]$ to $[-5,5]$:
 <<>>=
   xs <- runif(500, -5, 5)
   ys <- xs + eps[,1] > 0
@@ -553,12 +585,10 @@ yoX <- xs + eps[,2]
 %
 Now all the parameters are precisely estimated, with even higher
 precision than in the first example where the exclusion restriction
-was fulfilled.  The reason is simple: the probability that $Y^{O*}$ is
-observable, given $x_i^S$, is $\Pr(1 \cdot x_i^S + \varepsilon^O > 0)
-= 1 - \Phi(-x_i^S)$ as $\varepsilon^O \sim N(0,1)$.  As one can see
-from Figure~\ref{fig:lambda()}, selection is not an issue if $x^S
-\gtrsim 2$.  In that case $\E [\varepsilon^O|y^S = 1] \approx 0$ for a
-a substantial interval of $x^S$ and hence the $\lambda(\beta^S x^S)$
+was fulfilled.  The reason is simple: As one can see from
+Figure~\ref{fig:lambda()}, selection is not an issue if $x^S \gtrsim
+2$.  In that case $\E [\varepsilon^O|y^S = 1] \approx 0$ for a a
+substantial interval of $x^S$ and hence the $\lambda(\beta^S x^S)$
 differs enough from a linear function.  In the previous example, the
 variation in $x^S$ is low and one cannot disentangle the selection
 bias from the true causal dependence.  Technically, there is a
@@ -582,7 +612,7 @@ abline(a=cf[1], b=cf[2], lty=3)
 %
 \caption{The observable (filled) and unobservable outcomes (empty
   circles), depending on \code{xs}.  The solid line denotes the true
-  dependence, dashed (almoust overlapping the solid) is the MLE
+  dependence, dashed (almost overlapping the solid) is the MLE
   estimate above, and the dotted line is the corresponding OLS
   estimate, based on observable outcomes only.}
   \label{fig:lambda()}
@@ -600,9 +630,9 @@ simultaneous latent equations:
 \begin{align}
   y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
   \\
-  y_i^{O1*} &= {\vec{\beta}^{O1}}' \vec{x}_i^O + \varepsilon_i^{O1}
+  y_i^{O1*} &= {\vec{\beta}^{O1}}' \vec{x}_i^{O1} + \varepsilon_i^{O1}
   \\
-  y_i^{O2*} &= {\vec{\beta}^{O2}}' \vec{x}_i^O + \varepsilon_i^{O2},
+  y_i^{O2*} &= {\vec{\beta}^{O2}}' \vec{x}_i^{O2} + \varepsilon_i^{O2},
 \end{align}
 where $y^{S*}$ is the selection ``tendency'' as in the case of tobit-2
 models, and $y^{O1*}$ and $y^{O2*}$ are the latent outcomes, only one
@@ -650,17 +680,17 @@ distribution,
 it is straightforward to construct analogous two-step estimators
 as~\eqref{eq:tobit2_2step}.  We may write
 \begin{align}
-  \E [y_i^O | \vec{x}_i^O , \vec{x}_i^S , y_i^S = 0] 
+  \E [y_i^O | \vec{x}^O = \vec{x}_i^O , \vec{x}^S = vec{x}_i^S , y^S = 0] 
   &=
   {\vec{\beta}^{O1}}' \vec{x}_i^O 
   +
-  \E [ \varepsilon_i^O|\varepsilon_i^S < -{\vec{\beta}^S}' \vec{x}_i^S ]
+  \E [ \varepsilon^O|\varepsilon^S < -{\vec{\beta}^S}' \vec{x}_i^S ]
   \\
-  \E [y_i^O | \vec{x}_i^O , \vec{x}_i^S , y_i^S = 1] 
+  \E [y_i^O | \vec{x}^O = \vec{x}_i^O , \vec{x}^S = vec{x}_i^S , y^S = 0] 
   &=
   {\vec{\beta}^{O2}}' \vec{x}_i^O 
   +
-  \E [ \varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
+  \E [ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
 \end{align}
 and hence
 \begin{equation}
@@ -687,30 +717,33 @@ where $\E \eta^1 = \E \eta^2 = 0$ and $\lambda(\cdot) =
 \phi(\cdot)/\Phi(\cdot)$ is the inverse Mill's ratio which can be
 calculated using the probit estimate of~\eqref{eq:t5_selection_obs}.
 This system can be estimated as two independent linear models, one for
-the case $y^S = 0$ and another for $y^S = 1$.  The corresponding ML
-estimator can be written as
+the case $y^S = 0$ and another for $y^S = 1$.  The ML estimator for
+this problem can be written as
 \begin{align}
-l &= -\frac{N}{2}\log 2\pi + \notag\\
-&+ \sum_{i:y_i^S = 0} \left\{
-  -\log\sigma_1
-  -\frac{1}{2}\left( \frac{y_i^O - {\vec{\beta}^{O1}}' \vec{x}_i^O}
-    {\sigma_1} \right)^2
-  +\log \pnorm \left[ 
-    -
-    \frac
-    {{\vec{\beta}^S}' \vec{x}_i^S + \displaystyle \frac{\varrho_1}{\sigma_1}
-      \left({y_i^O - {\vec{\beta}^{O1}}' \vec{x}_i^O} \right)}
-    {\sqrt{ 1 - \varrho_1^2}} \right] \right\} \notag\\
-&+ \sum_{i: y_i^S = 1} \left\{
-  -\log\sigma_2
-  -\frac{1}{2}\left( \frac{y_i^O - {\vec{\beta}^{O2}}' \vec{x}_i^O}
-    {\sigma_2} \right)^2
-  +\log \pnorm \left[ 
-    \phantom{-}
-    \frac
-    {{\vec{\beta}^S}' \vec{x}_i^S + \displaystyle \frac{\varrho_2}{\sigma_2}
-      \left({y_i^O - {\vec{\beta}^{O2}}' \vec{x}_i^O} \right)}
-    {\sqrt{ 1 - \varrho_2^2}} \right] \right\} \notag\\
+  l &= -\frac{N}{2}\log 2\pi + \notag\\
+  &+ \sum_{\{i:y_i^S = 0\}} \left\{
+    -\log\sigma_1
+    -\frac{1}{2}\left( \frac{y_i^O - {\vec{\beta}^{O1}}' \vec{x}_i^{O1}}
+      {\sigma_1} \right)^2
+    +\log \pnorm \left[ 
+      -
+      \frac
+      {{\vec{\beta}^S}' \vec{x}_i^S + \displaystyle \frac{\varrho_1}{\sigma_1}
+        \left({y_i^O - {\vec{\beta}^{O1}}' \vec{x}_i^{O1}}
+        \right)}
+      {\sqrt{ 1 - \varrho_1^2}} \right] \right\} \notag\\
+  &+ \sum_{\{i: y_i^S = 1\}} 
+  \left\{
+    -\log\sigma_2
+    -\frac{1}{2}\left( \frac{y_i^O - {\vec{\beta}^{O2}}' \vec{x}_i^{O2}}
+      {\sigma_2} \right)^2
+    +\log \pnorm \left[ 
+      \phantom{-}
+      \frac
+      {{\vec{\beta}^S}' \vec{x}_i^S + \displaystyle \frac{\varrho_2}{\sigma_2}
+        \left({y_i^O - {\vec{\beta}^{O2}}' \vec{x}_i^{O2}}
+        \right)}
+      {\sqrt{ 1 - \varrho_2^2}} \right] \right\} \notag\\
 \end{align}
 where $N$ is the total number of observations.  Note,
 that $\varrho_{12}$ plays no role in this model, the observable
@@ -894,8 +927,9 @@ statistically significant.
 \section{Testing Reliability}
 \label{sec:reliability}
 
-In this section we test the reliability of the results from \code{selection}
-applying the two-step and the maximum likelihood estimation method.
+In this section we test the reliability of the results from
+\code{selection} applying the two-step and the ML estimation method,
+re-estimating selected models, already published in the literature.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Greene (2002): example 22.8, page 786}
@@ -936,7 +970,7 @@ Note that the standard error of the inverse Mill's ratio
 \url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}).
 }
 
-Finally, we repeat the analysis with the maximum likelihood estimation method:
+Finally, we repeat the analysis with the ML estimation method:
 <<greene22.8ML>>=
 summary( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city, data = Mroz87 ) )
@@ -957,36 +991,33 @@ outer product (BHHH) approximation.
 \subsection{Cameron and Trivedi (2005): Section 16.6, page 553}
 \label{sec:Cameron16.6}
 
-The data set used in this example is based on the
-``RAND Health Insurance Experiment'' \citep{newhouse99}.
-It is included in \pkg{micEcon}, where it is called \code{RandHIE}.
-\citet[p.~553]{cameron05} use these data to analyse health expenditure.
-The endogenous variable of the outcome equation measures
-the log of the medical expenses of the individual (\code{lnmeddol})
-and the endogenous variable of the selection equation indicates
-whether the medical expenses are positive (\code{binexp}).
-The regressors are
-the log of the coinsurance rate plus 1 (\code{logc = log(coins+1)}),
-a dummy for individual deductible plans (\code{idp}),
-the log of the participation incentive payment (\code{lpi}),
-an artificial variable (\code{fmde} that is 0 if \code{idp}\,=\,1
-and \code{ln(max(1,mde/(0.01*coins)))} otherwise
-(where \code{mde} is the maximum expenditure offer),
-physical limitations (\code{physlm}),
-the number of chronic diseases (\code{disea}),
-dummy variables for good (\code{hlthg}, fair (\code{hlthf}), and
-poor (\code{hlthp}) self-rated health
-(where the baseline is excellent self-rated health),
-the log of family income (\code{linc}),
-the log of family size (\code{lfam}),
-education of household head in years (\code{educdec}),
-age of the individual in years (\code{xage}),
-a dummy variable for female individuals (\code{female}),
-a dummy variable for individuals younger than 18 years (\code{child}),
-a dummy variable for female individuals younger than 18 years (\code{fchild}),
-and a dummy variable for black household heads (\code{black}).
-First, we select the subsample that is used by \citet{cameron05}
-and specify the selection as well as the outcome equation.
+The data set used in this example is based on the ``RAND Health
+Insurance Experiment'' \citep{newhouse99}.  It is included in
+\pkg{micEcon}, where it is called \code{RandHIE}.
+\citet[p.~553]{cameron05} use these data to analyse health
+expenditures.  The endogenous variable of the outcome equation
+measures the log of the medical expenses of the individual
+(\code{lnmeddol}) and the endogenous variable of the selection
+equation indicates whether the medical expenses are positive
+(\code{binexp}).  The regressors are the log of the coinsurance rate
+plus 1 (\code{logc = log(coins+1)}), a dummy for individual deductible
+plans (\code{idp}), the log of the participation incentive payment
+(\code{lpi}), an artificial variable (\code{fmde} that is 0 if
+\code{idp}\,=\,1 and \code{ln(max(1,mde/(0.01*coins)))} otherwise
+(where \code{mde} is the maximum expenditure offer), physical
+limitations (\code{physlm}), the number of chronic diseases
+(\code{disea}), dummy variables for good (\code{hlthg}, fair
+(\code{hlthf}), and poor (\code{hlthp}) self-rated health (where the
+baseline is excellent self-rated health), the log of family income
+(\code{linc}), the log of family size (\code{lfam}), education of
+household head in years (\code{educdec}), age of the individual in
+years (\code{xage}), a dummy variable for female individuals
+(\code{female}), a dummy variable for individuals younger than 18
+years (\code{child}), a dummy variable for female individuals younger
+than 18 years (\code{fchild}), and a dummy variable for black
+household heads (\code{black}).  First, we select the subsample that
+is used by \citet{cameron05} and specify the selection as well as the
+outcome equation.
 %
 <<cameron16.6start>>=
 data( RandHIE )
@@ -1005,7 +1036,7 @@ summary( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ],
                           method = "2step" ), part="full" )
 @
 %
-All coefficients, standard errors and t-values are fully identical
+All coefficients and standard errors are fully identical
 to the results reported by \citet{cameron05}
 --- even if they are compared with the seven-digit values
 in their \proglang{Stata} output that is available on
@@ -1017,15 +1048,15 @@ because they differ from their \proglang{Stata} output
 as well as from our results.
 }
 
-Again, we repeat the analysis with the maximum likelihood estimation method:
+Again, we repeat the analysis with the ML estimation method:
 <<cameron16.6ML>>=
 summary( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ] ),
    part="full" )
 @
 %
-All coefficients, standard errors and t-values of the ML estimation
-are nearly identical to the values reported in Table~16.1 of \citet{cameron05}
-as well as to the seven-digit values in their \proglang{Stata} output.
+All coefficients and standard errors of the ML estimation are nearly
+identical to the values reported in Table~16.1 of \citet{cameron05} as
+well as to the seven-digit values in their \proglang{Stata} output.
 Only a very few coefficients deviate on the seventh decimal place.
 % outcome equation: hlthp, female, child, black
 
@@ -1086,9 +1117,9 @@ ys <- y > 0
 summary(selection(ys~x, y~x))
 @ 
 %
-The reason is, that $\varrho = 1$ lies at the boundary of the
-parameter space.  However, the 2-step method still works, although
-standard errors are large:
+The reason is that $\varrho = 1$ lies at the boundary of the parameter
+space.  However, the 2-step method still works, although standard
+errors are large:
 <<tobit_tobit2_summary>>=
 summary(selection(ys~x, y~x, method="2step"))
 @ 
@@ -1096,22 +1127,27 @@ summary(selection(ys~x, y~x, method="2step"))
 
 
 \section{Conclusions}
+\label{sec:conclusions}
 
 This paper describes the Heckman-type selection models and their
-implementation in \pkg{micEcon} for programming language \proglang{R}.
-We argue, that these models serve as useful teaching tools as they are
-easy to implement and understand, although nowadays there exist
-superior estimation methods for censored data.
+implementation in the package \pkg{micEcon} for the programming
+language \proglang{R}.  We argue that these models serve as useful
+teaching tools because they are easy to implement and understand.
+However, nowadays there exist superior estimation methods for censored
+data.
 
 We briefly describe the implementation and usage of tobit-2 and
 tobit-5 (switching regression) models in \pkg{micEcon}, and
-demonstrate the virtues and caveats of them using a number of
-Monte-Carlo and real data examples.  Our implementation works well for
-correctly specified cases, the problems appearing in the case of
-misspecification or weak identification are related to the model
-itself.  In these problematic cases a more robust maximisation
-algorithm might be useful, even if the problems lie elsewhere.  More
-robust optimisation is left for the future work.
+demonstrate the usage of the package using a number of Monte-Carlo and
+real data examples.  The examples illustrate several important issues,
+related to exclusion restriction, identification at infinity and
+functional for specification.  Our implementation works well for
+correctly specified cases with exclusion restriction fulfilled.  The
+problems appearing in the case of misspecification or weak
+identification are related to the model itself.  In these problematic
+cases a more robust maximisation algorithm might be useful, even if
+the problems lie elsewhere.  More robust optimisation is left for the
+future work.
 
 
 
@@ -1123,8 +1159,6 @@ robust optimisation is left for the future work.
 that are used for estimating selection functions (e.g. summary.selection, 
 coef.selection, maxNR, maxLik, ...)
 [Ott? + Arne]
-
-9) A few words on coef() & unimplemented vcov parts ....
 
 What else do we have to do?
 
