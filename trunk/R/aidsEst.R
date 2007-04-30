@@ -206,8 +206,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    for( i in 1:( nGoods - 1 ) ) {
       result$r2[ i ] <- est$eq[[ i ]]$r2
    }
-   result$r2[ nGoods ] <- rSquared( data[[ shareNames[ nGoods ] ]],
-      result$wResid[ , nGoods ] )
+   result$r2[ nGoods ] <- rSquared( data[ sample, shareNames[ nGoods ] ],
+      result$wResid[ sample, nGoods ] )
    names( result$r2 ) <- shareNames
    result$r2q <- array( 0, c( nGoods ) ) # R2 values for consumed quantities
    for( i in 1:nGoods ) {
