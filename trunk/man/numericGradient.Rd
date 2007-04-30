@@ -5,7 +5,7 @@
 
 \title{Functions to Calculate Numeric Derivatives}
 \description{
-  Calculate (central) numeric gradient and hessian of a function.
+  Calculate (central) numeric gradient and Hessian.
   \code{numericGradient} accepts vector-valued functions.
 }
 \usage{
@@ -45,7 +45,7 @@ numericNHessian(f, t0, eps=1e-6, \dots)
 \section{Warning}{
   Be careful when using numerical differentiation in optimisation
   routines.  Although quite precise in simple cases, they may work very
-  poorly in difficult situations.
+  poorly in more complicated cases.
   }
 \author{Ott Toomet \email{siim@obs.ee}}
 \seealso{\code{\link{compareDerivatives}}, \code{\link{deriv}}}

@@ -20,8 +20,8 @@ returnCode.default(x, ...)
   The default methods returns component \code{returnCode}.
 }
 \value{
-  Integer, the success code of optimisation procedure.  However, other
-  functions may define it in a different way.
+  Integer, the success code of optimisation procedure.  However,
+  different optimisation routines may define it in a different way.
 }
 \author{Ott Toomet, \email{otoomet@ut.ee}}
 \seealso{\code{\link{returnMessage}}, \code{\link{maxNR}}}

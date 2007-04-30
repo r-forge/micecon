@@ -2,11 +2,11 @@
 \alias{hessian}
 \alias{hessian.default}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{hessian of the model}
+\title{Hessian matrix}
 \description{
-  This function extracts the Hessian of the M-estimator of the
-  statistical model.  Supplied by the underlying optimisation algorithm,
-  possibly using information equlity or other relevant relationships.
+  This function extracts the Hessian of the M-estimator of 
+  statistical model.  It should be supplied by the underlying
+  optimisation algorithm, possibly using approximations.}
 }
 \usage{
 hessian(x, \dots)
@@ -17,15 +17,11 @@ hessian.default(x, \dots)
   \item{x}{a M-estimator based statistical model}
   \item{\dots}{other arguments for methods}
 }
-\details{
-  The Hessian is important for maximum likelihood estimation.  For other
-  estimators, it may or may not be relevant.
-}
 \value{
-  A numeric matrix, the Hessian of the model at estimated parameter
-  values.  If the maximum is flat for particular parameters, the Hessian
+  A numeric matrix, the Hessian of the model at the estimated parameter
+  values.  If the maximum is flat, the Hessian
   is singular.  In that case you may want to invert only the
-  non-singular part of the matrix.  You may also want to exclude fixed
+  non-singular part of the matrix.  You may also want to fix certain
   parameters (see \code{\link{activePar}}).
 }
 \author{Ott Toomet, \email{otoomet@econ.au.dk}}
@@ -46,8 +42,8 @@ sqrt(-solve(hessian(ml))) # Note: standard deviations are on the diagonal
 mlf <- maxLik(ll, start=c(1,1), activePar=c(TRUE, FALSE))
 summary(mlf) # first parameter close to 0, the second exactly 1.0
 hessian(mlf)
-# Now look at the Hessian.  Note that the second component has no
-# meaning here
+# Now look at the Hessian.  Note that the second component has is not
+# related to the curvature of the object function:
 sqrt(-solve(hessian(mlf))) # works in current case, although you may get
                            # warnings.  
 # now invert only the free parameter part of the Hessian
