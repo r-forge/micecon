@@ -65,7 +65,7 @@ probit <- function( formula, subset, start=NULL,
    else if (method != "ML")
        warning("method = ", method, " is not supported. Using \"ML\"")
    mt <- attr(mf, "terms")
-   Y <- model.response(mf, "numeric")
+   Y <- model.response( mf )
    X <- model.matrix(mt, mf, contrasts)
    nParam <- ncol( X)
    nObs <- length( Y)
