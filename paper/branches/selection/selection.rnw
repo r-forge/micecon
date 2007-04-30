@@ -34,10 +34,10 @@
   integral part of modern econometrics textbooks and syllabus.  We
   describe the implementation of these models in package \pkg{micEcon}
   and illustrate the use of the package on several Monte Carlo and
-  real data examples.  Our examples include the effect of exclusion
-  restrictions, identification at infinity and specification problems,
-  and demonstrate that the package can be used as an excellent
-  teaching tool.
+  real data examples.  Our examples demonstrate the effect of
+  exclusion restrictions, identification at infinity and
+  misspecification.  We demonstrate that the package can be used as an
+  excellent teaching tool.
   %
 }
 
