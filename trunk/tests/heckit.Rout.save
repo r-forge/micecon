@@ -1,6 +1,6 @@
 
-R version 2.4.1 (2006-12-18)
-Copyright (C) 2006 The R Foundation for Statistical Computing
+R version 2.5.0 (2007-04-23)
+Copyright (C) 2007 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -93,7 +93,7 @@ F-statistic:  139 on 6 and 422 DF,  p-value: <2e-16
 Probit binary choice model/Maximum Likelihood estimation
 Newton-Raphson maximisation, 4 iterations
 Return code 1: gradient close to zero. May be a solution
-Log-Likelihood: 
+Log-Likelihood: -490.848 
 753 observations (325 zeros and 428 ones) and 6 free parameters (df = 747)
 Estimates:
                   Estimate  Std. error  t value     Pr(> t)
@@ -281,7 +281,7 @@ F-statistic:  288 on 5 and 423 DF,  p-value: <2e-16
 Probit binary choice model/Maximum Likelihood estimation
 Newton-Raphson maximisation, 5 iterations
 Return code 1: gradient close to zero. May be a solution
-Log-Likelihood: 
+Log-Likelihood: -401.302 
 753 observations (325 zeros and 428 ones) and 8 free parameters (df = 745)
 Estimates:
                  Estimate  Std. error   t value     Pr(> t)
