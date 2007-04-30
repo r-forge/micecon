@@ -1154,15 +1154,3 @@ future work.
 \bibliography{selection}
 
 \end{document}
-
-6) check (and if necessary improve or add) documentation of other functions 
-that are used for estimating selection functions (e.g. summary.selection, 
-coef.selection, maxNR, maxLik, ...)
-[Ott? + Arne]
-
-What else do we have to do?
-
-And I have a few questions:
-2) Is the code in "tobit2" obsolete? If we want to keep this functions for 
-backward compatibility, I suggest that "tobit2" should be a simple wrapper 
-function to "tobit2fit" or "selection". What do you think?
