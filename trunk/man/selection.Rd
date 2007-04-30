@@ -4,7 +4,7 @@
 \alias{print.selection}
 \title{Heckman-style selection models}
 \description{
-  These functions estimate Heckman-style selection models either with
+  This is the frontend for estimating Heckman-style selection models either with
   one or two outcomes (also known as generalized tobit models).
 }
 
