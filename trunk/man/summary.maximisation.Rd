@@ -2,9 +2,7 @@
 \alias{summary.maximisation}
 \title{Summary method for maximisation/minimisation}
 \description{
-  Selects the appropriate information from maximisation algorithm,
-  calculates standard errors and
-  \eqn{t}-values, and presents in a suitable form.
+  Summarises the maximisation results
 }
 \usage{
 summary.maximisation( object, hessian=FALSE, unsucc.step=FALSE, ... )
@@ -36,8 +34,6 @@ summary.maximisation( object, hessian=FALSE, unsucc.step=FALSE, ... )
   \item{hessian}{estimated hessian at maximum, only if requested}
 }
 \author{Ott Toomet \email{siim@obs.ee}}
-\section{WARNING }{Probabilities of t-values depend on several
-  assumptions which may not be appropriate in the particular case!}
 \seealso{\code{\link{maxNR}}}
 \examples{
 ## minimize a 2D quadratic function:
@@ -49,8 +45,7 @@ f <- function(b) {
     val
 }
 ## Note that NR finds the minimum of a quadratic function with a single
-## iteration.  Use c(0,0) as initial value.  Note that standard
-## deviations, t-values and probabilities are not appropriate here.
+## iteration.  Use c(0,0) as initial value.  
 result1 <- maxNR( f, start = c(0,0) ) 
 summary( result1 )
 ## Now use c(1000000, -777777) as initial value and ask for hessian

@@ -4,7 +4,7 @@
 \title{free parameters under maximisation}
 \description{
   Return a logical vector, indicating which parameters were free under
-  maximisation, as opposed to parameters, fixed by user.
+  maximisation, as opposed to the fixed parameters, treated as constants.
 }
 \usage{
 activePar(x, \dots)
@@ -18,9 +18,9 @@ activePar.default(x, \dots)
 }
 \details{
   Several optimisation routines allow the user to fix some parameter
-  values (or do it automatically in some cases).  One has to know know
-  which parameters are free for any gradient or Hessian based inference,
-  e.g. for inverting Hessian in order to find standard errors.
+  values (or do it automatically in some cases).  For gradient or
+  Hessian based inference one has to know which parameters carry
+  optimisation-related information.
 }
 \value{
   A logical vector, indicating whether the parameters were free to
@@ -35,9 +35,11 @@ f <- function(a) exp(-a[1]^2 - a[2]^2)
 # maximize wrt. both parameters 
 free <- maxNR(f, start=1:2) 
 summary(free)  # results should be close to (0,0)
+activePar(free)
 # allow only the second parameter to vary
 cons <- maxNR(f, start=1:2, activePar=c(FALSE,TRUE))
 summary(cons) # result should be around (1,0)
+activePar(cons)
 }
 \keyword{methods}
 \keyword{optimize}

@@ -12,7 +12,6 @@ nObs(x, \dots)
 nObs.default(x, \dots)
 nObs.lm(x, \dots)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{a statistical model, such as created by \code{\link{lm}}}
   \item{\dots}{further arguments for methods}
@@ -23,7 +22,7 @@ nObs.lm(x, \dots)
   qr-decomposition, in the same way as the does \code{\link{summary.lm}}.}  
 }
 \value{
-  A numeric, number of observations
+  numeric, number of observations
 }
 \author{Ott Toomet, \email{otoomet@econ.au.dk}}
 \seealso{\code{\link{nParam}}}

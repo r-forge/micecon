@@ -6,7 +6,7 @@
 \description{
   This is just a wrapper for maximisation routines which return object
   of class "maxLik".  Corresponding methods can correctly handle the
-  likelihood-specific properties of the estimate, e.g. the fact that
+  likelihood-specific properties of the estimate including the fact that
   inverse of negative hessian is the variance-covariance matrix.
 }
 \usage{
@@ -26,7 +26,8 @@ maxLik(logLik, grad = NULL, hess = NULL, start, method = "Newton-Raphson", ...)
     vector as the first argument.  Must return a square matrix.  If
     \code{NULL}, numeric gradient will be used.}
   \item{start}{numeric vector, initial value of parameters.}
-  \item{method}{maximisation method, currently only "Newton-Rapshon".}
+  \item{method}{maximisation method, currently either "Newton-Rapshon"
+    or "BHHH".}
   \item{\dots}{further arguments for the maximisation routine.}
 }
 \value{

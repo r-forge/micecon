@@ -21,7 +21,7 @@ summary.maxLik(object, ... )
   \item{code}{code of success.}
   \item{message}{a short message describing the code.}
   \item{loglik}{the loglik value in the maximum.}
-  \item{estimate}{numeric matrix, the first column contains the parameters
+  \item{estimate}{numeric matrix, the first column contains the parameter
     estimates, the second the standard errors, third t-values and fourth
     corresponding probabilities.}
   \item{activePar}{logical vector, which parameters are treated as free.}

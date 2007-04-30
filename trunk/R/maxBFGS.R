@@ -1,4 +1,5 @@
-maxBFGS <- function(fn, grad=NULL, start,
+maxBFGS <- function(fn, grad=NULL, hess=NULL,
+                    start,
                     print.level=0,
                     iterlim=200,
                     tol=1e-6,

@@ -127,7 +127,8 @@ heckit( selection, outcome, data = sys.frame(sys.parent()),
     \code{nParam}, integer, number of the parameters in the model (not
     all are independent);
     \code{df}, integer, degrees of freedom.  Note this is not equal to
-    \code{nObs - nParam} because of the parameters are not independent.
+    \code{nObs - nParam} because of the parameters are not independent
+    in all the cases.
   }
   \item{lm, lm1, lm2}{objects of class 'lm' that contain the results
     of the 2nd step estimation(s) of the outcome equation(s).

@@ -21,9 +21,9 @@
    \item{\dots}{currently not used.}
 }
 \details{
-   The variance-covariance matrix of a two-step estimation of a tobit-5 model
+   The variance-covariance matrix of a two-step estimate
    is currently only partly implemented.
-   The rest of the matrix is filled with NAs.
+   The unimplemented part of the matrix is filled with NAs.
 }
 \value{
    the estimated variance covariance matrix of the coefficients.

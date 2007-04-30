@@ -2,7 +2,7 @@
 \alias{vcov.probit}
 \alias{vcov.maxLik}
 
-\title{Methods for some 'vcov' methods in Package 'micEcon'}
+\title{'vcov' methods in Package 'micEcon'}
 \description{
    Extract variance-covariance matrices.
 }

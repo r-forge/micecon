@@ -4,15 +4,16 @@
 \alias{loglikValue.maxLik}
 \title{Return the log likelihood value}
 \description{
-  Return the log likelihood value of objects.  Objects should be models,
-  estimated by Maksimum Likelihood.
+  Return the log likelihood value.  Objects should be models,
+  estimated by Maksimum Likelihood, or other statistical models where
+  the likelihood makes sense.
 }
 \usage{
 loglikValue(x, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{object, most probably a model, estimated with Maksimum
+  \item{x}{object, usually a model estimated with Maximum
     Likelihood}
   \item{...}{additional arguments to methods}
 }

@@ -15,7 +15,8 @@ nParam.lm(x, \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \details{
-  Not all parameters need to be free.  The number may depend on the
+  Not all parameters need to be free nor independent.  The number may
+  depend on the
   normalisation. 
 }
 \arguments{
