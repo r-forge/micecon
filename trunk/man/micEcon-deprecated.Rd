@@ -1,4 +1,5 @@
 \name{micEcon-deprecated}
+\alias{micEcon-deprecated}
 \alias{tobit2}
 \title{Deprecated Functions in micEcon package}
 \description{
