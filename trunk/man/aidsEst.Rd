@@ -13,7 +13,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
       instNames = NULL, shifterNames = NULL,
       method = "LA:L", hom = TRUE, sym = TRUE, pxBase,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
-      maxiterIL = 50, tolIL = 1e-5, alpha0 = 0, TX = FALSE, ... )
+      ILmaxiter = 50, ILtol = 1e-5, alpha0 = 0, TX = FALSE, ... )
 
 \method{print}{aidsEst}( x, ... )
 }
@@ -35,9 +35,9 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
       (see \code{\link{aidsPx}}).}
    \item{estMethod}{estimation method (e.g. 'SUR' or '3SLS',
       see \code{\link[systemfit]{systemfit}}).}
-   \item{maxiterIL}{maximum number of iterations of the
+   \item{ILmaxiter}{maximum number of iterations of the
       'Iterated Linear Least Squares Estimation'.}
-   \item{tolIL}{tolerance level of the 'Iterated Linear Least Squares
+   \item{ILtol}{tolerance level of the 'Iterated Linear Least Squares
       Estimation'.}
    \item{alpha0}{the intercept of the translog price index (\eqn{\alpha_0}).}
    \item{TX}{logical. Method to impose homogeneity and symmetry restrictions:
@@ -83,7 +83,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
       If the AIDS is estimated by the 'Iterated Linear Least Squares
       Estimator' (ILLE):
       a vector containing the SUR/3SLS iterations at each iteration.}
-   \item{iterIL}{number of iterations of the 'Iterated Linear Least Squares
+   \item{ILiter}{number of iterations of the 'Iterated Linear Least Squares
       Estimation'.}
    \item{method}{the method used to estimate the aids (see details).}
    \item{lnp}{log of the price index used for estimation.}
