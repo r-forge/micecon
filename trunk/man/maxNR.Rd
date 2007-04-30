@@ -3,7 +3,7 @@
 %- Also NEED an `\alias' for EACH other topic documented here.
 \title{Newton-Raphson maximisation}
 \description{
-  unconstrained maximisation algorithm based on Newton-Raphson method.
+  Unconstrained maximisation based on Newton-Raphson method.
 }
 \usage{
 maxNR(fn, grad = NULL, hess = NULL, start, print.level = 0,
