@@ -3,7 +3,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       shifterNames = NULL, method = "LA:L", hom = TRUE, sym = TRUE,
       pxBase = 1,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
-      maxiterIL = 50, tolIL = 1e-5, alpha0 = 0, TX = FALSE, ... ) {
+      ILmaxiter = 50, ILtol = 1e-5, alpha0 = 0, TX = FALSE, ... ) {
 
    if( length( priceNames ) != length( shareNames ) ) {
       stop( "arguments 'priceNames' and 'shareNames' must have the same length" )
@@ -109,10 +109,10 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       bd      <- est$b      # difference of coefficients between
                             # this and previous step
       iter    <- est$iter   # iterations of each SUR estimation
-      iterIL <- 1          # iterations of IL Loop
-      while( ( ( t( bd ) %*% bd ) / ( t( b ) %*% b ) )^0.5 > tolIL &&
-            iterIL < maxiterIL ) {
-         iterIL <- iterIL + 1      # iterations of IL Loop
+      ILiter <- 1          # iterations of IL Loop
+      while( ( ( t( bd ) %*% bd ) / ( t( b ) %*% b ) )^0.5 > ILtol &&
+            ILiter < ILmaxiter ) {
+         ILiter <- ILiter + 1      # iterations of IL Loop
          bl     <- b              # coefficients of previous step
          sysData$lxtr <- log( data[[ totExpName ]] ) -
             aidsPx( "TL", priceNames, shareNames, data = data,
@@ -177,7 +177,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       result$wFitted <- aidsCalc( priceNames, totExpName, data = data,
          coef = result$coef, alpha0 = alpha0, px = "TL" )$shares
          # estimated budget shares
-      result$iterIL <- iterIL
+      result$ILiter <- ILiter
    }
    names( result$wFitted ) <- paste( "wFitted", as.character( 1:nGoods ),
       sep = "" )

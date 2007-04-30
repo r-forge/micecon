@@ -315,8 +315,8 @@ wFood4  0.344 -0.0246  0.1205 -0.556
 
 Repeating the evaluation of different elasticity formulas of Green & Alston (1990): iterated AIDS
 > estResultAIDS <- summary( aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86[ setWo1, ], maxiter = 1,
-+    rcovformula=1, tol=1e-7,
++    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
++    rcovformula=1, ILtol=1e-7,
 +    method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
 > print( estResultAIDS )
 
@@ -356,8 +356,8 @@ wFood3 -0.0858  0.14863 -0.6751  0.6123
 wFood4  0.0151  0.09031  0.2324 -0.3378
 > # imposing restrictions via TX
 > estResultAIDSTX <- summary( aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86[ setWo1, ], maxiter = 1,
-+    rcovformula=1, tol=1e-7,
++    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
++    rcovformula=1, ILtol=1e-7,
 +    method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
 > print( estResultAIDSTX )
 
@@ -410,8 +410,8 @@ wFood4  0.0151  0.09031  0.2324 -0.3378
 > 
 > ## only homogeneity (no symmetry imposed)
 > estResultAIDShom <- summary( aidsEst( pNames, wNames, "xFood", sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], maxiter = 1,
-+    rcovformula=1, tol=1e-7,
++    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
++    rcovformula=1, ILtol=1e-7,
 +    method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
 > print( estResultAIDShom )
 
@@ -451,8 +451,8 @@ wFood3 -0.0149 -0.00646 -0.574  0.5955
 wFood4 -0.1088  0.18913  0.202 -0.2820
 > # imposing restrictions via TX
 > estResultAIDShomTX <- summary( aidsEst( pNames, wNames, "xFood", sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], maxiter = 1,
-+    rcovformula=1, tol=1e-7,
++    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
++    rcovformula=1, ILtol=1e-7,
 +    method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
 > print( estResultAIDShomTX )
 
@@ -505,8 +505,8 @@ wFood4 -0.1088  0.18913  0.202 -0.2820
 > 
 > ## unrestricted (no homogeneity and no symmetry imposed)
 > estResultAIDSunr <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], maxiter = 1,
-+    rcovformula=1, tol=1e-7,
++    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
++    rcovformula=1, ILtol=1e-7,
 +    method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
 > print( estResultAIDSunr )
 
@@ -546,8 +546,8 @@ wFood3  0.155  0.0480 -0.5766  0.371
 wFood4  0.302 -0.0329  0.1462 -0.537
 > # imposing restrictions via TX
 > estResultAIDSunrTX <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], maxiter = 1,
-+    rcovformula=1, tol=1e-7,
++    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
++    rcovformula=1, ILtol=1e-7,
 +    method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
 > print( estResultAIDSunrTX )
 
@@ -726,10 +726,10 @@ wFood3 -0.0987  0.1959 -0.6852  0.5881
 wFood4  0.0360  0.0817  0.2224 -0.3400
 > 
 > estResultAIDSNa <- summary( aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86, maxiter = 1,
-+    rcovformula=1, tol=1e-7, method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
++    data = Blanciforti86, ILmaxiter = 1,
++    rcovformula=1, ILtol=1e-7, method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
 Warning message:
-there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, maxiter = 1,  
+there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, ILmaxiter = 1,  
 > print( estResultAIDSNa )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
