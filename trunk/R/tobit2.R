@@ -133,7 +133,7 @@ tobit2 <- function(selection, formula,
    }
    ## --- the main program ---
    ## First the consistency checks
-   .Deprecated("Use 'selection()' instead", "micEcon")
+   .Deprecated( "selection", "micEcon" )
    if( class( formula ) != "formula" ) {
       stop( "argument 'formula' must be a formula" )
    }
