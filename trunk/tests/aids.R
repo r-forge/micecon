@@ -190,7 +190,6 @@ print( elas( estResultAIDSNa, formula = "AIDS", quantNames = wNames ) )
 
 ########## Elasticities ###############
 cat( "\nAIDS: Elasticities\n" )
-wMeans <- colMeans( Blanciforti86[ set, wNames ] )
 ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, formula = "AIDS" )
 print( ela )
 elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, formula = "AIDS" )
@@ -199,7 +198,6 @@ print( all.equal( ela, elaTX ) )
 
 
 cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
-wMeans <- colMeans( Blanciforti86[ set, wNames ] )
 ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "AIDS" )
 print( ela )
 elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, formula = "AIDS" )
@@ -207,13 +205,26 @@ print( elaTX )
 print( all.equal( ela, elaTX ) )
 
 cat( "\n********** Elasticities ***************" )
-cat( "\nLA: Elasticity formula of Chalfant / Goddard\n" )
+cat( "\nLA: Elasticity formula of Goddard or Chalfant\n" )
+ela <- aidsElas( estResultLA$coef, wMeans, formula = "Go" )
+print( ela )
 ela <- aidsElas( estResultLA$coef, wMeans, formula = "Ch" )
 print( ela )
 
 cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
-wMeans <- colMeans( Blanciforti86[ set, wNames ] )
 ela <- aidsElas( estResultLA$coef, wMeans, formula = "EU" )
+print( ela )
+
+cat( "\nLA: Elasticity formula of Green + Alston\n" )
+ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "GA" )
+print( ela )
+
+cat( "\nLA: Elasticity formula of Buse\n" )
+ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "B1" )
+print( ela )
+
+cat( "\nLA: Elasticity formula of Buse (alternative formula)\n" )
+ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "B2" )
 print( ela )
 
 

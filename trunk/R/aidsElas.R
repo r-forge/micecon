@@ -31,13 +31,15 @@ aidsElas <- function( coef, shares, prices = NULL, formula = "AIDS",
    }
 
 
-   if( formula %in% c( "AIDS" ) ) {
+   if( formula %in% c( "AIDS", "GA", "B1", "B2" ) ) {
       if( is.null( prices ) ) {
-         stop( "the 'AIDS' formula requires argument 'prices'" )
+         stop( "formulas 'AIDS', 'GA', 'B1', and 'B2'",
+            " require argument 'prices'" )
       }
-   } else if( formula %in% c( "Ch", "EU" ) ) {
+   } else if( formula %in% c( "Go", "Ch", "EU" ) ) {
       if( !is.null( prices ) ) {
-         warning( "the 'Ch' and 'EU' formulas do not require argument 'prices'" )
+         warning( "formulas 'Go', 'Ch', and 'EU'",
+            " do not require argument 'prices'" )
       }
    }
 
@@ -58,7 +60,7 @@ aidsElas <- function( coef, shares, prices = NULL, formula = "AIDS",
          ( shares %*% t( ones ) )
       ela$marshall <- ela$hicks - ( ela$exp %*% t( ones ) ) *
          ( ones %*% t( shares ))
-   } else if(formula=="Ch") {
+   } else if( formula %in% c( "Ch", "Go" ) ) {
       ela$exp <- ones + coef$beta / shares
       ela$hicks <- -diag( 1, nGoods, nGoods ) + coef$gamma /
          ( shares %*% t( ones ) ) +
@@ -71,23 +73,54 @@ aidsElas <- function( coef, shares, prices = NULL, formula = "AIDS",
          ( shares %*% t( ones ) )
       ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
          ( ones %*% t(shares))
-   } else if( formula == "B1 not implemented" ) {
-      ela$exp <- array( 1, c( nGoods ) ) + coef$beta / shares
+   } else if( formula %in% c( "GA", "B1" ) ) {
+      denom <- 1  # part of denominator for exp. + Marsh. elasticities
+      for( k in 1:nGoods ) {
+         denom <- denom + coef$beta[ k ] * log( prices[ k ] )
+      }
+      ela$exp <- ones + coef$beta / ( shares * ( 1 + denom ) )
       ela$marshall <- matrix( NA, nGoods, nGoods )
       for( i in 1:nGoods ) {
          for( j in 1:nGoods ) {
-            ela$marshall[ i, j ] <- -( i == j ) + coef$gamma[ i, j ] / shares[ i ] -
-               coef$beta[ i ] * shares[ j ] / shares[ i ]
+            numer <- shares[ j ] # part of numerator for Marsh. elasticities
             for( k in 1:nGoods ) {
-               ela$marshall[ i, j ] <- ela$marshall[ i, j ] - coef$beta[ i ] *
-                  shares[ k ] * log( prices[ k ] ) * ( 0 + ( k == j ) ) / shares[ i ]
+               numer <- numer + coef$gamma[ k, j ] * log( prices[ k ] )
             }
+            ela$marshall[ i, j ] <- -( i == j ) + coef$gamma[ i, j ] / shares[ i ] -
+               ( coef$beta[ i ] / shares[ i ] ) * numer / denom
          }
       }
-      ela$hicks <- ela$marshall + ( ela$exp %*% t( array( 1, c( nGoods ) ) ) ) *
-         ( array( 1, c( nGoods )) %*% t(shares))
+      ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
+         ( ones %*% t(shares))
+   } else if( formula %in% c( "B2" ) ) {
+      paren <- 1  # term in parenthesis for expenditure elasticities
+      for( k in 1:nGoods ) {
+         paren <- paren - coef$beta[ k ] * log( prices[ k ] )
+      }
+      ela$exp <- ones + ( coef$beta / shares ) * paren
+      ela$marshall <- matrix( NA, nGoods, nGoods )
+      for( i in 1:nGoods ) {
+         for( j in 1:nGoods ) {
+            parenSmall <- coef$alpha[ j ] # term in small par. for Marsh. elast.
+            for( l in 1:nGoods ) {
+               parenSmall <- parenSmall +
+                  coef$gamma[ l, j ] * log( prices[ l ] )
+            }
+            parenBig <- shares[ j ] # term in big parenthesis for Marsh. elast.
+            for( k in 1:nGoods ) {
+               parenBig <- parenBig +
+                  coef$gamma[ k, j ] * log( prices[ k ] ) -
+                  coef$beta[ k ] * log( prices[ k ] ) * parenSmall
+            }
+            ela$marshall[ i, j ] <- -( i == j ) + coef$gamma[ i, j ] / shares[ i ] -
+               ( coef$beta[ i ] / shares[ i ] ) * parenBig
+         }
+      }
+      ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
+         ( ones %*% t(shares))
    } else {
-      stop( "formula '", as.character( formula ), "' is not supported" )
+      stop( "argument 'formula' must be either 'AIDS', 'GA', 'B1', 'B2',",
+         " 'Go', 'Ch', or 'EU'" )
    }
    names( ela$exp )         <- quantNames
    rownames( ela$hicks )    <- quantNames

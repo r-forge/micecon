@@ -18,7 +18,7 @@ elas.aidsEst <- function( object, formula = NULL, ... ) {
    }
 
    # to avoid warning message in aidsElas
-   if( formula %in% c( "Ch", "EU" ) ) {
+   if( formula %in% c( "Go", "Ch", "EU" ) ) {
       object$pMeans <- NULL
    }
 
