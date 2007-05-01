@@ -202,17 +202,19 @@ aidsEst <- function( priceNames, shareNames, totExpName,
          data[[ priceNames[ i ] ]]
       result$qResid[ , i ] <- result$qObs[ , i ] - result$qFitted[ , i ]
    }
-   result$r2 <- array( 0, c( nGoods ) )
+   result$r2 <- numeric( nGoods )
    for( i in 1:( nGoods - 1 ) ) {
       result$r2[ i ] <- est$eq[[ i ]]$r2
    }
    result$r2[ nGoods ] <- rSquared( data[ sample, shareNames[ nGoods ] ],
       result$wResid[ sample, nGoods ] )
    names( result$r2 ) <- shareNames
-   result$r2q <- array( 0, c( nGoods ) ) # R2 values for consumed quantities
+   result$r2q <- numeric( nGoods ) # R2 values for consumed quantities
    for( i in 1:nGoods ) {
-      result$r2q[ i ] <- rSquared( result$qObs[ , i ], result$qResid[ , i ] )
+      result$r2q[ i ] <- rSquared( result$qObs[ sample , i ],
+         result$qResid[ sample, i ] )
    }
+   names( result$r2q ) <- paste( "q_", shareNames, sep = "" )
    result$iter <- iter
    result$est <- est
    result$method <- method
