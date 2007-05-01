@@ -111,7 +111,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    \emph{Journal of Applied Econometrics}, 14, p. 209-232.
 }
 
-\seealso{\code{\link{summary.aidsEst}}, \code{\link{aidsElas}},
+\seealso{\code{\link{aidsElas}},
    \code{\link{aidsCalc}}.}
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
@@ -126,6 +126,35 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    estResult <- aidsEst( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
       data = Blanciforti86, method = "LA:SL" )
+   print( estResult )
+
+   ## Estimations with a demand shifter: linear trend
+   priceNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
+   shareNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
+
+   # LA-AIDS 
+   Blanciforti86$trend <- c( 0:( nrow( Blanciforti86 ) - 1 ) )
+   estResult <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, shifterNames = "trend" )
+   print( estResult )
+
+   # AIDS
+   estResult <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, shifterNames = "trend",
+      method = "IL:L" )
+   print( estResult )
+
+   # Estimations with two demand shifters: linear + quadratic trend
+   # LA-AIDS
+   Blanciforti86$trend2 <- c( 0:( nrow( Blanciforti86 ) - 1 ) )^2
+   estResult <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, shifterNames = c( "trend", "trend2" ) )
+   print( estResult )
+
+   # AIDS
+   estResult <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, shifterNames = c( "trend", "trend2" ),
+      method = "IL:L" )
    print( estResult )
 }
 

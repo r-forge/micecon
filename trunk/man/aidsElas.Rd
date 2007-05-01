@@ -1,14 +1,21 @@
 \name{aidsElas}
 \alias{aidsElas}
+\alias{elas.aidsEst}
+\alias{print.aidsElas}
 \title{ Elasticities of the AIDS model }
 
 \description{
-   Calculates the demand elasticities of an AIDS model.
+   These functions calculate and print
+   the demand elasticities of an AIDS model.
 }
 
 \usage{
    aidsElas( coef, shares, prices = NULL, formula = "AIDS",
       quantNames = NULL, priceNames = NULL, coefVcov = NULL, df = NULL )
+
+   \method{elas}{aidsEst}( object, formula = NULL, ... )
+
+   \method{print}{aidsElas}( x, ... )
 }
 
 \arguments{
@@ -24,9 +31,33 @@
    \item{coefVcov}{variance covariance matrix of the coefficients (optional).}
    \item{df}{degrees of freedom to calculate P-values of the elasticities 
       (optional).}
+   \item{object}{an object of class \code{aidsEst}.}
+   \item{x}{an object of class \code{aidsElas}.}
+   \item{...}{additional arguments of \code{elas.aidsEst}
+      are passed to \code{aidsEla};
+      additional arguments of \code{print.aidsElas}
+      are currently ignored.}
 }
 
 \details{
+   \code{elas.aidsEst} is a wrapper function to \code{aidsElas}
+   that extracts the
+   estimated coefficients (\code{coef}),
+   mean expenditure shares (\code{wMeans}),
+   mean prices (\code{pMeans}),
+   names of the prices (\code{priceNames}),
+   estimated coefficient variance covariance matrix (\code{coef$allcov}), and
+   degrees of freedom (\code{est$df})
+   from the object of class \code{aidsEst}
+   and passes them to \code{aidsElas}.
+   If argument \code{formula} in \code{elas.aidsEst} is not specified,
+   the default value depends on the estimation method.
+   If the demand system was estimated by the linear approximation (LA),
+   the default formula is 'Ch'.
+   If the demand system was estimated by the iterative linear least squares
+   estimator (ILLE),
+   the default formula is 'AIDS'.
+
    At the moment only the elasticity formulas of the orginal AIDS ('AIDS'),
    the formula of Chalfant (1987) ('Ch') and the formula of
    Eales and Unnevehr (1988) ('EU') are implemented.
@@ -95,6 +126,32 @@
    wMeans <- colMeans( Blanciforti86[ , c( "wFood1", "wFood2",
       "wFood3", "wFood4" ) ] )
    aidsElas( estResult$coef, wMeans, formula = "Ch" )
+
+   ## Repeating the evaluation of different elasticity formulas of
+   ## Green & Alston (1990)
+   priceNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
+   shareNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
+
+   # AIDS
+   estResultA <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86[ -1, ],
+      method = "IL:L" )
+   diag( elas( estResultA, formula = "AIDS" )$marshall )
+
+   # LA-AIDS + formula of AIDS
+   estResultL1 <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, method = "LA:SL" )
+   diag( elas( estResultL1, formula = "AIDS" )$marshall )
+
+   # LA-AIDS + formula of Eales + Unnevehr
+   estResultL2 <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, method = "LA:SL" )
+   diag( elas( estResultL2, formula = "EU" )$marshall )
+
+   # LA-AIDS + formula of Chalfant:
+   estResultL3 <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, method = "LA:SL" )
+   diag( elas( estResultL3, formula = "Ch" )$marshall )
 }
 
 \keyword{ models }
