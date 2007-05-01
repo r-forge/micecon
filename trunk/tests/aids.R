@@ -11,15 +11,16 @@ pMeans <- colMeans( Blanciforti86[ set, pNames ] )
 
 cat( paste( "\nRepeating the demand analysis of Blanciforti, Green",
    "& King (1986)\n" ) )
-estResultLA <- summary( aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86[ set, ], method = "LA:SL" ),
-   elaFormula = "Ch", quantNames = wNames )
+estResultLA <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86[ set, ], method = "LA:SL" )
 print( estResultLA )
+print( summary( estResultLA, elaFormula = "Ch", quantNames = wNames ) )
 # imposing restrictions via TX
-estResultLATX <- summary( aidsEst( pNames, wNames, "xFood",
+estResultLATX <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ set, ], method = "LA:SL",
-   TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
+   TX = TRUE )
 print( estResultLATX )
+print( summary( estResultLATX, elaFormula = "Ch", quantNames = wNames ) )
 estResultLATX$call <- NULL
 estResultLATX$est$bt <- NULL
 estResultLATX$est$btcov <- NULL
@@ -33,15 +34,16 @@ estResultLA$est$q.restr <- NULL
 print( all.equal( estResultLA, estResultLATX ) )
 
 ## only homogeneity (no symmetry imposed)
-estResultLAhom <- summary(  aidsEst( pNames, wNames, "xFood", sym = FALSE,
-   data = Blanciforti86[ set, ], method = "LA:SL" ),
-   elaFormula = "Ch", quantNames = wNames )
+estResultLAhom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
+   data = Blanciforti86[ set, ], method = "LA:SL" )
 print( estResultLAhom )
+print( summary( estResultLAhom, elaFormula = "Ch", quantNames = wNames ) )
 # imposing restrictions via TX
-estResultLAhomTX <- summary(  aidsEst( pNames, wNames, "xFood", sym = FALSE,
+estResultLAhomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ set, ], method = "LA:SL",
-   TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
+   TX = TRUE )
 print( estResultLAhomTX )
+print( summary( estResultLAhomTX, elaFormula = "Ch", quantNames = wNames ) )
 estResultLAhomTX$call <- NULL
 estResultLAhomTX$est$bt <- NULL
 estResultLAhomTX$est$btcov <- NULL
@@ -55,15 +57,16 @@ estResultLAhom$est$q.restr <- NULL
 print( all.equal( estResultLAhom, estResultLAhomTX ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
-estResultLAunr <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-   data = Blanciforti86[ set, ], method = "LA:SL" ),
-   elaFormula = "Ch", quantNames = wNames )
+estResultLAunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
+   data = Blanciforti86[ set, ], method = "LA:SL" )
 print( estResultLAunr )
+print( summary( estResultLAunr, elaFormula = "Ch", quantNames = wNames ) )
 # imposing restrictions via TX
-estResultLAunrTX <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
+estResultLAunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ set, ], method = "LA:SL",
-   TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
+   TX = TRUE )
 print( estResultLAunrTX )
+print( summary( estResultLAunrTX, elaFormula = "Ch", quantNames = wNames ) )
 estResultLAunrTX$call <- NULL
 estResultLAunrTX$est$bt <- NULL
 estResultLAunrTX$est$btcov <- NULL
@@ -79,17 +82,19 @@ print( all.equal( estResultLAunr, estResultLAunrTX ) )
 #####################################################
 cat( paste( "\nRepeating the evaluation of different elasticity formulas",
    "of Green & Alston (1990): iterated AIDS\n" ) )
-estResultAIDS <- summary( aidsEst( pNames, wNames, "xFood",
+estResultAIDS <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
    ILtol=1e-7,
-   method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
+   method = "IL:L" )
 print( estResultAIDS )
+print( summary( estResultAIDS, elaFormula = "AIDS", quantNames = wNames ) )
 # imposing restrictions via TX
-estResultAIDSTX <- summary( aidsEst( pNames, wNames, "xFood",
+estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
    ILtol=1e-7,
-   method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
+   method = "IL:L", TX = TRUE )
 print( estResultAIDSTX )
+print( summary( estResultAIDSTX, elaFormula = "AIDS", quantNames = wNames ) )
 estResultAIDSTX$call <- NULL
 estResultAIDSTX$est$bt <- NULL
 estResultAIDSTX$est$btcov <- NULL
@@ -103,17 +108,19 @@ estResultAIDS$est$q.restr <- NULL
 print( all.equal( estResultAIDS, estResultAIDSTX ) )
 
 ## only homogeneity (no symmetry imposed)
-estResultAIDShom <- summary( aidsEst( pNames, wNames, "xFood", sym = FALSE,
+estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
    ILtol=1e-7,
-   method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
+   method = "IL:L" )
 print( estResultAIDShom )
+print( summary( estResultAIDShom, elaFormula = "AIDS", quantNames = wNames ) )
 # imposing restrictions via TX
-estResultAIDShomTX <- summary( aidsEst( pNames, wNames, "xFood", sym = FALSE,
+estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
    ILtol=1e-7,
-   method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
+   method = "IL:L", TX = TRUE )
 print( estResultAIDShomTX )
+print( summary( estResultAIDShomTX, elaFormula = "AIDS", quantNames = wNames ) )
 estResultAIDShomTX$call <- NULL
 estResultAIDShomTX$est$bt <- NULL
 estResultAIDShomTX$est$btcov <- NULL
@@ -127,17 +134,19 @@ estResultAIDShom$est$q.restr <- NULL
 print( all.equal( estResultAIDShom, estResultAIDShomTX ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
-estResultAIDSunr <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
+estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
    ILtol=1e-7,
-   method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
+   method = "IL:L" )
 print( estResultAIDSunr )
+print( summary( estResultAIDSunr, elaFormula = "AIDS", quantNames = wNames ) )
 # imposing restrictions via TX
-estResultAIDSunrTX <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
+estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
    ILtol=1e-7,
-   method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
+   method = "IL:L", TX = TRUE )
 print( estResultAIDSunrTX )
+print( summary( estResultAIDSunrTX, elaFormula = "AIDS", quantNames = wNames ) )
 estResultAIDSunrTX$call <- NULL
 estResultAIDSunrTX$est$bt <- NULL
 estResultAIDSunrTX$est$btcov <- NULL
@@ -151,25 +160,29 @@ estResultAIDSunr$est$q.restr <- NULL
 print( all.equal( estResultAIDSunr, estResultAIDSunrTX ) )
 
 ## with NAs
-estResultLaSNa <- summary( aidsEst( pNames, wNames, "xFood",
+estResultLaSNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86,
-   method = "LA:S" ), elaFormula = "AIDS", quantNames = wNames )
+   method = "LA:S" )
 print( estResultLaSNa )
+print( summary( estResultLaSNa, elaFormula = "AIDS", quantNames = wNames ) )
 
-estResultLaSlNa <- summary( aidsEst( pNames, wNames, "xFood",
+estResultLaSlNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86,
-   method = "LA:SL" ), elaFormula = "AIDS", quantNames = wNames )
+   method = "LA:SL" )
 print( estResultLaSlNa )
+print( summary( estResultLaSlNa, elaFormula = "AIDS", quantNames = wNames ) )
 
-estResultLaLNa <- summary( aidsEst( pNames, wNames, "xFood",
+estResultLaLNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86,
-   method = "LA:L" ), elaFormula = "AIDS", quantNames = wNames )
+   method = "LA:L" )
 print( estResultLaLNa )
+print( summary( estResultLaLNa, elaFormula = "AIDS", quantNames = wNames ) )
 
-estResultAIDSNa <- summary( aidsEst( pNames, wNames, "xFood",
+estResultAIDSNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86, ILmaxiter = 1,
-   ILtol=1e-7, method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
+   ILtol=1e-7, method = "IL:L" )
 print( estResultAIDSNa )
+print( summary( estResultAIDSNa, elaFormula = "AIDS", quantNames = wNames ) )
 
 
 ########## Elasticities ###############

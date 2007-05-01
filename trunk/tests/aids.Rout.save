@@ -31,10 +31,26 @@ Loading required package: systemfit
 +    "& King (1986)\n" ) )
 
 Repeating the demand analysis of Blanciforti, Green & King (1986)
-> estResultLA <- summary( aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86[ set, ], method = "LA:SL" ),
-+    elaFormula = "Ch", quantNames = wNames )
+> estResultLA <- aidsEst( pNames, wNames, "xFood",
++    data = Blanciforti86[ set, ], method = "LA:SL" )
 > print( estResultLA )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+alpha
+wFood1 wFood2 wFood3 wFood4 
+-0.255  0.110  0.261  0.884 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3287  0.0559 -0.0747 -0.3099 
+gamma
+        pFood1   pFood2    pFood3    pFood4
+wFood1  0.1107 -0.13851 -0.011881  0.039732
+wFood2 -0.1385  0.15820 -0.003476 -0.016216
+wFood3 -0.0119 -0.00348  0.014589  0.000768
+wFood4  0.0397 -0.01622  0.000768 -0.024285
+> print( summary( estResultLA, elaFormula = "Ch", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
@@ -71,10 +87,27 @@ wFood2 -0.377 -0.0127  0.1169  0.273
 wFood3  0.222  0.1753 -0.7571  0.360
 wFood4  0.423  0.1554  0.1363 -0.715
 > # imposing restrictions via TX
-> estResultLATX <- summary( aidsEst( pNames, wNames, "xFood",
+> estResultLATX <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86[ set, ], method = "LA:SL",
-+    TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
++    TX = TRUE )
 > print( estResultLATX )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+alpha
+wFood1 wFood2 wFood3 wFood4 
+-0.255  0.110  0.261  0.884 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3287  0.0559 -0.0747 -0.3099 
+gamma
+        pFood1   pFood2    pFood3    pFood4
+wFood1  0.1107 -0.13851 -0.011881  0.039732
+wFood2 -0.1385  0.15820 -0.003476 -0.016216
+wFood3 -0.0119 -0.00348  0.014589  0.000768
+wFood4  0.0397 -0.01622  0.000768 -0.024285
+> print( summary( estResultLATX, elaFormula = "Ch", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
@@ -124,10 +157,26 @@ wFood4  0.423  0.1554  0.1363 -0.715
 [1] TRUE
 > 
 > ## only homogeneity (no symmetry imposed)
-> estResultLAhom <- summary(  aidsEst( pNames, wNames, "xFood", sym = FALSE,
-+    data = Blanciforti86[ set, ], method = "LA:SL" ),
-+    elaFormula = "Ch", quantNames = wNames )
+> estResultLAhom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
++    data = Blanciforti86[ set, ], method = "LA:SL" )
 > print( estResultLAhom )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+alpha
+ wFood1  wFood2  wFood3  wFood4 
+-0.2600  0.0914  0.2441  0.9245 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3326  0.0656 -0.0653 -0.3329 
+gamma
+         pFood1  pFood2  pFood3    pFood4
+wFood1  0.10972 -0.1210 -0.0458  0.056998
+wFood2 -0.13009  0.1244  0.0312 -0.025525
+wFood3 -0.00526 -0.0251  0.0312 -0.000772
+wFood4  0.02563  0.0217 -0.0166 -0.030701
+> print( summary( estResultLAhom, elaFormula = "Ch", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
@@ -164,10 +213,27 @@ wFood2 -0.336 -0.1805  0.2891  0.227
 wFood3  0.272  0.0139 -0.6336  0.348
 wFood4  0.383  0.2625  0.0872 -0.733
 > # imposing restrictions via TX
-> estResultLAhomTX <- summary(  aidsEst( pNames, wNames, "xFood", sym = FALSE,
+> estResultLAhomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
 +    data = Blanciforti86[ set, ], method = "LA:SL",
-+    TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
++    TX = TRUE )
 > print( estResultLAhomTX )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+alpha
+ wFood1  wFood2  wFood3  wFood4 
+-0.2600  0.0914  0.2441  0.9245 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3326  0.0656 -0.0653 -0.3329 
+gamma
+         pFood1  pFood2  pFood3    pFood4
+wFood1  0.10972 -0.1210 -0.0458  0.056998
+wFood2 -0.13009  0.1244  0.0312 -0.025525
+wFood3 -0.00526 -0.0251  0.0312 -0.000772
+wFood4  0.02563  0.0217 -0.0166 -0.030701
+> print( summary( estResultLAhomTX, elaFormula = "Ch", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
@@ -217,10 +283,26 @@ wFood4  0.383  0.2625  0.0872 -0.733
 [1] TRUE
 > 
 > ## unrestricted (no homogeneity and no symmetry imposed)
-> estResultLAunr <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-+    data = Blanciforti86[ set, ], method = "LA:SL" ),
-+    elaFormula = "Ch", quantNames = wNames )
+> estResultLAunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
++    data = Blanciforti86[ set, ], method = "LA:SL" )
 > print( estResultLAunr )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+alpha
+ wFood1  wFood2  wFood3  wFood4 
+-0.0755  0.1564  0.2428  0.6764 
+beta
+   wFood1    wFood2    wFood3    wFood4 
+ 0.147433  0.000476 -0.063987 -0.083922 
+gamma
+         pFood1  pFood2   pFood3   pFood4
+wFood1  0.12013 -0.0454 -0.05451  0.01033
+wFood2 -0.12643  0.1510  0.02811 -0.04195
+wFood3 -0.00534 -0.0257  0.03122 -0.00043
+wFood4  0.01163 -0.0799 -0.00482  0.03205
+> print( summary( estResultLAunr, elaFormula = "Ch", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
@@ -257,10 +339,27 @@ wFood2 -0.317 -0.0484  0.2738  0.145
 wFood3  0.271  0.0098 -0.6331  0.351
 wFood4  0.344 -0.0246  0.1205 -0.556
 > # imposing restrictions via TX
-> estResultLAunrTX <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
+> estResultLAunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
 +    data = Blanciforti86[ set, ], method = "LA:SL",
-+    TX = TRUE ), elaFormula = "Ch", quantNames = wNames )
++    TX = TRUE )
 > print( estResultLAunrTX )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+alpha
+ wFood1  wFood2  wFood3  wFood4 
+-0.0755  0.1564  0.2428  0.6764 
+beta
+   wFood1    wFood2    wFood3    wFood4 
+ 0.147433  0.000476 -0.063987 -0.083922 
+gamma
+         pFood1  pFood2   pFood3   pFood4
+wFood1  0.12013 -0.0454 -0.05451  0.01033
+wFood2 -0.12643  0.1510  0.02811 -0.04195
+wFood3 -0.00534 -0.0257  0.03122 -0.00043
+wFood4  0.01163 -0.0799 -0.00482  0.03205
+> print( summary( estResultLAunrTX, elaFormula = "Ch", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
@@ -314,11 +413,28 @@ wFood4  0.344 -0.0246  0.1205 -0.556
 +    "of Green & Alston (1990): iterated AIDS\n" ) )
 
 Repeating the evaluation of different elasticity formulas of Green & Alston (1990): iterated AIDS
-> estResultAIDS <- summary( aidsEst( pNames, wNames, "xFood",
+> estResultAIDS <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
 +    ILtol=1e-7,
-+    method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
++    method = "IL:L" )
 > print( estResultAIDS )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+alpha
+wFood1 wFood2 wFood3 wFood4 
+-0.240  0.120  0.267  0.854 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3201  0.0501 -0.0779 -0.2924 
+gamma
+        pFood1    pFood2    pFood3   pFood4
+wFood1  0.0976 -0.142578 -0.010547  0.05551
+wFood2 -0.1426  0.157784 -0.000515 -0.01469
+wFood3 -0.0105 -0.000515  0.015220 -0.00416
+wFood4  0.0555 -0.014692 -0.004159 -0.03666
+> print( summary( estResultAIDS, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
@@ -355,11 +471,28 @@ wFood2 -0.2612  0.00618  0.0984  0.1567
 wFood3 -0.0858  0.14863 -0.6751  0.6123
 wFood4  0.0151  0.09031  0.2324 -0.3378
 > # imposing restrictions via TX
-> estResultAIDSTX <- summary( aidsEst( pNames, wNames, "xFood",
+> estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
 +    ILtol=1e-7,
-+    method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
++    method = "IL:L", TX = TRUE )
 > print( estResultAIDSTX )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+alpha
+wFood1 wFood2 wFood3 wFood4 
+-0.240  0.120  0.267  0.854 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3201  0.0501 -0.0779 -0.2924 
+gamma
+        pFood1    pFood2    pFood3   pFood4
+wFood1  0.0976 -0.142578 -0.010547  0.05551
+wFood2 -0.1426  0.157784 -0.000515 -0.01469
+wFood3 -0.0105 -0.000515  0.015220 -0.00416
+wFood4  0.0555 -0.014692 -0.004159 -0.03666
+> print( summary( estResultAIDSTX, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
@@ -409,11 +542,28 @@ wFood4  0.0151  0.09031  0.2324 -0.3378
 [1] TRUE
 > 
 > ## only homogeneity (no symmetry imposed)
-> estResultAIDShom <- summary( aidsEst( pNames, wNames, "xFood", sym = FALSE,
+> estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
 +    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
 +    ILtol=1e-7,
-+    method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
++    method = "IL:L" )
 > print( estResultAIDShom )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+alpha
+ wFood1  wFood2  wFood3  wFood4 
+-0.2614  0.0978  0.2507  0.9128 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3332  0.0619 -0.0691 -0.3259 
+gamma
+         pFood1  pFood2  pFood3   pFood4
+wFood1  0.09999 -0.1332 -0.0469  0.08011
+wFood2 -0.13298  0.1242  0.0305 -0.02172
+wFood3 -0.00427 -0.0207  0.0310 -0.00603
+wFood4  0.03727  0.0297 -0.0146 -0.05237
+> print( summary( estResultAIDShom, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
@@ -450,11 +600,28 @@ wFood2 -0.1747 -0.14966  0.249  0.0750
 wFood3 -0.0149 -0.00646 -0.574  0.5955
 wFood4 -0.1088  0.18913  0.202 -0.2820
 > # imposing restrictions via TX
-> estResultAIDShomTX <- summary( aidsEst( pNames, wNames, "xFood", sym = FALSE,
+> estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
 +    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
 +    ILtol=1e-7,
-+    method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
++    method = "IL:L", TX = TRUE )
 > print( estResultAIDShomTX )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+alpha
+ wFood1  wFood2  wFood3  wFood4 
+-0.2614  0.0978  0.2507  0.9128 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3332  0.0619 -0.0691 -0.3259 
+gamma
+         pFood1  pFood2  pFood3   pFood4
+wFood1  0.09999 -0.1332 -0.0469  0.08011
+wFood2 -0.13298  0.1242  0.0305 -0.02172
+wFood3 -0.00427 -0.0207  0.0310 -0.00603
+wFood4  0.03727  0.0297 -0.0146 -0.05237
+> print( summary( estResultAIDShomTX, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
@@ -504,11 +671,28 @@ wFood4 -0.1088  0.18913  0.202 -0.2820
 [1] TRUE
 > 
 > ## unrestricted (no homogeneity and no symmetry imposed)
-> estResultAIDSunr <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
+> estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
 +    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
 +    ILtol=1e-7,
-+    method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
++    method = "IL:L" )
 > print( estResultAIDSunr )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+alpha
+ wFood1  wFood2  wFood3  wFood4 
+-0.0739  0.1649  0.2491  0.6599 
+beta
+  wFood1   wFood2   wFood3   wFood4 
+ 0.14281 -0.00618 -0.06746 -0.06917 
+gamma
+         pFood1  pFood2   pFood3   pFood4
+wFood1  0.11747 -0.0491 -0.05497  0.01854
+wFood2 -0.12673  0.1543  0.02763 -0.04373
+wFood3 -0.00443 -0.0214  0.03103 -0.00548
+wFood4  0.01369 -0.0838 -0.00369  0.03068
+> print( summary( estResultAIDSunr, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
@@ -545,11 +729,28 @@ wFood2 -0.326 -0.0319  0.2750  0.140
 wFood3  0.155  0.0480 -0.5766  0.371
 wFood4  0.302 -0.0329  0.1462 -0.537
 > # imposing restrictions via TX
-> estResultAIDSunrTX <- summary( aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
+> estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
 +    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
 +    ILtol=1e-7,
-+    method = "IL:L", TX = TRUE ), elaFormula = "AIDS", quantNames = wNames )
++    method = "IL:L", TX = TRUE )
 > print( estResultAIDSunrTX )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+alpha
+ wFood1  wFood2  wFood3  wFood4 
+-0.0739  0.1649  0.2491  0.6599 
+beta
+  wFood1   wFood2   wFood3   wFood4 
+ 0.14281 -0.00618 -0.06746 -0.06917 
+gamma
+         pFood1  pFood2   pFood3   pFood4
+wFood1  0.11747 -0.0491 -0.05497  0.01854
+wFood2 -0.12673  0.1543  0.02763 -0.04373
+wFood3 -0.00443 -0.0214  0.03103 -0.00548
+wFood4  0.01369 -0.0838 -0.00369  0.03068
+> print( summary( estResultAIDSunrTX, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
@@ -599,12 +800,29 @@ wFood4  0.302 -0.0329  0.1462 -0.537
 [1] TRUE
 > 
 > ## with NAs
-> estResultLaSNa <- summary( aidsEst( pNames, wNames, "xFood",
+> estResultLaSNa <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86,
-+    method = "LA:S" ), elaFormula = "AIDS", quantNames = wNames )
++    method = "LA:S" )
 Warning message:
 there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:S") 
 > print( estResultLaSNa )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with Stone Index (S)
+Estimated Coefficients:
+alpha
+wFood1 wFood2 wFood3 wFood4 
+-0.247  0.109  0.268  0.870 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3240  0.0559 -0.0786 -0.3012 
+gamma
+        pFood1   pFood2   pFood3  pFood4
+wFood1  0.1042 -0.13988 -0.01156  0.0473
+wFood2 -0.1399  0.15691  0.00347 -0.0205
+wFood3 -0.0116  0.00347  0.01249 -0.0044
+wFood4  0.0473 -0.02050 -0.00440 -0.0224
+> print( summary( estResultLaSNa, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: Linear Approximation (LA) with Stone Index (S)
@@ -641,12 +859,29 @@ wFood2 -0.2332  0.0097  0.1140  0.1096
 wFood3 -0.1010  0.1712 -0.6939  0.6237
 wFood4 -0.0268  0.0631  0.2358 -0.2721
 > 
-> estResultLaSlNa <- summary( aidsEst( pNames, wNames, "xFood",
+> estResultLaSlNa <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86,
-+    method = "LA:SL" ), elaFormula = "AIDS", quantNames = wNames )
++    method = "LA:SL" )
 Warning message:
 there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:SL") 
 > print( estResultLaSlNa )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+alpha
+wFood1 wFood2 wFood3 wFood4 
+-0.255  0.110  0.261  0.884 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3287  0.0559 -0.0747 -0.3099 
+gamma
+        pFood1   pFood2    pFood3    pFood4
+wFood1  0.1107 -0.13851 -0.011881  0.039732
+wFood2 -0.1385  0.15820 -0.003476 -0.016216
+wFood3 -0.0119 -0.00348  0.014589  0.000768
+wFood4  0.0397 -0.01622  0.000768 -0.024285
+> print( summary( estResultLaSlNa, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
@@ -683,12 +918,29 @@ wFood2 -0.2210  0.0135  0.0813  0.1263
 wFood3 -0.0914  0.1229 -0.6859  0.6544
 wFood4 -0.0698  0.0731  0.2483 -0.2515
 > 
-> estResultLaLNa <- summary( aidsEst( pNames, wNames, "xFood",
+> estResultLaLNa <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86,
-+    method = "LA:L" ), elaFormula = "AIDS", quantNames = wNames )
++    method = "LA:L" )
 Warning message:
 there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:L") 
 > print( estResultLaLNa )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with Laspeyres Index (L)
+Estimated Coefficients:
+alpha
+wFood1 wFood2 wFood3 wFood4 
+-0.248  0.123  0.273  0.852 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3251  0.0481 -0.0816 -0.2917 
+gamma
+         pFood1   pFood2   pFood3  pFood4
+wFood1  0.09104 -0.14571 -0.00963  0.0643
+wFood2 -0.14571  0.15852  0.00594 -0.0188
+wFood3 -0.00963  0.00594  0.01289 -0.0092
+wFood4  0.06431 -0.01875 -0.00920 -0.0364
+> print( summary( estResultLaLNa, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: Linear Approximation (LA) with Laspeyres Index (L)
@@ -725,12 +977,29 @@ wFood2 -0.2838  0.0109  0.1304  0.1426
 wFood3 -0.0987  0.1959 -0.6852  0.5881
 wFood4  0.0360  0.0817  0.2224 -0.3400
 > 
-> estResultAIDSNa <- summary( aidsEst( pNames, wNames, "xFood",
+> estResultAIDSNa <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86, ILmaxiter = 1,
-+    ILtol=1e-7, method = "IL:L" ), elaFormula = "AIDS", quantNames = wNames )
++    ILtol=1e-7, method = "IL:L" )
 Warning message:
 there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, ILmaxiter = 1,  
 > print( estResultAIDSNa )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+alpha
+wFood1 wFood2 wFood3 wFood4 
+-0.248  0.123  0.273  0.852 
+beta
+ wFood1  wFood2  wFood3  wFood4 
+ 0.3251  0.0481 -0.0816 -0.2917 
+gamma
+         pFood1   pFood2   pFood3  pFood4
+wFood1  0.09104 -0.14571 -0.00963  0.0643
+wFood2 -0.14571  0.15852  0.00594 -0.0188
+wFood3 -0.00963  0.00594  0.01289 -0.0092
+wFood4  0.06431 -0.01875 -0.00920 -0.0364
+> print( summary( estResultAIDSNa, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
