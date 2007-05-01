@@ -63,8 +63,7 @@
    ## Repeating the demand analysis of Blanciforti, Green & King (1986)
    estResult <- aidsEst( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
-      data = Blanciforti86, method = "LA:SL",
-      maxiter = 1, rcovformula = 1, tol = 1e-7 )
+      data = Blanciforti86, method = "LA:SL" )
    summary( estResult, elaFormula = "Ch" )
 
    ## Repeating the evaluation of different elasticity formulas of
@@ -74,27 +73,23 @@
 
    # AIDS
    estResultA <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86[ -1, ], maxiter = 1,
-      rcovformula=1, tol=1e-7,
+      data = Blanciforti86[ -1, ],
       method = "IL:L" )
    diag( summary( estResultA, elaFormula = "AIDS" )$ela$marshall )
 
    # LA-AIDS + formula of AIDS
    estResultL1 <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, maxiter = 1,
-      rcovformula=1, tol=1e-7, method = "LA:SL" )
+      data = Blanciforti86, method = "LA:SL" )
    diag( summary( estResultL1, elaFormula = "AIDS" )$ela$marshall )
 
    # LA-AIDS + formula of Eales + Unnevehr
    estResultL2 <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, maxiter = 1,
-      rcovformula=1, tol=1e-7, method = "LA:SL" )
+      data = Blanciforti86, method = "LA:SL" )
    diag( summary( estResultL2, elaFormula = "EU" )$ela$marshall )
 
    # LA-AIDS + formula of Chalfant:
    estResultL3 <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, maxiter = 1,
-      rcovformula=1, tol=1e-7, method = "LA:SL" )
+      data = Blanciforti86, method = "LA:SL" )
    diag( summary( estResultL3, elaFormula = "Ch" )$ela$marshall )
 
    # Estimations with a demand shifter: linear trend
@@ -107,7 +102,7 @@
    # AIDS
    estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, shifterNames = "trend",
-      maxiter = 1, method = "IL:L" )
+      method = "IL:L" )
    summary( estResult )
 
    # Estimations with two demand shifters: linear + quadratic trend
@@ -120,7 +115,7 @@
    # AIDS
    estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, shifterNames = c( "trend", "trend2" ),
-      maxiter = 1, method = "IL:L" )
+      method = "IL:L" )
    summary( estResult )
 }
 
