@@ -88,7 +88,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.946    0.864    0.618    0.724 
 > print( elas( estResultLA, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formula of Chalfant / Goddard)
+Demand Elasticities (formulas of Goddard / Chalfant)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.058  1.278  0.443  0.124 
@@ -165,7 +165,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.946    0.864    0.618    0.724 
 > print( elas( estResultLATX, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formula of Chalfant / Goddard)
+Demand Elasticities (formulas of Goddard / Chalfant)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.058  1.278  0.443  0.124 
@@ -254,7 +254,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.948    0.868    0.630    0.730 
 > print( elas( estResultLAhom, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formula of Chalfant / Goddard)
+Demand Elasticities (formulas of Goddard / Chalfant)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
 2.0702 1.3262 0.5128 0.0593 
@@ -331,7 +331,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.948    0.868    0.630    0.730 
 > print( elas( estResultLAhomTX, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formula of Chalfant / Goddard)
+Demand Elasticities (formulas of Goddard / Chalfant)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
 2.0702 1.3262 0.5128 0.0593 
@@ -420,7 +420,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.968    0.878    0.630    0.853 
 > print( elas( estResultLAunr, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formula of Chalfant / Goddard)
+Demand Elasticities (formulas of Goddard / Chalfant)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  1.474  1.002  0.523  0.763 
@@ -497,7 +497,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.968    0.878    0.630    0.853 
 > print( elas( estResultLAunrTX, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formula of Chalfant / Goddard)
+Demand Elasticities (formulas of Goddard / Chalfant)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  1.474  1.002  0.523  0.763 
@@ -590,7 +590,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.943    0.862    0.631    0.703 
 > print( elas( estResultAIDS, method = "AIDS", quantNames = wNames ) )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.054  1.296  0.458  0.112 
@@ -666,7 +666,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.943    0.862    0.631    0.703 
 > print( elas( estResultAIDSTX, method = "AIDS", quantNames = wNames ) )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.054  1.296  0.458  0.112 
@@ -755,7 +755,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.946    0.867    0.643    0.709 
 > print( elas( estResultAIDShom, method = "AIDS", quantNames = wNames ) )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.072  1.313  0.487  0.075 
@@ -831,7 +831,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.946    0.867    0.643    0.709 
 > print( elas( estResultAIDShomTX, method = "AIDS", quantNames = wNames ) )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.072  1.313  0.487  0.075 
@@ -920,7 +920,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.968    0.878    0.640    0.851 
 > print( elas( estResultAIDSunr, method = "AIDS", quantNames = wNames ) )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  1.459  0.977  0.502  0.799 
@@ -996,7 +996,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.968    0.878    0.640    0.851 
 > print( elas( estResultAIDSunrTX, method = "AIDS", quantNames = wNames ) )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  1.459  0.977  0.502  0.799 
@@ -1088,7 +1088,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.935    0.846    0.677    0.632 
 > print( elas( estResultLaSNa, method = "AIDS", quantNames = wNames ) )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.044  1.279  0.414  0.152 
@@ -1167,7 +1167,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.946    0.864    0.618    0.724 
 > print( elas( estResultLaSlNa, method = "AIDS", quantNames = wNames ) )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.058  1.278  0.443  0.124 
@@ -1246,7 +1246,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.932    0.845    0.679    0.614 
 > print( elas( estResultLaLNa, method = "AIDS", quantNames = wNames ) )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.048  1.240  0.392  0.179 
@@ -1324,7 +1324,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    0.936    0.845    0.679    0.627 
 > print( elas( estResultAIDSNa, method = "AIDS", quantNames = wNames ) )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.065  1.234  0.395  0.166 
@@ -1351,7 +1351,7 @@ AIDS: Elasticities
 > ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, method = "AIDS" )
 > print( ela )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.056    1.297    0.458    0.115 
@@ -1372,7 +1372,7 @@ q_wFood4  0.439  0.1623  0.132 -0.734
 > elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, method = "AIDS" )
 > print( elaTX )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.056    1.297    0.458    0.115 
@@ -1400,7 +1400,7 @@ LA: Elasticity formula of non-linear AIDS
 > ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "AIDS" )
 > print( ela )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.059    1.279    0.443    0.128 
@@ -1421,7 +1421,7 @@ q_wFood4 -0.0682  0.0732  0.2478 -0.2528
 > elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, method = "AIDS" )
 > print( elaTX )
 
-Demand Elasticities (original AIDS formula)
+Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.059    1.279    0.443    0.128 
@@ -1450,7 +1450,7 @@ LA: Elasticity formula of Goddard or Chalfant
 > ela <- aidsElas( estResultLA$coef, wMeans, method = "Go" )
 > print( ela )
 
-Demand Elasticities (unknown formula 'Go')
+Demand Elasticities (formulas of Goddard / Chalfant)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.059    1.279    0.443    0.128 
@@ -1471,7 +1471,7 @@ q_wFood4  0.422  0.155  0.1363 -0.713
 > ela <- aidsElas( estResultLA$coef, wMeans, method = "Ch" )
 > print( ela )
 
-Demand Elasticities (formula of Chalfant / Goddard)
+Demand Elasticities (formulas of Goddard / Chalfant)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.059    1.279    0.443    0.128 
@@ -1521,7 +1521,7 @@ LA: Elasticity formula of Green + Alston
 > ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "GA" )
 > print( ela )
 
-Demand Elasticities (unknown formula 'GA')
+Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
     1.53     1.14     0.72     0.56 
@@ -1546,7 +1546,7 @@ LA: Elasticity formula of Buse
 > ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "B1" )
 > print( ela )
 
-Demand Elasticities (unknown formula 'B1')
+Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
     1.53     1.14     0.72     0.56 
@@ -1571,7 +1571,7 @@ LA: Elasticity formula of Buse (alternative formula)
 > ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "B2" )
 > print( ela )
 
-Demand Elasticities (unknown formula 'B2')
+Demand Elasticities (formulas of Buse (second set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.075    1.283    0.434    0.115 
