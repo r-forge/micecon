@@ -414,9 +414,7 @@ wFood4  0.344 -0.0246  0.1205 -0.556
 
 Repeating the evaluation of different elasticity formulas of Green & Alston (1990): iterated AIDS
 > estResultAIDS <- aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
-+    ILtol=1e-7,
-+    method = "IL:L" )
++    data = Blanciforti86[ setWo1, ], method = "IL:L" )
 > print( estResultAIDS )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -424,16 +422,16 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
--0.240  0.120  0.267  0.854 
+-0.253  0.104  0.258  0.892 
 beta
  wFood1  wFood2  wFood3  wFood4 
- 0.3201  0.0501 -0.0779 -0.2924 
+ 0.3277  0.0595 -0.0728 -0.3144 
 gamma
-        pFood1    pFood2    pFood3   pFood4
-wFood1  0.0976 -0.142578 -0.010547  0.05551
-wFood2 -0.1426  0.157784 -0.000515 -0.01469
-wFood3 -0.0105 -0.000515  0.015220 -0.00416
-wFood4  0.0555 -0.014692 -0.004159 -0.03666
+        pFood1   pFood2   pFood3  pFood4
+wFood1 -0.0779 -0.17201  0.03040  0.2195
+wFood2 -0.1720  0.15158  0.00312  0.0173
+wFood3  0.0304  0.00312  0.00573 -0.0393
+wFood4  0.2195  0.01731 -0.03926 -0.1975
 > print( summary( estResultAIDS, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -441,40 +439,38 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
--0.240  0.120  0.267  0.854 
+-0.253  0.104  0.258  0.892 
 beta
  wFood1  wFood2  wFood3  wFood4 
- 0.3201  0.0501 -0.0779 -0.2924 
+ 0.3277  0.0595 -0.0728 -0.3144 
 gamma
-        pFood1    pFood2    pFood3   pFood4
-wFood1  0.0976 -0.142578 -0.010547  0.05551
-wFood2 -0.1426  0.157784 -0.000515 -0.01469
-wFood3 -0.0105 -0.000515  0.015220 -0.00416
-wFood4  0.0555 -0.014692 -0.004159 -0.03666
+        pFood1   pFood2   pFood3  pFood4
+wFood1 -0.0779 -0.17201  0.03040  0.2195
+wFood2 -0.1720  0.15158  0.00312  0.0173
+wFood3  0.0304  0.00312  0.00573 -0.0393
+wFood4  0.2195  0.01731 -0.03926 -0.1975
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
- 2.030  1.249  0.419  0.174 
+ 2.054  1.296  0.458  0.112 
 
 Marshallian (uncompensated) Price Elasticities
         pFood1  pFood2  pFood3 pFood4
-wFood1 -0.4419 -0.5795 -0.3092 -0.700
-wFood2 -0.6494 -0.2452 -0.0691 -0.285
-wFood3 -0.2162  0.0642 -0.7314  0.464
-wFood4 -0.0389  0.0553  0.2090 -0.399
+wFood1 -0.9955 -0.6616 -0.1729 -0.224
+wFood2 -0.7831 -0.2772 -0.0604 -0.175
+wFood3  0.0955  0.0789 -0.8180  0.186
+wFood4  0.4052  0.1401  0.1172 -0.774
 
 Hicksian (compensated) Price Elasticities
-        pFood1   pFood2  pFood3  pFood4
-wFood1  0.1890 -0.17095 -0.0369  0.0190
-wFood2 -0.2612  0.00618  0.0984  0.1567
-wFood3 -0.0858  0.14863 -0.6751  0.6123
-wFood4  0.0151  0.09031  0.2324 -0.3378
+       pFood1  pFood2 pFood3 pFood4
+wFood1 -0.357 -0.2482  0.103  0.503
+wFood2 -0.380 -0.0164  0.113  0.284
+wFood3  0.238  0.1710 -0.757  0.348
+wFood4  0.440  0.1625  0.132 -0.734
 > # imposing restrictions via TX
 > estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
-+    ILtol=1e-7,
-+    method = "IL:L", TX = TRUE )
++    data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
 > print( estResultAIDSTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -482,16 +478,16 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
--0.240  0.120  0.267  0.854 
+-0.253  0.104  0.258  0.892 
 beta
  wFood1  wFood2  wFood3  wFood4 
- 0.3201  0.0501 -0.0779 -0.2924 
+ 0.3277  0.0595 -0.0728 -0.3144 
 gamma
-        pFood1    pFood2    pFood3   pFood4
-wFood1  0.0976 -0.142578 -0.010547  0.05551
-wFood2 -0.1426  0.157784 -0.000515 -0.01469
-wFood3 -0.0105 -0.000515  0.015220 -0.00416
-wFood4  0.0555 -0.014692 -0.004159 -0.03666
+        pFood1   pFood2   pFood3  pFood4
+wFood1 -0.0779 -0.17201  0.03040  0.2195
+wFood2 -0.1720  0.15158  0.00312  0.0173
+wFood3  0.0304  0.00312  0.00573 -0.0393
+wFood4  0.2195  0.01731 -0.03926 -0.1975
 > print( summary( estResultAIDSTX, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -499,35 +495,35 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
--0.240  0.120  0.267  0.854 
+-0.253  0.104  0.258  0.892 
 beta
  wFood1  wFood2  wFood3  wFood4 
- 0.3201  0.0501 -0.0779 -0.2924 
+ 0.3277  0.0595 -0.0728 -0.3144 
 gamma
-        pFood1    pFood2    pFood3   pFood4
-wFood1  0.0976 -0.142578 -0.010547  0.05551
-wFood2 -0.1426  0.157784 -0.000515 -0.01469
-wFood3 -0.0105 -0.000515  0.015220 -0.00416
-wFood4  0.0555 -0.014692 -0.004159 -0.03666
+        pFood1   pFood2   pFood3  pFood4
+wFood1 -0.0779 -0.17201  0.03040  0.2195
+wFood2 -0.1720  0.15158  0.00312  0.0173
+wFood3  0.0304  0.00312  0.00573 -0.0393
+wFood4  0.2195  0.01731 -0.03926 -0.1975
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
- 2.030  1.249  0.419  0.174 
+ 2.054  1.296  0.458  0.112 
 
 Marshallian (uncompensated) Price Elasticities
         pFood1  pFood2  pFood3 pFood4
-wFood1 -0.4419 -0.5795 -0.3092 -0.700
-wFood2 -0.6494 -0.2452 -0.0691 -0.285
-wFood3 -0.2162  0.0642 -0.7314  0.464
-wFood4 -0.0389  0.0553  0.2090 -0.399
+wFood1 -0.9955 -0.6616 -0.1729 -0.224
+wFood2 -0.7831 -0.2772 -0.0604 -0.175
+wFood3  0.0955  0.0789 -0.8180  0.186
+wFood4  0.4052  0.1401  0.1172 -0.774
 
 Hicksian (compensated) Price Elasticities
-        pFood1   pFood2  pFood3  pFood4
-wFood1  0.1890 -0.17095 -0.0369  0.0190
-wFood2 -0.2612  0.00618  0.0984  0.1567
-wFood3 -0.0858  0.14863 -0.6751  0.6123
-wFood4  0.0151  0.09031  0.2324 -0.3378
+       pFood1  pFood2 pFood3 pFood4
+wFood1 -0.357 -0.2482  0.103  0.503
+wFood2 -0.380 -0.0164  0.113  0.284
+wFood3  0.238  0.1710 -0.757  0.348
+wFood4  0.440  0.1625  0.132 -0.734
 > estResultAIDSTX$call <- NULL
 > estResultAIDSTX$est$bt <- NULL
 > estResultAIDSTX$est$btcov <- NULL
@@ -543,9 +539,7 @@ wFood4  0.0151  0.09031  0.2324 -0.3378
 > 
 > ## only homogeneity (no symmetry imposed)
 > estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
-+    ILtol=1e-7,
-+    method = "IL:L" )
++    data = Blanciforti86[ setWo1, ], method = "IL:L" )
 > print( estResultAIDShom )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -553,16 +547,16 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
--0.2614  0.0978  0.2507  0.9128 
+-0.2615  0.0959  0.2502  0.9155 
 beta
  wFood1  wFood2  wFood3  wFood4 
- 0.3332  0.0619 -0.0691 -0.3259 
+ 0.3331  0.0630 -0.0688 -0.3273 
 gamma
-         pFood1  pFood2  pFood3   pFood4
-wFood1  0.09999 -0.1332 -0.0469  0.08011
-wFood2 -0.13298  0.1242  0.0305 -0.02172
-wFood3 -0.00427 -0.0207  0.0310 -0.00603
-wFood4  0.03727  0.0297 -0.0146 -0.05237
+        pFood1  pFood2   pFood3  pFood4
+wFood1 -0.0837 -0.1593 -0.00509  0.2481
+wFood2 -0.1674  0.1186  0.03855  0.0103
+wFood3  0.0337 -0.0155  0.02237 -0.0406
+wFood4  0.2174  0.0562 -0.05583 -0.2178
 > print( summary( estResultAIDShom, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -570,40 +564,38 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
--0.2614  0.0978  0.2507  0.9128 
+-0.2615  0.0959  0.2502  0.9155 
 beta
  wFood1  wFood2  wFood3  wFood4 
- 0.3332  0.0619 -0.0691 -0.3259 
+ 0.3331  0.0630 -0.0688 -0.3273 
 gamma
-         pFood1  pFood2  pFood3   pFood4
-wFood1  0.09999 -0.1332 -0.0469  0.08011
-wFood2 -0.13298  0.1242  0.0305 -0.02172
-wFood3 -0.00427 -0.0207  0.0310 -0.00603
-wFood4  0.03727  0.0297 -0.0146 -0.05237
+        pFood1  pFood2   pFood3  pFood4
+wFood1 -0.0837 -0.1593 -0.00509  0.2481
+wFood2 -0.1674  0.1186  0.03855  0.0103
+wFood3  0.0337 -0.0155  0.02237 -0.0406
+wFood4  0.2174  0.0562 -0.05583 -0.2178
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
- 2.072  1.308  0.485  0.079 
+ 2.072  1.313  0.487  0.075 
 
 Marshallian (uncompensated) Price Elasticities
-       pFood1 pFood2 pFood3 pFood4
-wFood1 -0.400 -0.533 -0.421 -0.718
-wFood2 -0.581 -0.413  0.074 -0.388
-wFood3 -0.165 -0.104 -0.639  0.424
-wFood4 -0.133  0.173  0.191 -0.310
+       pFood1  pFood2  pFood3 pFood4
+wFood1 -1.000 -0.6163 -0.2843 -0.171
+wFood2 -0.753 -0.4409  0.1133 -0.232
+wFood3  0.123 -0.0657 -0.7051  0.161
+wFood4  0.382  0.2482  0.0734 -0.779
 
 Hicksian (compensated) Price Elasticities
-        pFood1   pFood2 pFood3  pFood4
-wFood1  0.2436 -0.11562 -0.143  0.0156
-wFood2 -0.1747 -0.14966  0.249  0.0750
-wFood3 -0.0149 -0.00646 -0.574  0.5955
-wFood4 -0.1088  0.18913  0.202 -0.2820
+       pFood1  pFood2   pFood3 pFood4
+wFood1 -0.357 -0.1993 -0.00638  0.562
+wFood2 -0.345 -0.1766  0.28944  0.233
+wFood3  0.274  0.0324 -0.63973  0.333
+wFood4  0.406  0.2633  0.08349 -0.752
 > # imposing restrictions via TX
 > estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
-+    ILtol=1e-7,
-+    method = "IL:L", TX = TRUE )
++    data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
 > print( estResultAIDShomTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -611,16 +603,16 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
--0.2614  0.0978  0.2507  0.9128 
+-0.2615  0.0959  0.2502  0.9155 
 beta
  wFood1  wFood2  wFood3  wFood4 
- 0.3332  0.0619 -0.0691 -0.3259 
+ 0.3331  0.0630 -0.0688 -0.3273 
 gamma
-         pFood1  pFood2  pFood3   pFood4
-wFood1  0.09999 -0.1332 -0.0469  0.08011
-wFood2 -0.13298  0.1242  0.0305 -0.02172
-wFood3 -0.00427 -0.0207  0.0310 -0.00603
-wFood4  0.03727  0.0297 -0.0146 -0.05237
+        pFood1  pFood2   pFood3  pFood4
+wFood1 -0.0837 -0.1593 -0.00509  0.2481
+wFood2 -0.1674  0.1186  0.03855  0.0103
+wFood3  0.0337 -0.0155  0.02237 -0.0406
+wFood4  0.2174  0.0562 -0.05583 -0.2178
 > print( summary( estResultAIDShomTX, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -628,35 +620,35 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
--0.2614  0.0978  0.2507  0.9128 
+-0.2615  0.0959  0.2502  0.9155 
 beta
  wFood1  wFood2  wFood3  wFood4 
- 0.3332  0.0619 -0.0691 -0.3259 
+ 0.3331  0.0630 -0.0688 -0.3273 
 gamma
-         pFood1  pFood2  pFood3   pFood4
-wFood1  0.09999 -0.1332 -0.0469  0.08011
-wFood2 -0.13298  0.1242  0.0305 -0.02172
-wFood3 -0.00427 -0.0207  0.0310 -0.00603
-wFood4  0.03727  0.0297 -0.0146 -0.05237
+        pFood1  pFood2   pFood3  pFood4
+wFood1 -0.0837 -0.1593 -0.00509  0.2481
+wFood2 -0.1674  0.1186  0.03855  0.0103
+wFood3  0.0337 -0.0155  0.02237 -0.0406
+wFood4  0.2174  0.0562 -0.05583 -0.2178
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
- 2.072  1.308  0.485  0.079 
+ 2.072  1.313  0.487  0.075 
 
 Marshallian (uncompensated) Price Elasticities
-       pFood1 pFood2 pFood3 pFood4
-wFood1 -0.400 -0.533 -0.421 -0.718
-wFood2 -0.581 -0.413  0.074 -0.388
-wFood3 -0.165 -0.104 -0.639  0.424
-wFood4 -0.133  0.173  0.191 -0.310
+       pFood1  pFood2  pFood3 pFood4
+wFood1 -1.000 -0.6163 -0.2843 -0.171
+wFood2 -0.753 -0.4409  0.1133 -0.232
+wFood3  0.123 -0.0657 -0.7051  0.161
+wFood4  0.382  0.2482  0.0734 -0.779
 
 Hicksian (compensated) Price Elasticities
-        pFood1   pFood2 pFood3  pFood4
-wFood1  0.2436 -0.11562 -0.143  0.0156
-wFood2 -0.1747 -0.14966  0.249  0.0750
-wFood3 -0.0149 -0.00646 -0.574  0.5955
-wFood4 -0.1088  0.18913  0.202 -0.2820
+       pFood1  pFood2   pFood3 pFood4
+wFood1 -0.357 -0.1993 -0.00638  0.562
+wFood2 -0.345 -0.1766  0.28944  0.233
+wFood3  0.274  0.0324 -0.63973  0.333
+wFood4  0.406  0.2633  0.08349 -0.752
 > estResultAIDShomTX$call <- NULL
 > estResultAIDShomTX$est$bt <- NULL
 > estResultAIDShomTX$est$btcov <- NULL
@@ -672,9 +664,7 @@ wFood4 -0.1088  0.18913  0.202 -0.2820
 > 
 > ## unrestricted (no homogeneity and no symmetry imposed)
 > estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
-+    ILtol=1e-7,
-+    method = "IL:L" )
++    data = Blanciforti86[ setWo1, ], method = "IL:L" )
 > print( estResultAIDSunr )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -682,16 +672,16 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
--0.0739  0.1649  0.2491  0.6599 
+-0.0725  0.1627  0.2477  0.6621 
 beta
   wFood1   wFood2   wFood3   wFood4 
- 0.14281 -0.00618 -0.06746 -0.06917 
+ 0.14260 -0.00453 -0.06679 -0.07129 
 gamma
-         pFood1  pFood2   pFood3   pFood4
-wFood1  0.11747 -0.0491 -0.05497  0.01854
-wFood2 -0.12673  0.1543  0.02763 -0.04373
-wFood3 -0.00443 -0.0214  0.03103 -0.00548
-wFood4  0.01369 -0.0838 -0.00369  0.03068
+        pFood1  pFood2  pFood3  pFood4
+wFood1  0.0746 -0.0461 -0.0389  0.0422
+wFood2 -0.1253  0.1534  0.0272 -0.0440
+wFood3  0.0157 -0.0231  0.0236 -0.0164
+wFood4  0.0350 -0.0841 -0.0119  0.0182
 > print( summary( estResultAIDSunr, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -699,40 +689,38 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
--0.0739  0.1649  0.2491  0.6599 
+-0.0725  0.1627  0.2477  0.6621 
 beta
   wFood1   wFood2   wFood3   wFood4 
- 0.14281 -0.00618 -0.06746 -0.06917 
+ 0.14260 -0.00453 -0.06679 -0.07129 
 gamma
-         pFood1  pFood2   pFood3   pFood4
-wFood1  0.11747 -0.0491 -0.05497  0.01854
-wFood2 -0.12673  0.1543  0.02763 -0.04373
-wFood3 -0.00443 -0.0214  0.03103 -0.00548
-wFood4  0.01369 -0.0838 -0.00369  0.03068
+        pFood1  pFood2  pFood3  pFood4
+wFood1  0.0746 -0.0461 -0.0389  0.0422
+wFood2 -0.1253  0.1534  0.0272 -0.0440
+wFood3  0.0157 -0.0231  0.0236 -0.0164
+wFood4  0.0350 -0.0841 -0.0119  0.0182
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
- 1.460  0.969  0.497  0.805 
+ 1.459  0.977  0.502  0.799 
 
 Marshallian (uncompensated) Price Elasticities
-          pFood1 pFood2  pFood3 pFood4
-wFood1 -0.652904 -0.256 -0.2915 -0.156
-wFood2 -0.627634 -0.227  0.1450 -0.203
-wFood3  0.000814 -0.052 -0.6432  0.195
-wFood4  0.051818 -0.195  0.0383 -0.822
+       pFood1 pFood2  pFood3  pFood4
+wFood1 -0.792 -0.245 -0.2388 -0.0808
+wFood2 -0.621 -0.233  0.1409 -0.2082
+wFood3  0.152 -0.067 -0.7011  0.1127
+wFood4  0.113 -0.195  0.0163 -0.8533
 
 Hicksian (compensated) Price Elasticities
        pFood1  pFood2  pFood3 pFood4
-wFood1 -0.199  0.0375 -0.0957  0.360
-wFood2 -0.326 -0.0319  0.2750  0.140
-wFood3  0.155  0.0480 -0.5766  0.371
-wFood4  0.302 -0.0329  0.1462 -0.537
+wFood1 -0.338  0.0483 -0.0431  0.435
+wFood2 -0.317 -0.0366  0.2720  0.138
+wFood3  0.308  0.0341 -0.6338  0.290
+wFood4  0.361 -0.0346  0.1234 -0.571
 > # imposing restrictions via TX
 > estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], ILmaxiter = 1,
-+    ILtol=1e-7,
-+    method = "IL:L", TX = TRUE )
++    data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
 > print( estResultAIDSunrTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -740,16 +728,16 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
--0.0739  0.1649  0.2491  0.6599 
+-0.0725  0.1627  0.2477  0.6621 
 beta
   wFood1   wFood2   wFood3   wFood4 
- 0.14281 -0.00618 -0.06746 -0.06917 
+ 0.14260 -0.00453 -0.06679 -0.07129 
 gamma
-         pFood1  pFood2   pFood3   pFood4
-wFood1  0.11747 -0.0491 -0.05497  0.01854
-wFood2 -0.12673  0.1543  0.02763 -0.04373
-wFood3 -0.00443 -0.0214  0.03103 -0.00548
-wFood4  0.01369 -0.0838 -0.00369  0.03068
+        pFood1  pFood2  pFood3  pFood4
+wFood1  0.0746 -0.0461 -0.0389  0.0422
+wFood2 -0.1253  0.1534  0.0272 -0.0440
+wFood3  0.0157 -0.0231  0.0236 -0.0164
+wFood4  0.0350 -0.0841 -0.0119  0.0182
 > print( summary( estResultAIDSunrTX, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -757,35 +745,35 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
--0.0739  0.1649  0.2491  0.6599 
+-0.0725  0.1627  0.2477  0.6621 
 beta
   wFood1   wFood2   wFood3   wFood4 
- 0.14281 -0.00618 -0.06746 -0.06917 
+ 0.14260 -0.00453 -0.06679 -0.07129 
 gamma
-         pFood1  pFood2   pFood3   pFood4
-wFood1  0.11747 -0.0491 -0.05497  0.01854
-wFood2 -0.12673  0.1543  0.02763 -0.04373
-wFood3 -0.00443 -0.0214  0.03103 -0.00548
-wFood4  0.01369 -0.0838 -0.00369  0.03068
+        pFood1  pFood2  pFood3  pFood4
+wFood1  0.0746 -0.0461 -0.0389  0.0422
+wFood2 -0.1253  0.1534  0.0272 -0.0440
+wFood3  0.0157 -0.0231  0.0236 -0.0164
+wFood4  0.0350 -0.0841 -0.0119  0.0182
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
- 1.460  0.969  0.497  0.805 
+ 1.459  0.977  0.502  0.799 
 
 Marshallian (uncompensated) Price Elasticities
-          pFood1 pFood2  pFood3 pFood4
-wFood1 -0.652904 -0.256 -0.2915 -0.156
-wFood2 -0.627634 -0.227  0.1450 -0.203
-wFood3  0.000814 -0.052 -0.6432  0.195
-wFood4  0.051818 -0.195  0.0383 -0.822
+       pFood1 pFood2  pFood3  pFood4
+wFood1 -0.792 -0.245 -0.2388 -0.0808
+wFood2 -0.621 -0.233  0.1409 -0.2082
+wFood3  0.152 -0.067 -0.7011  0.1127
+wFood4  0.113 -0.195  0.0163 -0.8533
 
 Hicksian (compensated) Price Elasticities
        pFood1  pFood2  pFood3 pFood4
-wFood1 -0.199  0.0375 -0.0957  0.360
-wFood2 -0.326 -0.0319  0.2750  0.140
-wFood3  0.155  0.0480 -0.5766  0.371
-wFood4  0.302 -0.0329  0.1462 -0.537
+wFood1 -0.338  0.0483 -0.0431  0.435
+wFood2 -0.317 -0.0366  0.2720  0.138
+wFood3  0.308  0.0341 -0.6338  0.290
+wFood4  0.361 -0.0346  0.1234 -0.571
 > estResultAIDSunrTX$call <- NULL
 > estResultAIDSunrTX$est$bt <- NULL
 > estResultAIDSunrTX$est$btcov <- NULL
@@ -978,10 +966,9 @@ wFood3 -0.0987  0.1959 -0.6852  0.5881
 wFood4  0.0360  0.0817  0.2224 -0.3400
 > 
 > estResultAIDSNa <- aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86, ILmaxiter = 1,
-+    ILtol=1e-7, method = "IL:L" )
++    data = Blanciforti86, method = "IL:L" )
 Warning message:
-there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, ILmaxiter = 1,  
+there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis in: aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "IL:L") 
 > print( estResultAIDSNa )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -989,16 +976,16 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
--0.248  0.123  0.273  0.852 
+-0.259  0.124  0.273  0.862 
 beta
  wFood1  wFood2  wFood3  wFood4 
- 0.3251  0.0481 -0.0816 -0.2917 
+ 0.3306  0.0469 -0.0811 -0.2964 
 gamma
-         pFood1   pFood2   pFood3  pFood4
-wFood1  0.09104 -0.14571 -0.00963  0.0643
-wFood2 -0.14571  0.15852  0.00594 -0.0188
-wFood3 -0.00963  0.00594  0.01289 -0.0092
-wFood4  0.06431 -0.01875 -0.00920 -0.0364
+        pFood1   pFood2   pFood3   pFood4
+wFood1 -0.0855 -0.16994  0.03469  0.22072
+wFood2 -0.1699  0.15613  0.01104  0.00277
+wFood3  0.0347  0.01104  0.00134 -0.04707
+wFood4  0.2207  0.00277 -0.04707 -0.17643
 > print( summary( estResultAIDSNa, elaFormula = "AIDS", quantNames = wNames ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -1006,35 +993,35 @@ Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with 
 Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
--0.248  0.123  0.273  0.852 
+-0.259  0.124  0.273  0.862 
 beta
  wFood1  wFood2  wFood3  wFood4 
- 0.3251  0.0481 -0.0816 -0.2917 
+ 0.3306  0.0469 -0.0811 -0.2964 
 gamma
-         pFood1   pFood2   pFood3  pFood4
-wFood1  0.09104 -0.14571 -0.00963  0.0643
-wFood2 -0.14571  0.15852  0.00594 -0.0188
-wFood3 -0.00963  0.00594  0.01289 -0.0092
-wFood4  0.06431 -0.01875 -0.00920 -0.0364
+        pFood1   pFood2   pFood3   pFood4
+wFood1 -0.0855 -0.16994  0.03469  0.22072
+wFood2 -0.1699  0.15613  0.01104  0.00277
+wFood3  0.0347  0.01104  0.00134 -0.04707
+wFood4  0.2207  0.00277 -0.04707 -0.17643
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
- 2.048  1.240  0.392  0.179 
+ 2.065  1.234  0.395  0.166 
 
 Marshallian (uncompensated) Price Elasticities
-        pFood1  pFood2  pFood3 pFood4
-wFood1 -0.4507 -0.5953 -0.3172 -0.684
-wFood2 -0.6687 -0.2376 -0.0359 -0.298
-wFood3 -0.2204  0.1173 -0.7378  0.449
-wFood4 -0.0196  0.0459  0.1984 -0.404
+       pFood1 pFood2   pFood3 pFood4
+wFood1 -1.012 -0.678 -0.17676 -0.198
+wFood2 -0.790 -0.250 -0.00839 -0.186
+wFood3  0.109  0.157 -0.82620  0.165
+wFood4  0.415  0.110  0.09354 -0.784
 
 Hicksian (compensated) Price Elasticities
-        pFood1  pFood2  pFood3  pFood4
-wFood1  0.1848 -0.1851 -0.0425  0.0431
-wFood2 -0.2838  0.0109  0.1304  0.1426
-wFood3 -0.0987  0.1959 -0.6852  0.5881
-wFood4  0.0360  0.0817  0.2224 -0.3400
+       pFood1   pFood2 pFood3 pFood4
+wFood1 -0.371 -0.26473  0.100  0.535
+wFood2 -0.407 -0.00221  0.157  0.252
+wFood3  0.232  0.23583 -0.773  0.306
+wFood4  0.466  0.14356  0.116 -0.725
 > 
 > 
 > ########## Elasticities ###############
@@ -1049,21 +1036,21 @@ $formula
 
 $exp
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   2.031    1.250    0.419    0.177 
+   2.056    1.297    0.458    0.115 
 
 $hicks
-          pFood1   pFood2  pFood3  pFood4
-q_wFood1  0.1891 -0.17300 -0.0371  0.0212
-q_wFood2 -0.2644  0.00878  0.0983  0.1575
-q_wFood3 -0.0859  0.14808 -0.6751  0.6130
-q_wFood4  0.0164  0.09034  0.2319 -0.3386
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.357 -0.2503  0.103  0.505
+q_wFood2 -0.384 -0.0139  0.113  0.285
+q_wFood3  0.237  0.1704 -0.757  0.349
+q_wFood4  0.439  0.1623  0.132 -0.734
 
 $marshall
           pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.4414 -0.5800 -0.3096 -0.700
-q_wFood2 -0.6524 -0.2417 -0.0694 -0.287
-q_wFood3 -0.2160  0.0641 -0.7314  0.464
-q_wFood4 -0.0385  0.0549  0.2082 -0.401
+q_wFood1 -0.9954 -0.6622 -0.1731 -0.225
+q_wFood2 -0.7867 -0.2738 -0.0607 -0.176
+q_wFood3  0.0954  0.0787 -0.8180  0.186
+q_wFood4  0.4036  0.1392  0.1168 -0.774
 
 attr(,"class")
 [1] "aidsEla"
@@ -1074,21 +1061,21 @@ $formula
 
 $exp
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   2.031    1.250    0.419    0.177 
+   2.056    1.297    0.458    0.115 
 
 $hicks
-          pFood1   pFood2  pFood3  pFood4
-q_wFood1  0.1891 -0.17300 -0.0371  0.0212
-q_wFood2 -0.2644  0.00878  0.0983  0.1575
-q_wFood3 -0.0859  0.14808 -0.6751  0.6130
-q_wFood4  0.0164  0.09034  0.2319 -0.3386
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.357 -0.2503  0.103  0.505
+q_wFood2 -0.384 -0.0139  0.113  0.285
+q_wFood3  0.237  0.1704 -0.757  0.349
+q_wFood4  0.439  0.1623  0.132 -0.734
 
 $marshall
           pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.4414 -0.5800 -0.3096 -0.700
-q_wFood2 -0.6524 -0.2417 -0.0694 -0.287
-q_wFood3 -0.2160  0.0641 -0.7314  0.464
-q_wFood4 -0.0385  0.0549  0.2082 -0.401
+q_wFood1 -0.9954 -0.6622 -0.1731 -0.225
+q_wFood2 -0.7867 -0.2738 -0.0607 -0.176
+q_wFood3  0.0954  0.0787 -0.8180  0.186
+q_wFood4  0.4036  0.1392  0.1168 -0.774
 
 attr(,"class")
 [1] "aidsEla"
@@ -1290,74 +1277,74 @@ Translog index
 > print( fittedAIDS )
 $shares
         w1    w2    w3    w4
-1948 0.333 0.175 0.131 0.360
-1949 0.324 0.186 0.132 0.358
-1950 0.332 0.173 0.132 0.363
-1951 0.333 0.168 0.133 0.366
-1952 0.322 0.185 0.132 0.361
-1953 0.308 0.185 0.137 0.370
-1954 0.295 0.183 0.140 0.382
-1955 0.285 0.194 0.142 0.379
-1956 0.269 0.207 0.144 0.380
-1957 0.284 0.196 0.142 0.378
-1958 0.299 0.197 0.137 0.367
-1959 0.300 0.200 0.137 0.363
-1960 0.294 0.205 0.138 0.363
-1961 0.288 0.204 0.139 0.369
-1962 0.298 0.204 0.137 0.361
-1963 0.287 0.214 0.138 0.361
-1964 0.277 0.221 0.139 0.363
-1965 0.297 0.214 0.135 0.354
-1966 0.313 0.206 0.133 0.348
-1967 0.306 0.208 0.135 0.351
-1968 0.303 0.217 0.134 0.346
-1969 0.318 0.208 0.131 0.343
-1970 0.317 0.205 0.132 0.345
-1971 0.302 0.210 0.135 0.353
-1972 0.327 0.208 0.129 0.336
-1973 0.362 0.201 0.121 0.317
-1974 0.313 0.213 0.132 0.342
-1975 0.312 0.203 0.135 0.350
-1976 0.306 0.203 0.136 0.355
-1977 0.268 0.210 0.144 0.378
-1978 0.296 0.209 0.137 0.359
+1948 0.318 0.173 0.135 0.374
+1949 0.309 0.184 0.135 0.372
+1950 0.314 0.170 0.137 0.379
+1951 0.315 0.166 0.137 0.382
+1952 0.304 0.183 0.136 0.377
+1953 0.307 0.185 0.137 0.372
+1954 0.300 0.183 0.139 0.378
+1955 0.300 0.196 0.138 0.366
+1956 0.294 0.210 0.137 0.359
+1957 0.299 0.198 0.138 0.366
+1958 0.294 0.195 0.138 0.373
+1959 0.301 0.200 0.136 0.362
+1960 0.301 0.206 0.136 0.358
+1961 0.299 0.206 0.136 0.359
+1962 0.304 0.204 0.136 0.356
+1963 0.298 0.215 0.135 0.352
+1964 0.294 0.223 0.135 0.348
+1965 0.303 0.215 0.134 0.348
+1966 0.314 0.206 0.133 0.347
+1967 0.318 0.210 0.132 0.339
+1968 0.315 0.219 0.131 0.335
+1969 0.324 0.209 0.130 0.337
+1970 0.328 0.207 0.130 0.335
+1971 0.319 0.213 0.131 0.337
+1972 0.327 0.209 0.129 0.335
+1973 0.335 0.197 0.127 0.340
+1974 0.318 0.213 0.131 0.337
+1975 0.324 0.204 0.133 0.340
+1976 0.330 0.207 0.131 0.332
+1977 0.312 0.217 0.133 0.337
+1978 0.318 0.213 0.132 0.338
 1979    NA    NA    NA    NA
 1980    NA    NA    NA    NA
 1981    NA    NA    NA    NA
 
 $quant
        q1    q2    q3   q4
-1948 1.61 1.032 0.746 1.89
-1949 1.60 1.046 0.728 1.93
-1950 1.56 1.009 0.716 1.91
-1951 1.55 0.995 0.729 1.89
-1952 1.55 1.023 0.728 1.92
-1953 1.57 1.057 0.737 1.90
-1954 1.49 1.034 0.723 1.88
-1955 1.55 1.092 0.725 1.91
-1956 1.56 1.129 0.737 1.91
-1957 1.55 1.095 0.715 1.92
-1958 1.54 1.057 0.697 1.96
-1959 1.62 1.106 0.697 1.97
-1960 1.64 1.130 0.704 1.98
-1961 1.61 1.126 0.704 1.96
-1962 1.67 1.139 0.692 1.99
-1963 1.67 1.158 0.702 2.00
-1964 1.66 1.173 0.720 1.99
-1965 1.73 1.171 0.710 2.00
-1966 1.78 1.173 0.710 2.00
-1967 1.83 1.217 0.723 1.99
-1968 1.85 1.231 0.746 1.99
-1969 1.89 1.223 0.750 1.97
-1970 1.90 1.233 0.760 1.96
-1971 1.84 1.227 0.758 1.95
-1972 1.92 1.223 0.756 1.97
-1973 1.94 1.180 0.726 2.00
-1974 1.87 1.227 0.700 2.03
-1975 1.85 1.223 0.692 2.02
-1976 1.90 1.256 0.753 1.95
-1977 1.72 1.229 0.806 1.87
-1978 1.81 1.220 0.781 1.92
+1948 1.53 1.020 0.769 1.96
+1949 1.52 1.033 0.748 2.00
+1950 1.48 0.993 0.741 2.00
+1951 1.47 0.980 0.752 1.97
+1952 1.47 1.009 0.751 2.00
+1953 1.56 1.055 0.738 1.90
+1954 1.52 1.036 0.715 1.87
+1955 1.63 1.103 0.706 1.84
+1956 1.70 1.148 0.704 1.80
+1957 1.63 1.105 0.697 1.86
+1958 1.51 1.050 0.701 1.98
+1959 1.62 1.105 0.695 1.97
+1960 1.68 1.133 0.694 1.95
+1961 1.68 1.133 0.689 1.91
+1962 1.70 1.143 0.684 1.96
+1963 1.73 1.164 0.688 1.95
+1964 1.77 1.185 0.697 1.91
+1965 1.76 1.176 0.701 1.97
+1966 1.78 1.174 0.709 1.99
+1967 1.91 1.229 0.708 1.92
+1968 1.93 1.243 0.731 1.92
+1969 1.92 1.231 0.743 1.93
+1970 1.96 1.246 0.747 1.90
+1971 1.94 1.244 0.736 1.87
+1972 1.92 1.226 0.758 1.97
+1973 1.79 1.161 0.768 2.15
+1974 1.90 1.232 0.694 2.00
+1975 1.92 1.233 0.679 1.96
+1976 2.05 1.281 0.723 1.82
+1977 2.01 1.271 0.746 1.66
+1978 1.94 1.242 0.751 1.81
 1979   NA    NA    NA   NA
 1980   NA    NA    NA   NA
 1981   NA    NA    NA   NA
@@ -1375,74 +1362,74 @@ $quant
 > print( fittedAIDSTX )
 $shares
         w1    w2    w3    w4
-1948 0.333 0.175 0.131 0.360
-1949 0.324 0.186 0.132 0.358
-1950 0.332 0.173 0.132 0.363
-1951 0.333 0.168 0.133 0.366
-1952 0.322 0.185 0.132 0.361
-1953 0.308 0.185 0.137 0.370
-1954 0.295 0.183 0.140 0.382
-1955 0.285 0.194 0.142 0.379
-1956 0.269 0.207 0.144 0.380
-1957 0.284 0.196 0.142 0.378
-1958 0.299 0.197 0.137 0.367
-1959 0.300 0.200 0.137 0.363
-1960 0.294 0.205 0.138 0.363
-1961 0.288 0.204 0.139 0.369
-1962 0.298 0.204 0.137 0.361
-1963 0.287 0.214 0.138 0.361
-1964 0.277 0.221 0.139 0.363
-1965 0.297 0.214 0.135 0.354
-1966 0.313 0.206 0.133 0.348
-1967 0.306 0.208 0.135 0.351
-1968 0.303 0.217 0.134 0.346
-1969 0.318 0.208 0.131 0.343
-1970 0.317 0.205 0.132 0.345
-1971 0.302 0.210 0.135 0.353
-1972 0.327 0.208 0.129 0.336
-1973 0.362 0.201 0.121 0.317
-1974 0.313 0.213 0.132 0.342
-1975 0.312 0.203 0.135 0.350
-1976 0.306 0.203 0.136 0.355
-1977 0.268 0.210 0.144 0.378
-1978 0.296 0.209 0.137 0.359
+1948 0.318 0.173 0.135 0.374
+1949 0.309 0.184 0.135 0.372
+1950 0.314 0.170 0.137 0.379
+1951 0.315 0.166 0.137 0.382
+1952 0.304 0.183 0.136 0.377
+1953 0.307 0.185 0.137 0.372
+1954 0.300 0.183 0.139 0.378
+1955 0.300 0.196 0.138 0.366
+1956 0.294 0.210 0.137 0.359
+1957 0.299 0.198 0.138 0.366
+1958 0.294 0.195 0.138 0.373
+1959 0.301 0.200 0.136 0.362
+1960 0.301 0.206 0.136 0.358
+1961 0.299 0.206 0.136 0.359
+1962 0.304 0.204 0.136 0.356
+1963 0.298 0.215 0.135 0.352
+1964 0.294 0.223 0.135 0.348
+1965 0.303 0.215 0.134 0.348
+1966 0.314 0.206 0.133 0.347
+1967 0.318 0.210 0.132 0.339
+1968 0.315 0.219 0.131 0.335
+1969 0.324 0.209 0.130 0.337
+1970 0.328 0.207 0.130 0.335
+1971 0.319 0.213 0.131 0.337
+1972 0.327 0.209 0.129 0.335
+1973 0.335 0.197 0.127 0.340
+1974 0.318 0.213 0.131 0.337
+1975 0.324 0.204 0.133 0.340
+1976 0.330 0.207 0.131 0.332
+1977 0.312 0.217 0.133 0.337
+1978 0.318 0.213 0.132 0.338
 1979    NA    NA    NA    NA
 1980    NA    NA    NA    NA
 1981    NA    NA    NA    NA
 
 $quant
        q1    q2    q3   q4
-1948 1.61 1.032 0.746 1.89
-1949 1.60 1.046 0.728 1.93
-1950 1.56 1.009 0.716 1.91
-1951 1.55 0.995 0.729 1.89
-1952 1.55 1.023 0.728 1.92
-1953 1.57 1.057 0.737 1.90
-1954 1.49 1.034 0.723 1.88
-1955 1.55 1.092 0.725 1.91
-1956 1.56 1.129 0.737 1.91
-1957 1.55 1.095 0.715 1.92
-1958 1.54 1.057 0.697 1.96
-1959 1.62 1.106 0.697 1.97
-1960 1.64 1.130 0.704 1.98
-1961 1.61 1.126 0.704 1.96
-1962 1.67 1.139 0.692 1.99
-1963 1.67 1.158 0.702 2.00
-1964 1.66 1.173 0.720 1.99
-1965 1.73 1.171 0.710 2.00
-1966 1.78 1.173 0.710 2.00
-1967 1.83 1.217 0.723 1.99
-1968 1.85 1.231 0.746 1.99
-1969 1.89 1.223 0.750 1.97
-1970 1.90 1.233 0.760 1.96
-1971 1.84 1.227 0.758 1.95
-1972 1.92 1.223 0.756 1.97
-1973 1.94 1.180 0.726 2.00
-1974 1.87 1.227 0.700 2.03
-1975 1.85 1.223 0.692 2.02
-1976 1.90 1.256 0.753 1.95
-1977 1.72 1.229 0.806 1.87
-1978 1.81 1.220 0.781 1.92
+1948 1.53 1.020 0.769 1.96
+1949 1.52 1.033 0.748 2.00
+1950 1.48 0.993 0.741 2.00
+1951 1.47 0.980 0.752 1.97
+1952 1.47 1.009 0.751 2.00
+1953 1.56 1.055 0.738 1.90
+1954 1.52 1.036 0.715 1.87
+1955 1.63 1.103 0.706 1.84
+1956 1.70 1.148 0.704 1.80
+1957 1.63 1.105 0.697 1.86
+1958 1.51 1.050 0.701 1.98
+1959 1.62 1.105 0.695 1.97
+1960 1.68 1.133 0.694 1.95
+1961 1.68 1.133 0.689 1.91
+1962 1.70 1.143 0.684 1.96
+1963 1.73 1.164 0.688 1.95
+1964 1.77 1.185 0.697 1.91
+1965 1.76 1.176 0.701 1.97
+1966 1.78 1.174 0.709 1.99
+1967 1.91 1.229 0.708 1.92
+1968 1.93 1.243 0.731 1.92
+1969 1.92 1.231 0.743 1.93
+1970 1.96 1.246 0.747 1.90
+1971 1.94 1.244 0.736 1.87
+1972 1.92 1.226 0.758 1.97
+1973 1.79 1.161 0.768 2.15
+1974 1.90 1.232 0.694 2.00
+1975 1.92 1.233 0.679 1.96
+1976 2.05 1.281 0.723 1.82
+1977 2.01 1.271 0.746 1.66
+1978 1.94 1.242 0.751 1.81
 1979   NA    NA    NA   NA
 1980   NA    NA    NA   NA
 1981   NA    NA    NA   NA
@@ -1636,227 +1623,227 @@ $concavity
 $cMatrices
 $cMatrices[[1]]
         pFood1  pFood2  pFood3  pFood4
-wFood1  0.0648 -0.0637 -0.0135  0.0127
-wFood2 -0.0637  0.0197  0.0158  0.0284
-wFood3 -0.0135  0.0158 -0.0904  0.0882
-wFood4  0.0127  0.0284  0.0882 -0.1289
+wFood1 -0.1024 -0.0872  0.0293  0.1606
+wFood2 -0.0872  0.0153  0.0187  0.0534
+wFood3  0.0293  0.0187 -0.1012  0.0533
+wFood4  0.1606  0.0534  0.0533 -0.2669
 
 $cMatrices[[2]]
         pFood1  pFood2  pFood3  pFood4
-wFood1  0.0610 -0.0657 -0.0111  0.0159
-wFood2 -0.0657  0.0263  0.0152  0.0242
-wFood3 -0.0111  0.0152 -0.0934  0.0893
-wFood4  0.0159  0.0242  0.0893 -0.1294
+wFood1 -0.1062 -0.0892  0.0317  0.1638
+wFood2 -0.0892  0.0219  0.0181  0.0493
+wFood3  0.0317  0.0181 -0.1042  0.0544
+wFood4  0.1638  0.0493  0.0544 -0.2674
 
 $cMatrices[[3]]
         pFood1  pFood2  pFood3  pFood4
-wFood1  0.0635 -0.0631 -0.0104  0.0101
-wFood2 -0.0631  0.0190  0.0175  0.0266
-wFood3 -0.0104  0.0175 -0.0969  0.0898
-wFood4  0.0101  0.0266  0.0898 -0.1265
+wFood1 -0.1035 -0.0866  0.0324  0.1578
+wFood2 -0.0866  0.0146  0.0204  0.0516
+wFood3  0.0324  0.0204 -0.1077  0.0549
+wFood4  0.1578  0.0516  0.0549 -0.2643
 
 $cMatrices[[4]]
-         pFood1  pFood2   pFood3  pFood4
-wFood1  0.05600 -0.0619 -0.00808  0.0143
-wFood2 -0.06193  0.0223  0.01668  0.0231
-wFood3 -0.00808  0.0167 -0.09627  0.0878
-wFood4  0.01433  0.0231  0.08781 -0.1249
+        pFood1  pFood2  pFood3  pFood4
+wFood1 -0.1111 -0.0855  0.0347  0.1621
+wFood2 -0.0855  0.0179  0.0196  0.0482
+wFood3  0.0347  0.0196 -0.1071  0.0529
+wFood4  0.1621  0.0482  0.0529 -0.2629
 
 $cMatrices[[5]]
         pFood1  pFood2  pFood3  pFood4
-wFood1  0.0589 -0.0625 -0.0106  0.0138
-wFood2 -0.0625  0.0190  0.0167  0.0266
-wFood3 -0.0106  0.0167 -0.0935  0.0871
-wFood4  0.0138  0.0266  0.0871 -0.1279
+wFood1 -0.1084 -0.0860  0.0323  0.1619
+wFood2 -0.0860  0.0145  0.0197  0.0517
+wFood3  0.0323  0.0197 -0.1043  0.0522
+wFood4  0.1619  0.0517  0.0522 -0.2662
 
 $cMatrices[[6]]
-        pFood1  pFood2  pFood3  pFood4
-wFood1  0.0582 -0.0580 -0.0111  0.0109
-wFood2 -0.0580  0.0119  0.0177  0.0284
-wFood3 -0.0111  0.0177 -0.0912  0.0846
-wFood4  0.0109  0.0284  0.0846 -0.1239
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1088 -0.08148  0.0317  0.1586
+wFood2 -0.0815  0.00748  0.0206  0.0534
+wFood3  0.0317  0.02056 -0.1020  0.0498
+wFood4  0.1586  0.05343  0.0498 -0.2618
 
 $cMatrices[[7]]
-         pFood1  pFood2   pFood3  pFood4
-wFood1  0.05237 -0.0591 -0.00986  0.0166
-wFood2 -0.05910  0.0137  0.01726  0.0281
-wFood3 -0.00986  0.0173 -0.09076  0.0834
-wFood4  0.01659  0.0281  0.08336 -0.1281
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1152 -0.08283  0.0329  0.1651
+wFood2 -0.0828  0.00922  0.0202  0.0534
+wFood3  0.0329  0.02019 -0.1015  0.0484
+wFood4  0.1651  0.05343  0.0484 -0.2669
 
 $cMatrices[[8]]
-         pFood1  pFood2   pFood3  pFood4
-wFood1  0.04674 -0.0577 -0.00836  0.0196
-wFood2 -0.05768  0.0104  0.01810  0.0293
-wFood3 -0.00836  0.0181 -0.09102  0.0814
-wFood4  0.01962  0.0293  0.08142 -0.1300
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1211 -0.08158  0.0344  0.1686
+wFood2 -0.0816  0.00589  0.0211  0.0548
+wFood3  0.0344  0.02106 -0.1018  0.0464
+wFood4  0.1686  0.05482  0.0464 -0.2695
 
 $cMatrices[[9]]
-        pFood1   pFood2  pFood3  pFood4
-wFood1  0.0519 -0.05758 -0.0105  0.0162
-wFood2 -0.0576  0.00487  0.0191  0.0336
-wFood3 -0.0105  0.01912 -0.0903  0.0817
-wFood4  0.0162  0.03359  0.0817 -0.1315
+        pFood1    pFood2  pFood3  pFood4
+wFood1 -0.1159 -0.081476  0.0323  0.1651
+wFood2 -0.0815  0.000317  0.0221  0.0591
+wFood3  0.0323  0.022072 -0.1010  0.0467
+wFood4  0.1651  0.059088  0.0467 -0.2709
 
 $cMatrices[[10]]
         pFood1   pFood2  pFood3  pFood4
-wFood1  0.0545 -0.05855 -0.0118  0.0159
-wFood2 -0.0586  0.00180  0.0197  0.0371
-wFood3 -0.0118  0.01965 -0.0897  0.0818
-wFood4  0.0159  0.03710  0.0818 -0.1348
+wFood1 -0.1133 -0.08250  0.0309  0.1649
+wFood2 -0.0825 -0.00277  0.0226  0.0627
+wFood3  0.0309  0.02261 -0.1004  0.0469
+wFood4  0.1649  0.06265  0.0469 -0.2744
 
 $cMatrices[[11]]
-         pFood1   pFood2   pFood3  pFood4
-wFood1  0.05415 -0.05673 -0.00944  0.0120
-wFood2 -0.05673  0.00125  0.02111  0.0344
-wFood3 -0.00944  0.02111 -0.09465  0.0830
-wFood4  0.01202  0.03436  0.08298 -0.1294
+        pFood1  pFood2  pFood3  pFood4
+wFood1 -0.1136 -0.0806  0.0333  0.1609
+wFood2 -0.0806 -0.0033  0.0241  0.0598
+wFood3  0.0333  0.0241 -0.1054  0.0480
+wFood4  0.1609  0.0598  0.0480 -0.2688
 
 $cMatrices[[12]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.05651 -0.05425 -0.0106  0.00833
-wFood2 -0.05425  0.00139  0.0203  0.03257
-wFood3 -0.01059  0.02030 -0.0921  0.08244
-wFood4  0.00833  0.03257  0.0824 -0.12335
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1107 -0.07789  0.0322  0.1565
+wFood2 -0.0779 -0.00310  0.0232  0.0578
+wFood3  0.0322  0.02322 -0.1029  0.0475
+wFood4  0.1565  0.05778  0.0475 -0.2618
 
 $cMatrices[[13]]
-        pFood1    pFood2  pFood3  pFood4
-wFood1  0.0592 -0.053677 -0.0102  0.0047
-wFood2 -0.0537 -0.000964  0.0216  0.0330
-wFood3 -0.0102  0.021620 -0.0950  0.0836
-wFood4  0.0047  0.033021  0.0836 -0.1213
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1080 -0.07729  0.0326  0.1528
+wFood2 -0.0773 -0.00544  0.0245  0.0582
+wFood3  0.0326  0.02453 -0.1058  0.0486
+wFood4  0.1528  0.05819  0.0486 -0.2596
 
 $cMatrices[[14]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.06241 -0.05381 -0.0126  0.00397
-wFood2 -0.05381 -0.00506  0.0218  0.03709
-wFood3 -0.01256  0.02178 -0.0921  0.08291
-wFood4  0.00397  0.03709  0.0829 -0.12397
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1049 -0.07746  0.0302  0.1521
+wFood2 -0.0775 -0.00955  0.0247  0.0623
+wFood3  0.0302  0.02470 -0.1029  0.0480
+wFood4  0.1521  0.06230  0.0480 -0.2624
 
 $cMatrices[[15]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.06009 -0.05417 -0.0123  0.00637
-wFood2 -0.05417 -0.00512  0.0217  0.03764
-wFood3 -0.01229  0.02166 -0.0915  0.08217
-wFood4  0.00637  0.03764  0.0822 -0.12618
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1074 -0.07791  0.0305  0.1548
+wFood2 -0.0779 -0.00963  0.0246  0.0629
+wFood3  0.0305  0.02459 -0.1023  0.0472
+wFood4  0.1548  0.06295  0.0472 -0.2650
 
 $cMatrices[[16]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.06207 -0.05215 -0.0127  0.00275
-wFood2 -0.05215 -0.00676  0.0219  0.03697
-wFood3 -0.01267  0.02194 -0.0914  0.08208
-wFood4  0.00275  0.03697  0.0821 -0.12179
+        pFood1  pFood2  pFood3  pFood4
+wFood1 -0.1051 -0.0758  0.0301  0.1508
+wFood2 -0.0758 -0.0112  0.0249  0.0621
+wFood3  0.0301  0.0249 -0.1021  0.0472
+wFood4  0.1508  0.0621  0.0472 -0.2601
 
 $cMatrices[[17]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.06138 -0.05314 -0.0125  0.00455
-wFood2 -0.05314 -0.00506  0.0216  0.03685
-wFood3 -0.01250  0.02156 -0.0914  0.08246
-wFood4  0.00455  0.03685  0.0825 -0.12351
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1058 -0.07677  0.0303  0.1526
+wFood2 -0.0768 -0.00954  0.0245  0.0620
+wFood3  0.0303  0.02448 -0.1022  0.0476
+wFood4  0.1526  0.06204  0.0476 -0.2619
 
 $cMatrices[[18]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.06047 -0.05237 -0.0118  0.00367
-wFood2 -0.05237 -0.00796  0.0227  0.03759
-wFood3 -0.01176  0.02274 -0.0930  0.08197
-wFood4  0.00367  0.03759  0.0820 -0.12323
+       pFood1  pFood2  pFood3  pFood4
+wFood1 -0.107 -0.0761  0.0310  0.1519
+wFood2 -0.076 -0.0125  0.0257  0.0629
+wFood3  0.031  0.0257 -0.1037  0.0471
+wFood4  0.152  0.0629  0.0471 -0.2618
 
 $cMatrices[[19]]
-          pFood1   pFood2  pFood3    pFood4
-wFood1  0.063793 -0.05130 -0.0125 -0.000031
-wFood2 -0.051304 -0.00728  0.0224  0.036155
-wFood3 -0.012458  0.02243 -0.0927  0.082712
-wFood4 -0.000031  0.03616  0.0827 -0.118836
+        pFood1  pFood2  pFood3  pFood4
+wFood1 -0.1033 -0.0748  0.0303  0.1478
+wFood2 -0.0748 -0.0117  0.0253  0.0612
+wFood3  0.0303  0.0253 -0.1035  0.0478
+wFood4  0.1478  0.0612  0.0478 -0.2568
 
 $cMatrices[[20]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.06068 -0.04918 -0.0136  0.00207
-wFood2 -0.04918 -0.00435  0.0199  0.03358
-wFood3 -0.01357  0.01995 -0.0866  0.08026
-wFood4  0.00207  0.03358  0.0803 -0.11592
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1062 -0.07262  0.0292  0.1496
+wFood2 -0.0726 -0.00877  0.0228  0.0585
+wFood3  0.0292  0.02284 -0.0975  0.0454
+wFood4  0.1496  0.05854  0.0454 -0.2535
 
 $cMatrices[[21]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.06055 -0.05025 -0.0116  0.00159
-wFood2 -0.05025 -0.00497  0.0216  0.03380
-wFood3 -0.01157  0.02164 -0.0919  0.08198
-wFood4  0.00159  0.03380  0.0820 -0.11702
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1066 -0.07378  0.0312  0.1494
+wFood2 -0.0738 -0.00942  0.0245  0.0589
+wFood3  0.0312  0.02455 -0.1027  0.0471
+wFood4  0.1494  0.05887  0.0471 -0.2550
 
 $cMatrices[[22]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.06177 -0.05006 -0.0128  0.00139
-wFood2 -0.05006 -0.00494  0.0210  0.03426
-wFood3 -0.01279  0.02096 -0.0896  0.08161
-wFood4  0.00139  0.03426  0.0816 -0.11691
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1053 -0.07354  0.0300  0.1491
+wFood2 -0.0735 -0.00937  0.0239  0.0593
+wFood3  0.0300  0.02386 -0.1005  0.0467
+wFood4  0.1491  0.05927  0.0467 -0.2547
 
 $cMatrices[[23]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.05960 -0.04837 -0.0137  0.00248
-wFood2 -0.04837 -0.00316  0.0192  0.03230
-wFood3 -0.01371  0.01923 -0.0851  0.07957
-wFood4  0.00248  0.03230  0.0796 -0.11435
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1074 -0.07180  0.0292  0.1501
+wFood2 -0.0718 -0.00757  0.0221  0.0572
+wFood3  0.0292  0.02212 -0.0959  0.0446
+wFood4  0.1501  0.05725  0.0446 -0.2520
 
 $cMatrices[[24]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.05677 -0.04845 -0.0141  0.00547
-wFood2 -0.04845 -0.00143  0.0181  0.03161
-wFood3 -0.01411  0.01806 -0.0821  0.07808
-wFood4  0.00547  0.03161  0.0781 -0.11550
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1104 -0.07193  0.0288  0.1533
+wFood2 -0.0719 -0.00585  0.0210  0.0566
+wFood3  0.0288  0.02096 -0.0930  0.0431
+wFood4  0.1533  0.05661  0.0431 -0.2533
 
 $cMatrices[[25]]
-         pFood1   pFood2   pFood3   pFood4
-wFood1  0.05272 -0.04597 -0.00916  0.00274
-wFood2 -0.04597 -0.00615  0.02174  0.03059
-wFood3 -0.00916  0.02174 -0.09125  0.07881
-wFood4  0.00274  0.03059  0.07881 -0.11182
+        pFood1  pFood2  pFood3  pFood4
+wFood1 -0.1146 -0.0696  0.0337  0.1508
+wFood2 -0.0696 -0.0106  0.0247  0.0557
+wFood3  0.0337  0.0247 -0.1021  0.0439
+wFood4  0.1508  0.0557  0.0439 -0.2501
 
 $cMatrices[[26]]
-         pFood1    pFood2  pFood3   pFood4
-wFood1  0.05589 -0.045964 -0.0120  0.00207
-wFood2 -0.04596  0.000442  0.0184  0.02717
-wFood3 -0.01200  0.018357 -0.0849  0.07856
-wFood4  0.00207  0.027166  0.0786 -0.10779
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1109 -0.06928  0.0309  0.1493
+wFood2 -0.0693 -0.00394  0.0212  0.0520
+wFood3  0.0309  0.02124 -0.0958  0.0437
+wFood4  0.1493  0.05199  0.0437 -0.2450
 
 $cMatrices[[27]]
-         pFood1    pFood2  pFood3   pFood4
-wFood1  0.06163 -0.041340 -0.0142 -0.00611
-wFood2 -0.04134 -0.000508  0.0174  0.02442
-wFood3 -0.01418  0.017428 -0.0814  0.07811
-wFood4 -0.00611  0.024420  0.0781 -0.09642
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1041 -0.06421  0.0286  0.1396
+wFood2 -0.0642 -0.00477  0.0202  0.0487
+wFood3  0.0286  0.02024 -0.0922  0.0434
+wFood4  0.1396  0.04875  0.0434 -0.2317
 
 $cMatrices[[28]]
-         pFood1   pFood2  pFood3   pFood4
-wFood1  0.05589 -0.04808 -0.0120  0.00418
-wFood2 -0.04808  0.00098  0.0185  0.02858
-wFood3 -0.01199  0.01852 -0.0858  0.07927
-wFood4  0.00418  0.02858  0.0793 -0.11203
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1109 -0.07145  0.0308  0.1515
+wFood2 -0.0714 -0.00342  0.0214  0.0535
+wFood3  0.0308  0.02140 -0.0966  0.0444
+wFood4  0.1515  0.05347  0.0444 -0.2494
 
 $cMatrices[[29]]
-         pFood1    pFood2   pFood3   pFood4
-wFood1  0.05465 -0.048910 -0.00866  0.00293
-wFood2 -0.04891 -0.000282  0.02093  0.02826
-wFood3 -0.00866  0.020931 -0.09332  0.08105
-wFood4  0.00293  0.028262  0.08105 -0.11224
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1124 -0.07240  0.0342  0.1507
+wFood2 -0.0724 -0.00472  0.0238  0.0533
+wFood3  0.0342  0.02383 -0.1041  0.0461
+wFood4  0.1507  0.05329  0.0461 -0.2501
 
 $cMatrices[[30]]
-         pFood1   pFood2   pFood3   pFood4
-wFood1  0.04924 -0.04663 -0.00829  0.00535
-wFood2 -0.04663 -0.00271  0.02076  0.02836
-wFood3 -0.00829  0.02076 -0.09058  0.07798
-wFood4  0.00535  0.02836  0.07798 -0.11202
+        pFood1   pFood2  pFood3  pFood4
+wFood1 -0.1182 -0.07026  0.0345  0.1536
+wFood2 -0.0703 -0.00718  0.0237  0.0535
+wFood3  0.0345  0.02369 -0.1014  0.0430
+wFood4  0.1536  0.05355  0.0430 -0.2505
 
 $cMatrices[[31]]
-         pFood1   pFood2   pFood3  pFood4
-wFood1  0.04353 -0.04840 -0.00722  0.0118
-wFood2 -0.04840 -0.00757  0.02244  0.0333
-wFood3 -0.00722  0.02244 -0.09192  0.0766
-wFood4  0.01176  0.03330  0.07656 -0.1220
+        pFood1  pFood2  pFood3  pFood4
+wFood1 -0.1243 -0.0724  0.0355  0.1609
+wFood2 -0.0724 -0.0121  0.0254  0.0589
+wFood3  0.0355  0.0254 -0.1026  0.0416
+wFood4  0.1609  0.0589  0.0416 -0.2617
 
 $cMatrices[[32]]
-         pFood1  pFood2   pFood3   pFood4
-wFood1  0.04875 -0.0422 -0.00931  0.00280
-wFood2 -0.04224 -0.0118  0.02229  0.03178
-wFood3 -0.00931  0.0223 -0.08847  0.07548
-wFood4  0.00280  0.0318  0.07548 -0.11006
+        pFood1  pFood2  pFood3  pFood4
+wFood1 -0.1188 -0.0659  0.0335  0.1512
+wFood2 -0.0659 -0.0163  0.0252  0.0570
+wFood3  0.0335  0.0252 -0.0993  0.0405
+wFood4  0.1512  0.0570  0.0405 -0.2487
 
 
 > 
