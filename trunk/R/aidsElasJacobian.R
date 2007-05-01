@@ -1,4 +1,4 @@
-aidsElasJacobian <- function( coef, shares, prices = NULL, formula = "AIDS",
+aidsElasJacobian <- function( coef, shares, prices = NULL, method = "AIDS",
       quantNames = NULL, priceNames = NULL ) {
 
    nGoods <- length( coef$alpha )
@@ -31,9 +31,9 @@ aidsElasJacobian <- function( coef, shares, prices = NULL, formula = "AIDS",
       }
    }
 
-   if( formula %in% c( "AIDS" ) ) {
+   if( method %in% c( "AIDS" ) ) {
       if( is.null( prices ) ) {
-         stop( "the 'AIDS' formula requires argument 'prices'" )
+         stop( "the 'AIDS' method requires argument 'prices'" )
       }
    }
 
@@ -50,7 +50,7 @@ aidsElasJacobian <- function( coef, shares, prices = NULL, formula = "AIDS",
    }
 
    jacobian <- list()
-   jacobian$formula  <- formula
+   jacobian$method   <- method
    jacobian$exp      <- createMatrix( nGoods, nCoef, 1, "Ex", quantNames, priceNames )
    jacobian$hicks    <- createMatrix( nGoods, nCoef, 2, "Eh", quantNames, priceNames )
    jacobian$marshall <- createMatrix( nGoods, nCoef, 2, "Em", quantNames, priceNames )
@@ -66,7 +66,7 @@ aidsElasJacobian <- function( coef, shares, prices = NULL, formula = "AIDS",
    emName <- array( paste( "Em", rep( quantNames, nGoods ),
       rep( priceNames, each = nGoods ) ), dim = c( nGoods, nGoods ) )
 
-   if( formula == "AIDS" ) {
+   if( method == "AIDS" ) {
       prices <- array( prices )
       for( i in 1:nGoods ) {
          # expenditure elasticities
@@ -98,7 +98,7 @@ aidsElasJacobian <- function( coef, shares, prices = NULL, formula = "AIDS",
          }
       }
    } else {
-      stop( "formula '", as.character( formula ), "' is not supported" )
+      stop( "method '", as.character( method ), "' is not supported" )
    }
    jacobian$all <- rbind( jacobian$exp, jacobian$hicks, jacobian$marshall )
    return( jacobian )
