@@ -1,4 +1,4 @@
-aidsElas <- function( coef, shares, prices = NULL, formula = "AIDS",
+aidsElas <- function( coef, shares, prices = NULL, method = "AIDS",
    quantNames = NULL, priceNames = NULL, coefVcov = NULL, df = NULL ) {
 
    nGoods <- length( coef$alpha )
@@ -31,24 +31,24 @@ aidsElas <- function( coef, shares, prices = NULL, formula = "AIDS",
    }
 
 
-   if( formula %in% c( "AIDS", "GA", "B1", "B2" ) ) {
+   if( method %in% c( "AIDS", "GA", "B1", "B2" ) ) {
       if( is.null( prices ) ) {
-         stop( "formulas 'AIDS', 'GA', 'B1', and 'B2'",
+         stop( "methods 'AIDS', 'GA', 'B1', and 'B2'",
             " require argument 'prices'" )
       }
-   } else if( formula %in% c( "Go", "Ch", "EU" ) ) {
+   } else if( method %in% c( "Go", "Ch", "EU" ) ) {
       if( !is.null( prices ) ) {
-         warning( "formulas 'Go', 'Ch', and 'EU'",
+         warning( "methods 'Go', 'Ch', and 'EU'",
             " do not require argument 'prices'" )
       }
    }
 
    ela <- list()
-   ela$formula <- formula
+   ela$method <- method
 
    ones <- rep( 1, nGoods )
 
-   if( formula == "AIDS" ) {
+   if( method == "AIDS" ) {
       ela$exp <- ones + coef$beta/shares
       ela$hicks <- -diag( 1, nGoods, nGoods ) +
          ones %*% t( shares ) +
@@ -60,20 +60,20 @@ aidsElas <- function( coef, shares, prices = NULL, formula = "AIDS",
          ( shares %*% t( ones ) )
       ela$marshall <- ela$hicks - ( ela$exp %*% t( ones ) ) *
          ( ones %*% t( shares ))
-   } else if( formula %in% c( "Ch", "Go" ) ) {
+   } else if( method %in% c( "Ch", "Go" ) ) {
       ela$exp <- ones + coef$beta / shares
       ela$hicks <- -diag( 1, nGoods, nGoods ) + coef$gamma /
          ( shares %*% t( ones ) ) +
          ones %*% t( shares )
       ela$marshall <- ela$hicks - ( ela$exp %*% t( ones ) ) *
          ( ones %*% t(shares))
-   } else if( formula == "EU" ) {
+   } else if( method == "EU" ) {
       ela$exp <- ones + coef$beta / shares
       ela$marshall <- -diag( 1, nGoods, nGoods ) + coef$gamma /
          ( shares %*% t( ones ) )
       ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
          ( ones %*% t(shares))
-   } else if( formula %in% c( "GA", "B1" ) ) {
+   } else if( method %in% c( "GA", "B1" ) ) {
       denom <- 1  # part of denominator for exp. + Marsh. elasticities
       for( k in 1:nGoods ) {
          denom <- denom + coef$beta[ k ] * log( prices[ k ] )
@@ -92,7 +92,7 @@ aidsElas <- function( coef, shares, prices = NULL, formula = "AIDS",
       }
       ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
          ( ones %*% t(shares))
-   } else if( formula %in% c( "B2" ) ) {
+   } else if( method %in% c( "B2" ) ) {
       paren <- 1  # term in parenthesis for expenditure elasticities
       for( k in 1:nGoods ) {
          paren <- paren - coef$beta[ k ] * log( prices[ k ] )
@@ -119,7 +119,7 @@ aidsElas <- function( coef, shares, prices = NULL, formula = "AIDS",
       ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
          ( ones %*% t(shares))
    } else {
-      stop( "argument 'formula' must be either 'AIDS', 'GA', 'B1', 'B2',",
+      stop( "argument 'method' must be either 'AIDS', 'GA', 'B1', 'B2',",
          " 'Go', 'Ch', or 'EU'" )
    }
    names( ela$exp )         <- quantNames
@@ -127,9 +127,9 @@ aidsElas <- function( coef, shares, prices = NULL, formula = "AIDS",
    colnames( ela$hicks )    <- priceNames
    rownames( ela$marshall ) <- quantNames
    colnames( ela$marshall ) <- priceNames
-   if( !is.null( coefVcov ) && formula %in% c( "AIDS" ) ) {
+   if( !is.null( coefVcov ) && method %in% c( "AIDS" ) ) {
       jacobian <- aidsElasJacobian( coef = coef, share = shares, price = prices,
-         formula = formula, quantNames = quantNames, priceNames = priceNames )
+         method = method, quantNames = quantNames, priceNames = priceNames )
       ela$allVcov      <- jacobian$all      %*% coefVcov %*% t( jacobian$all )
       ela$expVcov      <- jacobian$exp      %*% coefVcov %*% t( jacobian$exp )
       ela$hicksVcov    <- jacobian$hicks    %*% coefVcov %*% t( jacobian$hicks )

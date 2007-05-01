@@ -86,7 +86,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.946    0.864    0.618    0.724 
-> print( elas( estResultLA, formula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLA, method = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
@@ -163,7 +163,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.946    0.864    0.618    0.724 
-> print( elas( estResultLATX, formula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLATX, method = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
@@ -252,7 +252,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.948    0.868    0.630    0.730 
-> print( elas( estResultLAhom, formula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLAhom, method = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
@@ -329,7 +329,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.948    0.868    0.630    0.730 
-> print( elas( estResultLAhomTX, formula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLAhomTX, method = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
@@ -418,7 +418,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.968    0.878    0.630    0.853 
-> print( elas( estResultLAunr, formula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLAunr, method = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
@@ -495,7 +495,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.968    0.878    0.630    0.853 
-> print( elas( estResultLAunrTX, formula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLAunrTX, method = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
@@ -588,7 +588,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.943    0.862    0.631    0.703 
-> print( elas( estResultAIDS, formula = "AIDS", quantNames = wNames ) )
+> print( elas( estResultAIDS, method = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -664,7 +664,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.943    0.862    0.631    0.703 
-> print( elas( estResultAIDSTX, formula = "AIDS", quantNames = wNames ) )
+> print( elas( estResultAIDSTX, method = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -753,7 +753,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.946    0.867    0.643    0.709 
-> print( elas( estResultAIDShom, formula = "AIDS", quantNames = wNames ) )
+> print( elas( estResultAIDShom, method = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -829,7 +829,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.946    0.867    0.643    0.709 
-> print( elas( estResultAIDShomTX, formula = "AIDS", quantNames = wNames ) )
+> print( elas( estResultAIDShomTX, method = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -918,7 +918,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.968    0.878    0.640    0.851 
-> print( elas( estResultAIDSunr, formula = "AIDS", quantNames = wNames ) )
+> print( elas( estResultAIDSunr, method = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -994,7 +994,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.968    0.878    0.640    0.851 
-> print( elas( estResultAIDSunrTX, formula = "AIDS", quantNames = wNames ) )
+> print( elas( estResultAIDSunrTX, method = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -1086,7 +1086,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.935    0.846    0.677    0.632 
-> print( elas( estResultLaSNa, formula = "AIDS", quantNames = wNames ) )
+> print( elas( estResultLaSNa, method = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -1165,7 +1165,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.946    0.864    0.618    0.724 
-> print( elas( estResultLaSlNa, formula = "AIDS", quantNames = wNames ) )
+> print( elas( estResultLaSlNa, method = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -1244,7 +1244,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.932    0.845    0.679    0.614 
-> print( elas( estResultLaLNa, formula = "AIDS", quantNames = wNames ) )
+> print( elas( estResultLaLNa, method = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -1322,7 +1322,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.936    0.845    0.679    0.627 
-> print( elas( estResultAIDSNa, formula = "AIDS", quantNames = wNames ) )
+> print( elas( estResultAIDSNa, method = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -1348,7 +1348,7 @@ wFood4  0.466  0.14356  0.116 -0.725
 > cat( "\nAIDS: Elasticities\n" )
 
 AIDS: Elasticities
-> ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, formula = "AIDS" )
+> ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, method = "AIDS" )
 > print( ela )
 
 Demand Elasticities (original AIDS formula)
@@ -1369,7 +1369,7 @@ q_wFood1 -0.357 -0.2503  0.103  0.505
 q_wFood2 -0.384 -0.0139  0.113  0.285
 q_wFood3  0.237  0.1704 -0.757  0.349
 q_wFood4  0.439  0.1623  0.132 -0.734
-> elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, formula = "AIDS" )
+> elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, method = "AIDS" )
 > print( elaTX )
 
 Demand Elasticities (original AIDS formula)
@@ -1397,7 +1397,7 @@ q_wFood4  0.439  0.1623  0.132 -0.734
 > cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
 
 LA: Elasticity formula of non-linear AIDS
-> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "AIDS" )
+> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "AIDS" )
 > print( ela )
 
 Demand Elasticities (original AIDS formula)
@@ -1418,7 +1418,7 @@ q_wFood1  0.2623 -0.1470 -0.0395 -0.0756
 q_wFood2 -0.2240  0.0161  0.0811  0.1270
 q_wFood3 -0.0915  0.1224 -0.6859  0.6550
 q_wFood4 -0.0682  0.0732  0.2478 -0.2528
-> elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, formula = "AIDS" )
+> elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, method = "AIDS" )
 > print( elaTX )
 
 Demand Elasticities (original AIDS formula)
@@ -1447,7 +1447,7 @@ q_wFood4 -0.0682  0.0732  0.2478 -0.2528
 ********** Elasticities ***************> cat( "\nLA: Elasticity formula of Goddard or Chalfant\n" )
 
 LA: Elasticity formula of Goddard or Chalfant
-> ela <- aidsElas( estResultLA$coef, wMeans, formula = "Go" )
+> ela <- aidsElas( estResultLA$coef, wMeans, method = "Go" )
 > print( ela )
 
 Demand Elasticities (unknown formula 'Go')
@@ -1468,7 +1468,7 @@ q_wFood1 -0.333 -0.246  0.0958  0.483
 q_wFood2 -0.381 -0.010  0.1168  0.274
 q_wFood3  0.222  0.174 -0.7571  0.361
 q_wFood4  0.422  0.155  0.1363 -0.713
-> ela <- aidsElas( estResultLA$coef, wMeans, formula = "Ch" )
+> ela <- aidsElas( estResultLA$coef, wMeans, method = "Ch" )
 > print( ela )
 
 Demand Elasticities (formula of Chalfant / Goddard)
@@ -1493,7 +1493,7 @@ q_wFood4  0.422  0.155  0.1363 -0.713
 > cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
 
 LA: Elasticity formula of Eales + Unnevehr
-> ela <- aidsElas( estResultLA$coef, wMeans, formula = "EU" )
+> ela <- aidsElas( estResultLA$coef, wMeans, method = "EU" )
 > print( ela )
 
 Demand Elasticities (formula of Eales and Unnevehr)
@@ -1518,7 +1518,7 @@ q_wFood4  0.15146 -0.0201  0.0193 -1.023
 > cat( "\nLA: Elasticity formula of Green + Alston\n" )
 
 LA: Elasticity formula of Green + Alston
-> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "GA" )
+> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "GA" )
 > print( ela )
 
 Demand Elasticities (unknown formula 'GA')
@@ -1543,7 +1543,7 @@ q_wFood4  0.563  0.2415  0.1968 -0.555
 > cat( "\nLA: Elasticity formula of Buse\n" )
 
 LA: Elasticity formula of Buse
-> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "B1" )
+> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "B1" )
 > print( ela )
 
 Demand Elasticities (unknown formula 'B1')
@@ -1568,7 +1568,7 @@ q_wFood4  0.563  0.2415  0.1968 -0.555
 > cat( "\nLA: Elasticity formula of Buse (alternative formula)\n" )
 
 LA: Elasticity formula of Buse (alternative formula)
-> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "B2" )
+> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "B2" )
 > print( ela )
 
 Demand Elasticities (unknown formula 'B2')

@@ -15,14 +15,14 @@ estResultLA <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ set, ], method = "LA:SL" )
 print( estResultLA )
 print( summary( estResultLA ) )
-print( elas( estResultLA, formula = "Ch", quantNames = wNames ) )
+print( elas( estResultLA, method = "Ch", quantNames = wNames ) )
 # imposing restrictions via TX
 estResultLATX <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ set, ], method = "LA:SL",
    TX = TRUE )
 print( estResultLATX )
 print( summary( estResultLATX ) )
-print( elas( estResultLATX, formula = "Ch", quantNames = wNames ) )
+print( elas( estResultLATX, method = "Ch", quantNames = wNames ) )
 estResultLATX$call <- NULL
 estResultLATX$est$bt <- NULL
 estResultLATX$est$btcov <- NULL
@@ -40,14 +40,14 @@ estResultLAhom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ set, ], method = "LA:SL" )
 print( estResultLAhom )
 print( summary( estResultLAhom ) )
-print( elas( estResultLAhom, formula = "Ch", quantNames = wNames ) )
+print( elas( estResultLAhom, method = "Ch", quantNames = wNames ) )
 # imposing restrictions via TX
 estResultLAhomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ set, ], method = "LA:SL",
    TX = TRUE )
 print( estResultLAhomTX )
 print( summary( estResultLAhomTX ) )
-print( elas( estResultLAhomTX, formula = "Ch", quantNames = wNames ) )
+print( elas( estResultLAhomTX, method = "Ch", quantNames = wNames ) )
 estResultLAhomTX$call <- NULL
 estResultLAhomTX$est$bt <- NULL
 estResultLAhomTX$est$btcov <- NULL
@@ -65,14 +65,14 @@ estResultLAunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ set, ], method = "LA:SL" )
 print( estResultLAunr )
 print( summary( estResultLAunr ) )
-print( elas( estResultLAunr, formula = "Ch", quantNames = wNames ) )
+print( elas( estResultLAunr, method = "Ch", quantNames = wNames ) )
 # imposing restrictions via TX
 estResultLAunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ set, ], method = "LA:SL",
    TX = TRUE )
 print( estResultLAunrTX )
 print( summary( estResultLAunrTX ) )
-print( elas( estResultLAunrTX, formula = "Ch", quantNames = wNames ) )
+print( elas( estResultLAunrTX, method = "Ch", quantNames = wNames ) )
 estResultLAunrTX$call <- NULL
 estResultLAunrTX$est$bt <- NULL
 estResultLAunrTX$est$btcov <- NULL
@@ -92,13 +92,13 @@ estResultAIDS <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ setWo1, ], method = "IL:L" )
 print( estResultAIDS )
 print( summary( estResultAIDS ) )
-print( elas( estResultAIDS, formula = "AIDS", quantNames = wNames ) )
+print( elas( estResultAIDS, method = "AIDS", quantNames = wNames ) )
 # imposing restrictions via TX
 estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
 print( estResultAIDSTX )
 print( summary( estResultAIDSTX ) )
-print( elas( estResultAIDSTX, formula = "AIDS", quantNames = wNames ) )
+print( elas( estResultAIDSTX, method = "AIDS", quantNames = wNames ) )
 estResultAIDSTX$call <- NULL
 estResultAIDSTX$est$bt <- NULL
 estResultAIDSTX$est$btcov <- NULL
@@ -116,13 +116,13 @@ estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ setWo1, ], method = "IL:L" )
 print( estResultAIDShom )
 print( summary( estResultAIDShom ) )
-print( elas( estResultAIDShom, formula = "AIDS", quantNames = wNames ) )
+print( elas( estResultAIDShom, method = "AIDS", quantNames = wNames ) )
 # imposing restrictions via TX
 estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
 print( estResultAIDShomTX )
 print( summary( estResultAIDShomTX ) )
-print( elas( estResultAIDShomTX, formula = "AIDS", quantNames = wNames ) )
+print( elas( estResultAIDShomTX, method = "AIDS", quantNames = wNames ) )
 estResultAIDShomTX$call <- NULL
 estResultAIDShomTX$est$bt <- NULL
 estResultAIDShomTX$est$btcov <- NULL
@@ -140,13 +140,13 @@ estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ setWo1, ], method = "IL:L" )
 print( estResultAIDSunr )
 print( summary( estResultAIDSunr ) )
-print( elas( estResultAIDSunr, formula = "AIDS", quantNames = wNames ) )
+print( elas( estResultAIDSunr, method = "AIDS", quantNames = wNames ) )
 # imposing restrictions via TX
 estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
 print( estResultAIDSunrTX )
 print( summary( estResultAIDSunrTX ) )
-print( elas( estResultAIDSunrTX, formula = "AIDS", quantNames = wNames ) )
+print( elas( estResultAIDSunrTX, method = "AIDS", quantNames = wNames ) )
 estResultAIDSunrTX$call <- NULL
 estResultAIDSunrTX$est$bt <- NULL
 estResultAIDSunrTX$est$btcov <- NULL
@@ -165,66 +165,66 @@ estResultLaSNa <- aidsEst( pNames, wNames, "xFood",
    method = "LA:S" )
 print( estResultLaSNa )
 print( summary( estResultLaSNa ) )
-print( elas( estResultLaSNa, formula = "AIDS", quantNames = wNames ) )
+print( elas( estResultLaSNa, method = "AIDS", quantNames = wNames ) )
 
 estResultLaSlNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86,
    method = "LA:SL" )
 print( estResultLaSlNa )
 print( summary( estResultLaSlNa ) )
-print( elas( estResultLaSlNa, formula = "AIDS", quantNames = wNames ) )
+print( elas( estResultLaSlNa, method = "AIDS", quantNames = wNames ) )
 
 estResultLaLNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86,
    method = "LA:L" )
 print( estResultLaLNa )
 print( summary( estResultLaLNa ) )
-print( elas( estResultLaLNa, formula = "AIDS", quantNames = wNames ) )
+print( elas( estResultLaLNa, method = "AIDS", quantNames = wNames ) )
 
 estResultAIDSNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86, method = "IL:L" )
 print( estResultAIDSNa )
 print( summary( estResultAIDSNa ) )
-print( elas( estResultAIDSNa, formula = "AIDS", quantNames = wNames ) )
+print( elas( estResultAIDSNa, method = "AIDS", quantNames = wNames ) )
 
 
 ########## Elasticities ###############
 cat( "\nAIDS: Elasticities\n" )
-ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, formula = "AIDS" )
+ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, method = "AIDS" )
 print( ela )
-elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, formula = "AIDS" )
+elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, method = "AIDS" )
 print( elaTX )
 print( all.equal( ela, elaTX ) )
 
 
 cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "AIDS" )
+ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "AIDS" )
 print( ela )
-elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, formula = "AIDS" )
+elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, method = "AIDS" )
 print( elaTX )
 print( all.equal( ela, elaTX ) )
 
 cat( "\n********** Elasticities ***************" )
 cat( "\nLA: Elasticity formula of Goddard or Chalfant\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, formula = "Go" )
+ela <- aidsElas( estResultLA$coef, wMeans, method = "Go" )
 print( ela )
-ela <- aidsElas( estResultLA$coef, wMeans, formula = "Ch" )
+ela <- aidsElas( estResultLA$coef, wMeans, method = "Ch" )
 print( ela )
 
 cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, formula = "EU" )
+ela <- aidsElas( estResultLA$coef, wMeans, method = "EU" )
 print( ela )
 
 cat( "\nLA: Elasticity formula of Green + Alston\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "GA" )
+ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "GA" )
 print( ela )
 
 cat( "\nLA: Elasticity formula of Buse\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "B1" )
+ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "B1" )
 print( ela )
 
 cat( "\nLA: Elasticity formula of Buse (alternative formula)\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "B2" )
+ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "B2" )
 print( ela )
 
 

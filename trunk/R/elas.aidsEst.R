@@ -1,31 +1,31 @@
-elas.aidsEst <- function( object, formula = NULL, ... ) {
+elas.aidsEst <- function( object, method = NULL, ... ) {
 
-   # specify default value for argument formula
-   if( is.null ( formula ) ) {
+   # specify default value for argument method
+   if( is.null ( method ) ) {
       if( substr( object$method, 1, 2 ) == "LA" ) {
-         formula <- "Ch"
+         method <- "Ch"
       } else if( substr( object$method, 1, 2 ) %in% c( "MK", "IL" ) ) {
-         formula <- "AIDS"
+         method <- "AIDS"
       }
    }
 
-   # test reasonability of argument formula
+   # test reasonability of argument method
    if( substr( object$method, 1, 2 ) %in% c( "MK", "IL" ) &&
-         formula != "AIDS" ) {
+         method != "AIDS" ) {
       warning( paste( "It does not make sense to calculate the elasticities",
-         " of a (non-linear) AIDS model with formula '", formula, "'",
+         " of a (non-linear) AIDS model with method '", method, "'",
          sep = "" ) )
    }
 
    # to avoid warning message in aidsElas
-   if( formula %in% c( "Go", "Ch", "EU" ) ) {
+   if( method %in% c( "Go", "Ch", "EU" ) ) {
       object$pMeans <- NULL
    }
 
    # calculate demand elasticities
    result  <- aidsElas( coef = object$coef,
       shares = object$wMeans, prices = object$pMeans,
-      formula = formula,
+      method = method,
       priceNames = object$priceNames,
       coefVcov = object$coef$allcov, df = object$est$df, ... )
 

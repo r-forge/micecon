@@ -10,10 +10,10 @@
 }
 
 \usage{
-   aidsElas( coef, shares, prices = NULL, formula = "AIDS",
+   aidsElas( coef, shares, prices = NULL, method = "AIDS",
       quantNames = NULL, priceNames = NULL, coefVcov = NULL, df = NULL )
 
-   \method{elas}{aidsEst}( object, formula = NULL, ... )
+   \method{elas}{aidsEst}( object, method = NULL, ... )
 
    \method{print}{aidsElas}( x, ... )
 }
@@ -22,8 +22,8 @@
    \item{coef}{a list containing the coefficients alpha, beta and gamma.}
    \item{shares}{a vector of the shares at which the elasticities should be calculated.}
    \item{prices}{a vector of the prices at which the elasticities should be calculated
-      (only needed if formula 'AIDS' is used).}
-   \item{formula}{the elsticity formula to be used (see details).}
+      (only needed if method 'AIDS' is used).}
+   \item{method}{the elsticity formula to be used (see details).}
    \item{quantNames}{an optional vector of strings containing the names of
       the quantities to label elasticities.}
    \item{priceNames}{an optional vector of strings containing the names of
@@ -50,13 +50,13 @@
    degrees of freedom (\code{est$df})
    from the object of class \code{aidsEst}
    and passes them to \code{aidsElas}.
-   If argument \code{formula} in \code{elas.aidsEst} is not specified,
+   If argument \code{method} in \code{elas.aidsEst} is not specified,
    the default value depends on the estimation method.
    If the demand system was estimated by the linear approximation (LA),
-   the default formula is 'Ch'.
+   the default method is 'Ch'.
    If the demand system was estimated by the iterative linear least squares
    estimator (ILLE),
-   the default formula is 'AIDS'.
+   the default method is 'AIDS'.
 
    At the moment the elasticity formulas of the orginal AIDS (\code{AIDS}),
    the formula of Goddard (1983) or Chalfant (1987) (\code{Go} or \code{Ch}),
@@ -73,7 +73,7 @@
 
 \value{
   a list of class \code{aidsElas} containing following elements:
-  \item{formula}{the elasticity formula used to calculate these elasticities.}
+  \item{method}{the elasticity formula used to calculate these elasticities.}
   \item{exp}{vector of expenditure elasticities.}
   \item{hicks}{matrix of Hicksian (compensated) price elasticities.}
   \item{marshall}{matrix of Marshallian (uncompensated) price elasticities.}
@@ -129,7 +129,7 @@
       data = Blanciforti86, method = "LA:L" )
    wMeans <- colMeans( Blanciforti86[ , c( "wFood1", "wFood2",
       "wFood3", "wFood4" ) ] )
-   aidsElas( estResult$coef, wMeans, formula = "Ch" )
+   aidsElas( estResult$coef, wMeans, method = "Ch" )
 
    ## Repeating the evaluation of different elasticity formulas of
    ## Green & Alston (1990)
@@ -140,24 +140,24 @@
    estResultA <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86[ -1, ],
       method = "IL:L" )
-   diag( elas( estResultA, formula = "AIDS" )$marshall )
+   diag( elas( estResultA, method = "AIDS" )$marshall )
 
    # LA-AIDS estimation
    estResultL <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, method = "LA:SL" )
 
    # LA-AIDS + formula of AIDS
-   diag( elas( estResultL, formula = "AIDS" )$marshall )
+   diag( elas( estResultL, method = "AIDS" )$marshall )
 
    # LA-AIDS + formula of Eales + Unnevehr
-   diag( elas( estResultL, formula = "EU" )$marshall )
+   diag( elas( estResultL, method = "EU" )$marshall )
 
    # LA-AIDS + formula of Goddard or Chalfant:
-   diag( elas( estResultL, formula = "Go" )$marshall )
-   diag( elas( estResultL, formula = "Ch" )$marshall )
+   diag( elas( estResultL, method = "Go" )$marshall )
+   diag( elas( estResultL, method = "Ch" )$marshall )
 
    # LA-AIDS + formula of Green + Alston (= 1st of Buse):
-   diag( elas( estResultL, formula = "GA" )$marshall )
+   diag( elas( estResultL, method = "GA" )$marshall )
 }
 
 \keyword{ models }
