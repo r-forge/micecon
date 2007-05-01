@@ -23,7 +23,7 @@
    \item{shares}{a vector of the shares at which the elasticities should be calculated.}
    \item{prices}{a vector of the prices at which the elasticities should be calculated
       (only needed if method 'AIDS' is used).}
-   \item{method}{the elsticity formula to be used (see details).}
+   \item{method}{the elasticity formula to be used (see details).}
    \item{quantNames}{an optional vector of strings containing the names of
       the quantities to label elasticities.}
    \item{priceNames}{an optional vector of strings containing the names of
@@ -65,6 +65,7 @@
    (\code{GA} or \code{B1}) and
    the second formula of Buse (1994) (\code{B2})
    are implemented.
+
    The variance covariance matrices of the elasticities are calculated using
    the formula of Klein (1953, p. 258) (also known as the delta method).
    At the moment this is implemented only for the elasticity formulas of the 
