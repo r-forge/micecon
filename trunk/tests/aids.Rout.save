@@ -50,6 +50,42 @@ wFood1  0.1107 -0.13851 -0.011881  0.039732
 wFood2 -0.1385  0.15820 -0.003476 -0.016216
 wFood3 -0.0119 -0.00348  0.014589  0.000768
 wFood4  0.0397 -0.01622  0.000768 -0.024285
+> print( summary( estResultLA ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+           Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.254562     0.0646 -3.9432 1.70e-04
+alpha 2    0.109799     0.0564  1.9472 5.50e-02
+alpha 3    0.261220     0.0352  7.4115 1.07e-10
+alpha 4    0.883543     0.0780 11.3249 2.27e-18
+beta 1     0.328704     0.0378  8.6972 3.15e-13
+beta 2     0.055946     0.0327  1.7108 9.09e-02
+beta 3    -0.074741     0.0205 -3.6454 4.70e-04
+beta 4    -0.309909     0.0456 -6.7957 1.67e-09
+gamma 1 1  0.110660     0.0195  5.6630 2.19e-07
+gamma 1 2 -0.138511     0.0150 -9.2530 2.51e-14
+gamma 1 3 -0.011881     0.0101 -1.1765 2.43e-01
+gamma 1 4  0.039732     0.0207  1.9160 5.89e-02
+gamma 2 1 -0.138511     0.0150 -9.2530 2.51e-14
+gamma 2 2  0.158203     0.0291  5.4288 5.78e-07
+gamma 2 3 -0.003476     0.0187 -0.1858 8.53e-01
+gamma 2 4 -0.016216     0.0223 -0.7260 4.70e-01
+gamma 3 1 -0.011881     0.0101 -1.1765 2.43e-01
+gamma 3 2 -0.003476     0.0187 -0.1858 8.53e-01
+gamma 3 3  0.014589     0.0181  0.8077 4.22e-01
+gamma 3 4  0.000768     0.0137  0.0562 9.55e-01
+gamma 4 1  0.039732     0.0207  1.9160 5.89e-02
+gamma 4 2 -0.016216     0.0223 -0.7260 4.70e-01
+gamma 4 3  0.000768     0.0137  0.0562 9.55e-01
+gamma 4 4 -0.024285     0.0329 -0.7389 4.62e-01
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.701  0.846  0.408  0.734 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.946    0.864    0.618    0.724 
 > print( elas( estResultLA, formula = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
@@ -91,6 +127,42 @@ wFood1  0.1107 -0.13851 -0.011881  0.039732
 wFood2 -0.1385  0.15820 -0.003476 -0.016216
 wFood3 -0.0119 -0.00348  0.014589  0.000768
 wFood4  0.0397 -0.01622  0.000768 -0.024285
+> print( summary( estResultLATX ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+           Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.254562     0.0646 -3.9432 1.70e-04
+alpha 2    0.109799     0.0564  1.9472 5.50e-02
+alpha 3    0.261220     0.0352  7.4115 1.07e-10
+alpha 4    0.883543     0.0780 11.3249 2.27e-18
+beta 1     0.328704     0.0378  8.6972 3.15e-13
+beta 2     0.055946     0.0327  1.7108 9.09e-02
+beta 3    -0.074741     0.0205 -3.6454 4.70e-04
+beta 4    -0.309909     0.0456 -6.7957 1.67e-09
+gamma 1 1  0.110660     0.0195  5.6630 2.19e-07
+gamma 1 2 -0.138511     0.0150 -9.2530 2.51e-14
+gamma 1 3 -0.011881     0.0101 -1.1765 2.43e-01
+gamma 1 4  0.039732     0.0207  1.9160 5.89e-02
+gamma 2 1 -0.138511     0.0150 -9.2530 2.51e-14
+gamma 2 2  0.158203     0.0291  5.4288 5.78e-07
+gamma 2 3 -0.003476     0.0187 -0.1858 8.53e-01
+gamma 2 4 -0.016216     0.0223 -0.7260 4.70e-01
+gamma 3 1 -0.011881     0.0101 -1.1765 2.43e-01
+gamma 3 2 -0.003476     0.0187 -0.1858 8.53e-01
+gamma 3 3  0.014589     0.0181  0.8077 4.22e-01
+gamma 3 4  0.000768     0.0137  0.0562 9.55e-01
+gamma 4 1  0.039732     0.0207  1.9160 5.89e-02
+gamma 4 2 -0.016216     0.0223 -0.7260 4.70e-01
+gamma 4 3  0.000768     0.0137  0.0562 9.55e-01
+gamma 4 4 -0.024285     0.0329 -0.7389 4.62e-01
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.701  0.846  0.408  0.734 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.946    0.864    0.618    0.724 
 > print( elas( estResultLATX, formula = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
@@ -144,6 +216,42 @@ wFood1  0.10972 -0.1210 -0.0458  0.056998
 wFood2 -0.13009  0.1244  0.0312 -0.025525
 wFood3 -0.00526 -0.0251  0.0312 -0.000772
 wFood4  0.02563  0.0217 -0.0166 -0.030701
+> print( summary( estResultLAhom ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+           Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.260003     0.0756 -3.4381 9.43e-04
+alpha 2    0.091424     0.0589  1.5516 1.25e-01
+alpha 3    0.244107     0.0353  6.9147 1.14e-09
+alpha 4    0.924473     0.0934  9.8939 2.02e-15
+beta 1     0.332602     0.0437  7.6049 5.46e-11
+beta 2     0.065644     0.0341  1.9264 5.77e-02
+beta 3    -0.065343     0.0204 -3.2006 1.98e-03
+beta 4    -0.332903     0.0540 -6.1606 2.96e-08
+gamma 1 1  0.109721     0.0222  4.9490 4.21e-06
+gamma 1 2 -0.120967     0.0489 -2.4725 1.56e-02
+gamma 1 3 -0.045752     0.0425 -1.0776 2.85e-01
+gamma 1 4  0.056998     0.0299  1.9060 6.03e-02
+gamma 2 1 -0.130092     0.0173 -7.5311 7.58e-11
+gamma 2 2  0.124424     0.0381  3.2640 1.63e-03
+gamma 2 3  0.031192     0.0331  0.9429 3.49e-01
+gamma 2 4 -0.025525     0.0233 -1.0955 2.77e-01
+gamma 3 1 -0.005261     0.0103 -0.5084 6.13e-01
+gamma 3 2 -0.025126     0.0228 -1.1002 2.75e-01
+gamma 3 3  0.031159     0.0198  1.5722 1.20e-01
+gamma 3 4 -0.000772     0.0140 -0.0553 9.56e-01
+gamma 4 1  0.025632     0.0274  0.9357 3.52e-01
+gamma 4 2  0.021669     0.0604  0.3585 7.21e-01
+gamma 4 3 -0.016600     0.0525 -0.3164 7.53e-01
+gamma 4 4 -0.030701     0.0369 -0.8309 4.09e-01
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.709  0.853  0.431  0.740 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.948    0.868    0.630    0.730 
 > print( elas( estResultLAhom, formula = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
@@ -185,6 +293,42 @@ wFood1  0.10972 -0.1210 -0.0458  0.056998
 wFood2 -0.13009  0.1244  0.0312 -0.025525
 wFood3 -0.00526 -0.0251  0.0312 -0.000772
 wFood4  0.02563  0.0217 -0.0166 -0.030701
+> print( summary( estResultLAhomTX ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+           Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.260003     0.0756 -3.4381 9.43e-04
+alpha 2    0.091424     0.0589  1.5516 1.25e-01
+alpha 3    0.244107     0.0353  6.9147 1.14e-09
+alpha 4    0.924473     0.0934  9.8939 2.02e-15
+beta 1     0.332602     0.0437  7.6049 5.46e-11
+beta 2     0.065644     0.0341  1.9264 5.77e-02
+beta 3    -0.065343     0.0204 -3.2006 1.98e-03
+beta 4    -0.332903     0.0540 -6.1606 2.96e-08
+gamma 1 1  0.109721     0.0222  4.9490 4.21e-06
+gamma 1 2 -0.120967     0.0489 -2.4725 1.56e-02
+gamma 1 3 -0.045752     0.0425 -1.0776 2.85e-01
+gamma 1 4  0.056998     0.0299  1.9060 6.03e-02
+gamma 2 1 -0.130092     0.0173 -7.5311 7.58e-11
+gamma 2 2  0.124424     0.0381  3.2640 1.63e-03
+gamma 2 3  0.031192     0.0331  0.9429 3.49e-01
+gamma 2 4 -0.025525     0.0233 -1.0955 2.77e-01
+gamma 3 1 -0.005261     0.0103 -0.5084 6.13e-01
+gamma 3 2 -0.025126     0.0228 -1.1002 2.75e-01
+gamma 3 3  0.031159     0.0198  1.5722 1.20e-01
+gamma 3 4 -0.000772     0.0140 -0.0553 9.56e-01
+gamma 4 1  0.025632     0.0274  0.9357 3.52e-01
+gamma 4 2  0.021669     0.0604  0.3585 7.21e-01
+gamma 4 3 -0.016600     0.0525 -0.3164 7.53e-01
+gamma 4 4 -0.030701     0.0369 -0.8309 4.09e-01
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.709  0.853  0.431  0.740 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.948    0.868    0.630    0.730 
 > print( elas( estResultLAhomTX, formula = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
@@ -238,6 +382,42 @@ wFood1  0.12013 -0.0454 -0.05451  0.01033
 wFood2 -0.12643  0.1510  0.02811 -0.04195
 wFood3 -0.00534 -0.0257  0.03122 -0.00043
 wFood4  0.01163 -0.0799 -0.00482  0.03205
+> print( summary( estResultLAunr ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+           Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.075488     0.0780 -0.9682 3.36e-01
+alpha 2    0.156363     0.0736  2.1259 3.68e-02
+alpha 3    0.242755     0.0458  5.2976 1.13e-06
+alpha 4    0.676371     0.0910  7.4333 1.42e-10
+beta 1     0.147433     0.0600  2.4577 1.63e-02
+beta 2     0.000476     0.0566  0.0084 9.93e-01
+beta 3    -0.063987     0.0353 -1.8149 7.35e-02
+beta 4    -0.083922     0.0700 -1.1988 2.34e-01
+gamma 1 1  0.120133     0.0182  6.6143 4.86e-09
+gamma 1 2 -0.045415     0.0443 -1.0257 3.08e-01
+gamma 1 3 -0.054511     0.0345 -1.5817 1.18e-01
+gamma 1 4  0.010327     0.0271  0.3808 7.04e-01
+gamma 2 1 -0.126427     0.0171 -7.3791 1.80e-10
+gamma 2 2  0.151014     0.0418  3.6155 5.40e-04
+gamma 2 3  0.028110     0.0325  0.8646 3.90e-01
+gamma 2 4 -0.041951     0.0256 -1.6397 1.05e-01
+gamma 3 1 -0.005338     0.0107 -0.5000 6.19e-01
+gamma 3 2 -0.025680     0.0260 -0.9868 3.27e-01
+gamma 3 3  0.031224     0.0203  1.5415 1.27e-01
+gamma 3 4 -0.000430     0.0159 -0.0270 9.79e-01
+gamma 4 1  0.011632     0.0212  0.5488 5.85e-01
+gamma 4 2 -0.079919     0.0517 -1.5466 1.26e-01
+gamma 4 3 -0.004822     0.0402 -0.1199 9.05e-01
+gamma 4 4  0.032053     0.0317  1.0127 3.14e-01
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.817  0.864  0.431  0.859 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.968    0.878    0.630    0.853 
 > print( elas( estResultLAunr, formula = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
@@ -279,6 +459,42 @@ wFood1  0.12013 -0.0454 -0.05451  0.01033
 wFood2 -0.12643  0.1510  0.02811 -0.04195
 wFood3 -0.00534 -0.0257  0.03122 -0.00043
 wFood4  0.01163 -0.0799 -0.00482  0.03205
+> print( summary( estResultLAunrTX ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+           Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.075488     0.0780 -0.9682 3.36e-01
+alpha 2    0.156363     0.0736  2.1259 3.68e-02
+alpha 3    0.242755     0.0458  5.2976 1.13e-06
+alpha 4    0.676371     0.0910  7.4333 1.42e-10
+beta 1     0.147433     0.0600  2.4577 1.63e-02
+beta 2     0.000476     0.0566  0.0084 9.93e-01
+beta 3    -0.063987     0.0353 -1.8149 7.35e-02
+beta 4    -0.083922     0.0700 -1.1988 2.34e-01
+gamma 1 1  0.120133     0.0182  6.6143 4.86e-09
+gamma 1 2 -0.045415     0.0443 -1.0257 3.08e-01
+gamma 1 3 -0.054511     0.0345 -1.5817 1.18e-01
+gamma 1 4  0.010327     0.0271  0.3808 7.04e-01
+gamma 2 1 -0.126427     0.0171 -7.3791 1.80e-10
+gamma 2 2  0.151014     0.0418  3.6155 5.40e-04
+gamma 2 3  0.028110     0.0325  0.8646 3.90e-01
+gamma 2 4 -0.041951     0.0256 -1.6397 1.05e-01
+gamma 3 1 -0.005338     0.0107 -0.5000 6.19e-01
+gamma 3 2 -0.025680     0.0260 -0.9868 3.27e-01
+gamma 3 3  0.031224     0.0203  1.5415 1.27e-01
+gamma 3 4 -0.000430     0.0159 -0.0270 9.79e-01
+gamma 4 1  0.011632     0.0212  0.5488 5.85e-01
+gamma 4 2 -0.079919     0.0517 -1.5466 1.26e-01
+gamma 4 3 -0.004822     0.0402 -0.1199 9.05e-01
+gamma 4 4  0.032053     0.0317  1.0127 3.14e-01
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.817  0.864  0.431  0.859 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.968    0.878    0.630    0.853 
 > print( elas( estResultLAunrTX, formula = "Ch", quantNames = wNames ) )
 
 Demand Elasticities (formula of Chalfant / Goddard)
@@ -336,6 +552,42 @@ wFood1 -0.0779 -0.17201  0.03040  0.2195
 wFood2 -0.1720  0.15158  0.00312  0.0173
 wFood3  0.0304  0.00312  0.00573 -0.0393
 wFood4  0.2195  0.01731 -0.03926 -0.1975
+> print( summary( estResultAIDS ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+          Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.25333     0.0670  -3.780 2.99e-04
+alpha 2    0.10359     0.0741   1.399 1.66e-01
+alpha 3    0.25792     0.0481   5.360 7.65e-07
+alpha 4    0.89182     0.1066   8.369 1.40e-12
+beta 1     0.32768     0.0392   8.365 1.43e-12
+beta 2     0.05953     0.0429   1.388 1.69e-01
+beta 3    -0.07276     0.0278  -2.617 1.06e-02
+beta 4    -0.31444     0.0621  -5.063 2.54e-06
+gamma 1 1 -0.07785     0.0402  -1.938 5.61e-02
+gamma 1 2 -0.17201     0.0219  -7.840 1.55e-11
+gamma 1 3  0.03040     0.0186   1.633 1.06e-01
+gamma 1 4  0.21946     0.0495   4.435 2.87e-05
+gamma 2 1 -0.17201     0.0219  -7.840 1.55e-11
+gamma 2 2  0.15158     0.0391   3.877 2.14e-04
+gamma 2 3  0.00312     0.0251   0.124 9.01e-01
+gamma 2 4  0.01731     0.0442   0.392 6.96e-01
+gamma 3 1  0.03040     0.0186   1.633 1.06e-01
+gamma 3 2  0.00312     0.0251   0.124 9.01e-01
+gamma 3 3  0.00573     0.0222   0.258 7.97e-01
+gamma 3 4 -0.03926     0.0218  -1.804 7.50e-02
+gamma 4 1  0.21946     0.0495   4.435 2.87e-05
+gamma 4 2  0.01731     0.0442   0.392 6.96e-01
+gamma 4 3 -0.03926     0.0218  -1.804 7.50e-02
+gamma 4 4 -0.19751     0.0846  -2.334 2.21e-02
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.685  0.844  0.431  0.712 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.943    0.862    0.631    0.703 
 > print( elas( estResultAIDS, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
@@ -376,6 +628,42 @@ wFood1 -0.0779 -0.17201  0.03040  0.2195
 wFood2 -0.1720  0.15158  0.00312  0.0173
 wFood3  0.0304  0.00312  0.00573 -0.0393
 wFood4  0.2195  0.01731 -0.03926 -0.1975
+> print( summary( estResultAIDSTX ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+          Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.25333     0.0670  -3.780 2.99e-04
+alpha 2    0.10359     0.0741   1.399 1.66e-01
+alpha 3    0.25792     0.0481   5.360 7.65e-07
+alpha 4    0.89182     0.1066   8.369 1.40e-12
+beta 1     0.32768     0.0392   8.365 1.43e-12
+beta 2     0.05953     0.0429   1.388 1.69e-01
+beta 3    -0.07276     0.0278  -2.617 1.06e-02
+beta 4    -0.31444     0.0621  -5.063 2.54e-06
+gamma 1 1 -0.07785     0.0402  -1.938 5.61e-02
+gamma 1 2 -0.17201     0.0219  -7.840 1.55e-11
+gamma 1 3  0.03040     0.0186   1.633 1.06e-01
+gamma 1 4  0.21946     0.0495   4.435 2.87e-05
+gamma 2 1 -0.17201     0.0219  -7.840 1.55e-11
+gamma 2 2  0.15158     0.0391   3.877 2.14e-04
+gamma 2 3  0.00312     0.0251   0.124 9.01e-01
+gamma 2 4  0.01731     0.0442   0.392 6.96e-01
+gamma 3 1  0.03040     0.0186   1.633 1.06e-01
+gamma 3 2  0.00312     0.0251   0.124 9.01e-01
+gamma 3 3  0.00573     0.0222   0.258 7.97e-01
+gamma 3 4 -0.03926     0.0218  -1.804 7.50e-02
+gamma 4 1  0.21946     0.0495   4.435 2.87e-05
+gamma 4 2  0.01731     0.0442   0.392 6.96e-01
+gamma 4 3 -0.03926     0.0218  -1.804 7.50e-02
+gamma 4 4 -0.19751     0.0846  -2.334 2.21e-02
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.685  0.844  0.431  0.712 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.943    0.862    0.631    0.703 
 > print( elas( estResultAIDSTX, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
@@ -429,6 +717,42 @@ wFood1 -0.0837 -0.1593 -0.00509  0.2481
 wFood2 -0.1674  0.1186  0.03855  0.0103
 wFood3  0.0337 -0.0155  0.02237 -0.0406
 wFood4  0.2174  0.0562 -0.05583 -0.2178
+> print( summary( estResultAIDShom ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+          Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.26152     0.0776  -3.370 1.17e-03
+alpha 2    0.09590     0.0601   1.597 1.14e-01
+alpha 3    0.25016     0.0352   7.114 4.78e-10
+alpha 4    0.91546     0.0976   9.379 1.99e-14
+beta 1     0.33313     0.0448   7.439 1.14e-10
+beta 2     0.06299     0.0347   1.816 7.33e-02
+beta 3    -0.06877     0.0203  -3.386 1.11e-03
+beta 4    -0.32735     0.0564  -5.809 1.30e-07
+gamma 1 1 -0.08373     0.0429  -1.952 5.45e-02
+gamma 1 2 -0.15931     0.0577  -2.763 7.15e-03
+gamma 1 3 -0.00509     0.0470  -0.108 9.14e-01
+gamma 1 4  0.24813     0.0651   3.812 2.74e-04
+gamma 2 1 -0.16744     0.0187  -8.938 1.42e-13
+gamma 2 2  0.11862     0.0427   2.779 6.83e-03
+gamma 2 3  0.03855     0.0342   1.126 2.63e-01
+gamma 2 4  0.01027     0.0366   0.281 7.80e-01
+gamma 3 1  0.03374     0.0126   2.680 8.97e-03
+gamma 3 2 -0.01546     0.0244  -0.635 5.28e-01
+gamma 3 3  0.02237     0.0207   1.082 2.83e-01
+gamma 3 4 -0.04065     0.0206  -1.974 5.19e-02
+gamma 4 1  0.21743     0.0454   4.788 7.84e-06
+gamma 4 2  0.05616     0.0756   0.743 4.60e-01
+gamma 4 3 -0.05583     0.0570  -0.979 3.30e-01
+gamma 4 4 -0.21775     0.0790  -2.756 7.28e-03
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.695  0.851  0.448  0.718 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.946    0.867    0.643    0.709 
 > print( elas( estResultAIDShom, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
@@ -469,6 +793,42 @@ wFood1 -0.0837 -0.1593 -0.00509  0.2481
 wFood2 -0.1674  0.1186  0.03855  0.0103
 wFood3  0.0337 -0.0155  0.02237 -0.0406
 wFood4  0.2174  0.0562 -0.05583 -0.2178
+> print( summary( estResultAIDShomTX ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+          Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.26152     0.0776  -3.370 1.17e-03
+alpha 2    0.09590     0.0601   1.597 1.14e-01
+alpha 3    0.25016     0.0352   7.114 4.78e-10
+alpha 4    0.91546     0.0976   9.379 1.99e-14
+beta 1     0.33313     0.0448   7.439 1.14e-10
+beta 2     0.06299     0.0347   1.816 7.33e-02
+beta 3    -0.06877     0.0203  -3.386 1.11e-03
+beta 4    -0.32735     0.0564  -5.809 1.30e-07
+gamma 1 1 -0.08373     0.0429  -1.952 5.45e-02
+gamma 1 2 -0.15931     0.0577  -2.763 7.15e-03
+gamma 1 3 -0.00509     0.0470  -0.108 9.14e-01
+gamma 1 4  0.24813     0.0651   3.812 2.74e-04
+gamma 2 1 -0.16744     0.0187  -8.938 1.42e-13
+gamma 2 2  0.11862     0.0427   2.779 6.83e-03
+gamma 2 3  0.03855     0.0342   1.126 2.63e-01
+gamma 2 4  0.01027     0.0366   0.281 7.80e-01
+gamma 3 1  0.03374     0.0126   2.680 8.97e-03
+gamma 3 2 -0.01546     0.0244  -0.635 5.28e-01
+gamma 3 3  0.02237     0.0207   1.082 2.83e-01
+gamma 3 4 -0.04065     0.0206  -1.974 5.19e-02
+gamma 4 1  0.21743     0.0454   4.788 7.84e-06
+gamma 4 2  0.05616     0.0756   0.743 4.60e-01
+gamma 4 3 -0.05583     0.0570  -0.979 3.30e-01
+gamma 4 4 -0.21775     0.0790  -2.756 7.28e-03
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.695  0.851  0.448  0.718 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.946    0.867    0.643    0.709 
 > print( elas( estResultAIDShomTX, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
@@ -522,6 +882,42 @@ wFood1  0.0746 -0.0461 -0.0389  0.0422
 wFood2 -0.1253  0.1534  0.0272 -0.0440
 wFood3  0.0157 -0.0231  0.0236 -0.0164
 wFood4  0.0350 -0.0841 -0.0119  0.0182
+> print( summary( estResultAIDSunr ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+          Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.07253     0.0764 -0.9490 3.46e-01
+alpha 2    0.16272     0.0721  2.2577 2.69e-02
+alpha 3    0.24770     0.0444  5.5778 3.68e-07
+alpha 4    0.66210     0.0898  7.3731 1.84e-10
+beta 1     0.14260     0.0577  2.4700 1.58e-02
+beta 2    -0.00453     0.0544 -0.0832 9.34e-01
+beta 3    -0.06679     0.0335 -1.9918 5.00e-02
+beta 4    -0.07129     0.0678 -1.0511 2.97e-01
+gamma 1 1  0.07455     0.0320  2.3332 2.23e-02
+gamma 1 2 -0.04615     0.0454 -1.0161 3.13e-01
+gamma 1 3 -0.03893     0.0374 -1.0396 3.02e-01
+gamma 1 4  0.04224     0.0428  0.9878 3.26e-01
+gamma 2 1 -0.12530     0.0218 -5.7371 1.92e-07
+gamma 2 2  0.15335     0.0416  3.6845 4.30e-04
+gamma 2 3  0.02724     0.0338  0.8069 4.22e-01
+gamma 2 4 -0.04404     0.0327 -1.3448 1.83e-01
+gamma 3 1  0.01570     0.0160  0.9809 3.30e-01
+gamma 3 2 -0.02306     0.0269 -0.8586 3.93e-01
+gamma 3 3  0.02356     0.0220  1.0689 2.89e-01
+gamma 3 4 -0.01643     0.0215 -0.7637 4.47e-01
+gamma 4 1  0.03504     0.0298  1.1766 2.43e-01
+gamma 4 2 -0.08414     0.0548 -1.5362 1.29e-01
+gamma 4 3 -0.01187     0.0422 -0.2813 7.79e-01
+gamma 4 4  0.01822     0.0464  0.3927 6.96e-01
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.817  0.864  0.444  0.858 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.968    0.878    0.640    0.851 
 > print( elas( estResultAIDSunr, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
@@ -562,6 +958,42 @@ wFood1  0.0746 -0.0461 -0.0389  0.0422
 wFood2 -0.1253  0.1534  0.0272 -0.0440
 wFood3  0.0157 -0.0231  0.0236 -0.0164
 wFood4  0.0350 -0.0841 -0.0119  0.0182
+> print( summary( estResultAIDSunrTX ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+          Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.07253     0.0764 -0.9490 3.46e-01
+alpha 2    0.16272     0.0721  2.2577 2.69e-02
+alpha 3    0.24770     0.0444  5.5778 3.68e-07
+alpha 4    0.66210     0.0898  7.3731 1.84e-10
+beta 1     0.14260     0.0577  2.4700 1.58e-02
+beta 2    -0.00453     0.0544 -0.0832 9.34e-01
+beta 3    -0.06679     0.0335 -1.9918 5.00e-02
+beta 4    -0.07129     0.0678 -1.0511 2.97e-01
+gamma 1 1  0.07455     0.0320  2.3332 2.23e-02
+gamma 1 2 -0.04615     0.0454 -1.0161 3.13e-01
+gamma 1 3 -0.03893     0.0374 -1.0396 3.02e-01
+gamma 1 4  0.04224     0.0428  0.9878 3.26e-01
+gamma 2 1 -0.12530     0.0218 -5.7371 1.92e-07
+gamma 2 2  0.15335     0.0416  3.6845 4.30e-04
+gamma 2 3  0.02724     0.0338  0.8069 4.22e-01
+gamma 2 4 -0.04404     0.0327 -1.3448 1.83e-01
+gamma 3 1  0.01570     0.0160  0.9809 3.30e-01
+gamma 3 2 -0.02306     0.0269 -0.8586 3.93e-01
+gamma 3 3  0.02356     0.0220  1.0689 2.89e-01
+gamma 3 4 -0.01643     0.0215 -0.7637 4.47e-01
+gamma 4 1  0.03504     0.0298  1.1766 2.43e-01
+gamma 4 2 -0.08414     0.0548 -1.5362 1.29e-01
+gamma 4 3 -0.01187     0.0422 -0.2813 7.79e-01
+gamma 4 4  0.01822     0.0464  0.3927 6.96e-01
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.817  0.864  0.444  0.858 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.968    0.878    0.640    0.851 
 > print( elas( estResultAIDSunrTX, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
@@ -618,6 +1050,42 @@ wFood1  0.1042 -0.13988 -0.01156  0.0473
 wFood2 -0.1399  0.15691  0.00347 -0.0205
 wFood3 -0.0116  0.00347  0.01249 -0.0044
 wFood4  0.0473 -0.02050 -0.00440 -0.0224
+> print( summary( estResultLaSNa ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with Stone Index (S)
+Estimated Coefficients:
+          Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.24730    0.07008  -3.529 6.80e-04
+alpha 2    0.10925    0.05787   1.888 6.25e-02
+alpha 3    0.26824    0.03441   7.795 1.56e-11
+alpha 4    0.86981    0.09058   9.603 3.64e-15
+beta 1     0.32399    0.04104   7.894 9.87e-12
+beta 2     0.05586    0.03360   1.663 1.00e-01
+beta 3    -0.07863    0.02003  -3.926 1.76e-04
+beta 4    -0.30123    0.05299  -5.685 1.85e-07
+gamma 1 1  0.10415    0.02080   5.006 3.02e-06
+gamma 1 2 -0.13988    0.01530  -9.140 3.09e-14
+gamma 1 3 -0.01156    0.00982  -1.178 2.42e-01
+gamma 1 4  0.04729    0.02398   1.973 5.18e-02
+gamma 2 1 -0.13988    0.01530  -9.140 3.09e-14
+gamma 2 2  0.15691    0.02863   5.480 4.37e-07
+gamma 2 3  0.00347    0.01755   0.198 8.44e-01
+gamma 2 4 -0.02050    0.02363  -0.868 3.88e-01
+gamma 3 1 -0.01156    0.00982  -1.178 2.42e-01
+gamma 3 2  0.00347    0.01755   0.198 8.44e-01
+gamma 3 3  0.01249    0.01624   0.769 4.44e-01
+gamma 3 4 -0.00440    0.01354  -0.325 7.46e-01
+gamma 4 1  0.04729    0.02398   1.973 5.18e-02
+gamma 4 2 -0.02050    0.02363  -0.868 3.88e-01
+gamma 4 3 -0.00440    0.01354  -0.325 7.46e-01
+gamma 4 4 -0.02239    0.03829  -0.585 5.60e-01
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.627  0.832  0.412  0.657 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.935    0.846    0.677    0.632 
 > print( elas( estResultLaSNa, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
@@ -661,6 +1129,42 @@ wFood1  0.1107 -0.13851 -0.011881  0.039732
 wFood2 -0.1385  0.15820 -0.003476 -0.016216
 wFood3 -0.0119 -0.00348  0.014589  0.000768
 wFood4  0.0397 -0.01622  0.000768 -0.024285
+> print( summary( estResultLaSlNa ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
+Estimated Coefficients:
+           Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.254562     0.0646 -3.9432 1.70e-04
+alpha 2    0.109799     0.0564  1.9472 5.50e-02
+alpha 3    0.261220     0.0352  7.4115 1.07e-10
+alpha 4    0.883543     0.0780 11.3249 2.27e-18
+beta 1     0.328704     0.0378  8.6972 3.15e-13
+beta 2     0.055946     0.0327  1.7108 9.09e-02
+beta 3    -0.074741     0.0205 -3.6454 4.70e-04
+beta 4    -0.309909     0.0456 -6.7957 1.67e-09
+gamma 1 1  0.110660     0.0195  5.6630 2.19e-07
+gamma 1 2 -0.138511     0.0150 -9.2530 2.51e-14
+gamma 1 3 -0.011881     0.0101 -1.1765 2.43e-01
+gamma 1 4  0.039732     0.0207  1.9160 5.89e-02
+gamma 2 1 -0.138511     0.0150 -9.2530 2.51e-14
+gamma 2 2  0.158203     0.0291  5.4288 5.78e-07
+gamma 2 3 -0.003476     0.0187 -0.1858 8.53e-01
+gamma 2 4 -0.016216     0.0223 -0.7260 4.70e-01
+gamma 3 1 -0.011881     0.0101 -1.1765 2.43e-01
+gamma 3 2 -0.003476     0.0187 -0.1858 8.53e-01
+gamma 3 3  0.014589     0.0181  0.8077 4.22e-01
+gamma 3 4  0.000768     0.0137  0.0562 9.55e-01
+gamma 4 1  0.039732     0.0207  1.9160 5.89e-02
+gamma 4 2 -0.016216     0.0223 -0.7260 4.70e-01
+gamma 4 3  0.000768     0.0137  0.0562 9.55e-01
+gamma 4 4 -0.024285     0.0329 -0.7389 4.62e-01
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.701  0.846  0.408  0.734 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.946    0.864    0.618    0.724 
 > print( elas( estResultLaSlNa, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
@@ -704,6 +1208,42 @@ wFood1  0.09104 -0.14571 -0.00963  0.0643
 wFood2 -0.14571  0.15852  0.00594 -0.0188
 wFood3 -0.00963  0.00594  0.01289 -0.0092
 wFood4  0.06431 -0.01875 -0.00920 -0.0364
+> print( summary( estResultLaLNa ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with Laspeyres Index (L)
+Estimated Coefficients:
+          Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.24814     0.0707  -3.510 7.24e-04
+alpha 2    0.12270     0.0607   2.021 4.65e-02
+alpha 3    0.27297     0.0352   7.751 1.91e-11
+alpha 4    0.85247     0.0942   9.047 4.77e-14
+beta 1     0.32513     0.0415   7.835 1.29e-11
+beta 2     0.04809     0.0353   1.363 1.77e-01
+beta 3    -0.08155     0.0205  -3.973 1.49e-04
+beta 4    -0.29167     0.0552  -5.282 9.88e-07
+gamma 1 1  0.09104     0.0203   4.493 2.23e-05
+gamma 1 2 -0.14571     0.0152  -9.616 3.43e-15
+gamma 1 3 -0.00963     0.0095  -1.015 3.13e-01
+gamma 1 4  0.06431     0.0240   2.674 9.01e-03
+gamma 2 1 -0.14571     0.0152  -9.616 3.43e-15
+gamma 2 2  0.15852     0.0299   5.297 9.29e-07
+gamma 2 3  0.00594     0.0179   0.332 7.41e-01
+gamma 2 4 -0.01875     0.0244  -0.768 4.45e-01
+gamma 3 1 -0.00963     0.0095  -1.015 3.13e-01
+gamma 3 2  0.00594     0.0179   0.332 7.41e-01
+gamma 3 3  0.01289     0.0163   0.793 4.30e-01
+gamma 3 4 -0.00920     0.0138  -0.667 5.07e-01
+gamma 4 1  0.06431     0.0240   2.674 9.01e-03
+gamma 4 2 -0.01875     0.0244  -0.768 4.45e-01
+gamma 4 3 -0.00920     0.0138  -0.667 5.07e-01
+gamma 4 4 -0.03636     0.0391  -0.930 3.55e-01
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.620  0.830  0.414  0.640 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.932    0.845    0.679    0.614 
 > print( elas( estResultLaLNa, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
@@ -746,6 +1286,42 @@ wFood1 -0.0855 -0.16994  0.03469  0.22072
 wFood2 -0.1699  0.15613  0.01104  0.00277
 wFood3  0.0347  0.01104  0.00134 -0.04707
 wFood4  0.2207  0.00277 -0.04707 -0.17643
+> print( summary( estResultAIDSNa ) )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimated Coefficients:
+          Estimate Std. Error t value Pr(>|t|)
+alpha 1   -0.25917     0.0704 -3.6795 4.12e-04
+alpha 2    0.12447     0.0830  1.4994 1.38e-01
+alpha 3    0.27264     0.0539  5.0606 2.43e-06
+alpha 4    0.86207     0.1282  6.7251 2.00e-09
+beta 1     0.33056     0.0412  8.0277 5.34e-12
+beta 2     0.04695     0.0481  0.9769 3.31e-01
+beta 3    -0.08111     0.0311 -2.6056 1.08e-02
+beta 4    -0.29641     0.0747 -3.9673 1.52e-04
+gamma 1 1 -0.08547     0.0433 -1.9721 5.19e-02
+gamma 1 2 -0.16994     0.0248 -6.8518 1.13e-09
+gamma 1 3  0.03469     0.0210  1.6486 1.03e-01
+gamma 1 4  0.22072     0.0570  3.8749 2.11e-04
+gamma 2 1 -0.16994     0.0248 -6.8518 1.13e-09
+gamma 2 2  0.15613     0.0411  3.7984 2.75e-04
+gamma 2 3  0.01104     0.0256  0.4309 6.68e-01
+gamma 2 4  0.00277     0.0485  0.0572 9.55e-01
+gamma 3 1  0.03469     0.0210  1.6486 1.03e-01
+gamma 3 2  0.01104     0.0256  0.4309 6.68e-01
+gamma 3 3  0.00134     0.0218  0.0614 9.51e-01
+gamma 3 4 -0.04707     0.0232 -2.0245 4.61e-02
+gamma 4 1  0.22072     0.0570  3.8749 2.11e-04
+gamma 4 2  0.00277     0.0485  0.0572 9.55e-01
+gamma 4 3 -0.04707     0.0232 -2.0245 4.61e-02
+gamma 4 4 -0.17643     0.0982 -1.7964 7.60e-02
+R-squared Values of expenditure shares:
+wFood1 wFood2 wFood3 wFood4 
+ 0.636  0.830  0.415  0.651 
+R-squared Values of quantities:
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   0.936    0.845    0.679    0.627 
 > print( elas( estResultAIDSNa, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
