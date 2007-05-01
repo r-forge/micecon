@@ -1029,7 +1029,7 @@ wFood4  0.466  0.14356  0.116 -0.725
 
 AIDS: Elasticities
 > wMeans <- colMeans( Blanciforti86[ set, wNames ] )
-> ela <- aidsEla( estResultAIDS$coef, wMeans, pMeans, formula = "AIDS" )
+> ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, formula = "AIDS" )
 > print( ela )
 $formula
 [1] "AIDS"
@@ -1053,8 +1053,8 @@ q_wFood3  0.0954  0.0787 -0.8180  0.186
 q_wFood4  0.4036  0.1392  0.1168 -0.774
 
 attr(,"class")
-[1] "aidsEla"
-> elaTX <- aidsEla( estResultAIDSTX$coef, wMeans, pMeans, formula = "AIDS" )
+[1] "aidsElas"
+> elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, formula = "AIDS" )
 > print( elaTX )
 $formula
 [1] "AIDS"
@@ -1078,7 +1078,7 @@ q_wFood3  0.0954  0.0787 -0.8180  0.186
 q_wFood4  0.4036  0.1392  0.1168 -0.774
 
 attr(,"class")
-[1] "aidsEla"
+[1] "aidsElas"
 > print( all.equal( ela, elaTX ) )
 [1] TRUE
 > 
@@ -1087,7 +1087,7 @@ attr(,"class")
 
 LA: Elasticity formula of non-linear AIDS
 > wMeans <- colMeans( Blanciforti86[ set, wNames ] )
-> ela <- aidsEla( estResultLA$coef, wMeans, pMeans, formula = "AIDS" )
+> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "AIDS" )
 > print( ela )
 $formula
 [1] "AIDS"
@@ -1111,8 +1111,8 @@ q_wFood3 -0.229  0.0337 -0.7453  0.498
 q_wFood4 -0.108  0.0476  0.2307 -0.298
 
 attr(,"class")
-[1] "aidsEla"
-> elaTX <- aidsEla( estResultLATX$coef, wMeans, pMeans, formula = "AIDS" )
+[1] "aidsElas"
+> elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, formula = "AIDS" )
 > print( elaTX )
 $formula
 [1] "AIDS"
@@ -1136,7 +1136,7 @@ q_wFood3 -0.229  0.0337 -0.7453  0.498
 q_wFood4 -0.108  0.0476  0.2307 -0.298
 
 attr(,"class")
-[1] "aidsEla"
+[1] "aidsElas"
 > print( all.equal( ela, elaTX ) )
 [1] TRUE
 > 
@@ -1145,7 +1145,7 @@ attr(,"class")
 ********** Elasticities ***************> cat( "\nLA: Elasticity formula of Chalfant / Goddard\n" )
 
 LA: Elasticity formula of Chalfant / Goddard
-> ela <- aidsEla( estResultLA$coef, wMeans, formula = "Ch" )
+> ela <- aidsElas( estResultLA$coef, wMeans, formula = "Ch" )
 > print( ela )
 $formula
 [1] "Ch"
@@ -1169,13 +1169,13 @@ q_wFood3  0.0844  0.0857 -0.8165  0.204
 q_wFood4  0.3826  0.1291  0.1192 -0.758
 
 attr(,"class")
-[1] "aidsEla"
+[1] "aidsElas"
 > 
 > cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
 
 LA: Elasticity formula of Eales + Unnevehr
 > wMeans <- colMeans( Blanciforti86[ set, wNames ] )
-> ela <- aidsEla( estResultLA$coef, wMeans, formula = "EU" )
+> ela <- aidsElas( estResultLA$coef, wMeans, formula = "EU" )
 > print( ela )
 $formula
 [1] "EU"
@@ -1199,7 +1199,7 @@ q_wFood3  0.04884  0.0628 -0.8318  0.163
 q_wFood4  0.15146 -0.0201  0.0193 -1.023
 
 attr(,"class")
-[1] "aidsEla"
+[1] "aidsElas"
 > 
 > 
 > ############# Price indices ##############

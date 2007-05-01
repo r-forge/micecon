@@ -1,4 +1,4 @@
-aidsEla <- function( coef, shares, prices = NULL, formula = "AIDS",
+aidsElas <- function( coef, shares, prices = NULL, formula = "AIDS",
    quantNames = NULL, priceNames = NULL, coefVcov = NULL, df = NULL ) {
 
    nGoods <- length( coef$alpha )
@@ -96,7 +96,7 @@ aidsEla <- function( coef, shares, prices = NULL, formula = "AIDS",
    rownames( ela$marshall ) <- quantNames
    colnames( ela$marshall ) <- priceNames
    if( !is.null( coefVcov ) && formula %in% c( "AIDS" ) ) {
-      jacobian <- aidsElaJacobian( coef = coef, share = shares, price = prices,
+      jacobian <- aidsElasJacobian( coef = coef, share = shares, price = prices,
          formula = formula, quantNames = quantNames, priceNames = priceNames )
       ela$allVcov      <- jacobian$all      %*% coefVcov %*% t( jacobian$all )
       ela$expVcov      <- jacobian$exp      %*% coefVcov %*% t( jacobian$exp )
@@ -125,6 +125,6 @@ aidsEla <- function( coef, shares, prices = NULL, formula = "AIDS",
             lower.tail = FALSE )
       }
    }
-   class( ela ) <- "aidsEla"
+   class( ela ) <- "aidsElas"
    return( ela )
 }

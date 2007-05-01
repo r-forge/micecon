@@ -57,7 +57,7 @@
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
-\seealso{\code{\link{aidsEst}}, \code{\link{aidsEla}}}
+\seealso{\code{\link{aidsEst}}, \code{\link{aidsElas}}}
 
 \examples{
    data( Blanciforti86 )
