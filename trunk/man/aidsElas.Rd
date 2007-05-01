@@ -58,9 +58,13 @@
    estimator (ILLE),
    the default formula is 'AIDS'.
 
-   At the moment only the elasticity formulas of the orginal AIDS ('AIDS'),
-   the formula of Chalfant (1987) ('Ch') and the formula of
-   Eales and Unnevehr (1988) ('EU') are implemented.
+   At the moment the elasticity formulas of the orginal AIDS (\code{AIDS}),
+   the formula of Goddard (1983) or Chalfant (1987) (\code{Go} or \code{Ch}),
+   the formula of Eales and Unnevehr (1988) (\code{EU}),
+   the formula of Green and Alston (1990) or the first of Buse (1994)
+   (\code{GA} or \code{B1}) and
+   the second formula of Buse (1994) (\code{B2})
+   are implemented.
    The variance covariance matrices of the elasticities are calculated using
    the formula of Klein (1953, p. 258) (also known as the delta method).
    At the moment this is implemented only for the elasticity formulas of the 
@@ -132,26 +136,28 @@
    priceNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
    shareNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 
-   # AIDS
+   # AIDS estimation and elasticities
    estResultA <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86[ -1, ],
       method = "IL:L" )
    diag( elas( estResultA, formula = "AIDS" )$marshall )
 
-   # LA-AIDS + formula of AIDS
-   estResultL1 <- aidsEst( priceNames, shareNames, "xFood",
+   # LA-AIDS estimation
+   estResultL <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, method = "LA:SL" )
-   diag( elas( estResultL1, formula = "AIDS" )$marshall )
+
+   # LA-AIDS + formula of AIDS
+   diag( elas( estResultL, formula = "AIDS" )$marshall )
 
    # LA-AIDS + formula of Eales + Unnevehr
-   estResultL2 <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, method = "LA:SL" )
-   diag( elas( estResultL2, formula = "EU" )$marshall )
+   diag( elas( estResultL, formula = "EU" )$marshall )
 
-   # LA-AIDS + formula of Chalfant:
-   estResultL3 <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, method = "LA:SL" )
-   diag( elas( estResultL3, formula = "Ch" )$marshall )
+   # LA-AIDS + formula of Goddard or Chalfant:
+   diag( elas( estResultL, formula = "Go" )$marshall )
+   diag( elas( estResultL, formula = "Ch" )$marshall )
+
+   # LA-AIDS + formula of Green + Alston (= 1st of Buse):
+   diag( elas( estResultL, formula = "GA" )$marshall )
 }
 
 \keyword{ models }
