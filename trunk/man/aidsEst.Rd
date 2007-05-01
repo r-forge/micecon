@@ -125,8 +125,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    ## Repeating the demand analysis of Blanciforti, Green & King (1986)
    estResult <- aidsEst( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
-      data = Blanciforti86, method = "LA:SL",
-      maxiter = 1, rcovformula = 1, tol = 1e-7 )
+      data = Blanciforti86, method = "LA:SL" )
    print( estResult )
 }
 
