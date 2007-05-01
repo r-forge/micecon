@@ -44,34 +44,33 @@ aidsElas <- function( coef, shares, prices = NULL, formula = "AIDS",
    ela <- list()
    ela$formula <- formula
 
-   shares <- array(shares)
+   ones <- rep( 1, nGoods )
 
    if( formula == "AIDS" ) {
-      prices <- array(prices)
-      ela$exp <- array( 1, c( nGoods ) ) + coef$beta/shares
+      ela$exp <- ones + coef$beta/shares
       ela$hicks <- -diag( 1, nGoods, nGoods ) +
-         array( 1, c( nGoods )) %*% t( shares ) +
-         coef$gamma / ( shares %*% t( array( 1, c( nGoods )))) -
-         coef$beta %*% t( array( 1, c( nGoods ))) *
-         ( array( 1, c( nGoods )) %*% t( coef$alpha ) -
-         array( 1, c( nGoods )) %*% t( shares )+
-         array( 1, c( nGoods )) %*% t( coef$gamma %*% log( prices ))) /
-         ( shares %*% t( array( 1, c( nGoods ))))
-      ela$marshall <- ela$hicks - ( ela$exp %*% t( array( 1, c( nGoods )))) *
-         ( array( 1, c( nGoods )) %*% t( shares ))
+         ones %*% t( shares ) +
+         coef$gamma / ( shares %*% t( ones ) ) -
+         coef$beta %*% t( ones ) *
+         ( ones %*% t( coef$alpha ) -
+         ones %*% t( shares )+
+         ones %*% t( coef$gamma %*% log( prices ))) /
+         ( shares %*% t( ones ) )
+      ela$marshall <- ela$hicks - ( ela$exp %*% t( ones ) ) *
+         ( ones %*% t( shares ))
    } else if(formula=="Ch") {
-      ela$exp <- array( 1, c( nGoods ) ) + coef$beta / shares
+      ela$exp <- ones + coef$beta / shares
       ela$hicks <- -diag( 1, nGoods, nGoods ) + coef$gamma /
-         ( shares %*% t( array( 1, c( nGoods ) ) ) ) +
-         array( 1, c( nGoods )) %*% t( shares )
-      ela$marshall <- ela$hicks - ( ela$exp %*% t( array( 1, c( nGoods ) ) ) ) *
-         ( array( 1, c( nGoods )) %*% t(shares))
+         ( shares %*% t( ones ) ) +
+         ones %*% t( shares )
+      ela$marshall <- ela$hicks - ( ela$exp %*% t( ones ) ) *
+         ( ones %*% t(shares))
    } else if( formula == "EU" ) {
-      ela$exp <- array( 1, c( nGoods ) ) + coef$beta / shares
+      ela$exp <- ones + coef$beta / shares
       ela$marshall <- -diag( 1, nGoods, nGoods ) + coef$gamma /
-         ( shares %*% t( array( 1, c( nGoods ) ) ) )
-      ela$hicks <- ela$marshall + ( ela$exp %*% t( array( 1, c( nGoods ) ) ) ) *
-         ( array( 1, c( nGoods )) %*% t(shares))
+         ( shares %*% t( ones ) )
+      ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
+         ( ones %*% t(shares))
    } else if( formula == "B1 not implemented" ) {
       ela$exp <- array( 1, c( nGoods ) ) + coef$beta / shares
       ela$marshall <- matrix( NA, nGoods, nGoods )
