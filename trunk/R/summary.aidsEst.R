@@ -27,13 +27,13 @@ summary.aidsEst <- function( object, elaFormula = NULL,
          " as there are goods (in this case ", length( object$wMeans ), ")" )
    }
 
-   # to avoid warning message in aidsEla
+   # to avoid warning message in aidsElas
    if( elaFormula %in% c( "Ch", "EU" ) ) {
       object$pMeans <- NULL
    }
 
    # calculate demand elasticities
-   result$ela  <- aidsEla( coef = result$coef,
+   result$ela  <- aidsElas( coef = result$coef,
       shares = object$wMeans, prices = object$pMeans,
       formula = elaFormula,
       priceNames = object$priceNames, quantNames = quantNames,

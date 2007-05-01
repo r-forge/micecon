@@ -1,5 +1,5 @@
-\name{aidsEla}
-\alias{aidsEla}
+\name{aidsElas}
+\alias{aidsElas}
 \title{ Elasticities of the AIDS model }
 
 \description{
@@ -7,7 +7,7 @@
 }
 
 \usage{
-   aidsEla( coef, shares, prices = NULL, formula = "AIDS",
+   aidsElas( coef, shares, prices = NULL, formula = "AIDS",
       quantNames = NULL, priceNames = NULL, coefVcov = NULL, df = NULL )
 }
 
@@ -37,7 +37,7 @@
 }
 
 \value{
-  a list of class \code{aidsEla} containing following elements:
+  a list of class \code{aidsElas} containing following elements:
   \item{formula}{the elasticity formula used to calculate these elasticities.}
   \item{exp}{vector of expenditure elasticities.}
   \item{hicks}{matrix of Hicksian (compensated) price elasticities.}
@@ -94,7 +94,7 @@
       data = Blanciforti86, method = "LA:L" )
    wMeans <- colMeans( Blanciforti86[ , c( "wFood1", "wFood2",
       "wFood3", "wFood4" ) ] )
-   aidsEla( estResult$coef, wMeans, formula = "Ch" )
+   aidsElas( estResult$coef, wMeans, formula = "Ch" )
 }
 
 \keyword{ models }

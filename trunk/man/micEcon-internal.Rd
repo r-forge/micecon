@@ -1,6 +1,6 @@
 \name{micEcon-internal}
 \alias{aidsCoef}
-\alias{aidsElaJacobian}
+\alias{aidsElasJacobian}
 \alias{aidsJacobian}
 \alias{aidsRestr}
 \alias{aidsSystem}

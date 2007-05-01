@@ -111,7 +111,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    \emph{Journal of Applied Econometrics}, 14, p. 209-232.
 }
 
-\seealso{\code{\link{summary.aidsEst}}, \code{\link{aidsEla}},
+\seealso{\code{\link{summary.aidsEst}}, \code{\link{aidsElas}},
    \code{\link{aidsCalc}}.}
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}

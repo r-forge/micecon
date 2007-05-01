@@ -18,7 +18,7 @@
 \arguments{
    \item{object}{an object of class \code{aidsEst}.}
    \item{elaFormula}{the formula to calculate the elasticities
-      (see \code{\link{aidsEla}})
+      (see \code{\link{aidsElas}})
       If the demand system was estimated by the linear approximation (LA),
       the default formula is 'Ch'.
       If the demand system was estimated by the iterative linear least squares
@@ -35,7 +35,7 @@
    all elements of the provided \code{object}
    plus following objects:
    \item{ela}{a list containing the elasticities
-      (see \code{\link{aidsEla}}).}
+      (see \code{\link{aidsElas}}).}
    \item{elaFormula}{formula used to calculate the elasticities.}
 }
 
@@ -50,7 +50,7 @@
    \emph{Journal of Applied Econometrics}, 14, p. 209-232.
 }
 
-\seealso{\code{\link{aidsEst}}, \code{\link{aidsEla}}.}
+\seealso{\code{\link{aidsEst}}, \code{\link{aidsElas}}.}
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 

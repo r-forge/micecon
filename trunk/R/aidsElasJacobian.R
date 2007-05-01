@@ -1,4 +1,4 @@
-aidsElaJacobian <- function( coef, shares, prices = NULL, formula = "AIDS",
+aidsElasJacobian <- function( coef, shares, prices = NULL, formula = "AIDS",
       quantNames = NULL, priceNames = NULL ) {
 
    nGoods <- length( coef$alpha )
