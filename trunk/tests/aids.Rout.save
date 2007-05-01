@@ -50,25 +50,9 @@ wFood1  0.1107 -0.13851 -0.011881  0.039732
 wFood2 -0.1385  0.15820 -0.003476 -0.016216
 wFood3 -0.0119 -0.00348  0.014589  0.000768
 wFood4  0.0397 -0.01622  0.000768 -0.024285
-> print( summary( estResultLA, elaFormula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLA, formula = "Ch", quantNames = wNames ) )
 
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-Estimated Coefficients:
-alpha
-wFood1 wFood2 wFood3 wFood4 
--0.255  0.110  0.261  0.884 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3287  0.0559 -0.0747 -0.3099 
-gamma
-        pFood1   pFood2    pFood3    pFood4
-wFood1  0.1107 -0.13851 -0.011881  0.039732
-wFood2 -0.1385  0.15820 -0.003476 -0.016216
-wFood3 -0.0119 -0.00348  0.014589  0.000768
-wFood4  0.0397 -0.01622  0.000768 -0.024285
-
-Demand Elasticities (Formula of Chalfant / Goddard)
+Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.058  1.278  0.443  0.124 
@@ -107,25 +91,9 @@ wFood1  0.1107 -0.13851 -0.011881  0.039732
 wFood2 -0.1385  0.15820 -0.003476 -0.016216
 wFood3 -0.0119 -0.00348  0.014589  0.000768
 wFood4  0.0397 -0.01622  0.000768 -0.024285
-> print( summary( estResultLATX, elaFormula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLATX, formula = "Ch", quantNames = wNames ) )
 
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-Estimated Coefficients:
-alpha
-wFood1 wFood2 wFood3 wFood4 
--0.255  0.110  0.261  0.884 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3287  0.0559 -0.0747 -0.3099 
-gamma
-        pFood1   pFood2    pFood3    pFood4
-wFood1  0.1107 -0.13851 -0.011881  0.039732
-wFood2 -0.1385  0.15820 -0.003476 -0.016216
-wFood3 -0.0119 -0.00348  0.014589  0.000768
-wFood4  0.0397 -0.01622  0.000768 -0.024285
-
-Demand Elasticities (Formula of Chalfant / Goddard)
+Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.058  1.278  0.443  0.124 
@@ -176,25 +144,9 @@ wFood1  0.10972 -0.1210 -0.0458  0.056998
 wFood2 -0.13009  0.1244  0.0312 -0.025525
 wFood3 -0.00526 -0.0251  0.0312 -0.000772
 wFood4  0.02563  0.0217 -0.0166 -0.030701
-> print( summary( estResultLAhom, elaFormula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLAhom, formula = "Ch", quantNames = wNames ) )
 
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-Estimated Coefficients:
-alpha
- wFood1  wFood2  wFood3  wFood4 
--0.2600  0.0914  0.2441  0.9245 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3326  0.0656 -0.0653 -0.3329 
-gamma
-         pFood1  pFood2  pFood3    pFood4
-wFood1  0.10972 -0.1210 -0.0458  0.056998
-wFood2 -0.13009  0.1244  0.0312 -0.025525
-wFood3 -0.00526 -0.0251  0.0312 -0.000772
-wFood4  0.02563  0.0217 -0.0166 -0.030701
-
-Demand Elasticities (Formula of Chalfant / Goddard)
+Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
 2.0702 1.3262 0.5128 0.0593 
@@ -233,25 +185,9 @@ wFood1  0.10972 -0.1210 -0.0458  0.056998
 wFood2 -0.13009  0.1244  0.0312 -0.025525
 wFood3 -0.00526 -0.0251  0.0312 -0.000772
 wFood4  0.02563  0.0217 -0.0166 -0.030701
-> print( summary( estResultLAhomTX, elaFormula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLAhomTX, formula = "Ch", quantNames = wNames ) )
 
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-Estimated Coefficients:
-alpha
- wFood1  wFood2  wFood3  wFood4 
--0.2600  0.0914  0.2441  0.9245 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3326  0.0656 -0.0653 -0.3329 
-gamma
-         pFood1  pFood2  pFood3    pFood4
-wFood1  0.10972 -0.1210 -0.0458  0.056998
-wFood2 -0.13009  0.1244  0.0312 -0.025525
-wFood3 -0.00526 -0.0251  0.0312 -0.000772
-wFood4  0.02563  0.0217 -0.0166 -0.030701
-
-Demand Elasticities (Formula of Chalfant / Goddard)
+Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
 2.0702 1.3262 0.5128 0.0593 
@@ -302,25 +238,9 @@ wFood1  0.12013 -0.0454 -0.05451  0.01033
 wFood2 -0.12643  0.1510  0.02811 -0.04195
 wFood3 -0.00534 -0.0257  0.03122 -0.00043
 wFood4  0.01163 -0.0799 -0.00482  0.03205
-> print( summary( estResultLAunr, elaFormula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLAunr, formula = "Ch", quantNames = wNames ) )
 
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-Estimated Coefficients:
-alpha
- wFood1  wFood2  wFood3  wFood4 
--0.0755  0.1564  0.2428  0.6764 
-beta
-   wFood1    wFood2    wFood3    wFood4 
- 0.147433  0.000476 -0.063987 -0.083922 
-gamma
-         pFood1  pFood2   pFood3   pFood4
-wFood1  0.12013 -0.0454 -0.05451  0.01033
-wFood2 -0.12643  0.1510  0.02811 -0.04195
-wFood3 -0.00534 -0.0257  0.03122 -0.00043
-wFood4  0.01163 -0.0799 -0.00482  0.03205
-
-Demand Elasticities (Formula of Chalfant / Goddard)
+Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  1.474  1.002  0.523  0.763 
@@ -359,25 +279,9 @@ wFood1  0.12013 -0.0454 -0.05451  0.01033
 wFood2 -0.12643  0.1510  0.02811 -0.04195
 wFood3 -0.00534 -0.0257  0.03122 -0.00043
 wFood4  0.01163 -0.0799 -0.00482  0.03205
-> print( summary( estResultLAunrTX, elaFormula = "Ch", quantNames = wNames ) )
+> print( elas( estResultLAunrTX, formula = "Ch", quantNames = wNames ) )
 
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-Estimated Coefficients:
-alpha
- wFood1  wFood2  wFood3  wFood4 
--0.0755  0.1564  0.2428  0.6764 
-beta
-   wFood1    wFood2    wFood3    wFood4 
- 0.147433  0.000476 -0.063987 -0.083922 
-gamma
-         pFood1  pFood2   pFood3   pFood4
-wFood1  0.12013 -0.0454 -0.05451  0.01033
-wFood2 -0.12643  0.1510  0.02811 -0.04195
-wFood3 -0.00534 -0.0257  0.03122 -0.00043
-wFood4  0.01163 -0.0799 -0.00482  0.03205
-
-Demand Elasticities (Formula of Chalfant / Goddard)
+Demand Elasticities (formula of Chalfant / Goddard)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  1.474  1.002  0.523  0.763 
@@ -432,23 +336,7 @@ wFood1 -0.0779 -0.17201  0.03040  0.2195
 wFood2 -0.1720  0.15158  0.00312  0.0173
 wFood3  0.0304  0.00312  0.00573 -0.0393
 wFood4  0.2195  0.01731 -0.03926 -0.1975
-> print( summary( estResultAIDS, elaFormula = "AIDS", quantNames = wNames ) )
-
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-Estimated Coefficients:
-alpha
-wFood1 wFood2 wFood3 wFood4 
--0.253  0.104  0.258  0.892 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3277  0.0595 -0.0728 -0.3144 
-gamma
-        pFood1   pFood2   pFood3  pFood4
-wFood1 -0.0779 -0.17201  0.03040  0.2195
-wFood2 -0.1720  0.15158  0.00312  0.0173
-wFood3  0.0304  0.00312  0.00573 -0.0393
-wFood4  0.2195  0.01731 -0.03926 -0.1975
+> print( elas( estResultAIDS, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -488,23 +376,7 @@ wFood1 -0.0779 -0.17201  0.03040  0.2195
 wFood2 -0.1720  0.15158  0.00312  0.0173
 wFood3  0.0304  0.00312  0.00573 -0.0393
 wFood4  0.2195  0.01731 -0.03926 -0.1975
-> print( summary( estResultAIDSTX, elaFormula = "AIDS", quantNames = wNames ) )
-
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-Estimated Coefficients:
-alpha
-wFood1 wFood2 wFood3 wFood4 
--0.253  0.104  0.258  0.892 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3277  0.0595 -0.0728 -0.3144 
-gamma
-        pFood1   pFood2   pFood3  pFood4
-wFood1 -0.0779 -0.17201  0.03040  0.2195
-wFood2 -0.1720  0.15158  0.00312  0.0173
-wFood3  0.0304  0.00312  0.00573 -0.0393
-wFood4  0.2195  0.01731 -0.03926 -0.1975
+> print( elas( estResultAIDSTX, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -557,23 +429,7 @@ wFood1 -0.0837 -0.1593 -0.00509  0.2481
 wFood2 -0.1674  0.1186  0.03855  0.0103
 wFood3  0.0337 -0.0155  0.02237 -0.0406
 wFood4  0.2174  0.0562 -0.05583 -0.2178
-> print( summary( estResultAIDShom, elaFormula = "AIDS", quantNames = wNames ) )
-
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-Estimated Coefficients:
-alpha
- wFood1  wFood2  wFood3  wFood4 
--0.2615  0.0959  0.2502  0.9155 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3331  0.0630 -0.0688 -0.3273 
-gamma
-        pFood1  pFood2   pFood3  pFood4
-wFood1 -0.0837 -0.1593 -0.00509  0.2481
-wFood2 -0.1674  0.1186  0.03855  0.0103
-wFood3  0.0337 -0.0155  0.02237 -0.0406
-wFood4  0.2174  0.0562 -0.05583 -0.2178
+> print( elas( estResultAIDShom, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -613,23 +469,7 @@ wFood1 -0.0837 -0.1593 -0.00509  0.2481
 wFood2 -0.1674  0.1186  0.03855  0.0103
 wFood3  0.0337 -0.0155  0.02237 -0.0406
 wFood4  0.2174  0.0562 -0.05583 -0.2178
-> print( summary( estResultAIDShomTX, elaFormula = "AIDS", quantNames = wNames ) )
-
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-Estimated Coefficients:
-alpha
- wFood1  wFood2  wFood3  wFood4 
--0.2615  0.0959  0.2502  0.9155 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3331  0.0630 -0.0688 -0.3273 
-gamma
-        pFood1  pFood2   pFood3  pFood4
-wFood1 -0.0837 -0.1593 -0.00509  0.2481
-wFood2 -0.1674  0.1186  0.03855  0.0103
-wFood3  0.0337 -0.0155  0.02237 -0.0406
-wFood4  0.2174  0.0562 -0.05583 -0.2178
+> print( elas( estResultAIDShomTX, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -682,23 +522,7 @@ wFood1  0.0746 -0.0461 -0.0389  0.0422
 wFood2 -0.1253  0.1534  0.0272 -0.0440
 wFood3  0.0157 -0.0231  0.0236 -0.0164
 wFood4  0.0350 -0.0841 -0.0119  0.0182
-> print( summary( estResultAIDSunr, elaFormula = "AIDS", quantNames = wNames ) )
-
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-Estimated Coefficients:
-alpha
- wFood1  wFood2  wFood3  wFood4 
--0.0725  0.1627  0.2477  0.6621 
-beta
-  wFood1   wFood2   wFood3   wFood4 
- 0.14260 -0.00453 -0.06679 -0.07129 
-gamma
-        pFood1  pFood2  pFood3  pFood4
-wFood1  0.0746 -0.0461 -0.0389  0.0422
-wFood2 -0.1253  0.1534  0.0272 -0.0440
-wFood3  0.0157 -0.0231  0.0236 -0.0164
-wFood4  0.0350 -0.0841 -0.0119  0.0182
+> print( elas( estResultAIDSunr, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -738,23 +562,7 @@ wFood1  0.0746 -0.0461 -0.0389  0.0422
 wFood2 -0.1253  0.1534  0.0272 -0.0440
 wFood3  0.0157 -0.0231  0.0236 -0.0164
 wFood4  0.0350 -0.0841 -0.0119  0.0182
-> print( summary( estResultAIDSunrTX, elaFormula = "AIDS", quantNames = wNames ) )
-
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-Estimated Coefficients:
-alpha
- wFood1  wFood2  wFood3  wFood4 
--0.0725  0.1627  0.2477  0.6621 
-beta
-  wFood1   wFood2   wFood3   wFood4 
- 0.14260 -0.00453 -0.06679 -0.07129 
-gamma
-        pFood1  pFood2  pFood3  pFood4
-wFood1  0.0746 -0.0461 -0.0389  0.0422
-wFood2 -0.1253  0.1534  0.0272 -0.0440
-wFood3  0.0157 -0.0231  0.0236 -0.0164
-wFood4  0.0350 -0.0841 -0.0119  0.0182
+> print( elas( estResultAIDSunrTX, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -810,23 +618,7 @@ wFood1  0.1042 -0.13988 -0.01156  0.0473
 wFood2 -0.1399  0.15691  0.00347 -0.0205
 wFood3 -0.0116  0.00347  0.01249 -0.0044
 wFood4  0.0473 -0.02050 -0.00440 -0.0224
-> print( summary( estResultLaSNa, elaFormula = "AIDS", quantNames = wNames ) )
-
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: Linear Approximation (LA) with Stone Index (S)
-Estimated Coefficients:
-alpha
-wFood1 wFood2 wFood3 wFood4 
--0.247  0.109  0.268  0.870 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3240  0.0559 -0.0786 -0.3012 
-gamma
-        pFood1   pFood2   pFood3  pFood4
-wFood1  0.1042 -0.13988 -0.01156  0.0473
-wFood2 -0.1399  0.15691  0.00347 -0.0205
-wFood3 -0.0116  0.00347  0.01249 -0.0044
-wFood4  0.0473 -0.02050 -0.00440 -0.0224
+> print( elas( estResultLaSNa, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -869,23 +661,7 @@ wFood1  0.1107 -0.13851 -0.011881  0.039732
 wFood2 -0.1385  0.15820 -0.003476 -0.016216
 wFood3 -0.0119 -0.00348  0.014589  0.000768
 wFood4  0.0397 -0.01622  0.000768 -0.024285
-> print( summary( estResultLaSlNa, elaFormula = "AIDS", quantNames = wNames ) )
-
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: Linear Approximation (LA) with lagged Stone Index (SL)
-Estimated Coefficients:
-alpha
-wFood1 wFood2 wFood3 wFood4 
--0.255  0.110  0.261  0.884 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3287  0.0559 -0.0747 -0.3099 
-gamma
-        pFood1   pFood2    pFood3    pFood4
-wFood1  0.1107 -0.13851 -0.011881  0.039732
-wFood2 -0.1385  0.15820 -0.003476 -0.016216
-wFood3 -0.0119 -0.00348  0.014589  0.000768
-wFood4  0.0397 -0.01622  0.000768 -0.024285
+> print( elas( estResultLaSlNa, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -928,23 +704,7 @@ wFood1  0.09104 -0.14571 -0.00963  0.0643
 wFood2 -0.14571  0.15852  0.00594 -0.0188
 wFood3 -0.00963  0.00594  0.01289 -0.0092
 wFood4  0.06431 -0.01875 -0.00920 -0.0364
-> print( summary( estResultLaLNa, elaFormula = "AIDS", quantNames = wNames ) )
-
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: Linear Approximation (LA) with Laspeyres Index (L)
-Estimated Coefficients:
-alpha
-wFood1 wFood2 wFood3 wFood4 
--0.248  0.123  0.273  0.852 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3251  0.0481 -0.0816 -0.2917 
-gamma
-         pFood1   pFood2   pFood3  pFood4
-wFood1  0.09104 -0.14571 -0.00963  0.0643
-wFood2 -0.14571  0.15852  0.00594 -0.0188
-wFood3 -0.00963  0.00594  0.01289 -0.0092
-wFood4  0.06431 -0.01875 -0.00920 -0.0364
+> print( elas( estResultLaLNa, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -986,23 +746,7 @@ wFood1 -0.0855 -0.16994  0.03469  0.22072
 wFood2 -0.1699  0.15613  0.01104  0.00277
 wFood3  0.0347  0.01104  0.00134 -0.04707
 wFood4  0.2207  0.00277 -0.04707 -0.17643
-> print( summary( estResultAIDSNa, elaFormula = "AIDS", quantNames = wNames ) )
-
-Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
-Estimated Coefficients:
-alpha
-wFood1 wFood2 wFood3 wFood4 
--0.259  0.124  0.273  0.862 
-beta
- wFood1  wFood2  wFood3  wFood4 
- 0.3306  0.0469 -0.0811 -0.2964 
-gamma
-        pFood1   pFood2   pFood3   pFood4
-wFood1 -0.0855 -0.16994  0.03469  0.22072
-wFood2 -0.1699  0.15613  0.01104  0.00277
-wFood3  0.0347  0.01104  0.00134 -0.04707
-wFood4  0.2207  0.00277 -0.04707 -0.17643
+> print( elas( estResultAIDSNa, formula = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formula)
 Expenditure Elasticities
@@ -1031,54 +775,46 @@ AIDS: Elasticities
 > wMeans <- colMeans( Blanciforti86[ set, wNames ] )
 > ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, formula = "AIDS" )
 > print( ela )
-$formula
-[1] "AIDS"
 
-$exp
+Demand Elasticities (original AIDS formula)
+Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.056    1.297    0.458    0.115 
 
-$hicks
-         pFood1  pFood2 pFood3 pFood4
-q_wFood1 -0.357 -0.2503  0.103  0.505
-q_wFood2 -0.384 -0.0139  0.113  0.285
-q_wFood3  0.237  0.1704 -0.757  0.349
-q_wFood4  0.439  0.1623  0.132 -0.734
-
-$marshall
+Marshallian (uncompensated) Price Elasticities
           pFood1  pFood2  pFood3 pFood4
 q_wFood1 -0.9954 -0.6622 -0.1731 -0.225
 q_wFood2 -0.7867 -0.2738 -0.0607 -0.176
 q_wFood3  0.0954  0.0787 -0.8180  0.186
 q_wFood4  0.4036  0.1392  0.1168 -0.774
 
-attr(,"class")
-[1] "aidsElas"
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.357 -0.2503  0.103  0.505
+q_wFood2 -0.384 -0.0139  0.113  0.285
+q_wFood3  0.237  0.1704 -0.757  0.349
+q_wFood4  0.439  0.1623  0.132 -0.734
 > elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, formula = "AIDS" )
 > print( elaTX )
-$formula
-[1] "AIDS"
 
-$exp
+Demand Elasticities (original AIDS formula)
+Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.056    1.297    0.458    0.115 
 
-$hicks
-         pFood1  pFood2 pFood3 pFood4
-q_wFood1 -0.357 -0.2503  0.103  0.505
-q_wFood2 -0.384 -0.0139  0.113  0.285
-q_wFood3  0.237  0.1704 -0.757  0.349
-q_wFood4  0.439  0.1623  0.132 -0.734
-
-$marshall
+Marshallian (uncompensated) Price Elasticities
           pFood1  pFood2  pFood3 pFood4
 q_wFood1 -0.9954 -0.6622 -0.1731 -0.225
 q_wFood2 -0.7867 -0.2738 -0.0607 -0.176
 q_wFood3  0.0954  0.0787 -0.8180  0.186
 q_wFood4  0.4036  0.1392  0.1168 -0.774
 
-attr(,"class")
-[1] "aidsElas"
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.357 -0.2503  0.103  0.505
+q_wFood2 -0.384 -0.0139  0.113  0.285
+q_wFood3  0.237  0.1704 -0.757  0.349
+q_wFood4  0.439  0.1623  0.132 -0.734
 > print( all.equal( ela, elaTX ) )
 [1] TRUE
 > 
@@ -1089,54 +825,46 @@ LA: Elasticity formula of non-linear AIDS
 > wMeans <- colMeans( Blanciforti86[ set, wNames ] )
 > ela <- aidsElas( estResultLA$coef, wMeans, pMeans, formula = "AIDS" )
 > print( ela )
-$formula
-[1] "AIDS"
 
-$exp
+Demand Elasticities (original AIDS formula)
+Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.059    1.279    0.443    0.128 
 
-$hicks
-          pFood1  pFood2  pFood3  pFood4
-q_wFood1  0.2623 -0.1470 -0.0395 -0.0756
-q_wFood2 -0.2240  0.0161  0.0811  0.1270
-q_wFood3 -0.0915  0.1224 -0.6859  0.6550
-q_wFood4 -0.0682  0.0732  0.2478 -0.2528
-
-$marshall
+Marshallian (uncompensated) Price Elasticities
          pFood1  pFood2  pFood3 pFood4
 q_wFood1 -0.377 -0.5595 -0.3157 -0.807
 q_wFood2 -0.621 -0.2402 -0.0905 -0.328
 q_wFood3 -0.229  0.0337 -0.7453  0.498
 q_wFood4 -0.108  0.0476  0.2307 -0.298
 
-attr(,"class")
-[1] "aidsElas"
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2  pFood3  pFood4
+q_wFood1  0.2623 -0.1470 -0.0395 -0.0756
+q_wFood2 -0.2240  0.0161  0.0811  0.1270
+q_wFood3 -0.0915  0.1224 -0.6859  0.6550
+q_wFood4 -0.0682  0.0732  0.2478 -0.2528
 > elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, formula = "AIDS" )
 > print( elaTX )
-$formula
-[1] "AIDS"
 
-$exp
+Demand Elasticities (original AIDS formula)
+Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.059    1.279    0.443    0.128 
 
-$hicks
-          pFood1  pFood2  pFood3  pFood4
-q_wFood1  0.2623 -0.1470 -0.0395 -0.0756
-q_wFood2 -0.2240  0.0161  0.0811  0.1270
-q_wFood3 -0.0915  0.1224 -0.6859  0.6550
-q_wFood4 -0.0682  0.0732  0.2478 -0.2528
-
-$marshall
+Marshallian (uncompensated) Price Elasticities
          pFood1  pFood2  pFood3 pFood4
 q_wFood1 -0.377 -0.5595 -0.3157 -0.807
 q_wFood2 -0.621 -0.2402 -0.0905 -0.328
 q_wFood3 -0.229  0.0337 -0.7453  0.498
 q_wFood4 -0.108  0.0476  0.2307 -0.298
 
-attr(,"class")
-[1] "aidsElas"
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2  pFood3  pFood4
+q_wFood1  0.2623 -0.1470 -0.0395 -0.0756
+q_wFood2 -0.2240  0.0161  0.0811  0.1270
+q_wFood3 -0.0915  0.1224 -0.6859  0.6550
+q_wFood4 -0.0682  0.0732  0.2478 -0.2528
 > print( all.equal( ela, elaTX ) )
 [1] TRUE
 > 
@@ -1147,29 +875,25 @@ attr(,"class")
 LA: Elasticity formula of Chalfant / Goddard
 > ela <- aidsElas( estResultLA$coef, wMeans, formula = "Ch" )
 > print( ela )
-$formula
-[1] "Ch"
 
-$exp
+Demand Elasticities (formula of Chalfant / Goddard)
+Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.059    1.279    0.443    0.128 
 
-$hicks
-         pFood1 pFood2  pFood3 pFood4
-q_wFood1 -0.333 -0.246  0.0958  0.483
-q_wFood2 -0.381 -0.010  0.1168  0.274
-q_wFood3  0.222  0.174 -0.7571  0.361
-q_wFood4  0.422  0.155  0.1363 -0.713
-
-$marshall
+Marshallian (uncompensated) Price Elasticities
           pFood1  pFood2  pFood3 pFood4
 q_wFood1 -0.9722 -0.6584 -0.1803 -0.248
 q_wFood2 -0.7780 -0.2663 -0.0548 -0.180
 q_wFood3  0.0844  0.0857 -0.8165  0.204
 q_wFood4  0.3826  0.1291  0.1192 -0.758
 
-attr(,"class")
-[1] "aidsElas"
+Hicksian (compensated) Price Elasticities
+         pFood1 pFood2  pFood3 pFood4
+q_wFood1 -0.333 -0.246  0.0958  0.483
+q_wFood2 -0.381 -0.010  0.1168  0.274
+q_wFood3  0.222  0.174 -0.7571  0.361
+q_wFood4  0.422  0.155  0.1363 -0.713
 > 
 > cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
 
@@ -1177,29 +901,25 @@ LA: Elasticity formula of Eales + Unnevehr
 > wMeans <- colMeans( Blanciforti86[ set, wNames ] )
 > ela <- aidsElas( estResultLA$coef, wMeans, formula = "EU" )
 > print( ela )
-$formula
-[1] "EU"
 
-$exp
+Demand Elasticities (formula of Eales and Unnevehr)
+Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.059    1.279    0.443    0.128 
 
-$marshall
+Marshallian (uncompensated) Price Elasticities
           pFood1  pFood2   pFood3   pFood4
 q_wFood1 -0.6435 -0.4463 -0.03828  0.12801
 q_wFood2 -0.6914 -0.2103 -0.01735 -0.08094
 q_wFood3 -0.0886 -0.0259 -0.89123  0.00573
 q_wFood4  0.1118 -0.0456  0.00216 -1.06836
 
-$hicks
+Hicksian (compensated) Price Elasticities
            pFood1  pFood2  pFood3 pFood4
 q_wFood1 -0.00439 -0.0338  0.2379  0.859
 q_wFood2 -0.29432  0.0459  0.1542  0.374
 q_wFood3  0.04884  0.0628 -0.8318  0.163
 q_wFood4  0.15146 -0.0201  0.0193 -1.023
-
-attr(,"class")
-[1] "aidsElas"
 > 
 > 
 > ############# Price indices ##############
