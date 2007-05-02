@@ -75,6 +75,8 @@
 \value{
   a list of class \code{aidsElas} containing following elements:
   \item{method}{the elasticity formula used to calculate these elasticities.}
+  \item{df}{degrees of freedom to calculate P-values of the elasticities
+    (only if argument \code{df} is provided).}
   \item{exp}{vector of expenditure elasticities.}
   \item{hicks}{matrix of Hicksian (compensated) price elasticities.}
   \item{marshall}{matrix of Marshallian (uncompensated) price elasticities.}

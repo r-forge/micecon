@@ -156,6 +156,7 @@ aidsElas <- function( coef, shares, prices = NULL, method = "AIDS",
          ela$marshallPval <- 2 * pt( abs( ela$marshallTval ), df,
             lower.tail = FALSE )
       }
+      ela$df <- df
    }
    class( ela ) <- "aidsElas"
    return( ela )
