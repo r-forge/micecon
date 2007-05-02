@@ -1348,7 +1348,8 @@ wFood4  0.466  0.14356  0.116 -0.725
 > cat( "\nAIDS: Elasticities\n" )
 
 AIDS: Elasticities
-> ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, method = "AIDS" )
+> ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, method = "AIDS",
++    coefVcov = estResultAIDS$coef$allcov, df = estResultAIDS$est$df )
 > print( ela )
 
 Demand Elasticities (original AIDS formulas)
@@ -1369,7 +1370,48 @@ q_wFood1 -0.357 -0.2503  0.103  0.505
 q_wFood2 -0.384 -0.0139  0.113  0.285
 q_wFood3  0.237  0.1704 -0.757  0.349
 q_wFood4  0.439  0.1623  0.132 -0.734
-> elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, method = "AIDS" )
+> print( summary( ela ) )
+                   Estimate Std. Error t value Pr(>|t|)    
+Ex q_wFood1          2.0557     0.1262   16.29  < 2e-16 ***
+Ex q_wFood2          1.2971     0.2141    6.06  4.1e-08 ***
+Ex q_wFood3          0.4575     0.2073    2.21   0.0302 *  
+Ex q_wFood4          0.1149     0.1748    0.66   0.5130    
+Eh q_wFood1 pFood1  -0.3573     0.0639   -5.59  2.9e-07 ***
+Eh q_wFood1 pFood2  -0.2503     0.0500   -5.00  3.2e-06 ***
+Eh q_wFood1 pFood3   0.1026     0.0341    3.01   0.0035 ** 
+Eh q_wFood1 pFood4   0.5052     0.0693    7.29  1.9e-10 ***
+Eh q_wFood2 pFood1  -0.3841     0.0772   -4.98  3.6e-06 ***
+Eh q_wFood2 pFood2  -0.0139     0.1684   -0.08   0.9343    
+Eh q_wFood2 pFood3   0.1133     0.1142    0.99   0.3243    
+Eh q_wFood2 pFood4   0.2849     0.1242    2.29   0.0244 *  
+Eh q_wFood3 pFood1   0.2374     0.0787    3.02   0.0034 ** 
+Eh q_wFood3 pFood2   0.1704     0.1708    1.00   0.3214    
+Eh q_wFood3 pFood3  -0.7566     0.1460   -5.18  1.6e-06 ***
+Eh q_wFood3 pFood4   0.3488     0.1057    3.30   0.0014 ** 
+Eh q_wFood4 pFood1   0.4392     0.0605    7.26  2.1e-10 ***
+Eh q_wFood4 pFood2   0.1623     0.0701    2.31   0.0232 *  
+Eh q_wFood4 pFood3   0.1322     0.0399    3.31   0.0014 ** 
+Eh q_wFood4 pFood4  -0.7337     0.1048   -7.00  6.7e-10 ***
+Em q_wFood1 pFood1  -0.9954     0.0614  -16.22  < 2e-16 ***
+Em q_wFood1 pFood2  -0.6622     0.0615  -10.76  < 2e-16 ***
+Em q_wFood1 pFood3  -0.1731     0.0402   -4.30  4.7e-05 ***
+Em q_wFood1 pFood4  -0.2251     0.0857   -2.63   0.0103 *  
+Em q_wFood2 pFood1  -0.7867     0.0741  -10.62  < 2e-16 ***
+Em q_wFood2 pFood2  -0.2738     0.1955   -1.40   0.1651    
+Em q_wFood2 pFood3  -0.0607     0.1163   -0.52   0.6032    
+Em q_wFood2 pFood4  -0.1759     0.1160   -1.52   0.1331    
+Em q_wFood3 pFood1   0.0954     0.0955    1.00   0.3206    
+Em q_wFood3 pFood2   0.0787     0.1952    0.40   0.6877    
+Em q_wFood3 pFood3  -0.8180     0.1420   -5.76  1.4e-07 ***
+Em q_wFood3 pFood4   0.1863     0.1017    1.83   0.0706 .  
+Em q_wFood4 pFood1   0.4036     0.0753    5.36  7.8e-07 ***
+Em q_wFood4 pFood2   0.1392     0.0901    1.55   0.1260    
+Em q_wFood4 pFood3   0.1168     0.0524    2.23   0.0287 *  
+Em q_wFood4 pFood4  -0.7745     0.1040   -7.45  9.0e-11 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+> elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, method = "AIDS",
++    coefVcov = estResultAIDSTX$coef$allcov, df = estResultAIDSTX$est$df )
 > print( elaTX )
 
 Demand Elasticities (original AIDS formulas)
@@ -1390,14 +1432,177 @@ q_wFood1 -0.357 -0.2503  0.103  0.505
 q_wFood2 -0.384 -0.0139  0.113  0.285
 q_wFood3  0.237  0.1704 -0.757  0.349
 q_wFood4  0.439  0.1623  0.132 -0.734
+> print( summary( elaTX ) )
+                   Estimate Std. Error t value Pr(>|t|)    
+Ex q_wFood1          2.0557     0.1262   16.29  < 2e-16 ***
+Ex q_wFood2          1.2971     0.2141    6.06  4.1e-08 ***
+Ex q_wFood3          0.4575     0.2073    2.21   0.0302 *  
+Ex q_wFood4          0.1149     0.1748    0.66   0.5130    
+Eh q_wFood1 pFood1  -0.3573     0.0639   -5.59  2.9e-07 ***
+Eh q_wFood1 pFood2  -0.2503     0.0500   -5.00  3.2e-06 ***
+Eh q_wFood1 pFood3   0.1026     0.0341    3.01   0.0035 ** 
+Eh q_wFood1 pFood4   0.5052     0.0693    7.29  1.9e-10 ***
+Eh q_wFood2 pFood1  -0.3841     0.0772   -4.98  3.6e-06 ***
+Eh q_wFood2 pFood2  -0.0139     0.1684   -0.08   0.9343    
+Eh q_wFood2 pFood3   0.1133     0.1142    0.99   0.3243    
+Eh q_wFood2 pFood4   0.2849     0.1242    2.29   0.0244 *  
+Eh q_wFood3 pFood1   0.2374     0.0787    3.02   0.0034 ** 
+Eh q_wFood3 pFood2   0.1704     0.1708    1.00   0.3214    
+Eh q_wFood3 pFood3  -0.7566     0.1460   -5.18  1.6e-06 ***
+Eh q_wFood3 pFood4   0.3488     0.1057    3.30   0.0014 ** 
+Eh q_wFood4 pFood1   0.4392     0.0605    7.26  2.1e-10 ***
+Eh q_wFood4 pFood2   0.1623     0.0701    2.31   0.0232 *  
+Eh q_wFood4 pFood3   0.1322     0.0399    3.31   0.0014 ** 
+Eh q_wFood4 pFood4  -0.7337     0.1048   -7.00  6.7e-10 ***
+Em q_wFood1 pFood1  -0.9954     0.0614  -16.22  < 2e-16 ***
+Em q_wFood1 pFood2  -0.6622     0.0615  -10.76  < 2e-16 ***
+Em q_wFood1 pFood3  -0.1731     0.0402   -4.30  4.7e-05 ***
+Em q_wFood1 pFood4  -0.2251     0.0857   -2.63   0.0103 *  
+Em q_wFood2 pFood1  -0.7867     0.0741  -10.62  < 2e-16 ***
+Em q_wFood2 pFood2  -0.2738     0.1955   -1.40   0.1651    
+Em q_wFood2 pFood3  -0.0607     0.1163   -0.52   0.6032    
+Em q_wFood2 pFood4  -0.1759     0.1160   -1.52   0.1331    
+Em q_wFood3 pFood1   0.0954     0.0955    1.00   0.3206    
+Em q_wFood3 pFood2   0.0787     0.1952    0.40   0.6877    
+Em q_wFood3 pFood3  -0.8180     0.1420   -5.76  1.4e-07 ***
+Em q_wFood3 pFood4   0.1863     0.1017    1.83   0.0706 .  
+Em q_wFood4 pFood1   0.4036     0.0753    5.36  7.8e-07 ***
+Em q_wFood4 pFood2   0.1392     0.0901    1.55   0.1260    
+Em q_wFood4 pFood3   0.1168     0.0524    2.23   0.0287 *  
+Em q_wFood4 pFood4  -0.7745     0.1040   -7.45  9.0e-11 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > print( all.equal( ela, elaTX ) )
 [1] TRUE
+> 
+> print( elas( estResultAIDS ) )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.054    1.296    0.458    0.112 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.9955 -0.6616 -0.1729 -0.224
+q_wFood2 -0.7831 -0.2772 -0.0604 -0.175
+q_wFood3  0.0955  0.0789 -0.8180  0.186
+q_wFood4  0.4052  0.1401  0.1172 -0.774
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.357 -0.2482  0.103  0.503
+q_wFood2 -0.380 -0.0164  0.113  0.284
+q_wFood3  0.238  0.1710 -0.757  0.348
+q_wFood4  0.440  0.1625  0.132 -0.734
+> print( summary( elas( estResultAIDS ) ) )
+                   Estimate Std. Error t value Pr(>|t|)    
+Ex q_wFood1          2.0544     0.1260   16.30  < 2e-16 ***
+Ex q_wFood2          1.2958     0.2131    6.08  3.8e-08 ***
+Ex q_wFood3          0.4575     0.2073    2.21   0.0301 *  
+Ex q_wFood4          0.1115     0.1755    0.64   0.5270    
+Eh q_wFood1 pFood1  -0.3570     0.0638   -5.59  2.9e-07 ***
+Eh q_wFood1 pFood2  -0.2482     0.0500   -4.97  3.7e-06 ***
+Eh q_wFood1 pFood3   0.1027     0.0341    3.01   0.0035 ** 
+Eh q_wFood1 pFood4   0.5027     0.0693    7.26  2.1e-10 ***
+Eh q_wFood2 pFood1  -0.3804     0.0769   -4.95  4.0e-06 ***
+Eh q_wFood2 pFood2  -0.0164     0.1676   -0.10   0.9223    
+Eh q_wFood2 pFood3   0.1134     0.1137    1.00   0.3217    
+Eh q_wFood2 pFood4   0.2835     0.1235    2.30   0.0243 *  
+Eh q_wFood3 pFood1   0.2376     0.0787    3.02   0.0034 ** 
+Eh q_wFood3 pFood2   0.1710     0.1708    1.00   0.3196    
+Eh q_wFood3 pFood3  -0.7566     0.1460   -5.18  1.6e-06 ***
+Eh q_wFood3 pFood4   0.3480     0.1056    3.29   0.0015 ** 
+Eh q_wFood4 pFood1   0.4398     0.0608    7.24  2.3e-10 ***
+Eh q_wFood4 pFood2   0.1625     0.0704    2.31   0.0235 *  
+Eh q_wFood4 pFood3   0.1321     0.0401    3.30   0.0014 ** 
+Eh q_wFood4 pFood4  -0.7345     0.1051   -6.99  7.2e-10 ***
+Em q_wFood1 pFood1  -0.9955     0.0613  -16.23  < 2e-16 ***
+Em q_wFood1 pFood2  -0.6616     0.0615  -10.76  < 2e-16 ***
+Em q_wFood1 pFood3  -0.1729     0.0402   -4.30  4.7e-05 ***
+Em q_wFood1 pFood4  -0.2244     0.0855   -2.62   0.0104 *  
+Em q_wFood2 pFood1  -0.7831     0.0738  -10.62  < 2e-16 ***
+Em q_wFood2 pFood2  -0.2772     0.1946   -1.42   0.1583    
+Em q_wFood2 pFood3  -0.0604     0.1158   -0.52   0.6033    
+Em q_wFood2 pFood4  -0.1750     0.1154   -1.52   0.1333    
+Em q_wFood3 pFood1   0.0955     0.0955    1.00   0.3205    
+Em q_wFood3 pFood2   0.0789     0.1952    0.40   0.6872    
+Em q_wFood3 pFood3  -0.8180     0.1420   -5.76  1.5e-07 ***
+Em q_wFood3 pFood4   0.1861     0.1017    1.83   0.0708 .  
+Em q_wFood4 pFood1   0.4052     0.0756    5.36  7.8e-07 ***
+Em q_wFood4 pFood2   0.1401     0.0905    1.55   0.1254    
+Em q_wFood4 pFood3   0.1172     0.0526    2.23   0.0288 *  
+Em q_wFood4 pFood4  -0.7739     0.1043   -7.42  1.0e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+> 
+> print( elas( estResultAIDSTX ) )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.054    1.296    0.458    0.112 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.9955 -0.6616 -0.1729 -0.224
+q_wFood2 -0.7831 -0.2772 -0.0604 -0.175
+q_wFood3  0.0955  0.0789 -0.8180  0.186
+q_wFood4  0.4052  0.1401  0.1172 -0.774
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.357 -0.2482  0.103  0.503
+q_wFood2 -0.380 -0.0164  0.113  0.284
+q_wFood3  0.238  0.1710 -0.757  0.348
+q_wFood4  0.440  0.1625  0.132 -0.734
+> print( summary( elas( estResultAIDSTX ) ) )
+                   Estimate Std. Error t value Pr(>|t|)    
+Ex q_wFood1          2.0544     0.1260   16.30  < 2e-16 ***
+Ex q_wFood2          1.2958     0.2131    6.08  3.8e-08 ***
+Ex q_wFood3          0.4575     0.2073    2.21   0.0301 *  
+Ex q_wFood4          0.1115     0.1755    0.64   0.5270    
+Eh q_wFood1 pFood1  -0.3570     0.0638   -5.59  2.9e-07 ***
+Eh q_wFood1 pFood2  -0.2482     0.0500   -4.97  3.7e-06 ***
+Eh q_wFood1 pFood3   0.1027     0.0341    3.01   0.0035 ** 
+Eh q_wFood1 pFood4   0.5027     0.0693    7.26  2.1e-10 ***
+Eh q_wFood2 pFood1  -0.3804     0.0769   -4.95  4.0e-06 ***
+Eh q_wFood2 pFood2  -0.0164     0.1676   -0.10   0.9223    
+Eh q_wFood2 pFood3   0.1134     0.1137    1.00   0.3217    
+Eh q_wFood2 pFood4   0.2835     0.1235    2.30   0.0243 *  
+Eh q_wFood3 pFood1   0.2376     0.0787    3.02   0.0034 ** 
+Eh q_wFood3 pFood2   0.1710     0.1708    1.00   0.3196    
+Eh q_wFood3 pFood3  -0.7566     0.1460   -5.18  1.6e-06 ***
+Eh q_wFood3 pFood4   0.3480     0.1056    3.29   0.0015 ** 
+Eh q_wFood4 pFood1   0.4398     0.0608    7.24  2.3e-10 ***
+Eh q_wFood4 pFood2   0.1625     0.0704    2.31   0.0235 *  
+Eh q_wFood4 pFood3   0.1321     0.0401    3.30   0.0014 ** 
+Eh q_wFood4 pFood4  -0.7345     0.1051   -6.99  7.2e-10 ***
+Em q_wFood1 pFood1  -0.9955     0.0613  -16.23  < 2e-16 ***
+Em q_wFood1 pFood2  -0.6616     0.0615  -10.76  < 2e-16 ***
+Em q_wFood1 pFood3  -0.1729     0.0402   -4.30  4.7e-05 ***
+Em q_wFood1 pFood4  -0.2244     0.0855   -2.62   0.0104 *  
+Em q_wFood2 pFood1  -0.7831     0.0738  -10.62  < 2e-16 ***
+Em q_wFood2 pFood2  -0.2772     0.1946   -1.42   0.1583    
+Em q_wFood2 pFood3  -0.0604     0.1158   -0.52   0.6033    
+Em q_wFood2 pFood4  -0.1750     0.1154   -1.52   0.1333    
+Em q_wFood3 pFood1   0.0955     0.0955    1.00   0.3205    
+Em q_wFood3 pFood2   0.0789     0.1952    0.40   0.6872    
+Em q_wFood3 pFood3  -0.8180     0.1420   -5.76  1.5e-07 ***
+Em q_wFood3 pFood4   0.1861     0.1017    1.83   0.0708 .  
+Em q_wFood4 pFood1   0.4052     0.0756    5.36  7.8e-07 ***
+Em q_wFood4 pFood2   0.1401     0.0905    1.55   0.1254    
+Em q_wFood4 pFood3   0.1172     0.0526    2.23   0.0288 *  
+Em q_wFood4 pFood4  -0.7739     0.1043   -7.42  1.0e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > 
 > 
 > cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
 
 LA: Elasticity formula of non-linear AIDS
-> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "AIDS" )
+> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "AIDS",
++    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 > print( ela )
 
 Demand Elasticities (original AIDS formulas)
@@ -1418,7 +1623,48 @@ q_wFood1  0.2623 -0.1470 -0.0395 -0.0756
 q_wFood2 -0.2240  0.0161  0.0811  0.1270
 q_wFood3 -0.0915  0.1224 -0.6859  0.6550
 q_wFood4 -0.0682  0.0732  0.2478 -0.2528
-> elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, method = "AIDS" )
+> print( summary( ela ) )
+                   Estimate Std. Error t value Pr(>|t|)    
+Ex q_wFood1          2.0591     0.1218   16.91  < 2e-16 ***
+Ex q_wFood2          1.2793     0.1632    7.84  1.6e-11 ***
+Ex q_wFood3          0.4427     0.1529    2.90  0.00485 ** 
+Ex q_wFood4          0.1276     0.1284    0.99  0.32308    
+Eh q_wFood1 pFood1   0.2623     0.1731    1.52  0.13353    
+Eh q_wFood1 pFood2  -0.1470     0.0917   -1.60  0.11275    
+Eh q_wFood1 pFood3  -0.0395     0.0672   -0.59  0.55832    
+Eh q_wFood1 pFood4  -0.0756     0.1626   -0.46  0.64329    
+Eh q_wFood2 pFood1  -0.2240     0.1419   -1.58  0.11830    
+Eh q_wFood2 pFood2   0.0161     0.1336    0.12  0.90444    
+Eh q_wFood2 pFood3   0.0811     0.0917    0.88  0.37905    
+Eh q_wFood2 pFood4   0.1270     0.1297    0.98  0.33071    
+Eh q_wFood3 pFood1  -0.0915     0.1555   -0.59  0.55791    
+Eh q_wFood3 pFood2   0.1224     0.1370    0.89  0.37444    
+Eh q_wFood3 pFood3  -0.6859     0.1413   -4.85  5.8e-06 ***
+Eh q_wFood3 pFood4   0.6550     0.1302    5.03  2.9e-06 ***
+Eh q_wFood4 pFood1  -0.0682     0.1423   -0.48  0.63293    
+Eh q_wFood4 pFood2   0.0732     0.0732    1.00  0.32057    
+Eh q_wFood4 pFood3   0.2478     0.0493    5.03  2.9e-06 ***
+Eh q_wFood4 pFood4  -0.2528     0.1619   -1.56  0.12236    
+Em q_wFood1 pFood1  -0.3768     0.1380   -2.73  0.00776 ** 
+Em q_wFood1 pFood2  -0.5595     0.0959   -5.84  1.1e-07 ***
+Em q_wFood1 pFood3  -0.3157     0.0770   -4.10  9.8e-05 ***
+Em q_wFood1 pFood4  -0.8071     0.1977   -4.08  0.00010 ***
+Em q_wFood2 pFood1  -0.6210     0.0992   -6.26  1.7e-08 ***
+Em q_wFood2 pFood2  -0.2402     0.1463   -1.64  0.10458    
+Em q_wFood2 pFood3  -0.0905     0.0980   -0.92  0.35867    
+Em q_wFood2 pFood4  -0.3275     0.1690   -1.94  0.05613 .  
+Em q_wFood3 pFood1  -0.2289     0.1159   -1.97  0.05173 .  
+Em q_wFood3 pFood2   0.0337     0.1475    0.23  0.82004    
+Em q_wFood3 pFood3  -0.7453     0.1489   -5.01  3.2e-06 ***
+Em q_wFood3 pFood4   0.4978     0.1626    3.06  0.00299 ** 
+Em q_wFood4 pFood1  -0.1078     0.1089   -0.99  0.32526    
+Em q_wFood4 pFood2   0.0476     0.0677    0.70  0.48385    
+Em q_wFood4 pFood3   0.2307     0.0585    3.94  0.00017 ***
+Em q_wFood4 pFood4  -0.2981     0.2010   -1.48  0.14192    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+> elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, method = "AIDS",
++    coefVcov = estResultLATX$coef$allcov, df = estResultLATX$est$df )
 > print( elaTX )
 
 Demand Elasticities (original AIDS formulas)
@@ -1439,15 +1685,179 @@ q_wFood1  0.2623 -0.1470 -0.0395 -0.0756
 q_wFood2 -0.2240  0.0161  0.0811  0.1270
 q_wFood3 -0.0915  0.1224 -0.6859  0.6550
 q_wFood4 -0.0682  0.0732  0.2478 -0.2528
+> print( summary( elaTX ) )
+                   Estimate Std. Error t value Pr(>|t|)    
+Ex q_wFood1          2.0591     0.1218   16.91  < 2e-16 ***
+Ex q_wFood2          1.2793     0.1632    7.84  1.6e-11 ***
+Ex q_wFood3          0.4427     0.1529    2.90  0.00485 ** 
+Ex q_wFood4          0.1276     0.1284    0.99  0.32308    
+Eh q_wFood1 pFood1   0.2623     0.1731    1.52  0.13353    
+Eh q_wFood1 pFood2  -0.1470     0.0917   -1.60  0.11275    
+Eh q_wFood1 pFood3  -0.0395     0.0672   -0.59  0.55832    
+Eh q_wFood1 pFood4  -0.0756     0.1626   -0.46  0.64329    
+Eh q_wFood2 pFood1  -0.2240     0.1419   -1.58  0.11830    
+Eh q_wFood2 pFood2   0.0161     0.1336    0.12  0.90444    
+Eh q_wFood2 pFood3   0.0811     0.0917    0.88  0.37905    
+Eh q_wFood2 pFood4   0.1270     0.1297    0.98  0.33071    
+Eh q_wFood3 pFood1  -0.0915     0.1555   -0.59  0.55791    
+Eh q_wFood3 pFood2   0.1224     0.1370    0.89  0.37444    
+Eh q_wFood3 pFood3  -0.6859     0.1413   -4.85  5.8e-06 ***
+Eh q_wFood3 pFood4   0.6550     0.1302    5.03  2.9e-06 ***
+Eh q_wFood4 pFood1  -0.0682     0.1423   -0.48  0.63293    
+Eh q_wFood4 pFood2   0.0732     0.0732    1.00  0.32057    
+Eh q_wFood4 pFood3   0.2478     0.0493    5.03  2.9e-06 ***
+Eh q_wFood4 pFood4  -0.2528     0.1619   -1.56  0.12236    
+Em q_wFood1 pFood1  -0.3768     0.1380   -2.73  0.00776 ** 
+Em q_wFood1 pFood2  -0.5595     0.0959   -5.84  1.1e-07 ***
+Em q_wFood1 pFood3  -0.3157     0.0770   -4.10  9.8e-05 ***
+Em q_wFood1 pFood4  -0.8071     0.1977   -4.08  0.00010 ***
+Em q_wFood2 pFood1  -0.6210     0.0992   -6.26  1.7e-08 ***
+Em q_wFood2 pFood2  -0.2402     0.1463   -1.64  0.10458    
+Em q_wFood2 pFood3  -0.0905     0.0980   -0.92  0.35867    
+Em q_wFood2 pFood4  -0.3275     0.1690   -1.94  0.05613 .  
+Em q_wFood3 pFood1  -0.2289     0.1159   -1.97  0.05173 .  
+Em q_wFood3 pFood2   0.0337     0.1475    0.23  0.82004    
+Em q_wFood3 pFood3  -0.7453     0.1489   -5.01  3.2e-06 ***
+Em q_wFood3 pFood4   0.4978     0.1626    3.06  0.00299 ** 
+Em q_wFood4 pFood1  -0.1078     0.1089   -0.99  0.32526    
+Em q_wFood4 pFood2   0.0476     0.0677    0.70  0.48385    
+Em q_wFood4 pFood3   0.2307     0.0585    3.94  0.00017 ***
+Em q_wFood4 pFood4  -0.2981     0.2010   -1.48  0.14192    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > print( all.equal( ela, elaTX ) )
 [1] TRUE
+> 
+> print( elas( estResultLA, method = "AIDS" ) )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.058    1.278    0.443    0.124 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.377 -0.5591 -0.3153 -0.806
+q_wFood2 -0.618 -0.2437 -0.0901 -0.326
+q_wFood3 -0.229  0.0338 -0.7452  0.498
+q_wFood4 -0.108  0.0480  0.2316 -0.295
+
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2  pFood3  pFood4
+q_wFood1  0.2622 -0.1449 -0.0393 -0.0778
+q_wFood2 -0.2210  0.0135  0.0813  0.1263
+q_wFood3 -0.0914  0.1229 -0.6859  0.6544
+q_wFood4 -0.0698  0.0731  0.2483 -0.2515
+> print( summary( elas( estResultLA, method = "AIDS" ) ) )
+                   Estimate Std. Error t value Pr(>|t|)    
+Ex q_wFood1          2.0577     0.1216   16.92  < 2e-16 ***
+Ex q_wFood2          1.2780     0.1625    7.87  1.4e-11 ***
+Ex q_wFood3          0.4428     0.1529    2.90  0.00485 ** 
+Ex q_wFood4          0.1243     0.1289    0.96  0.33757    
+Eh q_wFood1 pFood1   0.2622     0.1730    1.52  0.13346    
+Eh q_wFood1 pFood2  -0.1449     0.0916   -1.58  0.11739    
+Eh q_wFood1 pFood3  -0.0393     0.0672   -0.59  0.55973    
+Eh q_wFood1 pFood4  -0.0778     0.1626   -0.48  0.63374    
+Eh q_wFood2 pFood1  -0.2210     0.1413   -1.56  0.12181    
+Eh q_wFood2 pFood2   0.0135     0.1330    0.10  0.91951    
+Eh q_wFood2 pFood3   0.0813     0.0913    0.89  0.37555    
+Eh q_wFood2 pFood4   0.1263     0.1293    0.98  0.33149    
+Eh q_wFood3 pFood1  -0.0914     0.1556   -0.59  0.55837    
+Eh q_wFood3 pFood2   0.1229     0.1370    0.90  0.37226    
+Eh q_wFood3 pFood3  -0.6859     0.1414   -4.85  5.8e-06 ***
+Eh q_wFood3 pFood4   0.6544     0.1303    5.02  3.0e-06 ***
+Eh q_wFood4 pFood1  -0.0698     0.1429   -0.49  0.62645    
+Eh q_wFood4 pFood2   0.0731     0.0736    0.99  0.32354    
+Eh q_wFood4 pFood3   0.2483     0.0494    5.02  3.0e-06 ***
+Eh q_wFood4 pFood4  -0.2515     0.1627   -1.55  0.12598    
+Em q_wFood1 pFood1  -0.3773     0.1379   -2.74  0.00762 ** 
+Em q_wFood1 pFood2  -0.5591     0.0958   -5.84  1.1e-07 ***
+Em q_wFood1 pFood3  -0.3153     0.0770   -4.10  9.8e-05 ***
+Em q_wFood1 pFood4  -0.8060     0.1974   -4.08  0.00010 ***
+Em q_wFood2 pFood1  -0.6182     0.0987   -6.26  1.7e-08 ***
+Em q_wFood2 pFood2  -0.2437     0.1457   -1.67  0.09821 .  
+Em q_wFood2 pFood3  -0.0901     0.0976   -0.92  0.35863    
+Em q_wFood2 pFood4  -0.3260     0.1682   -1.94  0.05614 .  
+Em q_wFood3 pFood1  -0.2290     0.1160   -1.97  0.05169 .  
+Em q_wFood3 pFood2   0.0338     0.1475    0.23  0.81931    
+Em q_wFood3 pFood3  -0.7452     0.1489   -5.01  3.2e-06 ***
+Em q_wFood3 pFood4   0.4977     0.1626    3.06  0.00299 ** 
+Em q_wFood4 pFood1  -0.1085     0.1094   -0.99  0.32447    
+Em q_wFood4 pFood2   0.0480     0.0680    0.71  0.48173    
+Em q_wFood4 pFood3   0.2316     0.0587    3.94  0.00017 ***
+Em q_wFood4 pFood4  -0.2955     0.2018   -1.46  0.14693    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+> 
+> print( elas( estResultLATX, method = "AIDS" ) )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.058    1.278    0.443    0.124 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.377 -0.5591 -0.3153 -0.806
+q_wFood2 -0.618 -0.2437 -0.0901 -0.326
+q_wFood3 -0.229  0.0338 -0.7452  0.498
+q_wFood4 -0.108  0.0480  0.2316 -0.295
+
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2  pFood3  pFood4
+q_wFood1  0.2622 -0.1449 -0.0393 -0.0778
+q_wFood2 -0.2210  0.0135  0.0813  0.1263
+q_wFood3 -0.0914  0.1229 -0.6859  0.6544
+q_wFood4 -0.0698  0.0731  0.2483 -0.2515
+> print( summary( elas( estResultLATX, method = "AIDS" ) ) )
+                   Estimate Std. Error t value Pr(>|t|)    
+Ex q_wFood1          2.0577     0.1216   16.92  < 2e-16 ***
+Ex q_wFood2          1.2780     0.1625    7.87  1.4e-11 ***
+Ex q_wFood3          0.4428     0.1529    2.90  0.00485 ** 
+Ex q_wFood4          0.1243     0.1289    0.96  0.33757    
+Eh q_wFood1 pFood1   0.2622     0.1730    1.52  0.13346    
+Eh q_wFood1 pFood2  -0.1449     0.0916   -1.58  0.11739    
+Eh q_wFood1 pFood3  -0.0393     0.0672   -0.59  0.55973    
+Eh q_wFood1 pFood4  -0.0778     0.1626   -0.48  0.63374    
+Eh q_wFood2 pFood1  -0.2210     0.1413   -1.56  0.12181    
+Eh q_wFood2 pFood2   0.0135     0.1330    0.10  0.91951    
+Eh q_wFood2 pFood3   0.0813     0.0913    0.89  0.37555    
+Eh q_wFood2 pFood4   0.1263     0.1293    0.98  0.33149    
+Eh q_wFood3 pFood1  -0.0914     0.1556   -0.59  0.55837    
+Eh q_wFood3 pFood2   0.1229     0.1370    0.90  0.37226    
+Eh q_wFood3 pFood3  -0.6859     0.1414   -4.85  5.8e-06 ***
+Eh q_wFood3 pFood4   0.6544     0.1303    5.02  3.0e-06 ***
+Eh q_wFood4 pFood1  -0.0698     0.1429   -0.49  0.62645    
+Eh q_wFood4 pFood2   0.0731     0.0736    0.99  0.32354    
+Eh q_wFood4 pFood3   0.2483     0.0494    5.02  3.0e-06 ***
+Eh q_wFood4 pFood4  -0.2515     0.1627   -1.55  0.12598    
+Em q_wFood1 pFood1  -0.3773     0.1379   -2.74  0.00762 ** 
+Em q_wFood1 pFood2  -0.5591     0.0958   -5.84  1.1e-07 ***
+Em q_wFood1 pFood3  -0.3153     0.0770   -4.10  9.8e-05 ***
+Em q_wFood1 pFood4  -0.8060     0.1974   -4.08  0.00010 ***
+Em q_wFood2 pFood1  -0.6182     0.0987   -6.26  1.7e-08 ***
+Em q_wFood2 pFood2  -0.2437     0.1457   -1.67  0.09821 .  
+Em q_wFood2 pFood3  -0.0901     0.0976   -0.92  0.35863    
+Em q_wFood2 pFood4  -0.3260     0.1682   -1.94  0.05614 .  
+Em q_wFood3 pFood1  -0.2290     0.1160   -1.97  0.05169 .  
+Em q_wFood3 pFood2   0.0338     0.1475    0.23  0.81931    
+Em q_wFood3 pFood3  -0.7452     0.1489   -5.01  3.2e-06 ***
+Em q_wFood3 pFood4   0.4977     0.1626    3.06  0.00299 ** 
+Em q_wFood4 pFood1  -0.1085     0.1094   -0.99  0.32447    
+Em q_wFood4 pFood2   0.0480     0.0680    0.71  0.48173    
+Em q_wFood4 pFood3   0.2316     0.0587    3.94  0.00017 ***
+Em q_wFood4 pFood4  -0.2955     0.2018   -1.46  0.14693    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+> 
 > 
 > cat( "\n********** Elasticities ***************" )
 
 ********** Elasticities ***************> cat( "\nLA: Elasticity formula of Goddard or Chalfant\n" )
 
 LA: Elasticity formula of Goddard or Chalfant
-> ela <- aidsElas( estResultLA$coef, wMeans, method = "Go" )
+> ela <- aidsElas( estResultLA$coef, wMeans, method = "Go",
++    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 > print( ela )
 
 Demand Elasticities (formulas of Goddard / Chalfant)
@@ -1468,7 +1878,46 @@ q_wFood1 -0.333 -0.246  0.0958  0.483
 q_wFood2 -0.381 -0.010  0.1168  0.274
 q_wFood3  0.222  0.174 -0.7571  0.361
 q_wFood4  0.422  0.155  0.1363 -0.713
-> ela <- aidsElas( estResultLA$coef, wMeans, method = "Ch" )
+> print( summary( ela ) )
+      Estimate Std. Error t value Pr(>|t|)
+ [1,]   2.0591         NA      NA       NA
+ [2,]   1.2793         NA      NA       NA
+ [3,]   0.4427         NA      NA       NA
+ [4,]   0.1276         NA      NA       NA
+ [5,]  -0.3331         NA      NA       NA
+ [6,]  -0.2459         NA      NA       NA
+ [7,]   0.0958         NA      NA       NA
+ [8,]   0.4833         NA      NA       NA
+ [9,]  -0.3810         NA      NA       NA
+[10,]  -0.0100         NA      NA       NA
+[11,]   0.1168         NA      NA       NA
+[12,]   0.2743         NA      NA       NA
+[13,]   0.2218         NA      NA       NA
+[14,]   0.1744         NA      NA       NA
+[15,]  -0.7571         NA      NA       NA
+[16,]   0.3610         NA      NA       NA
+[17,]   0.4222         NA      NA       NA
+[18,]   0.1547         NA      NA       NA
+[19,]   0.1363         NA      NA       NA
+[20,]  -0.7131         NA      NA       NA
+[21,]  -0.9722         NA      NA       NA
+[22,]  -0.6584         NA      NA       NA
+[23,]  -0.1803         NA      NA       NA
+[24,]  -0.2482         NA      NA       NA
+[25,]  -0.7780         NA      NA       NA
+[26,]  -0.2663         NA      NA       NA
+[27,]  -0.0548         NA      NA       NA
+[28,]  -0.1801         NA      NA       NA
+[29,]   0.0844         NA      NA       NA
+[30,]   0.0857         NA      NA       NA
+[31,]  -0.8165         NA      NA       NA
+[32,]   0.2037         NA      NA       NA
+[33,]   0.3826         NA      NA       NA
+[34,]   0.1291         NA      NA       NA
+[35,]   0.1192         NA      NA       NA
+[36,]  -0.7585         NA      NA       NA
+> ela <- aidsElas( estResultLA$coef, wMeans, method = "Ch",
++    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 > print( ela )
 
 Demand Elasticities (formulas of Goddard / Chalfant)
@@ -1489,6 +1938,163 @@ q_wFood1 -0.333 -0.246  0.0958  0.483
 q_wFood2 -0.381 -0.010  0.1168  0.274
 q_wFood3  0.222  0.174 -0.7571  0.361
 q_wFood4  0.422  0.155  0.1363 -0.713
+> print( summary( ela ) )
+      Estimate Std. Error t value Pr(>|t|)
+ [1,]   2.0591         NA      NA       NA
+ [2,]   1.2793         NA      NA       NA
+ [3,]   0.4427         NA      NA       NA
+ [4,]   0.1276         NA      NA       NA
+ [5,]  -0.3331         NA      NA       NA
+ [6,]  -0.2459         NA      NA       NA
+ [7,]   0.0958         NA      NA       NA
+ [8,]   0.4833         NA      NA       NA
+ [9,]  -0.3810         NA      NA       NA
+[10,]  -0.0100         NA      NA       NA
+[11,]   0.1168         NA      NA       NA
+[12,]   0.2743         NA      NA       NA
+[13,]   0.2218         NA      NA       NA
+[14,]   0.1744         NA      NA       NA
+[15,]  -0.7571         NA      NA       NA
+[16,]   0.3610         NA      NA       NA
+[17,]   0.4222         NA      NA       NA
+[18,]   0.1547         NA      NA       NA
+[19,]   0.1363         NA      NA       NA
+[20,]  -0.7131         NA      NA       NA
+[21,]  -0.9722         NA      NA       NA
+[22,]  -0.6584         NA      NA       NA
+[23,]  -0.1803         NA      NA       NA
+[24,]  -0.2482         NA      NA       NA
+[25,]  -0.7780         NA      NA       NA
+[26,]  -0.2663         NA      NA       NA
+[27,]  -0.0548         NA      NA       NA
+[28,]  -0.1801         NA      NA       NA
+[29,]   0.0844         NA      NA       NA
+[30,]   0.0857         NA      NA       NA
+[31,]  -0.8165         NA      NA       NA
+[32,]   0.2037         NA      NA       NA
+[33,]   0.3826         NA      NA       NA
+[34,]   0.1291         NA      NA       NA
+[35,]   0.1192         NA      NA       NA
+[36,]  -0.7585         NA      NA       NA
+> 
+> print( elas( estResultLA, method = "Go" ) )
+
+Demand Elasticities (formulas of Goddard / Chalfant)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.058    1.278    0.443    0.124 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.9726 -0.6586 -0.1801 -0.246
+q_wFood2 -0.7746 -0.2699 -0.0546 -0.179
+q_wFood3  0.0846  0.0862 -0.8165  0.203
+q_wFood4  0.3844  0.1304  0.1196 -0.759
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.333 -0.2444  0.0959  0.482
+q_wFood2 -0.377 -0.0127  0.1169  0.273
+q_wFood3  0.222  0.1753 -0.7571  0.360
+q_wFood4  0.423  0.1554  0.1363 -0.715
+> print( summary( elas( estResultLA ) ) )
+      Estimate Std. Error t value Pr(>|t|)
+ [1,]   2.0577         NA      NA       NA
+ [2,]   1.2780         NA      NA       NA
+ [3,]   0.4428         NA      NA       NA
+ [4,]   0.1243         NA      NA       NA
+ [5,]  -0.3331         NA      NA       NA
+ [6,]  -0.2444         NA      NA       NA
+ [7,]   0.0959         NA      NA       NA
+ [8,]   0.4818         NA      NA       NA
+ [9,]  -0.3775         NA      NA       NA
+[10,]  -0.0127         NA      NA       NA
+[11,]   0.1169         NA      NA       NA
+[12,]   0.2733         NA      NA       NA
+[13,]   0.2222         NA      NA       NA
+[14,]   0.1753         NA      NA       NA
+[15,]  -0.7571         NA      NA       NA
+[16,]   0.3596         NA      NA       NA
+[17,]   0.4230         NA      NA       NA
+[18,]   0.1554         NA      NA       NA
+[19,]   0.1363         NA      NA       NA
+[20,]  -0.7147         NA      NA       NA
+[21,]  -0.9726         NA      NA       NA
+[22,]  -0.6586         NA      NA       NA
+[23,]  -0.1801         NA      NA       NA
+[24,]  -0.2465         NA      NA       NA
+[25,]  -0.7746         NA      NA       NA
+[26,]  -0.2699         NA      NA       NA
+[27,]  -0.0546         NA      NA       NA
+[28,]  -0.1789         NA      NA       NA
+[29,]   0.0846         NA      NA       NA
+[30,]   0.0862         NA      NA       NA
+[31,]  -0.8165         NA      NA       NA
+[32,]   0.2029         NA      NA       NA
+[33,]   0.3844         NA      NA       NA
+[34,]   0.1304         NA      NA       NA
+[35,]   0.1196         NA      NA       NA
+[36,]  -0.7587         NA      NA       NA
+> 
+> print( elas( estResultLATX ) )
+
+Demand Elasticities (formulas of Goddard / Chalfant)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.058    1.278    0.443    0.124 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.9726 -0.6586 -0.1801 -0.246
+q_wFood2 -0.7746 -0.2699 -0.0546 -0.179
+q_wFood3  0.0846  0.0862 -0.8165  0.203
+q_wFood4  0.3844  0.1304  0.1196 -0.759
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.333 -0.2444  0.0959  0.482
+q_wFood2 -0.377 -0.0127  0.1169  0.273
+q_wFood3  0.222  0.1753 -0.7571  0.360
+q_wFood4  0.423  0.1554  0.1363 -0.715
+> print( summary( elas( estResultLATX ) ) )
+      Estimate Std. Error t value Pr(>|t|)
+ [1,]   2.0577         NA      NA       NA
+ [2,]   1.2780         NA      NA       NA
+ [3,]   0.4428         NA      NA       NA
+ [4,]   0.1243         NA      NA       NA
+ [5,]  -0.3331         NA      NA       NA
+ [6,]  -0.2444         NA      NA       NA
+ [7,]   0.0959         NA      NA       NA
+ [8,]   0.4818         NA      NA       NA
+ [9,]  -0.3775         NA      NA       NA
+[10,]  -0.0127         NA      NA       NA
+[11,]   0.1169         NA      NA       NA
+[12,]   0.2733         NA      NA       NA
+[13,]   0.2222         NA      NA       NA
+[14,]   0.1753         NA      NA       NA
+[15,]  -0.7571         NA      NA       NA
+[16,]   0.3596         NA      NA       NA
+[17,]   0.4230         NA      NA       NA
+[18,]   0.1554         NA      NA       NA
+[19,]   0.1363         NA      NA       NA
+[20,]  -0.7147         NA      NA       NA
+[21,]  -0.9726         NA      NA       NA
+[22,]  -0.6586         NA      NA       NA
+[23,]  -0.1801         NA      NA       NA
+[24,]  -0.2465         NA      NA       NA
+[25,]  -0.7746         NA      NA       NA
+[26,]  -0.2699         NA      NA       NA
+[27,]  -0.0546         NA      NA       NA
+[28,]  -0.1789         NA      NA       NA
+[29,]   0.0846         NA      NA       NA
+[30,]   0.0862         NA      NA       NA
+[31,]  -0.8165         NA      NA       NA
+[32,]   0.2029         NA      NA       NA
+[33,]   0.3844         NA      NA       NA
+[34,]   0.1304         NA      NA       NA
+[35,]   0.1196         NA      NA       NA
+[36,]  -0.7587         NA      NA       NA
+> 
 > 
 > cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
 

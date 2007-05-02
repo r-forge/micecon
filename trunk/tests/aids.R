@@ -190,26 +190,58 @@ print( elas( estResultAIDSNa, method = "AIDS", quantNames = wNames ) )
 
 ########## Elasticities ###############
 cat( "\nAIDS: Elasticities\n" )
-ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, method = "AIDS" )
+ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, method = "AIDS",
+   coefVcov = estResultAIDS$coef$allcov, df = estResultAIDS$est$df )
 print( ela )
-elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, method = "AIDS" )
+print( summary( ela ) )
+elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, method = "AIDS",
+   coefVcov = estResultAIDSTX$coef$allcov, df = estResultAIDSTX$est$df )
 print( elaTX )
+print( summary( elaTX ) )
 print( all.equal( ela, elaTX ) )
+
+print( elas( estResultAIDS ) )
+print( summary( elas( estResultAIDS ) ) )
+
+print( elas( estResultAIDSTX ) )
+print( summary( elas( estResultAIDSTX ) ) )
 
 
 cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "AIDS" )
+ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "AIDS",
+   coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 print( ela )
-elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, method = "AIDS" )
+print( summary( ela ) )
+elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, method = "AIDS",
+   coefVcov = estResultLATX$coef$allcov, df = estResultLATX$est$df )
 print( elaTX )
+print( summary( elaTX ) )
 print( all.equal( ela, elaTX ) )
+
+print( elas( estResultLA, method = "AIDS" ) )
+print( summary( elas( estResultLA, method = "AIDS" ) ) )
+
+print( elas( estResultLATX, method = "AIDS" ) )
+print( summary( elas( estResultLATX, method = "AIDS" ) ) )
+
 
 cat( "\n********** Elasticities ***************" )
 cat( "\nLA: Elasticity formula of Goddard or Chalfant\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, method = "Go" )
+ela <- aidsElas( estResultLA$coef, wMeans, method = "Go",
+   coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 print( ela )
-ela <- aidsElas( estResultLA$coef, wMeans, method = "Ch" )
+print( summary( ela ) )
+ela <- aidsElas( estResultLA$coef, wMeans, method = "Ch",
+   coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 print( ela )
+print( summary( ela ) )
+
+print( elas( estResultLA, method = "Go" ) )
+print( summary( elas( estResultLA ) ) )
+
+print( elas( estResultLATX ) )
+print( summary( elas( estResultLATX ) ) )
+
 
 cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
 ela <- aidsElas( estResultLA$coef, wMeans, method = "EU" )
