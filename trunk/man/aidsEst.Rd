@@ -123,38 +123,26 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    Blanciforti86 <- Blanciforti86[ 1:32, ]
 
    ## Repeating the demand analysis of Blanciforti, Green & King (1986)
+   ## Note: Blanciforti, Green & King (1986) use scaled data,
+   ##       which leads to slightly different results
    estResult <- aidsEst( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
-      data = Blanciforti86, method = "LA:SL" )
+      data = Blanciforti86, method = "LA:SL", maxiter = 100 )
    print( estResult )
+   elas( estResult )
 
    ## Estimations with a demand shifter: linear trend
    priceNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
    shareNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
-
-   # LA-AIDS 
    Blanciforti86$trend <- c( 0:( nrow( Blanciforti86 ) - 1 ) )
    estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, shifterNames = "trend" )
    print( estResult )
 
-   # AIDS
-   estResult <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, shifterNames = "trend",
-      method = "IL:L" )
-   print( estResult )
-
    # Estimations with two demand shifters: linear + quadratic trend
-   # LA-AIDS
    Blanciforti86$trend2 <- c( 0:( nrow( Blanciforti86 ) - 1 ) )^2
    estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, shifterNames = c( "trend", "trend2" ) )
-   print( estResult )
-
-   # AIDS
-   estResult <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, shifterNames = c( "trend", "trend2" ),
-      method = "IL:L" )
    print( estResult )
 }
 
