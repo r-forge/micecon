@@ -16,19 +16,19 @@
          result <- paste( result, "unknown price index\n" )
       }
    } else if( substr( method, 1, 2 ) %in% c( "MK", "IL" ) ) {
-      result <- "'Iterated Linear Least Squares Estimator' (IL) starting with"
+      result <- "'Iterated Linear Least Squares Estimator' (IL)\n(starting with"
       if( priceIndex == "S" ) {
-         result <- paste( result, "Stone Index (S)\n" )
+         result <- paste( result, "Stone Index, S)\n" )
       } else if( priceIndex == "SL" ) {
-         result <- paste( result, "lagged Stone Index (SL)\n" )
+         result <- paste( result, "lagged Stone Index, SL)\n" )
       } else if( priceIndex == "P" ) {
-         result <- paste( result, "Paasche Index (P)\n" )
+         result <- paste( result, "Paasche Index, P)\n" )
       } else if( priceIndex == "L" ) {
-         result <- paste( result, "Laspeyres Index (L)\n" )
+         result <- paste( result, "Laspeyres Index, L)\n" )
       } else if( priceIndex == "T" ) {
-         result <- paste( result, "Tornqvist Index (T)\n" )
+         result <- paste( result, "Tornqvist Index, T)\n" )
       } else {
-         result <- paste( result, "unknown price index\n" )
+         result <- paste( result, "unknown price index)\n" )
       }
    } else {
       result <- "unknown method"

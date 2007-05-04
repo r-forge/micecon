@@ -538,7 +538,8 @@ Repeating the evaluation of different elasticity formulas of Green & Alston (199
 > print( estResultAIDS )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
@@ -555,7 +556,8 @@ wFood4  0.2195  0.01731 -0.03926 -0.1975
 > print( summary( estResultAIDS ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
           Estimate Std. Error t value Pr(>|t|)
 alpha 1   -0.25333     0.0670  -3.780 2.99e-04
@@ -614,7 +616,8 @@ wFood4  0.440  0.1625  0.132 -0.734
 > print( estResultAIDSTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
@@ -631,7 +634,8 @@ wFood4  0.2195  0.01731 -0.03926 -0.1975
 > print( summary( estResultAIDSTX ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
           Estimate Std. Error t value Pr(>|t|)
 alpha 1   -0.25333     0.0670  -3.780 2.99e-04
@@ -703,7 +707,8 @@ wFood4  0.440  0.1625  0.132 -0.734
 > print( estResultAIDShom )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
@@ -720,7 +725,8 @@ wFood4  0.2174  0.0562 -0.05583 -0.2178
 > print( summary( estResultAIDShom ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
           Estimate Std. Error t value Pr(>|t|)
 alpha 1   -0.26152     0.0776  -3.370 1.17e-03
@@ -779,7 +785,8 @@ wFood4  0.406  0.2633  0.08349 -0.752
 > print( estResultAIDShomTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
@@ -796,7 +803,8 @@ wFood4  0.2174  0.0562 -0.05583 -0.2178
 > print( summary( estResultAIDShomTX ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
           Estimate Std. Error t value Pr(>|t|)
 alpha 1   -0.26152     0.0776  -3.370 1.17e-03
@@ -868,7 +876,8 @@ wFood4  0.406  0.2633  0.08349 -0.752
 > print( estResultAIDSunr )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
@@ -885,7 +894,8 @@ wFood4  0.0350 -0.0841 -0.0119  0.0182
 > print( summary( estResultAIDSunr ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
           Estimate Std. Error t value Pr(>|t|)
 alpha 1   -0.07253     0.0764 -0.9490 3.46e-01
@@ -944,7 +954,8 @@ wFood4  0.361 -0.0346  0.1234 -0.571
 > print( estResultAIDSunrTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
 alpha
  wFood1  wFood2  wFood3  wFood4 
@@ -961,7 +972,8 @@ wFood4  0.0350 -0.0841 -0.0119  0.0182
 > print( summary( estResultAIDSunrTX ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
           Estimate Std. Error t value Pr(>|t|)
 alpha 1   -0.07253     0.0764 -0.9490 3.46e-01
@@ -1272,7 +1284,8 @@ there are some NAs in the data, all observations (rows) with NAs are excluded fr
 > print( estResultAIDSNa )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
 alpha
 wFood1 wFood2 wFood3 wFood4 
@@ -1289,7 +1302,8 @@ wFood4  0.2207  0.00277 -0.04707 -0.17643
 > print( summary( estResultAIDSNa ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
-Estimation Method: 'Iterated Linear Least Squares Estimator' (IL) starting with Laspeyres Index (L)
+Estimation Method: 'Iterated Linear Least Squares Estimator' (IL)
+(starting with Laspeyres Index, L)
 Estimated Coefficients:
           Estimate Std. Error t value Pr(>|t|)
 alpha 1   -0.25917     0.0704 -3.6795 4.12e-04
