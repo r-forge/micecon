@@ -2,7 +2,7 @@ activePar               free parameters under maximisation
 aidsBestA0              Find 'best' Value for alpha 0 in the AIDS
 aidsCalc                Shares and Quantities of the Almost Ideal
                         Demand System
-aidsEla                 Elasticities of the AIDS model
+aidsElas                Elasticities of the AIDS model
 aidsEst                 Estimating the Almost Ideal Demand System
                         (AIDS)
 aidsPx                  Price Index for the AIDS
@@ -14,6 +14,7 @@ coefTable               Coefficient Table
 Coelli                  Data provided with Coelli's Frontier 4.1
 compareDerivatives      function to compare analytic and numeric
                         derivatives
+elas                    Calculating and returning elasticities
 germanFarms             Output and Inputs of Farms in West-Germany
 heckitVcov              Heckit Variance Covariance Matrix
 hessian                 Hessian matrix
@@ -66,6 +67,8 @@ snqProfitImposeConvexity
 snqProfitShadowPrices   Shadow Prices of a SNQ Profit function
 snqProfitWeights        SNQ Profit function: Weights of prices for
                         normalization
+summary.aidsElas        Summarizing the Elasticities of an Almost Ideal
+                        Demand System
 summary.aidsEst         Summarizing the Estimation of an Almost Ideal
                         Demand System
 summary.maximisation    Summary method for maximisation/minimisation
