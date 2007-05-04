@@ -142,25 +142,25 @@
    # AIDS estimation and elasticities
    estResultA <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86[ -1, ],
-      method = "IL:L" )
+      method = "IL:L", maxiter = 100 )
    diag( elas( estResultA, method = "AIDS" )$marshall )
 
    # LA-AIDS estimation
-   estResultL <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, method = "LA:SL" )
+   estResultLA <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, method = "LA:SL", maxiter = 100 )
 
    # LA-AIDS + formula of AIDS
-   diag( elas( estResultL, method = "AIDS" )$marshall )
+   diag( elas( estResultLA, method = "AIDS" )$marshall )
 
    # LA-AIDS + formula of Eales + Unnevehr
-   diag( elas( estResultL, method = "EU" )$marshall )
+   diag( elas( estResultLA, method = "EU" )$marshall )
 
    # LA-AIDS + formula of Goddard or Chalfant:
-   diag( elas( estResultL, method = "Go" )$marshall )
-   diag( elas( estResultL, method = "Ch" )$marshall )
+   diag( elas( estResultLA, method = "Go" )$marshall )
+   diag( elas( estResultLA, method = "Ch" )$marshall )
 
    # LA-AIDS + formula of Green + Alston (= 1st of Buse):
-   diag( elas( estResultL, method = "GA" )$marshall )
+   diag( elas( estResultLA, method = "GA" )$marshall )
 }
 
 \keyword{ models }
