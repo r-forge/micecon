@@ -6,5 +6,5 @@ returnCode <- function(x, ...)
 returnCode.default <- function(x, ...)
     x$returnCode
 
-returnCode.MLEstimate <- function(x, ...)
-    returnCode(x$maxLik)
+returnCode.maxLik <- function(x, ...)
+    x$code
