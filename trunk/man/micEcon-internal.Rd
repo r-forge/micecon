@@ -15,7 +15,7 @@
 \alias{print.summary.maxLik}
 \alias{print.summary.probit}
 \alias{returnCode.maximisation}
-\alias{returnCode.MLEstimate}
+\alias{returnCode.maxLik}
 \alias{snqProfitCoef}
 \alias{snqProfitCoefNames}
 \alias{snqProfitElaJacobian}
