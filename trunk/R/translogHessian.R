@@ -57,7 +57,7 @@ translogHessian <- function( xNames, data, allCoef, quadHalf = TRUE,
                exp( values[[ newXNames[ j ] ]] ) )
          }
       }
-      result[ lower.tri( result ) ] <- result[ upper.tri( result ) ]
+      result[ lower.tri( result ) ] <- t( result )[ lower.tri( result ) ]
       result <- list( result )
       return( result )
    }
