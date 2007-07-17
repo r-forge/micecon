@@ -49,7 +49,7 @@ translogHessian <- function( xNames, data, allCoef, quadHalf = TRUE,
             result[ i + bordered, j + bordered ] <-
                values[[ dNames[ i ] ]] * values[[ dNames[ j ] ]] /
                exp( values[[ "yHat" ]] ) -
-               ifelse( i == j, 1, 0 ) * values[[ dNames[ i ] ]] *
+               ifelse( i == j, 1, 0 ) * values[[ dNames[ i ] ]] /
                exp( values[[ newXNames[ i ] ]] ) +
                ifelse( quadHalf, 1, 2 ) * beta[ i, j ] *
                exp( values[[ "yHat" ]] ) /
