@@ -150,7 +150,7 @@ heckit2fit <- function( selection, outcome,
    result$rho <-  step2coef[ "invMillsRatio" ] / result$sigma
    names(result$rho) <- NULL
                                         # otherwise the name of step2coef is left...
-   result$invMillsRatio <- invMillsRatio
+   result$invMillsRatio <- drop( imrData$IMR1 )
    ## Stack all final coefficients to 'coefficients'
    coefficients <- c(coef(result$probit),
                      step2coef[names(step2coef) != "invMillsRatio"],
