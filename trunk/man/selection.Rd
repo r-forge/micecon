@@ -175,6 +175,11 @@ heckit( selection, outcome, data = sys.frame(sys.parent()),
   \emph{Introductory Econometrics: A Modern Approach, 2e}, Thomson South-Western.
 }
 
+\note{
+  The 2-step estimate of 'rho' may be outside of the
+  \eqn{[-1,1]}{[-1,1]} interval.
+  }
+
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de},
    Ott Toomet \email{otoomet@ut.ee}}
 
