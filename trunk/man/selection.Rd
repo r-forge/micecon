@@ -177,7 +177,8 @@ heckit( selection, outcome, data = sys.frame(sys.parent()),
 
 \note{
   The 2-step estimate of 'rho' may be outside of the
-  \eqn{[-1,1]}{[-1,1]} interval.
+  \eqn{[-1,1]}{[-1,1]} interval.  In that case the standard errors of
+  invMillsRatio may be meaningless.
   }
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de},
