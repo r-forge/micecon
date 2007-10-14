@@ -1,6 +1,7 @@
 % -*- mode: TeX-PDF-mode -*-
 \documentclass[article]{jss}
 \usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
 \usepackage{bbm}
 %% need no \usepackage{Sweave.sty}
 
@@ -411,14 +412,18 @@ The two-step estimation is done by the function \code{heckit2fit} or
 \code{heckit5fit}, depending on the model.
 
 The likelihood maximisation is performed using Newton-Raphson
-maximisation (implemented as \code{maxNR} in \pkg{micEcon}), where
-analytic score vector and analytic Hessian matrix are used.  This
-results in a reasonably fast computation even in the case of tens of
-thousands observations.  A well-defined model should converge in less
-than 15 iterations; in the case of weak identification this number may
-be considerably larger.  Convergence issues may appear at the boundary
-of the parameter space (e.g.\ if $\varrho \to 1$) or if the algorithm
-does not find the global maximum (see Section~\ref{sec:convergence}).
+maximisation (implemented as \code{maxNR} in \pkg{micEcon}) by
+default, where analytic score vector and analytic Hessian matrix are
+used.  This results in a reasonably fast computation even in the case
+of tens of thousands observations.  A well-defined model should
+converge in less than 15 iterations; in the case of weak
+identification this number may be considerably larger.  Convergence
+issues may appear at the boundary of the parameter space (e.g.\ if
+$\varrho \to 1$, see Section~\ref{sec:convergence}).  Another
+maximisation algorithm can be changed by argument
+``\code{maxMethod}'', e.g. ``\code{maxMethod="SANN"}'' uses the SANN
+robust global maximisation algorithm.
+% ....
 
 The command \code{selection} returns an object of class \code{selection}.
 The corresponding \code{summary}, \code{coef}, \code{coef.summary}
@@ -624,9 +629,9 @@ abline(a=cf[1], b=cf[2], lty=3)
 \label{sec:tobit5}
 
 Now let us focus on the tobit-5 examples.  This type of problems arise
-in a wide variety of contexts, e.g.\ in treatment effect or schooling
-choice analysis.  The problem can be written as a system of three
-simultaneous latent equations:
+in a wide variety of contexts, e.g.\ in treatment effect, migration or
+schooling choice analysis.  The problem can be written as a system of
+three simultaneous latent equations:
 \begin{align}
   y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
   \\
@@ -680,13 +685,13 @@ distribution,
 it is straightforward to construct analogous two-step estimators
 as~\eqref{eq:tobit2_2step}.  We may write
 \begin{align}
-  \E [y_i^O | \vec{x}^O = \vec{x}_i^O , \vec{x}^S = vec{x}_i^S , y^S = 0] 
+  \E [y_i^O | \vec{x}^O = \vec{x}_i^O , \vec{x}^S = \vec{x}_i^S , y^S = 0] 
   &=
   {\vec{\beta}^{O1}}' \vec{x}_i^O 
   +
   \E [ \varepsilon^O|\varepsilon^S < -{\vec{\beta}^S}' \vec{x}_i^S ]
   \\
-  \E [y_i^O | \vec{x}^O = \vec{x}_i^O , \vec{x}^S = vec{x}_i^S , y^S = 0] 
+  \E [y_i^O | \vec{x}^O = \vec{x}_i^O , \vec{x}^S = \vec{x}_i^S , y^S = 0] 
   &=
   {\vec{\beta}^{O2}}' \vec{x}_i^O 
   +
@@ -924,7 +929,7 @@ This is related to the fact that none of the $\varrho$-s is
 statistically significant.
 
 
-\section{Testing Reliability}
+\section{Two Replication Excercises}
 \label{sec:reliability}
 
 In this section we test the reliability of the results from
@@ -1062,32 +1067,39 @@ Only a very few coefficients deviate on the seventh decimal place.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Problems}
+\section{Robustness Issues}
 \label{sec:problems}
 
 \subsection{Convergence}
 \label{sec:convergence}
 
-The log-likelihood of the models above is not globally concave.  It
-means, that the model may not converge, if the initial values are not
-chosen well enough.  This may easily happen which we illustrate below.
-Recall example 22.8 from \citet[p.~786]{greene2002}
-(section:~\ref{sec:Greene22.8}).  This model gives reasonable results,
-but the results are sensitive to the start values.  Now we re-estimate
-the model specifying start values ``by hand'' (note that you have to
-supply a positive initial value for the variance):
+The log-likelihood of the models above is not globally concave.  The
+model may not converge, or it may converge to a local maximum, if the
+initial values are not chosen well enough.  This may easily happen
+which we illustrate below.  Recall example 22.8 from
+\citet[p.~786]{greene2002} (section:~\ref{sec:Greene22.8}).  This
+model gives reasonable results, but the results are sensitive to the
+start values.  Now we re-estimate the model specifying start values
+``by hand'' (note that you have to supply a positive initial value for
+the variance):
 <<>>=
 mr <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
-   data = Mroz87, start = c(0,0,0,0,0,0,0,0,0,0,0,0.5,-0.5))
+   data = Mroz87, start = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.9))
 summary(mr)
 @ 
 %
-The maximisation routine gets stuck in a non-concave region and
-cannot find the global maximum.  Here another optimisation algorithm
-might be useful. However, a switch of the algorithm is not yet
-implemented.  In far the most cases, the 2-step method, used for
-calculating the initial values, does a good job.
+The process did not converge.  In the current case the problem lies
+with the numerical problems at the boundary of the parameter space
+(note that $\varrho$ is close to 1).  A workaround is to use a more
+robust maximisation method, for instance, one may choose to run SANN
+maximiser for 10\,000 iterations, and switch back to Newton-Raphson
+thereafter\footnote{One has to choose suitable \code{parscale}, for
+  instance \code{parscale=0.001} worked well for the example above.
+  The following Newton-Raphson estimate converged to another maximum
+  with a higher log-likehood value than the original example in the
+  Section~\ref{sec:Greene22.8}}.  In by far the most cases, the 2-step
+method, used for calculating the initial values, does a good job.
 
 
 \subsection{Boundary of the parameter space}
@@ -1154,3 +1166,34 @@ future work.
 \bibliography{selection}
 
 \end{document}
+
+TODO:
+
+General:
+
+* I use an uft-8 locale and included \usepackage[utf8]{inputenc}.
+  Remove it, if it doesn't work for you.
+
+* In general, one should use the names of coefficients, supplied by
+  the user through initial values.  What if the initial values do not
+  have any names?  I modified the code accordingly.
+
+RK comments:
+
+1) Less R code in the paper.  How?
+
+   Repeated MC experiments?  But this paper is not about the asyptotic
+   properties but abut R package?
+
+2) More unified treatment of SwRg models.  Do you know about the
+   discussion he mentions?
+
+3) Non-Gaussian settings or heteroscedasticity...  But we have
+   misspecification (non-Gaussian) for tobit5.  Does he want to see
+   that for tobit2 too?  I don't understand the point (the paper is
+   not about the properties of the estimator), but we can easily do it
+   for tobit2 too.
+
+4) done
+
+5) Looking at the issue.  I have implemented switching the max methods.

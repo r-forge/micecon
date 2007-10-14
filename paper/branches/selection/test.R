@@ -1,14 +1,102 @@
-tst2 <- function(N=1000, rho=-0.7, print.level=0) {
-   library(mvtnorm)
-   vc <- diag(2)
-   vc[2,1] <- vc[1,2] <- -0.7
-   eps <- rmvnorm(N, rep(0, 2), vc)
-   xs <- runif(N)
-   ys <- xs + eps[,1] > 0
-   xo <- runif(N)
-   yo <- (xo + eps[,2])*(ys > 0)
-   a <- selection(ys~xs, yo ~xo, print.level=print.level)
-   invisible(a)
+
+llHIE <- function(estimate,
+                  iCoef=c(11,12,13),
+                  spread=1,
+                  naSpread=0.001,
+                  resolution=13,
+                  ...
+                  ) {
+   library(micEcon)
+   start <- coef(estimate)
+   st <- start[iCoef]
+   stdds <- spread*sqrt(diag(-solve(hessian(estimate))))[iCoef]
+   stdds[is.na(stdds)] <- naSpread
+   var1 <- seq(st[1] - stdds[1], st[1] + stdds[1], length=resolution)
+   var2 <- seq(st[2] - stdds[2], st[2] + stdds[2], length=resolution)
+   var3 <- seq(st[3] - stdds[3], st[3] + stdds[3], length=resolution)
+   print(rbind(var1, var2, var3))
+   loglik <- array(0, dim=c(length(var1), length(var2), length(var3)))
+   dimnames(loglik) <- list(var1=var1, var2=var2, var3=var3)
+   data( Mroz87 )
+   Mroz87$kids <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
+   for(iVar1 in seq(along=var1)) {
+      for(iVar2 in seq(along=var2)) {
+         for(iVar3 in seq(along=var3)) {
+            st <- start
+            st[iCoef[1]] <- var1[iVar1]
+            st[iCoef[2]] <- var2[iVar2]
+            st[iCoef[3]] <- var3[iVar3]
+            loglik[iVar1,iVar2,iVar3] <- selection1( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+                                                   wage ~ exper + I( exper^2 ) + educ + city,
+                                                   data = Mroz87, start=st,
+                                                   ...)
+         }
+      }
+   }
+   attr(loglik, "max") <- start[iCoef]
+   attr(loglik, "grad") <- estimate$gradient[iCoef]
+   class(loglik) <- c("ll3", class(loglik))
+   loglik
+}
+
+compDer <- function(estimate, ...
+                  ) {
+   start <- coef(estimate)
+   data( Mroz87 )
+   Mroz87$kids <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
+   selectionCD( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+              wage ~ exper + I( exper^2 ) + educ + city,
+              data = Mroz87, start=start,
+              ...)
+}
+
+plotLL3d <- function(x,
+                     levels=seq(range(x, na.rm=TRUE)[1], range(x, na.rm=TRUE)[2], length=9)[-c(1,9)],
+                     radius=0.01, length=2*radius) {
+   library(misc3d)
+   library(micEcon)
+   col <- topo.colors(length(levels))
+   alpha <- seq(0.2, 0.9, length=length(levels))
+   cat("Levels:\n")
+   print(levels)
+   xVal <- as.numeric(dimnames(x)[[1]])
+   yVal <- as.numeric(dimnames(x)[[2]])
+   zVal <- as.numeric(dimnames(x)[[3]])
+   contour3d(x,
+             x=xVal, y=yVal, z=zVal,
+             level=levels, color=col, alpha=alpha,
+             xlab="var1", ylab="var2", zlab="var3",
+             scale=TRUE
+             )
+   xVal <- attr(x, "max")[1]
+   yVal <- attr(x, "max")[2]
+   zVal <- attr(x, "max")[3]
+   cat("Estimate:\n")
+   print(attr(x, "max"))
+   plot3d(xVal, yVal, zVal, type="s", radius=radius, col=2, alpha=1, add=T)
+   grad <- attr(x, "grad")
+   norm <- sqrt(sum(grad^2))
+   cat("Gradient: norm =", norm, "\n")
+   print(grad)
+   x1 <- xVal + grad[1]/norm*length
+   y1 <- yVal + grad[2]/norm*length
+   z1 <- zVal + grad[3]/norm*length
+   lines3d(c(xVal, x1), c(yVal, y1), c(zVal, z1), alpha=1, col=2)
+   axes3d(alpha=1, color=1, labels=T)
+   aspect3d(1)
+}
+
+tstHIE <- function(start=NULL, maxMethod="nr", ...) {
+   cat(" ");
+   if(is.null(start))
+       start <- c(0,0,0,0,0,0,0,0,0,0,0,0.5,-0.5)
+   library(micEcon)
+   data( Mroz87 )
+   Mroz87$kids <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
+   mr <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+                   wage ~ exper + I( exper^2 ) + educ + city,
+                   data = Mroz87, start=start,
+                   maxMethod=maxMethod, ...)
 }
 
 tstA <- function(N=500) {
