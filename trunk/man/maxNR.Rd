@@ -102,7 +102,7 @@ the previous one.
     \code{code=3} with following components:
     \item{theta0}{previous parameter value}
     \item{f0}{\code{fn} value at \code{theta0}}
-    \item{theta1}{new parameter value.  In most cases close to \code{theta0}.}
+    \item{climb}{the movement vector to the maximum of the quadratic approximation}
   }
   \item{activePar}{logical vector, which parameters are not constants.}
   \item{iterations}{number of iterations.}

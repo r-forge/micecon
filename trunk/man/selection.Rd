@@ -29,7 +29,9 @@ heckit( selection, outcome, data = sys.frame(sys.parent()),
           the environment from which \code{selection} is called.}
   \item{method}{how to estimate the model.  Either "ml" for Maximum
     Likelihood, or "2step" for 2-step estimation.}
-  \item{start}{initial values for the ML estimation.  Should have names.}
+  \item{start}{vector, initial values for the ML estimation.  If
+    \code{start} does not have names, names are constructed based on the
+    model frame.}
   \item{ys, yo, xs, xo, mfs, mfo}{logicals.  If true, the response (\code{y}),
     model matrix (\code{x}) or the model frame (\code{mf})
     of the selection (\code{s}) or outcome

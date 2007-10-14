@@ -157,8 +157,10 @@ selection <- function(selection, outcome,
              start[iRho] <- 0.99
          else if(start[iRho] < -0.99)
              start[iRho] <- -0.99
-         names(start) <- c(colnames(XS), colnames(XO), "sigma", "rho")
       }
+      if(is.null(names(start)))
+          names(start) <- c(colnames(XS), colnames(XO), "sigma", "rho")
+                                        # add names to start values if not present
       estimation <- tobit2fit(YS, XS, YO, XO, start,
                               print.level=print.level, ...)
       param <- list(index=list(betaS=iGamma,
@@ -240,6 +242,9 @@ selection <- function(selection, outcome,
                                   ind$betaO2, ind$sigma2, ind$rho2)]
          names( start ) <- sub( "^[SO][12]?:", "", names( start ) )
       }
+      if(is.null(names(start)))
+          names(start) <- c(colnames(XS), colnames(XO1), "sigma1", "rho1", colnames(XO2), "sigma2", "rho2")
+                                        # add names to start values if not present
       estimation <- tobit5fit(YS, XS, YO1, XO1, YO2, XO2, start=start,
                               print.level=print.level, ...)
       param <- list(index=list(betaS=iBetaS,

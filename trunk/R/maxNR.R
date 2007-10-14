@@ -105,6 +105,8 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
    maximisation.type <- "Newton-Raphson maximisation"
    nimed <- names(start)
    nParam <- length(start)
+   samm <- NULL
+                                        # information about unsuccesful step (if any)
    I <- diag(rep(1, nParam))     # I is unit matrix
    activePar[constPar] <- FALSE
    start1 <- start
@@ -192,10 +194,13 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
          }
       }
       if(is.null(newVal <- attr(f1, "newVal"))) {
-         while( is.na( f1) || ( ( f1 < f0) && ( step > steptol))) {
+         while( is.na( f1) || ( ( f1 < f0) && ( step >= steptol))) {
                                         # We end up in a NA or a higher value.
                                         # try smaller step
             step <- step/2
+            if(print.level > 2) {
+               cat("function value difference", f1 - f0, "-> step", step, "\n")
+            }
             start1 <- start0 - step*amount
             f1 <- func(start1, ...)
             ## Find out the constant parameters -- these may be other than
@@ -210,6 +215,12 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
                   start1[constPar] <- attr(f1, "constVal")
                }
             }
+         }
+         if(step < steptol) {
+            # we did not find a better place to go...
+            start1 <- start0
+            f1 <- f0
+            samm <- list(theta0=start0, f0=f0, climb=amount)
          }
       } else {
          start1[newVal$index] <- newVal$val
@@ -257,11 +268,6 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
       cat( iter, " iterations\n")
       cat( "estimate:", start1, "\n")
       cat( "Function value:", f1, "\n")
-   }
-   if( code == 3) {
-      samm <- list(theta0=start0, f0=f0, start1=start1)
-   } else {
-      samm <- NULL
    }
    names(start1) <- nimed
    result <-list(
