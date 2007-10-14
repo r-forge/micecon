@@ -50,16 +50,16 @@ tobit2fit <- function(YS, XS, YO, XO, start,
        g <- beta[iBetaS]
        b <- beta[iBetaO]
        sigma <- beta[iSigma]
-       if(sigma < 0) return(NA)
+       if(sigma < 0) return(rep(NA, length(beta)))
        rho <- beta[iRho]
-       if( ( rho < -1) || ( rho > 1)) return(NA)
+       if( ( rho < -1) || ( rho > 1)) return(rep(NA, length(beta)))
        XS0.g <- XS0 %*% g
        XS1.g <- XS1 %*% g
        XO1.b <- XO1 %*% b
        u2 <- YO1 - XO1.b
        r <- sqrt( 1 - rho^2)
        B <- (XS1.g + rho/sigma*u2)/r
-       lambdaB <- ifelse(B > -30, dnorm(B)/pnorm(B), B)
+       lambdaB <- ifelse(B > -30, dnorm(B)/pnorm(B), -B)
                                         # This is a hack in order to avoid numeric problems
        gradient <- numeric(nParam)
        gradient[iBetaS] <- t(XS0) %*% (-dnorm(-XS0.g)/pnorm(-XS0.g)) +
@@ -82,7 +82,7 @@ tobit2fit <- function(YS, XS, YO, XO, start,
        u2 <- YO1 - XO1.b
        r <- sqrt( 1 - rho^2)
        B <- (XS1.g + rho/sigma*u2)/r
-       lambdaB <- ifelse(B > -30, dnorm(B)/pnorm(B), B)
+       lambdaB <- ifelse(B > -30, dnorm(B)/pnorm(B), -B)
                                         # This is a hack in order to avoid numeric problems
        fXS0.g <- dnorm(-XS0.g)
        FXS0.g <- pnorm(-XS0.g)
