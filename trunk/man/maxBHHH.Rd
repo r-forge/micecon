@@ -4,7 +4,7 @@
 \description{
 This function is essentially \code{\link{maxNR}} where the hessian is
 approximated by the outer product of the gradient vectro.  Only suitable
-for likelihood maximisation.}
+for likelihood maximisation.
 }
 \usage{
 maxBHHH(fn, grad = NULL, hess=NULL, start, print.level = 0, iterlim = 100,
