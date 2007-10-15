@@ -1209,8 +1209,17 @@ RK comments:
    Repeated MC experiments?  But this paper is not about the asyptotic
    properties but abut R package?
 
+   As our simulation studies are not really Monte Carlo experiments,
+   but "simply single instances" (RK), we could just rename them
+   (e.g. "simulations studies" or "simulation studies with random numbers")
+   instead of extending them to real Monte Carlo studies.
+   Do you think that RKs agrees with this?
+
 2) More unified treatment of SwRg models.  Do you know about the
    discussion he mentions?
+
+   I guess he means the discussion that followed my email on R-Help:
+   http://finzi.psych.upenn.edu/R/Rhelp02a/archive/47095.html
 
 3) Non-Gaussian settings or heteroscedasticity...  But we have
    misspecification (non-Gaussian) for tobit5.  Does he want to see
@@ -1226,6 +1235,17 @@ tobit1: selection is a logical (or factor of two levels) vector,
         outcome is the outcome model y1 ~ x
 
         "tobit1", "tobit"
+
+   I think that the interface is not flexible enough
+   if argument "selection" is just a logical vector,
+   because I cannot see how you can indicate,
+   whether your dependent variable is left-censored,
+   right-censored, or interval-censored.
+   Maybe selection could be a vector with two elements
+   indicating the minimum and maximum
+   (like Achim Zeileis' tobit function that I sent you),
+   e.g. "selection = c( 0, Inf )" is the standard tobit
+   that is left-censored at zero.
 
 tobit2: selection - single formula, outcome - single formula
 
@@ -1253,12 +1273,18 @@ Other more important models:
 switching regression: specify type of separator as 'selection' if not
         an equation
 
+   What is the difference between switching regression
+   and tobit5?
+
 treatment effect: single selection formula (binary or multivariate
         LHS) + a single outcome formula.  Treatment indicator enters
         as a explanatory variable here.  Possible to guess.  #levels
         of selection LHS = # of different treatments.  First level =
         "no treatment".  Multiple treatment effects: more than one
         selection formula.
+
+   or: additional argument "treatment" that is a string (or string vector)
+       with the name(s) of the treatment indicator(s)
 
         If multiple levels, need to specify whether multinominal or
         ordered selection.
