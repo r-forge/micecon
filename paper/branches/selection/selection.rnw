@@ -37,8 +37,8 @@
   and illustrate the usage of the package on several Monte Carlo and
   real data examples.  Our examples demonstrate the effect of
   exclusion restrictions, identification at infinity and
-  misspecification.  We demonstrate that the package can be used as an
-  excellent teaching tool.
+  misspecification.  We argue that the package can be used both in
+  applied research and teaching.
   %
 }
 
@@ -1172,7 +1172,7 @@ TODO:
 General:
 
 * I use an uft-8 locale and included \usepackage[utf8]{inputenc}.
-  Remove it, if it doesn't work for you.
+  Remove it, if it doesn't work for you. 
 
 * In general, one should use the names of coefficients, supplied by
   the user through initial values.  What if the initial values do not
@@ -1196,4 +1196,4 @@ RK comments:
 
 4) done
 
-5) Looking at the issue.  I have implemented switching the max methods.
+5) done
