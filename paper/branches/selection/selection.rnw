@@ -30,15 +30,15 @@
   This paper describes the implementation of Heckman-type sample
   selection models in \proglang{R}.  We discuss the sample selection
   problem as well as the Heckman solution to it, and argue that
-  although modern econometrics has superior non- and semiparametric
-  estimation methods in its toolbox, the Heckman models are an
-  integral part of modern econometrics textbooks and syllabus.  We
-  describe the implementation of these models in package \pkg{micEcon}
-  and illustrate the usage of the package on several Monte Carlo and
-  real data examples.  Our examples demonstrate the effect of
-  exclusion restrictions, identification at infinity and
-  misspecification.  We argue that the package can be used both in
-  applied research and teaching.
+  although modern econometrics has non- and semiparametric estimation
+  methods in its toolbox, the Heckman models are an integral part of
+  modern applied econometrics and econometrics syllabus.  We describe
+  the implementation of these models in package \pkg{micEcon} and
+  illustrate the usage of the package on several Monte Carlo and real
+  data examples.  Our examples demonstrate the effect of exclusion
+  restrictions, identification at infinity and misspecification.  We
+  argue that the package can be used both in applied research and
+  teaching.
   %
 }
 
@@ -269,7 +269,7 @@ covariates (see \citealp{greene2002} for details):
   \equiv
   {\vec{\beta}^O}' \vec{x}_i^O 
   + 
-  \varrho \sigma \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
+  \varrho \sigma \lambda({\vec{\beta}^S}' \vec{x}_i^S)
   +
   \eta_i
   \label{eq:tobit2_2step}
@@ -433,7 +433,7 @@ One may choose either the full model (\code{part = "full"}, default),
 or the outcome equation only (\code{part = "outcome"}).
 
 Currently, the variance-covariance matrix of the two-step estimators
-is only partially implemented with \code{NA} in plac of the
+is only partially implemented with \code{NA} in place of the
 unimplemented components.
 
 The package is written completely in \proglang{R} which should
@@ -573,13 +573,19 @@ exclusion restriction, $\lambda(\cdot)$ must differ from a linear
 combination of $\vec{x}^O$ components \citep{leung+yu1996}.  The
 degree of non-linearity in $\lambda(\cdot)$ depends on the variability
 in ${\vec{\beta}^S}' \vec{x}^S$ as $\lambda(\cdot)$ is a smooth convex
-function.  Hence the standard
-errors of the estimates depend on the variation in the latent
-selection equation \eqref{eq:probit*}, even without the exclusion
-restriction fulfilled.  More variation gives smaller standard
-errors\footnote{This is related to the identification at infinity
-  \citep{chamberlain1986}.}.  We demonstrate this below: Change the
-support of $\vec{x}^S$ from $[0,1]$ to $[-5,5]$:
+function.  Hence the standard errors of the estimates depend on the
+variation in the latent selection equation \eqref{eq:probit*}, even
+without the exclusion restriction fulfilled.  More variation gives
+smaller standard errors\footnote{The exact shape of the function
+  $\lambda(\cdot)$ is dependent on the distribution of the
+  disturbances.  However, $\E[\varepsilon^{O}|\varepsilon^{S} \ge
+    -{\vec{\beta}^{S}}' \vec{x}^{S}] \to 0 \text{ as }
+  {\vec{\beta}^{S}}' \vec{x}^{S} \to \infty$ under a wide set of
+  distribution functions.  Hence the estimator is less dependent on
+  functional form assumptions if the variability in the latent
+  selection equation is larger.  This is related to identification at
+  infinity \citep{chamberlain1986}.}  We demonstrate this below:
+Change the support of $\vec{x}^S$ from $[0,1]$ to $[-5,5]$:
 <<>>=
   xs <- runif(500, -5, 5)
   ys <- xs + eps[,1] > 0
@@ -707,11 +713,11 @@ and hence
     \varrho_1 \sigma_1 \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
     +
     \eta_i^1
-    \qquad \text{if } y_i^{S} = 0\\
+    \qquad \text{if } y_i^{S} = 0
     \\
     {\vec{\beta}^{O2}}' \vec{x}_i^O 
     + 
-    \varrho_2 \sigma_2 \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
+    \varrho_2 \sigma_2 \lambda({\vec{\beta}^S}' \vec{x}_i^S)
     +
     \eta_i^2
     \qquad \text{otherwise},
@@ -1098,8 +1104,8 @@ thereafter\footnote{One has to choose suitable \code{parscale}, for
   instance \code{parscale=0.001} worked well for the example above.
   The following Newton-Raphson estimate converged to another maximum
   with a higher log-likehood value than the original example in the
-  Section~\ref{sec:Greene22.8}}.  In by far the most cases, the 2-step
-method, used for calculating the initial values, does a good job.
+  Section~\ref{sec:Greene22.8}}.  In most cases the 2-step method,
+used for calculating the initial values, does a good job.
 
 
 \subsection{Boundary of the parameter space}
@@ -1143,10 +1149,10 @@ summary(selection(ys~x, y~x, method="2step"))
 
 This paper describes the Heckman-type selection models and their
 implementation in the package \pkg{micEcon} for the programming
-language \proglang{R}.  We argue that these models serve as useful
-teaching tools because they are easy to implement and understand.
-However, nowadays there exist superior estimation methods for censored
-data.
+language \proglang{R}.  These models are popular in estimating impact
+of various factors in economics and other social sciences.  We argue
+that they also serve as useful teaching tools because they are easy
+to implement and understand.
 
 We briefly describe the implementation and usage of tobit-2 and
 tobit-5 (switching regression) models in \pkg{micEcon}, and
@@ -1193,7 +1199,3 @@ RK comments:
    that for tobit2 too?  I don't understand the point (the paper is
    not about the properties of the estimator), but we can easily do it
    for tobit2 too.
-
-4) done
-
-5) done
