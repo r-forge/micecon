@@ -1199,3 +1199,78 @@ RK comments:
    that for tobit2 too?  I don't understand the point (the paper is
    not about the properties of the estimator), but we can easily do it
    for tobit2 too.
+               
+--------------------------
+
+How to implement the other selection models:
+
+tobit1: selection is a logical (or factor of two levels) vector,
+        outcome is the outcome model y1 ~ x
+
+        "tobit1", "tobit"
+
+tobit2: selection - single formula, outcome - single formula
+
+        "tobit2"
+
+tobit3: selection - logical vector, outcome - two formulas, the 1st
+        for y1 (which is also selection equation), the other for y2
+
+       "tobit3"
+
+tobit4: selection - single equation (binary LHS), outcome - 3 formulas
+
+       "tobit4"
+
+tobit5: selection - single equation (binary LHS), outcome - 2 formulas
+
+       "tobit5"
+
+We can correctly guess all the 5 cases (although 3 and 4 may be
+tricky).  However, should use model= argument for allowing
+finer control, more robust programming, easier generalisations.
+
+Other more important models:
+
+switching regression: specify type of separator as 'selection' if not
+        an equation
+
+treatment effect: single selection formula (binary or multivariate
+        LHS) + a single outcome formula.  Treatment indicator enters
+        as a explanatory variable here.  Possible to guess.  #levels
+        of selection LHS = # of different treatments.  First level =
+        "no treatment".  Multiple treatment effects: more than one
+        selection formula.
+
+        If multiple levels, need to specify whether multinominal or
+        ordered selection.
+
+        "treatment"
+
+qualitative response: check whether LHS of outcome is a factor.
+        Should be possible to specify explicitly and state the type
+        (multinominal, ordered, Poisson).
+
+        Hence an additional parameter needed (attribute to "outcome"?)
+
+Different error distributions: an additional parameter.  Should use a
+        given order: e.g. specify a common MV-distribution
+        (e.g. "gaussian") or a vector of marginal distributions
+        c("logistic", "normal").  Order is given as selection1,
+        selection2, ..., outcome1, outcome2, ...
+
+A way to specify restrictions on the error covariance matrix (simply
+        constrained maximisation OK?).  Possible use constrained
+        maximisation, a separate parameter for constrains on the VAR
+        matrix. 
+
+-------------
+
+So, I think we can go quite far by introducing only 4 additional
+parameters and not breaking API.  The following will not be discussed.
+Comments?
+
+* incidental selection
+* bivariate probit selection
+* Simultaneuous censored equations (OLS + tobit, BC+BC)
+
