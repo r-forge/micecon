@@ -985,6 +985,10 @@ Finally, we repeat the analysis with the ML estimation method:
 <<greene22.8ML>>=
 summary( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city, data = Mroz87 ) )
+
+print( try( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+   wage ~ exper + I( exper^2 ) + educ + city, data = Mroz87,
+   maxMethod = "BHHH" ) ) )
 @
 %
 While the estimated coefficients are almost identical to the values
@@ -1106,7 +1110,21 @@ thereafter\footnote{One has to choose suitable \code{parscale}, for
   with a higher log-likehood value than the original example in the
   Section~\ref{sec:Greene22.8}}.  In most cases the 2-step method,
 used for calculating the initial values, does a good job.
+<<>>=
+mr2 <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+   wage ~ exper + I( exper^2 ) + educ + city,
+   data = Mroz87, start = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.9),
+   maxMethod="SANN", parscale = 0.001 )
+summary(mr2)
 
+coef( mr2 )
+
+mr3 <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+   wage ~ exper + I( exper^2 ) + educ + city,
+   data = Mroz87, start = coef( mr2 ) )
+summary(mr3)
+
+@ 
 
 \subsection{Boundary of the parameter space}
 \label{sec:boundary}
