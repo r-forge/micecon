@@ -173,8 +173,9 @@ these type of models lies nowadays in econometrics training.
 
 The paper is organized as follows: in the next section we introduce
 the \citet{heckman1976} solution to the sample selection problem.
-Section~\ref{sec:implementation} briefly describes the implementation
-of the model in \pkg{micEcon}.  In Section~\ref{sec:using} we
+Section~\ref{sec:implementation} briefly describes the current implementation
+of the model in \pkg{micEcon} and possible generalisations while
+preserving the interface.  In Section~\ref{sec:using} we
 illustrate the usage of the package on various Monte-Carlo and real
 data examples.  Section~\ref{sec:reliability} is devoted to comparison
 of our results to the other examples in the literature;
@@ -394,6 +395,9 @@ used instead of the Heckman model (see \citealp{powell1994} and
 \section[Implementation]{Implementation in \pkg{micEcon}}
 \label{sec:implementation}
 
+\subsection{Current implementation}
+\label{sec:current_implementation}
+
 The main frontend for the estimation of selection models in
 \pkg{micEcon} is the command \code{selection}.  It needs a formula for
 the selection equation (argument \code{selection}), and one (or a list
@@ -414,7 +418,7 @@ The two-step estimation is done by the function \code{heckit2fit} or
 The likelihood maximisation is performed using Newton-Raphson
 maximisation (implemented as \code{maxNR} in \pkg{micEcon}) by
 default, where analytic score vector and analytic Hessian matrix are
-used.  This results in a reasonably fast computation even in the case
+used.  This results in a reasonably fast computation even in case
 of tens of thousands observations.  A well-defined model should
 converge in less than 15 iterations; in the case of weak
 identification this number may be considerably larger.  Convergence
@@ -442,6 +446,39 @@ minimise the portability issues.  It depends on packages
 the latter for examples only.  Both
 are available from the Comprehensive R Archive Network (CRAN) at
 \url{http://CRAN.R-project.org/}.
+
+\subsection{Current API and other selection models}
+
+We briefly discuss possible ways of introducing more general selection
+models using a slightly generalised version of the current API.
+
+First, the current argument \code{selection} can be used for
+specifying more general selection conditions.  \code{selection} might
+contain an interval for interval censoring (for instance
+\code{selection = c(0, Inf)} in case of the standard tobit model),
+more than one formula (for multiple treatment models), or an indicator
+for the selection mechanism (like \code{"max"} or \code{"min"} for
+switching regression with unobserved separator).  In this way, all 
+the tobit-models, listed by \cite{amemiya1985} can be specified.
+
+Another possible generalisation is allowing for discrete dependent
+variable models.  While binary-choice can be easily distinguised, we
+need an additional parameter in multiple-choice case.  This parameter
+(possibly a vector where components correspond to the individual
+equations) will allows the user to specify the exact type of the
+response (like multinominal, ordered or Poissonian).
+
+Third, different distributions of the disturbance terms can be
+specified in similar way using an additional parameter.  It may be a
+vector if different marginal distributions for different outcome
+equations are necessary.
+
+Finally, as the \code{selection} currently supports only two easily
+distinguishable models, we have not provided a way to specify the
+model explicitly.  However, explicit specification would allow users
+to locate the programming problems more easily, and lessen the
+complications related to automatic guess of the correct model.
+
 
 
 \section[Usage]{Using the \code{selection} function}
@@ -985,10 +1022,6 @@ Finally, we repeat the analysis with the ML estimation method:
 <<greene22.8ML>>=
 summary( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city, data = Mroz87 ) )
-
-print( try( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
-   wage ~ exper + I( exper^2 ) + educ + city, data = Mroz87,
-   maxMethod = "BHHH" ) ) )
 @
 %
 While the estimated coefficients are almost identical to the values
@@ -1193,15 +1226,6 @@ future work.
 
 TODO:
 
-General:
-
-* I use an uft-8 locale and included \usepackage[utf8]{inputenc}.
-  Remove it, if it doesn't work for you. 
-
-* In general, one should use the names of coefficients, supplied by
-  the user through initial values.  What if the initial values do not
-  have any names?  I modified the code accordingly.
-
 RK comments:
 
 1) Less R code in the paper.  How?
@@ -1276,6 +1300,9 @@ switching regression: specify type of separator as 'selection' if not
    What is the difference between switching regression
    and tobit5?
 
+   OT: switching regression is more general concept (e.g. separator
+       may not be observable).
+
 treatment effect: single selection formula (binary or multivariate
         LHS) + a single outcome formula.  Treatment indicator enters
         as a explanatory variable here.  Possible to guess.  #levels
@@ -1285,6 +1312,8 @@ treatment effect: single selection formula (binary or multivariate
 
    or: additional argument "treatment" that is a string (or string vector)
        with the name(s) of the treatment indicator(s)
+
+   OT: "treatment" would in practice duplicate the LHS of selection formula(s)?
 
         If multiple levels, need to specify whether multinominal or
         ordered selection.
