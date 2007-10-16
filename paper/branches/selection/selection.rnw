@@ -34,7 +34,7 @@
   methods in its toolbox, the Heckman models are an integral part of
   modern applied econometrics and econometrics syllabus.  We describe
   the implementation of these models in package \pkg{micEcon} and
-  illustrate the usage of the package on several Monte Carlo and real
+  illustrate the usage of the package on several simulation and real
   data examples.  Our examples demonstrate the effect of exclusion
   restrictions, identification at infinity and misspecification.  We
   argue that the package can be used both in applied research and
@@ -176,7 +176,7 @@ the \citet{heckman1976} solution to the sample selection problem.
 Section~\ref{sec:implementation} briefly describes the current implementation
 of the model in \pkg{micEcon} and possible generalisations while
 preserving the interface.  In Section~\ref{sec:using} we
-illustrate the usage of the package on various Monte-Carlo and real
+illustrate the usage of the package on various simulated and real
 data examples.  Section~\ref{sec:reliability} is devoted to comparison
 of our results to the other examples in the literature;
 Section~\ref{sec:problems} describes the problems, related to the
@@ -484,7 +484,7 @@ complications related to automatic guess of the correct model.
 \section[Usage]{Using the \code{selection} function}
 \label{sec:using}
 
-This section provides selected illustrative Monte-Carlo experiments
+This section provides selected illustrative simulation experiments
 which illustrate both the strong and weak sides of the method, and the
 typical usage of \code{selection}.
 
@@ -568,7 +568,7 @@ print(summary(selection(ys ~ xs, yo ~ xs)))
 @
 % 
 The estimates are still unbiased but standard errors are substantially
-larger in this case.  The exclusion restriction --- information about
+larger in this case.  The exclusion restriction --- independent information about
 the selection process --- has a certain identifying power which we now
 have lost.  We are solely relying on the functional form
 identification.
@@ -576,7 +576,7 @@ identification.
 We illustrate the case with an analogous figure (Figure~\ref{fig:t2}).
 The selection model uncovers the true dependence very well.  OLS
 estimate is downward biased because of $\varrho < 0$, as in the
-previous case.  However, now the slope is also biased becuse $\E [
+previous case.  However, now the slope is upward biased becuse $\E [
 \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ is
 increasing in the single explanatory variable in the model,
 $\vec{x}^S$. 
@@ -610,7 +610,7 @@ exclusion restriction, $\lambda(\cdot)$ must differ from a linear
 combination of $\vec{x}^O$ components \citep{leung+yu1996}.  The
 degree of non-linearity in $\lambda(\cdot)$ depends on the variability
 in ${\vec{\beta}^S}' \vec{x}^S$ as $\lambda(\cdot)$ is a smooth convex
-function.  Hence the standard errors of the estimates depend on the
+function (see Figure~\ref{fig:cfunctions}).  Hence the standard errors of the estimates depend on the
 variation in the latent selection equation \eqref{eq:probit*}, even
 without the exclusion restriction fulfilled.  More variation gives
 smaller standard errors\footnote{The exact shape of the function
@@ -633,14 +633,11 @@ yoX <- xs + eps[,2]
 %
 Now all the parameters are precisely estimated, with even higher
 precision than in the first example where the exclusion restriction
-was fulfilled.  The reason is simple: As one can see from
+is fulfilled.  The reason is simple: As one can see from
 Figure~\ref{fig:lambda()}, selection is not an issue if $x^S \gtrsim
-2$.  In that case $\E [\varepsilon^O|y^S = 1] \approx 0$ for a
-substantial interval of $x^S$ and hence the $\lambda(\beta^S x^S)$
-differs enough from a linear function.  In the previous example, the
-variation in $x^S$ is low and one cannot disentangle the selection
-bias from the true causal dependence.  Technically, there is a
-multicollinearity problem between $x^S$ and $\lambda(\cdot)$.
+2$ while virtually nothing is observed if $x^{S} < -2$. 
+Here $\lambda(\beta^S x^S)$
+differs enough from a linear function.
 
 \begin{figure}[tp]
   \centering
@@ -999,9 +996,10 @@ data( Mroz87 )
 Mroz87$kids <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
 @
 %
-Now, we estimate the model by the two-step method
+Now, we estimate the model by the two-step method.  For brevity, we
+just report the estimated coefficients and not the full summaries here.
 <<greene22.8TwoStep>>=
-summary( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+coef( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
    data = Mroz87, method = "2step" ) )
 @
@@ -1020,7 +1018,7 @@ Note that the standard error of the inverse Mill's ratio
 
 Finally, we repeat the analysis with the ML estimation method:
 <<greene22.8ML>>=
-summary( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+coef( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city, data = Mroz87 ) )
 @
 %
@@ -1078,9 +1076,9 @@ outcomeEq <- lnmeddol ~ logc + idp + lpi + fmde + physlm + disea +
    child + fchild + black
 @
 %
-Now, we estimate the model by the two-step method
+Now, we estimate the model by the two-step method (reporting only the coefficients):
 <<cameron16.6TwoStep>>=
-summary( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ],
+coef( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ],
                           method = "2step" ), part="full" )
 @
 %
@@ -1098,14 +1096,14 @@ as well as from our results.
 
 Again, we repeat the analysis with the ML estimation method:
 <<cameron16.6ML>>=
-summary( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ] ),
+coef( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ] ),
    part="full" )
 @
 %
 All coefficients and standard errors of the ML estimation are nearly
 identical to the values reported in Table~16.1 of \citet{cameron05} as
 well as to the seven-digit values in their \proglang{Stata} output.
-Only a very few coefficients deviate on the seventh decimal place.
+Only a very few coefficients deviate at the seventh decimal place.
 % outcome equation: hlthp, female, child, black
 
 
@@ -1143,27 +1141,13 @@ thereafter\footnote{One has to choose suitable \code{parscale}, for
   with a higher log-likehood value than the original example in the
   Section~\ref{sec:Greene22.8}}.  In most cases the 2-step method,
 used for calculating the initial values, does a good job.
-<<>>=
-mr2 <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
-   wage ~ exper + I( exper^2 ) + educ + city,
-   data = Mroz87, start = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.9),
-   maxMethod="SANN", parscale = 0.001 )
-summary(mr2)
 
-coef( mr2 )
-
-mr3 <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
-   wage ~ exper + I( exper^2 ) + educ + city,
-   data = Mroz87, start = coef( mr2 ) )
-summary(mr3)
-
-@ 
 
 \subsection{Boundary of the parameter space}
 \label{sec:boundary}
 
 In general, one should prefer \code{method="ml"} instead of
-\code{"2step"}.  However, ML may have problems at the boundary of the
+\code{"2step"}.  However, ML estimator may have problems at the boundary of the
 parameter space.  Take the textbook tobit example: 
 \begin{equation}
   \label{eq:tobit}
@@ -1177,7 +1161,7 @@ parameter space.  Take the textbook tobit example:
 \end{equation}
 This model can be written as a tobit-2 model where the error term of
 the selection and outcome equation are perfectly correlated.  In this
-case the ML may not converge:
+case the ML estimator may not converge:
 <<tobit_tobit2>>=
 set.seed(0)
 x <- runif(1000)
@@ -1186,7 +1170,8 @@ ys <- y > 0
 summary(selection(ys~x, y~x))
 @ 
 %
-The reason is that $\varrho = 1$ lies at the boundary of the parameter
+The reason, as in the previous example,
+is that $\varrho = 1$ lies at the boundary of the parameter
 space.  However, the 2-step method still works, although standard
 errors are large:
 <<tobit_tobit2_summary>>=
@@ -1205,18 +1190,18 @@ of various factors in economics and other social sciences.  We argue
 that they also serve as useful teaching tools because they are easy
 to implement and understand.
 
-We briefly describe the implementation and usage of tobit-2 and
-tobit-5 (switching regression) models in \pkg{micEcon}, and
-demonstrate the usage of the package using a number of Monte-Carlo and
+We briefly described the implementation and usage of tobit-2 and
+tobit-5 (switching regression) models in \pkg{micEcon}, and possible
+generalisations of our \code{selection} function.  We
+demonstrated the usage of the package using a number of simulated and
 real data examples.  The examples illustrate several important issues,
-related to exclusion restriction, identification at infinity and
-functional for specification.  Our implementation works well for
+related to exclusion restrictions, identification at infinity and
+functional form specification.  Our implementation works well for
 correctly specified cases with exclusion restriction fulfilled.  The
 problems appearing in the case of misspecification or weak
 identification are related to the model itself.  In these problematic
-cases a more robust maximisation algorithm might be useful, even if
-the problems lie elsewhere.  More robust optimisation is left for the
-future work.
+cases a more robust maximisation algorithm might be useful, or
+two-step estimator might be preferrable.
 
 
 
@@ -1228,8 +1213,7 @@ TODO:
 
 RK comments:
 
-1) Less R code in the paper.  How?
-
+1) 
    Repeated MC experiments?  But this paper is not about the asyptotic
    properties but abut R package?
 
