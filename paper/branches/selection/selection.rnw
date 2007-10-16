@@ -32,7 +32,7 @@
   problem as well as the Heckman solution to it, and argue that
   although modern econometrics has non- and semiparametric estimation
   methods in its toolbox, the Heckman models are an integral part of
-  modern applied econometrics and econometrics syllabus.  We describe
+  modern applied analysis and econometrics syllabus.  We describe
   the implementation of these models in package \pkg{micEcon} and
   illustrate the usage of the package on several simulation and real
   data examples.  Our examples demonstrate the effect of exclusion
@@ -99,42 +99,50 @@ options(width=75)
 
 Social scientists are often interested in causal effects --- what is
 the impact of a new drug, a certain type of school or being born as a
-twin.  Many of these cases are not under researcher's control.  In
-most cases, the subjects can decide themselves, whether they take the
+twin.  Many of these cases are not under researcher's control.  
+Often, the subjects can decide themselves, whether they take the
 drug or which school they attend.  They cannot control whether they
 are twins, but neither can the researcher --- the twins may tend to be
 born in different type of families than singles.  All these cases
 are similar from the statistical point of view.  Whatever is the
 sampling mechanism, from an initial ``random'' sample we extract a
-sample of interest, which is not ``random'' any more
+sample of interest, which may not be representative of the population
+as a whole
 \citep[see][p.~1937, for a discussion]{heckman+macurdy1986}.
 
-This problem --- people who are ``treated'' are different than the rest
+This problem --- people who are ``treated'' may be different than the rest
 of the population --- is usually referred to as the \emph{sample
   selection} or \emph{self-selection} problem.  We cannot estimate the
-causal effect, unless we solve the selection problem.  Otherwise, we
+causal effect, unless we solve the selection
+problem\footnote{Correcting for selectivity is necessary but not
+  always sufficient for estimating the causal effect.  
+  A common problem of different type is lack of common support between
+  the treated and untreated population.  We are grateful to a referee
+  for pointing this out.}.  
+Otherwise, we
 never know which part of the observable outcome is related to the
 causal relationship and which part is due to the fact that different
 people were selected to the treatment and control groups.
 
 Solving the sample selection problems requires using additional
-information.  This information can be in many possible forms which may
-or may not be feasible or useful for any particular case.  Here we
-list a few popular choices:
+information.  This information may be in different forms, each of which may
+or may not be feasible or useful for any particular case.  
+Here we list a few popular choices:
 
 \begin{itemize}
 \item Random experiment, the situation, where the participants
   do not have control over their status while the researcher
-  has.  Randomisation is in many cases the best of the possible
-  methods as it is easy to analyse and understand.  However, this
-  method is seldom feasible for practical and ethical reasons.  The
+  has.  Randomisation is in many cases the best possible
+  method as it is easy to analyse and understand.  However, this
+  method is seldom feasible for practical and ethical reasons.  Even
+  more, the
   experimental environment may add additional interference which
   complicate the analysis.
 \item Instruments (exclusion restrictions) are in many ways similar to
-  randomisation.  These are variables which researcher can observe,
+  randomisation.  These are variables, observable to the researcher,
   and which determine the treatment status but not the outcome.
-  Unfortunately, these tend to be contradicting requirements in 
-  real life, and only seldom we have instruments of reasonable
+  Unfortunately, these two requirements tend contradict each other,
+  and only seldom we have instruments of reasonable
   quality.
 \item Information about the functional form of the selection and
   outcome processes, such as the distribution of the disturbance
@@ -144,19 +152,18 @@ list a few popular choices:
 
 During the recent decades, either randomisation or the
 pseudo-randomisation (natural experiments) has become the state-of-the
-art while estimating the causal effects.  The methods, relying on the
-distributional assumptions are becoming less widely used.  The reason
-is obvious --- the parametric assumptions can only seldom be
-justified, and we do not want our results to rely on dubious
-assumptions.  Even if we have valid instruments or exclusion
-restrictions, the parametric hypothesis add their interference which
-may be hard to disentangle from the estimates.
+art while estimating the causal effects.  However, the methods, relying on the
+distributional assumptions are are still widely used.  The reason
+is obvious --- these methods are simple, widely available in software
+packages, and they are part of common econometrics syllabus.
+This is true even though parametric assumptions can only seldom be
+justified, and their interference
+may be hard to disentangle from the other sources of identification.
 
-However, even if these models are less popular in research nowadays,
-they still serve as excellent teaching tools.
+These models also serve as excellent teaching tools.
 They are extensively explained in many recent econometric
 text books \citep[e.g.][]{johnston97, verbeek00, greene2002, wooldridge03,
-cameron05} and are standard procedures in popular software packages
+cameron05} and they are standard procedures in popular software packages
 like \proglang{Limdep} and \proglang{Stata}.
 Heckman-type selection
 models easily allow us to experiment with selection bias,
@@ -168,19 +175,21 @@ package \pkg{micEcon}, which is available on CRAN
 (\url{http://CRAN.R-project.org/}).  The package implements two types
 of more popular Heckman selection models which, as far as we know,
 were not available for \proglang{R} before.  Our presentation is
-geared toward teaching because we believe that the main advantage of
-these type of models lies nowadays in econometrics training.
+geared toward teaching because we believe that one of the advantages of
+these types of models lies in econometrics training.
 
-The paper is organized as follows: in the next section we introduce
+The paper is organized as follows: In the next section we introduce
 the \citet{heckman1976} solution to the sample selection problem.
 Section~\ref{sec:implementation} briefly describes the current implementation
-of the model in \pkg{micEcon} and possible generalisations while
-preserving the interface.  In Section~\ref{sec:using} we
+of the model in \pkg{micEcon} and it's possible generalisations.  
+In Section~\ref{sec:using} we
 illustrate the usage of the package on various simulated and real
-data examples.  Section~\ref{sec:reliability} is devoted to comparison
-of our results to the other examples in the literature;
-Section~\ref{sec:problems} describes the problems, related to the
-method and our implementation of it; and the last section concludes.
+data examples.  Section~\ref{sec:reliability} is devoted to
+replication excercises where we compare
+our results to the other examples in the literature;
+Section~\ref{sec:problems} describes the robustness issues of the
+method and our
+implementation of it; and the last section concludes.
 
 
 
@@ -376,18 +385,16 @@ conditional mean of the residual term $\E [
 \citealp[p.~1938]{heckman+macurdy1986}, for references and
 \citealp{klaauw+koning2003} for an application).
 
-This model and its derivations were widely used in 1970s and 1980s.
-Later, it has fallen into disfavour due to the reliance on the
-parametric assumptions.  These are almost never justified in social
-sciences.  The model is well identified if the exclusion restriction
+This model and its derivations were introduced in 1970s and in 1980s.
+The model is well identified if the exclusion restriction
 is fulfilled, i.e.\ if $\vec{x}^S$ includes a component with a
-substantial explanatory power, which is not present in $\vec{x}^O$.
+substantial explanatory power but which is not present in $\vec{x}^O$.
 This means essentially that we have a valid instrument.  If this is
 not the case, the identification is related to the non-linearity of
 the inverse Mill's ratio $\lambda(\cdot)$, exact form of which stems
 from the distributional assumptions.  During the recent decades,
 various semiparametric estimation techniques have been increasingly
-used instead of the Heckman model (see \citealp{powell1994} and
+used in addition to the Heckman model (see \citealp{powell1994} and
 \citealp{pagan+ullah1999} for a review).
 
 
@@ -417,14 +424,14 @@ The two-step estimation is done by the function \code{heckit2fit} or
 
 The likelihood maximisation is performed using Newton-Raphson
 maximisation (implemented as \code{maxNR} in \pkg{micEcon}) by
-default, where analytic score vector and analytic Hessian matrix are
+default using analytic score vector and analytic Hessian matrix are
 used.  This results in a reasonably fast computation even in case
 of tens of thousands observations.  A well-defined model should
 converge in less than 15 iterations; in the case of weak
 identification this number may be considerably larger.  Convergence
-issues may appear at the boundary of the parameter space (e.g.\ if
-$\varrho \to 1$, see Section~\ref{sec:convergence}).  Another
-maximisation algorithm can be changed by argument
+issues may appear at the boundary of the parameter space (if
+$|\varrho| \to 1$, see Section~\ref{sec:convergence}).  Another
+maximisation algorithm can be chosen by argument
 ``\code{maxMethod}'', e.g. ``\code{maxMethod="SANN"}'' uses the SANN
 robust global maximisation algorithm.
 % ....
@@ -433,11 +440,11 @@ The command \code{selection} returns an object of class \code{selection}.
 The corresponding \code{summary}, \code{coef}, \code{coef.summary}
 and \code{vcov} methods include an extra argument \code{part},
 which specifies which part of the model to output.
-One may choose either the full model (\code{part = "full"}, default),
-or the outcome equation only (\code{part = "outcome"}).
+One may choose either the full model (\code{part="full"}, default),
+or the outcome equation only (\code{part="outcome"}).
 
 Currently, the variance-covariance matrix of the two-step estimators
-is only partially implemented with \code{NA} in place of the
+is only partially implemented with \code{NA}-s in place of the
 unimplemented components.
 
 The package is written completely in \proglang{R} which should
@@ -447,7 +454,7 @@ the latter for examples only.  Both
 are available from the Comprehensive R Archive Network (CRAN) at
 \url{http://CRAN.R-project.org/}.
 
-\subsection{Current API and other selection models}
+\subsection{Current API and a wider range of selection models}
 
 We briefly discuss possible ways of introducing more general selection
 models using a slightly generalised version of the current API.
@@ -462,14 +469,15 @@ switching regression with unobserved separator).  In this way, all
 the tobit-models, listed by \cite{amemiya1985} can be specified.
 
 Another possible generalisation is allowing for discrete dependent
-variable models.  While binary-choice can be easily distinguised, we
+variable models.  While the case of binary-choice can be easily
+distinguised from continuous response, we
 need an additional parameter in multiple-choice case.  This parameter
 (possibly a vector where components correspond to the individual
 equations) will allows the user to specify the exact type of the
 response (like multinominal, ordered or Poissonian).
 
 Third, different distributions of the disturbance terms can be
-specified in similar way using an additional parameter.  It may be a
+specified in a similar way using an additional parameter.  It may be a
 vector if different marginal distributions for different outcome
 equations are necessary.
 
@@ -1200,134 +1208,12 @@ functional form specification.  Our implementation works well for
 correctly specified cases with exclusion restriction fulfilled.  The
 problems appearing in the case of misspecification or weak
 identification are related to the model itself.  In these problematic
-cases a more robust maximisation algorithm might be useful, or
-two-step estimator might be preferrable.
+cases the user may gain from a more robust maximisation algorithm.  
+In some cases
+two-step estimator is preferrable.
 
 
 
 \bibliography{selection}
 
 \end{document}
-
-TODO:
-
-RK comments:
-
-1) 
-   Repeated MC experiments?  But this paper is not about the asyptotic
-   properties but abut R package?
-
-   As our simulation studies are not really Monte Carlo experiments,
-   but "simply single instances" (RK), we could just rename them
-   (e.g. "simulations studies" or "simulation studies with random numbers")
-   instead of extending them to real Monte Carlo studies.
-   Do you think that RKs agrees with this?
-
-2) More unified treatment of SwRg models.  Do you know about the
-   discussion he mentions?
-
-   I guess he means the discussion that followed my email on R-Help:
-   http://finzi.psych.upenn.edu/R/Rhelp02a/archive/47095.html
-
-3) Non-Gaussian settings or heteroscedasticity...  But we have
-   misspecification (non-Gaussian) for tobit5.  Does he want to see
-   that for tobit2 too?  I don't understand the point (the paper is
-   not about the properties of the estimator), but we can easily do it
-   for tobit2 too.
-               
---------------------------
-
-How to implement the other selection models:
-
-tobit1: selection is a logical (or factor of two levels) vector,
-        outcome is the outcome model y1 ~ x
-
-        "tobit1", "tobit"
-
-   I think that the interface is not flexible enough
-   if argument "selection" is just a logical vector,
-   because I cannot see how you can indicate,
-   whether your dependent variable is left-censored,
-   right-censored, or interval-censored.
-   Maybe selection could be a vector with two elements
-   indicating the minimum and maximum
-   (like Achim Zeileis' tobit function that I sent you),
-   e.g. "selection = c( 0, Inf )" is the standard tobit
-   that is left-censored at zero.
-
-tobit2: selection - single formula, outcome - single formula
-
-        "tobit2"
-
-tobit3: selection - logical vector, outcome - two formulas, the 1st
-        for y1 (which is also selection equation), the other for y2
-
-       "tobit3"
-
-tobit4: selection - single equation (binary LHS), outcome - 3 formulas
-
-       "tobit4"
-
-tobit5: selection - single equation (binary LHS), outcome - 2 formulas
-
-       "tobit5"
-
-We can correctly guess all the 5 cases (although 3 and 4 may be
-tricky).  However, should use model= argument for allowing
-finer control, more robust programming, easier generalisations.
-
-Other more important models:
-
-switching regression: specify type of separator as 'selection' if not
-        an equation
-
-   What is the difference between switching regression
-   and tobit5?
-
-   OT: switching regression is more general concept (e.g. separator
-       may not be observable).
-
-treatment effect: single selection formula (binary or multivariate
-        LHS) + a single outcome formula.  Treatment indicator enters
-        as a explanatory variable here.  Possible to guess.  #levels
-        of selection LHS = # of different treatments.  First level =
-        "no treatment".  Multiple treatment effects: more than one
-        selection formula.
-
-   or: additional argument "treatment" that is a string (or string vector)
-       with the name(s) of the treatment indicator(s)
-
-   OT: "treatment" would in practice duplicate the LHS of selection formula(s)?
-
-        If multiple levels, need to specify whether multinominal or
-        ordered selection.
-
-        "treatment"
-
-qualitative response: check whether LHS of outcome is a factor.
-        Should be possible to specify explicitly and state the type
-        (multinominal, ordered, Poisson).
-
-        Hence an additional parameter needed (attribute to "outcome"?)
-
-Different error distributions: an additional parameter.  Should use a
-        given order: e.g. specify a common MV-distribution
-        (e.g. "gaussian") or a vector of marginal distributions
-        c("logistic", "normal").  Order is given as selection1,
-        selection2, ..., outcome1, outcome2, ...
-
-A way to specify restrictions on the error covariance matrix (simply
-        constrained maximisation OK?).  Possible use constrained
-        maximisation, a separate parameter for constrains on the VAR
-        matrix. 
-
--------------
-
-So, I think we can go quite far by introducing only 4 additional
-parameters and not breaking API.  The following will not be discussed.
-Comments?
-
-* incidental selection
-* bivariate probit selection
-* Simultaneuous censored equations (OLS + tobit, BC+BC)
-
