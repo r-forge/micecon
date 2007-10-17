@@ -3,18 +3,18 @@
 \alias{maxSANN}
 \alias{maxNM}
 
-\title{BFGS, SANN and Nelder-Mead maximisation}
+\title{BFGS, SANN and Nelder-Mead Maximization}
 \description{
   These functions are wrappers for \code{\link{optim}} where the arguments are
   compatible with \code{\link{maxNR}}
 }
 \usage{
 maxBFGS(fn, grad = NULL, hess=NULL, start, print.level = 0, iterlim = 200,
-   tol = 1e-06, ... )
+   tol = 1e-08, reltol=tol, ... )
 maxSANN(fn, grad = NULL, hess = NULL, start, print.level = 0, iterlim =
-   10000, tol = 1e-06, temp = 10, tmax = 10, parscale = rep(1, length = length(start)), ...)
+   10000, tol = 1e-08, reltol=tol, temp = 10, tmax = 10, parscale = rep(1, length = length(start)), ...)
 maxNM(fn, grad = NULL, hess = NULL, start, print.level = 0, iterlim =
-   500, tol = 1e-06, parscale = rep(1, length = length(start)), alpha = 1, beta = 0.5, gamma = 2, ...)
+   500, tol = 1e-08, reltol=tol, parscale = rep(1, length = length(start)), alpha = 1, beta = 0.5, gamma = 2, ...)
 }
 
 \arguments{
@@ -34,8 +34,8 @@ maxNM(fn, grad = NULL, hess = NULL, start, print.level = 0, iterlim =
   \item{start}{initial values for the parameters.}
   \item{print.level}{a larger number prints more working information.}
   \item{iterlim}{maximum number of iterations.}
-  \item{tol}{the absolute convergence tolerance (see
-    \code{\link{optim}}).}
+  \item{tol, reltol}{the relative convergence tolerance (see
+    \code{\link{optim}}).  \code{tol} is for compatibility with \code{\link{maxNR}}.}
   \item{temp}{controls the '"SANN"' method. It is the starting
           temperature for the cooling schedule. Defaults to '10'.}
   \item{tmax}{is the number of function evaluations at each temperature

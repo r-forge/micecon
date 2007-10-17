@@ -1,7 +1,7 @@
 
 maxNR <- function(fn, grad=NULL, hess=NULL, start,
                   print.level=0,
-                  tol=1e-6, gradtol=1e-6, steptol=1e-10,
+                  tol=1e-8, reltol=sqrt(.Machine$double.eps), gradtol=1e-6, steptol=1e-10,
                   lambdatol=1e-6,
                   qrtol=1e-10,
                   iterlim=15,
@@ -25,7 +25,8 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
    ## qrtol       - tolerance for qr decomposition
    ## ...         - extra arguments for fn()
    ## The stopping criteria
-   ## tol         - maximum allowed difference between sequential values
+   ## tol         - maximum allowed absolute difference between sequential values
+   ## reltol      - maximum allowed reltive difference (stops if < reltol*(abs(fn) + reltol)
    ## gradtol     - maximum allowed norm of gradient vector
    ## iterlim     - maximum # of iterations
    ## constPar    - NULL or an index vector -- which parameters are taken as
@@ -96,6 +97,8 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
       return(gr)
    }
    hessian <- function(theta, ...) {
+      ## Note: a call to hessian must follow a call to gradient using /exactly the same/ parameter values.
+      ## This ensures compatibility with maxBHHH
       if(!is.null(hess)) {
          return(as.matrix(hess(theta, ...)))
       }
@@ -259,6 +262,9 @@ maxNR <- function(fn, grad=NULL, hess=NULL, start,
          code <-1; break
       }
       if(is.null(newVal) & f1 - f0 < tol) {
+         code <- 2; break
+      }
+      if(is.null(newVal) & f1 - f0 < reltol*(f1 + reltol)) {
          code <- 2; break
       }
    }
