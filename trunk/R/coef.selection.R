@@ -9,7 +9,12 @@ coef.selection <- function( object, part="full", ... ) {
        coefValues <- object$coefficients
    if( part == "outcome" ) {
       coefValues <- coefValues[ object$param$index$outcome ]
+   } else {
+      attributes( coefValues )$index <- object$param$index
    }
+   attributes( coefValues )$part <- part
+   attributes( coefValues )$tobitType <- object$tobitType
 
+   class( coefValues ) <- "coef.selection"
    return( coefValues )
 }
