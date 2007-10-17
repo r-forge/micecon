@@ -30,11 +30,11 @@ Call:
  heckit(selection = lfp ~ age + I(age^2) + faminc + kids + educ,      outcome = wage ~ exper + I(exper^2) + educ + city, data = Mroz87) 
 
 Coefficients:
-  (Intercept)            age       I(age^2)         faminc       kidsTRUE  
+S:(Intercept)          S:age     S:I(age^2)       S:faminc     S:kidsTRUE  
     -4.16e+00       1.85e-01      -2.43e-03       4.58e-06      -4.49e-01  
-         educ    (Intercept)          exper     I(exper^2)           educ  
+       S:educ  O:(Intercept)        O:exper   O:I(exper^2)         O:educ  
      9.82e-02      -9.71e-01       2.11e-02       1.37e-04       4.17e-01  
-         city  invMillsRatio          sigma            rho  
+       O:city  invMillsRatio          sigma            rho  
      4.44e-01      -1.10e+00       3.20e+00      -3.43e-01  
 
 > print(summary( greene ))
@@ -82,7 +82,7 @@ XOeduc         0.417017   0.099003    4.21  3.1e-05 ***
 XOcity         0.443838   0.317921    1.40     0.16    
 imrData$IMR1  -1.097619   1.252900   -0.88     0.38    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 3.11 on 422 degrees of freedom
 Multiple R-Squared: 0.664,	Adjusted R-squared: 0.659 
@@ -111,17 +111,17 @@ chi2(5) = 48.0507 (p=3.46824e-09)
 > print( greene$rho )
 [1] -0.342999
 > print( coef( greene ), digits = 5 )
-  (Intercept)           age      I(age^2)        faminc      kidsTRUE 
-  -4.1568e+00    1.8540e-01   -2.4259e-03    4.5804e-06   -4.4899e-01 
-         educ   (Intercept)         exper    I(exper^2)          educ 
-   9.8182e-02   -9.7120e-01    2.1061e-02    1.3708e-04    4.1702e-01 
-         city invMillsRatio         sigma           rho 
-   4.4384e-01   -1.0976e+00    3.2001e+00   -3.4300e-01 
+S:(Intercept)          S:age     S:I(age^2)       S:faminc     S:kidsTRUE  
+  -4.1568e+00     1.8540e-01    -2.4259e-03     4.5804e-06    -4.4899e-01  
+       S:educ  O:(Intercept)        O:exper   O:I(exper^2)         O:educ  
+   9.8182e-02    -9.7120e-01     2.1061e-02     1.3708e-04     4.1702e-01  
+       O:city  invMillsRatio          sigma            rho  
+   4.4384e-01    -1.0976e+00     3.2001e+00    -3.4300e-01  
 > print( coef( greene, part = "outcome" ), digits = 5 )
-  (Intercept)         exper    I(exper^2)          educ          city 
-  -0.97120030    0.02106096    0.00013708    0.41701738    0.44383788 
-invMillsRatio 
-  -1.09761942 
+  (Intercept)          exper     I(exper^2)           educ           city  
+  -0.97120030     0.02106096     0.00013708     0.41701738     0.44383788  
+invMillsRatio  
+  -1.09761942  
 > print( coef( summary( greene ) ), digits = 5 )
                  Estimate Std. Error   t value   Pr(>|t|)
 (Intercept)   -4.1568e+00 1.4021e+00 -2.964730 3.1268e-03
@@ -218,11 +218,11 @@ Call:
  heckit(selection = lfp ~ nwifeinc + educ + exper + I(exper^2) +      age + kids5 + kids618, outcome = log(wage) ~ educ + exper +      I(exper^2), data = Mroz87) 
 
 Coefficients:
-  (Intercept)       nwifeinc           educ          exper     I(exper^2)  
+S:(Intercept)     S:nwifeinc         S:educ        S:exper   S:I(exper^2)  
      0.270077      -0.012024       0.130905       0.123348      -0.001887  
-          age          kids5        kids618    (Intercept)           educ  
+        S:age        S:kids5      S:kids618  O:(Intercept)         O:educ  
     -0.052853      -0.868329       0.036005      -0.578103       0.109066  
-        exper     I(exper^2)  invMillsRatio          sigma            rho  
+      O:exper   O:I(exper^2)  invMillsRatio          sigma            rho  
      0.043887      -0.000859       0.032262       0.663629       0.048614  
 
 > print( summary( wooldridge ) )
@@ -270,7 +270,7 @@ XOexper        0.043887   0.016353    2.68   0.0076 **
 XOI(exper^2)  -0.000859   0.000441   -1.95   0.0523 .  
 imrData$IMR1   0.032262   0.134388    0.24   0.8104    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.667 on 423 degrees of freedom
 Multiple R-Squared: 0.773,	Adjusted R-squared: 0.77 
@@ -280,19 +280,18 @@ F-statistic:  288 on 5 and 423 DF,  p-value: <2e-16
 --------------------------------------------
 Probit binary choice model/Maximum Likelihood estimation
 Newton-Raphson maximisation, 5 iterations
-Return code 2: successive function values within tolerance limit.
-May be a solution
+Return code 1: gradient close to zero. May be a solution
 Log-Likelihood: -401.302 
 753 observations (325 zeros and 428 ones) and 8 free parameters (df = 745)
 Estimates:
                  Estimate  Std. error   t value     Pr(> t)
-XS(Intercept)  0.27007677 0.508593035  0.531027 5.95400e-01
+XS(Intercept)  0.27007677 0.508593036  0.531027 5.95400e-01
 XSnwifeinc    -0.01202374 0.004839838 -2.484327 1.29797e-02
-XSeduc         0.13090473 0.025254196  5.183484 2.17778e-07
-XSexper        0.12334759 0.018716401  6.590348 4.38798e-11
+XSeduc         0.13090473 0.025254196  5.183485 2.17778e-07
+XSexper        0.12334759 0.018716402  6.590348 4.38798e-11
 XSI(exper^2)  -0.00188708 0.000599986 -3.145205 1.65970e-03
 XSage         -0.05285267 0.008477240 -6.234656 4.52772e-10
-XSkids5       -0.86832850 0.118522311 -7.326287 2.36616e-13
+XSkids5       -0.86832851 0.118522311 -7.326287 2.36616e-13
 XSkids618      0.03600496 0.043476788  0.828142 4.07590e-01
 Significance test:
 chi2(7) = 227.142 (p=2.00867e-45)
@@ -302,15 +301,15 @@ chi2(7) = 227.142 (p=2.00867e-45)
 > print( wooldridge$rho )
 [1] 0.0486143
 > print( coef( wooldridge ), digits = 5 )
-  (Intercept)      nwifeinc          educ         exper    I(exper^2) 
-   0.27007677   -0.01202374    0.13090473    0.12334759   -0.00188708 
-          age         kids5       kids618   (Intercept)          educ 
-  -0.05285267   -0.86832850    0.03600496   -0.57810319    0.10906552 
-        exper    I(exper^2) invMillsRatio         sigma           rho 
-   0.04388734   -0.00085911    0.03226186    0.66362875    0.04861433 
+S:(Intercept)     S:nwifeinc         S:educ        S:exper   S:I(exper^2)  
+   0.27007677    -0.01202374     0.13090473     0.12334759    -0.00188708  
+        S:age        S:kids5      S:kids618  O:(Intercept)         O:educ  
+  -0.05285267    -0.86832851     0.03600496    -0.57810319     0.10906552  
+      O:exper   O:I(exper^2)  invMillsRatio          sigma            rho  
+   0.04388734    -0.00085911     0.03226186     0.66362875     0.04861433  
 > print( coef( wooldridge, part = "outcome" ), digits = 5 )
-  (Intercept)          educ         exper    I(exper^2) invMillsRatio 
-  -0.57810319    0.10906552    0.04388734   -0.00085911    0.03226186 
+  (Intercept)           educ          exper     I(exper^2)  invMillsRatio  
+  -0.57810319     0.10906552     0.04388734    -0.00085911     0.03226186  
 > print( coef( summary( wooldridge ) ), digits = 5 )
                  Estimate Std. Error  t value   Pr(>|t|)
 (Intercept)    0.27007677 0.50859304  0.53103 5.9556e-01
@@ -319,7 +318,7 @@ educ           0.13090473 0.02525420  5.18348 2.8133e-07
 exper          0.12334759 0.01871640  6.59035 8.3424e-11
 I(exper^2)    -0.00188708 0.00059999 -3.14521 1.7262e-03
 age           -0.05285267 0.00847724 -6.23466 7.6101e-10
-kids5         -0.86832850 0.11852231 -7.32629 6.2083e-13
+kids5         -0.86832851 0.11852231 -7.32629 6.2083e-13
 kids618        0.03600496 0.04347679  0.82814 4.0786e-01
 (Intercept)   -0.57810319 0.30500620 -1.89538 5.8432e-02
 educ           0.10906552 0.01552295  7.02608 4.8301e-12
@@ -412,9 +411,9 @@ Call:
  heckit(selection = ys ~ xs, outcome = list(yo1 ~ xo1, yo2 ~ xo2)) 
 
 Coefficients:
-   (Intercept)              xs     (Intercept)             xo1  invMillsRatio1  
+ S:(Intercept)            S:xs  O1:(Intercept)          O1:xo1  invMillsRatio1  
         0.0267          0.8755          0.0665          0.9181         -0.9268  
-        sigma1            rho1     (Intercept)             xo2  invMillsRatio2  
+        sigma1            rho1  O2:(Intercept)          O2:xo2  invMillsRatio2  
         0.8958          0.9900          0.0242          1.0457          0.2230  
         sigma2            rho2  
         0.9763          0.2284  
@@ -448,15 +447,15 @@ rho1             0.9900         NA      NA       NA
 rho2             0.2284         NA      NA       NA
 --------------------------------------------
 > print( coef( wooldridge ), digits = 5 )
-  (Intercept)      nwifeinc          educ         exper    I(exper^2) 
-   0.27007677   -0.01202374    0.13090473    0.12334759   -0.00188708 
-          age         kids5       kids618   (Intercept)          educ 
-  -0.05285267   -0.86832850    0.03600496   -0.57810319    0.10906552 
-        exper    I(exper^2) invMillsRatio         sigma           rho 
-   0.04388734   -0.00085911    0.03226186    0.66362875    0.04861433 
+S:(Intercept)     S:nwifeinc         S:educ        S:exper   S:I(exper^2)  
+   0.27007677    -0.01202374     0.13090473     0.12334759    -0.00188708  
+        S:age        S:kids5      S:kids618  O:(Intercept)         O:educ  
+  -0.05285267    -0.86832851     0.03600496    -0.57810319     0.10906552  
+      O:exper   O:I(exper^2)  invMillsRatio          sigma            rho  
+   0.04388734    -0.00085911     0.03226186     0.66362875     0.04861433  
 > print( coef( wooldridge, part = "outcome" ), digits = 5 )
-  (Intercept)          educ         exper    I(exper^2) invMillsRatio 
-  -0.57810319    0.10906552    0.04388734   -0.00085911    0.03226186 
+  (Intercept)           educ          exper     I(exper^2)  invMillsRatio  
+  -0.57810319     0.10906552     0.04388734    -0.00085911     0.03226186  
 > print( coef( summary( wooldridge ) ), digits = 5 )
                  Estimate Std. Error  t value   Pr(>|t|)
 (Intercept)    0.27007677 0.50859304  0.53103 5.9556e-01
@@ -465,7 +464,7 @@ educ           0.13090473 0.02525420  5.18348 2.8133e-07
 exper          0.12334759 0.01871640  6.59035 8.3424e-11
 I(exper^2)    -0.00188708 0.00059999 -3.14521 1.7262e-03
 age           -0.05285267 0.00847724 -6.23466 7.6101e-10
-kids5         -0.86832850 0.11852231 -7.32629 6.2083e-13
+kids5         -0.86832851 0.11852231 -7.32629 6.2083e-13
 kids618        0.03600496 0.04347679  0.82814 4.0786e-01
 (Intercept)   -0.57810319 0.30500620 -1.89538 5.8432e-02
 educ           0.10906552 0.01552295  7.02608 4.8301e-12
