@@ -15,6 +15,6 @@ coef.selection <- function( object, part="full", ... ) {
    attributes( coefValues )$part <- part
    attributes( coefValues )$tobitType <- object$tobitType
 
-   class( coefValues ) <- "coef.selection"
+   class( coefValues ) <- c( "coef.selection", class(coefValues) )
    return( coefValues )
 }
