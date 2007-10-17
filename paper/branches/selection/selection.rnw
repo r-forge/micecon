@@ -1004,12 +1004,11 @@ data( Mroz87 )
 Mroz87$kids <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
 @
 %
-Now, we estimate the model by the two-step method.  For brevity, we
-just report the estimated coefficients and not the full summaries here.
+Now, we estimate the model by the two-step method.
 <<greene22.8TwoStep>>=
-coef( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+greeneTS <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
-   data = Mroz87, method = "2step" ) )
+   data = Mroz87, method = "2step" )
 @
 %
 Most results are identical to the values reported by
@@ -1026,19 +1025,23 @@ Note that the standard error of the inverse Mill's ratio
 
 Finally, we repeat the analysis with the ML estimation method:
 <<greene22.8ML>>=
-coef( selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
-   wage ~ exper + I( exper^2 ) + educ + city, data = Mroz87 ) )
+greeneML <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+   wage ~ exper + I( exper^2 ) + educ + city, data = Mroz87,
+   maxMethod = "BHHH", iterlim = 500 )
 @
 %
-While the estimated coefficients are almost identical to the values
-published in the errata of \citet{greene2002}
-(\url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}),
-the standard errors calculated by \code{selection} are considerably
-smaller.  This is because of different ways of calculating the Hessian
+Again, the estimated coefficients and standard errors are almost identical
+to the values published in the errata of \citet{greene2002}
+(\url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}).
+While we can obtain the same coefficients with the Newton-Raphson (NR)
+maximization method,
+we have to use the Bernd-Hall-Hall-Hausman (BHHH) method
+to obtain the published standard errors.
+This is because of different ways of calculating the Hessian
 matrix may result in substantially different standard errors
-\citep{calzolari+fiorentini1993}.  Our implementation uses exact
-analytic Hessian, the implementation in the published errata uses
-outer product (BHHH) approximation.
+\citep{calzolari+fiorentini1993}. The NR algorithm uses exact
+analytic Hessian, BHHH uses
+outer product approximation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
