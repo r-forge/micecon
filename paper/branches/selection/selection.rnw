@@ -147,7 +147,7 @@ Here we list a few popular choices:
 \item Information about the functional form of the selection and
   outcome processes, such as the distribution of the disturbance
   terms.  The original Heckman's solution belongs to this group.
-  However, the functional form assuptions are usually hard to justify.
+  However, the functional form assumptions are usually hard to justify.
 \end{itemize}
 
 During the recent decades, either randomisation or the
@@ -178,14 +178,14 @@ were not available for \proglang{R} before.  Our presentation is
 geared toward teaching because we believe that one of the advantages of
 these types of models lies in econometrics training.
 
-The paper is organized as follows: In the next section we introduce
+The paper is organised as follows: In the next section we introduce
 the \citet{heckman1976} solution to the sample selection problem.
 Section~\ref{sec:implementation} briefly describes the current implementation
 of the model in \pkg{micEcon} and it's possible generalisations.  
 In Section~\ref{sec:using} we
 illustrate the usage of the package on various simulated and real
 data examples.  Section~\ref{sec:reliability} is devoted to
-replication excercises where we compare
+replication exercises where we compare
 our results to the other examples in the literature;
 Section~\ref{sec:problems} describes the robustness issues of the
 method and our
@@ -343,7 +343,7 @@ covariance matrix of the probit estimate
 
 This is the original idea by \citet{heckman1976}.  As the model is
 fully parametric, the more efficient maximum likelihood (ML)
-estimatior is straightforward to construct.  Using the properties of
+estimator is straightforward to construct.  Using the properties of
 the bivariate normal, it is easy to show that the log-likelihood can
 be written as
 \begin{align}
@@ -470,7 +470,7 @@ the tobit-models, listed by \cite{amemiya1985} can be specified.
 
 Another possible generalisation is allowing for discrete dependent
 variable models.  While the case of binary-choice can be easily
-distinguised from continuous response, we
+distinguished from continuous response, we
 need an additional parameter in multiple-choice case.  This parameter
 (possibly a vector where components correspond to the individual
 equations) will allows the user to specify the exact type of the
@@ -584,7 +584,7 @@ identification.
 We illustrate the case with an analogous figure (Figure~\ref{fig:t2}).
 The selection model uncovers the true dependence very well.  OLS
 estimate is downward biased because of $\varrho < 0$, as in the
-previous case.  However, now the slope is upward biased becuse $\E [
+previous case.  However, now the slope is upward biased because $\E [
 \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ is
 increasing in the single explanatory variable in the model,
 $\vec{x}^S$. 
@@ -863,7 +863,7 @@ true values are zero.  The model has serious convergence problems,
 often it does not converge at all (this is why we increased the
 \code{iterlim} here while using \code{set.seed(5)}).
 
-As the last tobit example, we repeat the previous excercise without
+As the last tobit example, we repeat the previous exercise without
 the exclusion restriction, and a slightly larger variance of \code{xs}:
 <<code:t5chi_woER>>=
 set.seed(6)
@@ -977,7 +977,7 @@ This is related to the fact that none of the $\varrho$-s is
 statistically significant.
 
 
-\section{Two Replication Excercises}
+\section{Two Replication Exercises}
 \label{sec:reliability}
 
 In this section we test the reliability of the results from
@@ -1034,7 +1034,7 @@ Again, the estimated coefficients and standard errors are almost identical
 to the values published in the errata of \citet{greene2002}
 (\url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}).
 While we can obtain the same coefficients with the Newton-Raphson (NR)
-maximization method,
+maximisation method,
 we have to use the Bernd-Hall-Hall-Hausman (BHHH) method
 to obtain the published standard errors.
 This is because of different ways of calculating the Hessian
@@ -1211,9 +1211,9 @@ functional form specification.  Our implementation works well for
 correctly specified cases with exclusion restriction fulfilled.  The
 problems appearing in the case of misspecification or weak
 identification are related to the model itself.  In these problematic
-cases the user may gain from a more robust maximisation algorithm.  
+cases the user may gain from a more robust maximisation algorithm.
 In some cases
-two-step estimator is preferrable.
+two-step estimator is preferable
 
 
 
