@@ -11,6 +11,8 @@
 \newcommand*{\mat}[1]{\mathsf{#1}}% Matrix
 \newcommand{\pnorm}{\Phi}% normal distribution function
 \renewcommand*{\vec}[1]{\boldsymbol{#1}}% vector
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.9}
 % -----------------------
 
 \author{Ott Toomet\\Tartu University
@@ -520,18 +522,21 @@ yo <- yoX*(ys > 0)
 We use \pkg{mvtnorm} in order to create bivariate normal disturbances
 with correlation $-0.7$.  Next, we generate a uniformly distributed
 explanatory variable for the selection equation, \code{xs}, the
-selection outcome \code{ys} by probit data generating process and the
-explanatory variable for the outcome equation \code{xs}.  All our true
-intercepts are equal to 0 and slopes to 1, both in this and the
+selection outcome \code{ys} by probit data generating process, and the
+explanatory variable for the outcome equation \code{xo}.  All our true
+intercepts are equal to 0 and our true slopes are equal to 1, both in this and the
 following examples.  We retain the latent outcome variable
-(\code{yoX}) for the figure below, and calculate the observable
-\code{xo}.  Note that the vectors of explanatory variables for the
+(\code{yoX}) for the figure below, and calculate the observable outcome
+\code{yo}.  Note that the vectors of explanatory variables for the
 selection (\code{xs}) and outcome equation (\code{xo}) are independent
 and hence the exclusion restriction is fulfilled.  This can also be
 seen from the fact that the estimates are reasonably precise:
 <<code:t2summary>>=
-  summary(m <- selection(ys~xs, yo ~xo))
+  summary( selection(ys~xs, yo ~xo))
 @ 
+<<echo=FALSE>>=
+  m <- selection(ys~xs, yo ~xo)
+@
 %
 One can see, that all the true values are within the 95\% confidence
 intervals of the corresponding estimates.  
@@ -562,11 +567,17 @@ abline(a=cf[1], b=cf[2], lty=3)
 # OLS
 @ 
 %
-\caption{The observable (filled) and unobservable outcomes (empty
-  circles), depending on \code{xs}.  The solid line denotes the true
-  dependence, dashed (partly overlapping the solid) is the MLE
-  estimate above, and the dotted line is the corresponding OLS
-  estimate, based on observable outcomes only.}
+\begin{small}\\
+\textbf{Legend:}
+\parbox[t]{0.7\textwidth}{
+filled circles = observable outcomes\\
+empty circles = unobservable outcomes\\
+solid line = true dependence\\
+dashed line (partly overlapping the solid) = ML estimate above\\
+dotted line = OLS estimate based on observable outcomes only
+}
+\end{small}
+\caption{Sample selection example with exclusion restriction}
   \label{fig:t2ex}
 \end{figure}
 
@@ -575,7 +586,7 @@ generating \code{yo} using \code{xs} instead of \code{xo}.
 <<>>=
 yoX <- xs + eps[,2]
 yo <- yoX*(ys > 0)
-print(summary(selection(ys ~ xs, yo ~ xs)))
+summary(selection(ys ~ xs, yo ~ xs))
 @
 % 
 The estimates are still unbiased but standard errors are substantially
@@ -589,7 +600,7 @@ The selection model uncovers the true dependence very well.  OLS
 estimate is downward biased because of $\varrho < 0$, as in the
 previous case.  However, now the slope is upward biased because $\E [
 \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ is
-increasing in the single explanatory variable in the model,
+increasing in the single explanatory variable in the outcome model,
 $\vec{x}^S$. 
 
 \begin{figure}[tp]
@@ -608,11 +619,10 @@ abline(a=cf[1], b=cf[2], lty=3)
 # OLS
 @ 
 %
-\caption{The observable (filled) and unobservable outcomes (empty
-  circles), depending on \code{xs}.  The solid line denotes the true
-  dependence, dashed (partly overlapping the solid) is the MLE
-  estimate above, and the dotted line is the corresponding OLS
-  estimate, based on observable outcomes only.}
+\begin{small}\\
+\textbf{Legend:} see figure~\ref{fig:t2ex}
+\end{small}
+\caption{Sample selection example without exclusion restriction}
   \label{fig:t2}
 \end{figure}
 
@@ -639,13 +649,16 @@ Change the support of $\vec{x}^S$ from $[0,1]$ to $[-5,5]$:
   ys <- xs + eps[,1] > 0
 yoX <- xs + eps[,2]
   yo <- yoX*(ys > 0)
-  print(summary(m <- selection(ys ~ xs, yo ~ xs)))
+  summary( selection(ys ~ xs, yo ~ xs))
+@
+<<echo=FALSE>>=
+  m <- selection(ys ~ xs, yo ~ xs)
 @
 %
 Now all the parameters are precisely estimated, with even higher
 precision than in the first example where the exclusion restriction
 is fulfilled.  The reason is simple: As one can see from
-Figure~\ref{fig:lambda()}, selection is not an issue if $x^S \gtrsim
+Figure~\ref{fig:lambda()}, selection is not an issue if $x^S >
 2$ while virtually nothing is observed if $x^{S} < -2$. 
 Here $\lambda(\beta^S x^S)$
 differs enough from a linear function.
@@ -666,11 +679,10 @@ abline(a=cf[1], b=cf[2], lty=3)
 # OLS
 @ 
 %
-\caption{The observable (filled) and unobservable outcomes (empty
-  circles), depending on \code{xs}.  The solid line denotes the true
-  dependence, dashed (almost overlapping the solid) is the MLE
-  estimate above, and the dotted line is the corresponding OLS
-  estimate, based on observable outcomes only.}
+\begin{small}\\
+\textbf{Legend:} see figure~\ref{fig:t2ex}
+\end{small}
+\caption{Sample selection example with more variation in $x^S$}
   \label{fig:lambda()}
 \end{figure}
 
@@ -734,33 +746,33 @@ distribution,
   \right),
 \end{equation}
 it is straightforward to construct analogous two-step estimators
-as~\eqref{eq:tobit2_2step}.  We may write
+as in~\eqref{eq:tobit2_2step}.  We may write
 \begin{align}
-  \E [y_i^O | \vec{x}^O = \vec{x}_i^O , \vec{x}^S = \vec{x}_i^S , y^S = 0] 
+  \E [y^O | \vec{x}^{O1} = \vec{x}_i^{O1} , \vec{x}^S = \vec{x}_i^S , y^S = 0]
   &=
-  {\vec{\beta}^{O1}}' \vec{x}_i^O 
+  {\vec{\beta}^{O1}}' \vec{x}_i^{O1} 
   +
-  \E [ \varepsilon^O|\varepsilon^S < -{\vec{\beta}^S}' \vec{x}_i^S ]
+  \E [ \varepsilon^{O1}|\varepsilon^S < -{\vec{\beta}^S}' \vec{x}_i^S ]
   \\
-  \E [y_i^O | \vec{x}^O = \vec{x}_i^O , \vec{x}^S = \vec{x}_i^S , y^S = 0] 
+  \E [y^O | \vec{x}^{O2} = \vec{x}_i^{O2} , \vec{x}^S = \vec{x}_i^S , y^S = 1]
   &=
-  {\vec{\beta}^{O2}}' \vec{x}_i^O 
+  {\vec{\beta}^{O2}}' \vec{x}_i^{O2}
   +
-  \E [ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
+  \E [ \varepsilon^{O2}|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
 \end{align}
 and hence
 \begin{equation}
   y_i^O
   =
   \begin{cases}
-    {\vec{\beta}^{O1}}' \vec{x}_i^O 
+    {\vec{\beta}^{O1}}' \vec{x}_i^{O1} 
     -
     \varrho_1 \sigma_1 \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
     +
     \eta_i^1
     \qquad \text{if } y_i^{S} = 0
     \\
-    {\vec{\beta}^{O2}}' \vec{x}_i^O 
+    {\vec{\beta}^{O2}}' \vec{x}_i^{O2} 
     + 
     \varrho_2 \sigma_2 \lambda({\vec{\beta}^S}' \vec{x}_i^S)
     +
@@ -769,11 +781,11 @@ and hence
   \end{cases}
   \label{eq:tobit5_2step}
 \end{equation}
-where $\E \eta^1 = \E \eta^2 = 0$ and $\lambda(\cdot) =
+where $\E [ \eta^1 ] = \E [ \eta^2 ] = 0$ and $\lambda(\cdot) =
 \phi(\cdot)/\Phi(\cdot)$ is the inverse Mill's ratio which can be
 calculated using the probit estimate of~\eqref{eq:t5_selection_obs}.
 This system can be estimated as two independent linear models, one for
-the case $y^S = 0$ and another for $y^S = 1$.  The ML estimator for
+the case $y^S = 0$ and another for $y^S = 1$.  The log-likelihood for
 this problem can be written as
 \begin{align}
   l &= -\frac{N}{2}\log 2\pi + \notag\\
@@ -823,7 +835,7 @@ We create the following simple switching regression problem:
   yo2 <- xo2 + eps[,3]
 @ 
 %
-We generate a 3-dimensional disturbance vector by \code{rmvnorm}.  We
+We generate 3 disturbance vectors by a 3-dimensional normal distribution using \code{rmvnorm}.  We
 set the correlation between $\varepsilon^S$ and $\varepsilon^{O1}$
 equal to 0.9 and between $\varepsilon^S$ and $\varepsilon^{O2}$ to
 0.5.  The third correlation, 0.1, takes care for the positive
@@ -861,10 +873,10 @@ summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), iterlim=20))
 @
 %
 Although we still have an exclusion restriction, now serious problems
-appear --- most intercepts are statistically significant, whereas the
-true values are zero.  The model has serious convergence problems,
+appear --- most intercepts are statistically significantly different from the
+true values zero.  The model has serious convergence problems,
 often it does not converge at all (this is why we increased the
-\code{iterlim} here while using \code{set.seed(5)}).
+\code{iterlim} and used \code{set.seed(5)}).
 
 As the last tobit example, we repeat the previous exercise without
 the exclusion restriction, and a slightly larger variance of \code{xs}:
@@ -887,7 +899,7 @@ Figure~\ref{fig:cfunctions}.  We use the estimated parameters for
 constructing the latter, however, we scale the normal control
 functions (inverse Mill's ratios) to a roughly similar scale, as the
 correct ones.
-\begin{figure}[htbp]
+\begin{figure}[tp]
   \centering
 <<fig=TRUE,height=4,echo=FALSE>>=
    EUlower <- function(alpha) {
@@ -942,42 +954,44 @@ abline(v=1, lty=3)
 #   matpoints(ex, mcy, pch=c(1,2), cex=0.5, col=1)
    axis(4)
 text(-3.5, 0.8,
-     expression(paste("correct  ")*E*group("[", epsilon^{O1}*group("|", epsilon^S > -x^S, ""), "]")))
+     expression(paste("correct  ")*E*group("[", epsilon^{O2}*group("|", epsilon^S > -bold(beta)^S*minute*bold(x)^S, ""), "]")))
 text(-3.6, -0.4,
-     expression(paste("correct  ")*E*group("[", epsilon^{O1}*group("|", epsilon^S < -x^S, ""), "]")))
+     expression(paste("correct  ")*E*group("[", epsilon^{O1}*group("|", epsilon^S < -bold(beta)^S*minute*bold(x)^S, ""), "]")))
 text(-2.5, 1.5,
-     expression(E*group("[", epsilon^{O1}*group("|",
-         epsilon^S > -bold(beta)^S*minute*bold(x)^S, ""), "]")*
-         paste("  assumed normal")), pos = 4 )
+     expression(paste("assumed  ")*E*group("[", epsilon^{O2}*group("|",
+         epsilon^S > -bold(beta)^S*minute*bold(x)^S, ""), "]")), pos = 4 )
 text(1, -1.4,
-     expression(E*group("[", epsilon^{O1}*group("|",
-         epsilon^S < -bold(beta)^S*minute*bold(x)^S, ""), "]")*
-         paste("  assumed normal")), pos = 2 )
+     expression(paste("assumed  ")*E*group("[", epsilon^{O1}*group("|",
+         epsilon^S < -bold(beta)^S*minute*bold(x)^S, ""), "]")), pos = 2 )
 @ 
 %
   \medskip \\
   \small Note:
-  Dotted vertical lines denote the support of $x^S$ in the MC experiment.
-  \caption{Control functions: correct (based on $\chi^2(1)$ distribution)
-    and assumed (based on normal distribution)}
+  Dotted vertical lines denote the support of $x^S$ in the simulation experiment;
+  correct control functions are based on the $\chi^2(1)$ distribution;
+  assumed control functions are based on the normal distribution.
+  \caption{Correct and assumed control functions}
   \label{fig:cfunctions}
 \end{figure}
 One can see, that the functions differ substantially in the relevant
-range of $x^S \in [-1, 1]$.  In particular, the true upper mean rises
+range of $x^S \in [-1, 1]$.  In particular, the true
+$\E [ \varepsilon^{O2}|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}^S ]$ decreases
 substantially faster close to $x^S = 1$ than the normal approximation
-while the correct lower mean is decreasing slower compared to the
+while the correct
+$\E [ \varepsilon^{O1}|\varepsilon^S < -{\vec{\beta}^S}' \vec{x}^S ]$
+is decreasing slower compared to the
 approximation.
 
 It is instructive to estimate the same model as two independent OLS
 equations:
 <<>>=
-  summary(lm(yo1~xs, subset=ys==0))
-  summary(lm(yo2~xs, subset=ys==1))
+  coef(summary(lm(yo1~xs, subset=ys==0)))
+  coef(summary(lm(yo2~xs, subset=ys==1)))
 @ 
 %
 One can see that the OLS estimates are very close to the ML ones.
-This is related to the fact that none of the $\varrho$-s is
-statistically significant.
+This is related to the fact that none of the $\varrho$s is
+statistically significantly different from zero.
 
 
 \section{Two Replication Exercises}
