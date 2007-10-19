@@ -31,7 +31,7 @@
   selection models in \proglang{R}.  We discuss the sample selection
   problem as well as the Heckman solution to it, and argue that
   although modern econometrics has non- and semiparametric estimation
-  methods in its toolbox, the Heckman models are an integral part of
+  methods in its toolbox, Heckman models are an integral part of
   modern applied analysis and econometrics syllabus.  We describe
   the implementation of these models in package \pkg{micEcon} and
   illustrate the usage of the package on several simulation and real
@@ -103,7 +103,7 @@ twin.  Many of these cases are not under researcher's control.
 Often, the subjects can decide themselves, whether they take the
 drug or which school they attend.  They cannot control whether they
 are twins, but neither can the researcher --- the twins may tend to be
-born in different type of families than singles.  All these cases
+born in different types of families than singles.  All these cases
 are similar from the statistical point of view.  Whatever is the
 sampling mechanism, from an initial ``random'' sample we extract a
 sample of interest, which may not be representative of the population
@@ -111,7 +111,7 @@ as a whole
 \citep[see][p.~1937, for a discussion]{heckman+macurdy1986}.
 
 This problem --- people who are ``treated'' may be different than the rest
-of the population --- is usually referred to as the \emph{sample
+of the population --- is usually referred to as \emph{sample
   selection} or \emph{self-selection} problem.  We cannot estimate the
 causal effect, unless we solve the selection
 problem\footnote{Correcting for selectivity is necessary but not
@@ -137,7 +137,7 @@ Here we list a few popular choices:
   method is seldom feasible for practical and ethical reasons.  Even
   more, the
   experimental environment may add additional interference which
-  complicate the analysis.
+  complicates the analysis.
 \item Instruments (exclusion restrictions) are in many ways similar to
   randomisation.  These are variables, observable to the researcher,
   and which determine the treatment status but not the outcome.
@@ -150,28 +150,29 @@ Here we list a few popular choices:
   However, the functional form assumptions are usually hard to justify.
 \end{itemize}
 
-During the recent decades, either randomisation or the
+During recent decades, either randomisation or the
 pseudo-randomisation (natural experiments) has become the state-of-the
-art while estimating the causal effects.  However, the methods, relying on the
-distributional assumptions are are still widely used.  The reason
+art while estimating the causal effects.  However, methods relying on instruments or
+distributional assumptions are still widely used.  The reason
 is obvious --- these methods are simple, widely available in software
 packages, and they are part of common econometrics syllabus.
-This is true even though parametric assumptions can only seldom be
+This is true even though reasonable instruments and parametric assumptions can only seldom be
 justified, and their interference
 may be hard to disentangle from the other sources of identification.
 
-These models also serve as excellent teaching tools.
+Heckman-type selection models also serve as excellent teaching tools.
 They are extensively explained in many recent econometric
 text books \citep[e.g.][]{johnston97, verbeek00, greene2002, wooldridge03,
 cameron05} and they are standard procedures in popular software packages
 like \proglang{Limdep} and \proglang{Stata}.
-Heckman-type selection
+These
 models easily allow us to experiment with selection bias,
-misspecification, exclusion restrictions etc.  These models are easy
-to implement, to visualise and to understand.
+misspecification, exclusion restrictions etc.  They are easy
+to implement, to visualise, and to understand.
 
 The aim of this paper is to describe the \proglang{R} \citep{r2007}
-package \pkg{micEcon}, which is available on CRAN
+package \pkg{micEcon}, which is available on
+the Comprehensive R Archive Network (CRAN)
 (\url{http://CRAN.R-project.org/}).  The package implements two types
 of more popular Heckman selection models which, as far as we know,
 were not available for \proglang{R} before.  Our presentation is
@@ -181,13 +182,13 @@ these types of models lies in econometrics training.
 The paper is organised as follows: In the next section we introduce
 the \citet{heckman1976} solution to the sample selection problem.
 Section~\ref{sec:implementation} briefly describes the current implementation
-of the model in \pkg{micEcon} and it's possible generalisations.  
+of the model in \pkg{micEcon} and its possible generalisations.
 In Section~\ref{sec:using} we
-illustrate the usage of the package on various simulated and real
-data examples.  Section~\ref{sec:reliability} is devoted to
+illustrate the usage of the package on various simulated
+data sets.  Section~\ref{sec:reliability} is devoted to
 replication exercises where we compare
-our results to the other examples in the literature;
-Section~\ref{sec:problems} describes the robustness issues of the
+our results to examples in the literature.
+Section~\ref{sec:problems} describes robustness issues of the
 method and our
 implementation of it; and the last section concludes.
 
@@ -207,7 +208,7 @@ Consider the the following (unobserved) structural model:
 where $y_i^{S*}$ is the realisation of the the latent value of the
 selection ``tendency'' for the individual $i$, and $y_i^{O*}$ is the
 latent outcome.  $\vec{x}_i^S$ and $\vec{x}_i^O$ are explanatory
-variables for the selection and outcome equations, respectively.
+variables for the selection and outcome equation, respectively.
 $\vec{x}^S$ and $\vec{x}^O$ may or may not be equal.  We observe
 \begin{align}
   y_i^S 
@@ -237,7 +238,7 @@ can now be written as
   \E [ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ].
 \end{equation}
 Estimating the model above by OLS gives in general biased results, as
-$\E [ \varepsilon_i^O|\varepsilon_i^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
+$\E [ \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
 \not = 0$, unless $\varepsilon^O$ and $\varepsilon^S$ are mean independent
 (in this case $\varrho = 0$ in equation~\eqref{eq:correlation} below).
 
@@ -287,7 +288,8 @@ covariates (see \citealp{greene2002} for details):
 where $\lambda(\cdot) = \phi(\cdot)/\Phi(\cdot)$ is commonly referred
 to as inverse Mill's ratio and $\phi(\cdot)$ and $\Phi(\cdot)$ are
 standard normal density and cumulative distribution functions.  The
-unknown multiplicator $\varrho \sigma$ can be estimated by OLS.
+unknown multiplicator $\varrho \sigma$ can be estimated by OLS
+($\hat{\beta}^\lambda$).
 Essentially, we describe the selection problem as an omitted variable
 problem, with $\lambda(\cdot)$ as the omitted variable.  Since the true
 $\lambda(\cdot)$s in equation \eqref{eq:tobit2_2step} are generally
@@ -377,7 +379,7 @@ The model allows a number of straightforward generalisations.  For
 instance, we may assume that we have two outcome variables, only one
 of which is observable, depending on the selection process
 (``switching regression'' or ``tobit-5'' model, further details of
-this classification are available in \citealp{amemiya1985}).  This
+this classification are available in \citealp{amemiya84,amemiya1985}).  This
 model may be relevant for treatment effect analysis.  Other types of
 generalisations include less restrictive parametric forms for the
 conditional mean of the residual term $\E [
@@ -385,13 +387,13 @@ conditional mean of the residual term $\E [
 \citealp[p.~1938]{heckman+macurdy1986}, for references and
 \citealp{klaauw+koning2003} for an application).
 
-This model and its derivations were introduced in 1970s and in 1980s.
+This model and its derivations were introduced in the 1970s and 1980s.
 The model is well identified if the exclusion restriction
 is fulfilled, i.e.\ if $\vec{x}^S$ includes a component with a
 substantial explanatory power but which is not present in $\vec{x}^O$.
 This means essentially that we have a valid instrument.  If this is
 not the case, the identification is related to the non-linearity of
-the inverse Mill's ratio $\lambda(\cdot)$, exact form of which stems
+the inverse Mill's ratio $\lambda(\cdot)$, whereas its exact form stems
 from the distributional assumptions.  During the recent decades,
 various semiparametric estimation techniques have been increasingly
 used in addition to the Heckman model (see \citealp{powell1994} and
@@ -415,25 +417,26 @@ the two-step method.  If the user does not provide initial values
 (\code{start}) for the ML estimation (which is usually the case),
 \code{selection} calculates consistent initial values by the
 corresponding two-step method. These initial values are used in the
-actual estimation functions \code{tobit2fit} and \code{tobit5fit}.
-Note that the log-likelihood functions of the selection models are in
+functions \code{tobit2fit} and \code{tobit5fit} that do the actual ML estimation.
+Note that log-likelihood functions of selection models are in
 general not globally concave, and hence one should use a good choice
 of initial values (see the example in Secion~\ref{sec:convergence}).
 The two-step estimation is done by the function \code{heckit2fit} or
 \code{heckit5fit}, depending on the model.
 
-The likelihood maximisation is performed using Newton-Raphson
-maximisation (implemented as \code{maxNR} in \pkg{micEcon}) by
-default using analytic score vector and analytic Hessian matrix are
-used.  This results in a reasonably fast computation even in case
+By default, the likelihood maximisation is performed with the Newton-Raphson
+algorithm (implemented as \code{maxNR} in \pkg{micEcon})
+using an analytic score vector and an analytic Hessian matrix.
+This results in a reasonably fast computation even in case
 of tens of thousands observations.  A well-defined model should
 converge in less than 15 iterations; in the case of weak
 identification this number may be considerably larger.  Convergence
 issues may appear at the boundary of the parameter space (if
-$|\varrho| \to 1$, see Section~\ref{sec:convergence}).  Another
-maximisation algorithm can be chosen by argument
-``\code{maxMethod}'', e.g. ``\code{maxMethod="SANN"}'' uses the SANN
-robust global maximisation algorithm.
+$|\varrho| \to 1$, see Section~\ref{sec:convergence}).  Other
+maximisation algorithms can be chosen by argument
+``\code{maxMethod}'', e.g.\ ``\code{maxMethod="SANN"}'' uses the SANN
+robust global maximisation algorithm
+and ``\code{maxMethod="BHHH"}'' uses the Berndt-Hall-Hall-Hausman algorithm.
 % ....
 
 The command \code{selection} returns an object of class \code{selection}.
@@ -466,7 +469,7 @@ contain an interval for interval censoring (for instance
 more than one formula (for multiple treatment models), or an indicator
 for the selection mechanism (like \code{"max"} or \code{"min"} for
 switching regression with unobserved separator).  In this way, all 
-the tobit-models, listed by \cite{amemiya1985} can be specified.
+generalized tobit models listed by \cite{amemiya84,amemiya1985} can be specified.
 
 Another possible generalisation is allowing for discrete dependent
 variable models.  While the case of binary-choice can be easily
@@ -485,7 +488,7 @@ Finally, as the \code{selection} currently supports only two easily
 distinguishable models, we have not provided a way to specify the
 model explicitly.  However, explicit specification would allow users
 to locate the programming problems more easily, and lessen the
-complications related to automatic guess of the correct model.
+complications related to automatic guess of the correct model type.
 
 
 
@@ -1035,7 +1038,7 @@ to the values published in the errata of \citet{greene2002}
 (\url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}).
 While we can obtain the same coefficients with the Newton-Raphson (NR)
 maximisation method,
-we have to use the Bernd-Hall-Hall-Hausman (BHHH) method
+we have to use the Berndt-Hall-Hall-Hausman (BHHH) method
 to obtain the published standard errors.
 This is because of different ways of calculating the Hessian
 matrix may result in substantially different standard errors
