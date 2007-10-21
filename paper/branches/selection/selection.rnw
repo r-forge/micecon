@@ -1235,26 +1235,26 @@ coef( summary( tobitTS ) )[ "rho", ]
 \section{Conclusions}
 \label{sec:conclusions}
 
-This paper describes the Heckman-type selection models and their
+This paper describes Heckman-type selection models and their
 implementation in the package \pkg{micEcon} for the programming
-language \proglang{R}.  These models are popular in estimating impact
+language \proglang{R}.  These models are popular in estimating impacts
 of various factors in economics and other social sciences.  We argue
 that they also serve as useful teaching tools because they are easy
 to implement and understand.
 
-We briefly described the implementation and usage of tobit-2 and
-tobit-5 (switching regression) models in \pkg{micEcon}, and possible
+We describe the implementation and usage of standard sample selection (tobit-2) and
+switching regression (tobit-5) models in \pkg{micEcon}, and possible
 generalisations of our \code{selection} function.  We
-demonstrated the usage of the package using a number of simulated and
+demonstrate the usage of the package using a number of simulated and
 real data examples.  The examples illustrate several important issues,
 related to exclusion restrictions, identification at infinity and
 functional form specification.  Our implementation works well for
 correctly specified cases with exclusion restriction fulfilled.  The
 problems appearing in the case of misspecification or weak
 identification are related to the model itself.  In these problematic
-cases the user may gain from a more robust maximisation algorithm.
-In some cases
-two-step estimator is preferable
+cases, the user may gain from a more robust maximisation algorithm.
+In some cases,
+the two-step estimator is preferable.
 
 
 
