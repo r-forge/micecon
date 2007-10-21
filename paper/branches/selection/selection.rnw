@@ -1030,12 +1030,12 @@ greeneTS <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
 %
 Most results are identical to the values reported by
 \citet[p.~786]{greene2002}.
-Only the coefficient of the inverse Mill's ratio ($\varrho \sigma$),
+Only the coefficient of the inverse Mill's ratio ($\beta^\lambda = \varrho \sigma$),
 its standard error, and $\varrho$ deviate from the published results,
 but all differences are less than one percent.%
 \footnote{
-Note that the standard error of the inverse Mill's ratio
-($\varrho \sigma$) is wrong in \citet[p.~786]{greene2002}
+Note that the standard error of the coefficient of the inverse Mill's ratio
+($\beta^\lambda = \varrho \sigma$) is wrong in \citet[p.~786]{greene2002}
 (see errata on
 \url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}).
 }
@@ -1080,7 +1080,7 @@ plans (\code{idp}), the log of the participation incentive payment
 \code{idp}\,=\,1 and \code{ln(max(1,mde/(0.01*coins)))} otherwise
 (where \code{mde} is the maximum expenditure offer), physical
 limitations (\code{physlm}), the number of chronic diseases
-(\code{disea}), dummy variables for good (\code{hlthg}, fair
+(\code{disea}), dummy variables for good (\code{hlthg}), fair
 (\code{hlthf}), and poor (\code{hlthp}) self-rated health (where the
 baseline is excellent self-rated health), the log of family income
 (\code{linc}), the log of family size (\code{lfam}), education of
@@ -1106,8 +1106,8 @@ outcomeEq <- lnmeddol ~ logc + idp + lpi + fmde + physlm + disea +
 %
 Now, we estimate the model by the two-step method (reporting only the coefficients):
 <<cameron16.6TwoStep>>=
-coef( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ],
-                          method = "2step" ), part="full" )
+rhieTS <- selection( selectEq, outcomeEq, data = RandHIE[ subsample, ],
+                          method = "2step" )
 @
 %
 All coefficients and standard errors are fully identical
@@ -1124,8 +1124,7 @@ as well as from our results.
 
 Again, we repeat the analysis with the ML estimation method:
 <<cameron16.6ML>>=
-coef( selection( selectEq, outcomeEq, data = RandHIE[ subsample, ] ),
-   part="full" )
+rhieML <- selection( selectEq, outcomeEq, data = RandHIE[ subsample, ] )
 @
 %
 All coefficients and standard errors of the ML estimation are nearly
@@ -1142,7 +1141,7 @@ Only a very few coefficients deviate at the seventh decimal place.
 \subsection{Convergence}
 \label{sec:convergence}
 
-The log-likelihood of the models above is not globally concave.  The
+The log-likelihood function of the models above is not globally concave.  The
 model may not converge, or it may converge to a local maximum, if the
 initial values are not chosen well enough.  This may easily happen
 which we illustrate below.  Recall example 22.8 from
@@ -1152,30 +1151,52 @@ start values.  Now we re-estimate the model specifying start values
 ``by hand'' (note that you have to supply a positive initial value for
 the variance):
 <<>>=
-mr <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+greeneStart <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
    data = Mroz87, start = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.9))
-summary(mr)
+
+cat( greeneStart$message )
+
+coef( summary( greeneStart ) )[ "rho", ]
 @ 
 %
 The process did not converge.  In the current case the problem lies
 with the numerical problems at the boundary of the parameter space
 (note that $\varrho$ is close to 1).  A workaround is to use a more
-robust maximisation method, for instance, one may choose to run SANN
-maximiser for 10\,000 iterations, and switch back to Newton-Raphson
-thereafter\footnote{One has to choose suitable \code{parscale}, for
-  instance \code{parscale=0.001} worked well for the example above.
-  The following Newton-Raphson estimate converged to another maximum
-  with a higher log-likehood value than the original example in the
-  Section~\ref{sec:Greene22.8}}.  In most cases the 2-step method,
-used for calculating the initial values, does a good job.
+robust maximisation method; for instance, one may choose to run the SANN
+maximiser for 10\,000 iterations, and then use the returned coefficients
+as start values for the Newton-Raphson algorithm.%
+\footnote{One has to choose a suitable value for \code{parscale},
+  e.g.\ \code{parscale=0.001} worked well for this example.}
+<<>>=
+greeneSANN <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+   wage ~ exper + I( exper^2 ) + educ + city,
+   data = Mroz87, start = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.9),
+   maxMethod="SANN", parscale = 0.001 )
 
+greeneStartSANN <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
+   wage ~ exper + I( exper^2 ) + educ + city,
+   data = Mroz87, start = coef( greeneSANN ) )
+
+cat( greeneStartSANN$message )
+@
+%
+The new Newton-Raphson estimate converged to another maximum
+with a log-likehood value even higher than the one of the original estimate
+published in \citet[p.~786]{greene2002} (see section~\ref{sec:Greene22.8}):
+<<>>=
+loglikValue( greeneML )
+loglikValue( greeneStartSANN )
+@
+%
+However, in most cases the 2-step method does a good job
+in calculating initial values.
 
 \subsection{Boundary of the parameter space}
 \label{sec:boundary}
 
 In general, one should prefer \code{method="ml"} instead of
-\code{"2step"}.  However, ML estimator may have problems at the boundary of the
+\code{"2step"}.  However, ML estimators may have problems at the boundary of the
 parameter space.  Take the textbook tobit example: 
 \begin{equation}
   \label{eq:tobit}
@@ -1195,15 +1216,18 @@ set.seed(0)
 x <- runif(1000)
 y <- x + rnorm(1000)
 ys <- y > 0
-summary(selection(ys~x, y~x))
+tobitML <- selection(ys~x, y~x)
+cat( tobitML$message )
+coef( summary( tobitML ) )[ "rho", ]
 @ 
 %
 The reason, as in the previous example,
 is that $\varrho = 1$ lies at the boundary of the parameter
 space.  However, the 2-step method still works, although standard
-errors are large:
+errors are large and $\rho \notin [-1,1]$:
 <<tobit_tobit2_summary>>=
-summary(selection(ys~x, y~x, method="2step"))
+tobitTS <- selection(ys~x, y~x, method="2step")
+coef( summary( tobitTS ) )[ "rho", ]
 @ 
 %
 
