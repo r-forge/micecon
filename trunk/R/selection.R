@@ -1,5 +1,6 @@
 selection <- function(selection, outcome,
                       data=sys.frame(sys.parent()),
+                      subset,
                       method="ml",
                       start=NULL,
                       ys=FALSE, xs=FALSE,
@@ -134,9 +135,9 @@ selection <- function(selection, outcome,
       if(print.level > 0) {
          cat(sum(badRow), "invalid observations\n")
       }
-      XS <- XS[!badRow,]
+      XS <- XS[!badRow,, drop=FALSE]
       YS <- YS[!badRow]
-      XO <- XO[!badRow,]
+      XO <- XO[!badRow,, drop=FALSE]
       YO <- YO[!badRow]
       NXS <- ncol(XS)
       NXO <- ncol(XO)
@@ -214,11 +215,11 @@ selection <- function(selection, outcome,
       NXS <- ncol(XS)
       NXO1 <- ncol(XO1)
       NXO2 <- ncol(XO2)
-      XS <- XS[!badRow,]
+      XS <- XS[!badRow,, drop=FALSE]
       YS <- YS[!badRow]
-      XO1 <- XO1[!badRow,]
+      XO1 <- XO1[!badRow,, drop=FALSE]
       YO1 <- YO1[!badRow]
-      XO2 <- XO2[!badRow,]
+      XO2 <- XO2[!badRow,, drop=FALSE]
       YO2 <- YO2[!badRow]
       iBetaS <- 1:NXS
       iBetaO1 <- seq(tail(iBetaS, 1)+1, length=NXO1)
