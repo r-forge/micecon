@@ -1057,8 +1057,7 @@ but all differences are less than one percent.%
 \footnote{
 Note that the standard error of the coefficient of the inverse Mill's ratio
 ($\beta^\lambda = \varrho \sigma$) is wrong in \citet[p.~786]{greene2002}
-(see errata on
-\url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}).
+\citep[see][]{greene06}.
 }
 
 Finally, we repeat the analysis with the ML estimation method:
@@ -1069,8 +1068,7 @@ greeneML <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
 @
 %
 Again, the estimated coefficients and standard errors are almost identical
-to the values published in the errata of \citet{greene2002}
-(\url{http://pages.stern.nyu.edu/~wgreene/Text/Errata/ERRATA5.htm}).
+to the values published in \citet{greene06}.
 While we can obtain the same coefficients with the Newton-Raphson (NR)
 maximisation method,
 we have to use the Berndt-Hall-Hall-Hausman (BHHH) method
