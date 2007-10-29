@@ -199,6 +199,9 @@ implementation of it; and the last section concludes.
 \section{Heckman's solution}
 \label{sec:heckman}
 
+\subsection{Tobit-2 Models}
+\label{sec:tobit2}
+
 Consider the the following (unobserved) structural model:
 \begin{align}
   y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
@@ -403,6 +406,139 @@ various semiparametric estimation techniques have been increasingly
 used in addition to the Heckman model (see \citealp{powell1994} and
 \citealp{pagan+ullah1999} for a review).
 
+\subsection{Tobit-5 Models}
+\label{sec:tobit5}
+
+This type of problems arise
+in a wide variety of contexts, e.g.\ in treatment effect, migration or
+schooling choice analysis.  The problem can be written as a system of
+three simultaneous latent equations:
+\begin{align}
+  y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
+  \\
+  y_i^{O1*} &= {\vec{\beta}^{O1}}' \vec{x}_i^{O1} + \varepsilon_i^{O1}
+  \\
+  y_i^{O2*} &= {\vec{\beta}^{O2}}' \vec{x}_i^{O2} + \varepsilon_i^{O2},
+\end{align}
+where $y^{S*}$ is the selection ``tendency'' as in the case of tobit-2
+models, and $y^{O1*}$ and $y^{O2*}$ are the latent outcomes, only one
+of which is observable, depending on the sign of $y^{S*}$.  Hence we
+observe
+\begin{align}
+  y_i^S 
+  &= 
+  \begin{cases}
+    0 & \quad \text{if } y_i^{S*} < 0
+    \\
+    1 & \quad \text{otherwise}
+  \end{cases}
+  \label{eq:t5_selection_obs}
+  \\
+  y_i^O
+  &= 
+  \begin{cases}
+    y_i^{O1*} & \quad \text{if } y_i^{S} = 0\\
+    y_i^{O2*} & \quad \text{otherwise}.
+  \end{cases}
+\end{align}
+Assuming that the disturbance terms have a 3-dimensional normal
+distribution,
+\begin{equation}
+  \begin{pmatrix}
+    \varepsilon^S\\
+    \varepsilon^{O1}\\
+    \varepsilon^{O2}
+  \end{pmatrix}
+  \sim
+  N\left(
+    \begin{pmatrix}
+      0\\
+      0\\
+      0
+    \end{pmatrix},
+    \begin{pmatrix}
+      1                 & \varrho_1\sigma_1 & \varrho_2\sigma_2 \\
+      \varrho_1\sigma_1 & \sigma_1^2        & \varrho_{12}\sigma_1\sigma_2\\
+      \varrho_2\sigma_2 & \varrho_{12}\sigma_1\sigma_2 & \sigma_2^2
+    \end{pmatrix}
+  \right),
+\end{equation}
+it is straightforward to construct analogous two-step estimators
+as in~\eqref{eq:tobit2_2step}.  We may write
+\begin{align}
+  \E [y^O | \vec{x}^{O1} = \vec{x}_i^{O1} , \vec{x}^S = \vec{x}_i^S , y^S = 0]
+  &=
+  {\vec{\beta}^{O1}}' \vec{x}_i^{O1} 
+  +
+  \E [ \varepsilon^{O1}|\varepsilon^S < -{\vec{\beta}^S}' \vec{x}_i^S ]
+  \\
+  \E [y^O | \vec{x}^{O2} = \vec{x}_i^{O2} , \vec{x}^S = \vec{x}_i^S , y^S = 1]
+  &=
+  {\vec{\beta}^{O2}}' \vec{x}_i^{O2}
+  +
+  \E [ \varepsilon^{O2}|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
+\end{align}
+and hence
+\begin{equation}
+  y_i^O
+  =
+  \begin{cases}
+    {\vec{\beta}^{O1}}' \vec{x}_i^{O1} 
+    -
+    \varrho_1 \sigma_1 \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
+    +
+    \eta_i^1
+    &
+    \text{if } y_i^{S} = 0
+    \\
+    {\vec{\beta}^{O2}}' \vec{x}_i^{O2} 
+    + 
+    \varrho_2 \sigma_2 \lambda({\vec{\beta}^S}' \vec{x}_i^S)
+    +
+    \eta_i^2
+    &
+    \text{otherwise},
+  \end{cases}
+  \label{eq:tobit5_2step}
+\end{equation}
+where $\E [ \eta^1 ] = \E [ \eta^2 ] = 0$ and $\lambda(\cdot) =
+\phi(\cdot)/\Phi(\cdot)$ is the inverse Mill's ratio which can be
+calculated using the probit estimate of~\eqref{eq:t5_selection_obs}.
+This system can be estimated as two independent linear models, one for
+the case $y^S = 0$ and another for $y^S = 1$.  The log-likelihood for
+this problem can be written as
+\begin{align}
+  l &= -\frac{N}{2}\log 2\pi + \notag\\
+  &+ \sum_{\{i:y_i^S = 0\}} \left\{
+    -\log\sigma_1
+    -\frac{1}{2}\left( \frac{y_i^O - {\vec{\beta}^{O1}}' \vec{x}_i^{O1}}
+      {\sigma_1} \right)^2
+    +\log \pnorm \left[ 
+      -
+      \frac
+      {{\vec{\beta}^S}' \vec{x}_i^S + \displaystyle \frac{\varrho_1}{\sigma_1}
+        \left({y_i^O - {\vec{\beta}^{O1}}' \vec{x}_i^{O1}}
+        \right)}
+      {\sqrt{ 1 - \varrho_1^2}} \right] \right\} \notag\\
+  &+ \sum_{\{i: y_i^S = 1\}} 
+  \left\{
+    -\log\sigma_2
+    -\frac{1}{2}\left( \frac{y_i^O - {\vec{\beta}^{O2}}' \vec{x}_i^{O2}}
+      {\sigma_2} \right)^2
+    +\log \pnorm \left[ 
+      \phantom{-}
+      \frac
+      {{\vec{\beta}^S}' \vec{x}_i^S + \displaystyle \frac{\varrho_2}{\sigma_2}
+        \left({y_i^O - {\vec{\beta}^{O2}}' \vec{x}_i^{O2}}
+        \right)}
+      {\sqrt{ 1 - \varrho_2^2}} \right] \right\} \notag\\
+\end{align}
+where $N$ is the total number of observations.  Note,
+that $\varrho_{12}$ plays no role in this model, the observable
+distributions are determined by the correlations $\varrho_1$ and
+$\varrho_2$ between the disturbances of the selection equation
+($\varepsilon^S$) and the corresponding outcome equation
+($\varepsilon^{O1}$ and $\varepsilon^{O2}$).
 
 
 \section[Implementation]{Implementation in \pkg{micEcon}}
@@ -691,137 +827,7 @@ abline(a=cf[1], b=cf[2], lty=3)
 \subsection{Switching regression models}
 \label{sec:tobit5}
 
-Now let us focus on the tobit-5 examples.  This type of problems arise
-in a wide variety of contexts, e.g.\ in treatment effect, migration or
-schooling choice analysis.  The problem can be written as a system of
-three simultaneous latent equations:
-\begin{align}
-  y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
-  \\
-  y_i^{O1*} &= {\vec{\beta}^{O1}}' \vec{x}_i^{O1} + \varepsilon_i^{O1}
-  \\
-  y_i^{O2*} &= {\vec{\beta}^{O2}}' \vec{x}_i^{O2} + \varepsilon_i^{O2},
-\end{align}
-where $y^{S*}$ is the selection ``tendency'' as in the case of tobit-2
-models, and $y^{O1*}$ and $y^{O2*}$ are the latent outcomes, only one
-of which is observable, depending on the sign of $y^{S*}$.  Hence we
-observe
-\begin{align}
-  y_i^S 
-  &= 
-  \begin{cases}
-    0 & \quad \text{if } y_i^{S*} < 0
-    \\
-    1 & \quad \text{otherwise}
-  \end{cases}
-  \label{eq:t5_selection_obs}
-  \\
-  y_i^O
-  &= 
-  \begin{cases}
-    y_i^{O1*} & \quad \text{if } y_i^{S} = 0\\
-    y_i^{O2*} & \quad \text{otherwise}.
-  \end{cases}
-\end{align}
-Assuming that the disturbance terms have a 3-dimensional normal
-distribution,
-\begin{equation}
-  \begin{pmatrix}
-    \varepsilon^S\\
-    \varepsilon^{O1}\\
-    \varepsilon^{O2}
-  \end{pmatrix}
-  \sim
-  N\left(
-    \begin{pmatrix}
-      0\\
-      0\\
-      0
-    \end{pmatrix},
-    \begin{pmatrix}
-      1                 & \varrho_1\sigma_1 & \varrho_2\sigma_2 \\
-      \varrho_1\sigma_1 & \sigma_1^2        & \varrho_{12}\sigma_1\sigma_2\\
-      \varrho_2\sigma_2 & \varrho_{12}\sigma_1\sigma_2 & \sigma_2^2
-    \end{pmatrix}
-  \right),
-\end{equation}
-it is straightforward to construct analogous two-step estimators
-as in~\eqref{eq:tobit2_2step}.  We may write
-\begin{align}
-  \E [y^O | \vec{x}^{O1} = \vec{x}_i^{O1} , \vec{x}^S = \vec{x}_i^S , y^S = 0]
-  &=
-  {\vec{\beta}^{O1}}' \vec{x}_i^{O1} 
-  +
-  \E [ \varepsilon^{O1}|\varepsilon^S < -{\vec{\beta}^S}' \vec{x}_i^S ]
-  \\
-  \E [y^O | \vec{x}^{O2} = \vec{x}_i^{O2} , \vec{x}^S = \vec{x}_i^S , y^S = 1]
-  &=
-  {\vec{\beta}^{O2}}' \vec{x}_i^{O2}
-  +
-  \E [ \varepsilon^{O2}|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]
-\end{align}
-and hence
-\begin{equation}
-  y_i^O
-  =
-  \begin{cases}
-    {\vec{\beta}^{O1}}' \vec{x}_i^{O1} 
-    -
-    \varrho_1 \sigma_1 \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
-    +
-    \eta_i^1
-    &
-    \text{if } y_i^{S} = 0
-    \\
-    {\vec{\beta}^{O2}}' \vec{x}_i^{O2} 
-    + 
-    \varrho_2 \sigma_2 \lambda({\vec{\beta}^S}' \vec{x}_i^S)
-    +
-    \eta_i^2
-    &
-    \text{otherwise},
-  \end{cases}
-  \label{eq:tobit5_2step}
-\end{equation}
-where $\E [ \eta^1 ] = \E [ \eta^2 ] = 0$ and $\lambda(\cdot) =
-\phi(\cdot)/\Phi(\cdot)$ is the inverse Mill's ratio which can be
-calculated using the probit estimate of~\eqref{eq:t5_selection_obs}.
-This system can be estimated as two independent linear models, one for
-the case $y^S = 0$ and another for $y^S = 1$.  The log-likelihood for
-this problem can be written as
-\begin{align}
-  l &= -\frac{N}{2}\log 2\pi + \notag\\
-  &+ \sum_{\{i:y_i^S = 0\}} \left\{
-    -\log\sigma_1
-    -\frac{1}{2}\left( \frac{y_i^O - {\vec{\beta}^{O1}}' \vec{x}_i^{O1}}
-      {\sigma_1} \right)^2
-    +\log \pnorm \left[ 
-      -
-      \frac
-      {{\vec{\beta}^S}' \vec{x}_i^S + \displaystyle \frac{\varrho_1}{\sigma_1}
-        \left({y_i^O - {\vec{\beta}^{O1}}' \vec{x}_i^{O1}}
-        \right)}
-      {\sqrt{ 1 - \varrho_1^2}} \right] \right\} \notag\\
-  &+ \sum_{\{i: y_i^S = 1\}} 
-  \left\{
-    -\log\sigma_2
-    -\frac{1}{2}\left( \frac{y_i^O - {\vec{\beta}^{O2}}' \vec{x}_i^{O2}}
-      {\sigma_2} \right)^2
-    +\log \pnorm \left[ 
-      \phantom{-}
-      \frac
-      {{\vec{\beta}^S}' \vec{x}_i^S + \displaystyle \frac{\varrho_2}{\sigma_2}
-        \left({y_i^O - {\vec{\beta}^{O2}}' \vec{x}_i^{O2}}
-        \right)}
-      {\sqrt{ 1 - \varrho_2^2}} \right] \right\} \notag\\
-\end{align}
-where $N$ is the total number of observations.  Note,
-that $\varrho_{12}$ plays no role in this model, the observable
-distributions are determined by the correlations $\varrho_1$ and
-$\varrho_2$ between the disturbances of the selection equation
-($\varepsilon^S$) and the corresponding outcome equation
-($\varepsilon^{O1}$ and $\varepsilon^{O2}$).
-
+Now let us focus on the tobit-5 examples.  
 We create the following simple switching regression problem:
 <<>>=
   set.seed(0)
