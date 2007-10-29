@@ -153,8 +153,8 @@ Here we list a few popular choices:
 \end{itemize}
 
 During recent decades, either randomisation or the
-pseudo-randomisation (natural experiments) has become the state-of-the
-art while estimating the causal effects.  However, methods relying 
+pseudo-randomisation (natural experiments) has become the state-of-the-art
+for estimating the causal effects.  However, methods relying on
 distributional assumptions are still widely used.  The reason
 is obvious --- these methods are simple, widely available in software
 packages, and they are part of common econometrics syllabus.
@@ -199,10 +199,28 @@ implementation of it; and the last section concludes.
 \section{Heckman's solution}
 \label{sec:heckman}
 
-\subsection{Tobit-2 Models}
-\label{sec:tobit2}
+The most popular solutions for sample selection problems
+are based on \citet{heckman1976}.
+A variety of generalisations of Heckman's standard sample selection model
+can be found in the literature.
+These models are also called ``generalised Tobit models''
+\citep{amemiya84,amemiya1985}.
+A comprehensive classification of these models has been proposed
+by \citet{amemiya84,amemiya1985}).
+% Other types of
+% generalisations include less restrictive parametric forms for the
+% conditional mean of the residual term $\E [
+% \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ (see
+% \citealp[p.~1938]{heckman+macurdy1986}, for references and
+% \citealp{klaauw+koning2003} for an application).
 
-Consider the the following (unobserved) structural model:
+
+\subsection{Tobit-2 Models}
+\label{sec:theory-tobit2}
+
+Heckman's standard sample selection model
+is also called ``Tobit-2'' model \citep{amemiya84,amemiya1985}.
+It consists of the following (unobserved) structural model:
 \begin{align}
   y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
   \label{eq:probit*}
@@ -353,7 +371,7 @@ covariance matrix of the probit estimate
 This is the original idea by \citet{heckman1976}.  As the model is
 fully parametric, it is straightforward to construct more efficient maximum likelihood (ML)
 estimator.  Using the properties of
-bivariate normal, it is easy to show that the log-likelihood can
+a bivariate normal distribution, it is easy to show that the log-likelihood can
 be written as
 \begin{align}
   \loglik 
@@ -382,18 +400,6 @@ Nowadays, the costs are no issue any more, however, the two-step solution
 allows certain generalisations more easily than ML, and is more robust
 in certain circumstances (see section~\ref{sec:problems} below).
 
-The model allows a number of straightforward generalisations.  For
-instance, we may assume that we have two outcome variables, only one
-of which is observable, depending on the selection process
-(``switching regression'' or ``tobit-5'' model, further details of
-this classification are available in \citealp{amemiya84,amemiya1985}).  This
-model may be relevant for treatment effect or migration analysis.  Other types of
-generalisations include less restrictive parametric forms for the
-conditional mean of the residual term $\E [
-\varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ (see
-\citealp[p.~1938]{heckman+macurdy1986}, for references and
-\citealp{klaauw+koning2003} for an application).
-
 This model and its derivations were introduced in the 1970s and 1980s.
 The model is well identified if the exclusion restriction
 is fulfilled, i.e.\ if $\vec{x}^S$ includes a component with a
@@ -407,11 +413,15 @@ used in addition to the Heckman model (see \citealp{powell1994} and
 \citealp{pagan+ullah1999} for a review).
 
 \subsection{Tobit-5 Models}
-\label{sec:tobit5}
+\label{sec:theory-tobit5}
 
-This type of problems arise
+A straightforward generalisation of the standard sample selection model (Tobit-2)
+is the switching regression (Tobit-5) model.
+In this case, we have two outcome variables,
+where only one of them is observable, depending on the selection process.
+Switching regression problems arise
 in a wide variety of contexts, e.g.\ in treatment effect, migration or
-schooling choice analysis.  The problem can be written as a system of
+schooling choice analysis. This type of model consists of a system of
 three simultaneous latent equations:
 \begin{align}
   y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
@@ -420,7 +430,7 @@ three simultaneous latent equations:
   \\
   y_i^{O2*} &= {\vec{\beta}^{O2}}' \vec{x}_i^{O2} + \varepsilon_i^{O2},
 \end{align}
-where $y^{S*}$ is the selection ``tendency'' as in the case of tobit-2
+where $y^{S*}$ is the selection ``tendency'' as in the case of Tobit-2
 models, and $y^{O1*}$ and $y^{O2*}$ are the latent outcomes, only one
 of which is observable, depending on the sign of $y^{S*}$.  Hence we
 observe
@@ -556,11 +566,14 @@ either ``\code{ml}'' for the ML estimation, or ``\code{2step}'' for
 the two-step method.  If the user does not provide initial values
 (\code{start}) for the ML estimation,
 \code{selection} calculates consistent initial values by the
-corresponding two-step method. These initial values are used in the
-functions \code{tobit2fit} and \code{tobit5fit} that do the actual ML estimation.
+corresponding two-step method.
+
+While the actual two-step estimation is done by the function
+\code{heckit2fit} or \code{heckit5fit} (depending on the model),
+the ML estimation is done by \code{tobit2fit} or \code{tobit5fit}.
 Note that log-likelihood functions of selection models are in
 general not globally concave, and hence one should use a good choice
-of initial values (see the example in Secion~\ref{sec:convergence}).
+of initial values (see the example in Section~\ref{sec:convergence}).
 
 By default, the likelihood maximisation is performed with the Newton-Raphson
 algorithm (implemented as the function \code{maxNR} in \pkg{micEcon})
@@ -603,11 +616,11 @@ models using a slightly generalised version of the current API.
 First, the current argument \code{selection} can be used for
 specifying more general selection conditions.  \code{selection} might
 contain an interval for interval censoring (for instance
-\code{selection = c(0, Inf)} in case of the standard tobit model),
+\code{selection = c(0, Inf)} in case of the standard Tobit model),
 more than one formula (for multiple treatment models), or an indicator
 for the selection mechanism (like \code{"max"} or \code{"min"} for
 switching regression with unobserved separator).  In this way, all 
-generalized tobit models listed by \cite{amemiya84,amemiya1985} can be specified.
+generalised Tobit models listed by \cite{amemiya84,amemiya1985} can be specified.
 
 Another possible generalisation is allowing for discrete dependent
 variable models.  While the case of binary-choice can be easily
@@ -639,9 +652,9 @@ typical usage of \code{selection}.
 
 
 \subsection{Tobit-2 models}
-\label{sec:tobit2}
+\label{sec:using-tobit2}
 
-First, we estimate a correctly specified tobit-2 model with exclusion
+First, we estimate a correctly specified Tobit-2 model with exclusion
 restriction:
 <<code:t2generate>>=
   set.seed(0)
@@ -825,9 +838,9 @@ abline(a=cf[1], b=cf[2], lty=3)
 
 
 \subsection{Switching regression models}
-\label{sec:tobit5}
+\label{sec:using-tobit5}
 
-Now let us focus on the tobit-5 examples.  
+Now let us focus on the Tobit-5 examples.
 We create the following simple switching regression problem:
 <<>>=
   set.seed(0)
@@ -886,7 +899,7 @@ true values zero.  The model has serious convergence problems,
 often it does not converge at all (this is why we increased the
 \code{iterlim} and used \code{set.seed(5)}).
 
-As the last tobit example, we repeat the previous exercise without
+As the last Tobit example, we repeat the previous exercise without
 the exclusion restriction, and a slightly larger variance of \code{xs}:
 <<code:t5chi_woER>>=
 set.seed(6)
@@ -1176,7 +1189,7 @@ with the numerical problems at the boundary of the parameter space
 robust maximisation method; for instance, one may choose to run the SANN
 maximiser for 10\,000 iterations, and then use the returned coefficients
 as start values for the Newton-Raphson algorithm.%
-\footnote{One has to choose a suitable value for \code{parscale}.
+\footnote{One has to choose a suitable value for \code{parscale};
 \code{parscale=0.001} worked well for this example.}
 <<>>=
 set.seed(0)
@@ -1208,7 +1221,7 @@ in calculating initial values.
 
 In general, one should prefer \code{method="ml"} instead of
 \code{"2step"}.  However, ML estimators may have problems at the boundary of the
-parameter space.  Take the textbook tobit example: 
+parameter space.  Take the textbook Tobit example:
 \begin{equation}
   \label{eq:tobit}
   y_i^* = \vec{\beta}' \vec{x}_i + \varepsilon_i;
@@ -1219,7 +1232,7 @@ parameter space.  Take the textbook tobit example:
     0           & \text{otherwise.}
   \end{cases}
 \end{equation}
-This model can be written as a tobit-2 model where the error term of
+This model can be written as a Tobit-2 model where the error term of
 the selection and outcome equation are perfectly correlated.  In this
 case the ML estimator may not converge:
 <<tobit_tobit2>>=
@@ -1253,8 +1266,8 @@ of various factors in economics and other social sciences.  We argue
 that they also serve as useful teaching tools because they are easy
 to implement and understand.
 
-We describe the implementation and usage of standard sample selection (tobit-2) and
-switching regression (tobit-5) models in \pkg{micEcon}, and possible
+We describe the implementation and usage of standard sample selection (Tobit-2) and
+switching regression (Tobit-5) models in \pkg{micEcon}, and possible
 generalisations of our \code{selection} function.  We
 demonstrate the usage of the package using a number of simulated and
 real data examples.  The examples illustrate several important issues,
@@ -1267,8 +1280,12 @@ cases, the user may gain from a more robust maximisation algorithm.
 In some cases,
 the two-step estimator is preferable.
 
-\bigskip
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acknowledgements}
+
+The authors thank Roger Koenker and two anonymous referees
+for helpful comments and suggestions.
 Ott Toomet is grateful to the project TMJRI 0525 2003-2007 of the
 Estonian Ministry of Education and Science.
 
