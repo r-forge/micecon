@@ -126,7 +126,7 @@ never know which part of the observable outcome is related to the
 causal relationship and which part is due to the fact that different
 people were selected to the treatment and control groups.
 
-Solving the sample selection problems requires using additional
+Solving the sample selection problems requires additional
 information.  This information may be in different forms, each of which may
 or may not be feasible or useful for any particular case.  
 Here we list a few popular choices:
@@ -134,7 +134,7 @@ Here we list a few popular choices:
 \begin{itemize}
 \item Random experiment, the situation, where the participants
   do not have control over their status while the researcher
-  has.  Randomisation is in many cases the best possible
+  has.  Randomisation is often the best possible
   method as it is easy to analyse and understand.  However, this
   method is seldom feasible for practical and ethical reasons.  Even
   more, the
@@ -154,7 +154,7 @@ Here we list a few popular choices:
 
 During recent decades, either randomisation or the
 pseudo-randomisation (natural experiments) has become the state-of-the
-art while estimating the causal effects.  However, methods relying on instruments or
+art while estimating the causal effects.  However, methods relying 
 distributional assumptions are still widely used.  The reason
 is obvious --- these methods are simple, widely available in software
 packages, and they are part of common econometrics syllabus.
@@ -263,13 +263,14 @@ Assuming the error terms follow a bivariate normal distribution:
   \right),
    \label{eq:correlation}
 \end{equation}
-we may employ the following simple strategy: we can find the
+we may employ the following simple strategy: find the
 expectations $\E [ \varepsilon^O|\varepsilon^S \ge
 -{\vec{\beta}^S}' \vec{x}_i^S ]$, also called the \emph{control
   function}, by estimating the selection equations \eqref{eq:probit*}
-and \eqref{eq:probit} by probit, and thereafter inserting these
+and \eqref{eq:probit} by probit, and thereafter insert these
 expectations into equation \eqref{eq:outcome*} as additional
-covariates (see \citealp{greene2002} for details):
+covariates (see \citealp{greene2002} for details).  Accordingly, we
+may write:
 \begin{equation}
   y_i^O
   =
@@ -288,8 +289,9 @@ covariates (see \citealp{greene2002} for details):
   \label{eq:tobit2_2step}
 \end{equation}
 where $\lambda(\cdot) = \phi(\cdot)/\Phi(\cdot)$ is commonly referred
-to as inverse Mill's ratio and $\phi(\cdot)$ and $\Phi(\cdot)$ are
-standard normal density and cumulative distribution functions.  The
+to as inverse Mill's ratio, $\phi(\cdot)$ and $\Phi(\cdot)$ are
+standard normal density and cumulative distribution functions and
+$\eta$ is a new disturbance term, independent of $\vec{x}^{O}$ and $\vec{x}^{S}$.  The
 unknown multiplicator $\varrho \sigma$ can be estimated by OLS
 ($\hat{\beta}^\lambda$).
 Essentially, we describe the selection problem as an omitted variable
@@ -346,9 +348,9 @@ covariance matrix of the probit estimate
 \citep{greene81,greene2002}.
 
 This is the original idea by \citet{heckman1976}.  As the model is
-fully parametric, the more efficient maximum likelihood (ML)
-estimator is straightforward to construct.  Using the properties of
-the bivariate normal, it is easy to show that the log-likelihood can
+fully parametric, it is straightforward to construct more efficient maximum likelihood (ML)
+estimator.  Using the properties of
+bivariate normal, it is easy to show that the log-likelihood can
 be written as
 \begin{align}
   \loglik 
@@ -382,7 +384,7 @@ instance, we may assume that we have two outcome variables, only one
 of which is observable, depending on the selection process
 (``switching regression'' or ``tobit-5'' model, further details of
 this classification are available in \citealp{amemiya84,amemiya1985}).  This
-model may be relevant for treatment effect analysis.  Other types of
+model may be relevant for treatment effect or migration analysis.  Other types of
 generalisations include less restrictive parametric forms for the
 conditional mean of the residual term $\E [
 \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ (see
@@ -395,7 +397,7 @@ is fulfilled, i.e.\ if $\vec{x}^S$ includes a component with a
 substantial explanatory power but which is not present in $\vec{x}^O$.
 This means essentially that we have a valid instrument.  If this is
 not the case, the identification is related to the non-linearity of
-the inverse Mill's ratio $\lambda(\cdot)$, whereas its exact form stems
+the inverse Mill's ratio $\lambda(\cdot)$, exact form of which stems
 from the distributional assumptions.  During the recent decades,
 various semiparametric estimation techniques have been increasingly
 used in addition to the Heckman model (see \citealp{powell1994} and
@@ -411,23 +413,21 @@ used in addition to the Heckman model (see \citealp{powell1994} and
 
 The main frontend for the estimation of selection models in
 \pkg{micEcon} is the command \code{selection}.  It needs a formula for
-the selection equation (argument \code{selection}), and one (or a list
+the selection equation (argument \code{selection}), and a formula (or a list
 of two for switching regression models) for the outcome equation
 (\code{outcome}).  One can choose the method (\code{method}) to be
 either ``\code{ml}'' for the ML estimation, or ``\code{2step}'' for
 the two-step method.  If the user does not provide initial values
-(\code{start}) for the ML estimation (which is usually the case),
+(\code{start}) for the ML estimation,
 \code{selection} calculates consistent initial values by the
 corresponding two-step method. These initial values are used in the
 functions \code{tobit2fit} and \code{tobit5fit} that do the actual ML estimation.
 Note that log-likelihood functions of selection models are in
 general not globally concave, and hence one should use a good choice
 of initial values (see the example in Secion~\ref{sec:convergence}).
-The two-step estimation is done by the function \code{heckit2fit} or
-\code{heckit5fit}, depending on the model.
 
 By default, the likelihood maximisation is performed with the Newton-Raphson
-algorithm (implemented as \code{maxNR} in \pkg{micEcon})
+algorithm (implemented as the function \code{maxNR} in \pkg{micEcon})
 using an analytic score vector and an analytic Hessian matrix.
 This results in a reasonably fast computation even in case
 of tens of thousands observations.  A well-defined model should
@@ -628,7 +628,7 @@ abline(a=cf[1], b=cf[2], lty=3)
 
 In order to identify $\beta^\lambda$ and ${\vec{\beta}^O}'$ without
 exclusion restriction, $\lambda(\cdot)$ must differ from a linear
-combination of $\vec{x}^O$ components \citep{leung+yu1996}.  The
+combination of $\vec{x}^O$ components \citep[see][]{leung+yu1996}.  The
 degree of non-linearity in $\lambda(\cdot)$ depends on the variability
 in ${\vec{\beta}^S}' \vec{x}^S$ as $\lambda(\cdot)$ is a smooth convex
 function (see Figure~\ref{fig:cfunctions}).  Hence the standard errors of the estimates depend on the
@@ -770,14 +770,16 @@ and hence
     \varrho_1 \sigma_1 \lambda(-{\vec{\beta}^S}' \vec{x}_i^S)
     +
     \eta_i^1
-    \qquad \text{if } y_i^{S} = 0
+    &
+    \text{if } y_i^{S} = 0
     \\
     {\vec{\beta}^{O2}}' \vec{x}_i^{O2} 
     + 
     \varrho_2 \sigma_2 \lambda({\vec{\beta}^S}' \vec{x}_i^S)
     +
     \eta_i^2
-    \qquad \text{otherwise},
+    &
+    \text{otherwise},
   \end{cases}
   \label{eq:tobit5_2step}
 \end{equation}
@@ -1053,7 +1055,8 @@ to the values published in the errata of \citet{greene2002}
 While we can obtain the same coefficients with the Newton-Raphson (NR)
 maximisation method,
 we have to use the Berndt-Hall-Hall-Hausman (BHHH) method
-to obtain the published standard errors.
+to obtain the published standard errors\footnote{We are grateful to
+  William Greene for pointing this out.}.
 This is because of different ways of calculating the Hessian
 matrix may result in substantially different standard errors
 \citep{calzolari+fiorentini1993}. The NR algorithm uses exact
@@ -1089,7 +1092,8 @@ years (\code{xage}), a dummy variable for female individuals
 (\code{female}), a dummy variable for individuals younger than 18
 years (\code{child}), a dummy variable for female individuals younger
 than 18 years (\code{fchild}), and a dummy variable for black
-household heads (\code{black}).  First, we select the subsample that
+household heads (\code{black}).  First, we select the subsample (study
+year \code{year} equal to 2 and education information present) that
 is used by \citet{cameron05} and specify the selection as well as the
 outcome equation.
 %
@@ -1146,11 +1150,11 @@ model may not converge, or it may converge to a local maximum, if the
 initial values are not chosen well enough.  This may easily happen
 which we illustrate below.  Recall example 22.8 from
 \citet[p.~786]{greene2002} (section:~\ref{sec:Greene22.8}).  This
-model gives reasonable results, but the results are sensitive to the
+model gives reasonable results, but these are sensitive to the
 start values.  Now we re-estimate the model specifying start values
 ``by hand'' (note that you have to supply a positive initial value for
 the variance):
-<<>>=
+<<Greene22.8NoConvergence>>=
 greeneStart <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
    data = Mroz87, start = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.9))
@@ -1166,9 +1170,10 @@ with the numerical problems at the boundary of the parameter space
 robust maximisation method; for instance, one may choose to run the SANN
 maximiser for 10\,000 iterations, and then use the returned coefficients
 as start values for the Newton-Raphson algorithm.%
-\footnote{One has to choose a suitable value for \code{parscale},
-  e.g.\ \code{parscale=0.001} worked well for this example.}
+\footnote{One has to choose a suitable value for \code{parscale}.
+\code{parscale=0.001} worked well for this example.}
 <<>>=
+set.seed(0)
 greeneSANN <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
    data = Mroz87, start = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.9),
@@ -1256,7 +1261,10 @@ cases, the user may gain from a more robust maximisation algorithm.
 In some cases,
 the two-step estimator is preferable.
 
+\bigskip
 
+Ott Toomet is grateful to the project TMJRI 0525 2003-2007 of the
+Estonian Ministry of Education and Science.
 
 \bibliography{selection}
 
