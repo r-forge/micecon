@@ -13,6 +13,7 @@
 \renewcommand*{\vec}[1]{\boldsymbol{#1}}% vector
 \renewcommand{\textfraction}{0.1}
 \renewcommand{\floatpagefraction}{0.9}
+\renewcommand{\baselinestretch}{1.9}
 % -----------------------
 
 \author{Ott Toomet\\Tartu University
@@ -220,7 +221,7 @@ by \citet{amemiya84,amemiya1985}).
 
 Heckman's standard sample selection model
 is also called ``Tobit-2'' model \citep{amemiya84,amemiya1985}.
-It consists of the following (unobserved) structural model:
+It consists of the following (unobserved) structural process:
 \begin{align}
   y_i^{S*} &= {\vec{\beta}^S}' \vec{x}_i^S + \varepsilon_i^S
   \label{eq:probit*}
@@ -406,7 +407,7 @@ is fulfilled, i.e.\ if $\vec{x}^S$ includes a component with a
 substantial explanatory power but which is not present in $\vec{x}^O$.
 This means essentially that we have a valid instrument.  If this is
 not the case, the identification is related to the non-linearity of
-the inverse Mill's ratio $\lambda(\cdot)$, exact form of which stems
+the inverse Mill's ratio $\lambda(\cdot)$.  The exact form of it stems
 from the distributional assumptions.  During the recent decades,
 various semiparametric estimation techniques have been increasingly
 used in addition to the Heckman model (see \citealp{powell1994} and
@@ -769,7 +770,7 @@ abline(a=cf[1], b=cf[2], lty=3)
 @ 
 %
 \begin{small}\\
-\textbf{Legend:} see figure~\ref{fig:t2ex}
+\textbf{Legend:} see Figure~\ref{fig:t2ex}
 \end{small}
 \caption{Sample selection example without exclusion restriction}
   \label{fig:t2}
@@ -829,7 +830,7 @@ abline(a=cf[1], b=cf[2], lty=3)
 @ 
 %
 \begin{small}\\
-\textbf{Legend:} see figure~\ref{fig:t2ex}
+\textbf{Legend:} see Figure~\ref{fig:t2ex}
 \end{small}
 \caption{Sample selection example with more variation in $x^S$}
   \label{fig:lambda()}
