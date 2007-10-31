@@ -410,8 +410,8 @@ not the case, the identification is related to the non-linearity of
 the inverse Mill's ratio $\lambda(\cdot)$.  The exact form of it stems
 from the distributional assumptions.  During the recent decades,
 various semiparametric estimation techniques have been increasingly
-used in addition to the Heckman model (see \citealp{powell1994} and
-\citealp{pagan+ullah1999} for a review).
+used in addition to the Heckman model (see \citealp{powell1994},
+\citealp{pagan+ullah1999}, and \citealp{li07} for a review).
 
 \subsection{Tobit-5 Models}
 \label{sec:theory-tobit5}
