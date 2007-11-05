@@ -13,7 +13,7 @@
 \renewcommand*{\vec}[1]{\boldsymbol{#1}}% vector
 \renewcommand{\textfraction}{0.1}
 \renewcommand{\floatpagefraction}{0.9}
-\renewcommand{\baselinestretch}{1.9}
+%\renewcommand{\baselinestretch}{1.9}
 % -----------------------
 
 \author{Ott Toomet\\Tartu University
@@ -34,9 +34,9 @@
   selection models in \proglang{R}.  We discuss the sample selection
   problem as well as the Heckman solution to it, and argue that
   although modern econometrics has non- and semiparametric estimation
-  methods in its toolbox, Heckman models are an integral part of
+  methods in its toolbox, Heckman models are an integral part of the
   modern applied analysis and econometrics syllabus.  We describe
-  the implementation of these models in package \pkg{micEcon} and
+  the implementation of these models in the package \pkg{micEcon} and
   illustrate the usage of the package on several simulation and real
   data examples.  Our examples demonstrate the effect of exclusion
   restrictions, identification at infinity and misspecification.  We
@@ -102,8 +102,8 @@ options(width=75)
 
 Social scientists are often interested in causal effects --- what is
 the impact of a new drug, a certain type of school or being born as a
-twin.  Many of these cases are not under researcher's control.  
-Often, the subjects can decide themselves, whether they take the
+twin.  Many of these cases are not under the researcher's control.  
+Often, the subjects can decide themselves, whether they take a
 drug or which school they attend.  They cannot control whether they
 are twins, but neither can the researcher --- the twins may tend to be
 born in different types of families than singles.  All these cases
@@ -114,28 +114,28 @@ as a whole
 \citep[see][p.~1937, for a discussion]{heckman+macurdy1986}.
 
 This problem --- people who are ``treated'' may be different than the rest
-of the population --- is usually referred to as \emph{sample
+of the population --- is usually referred to as a \emph{sample
   selection} or \emph{self-selection} problem.  We cannot estimate the
 causal effect, unless we solve the selection
 problem\footnote{Correcting for selectivity is necessary but not
   always sufficient for estimating the causal effect.  
-  A common problem of different type is lack of common support between
+  Another common problem is the lack of common support between
   the treated and untreated population.  We are grateful to a referee
   for pointing this out.}.  
-Otherwise, we
+Otherwise, we will
 never know which part of the observable outcome is related to the
 causal relationship and which part is due to the fact that different
-people were selected to the treatment and control groups.
+people were selected for the treatment and control groups.
 
-Solving the sample selection problems requires additional
+Solving sample selection problems requires additional
 information.  This information may be in different forms, each of which may
 or may not be feasible or useful for any particular case.  
 Here we list a few popular choices:
 
 \begin{itemize}
-\item Random experiment, the situation, where the participants
-  do not have control over their status while the researcher
-  has.  Randomisation is often the best possible
+\item Random experiment, the situation where the participants
+  do not have control over their status but the researcher
+  does.  Randomisation is often the best possible
   method as it is easy to analyse and understand.  However, this
   method is seldom feasible for practical and ethical reasons.  Even
   more, the
@@ -144,8 +144,8 @@ Here we list a few popular choices:
 \item Instruments (exclusion restrictions) are in many ways similar to
   randomisation.  These are variables, observable to the researcher,
   and which determine the treatment status but not the outcome.
-  Unfortunately, these two requirements tend contradict each other,
-  and only seldom we have instruments of reasonable
+  Unfortunately, these two requirements tend to contradict each other,
+  and only rarely do we have instruments of reasonable
   quality.
 \item Information about the functional form of the selection and
   outcome processes, such as the distribution of the disturbance
@@ -153,12 +153,12 @@ Here we list a few popular choices:
   However, the functional form assumptions are usually hard to justify.
 \end{itemize}
 
-During recent decades, either randomisation or the
-pseudo-randomisation (natural experiments) has become the state-of-the-art
-for estimating the causal effects.  However, methods relying on
+During recent decades, either randomisation or 
+pseudo-randomisation (natural experiments) have become state-of-the-art
+for estimating causal effects.  However, methods relying on
 distributional assumptions are still widely used.  The reason
 is obvious --- these methods are simple, widely available in software
-packages, and they are part of common econometrics syllabus.
+packages, and they are part of the common econometrics syllabus.
 This is true even though reasonable instruments and parametric assumptions can only seldom be
 justified, and their interference
 may be hard to disentangle from the other sources of identification.
@@ -194,7 +194,7 @@ our results to examples in the literature.
 Section~\ref{sec:problems} describes robustness issues of the
 method and our
 implementation of it; and the last section concludes.
-
+% Justin's recommendation: concludes the discussion
 
 
 \section{Heckman's solution}
@@ -208,12 +208,6 @@ These models are also called ``generalised Tobit models''
 \citep{amemiya84,amemiya1985}.
 A comprehensive classification of these models has been proposed
 by \citet{amemiya84,amemiya1985}).
-% Other types of
-% generalisations include less restrictive parametric forms for the
-% conditional mean of the residual term $\E [
-% \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ (see
-% \citealp[p.~1938]{heckman+macurdy1986}, for references and
-% \citealp{klaauw+koning2003} for an application).
 
 
 \subsection{Tobit-2 Models}
@@ -397,7 +391,7 @@ as initial values for ML estimation, since in those
 days the cost of the two-step solution was \$15 while that of the
 maximum-likelihood solution was \$700
 \citep[p.~490]{heckman1976}. %footnote 18, page 490
-Nowadays, the costs are no issue any more, however, the two-step solution
+Nowadays, costs are no longer an issue, however, the two-step solution
 allows certain generalisations more easily than ML, and is more robust
 in certain circumstances (see section~\ref{sec:problems} below).
 
@@ -544,8 +538,8 @@ this problem can be written as
         \right)}
       {\sqrt{ 1 - \varrho_2^2}} \right] \right\} \notag\\
 \end{align}
-where $N$ is the total number of observations.  Note,
-that $\varrho_{12}$ plays no role in this model, the observable
+where $N$ is the total number of observations.  Note
+that $\varrho_{12}$ plays no role in this model; the observable
 distributions are determined by the correlations $\varrho_1$ and
 $\varrho_2$ between the disturbances of the selection equation
 ($\varepsilon^S$) and the corresponding outcome equation
@@ -559,7 +553,7 @@ $\varrho_2$ between the disturbances of the selection equation
 \label{sec:current_implementation}
 
 The main frontend for the estimation of selection models in
-\pkg{micEcon} is the command \code{selection}.  It needs a formula for
+\pkg{micEcon} is the command \code{selection}.  It requires a formula for
 the selection equation (argument \code{selection}), and a formula (or a list
 of two for switching regression models) for the outcome equation
 (\code{outcome}).  One can choose the method (\code{method}) to be
@@ -579,7 +573,7 @@ of initial values (see the example in Section~\ref{sec:convergence}).
 By default, the likelihood maximisation is performed with the Newton-Raphson
 algorithm (implemented as the function \code{maxNR} in \pkg{micEcon})
 using an analytic score vector and an analytic Hessian matrix.
-This results in a reasonably fast computation even in case
+This results in a reasonably fast computation even in cases
 of tens of thousands observations.  A well-defined model should
 converge in less than 15 iterations; in the case of weak
 identification this number may be considerably larger.  Convergence
@@ -611,7 +605,7 @@ are available from the Comprehensive R Archive Network (CRAN) at
 
 \subsection{Current API and a wider range of selection models}
 
-We briefly discuss possible ways of introducing more general selection
+We now briefly discuss possible ways of introducing more general selection
 models using a slightly generalised version of the current API.
 
 First, the current argument \code{selection} can be used for
@@ -628,7 +622,7 @@ variable models.  While the case of binary-choice can be easily
 distinguished from continuous response, we
 need an additional parameter in multiple-choice case.  This parameter
 (possibly a vector where components correspond to the individual
-equations) will allows the user to specify the exact type of the
+equations) will allow the user to specify the exact type of the
 response (like multinominal, ordered or Poissonian).
 
 Third, different distributions of the disturbance terms can be
@@ -688,7 +682,7 @@ seen from the fact that the estimates are reasonably precise:
   m <- selection(ys~xs, yo ~xo)
 @
 %
-One can see, that all the true values are within the 95\% confidence
+One can see that all the true values are within the 95\% confidence
 intervals of the corresponding estimates.  
 
 Now look at the graphical representation of the data
@@ -741,11 +735,11 @@ summary(selection(ys ~ xs, yo ~ xs))
 % 
 The estimates are still unbiased but standard errors are substantially
 larger in this case.  The exclusion restriction --- independent information about
-the selection process --- has a certain identifying power which we now
+the selection process --- has a certain identifying power that we now
 have lost.  We are solely relying on the functional form
 identification.
 
-We illustrate the case with an analogous figure (Figure~\ref{fig:t2}).
+We illustrate this case with an analogous figure (Figure~\ref{fig:t2}).
 The selection model uncovers the true dependence very well.  OLS
 estimate is downward biased because of $\varrho < 0$, as in the
 previous case.  However, now the slope is upward biased because $\E [
@@ -792,7 +786,7 @@ smaller standard errors\footnote{The exact shape of the function
   distribution functions.  Hence the estimator is less dependent on
   functional form assumptions if the variability in the latent
   selection equation is larger.  This is related to identification at
-  infinity \citep{chamberlain1986}.}  We demonstrate this below:
+  infinity \citep{chamberlain1986}.}.  We demonstrate this below:
 Change the support of $\vec{x}^S$ from $[0,1]$ to $[-5,5]$:
 <<>>=
   xs <- runif(500, -5, 5)
@@ -872,7 +866,7 @@ results look as follows:
 <<>>=
   summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2)))
 @ 
-We can see, that the parameters are fairly well estimated.  All the
+We can see that the parameters are fairly well estimated.  All the
 estimates are close to the true values.
 
 Next, take an example of functional form misspecification.  We create
@@ -896,7 +890,7 @@ summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), iterlim=20))
 %
 Although we still have an exclusion restriction, now serious problems
 appear --- most intercepts are statistically significantly different from the
-true values zero.  The model has serious convergence problems,
+true values zero.  This model has serious convergence problems and
 often it does not converge at all (this is why we increased the
 \code{iterlim} and used \code{set.seed(5)}).
 
@@ -919,7 +913,7 @@ correct control function, based on the $\chi^2$ distribution, and one
 where we assume the normal distribution of the disturbance terms in
 Figure~\ref{fig:cfunctions}.  We use the estimated parameters for
 constructing the latter, however, we scale the normal control
-functions (inverse Mill's ratios) to a roughly similar scale, as the
+functions (inverse Mill's ratios) to a roughly similar scale as the
 correct ones.
 \begin{figure}[tp]
   \centering
@@ -1020,7 +1014,7 @@ statistically significantly different from zero.
 \label{sec:reliability}
 
 In this section we test the reliability of the results from
-\code{selection} applying the two-step and the ML estimation method,
+\code{selection} by applying the two-step and the ML estimation method,
 re-estimating selected models, already published in the literature.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1152,7 +1146,7 @@ rhieML <- selection( selectEq, outcomeEq, data = RandHIE[ subsample, ] )
 All coefficients and standard errors of the ML estimation are nearly
 identical to the values reported in Table~16.1 of \citet{cameron05} as
 well as to the seven-digit values in their \proglang{Stata} output.
-Only a very few coefficients deviate at the seventh decimal place.
+Only a few coefficients deviate at the seventh decimal place.
 % outcome equation: hlthp, female, child, black
 
 
@@ -1166,7 +1160,7 @@ Only a very few coefficients deviate at the seventh decimal place.
 The log-likelihood function of the models above is not globally concave.  The
 model may not converge, or it may converge to a local maximum, if the
 initial values are not chosen well enough.  This may easily happen
-which we illustrate below.  Recall example 22.8 from
+as we illustrate below.  Recall example 22.8 from
 \citet[p.~786]{greene2002} (section:~\ref{sec:Greene22.8}).  This
 model gives reasonable results, but these are sensitive to the
 start values.  Now we re-estimate the model specifying start values
@@ -1185,12 +1179,12 @@ coef( summary( greeneStart ) )[ "rho", ]
 The process did not converge.  In the current case the problem lies
 with the numerical problems at the boundary of the parameter space
 (note that $\varrho$ is close to 1).  A workaround is to use a more
-robust maximisation method; for instance, one may choose to run the SANN
+robust maximisation method.  For instance, one may choose to run the SANN
 maximiser for 10\,000 iterations, and then use the returned coefficients
 as start values for the Newton-Raphson algorithm.%
 \footnote{One has to choose a suitable value for \code{parscale};
 \code{parscale=0.001} worked well for this example.}
-<<>>=
+<<Greene22.8SANN>>=
 set.seed(0)
 greeneSANN <- selection( lfp ~ age + I( age^2 ) + faminc + kids + educ,
    wage ~ exper + I( exper^2 ) + educ + city,
@@ -1269,8 +1263,8 @@ We describe the implementation and usage of standard sample selection (Tobit-2) 
 switching regression (Tobit-5) models in \pkg{micEcon}, and possible
 generalisations of our \code{selection} function.  We
 demonstrate the usage of the package using a number of simulated and
-real data examples.  The examples illustrate several important issues,
-related to exclusion restrictions, identification at infinity and
+real data examples.  The examples illustrate several important issues
+related to exclusion restrictions, identification at infinity, and
 functional form specification.  Our implementation works well for
 correctly specified cases with exclusion restriction fulfilled.  The
 problems appearing in the case of misspecification or weak
