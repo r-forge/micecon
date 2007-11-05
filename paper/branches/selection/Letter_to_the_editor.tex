@@ -32,17 +32,18 @@ the previous version, according to your and the referees' suggestions.
   \begin{itemize}
   \item[a)] You are right.  We have called these ``simulations''.
   \item[b)] We have reduced the output, presented in the paper.  In
-    several cases, we just report the estimated coefficients, not the
-    full summaries.
-  \item[c)] We have re-worded the final part of section 4.1.
-  \item[d)] We are afraid, that introducing (real) Monte-Carlo
+    several cases, we just report the coefficient of interest, not the
+    full summary.
+  \item[c)] We have re-worded the final part of Section 4.1.
+  \item[d)] We are afraid that introducing (true) Monte-Carlo
     experiments will shift the focus of the paper away from our
     implementation of selection models.  We don't think we can
     contribute to the literature here because, as you also pointed,
-    the properties of the estimator are already well-known.    
+    the statistical properties of this type of estimators are already
+    well-known.
   \end{itemize}
 \item[2] We have added a short discussion of more general selection
-  models and necessary API generalisations.
+  models and related API generalisations.
 \item[3] Our paper includes two examples with non-Gaussian
   disturbances (the last examples in Section 4.2).  Although more
   types of misspecification may be added easily, we are not sure
@@ -52,7 +53,7 @@ the previous version, according to your and the referees' suggestions.
   possibly adding to the complexity of presentation.
 \item[4] The Section 5 is retitled to ``Two Replication Excercises''.
 \item[5] The Section 6 is retitled to ``Robustness Issues''.  We also
-  introduced a way to switch maximisation algorithms, and discuss the
+  introduced a way to switch maximisation algorithms.  We discuss the
   non-convergence example (Section 6.1) in more detail.  We describe a
   usable workaround, involving more robust maximisation methods.
 \end{itemize}
@@ -60,8 +61,9 @@ the previous version, according to your and the referees' suggestions.
 \paragraph{First referee's comments}
 
 \begin{itemize}
+\item[1] The paper has been proofread by a native English speaker.
 \item[2] The reference to our package as an ``excellent tool'' is removed.
-\item[3] We have re-worded the problematic sentences
+\item[3] We have re-worded the problematic sentences.
 \item[4] Section 5 is retitled, see above.
 \end{itemize}
 
@@ -74,11 +76,11 @@ the previous version, according to your and the referees' suggestions.
 \item[3] Corrected.
 \item[4] We have removed the claim that the method is not popular any more.
 \item[5] Corrected.
-\item[6] We have re-worded the footnote about identifycation at
+\item[6] We have re-worded the footnote about identification at
   infinity more carefully.  We agree that ``identification'' is a
   completely different concept than estimation on a finite sample.
   However, we still argue that in this case they ``are related''.
-  \cite[p. 205]{chamberlain1986} shows, that under suitable
+  \citet[p. 205]{chamberlain1986} shows, that under suitable
   assumptions the parameter is identified, ``if the distribution of
   $X$ has unbounded support''.  Hence the normality of
   $(\varepsilon^{S}, \varepsilon^{O})'$ is of less importance as large
