@@ -111,10 +111,10 @@ wFood1 -0.333 -0.2444  0.0959  0.482
 wFood2 -0.377 -0.0127  0.1169  0.273
 wFood3  0.222  0.1753 -0.7571  0.360
 wFood4  0.423  0.1554  0.1363 -0.715
-> # imposing restrictions via TX
+> # imposing restrictions via restrict.regMat
 > estResultLATX <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86[ set, ], method = "LA:SL",
-+    TX = TRUE )
++    restrict.regMat = TRUE )
 > print( estResultLATX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -274,10 +274,10 @@ wFood1 -0.336 -0.1880 -0.0131  0.537
 wFood2 -0.336 -0.1805  0.2891  0.227
 wFood3  0.272  0.0139 -0.6336  0.348
 wFood4  0.383  0.2625  0.0872 -0.733
-> # imposing restrictions via TX
+> # imposing restrictions via restrict.regMat
 > estResultLAhomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
 +    data = Blanciforti86[ set, ], method = "LA:SL",
-+    TX = TRUE )
++    restrict.regMat = TRUE )
 > print( estResultLAhomTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -437,10 +437,10 @@ wFood1 -0.303  0.0551 -0.0413  0.387
 wFood2 -0.317 -0.0484  0.2738  0.145
 wFood3  0.271  0.0098 -0.6331  0.351
 wFood4  0.344 -0.0246  0.1205 -0.556
-> # imposing restrictions via TX
+> # imposing restrictions via restrict.regMat
 > estResultLAunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
 +    data = Blanciforti86[ set, ], method = "LA:SL",
-+    TX = TRUE )
++    restrict.regMat = TRUE )
 > print( estResultLAunrTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -603,9 +603,9 @@ wFood1 -0.357 -0.2482  0.103  0.503
 wFood2 -0.380 -0.0164  0.113  0.284
 wFood3  0.238  0.1710 -0.757  0.348
 wFood4  0.440  0.1625  0.132 -0.734
-> # imposing restrictions via TX
+> # imposing restrictions via restrict.regMat
 > estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
++    data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
 > print( estResultAIDSTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -769,9 +769,9 @@ wFood1 -0.357 -0.1993 -0.00638  0.562
 wFood2 -0.345 -0.1766  0.28944  0.233
 wFood3  0.274  0.0324 -0.63973  0.333
 wFood4  0.406  0.2633  0.08349 -0.752
-> # imposing restrictions via TX
+> # imposing restrictions via restrict.regMat
 > estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
++    data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
 > print( estResultAIDShomTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -935,9 +935,9 @@ wFood1 -0.338  0.0483 -0.0431  0.435
 wFood2 -0.317 -0.0366  0.2720  0.138
 wFood3  0.308  0.0341 -0.6338  0.290
 wFood4  0.361 -0.0346  0.1234 -0.571
-> # imposing restrictions via TX
+> # imposing restrictions via restrict.regMat
 > estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
++    data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
 > print( estResultAIDSunrTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
