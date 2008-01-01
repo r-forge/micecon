@@ -79,6 +79,8 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    \item{qObs}{observed quantities / quantitiy indices.}
    \item{qFitted}{fitted quantities / quantitiy indices.}
    \item{qResid}{residuals of the estimated quantities.}
+   \item{est}{estimation result, i.e. the object returned
+      by \code{\link[systemfit]{systemfit}}.}
    \item{iter}{iterations of SUR/3SLS estimation(s).
       If the AIDS is estimated by the 'Iterated Linear Least Squares
       Estimator' (ILLE):
@@ -86,12 +88,8 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    \item{ILiter}{number of iterations of the 'Iterated Linear Least Squares
       Estimation'.}
    \item{method}{the method used to estimate the aids (see details).}
+   \item{px}{the name of the price index (see details).}
    \item{lnp}{log of the price index used for estimation.}
-   \item{hom}{logical. Was the homogeneity condition imposed?}
-   \item{sym}{logical. Was the symmetry condition imposed?}
-   \item{estMethod}{estimation method (see \code{\link[systemfit]{systemfit}}).}
-   \item{rcovformula}{formula used to calculate the estimated residual
-      covariance matrix (see \code{\link[systemfit]{systemfit}}).}
    \item{pMeans}{means of the prices.}
    \item{wMeans}{means of the expenditure shares.}
    \item{call}{the call of \code{aidsEst}.}
