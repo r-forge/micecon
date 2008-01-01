@@ -13,7 +13,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
       instNames = NULL, shifterNames = NULL,
       method = "LA:L", hom = TRUE, sym = TRUE, pxBase,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
-      ILmaxiter = 50, ILtol = 1e-5, alpha0 = 0, TX = FALSE, ... )
+      ILmaxiter = 50, ILtol = 1e-5, alpha0 = 0, restrict.regMat = FALSE, ... )
 
 \method{print}{aidsEst}( x, ... )
 }
@@ -40,8 +40,8 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    \item{ILtol}{tolerance level of the 'Iterated Linear Least Squares
       Estimation'.}
    \item{alpha0}{the intercept of the translog price index (\eqn{\alpha_0}).}
-   \item{TX}{logical. Method to impose homogeneity and symmetry restrictions:
-      either via R.restr (default) or via TX
+   \item{restrict.regMat}{logical. Method to impose homogeneity and symmetry restrictions:
+      either via restrict.matrix (default) or via restrict.regMat
       (see \code{\link[systemfit]{systemfit}}).}
    \item{x}{An object of class \code{aidsEst}.}
    \item{...}{additional arguments of \code{aidsEst} are passed to

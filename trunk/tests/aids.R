@@ -16,10 +16,10 @@ estResultLA <- aidsEst( pNames, wNames, "xFood",
 print( estResultLA )
 print( summary( estResultLA ) )
 print( elas( estResultLA, method = "Ch", quantNames = wNames ) )
-# imposing restrictions via TX
+# imposing restrictions via restrict.regMat
 estResultLATX <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ set, ], method = "LA:SL",
-   TX = TRUE )
+   restrict.regMat = TRUE )
 print( estResultLATX )
 print( summary( estResultLATX ) )
 print( elas( estResultLATX, method = "Ch", quantNames = wNames ) )
@@ -38,10 +38,10 @@ estResultLAhom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
 print( estResultLAhom )
 print( summary( estResultLAhom ) )
 print( elas( estResultLAhom, method = "Ch", quantNames = wNames ) )
-# imposing restrictions via TX
+# imposing restrictions via restrict.regMat
 estResultLAhomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ set, ], method = "LA:SL",
-   TX = TRUE )
+   restrict.regMat = TRUE )
 print( estResultLAhomTX )
 print( summary( estResultLAhomTX ) )
 print( elas( estResultLAhomTX, method = "Ch", quantNames = wNames ) )
@@ -60,10 +60,10 @@ estResultLAunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
 print( estResultLAunr )
 print( summary( estResultLAunr ) )
 print( elas( estResultLAunr, method = "Ch", quantNames = wNames ) )
-# imposing restrictions via TX
+# imposing restrictions via restrict.regMat
 estResultLAunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ set, ], method = "LA:SL",
-   TX = TRUE )
+   restrict.regMat = TRUE )
 print( estResultLAunrTX )
 print( summary( estResultLAunrTX ) )
 print( elas( estResultLAunrTX, method = "Ch", quantNames = wNames ) )
@@ -81,9 +81,9 @@ estResultAIDS <- aidsEst( pNames, wNames, "xFood",
 print( estResultAIDS )
 print( summary( estResultAIDS ) )
 print( elas( estResultAIDS, method = "AIDS", quantNames = wNames ) )
-# imposing restrictions via TX
+# imposing restrictions via restrict.regMat
 estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
+   data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
 print( estResultAIDSTX )
 print( summary( estResultAIDSTX ) )
 print( elas( estResultAIDSTX, method = "AIDS", quantNames = wNames ) )
@@ -102,9 +102,9 @@ estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
 print( estResultAIDShom )
 print( summary( estResultAIDShom ) )
 print( elas( estResultAIDShom, method = "AIDS", quantNames = wNames ) )
-# imposing restrictions via TX
+# imposing restrictions via restrict.regMat
 estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-   data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
+   data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
 print( estResultAIDShomTX )
 print( summary( estResultAIDShomTX ) )
 print( elas( estResultAIDShomTX, method = "AIDS", quantNames = wNames ) )
@@ -123,9 +123,9 @@ estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
 print( estResultAIDSunr )
 print( summary( estResultAIDSunr ) )
 print( elas( estResultAIDSunr, method = "AIDS", quantNames = wNames ) )
-# imposing restrictions via TX
+# imposing restrictions via restrict.regMat
 estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-   data = Blanciforti86[ setWo1, ], method = "IL:L", TX = TRUE )
+   data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
 print( estResultAIDSunrTX )
 print( summary( estResultAIDSunrTX ) )
 print( elas( estResultAIDSunrTX, method = "AIDS", quantNames = wNames ) )
