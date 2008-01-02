@@ -41,7 +41,7 @@ increasingly more debugging information.}
   tobit model classifier (see Amemiya, 1985), and \code{$method}, either \code{"ml"}
   or \code{"2step"}, specifying the estimation method.
 }
-\references{Amemiya, T. (1985) \emph{Advanced Ecnometrics}, Harvard
+\references{Amemiya, T. (1985) \emph{Advanced Econometrics}, Harvard
   University Press
   }
 \author{Ott Toomet \email{otoomet@ut.ee}}
