@@ -20,11 +20,11 @@
   \And
   Arne Henningsen\\University of Kiel}
 \title{Sample Selection Models in \proglang{R}:\\
-  Package \pkg{micEcon}}
+  Package \pkg{sampleSelection}}
 
 %% for pretty printing and a nice hypersummary also set:
 \Plainauthor{Arne Henningsen, Ott Toomet} %% comma-separated
-\Plaintitle{Sample Selection Models in R: Package micEcon} %% without formatting
+\Plaintitle{Sample Selection Models in R: Package sampleSelection} %% without formatting
 \Shorttitle{Sample Selection Models in R} %% a short title (if necessary)
 
 %% an abstract and keywords
@@ -36,7 +36,7 @@
   although modern econometrics has non- and semiparametric estimation
   methods in its toolbox, Heckman models are an integral part of the
   modern applied analysis and econometrics syllabus.  We describe
-  the implementation of these models in the package \pkg{micEcon} and
+  the implementation of these models in the package \pkg{sampleSelection} and
   illustrate the usage of the package on several simulation and real
   data examples.  Our examples demonstrate the effect of exclusion
   restrictions, identification at infinity and misspecification.  We
@@ -174,7 +174,7 @@ misspecification, exclusion restrictions etc.  They are easy
 to implement, to visualise, and to understand.
 
 The aim of this paper is to describe the \proglang{R} \citep{r2007}
-package \pkg{micEcon}, which is available on
+package \pkg{sampleSelection}, which is available on
 the Comprehensive R Archive Network (CRAN)
 (\url{http://CRAN.R-project.org/}).  The package implements two types
 of more popular Heckman selection models which, as far as we know,
@@ -185,7 +185,7 @@ these types of models lies in econometrics training.
 The paper is organised as follows: In the next section we introduce
 the \citet{heckman1976} solution to the sample selection problem.
 Section~\ref{sec:implementation} briefly describes the current implementation
-of the model in \pkg{micEcon} and its possible generalisations.
+of the model in \pkg{sampleSelection} and its possible generalisations.
 In Section~\ref{sec:using} we
 illustrate the usage of the package on various simulated
 data sets.  Section~\ref{sec:reliability} is devoted to
@@ -546,14 +546,14 @@ $\varrho_2$ between the disturbances of the selection equation
 ($\varepsilon^{O1}$ and $\varepsilon^{O2}$).
 
 
-\section[Implementation]{Implementation in \pkg{micEcon}}
+\section[Implementation]{Implementation in \pkg{sampleSelection}}
 \label{sec:implementation}
 
 \subsection{Current implementation}
 \label{sec:current_implementation}
 
 The main frontend for the estimation of selection models in
-\pkg{micEcon} is the command \code{selection}.  It requires a formula for
+\pkg{sampleSelection} is the command \code{selection}.  It requires a formula for
 the selection equation (argument \code{selection}), and a formula (or a list
 of two for switching regression models) for the outcome equation
 (\code{outcome}).  One can choose the method (\code{method}) to be
@@ -570,9 +570,12 @@ Note that log-likelihood functions of selection models are in
 general not globally concave, and hence one should use a good choice
 of initial values (see the example in Section~\ref{sec:convergence}).
 
-By default, the likelihood maximisation is performed with the Newton-Raphson
-algorithm (implemented as the function \code{maxNR} in \pkg{micEcon})
-using an analytic score vector and an analytic Hessian matrix.
+The likelihood maximisation is performed by the
+\pkg{maxLik} package \citep{r-maxLik},
+where the Newton-Raphson
+algorithm (implemented as the function \code{maxNR})
+using an analytic score vector and an analytic Hessian matrix
+is used by default.
 This results in a reasonably fast computation even in cases
 of tens of thousands observations.  A well-defined model should
 converge in less than 15 iterations; in the case of weak
@@ -598,8 +601,11 @@ unimplemented components.
 
 The package is written completely in \proglang{R} which should
 minimise the portability issues.  It depends on packages
-\pkg{systemfit} \citep{r-systemfit} and \pkg{mvtnorm} \citep{r-mvtnorm},
-the latter for examples only.  Both
+\pkg{maxLik} \citep{r-maxLik},
+\pkg{systemfit} \citep{r-systemfit},
+and \pkg{mvtnorm} \citep{r-mvtnorm},
+where \pkg{mvtnorm} is used for examples only.
+All these packages
 are available from the Comprehensive R Archive Network (CRAN) at
 \url{http://CRAN.R-project.org/}.
 
@@ -653,7 +659,7 @@ First, we estimate a correctly specified Tobit-2 model with exclusion
 restriction:
 <<code:t2generate>>=
   set.seed(0)
-  library(micEcon)
+  library(sampleSelection)
   library(mvtnorm)
   eps <- rmvnorm(500, c(0,0), matrix(c(1,-0.7,-0.7,1), 2, 2))
   xs <- runif(500)
@@ -1022,7 +1028,7 @@ re-estimating selected models, already published in the literature.
 \label{sec:Greene22.8}
 
 The first test is example 22.8 from \citet[p.~786]{greene2002}.  The
-data set used in this example is included in \pkg{micEcon}; it is
+data set used in this example is included in \pkg{sampleSelection}; it is
 called \code{Mroz87}.  This data set was used by \citet{mroz1987} for
 analysing female labour supply.  In this example, labour force
 participation (described by dummy \code{lfp}) is modelled by a
@@ -1082,7 +1088,7 @@ outer product approximation.
 
 The data set used in this example is based on the ``RAND Health
 Insurance Experiment'' \citep{newhouse99}.  It is included in
-\pkg{micEcon}, where it is called \code{RandHIE}.
+\pkg{sampleSelection}, where it is called \code{RandHIE}.
 \citet[p.~553]{cameron05} use these data to analyse health
 expenditures.  The endogenous variable of the outcome equation
 measures the log of the medical expenses of the individual
@@ -1202,8 +1208,8 @@ The new Newton-Raphson estimate converged to another maximum
 with a log-likehood value even higher than the one of the original estimate
 published in \citet[p.~786]{greene2002} (see section~\ref{sec:Greene22.8}):
 <<>>=
-loglikValue( greeneML )
-loglikValue( greeneStartSANN )
+logLik( greeneML )
+logLik( greeneStartSANN )
 @
 %
 However, in most cases the 2-step method does a good job
@@ -1253,14 +1259,14 @@ coef( summary( tobitTS ) )[ "rho", ]
 \label{sec:conclusions}
 
 This paper describes Heckman-type selection models and their
-implementation in the package \pkg{micEcon} for the programming
+implementation in the package \pkg{sampleSelection} for the programming
 language \proglang{R}.  These models are popular in estimating impacts
 of various factors in economics and other social sciences.  We argue
 that they also serve as useful teaching tools because they are easy
 to implement and understand.
 
 We describe the implementation and usage of standard sample selection (Tobit-2) and
-switching regression (Tobit-5) models in \pkg{micEcon}, and possible
+switching regression (Tobit-5) models in \pkg{sampleSelection}, and possible
 generalisations of our \code{selection} function.  We
 demonstrate the usage of the package using a number of simulated and
 real data examples.  The examples illustrate several important issues
