@@ -602,7 +602,7 @@ unimplemented components.
 The package is written completely in \proglang{R} which should
 minimise the portability issues.  It depends on packages
 \pkg{maxLik} \citep{r-maxLik},
-\pkg{systemfit} \citep{r-systemfit},
+\pkg{systemfit} \citep{henningsen07a,r-systemfit},
 and \pkg{mvtnorm} \citep{r-mvtnorm},
 where \pkg{mvtnorm} is used for examples only.
 All these packages
