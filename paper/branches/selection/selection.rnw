@@ -174,7 +174,7 @@ misspecification, exclusion restrictions etc.  They are easy
 to implement, to visualise, and to understand.
 
 The aim of this paper is to describe the \proglang{R} \citep{r2007}
-package \pkg{sampleSelection}, which is available on
+package \pkg{sampleSelection} (version~0.5), which is available on
 the Comprehensive R Archive Network (CRAN)
 (\url{http://CRAN.R-project.org/}).  The package implements two types
 of more popular Heckman selection models which, as far as we know,
