@@ -47,11 +47,11 @@
 }
 
 \examples{
-   ## replicating the LA-AIDS estimation in SAS (2008)
+   ## replicating the LA-AIDS estimation of the SAS example
    # loading data set
    data( USMeatConsump )
 
-   # adding shifter variables for modeling seasonal effeect
+   # adding shifter variables for modeling seasonal effects
    USMeatConsump$co1 <- cos( 1 / 2 * 3.14159 * USMeatConsump$t )
    USMeatConsump$si1 <- sin( 1 / 2 * 3.14159 * USMeatConsump$t )
 
