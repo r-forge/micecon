@@ -2850,3 +2850,95 @@ wFood4  0.1512  0.0570  0.0405 -0.2487
 
 > 
 > 
+> ## replicating the LA-AIDS estimation of the SAS example
+> # loading data set
+> data( USMeatConsump )
+> 
+> # adding shifter variables for modeling seasonal effects
+> USMeatConsump$co1 <- cos( 1 / 2 * 3.14159 * USMeatConsump$t )
+> USMeatConsump$si1 <- sin( 1 / 2 * 3.14159 * USMeatConsump$t )
+> 
+> # Scaling prices by their means
+> USMeatConsump$beef_pm <- USMeatConsump$beef_p / mean( USMeatConsump$beef_p )
+> USMeatConsump$pork_pm <- USMeatConsump$pork_p / mean( USMeatConsump$pork_p )
+> USMeatConsump$chick_pm <- USMeatConsump$chick_p / mean( USMeatConsump$chick_p )
+> USMeatConsump$turkey_pm <- USMeatConsump$turkey_p / mean( USMeatConsump$turkey_p )
+> 
+> # Estimation of the model
+> meatModel <- aidsEst( c( "beef_pm", "pork_pm", "chick_pm", "turkey_pm" ),
++    c( "beef_w", "pork_w", "chick_w", "turkey_w" ),
++    "meat_exp", shifterNames = c( "co1", "si1", "t" ),
++    method = "LA:S", data = USMeatConsump, maxiter=1000 )
+> meatModel
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with Stone Index (S)
+Estimated Coefficients:
+alpha
+  beef_w   pork_w  chick_w turkey_w 
+   0.398    0.241    0.580   -0.218 
+beta
+  beef_w   pork_w  chick_w turkey_w 
+ 0.02342  0.00339 -0.05355  0.02674 
+gamma
+          beef_pm  pork_pm chick_pm turkey_pm
+beef_w    0.04117 -0.00407  -0.0493   0.01215
+pork_w   -0.00407  0.04473  -0.0307  -0.00993
+chick_w  -0.04926 -0.03074   0.1014  -0.02139
+turkey_w  0.01215 -0.00993  -0.0214   0.01916
+delta
+              co1       si1         t
+beef_w   -0.01631 -0.002282 -0.001477
+pork_w    0.00961  0.006454  0.000278
+chick_w  -0.00567 -0.000836  0.000893
+turkey_w  0.01237 -0.003336  0.000306
+> summary( meatModel )
+
+Demand analysis with the Almost Ideal Demand System (AIDS)
+Estimation Method: Linear Approximation (LA) with Stone Index (S)
+Estimated Coefficients:
+           Estimate Std. Error t value  Pr(>|t|)
+alpha 1    0.397899   3.98e-01   0.998  3.19e-01
+alpha 2    0.240958   2.86e-01   0.842  4.00e-01
+alpha 3    0.579604   1.76e-01   3.300  1.09e-03
+alpha 4   -0.218461   2.93e-01  -0.746  4.56e-01
+beta 1     0.023424   4.41e-02   0.531  5.96e-01
+beta 2     0.003386   3.16e-02   0.107  9.15e-01
+beta 3    -0.053550   1.94e-02  -2.755  6.27e-03
+beta 4     0.026740   3.25e-02   0.824  4.11e-01
+gamma 1 1  0.041175   1.26e-02   3.264  1.24e-03
+gamma 1 2 -0.004066   8.08e-03  -0.503  6.15e-01
+gamma 1 3 -0.049260   5.38e-03  -9.155  1.26e-17
+gamma 1 4  0.012151   9.56e-03   1.271  2.05e-01
+gamma 2 1 -0.004066   8.08e-03  -0.503  6.15e-01
+gamma 2 2  0.044733   8.76e-03   5.105  6.18e-07
+gamma 2 3 -0.030740   5.99e-03  -5.133  5.39e-07
+gamma 2 4 -0.009927   7.50e-03  -1.323  1.87e-01
+gamma 3 1 -0.049260   5.38e-03  -9.155  1.26e-17
+gamma 3 2 -0.030740   5.99e-03  -5.133  5.39e-07
+gamma 3 3  0.101387   7.56e-03  13.403  6.87e-32
+gamma 3 4 -0.021388   6.96e-03  -3.074  2.32e-03
+gamma 4 1  0.012151   9.56e-03   1.271  2.05e-01
+gamma 4 2 -0.009927   7.50e-03  -1.323  1.87e-01
+gamma 4 3 -0.021388   6.96e-03  -3.074  2.32e-03
+gamma 4 4  0.019163   1.23e-02   1.554  1.21e-01
+delta 1 1 -0.016311   1.62e-03 -10.059  1.76e-20
+delta 1 2 -0.002282   1.56e-03  -1.461  1.45e-01
+delta 1 3 -0.001477   4.83e-05 -30.618  9.73e-91
+delta 2 1  0.009611   1.18e-03   8.143  1.34e-14
+delta 2 2  0.006454   1.13e-03   5.709  2.93e-08
+delta 2 3  0.000278   3.60e-05   7.740  1.89e-13
+delta 3 1 -0.005670   6.96e-04  -8.144  1.33e-14
+delta 3 2 -0.000836   6.60e-04  -1.266  2.07e-01
+delta 3 3  0.000893   2.62e-05  34.052 8.04e-101
+delta 4 1  0.012369   1.15e-03  10.795  6.78e-23
+delta 4 2 -0.003336   1.09e-03  -3.054  2.48e-03
+delta 4 3  0.000306   4.61e-05   6.638  1.68e-10
+R-squared Values of expenditure shares:
+  beef_w   pork_w  chick_w turkey_w 
+   0.954    0.778    0.978   -1.380 
+R-squared Values of quantities:
+  q_beef_w   q_pork_w  q_chick_w q_turkey_w 
+    -1.011      0.253     -2.627     -0.944 
+> 
+> 
