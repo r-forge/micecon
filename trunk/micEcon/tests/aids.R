@@ -73,6 +73,22 @@ estResultLAunr$call <- NULL
 estResultLAunr$est$call <- NULL
 print( all.equal( estResultLAunr, estResultLAunrTX ) )
 
+
+#####################################################
+## Estimation with demand shifters
+Blanciforti86$trend <- c( 0:( nrow( Blanciforti86 ) - 1 ) )
+estResultLAtrend <- aidsEst( pNames, wNames, "xFood",
+   shifterNames = c( "trend" ), data = Blanciforti86[ set, ] )
+print( estResultLAtrend )
+summary( estResultLAtrend )
+
+Blanciforti86$trend2 <- c( 0:( nrow( Blanciforti86 ) - 1 ) )^2
+estResultLAtrend2 <- aidsEst( pNames, wNames, "xFood",
+   shifterNames = c( "trend", "trend2" ), data = Blanciforti86[ set, ] )
+print( estResultLAtrend2 )
+summary( estResultLAtrend2 )
+
+
 #####################################################
 cat( paste( "\nRepeating the evaluation of different elasticity formulas",
    "of Green & Alston (1990): iterated AIDS\n" ) )
@@ -263,6 +279,17 @@ cat( "\nTranslog index\n" )
 pxTL <- aidsPx( "TL", pNames, wNames, Blanciforti86,
    coef = estResultLA$coef )
 print( pxTL )
+
+# Translog index with 1 demand shifter
+pxTLtrend <- aidsPx( "TL", pNames, data = Blanciforti86,
+   coef = estResultLAtrend$coef, shifterNames = c( "trend" ) )
+print( pxTLtrend )
+
+# Translog index with 2 demand shifters
+pxTLtrend2 <- aidsPx( "TL", pNames, data = Blanciforti86,
+   coef = estResultLAtrend2$coef, shifterNames = c( "trend", "trend2" ) )
+print( pxTLtrend2 )
+
 
 ########### fitted values #################
 options( digits = 3 )
