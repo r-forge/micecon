@@ -1,5 +1,6 @@
 aidsPx <- function( px, priceNames, shareNames = NULL, data = NULL, base = 1,
-   coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) ) {
+   coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ),
+   shifterNames = NULL ) {
 
    nGoods <- length( priceNames )
    if( !is.null( shareNames ) ) {
@@ -7,6 +8,7 @@ aidsPx <- function( px, priceNames, shareNames = NULL, data = NULL, base = 1,
          stop( "'shareNames' must have as many elements as 'priceNames'" )
       }
    }
+   nShifter <- length( shifterNames )
    nObs <- nrow(  data )
    lnp <- array( 0, c( nObs ))
    if(px=="S") {      # Stone index
@@ -45,6 +47,12 @@ aidsPx <- function( px, priceNames, shareNames = NULL, data = NULL, base = 1,
             lnp <- lnp + 0.5 * coef$gamma[ i, j ] *
                log( data[[ priceNames[ i ] ]] ) *
                log( data[[ priceNames[ j ] ]] )
+         }
+         if( nShifter > 0 ){
+            for( j in 1:nShifter ) {
+               lnp <- lnp + coef$delta[ i, j ] * data[[ shifterNames[ j ] ]] *
+                  log( data[[ priceNames[ i ] ]] )
+            }
          }
       }
    } else {

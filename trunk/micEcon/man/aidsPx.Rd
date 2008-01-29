@@ -8,7 +8,8 @@
 
 \usage{
    aidsPx( px, priceNames, shareNames = NULL, data = NULL, base = 1, coef = NULL,
-      alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) )
+      alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ),
+      shifterNames = NULL )
 }
 
 \arguments{
@@ -21,6 +22,9 @@
    \item{coef}{a list containing the coefficients alpha, beta and gamma
       (only needed for the translog price index).}
    \item{alpha0}{coefficient \eqn{\alpha_0} of the translog price index.}
+   \item{shifterNames}{an optional vector of strings containing the names of
+      the demand shifters
+      that modify the alphas of the Translog price index.}
 }
 \details{
    Currently 6 different price indices are implemented:
