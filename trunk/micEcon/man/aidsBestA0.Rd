@@ -88,7 +88,9 @@
 
    bestA0 <- aidsBestA0( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
-      data = Blanciforti86, method = "IL:L" ) # may take some time
+      data = Blanciforti86, method = "IL:L", useMatrix = FALSE )
+   # may take some time (argument 'useMatrix = FALSE' decreases
+   # the computation time only if the model and data set are small)
    print( bestA0$alpha0 )
    plot( bestA0$allValues ) # this should be convex
 }
