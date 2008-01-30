@@ -1,16 +1,30 @@
 aidsCalc <- function( priceNames, totExpName, data = NULL, px = "TL", lnp = NULL,
    coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) ) {
 
+   # check argument 'coef' (coefficients)
+   if( !is.null( coef ) ){
+      coefCheckResult <- .aidsCheckCoef( coef,
+         nGoods = c( length( priceNames ) ), argGoods = c( "prices" ) )
+      if( !is.null( coefCheckResult ) ){
+         stop( coefCheckResult )
+      }
+   }
+
+   # check whether the price index is provided if it should not be in translog form
    if( px != "TL" && is.null( lnp ) ) {
       stop( "at the moment only the translog (TL) price index works",
          " if argument 'lnp' is not specified" )
    }
-   nGoods <- length( priceNames )
 
+   # calculate price index if it isn't provided
    if( is.null( lnp ) ) {
       lnp <- aidsPx( px, priceNames, data = data,
          alpha0 = alpha0, coef = coef )
    }
+
+   # number of goods
+   nGoods <- length( priceNames )
+
    shareData <- as.data.frame( matrix( 0, nrow = nrow( data ), ncol = nGoods ) )
    names( shareData ) <- paste( "w", as.character( 1:nGoods ), sep = "" )
    rownames( shareData ) <- rownames( data )
