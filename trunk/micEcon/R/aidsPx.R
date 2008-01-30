@@ -7,10 +7,10 @@ aidsPx <- function( px, priceNames, shareNames = NULL, data = NULL, base = 1,
          stop( "argument 'coef' must be specified to calculate the translog",
             " price index" )
       } else {
-         coefCheckResult <- .aidsCheckCoef( coef,
-            nGoods = c( length( priceNames ),
-               ifelse( is.null( shareNames ), NA, length( shareNames ) ) ),
-            argGoods = c( "priceNames", "shareNames" ) )
+         coefCheckResult <- .aidsCheckCoef( coef, variables = list(
+            list( length( priceNames ), "priceNames", "goods" ),
+            list( ifelse( is.null( shareNames ), NA, length( shareNames ) ), 
+               "shareNames", "goods" ) ) )
          if( !is.null( coefCheckResult ) ){
             stop( coefCheckResult )
          }

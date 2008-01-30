@@ -3,13 +3,13 @@ aidsElas <- function( coef, shares, prices = NULL, method = "AIDS",
 
    nGoods <- length( coef$alpha )
 
-   coefCheckResult <- .aidsCheckCoef( coef,
-      nGoods = c(
-         ifelse( is.null( prices ), NA, length( prices ) ),
-         length( shares ),
-         ifelse( is.null( quantNames ), NA, length( quantNames ) ),
-         ifelse( is.null( priceNames ), NA, length( priceNames ) ) ),
-      argGoods = c( "prices", "shares", "quantNames", "priceNames" ) )
+   coefCheckResult <- .aidsCheckCoef( coef, variables = list(
+      list( ifelse( is.null( prices ), NA, length( prices ) ), "prices", "goods" ),
+      list( length( shares ), "shares", "goods" ),
+      list( ifelse( is.null( quantNames ), NA, length( quantNames ) ), 
+         "quantNames", "goods" ),
+      list( ifelse( is.null( priceNames ), NA, length( priceNames ) ), 
+         "priceNames", "goods" ) ) )
    if( !is.null( coefCheckResult ) ){
       stop( coefCheckResult )
    }

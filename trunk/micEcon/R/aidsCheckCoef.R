@@ -1,47 +1,33 @@
 .aidsCheckCoef <- function( coef, argCoef = "coef",
-      nGoods = NA, argGoods = NULL,
-      nShifters = NA, argShifters = NULL ) {
+      variables = NULL ) {
 
-   # checking arguments of nGoods and argGoods of *this* function
-   if( any( !is.na( nGoods ) ) ){
-      if( is.null( argGoods ) ){
-         stop( "internal error: 'nGoods' is specified",
-            " but 'argGoods' is not available" )
+   # checking argument 'variables' of *this* function
+   if( !is.null( variables ) ){
+      if( !is.list( variables ) ){
+         stop( "internal error: argument 'variables' must be of class 'list'" )
       }
-      if( length( nGoods ) != length( argGoods ) ){
-         stop( "internal error: 'nGoods' and 'argGoods'",
-            " have not the same length" )
-      }
-      for( i in 1:length( nGoods ) ){
-         if( !is.numeric( nGoods[ i ] ) || length( nGoods[ i ] ) != 1 ){
-            stop( "internal error: 'nGoods['", i , "] must be",
+      for( i in 1:length( variables ) ){
+         if( !is.list( variables[[ i ]] ) ){
+            stop( "internal error: each element of argument 'variables'",
+               " must be of class 'list'" )
+         }
+         if( length( variables[[ i ]] ) != 3 ){
+            stop( "internal error: each element of argument 'variables'",
+               " must have 3 elements" )
+         }
+         if( !( is.numeric( variables[[ i ]][[ 1 ]] ) || 
+               is.na( variables[[ i ]][[ 1 ]] ) ) || 
+               length( variables[[ i ]][[ 1 ]] ) != 1 ){
+            stop( "internal error: 'variables[[ ", i , " ]][[ 1 ]]' must be",
                " a numeric scalar" )
          }
-         if( !is.character( argGoods[ i ] ) ){
-            stop( "internal error: 'argGoods['", i , "] must be",
+         if( !is.character( variables[[ i ]][[ 2 ]] ) ){
+            stop( "internal error: 'variables[[ ", i , " ]][[ 2 ]]' must be",
                " a character string" )
          }
-      }
-   }
-
-  # checking arguments of nShifters and argShifters of *this* function
-   if( any( !is.na( nShifters ) ) ){
-      if( is.null( argShifters ) ){
-         stop( "internal error: 'nShifters' is specified",
-            " but 'argShifters' is not available" )
-      }
-      if( length( nShifters ) != length( argShifters ) ){
-         stop( "internal error: 'nShifters' and 'argShifters'",
-            " have not the same length" )
-      }
-      for( i in 1:length( nShifters ) ){
-         if( !is.numeric( nShifters[ i ] ) || length( nShifters[ i ] ) != 1 ){
-            stop( "internal error: 'nShifters['", i , "] must be",
-               " a numeric scalar" )
-         }
-         if( !is.character( argShifters[ i ] ) ){
-            stop( "internal error: 'argShifters['", i , "] must be",
-               " a character string" )
+         if( !( variables[[ i ]][[ 3 ]] %in% c( "goods", "shifters" ) ) ){
+            stop( "internal error: 'variables[[ ", i , " ]][[ 3 ]]' must be",
+               " either 'goods' or 'shifters'" )
          }
       }
    }
@@ -96,25 +82,25 @@
       }
    }
 
-   # checking Goods
-   if( any( !is.na( nGoods ) ) ){
-      for( i in 1:length( nGoods ) ){
-         if( nGoods[i] != length( coef$alpha ) && !is.na( nGoods[i] ) ) {
-            return( paste( "'", argCoef, "$alpha' and '", argGoods[i],
-               "' must have the same length", sep = "" ) )
-         }
-      }
-   }
-
-   # checking demand shifters
-   if( any( !is.na( nShifters ) ) ){
-      if( is.null( coef$delta ) ){
-         stop( "'", argCoef, "$delta' is not available" )
-      }
-      for( i in 1:length( nGoods ) ){
-         if( nShifters != ncol( coef$delta ) && !is.na( nShifters[i] ) ) {
-            return( paste( "the number of columns of '", argCoef, "$delta'",
-               " must be equal to the length of ", argShifters, sep = "" ) )
+   # checking variables
+   if( !is.null( variables ) ){
+      for( i in 1:length( variables ) ){
+         if( variables[[ i ]][[ 3 ]] == "goods" ){ 
+            if( variables[[ i ]][[ 1 ]] != length( coef$alpha ) && 
+                  !is.na( variables[[ i ]][[ 1 ]] ) ) {
+               return( paste( "'", argCoef, "$alpha' and '", variables[[ i ]][[ 2 ]],
+                  "' must have the same length", sep = "" ) )
+            }
+         } else if( variables[[ i ]][[ 3 ]] == "shifters" ){
+            if( variables[[ i ]][[ 1 ]] != ncol( coef$delta ) && 
+                  !is.na( variables[[ i ]][[ 1 ]] ) ) {
+               return( paste( "the number of columns of '", argCoef, "$delta'",
+                  " must be equal to the length of '", variables[[ i ]][[ 2 ]], "'", 
+                  sep = "" ) )
+            }
+         } else {
+            stop( "internal error: 'variables[[ ", i , " ]][[ 3 ]]' must be",
+               " either 'goods' or 'shifters'" )
          }
       }
    }
