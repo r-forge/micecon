@@ -3,8 +3,8 @@ aidsCalc <- function( priceNames, totExpName, data = NULL, px = "TL", lnp = NULL
 
    # check argument 'coef' (coefficients)
    if( !is.null( coef ) ){
-      coefCheckResult <- .aidsCheckCoef( coef,
-         nGoods = c( length( priceNames ) ), argGoods = c( "prices" ) )
+      coefCheckResult <- .aidsCheckCoef( coef, variables = list(
+         list( length( priceNames ), "prices", "goods"  ) ) )
       if( !is.null( coefCheckResult ) ){
          stop( coefCheckResult )
       }
