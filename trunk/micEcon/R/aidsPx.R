@@ -2,12 +2,27 @@ aidsPx <- function( px, priceNames, shareNames = NULL, data = NULL, base = 1,
    coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ),
    shifterNames = NULL ) {
 
-   nGoods <- length( priceNames )
-   if( !is.null( shareNames ) ) {
-      if( nGoods != length( shareNames ) && px != "TL" ) {
-         stop( "'shareNames' must have as many elements as 'priceNames'" )
+   if( px == "TL" ){
+      if( is.null( coef ) ) {
+         stop( "argument 'coef' must be specified to calculate the translog",
+            " price index" )
+      } else {
+         coefCheckResult <- .aidsCheckCoef( coef,
+            nGoods = c( length( priceNames ),
+               ifelse( is.null( shareNames ), NA, length( shareNames ) ) ),
+            argGoods = c( "priceNames", "shareNames" ) )
+         if( !is.null( coefCheckResult ) ){
+            stop( coefCheckResult )
+         }
+      }
+   } else {
+      if( is.null( shareNames ) ) {
+         stop( "argument 'shareNames' must must be specified to calculate",
+            " price index '", px, "'" )
       }
    }
+
+   nGoods <- length( priceNames )
    nShifter <- length( shifterNames )
    nObs <- nrow(  data )
    lnp <- array( 0, c( nObs ))

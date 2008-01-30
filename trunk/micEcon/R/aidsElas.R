@@ -3,33 +3,23 @@ aidsElas <- function( coef, shares, prices = NULL, method = "AIDS",
 
    nGoods <- length( coef$alpha )
 
-   if( length( coef$alpha ) != length( coef$beta ) ) {
-      stop( "arguments 'alpha' and 'beta' must have the same length" )
-   } else if( nrow( coef$gamma ) != ncol( coef$gamma ) ) {
-      stop( "argument 'gamma' must be a square matrix" )
-   } else if( length( coef$alpha ) != nrow( coef$gamma ) ) {
-      stop( "number of rows of argument 'gamma' must be equal",
-         " to the length of argument 'alpha'" )
-   } else if(  length( coef$alpha ) != length( shares ) ) {
-      stop( "arguments 'alpha' and 'shares' must have the same length" )
-   } else if(  length( coef$alpha ) != length( prices ) && !is.null( prices ) ) {
-      stop( "arguments 'alpha' and 'prices' must have the same length" )
+   coefCheckResult <- .aidsCheckCoef( coef,
+      nGoods = c(
+         ifelse( is.null( prices ), NA, length( prices ) ),
+         length( shares ),
+         ifelse( is.null( quantNames ), NA, length( quantNames ) ),
+         ifelse( is.null( priceNames ), NA, length( priceNames ) ) ),
+      argGoods = c( "prices", "shares", "quantNames", "priceNames" ) )
+   if( !is.null( coefCheckResult ) ){
+      stop( coefCheckResult )
    }
+
    if( is.null( quantNames ) ) {
       quantNames <- .aidsQuantNames( shares, coef, nGoods )
-   } else {
-      if( length( quantNames ) != nGoods ) {
-         stop( "argument 'quantNames' must have ", nGoods, " elements" )
-      }
    }
    if( is.null( priceNames ) ) {
       priceNames <- .aidsPriceNames( prices, coef, nGoods )
-   } else {
-      if( length( priceNames ) != nGoods ) {
-         stop( "argument 'priceNames' must have ", nGoods, " elements" )
-      }
    }
-
 
    if( method %in% c( "AIDS", "GA", "B1", "B2" ) ) {
       if( is.null( prices ) ) {
