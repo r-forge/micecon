@@ -11,7 +11,7 @@
 \usage{
 aidsEst( priceNames, shareNames, totExpName, data = NULL,
       instNames = NULL, shifterNames = NULL,
-      method = "LA:L", hom = TRUE, sym = TRUE, pxBase,
+      method = "LA", pIndex = "L", hom = TRUE, sym = TRUE, pxBase,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
       ILmaxiter = 50, ILtol = 1e-5, alpha0 = 0, restrict.regMat = FALSE, ... )
 
@@ -28,7 +28,11 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
       variables.}
    \item{shifterNames}{an optional vector of strings containing the names of
       the demand shifters.}
-   \item{method}{the method to estimate the AIDS (see details).}
+   \item{method}{character string specifying the method to estimate the AIDS:
+      either 'LA' or 'IL' (see deatils).}
+   \item{pIndex}{character string specifying the price index
+      for the 'Linear Approximation':
+      either 'S', 'SL', 'P', 'L', or 'T' (see details).}
    \item{hom}{logical. Should the homogeneity condition be imposed?}
    \item{sym}{logical. Should the symmetry condition be imposed?}
    \item{pxBase}{The base to calculate the LA-AIDS price indices
@@ -50,22 +54,24 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
 }
 
 \details{
-   At the moment two basic estimation methods are available:
+   Argument \code{method} can specify two different estimation methods:
    The 'Linear Approximate AIDS' (LA) and the 'Iterative Linear Least Squares
    Estimator' (IL) proposed by Blundell and Robin (1999).\cr
-   The LA-AIDS can be estimated with
+   Argument \code{pIndex} can specify five different price indices
+   for the LA-AIDS:
    \begin{itemize}
-   \item Stone price index ('LA:S'),
-   \item Stone price index with lagged shares ('LA:SL'),
-   \item loglinear analogue to the Paasche price index ('LA:P'),
-   \item loglinear analogue of the Laspeyres price index ('LA:L'), and
-   \item Tornqvist price index ('LA:T').
+   \item Stone price index ('S'),
+   \item Stone price index with lagged shares ('SL'),
+   \item loglinear analogue to the Paasche price index ('P'),
+   \item loglinear analogue of the Laspeyres price index ('L'), and
+   \item Tornqvist price index ('T').
    \end{itemize}
 
    The 'Iterative Linear Least Squares Estimator' (IL) needs starting
-   values for the (translog) price index. The price index used to
-   calculate the initial price index can be specified in the same way
-   as for the LA-AIDS (e.g. 'IL:L')
+   values for the (translog) price index.
+   Starting values are taken from an initial estimation
+   of the 'Linear Approximate AIDS' (LA) with the price index
+   specified by argument \code{pIndex}.
 }
 
 \value{
@@ -125,7 +131,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    ##       which leads to slightly different results
    estResult <- aidsEst( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
-      data = Blanciforti86, method = "LA:SL", maxiter = 100 )
+      data = Blanciforti86, pIndex = "SL", maxiter = 100 )
    print( estResult )
    elas( estResult )
 
