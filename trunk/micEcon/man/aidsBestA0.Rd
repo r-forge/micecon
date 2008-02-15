@@ -10,7 +10,7 @@
 
 \usage{
    aidsBestA0( priceNames, shareNames, totExpName,
-      data = NULL, instNames = NULL, shifterNames = NULL, method = "IL:L",
+      data = NULL, instNames = NULL, shifterNames = NULL, pIndex = "L",
       a0min = -50, a0max = 50, stoprange = 3, stopiter = 10,
       verbose = FALSE, ... )
 }
@@ -25,7 +25,8 @@
       instrumental variables.}
    \item{shifterNames}{an optional vector of strings containing the names of
       the demand shifters.}
-   \item{method}{the method to estimate the aids (see \code{\link{aidsEst}}).}
+   \item{pIndex}{character string specifying the price index for the initial
+      LA-AIDS estimation to obtain starting values (see \code{\link{aidsEst}}).}
    \item{a0min}{lower limit of the range for searching for \eqn{\alpha_0}.}
    \item{a0max}{upper limit of the range for searching for \eqn{\alpha_0}.}
    \item{stoprange}{stop searching when the search interval is smaller than
@@ -88,7 +89,7 @@
 
    bestA0 <- aidsBestA0( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
-      data = Blanciforti86, method = "IL:L", useMatrix = FALSE )
+      data = Blanciforti86, useMatrix = FALSE )
    # may take some time (argument 'useMatrix = FALSE' decreases
    # the computation time only if the model and data set are small)
    print( bestA0$alpha0 )
