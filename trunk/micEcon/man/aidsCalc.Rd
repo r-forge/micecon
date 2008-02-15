@@ -50,7 +50,7 @@
 
    ## LA-AIDS
    estResult <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, method = "LA:L" )
+      data = Blanciforti86 )
 
    lnp <- aidsPx( "L", priceNames, shareNames, Blanciforti86 )
 
@@ -62,7 +62,7 @@
 
    ## AIDS
    estResult <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, method = "IL:L" )
+      data = Blanciforti86, method = "IL" )
 
    fitted <- aidsCalc( priceNames, "xFood", Blanciforti86,
       coef = estResult$coef )

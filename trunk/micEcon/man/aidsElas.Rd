@@ -129,7 +129,7 @@
 
    estResult <- aidsEst( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
-      data = Blanciforti86, method = "LA:L" )
+      data = Blanciforti86 )
    wMeans <- colMeans( Blanciforti86[ , c( "wFood1", "wFood2",
       "wFood3", "wFood4" ) ] )
    aidsElas( estResult$coef, wMeans, method = "Ch" )
@@ -142,12 +142,12 @@
    # AIDS estimation and elasticities
    estResultA <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86[ -1, ],
-      method = "IL:L", maxiter = 100 )
+      method = "IL", maxiter = 100 )
    diag( elas( estResultA, method = "AIDS" )$marshall )
 
    # LA-AIDS estimation
    estResultLA <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, method = "LA:SL", maxiter = 100 )
+      data = Blanciforti86, pIndex = "SL", maxiter = 100 )
 
    # LA-AIDS + formula of AIDS
    diag( elas( estResultLA, method = "AIDS" )$marshall )

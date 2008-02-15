@@ -1,6 +1,6 @@
 aidsEst <- function( priceNames, shareNames, totExpName,
       data = NULL, instNames = NULL,
-      shifterNames = NULL, method = "LA:L", hom = TRUE, sym = TRUE,
+      shifterNames = NULL, method = "LA", pIndex = "L", hom = TRUE, sym = TRUE,
       pxBase = 1,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
       ILmaxiter = 50, ILtol = 1e-5, alpha0 = 0, restrict.regMat = FALSE, ... ) {
@@ -12,33 +12,31 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    nShifter <- length( shifterNames )
    extractPx <- function( method ) {
       px <- substr( method, 4, nchar( method ) )
-      if( !( px %in% c( "S", "SL", "P", "L", "T" ) ) ) {
-         stop( "no valid price index specified!" )
-      }
       return( px )
    }
 
-   if( substr( method, 1, 2 ) == "LA" ) {
-      if( nchar( method ) < 4 ) {
-         warning( "No price index specified: using Laspeyres price index" )
-         px <- "L"
-      } else {
-         px <- extractPx( method )
-      }
-   } else if ( substr( method, 1, 2 ) %in% c( "MK", "IL" ) ) {
-      if( nchar( method ) < 4 ) {
-         warning( "No initial price index specified:",
-            " using Laspeyres price index" )
-         px <- "L"
-      } else {
-         px <- extractPx( method )
-      }
+   if( method %in% c( "LA", "IL", "MK" ) ) {
+      px <- pIndex
    } else {
-      stop( "at the moment only the methods",
-         " 'Linear Approximation' (LA) and",
-         " 'Iterated Linear Least Squares' (IL)",
-         " are supported" )
+      if( nchar( method ) >= 4 && substr( method, 3, 3 ) == ":" &&
+         substr( method, 1, 2 ) %in% c( "LA", "IL", "MK" ) ) {
+            px <- extractPx( method )
+            warning( "using price index specified in argument 'method',",
+               " ignoring price index specified by argument 'pIndex'" )
+      } else {
+         stop( "argument 'method' must be either",
+            " 'LA' (for 'Linear Approximation') or",
+            " 'IL' (for 'Iterated Linear Least Squares')" )
+      }
+   } 
+
+   if( !( px %in% c( "S", "SL", "P", "L", "T" ) ) ) {
+      stop( "argument 'pIndex' that specifies the price index must be either",
+         " 'S' (Stone index), 'SL' (Stone index with lagges shares),",
+         " 'P' (Paasche index), 'L' (Laspeyres index), or",
+         " 'T' (Tornqvist index)" )
    }
+
    if( sym && !hom ) {
       hom <- TRUE  # symmetry implies homogeneity
       warning( "symmetry implies homogeneity: imposing additionally homogeniety" )

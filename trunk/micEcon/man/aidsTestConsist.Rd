@@ -68,7 +68,7 @@
    shareNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 
    estResult <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, method = "IL:L" )
+      data = Blanciforti86, method = "IL" )
    tc <- aidsTestConsist( priceNames, shareNames, "xFood", Blanciforti86,
       coef = estResult$coef )
    tc$mPercent   # great!
