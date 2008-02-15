@@ -1,5 +1,5 @@
 aidsBestA0 <- function( priceNames, shareNames, totExpName,
-      data = NULL, instNames = NULL, shifterNames = NULL, method = "IL:L",
+      data = NULL, instNames = NULL, shifterNames = NULL, pIndex = "L",
       a0min = -50, a0max = 50, stoprange = 3, stopiter = 10,
       verbose = FALSE, ... ) {
 
@@ -9,16 +9,12 @@ aidsBestA0 <- function( priceNames, shareNames, totExpName,
    nGoods <- length( priceNames )
    nShifter <- length( shifterNames )
 
-   if( !( substr( method, 1, 2 ) %in% c( "MK", "IL" ) ) ) {
-      stop( "at the moment this function works only with",
-         " the 'Iterated Linear Least Squares Estimation' (IL)" )
-   }
    if( a0min >= a0max ) stop( "a0min must be smaller than a0max" )
 
    deta0 <- function( a0, ... ) {
       estResult <- aidsEst( priceNames, shareNames, totExpName, data = data,
-         method = method, instNames = instNames, shifterNames = shifterNames,
-         alpha0 = a0, ... )
+         method = "IL", pIndex = pIndex, instNames = instNames,
+         shifterNames = shifterNames, alpha0 = a0, ... )
       det <- det( estResult$est$residCov )
       assign( "allValues", rbind( allValues, c( a0, det ) ),
          sys.frame( sys.parent( ) )  )
