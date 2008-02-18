@@ -94,7 +94,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    \item{ILiter}{number of iterations of the 'Iterated Linear Least Squares
       Estimation'.}
    \item{method}{the method used to estimate the aids (see details).}
-   \item{px}{the name of the price index (see details).}
+   \item{pIndex}{the name of the price index (see details).}
    \item{lnp}{log of the price index used for estimation.}
    \item{pMeans}{means of the prices.}
    \item{wMeans}{means of the expenditure shares.}
