@@ -15,12 +15,10 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       return( px )
    }
 
-   if( method %in% c( "LA", "IL", "MK" ) ) {
-      px <- pIndex
-   } else {
+   if( ! method %in% c( "LA", "IL", "MK" ) ) {
       if( nchar( method ) >= 4 && substr( method, 3, 3 ) == ":" &&
          substr( method, 1, 2 ) %in% c( "LA", "IL", "MK" ) ) {
-            px <- extractPx( method )
+            pIndex <- extractPx( method )
             warning( "using price index specified in argument 'method',",
                " ignoring price index specified by argument 'pIndex'" )
       } else {
@@ -30,7 +28,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       }
    } 
 
-   if( !( px %in% c( "S", "SL", "P", "L", "T" ) ) ) {
+   if( !( pIndex %in% c( "S", "SL", "P", "L", "T" ) ) ) {
       stop( "argument 'pIndex' that specifies the price index must be either",
          " 'S' (Stone index), 'SL' (Stone index with lagges shares),",
          " 'P' (Paasche index), 'L' (Laspeyres index), or",
@@ -48,7 +46,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       data <- data[ !is.na( rowSums( data[ , allVarNames ] ) ), ]
    }
    nObs   <- nrow( data )      # number of observations
-   sample <- if( px == "SL") c( 2:nObs ) else c( 1:nObs )
+   sample <- if( pIndex == "SL") c( 2:nObs ) else c( 1:nObs )
    result <- list()
    result$call <- match.call()
    wMeans <- numeric( nGoods )  # mean expenditure shares
@@ -58,7 +56,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       pMeans[ i ] <- mean( data[[ priceNames[ i ] ]][ sample ] )
    }
    # log of price index
-   lnp  <- aidsPx( px, priceNames, shareNames, data, base = pxBase )
+   lnp  <- aidsPx( pIndex, priceNames, shareNames, data, base = pxBase )
    # prepare data.frame
    sysData <- data.frame( xt = data[[ totExpName ]],
       lxtr = ( log( data[[ totExpName ]] ) - lnp ) )
@@ -216,7 +214,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    result$iter <- iter
    result$est <- est
    result$method <- method
-   result$px  <- px
+   result$pIndex <- pIndex
    result$lnp <- lnp
    result$wMeans <- wMeans
    result$pMeans <- pMeans
