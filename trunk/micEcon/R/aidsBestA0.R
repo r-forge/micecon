@@ -1,5 +1,5 @@
 aidsBestA0 <- function( priceNames, shareNames, totExpName,
-      data = NULL, instNames = NULL, shifterNames = NULL, pIndex = "L",
+      data = NULL, instNames = NULL, shifterNames = NULL, priceIndex = "L",
       a0min = -50, a0max = 50, stoprange = 3, stopiter = 10,
       verbose = FALSE, ... ) {
 
@@ -13,7 +13,7 @@ aidsBestA0 <- function( priceNames, shareNames, totExpName,
 
    deta0 <- function( a0, ... ) {
       estResult <- aidsEst( priceNames, shareNames, totExpName, data = data,
-         method = "IL", pIndex = pIndex, instNames = instNames,
+         method = "IL", priceIndex = priceIndex, instNames = instNames,
          shifterNames = shifterNames, alpha0 = a0, ... )
       det <- det( estResult$est$residCov )
       assign( "allValues", rbind( allValues, c( a0, det ) ),

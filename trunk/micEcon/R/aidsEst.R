@@ -1,6 +1,6 @@
 aidsEst <- function( priceNames, shareNames, totExpName,
       data = NULL, instNames = NULL,
-      shifterNames = NULL, method = "LA", pIndex = "L", hom = TRUE, sym = TRUE,
+      shifterNames = NULL, method = "LA", priceIndex = "L", hom = TRUE, sym = TRUE,
       pxBase = 1,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
       ILmaxiter = 50, ILtol = 1e-5, alpha0 = 0, restrict.regMat = FALSE, ... ) {
@@ -18,9 +18,9 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    if( ! method %in% c( "LA", "IL", "MK" ) ) {
       if( nchar( method ) >= 4 && substr( method, 3, 3 ) == ":" &&
          substr( method, 1, 2 ) %in% c( "LA", "IL", "MK" ) ) {
-            pIndex <- extractPx( method )
+            priceIndex <- extractPx( method )
             warning( "using price index specified in argument 'method',",
-               " ignoring price index specified by argument 'pIndex'" )
+               " ignoring argument 'priceIndex'" )
       } else {
          stop( "argument 'method' must be either",
             " 'LA' (for 'Linear Approximation') or",
@@ -28,8 +28,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       }
    } 
 
-   if( !( pIndex %in% c( "S", "SL", "P", "L", "T" ) ) ) {
-      stop( "argument 'pIndex' that specifies the price index must be either",
+   if( !( priceIndex %in% c( "S", "SL", "P", "L", "T" ) ) ) {
+      stop( "argument 'priceIndex' that specifies the price index must be either",
          " 'S' (Stone index), 'SL' (Stone index with lagges shares),",
          " 'P' (Paasche index), 'L' (Laspeyres index), or",
          " 'T' (Tornqvist index)" )
@@ -46,7 +46,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       data <- data[ !is.na( rowSums( data[ , allVarNames ] ) ), ]
    }
    nObs   <- nrow( data )      # number of observations
-   sample <- if( pIndex == "SL") c( 2:nObs ) else c( 1:nObs )
+   sample <- if( priceIndex == "SL") c( 2:nObs ) else c( 1:nObs )
    result <- list()
    result$call <- match.call()
    wMeans <- numeric( nGoods )  # mean expenditure shares
@@ -56,7 +56,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       pMeans[ i ] <- mean( data[[ priceNames[ i ] ]][ sample ] )
    }
    # log of price index
-   lnp  <- aidsPx( pIndex, priceNames, shareNames, data, base = pxBase )
+   lnp  <- aidsPx( priceIndex, priceNames, shareNames, data, base = pxBase )
    # prepare data.frame
    sysData <- data.frame( xt = data[[ totExpName ]],
       lxtr = ( log( data[[ totExpName ]] ) - lnp ) )
@@ -214,7 +214,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    result$iter <- iter
    result$est <- est
    result$method <- method
-   result$pIndex <- pIndex
+   result$priceIndex <- priceIndex
    result$lnp <- lnp
    result$wMeans <- wMeans
    result$pMeans <- pMeans

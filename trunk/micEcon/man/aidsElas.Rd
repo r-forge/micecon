@@ -147,7 +147,7 @@
 
    # LA-AIDS estimation
    estResultLA <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86, pIndex = "SL", maxiter = 100 )
+      data = Blanciforti86, priceIndex = "SL", maxiter = 100 )
 
    # LA-AIDS + formula of AIDS
    diag( elas( estResultLA, method = "AIDS" )$marshall )
