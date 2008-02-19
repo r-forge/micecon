@@ -1,8 +1,8 @@
-aidsPx <- function( px, priceNames, shareNames = NULL, data = NULL, base = 1,
+aidsPx <- function( priceIndex, priceNames, shareNames = NULL, data = NULL, base = 1,
    coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ),
    shifterNames = NULL ) {
 
-   if( px == "TL" ){
+   if( priceIndex == "TL" ){
       if( is.null( coef ) ) {
          stop( "argument 'coef' must be specified to calculate the translog",
             " price index" )
@@ -18,7 +18,7 @@ aidsPx <- function( px, priceNames, shareNames = NULL, data = NULL, base = 1,
    } else {
       if( is.null( shareNames ) ) {
          stop( "argument 'shareNames' must must be specified to calculate",
-            " price index '", px, "'" )
+            " price index '", priceIndex, "'" )
       }
    }
 
@@ -26,35 +26,35 @@ aidsPx <- function( px, priceNames, shareNames = NULL, data = NULL, base = 1,
    nShifter <- length( shifterNames )
    nObs <- nrow(  data )
    lnp <- array( 0, c( nObs ))
-   if(px=="S") {      # Stone index
+   if(priceIndex=="S") {      # Stone index
       for( i in 1:nGoods ) {
          lnp <- lnp + data[[ shareNames[ i ] ]] * log( data[[ priceNames[ i ] ]] )
       }
-   } else if(px=="SL") {     # Stone index with lagged shares
+   } else if(priceIndex=="SL") {     # Stone index with lagged shares
       lnp[ 1 ] <- NA
       for( i in 1:nGoods ) {
          lnp[ 2:nObs ] <- lnp[ 2:nObs ] +
             data[[ shareNames[ i ] ]][ 1:(nObs-1) ] *
             log( data[[ priceNames[ i ] ]][ 2:nObs ] )
       }
-   } else if(px=="P") {      # log-Paasche index
+   } else if(priceIndex=="P") {      # log-Paasche index
       for( i in 1:nGoods) {
          lnp <- lnp + data[[ shareNames[ i ] ]] * log( data[[ priceNames[ i ] ]] /
             mean( data[[ priceNames[ i ] ]][ base ] ) )
       }
-   } else if(px=="L") {      # log-Laspeyres index
+   } else if(priceIndex=="L") {      # log-Laspeyres index
       for( i in 1:nGoods) {
          lnp <- lnp + mean( data[[ shareNames[ i ] ]][ base ] ) *
             log( data[[ priceNames[ i ] ]] )
       }
-   } else if(px=="T") {      # Tornqvist index
+   } else if(priceIndex=="T") {      # Tornqvist index
       for( i in 1:nGoods) {
          lnp <- lnp + c( 0.5 * ( data[[ shareNames[ i ] ]] +
             mean( data[[ shareNames[ i ] ]][ base ] ) *
             matrix( 1, nrow = nObs ) ) * log( data[[ priceNames[ i ] ]] /
             mean( data[[ priceNames[ i ] ]][ base ] ) ) )
       }
-   } else if(px=="TL") {      # Translog index
+   } else if(priceIndex=="TL") {      # Translog index
       lnp <- array( alpha0, c( nObs ) )
       for( i in 1:nGoods ) {
          lnp <- lnp + coef$alpha[ i ] * log( data[[ priceNames[ i ] ]] )
@@ -71,7 +71,7 @@ aidsPx <- function( px, priceNames, shareNames = NULL, data = NULL, base = 1,
          }
       }
    } else {
-      stop( "the argument 'px' (price index) must be either 'S',",
+      stop( "the argument 'priceIndex' (price index) must be either 'S',",
          " 'SL', 'P', 'L', 'T' or 'TL'" )
    }
    return( lnp )
