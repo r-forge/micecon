@@ -1,5 +1,4 @@
 aidsBestA0 <- function( priceNames, shareNames, totExpName,
-      data = NULL, priceIndex = "L", shifterNames = NULL, instNames = NULL,
       a0min = -50, a0max = 50, stoprange = 3, stopiter = 10,
       verbose = FALSE, ... ) {
 
@@ -7,14 +6,12 @@ aidsBestA0 <- function( priceNames, shareNames, totExpName,
       stop( "arguments 'priceNames' and 'shareNames' must have the same length" )
    }
    nGoods <- length( priceNames )
-   nShifter <- length( shifterNames )
 
    if( a0min >= a0max ) stop( "a0min must be smaller than a0max" )
 
    deta0 <- function( a0, ... ) {
-      estResult <- aidsEst( priceNames, shareNames, totExpName, data = data,
-         method = "IL", priceIndex = priceIndex, instNames = instNames,
-         shifterNames = shifterNames, alpha0 = a0, ... )
+      estResult <- aidsEst( priceNames, shareNames, totExpName,
+         method = "IL", alpha0 = a0, ... )
       det <- det( estResult$est$residCov )
       assign( "allValues", rbind( allValues, c( a0, det ) ),
          sys.frame( sys.parent( ) )  )
