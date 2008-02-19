@@ -1,7 +1,7 @@
 aidsEst <- function( priceNames, shareNames, totExpName,
-      data = NULL, instNames = NULL,
-      shifterNames = NULL, method = "LA", priceIndex = "L", hom = TRUE, sym = TRUE,
-      pxBase = 1,
+      data = NULL, method = "LA", priceIndex = "L", pxBase = 1,
+      hom = TRUE, sym = TRUE,
+      shifterNames = NULL, instNames = NULL,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
       ILmaxiter = 50, ILtol = 1e-5, alpha0 = 0, restrict.regMat = FALSE, ... ) {
 

@@ -10,8 +10,9 @@
 
 \usage{
 aidsEst( priceNames, shareNames, totExpName, data = NULL,
-      instNames = NULL, shifterNames = NULL,
-      method = "LA", priceIndex = "L", hom = TRUE, sym = TRUE, pxBase,
+      method = "LA", priceIndex = "L", pxBase = 1,
+      hom = TRUE, sym = TRUE,
+      shifterNames = NULL, instNames = NULL,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
       ILmaxiter = 50, ILtol = 1e-5, alpha0 = 0, restrict.regMat = FALSE, ... )
 
@@ -24,19 +25,19 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
       shares.}
    \item{totExpName}{a string containing the variable name of total expenditure.}
    \item{data}{a data frame containing the data.}
-   \item{instNames}{a vector of strings containing the names of instrumental
-      variables.}
-   \item{shifterNames}{an optional vector of strings containing the names of
-      the demand shifters.}
    \item{method}{character string specifying the method to estimate the AIDS:
       either 'LA' or 'IL' (see deatils).}
    \item{priceIndex}{character string specifying the price index
       for the 'Linear Approximation':
       either 'S', 'SL', 'P', 'L', or 'T' (see details).}
-   \item{hom}{logical. Should the homogeneity condition be imposed?}
-   \item{sym}{logical. Should the symmetry condition be imposed?}
    \item{pxBase}{The base to calculate the LA-AIDS price indices
       (see \code{\link{aidsPx}}).}
+   \item{hom}{logical. Should the homogeneity condition be imposed?}
+   \item{sym}{logical. Should the symmetry condition be imposed?}
+   \item{shifterNames}{an optional vector of strings containing the names of
+      the demand shifters.}
+   \item{instNames}{a vector of strings containing the names of instrumental
+      variables.}
    \item{estMethod}{estimation method (e.g. 'SUR' or '3SLS',
       see \code{\link[systemfit]{systemfit}}).}
    \item{ILmaxiter}{maximum number of iterations of the
