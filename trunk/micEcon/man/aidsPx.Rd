@@ -7,13 +7,13 @@
 }
 
 \usage{
-   aidsPx( px, priceNames, shareNames = NULL, data = NULL, base = 1, coef = NULL,
+   aidsPx( priceIndex, priceNames, shareNames = NULL, data = NULL, base = 1, coef = NULL,
       alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ),
       shifterNames = NULL )
 }
 
 \arguments{
-   \item{px}{the price index to be used (see details).}
+   \item{priceIndex}{the price index to be used (see details).}
    \item{priceNames}{a vector of strings containing the names of the prices.}
    \item{shareNames}{a vector of strings containing the names of the expenditure
       shares.}
