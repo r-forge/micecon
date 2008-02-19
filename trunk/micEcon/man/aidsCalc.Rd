@@ -9,7 +9,7 @@
 }
 
 \usage{
-   aidsCalc( priceNames, totExpName, data = NULL, px = "TL", lnp = NULL,
+   aidsCalc( priceNames, totExpName, data = NULL, priceIndex = "TL", lnp = NULL,
       coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0,
       coef$alpha0 ) )
 }
@@ -18,8 +18,8 @@
    \item{priceNames}{a vector of strings containing the names of the prices.}
    \item{totExpName}{a string containing the variable name of total expenditure.}
    \item{data}{a data frame containing the data.}
-   \item{px}{prices index (see \code{\link{aidsPx}}).}
-   \item{lnp}{log of the price index (only required if '\code{px}' is not 'TL').}
+   \item{priceIndex}{prices index (see \code{\link{aidsPx}}).}
+   \item{lnp}{log of the price index (only required if '\code{priceIndex}' is not 'TL').}
    \item{coef}{a list containing the coefficients alpha, beta and gamma.}
    \item{alpha0}{coefficient \eqn{\alpha_0} of the translog price index.}
 }

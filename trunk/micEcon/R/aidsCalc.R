@@ -1,4 +1,4 @@
-aidsCalc <- function( priceNames, totExpName, data = NULL, px = "TL", lnp = NULL,
+aidsCalc <- function( priceNames, totExpName, data = NULL, priceIndex = "TL", lnp = NULL,
    coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) ) {
 
    # check argument 'coef' (coefficients)
@@ -11,14 +11,14 @@ aidsCalc <- function( priceNames, totExpName, data = NULL, px = "TL", lnp = NULL
    }
 
    # check whether the price index is provided if it should not be in translog form
-   if( px != "TL" && is.null( lnp ) ) {
+   if( priceIndex != "TL" && is.null( lnp ) ) {
       stop( "at the moment only the translog (TL) price index works",
          " if argument 'lnp' is not specified" )
    }
 
    # calculate price index if it isn't provided
    if( is.null( lnp ) ) {
-      lnp <- aidsPx( px, priceNames, data = data,
+      lnp <- aidsPx( priceIndex, priceNames, data = data,
          alpha0 = alpha0, coef = coef )
    }
 
