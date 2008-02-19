@@ -11,7 +11,7 @@
 \usage{
 aidsEst( priceNames, shareNames, totExpName, data = NULL,
       instNames = NULL, shifterNames = NULL,
-      method = "LA", pIndex = "L", hom = TRUE, sym = TRUE, pxBase,
+      method = "LA", priceIndex = "L", hom = TRUE, sym = TRUE, pxBase,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
       ILmaxiter = 50, ILtol = 1e-5, alpha0 = 0, restrict.regMat = FALSE, ... )
 
@@ -30,7 +30,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
       the demand shifters.}
    \item{method}{character string specifying the method to estimate the AIDS:
       either 'LA' or 'IL' (see deatils).}
-   \item{pIndex}{character string specifying the price index
+   \item{priceIndex}{character string specifying the price index
       for the 'Linear Approximation':
       either 'S', 'SL', 'P', 'L', or 'T' (see details).}
    \item{hom}{logical. Should the homogeneity condition be imposed?}
@@ -57,7 +57,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    Argument \code{method} can specify two different estimation methods:
    The 'Linear Approximate AIDS' (LA) and the 'Iterative Linear Least Squares
    Estimator' (IL) proposed by Blundell and Robin (1999).\cr
-   Argument \code{pIndex} can specify five different price indices
+   Argument \code{priceIndex} can specify five different price indices
    for the LA-AIDS:
    \begin{itemize}
    \item Stone price index ('S'),
@@ -71,7 +71,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    values for the (translog) price index.
    Starting values are taken from an initial estimation
    of the 'Linear Approximate AIDS' (LA) with the price index
-   specified by argument \code{pIndex}.
+   specified by argument \code{priceIndex}.
 }
 
 \value{
@@ -94,7 +94,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    \item{ILiter}{number of iterations of the 'Iterated Linear Least Squares
       Estimation'.}
    \item{method}{the method used to estimate the aids (see details).}
-   \item{pIndex}{the name of the price index (see details).}
+   \item{priceIndex}{the name of the price index (see details).}
    \item{lnp}{log of the price index used for estimation.}
    \item{pMeans}{means of the prices.}
    \item{wMeans}{means of the expenditure shares.}
@@ -131,7 +131,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    ##       which leads to slightly different results
    estResult <- aidsEst( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
-      data = Blanciforti86, pIndex = "SL", maxiter = 100 )
+      data = Blanciforti86, priceIndex = "SL", maxiter = 100 )
    print( estResult )
    elas( estResult )
 

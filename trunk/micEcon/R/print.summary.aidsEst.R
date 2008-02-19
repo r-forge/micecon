@@ -2,7 +2,7 @@ print.summary.aidsEst <- function( x, ... ) {
    cat( "\nDemand analysis with the Almost Ideal " )
    cat( "Demand System (AIDS)\n" )
    cat( "Estimation Method: " )
-   cat( .aidsEstMethod( x$method, x$pIndex ) )
+   cat( .aidsEstMethod( x$method, x$priceIndex ) )
    cat( "Estimated Coefficients:\n" )
    print( x$coef$stat )
 

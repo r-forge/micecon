@@ -1,6 +1,6 @@
 
-R version 2.6.1 (2007-11-26)
-Copyright (C) 2007 The R Foundation for Statistical Computing
+R version 2.6.2 (2008-02-08)
+Copyright (C) 2008 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -48,7 +48,7 @@ Repeating the demand analysis of Blanciforti, Green & King (1986)
 +    data = Blanciforti86[ set, ], method = "LA:SL" )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", data = Blanciforti86[set, ],  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultLA )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -128,7 +128,7 @@ wFood4  0.423  0.1554  0.1363 -0.715
 +    restrict.regMat = TRUE )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", data = Blanciforti86[set, ],  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultLATX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -217,7 +217,7 @@ wFood4  0.423  0.1554  0.1363 -0.715
 +    data = Blanciforti86[ set, ], method = "LA:SL" )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", sym = FALSE, data = Blanciforti86[set,  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultLAhom )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -297,7 +297,7 @@ wFood4  0.383  0.2625  0.0872 -0.733
 +    restrict.regMat = TRUE )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", sym = FALSE, data = Blanciforti86[set,  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultLAhomTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -386,7 +386,7 @@ wFood4  0.383  0.2625  0.0872 -0.733
 +    data = Blanciforti86[ set, ], method = "LA:SL" )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", hom = FALSE, sym = FALSE, data = Blanciforti86[set,  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultLAunr )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -466,7 +466,7 @@ wFood4  0.344 -0.0246  0.1205 -0.556
 +    restrict.regMat = TRUE )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", hom = FALSE, sym = FALSE, data = Blanciforti86[set,  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultLAunrTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -698,7 +698,7 @@ Repeating the evaluation of different elasticity formulas of Green & Alston (199
 +    data = Blanciforti86[ setWo1, ], method = "IL:L" )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultAIDS )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -779,7 +779,7 @@ wFood4  0.440  0.1625  0.132 -0.734
 +    data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultAIDSTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -870,7 +870,7 @@ wFood4  0.440  0.1625  0.132 -0.734
 +    data = Blanciforti86[ setWo1, ], method = "IL:L" )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", sym = FALSE, data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultAIDShom )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -951,7 +951,7 @@ wFood4  0.406  0.2633  0.08349 -0.752
 +    data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", sym = FALSE, data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultAIDShomTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -1042,7 +1042,7 @@ wFood4  0.406  0.2633  0.08349 -0.752
 +    data = Blanciforti86[ setWo1, ], method = "IL:L" )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", hom = FALSE, sym = FALSE, data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultAIDSunr )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -1123,7 +1123,7 @@ wFood4  0.361 -0.0346  0.1234 -0.571
 +    data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", hom = FALSE, sym = FALSE, data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultAIDSunrTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -1212,7 +1212,7 @@ wFood4  0.361 -0.0346  0.1234 -0.571
 +    method = "LA:S" )
 Warning messages:
 1: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:S") :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 2: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:S") :
   there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis
 > print( estResultLaSNa )
@@ -1294,7 +1294,7 @@ wFood4 -0.0268  0.0631  0.2358 -0.2721
 +    method = "LA:SL" )
 Warning messages:
 1: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:SL") :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 2: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:SL") :
   there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis
 > print( estResultLaSlNa )
@@ -1376,7 +1376,7 @@ wFood4 -0.0698  0.0731  0.2483 -0.2515
 +    method = "LA:L" )
 Warning messages:
 1: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:L") :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 2: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:L") :
   there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis
 > print( estResultLaLNa )
@@ -1457,7 +1457,7 @@ wFood4  0.0360  0.0817  0.2224 -0.3400
 +    data = Blanciforti86, method = "IL:L" )
 Warning messages:
 1: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "IL:L") :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 2: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "IL:L") :
   there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis
 > print( estResultAIDSNa )
@@ -1602,7 +1602,7 @@ Em q_wFood4 pFood2   0.1392     0.0901    1.55   0.1260
 Em q_wFood4 pFood3   0.1168     0.0524    2.23   0.0287 *  
 Em q_wFood4 pFood4  -0.7745     0.1040   -7.45  9.0e-11 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, method = "AIDS",
 +    coefVcov = estResultAIDSTX$coef$allcov, df = estResultAIDSTX$est$df )
 > print( elaTX )
@@ -1664,7 +1664,7 @@ Em q_wFood4 pFood2   0.1392     0.0901    1.55   0.1260
 Em q_wFood4 pFood3   0.1168     0.0524    2.23   0.0287 *  
 Em q_wFood4 pFood4  -0.7745     0.1040   -7.45  9.0e-11 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > print( all.equal( ela, elaTX ) )
 [1] TRUE
 > 
@@ -1727,7 +1727,7 @@ Em q_wFood4 pFood2   0.1401     0.0905    1.55   0.1254
 Em q_wFood4 pFood3   0.1172     0.0526    2.23   0.0288 *  
 Em q_wFood4 pFood4  -0.7739     0.1043   -7.42  1.0e-10 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > 
 > print( elas( estResultAIDSTX ) )
 
@@ -1788,7 +1788,7 @@ Em q_wFood4 pFood2   0.1401     0.0905    1.55   0.1254
 Em q_wFood4 pFood3   0.1172     0.0526    2.23   0.0288 *  
 Em q_wFood4 pFood4  -0.7739     0.1043   -7.42  1.0e-10 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > 
 > 
 > cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
@@ -1855,7 +1855,7 @@ Em q_wFood4 pFood2   0.0476     0.0677    0.70  0.48385
 Em q_wFood4 pFood3   0.2307     0.0585    3.94  0.00017 ***
 Em q_wFood4 pFood4  -0.2981     0.2010   -1.48  0.14192    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, method = "AIDS",
 +    coefVcov = estResultLATX$coef$allcov, df = estResultLATX$est$df )
 > print( elaTX )
@@ -1917,7 +1917,7 @@ Em q_wFood4 pFood2   0.0476     0.0677    0.70  0.48385
 Em q_wFood4 pFood3   0.2307     0.0585    3.94  0.00017 ***
 Em q_wFood4 pFood4  -0.2981     0.2010   -1.48  0.14192    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > print( all.equal( ela, elaTX ) )
 [1] TRUE
 > 
@@ -1980,7 +1980,7 @@ Em q_wFood4 pFood2   0.0480     0.0680    0.71  0.48173
 Em q_wFood4 pFood3   0.2316     0.0587    3.94  0.00017 ***
 Em q_wFood4 pFood4  -0.2955     0.2018   -1.46  0.14693    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > 
 > print( elas( estResultLATX, method = "AIDS" ) )
 
@@ -2041,7 +2041,7 @@ Em q_wFood4 pFood2   0.0480     0.0680    0.71  0.48173
 Em q_wFood4 pFood3   0.2316     0.0587    3.94  0.00017 ***
 Em q_wFood4 pFood4  -0.2955     0.2018   -1.46  0.14693    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > 
 > 
 > cat( "\n********** Elasticities ***************" )
@@ -3076,7 +3076,7 @@ wFood4  0.1512  0.0570  0.0405 -0.2487
 +    method = "LA:S", data = USMeatConsump, maxiter=1000 )
 Warning message:
 In aidsEst(c("beef_pm", "pork_pm", "chick_pm", "turkey_pm"), c("beef_w",  :
-  using price index specified in argument 'method', ignoring price index specified by argument 'pIndex'
+  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > meatModel
 
 Demand analysis with the Almost Ideal Demand System (AIDS)

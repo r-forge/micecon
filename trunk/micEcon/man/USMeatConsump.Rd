@@ -65,7 +65,7 @@
    meatModel <- aidsEst( c( "beef_pm", "pork_pm", "chick_pm", "turkey_pm" ),
       c( "beef_w", "pork_w", "chick_w", "turkey_w" ),
       "meat_exp", shifterNames = c( "co1", "si1", "t" ),
-      pIndex ="S", data = USMeatConsump, maxiter=1000 )
+      priceIndex ="S", data = USMeatConsump, maxiter=1000 )
    summary( meatModel )
 }
 
