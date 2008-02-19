@@ -1,5 +1,5 @@
 aidsBestA0 <- function( priceNames, shareNames, totExpName,
-      data = NULL, instNames = NULL, shifterNames = NULL, priceIndex = "L",
+      data = NULL, priceIndex = "L", shifterNames = NULL, instNames = NULL,
       a0min = -50, a0max = 50, stoprange = 3, stopiter = 10,
       verbose = FALSE, ... ) {
 
