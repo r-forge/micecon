@@ -10,7 +10,6 @@
 
 \usage{
    aidsBestA0( priceNames, shareNames, totExpName,
-      data = NULL, priceIndex = "L", shifterNames = NULL, instNames = NULL,
       a0min = -50, a0max = 50, stoprange = 3, stopiter = 10,
       verbose = FALSE, ... )
 }
@@ -20,13 +19,6 @@
    \item{shareNames}{a vector of strings containing the names of the expenditure
       shares.}
    \item{totExpName}{a string containing the variable name of total expenditure.}
-   \item{data}{a data frame containing the data.}
-   \item{priceIndex}{character string specifying the price index for the initial
-      LA-AIDS estimation to obtain starting values (see \code{\link{aidsEst}}).}
-   \item{shifterNames}{an optional vector of strings containing the names of
-      the demand shifters.}
-   \item{instNames}{an optional vector of strings containing the names of the
-      instrumental variables.}
    \item{a0min}{lower limit of the range for searching for \eqn{\alpha_0}.}
    \item{a0max}{upper limit of the range for searching for \eqn{\alpha_0}.}
    \item{stoprange}{stop searching when the search interval is smaller than
