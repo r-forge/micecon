@@ -3102,10 +3102,10 @@ R-squared Values of quantities:
 > lrtest( estResultLA, estResultLAhom, estResultLAunr, estResultLA )
 Likelihood ratio test
 
-Model 1: estResultLA (LA-AIDS with symmetry and homogeneity imposed)
-Model 2: estResultLAhom (LA-AIDS with homogeneity imposed)
+Model 1: estResultLA (LA-AIDS, symmetry and homogeneity imposed)
+Model 2: estResultLAhom (LA-AIDS, homogeneity imposed)
 Model 3: estResultLAunr (LA-AIDS, unrestricted)
-Model 4: estResultLA (LA-AIDS with symmetry and homogeneity imposed)
+Model 4: estResultLA (LA-AIDS, symmetry and homogeneity imposed)
   #Df LogLik Df Chisq Pr(>Chisq)    
 1  18    353                        
 2  21    355  3   3.7    0.29551    
@@ -3116,10 +3116,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > lrtest( estResultLATX, estResultLAhomTX, estResultLAunrTX, estResultLATX )
 Likelihood ratio test
 
-Model 1: estResultLATX (LA-AIDS with symmetry and homogeneity imposed)
-Model 2: estResultLAhomTX (LA-AIDS with homogeneity imposed)
+Model 1: estResultLATX (LA-AIDS, symmetry and homogeneity imposed)
+Model 2: estResultLAhomTX (LA-AIDS, homogeneity imposed)
 Model 3: estResultLAunrTX (LA-AIDS, unrestricted)
-Model 4: estResultLATX (LA-AIDS with symmetry and homogeneity imposed)
+Model 4: estResultLATX (LA-AIDS, symmetry and homogeneity imposed)
   #Df LogLik Df Chisq Pr(>Chisq)    
 1  18    353                        
 2  21    355  3   3.7    0.29551    
@@ -3130,10 +3130,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > lrtest( estResultLA, estResultLAtrend, estResultLAtrend2, estResultLA )
 Likelihood ratio test
 
-Model 1: estResultLA (LA-AIDS with symmetry and homogeneity imposed)
-Model 2: estResultLAtrend (LA-AIDS with symmetry and homogeneity imposed, 1 demand shifter(s))
-Model 3: estResultLAtrend2 (LA-AIDS with symmetry and homogeneity imposed, 2 demand shifter(s))
-Model 4: estResultLA (LA-AIDS with symmetry and homogeneity imposed)
+Model 1: estResultLA (LA-AIDS, symmetry and homogeneity imposed)
+Model 2: estResultLAtrend (LA-AIDS, symmetry and homogeneity imposed, 1 demand shifter(s))
+Model 3: estResultLAtrend2 (LA-AIDS, symmetry and homogeneity imposed, 2 demand shifter(s))
+Model 4: estResultLA (LA-AIDS, symmetry and homogeneity imposed)
   #Df LogLik Df Chisq Pr(>Chisq)    
 1  18    353                        
 2  21    386  3  66.0    3.0e-14 ***
@@ -3145,8 +3145,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Likelihood ratio test
 
 Model 1: estResultAIDSunr (AIDS, unrestricted)
-Model 2: estResultAIDShom (AIDS with homogeneity imposed)
-Model 3: estResultAIDS (AIDS with symmetry and homogeneity imposed)
+Model 2: estResultAIDShom (AIDS, homogeneity imposed)
+Model 3: estResultAIDS (AIDS, symmetry and homogeneity imposed)
 Model 4: estResultAIDSunr (AIDS, unrestricted)
   #Df LogLik Df Chisq Pr(>Chisq)    
 1  24    365                        
@@ -3160,8 +3160,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Likelihood ratio test
 
 Model 1: estResultAIDSunrTX (AIDS, unrestricted)
-Model 2: estResultAIDShomTX (AIDS with homogeneity imposed)
-Model 3: estResultAIDSTX (AIDS with symmetry and homogeneity imposed)
+Model 2: estResultAIDShomTX (AIDS, homogeneity imposed)
+Model 3: estResultAIDSTX (AIDS, symmetry and homogeneity imposed)
 Model 4: estResultAIDSunrTX (AIDS, unrestricted)
   #Df LogLik Df Chisq Pr(>Chisq)    
 1  24    365                        
