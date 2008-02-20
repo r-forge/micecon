@@ -283,11 +283,19 @@ print( fittedLATX )
 print( all.equal( fittedLA, fittedLATX ) )
 
 ####### consistency ###################
+# with observed expenditure shares
 consist <- aidsTestConsist( pNames, wNames, "xFood", Blanciforti86[ set, ],
    coef = estResultAIDS$coef )
 print( consist )
 class( consist ) <- NULL
 print( consist )
+
+# with fitted expenditure shares
+consistFitted <- aidsTestConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = estResultAIDS$coef )
+print( consistFitted )
+class( consistFitted ) <- NULL
+print( consistFitted )
 
 
 ## replicating the LA-AIDS estimation of the SAS example
