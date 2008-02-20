@@ -336,6 +336,15 @@ logLik( estResultAIDSNa )
 logLik( meatModel )
 
 
+## LR tests
+lrtest( estResultLA, estResultLAhom, estResultLAunr, estResultLA )
+lrtest( estResultLATX, estResultLAhomTX, estResultLAunrTX, estResultLATX )
+lrtest( estResultLA, estResultLAtrend, estResultLAtrend2, estResultLA )
+lrtest( estResultAIDSunr, estResultAIDShom, estResultAIDS, estResultAIDSunr )
+lrtest( estResultAIDSunrTX, estResultAIDShomTX, estResultAIDSTX,
+   estResultAIDSunrTX )
+
+
 ## comparing estimations results with different methods to impose restrictions
 # estResultLA vs. estResultLATX
 estResultLATX$call <- NULL
