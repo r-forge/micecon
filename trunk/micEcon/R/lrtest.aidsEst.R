@@ -28,9 +28,9 @@ lrtest.aidsEst <- function( object, ... ) {
          aidsEstObject$call$hom <- TRUE
       }
       if( aidsEstObject$call$sym ) {
-         result <- paste( result, "with symmetry and homogeneity imposed" )
+         result <- paste( result, ", symmetry and homogeneity imposed", sep = "" )
       } else if( aidsEstObject$call$hom ) {
-         result <- paste( result, "with homogeneity imposed" )
+         result <- paste( result, ", homogeneity imposed", sep = "" )
       } else {
          result <- paste( result, ", unrestricted", sep = "" )
       }
