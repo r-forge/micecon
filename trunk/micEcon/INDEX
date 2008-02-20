@@ -14,6 +14,10 @@ elas                    Calculating and returning elasticities
 germanFarms             Output and Inputs of Farms in West-Germany
 insertCol               Insert Column into a Matrix
 insertRow               Insert Row into a Matrix
+logLik.aidsEst          Log-Likelihood value of an object of class
+                        aidsEst
+lrtest.aidsEst          Likelihood Ratio test for Almost Ideal Demand
+                        Systems
 Missong03E7.7           Meat Prices and Quantities in Germany
 predict.snqProfitEst    Predictions from an SNQ profit function
 priceIndex              Calculate Price Indices
@@ -53,6 +57,7 @@ translogDeriv           Derivatives of a translog function
 translogEst             Estimate a translog function
 translogHessian         Hessian matrix of a translog function
 triang                  Upper triangular matrix from a vector
+USMeatConsump           U.S. Meat Consumption Data
 vecli                   Vector of linear independent values
 vecli2m                 Convert vector of linear independent values
                         into a Matrix
