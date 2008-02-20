@@ -21,6 +21,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
             priceIndex <- extractPx( method )
             warning( "using price index specified in argument 'method',",
                " ignoring argument 'priceIndex'" )
+         method <- substr( method, 1, 2 )
       } else {
          stop( "argument 'method' must be either",
             " 'LA' (for 'Linear Approximation') or",
@@ -93,14 +94,14 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       est <- systemfit( system, estMethod, data = sysData, restrict.matrix = restr,
          inst = ivFormula, ... )
    }
-   if( substr( method, 1, 2 ) == "LA" ) {
+   if( method == "LA" ) {
       result$coef <- aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
          cov = vcov( est ), priceNames = priceNames, shareNames = shareNames,
          shifterNames = shifterNames, df = df.residual( est ) )   # coefficients
       result$wFitted <- aidsCalc( priceNames, totExpName, data = data,
          coef = result$coef, lnp = lnp )$shares   # estimated budget shares
       iter <- est$iter
-   } else if( substr( method, 1, 2 ) %in% c( "MK", "IL" ) ) {
+   } else if( method %in% c( "MK", "IL" ) ) {
       b       <- coef( est )# coefficients
       bd      <- b          # difference of coefficients between
                             # this and previous step
