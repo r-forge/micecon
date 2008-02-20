@@ -12,13 +12,13 @@ pMeans <- colMeans( Blanciforti86[ set, pNames ] )
 cat( paste( "\nRepeating the demand analysis of Blanciforti, Green",
    "& King (1986)\n" ) )
 estResultLA <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86[ set, ], method = "LA:SL" )
+   data = Blanciforti86[ set, ], priceIndex = "SL" )
 print( estResultLA )
 print( summary( estResultLA ) )
 print( elas( estResultLA, method = "Ch", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultLATX <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86[ set, ], method = "LA:SL",
+   data = Blanciforti86[ set, ], priceIndex = "SL",
    restrict.regMat = TRUE )
 print( estResultLATX )
 print( summary( estResultLATX ) )
@@ -26,13 +26,13 @@ print( elas( estResultLATX, method = "Ch", quantNames = wNames ) )
 
 ## only homogeneity (no symmetry imposed)
 estResultLAhom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-   data = Blanciforti86[ set, ], method = "LA:SL" )
+   data = Blanciforti86[ set, ], priceIndex = "SL" )
 print( estResultLAhom )
 print( summary( estResultLAhom ) )
 print( elas( estResultLAhom, method = "Ch", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultLAhomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-   data = Blanciforti86[ set, ], method = "LA:SL",
+   data = Blanciforti86[ set, ], priceIndex = "SL",
    restrict.regMat = TRUE )
 print( estResultLAhomTX )
 print( summary( estResultLAhomTX ) )
@@ -40,13 +40,13 @@ print( elas( estResultLAhomTX, method = "Ch", quantNames = wNames ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
 estResultLAunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-   data = Blanciforti86[ set, ], method = "LA:SL" )
+   data = Blanciforti86[ set, ], priceIndex = "SL" )
 print( estResultLAunr )
 print( summary( estResultLAunr ) )
 print( elas( estResultLAunr, method = "Ch", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultLAunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-   data = Blanciforti86[ set, ], method = "LA:SL",
+   data = Blanciforti86[ set, ], priceIndex = "SL",
    restrict.regMat = TRUE )
 print( estResultLAunrTX )
 print( summary( estResultLAunrTX ) )
@@ -72,39 +72,39 @@ summary( estResultLAtrend2 )
 cat( paste( "\nRepeating the evaluation of different elasticity formulas",
    "of Green & Alston (1990): iterated AIDS\n" ) )
 estResultAIDS <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86[ setWo1, ], method = "IL:L" )
+   data = Blanciforti86[ setWo1, ], method = "IL" )
 print( estResultAIDS )
 print( summary( estResultAIDS ) )
 print( elas( estResultAIDS, method = "AIDS", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
+   data = Blanciforti86[ setWo1, ], method = "IL", restrict.regMat = TRUE )
 print( estResultAIDSTX )
 print( summary( estResultAIDSTX ) )
 print( elas( estResultAIDSTX, method = "AIDS", quantNames = wNames ) )
 
 ## only homogeneity (no symmetry imposed)
 estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-   data = Blanciforti86[ setWo1, ], method = "IL:L" )
+   data = Blanciforti86[ setWo1, ], method = "IL" )
 print( estResultAIDShom )
 print( summary( estResultAIDShom ) )
 print( elas( estResultAIDShom, method = "AIDS", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-   data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
+   data = Blanciforti86[ setWo1, ], method = "IL", restrict.regMat = TRUE )
 print( estResultAIDShomTX )
 print( summary( estResultAIDShomTX ) )
 print( elas( estResultAIDShomTX, method = "AIDS", quantNames = wNames ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
 estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-   data = Blanciforti86[ setWo1, ], method = "IL:L" )
+   data = Blanciforti86[ setWo1, ], method = "IL" )
 print( estResultAIDSunr )
 print( summary( estResultAIDSunr ) )
 print( elas( estResultAIDSunr, method = "AIDS", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-   data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
+   data = Blanciforti86[ setWo1, ], method = "IL", restrict.regMat = TRUE )
 print( estResultAIDSunrTX )
 print( summary( estResultAIDSunrTX ) )
 print( elas( estResultAIDSunrTX, method = "AIDS", quantNames = wNames ) )
@@ -112,27 +112,26 @@ print( elas( estResultAIDSunrTX, method = "AIDS", quantNames = wNames ) )
 ## with NAs
 estResultLaSNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86,
-   method = "LA:S" )
+   priceIndex = "S" )
 print( estResultLaSNa )
 print( summary( estResultLaSNa ) )
 print( elas( estResultLaSNa, method = "AIDS", quantNames = wNames ) )
 
 estResultLaSlNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86,
-   method = "LA:SL" )
+   priceIndex = "SL" )
 print( estResultLaSlNa )
 print( summary( estResultLaSlNa ) )
 print( elas( estResultLaSlNa, method = "AIDS", quantNames = wNames ) )
 
 estResultLaLNa <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86,
-   method = "LA:L" )
+   data = Blanciforti86 )
 print( estResultLaLNa )
 print( summary( estResultLaLNa ) )
 print( elas( estResultLaLNa, method = "AIDS", quantNames = wNames ) )
 
 estResultAIDSNa <- aidsEst( pNames, wNames, "xFood",
-   data = Blanciforti86, method = "IL:L" )
+   data = Blanciforti86, method = "IL" )
 print( estResultAIDSNa )
 print( summary( estResultAIDSNa ) )
 print( elas( estResultAIDSNa, method = "AIDS", quantNames = wNames ) )

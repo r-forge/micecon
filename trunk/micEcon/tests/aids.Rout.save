@@ -1,6 +1,6 @@
 
-R version 2.6.2 (2008-02-08)
-Copyright (C) 2008 The R Foundation for Statistical Computing
+R version 2.6.1 (2007-11-26)
+Copyright (C) 2007 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -45,10 +45,7 @@ Loading required package: zoo
 
 Repeating the demand analysis of Blanciforti, Green & King (1986)
 > estResultLA <- aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86[ set, ], method = "LA:SL" )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", data = Blanciforti86[set, ],  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
++    data = Blanciforti86[ set, ], priceIndex = "SL" )
 > print( estResultLA )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -124,11 +121,8 @@ wFood3  0.222  0.1753 -0.7571  0.360
 wFood4  0.423  0.1554  0.1363 -0.715
 > # imposing restrictions via restrict.regMat
 > estResultLATX <- aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86[ set, ], method = "LA:SL",
++    data = Blanciforti86[ set, ], priceIndex = "SL",
 +    restrict.regMat = TRUE )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", data = Blanciforti86[set, ],  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultLATX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -205,10 +199,7 @@ wFood4  0.423  0.1554  0.1363 -0.715
 > 
 > ## only homogeneity (no symmetry imposed)
 > estResultLAhom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-+    data = Blanciforti86[ set, ], method = "LA:SL" )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", sym = FALSE, data = Blanciforti86[set,  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
++    data = Blanciforti86[ set, ], priceIndex = "SL" )
 > print( estResultLAhom )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -284,11 +275,8 @@ wFood3  0.272  0.0139 -0.6336  0.348
 wFood4  0.383  0.2625  0.0872 -0.733
 > # imposing restrictions via restrict.regMat
 > estResultLAhomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-+    data = Blanciforti86[ set, ], method = "LA:SL",
++    data = Blanciforti86[ set, ], priceIndex = "SL",
 +    restrict.regMat = TRUE )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", sym = FALSE, data = Blanciforti86[set,  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultLAhomTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -365,10 +353,7 @@ wFood4  0.383  0.2625  0.0872 -0.733
 > 
 > ## unrestricted (no homogeneity and no symmetry imposed)
 > estResultLAunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-+    data = Blanciforti86[ set, ], method = "LA:SL" )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", hom = FALSE, sym = FALSE, data = Blanciforti86[set,  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
++    data = Blanciforti86[ set, ], priceIndex = "SL" )
 > print( estResultLAunr )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -444,11 +429,8 @@ wFood3  0.271  0.0098 -0.6331  0.351
 wFood4  0.344 -0.0246  0.1205 -0.556
 > # imposing restrictions via restrict.regMat
 > estResultLAunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-+    data = Blanciforti86[ set, ], method = "LA:SL",
++    data = Blanciforti86[ set, ], priceIndex = "SL",
 +    restrict.regMat = TRUE )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", hom = FALSE, sym = FALSE, data = Blanciforti86[set,  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
 > print( estResultLAunrTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -671,10 +653,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
 
 Repeating the evaluation of different elasticity formulas of Green & Alston (1990): iterated AIDS
 > estResultAIDS <- aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86[ setWo1, ], method = "IL:L" )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
++    data = Blanciforti86[ setWo1, ], method = "IL" )
 > print( estResultAIDS )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -752,10 +731,7 @@ wFood3  0.238  0.1710 -0.757  0.348
 wFood4  0.440  0.1625  0.132 -0.734
 > # imposing restrictions via restrict.regMat
 > estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
++    data = Blanciforti86[ setWo1, ], method = "IL", restrict.regMat = TRUE )
 > print( estResultAIDSTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -834,10 +810,7 @@ wFood4  0.440  0.1625  0.132 -0.734
 > 
 > ## only homogeneity (no symmetry imposed)
 > estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], method = "IL:L" )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", sym = FALSE, data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
++    data = Blanciforti86[ setWo1, ], method = "IL" )
 > print( estResultAIDShom )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -915,10 +888,7 @@ wFood3  0.274  0.0324 -0.63973  0.333
 wFood4  0.406  0.2633  0.08349 -0.752
 > # imposing restrictions via restrict.regMat
 > estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", sym = FALSE, data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
++    data = Blanciforti86[ setWo1, ], method = "IL", restrict.regMat = TRUE )
 > print( estResultAIDShomTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -997,10 +967,7 @@ wFood4  0.406  0.2633  0.08349 -0.752
 > 
 > ## unrestricted (no homogeneity and no symmetry imposed)
 > estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], method = "IL:L" )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", hom = FALSE, sym = FALSE, data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
++    data = Blanciforti86[ setWo1, ], method = "IL" )
 > print( estResultAIDSunr )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -1078,10 +1045,7 @@ wFood3  0.308  0.0341 -0.6338  0.290
 wFood4  0.361 -0.0346  0.1234 -0.571
 > # imposing restrictions via restrict.regMat
 > estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
-+    data = Blanciforti86[ setWo1, ], method = "IL:L", restrict.regMat = TRUE )
-Warning message:
-In aidsEst(pNames, wNames, "xFood", hom = FALSE, sym = FALSE, data = Blanciforti86[setWo1,  :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
++    data = Blanciforti86[ setWo1, ], method = "IL", restrict.regMat = TRUE )
 > print( estResultAIDSunrTX )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
@@ -1161,11 +1125,9 @@ wFood4  0.361 -0.0346  0.1234 -0.571
 > ## with NAs
 > estResultLaSNa <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86,
-+    method = "LA:S" )
-Warning messages:
-1: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:S") :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
-2: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:S") :
++    priceIndex = "S" )
+Warning message:
+In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, priceIndex = "S") :
   there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis
 > print( estResultLaSNa )
 
@@ -1243,11 +1205,9 @@ wFood4 -0.0268  0.0631  0.2358 -0.2721
 > 
 > estResultLaSlNa <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86,
-+    method = "LA:SL" )
-Warning messages:
-1: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:SL") :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
-2: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:SL") :
++    priceIndex = "SL" )
+Warning message:
+In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, priceIndex = "SL") :
   there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis
 > print( estResultLaSlNa )
 
@@ -1324,12 +1284,9 @@ wFood3 -0.0914  0.1229 -0.6859  0.6544
 wFood4 -0.0698  0.0731  0.2483 -0.2515
 > 
 > estResultLaLNa <- aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86,
-+    method = "LA:L" )
-Warning messages:
-1: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:L") :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
-2: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "LA:L") :
++    data = Blanciforti86 )
+Warning message:
+In aidsEst(pNames, wNames, "xFood", data = Blanciforti86) :
   there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis
 > print( estResultLaLNa )
 
@@ -1406,11 +1363,9 @@ wFood3 -0.0987  0.1959 -0.6852  0.5881
 wFood4  0.0360  0.0817  0.2224 -0.3400
 > 
 > estResultAIDSNa <- aidsEst( pNames, wNames, "xFood",
-+    data = Blanciforti86, method = "IL:L" )
-Warning messages:
-1: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "IL:L") :
-  using price index specified in argument 'method', ignoring argument 'priceIndex'
-2: In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "IL:L") :
++    data = Blanciforti86, method = "IL" )
+Warning message:
+In aidsEst(pNames, wNames, "xFood", data = Blanciforti86, method = "IL") :
   there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis
 > print( estResultAIDSNa )
 
