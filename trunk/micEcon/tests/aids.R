@@ -355,3 +355,24 @@ meatModel <- aidsEst( c( "beef_pm", "pork_pm", "chick_pm", "turkey_pm" ),
 meatModel
 summary( meatModel )
 
+
+## log likelihood values
+logLik( estResultLA )
+logLik( estResultLATX )
+logLik( estResultLAhom )
+logLik( estResultLAhomTX )
+logLik( estResultLAunr )
+logLik( estResultLAunrTX )
+logLik( estResultLAtrend )
+logLik( estResultLAtrend2 )
+logLik( estResultAIDS )
+logLik( estResultAIDSTX )
+logLik( estResultAIDShom )
+logLik( estResultAIDShomTX )
+logLik( estResultAIDSunr )
+logLik( estResultAIDSunrTX )
+logLik( estResultLaSNa )
+logLik( estResultLaSlNa )
+logLik( estResultLaLNa )
+logLik( estResultAIDSNa )
+logLik( meatModel )
