@@ -23,14 +23,6 @@ estResultLATX <- aidsEst( pNames, wNames, "xFood",
 print( estResultLATX )
 print( summary( estResultLATX ) )
 print( elas( estResultLATX, method = "Ch", quantNames = wNames ) )
-estResultLATX$call <- NULL
-estResultLATX$est$call <- NULL
-estResultLATX$est$restrict.regMat <- NULL
-estResultLA$call <- NULL
-estResultLA$est$call <- NULL
-estResultLA$est$restrict.matrix <- NULL
-estResultLA$est$restrict.rhs <- NULL
-print( all.equal( estResultLA, estResultLATX ) )
 
 ## only homogeneity (no symmetry imposed)
 estResultLAhom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
@@ -45,14 +37,6 @@ estResultLAhomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
 print( estResultLAhomTX )
 print( summary( estResultLAhomTX ) )
 print( elas( estResultLAhomTX, method = "Ch", quantNames = wNames ) )
-estResultLAhomTX$call <- NULL
-estResultLAhomTX$est$call <- NULL
-estResultLAhomTX$est$restrict.regMat <- NULL
-estResultLAhom$call <- NULL
-estResultLAhom$est$call <- NULL
-estResultLAhom$est$restrict.matrix <- NULL
-estResultLAhom$est$restrict.rhs <- NULL
-print( all.equal( estResultLAhom, estResultLAhomTX ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
 estResultLAunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
@@ -67,11 +51,6 @@ estResultLAunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
 print( estResultLAunrTX )
 print( summary( estResultLAunrTX ) )
 print( elas( estResultLAunrTX, method = "Ch", quantNames = wNames ) )
-estResultLAunrTX$call <- NULL
-estResultLAunrTX$est$call <- NULL
-estResultLAunr$call <- NULL
-estResultLAunr$est$call <- NULL
-print( all.equal( estResultLAunr, estResultLAunrTX ) )
 
 
 #####################################################
@@ -103,14 +82,6 @@ estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
 print( estResultAIDSTX )
 print( summary( estResultAIDSTX ) )
 print( elas( estResultAIDSTX, method = "AIDS", quantNames = wNames ) )
-estResultAIDSTX$call <- NULL
-estResultAIDSTX$est$call <- NULL
-estResultAIDSTX$est$restrict.regMat <- NULL
-estResultAIDS$call <- NULL
-estResultAIDS$est$call <- NULL
-estResultAIDS$est$restrict.matrix <- NULL
-estResultAIDS$est$restrict.rhs <- NULL
-print( all.equal( estResultAIDS, estResultAIDSTX ) )
 
 ## only homogeneity (no symmetry imposed)
 estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
@@ -124,14 +95,6 @@ estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
 print( estResultAIDShomTX )
 print( summary( estResultAIDShomTX ) )
 print( elas( estResultAIDShomTX, method = "AIDS", quantNames = wNames ) )
-estResultAIDShomTX$call <- NULL
-estResultAIDShomTX$est$call <- NULL
-estResultAIDShomTX$est$restrict.regMat <- NULL
-estResultAIDShom$call <- NULL
-estResultAIDShom$est$call <- NULL
-estResultAIDShom$est$restrict.matrix <- NULL
-estResultAIDShom$est$restrict.rhs <- NULL
-print( all.equal( estResultAIDShom, estResultAIDShomTX ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
 estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
@@ -145,11 +108,6 @@ estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE
 print( estResultAIDSunrTX )
 print( summary( estResultAIDSunrTX ) )
 print( elas( estResultAIDSunrTX, method = "AIDS", quantNames = wNames ) )
-estResultAIDSunrTX$call <- NULL
-estResultAIDSunrTX$est$call <- NULL
-estResultAIDSunr$call <- NULL
-estResultAIDSunr$est$call <- NULL
-print( all.equal( estResultAIDSunr, estResultAIDSunrTX ) )
 
 ## with NAs
 estResultLaSNa <- aidsEst( pNames, wNames, "xFood",
@@ -376,3 +334,59 @@ logLik( estResultLaSlNa )
 logLik( estResultLaLNa )
 logLik( estResultAIDSNa )
 logLik( meatModel )
+
+
+## comparing estimations results with different methods to impose restrictions
+# estResultLA vs. estResultLATX
+estResultLATX$call <- NULL
+estResultLATX$est$call <- NULL
+estResultLATX$est$restrict.regMat <- NULL
+estResultLA$call <- NULL
+estResultLA$est$call <- NULL
+estResultLA$est$restrict.matrix <- NULL
+estResultLA$est$restrict.rhs <- NULL
+print( all.equal( estResultLA, estResultLATX ) )
+
+# estResultLAhom vs. estResultLAhomTX
+estResultLAhomTX$call <- NULL
+estResultLAhomTX$est$call <- NULL
+estResultLAhomTX$est$restrict.regMat <- NULL
+estResultLAhom$call <- NULL
+estResultLAhom$est$call <- NULL
+estResultLAhom$est$restrict.matrix <- NULL
+estResultLAhom$est$restrict.rhs <- NULL
+print( all.equal( estResultLAhom, estResultLAhomTX ) )
+
+# estResultLAunr vs. estResultLAunrTX
+estResultLAunrTX$call <- NULL
+estResultLAunrTX$est$call <- NULL
+estResultLAunr$call <- NULL
+estResultLAunr$est$call <- NULL
+print( all.equal( estResultLAunr, estResultLAunrTX ) )
+
+# estResultAIDS vs. estResultAIDSTX
+estResultAIDSTX$call <- NULL
+estResultAIDSTX$est$call <- NULL
+estResultAIDSTX$est$restrict.regMat <- NULL
+estResultAIDS$call <- NULL
+estResultAIDS$est$call <- NULL
+estResultAIDS$est$restrict.matrix <- NULL
+estResultAIDS$est$restrict.rhs <- NULL
+print( all.equal( estResultAIDS, estResultAIDSTX ) )
+
+# estResultAIDShom vs. estResultAIDShomTX
+estResultAIDShomTX$call <- NULL
+estResultAIDShomTX$est$call <- NULL
+estResultAIDShomTX$est$restrict.regMat <- NULL
+estResultAIDShom$call <- NULL
+estResultAIDShom$est$call <- NULL
+estResultAIDShom$est$restrict.matrix <- NULL
+estResultAIDShom$est$restrict.rhs <- NULL
+print( all.equal( estResultAIDShom, estResultAIDShomTX ) )
+
+# estResultAIDSunr vs. estResultAIDSunrTX
+estResultAIDSunrTX$call <- NULL
+estResultAIDSunrTX$est$call <- NULL
+estResultAIDSunr$call <- NULL
+estResultAIDSunr$est$call <- NULL
+print( all.equal( estResultAIDSunr, estResultAIDSunrTX ) )
