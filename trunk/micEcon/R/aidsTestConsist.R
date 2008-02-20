@@ -1,7 +1,7 @@
-aidsTestConsist <- function( priceNames, shareNames, totExpName, data = NULL,
+aidsTestConsist <- function( priceNames, shareNames = NULL, totExpName, data = NULL,
    coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) ) {
 
-   if( length( priceNames ) != length( shareNames ) ) {
+   if( !is.null( shareNames ) && length( priceNames ) != length( shareNames ) ) {
       stop( "arguments 'priceNames' and 'shareNames' must have the same length" )
    }
 
@@ -14,9 +14,14 @@ aidsTestConsist <- function( priceNames, shareNames, totExpName, data = NULL,
    shareMat <- array( NA, c( nObs, nGoods ) )
    for( i in 1: nGoods ) {
       priceMat[ , i ] <- data[[ priceNames[ i ] ]]
-      shareMat[ , i ] <- data[[ shareNames[ i ] ]]
+      if( !is.null( shareNames ) ) {
+         shareMat[ , i ] <- data[[ shareNames[ i ] ]]
+      }
    }
    fitted <- aidsCalc( priceNames, totExpName, data, alpha0 = alpha0, coef = coef )
+   if( is.null( shareNames ) ) {
+      shareMat <- as.matrix( fitted$shares )
+   }
 
    # testing for monotonicity
    mono <- array( TRUE, c( nObs ) )
