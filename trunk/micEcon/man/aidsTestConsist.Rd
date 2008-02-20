@@ -8,7 +8,7 @@
 }
 
 \usage{
-   aidsTestConsist( priceNames, shareNames, totExpName, data, coef = NULL,
+   aidsTestConsist( priceNames, shareNames = NULL, totExpName, data, coef = NULL,
       alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) )
 
    \method{testConsist}{aidsEst}( object, ... )
@@ -30,6 +30,12 @@
    \code{testConsist.aidsEst} is a wrapper function to \code{aidsTestConsist}
    that extracts all relevant arguments for \code{aidsTestConsist}
    from \code{object}.
+
+   If argument \code{shareNames} is specified,
+   observed shares are used for the calculation of the 'C' matrices
+   to check for concavity;
+   if argument \code{shareNames} is \code{NULL} (e.g., not specified),
+   fitted shares are used for the calculation of the 'C' matrices.
 }
 
 \value{
