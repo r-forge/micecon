@@ -1,13 +1,11 @@
-aidsCalc <- function( priceNames, totExpName, data = NULL, priceIndex = "TL", lnp = NULL,
-   coef = NULL ) {
+aidsCalc <- function( priceNames, totExpName, coef, data = NULL,
+      priceIndex = "TL", lnp = NULL ) {
 
    # check argument 'coef' (coefficients)
-   if( !is.null( coef ) ){
-      coefCheckResult <- .aidsCheckCoef( coef, variables = list(
-         list( length( priceNames ), "prices", "goods"  ) ) )
-      if( !is.null( coefCheckResult ) ){
-         stop( coefCheckResult )
-      }
+   coefCheckResult <- .aidsCheckCoef( coef, variables = list(
+      list( length( priceNames ), "prices", "goods"  ) ) )
+   if( !is.null( coefCheckResult ) ){
+      stop( coefCheckResult )
    }
 
    # check whether the price index is provided if it should not be in translog form

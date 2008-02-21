@@ -252,7 +252,7 @@ print( pxTLtrend2 )
 
 ########### fitted values #################
 options( digits = 3 )
-fittedAIDS <- aidsCalc( pNames, "xFood", Blanciforti86[ -1, ],
+fittedAIDS <- aidsCalc( pNames, "xFood", data = Blanciforti86[ -1, ],
    coef = estResultAIDS$coef )
 print( fittedAIDS )
 if( max( abs( fittedAIDS$shares[ !is.na( fittedAIDS$shares ) ] -
@@ -263,13 +263,13 @@ if( max( abs( fittedAIDS$quant[ !is.na( fittedAIDS$quant ) ] -
    estResultAIDS$qFitted ) ) > 1e-5 ) {
    stop( "fitted quantities of AIDS are wrong" )
 }
-fittedAIDSTX <- aidsCalc( pNames, "xFood", Blanciforti86[ -1, ],
+fittedAIDSTX <- aidsCalc( pNames, "xFood", data = Blanciforti86[ -1, ],
    coef = estResultAIDSTX$coef )
 print( fittedAIDSTX )
 print( all.equal( fittedAIDS, fittedAIDSTX ) )
 
 # LA-AIDS with Laspeyres price index
-fittedLA <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
+fittedLA <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLA$coef, lnp = estResultLA$lnp )
 print( fittedLA )
 if( max( abs( fittedLA$shares[ -1, ] - estResultLA$wFitted[ setWo1, ] ),
@@ -280,26 +280,26 @@ if( max( abs( fittedLA$quant[ -1, ] - estResultLA$qFitted[ setWo1, ] ),
       na.rm = TRUE ) > 1e-5 ) {
    stop( "fitted quantities of LA-AIDS are wrong" )
 }
-fittedLATX <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
+fittedLATX <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLATX$coef, lnp = estResultLATX$lnp )
 print( fittedLATX )
 print( all.equal( fittedLA, fittedLATX ) )
 
 # LA-AIDS with Stone price index
 # obsereved shares in the Stone price index
-fittedLaSNa <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
+fittedLaSNa <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSNa$coef, lnp = estResultLaSNa$lnp )
 print( fittedLaSNa )
 all.equal( fittedLaSNa$shares, estResultLaSNa$wFitted )
 all.equal( fittedLaSNa$quant, estResultLaSNa$qFitted )
 # fitted shares in the Stone price index
-fittedLaSNa2 <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
+fittedLaSNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSNa$coef, priceIndex = "S" )
 print( fittedLaSNa2 )
 B86LaSNa2 <- cbind( Blanciforti86[ set, c( pNames, "xFood" ) ],
    fittedLaSNa2$shares )
 lnp <- aidsPx( "S", pNames, c( "w1", "w2", "w3", "w4" ), B86LaSNa2 )
-fittedLaSNa2b <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
+fittedLaSNa2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSNa$coef, lnp = lnp )
 all.equal( fittedLaSNa2, fittedLaSNa2b )
 
