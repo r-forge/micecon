@@ -173,7 +173,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
          shifterNames = shifterNames, df = df.residual( est ) )  # coefficients
       result$coef$alpha0 <- alpha0
       result$wFitted <- aidsCalc( priceNames, totExpName, data = data,
-         coef = result$coef, alpha0 = alpha0, priceIndex = "TL" )$shares
+         coef = result$coef, priceIndex = "TL" )$shares
          # estimated budget shares
       result$ILiter <- ILiter
    }
