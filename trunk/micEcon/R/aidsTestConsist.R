@@ -32,8 +32,7 @@ aidsTestConsist <- function( priceNames, shareNames = NULL, totExpName, data = N
    cMatrices <- list()    # testing for concavity
    conc <- array( TRUE, c( nObs ) )
 
-   lnp <- aidsPx( "TL", priceNames, data = data,
-      alpha0 = coef$alpha0, coef = coef )
+   lnp <- aidsPx( "TL", priceNames, data = data, coef = coef )
 
    for( t in 1:nObs ) {
       mono[ t ] <- ( min( fitted$shares[ t, ] ) >= 0 )

@@ -1,6 +1,6 @@
 
-R version 2.6.1 (2007-11-26)
-Copyright (C) 2007 The R Foundation for Statistical Computing
+R version 2.6.2 (2008-02-08)
+Copyright (C) 2008 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -2358,7 +2358,7 @@ Tornqvist index
 
 Translog index
 > pxTL <- aidsPx( "TL", pNames, wNames, Blanciforti86,
-+    coef = estResultLA$coef )
++    coef = c( list( alpha0 = 0 ), estResultLA$coef ) )
 > print( pxTL )
  [1] 4.0181 4.0769 4.0359 4.0435 4.1570 4.1705 4.2183 4.2387 4.2513 4.2870
 [11] 4.2872 4.2582 4.2588 4.2883 4.3193 4.3088 4.3373 4.3742 4.3577 4.3902
@@ -2367,7 +2367,8 @@ Translog index
 > 
 > # Translog index with 1 demand shifter
 > pxTLtrend <- aidsPx( "TL", pNames, data = Blanciforti86,
-+    coef = estResultLAtrend$coef, shifterNames = c( "trend" ) )
++    coef = c( list( alpha0 = 0 ), estResultLAtrend$coef ),
++    shifterNames = c( "trend" ) )
 > print( pxTLtrend )
  [1] 4.0143 4.0895 4.0721 4.0728 4.1705 4.2121 4.1873 4.1813 4.1712 4.1830
 [11] 4.2134 4.2734 4.2558 4.2676 4.2763 4.2906 4.3149 4.3295 4.3505 4.3956
@@ -2376,7 +2377,8 @@ Translog index
 > 
 > # Translog index with 2 demand shifters
 > pxTLtrend2 <- aidsPx( "TL", pNames, data = Blanciforti86,
-+    coef = estResultLAtrend2$coef, shifterNames = c( "trend", "trend2" ) )
++    coef = c( list( alpha0 = 0 ), estResultLAtrend2$coef ),
++    shifterNames = c( "trend", "trend2" ) )
 > print( pxTLtrend2 )
  [1] 4.0234 4.1035 4.0794 4.0858 4.1861 4.2193 4.1970 4.1918 4.1779 4.1851
 [11] 4.2186 4.2747 4.2562 4.2666 4.2764 4.2899 4.3099 4.3228 4.3456 4.3940

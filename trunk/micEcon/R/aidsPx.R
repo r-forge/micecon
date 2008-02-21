@@ -1,6 +1,5 @@
 aidsPx <- function( priceIndex, priceNames, shareNames = NULL, data = NULL, base = 1,
-   coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ),
-   shifterNames = NULL ) {
+   coef = NULL, shifterNames = NULL ) {
 
    if( priceIndex == "TL" ){
       if( is.null( coef ) ) {
@@ -13,6 +12,9 @@ aidsPx <- function( priceIndex, priceNames, shareNames = NULL, data = NULL, base
                "shareNames", "goods" ) ) )
          if( !is.null( coefCheckResult ) ){
             stop( coefCheckResult )
+         }
+         if( is.null( coef$alpha0 ) ) {
+            stop( "argument 'coef' must have element 'alpha0'" )
          }
       }
    } else {
@@ -55,7 +57,7 @@ aidsPx <- function( priceIndex, priceNames, shareNames = NULL, data = NULL, base
             mean( data[[ priceNames[ i ] ]][ base ] ) ) )
       }
    } else if(priceIndex=="TL") {      # Translog index
-      lnp <- array( alpha0, c( nObs ) )
+      lnp <- array( coef$alpha0, c( nObs ) )
       for( i in 1:nGoods ) {
          lnp <- lnp + coef$alpha[ i ] * log( data[[ priceNames[ i ] ]] )
          for( j in 1:nGoods ) {
