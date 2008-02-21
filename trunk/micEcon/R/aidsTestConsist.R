@@ -1,8 +1,11 @@
 aidsTestConsist <- function( priceNames, shareNames = NULL, totExpName, data = NULL,
-   coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) ) {
+   coef = NULL ) {
 
    if( !is.null( shareNames ) && length( priceNames ) != length( shareNames ) ) {
       stop( "arguments 'priceNames' and 'shareNames' must have the same length" )
+   }
+   if( is.null( coef$alpha0 ) ) {
+      stop( "argument 'coef' must have element 'alpha0'" )
    }
 
    result <- list()
@@ -18,7 +21,6 @@ aidsTestConsist <- function( priceNames, shareNames = NULL, totExpName, data = N
          shareMat[ , i ] <- data[[ shareNames[ i ] ]]
       }
    }
-   coef$alpha0 <- alpha0
    fitted <- aidsCalc( priceNames, totExpName, data = data,
       coef = coef )
    if( is.null( shareNames ) ) {
@@ -31,7 +33,7 @@ aidsTestConsist <- function( priceNames, shareNames = NULL, totExpName, data = N
    conc <- array( TRUE, c( nObs ) )
 
    lnp <- aidsPx( "TL", priceNames, data = data,
-      alpha0 = alpha0, coef = coef )
+      alpha0 = coef$alpha0, coef = coef )
 
    for( t in 1:nObs ) {
       mono[ t ] <- ( min( fitted$shares[ t, ] ) >= 0 )
