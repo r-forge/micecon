@@ -1,5 +1,5 @@
 aidsCalc <- function( priceNames, totExpName, data = NULL, priceIndex = "TL", lnp = NULL,
-   coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) ) {
+   coef = NULL ) {
 
    # check argument 'coef' (coefficients)
    if( !is.null( coef ) ){
@@ -18,8 +18,12 @@ aidsCalc <- function( priceNames, totExpName, data = NULL, priceIndex = "TL", ln
 
    # calculate price index if it isn't provided
    if( is.null( lnp ) && priceIndex == "TL" ) {
+      if( is.null( coef$alpha0 ) ) {
+         stop( "calculations with the translog (TL) price index require",
+            " coefficient alpha_0 (coef$alpha0)" )
+      }
       lnp <- aidsPx( priceIndex, priceNames, data = data,
-         alpha0 = alpha0, coef = coef )
+         alpha0 = coef$alpha0, coef = coef )
    }
 
    # number of goods

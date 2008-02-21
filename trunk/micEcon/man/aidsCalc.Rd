@@ -10,8 +10,7 @@
 
 \usage{
    aidsCalc( priceNames, totExpName, data = NULL, priceIndex = "TL", lnp = NULL,
-      coef = NULL, alpha0 = ifelse( is.null( coef$alpha0 ), 0,
-      coef$alpha0 ) )
+      coef = NULL )
 }
 
 \arguments{
@@ -21,8 +20,8 @@
    \item{priceIndex}{prices index (see \code{\link{aidsPx}}).}
    \item{lnp}{log of the price index (only required if '\code{priceIndex}'
       is neither 'TL' or 'S').}
-   \item{coef}{a list containing the coefficients alpha, beta and gamma.}
-   \item{alpha0}{coefficient \eqn{\alpha_0} of the translog price index.}
+   \item{coef}{a list containing the coefficients alpha, beta, gamma,
+      and (only for the translog price index) alpha0.}
 }
 
 \value{

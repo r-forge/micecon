@@ -18,7 +18,9 @@ aidsTestConsist <- function( priceNames, shareNames = NULL, totExpName, data = N
          shareMat[ , i ] <- data[[ shareNames[ i ] ]]
       }
    }
-   fitted <- aidsCalc( priceNames, totExpName, data, alpha0 = alpha0, coef = coef )
+   coef$alpha0 <- alpha0
+   fitted <- aidsCalc( priceNames, totExpName, data = data,
+      coef = coef )
    if( is.null( shareNames ) ) {
       shareMat <- as.matrix( fitted$shares )
    }
