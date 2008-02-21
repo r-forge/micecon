@@ -2551,6 +2551,7 @@ $quant
 > print( all.equal( fittedAIDS, fittedAIDSTX ) )
 [1] TRUE
 > 
+> # LA-AIDS with Laspeyres price index
 > fittedLA <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
 +    coef = estResultLA$coef, lnp = estResultLA$lnp )
 > print( fittedLA )
@@ -2707,6 +2708,185 @@ $quant
 
 > print( all.equal( fittedLA, fittedLATX ) )
 [1] TRUE
+> 
+> # LA-AIDS with Stone price index
+> # obsereved shares in the Stone price index
+> fittedLaSNa <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
++    coef = estResultLaSNa$coef, lnp = estResultLaSNa$lnp )
+> print( fittedLaSNa )
+$shares
+        w1    w2    w3    w4
+1947 0.316 0.188 0.133 0.363
+1948 0.317 0.172 0.135 0.376
+1949 0.308 0.183 0.136 0.373
+1950 0.312 0.169 0.137 0.382
+1951 0.317 0.165 0.136 0.382
+1952 0.304 0.182 0.137 0.378
+1953 0.306 0.184 0.137 0.373
+1954 0.298 0.182 0.139 0.380
+1955 0.299 0.195 0.138 0.367
+1956 0.292 0.210 0.138 0.360
+1957 0.298 0.197 0.138 0.367
+1958 0.294 0.195 0.138 0.372
+1959 0.301 0.200 0.136 0.363
+1960 0.300 0.206 0.136 0.358
+1961 0.298 0.206 0.137 0.359
+1962 0.304 0.204 0.136 0.356
+1963 0.296 0.215 0.136 0.353
+1964 0.293 0.223 0.135 0.348
+1965 0.303 0.215 0.134 0.348
+1966 0.313 0.206 0.133 0.348
+1967 0.316 0.210 0.132 0.342
+1968 0.313 0.219 0.131 0.337
+1969 0.324 0.209 0.130 0.338
+1970 0.329 0.207 0.129 0.335
+1971 0.318 0.212 0.131 0.339
+1972 0.326 0.208 0.129 0.337
+1973 0.331 0.196 0.128 0.344
+1974 0.318 0.214 0.131 0.337
+1975 0.323 0.205 0.132 0.340
+1976 0.332 0.206 0.130 0.332
+1977 0.314 0.216 0.132 0.337
+1978 0.319 0.212 0.131 0.339
+
+$quant
+       q1    q2    q3   q4
+1947 1.65 1.084 0.794 1.94
+1948 1.53 1.013 0.768 1.97
+1949 1.52 1.029 0.749 2.01
+1950 1.47 0.987 0.742 2.02
+1951 1.47 0.976 0.749 1.97
+1952 1.47 1.004 0.753 2.01
+1953 1.56 1.050 0.738 1.91
+1954 1.51 1.031 0.717 1.88
+1955 1.63 1.100 0.706 1.85
+1956 1.69 1.144 0.707 1.81
+1957 1.63 1.103 0.697 1.86
+1958 1.51 1.050 0.703 1.98
+1959 1.62 1.105 0.696 1.97
+1960 1.67 1.133 0.696 1.95
+1961 1.67 1.133 0.690 1.92
+1962 1.70 1.143 0.685 1.96
+1963 1.72 1.163 0.691 1.96
+1964 1.76 1.184 0.700 1.91
+1965 1.76 1.175 0.703 1.97
+1966 1.78 1.173 0.710 2.00
+1967 1.89 1.226 0.709 1.94
+1968 1.92 1.238 0.733 1.94
+1969 1.92 1.227 0.742 1.94
+1970 1.97 1.243 0.743 1.90
+1971 1.94 1.239 0.736 1.88
+1972 1.91 1.221 0.758 1.98
+1973 1.77 1.154 0.774 2.18
+1974 1.90 1.233 0.693 2.01
+1975 1.92 1.234 0.676 1.96
+1976 2.06 1.279 0.716 1.82
+1977 2.02 1.265 0.741 1.67
+1978 1.95 1.237 0.748 1.81
+
+> all.equal( fittedLaSNa$shares, estResultLaSNa$wFitted )
+[1] "Names: 4 string mismatches"
+> all.equal( fittedLaSNa$quant, estResultLaSNa$qFitted )
+[1] "Names: 4 string mismatches"                                          
+[2] "Attributes: < Component 2: Modes: character, numeric >"              
+[3] "Attributes: < Component 2: target is character, current is numeric >"
+> # fitted shares in the Stone price index
+> fittedLaSNa2 <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
++    coef = estResultLaSNa$coef, priceIndex = "S" )
+> print( fittedLaSNa2 )
+$shares
+        w1    w2    w3    w4
+1947 0.317 0.188 0.133 0.362
+1948 0.317 0.172 0.135 0.376
+1949 0.308 0.183 0.136 0.373
+1950 0.313 0.169 0.137 0.381
+1951 0.315 0.165 0.137 0.384
+1952 0.304 0.182 0.137 0.378
+1953 0.307 0.184 0.137 0.373
+1954 0.299 0.183 0.139 0.379
+1955 0.299 0.195 0.138 0.368
+1956 0.293 0.210 0.138 0.360
+1957 0.298 0.197 0.138 0.367
+1958 0.294 0.195 0.138 0.372
+1959 0.301 0.200 0.136 0.362
+1960 0.300 0.206 0.136 0.358
+1961 0.298 0.206 0.137 0.359
+1962 0.304 0.204 0.136 0.356
+1963 0.297 0.215 0.136 0.352
+1964 0.293 0.223 0.135 0.348
+1965 0.303 0.215 0.134 0.348
+1966 0.313 0.206 0.133 0.348
+1967 0.318 0.210 0.132 0.340
+1968 0.314 0.219 0.131 0.336
+1969 0.324 0.209 0.130 0.338
+1970 0.328 0.206 0.130 0.336
+1971 0.319 0.212 0.131 0.338
+1972 0.326 0.208 0.129 0.337
+1973 0.332 0.196 0.128 0.343
+1974 0.318 0.214 0.131 0.337
+1975 0.323 0.205 0.132 0.340
+1976 0.330 0.206 0.130 0.334
+1977 0.311 0.216 0.133 0.340
+1978 0.318 0.212 0.131 0.339
+
+$quant
+       q1    q2    q3   q4
+1947 1.65 1.086 0.792 1.94
+1948 1.53 1.013 0.768 1.97
+1949 1.52 1.028 0.750 2.01
+1950 1.47 0.988 0.740 2.01
+1951 1.46 0.974 0.752 1.98
+1952 1.47 1.004 0.752 2.01
+1953 1.56 1.051 0.738 1.91
+1954 1.51 1.032 0.715 1.87
+1955 1.63 1.100 0.706 1.85
+1956 1.70 1.144 0.706 1.81
+1957 1.63 1.103 0.697 1.86
+1958 1.51 1.050 0.703 1.98
+1959 1.62 1.105 0.696 1.97
+1960 1.67 1.133 0.695 1.95
+1961 1.67 1.133 0.690 1.92
+1962 1.70 1.143 0.685 1.96
+1963 1.73 1.165 0.690 1.95
+1964 1.76 1.184 0.700 1.91
+1965 1.76 1.176 0.703 1.97
+1966 1.78 1.173 0.710 2.00
+1967 1.90 1.228 0.706 1.93
+1968 1.93 1.240 0.731 1.93
+1969 1.92 1.228 0.742 1.94
+1970 1.96 1.241 0.745 1.90
+1971 1.94 1.240 0.734 1.87
+1972 1.91 1.221 0.758 1.98
+1973 1.78 1.155 0.772 2.17
+1974 1.90 1.233 0.694 2.01
+1975 1.92 1.235 0.676 1.96
+1976 2.05 1.277 0.718 1.83
+1977 2.00 1.262 0.744 1.68
+1978 1.94 1.236 0.750 1.82
+
+> B86LaSNa2 <- cbind( Blanciforti86[ set, c( pNames, "xFood" ) ],
++    fittedLaSNa2$shares )
+> lnp <- aidsPx( "S", pNames, c( "w1", "w2", "w3", "w4" ), B86LaSNa2 )
+> fittedLaSNa2b <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
++    coef = estResultLaSNa$coef, lnp = lnp )
+> all.equal( fittedLaSNa2, fittedLaSNa2b )
+ [1] "Component 1: Component 1: Attributes: < target is NULL, current is list >"
+ [2] "Component 1: Component 1: target is numeric, current is array"            
+ [3] "Component 1: Component 2: Attributes: < target is NULL, current is list >"
+ [4] "Component 1: Component 2: target is numeric, current is array"            
+ [5] "Component 1: Component 3: Attributes: < target is NULL, current is list >"
+ [6] "Component 1: Component 3: target is numeric, current is array"            
+ [7] "Component 1: Component 4: Attributes: < target is NULL, current is list >"
+ [8] "Component 1: Component 4: target is numeric, current is array"            
+ [9] "Component 2: Component 1: Attributes: < target is NULL, current is list >"
+[10] "Component 2: Component 1: target is numeric, current is array"            
+[11] "Component 2: Component 2: Attributes: < target is NULL, current is list >"
+[12] "Component 2: Component 2: target is numeric, current is array"            
+[13] "Component 2: Component 3: Attributes: < target is NULL, current is list >"
+[14] "Component 2: Component 3: target is numeric, current is array"            
+[15] "Component 2: Component 4: Attributes: < target is NULL, current is list >"
+[16] "Component 2: Component 4: target is numeric, current is array"            
+> 
 > 
 > ####### consistency ###################
 > # with observed expenditure shares
