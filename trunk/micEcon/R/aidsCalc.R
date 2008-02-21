@@ -11,13 +11,13 @@ aidsCalc <- function( priceNames, totExpName, data = NULL, priceIndex = "TL", ln
    }
 
    # check whether the price index is provided if it should not be in translog form
-   if( priceIndex != "TL" && is.null( lnp ) ) {
-      stop( "at the moment only the translog (TL) price index works",
+   if( ! priceIndex %in% c( "TL", "S" ) && is.null( lnp ) ) {
+      stop( "at the moment only the translog (TL) and Stone (S) price index work",
          " if argument 'lnp' is not specified" )
    }
 
    # calculate price index if it isn't provided
-   if( is.null( lnp ) ) {
+   if( is.null( lnp ) && priceIndex == "TL" ) {
       lnp <- aidsPx( priceIndex, priceNames, data = data,
          alpha0 = alpha0, coef = coef )
    }
@@ -31,13 +31,27 @@ aidsCalc <- function( priceNames, totExpName, data = NULL, priceIndex = "TL", ln
    quant <- as.data.frame( matrix( 0, nrow = nrow( data ), ncol = nGoods ) )
    names( quant ) <- paste( "q", as.character( 1:nGoods ), sep = "" )
    rownames( quant ) <- rownames( data )
-   for( i in 1:nGoods ) {
-      shareData[ , i ] <- coef$alpha[ i ] + coef$beta[ i ] *
-         ( log( data[[ totExpName ]] ) - lnp )
-      for( j in 1:nGoods ) {
-         shareData[ , i ] <- shareData[ , i ] + coef$gamma[ i, j ] *
-            log( data[[ priceNames[ j ] ]] )
+   if( !is.null( lnp ) ) {
+      for( i in 1:nGoods ) {
+         shareData[ , i ] <- coef$alpha[ i ] + coef$beta[ i ] *
+            ( log( data[[ totExpName ]] ) - lnp )
+         for( j in 1:nGoods ) {
+            shareData[ , i ] <- shareData[ , i ] + coef$gamma[ i, j ] *
+               log( data[[ priceNames[ j ] ]] )
+         }
       }
+   } else if( priceIndex == "S" ) {
+      for( i in 1:nrow( data ) ) {
+         logPrices <- log( as.numeric( data[ i, priceNames ] ) )
+         logTotExp <- log( data[ i, totExpName ] )
+         shareData[ i, ] <-
+            solve( diag( nGoods ) + coef$beta %*% t( logPrices ),
+               coef$alpha + coef$gamma %*% logPrices + coef$beta * logTotExp )
+      }
+   } else {
+      stop( "internal error" )
+   }
+   for( i in 1:nGoods ) {
       quant[ , i ] <- shareData[ , i ] * data[[ totExpName ]] / data[[ priceNames[ i ] ]]
    }
    result <- list()

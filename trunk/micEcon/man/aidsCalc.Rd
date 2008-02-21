@@ -19,7 +19,8 @@
    \item{totExpName}{a string containing the variable name of total expenditure.}
    \item{data}{a data frame containing the data.}
    \item{priceIndex}{prices index (see \code{\link{aidsPx}}).}
-   \item{lnp}{log of the price index (only required if '\code{priceIndex}' is not 'TL').}
+   \item{lnp}{log of the price index (only required if '\code{priceIndex}'
+      is neither 'TL' or 'S').}
    \item{coef}{a list containing the coefficients alpha, beta and gamma.}
    \item{alpha0}{coefficient \eqn{\alpha_0} of the translog price index.}
 }
@@ -50,15 +51,18 @@
 
    ## LA-AIDS
    estResult <- aidsEst( priceNames, shareNames, "xFood",
-      data = Blanciforti86 )
+      data = Blanciforti86, priceIndex = "S" )
 
-   lnp <- aidsPx( "L", priceNames, shareNames, Blanciforti86 )
-
+   # using observed shares in the Stone index
+   lnp <- aidsPx( "S", priceNames, shareNames, Blanciforti86 )
    fitted <- aidsCalc( priceNames, "xFood", Blanciforti86,
       coef = estResult$coef, lnp = lnp )
-
    fitted$shares  # equal to estResult$wFitted
    fitted$quant   # equal to estResult$qFitted
+
+   # using fitted shares in the Stone index
+   fitted <- aidsCalc( priceNames, "xFood", Blanciforti86,
+      coef = estResult$coef, priceIndex = "S" )
 
    ## AIDS
    estResult <- aidsEst( priceNames, shareNames, "xFood",
