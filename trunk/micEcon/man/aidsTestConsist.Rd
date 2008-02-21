@@ -8,8 +8,7 @@
 }
 
 \usage{
-   aidsTestConsist( priceNames, shareNames = NULL, totExpName, data, coef = NULL,
-      alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ) )
+   aidsTestConsist( priceNames, shareNames = NULL, totExpName, data, coef = NULL )
 
    \method{testConsist}{aidsEst}( object, ... )
 }
@@ -20,8 +19,8 @@
       shares.}
    \item{totExpName}{a string containing the variable name of total expenditure.}
    \item{data}{a data frame containing the data.}
-   \item{coef}{a list containing the coefficients alpha, beta and gamma.}
-   \item{alpha0}{coefficient \eqn{\alpha_0} of the translog price index.}
+   \item{coef}{a list containing the coefficients alpha, beta, gamma,
+      and (only for the translog price index) alpha0.}
    \item{object}{an object of class \code{aidsEst}.}
    \item{...}{currently not used.}
 }
