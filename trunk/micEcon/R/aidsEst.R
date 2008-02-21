@@ -124,7 +124,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
                inst = ivFormula, ... )    # estimate system
          }
          iter <- c( iter, est$iter ) # iterations of each estimation
-         b    <- coef( est ) # coefficients
+         weightNewCoef <- 1
+         b    <- weightNewCoef * coef( est ) + ( 1 - weightNewCoef ) * b # coefficients
          bd   <- b - bl  # difference between coefficients from this
                          # and previous step
       }
