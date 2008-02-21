@@ -234,17 +234,19 @@ print( pxT )
 
 cat( "\nTranslog index\n" )
 pxTL <- aidsPx( "TL", pNames, wNames, Blanciforti86,
-   coef = estResultLA$coef )
+   coef = c( list( alpha0 = 0 ), estResultLA$coef ) )
 print( pxTL )
 
 # Translog index with 1 demand shifter
 pxTLtrend <- aidsPx( "TL", pNames, data = Blanciforti86,
-   coef = estResultLAtrend$coef, shifterNames = c( "trend" ) )
+   coef = c( list( alpha0 = 0 ), estResultLAtrend$coef ),
+   shifterNames = c( "trend" ) )
 print( pxTLtrend )
 
 # Translog index with 2 demand shifters
 pxTLtrend2 <- aidsPx( "TL", pNames, data = Blanciforti86,
-   coef = estResultLAtrend2$coef, shifterNames = c( "trend", "trend2" ) )
+   coef = c( list( alpha0 = 0 ), estResultLAtrend2$coef ),
+   shifterNames = c( "trend", "trend2" ) )
 print( pxTLtrend2 )
 
 

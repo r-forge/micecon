@@ -22,8 +22,7 @@ aidsCalc <- function( priceNames, totExpName, data = NULL, priceIndex = "TL", ln
          stop( "calculations with the translog (TL) price index require",
             " coefficient alpha_0 (coef$alpha0)" )
       }
-      lnp <- aidsPx( priceIndex, priceNames, data = data,
-         alpha0 = coef$alpha0, coef = coef )
+      lnp <- aidsPx( priceIndex, priceNames, data = data, coef = coef )
    }
 
    # number of goods

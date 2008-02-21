@@ -8,7 +8,6 @@
 
 \usage{
    aidsPx( priceIndex, priceNames, shareNames = NULL, data = NULL, base = 1, coef = NULL,
-      alpha0 = ifelse( is.null( coef$alpha0 ), 0, coef$alpha0 ),
       shifterNames = NULL )
 }
 
@@ -19,9 +18,8 @@
       shares.}
    \item{data}{a data frame containing the data.}
    \item{base}{the base to calculate the indices (see details).}
-   \item{coef}{a list containing the coefficients alpha, beta and gamma
+   \item{coef}{a list containing the coefficients alpha0, alpha, beta, and gamma
       (only needed for the translog price index).}
-   \item{alpha0}{coefficient \eqn{\alpha_0} of the translog price index.}
    \item{shifterNames}{an optional vector of strings containing the names of
       the demand shifters
       that modify the alphas of the Translog price index.}

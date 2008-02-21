@@ -113,8 +113,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
          bl     <- b              # coefficients of previous step
          sysData$lxtr <- log( data[[ totExpName ]] ) -
             aidsPx( "TL", priceNames, shareNames, data = data,
-            alpha0 = alpha0,
-            coef = aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter ) )
+            coef = aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
+               alpha0 = alpha0 ) )
             # real total expenditure using Translog price index
          if( restrict.regMat ) {
             est <- systemfit( system, estMethod, data = sysData, restrict.regMat = restr,
@@ -132,8 +132,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       # calculating log of "real" (deflated) total expenditure
       sysData$lxtr <- log( data[[ totExpName ]] ) -
          aidsPx( "TL", priceNames, data = data,
-         alpha0 = alpha0,
-         coef = aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter ) )
+         coef = aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
+            alpha0 = alpha0 ) )
       # calculating matrix G
       Gmat <- cbind( rep( 1, nObs ), sysData$lxtr )
       for( i in 1:( nGoods ) ) {
