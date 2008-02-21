@@ -266,6 +266,7 @@ fittedAIDSTX <- aidsCalc( pNames, "xFood", Blanciforti86[ -1, ],
 print( fittedAIDSTX )
 print( all.equal( fittedAIDS, fittedAIDSTX ) )
 
+# LA-AIDS with Laspeyres price index
 fittedLA <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
    coef = estResultLA$coef, lnp = estResultLA$lnp )
 print( fittedLA )
@@ -281,6 +282,25 @@ fittedLATX <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
    coef = estResultLATX$coef, lnp = estResultLATX$lnp )
 print( fittedLATX )
 print( all.equal( fittedLA, fittedLATX ) )
+
+# LA-AIDS with Stone price index
+# obsereved shares in the Stone price index
+fittedLaSNa <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
+   coef = estResultLaSNa$coef, lnp = estResultLaSNa$lnp )
+print( fittedLaSNa )
+all.equal( fittedLaSNa$shares, estResultLaSNa$wFitted )
+all.equal( fittedLaSNa$quant, estResultLaSNa$qFitted )
+# fitted shares in the Stone price index
+fittedLaSNa2 <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
+   coef = estResultLaSNa$coef, priceIndex = "S" )
+print( fittedLaSNa2 )
+B86LaSNa2 <- cbind( Blanciforti86[ set, c( pNames, "xFood" ) ],
+   fittedLaSNa2$shares )
+lnp <- aidsPx( "S", pNames, c( "w1", "w2", "w3", "w4" ), B86LaSNa2 )
+fittedLaSNa2b <- aidsCalc( pNames, "xFood", Blanciforti86[ set, ],
+   coef = estResultLaSNa$coef, lnp = lnp )
+all.equal( fittedLaSNa2, fittedLaSNa2b )
+
 
 ####### consistency ###################
 # with observed expenditure shares
