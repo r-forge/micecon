@@ -1,5 +1,5 @@
 aidsEst <- function( priceNames, shareNames, totExpName,
-      data = NULL, method = "LA", priceIndex = "L", pxBase = 1,
+      data, method = "LA", priceIndex = "L", pxBase = 1,
       hom = TRUE, sym = TRUE,
       shifterNames = NULL, instNames = NULL,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),

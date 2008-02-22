@@ -9,7 +9,7 @@
 }
 
 \usage{
-aidsEst( priceNames, shareNames, totExpName, data = NULL,
+aidsEst( priceNames, shareNames, totExpName, data,
       method = "LA", priceIndex = "L", pxBase = 1,
       hom = TRUE, sym = TRUE,
       shifterNames = NULL, instNames = NULL,
@@ -24,7 +24,7 @@ aidsEst( priceNames, shareNames, totExpName, data = NULL,
    \item{shareNames}{a vector of strings containing the names of the expenditure
       shares.}
    \item{totExpName}{a string containing the variable name of total expenditure.}
-   \item{data}{a data frame containing the data.}
+   \item{data}{a data frame containing all required variables.}
    \item{method}{character string specifying the method to estimate the AIDS:
       either 'LA' or 'IL' (see deatils).}
    \item{priceIndex}{character string specifying the price index
