@@ -9,7 +9,7 @@
 }
 
 \usage{
-   aidsCalc( priceNames, totExpName, coef, data = NULL, priceIndex = "TL" )
+   aidsCalc( priceNames, totExpName, coef, data, priceIndex = "TL" )
 }
 
 \arguments{

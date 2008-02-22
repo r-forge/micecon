@@ -1,4 +1,4 @@
-aidsCalc <- function( priceNames, totExpName, coef, data = NULL,
+aidsCalc <- function( priceNames, totExpName, coef, data,
       priceIndex = "TL" ) {
 
    # check argument 'coef' (coefficients)
@@ -8,7 +8,12 @@ aidsCalc <- function( priceNames, totExpName, coef, data = NULL,
       stop( coefCheckResult )
    }
 
-   # some tests
+   # checking argument 'data'
+   if( class( data ) != "data.frame" ) {
+      stop( "argument 'data' must be a data frame" )
+   }
+
+   # checking (mainly) argument 'priceIndex'
    if( is.character( priceIndex ) ) {
       if( ! priceIndex %in% c( "TL", "S" ) ) {
          stop( "at the moment, argument 'priceIndex' must be either",
