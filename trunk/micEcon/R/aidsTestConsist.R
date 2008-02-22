@@ -1,5 +1,5 @@
-aidsTestConsist <- function( priceNames, shareNames = NULL, totExpName, data = NULL,
-   coef = NULL ) {
+aidsTestConsist <- function( priceNames, totExpName, data, coef,
+      shareNames = NULL ) {
 
    if( !is.null( shareNames ) && length( priceNames ) != length( shareNames ) ) {
       stop( "arguments 'priceNames' and 'shareNames' must have the same length" )
