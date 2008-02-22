@@ -57,7 +57,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       pMeans[ i ] <- mean( data[[ priceNames[ i ] ]][ sample ] )
    }
    # log of price index
-   lnp  <- aidsPx( priceIndex, priceNames, shareNames, data, base = pxBase )
+   lnp  <- aidsPx( priceIndex, priceNames, shareNames = shareNames, data = data,
+      base = pxBase )
    # prepare data.frame
    sysData <- data.frame( xt = data[[ totExpName ]],
       lxtr = ( log( data[[ totExpName ]] ) - lnp ) )
@@ -112,7 +113,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
          ILiter <- ILiter + 1      # iterations of IL Loop
          bl     <- b              # coefficients of previous step
          sysData$lxtr <- log( data[[ totExpName ]] ) -
-            aidsPx( "TL", priceNames, shareNames, data = data,
+            aidsPx( "TL", priceNames, shareNames = shareNames, data = data,
             coef = aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
                alpha0 = alpha0 ) )
             # real total expenditure using Translog price index

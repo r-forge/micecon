@@ -7,16 +7,16 @@
 }
 
 \usage{
-   aidsPx( priceIndex, priceNames, shareNames = NULL, data = NULL, base = 1, coef = NULL,
+   aidsPx( priceIndex, priceNames, data, shareNames = NULL, base = 1, coef = NULL,
       shifterNames = NULL )
 }
 
 \arguments{
    \item{priceIndex}{the price index to be used (see details).}
    \item{priceNames}{a vector of strings containing the names of the prices.}
+   \item{data}{a data frame containing the required variables.}
    \item{shareNames}{a vector of strings containing the names of the expenditure
       shares.}
-   \item{data}{a data frame containing the data.}
    \item{base}{the base to calculate the indices (see details).}
    \item{coef}{a list containing the coefficients alpha0, alpha, beta, and gamma
       (only needed for the translog price index).}
@@ -67,7 +67,7 @@
 \examples{
    data( Blanciforti86 )
    aidsPx( "S", c( "pFood1", "pFood2", "pFood3", "pFood4" ),
-      c( "wFood1", "wFood2", "wFood3", "wFood4" ), Blanciforti86 )
+      Blanciforti86, c( "wFood1", "wFood2", "wFood3", "wFood4" ) )
 }
 
 \keyword{ models }
