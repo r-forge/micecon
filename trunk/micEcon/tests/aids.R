@@ -307,8 +307,8 @@ all.equal( fittedLaSNa2, fittedLaSNa2b )
 
 ####### consistency ###################
 # with observed expenditure shares
-consist <- aidsTestConsist( pNames, wNames, "xFood", Blanciforti86[ set, ],
-   coef = estResultAIDS$coef )
+consist <- aidsTestConsist( pNames, "xFood", Blanciforti86[ set, ],
+   coef = estResultAIDS$coef, shareNames = wNames )
 print( consist )
 class( consist ) <- NULL
 print( consist )

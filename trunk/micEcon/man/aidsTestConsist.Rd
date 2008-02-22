@@ -8,19 +8,19 @@
 }
 
 \usage{
-   aidsTestConsist( priceNames, shareNames = NULL, totExpName, data, coef = NULL )
+   aidsTestConsist( priceNames, totExpName, data, coef, shareNames = NULL )
 
    \method{testConsist}{aidsEst}( object, ... )
 }
 
 \arguments{
    \item{priceNames}{a vector of strings containing the names of the prices.}
-   \item{shareNames}{a vector of strings containing the names of the expenditure
-      shares.}
    \item{totExpName}{a string containing the variable name of total expenditure.}
    \item{data}{a data frame containing the data.}
    \item{coef}{a list containing the coefficients alpha, beta, gamma,
       and (only for the translog price index) alpha0.}
+   \item{shareNames}{a vector of strings containing the names of the expenditure
+      shares.}
    \item{object}{an object of class \code{aidsEst}.}
    \item{...}{currently not used.}
 }
@@ -74,8 +74,8 @@
 
    estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, method = "IL" )
-   tc <- aidsTestConsist( priceNames, shareNames, "xFood", Blanciforti86,
-      coef = estResult$coef )
+   tc <- aidsTestConsist( priceNames, "xFood", data = Blanciforti86,
+      coef = estResult$coef, shareNames = shareNames )
    tc$mPercent   # great!
    tc$cPercent   # Oh, that is bad!
 
