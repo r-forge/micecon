@@ -1,5 +1,5 @@
 aidsCalc <- function( priceNames, totExpName, coef, data = NULL,
-      priceIndex = "TL", lnp = NULL ) {
+      priceIndex = "TL" ) {
 
    # check argument 'coef' (coefficients)
    coefCheckResult <- .aidsCheckCoef( coef, variables = list(
@@ -8,19 +8,34 @@ aidsCalc <- function( priceNames, totExpName, coef, data = NULL,
       stop( coefCheckResult )
    }
 
-   # check whether the price index is provided if it should not be in translog form
-   if( ! priceIndex %in% c( "TL", "S" ) && is.null( lnp ) ) {
-      stop( "at the moment only the translog (TL) and Stone (S) price index work",
-         " if argument 'lnp' is not specified" )
-   }
-
-   # calculate price index if it isn't provided
-   if( is.null( lnp ) && priceIndex == "TL" ) {
-      if( is.null( coef$alpha0 ) ) {
+   # some tests
+   if( is.character( priceIndex ) ) {
+      if( ! priceIndex %in% c( "TL", "S" ) ) {
+         stop( "at the moment, argument 'priceIndex' must be either",
+            " 'TL' (translog), 'S' (Stone) or a numeric vector",
+            " providing the log values of the price index" )
+      }
+      if( priceIndex == "TL" && is.null( coef$alpha0 ) ) {
          stop( "calculations with the translog (TL) price index require",
             " coefficient alpha_0 (coef$alpha0)" )
       }
-      lnp <- aidsPx( priceIndex, priceNames, data = data, coef = coef )
+   } else if( is.numeric( priceIndex ) ) {
+      if( length( priceIndex ) != nrow( data ) ) {
+         stop( "if argument 'priceIndex' provides the values",
+            " of the log price index,",
+            " it must have the same length as there are observations",
+            " in argument 'data'" )
+      }
+   } else {
+      stop( "argument 'priceIndex' must be either a charater string",
+         " or a numeric vector" )
+   }
+
+   # calculation of translog price index
+   if( is.character( priceIndex ) ) {
+      if( priceIndex == "TL" ) {
+         priceIndex <- aidsPx( priceIndex, priceNames, data = data, coef = coef )
+      }
    }
 
    # number of goods
@@ -32,10 +47,10 @@ aidsCalc <- function( priceNames, totExpName, coef, data = NULL,
    quant <- as.data.frame( matrix( 0, nrow = nrow( data ), ncol = nGoods ) )
    names( quant ) <- paste( "q", as.character( 1:nGoods ), sep = "" )
    rownames( quant ) <- rownames( data )
-   if( !is.null( lnp ) ) {
+   if( is.numeric( priceIndex ) ) {
       for( i in 1:nGoods ) {
          shareData[ , i ] <- coef$alpha[ i ] + coef$beta[ i ] *
-            ( log( data[[ totExpName ]] ) - lnp )
+            ( log( data[[ totExpName ]] ) - priceIndex )
          for( j in 1:nGoods ) {
             shareData[ , i ] <- shareData[ , i ] + coef$gamma[ i, j ] *
                log( data[[ priceNames[ j ] ]] )

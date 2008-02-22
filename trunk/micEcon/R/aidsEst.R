@@ -99,7 +99,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
          cov = vcov( est ), priceNames = priceNames, shareNames = shareNames,
          shifterNames = shifterNames, df = df.residual( est ) )   # coefficients
       result$wFitted <- aidsCalc( priceNames, totExpName, data = data,
-         coef = result$coef, lnp = lnp )$shares   # estimated budget shares
+         coef = result$coef, priceIndex = lnp )$shares   # estimated budget shares
       iter <- est$iter
    } else if( method %in% c( "MK", "IL" ) ) {
       b       <- coef( est )# coefficients

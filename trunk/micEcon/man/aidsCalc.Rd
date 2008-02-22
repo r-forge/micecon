@@ -9,7 +9,7 @@
 }
 
 \usage{
-   aidsCalc( priceNames, totExpName, coef, data = NULL, priceIndex = "TL", lnp = NULL )
+   aidsCalc( priceNames, totExpName, coef, data = NULL, priceIndex = "TL" )
 }
 
 \arguments{
@@ -18,9 +18,9 @@
    \item{coef}{a list containing the coefficients alpha, beta, gamma,
       and (only for the translog price index) alpha0.}
    \item{data}{a data frame containing the data.}
-   \item{priceIndex}{prices index (see \code{\link{aidsPx}}).}
-   \item{lnp}{log of the price index (only required if '\code{priceIndex}'
-      is neither 'TL' or 'S').}
+   \item{priceIndex}{a character string specifying the price index
+      (see \code{\link{aidsPx}})
+      or a numeric vector providing the log values of the price index.}
 }
 
 \value{
@@ -54,7 +54,7 @@
    # using observed shares in the Stone index
    lnp <- aidsPx( "S", priceNames, shareNames, Blanciforti86 )
    fitted <- aidsCalc( priceNames, "xFood", coef = estResult$coef,
-      data = Blanciforti86, lnp = lnp )
+      data = Blanciforti86, priceIndex = lnp )
    fitted$shares  # equal to estResult$wFitted
    fitted$quant   # equal to estResult$qFitted
 
