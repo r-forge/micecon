@@ -213,27 +213,27 @@ print( ela )
 options( digits = 5 )
 cat( "\n************** Price indices **************\n" )
 cat( "\nStone index\n" )
-pxS <- aidsPx( "S", pNames, wNames, Blanciforti86 )
+pxS <- aidsPx( "S", pNames, shareNames = wNames, data = Blanciforti86 )
 print( pxS )
 
 cat( "\nStone index with lagged shares\n" )
-pxSL <- aidsPx( "SL", pNames, wNames, Blanciforti86 )
+pxSL <- aidsPx( "SL", pNames, shareNames = wNames, data = Blanciforti86 )
 print( pxSL )
 
 cat( "\nPaasche index\n" )
-pxP <- aidsPx( "P", pNames, wNames, Blanciforti86 )
+pxP <- aidsPx( "P", pNames, shareNames = wNames, data = Blanciforti86 )
 print( pxP )
 
 cat( "\nLaspeyres index\n" )
-pxL <- aidsPx( "L", pNames, wNames, Blanciforti86 )
+pxL <- aidsPx( "L", pNames, shareNames = wNames, data = Blanciforti86 )
 print( pxL )
 
 cat( "\nTornqvist index\n" )
-pxT <- aidsPx( "T", pNames, wNames, Blanciforti86 )
+pxT <- aidsPx( "T", pNames, shareNames = wNames, data = Blanciforti86 )
 print( pxT )
 
 cat( "\nTranslog index\n" )
-pxTL <- aidsPx( "TL", pNames, wNames, Blanciforti86,
+pxTL <- aidsPx( "TL", pNames, shareNames = wNames, data = Blanciforti86,
    coef = c( list( alpha0 = 0 ), estResultLA$coef ) )
 print( pxTL )
 
@@ -298,7 +298,8 @@ fittedLaSNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 print( fittedLaSNa2 )
 B86LaSNa2 <- cbind( Blanciforti86[ set, c( pNames, "xFood" ) ],
    fittedLaSNa2$shares )
-lnp <- aidsPx( "S", pNames, c( "w1", "w2", "w3", "w4" ), B86LaSNa2 )
+lnp <- aidsPx( "S", pNames, shareNames = c( "w1", "w2", "w3", "w4" ),
+   data = B86LaSNa2 )
 fittedLaSNa2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSNa$coef, priceIndex = lnp )
 all.equal( fittedLaSNa2, fittedLaSNa2b )

@@ -1,4 +1,4 @@
-aidsPx <- function( priceIndex, priceNames, shareNames = NULL, data = NULL, base = 1,
+aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
    coef = NULL, shifterNames = NULL ) {
 
    if( priceIndex == "TL" ){

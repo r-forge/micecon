@@ -2305,7 +2305,7 @@ q_wFood4  0.417  0.1510  0.139 -0.707
 > cat( "\nStone index\n" )
 
 Stone index
-> pxS <- aidsPx( "S", pNames, wNames, Blanciforti86 )
+> pxS <- aidsPx( "S", pNames, shareNames = wNames, data = Blanciforti86 )
 > print( pxS )
  [1] 4.0453 4.1253 4.0850 4.1068 4.2053 4.2255 4.2187 4.2221 4.2000 4.2050
 [11] 4.2372 4.2728 4.2551 4.2663 4.2815 4.2884 4.3078 4.3188 4.3374 4.3881
@@ -2315,7 +2315,7 @@ Stone index
 > cat( "\nStone index with lagged shares\n" )
 
 Stone index with lagged shares
-> pxSL <- aidsPx( "SL", pNames, wNames, Blanciforti86 )
+> pxSL <- aidsPx( "SL", pNames, shareNames = wNames, data = Blanciforti86 )
 > print( pxSL )
  [1]     NA 4.1280 4.0861 4.1003 4.2153 4.2211 4.2183 4.2186 4.2042 4.2038
 [11] 4.2377 4.2727 4.2549 4.2663 4.2816 4.2885 4.3035 4.3226 4.3376 4.3886
@@ -2325,7 +2325,7 @@ Stone index with lagged shares
 > cat( "\nPaasche index\n" )
 
 Paasche index
-> pxP <- aidsPx( "P", pNames, wNames, Blanciforti86 )
+> pxP <- aidsPx( "P", pNames, shareNames = wNames, data = Blanciforti86 )
 > print( pxP )
  [1] 0.000000 0.083512 0.044760 0.061564 0.168431 0.184889 0.177701 0.177342
  [9] 0.160284 0.165760 0.198634 0.233756 0.216878 0.228398 0.243559 0.250609
@@ -2336,7 +2336,7 @@ Paasche index
 > cat( "\nLaspeyres index\n" )
 
 Laspeyres index
-> pxL <- aidsPx( "L", pNames, wNames, Blanciforti86 )
+> pxL <- aidsPx( "L", pNames, shareNames = wNames, data = Blanciforti86 )
 > print( pxL )
  [1] 4.0453 4.1280 4.0892 4.1045 4.2133 4.2289 4.2239 4.2245 4.2073 4.2106
 [11] 4.2443 4.2769 4.2594 4.2707 4.2868 4.2932 4.3065 4.3210 4.3399 4.3923
@@ -2346,7 +2346,7 @@ Laspeyres index
 > cat( "\nTornqvist index\n" )
 
 Tornqvist index
-> pxT <- aidsPx( "T", pNames, wNames, Blanciforti86 )
+> pxT <- aidsPx( "T", pNames, shareNames = wNames, data = Blanciforti86 )
 > print( pxT )
  [1] 0.000000 0.083092 0.044319 0.060364 0.168221 0.184263 0.178128 0.178274
  [9] 0.161126 0.165537 0.198788 0.232696 0.215461 0.226871 0.242525 0.249244
@@ -2357,7 +2357,7 @@ Tornqvist index
 > cat( "\nTranslog index\n" )
 
 Translog index
-> pxTL <- aidsPx( "TL", pNames, wNames, Blanciforti86,
+> pxTL <- aidsPx( "TL", pNames, shareNames = wNames, data = Blanciforti86,
 +    coef = c( list( alpha0 = 0 ), estResultLA$coef ) )
 > print( pxTL )
  [1] 4.0181 4.0769 4.0359 4.0435 4.1570 4.1705 4.2183 4.2387 4.2513 4.2870
@@ -2868,7 +2868,8 @@ $quant
 
 > B86LaSNa2 <- cbind( Blanciforti86[ set, c( pNames, "xFood" ) ],
 +    fittedLaSNa2$shares )
-> lnp <- aidsPx( "S", pNames, c( "w1", "w2", "w3", "w4" ), B86LaSNa2 )
+> lnp <- aidsPx( "S", pNames, shareNames = c( "w1", "w2", "w3", "w4" ),
++    data = B86LaSNa2 )
 > fittedLaSNa2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 +    coef = estResultLaSNa$coef, priceIndex = lnp )
 > all.equal( fittedLaSNa2, fittedLaSNa2b )

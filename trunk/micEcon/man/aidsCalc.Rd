@@ -52,7 +52,7 @@
       data = Blanciforti86, priceIndex = "S" )
 
    # using observed shares in the Stone index
-   lnp <- aidsPx( "S", priceNames, shareNames, Blanciforti86 )
+   lnp <- aidsPx( "S", priceNames, Blanciforti86, shareNames )
    fitted <- aidsCalc( priceNames, "xFood", coef = estResult$coef,
       data = Blanciforti86, priceIndex = lnp )
    fitted$shares  # equal to estResult$wFitted
