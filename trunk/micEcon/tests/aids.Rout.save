@@ -2555,7 +2555,7 @@ $quant
 > 
 > # LA-AIDS with Laspeyres price index
 > fittedLA <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
-+    coef = estResultLA$coef, lnp = estResultLA$lnp )
++    coef = estResultLA$coef, priceIndex = estResultLA$lnp )
 > print( fittedLA )
 $shares
         w1    w2    w3    w4
@@ -2636,7 +2636,7 @@ $quant
 +    stop( "fitted quantities of LA-AIDS are wrong" )
 + }
 > fittedLATX <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
-+    coef = estResultLATX$coef, lnp = estResultLATX$lnp )
++    coef = estResultLATX$coef, priceIndex = estResultLATX$lnp )
 > print( fittedLATX )
 $shares
         w1    w2    w3    w4
@@ -2714,7 +2714,7 @@ $quant
 > # LA-AIDS with Stone price index
 > # obsereved shares in the Stone price index
 > fittedLaSNa <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
-+    coef = estResultLaSNa$coef, lnp = estResultLaSNa$lnp )
++    coef = estResultLaSNa$coef, priceIndex = estResultLaSNa$lnp )
 > print( fittedLaSNa )
 $shares
         w1    w2    w3    w4
@@ -2870,7 +2870,7 @@ $quant
 +    fittedLaSNa2$shares )
 > lnp <- aidsPx( "S", pNames, c( "w1", "w2", "w3", "w4" ), B86LaSNa2 )
 > fittedLaSNa2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
-+    coef = estResultLaSNa$coef, lnp = lnp )
++    coef = estResultLaSNa$coef, priceIndex = lnp )
 > all.equal( fittedLaSNa2, fittedLaSNa2b )
  [1] "Component 1: Component 1: Attributes: < target is NULL, current is list >"
  [2] "Component 1: Component 1: target is numeric, current is array"            
