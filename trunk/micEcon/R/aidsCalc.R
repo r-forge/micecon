@@ -1,5 +1,5 @@
 aidsCalc <- function( priceNames, totExpName, coef, data,
-      priceIndex = "TL" ) {
+      priceIndex = "TL", basePrices = NULL, baseShares = NULL ) {
 
    # check argument 'coef' (coefficients)
    coefCheckResult <- .aidsCheckCoef( coef, variables = list(
@@ -15,9 +15,9 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
 
    # checking (mainly) argument 'priceIndex'
    if( is.character( priceIndex ) ) {
-      if( ! priceIndex %in% c( "TL", "S" ) ) {
+      if( ! priceIndex %in% c( "TL", "S", "L" ) ) {
          stop( "at the moment, argument 'priceIndex' must be either",
-            " 'TL' (translog), 'S' (Stone) or a numeric vector",
+            " 'TL' (translog), 'S' (Stone), 'L' (Laspeyres), or a numeric vector",
             " providing the log values of the price index" )
       }
       if( priceIndex == "TL" && is.null( coef$alpha0 ) ) {
@@ -36,10 +36,44 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
          " or a numeric vector" )
    }
 
-   # calculation of translog price index
+   # tests for arguments basePrices and baseShares
    if( is.character( priceIndex ) ) {
+      if( priceIndex == "L" ) {
+         if( is.null( basePrices ) ) {
+            stop( "calculations with Laspeyres ('L') price index require",
+               " argument 'basePrices'" )
+         }
+         if( length( basePrices ) != length( priceNames ) ) {
+            stop( "arguments 'basePrices' and 'priceNames' must have",
+               " the same length" )
+         }
+         if( is.null( baseShares ) ) {
+            stop( "calculations with Laspeyres ('L') price index require",
+               " argument 'baseShares'" )
+         }
+         if( length( baseShares ) != length( priceNames ) ) {
+            stop( "arguments 'baseShares' and 'priceNames' must have",
+               " the same length" )
+         }
+      }
+   }
+
+   if( is.character( priceIndex ) ) {
+      # calculation of translog price index
       if( priceIndex == "TL" ) {
          priceIndex <- aidsPx( priceIndex, priceNames, data = data, coef = coef )
+      }
+      # calculation of Laspeyres price index
+      if( priceIndex == "L" ) {
+         baseData <- rbind( data, rep( NA, ncol( data ) ) )
+         shareNames <- paste( "wxyzabc", 1:length( priceNames ), sep = "." )
+         for( i in 1:length( priceNames ) ) {
+            baseData[ nrow( baseData), priceNames[ 1 ] ] <- basePrices[ i ]
+            baseData[[ shareNames[ i ] ]] <-
+               c( rep( NA, nrow( baseData ) - 1 ), baseShares[ i ] )
+         }
+         priceIndex <- aidsPx( priceIndex, priceNames, data = baseData,
+            coef = coef, shareNames = shareNames, base = nrow( baseData ) )
       }
    }
 
