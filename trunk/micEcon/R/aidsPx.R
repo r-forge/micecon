@@ -58,11 +58,14 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
          } else if( length( base$shares ) != nGoods ){
             stop( "element 'shares' of argument 'base'",
                " must have the same length as argument 'priceNames'" )
-         } else if( all.equal( sum( base$shares ), 1 ) != TRUE ){
-            stop( "the base expenditure shares specified",
-               " by element 'shares' of argument 'base'",
-               " must sum up to 1" )
          } else {
+            if( all.equal( sum( base$shares ), 1 ) != TRUE ){
+               warning( "the base expenditure shares specified",
+                  " by element 'shares' of argument 'base'",
+                  " do not sum up to 1 (deviation from 1 = ",
+                  formatC( sum( base$shares ) - 1, digits = 3, format = "g" ),
+                  ")" )
+            }
             baseShares <- base$shares
          }
       } else {
