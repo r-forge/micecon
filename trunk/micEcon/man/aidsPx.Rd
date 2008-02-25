@@ -47,7 +47,12 @@
 }
 
 \value{
-   a vector containing the log price index.
+   A vector containing the log price index.
+   If argument \code{priceIndex} is \code{"P"}, \code{"L"}, or \code{"T"},
+   the returned vector has the attribute(s)
+   \code{basePrices} and/or \code{baseShares}
+   that are numeric vectors of the base prices and/or base expenditure shares
+   for calculating the price indices.
 }
 
 \references{
