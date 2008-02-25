@@ -9,7 +9,8 @@
 }
 
 \usage{
-   aidsCalc( priceNames, totExpName, coef, data, priceIndex = "TL" )
+   aidsCalc( priceNames, totExpName, coef, data, priceIndex = "TL",
+      basePrices = NULL, baseShares = NULL )
 }
 
 \arguments{
@@ -21,6 +22,10 @@
    \item{priceIndex}{a character string specifying the price index
       (see \code{\link{aidsPx}})
       or a numeric vector providing the log values of the price index.}
+   \item{basePrices}{a vector specifying the base prices for the
+      Paasche, Laspeyres, and Tornkvist price index.}
+   \item{baseShares}{a vector specifying the base expenditure shares for the
+      Laspeyres and Tornkvist index.}
 }
 
 \value{

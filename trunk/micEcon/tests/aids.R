@@ -304,6 +304,23 @@ fittedLaSNa2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSNa$coef, priceIndex = lnp )
 all.equal( fittedLaSNa2, fittedLaSNa2b )
 
+# LA-AIDS with Laspeyres price index and NAs
+fittedLaLNa <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaLNa$coef, priceIndex = estResultLaLNa$lnp )
+print( fittedLaLNa )
+all.equal( fittedLaLNa$shares, estResultLaLNa$wFitted[ set, ],
+   check.attributes = FALSE )
+all.equal( fittedLaLNa$quant, estResultLaLNa$qFitted[ set, ],
+   check.attributes = FALSE )
+fittedLaLNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaLNa$coef, priceIndex = "L",
+   basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
+   baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
+all.equal( estResultLaLNa$wFitted, fittedLaLNa2$shares,
+   check.attributes = FALSE )
+all.equal( estResultLaLNa$qFitted, fittedLaLNa2$quant,
+   check.attributes = FALSE )
+
 
 ####### consistency ###################
 # with observed expenditure shares
