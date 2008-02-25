@@ -268,7 +268,7 @@ fittedAIDSTX <- aidsCalc( pNames, "xFood", data = Blanciforti86[ -1, ],
 print( fittedAIDSTX )
 print( all.equal( fittedAIDS, fittedAIDSTX ) )
 
-# LA-AIDS with Laspeyres price index
+# LA-AIDS with Stone price price index with lagged shares
 fittedLA <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLA$coef, priceIndex = estResultLA$lnp )
 print( fittedLA )
