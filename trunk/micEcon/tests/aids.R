@@ -224,13 +224,25 @@ cat( "\nPaasche index\n" )
 pxP <- aidsPx( "P", pNames, shareNames = wNames, data = Blanciforti86 )
 print( pxP )
 
+pxP2 <- aidsPx( "P", pNames, data = Blanciforti86, shareNames = wNames,
+   base = row.names(Blanciforti86) == "1970" )
+print( pxP2 )
+
 cat( "\nLaspeyres index\n" )
 pxL <- aidsPx( "L", pNames, shareNames = wNames, data = Blanciforti86 )
 print( pxL )
 
+pxL2 <- aidsPx( "L", pNames, data = Blanciforti86, shareNames = wNames,
+   base = c( 1:32 ) )
+print( pxL2 )
+
 cat( "\nTornqvist index\n" )
 pxT <- aidsPx( "T", pNames, shareNames = wNames, data = Blanciforti86 )
 print( pxT )
+
+pxT2 <- aidsPx( "T", pNames, data = Blanciforti86, shareNames = wNames,
+   base = list( prices = rep( 100, 4 ), shares = rep( 0.25, 4 ) ) )
+print( pxT2 )
 
 cat( "\nTranslog index\n" )
 pxTL <- aidsPx( "TL", pNames, shareNames = wNames, data = Blanciforti86,

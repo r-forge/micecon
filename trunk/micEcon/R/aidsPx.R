@@ -18,7 +18,8 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
          }
       }
    } else {
-      if( is.null( shareNames ) ) {
+      if( is.null( shareNames ) &&
+            !( priceIndex == "L" && class( base ) == "list" ) ) {
          stop( "argument 'shareNames' must must be specified to calculate",
             " price index '", priceIndex, "'" )
       }
@@ -30,15 +31,45 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
    lnp <- array( 0, c( nObs ))
 
    if( priceIndex %in% c( "P", "T" ) ){
-      basePrices <- rep( NA, nGoods )
-      for( i in 1:nGoods ) {
-         basePrices[ i ] <- mean( data[[ priceNames[ i ] ]][ base ] )
+      if( class( base ) == "list" ){
+         if( is.null( base$prices ) ){
+            stop( "if argument 'priceIndex' is '", priceIndex, "'",
+               " and argument 'base' is a list,",
+               " this list must have an element 'prices'" )
+         } else if( length( base$prices ) != nGoods ){
+            stop( "element 'prices' of argument 'base'",
+               " must have the same length as argument 'priceNames'" )
+         } else {
+            basePrices <- base$prices
+         }
+      } else {
+         basePrices <- rep( NA, nGoods )
+         for( i in 1:nGoods ) {
+            basePrices[ i ] <- mean( data[[ priceNames[ i ] ]][ base ] )
+         }
       }
    }
    if( priceIndex %in% c( "L", "T" ) ){
-      baseShares <- rep( NA, nGoods )
-      for( i in 1:nGoods ) {
-         baseShares[ i ] <- mean( data[[ shareNames[ i ] ]][ base ] )
+      if( class( base ) == "list" ){
+         if( is.null( base$shares ) ){
+            stop( "if argument 'priceIndex' is '", priceIndex, "'",
+               " and argument 'base' is a list,",
+               " this list must have an element 'shares'" )
+         } else if( length( base$shares ) != nGoods ){
+            stop( "element 'shares' of argument 'base'",
+               " must have the same length as argument 'priceNames'" )
+         } else if( all.equal( sum( base$shares ), 1 ) != TRUE ){
+            stop( "the base expenditure shares specified",
+               " by element 'shares' of argument 'base'",
+               " must sum up to 1" )
+         } else {
+            baseShares <- base$shares
+         }
+      } else {
+         baseShares <- rep( NA, nGoods )
+         for( i in 1:nGoods ) {
+            baseShares[ i ] <- mean( data[[ shareNames[ i ] ]][ base ] )
+         }
       }
    }
 
