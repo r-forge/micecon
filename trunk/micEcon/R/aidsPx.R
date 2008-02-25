@@ -28,6 +28,20 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
    nShifter <- length( shifterNames )
    nObs <- nrow(  data )
    lnp <- array( 0, c( nObs ))
+
+   if( priceIndex %in% c( "P", "T" ) ){
+      basePrices <- rep( NA, nGoods )
+      for( i in 1:nGoods ) {
+         basePrices[ i ] <- mean( data[[ priceNames[ i ] ]][ base ] )
+      }
+   }
+   if( priceIndex %in% c( "L", "T" ) ){
+      baseShares <- rep( NA, nGoods )
+      for( i in 1:nGoods ) {
+         baseShares[ i ] <- mean( data[[ shareNames[ i ] ]][ base ] )
+      }
+   }
+
    if(priceIndex=="S") {      # Stone index
       for( i in 1:nGoods ) {
          lnp <- lnp + data[[ shareNames[ i ] ]] * log( data[[ priceNames[ i ] ]] )
@@ -42,19 +56,19 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
    } else if(priceIndex=="P") {      # log-Paasche index
       for( i in 1:nGoods) {
          lnp <- lnp + data[[ shareNames[ i ] ]] * log( data[[ priceNames[ i ] ]] /
-            mean( data[[ priceNames[ i ] ]][ base ] ) )
+            basePrices[ i ] )
       }
    } else if(priceIndex=="L") {      # log-Laspeyres index
       for( i in 1:nGoods) {
-         lnp <- lnp + mean( data[[ shareNames[ i ] ]][ base ] ) *
+         lnp <- lnp + baseShares[ i ] *
             log( data[[ priceNames[ i ] ]] )
       }
    } else if(priceIndex=="T") {      # Tornqvist index
       for( i in 1:nGoods) {
          lnp <- lnp + c( 0.5 * ( data[[ shareNames[ i ] ]] +
-            mean( data[[ shareNames[ i ] ]][ base ] ) *
+            baseShares[ i ] *
             matrix( 1, nrow = nObs ) ) * log( data[[ priceNames[ i ] ]] /
-            mean( data[[ priceNames[ i ] ]][ base ] ) ) )
+            basePrices[ i ] ) )
       }
    } else if(priceIndex=="TL") {      # Translog index
       lnp <- array( coef$alpha0, c( nObs ) )
@@ -76,5 +90,13 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
       stop( "the argument 'priceIndex' (price index) must be either 'S',",
          " 'SL', 'P', 'L', 'T' or 'TL'" )
    }
+
+   if( exists( "basePrices" ) ){
+      attributes( lnp )$basePrices <- basePrices
+   }
+   if( exists( "baseShares" ) ){
+      attributes( lnp )$baseShares <- baseShares
+   }
+
    return( lnp )
 }
