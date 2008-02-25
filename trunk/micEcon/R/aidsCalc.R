@@ -67,21 +67,13 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
    }
 
    if( is.character( priceIndex ) ) {
-      # calculation of translog price index
       if( priceIndex == "TL" ) {
+         # calculation of translog price index
          priceIndex <- aidsPx( priceIndex, priceNames, data = data, coef = coef )
       } else if( priceIndex == "L" ) {
-      # calculation of Laspeyres price index
-         baseData <- rbind( data, rep( NA, ncol( data ) ) )
-         shareNames <- paste( "wxyzabc", 1:length( priceNames ), sep = "." )
-         for( i in 1:length( priceNames ) ) {
-            baseData[ nrow( baseData), priceNames[ i ] ] <- basePrices[ i ]
-            baseData[[ shareNames[ i ] ]] <-
-               c( rep( NA, nrow( baseData ) - 1 ), baseShares[ i ] )
-         }
-         priceIndex <- aidsPx( priceIndex, priceNames, data = baseData,
-            coef = coef, shareNames = shareNames, base = nrow( baseData ))[
-               1:nrow( data ) ]
+         # calculation of Laspeyres price index
+         priceIndex <- aidsPx( priceIndex, priceNames, data = data,
+            coef = coef, base = list( prices = basePrices, shares = baseShares ) )
       }
    }
 
