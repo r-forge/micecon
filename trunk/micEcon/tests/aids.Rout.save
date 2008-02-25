@@ -3016,6 +3016,9 @@ $quant
 +    coef = estResultLaLNa$coef, priceIndex = "L",
 +    basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
 +    baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
 > all.equal( estResultLaLNa$wFitted, fittedLaLNa2$shares,
 +    check.attributes = FALSE )
 [1] TRUE
