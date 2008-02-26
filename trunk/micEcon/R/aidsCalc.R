@@ -41,8 +41,8 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
       if( priceIndex == "Ls" ) {
          # basePrices
          if( is.null( basePrices ) ) {
-            stop( "calculations with simpliefied Laspeyres ('Ls') price index require",
-               " argument 'basePrices'" )
+#             stop( "calculations with simplified Laspeyres ('Ls') price index require",
+#                " argument 'basePrices'" )
          }
          if( ! is.numeric( basePrices ) ) {
             stop( "argument 'basePrices' must be numeric" )
