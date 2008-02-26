@@ -1283,12 +1283,12 @@ wFood2 -0.2210  0.0135  0.0813  0.1263
 wFood3 -0.0914  0.1229 -0.6859  0.6544
 wFood4 -0.0698  0.0731  0.2483 -0.2515
 > 
-> estResultLaLNa <- aidsEst( pNames, wNames, "xFood",
+> estResultLaLsNa <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86 )
 Warning message:
 In aidsEst(pNames, wNames, "xFood", data = Blanciforti86) :
   there are some NAs in the data, all observations (rows) with NAs are excluded from the analysis
-> print( estResultLaLNa )
+> print( estResultLaLsNa )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: Linear Approximation (LA) with simplified Laspeyres Index (Ls)
@@ -1305,7 +1305,7 @@ wFood1  0.09104 -0.14571 -0.00963  0.0643
 wFood2 -0.14571  0.15852  0.00594 -0.0188
 wFood3 -0.00963  0.00594  0.01289 -0.0092
 wFood4  0.06431 -0.01875 -0.00920 -0.0364
-> print( summary( estResultLaLNa ) )
+> print( summary( estResultLaLsNa ) )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
 Estimation Method: Linear Approximation (LA) with simplified Laspeyres Index (Ls)
@@ -1341,7 +1341,7 @@ wFood1 wFood2 wFood3 wFood4
 R-squared Values of quantities:
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    0.932    0.845    0.679    0.614 
-> print( elas( estResultLaLNa, method = "AIDS", quantNames = wNames ) )
+> print( elas( estResultLaLsNa, method = "AIDS", quantNames = wNames ) )
 
 Demand Elasticities (original AIDS formulas)
 Expenditure Elasticities
@@ -2346,11 +2346,11 @@ attr(,"basePrices")
 attr(,"basePrices")
 [1] 91.0 90.7 94.9 96.3
 > 
-> cat( "\nLaspeyres index\n" )
+> cat( "\nLaspeyres index, simplified\n" )
 
-Laspeyres index
-> pxL <- aidsPx( "Ls", pNames, shareNames = wNames, data = Blanciforti86 )
-> print( pxL )
+Laspeyres index, simplified
+> pxLs <- aidsPx( "Ls", pNames, shareNames = wNames, data = Blanciforti86 )
+> print( pxLs )
  [1] 4.0453 4.1280 4.0892 4.1045 4.2133 4.2289 4.2239 4.2245 4.2073 4.2106
 [11] 4.2443 4.2769 4.2594 4.2707 4.2868 4.2932 4.3065 4.3210 4.3399 4.3923
 [21] 4.4030 4.4357 4.4857 4.5429 4.5750 4.6098 4.7374 4.8813 4.9690 5.0129
@@ -2358,9 +2358,9 @@ Laspeyres index
 attr(,"baseShares")
 [1] 0.298 0.172 0.134 0.397
 > 
-> pxL2 <- aidsPx( "Ls", pNames, data = Blanciforti86, shareNames = wNames,
+> pxLs2 <- aidsPx( "Ls", pNames, data = Blanciforti86, shareNames = wNames,
 +    base = c( 1:32 ) )
-> print( pxL2 )
+> print( pxLs2 )
  [1] 4.0398 4.1220 4.0854 4.0993 4.2069 4.2252 4.2170 4.2165 4.1992 4.2027
 [11] 4.2367 4.2733 4.2553 4.2662 4.2813 4.2887 4.3028 4.3169 4.3367 4.3888
 [21] 4.3975 4.4312 4.4806 4.5364 4.5682 4.6056 4.7372 4.8778 4.9628 5.0033
@@ -2932,10 +2932,10 @@ $quant
 [15] "Component 2: Component 4: Attributes: < target is NULL, current is list >"
 [16] "Component 2: Component 4: target is numeric, current is array"            
 > 
-> # LA-AIDS with Laspeyres price index and NAs
-> fittedLaLNa <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
-+    coef = estResultLaLNa$coef, priceIndex = estResultLaLNa$lnp )
-> print( fittedLaLNa )
+> # LA-AIDS with simplified Laspeyres price index and NAs
+> fittedLaLsNa <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
++    coef = estResultLaLsNa$coef, priceIndex = estResultLaLsNa$lnp )
+> print( fittedLaLsNa )
 $shares
         w1    w2    w3    w4
 1947 0.317 0.188 0.133 0.363
@@ -3006,23 +3006,23 @@ $quant
 1977 2.00 1.263 0.744 1.68
 1978 1.94 1.235 0.750 1.82
 
-> all.equal( fittedLaLNa$shares, estResultLaLNa$wFitted[ set, ],
+> all.equal( fittedLaLsNa$shares, estResultLaLsNa$wFitted[ set, ],
 +    check.attributes = FALSE )
 [1] TRUE
-> all.equal( fittedLaLNa$quant, estResultLaLNa$qFitted[ set, ],
+> all.equal( fittedLaLsNa$quant, estResultLaLsNa$qFitted[ set, ],
 +    check.attributes = FALSE )
 [1] TRUE
-> fittedLaLNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
-+    coef = estResultLaLNa$coef, priceIndex = "Ls",
+> fittedLaLsNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
++    coef = estResultLaLsNa$coef, priceIndex = "Ls",
 +    basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
 +    baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
 Warning message:
 In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
   the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
-> all.equal( estResultLaLNa$wFitted, fittedLaLNa2$shares,
+> all.equal( estResultLaLsNa$wFitted, fittedLaLsNa2$shares,
 +    check.attributes = FALSE )
 [1] TRUE
-> all.equal( estResultLaLNa$qFitted, fittedLaLNa2$quant,
+> all.equal( estResultLaLsNa$qFitted, fittedLaLsNa2$quant,
 +    check.attributes = FALSE )
 [1] TRUE
 > 
@@ -3663,7 +3663,7 @@ R-squared Values of quantities:
 'log Lik.' 359 (df=18)
 > logLik( estResultLaSlNa )
 'log Lik.' 353 (df=18)
-> logLik( estResultLaLNa )
+> logLik( estResultLaLsNa )
 'log Lik.' 359 (df=18)
 > logLik( estResultAIDSNa )
 'log Lik.' 360 (df=18)

@@ -124,11 +124,11 @@ print( estResultLaSlNa )
 print( summary( estResultLaSlNa ) )
 print( elas( estResultLaSlNa, method = "AIDS", quantNames = wNames ) )
 
-estResultLaLNa <- aidsEst( pNames, wNames, "xFood",
+estResultLaLsNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86 )
-print( estResultLaLNa )
-print( summary( estResultLaLNa ) )
-print( elas( estResultLaLNa, method = "AIDS", quantNames = wNames ) )
+print( estResultLaLsNa )
+print( summary( estResultLaLsNa ) )
+print( elas( estResultLaLsNa, method = "AIDS", quantNames = wNames ) )
 
 estResultAIDSNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86, method = "IL" )
@@ -228,13 +228,13 @@ pxP2 <- aidsPx( "P", pNames, data = Blanciforti86, shareNames = wNames,
    base = row.names(Blanciforti86) == "1970" )
 print( pxP2 )
 
-cat( "\nLaspeyres index\n" )
-pxL <- aidsPx( "Ls", pNames, shareNames = wNames, data = Blanciforti86 )
-print( pxL )
+cat( "\nLaspeyres index, simplified\n" )
+pxLs <- aidsPx( "Ls", pNames, shareNames = wNames, data = Blanciforti86 )
+print( pxLs )
 
-pxL2 <- aidsPx( "Ls", pNames, data = Blanciforti86, shareNames = wNames,
+pxLs2 <- aidsPx( "Ls", pNames, data = Blanciforti86, shareNames = wNames,
    base = c( 1:32 ) )
-print( pxL2 )
+print( pxLs2 )
 
 cat( "\nTornqvist index\n" )
 pxT <- aidsPx( "T", pNames, shareNames = wNames, data = Blanciforti86 )
@@ -316,21 +316,21 @@ fittedLaSNa2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSNa$coef, priceIndex = lnp )
 all.equal( fittedLaSNa2, fittedLaSNa2b )
 
-# LA-AIDS with Laspeyres price index and NAs
-fittedLaLNa <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
-   coef = estResultLaLNa$coef, priceIndex = estResultLaLNa$lnp )
-print( fittedLaLNa )
-all.equal( fittedLaLNa$shares, estResultLaLNa$wFitted[ set, ],
+# LA-AIDS with simplified Laspeyres price index and NAs
+fittedLaLsNa <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaLsNa$coef, priceIndex = estResultLaLsNa$lnp )
+print( fittedLaLsNa )
+all.equal( fittedLaLsNa$shares, estResultLaLsNa$wFitted[ set, ],
    check.attributes = FALSE )
-all.equal( fittedLaLNa$quant, estResultLaLNa$qFitted[ set, ],
+all.equal( fittedLaLsNa$quant, estResultLaLsNa$qFitted[ set, ],
    check.attributes = FALSE )
-fittedLaLNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
-   coef = estResultLaLNa$coef, priceIndex = "Ls",
+fittedLaLsNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaLsNa$coef, priceIndex = "Ls",
    basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
    baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
-all.equal( estResultLaLNa$wFitted, fittedLaLNa2$shares,
+all.equal( estResultLaLsNa$wFitted, fittedLaLsNa2$shares,
    check.attributes = FALSE )
-all.equal( estResultLaLNa$qFitted, fittedLaLNa2$quant,
+all.equal( estResultLaLsNa$qFitted, fittedLaLsNa2$quant,
    check.attributes = FALSE )
 
 
@@ -390,7 +390,7 @@ logLik( estResultAIDSunr )
 logLik( estResultAIDSunrTX )
 logLik( estResultLaSNa )
 logLik( estResultLaSlNa )
-logLik( estResultLaLNa )
+logLik( estResultLaLsNa )
 logLik( estResultAIDSNa )
 logLik( meatModel )
 
