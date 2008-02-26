@@ -31,7 +31,7 @@
    \item Stone price index ('S'),
    \item Stone price index with lagged shares ('SL'),
    \item loglinear analogue to the Paasche price index ('P'),
-   \item loglinear analogue of the Laspeyres price index ('L'), and
+   \item simplified loglinear analogue of the Laspeyres price index ('Ls'), and
    \item Tornqvist price index ('T').
    \end{itemize}
 
@@ -51,7 +51,7 @@
 
 \value{
    A vector containing the log price index.
-   If argument \code{priceIndex} is \code{"P"}, \code{"L"}, or \code{"T"},
+   If argument \code{priceIndex} is \code{"P"}, \code{"Ls"}, or \code{"T"},
    the returned vector has the attribute(s)
    \code{basePrices} and/or \code{baseShares}
    that are numeric vectors of the base prices and/or base expenditure shares

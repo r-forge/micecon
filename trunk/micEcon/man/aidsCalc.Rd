@@ -23,9 +23,9 @@
       (see \code{\link{aidsPx}})
       or a numeric vector providing the log values of the price index.}
    \item{basePrices}{a vector specifying the base prices for the
-      Paasche, Laspeyres, and Tornkvist price index.}
+      Paasche, simplified Laspeyres, and Tornkvist price index.}
    \item{baseShares}{a vector specifying the base expenditure shares for the
-      Laspeyres and Tornkvist index.}
+      simplified Laspeyres and Tornkvist index.}
 }
 
 \value{
