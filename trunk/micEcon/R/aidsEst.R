@@ -29,10 +29,11 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       }
    } 
 
-   if( !( priceIndex %in% c( "S", "SL", "P", "Ls", "T" ) ) ) {
+   if( !( priceIndex %in% c( "S", "SL", "P", "L", "Ls", "T" ) ) ) {
       stop( "argument 'priceIndex' that specifies the price index must be either",
          " 'S' (Stone index), 'SL' (Stone index with lagges shares),",
-         " 'P' (Paasche index), 'Ls' (Laspeyres index, simplified), or",
+         " 'P' (Paasche index), 'L' (Laspeyres index),",
+         " 'Ls' (Laspeyres index, simplified), or",
          " 'T' (Tornqvist index)" )
    }
 

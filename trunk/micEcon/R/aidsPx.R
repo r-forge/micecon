@@ -19,7 +19,7 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
       }
    } else {
       if( is.null( shareNames ) &&
-            !( priceIndex == "Ls" && class( base ) == "list" ) ) {
+            !( priceIndex %in% c( "L", "Ls" ) && class( base ) == "list" ) ) {
          stop( "argument 'shareNames' must must be specified to calculate",
             " price index '", priceIndex, "'" )
       }
@@ -30,7 +30,7 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
    nObs <- nrow(  data )
    lnp <- array( 0, c( nObs ))
 
-   if( priceIndex %in% c( "P", "T" ) ){
+   if( priceIndex %in% c( "L", "P", "T" ) ){
       if( class( base ) == "list" ){
          if( is.null( base$prices ) ){
             stop( "if argument 'priceIndex' is '", priceIndex, "'",
@@ -49,7 +49,7 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
          }
       }
    }
-   if( priceIndex %in% c( "Ls", "T" ) ){
+   if( priceIndex %in% c( "L", "Ls", "T" ) ){
       if( class( base ) == "list" ){
          if( is.null( base$shares ) ){
             stop( "if argument 'priceIndex' is '", priceIndex, "'",
@@ -92,6 +92,11 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
          lnp <- lnp + data[[ shareNames[ i ] ]] * log( data[[ priceNames[ i ] ]] /
             basePrices[ i ] )
       }
+   } else if(priceIndex=="L") {      # log-Laspeyres index
+      for( i in 1:nGoods) {
+         lnp <- lnp + baseShares[ i ] *
+            log( data[[ priceNames[ i ] ]] / basePrices[ i ] )
+      }
    } else if(priceIndex=="Ls") {      # log-Laspeyres index, simplified
       for( i in 1:nGoods) {
          lnp <- lnp + baseShares[ i ] *
@@ -122,7 +127,7 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
       }
    } else {
       stop( "the argument 'priceIndex' (price index) must be either 'S',",
-         " 'SL', 'P', 'Ls', 'T' or 'TL'" )
+         " 'SL', 'P', 'L', 'Ls', 'T' or 'TL'" )
    }
 
    if( exists( "basePrices" ) ){
