@@ -20,10 +20,10 @@
          result, " (", priceIndex, ")\n", sep = "" )
    } else if( substr( method, 1, 2 ) %in% c( "MK", "IL" ) ) {
       result <- paste( "'Iterated Linear Least Squares Estimator' (IL)\n",
-         "(starting with ", result, ", ", priceIndex, ")\n" )
+         "(starting with ", result, ", ", priceIndex, ")\n", sep = "" )
    } else {
       result <- paste( "unknown method with ", result, " (",
-         priceIndex, ")\n" )
+         priceIndex, ")\n", sep = "" )
    }
 
    return( result )
