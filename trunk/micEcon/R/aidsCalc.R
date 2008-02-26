@@ -15,9 +15,9 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
 
    # checking (mainly) argument 'priceIndex'
    if( is.character( priceIndex ) ) {
-      if( ! priceIndex %in% c( "TL", "S", "L", "Ls" ) ) {
+      if( ! priceIndex %in% c( "TL", "S", "P", "L", "Ls" ) ) {
          stop( "at the moment, argument 'priceIndex' must be either",
-            " 'TL' (translog), 'S' (Stone), 'Ls' (Laspeyres),",
+            " 'TL' (translog), 'S' (Stone), 'P' (Paasche), 'Ls' (Laspeyres),",
             " 'Ls' (Laspeyres, simplified), or a numeric vector",
             " providing the log values of the price index" )
       }
@@ -33,16 +33,17 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
             " in argument 'data'" )
       }
    } else {
-      stop( "argument 'priceIndex' must be either a charater string",
+      stop( "argument 'priceIndex' must be either a character string",
          " or a numeric vector" )
    }
 
    # tests for arguments basePrices and baseShares
    if( is.character( priceIndex ) ) {
       # basePrices
-      if( priceIndex == "L" ) {
+      if( priceIndex %in% c( "P", "L" ) ) {
          if( is.null( basePrices ) ) {
-            stop( "calculations with Laspeyres ('L') price index require",
+            stop( "calculations with Paasche ('L') or Laspeyres ('L')",
+               " price index require",
                " argument 'basePrices'" )
          }
          if( ! is.numeric( basePrices ) ) {
@@ -110,6 +111,14 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
          shareData[ i, ] <-
             solve( diag( nGoods ) + coef$beta %*% t( logPrices ),
                coef$alpha + coef$gamma %*% logPrices + coef$beta * logTotExp )
+      }
+   } else if( priceIndex == "P" ) {
+      for( i in 1:nrow( data ) ) {
+         prices <- as.numeric( data[ i, priceNames ] )
+         logTotExp <- log( data[ i, totExpName ] )
+         shareData[ i, ] <-
+            solve( diag( nGoods ) + coef$beta %*% t( log( prices / basePrices ) ),
+               coef$alpha + coef$gamma %*% log( prices ) + coef$beta * logTotExp )
       }
    } else {
       stop( "internal error" )

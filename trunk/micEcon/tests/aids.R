@@ -368,6 +368,26 @@ fittedLaSNa2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSNa$coef, priceIndex = lnp )
 all.equal( fittedLaSNa2, fittedLaSNa2b )
 
+# LA-AIDS with Paasche price index
+# obsereved shares in the Paasche price index
+fittedLaP <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaP$coef, priceIndex = estResultLaP$lnp )
+print( fittedLaP )
+all.equal( fittedLaP$shares, estResultLaP$wFitted, check.attributes = FALSE )
+all.equal( fittedLaP$quant, estResultLaP$qFitted, check.attributes = FALSE )
+# fitted shares in the Stone price index
+fittedLaP2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaP$coef, priceIndex = "P",
+   basePrices = as.numeric( Blanciforti86[ 1, pNames ] ) )
+print( fittedLaP2 )
+B86LaP2 <- cbind( Blanciforti86[ set, c( pNames, "xFood" ) ],
+   fittedLaP2$shares )
+lnp <- aidsPx( "P", pNames, shareNames = c( "w1", "w2", "w3", "w4" ),
+   data = B86LaP2 )
+fittedLaP2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaP$coef, priceIndex = lnp )
+all.equal( fittedLaP2, fittedLaP2b, check.attributes = FALSE )
+
 # LA-AIDS with Laspeyres price index
 fittedLaL <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaL$coef, priceIndex = estResultLaL$lnp )
