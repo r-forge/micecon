@@ -421,6 +421,29 @@ all.equal( estResultLaLsNa$wFitted, fittedLaLsNa2$shares,
 all.equal( estResultLaLsNa$qFitted, fittedLaLsNa2$quant,
    check.attributes = FALSE )
 
+# LA-AIDS with Tornqvist price index
+# obsereved shares in the Paasche price index
+fittedLaT <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaT$coef, priceIndex = estResultLaT$lnp )
+print( fittedLaT )
+all.equal( fittedLaT$shares, estResultLaT$wFitted, check.attributes = FALSE )
+all.equal( fittedLaT$quant, estResultLaT$qFitted, check.attributes = FALSE )
+# fitted shares in the Tornqvist price index
+fittedLaT2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaT$coef, priceIndex = "T",
+   basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
+   baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
+print( fittedLaT2 )
+B86LaT2 <- cbind( Blanciforti86[ set, c( pNames, "xFood" ) ],
+   fittedLaT2$shares )
+lnp <- aidsPx( "T", pNames, shareNames = c( "w1", "w2", "w3", "w4" ),
+   data = B86LaT2, base = list(
+   prices = as.numeric( Blanciforti86[ 1, pNames ] ),
+   shares = as.numeric( Blanciforti86[ 1, wNames ] ) ) )
+fittedLaT2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaT$coef, priceIndex = lnp )
+all.equal( fittedLaT2, fittedLaT2b, check.attributes = FALSE )
+
 
 ####### consistency ###################
 # with observed expenditure shares
