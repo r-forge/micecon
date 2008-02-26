@@ -3364,6 +3364,100 @@ $quant
 [15] "Component 2: Component 4: Attributes: < target is NULL, current is list >"
 [16] "Component 2: Component 4: target is numeric, current is array"            
 > 
+> # LA-AIDS with Laspeyres price index
+> fittedLaL <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
++    coef = estResultLaL$coef, priceIndex = estResultLaL$lnp )
+> print( fittedLaL )
+$shares
+        w1    w2    w3    w4
+1947 0.317 0.188 0.133 0.363
+1948 0.316 0.172 0.135 0.377
+1949 0.307 0.183 0.136 0.374
+1950 0.313 0.169 0.137 0.382
+1951 0.314 0.164 0.137 0.385
+1952 0.303 0.181 0.137 0.379
+1953 0.306 0.184 0.137 0.373
+1954 0.299 0.183 0.139 0.379
+1955 0.300 0.196 0.138 0.367
+1956 0.294 0.211 0.137 0.358
+1957 0.298 0.198 0.138 0.366
+1958 0.293 0.196 0.138 0.373
+1959 0.301 0.200 0.137 0.362
+1960 0.300 0.206 0.136 0.357
+1961 0.299 0.206 0.137 0.359
+1962 0.304 0.205 0.136 0.356
+1963 0.298 0.216 0.136 0.351
+1964 0.295 0.224 0.135 0.346
+1965 0.303 0.215 0.134 0.347
+1966 0.313 0.206 0.133 0.348
+1967 0.318 0.210 0.132 0.340
+1968 0.315 0.219 0.131 0.336
+1969 0.323 0.208 0.130 0.338
+1970 0.327 0.206 0.130 0.337
+1971 0.319 0.212 0.131 0.338
+1972 0.326 0.208 0.129 0.338
+1973 0.332 0.195 0.128 0.345
+1974 0.318 0.214 0.131 0.338
+1975 0.323 0.204 0.132 0.341
+1976 0.329 0.206 0.130 0.335
+1977 0.312 0.216 0.133 0.339
+1978 0.317 0.211 0.131 0.340
+
+$quant
+       q1    q2    q3   q4
+1947 1.65 1.083 0.792 1.94
+1948 1.53 1.010 0.768 1.98
+1949 1.51 1.026 0.751 2.01
+1950 1.47 0.986 0.741 2.01
+1951 1.46 0.972 0.751 1.98
+1952 1.46 1.003 0.754 2.01
+1953 1.56 1.050 0.738 1.91
+1954 1.51 1.034 0.715 1.87
+1955 1.63 1.102 0.706 1.84
+1956 1.70 1.149 0.706 1.80
+1957 1.63 1.106 0.697 1.86
+1958 1.51 1.051 0.705 1.98
+1959 1.62 1.106 0.697 1.97
+1960 1.68 1.135 0.696 1.95
+1961 1.67 1.135 0.690 1.91
+1962 1.70 1.145 0.685 1.96
+1963 1.73 1.168 0.690 1.94
+1964 1.77 1.188 0.699 1.90
+1965 1.76 1.177 0.703 1.97
+1966 1.78 1.172 0.710 2.00
+1967 1.90 1.227 0.706 1.93
+1968 1.93 1.240 0.731 1.92
+1969 1.92 1.225 0.742 1.94
+1970 1.96 1.238 0.745 1.91
+1971 1.94 1.239 0.734 1.87
+1972 1.91 1.218 0.757 1.98
+1973 1.78 1.149 0.771 2.18
+1974 1.90 1.232 0.694 2.01
+1975 1.92 1.234 0.677 1.96
+1976 2.04 1.275 0.719 1.84
+1977 2.00 1.263 0.744 1.68
+1978 1.94 1.235 0.750 1.82
+
+> all.equal( fittedLaL$shares, estResultLaL$wFitted[ set, ],
++    check.attributes = FALSE )
+[1] TRUE
+> all.equal( fittedLaL$quant, estResultLaL$qFitted[ set, ],
++    check.attributes = FALSE )
+[1] TRUE
+> fittedLaL2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
++    coef = estResultLaL$coef, priceIndex = "L",
++    basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
++    baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> all.equal( estResultLaL$wFitted, fittedLaL2$shares,
++    check.attributes = FALSE )
+[1] TRUE
+> all.equal( estResultLaL$qFitted, fittedLaL2$quant,
++    check.attributes = FALSE )
+[1] TRUE
+> 
 > # LA-AIDS with simplified Laspeyres price index and NAs
 > fittedLaLsNa <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 +    coef = estResultLaLsNa$coef, priceIndex = estResultLaLsNa$lnp )
@@ -3446,10 +3540,9 @@ $quant
 [1] TRUE
 > fittedLaLsNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 +    coef = estResultLaLsNa$coef, priceIndex = "Ls",
-+    basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
 +    baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
 Warning message:
-In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares = baseShares)) :
   the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
 > all.equal( estResultLaLsNa$wFitted, fittedLaLsNa2$shares,
 +    check.attributes = FALSE )

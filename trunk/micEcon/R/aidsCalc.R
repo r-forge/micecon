@@ -15,9 +15,10 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
 
    # checking (mainly) argument 'priceIndex'
    if( is.character( priceIndex ) ) {
-      if( ! priceIndex %in% c( "TL", "S", "Ls" ) ) {
+      if( ! priceIndex %in% c( "TL", "S", "L", "Ls" ) ) {
          stop( "at the moment, argument 'priceIndex' must be either",
-            " 'TL' (translog), 'S' (Stone), 'Ls' (Laspeyres, simplified), or a numeric vector",
+            " 'TL' (translog), 'S' (Stone), 'Ls' (Laspeyres),",
+            " 'Ls' (Laspeyres, simplified), or a numeric vector",
             " providing the log values of the price index" )
       }
       if( priceIndex == "TL" && is.null( coef$alpha0 ) ) {
@@ -38,11 +39,11 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
 
    # tests for arguments basePrices and baseShares
    if( is.character( priceIndex ) ) {
-      if( priceIndex == "Ls" ) {
-         # basePrices
+      # basePrices
+      if( priceIndex == "L" ) {
          if( is.null( basePrices ) ) {
-#             stop( "calculations with simplified Laspeyres ('Ls') price index require",
-#                " argument 'basePrices'" )
+            stop( "calculations with Laspeyres ('L') price index require",
+               " argument 'basePrices'" )
          }
          if( ! is.numeric( basePrices ) ) {
             stop( "argument 'basePrices' must be numeric" )
@@ -51,9 +52,12 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
             stop( "arguments 'basePrices' and 'priceNames' must have",
                " the same length" )
          }
-         # baseShares
+      }
+      # baseShares
+      if( priceIndex %in% c( "L", "Ls" ) ) {
          if( is.null( baseShares ) ) {
-            stop( "calculations with simplified Laspeyres ('Ls') price index require",
+            stop( "calculations with Laspeyres ('Ls') or",
+               " simplified Laspeyres ('Ls') price index require",
                " argument 'baseShares'" )
          }
          if( ! is.numeric( baseShares ) ) {
@@ -70,10 +74,14 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
       if( priceIndex == "TL" ) {
          # calculation of translog price index
          priceIndex <- aidsPx( priceIndex, priceNames, data = data, coef = coef )
+      } else if( priceIndex == "L" ) {
+         # calculation of Laspeyres price index
+         priceIndex <- aidsPx( priceIndex, priceNames, data = data,
+            coef = coef, base = list( prices = basePrices, shares = baseShares ) )
       } else if( priceIndex == "Ls" ) {
          # calculation of simplified Laspeyres price index
          priceIndex <- aidsPx( priceIndex, priceNames, data = data,
-            coef = coef, base = list( prices = basePrices, shares = baseShares ) )
+            coef = coef, base = list( shares = baseShares ) )
       }
    }
 

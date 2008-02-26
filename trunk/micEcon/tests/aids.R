@@ -368,6 +368,23 @@ fittedLaSNa2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSNa$coef, priceIndex = lnp )
 all.equal( fittedLaSNa2, fittedLaSNa2b )
 
+# LA-AIDS with Laspeyres price index
+fittedLaL <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaL$coef, priceIndex = estResultLaL$lnp )
+print( fittedLaL )
+all.equal( fittedLaL$shares, estResultLaL$wFitted[ set, ],
+   check.attributes = FALSE )
+all.equal( fittedLaL$quant, estResultLaL$qFitted[ set, ],
+   check.attributes = FALSE )
+fittedLaL2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaL$coef, priceIndex = "L",
+   basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
+   baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
+all.equal( estResultLaL$wFitted, fittedLaL2$shares,
+   check.attributes = FALSE )
+all.equal( estResultLaL$qFitted, fittedLaL2$quant,
+   check.attributes = FALSE )
+
 # LA-AIDS with simplified Laspeyres price index and NAs
 fittedLaLsNa <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaLsNa$coef, priceIndex = estResultLaLsNa$lnp )
@@ -378,7 +395,6 @@ all.equal( fittedLaLsNa$quant, estResultLaLsNa$qFitted[ set, ],
    check.attributes = FALSE )
 fittedLaLsNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaLsNa$coef, priceIndex = "Ls",
-   basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
    baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
 all.equal( estResultLaLsNa$wFitted, fittedLaLsNa2$shares,
    check.attributes = FALSE )
