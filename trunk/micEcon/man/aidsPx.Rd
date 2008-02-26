@@ -85,7 +85,7 @@
       Blanciforti86, c( "wFood1", "wFood2", "wFood3", "wFood4" ),
       base = row.names(Blanciforti86) == "1970" )
 
-   # Tornkvist price index
+   # Tornqvist price index
    aidsPx( "T", c( "pFood1", "pFood2", "pFood3", "pFood4" ),
       Blanciforti86, c( "wFood1", "wFood2", "wFood3", "wFood4" ),
       base = list( prices = rep( 100, 4 ), shares = rep( 0.25, 4 ) ) )
