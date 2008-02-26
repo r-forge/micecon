@@ -15,9 +15,9 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
 
    # checking (mainly) argument 'priceIndex'
    if( is.character( priceIndex ) ) {
-      if( ! priceIndex %in% c( "TL", "S", "L" ) ) {
+      if( ! priceIndex %in% c( "TL", "S", "Ls" ) ) {
          stop( "at the moment, argument 'priceIndex' must be either",
-            " 'TL' (translog), 'S' (Stone), 'L' (Laspeyres), or a numeric vector",
+            " 'TL' (translog), 'S' (Stone), 'Ls' (Laspeyres, simplified), or a numeric vector",
             " providing the log values of the price index" )
       }
       if( priceIndex == "TL" && is.null( coef$alpha0 ) ) {
@@ -38,10 +38,10 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
 
    # tests for arguments basePrices and baseShares
    if( is.character( priceIndex ) ) {
-      if( priceIndex == "L" ) {
+      if( priceIndex == "Ls" ) {
          # basePrices
          if( is.null( basePrices ) ) {
-            stop( "calculations with Laspeyres ('L') price index require",
+            stop( "calculations with simpliefied Laspeyres ('Ls') price index require",
                " argument 'basePrices'" )
          }
          if( ! is.numeric( basePrices ) ) {
@@ -53,7 +53,7 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
          }
          # baseShares
          if( is.null( baseShares ) ) {
-            stop( "calculations with Laspeyres ('L') price index require",
+            stop( "calculations with simplified Laspeyres ('Ls') price index require",
                " argument 'baseShares'" )
          }
          if( ! is.numeric( baseShares ) ) {
@@ -70,8 +70,8 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
       if( priceIndex == "TL" ) {
          # calculation of translog price index
          priceIndex <- aidsPx( priceIndex, priceNames, data = data, coef = coef )
-      } else if( priceIndex == "L" ) {
-         # calculation of Laspeyres price index
+      } else if( priceIndex == "Ls" ) {
+         # calculation of simplified Laspeyres price index
          priceIndex <- aidsPx( priceIndex, priceNames, data = data,
             coef = coef, base = list( prices = basePrices, shares = baseShares ) )
       }

@@ -8,8 +8,8 @@
          result <- paste( result, "lagged Stone Index (SL)\n" )
       } else if( priceIndex == "P" ) {
          result <- paste( result, "Paasche Index (P)\n" )
-      } else if( priceIndex == "L" ) {
-         result <- paste( result, "Laspeyres Index (L)\n" )
+      } else if( priceIndex == "Ls" ) {
+         result <- paste( result, "simplified Laspeyres Index (Ls)\n" )
       } else if( priceIndex == "T" ) {
          result <- paste( result, "Tornqvist Index (T)\n" )
       } else {
@@ -23,8 +23,8 @@
          result <- paste( result, "lagged Stone Index, SL)\n" )
       } else if( priceIndex == "P" ) {
          result <- paste( result, "Paasche Index, P)\n" )
-      } else if( priceIndex == "L" ) {
-         result <- paste( result, "Laspeyres Index, L)\n" )
+      } else if( priceIndex == "Ls" ) {
+         result <- paste( result, "simplified Laspeyres Index, Ls)\n" )
       } else if( priceIndex == "T" ) {
          result <- paste( result, "Tornqvist Index, T)\n" )
       } else {

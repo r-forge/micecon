@@ -229,10 +229,10 @@ pxP2 <- aidsPx( "P", pNames, data = Blanciforti86, shareNames = wNames,
 print( pxP2 )
 
 cat( "\nLaspeyres index\n" )
-pxL <- aidsPx( "L", pNames, shareNames = wNames, data = Blanciforti86 )
+pxL <- aidsPx( "Ls", pNames, shareNames = wNames, data = Blanciforti86 )
 print( pxL )
 
-pxL2 <- aidsPx( "L", pNames, data = Blanciforti86, shareNames = wNames,
+pxL2 <- aidsPx( "Ls", pNames, data = Blanciforti86, shareNames = wNames,
    base = c( 1:32 ) )
 print( pxL2 )
 
@@ -325,7 +325,7 @@ all.equal( fittedLaLNa$shares, estResultLaLNa$wFitted[ set, ],
 all.equal( fittedLaLNa$quant, estResultLaLNa$qFitted[ set, ],
    check.attributes = FALSE )
 fittedLaLNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
-   coef = estResultLaLNa$coef, priceIndex = "L",
+   coef = estResultLaLNa$coef, priceIndex = "Ls",
    basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
    baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
 all.equal( estResultLaLNa$wFitted, fittedLaLNa2$shares,

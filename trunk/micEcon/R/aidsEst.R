@@ -1,5 +1,5 @@
 aidsEst <- function( priceNames, shareNames, totExpName,
-      data, method = "LA", priceIndex = "L", pxBase = 1,
+      data, method = "LA", priceIndex = "Ls", pxBase = 1,
       hom = TRUE, sym = TRUE,
       shifterNames = NULL, instNames = NULL,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
@@ -29,10 +29,10 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       }
    } 
 
-   if( !( priceIndex %in% c( "S", "SL", "P", "L", "T" ) ) ) {
+   if( !( priceIndex %in% c( "S", "SL", "P", "Ls", "T" ) ) ) {
       stop( "argument 'priceIndex' that specifies the price index must be either",
          " 'S' (Stone index), 'SL' (Stone index with lagges shares),",
-         " 'P' (Paasche index), 'L' (Laspeyres index), or",
+         " 'P' (Paasche index), 'Ls' (Laspeyres index, simplified), or",
          " 'T' (Tornqvist index)" )
    }
 

@@ -10,7 +10,7 @@
 
 \usage{
 aidsEst( priceNames, shareNames, totExpName, data,
-      method = "LA", priceIndex = "L", pxBase = 1,
+      method = "LA", priceIndex = "Ls", pxBase = 1,
       hom = TRUE, sym = TRUE,
       shifterNames = NULL, instNames = NULL,
       estMethod = ifelse( is.null( instNames ), "SUR", "3SLS" ),
@@ -29,7 +29,7 @@ aidsEst( priceNames, shareNames, totExpName, data,
       either 'LA' or 'IL' (see deatils).}
    \item{priceIndex}{character string specifying the price index
       for the 'Linear Approximation':
-      either 'S', 'SL', 'P', 'L', or 'T' (see details).}
+      either 'S', 'SL', 'P', 'Ls', or 'T' (see details).}
    \item{pxBase}{The base to calculate the LA-AIDS price indices
       (see \code{\link{aidsPx}}).}
    \item{hom}{logical. Should the homogeneity condition be imposed?}
@@ -64,7 +64,7 @@ aidsEst( priceNames, shareNames, totExpName, data,
    \item Stone price index ('S'),
    \item Stone price index with lagged shares ('SL'),
    \item loglinear analogue to the Paasche price index ('P'),
-   \item loglinear analogue of the Laspeyres price index ('L'), and
+   \item simplified loglinear analogue of the Laspeyres price index ('Ls'), and
    \item Tornqvist price index ('T').
    \end{itemize}
 
