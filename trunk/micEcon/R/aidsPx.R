@@ -28,7 +28,7 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
    nGoods <- length( priceNames )
    nShifter <- length( shifterNames )
    nObs <- nrow(  data )
-   lnp <- array( 0, c( nObs ))
+   lnp <- numeric( nObs )
 
    if( priceIndex %in% c( "L", "P", "T" ) ){
       if( class( base ) == "list" ){
