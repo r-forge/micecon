@@ -29,7 +29,7 @@ aidsEst( priceNames, shareNames, totExpName, data,
       either 'LA' or 'IL' (see deatils).}
    \item{priceIndex}{character string specifying the price index
       for the 'Linear Approximation':
-      either 'S', 'SL', 'P', 'Ls', or 'T' (see details).}
+      either 'S', 'SL', 'P', 'L', 'Ls', or 'T' (see details).}
    \item{pxBase}{The base to calculate the LA-AIDS price indices
       (see \code{\link{aidsPx}}).}
    \item{hom}{logical. Should the homogeneity condition be imposed?}
@@ -58,12 +58,13 @@ aidsEst( priceNames, shareNames, totExpName, data,
    Argument \code{method} can specify two different estimation methods:
    The 'Linear Approximate AIDS' (LA) and the 'Iterative Linear Least Squares
    Estimator' (IL) proposed by Blundell and Robin (1999).\cr
-   Argument \code{priceIndex} can specify five different price indices
+   Argument \code{priceIndex} can specify six different price indices
    for the LA-AIDS:
    \begin{itemize}
    \item Stone price index ('S'),
    \item Stone price index with lagged shares ('SL'),
    \item loglinear analogue to the Paasche price index ('P'),
+   \item loglinear analogue of the Laspeyres price index ('L'),
    \item simplified loglinear analogue of the Laspeyres price index ('Ls'), and
    \item Tornqvist price index ('T').
    \end{itemize}

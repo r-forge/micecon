@@ -25,12 +25,13 @@
       that modify the alphas of the Translog price index.}
 }
 \details{
-   Currently 6 different price indices are implemented:
+   Currently 7 different price indices are implemented:
    \begin{itemize}
    \item translog price index ('TL'),
    \item Stone price index ('S'),
    \item Stone price index with lagged shares ('SL'),
    \item loglinear analogue to the Paasche price index ('P'),
+   \item loglinear analogue of the Laspeyres price index ('L'),
    \item simplified loglinear analogue of the Laspeyres price index ('Ls'), and
    \item Tornqvist price index ('T').
    \end{itemize}

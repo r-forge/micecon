@@ -35,11 +35,19 @@ estResultLaP <- aidsEst( pNames, wNames, "xFood",
 print( estResultLaP )
 print( summary( estResultLaP ) )
 
+# LA-AIDS: Laspeyres
+estResultLaL <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86[ set, ], priceIndex = "L" )
+print( estResultLaL )
+print( summary( estResultLaL ) )
+
 # LA-AIDS: Laspeyres, simplified
 estResultLaLs <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ set, ], priceIndex = "Ls" )
 print( estResultLaLs )
 print( summary( estResultLaLs ) )
+all.equal( estResultLaL$coef$beta, estResultLaLs$coef$beta )
+all.equal( estResultLaL$coef$gamma, estResultLaLs$coef$gamma )
 
 # LA-AIDS: Tornqvist
 estResultLaT <- aidsEst( pNames, wNames, "xFood",
@@ -267,9 +275,14 @@ pxP2 <- aidsPx( "P", pNames, data = Blanciforti86, shareNames = wNames,
    base = row.names(Blanciforti86) == "1970" )
 print( pxP2 )
 
+cat( "\nLaspeyres index\n" )
+pxL <- aidsPx( "L", pNames, shareNames = wNames, data = Blanciforti86 )
+print( pxL )
+
 cat( "\nLaspeyres index, simplified\n" )
 pxLs <- aidsPx( "Ls", pNames, shareNames = wNames, data = Blanciforti86 )
 print( pxLs )
+print( pxL - pxLs )
 
 pxLs2 <- aidsPx( "Ls", pNames, data = Blanciforti86, shareNames = wNames,
    base = c( 1:32 ) )
