@@ -9,6 +9,45 @@ wNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 wMeans <- colMeans( Blanciforti86[ set, wNames ] )
 pMeans <- colMeans( Blanciforti86[ set, pNames ] )
 
+
+## estimations with different price indices
+# AIDS: translog
+estResultTl <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86[ set, ], method = "IL" )
+print( estResultTl )
+print( summary( estResultTl ) )
+
+# LA-AIDS: Stone
+estResultLaS <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86[ set, ], priceIndex = "S" )
+print( estResultLaS )
+print( summary( estResultLaS ) )
+
+# LA-AIDS: Stone with lagged shares
+estResultLaSl <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86[ set, ], priceIndex = "SL" )
+print( estResultLaSl )
+print( summary( estResultLaSl ) )
+
+# LA-AIDS: Paasche
+estResultLaP <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86[ set, ], priceIndex = "P" )
+print( estResultLaP )
+print( summary( estResultLaP ) )
+
+# LA-AIDS: Laspeyres, simplified
+estResultLaLs <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86[ set, ], priceIndex = "Ls" )
+print( estResultLaLs )
+print( summary( estResultLaLs ) )
+
+# LA-AIDS: Tornqvist
+estResultLaT <- aidsEst( pNames, wNames, "xFood",
+   data = Blanciforti86[ set, ], priceIndex = "T" )
+print( estResultLaT )
+print( summary( estResultLaT ) )
+
+
 cat( paste( "\nRepeating the demand analysis of Blanciforti, Green",
    "& King (1986)\n" ) )
 estResultLA <- aidsEst( pNames, wNames, "xFood",
