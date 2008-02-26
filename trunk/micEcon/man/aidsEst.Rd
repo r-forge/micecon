@@ -104,6 +104,10 @@ aidsEst( priceNames, shareNames, totExpName, data,
    \item{priceNames}{names of the prices.}
    \item{shareNames}{names of the expenditure shares.}
    \item{totExpName}{name of the variable for total expenditure.}
+   \item{basePrices}{the base prices of the Paasche, Laspeyres,
+      or Tornqvist price index.}
+   \item{baseShares}{the base shares of the Laspeyres, simplified Laspeyres,
+      or Tornqvist price index.}
 }
 
 \references{
