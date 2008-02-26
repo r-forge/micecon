@@ -130,6 +130,10 @@ aidsPx <- function( priceIndex, priceNames, data, shareNames = NULL, base = 1,
          " 'SL', 'P', 'L', 'Ls', 'T' or 'TL'" )
    }
 
+   if( !is.null( row.names( data ) ) ) {
+      names( lnp ) <- row.names( data )
+   }
+
    if( exists( "basePrices" ) ){
       attributes( lnp )$basePrices <- basePrices
    }
