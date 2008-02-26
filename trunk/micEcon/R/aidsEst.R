@@ -225,6 +225,8 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    result$shareNames <- shareNames
    result$priceNames <- priceNames
    result$totExpName <- totExpName
+   result$basePrices <- attributes( result$lnp )$basePrices
+   result$baseShares <- attributes( result$lnp )$baseShares
 
    class( result ) <- "aidsEst"
    return( result )
