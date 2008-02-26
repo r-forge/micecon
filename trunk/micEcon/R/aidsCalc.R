@@ -15,10 +15,10 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
 
    # checking (mainly) argument 'priceIndex'
    if( is.character( priceIndex ) ) {
-      if( ! priceIndex %in% c( "TL", "S", "P", "L", "Ls" ) ) {
-         stop( "at the moment, argument 'priceIndex' must be either",
+      if( ! priceIndex %in% c( "TL", "S", "P", "L", "Ls", "T" ) ) {
+         stop( "argument 'priceIndex' must be either",
             " 'TL' (translog), 'S' (Stone), 'P' (Paasche), 'Ls' (Laspeyres),",
-            " 'Ls' (Laspeyres, simplified), or a numeric vector",
+            " 'Ls' (Laspeyres, simplified), 'T' (Tornqvist), or a numeric vector",
             " providing the log values of the price index" )
       }
       if( priceIndex == "TL" && is.null( coef$alpha0 ) ) {
@@ -40,10 +40,10 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
    # tests for arguments basePrices and baseShares
    if( is.character( priceIndex ) ) {
       # basePrices
-      if( priceIndex %in% c( "P", "L" ) ) {
+      if( priceIndex %in% c( "P", "L", "T" ) ) {
          if( is.null( basePrices ) ) {
-            stop( "calculations with Paasche ('L') or Laspeyres ('L')",
-               " price index require",
+            stop( "calculations with Paasche ('L'), Laspeyres ('L'),",
+               " or Tornqvist ('T') price index require",
                " argument 'basePrices'" )
          }
          if( ! is.numeric( basePrices ) ) {
@@ -55,10 +55,11 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
          }
       }
       # baseShares
-      if( priceIndex %in% c( "L", "Ls" ) ) {
+      if( priceIndex %in% c( "L", "Ls", "T" ) ) {
          if( is.null( baseShares ) ) {
-            stop( "calculations with Laspeyres ('Ls') or",
-               " simplified Laspeyres ('Ls') price index require",
+            stop( "calculations with Laspeyres ('Ls'),",
+               " simplified Laspeyres ('Ls'), or",
+               " Tornqvist ('T') price index require",
                " argument 'baseShares'" )
          }
          if( ! is.numeric( baseShares ) ) {
@@ -119,6 +120,17 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
          shareData[ i, ] <-
             solve( diag( nGoods ) + coef$beta %*% t( log( prices / basePrices ) ),
                coef$alpha + coef$gamma %*% log( prices ) + coef$beta * logTotExp )
+      }
+   } else if( priceIndex == "T" ) {
+      for( i in 1:nrow( data ) ) {
+         prices <- as.numeric( data[ i, priceNames ] )
+         logTotExp <- log( data[ i, totExpName ] )
+         shareData[ i, ] <-
+            solve( diag( nGoods ) + 0.5 * coef$beta %*%
+               t( log( prices / basePrices ) ),
+               coef$alpha + coef$gamma %*% log( prices ) +
+               coef$beta * logTotExp - 0.5 * coef$beta *
+               ( t( log( prices / basePrices ) ) %*% baseShares ) )
       }
    } else {
       stop( "internal error" )
