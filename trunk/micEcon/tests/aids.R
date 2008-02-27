@@ -315,6 +315,13 @@ print( pxTLtrend2 )
 
 
 ########### fitted values #################
+fitted( estResultAIDS )
+fitted( estResultLA )
+fitted( estResultLaSNa )
+fitted( estResultLaLsNa )
+
+
+########### aidsCalc #################
 options( digits = 3 )
 fittedAIDS <- aidsCalc( pNames, "xFood", data = Blanciforti86[ -1, ],
    coef = estResultAIDS$coef )
