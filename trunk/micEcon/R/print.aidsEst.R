@@ -4,15 +4,6 @@ print.aidsEst <- function( x, ... ) {
    cat( "Estimation Method: " )
    cat( .aidsEstMethod( x$method, x$priceIndex ) )
    cat( "Estimated Coefficients:\n" )
-   cat( "alpha\n" )
-   print( x$coef$alpha )
-   cat( "beta\n" )
-   print( x$coef$beta )
-   cat( "gamma\n" )
-   print( x$coef$gamma )
-   if( !is.null( x$coef$delta ) ){
-      cat( "delta\n" )
-      print( x$coef$delta )
-   }
+   print( coef( x ) )
    invisible( x )
 }
