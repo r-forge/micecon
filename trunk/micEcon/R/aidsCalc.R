@@ -15,9 +15,10 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
 
    # checking (mainly) argument 'priceIndex'
    if( is.character( priceIndex ) ) {
-      if( ! priceIndex %in% c( "TL", "S", "P", "L", "Ls", "T" ) ) {
+      if( ! priceIndex %in% c( "TL", "S", "SL", "P", "L", "Ls", "T" ) ) {
          stop( "argument 'priceIndex' must be either",
-            " 'TL' (translog), 'S' (Stone), 'P' (Paasche), 'Ls' (Laspeyres),",
+            " 'TL' (translog), 'S' (Stone), 'SL' (Stone index with lagged shares),",
+            " 'P' (Paasche), 'L' (Laspeyres),",
             " 'Ls' (Laspeyres, simplified), 'T' (Tornqvist), or a numeric vector",
             " providing the log values of the price index" )
       }
@@ -112,6 +113,19 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
          shareData[ i, ] <-
             solve( diag( nGoods ) + coef$beta %*% t( logPrices ),
                coef$alpha + coef$gamma %*% logPrices + coef$beta * logTotExp )
+      }
+   } else if( priceIndex == "SL" ) {
+      logPrices <- log( as.numeric( data[ 1, priceNames ] ) )
+      logTotExp <- log( data[ 1, totExpName ] )
+      shareData[ 1, ] <-
+            solve( diag( nGoods ) + coef$beta %*% t( logPrices ),
+               coef$alpha + coef$gamma %*% logPrices + coef$beta * logTotExp )
+      for( i in 2:nrow( data ) ) {
+         logPrices <- log( as.numeric( data[ i, priceNames ] ) )
+         logTotExp <- log( data[ i, totExpName ] )
+         shareData[ i, ] <-
+            coef$alpha + coef$gamma %*% logPrices + coef$beta * logTotExp -
+            coef$beta * t( logPrices ) %*% as.numeric( shareData[ i-1, ] )
       }
    } else if( priceIndex == "P" ) {
       for( i in 1:nrow( data ) ) {

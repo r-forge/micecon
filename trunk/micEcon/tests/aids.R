@@ -375,6 +375,26 @@ fittedLaSNa2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSNa$coef, priceIndex = lnp )
 all.equal( fittedLaSNa2, fittedLaSNa2b )
 
+# LA-AIDS with Stone price index with lagged shares
+# observed shares in the Stone price index
+fittedLaSl <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaSl$coef, priceIndex = estResultLaSl$lnp )
+print( fittedLaSl )
+all.equal( fittedLaSl$shares, estResultLaSl$wFitted, check.attributes = FALSE )
+all.equal( fittedLaSl$quant, estResultLaSl$qFitted, check.attributes = FALSE )
+# fitted shares in the Stone price index
+fittedLaSl2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaSl$coef, priceIndex = "SL" )
+print( fittedLaSl2 )
+B86LaSl2 <- cbind( Blanciforti86[ set, c( pNames, "xFood" ) ],
+   fittedLaSl2$shares )
+lnp <- aidsPx( "SL", pNames, shareNames = c( "w1", "w2", "w3", "w4" ),
+   data = B86LaSl2 )
+fittedLaSl2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = estResultLaSl$coef, priceIndex = lnp )
+all.equal( fittedLaSl2$shares[-1,], fittedLaSl2b$shares[-1,] )
+all.equal( fittedLaSl2$quant[-1,], fittedLaSl2b$quant[-1,] )
+
 # LA-AIDS with Paasche price index
 # obsereved shares in the Paasche price index
 fittedLaP <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
