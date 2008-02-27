@@ -474,14 +474,14 @@ all.equal( fittedLaT2, fittedLaT2b, check.attributes = FALSE )
 
 ####### consistency ###################
 # with observed expenditure shares
-consist <- aidsTestConsist( pNames, "xFood", Blanciforti86[ set, ],
+consist <- aidsConsist( pNames, "xFood", Blanciforti86[ set, ],
    coef = estResultAIDS$coef, shareNames = wNames )
 print( consist )
 class( consist ) <- NULL
 print( consist )
 
 # with fitted expenditure shares
-consistFitted <- aidsTestConsist( pNames, totExpName = "xFood",
+consistFitted <- aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = estResultAIDS$coef )
 print( consistFitted )
 class( consistFitted ) <- NULL

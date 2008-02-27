@@ -1,5 +1,5 @@
-print.aidsTestConsist <- function( x, ... ) {
-   cat( "\nTests for theoretical consistency of an estimated " )
+print.aidsConsist <- function( x, ... ) {
+   cat( "\nChecking theoretical consistency of an estimated " )
    cat( "Almost Ideal Demand System (AIDS):\n" )
    cat( "Observation where monotonicity is fulfilled: " )
    cat( x$mPercent, "%\n" )
