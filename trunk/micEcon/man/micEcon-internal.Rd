@@ -6,9 +6,6 @@
 \alias{aidsSystem}
 \alias{checkNames}
 \alias{micEconIndex}
-\alias{print.aidsMono}
-\alias{print.aidsConcav}
-\alias{print.aidsConsist}
 \alias{print.snqProfitImposeConvexity}
 \alias{snqProfitCoef}
 \alias{snqProfitCoefNames}

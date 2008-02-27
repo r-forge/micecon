@@ -1,5 +1,6 @@
 \name{aidsMono}
 \alias{aidsMono}
+\alias{print.aidsMono}
 \title{Monotonicity of the AIDS}
 \description{
    \code{aidsMono} checks whether the expenditure function
@@ -13,6 +14,8 @@
 aidsMono( priceNames, totExpName, data, coef,
    priceIndex = "TL", basePrices = NULL, baseShares = NULL,
    shareNames = NULL )
+
+\method{print}{aidsMono}( x, ... )
 }
 
 \arguments{
@@ -30,6 +33,8 @@ aidsMono( priceNames, totExpName, data, coef,
       Laspeyres, simplified Laspeyres, and Tornqvist index.}
    \item{shareNames}{a vector of strings containing the names of the expenditure
       shares.}
+   \item{x}{an object of class \code{aidsMono}.}
+   \item{...}{currently unused.}
 }
 
 \details{
@@ -43,7 +48,8 @@ aidsMono( priceNames, totExpName, data, coef,
 }
 
 \value{
-   a list containing following elements:
+   \code{aidsMono} returns a list of class \code{aidsMono}
+   that contains following elements:
    \item{monotony}{a logical vector indicating whether the monotony
       condition is fulfilled at each observation.}
    \item{mPercent}{percent of observations where the monotony condition is

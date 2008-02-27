@@ -1,5 +1,6 @@
 \name{aidsConsist}
 \alias{aidsConsist}
+\alias{print.aidsConsist}
 \alias{testConsist.aidsEst}
 \title{Consistency Test of the AIDS}
 \description{
@@ -11,6 +12,8 @@
 aidsConsist( priceNames, totExpName, data, coef,
    priceIndex = "TL", basePrices = NULL, baseShares = NULL,
    shareNames = NULL )
+
+\method{print}{aidsConsist}( x, ... )
 
 \method{testConsist}{aidsEst}( object, ... )
 }
@@ -30,6 +33,7 @@ aidsConsist( priceNames, totExpName, data, coef,
       Laspeyres, simplified Laspeyres, and Tornqvist index.}
    \item{shareNames}{a vector of strings containing the names of the expenditure
       shares.}
+   \item{x}{an object of class \code{aidsConsist}.}
    \item{object}{an object of class \code{aidsEst}.}
    \item{...}{currently not used.}
 }
@@ -47,7 +51,8 @@ aidsConsist( priceNames, totExpName, data, coef,
 }
 
 \value{
-   a list containing following elements:
+   \code{aidsConsist} returns a list of class \code{aidsConsist}
+   that contains following elements:
    \item{monotony}{a logical vector indicating whether the monotony
       condition is fulfilled at each observation.}
    \item{mPercent}{percent of observations where the monotony condition is
