@@ -1,5 +1,6 @@
 \name{aidsConcav}
 \alias{aidsConcav}
+\alias{print.aidsConcav}
 \title{Concavity of the AIDS}
 \description{
    Check whether the expenditure function of the AIDS is concave
@@ -7,7 +8,9 @@
 }
 
 \usage{
-   aidsConcav( priceNames, totExpName, data, coef, shareNames = NULL )
+aidsConcav( priceNames, totExpName, data, coef, shareNames = NULL )
+
+\method{print}{aidsConcav}( x, ... )
 }
 
 \arguments{
@@ -18,6 +21,8 @@
       and (only for the translog price index) alpha0.}
    \item{shareNames}{a vector of strings containing the names of the expenditure
       shares.}
+   \item{x}{an object of class \code{aidsConcav}.}
+   \item{...}{currently unused.}
 }
 
 \details{
@@ -29,7 +34,8 @@
 }
 
 \value{
-   a list containing following elements:
+   \code{aidsConcav} returns a list of class \code{aidsConcav}
+   that contains following elements:
    \item{concavity}{a logical vector indicating whether the concavity
       condition is fulfilled at each observation.}
    \item{cPercent}{percent of observations where the concavity condition is
