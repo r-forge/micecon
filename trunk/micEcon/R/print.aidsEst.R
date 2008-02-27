@@ -3,7 +3,7 @@ print.aidsEst <- function( x, ... ) {
    cat( "Demand System (AIDS)\n" )
    cat( "Estimation Method: " )
    cat( .aidsEstMethod( x$method, x$priceIndex ) )
-   cat( "Estimated Coefficients:\n" )
+   cat( "Coefficients:\n" )
    print( coef( x ) )
    invisible( x )
 }
