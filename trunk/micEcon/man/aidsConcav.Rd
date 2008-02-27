@@ -1,16 +1,13 @@
-\name{aidsTestConsist}
-\alias{aidsTestConsist}
-\alias{testConsist.aidsEst}
-\title{Consistency Test of the AIDS}
+\name{aidsConcav}
+\alias{aidsConcav}
+\title{Concavity of the AIDS}
 \description{
-   Test whether the specification of the AIDS is consistent
-   with microeconomic demand theory (i.e. utility maximisation).
+   Check whether the expenditure function of the AIDS is concave
+   in prices.
 }
 
 \usage{
-   aidsTestConsist( priceNames, totExpName, data, coef, shareNames = NULL )
-
-   \method{testConsist}{aidsEst}( object, ... )
+   aidsConcav( priceNames, totExpName, data, coef, shareNames = NULL )
 }
 
 \arguments{
@@ -21,15 +18,9 @@
       and (only for the translog price index) alpha0.}
    \item{shareNames}{a vector of strings containing the names of the expenditure
       shares.}
-   \item{object}{an object of class \code{aidsEst}.}
-   \item{...}{currently not used.}
 }
 
 \details{
-   \code{testConsist.aidsEst} is a wrapper function to \code{aidsTestConsist}
-   that extracts all relevant arguments for \code{aidsTestConsist}
-   from \code{object}.
-
    If argument \code{shareNames} is specified,
    observed shares are used for the calculation of the 'C' matrices
    to check for concavity;
@@ -39,10 +30,6 @@
 
 \value{
    a list containing following elements:
-   \item{monotony}{a logical vector indicating whether the monotony
-      condition is fulfilled at each observation.}
-   \item{mPercent}{percent of observations where the monotony condition is
-      fulfilled.}
    \item{concavity}{a logical vector indicating whether the concavity
       condition is fulfilled at each observation.}
    \item{cPercent}{percent of observations where the concavity condition is
@@ -74,13 +61,8 @@
 
    estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, method = "IL" )
-   tc <- aidsTestConsist( priceNames, "xFood", data = Blanciforti86,
+   aidsConcav( priceNames, "xFood", data = Blanciforti86,
       coef = estResult$coef, shareNames = shareNames )
-   tc$mPercent   # great!
-   tc$cPercent   # Oh, that is bad!
-
-   # the same can be obtained in an easier way
-   testConsist.aidsEst( estResult )
 }
 
 \keyword{models}

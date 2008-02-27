@@ -4393,11 +4393,11 @@ In aidsPx("T", pNames, shareNames = c("w1", "w2", "w3", "w4"), data = B86LaT2,  
 > 
 > ####### consistency ###################
 > # with observed expenditure shares
-> consist <- aidsTestConsist( pNames, "xFood", Blanciforti86[ set, ],
+> consist <- aidsConsist( pNames, "xFood", Blanciforti86[ set, ],
 +    coef = estResultAIDS$coef, shareNames = wNames )
 > print( consist )
 
-Tests for theoretical consistency of an estimated Almost Ideal Demand System (AIDS):
+Checking theoretical consistency of an estimated Almost Ideal Demand System (AIDS):
 Observation where monotonicity is fulfilled: 100 %
 Observation where concavity is fulfilled: 0 %
 > class( consist ) <- NULL
@@ -4646,11 +4646,11 @@ wFood4  0.1512  0.0570  0.0405 -0.2487
 
 > 
 > # with fitted expenditure shares
-> consistFitted <- aidsTestConsist( pNames, totExpName = "xFood",
+> consistFitted <- aidsConsist( pNames, totExpName = "xFood",
 +    data = Blanciforti86[ set, ], coef = estResultAIDS$coef )
 > print( consistFitted )
 
-Tests for theoretical consistency of an estimated Almost Ideal Demand System (AIDS):
+Checking theoretical consistency of an estimated Almost Ideal Demand System (AIDS):
 Observation where monotonicity is fulfilled: 100 %
 Observation where concavity is fulfilled: 0 %
 > class( consistFitted ) <- NULL

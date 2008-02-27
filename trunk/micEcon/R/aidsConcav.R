@@ -1,4 +1,4 @@
-aidsTestConsist <- function( priceNames, totExpName, data, coef,
+aidsConcav <- function( priceNames, totExpName, data, coef,
       shareNames = NULL ) {
 
    if( !is.null( shareNames ) && length( priceNames ) != length( shareNames ) ) {
@@ -13,10 +13,8 @@ aidsTestConsist <- function( priceNames, totExpName, data, coef,
    nObs <- nrow( data )
 
    xt <- data[[ totExpName ]]
-   priceMat <- array( NA, c( nObs, nGoods ) )
    shareMat <- array( NA, c( nObs, nGoods ) )
    for( i in 1: nGoods ) {
-      priceMat[ , i ] <- data[[ priceNames[ i ] ]]
       if( !is.null( shareNames ) ) {
          shareMat[ , i ] <- data[[ shareNames[ i ] ]]
       }
@@ -27,34 +25,23 @@ aidsTestConsist <- function( priceNames, totExpName, data, coef,
       shareMat <- as.matrix( fitted$shares )
    }
 
-   # testing for monotonicity
-   mono <- array( TRUE, c( nObs ) )
-   cMatrices <- list()    # testing for concavity
+   # checking concavity
+   cMatrices <- list()    
    conc <- array( TRUE, c( nObs ) )
 
    lnp <- aidsPx( "TL", priceNames, data = data, coef = coef )
 
    for( t in 1:nObs ) {
-      mono[ t ] <- ( min( fitted$shares[ t, ] ) >= 0 )
       cMatrices[[ t ]] <- coef$gamma + ( coef$beta %*% t( coef$beta ) ) *
          ( log( xt[ t ] ) - lnp[ t ] ) -
          diag( shareMat[ t, ] ) + shareMat[ t, ] %*% t( shareMat[ t, ] )
 
-  #    for( i in 1:nGoods ) {
-  #       conc[ t ] <- ( conc[ t ] & cMatrices[[ t ]][ i, i ] <= 0 )
-  #    }
-  #    for( i in 2:( nGoods - 1 ) ) {
-  #       conc[ t ] <- ( conc[ t ] &
-  #      ( det( cMatrices[[ t ]][ 1:i, 1:i ] ) * (-1)^i >= 0 ) )
-  #    }
       conc[ t ] <- semidefiniteness( cMatrices[[ t ]][ 1:( nGoods - 1),
          1:( nGoods - 1) ] )$negative
    }
-   result$mPercent <- 100 * sum( mono ) / nObs
-   result$monotony <- mono
    result$cPercent <- 100 * sum( conc ) / nObs
    result$concavity <- conc
    result$cMatrices <- cMatrices
-   class( result ) <- "aidsTestConsist"
+   class( result ) <- "aidsConcav"
    return( result )
 }
