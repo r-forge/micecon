@@ -499,6 +499,31 @@ class( monoLaT2 ) <- NULL
 print( monoLaT2 )
 
 
+####### conscavity ###################
+# AIDS with fitted shares
+concavAids <- aidsConcav( pNames, "xFood", coef = coef( estResultAIDS ),
+   data = Blanciforti86[ set, ] )
+print( concavAids )
+class( concavAids ) <- NULL
+print( concavAids )
+
+# AIDS with observed shares
+concavAids2 <- aidsConcav( pNames, "xFood", coef = coef( estResultAIDS ),
+   data = Blanciforti86[ set, ], shareNames = wNames )
+print( concavAids2 )
+class( concavAids2 ) <- NULL
+print( concavAids2 )
+
+# LA-AIDS
+estResultLaSCoef <- coef( estResultLaS )
+estResultLaSCoef$alpha0 <- 1
+concavLaS <- aidsConcav( pNames, "xFood", coef = estResultLaSCoef,
+   data = Blanciforti86[ set, ] )
+print( concavLaS )
+class( concavLaS ) <- NULL
+print( concavLaS )
+
+
 ####### consistency ###################
 # with observed expenditure shares
 consist <- aidsConsist( pNames, "xFood", Blanciforti86[ set, ],
