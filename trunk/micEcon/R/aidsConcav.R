@@ -26,22 +26,24 @@ aidsConcav <- function( priceNames, totExpName, coef, data,
    }
 
    # checking concavity
-   cMatrices <- list()    
-   conc <- array( TRUE, c( nObs ) )
+   result$cMatrices <- list()
+   result$concavity <- rep( NA, nObs )
 
    lnp <- aidsPx( "TL", priceNames, data = data, coef = coef )
 
    for( t in 1:nObs ) {
-      cMatrices[[ t ]] <- coef$gamma + ( coef$beta %*% t( coef$beta ) ) *
+      result$cMatrices[[ t ]] <- coef$gamma + ( coef$beta %*% t( coef$beta ) ) *
          ( log( xt[ t ] ) - lnp[ t ] ) -
          diag( shareMat[ t, ] ) + shareMat[ t, ] %*% t( shareMat[ t, ] )
 
-      conc[ t ] <- semidefiniteness( cMatrices[[ t ]][ 1:( nGoods - 1),
+      result$concavity[ t ] <- semidefiniteness( result$cMatrices[[ t ]][ 1:( nGoods - 1),
          1:( nGoods - 1) ] )$negative
    }
-   result$cPercent <- 100 * sum( conc ) / nObs
-   result$concavity <- conc
-   result$cMatrices <- cMatrices
+
+   result$nValidObs <- sum( !is.na( result$concavity ) )
+   result$nConcavObs <- sum( result$concavity, na.rm = TRUE )
+   result$concavPercent <- 100 * result$nConcavObs / result$nValidObs
+
    class( result ) <- "aidsConcav"
    return( result )
 }

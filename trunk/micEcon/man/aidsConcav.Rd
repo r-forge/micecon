@@ -38,7 +38,11 @@ aidsConcav( priceNames, totExpName, coef, data, shareNames = NULL )
    that contains following elements:
    \item{concavity}{a logical vector indicating whether the concavity
       condition is fulfilled at each observation.}
-   \item{cPercent}{percent of observations where the concavity condition is
+   \item{nValidObs}{number of (valid) observation at which concavity
+      could be checked.}
+   \item{nConcavObs}{number of observation at which the concavity codition
+      is fulfilled.}
+   \item{concavPercent}{percent of observations where the concavity condition is
       fulfilled.}
    \item{cMatrices}{a list of the 'C' matrices for each observation to check
       for concavity (see Deaton and Muellbauer, 1980b, p.76 ).}

@@ -4479,17 +4479,9 @@ $monoPercent
 > print( concavAids )
 
 Checking concavity of an estimated Almost Ideal Demand System (AIDS):
-Observation where concavity is fulfilled: 0 %
+Concavity is fulfilled at 0 out of 32 observations (0%)
 > class( concavAids ) <- NULL
 > print( concavAids )
-$cPercent
-[1] 0
-
-$concavity
- [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-
 $cMatrices
 $cMatrices[[1]]
         pFood1   pFood2  pFood3  pFood4
@@ -4716,6 +4708,20 @@ wFood3  0.0324  0.02385 -0.0997  0.0435
 wFood4  0.1547  0.05787  0.0435 -0.2560
 
 
+$concavity
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+$nValidObs
+[1] 32
+
+$nConcavObs
+[1] 0
+
+$concavPercent
+[1] 0
+
 > 
 > # AIDS with observed shares
 > concavAids2 <- aidsConcav( pNames, "xFood", coef = coef( estResultAIDS ),
@@ -4723,17 +4729,9 @@ wFood4  0.1547  0.05787  0.0435 -0.2560
 > print( concavAids2 )
 
 Checking concavity of an estimated Almost Ideal Demand System (AIDS):
-Observation where concavity is fulfilled: 0 %
+Concavity is fulfilled at 0 out of 32 observations (0%)
 > class( concavAids2 ) <- NULL
 > print( concavAids2 )
-$cPercent
-[1] 0
-
-$concavity
- [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-
 $cMatrices
 $cMatrices[[1]]
         pFood1  pFood2  pFood3  pFood4
@@ -4960,6 +4958,20 @@ wFood3  0.0335  0.0252 -0.0993  0.0405
 wFood4  0.1512  0.0570  0.0405 -0.2487
 
 
+$concavity
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+$nValidObs
+[1] 32
+
+$nConcavObs
+[1] 0
+
+$concavPercent
+[1] 0
+
 > 
 > # LA-AIDS
 > estResultLaSCoef <- coef( estResultLaS )
@@ -4969,17 +4981,9 @@ wFood4  0.1512  0.0570  0.0405 -0.2487
 > print( concavLaS )
 
 Checking concavity of an estimated Almost Ideal Demand System (AIDS):
-Observation where concavity is fulfilled: 0 %
+Concavity is fulfilled at 0 out of 32 observations (0%)
 > class( concavLaS ) <- NULL
 > print( concavLaS )
-$cPercent
-[1] 0
-
-$concavity
- [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-[25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-
 $cMatrices
 $cMatrices[[1]]
         pFood1  pFood2  pFood3  pFood4
@@ -5205,6 +5209,20 @@ wFood2 -0.1323  0.0305  0.0332  0.0686
 wFood3 -0.0353  0.0332 -0.1526  0.1547
 wFood4 -0.0385  0.0686  0.1547 -0.1848
 
+
+$concavity
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+$nValidObs
+[1] 32
+
+$nConcavObs
+[1] 0
+
+$concavPercent
+[1] 0
 
 > 
 > 
