@@ -1,5 +1,4 @@
 \name{micEcon-internal}
-\alias{aidsRestr}
 \alias{aidsSystem}
 \alias{checkNames}
 \alias{micEconIndex}
