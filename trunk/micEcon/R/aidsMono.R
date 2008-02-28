@@ -16,13 +16,17 @@ aidsMono <- function( priceNames, totExpName, coef, data,
 
 
    # testing for monotonicity
-   mono <- array( TRUE, c( nObs ) )
+   result$monotony <- rep( TRUE, nObs )
+   if( !is.null( row.names( data ) ) ) {
+      names( result$monotony ) <- row.names( data )
+   }
    for( t in 1:nObs ) {
-      mono[ t ] <- ( min( fitted$shares[ t, ] ) >= 0 )
+      result$monotony[ t ] <- ( min( fitted$shares[ t, ] ) >= 0 )
    }
 
-   result$mPercent <- 100 * sum( mono ) / nObs
-   result$monotony <- mono
+   result$nValidObs <- sum( !is.na( result$monotony ) )
+   result$nMonoObs <- sum( result$monotony, na.rm = TRUE )
+   result$monoPercent <- 100 * result$nMonoObs / result$nValidObs
 
    class( result ) <- "aidsMono"
    return( result )

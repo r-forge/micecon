@@ -54,7 +54,11 @@ aidsMono( priceNames, totExpName, coef, data,
    that contains following elements:
    \item{monotony}{a logical vector indicating whether the monotony
       condition is fulfilled at each observation.}
-   \item{mPercent}{percent of observations where the monotony condition is
+   \item{nValidObs}{number of (valid) observation at which monotonicity
+      could be checked.}
+   \item{nMonoObs}{number of observation at which the monotonicity codition
+      is fulfilled.}
+   \item{monoPercent}{percent of observations where the monotony condition is
       fulfilled.}
 }
 \references{

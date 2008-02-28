@@ -10,7 +10,7 @@ aidsConsist <- function( priceNames, totExpName, data, coef,
       data = data, coef = coef, shareNames = shareNames )
 
    result <- list()
-   result$mPercent <- monoResult$mPercent
+   result$mPercent <- monoResult$monoPercent
    result$monotony <- monoResult$monotony
    result$cPercent <- concResult$cPercent
    result$concavity <- concResult$concavity
