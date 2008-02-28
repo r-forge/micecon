@@ -1,12 +1,12 @@
-\name{testConsist}
-\alias{testConsist}
+\name{checkConsist}
+\alias{checkConsist}
 \title{Testing Theoretical Consistency}
 \description{
    Test theoretical consistency of microeconomic models.
 }
 
 \usage{
-testConsist( object, ... )
+checkConsist( object, ... )
 }
 
 \arguments{
@@ -20,6 +20,6 @@ testConsist( object, ... )
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
-\seealso{\code{\link{testConsist.aidsEst}}}
+\seealso{\code{\link{checkConsist.aidsEst}}}
 
 \keyword{methods}
