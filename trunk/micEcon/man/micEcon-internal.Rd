@@ -1,5 +1,4 @@
 \name{micEcon-internal}
-\alias{aidsJacobian}
 \alias{aidsRestr}
 \alias{aidsSystem}
 \alias{checkNames}
