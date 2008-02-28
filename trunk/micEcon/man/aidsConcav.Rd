@@ -65,8 +65,15 @@ aidsConcav( priceNames, totExpName, coef, data, shareNames = NULL )
    priceNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
    shareNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 
+   # estimate the AIDS
    estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, method = "IL" )
+
+   # check concavity with fitted shares
+   aidsConcav( priceNames, "xFood", coef = estResult$coef,
+      data = Blanciforti86 )
+
+   # check concavity with observed shares
    aidsConcav( priceNames, "xFood", coef = estResult$coef,
       data = Blanciforti86, shareNames = shareNames )
 }
