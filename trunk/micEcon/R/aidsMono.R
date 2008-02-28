@@ -1,4 +1,4 @@
-aidsMono <- function( priceNames, totExpName, data, coef,
+aidsMono <- function( priceNames, totExpName, coef, data,
       priceIndex = "TL", basePrices = NULL, baseShares = NULL ) {
 
    if( is.null( coef$alpha0 ) && priceIndex == "TL" ) {

@@ -11,7 +11,7 @@
 }
 
 \usage{
-aidsMono( priceNames, totExpName, data, coef,
+aidsMono( priceNames, totExpName, coef, data,
    priceIndex = "TL", basePrices = NULL, baseShares = NULL )
 
 \method{print}{aidsMono}( x, ... )
@@ -20,9 +20,9 @@ aidsMono( priceNames, totExpName, data, coef,
 \arguments{
    \item{priceNames}{a vector of strings containing the names of the prices.}
    \item{totExpName}{a string containing the variable name of total expenditure.}
-   \item{data}{a data frame containing the data.}
    \item{coef}{a list containing the coefficients alpha, beta, gamma,
       and (only for the translog price index) alpha0.}
+   \item{data}{a data frame containing the data.}
    \item{priceIndex}{a character string specifying the price index
       (see \code{\link{aidsPx}})
       or a numeric vector providing the log values of the price index.}
