@@ -1,7 +1,7 @@
 \name{aidsConsist}
 \alias{aidsConsist}
 \alias{print.aidsConsist}
-\alias{testConsist.aidsEst}
+\alias{checkConsist.aidsEst}
 \title{Check Consistency of the AIDS}
 \description{
    Check whether the specification of the AIDS is consistent
@@ -15,7 +15,7 @@ aidsConsist( priceNames, totExpName, coef, data,
 
 \method{print}{aidsConsist}( x, ... )
 
-\method{testConsist}{aidsEst}( object, ... )
+\method{checkConsist}{aidsEst}( object, ... )
 }
 
 \arguments{
@@ -42,7 +42,7 @@ aidsConsist( priceNames, totExpName, coef, data,
 }
 
 \details{
-   \code{testConsist.aidsEst} is a wrapper function to \code{aidsConsist}
+   \code{checkConsist.aidsEst} is a wrapper function to \code{aidsConsist}
    that extracts all relevant arguments for \code{aidsConsist}
    from \code{object}.
 }
@@ -85,7 +85,7 @@ aidsConsist( priceNames, totExpName, coef, data,
       coef = estResult$coef )
 
    # the same can be obtained in an easier way
-   testConsist.aidsEst( estResult )
+   checkConsist.aidsEst( estResult )
 }
 
 \keyword{models}

@@ -1,8 +1,8 @@
-testConsist <- function( object, ... ) {
+checkConsist <- function( object, ... ) {
     UseMethod( "testConsist" )
 }
 
-testConsist.aidsEst <- function( object, ... ) {
+checkConsist.aidsEst <- function( object, ... ) {
    aidsConsist( priceNames = object$priceNames,
       shareNames = object$shareNames,
       totExpName = object$totExpName,
