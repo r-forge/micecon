@@ -60,6 +60,9 @@ aidsMono( priceNames, totExpName, coef, data,
       is fulfilled.}
    \item{monoPercent}{percent of observations where the monotony condition is
       fulfilled.}
+   \item{priceIndex}{a chacter string indicating the price index
+      specified by argument \code{priceIndex}
+      (\code{"numeric"} if the price index is specified numerically).}
 }
 \references{
    Deaton, A.S. and J. Muellbauer (1980a)

@@ -4397,7 +4397,7 @@ In aidsPx("T", pNames, shareNames = c("w1", "w2", "w3", "w4"), data = B86LaT2,  
 +       data = Blanciforti86[ set, ] )
 > print( monoAids )
 
-Checking monotonicity of an estimated Almost Ideal Demand System (AIDS):
+Checking the monotonicity condition of an Almost Ideal Demand System (AIDS):
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
 > class( monoAids ) <- NULL
 > print( monoAids )
@@ -4416,6 +4416,9 @@ $nMonoObs
 $monoPercent
 [1] 100
 
+$priceIndex
+[1] "TL"
+
 > 
 > # LA-AIDS with Tornqvist price index
 > # with fitted expenditure shares in the price index
@@ -4425,7 +4428,7 @@ $monoPercent
 +    baseShares = estResultLaT$baseShares )
 > print( monoLaT )
 
-Checking monotonicity of an estimated Almost Ideal Demand System (AIDS):
+Checking the monotonicity condition of an Linear Approximate Almost Ideal Demand System (LA-AIDS):
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
 > class( monoLaT ) <- NULL
 > print( monoLaT )
@@ -4444,6 +4447,9 @@ $nMonoObs
 $monoPercent
 [1] 100
 
+$priceIndex
+[1] "T"
+
 > 
 > # LA-AIDS with Tornqvist price index
 > # with observed expenditure shares in the price index
@@ -4451,7 +4457,7 @@ $monoPercent
 +    data = Blanciforti86[ set, ], priceIndex = estResultLaT$lnp )
 > print( monoLaT2 )
 
-Checking monotonicity of an estimated Almost Ideal Demand System (AIDS):
+Checking the monotonicity condition of an Linear Approximate Almost Ideal Demand System (LA-AIDS):
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
 > class( monoLaT2 ) <- NULL
 > print( monoLaT2 )
@@ -4470,6 +4476,9 @@ $nMonoObs
 $monoPercent
 [1] 100
 
+$priceIndex
+[1] "numeric"
+
 > 
 > 
 > ####### conscavity ###################
@@ -4478,7 +4487,7 @@ $monoPercent
 +    data = Blanciforti86[ set, ] )
 > print( concavAids )
 
-Checking concavity of an estimated Almost Ideal Demand System (AIDS):
+Checking the concavity condition of an Almost Ideal Demand System (AIDS):
 Concavity is fulfilled at 0 out of 32 observations (0%)
 > class( concavAids ) <- NULL
 > print( concavAids )
@@ -4728,7 +4737,7 @@ $concavPercent
 +    data = Blanciforti86[ set, ], shareNames = wNames )
 > print( concavAids2 )
 
-Checking concavity of an estimated Almost Ideal Demand System (AIDS):
+Checking the concavity condition of an Almost Ideal Demand System (AIDS):
 Concavity is fulfilled at 0 out of 32 observations (0%)
 > class( concavAids2 ) <- NULL
 > print( concavAids2 )
@@ -4980,7 +4989,7 @@ $concavPercent
 +    data = Blanciforti86[ set, ] )
 > print( concavLaS )
 
-Checking concavity of an estimated Almost Ideal Demand System (AIDS):
+Checking the concavity condition of an Almost Ideal Demand System (AIDS):
 Concavity is fulfilled at 0 out of 32 observations (0%)
 > class( concavLaS ) <- NULL
 > print( concavLaS )
