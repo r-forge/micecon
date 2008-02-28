@@ -82,20 +82,20 @@ aidsMono( priceNames, totExpName, coef, data,
    ## AIDS
    estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, method = "IL" )
-   aidsMono( priceNames, "xFood", data = Blanciforti86,
-      coef = coef( estResult ) )
+   aidsMono( priceNames, "xFood", coef = coef( estResult ),
+      data = Blanciforti86 )
 
    ## LA-AIDS with Tornqvist price index
    estResultLaT <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, priceIndex = "T" )
    # with fitted expenditure shares in the price index
-   aidsMono( priceNames, "xFood", data = Blanciforti86,
-      coef = coef( estResultLaT ), priceIndex = "T",
+   aidsMono( priceNames, "xFood", coef = coef( estResultLaT ),
+      data = Blanciforti86, priceIndex = "T",
       basePrices = estResultLaT$basePrices,
       baseShares = estResultLaT$baseShares )
    # with observed expenditure shares in the price index
-   aidsMono( priceNames, "xFood", data = Blanciforti86,
-      coef = coef( estResultLaT ), priceIndex = estResultLaT$lnp )
+   aidsMono( priceNames, "xFood", coef = coef( estResultLaT ),
+      data = Blanciforti86, priceIndex = estResultLaT$lnp )
 }
 
 \keyword{models}
