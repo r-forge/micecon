@@ -1,4 +1,4 @@
-aidsCoef <- function( coef, nGoods, nShifter = 0, cov = NULL, df = 1,
+.aidsCoef <- function( coef, nGoods, nShifter = 0, cov = NULL, df = 1,
       LA = TRUE, priceNames = NULL, shareNames = NULL, shifterNames = NULL,
       alpha0 = NULL ) {
    # nGoods <- -0.5 + ( 2.25 + nrow( array( coef ) ) )^0.5

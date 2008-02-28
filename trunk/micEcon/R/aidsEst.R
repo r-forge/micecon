@@ -97,7 +97,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
          inst = ivFormula, ... )
    }
    if( method == "LA" ) {
-      result$coef <- aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
+      result$coef <- .aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
          cov = vcov( est ), priceNames = priceNames, shareNames = shareNames,
          shifterNames = shifterNames, df = df.residual( est ) )   # coefficients
       result$wFitted <- aidsCalc( priceNames, totExpName, data = data,
@@ -115,7 +115,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
          bl     <- b              # coefficients of previous step
          sysData$lxtr <- log( data[[ totExpName ]] ) -
             aidsPx( "TL", priceNames, shareNames = shareNames, data = data,
-            coef = aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
+            coef = .aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
                alpha0 = alpha0 ) )
             # real total expenditure using Translog price index
          if( restrict.regMat ) {
@@ -134,7 +134,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       # calculating log of "real" (deflated) total expenditure
       sysData$lxtr <- log( data[[ totExpName ]] ) -
          aidsPx( "TL", priceNames, data = data,
-         coef = aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
+         coef = .aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
             alpha0 = alpha0 ) )
       # calculating matrix G
       Gmat <- cbind( rep( 1, nObs ), sysData$lxtr )
@@ -170,7 +170,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       JmatInv <- modRegMat %*% solve( Jmat, t( modRegMat ) )
       bcov <- JmatInv  %*% ( est$residCov %x% crossprod( Gmat ) ) %*%
          t( JmatInv )
-      result$coef <- aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
+      result$coef <- .aidsCoef( coef( est ), nGoods = nGoods, nShifter = nShifter,
          cov = bcov, priceNames = priceNames, shareNames = shareNames,
          shifterNames = shifterNames, df = df.residual( est ) )  # coefficients
       result$coef$alpha0 <- alpha0

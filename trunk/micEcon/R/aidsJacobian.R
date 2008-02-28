@@ -4,7 +4,7 @@ aidsJacobian <- function( allCoef, priceNames, totExpName, data = NULL,
    nGoods <- length( priceNames )
    nShifter <- length( shifterNames )
    nExogEq <- 2 + nGoods + nShifter
-   coef <- aidsCoef( allCoef, nGoods = nGoods, nShifter = nShifter, alpha0 = alpha0 )
+   coef <- .aidsCoef( allCoef, nGoods = nGoods, nShifter = nShifter, alpha0 = alpha0 )
    hom <- all.equal( rowSums( coef$gamma ), rep( 0, nGoods ) ) == TRUE
    sym <- all.equal( coef$gamma, t( coef$gamma ) ) == TRUE
    lnp <- aidsPx( "TL", priceNames, coef = coef, data = data )
