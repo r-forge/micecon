@@ -1,4 +1,4 @@
-aidsConcav <- function( priceNames, totExpName, data, coef,
+aidsConcav <- function( priceNames, totExpName, coef, data,
       shareNames = NULL ) {
 
    if( !is.null( shareNames ) && length( priceNames ) != length( shareNames ) ) {

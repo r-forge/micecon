@@ -8,7 +8,7 @@
 }
 
 \usage{
-aidsConcav( priceNames, totExpName, data, coef, shareNames = NULL )
+aidsConcav( priceNames, totExpName, coef, data, shareNames = NULL )
 
 \method{print}{aidsConcav}( x, ... )
 }
@@ -16,9 +16,9 @@ aidsConcav( priceNames, totExpName, data, coef, shareNames = NULL )
 \arguments{
    \item{priceNames}{a vector of strings containing the names of the prices.}
    \item{totExpName}{a string containing the variable name of total expenditure.}
-   \item{data}{a data frame containing the data.}
    \item{coef}{a list containing the coefficients alpha, beta, gamma,
       and (only for the translog price index) alpha0.}
+   \item{data}{a data frame containing the data.}
    \item{shareNames}{a vector of strings containing the names of the expenditure
       shares.}
    \item{x}{an object of class \code{aidsConcav}.}
@@ -67,8 +67,8 @@ aidsConcav( priceNames, totExpName, data, coef, shareNames = NULL )
 
    estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, method = "IL" )
-   aidsConcav( priceNames, "xFood", data = Blanciforti86,
-      coef = estResult$coef, shareNames = shareNames )
+   aidsConcav( priceNames, "xFood", coef = estResult$coef,
+      data = Blanciforti86, shareNames = shareNames )
 }
 
 \keyword{models}
