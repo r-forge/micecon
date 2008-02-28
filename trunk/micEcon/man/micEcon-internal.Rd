@@ -1,5 +1,4 @@
 \name{micEcon-internal}
-\alias{aidsCoef}
 \alias{aidsElasJacobian}
 \alias{aidsJacobian}
 \alias{aidsRestr}
