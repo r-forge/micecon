@@ -1,5 +1,5 @@
 checkConsist <- function( object, ... ) {
-    UseMethod( "testConsist" )
+    UseMethod( "checkConsist" )
 }
 
 checkConsist.aidsEst <- function( object, ... ) {
