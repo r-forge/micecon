@@ -1,5 +1,4 @@
 \name{micEcon-internal}
-\alias{aidsSystem}
 \alias{checkNames}
 \alias{micEconIndex}
 \alias{print.snqProfitImposeConvexity}
