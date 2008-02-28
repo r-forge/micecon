@@ -1,21 +1,6 @@
 aidsMono <- function( priceNames, totExpName, data, coef,
-      priceIndex = "TL", basePrices = NULL, baseShares = NULL,
-      shareNames = NULL ) {
+      priceIndex = "TL", basePrices = NULL, baseShares = NULL ) {
 
-   if( !is.null( shareNames ) ){
-      if( priceIndex == "TL" ) {
-         warning( "ignoring argument 'shareNames', because they are",
-            " not needed for calculating the translog price index" )
-      } else {
-         priceIndex <- aidsPx( priceIndex = priceIndex, priceNames = priceNames,
-            data = data, shareNames = shareNames,
-            base = list( prices = basePrices, shares = baseShares ) )
-      }
-   }
-
-   if( !is.null( shareNames ) && length( priceNames ) != length( shareNames ) ) {
-      stop( "arguments 'priceNames' and 'shareNames' must have the same length" )
-   }
    if( is.null( coef$alpha0 ) && priceIndex == "TL" ) {
       stop( "argument 'coef' must have element 'alpha0'" )
    }

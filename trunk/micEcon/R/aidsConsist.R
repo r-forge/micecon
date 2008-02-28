@@ -2,16 +2,9 @@ aidsConsist <- function( priceNames, totExpName, data, coef,
       priceIndex = "TL", basePrices = NULL, baseShares = NULL,
       shareNames = NULL ) {
 
-   if( priceIndex == "TL" ){
-      shareNamesMono <- NULL
-   } else {
-      shareNamesMono <- shareNames
-   }
-
    monoResult <- aidsMono( priceNames = priceNames, totExpName = totExpName,
       data = data, coef = coef, priceIndex = priceIndex,
-      basePrices = basePrices, baseShares = baseShares,
-      shareNames = shareNamesMono )
+      basePrices = basePrices, baseShares = baseShares )
 
    concResult <- aidsConcav( priceNames = priceNames, totExpName = totExpName,
       data = data, coef = coef, shareNames = shareNames )
