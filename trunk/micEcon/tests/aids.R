@@ -472,6 +472,33 @@ fittedLaT2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 all.equal( fittedLaT2, fittedLaT2b, check.attributes = FALSE )
 
 
+####### monotonicity ###################
+# AIDS
+monoAids <- aidsMono( pNames, "xFood", coef = coef( estResultAIDS ),
+      data = Blanciforti86[ set, ] )
+print( monoAids )
+class( monoAids ) <- NULL
+print( monoAids )
+
+# LA-AIDS with Tornqvist price index
+# with fitted expenditure shares in the price index
+monoLaT <- aidsMono( pNames, "xFood", coef = coef( estResultLaT ),
+   data = Blanciforti86[ set, ], priceIndex = "T",
+   basePrices = estResultLaT$basePrices,
+   baseShares = estResultLaT$baseShares )
+print( monoLaT )
+class( monoLaT ) <- NULL
+print( monoLaT )
+
+# LA-AIDS with Tornqvist price index
+# with observed expenditure shares in the price index
+monoLaT2 <- aidsMono( pNames, "xFood", coef = coef( estResultLaT ),
+   data = Blanciforti86[ set, ], priceIndex = estResultLaT$lnp )
+print( monoLaT2 )
+class( monoLaT2 ) <- NULL
+print( monoLaT2 )
+
+
 ####### consistency ###################
 # with observed expenditure shares
 consist <- aidsConsist( pNames, "xFood", Blanciforti86[ set, ],

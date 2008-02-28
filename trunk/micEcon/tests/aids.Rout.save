@@ -4391,6 +4391,87 @@ In aidsPx("T", pNames, shareNames = c("w1", "w2", "w3", "w4"), data = B86LaT2,  
 [1] TRUE
 > 
 > 
+> ####### monotonicity ###################
+> # AIDS
+> monoAids <- aidsMono( pNames, "xFood", coef = coef( estResultAIDS ),
++       data = Blanciforti86[ set, ] )
+> print( monoAids )
+
+Checking monotonicity of an estimated Almost Ideal Demand System (AIDS):
+Monotonicity is fulfilled at 32 out of 32 observations (100%)
+> class( monoAids ) <- NULL
+> print( monoAids )
+$monotony
+1947 1948 1949 1950 1951 1952 1953 1954 1955 1956 1957 1958 1959 1960 1961 1962 
+TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE 
+1963 1964 1965 1966 1967 1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 1978 
+TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE 
+
+$nValidObs
+[1] 32
+
+$nMonoObs
+[1] 32
+
+$monoPercent
+[1] 100
+
+> 
+> # LA-AIDS with Tornqvist price index
+> # with fitted expenditure shares in the price index
+> monoLaT <- aidsMono( pNames, "xFood", coef = coef( estResultLaT ),
++    data = Blanciforti86[ set, ], priceIndex = "T",
++    basePrices = estResultLaT$basePrices,
++    baseShares = estResultLaT$baseShares )
+> print( monoLaT )
+
+Checking monotonicity of an estimated Almost Ideal Demand System (AIDS):
+Monotonicity is fulfilled at 32 out of 32 observations (100%)
+> class( monoLaT ) <- NULL
+> print( monoLaT )
+$monotony
+1947 1948 1949 1950 1951 1952 1953 1954 1955 1956 1957 1958 1959 1960 1961 1962 
+TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE 
+1963 1964 1965 1966 1967 1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 1978 
+TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE 
+
+$nValidObs
+[1] 32
+
+$nMonoObs
+[1] 32
+
+$monoPercent
+[1] 100
+
+> 
+> # LA-AIDS with Tornqvist price index
+> # with observed expenditure shares in the price index
+> monoLaT2 <- aidsMono( pNames, "xFood", coef = coef( estResultLaT ),
++    data = Blanciforti86[ set, ], priceIndex = estResultLaT$lnp )
+> print( monoLaT2 )
+
+Checking monotonicity of an estimated Almost Ideal Demand System (AIDS):
+Monotonicity is fulfilled at 32 out of 32 observations (100%)
+> class( monoLaT2 ) <- NULL
+> print( monoLaT2 )
+$monotony
+1947 1948 1949 1950 1951 1952 1953 1954 1955 1956 1957 1958 1959 1960 1961 1962 
+TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE 
+1963 1964 1965 1966 1967 1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 1978 
+TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE 
+
+$nValidObs
+[1] 32
+
+$nMonoObs
+[1] 32
+
+$monoPercent
+[1] 100
+
+> 
+> 
 > ####### consistency ###################
 > # with observed expenditure shares
 > consist <- aidsConsist( pNames, "xFood", Blanciforti86[ set, ],
