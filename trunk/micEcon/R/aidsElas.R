@@ -118,7 +118,7 @@ aidsElas <- function( coef, shares, prices = NULL, method = "AIDS",
    rownames( ela$marshall ) <- quantNames
    colnames( ela$marshall ) <- priceNames
    if( !is.null( coefVcov ) && method %in% c( "AIDS" ) ) {
-      jacobian <- aidsElasJacobian( coef = coef, share = shares, price = prices,
+      jacobian <- .aidsElasJacobian( coef = coef, share = shares, price = prices,
          method = method, quantNames = quantNames, priceNames = priceNames )
       ela$allVcov      <- jacobian$all      %*% coefVcov %*% t( jacobian$all )
       ela$expVcov      <- jacobian$exp      %*% coefVcov %*% t( jacobian$exp )
