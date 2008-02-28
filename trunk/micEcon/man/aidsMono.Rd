@@ -12,8 +12,7 @@
 
 \usage{
 aidsMono( priceNames, totExpName, data, coef,
-   priceIndex = "TL", basePrices = NULL, baseShares = NULL,
-   shareNames = NULL )
+   priceIndex = "TL", basePrices = NULL, baseShares = NULL )
 
 \method{print}{aidsMono}( x, ... )
 }
@@ -31,8 +30,6 @@ aidsMono( priceNames, totExpName, data, coef,
       Paasche, Laspeyres, and Tornqvist price index.}
    \item{baseShares}{a vector specifying the base expenditure shares for the
       Laspeyres, simplified Laspeyres, and Tornqvist index.}
-   \item{shareNames}{a vector of strings containing the names of the expenditure
-      shares.}
    \item{x}{an object of class \code{aidsMono}.}
    \item{...}{currently unused.}
 }
@@ -41,10 +38,15 @@ aidsMono( priceNames, totExpName, data, coef,
    Internally, \code{aidsMono} passes its arguments to \code{aidsCalc}
    and then checks for each observation, wether all expenditure shares
    are non-negative.
-   If argument \code{shareNames} is specified,
-   the price index of the LA-AIDS is calculated using observed shares;
-   if argument \code{shareNames} is \code{NULL} (e.g., not specified),
-   fitted shares are used for in the price index.
+
+   If argument \code{priceIndex} specifies a price index of the LA-AIDS,
+   'fitted' values are used for current and lagged expenditure shares
+   in these price indices
+   (see \code{\link{aidsCalc}}).
+   However, if argument \code{priceIndex} is a numeric vector
+   containing the log values of a price index
+   (e.g.\ the price index used in the estimation),
+   this price index is used for the calculations.
 }
 
 \value{
@@ -77,10 +79,23 @@ aidsMono( priceNames, totExpName, data, coef,
    priceNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
    shareNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 
+   ## AIDS
    estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, method = "IL" )
    aidsMono( priceNames, "xFood", data = Blanciforti86,
-      coef = estResult$coef )
+      coef = coef( estResult ) )
+
+   ## LA-AIDS with Tornqvist price index
+   estResultLaT <- aidsEst( priceNames, shareNames, "xFood",
+      data = Blanciforti86, priceIndex = "T" )
+   # with fitted expenditure shares in the price index
+   aidsMono( priceNames, "xFood", data = Blanciforti86,
+      coef = coef( estResultLaT ), priceIndex = "T",
+      basePrices = estResultLaT$basePrices,
+      baseShares = estResultLaT$baseShares )
+   # with observed expenditure shares in the price index
+   aidsMono( priceNames, "xFood", data = Blanciforti86,
+      coef = coef( estResultLaT ), priceIndex = estResultLaT$lnp )
 }
 
 \keyword{models}
