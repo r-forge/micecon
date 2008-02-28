@@ -87,7 +87,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    }
    restr <- .aidsRestr( nGoods = nGoods, hom = hom, sym = sym, restrict.regMat = restrict.regMat, nShifter = nShifter )
       # restrictions for homogeneity and symmetry
-   system <- aidsSystem( nGoods = nGoods, nShifter = nShifter ) # LA-AIDS equation system
+   system <- .aidsSystem( nGoods = nGoods, nShifter = nShifter ) # LA-AIDS equation system
    # estimate system
    if( restrict.regMat ) {
       est <- systemfit( system, estMethod, data = sysData, restrict.regMat = restr,
