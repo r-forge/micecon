@@ -2,14 +2,14 @@
 \alias{aidsConsist}
 \alias{print.aidsConsist}
 \alias{testConsist.aidsEst}
-\title{Consistency Test of the AIDS}
+\title{Check Consistency of the AIDS}
 \description{
-   Test whether the specification of the AIDS is consistent
+   Check whether the specification of the AIDS is consistent
    with microeconomic demand theory (i.e. utility maximisation).
 }
 
 \usage{
-aidsConsist( priceNames, totExpName, data, coef,
+aidsConsist( priceNames, totExpName, coef, data,
    priceIndex = "TL", basePrices = NULL, baseShares = NULL,
    shareNames = NULL )
 
@@ -21,18 +21,21 @@ aidsConsist( priceNames, totExpName, data, coef,
 \arguments{
    \item{priceNames}{a vector of strings containing the names of the prices.}
    \item{totExpName}{a string containing the variable name of total expenditure.}
-   \item{data}{a data frame containing the data.}
    \item{coef}{a list containing the coefficients alpha, beta, gamma,
       and (only for the translog price index) alpha0.}
+   \item{data}{a data frame containing the data.}
    \item{priceIndex}{a character string specifying the price index
       (see \code{\link{aidsPx}})
-      or a numeric vector providing the log values of the price index.}
+      or a numeric vector providing the log values of the price index
+      (passed to \code{\link{aidsMono}}.}
    \item{basePrices}{a vector specifying the base prices for the
-      Paasche, Laspeyres, and Tornqvist price index.}
+      Paasche, Laspeyres, and Tornqvist price index
+      (passed to \code{\link{aidsMono}}.}
    \item{baseShares}{a vector specifying the base expenditure shares for the
-      Laspeyres, simplified Laspeyres, and Tornqvist index.}
+      Laspeyres, simplified Laspeyres, and Tornqvist index
+      (passed to \code{\link{aidsMono}}.}
    \item{shareNames}{a vector of strings containing the names of the expenditure
-      shares.}
+      shares (passed to \code{\link{aidsConcav}}.}
    \item{x}{an object of class \code{aidsConsist}.}
    \item{object}{an object of class \code{aidsEst}.}
    \item{...}{currently not used.}
@@ -42,27 +45,17 @@ aidsConsist( priceNames, totExpName, data, coef,
    \code{testConsist.aidsEst} is a wrapper function to \code{aidsConsist}
    that extracts all relevant arguments for \code{aidsConsist}
    from \code{object}.
-
-   If argument \code{shareNames} is specified,
-   observed shares are used for the calculation of the 'C' matrices
-   to check for concavity;
-   if argument \code{shareNames} is \code{NULL} (e.g., not specified),
-   fitted shares are used for the calculation of the 'C' matrices.
 }
 
 \value{
    \code{aidsConsist} returns a list of class \code{aidsConsist}
    that contains following elements:
-   \item{monotony}{a logical vector indicating whether the monotony
-      condition is fulfilled at each observation.}
-   \item{mPercent}{percent of observations where the monotony condition is
-      fulfilled.}
-   \item{concavity}{a logical vector indicating whether the concavity
-      condition is fulfilled at each observation.}
-   \item{cPercent}{percent of observations where the concavity condition is
-      fulfilled.}
-   \item{cMatrices}{a list of the 'C' matrices for each observation to check
-      for concavity (see Deaton and Muellbauer, 1980b, p.76 ).}
+   \item{addingUp}{logical. Is the addinp-up condition fulfilled?}
+   \item{homogeneity}{logical. Is the homogeneity condition fulfilled?}
+   \item{symmetry}{logical. Is the symmetry condition fulfilled?}
+   \item{mono}{an object returned by \code{\link{aidsMono}}.}
+   \item{concav}{an object returned by \code{\link{aidsMono}}
+      (only for the AIDS, i.e. if argument \code{priceIndex} is \code{"TL"}.}
 }
 \references{
    Deaton, A.S. and J. Muellbauer (1980a)
@@ -76,7 +69,7 @@ aidsConsist( priceNames, totExpName, data, coef,
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
-\seealso{\code{\link{aidsEst}}, \code{\link{aidsElas}}}
+\seealso{\code{\link{aidsEst}}}
 
 \examples{
    data( Blanciforti86 )
@@ -89,7 +82,7 @@ aidsConsist( priceNames, totExpName, data, coef,
    estResult <- aidsEst( priceNames, shareNames, "xFood",
       data = Blanciforti86, method = "IL" )
    aidsConsist( priceNames, "xFood", data = Blanciforti86,
-      coef = estResult$coef, shareNames = shareNames )
+      coef = estResult$coef )
 
    # the same can be obtained in an easier way
    testConsist.aidsEst( estResult )

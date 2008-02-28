@@ -530,6 +530,8 @@ consist <- aidsConsist( pNames, "xFood", Blanciforti86[ set, ],
    coef = estResultAIDS$coef, shareNames = wNames )
 print( consist )
 class( consist ) <- NULL
+class( consist$mono ) <- NULL
+class( consist$concav ) <- NULL
 print( consist )
 
 # with fitted expenditure shares
@@ -537,6 +539,8 @@ consistFitted <- aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = estResultAIDS$coef )
 print( consistFitted )
 class( consistFitted ) <- NULL
+class( consistFitted$mono ) <- NULL
+class( consistFitted$concav ) <- NULL
 print( consistFitted )
 
 
