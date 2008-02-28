@@ -1,4 +1,4 @@
-aidsJacobian <- function( allCoef, priceNames, totExpName, data = NULL,
+.aidsJacobian <- function( allCoef, priceNames, totExpName, data = NULL,
       shifterNames = NULL, omitLast = TRUE, alpha0 = 0 ) {
    nObs <- nrow( data )
    nGoods <- length( priceNames )
