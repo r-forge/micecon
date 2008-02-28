@@ -27,6 +27,11 @@ aidsMono <- function( priceNames, totExpName, coef, data,
    result$nValidObs <- sum( !is.na( result$monotony ) )
    result$nMonoObs <- sum( result$monotony, na.rm = TRUE )
    result$monoPercent <- 100 * result$nMonoObs / result$nValidObs
+   if( is.character( priceIndex ) ) {
+      result$priceIndex <- priceIndex
+   } else {
+      result$priceIndex <- "numeric"
+   }
 
    class( result ) <- "aidsMono"
    return( result )

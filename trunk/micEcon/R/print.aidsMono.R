@@ -1,6 +1,10 @@
 print.aidsMono <- function( x, ... ) {
-   cat( "\nChecking monotonicity of an estimated " )
-   cat( "Almost Ideal Demand System (AIDS):\n" )
+   cat( "\nChecking the monotonicity condition of an " )
+   if( x$priceIndex == "TL" ) {
+      cat( "Almost Ideal Demand System (AIDS):\n" )
+   } else {
+      cat( "Linear Approximate Almost Ideal Demand System (LA-AIDS):\n" )
+   }
    cat( "Monotonicity is fulfilled at " )
    cat( x$nMonoObs, "out of", x$nValidObs, "observations" )
    cat( " (", x$monoPercent, "%)\n", sep = "" )
