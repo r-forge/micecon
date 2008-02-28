@@ -85,7 +85,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
          sysData[[ paste( "s", i, sep = "" ) ]] <- data[[ shifterNames[ i ] ]]
       }
    }
-   restr <- aidsRestr( nGoods = nGoods, hom = hom, sym = sym, restrict.regMat = restrict.regMat, nShifter = nShifter )
+   restr <- .aidsRestr( nGoods = nGoods, hom = hom, sym = sym, restrict.regMat = restrict.regMat, nShifter = nShifter )
       # restrictions for homogeneity and symmetry
    system <- aidsSystem( nGoods = nGoods, nShifter = nShifter ) # LA-AIDS equation system
    # estimate system
@@ -157,7 +157,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
       jacobian <- .aidsJacobian( coef( est ), priceNames, totExpName, data = data,
          shifterNames = shifterNames, alpha0 = alpha0 )
       if( hom ) {
-         modRegMat <- aidsRestr( nGoods = nGoods, nShifter = nShifter,
+         modRegMat <- .aidsRestr( nGoods = nGoods, nShifter = nShifter,
             hom = hom, sym = sym, restrict.regMat = TRUE )
       } else {
          modRegMat <- diag( ( nGoods - 1 ) * ( nGoods + 2 + nShifter ) )
