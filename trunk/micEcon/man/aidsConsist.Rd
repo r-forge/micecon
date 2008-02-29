@@ -15,7 +15,7 @@ aidsConsist( priceNames, totExpName, coef, data,
 
 \method{print}{aidsConsist}( x, ... )
 
-\method{checkConsist}{aidsEst}( object, ... )
+\method{checkConsist}{aidsEst}( object, observedShares = FALSE, ... )
 }
 
 \arguments{
@@ -38,17 +38,23 @@ aidsConsist( priceNames, totExpName, coef, data,
       shares (passed to \code{\link{aidsConcav}}.}
    \item{x}{an object of class \code{aidsConsist}.}
    \item{object}{an object of class \code{aidsEst}.}
+   \item{observedShares}{logical. Using observed shares? (see details).}
    \item{...}{currently not used.}
 }
 
 \details{
-   \code{checkConsist.aidsEst} is a wrapper function to \code{aidsConsist}
-   that extracts all relevant arguments for \code{aidsConsist}
-   from \code{object}.
+   The \code{checkConsist} method for objects of class \code{aidsEst}
+   extracts all relevant elements from an object returned by \code{aidsEst}
+   and passes them as arguments to \code{aidsConsist}.
+   The optional argument \code{observedShares} determines
+   whether fitted (default) or observed expenditure shares are
+   used in the price index of the LA-AIDS to check monotonicity
+   and in the calculation of the subsitution matrix to check concavity.
 }
 
 \value{
-   \code{aidsConsist} returns a list of class \code{aidsConsist}
+   \code{aidsConsist} and the \code{checkConsist} method
+   return a list of class \code{aidsConsist}
    that contains following elements:
    \item{addingUp}{logical. Is the addinp-up condition fulfilled?}
    \item{homogeneity}{logical. Is the homogeneity condition fulfilled?}
@@ -85,7 +91,7 @@ aidsConsist( priceNames, totExpName, coef, data,
       coef = estResult$coef )
 
    # the same can be obtained in an easier way
-   checkConsist.aidsEst( estResult )
+   checkConsist( estResult )
 }
 
 \keyword{models}
