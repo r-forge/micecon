@@ -27,7 +27,7 @@ elas.aidsEst <- function( object, method = NULL, ... ) {
       shares = object$wMeans, prices = object$pMeans,
       method = method,
       priceNames = object$priceNames,
-      coefVcov = object$coef$allcov, df = object$est$df, ... )
+      coefCov = object$coef$allcov, df = object$est$df, ... )
 
    return( result )
 }

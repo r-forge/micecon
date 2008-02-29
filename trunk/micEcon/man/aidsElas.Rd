@@ -12,7 +12,7 @@
 \usage{
    aidsElas( coef, prices = NULL, shares = NULL, totExp = NULL,
       method = "AIDS", priceIndex = "TL", basePrices = NULL, baseShares = NULL,
-      quantNames = NULL, priceNames = NULL, coefVcov = NULL, df = NULL )
+      quantNames = NULL, priceNames = NULL, coefCov = NULL, df = NULL )
 
    \method{elas}{aidsEst}( object, method = NULL, ... )
 
@@ -36,7 +36,7 @@
       the quantities to label elasticities.}
    \item{priceNames}{an optional vector of strings containing the names of
       the prices to label elasticities.}
-   \item{coefVcov}{variance covariance matrix of the coefficients (optional).}
+   \item{coefCov}{variance covariance matrix of the coefficients (optional).}
    \item{df}{degrees of freedom to calculate P-values of the elasticities 
       (optional).}
    \item{object}{an object of class \code{aidsEst}.}
