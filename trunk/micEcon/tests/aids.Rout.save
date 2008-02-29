@@ -2803,9 +2803,6 @@ q_wFood1 -0.354 -0.2447  0.0965  0.502
 q_wFood2 -0.378 -0.0229  0.1506  0.250
 q_wFood3  0.226  0.2286 -0.7730  0.318
 q_wFood4  0.447  0.1442  0.1209 -0.713
-Warning message:
-In aidsElas(coef(estResultLaS), prices = pMeans, totExp = xtMean,  :
-  methods 'Go', 'Ch', and 'EU' do not require argument 'prices'
 > 
 > aidsElas( coef( estResultLaS ), prices = pMeans, shares = wMeans,
 +    method = "B1" )
