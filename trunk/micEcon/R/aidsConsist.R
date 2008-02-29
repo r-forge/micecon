@@ -21,10 +21,12 @@ aidsConsist <- function( priceNames, totExpName, coef, data,
       data = data, coef = coef, priceIndex = priceIndex,
       basePrices = basePrices, baseShares = baseShares )
 
-   if( priceIndex == "TL" ) {
-      result$concav <- aidsConcav( priceNames = priceNames,
-         totExpName = totExpName, data = data, coef = coef,
-         shareNames = shareNames )
+   if( is.character( priceIndex ) ) {
+      if( priceIndex == "TL" ) {
+         result$concav <- aidsConcav( priceNames = priceNames,
+            totExpName = totExpName, data = data, coef = coef,
+            shareNames = shareNames )
+      }
    }
 
    class( result ) <- "aidsConsist"

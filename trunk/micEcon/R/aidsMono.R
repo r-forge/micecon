@@ -1,8 +1,10 @@
 aidsMono <- function( priceNames, totExpName, coef, data,
       priceIndex = "TL", basePrices = NULL, baseShares = NULL ) {
 
-   if( is.null( coef$alpha0 ) && priceIndex == "TL" ) {
-      stop( "argument 'coef' must have element 'alpha0'" )
+   if( is.character( priceIndex ) ) {
+      if( is.null( coef$alpha0 ) && priceIndex == "TL" ) {
+         stop( "argument 'coef' must have element 'alpha0'" )
+      }
    }
 
    result <- list()
