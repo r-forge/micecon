@@ -543,6 +543,51 @@ class( consistFitted$mono ) <- NULL
 class( consistFitted$concav ) <- NULL
 print( consistFitted )
 
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLaS ),
+   priceIndex = "S" )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLaP ),
+   priceIndex = "P", basePrices = estResultLaP$basePrices )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLaL ),
+   priceIndex = "L", basePrices = estResultLaL$basePrices,
+   baseShares = estResultLaL$baseShares )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLaT ),
+   priceIndex = "T", basePrices = estResultLaT$basePrices,
+   baseShares = estResultLaT$baseShares )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLA ),
+   priceIndex = "SL" )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLATX ),
+   priceIndex = "SL" )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLAhom ),
+   priceIndex = "SL" )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLAhomTX ),
+   priceIndex = "SL" )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLAunr ),
+   priceIndex = "SL" )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLAunrTX ),
+   priceIndex = "SL" )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultAIDS ) )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultAIDSTX ) )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultAIDShom ) )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultAIDShomTX ) )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultAIDSunr ) )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultAIDSunrTX ) )
+
 
 ## replicating the LA-AIDS estimation of the SAS example
 # loading data set
