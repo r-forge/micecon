@@ -47,11 +47,6 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
          stop( "methods 'AIDS', 'GA', 'B1', and 'B2'",
             " require argument 'prices'" )
       }
-   } else if( method %in% c( "Go", "Ch", "EU" ) ) {
-      if( !is.null( prices ) ) {
-         warning( "methods 'Go', 'Ch', and 'EU'",
-            " do not require argument 'prices'" )
-      }
    }
 
    ela <- list()
