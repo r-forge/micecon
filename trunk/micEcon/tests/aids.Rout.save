@@ -6109,7 +6109,6 @@ The adding-up condition is fulfilled
 The homogeneity condition is fulfilled
 The symmetry condition is NOT fulfilled
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
-Concavity is fulfilled at 16 out of 32 observations (50%)
 > aidsConsist( pNames, totExpName = "xFood",
 +    data = Blanciforti86[ set, ], coef = coef( estResultAIDShomTX ) )
 
@@ -6118,7 +6117,6 @@ The adding-up condition is fulfilled
 The homogeneity condition is fulfilled
 The symmetry condition is NOT fulfilled
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
-Concavity is fulfilled at 16 out of 32 observations (50%)
 > aidsConsist( pNames, totExpName = "xFood",
 +    data = Blanciforti86[ set, ], coef = coef( estResultAIDSunr ) )
 
@@ -6127,7 +6125,6 @@ The adding-up condition is fulfilled
 The homogeneity condition is NOT fulfilled
 The symmetry condition is NOT fulfilled
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
-Concavity is fulfilled at 24 out of 32 observations (75%)
 > aidsConsist( pNames, totExpName = "xFood",
 +    data = Blanciforti86[ set, ], coef = coef( estResultAIDSunrTX ) )
 
@@ -6136,7 +6133,6 @@ The adding-up condition is fulfilled
 The homogeneity condition is NOT fulfilled
 The symmetry condition is NOT fulfilled
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
-Concavity is fulfilled at 24 out of 32 observations (75%)
 > aidsConsist( pNames, totExpName = "xFood",
 +    data = Blanciforti86[ set, ], coef = coef( estResultAIDSunrTX ),
 +    shareNames = wNames )
@@ -6146,7 +6142,6 @@ The adding-up condition is fulfilled
 The homogeneity condition is NOT fulfilled
 The symmetry condition is NOT fulfilled
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
-Concavity is fulfilled at 24 out of 32 observations (75%)
 > 
 > ## checkConsist
 > # AIDS

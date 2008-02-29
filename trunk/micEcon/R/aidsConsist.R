@@ -22,7 +22,7 @@ aidsConsist <- function( priceNames, totExpName, coef, data,
       basePrices = basePrices, baseShares = baseShares )
 
    if( is.character( priceIndex ) ) {
-      if( priceIndex == "TL" ) {
+      if( priceIndex == "TL" && result$symmetry ) {
          result$concav <- aidsConcav( priceNames = priceNames,
             totExpName = totExpName, data = data, coef = coef,
             shareNames = shareNames )
