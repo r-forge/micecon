@@ -8,6 +8,7 @@ pNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
 wNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 wMeans <- colMeans( Blanciforti86[ set, wNames ] )
 pMeans <- colMeans( Blanciforti86[ set, pNames ] )
+xtMean <- mean( Blanciforti86[ set, "xFood" ] )
 
 
 ## estimations with different price indices
@@ -186,11 +187,11 @@ print( elas( estResultAIDSNa, method = "AIDS", quantNames = wNames ) )
 
 ########## Elasticities ###############
 cat( "\nAIDS: Elasticities\n" )
-ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, method = "AIDS",
+ela <- aidsElas( estResultAIDS$coef, shares = wMeans, prices = pMeans, method = "AIDS",
    coefVcov = estResultAIDS$coef$allcov, df = estResultAIDS$est$df )
 print( ela )
 print( summary( ela ) )
-elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, method = "AIDS",
+elaTX <- aidsElas( estResultAIDSTX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
    coefVcov = estResultAIDSTX$coef$allcov, df = estResultAIDSTX$est$df )
 print( elaTX )
 print( summary( elaTX ) )
@@ -204,11 +205,11 @@ print( summary( elas( estResultAIDSTX ) ) )
 
 
 cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "AIDS",
+ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "AIDS",
    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 print( ela )
 print( summary( ela ) )
-elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, method = "AIDS",
+elaTX <- aidsElas( estResultLATX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
    coefVcov = estResultLATX$coef$allcov, df = estResultLATX$est$df )
 print( elaTX )
 print( summary( elaTX ) )
@@ -223,11 +224,11 @@ print( summary( elas( estResultLATX, method = "AIDS" ) ) )
 
 cat( "\n********** Elasticities ***************" )
 cat( "\nLA: Elasticity formula of Goddard or Chalfant\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, method = "Go",
+ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Go",
    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 print( ela )
 print( summary( ela ) )
-ela <- aidsElas( estResultLA$coef, wMeans, method = "Ch",
+ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Ch",
    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 print( ela )
 print( summary( ela ) )
@@ -240,20 +241,32 @@ print( summary( elas( estResultLATX ) ) )
 
 
 cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, method = "EU" )
+ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "EU" )
 print( ela )
 
 cat( "\nLA: Elasticity formula of Green + Alston\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "GA" )
+ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "GA" )
 print( ela )
 
 cat( "\nLA: Elasticity formula of Buse\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "B1" )
+ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B1" )
 print( ela )
 
 cat( "\nLA: Elasticity formula of Buse (alternative formula)\n" )
-ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "B2" )
+ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B2" )
 print( ela )
+
+aidsElas( coef( estResultTl ), prices = pMeans, shares = wMeans )
+aidsElas( coef( estResultTl ), prices = pMeans, totExp = xtMean )
+
+aidsElas( coef( estResultLaS ), shares = wMeans, method = "Ch" )
+aidsElas( coef( estResultLaS ), prices = pMeans, totExp = xtMean,
+   method = "Ch", priceIndex = "S" )
+
+aidsElas( coef( estResultLaS ), prices = pMeans, shares = wMeans,
+   method = "B1" )
+aidsElas( coef( estResultLaS ), prices = pMeans, totExp = xtMean,
+   method = "B1", priceIndex = "S" )
 
 
 ############# Price indices ##############

@@ -10,7 +10,8 @@
 }
 
 \usage{
-   aidsElas( coef, shares, prices = NULL, method = "AIDS",
+   aidsElas( coef, prices = NULL, shares = NULL, totExp = NULL,
+      method = "AIDS", priceIndex = "TL", basePrices = NULL, baseShares = NULL,
       quantNames = NULL, priceNames = NULL, coefVcov = NULL, df = NULL )
 
    \method{elas}{aidsEst}( object, method = NULL, ... )
@@ -20,10 +21,17 @@
 
 \arguments{
    \item{coef}{a list containing the coefficients alpha, beta and gamma.}
+   \item{prices}{a vector of the prices at which the elasticities should be calculated.}
    \item{shares}{a vector of the shares at which the elasticities should be calculated.}
-   \item{prices}{a vector of the prices at which the elasticities should be calculated
-      (only needed if method 'AIDS' is used).}
+   \item{totExp}{total expenditure at which the elasticities should be calculated.}
    \item{method}{the elasticity formula to be used (see details).}
+   \item{priceIndex}{the price index that should be used
+      for calculating (fitted) expenditure shares,
+      if argument \code{shares} is not provided (see \code{\link{aidsCalc}}).}
+   \item{basePrices}{a vector specifying the base prices for the
+      Paasche, Laspeyres, and Tornqvist price index.}
+   \item{baseShares}{a vector specifying the base expenditure shares for the
+      Laspeyres, simplified Laspeyres, and Tornqvist index.}
    \item{quantNames}{an optional vector of strings containing the names of
       the quantities to label elasticities.}
    \item{priceNames}{an optional vector of strings containing the names of
@@ -132,7 +140,7 @@
       data = Blanciforti86 )
    wMeans <- colMeans( Blanciforti86[ , c( "wFood1", "wFood2",
       "wFood3", "wFood4" ) ] )
-   aidsElas( estResult$coef, wMeans, method = "Ch" )
+   aidsElas( estResult$coef, shares = wMeans, method = "Ch" )
 
    ## Repeating the evaluation of different elasticity formulas of
    ## Green & Alston (1990)

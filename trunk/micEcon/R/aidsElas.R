@@ -1,17 +1,38 @@
-aidsElas <- function( coef, shares, prices = NULL, method = "AIDS",
+aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
+   method = "AIDS", priceIndex = "TL", basePrices = NULL, baseShares = NULL,
    quantNames = NULL, priceNames = NULL, coefVcov = NULL, df = NULL ) {
 
    nGoods <- length( coef$alpha )
 
    coefCheckResult <- .aidsCheckCoef( coef, variables = list(
       list( ifelse( is.null( prices ), NA, length( prices ) ), "prices", "goods" ),
-      list( length( shares ), "shares", "goods" ),
+      list( ifelse( is.null( shares ), NA, length( shares ) ), "shares", "goods" ),
       list( ifelse( is.null( quantNames ), NA, length( quantNames ) ), 
          "quantNames", "goods" ),
       list( ifelse( is.null( priceNames ), NA, length( priceNames ) ), 
          "priceNames", "goods" ) ) )
    if( !is.null( coefCheckResult ) ){
       stop( coefCheckResult )
+   }
+
+   if( is.null( shares ) ) {
+      if( is.null( prices ) ) {
+         stop( "either argument 'prices' or argument 'shares'",
+            " must be specified" )
+      }
+      if( is.null( totExp ) ) {
+         stop( "if argument 'shares' is not specified,",
+            " argument 'totExp' must be specified" )
+      }
+      tempData <- data.frame( totExp = totExp )
+      tempPriceNames <- paste ( "p", c( 1:nGoods ), sep = "" )
+      for( i in  1:nGoods ) {
+         tempData[[ tempPriceNames[ i ] ]] <- prices[ i ]
+      }
+      shares <- as.numeric( aidsCalc( priceNames = tempPriceNames,
+         totExpName = "totExp", coef = coef, data = tempData,
+         priceIndex = priceIndex, basePrices = basePrices,
+         baseShares = baseShares )$shares )
    }
 
    if( is.null( quantNames ) ) {
