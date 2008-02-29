@@ -53,6 +53,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    result$call <- match.call()
    wMeans <- numeric( nGoods )  # mean expenditure shares
    pMeans <- numeric( nGoods )  # mean prices
+   xtMean <- mean( data[[ totExpName ]][ sample ] )
    for( i in seq( nGoods ) ) {
       wMeans[ i ] <- mean( data[[ shareNames[ i ] ]][ sample ] )
       pMeans[ i ] <- mean( data[[ priceNames[ i ] ]][ sample ] )
@@ -222,6 +223,7 @@ aidsEst <- function( priceNames, shareNames, totExpName,
    result$lnp <- lnp
    result$wMeans <- wMeans
    result$pMeans <- pMeans
+   result$xtMean <- xtMean
    result$shareNames <- shareNames
    result$priceNames <- priceNames
    result$totExpName <- totExpName

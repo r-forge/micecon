@@ -100,6 +100,7 @@ aidsEst( priceNames, shareNames, totExpName, data,
    \item{lnp}{log of the price index used for estimation.}
    \item{pMeans}{means of the prices.}
    \item{wMeans}{means of the expenditure shares.}
+   \item{xtMean}{mean of total expenditure.}
    \item{call}{the call of \code{aidsEst}.}
    \item{priceNames}{names of the prices.}
    \item{shareNames}{names of the expenditure shares.}
