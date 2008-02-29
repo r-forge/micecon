@@ -547,8 +547,14 @@ aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = coef( estResultLaS ),
    priceIndex = "S" )
 aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLaS ),
+   priceIndex = estResultLaS$lnp )
+aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = coef( estResultLaP ),
    priceIndex = "P", basePrices = estResultLaP$basePrices )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLaP ),
+   priceIndex = estResultLaP$lnp )
 aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = coef( estResultLaL ),
    priceIndex = "L", basePrices = estResultLaL$basePrices,
@@ -558,6 +564,11 @@ aidsConsist( pNames, totExpName = "xFood",
    priceIndex = "T", basePrices = estResultLaT$basePrices,
    baseShares = estResultLaT$baseShares )
 aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLaT ),
+   priceIndex = "T", basePrices = estResultLaT$basePrices,
+   baseShares = estResultLaT$baseShares,
+   shareNames = wNames )
+aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = coef( estResultLA ),
    priceIndex = "SL" )
 aidsConsist( pNames, totExpName = "xFood",
@@ -566,6 +577,9 @@ aidsConsist( pNames, totExpName = "xFood",
 aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = coef( estResultLAhom ),
    priceIndex = "SL" )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLAhom ),
+   priceIndex = estResultLAhom$lnp, shareNames = wNames )
 aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = coef( estResultLAhomTX ),
    priceIndex = "SL" )
@@ -578,6 +592,9 @@ aidsConsist( pNames, totExpName = "xFood",
 aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = coef( estResultAIDS ) )
 aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultAIDS ),
+   shareNames = wNames )
+aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = coef( estResultAIDSTX ) )
 aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = coef( estResultAIDShom ) )
@@ -587,6 +604,52 @@ aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = coef( estResultAIDSunr ) )
 aidsConsist( pNames, totExpName = "xFood",
    data = Blanciforti86[ set, ], coef = coef( estResultAIDSunrTX ) )
+aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultAIDSunrTX ),
+   shareNames = wNames )
+
+## checkConsist
+# AIDS
+consistAids <- aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ setWo1, ], coef = coef( estResultAIDS ) )
+consistAids2 <- checkConsist( estResultAIDS )
+all.equal( consistAids, consistAids2 )
+
+# AIDS with observedShares = TRUE
+consistAidsSh <- aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ setWo1, ], coef = coef( estResultAIDS ),
+   shareNames = wNames )
+consistAidsSh2 <- checkConsist( estResultAIDS, observedShares = TRUE )
+all.equal( consistAidsSh, consistAidsSh2 )
+
+# LA-AIDS with Laspeyres index
+consistLaL <- aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLaL ),
+   priceIndex = "L", basePrices = estResultLaL$basePrices,
+   baseShares = estResultLaL$baseShares )
+consistLaL2 <- checkConsist( estResultLaL )
+all.equal( consistLaL, consistLaL2 )
+
+# LA-AIDS with Laspeyres index and observedShares = TRUE
+consistLaLSh <- aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLaL ),
+   priceIndex = estResultLaL$lnp, shareNames = wNames )
+consistLaLSh2 <- checkConsist( estResultLaL, observedShares = TRUE )
+all.equal( consistLaLSh, consistLaLSh2 )
+
+# LA-AIDS with Stone index with lagged shares
+consistLaSl <- aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLaSl ),
+   priceIndex = "SL" )
+consistLaSl2 <- checkConsist( estResultLaSl )
+all.equal( consistLaSl, consistLaSl2 )
+
+# LA-AIDS with Stone index with lagged shares and observedShares = TRUE
+consistLaSlSh <- aidsConsist( pNames, totExpName = "xFood",
+   data = Blanciforti86[ set, ], coef = coef( estResultLaSl ),
+   priceIndex = estResultLaSl$lnp, shareNames = wNames )
+consistLaSlSh2 <- checkConsist( estResultLaSl, observedShares = TRUE )
+all.equal( consistLaSlSh, consistLaSlSh2 )
 
 
 ## replicating the LA-AIDS estimation of the SAS example

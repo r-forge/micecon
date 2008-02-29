@@ -5820,8 +5820,26 @@ The homogeneity condition is fulfilled
 The symmetry condition is fulfilled
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
 > aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ set, ], coef = coef( estResultLaS ),
++    priceIndex = estResultLaS$lnp )
+
+Checking theoretical consistency of an Linear Approximate Almost Ideal Demand System (LA-AIDS):
+The adding-up condition is fulfilled
+The homogeneity condition is fulfilled
+The symmetry condition is fulfilled
+Monotonicity is fulfilled at 32 out of 32 observations (100%)
+> aidsConsist( pNames, totExpName = "xFood",
 +    data = Blanciforti86[ set, ], coef = coef( estResultLaP ),
 +    priceIndex = "P", basePrices = estResultLaP$basePrices )
+
+Checking theoretical consistency of an Linear Approximate Almost Ideal Demand System (LA-AIDS):
+The adding-up condition is fulfilled
+The homogeneity condition is fulfilled
+The symmetry condition is fulfilled
+Monotonicity is fulfilled at 32 out of 32 observations (100%)
+> aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ set, ], coef = coef( estResultLaP ),
++    priceIndex = estResultLaP$lnp )
 
 Checking theoretical consistency of an Linear Approximate Almost Ideal Demand System (LA-AIDS):
 The adding-up condition is fulfilled
@@ -5845,6 +5863,17 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices =
 +    data = Blanciforti86[ set, ], coef = coef( estResultLaT ),
 +    priceIndex = "T", basePrices = estResultLaT$basePrices,
 +    baseShares = estResultLaT$baseShares )
+
+Checking theoretical consistency of an Linear Approximate Almost Ideal Demand System (LA-AIDS):
+The adding-up condition is fulfilled
+The homogeneity condition is fulfilled
+The symmetry condition is fulfilled
+Monotonicity is fulfilled at 32 out of 32 observations (100%)
+> aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ set, ], coef = coef( estResultLaT ),
++    priceIndex = "T", basePrices = estResultLaT$basePrices,
++    baseShares = estResultLaT$baseShares,
++    shareNames = wNames )
 
 Checking theoretical consistency of an Linear Approximate Almost Ideal Demand System (LA-AIDS):
 The adding-up condition is fulfilled
@@ -5879,6 +5908,15 @@ The homogeneity condition is fulfilled
 The symmetry condition is NOT fulfilled
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
 > aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ set, ], coef = coef( estResultLAhom ),
++    priceIndex = estResultLAhom$lnp, shareNames = wNames )
+
+Checking theoretical consistency of an Linear Approximate Almost Ideal Demand System (LA-AIDS):
+The adding-up condition is fulfilled
+The homogeneity condition is fulfilled
+The symmetry condition is NOT fulfilled
+Monotonicity is fulfilled at 31 out of 31 observations (100%)
+> aidsConsist( pNames, totExpName = "xFood",
 +    data = Blanciforti86[ set, ], coef = coef( estResultLAhomTX ),
 +    priceIndex = "SL" )
 
@@ -5907,6 +5945,16 @@ The symmetry condition is NOT fulfilled
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
 > aidsConsist( pNames, totExpName = "xFood",
 +    data = Blanciforti86[ set, ], coef = coef( estResultAIDS ) )
+
+Checking theoretical consistency of an Almost Ideal Demand System (AIDS):
+The adding-up condition is fulfilled
+The homogeneity condition is fulfilled
+The symmetry condition is fulfilled
+Monotonicity is fulfilled at 32 out of 32 observations (100%)
+Concavity is fulfilled at 0 out of 32 observations (0%)
+> aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ set, ], coef = coef( estResultAIDS ),
++    shareNames = wNames )
 
 Checking theoretical consistency of an Almost Ideal Demand System (AIDS):
 The adding-up condition is fulfilled
@@ -5959,6 +6007,71 @@ The homogeneity condition is NOT fulfilled
 The symmetry condition is NOT fulfilled
 Monotonicity is fulfilled at 32 out of 32 observations (100%)
 Concavity is fulfilled at 24 out of 32 observations (75%)
+> aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ set, ], coef = coef( estResultAIDSunrTX ),
++    shareNames = wNames )
+
+Checking theoretical consistency of an Almost Ideal Demand System (AIDS):
+The adding-up condition is fulfilled
+The homogeneity condition is NOT fulfilled
+The symmetry condition is NOT fulfilled
+Monotonicity is fulfilled at 32 out of 32 observations (100%)
+Concavity is fulfilled at 24 out of 32 observations (75%)
+> 
+> ## checkConsist
+> # AIDS
+> consistAids <- aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ setWo1, ], coef = coef( estResultAIDS ) )
+> consistAids2 <- checkConsist( estResultAIDS )
+> all.equal( consistAids, consistAids2 )
+[1] TRUE
+> 
+> # AIDS with observedShares = TRUE
+> consistAidsSh <- aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ setWo1, ], coef = coef( estResultAIDS ),
++    shareNames = wNames )
+> consistAidsSh2 <- checkConsist( estResultAIDS, observedShares = TRUE )
+> all.equal( consistAidsSh, consistAidsSh2 )
+[1] TRUE
+> 
+> # LA-AIDS with Laspeyres index
+> consistLaL <- aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ set, ], coef = coef( estResultLaL ),
++    priceIndex = "L", basePrices = estResultLaL$basePrices,
++    baseShares = estResultLaL$baseShares )
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> consistLaL2 <- checkConsist( estResultLaL )
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> all.equal( consistLaL, consistLaL2 )
+[1] TRUE
+> 
+> # LA-AIDS with Laspeyres index and observedShares = TRUE
+> consistLaLSh <- aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ set, ], coef = coef( estResultLaL ),
++    priceIndex = estResultLaL$lnp, shareNames = wNames )
+> consistLaLSh2 <- checkConsist( estResultLaL, observedShares = TRUE )
+> all.equal( consistLaLSh, consistLaLSh2 )
+[1] TRUE
+> 
+> # LA-AIDS with Stone index with lagged shares
+> consistLaSl <- aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ set, ], coef = coef( estResultLaSl ),
++    priceIndex = "SL" )
+> consistLaSl2 <- checkConsist( estResultLaSl )
+> all.equal( consistLaSl, consistLaSl2 )
+[1] TRUE
+> 
+> # LA-AIDS with Stone index with lagged shares and observedShares = TRUE
+> consistLaSlSh <- aidsConsist( pNames, totExpName = "xFood",
++    data = Blanciforti86[ set, ], coef = coef( estResultLaSl ),
++    priceIndex = estResultLaSl$lnp, shareNames = wNames )
+> consistLaSlSh2 <- checkConsist( estResultLaSl, observedShares = TRUE )
+> all.equal( consistLaSlSh, consistLaSlSh2 )
+[1] TRUE
 > 
 > 
 > ## replicating the LA-AIDS estimation of the SAS example
