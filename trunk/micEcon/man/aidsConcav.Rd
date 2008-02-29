@@ -32,6 +32,12 @@ aidsConcav( priceNames, totExpName, coef, data, shareNames = NULL )
    to check for concavity;
    if argument \code{shareNames} is \code{NULL} (e.g., not specified),
    fitted shares are used for the calculation of the 'C' matrices.
+
+   Please note that checking concavity of the expenditure function requires
+   that the expenditure function of the model exists.
+   Therefore, the concavity condition can be checked,
+   only if the symmetry condition is fulfilled and
+   the translog price index is used.
 }
 
 \value{

@@ -8,6 +8,12 @@ aidsConcav <- function( priceNames, totExpName, coef, data,
       stop( "argument 'coef' must have element 'alpha0'" )
    }
 
+   if( isSymmetric( coef$gamma, tol = 1e-6, check.attributes = FALSE )
+         != TRUE ) {
+      stop( "there does not exist an expenditure function,",
+         " because the matrix of 'gamma' coefficients is not symmetric" )
+   }
+
    result <- list()
    nGoods <- length( priceNames )
    nObs <- nrow( data )

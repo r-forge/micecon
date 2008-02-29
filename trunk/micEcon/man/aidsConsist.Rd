@@ -61,7 +61,9 @@ aidsConsist( priceNames, totExpName, coef, data,
    \item{symmetry}{logical. Is the symmetry condition fulfilled?}
    \item{mono}{an object returned by \code{\link{aidsMono}}.}
    \item{concav}{an object returned by \code{\link{aidsMono}}
-      (only for the AIDS, i.e. if argument \code{priceIndex} is \code{"TL"}.}
+      (only if the symmetry condition is fulfilled and
+      the translog price index is used,
+      i.e. argument \code{priceIndex} is \code{"TL"}.}
 }
 \references{
    Deaton, A.S. and J. Muellbauer (1980a)
