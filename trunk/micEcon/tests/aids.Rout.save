@@ -39,6 +39,7 @@ Loading required package: zoo
 > wNames <- c( "wFood1", "wFood2", "wFood3", "wFood4" )
 > wMeans <- colMeans( Blanciforti86[ set, wNames ] )
 > pMeans <- colMeans( Blanciforti86[ set, pNames ] )
+> xtMean <- mean( Blanciforti86[ set, "xFood" ] )
 > 
 > 
 > ## estimations with different price indices
@@ -1872,7 +1873,7 @@ wFood4  0.466  0.14356  0.116 -0.725
 > cat( "\nAIDS: Elasticities\n" )
 
 AIDS: Elasticities
-> ela <- aidsElas( estResultAIDS$coef, wMeans, pMeans, method = "AIDS",
+> ela <- aidsElas( estResultAIDS$coef, shares = wMeans, prices = pMeans, method = "AIDS",
 +    coefVcov = estResultAIDS$coef$allcov, df = estResultAIDS$est$df )
 > print( ela )
 
@@ -1934,7 +1935,7 @@ Em q_wFood4 pFood3   0.1168     0.0524    2.23   0.0287 *
 Em q_wFood4 pFood4  -0.7745     0.1040   -7.45  9.0e-11 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-> elaTX <- aidsElas( estResultAIDSTX$coef, wMeans, pMeans, method = "AIDS",
+> elaTX <- aidsElas( estResultAIDSTX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
 +    coefVcov = estResultAIDSTX$coef$allcov, df = estResultAIDSTX$est$df )
 > print( elaTX )
 
@@ -2125,7 +2126,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
 
 LA: Elasticity formula of non-linear AIDS
-> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "AIDS",
+> ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "AIDS",
 +    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 > print( ela )
 
@@ -2187,7 +2188,7 @@ Em q_wFood4 pFood3   0.2307     0.0585    3.94  0.00017 ***
 Em q_wFood4 pFood4  -0.2981     0.2010   -1.48  0.14192    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-> elaTX <- aidsElas( estResultLATX$coef, wMeans, pMeans, method = "AIDS",
+> elaTX <- aidsElas( estResultLATX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
 +    coefVcov = estResultLATX$coef$allcov, df = estResultLATX$est$df )
 > print( elaTX )
 
@@ -2380,7 +2381,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ********** Elasticities ***************> cat( "\nLA: Elasticity formula of Goddard or Chalfant\n" )
 
 LA: Elasticity formula of Goddard or Chalfant
-> ela <- aidsElas( estResultLA$coef, wMeans, method = "Go",
+> ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Go",
 +    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 > print( ela )
 
@@ -2440,7 +2441,7 @@ q_wFood4  0.422  0.155  0.1363 -0.713
 [34,]   0.1291         NA      NA       NA
 [35,]   0.1192         NA      NA       NA
 [36,]  -0.7585         NA      NA       NA
-> ela <- aidsElas( estResultLA$coef, wMeans, method = "Ch",
+> ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Ch",
 +    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
 > print( ela )
 
@@ -2623,7 +2624,7 @@ q_wFood4  0.423  0.1554  0.1363 -0.715
 > cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
 
 LA: Elasticity formula of Eales + Unnevehr
-> ela <- aidsElas( estResultLA$coef, wMeans, method = "EU" )
+> ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "EU" )
 > print( ela )
 
 Demand Elasticities (formula of Eales and Unnevehr)
@@ -2648,7 +2649,7 @@ q_wFood4  0.15146 -0.0201  0.0193 -1.023
 > cat( "\nLA: Elasticity formula of Green + Alston\n" )
 
 LA: Elasticity formula of Green + Alston
-> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "GA" )
+> ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "GA" )
 > print( ela )
 
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
@@ -2673,7 +2674,7 @@ q_wFood4  0.563  0.2415  0.1968 -0.555
 > cat( "\nLA: Elasticity formula of Buse\n" )
 
 LA: Elasticity formula of Buse
-> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "B1" )
+> ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B1" )
 > print( ela )
 
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
@@ -2698,7 +2699,7 @@ q_wFood4  0.563  0.2415  0.1968 -0.555
 > cat( "\nLA: Elasticity formula of Buse (alternative formula)\n" )
 
 LA: Elasticity formula of Buse (alternative formula)
-> ela <- aidsElas( estResultLA$coef, wMeans, pMeans, method = "B2" )
+> ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B2" )
 > print( ela )
 
 Demand Elasticities (formulas of Buse (second set))
@@ -2719,6 +2720,135 @@ q_wFood1 -0.327 -0.2414  0.093  0.476
 q_wFood2 -0.379 -0.0088  0.116  0.272
 q_wFood3  0.219  0.1720 -0.756  0.365
 q_wFood4  0.417  0.1510  0.139 -0.707
+> 
+> aidsElas( coef( estResultTl ), prices = pMeans, shares = wMeans )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.065    1.234    0.395    0.166 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2   pFood3 pFood4
+q_wFood1 -1.012 -0.678 -0.17676 -0.198
+q_wFood2 -0.790 -0.250 -0.00839 -0.186
+q_wFood3  0.109  0.157 -0.82620  0.165
+q_wFood4  0.415  0.110  0.09354 -0.784
+
+Hicksian (compensated) Price Elasticities
+         pFood1   pFood2 pFood3 pFood4
+q_wFood1 -0.371 -0.26473  0.100  0.535
+q_wFood2 -0.407 -0.00221  0.157  0.252
+q_wFood3  0.232  0.23583 -0.773  0.306
+q_wFood4  0.466  0.14356  0.116 -0.725
+> aidsElas( coef( estResultTl ), prices = pMeans, totExp = xtMean )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.058    1.232    0.392    0.157 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2  pFood3 pFood4
+q_wFood1 -1.012 -0.674 -0.1756 -0.197
+q_wFood2 -0.782 -0.257 -0.0083 -0.184
+q_wFood3  0.109  0.157 -0.8254  0.166
+q_wFood4  0.419  0.112  0.0945 -0.782
+
+Hicksian (compensated) Price Elasticities
+         pFood1   pFood2  pFood3 pFood4
+q_wFood1 -0.369 -0.25723  0.0991  0.527
+q_wFood2 -0.397 -0.00797  0.1561  0.249
+q_wFood3  0.232  0.23683 -0.7730  0.304
+q_wFood4  0.468  0.14330  0.1155 -0.727
+> 
+> aidsElas( coef( estResultLaS ), shares = wMeans, method = "Ch" )
+
+Demand Elasticities (formulas of Goddard / Chalfant)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.044    1.279    0.414    0.152 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1 pFood2  pFood3 pFood4
+q_wFood1 -0.9884 -0.660 -0.1773 -0.218
+q_wFood2 -0.7847 -0.273 -0.0201 -0.201
+q_wFood3  0.0957  0.143 -0.8283  0.175
+q_wFood4  0.3963  0.112  0.1013 -0.762
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.354 -0.2503  0.0969  0.508
+q_wFood2 -0.388 -0.0165  0.1515  0.253
+q_wFood3  0.224  0.2262 -0.7728  0.322
+q_wFood4  0.443  0.1426  0.1217 -0.708
+> aidsElas( coef( estResultLaS ), prices = pMeans, totExp = xtMean,
++    method = "Ch", priceIndex = "S" )
+
+Demand Elasticities (formulas of Goddard / Chalfant)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.036    1.276    0.411    0.142 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1 pFood2  pFood3 pFood4
+q_wFood1 -0.9910 -0.657 -0.1752 -0.213
+q_wFood2 -0.7767 -0.281 -0.0196 -0.198
+q_wFood3  0.0977  0.145 -0.8278  0.174
+q_wFood4  0.4029  0.115  0.1019 -0.763
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.354 -0.2447  0.0965  0.502
+q_wFood2 -0.378 -0.0229  0.1506  0.250
+q_wFood3  0.226  0.2286 -0.7730  0.318
+q_wFood4  0.447  0.1442  0.1209 -0.713
+Warning message:
+In aidsElas(coef(estResultLaS), prices = pMeans, totExp = xtMean,  :
+  methods 'Go', 'Ch', and 'EU' do not require argument 'prices'
+> 
+> aidsElas( coef( estResultLaS ), prices = pMeans, shares = wMeans,
++    method = "B1" )
+
+Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   1.526    1.140    0.705    0.573 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2  pFood3 pFood4
+q_wFood1 -0.997 -0.660 -0.1797 -0.223
+q_wFood2 -0.787 -0.273 -0.0207 -0.203
+q_wFood3  0.100  0.143 -0.8269  0.178
+q_wFood4  0.403  0.112  0.1034 -0.758
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.523 -0.3544  0.0249  0.319
+q_wFood2 -0.433 -0.0443  0.1322  0.202
+q_wFood3  0.319  0.2847 -0.7323  0.428
+q_wFood4  0.581  0.2272  0.1802 -0.554
+> aidsElas( coef( estResultLaS ), prices = pMeans, totExp = xtMean,
++    method = "B1", priceIndex = "S" )
+
+Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   1.522    1.139    0.703    0.568 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2  pFood3 pFood4
+q_wFood1 -0.999 -0.657 -0.1776 -0.217
+q_wFood2 -0.779 -0.281 -0.0203 -0.199
+q_wFood3  0.102  0.146 -0.8264  0.177
+q_wFood4  0.410  0.116  0.1039 -0.759
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.523 -0.3491  0.0254  0.317
+q_wFood2 -0.423 -0.0507  0.1317  0.201
+q_wFood3  0.322  0.2880 -0.7326  0.424
+q_wFood4  0.587  0.2307  0.1797 -0.559
 > 
 > 
 > ############# Price indices ##############
