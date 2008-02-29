@@ -188,11 +188,11 @@ print( elas( estResultAIDSNa, method = "AIDS", quantNames = wNames ) )
 ########## Elasticities ###############
 cat( "\nAIDS: Elasticities\n" )
 ela <- aidsElas( estResultAIDS$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-   coefCov = vcov( estResultAIDS ), df = estResultAIDS$est$df )
+   coefCov = vcov( estResultAIDS ), df = df.residual( estResultAIDS ) )
 print( ela )
 print( summary( ela ) )
 elaTX <- aidsElas( estResultAIDSTX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-   coefCov = vcov( estResultAIDSTX ), df = estResultAIDSTX$est$df )
+   coefCov = vcov( estResultAIDSTX ), df = df.residual( estResultAIDSTX ) )
 print( elaTX )
 print( summary( elaTX ) )
 print( all.equal( ela, elaTX ) )
@@ -206,11 +206,11 @@ print( summary( elas( estResultAIDSTX ) ) )
 
 cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-   coefCov = vcov( estResultLA ), df = estResultLA$est$df )
+   coefCov = vcov( estResultLA ), df = df.residual( estResultLA ) )
 print( ela )
 print( summary( ela ) )
 elaTX <- aidsElas( estResultLATX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-   coefCov = vcov( estResultLATX ), df = estResultLATX$est$df )
+   coefCov = vcov( estResultLATX ), df = df.residual( estResultLATX ) )
 print( elaTX )
 print( summary( elaTX ) )
 print( all.equal( ela, elaTX ) )
@@ -225,11 +225,11 @@ print( summary( elas( estResultLATX, method = "AIDS" ) ) )
 cat( "\n********** Elasticities ***************" )
 cat( "\nLA: Elasticity formula of Goddard or Chalfant\n" )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Go",
-   coefCov = vcov( estResultLA ), df = estResultLA$est$df )
+   coefCov = vcov( estResultLA ), df = df.residual( estResultLA ) )
 print( ela )
 print( summary( ela ) )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Ch",
-   coefCov = vcov( estResultLA ), df = estResultLA$est$df )
+   coefCov = vcov( estResultLA ), df = df.residual( estResultLA ) )
 print( ela )
 print( summary( ela ) )
 
