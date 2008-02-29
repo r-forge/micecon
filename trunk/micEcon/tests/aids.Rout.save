@@ -1874,7 +1874,7 @@ wFood4  0.466  0.14356  0.116 -0.725
 
 AIDS: Elasticities
 > ela <- aidsElas( estResultAIDS$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-+    coefVcov = estResultAIDS$coef$allcov, df = estResultAIDS$est$df )
++    coefCov = estResultAIDS$coef$allcov, df = estResultAIDS$est$df )
 > print( ela )
 
 Demand Elasticities (original AIDS formulas)
@@ -1936,7 +1936,7 @@ Em q_wFood4 pFood4  -0.7745     0.1040   -7.45  9.0e-11 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > elaTX <- aidsElas( estResultAIDSTX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-+    coefVcov = estResultAIDSTX$coef$allcov, df = estResultAIDSTX$est$df )
++    coefCov = estResultAIDSTX$coef$allcov, df = estResultAIDSTX$est$df )
 > print( elaTX )
 
 Demand Elasticities (original AIDS formulas)
@@ -2127,7 +2127,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 LA: Elasticity formula of non-linear AIDS
 > ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-+    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
++    coefCov = estResultLA$coef$allcov, df = estResultLA$est$df )
 > print( ela )
 
 Demand Elasticities (original AIDS formulas)
@@ -2189,7 +2189,7 @@ Em q_wFood4 pFood4  -0.2981     0.2010   -1.48  0.14192
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > elaTX <- aidsElas( estResultLATX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-+    coefVcov = estResultLATX$coef$allcov, df = estResultLATX$est$df )
++    coefCov = estResultLATX$coef$allcov, df = estResultLATX$est$df )
 > print( elaTX )
 
 Demand Elasticities (original AIDS formulas)
@@ -2382,7 +2382,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 LA: Elasticity formula of Goddard or Chalfant
 > ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Go",
-+    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
++    coefCov = estResultLA$coef$allcov, df = estResultLA$est$df )
 > print( ela )
 
 Demand Elasticities (formulas of Goddard / Chalfant)
@@ -2442,7 +2442,7 @@ q_wFood4  0.422  0.155  0.1363 -0.713
 [35,]   0.1192         NA      NA       NA
 [36,]  -0.7585         NA      NA       NA
 > ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Ch",
-+    coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
++    coefCov = estResultLA$coef$allcov, df = estResultLA$est$df )
 > print( ela )
 
 Demand Elasticities (formulas of Goddard / Chalfant)

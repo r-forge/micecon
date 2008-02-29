@@ -1,6 +1,6 @@
 aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
    method = "AIDS", priceIndex = "TL", basePrices = NULL, baseShares = NULL,
-   quantNames = NULL, priceNames = NULL, coefVcov = NULL, df = NULL ) {
+   quantNames = NULL, priceNames = NULL, coefCov = NULL, df = NULL ) {
 
    nGoods <- length( coef$alpha )
 
@@ -138,13 +138,13 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
    colnames( ela$hicks )    <- priceNames
    rownames( ela$marshall ) <- quantNames
    colnames( ela$marshall ) <- priceNames
-   if( !is.null( coefVcov ) && method %in% c( "AIDS" ) ) {
+   if( !is.null( coefCov ) && method %in% c( "AIDS" ) ) {
       jacobian <- .aidsElasJacobian( coef = coef, share = shares, price = prices,
          method = method, quantNames = quantNames, priceNames = priceNames )
-      ela$allVcov      <- jacobian$all      %*% coefVcov %*% t( jacobian$all )
-      ela$expVcov      <- jacobian$exp      %*% coefVcov %*% t( jacobian$exp )
-      ela$hicksVcov    <- jacobian$hicks    %*% coefVcov %*% t( jacobian$hicks )
-      ela$marshallVcov <- jacobian$marshall %*% coefVcov %*% t( jacobian$marshall )
+      ela$allVcov      <- jacobian$all      %*% coefCov %*% t( jacobian$all )
+      ela$expVcov      <- jacobian$exp      %*% coefCov %*% t( jacobian$exp )
+      ela$hicksVcov    <- jacobian$hicks    %*% coefCov %*% t( jacobian$hicks )
+      ela$marshallVcov <- jacobian$marshall %*% coefCov %*% t( jacobian$marshall )
       # standard errors
       ela$expStEr      <- diag( ela$expVcov )^0.5
       ela$hicksStEr    <- matrix( diag( ela$hicksVcov )^0.5,

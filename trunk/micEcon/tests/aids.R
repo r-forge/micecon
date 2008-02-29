@@ -188,11 +188,11 @@ print( elas( estResultAIDSNa, method = "AIDS", quantNames = wNames ) )
 ########## Elasticities ###############
 cat( "\nAIDS: Elasticities\n" )
 ela <- aidsElas( estResultAIDS$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-   coefVcov = estResultAIDS$coef$allcov, df = estResultAIDS$est$df )
+   coefCov = estResultAIDS$coef$allcov, df = estResultAIDS$est$df )
 print( ela )
 print( summary( ela ) )
 elaTX <- aidsElas( estResultAIDSTX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-   coefVcov = estResultAIDSTX$coef$allcov, df = estResultAIDSTX$est$df )
+   coefCov = estResultAIDSTX$coef$allcov, df = estResultAIDSTX$est$df )
 print( elaTX )
 print( summary( elaTX ) )
 print( all.equal( ela, elaTX ) )
@@ -206,11 +206,11 @@ print( summary( elas( estResultAIDSTX ) ) )
 
 cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-   coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
+   coefCov = estResultLA$coef$allcov, df = estResultLA$est$df )
 print( ela )
 print( summary( ela ) )
 elaTX <- aidsElas( estResultLATX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
-   coefVcov = estResultLATX$coef$allcov, df = estResultLATX$est$df )
+   coefCov = estResultLATX$coef$allcov, df = estResultLATX$est$df )
 print( elaTX )
 print( summary( elaTX ) )
 print( all.equal( ela, elaTX ) )
@@ -225,11 +225,11 @@ print( summary( elas( estResultLATX, method = "AIDS" ) ) )
 cat( "\n********** Elasticities ***************" )
 cat( "\nLA: Elasticity formula of Goddard or Chalfant\n" )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Go",
-   coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
+   coefCov = estResultLA$coef$allcov, df = estResultLA$est$df )
 print( ela )
 print( summary( ela ) )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Ch",
-   coefVcov = estResultLA$coef$allcov, df = estResultLA$est$df )
+   coefCov = estResultLA$coef$allcov, df = estResultLA$est$df )
 print( ela )
 print( summary( ela ) )
 
