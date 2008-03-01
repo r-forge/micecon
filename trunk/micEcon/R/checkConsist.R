@@ -12,7 +12,7 @@ checkConsist.aidsEst <- function( object, observedShares = FALSE, ... ) {
          priceIndex <- object$priceIndex
       }
    } else if( object$method %in% c( "IL", "MK" ) ) {
-      priceIndex = "TL"
+      priceIndex <- "TL"
    } else {
       stop( "unknown element 'method' of argument 'object'" )
    }
