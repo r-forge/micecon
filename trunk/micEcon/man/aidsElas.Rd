@@ -14,7 +14,7 @@
       method = "AIDS", priceIndex = "TL", basePrices = NULL, baseShares = NULL,
       quantNames = NULL, priceNames = NULL, coefCov = NULL, df = NULL )
 
-   \method{elas}{aidsEst}( object, method = NULL, ... )
+   \method{elas}{aidsEst}( object, method = NULL, observedShares = FALSE, ... )
 
    \method{print}{aidsElas}( x, ... )
 }
@@ -40,6 +40,8 @@
    \item{df}{degrees of freedom to calculate P-values of the elasticities 
       (optional).}
    \item{object}{an object of class \code{aidsEst}.}
+   \item{observedShares}{logical. Using observed shares for calculating the
+      demand elasticities?}
    \item{x}{an object of class \code{aidsElas}.}
    \item{...}{additional arguments of \code{elas.aidsEst}
       are passed to \code{aidsEla};
