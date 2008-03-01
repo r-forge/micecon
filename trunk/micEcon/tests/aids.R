@@ -65,6 +65,7 @@ print( estResultLA )
 print( summary( estResultLA ) )
 print( elas( estResultLA, method = "Ch", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultLA, method = "Ch", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultLATX <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ set, ], priceIndex = "SL",
@@ -73,6 +74,7 @@ print( estResultLATX )
 print( summary( estResultLATX ) )
 print( elas( estResultLATX, method = "Ch", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultLATX, method = "Ch", quantNames = wNames ) )
 
 ## only homogeneity (no symmetry imposed)
 estResultLAhom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
@@ -81,6 +83,7 @@ print( estResultLAhom )
 print( summary( estResultLAhom ) )
 print( elas( estResultLAhom, method = "Ch", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultLAhom, method = "Ch", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultLAhomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ set, ], priceIndex = "SL",
@@ -89,6 +92,7 @@ print( estResultLAhomTX )
 print( summary( estResultLAhomTX ) )
 print( elas( estResultLAhomTX, method = "Ch", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultLAhomTX, method = "Ch", quantNames = wNames ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
 estResultLAunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
@@ -97,6 +101,7 @@ print( estResultLAunr )
 print( summary( estResultLAunr ) )
 print( elas( estResultLAunr, method = "Ch", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultLAunr, method = "Ch", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultLAunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ set, ], priceIndex = "SL",
@@ -105,6 +110,7 @@ print( estResultLAunrTX )
 print( summary( estResultLAunrTX ) )
 print( elas( estResultLAunrTX, method = "Ch", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultLAunrTX, method = "Ch", quantNames = wNames ) )
 
 
 #####################################################
@@ -131,6 +137,7 @@ print( estResultAIDS )
 print( summary( estResultAIDS ) )
 print( elas( estResultAIDS, method = "AIDS", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultAIDS, method = "AIDS", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultAIDSTX <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86[ setWo1, ], method = "IL", restrict.regMat = TRUE )
@@ -138,6 +145,7 @@ print( estResultAIDSTX )
 print( summary( estResultAIDSTX ) )
 print( elas( estResultAIDSTX, method = "AIDS", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultAIDSTX, method = "AIDS", quantNames = wNames ) )
 
 ## only homogeneity (no symmetry imposed)
 estResultAIDShom <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
@@ -146,6 +154,7 @@ print( estResultAIDShom )
 print( summary( estResultAIDShom ) )
 print( elas( estResultAIDShom, method = "AIDS", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultAIDShom, method = "AIDS", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultAIDShomTX <- aidsEst( pNames, wNames, "xFood", sym = FALSE,
    data = Blanciforti86[ setWo1, ], method = "IL", restrict.regMat = TRUE )
@@ -153,6 +162,7 @@ print( estResultAIDShomTX )
 print( summary( estResultAIDShomTX ) )
 print( elas( estResultAIDShomTX, method = "AIDS", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultAIDShomTX, method = "AIDS", quantNames = wNames ) )
 
 ## unrestricted (no homogeneity and no symmetry imposed)
 estResultAIDSunr <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
@@ -161,6 +171,7 @@ print( estResultAIDSunr )
 print( summary( estResultAIDSunr ) )
 print( elas( estResultAIDSunr, method = "AIDS", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultAIDSunr, method = "AIDS", quantNames = wNames ) )
 # imposing restrictions via restrict.regMat
 estResultAIDSunrTX <- aidsEst( pNames, wNames, "xFood", hom = FALSE, sym = FALSE,
    data = Blanciforti86[ setWo1, ], method = "IL", restrict.regMat = TRUE )
@@ -168,6 +179,7 @@ print( estResultAIDSunrTX )
 print( summary( estResultAIDSunrTX ) )
 print( elas( estResultAIDSunrTX, method = "AIDS", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultAIDSunrTX, method = "AIDS", quantNames = wNames ) )
 
 ## with NAs
 estResultLaSNa <- aidsEst( pNames, wNames, "xFood",
@@ -177,6 +189,7 @@ print( estResultLaSNa )
 print( summary( estResultLaSNa ) )
 print( elas( estResultLaSNa, method = "AIDS", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultLaSNa, method = "AIDS", quantNames = wNames ) )
 
 estResultLaSlNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86,
@@ -185,6 +198,7 @@ print( estResultLaSlNa )
 print( summary( estResultLaSlNa ) )
 print( elas( estResultLaSlNa, method = "AIDS", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultLaSlNa, method = "AIDS", quantNames = wNames ) )
 
 estResultLaLsNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86 )
@@ -192,6 +206,7 @@ print( estResultLaLsNa )
 print( summary( estResultLaLsNa ) )
 print( elas( estResultLaLsNa, method = "AIDS", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultLaLsNa, method = "AIDS", quantNames = wNames ) )
 
 estResultAIDSNa <- aidsEst( pNames, wNames, "xFood",
    data = Blanciforti86, method = "IL" )
@@ -199,6 +214,7 @@ print( estResultAIDSNa )
 print( summary( estResultAIDSNa ) )
 print( elas( estResultAIDSNa, method = "AIDS", quantNames = wNames,
    observedShares = TRUE ) )
+print( elas( estResultAIDSNa, method = "AIDS", quantNames = wNames ) )
 
 
 ########## Elasticities ###############
@@ -214,10 +230,14 @@ print( summary( elaTX ) )
 print( all.equal( ela, elaTX ) )
 
 print( elas( estResultAIDS, observedShares = TRUE ) )
+print( elas( estResultAIDS ) )
 print( summary( elas( estResultAIDS, observedShares = TRUE ) ) )
+print( summary( elas( estResultAIDS ) ) )
 
 print( elas( estResultAIDSTX, observedShares = TRUE ) )
+print( elas( estResultAIDSTX ) )
 print( summary( elas( estResultAIDSTX, observedShares = TRUE ) ) )
+print( summary( elas( estResultAIDSTX ) ) )
 
 
 cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
@@ -232,10 +252,14 @@ print( summary( elaTX ) )
 print( all.equal( ela, elaTX ) )
 
 print( elas( estResultLA, method = "AIDS", observedShares = TRUE ) )
+print( elas( estResultLA, method = "AIDS" ) )
 print( summary( elas( estResultLA, method = "AIDS", observedShares = TRUE ) ) )
+print( summary( elas( estResultLA, method = "AIDS" ) ) )
 
 print( elas( estResultLATX, method = "AIDS", observedShares = TRUE ) )
+print( elas( estResultLATX, method = "AIDS" ) )
 print( summary( elas( estResultLATX, method = "AIDS", observedShares = TRUE ) ) )
+print( summary( elas( estResultLATX, method = "AIDS" ) ) )
 
 
 cat( "\n********** Elasticities ***************" )
@@ -250,10 +274,14 @@ print( ela )
 print( summary( ela ) )
 
 print( elas( estResultLA, method = "Go", observedShares = TRUE ) )
+print( elas( estResultLA, method = "Go" ) )
 print( summary( elas( estResultLA, observedShares = TRUE ) ) )
+print( summary( elas( estResultLA ) ) )
 
 print( elas( estResultLATX, observedShares = TRUE ) )
+print( elas( estResultLATX ) )
 print( summary( elas( estResultLATX, observedShares = TRUE ) ) )
+print( summary( elas( estResultLATX ) ) )
 
 
 cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
