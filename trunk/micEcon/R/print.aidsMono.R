@@ -10,4 +10,6 @@ print.aidsMono <- function( x, header = TRUE, ... ) {
    cat( "Monotonicity is fulfilled at " )
    cat( x$nMonoObs, "out of", x$nValidObs, "observations" )
    cat( " (", x$monoPercent, "%)\n", sep = "" )
+
+   invisible( x )
 }
