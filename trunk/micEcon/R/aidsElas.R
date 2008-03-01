@@ -29,10 +29,16 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
       for( i in  1:nGoods ) {
          tempData[[ tempPriceNames[ i ] ]] <- prices[ i ]
       }
+      if( priceIndex == "SL" ) {
+         tempPriceIndex <- "S"
+      } else {
+         tempPriceIndex <- priceIndex
+      }
       shares <- as.numeric( aidsCalc( priceNames = tempPriceNames,
          totExpName = "totExp", coef = coef, data = tempData,
-         priceIndex = priceIndex, basePrices = basePrices,
+         priceIndex = tempPriceIndex, basePrices = basePrices,
          baseShares = baseShares )$shares )
+      rm( tempData, tempPriceNames, tempPriceIndex )
    }
 
    if( is.null( quantNames ) ) {
