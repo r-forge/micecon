@@ -4,7 +4,7 @@ print.summary.aidsEst <- function( x, ... ) {
    cat( "Estimation Method: " )
    cat( .aidsEstMethod( x$method, x$priceIndex ) )
    cat( "Estimated Coefficients:\n" )
-   print( x$coef$stat )
+   printCoefmat( x$coef$stat )
 
    cat( "R-squared Values of expenditure shares:\n" )
    print( x$r2 )
