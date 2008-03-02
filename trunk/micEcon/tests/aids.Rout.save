@@ -3794,7 +3794,7 @@ LA: Elasticity formula of Green + Alston
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-    1.53     1.14     0.72     0.56 
+   2.075    1.283    0.434    0.114 
 
 Marshallian (uncompensated) Price Elasticities
           pFood1  pFood2  pFood3 pFood4
@@ -3804,11 +3804,11 @@ q_wFood3  0.0886  0.0858 -0.8149  0.206
 q_wFood4  0.3891  0.1292  0.1216 -0.754
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.504 -0.3513  0.0224  0.292
-q_wFood2 -0.426 -0.0378  0.0974  0.224
-q_wFood3  0.312  0.2299 -0.7185  0.462
-q_wFood4  0.563  0.2415  0.1968 -0.555
+         pFood1   pFood2 pFood3 pFood4
+q_wFood1 -0.336 -0.24283  0.095  0.484
+q_wFood2 -0.382 -0.00918  0.117  0.274
+q_wFood3  0.223  0.17280 -0.757  0.361
+q_wFood4  0.425  0.15215  0.137 -0.714
 > 
 > cat( "\nLA: Elasticity formula of Buse\n" )
 
@@ -3819,7 +3819,7 @@ LA: Elasticity formula of Buse
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-    1.53     1.14     0.72     0.56 
+   2.075    1.283    0.434    0.114 
 
 Marshallian (uncompensated) Price Elasticities
           pFood1  pFood2  pFood3 pFood4
@@ -3829,18 +3829,18 @@ q_wFood3  0.0886  0.0858 -0.8149  0.206
 q_wFood4  0.3891  0.1292  0.1216 -0.754
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.504 -0.3513  0.0224  0.292
-q_wFood2 -0.426 -0.0378  0.0974  0.224
-q_wFood3  0.312  0.2299 -0.7185  0.462
-q_wFood4  0.563  0.2415  0.1968 -0.555
+         pFood1   pFood2 pFood3 pFood4
+q_wFood1 -0.336 -0.24283  0.095  0.484
+q_wFood2 -0.382 -0.00918  0.117  0.274
+q_wFood3  0.223  0.17280 -0.757  0.361
+q_wFood4  0.425  0.15215  0.137 -0.714
 > 
 > elas( estResultLaS, method = "B1" )
 
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   1.522    1.139    0.703    0.568 
+   2.051    1.280    0.402    0.130 
 
 Marshallian (uncompensated) Price Elasticities
          pFood1 pFood2  pFood3 pFood4
@@ -3850,18 +3850,18 @@ q_wFood3  0.102  0.146 -0.8264  0.177
 q_wFood4  0.410  0.116  0.1039 -0.759
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.523 -0.3491  0.0254  0.317
-q_wFood2 -0.423 -0.0507  0.1317  0.201
-q_wFood3  0.322  0.2880 -0.7326  0.424
-q_wFood4  0.587  0.2307  0.1797 -0.559
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.357 -0.2418  0.096  0.503
+q_wFood2 -0.379 -0.0221  0.150  0.250
+q_wFood3  0.228  0.2270 -0.773  0.318
+q_wFood4  0.450  0.1419  0.121 -0.713
 > 
 > elas( estResultLaSl, method = "B1" )
 
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   1.529    1.139    0.718    0.554 
+   2.066    1.279    0.431    0.100 
 
 Marshallian (uncompensated) Price Elasticities
           pFood1  pFood2  pFood3 pFood4
@@ -3872,17 +3872,17 @@ q_wFood4  0.3976  0.1343  0.1229 -0.755
 
 Hicksian (compensated) Price Elasticities
          pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.504 -0.3453  0.0230  0.290
-q_wFood2 -0.413 -0.0467  0.0974  0.221
-q_wFood3  0.315  0.2342 -0.7185  0.456
-q_wFood4  0.571  0.2469  0.1968 -0.561
+q_wFood1 -0.336 -0.2360  0.0947  0.477
+q_wFood2 -0.368 -0.0181  0.1162  0.270
+q_wFood3  0.226  0.1759 -0.7568  0.355
+q_wFood4  0.429  0.1547  0.1363 -0.720
 > 
 > elas( estResultLaP, method = "B1" )
 
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   1.527    1.127    0.703    0.570 
+   2.063    1.256    0.401    0.134 
 
 Marshallian (uncompensated) Price Elasticities
          pFood1 pFood2  pFood3 pFood4
@@ -3893,17 +3893,17 @@ q_wFood4  0.420  0.115  0.1007 -0.770
 
 Hicksian (compensated) Price Elasticities
          pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.536 -0.3561  0.0282  0.329
-q_wFood2 -0.428 -0.0392  0.1333  0.205
-q_wFood3  0.331  0.2882 -0.7340  0.417
-q_wFood4  0.599  0.2302  0.1768 -0.569
+q_wFood1 -0.369 -0.2477  0.0996  0.517
+q_wFood2 -0.388 -0.0131  0.1506  0.250
+q_wFood3  0.236  0.2270 -0.7743  0.311
+q_wFood4  0.462  0.1418  0.1186 -0.723
 > 
 > elas( estResultLaL, method = "B1" )
 
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   1.524    1.120    0.692    0.582 
+   2.056    1.241    0.380    0.158 
 
 Marshallian (uncompensated) Price Elasticities
          pFood1 pFood2   pFood3 pFood4
@@ -3913,11 +3913,11 @@ q_wFood3  0.124  0.168 -0.82056  0.148
 q_wFood4  0.449  0.115  0.08635 -0.809
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.566 -0.3687  0.0315  0.372
-q_wFood2 -0.446 -0.0387  0.1466  0.217
-q_wFood3  0.340  0.3087 -0.7282  0.391
-q_wFood4  0.631  0.2329  0.1640 -0.604
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.400 -0.2610  0.102  0.559
+q_wFood2 -0.408 -0.0141  0.163  0.259
+q_wFood3  0.243  0.2454 -0.770  0.282
+q_wFood4  0.499  0.1470  0.107 -0.753
 Warning message:
 In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
   the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
@@ -3927,7 +3927,7 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices =
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   1.524    1.120    0.692    0.582 
+   2.056    1.241    0.380    0.158 
 
 Marshallian (uncompensated) Price Elasticities
          pFood1 pFood2   pFood3 pFood4
@@ -3937,11 +3937,11 @@ q_wFood3  0.124  0.168 -0.82056  0.148
 q_wFood4  0.449  0.115  0.08635 -0.809
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.566 -0.3687  0.0315  0.372
-q_wFood2 -0.446 -0.0387  0.1466  0.217
-q_wFood3  0.340  0.3087 -0.7282  0.391
-q_wFood4  0.631  0.2329  0.1640 -0.604
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.400 -0.2610  0.102  0.559
+q_wFood2 -0.408 -0.0141  0.163  0.259
+q_wFood3  0.243  0.2454 -0.770  0.282
+q_wFood4  0.499  0.1470  0.107 -0.753
 Warning message:
 In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares = baseShares)) :
   the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
@@ -3951,7 +3951,7 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares =
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   1.526    1.123    0.697    0.576 
+   2.061    1.249    0.390    0.145 
 
 Marshallian (uncompensated) Price Elasticities
          pFood1 pFood2  pFood3 pFood4
@@ -3961,11 +3961,11 @@ q_wFood3  0.117  0.157 -0.8239  0.160
 q_wFood4  0.435  0.115  0.0939 -0.789
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.551 -0.3628  0.0296  0.350
-q_wFood2 -0.437 -0.0387  0.1397  0.211
-q_wFood3  0.335  0.2981 -0.7309  0.405
-q_wFood4  0.615  0.2319  0.1707 -0.587
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.384 -0.2546  0.101  0.538
+q_wFood2 -0.398 -0.0134  0.156  0.255
+q_wFood3  0.239  0.2359 -0.772  0.297
+q_wFood4  0.481  0.1447  0.113 -0.738
 > 
 > cat( "\nLA: Elasticity formula of Buse (alternative formula)\n" )
 
@@ -4213,7 +4213,7 @@ q_wFood4  0.447  0.1442  0.1209 -0.713
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   1.526    1.140    0.705    0.573 
+   2.060    1.283    0.405    0.139 
 
 Marshallian (uncompensated) Price Elasticities
          pFood1 pFood2  pFood3 pFood4
@@ -4224,17 +4224,17 @@ q_wFood4  0.403  0.112  0.1034 -0.758
 
 Hicksian (compensated) Price Elasticities
          pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.523 -0.3544  0.0249  0.319
-q_wFood2 -0.433 -0.0443  0.1322  0.202
-q_wFood3  0.319  0.2847 -0.7323  0.428
-q_wFood4  0.581  0.2272  0.1802 -0.554
+q_wFood1 -0.357 -0.2475  0.0965  0.508
+q_wFood2 -0.389 -0.0157  0.1514  0.253
+q_wFood3  0.226  0.2246 -0.7725  0.322
+q_wFood4  0.446  0.1403  0.1220 -0.708
 > aidsElas( coef( estResultLaS ), prices = pMeans, totExp = xtMean,
 +    method = "B1", priceIndex = "S" )
 
 Demand Elasticities (formulas of Green and Alston / Buse (first set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   1.522    1.139    0.703    0.568 
+   2.051    1.280    0.402    0.130 
 
 Marshallian (uncompensated) Price Elasticities
          pFood1 pFood2  pFood3 pFood4
@@ -4244,11 +4244,11 @@ q_wFood3  0.102  0.146 -0.8264  0.177
 q_wFood4  0.410  0.116  0.1039 -0.759
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.523 -0.3491  0.0254  0.317
-q_wFood2 -0.423 -0.0507  0.1317  0.201
-q_wFood3  0.322  0.2880 -0.7326  0.424
-q_wFood4  0.587  0.2307  0.1797 -0.559
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.357 -0.2418  0.096  0.503
+q_wFood2 -0.379 -0.0221  0.150  0.250
+q_wFood3  0.228  0.2270 -0.773  0.318
+q_wFood4  0.450  0.1419  0.121 -0.713
 > 
 > 
 > ############# Price indices ##############

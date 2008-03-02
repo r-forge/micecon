@@ -84,7 +84,7 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
       for( k in 1:nGoods ) {
          denom <- denom + coef$beta[ k ] * log( prices[ k ] )
       }
-      ela$exp <- ones + coef$beta / ( shares * ( 1 + denom ) )
+      ela$exp <- ones + coef$beta / ( shares * denom )
       ela$marshall <- matrix( NA, nGoods, nGoods )
       for( i in 1:nGoods ) {
          for( j in 1:nGoods ) {
