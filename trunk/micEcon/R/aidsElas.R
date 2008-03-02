@@ -75,9 +75,11 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
          coef$beta %*% t( ones ) *
          ones %*% t( shares ) /
          ( shares %*% t( ones ) )
-   } else if( method %in% c( "B1", "GA" ) && priceIndex %in% c( "L", "Ls" ) ) {
+   } else if( method %in% c( "B1", "GA", "B2" ) &&
+         priceIndex %in% c( "L", "Ls" ) ) {
       if( is.null( baseShares ) ) {
-         stop( "calculation of demand elasticities with method 'B1'/'GA'",
+         stop( "calculation of demand elasticities with method",
+            " 'B1'/'GA' or 'B2'",
             " for models with Laspeyres or simplified Laspeyres price index",
             " requires argument 'baseShares'" )
       }
@@ -161,7 +163,7 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
                ( coef$beta[ i ] / ( 2 * shares[ i ] ) ) * numer / denom
          }
       }
-   } else if( method %in% c( "B2" ) ) {
+   } else if( method %in% c( "B2" ) && priceIndex %in% c( "S", "SL" ) ) {
       paren <- 1  # term in parenthesis for expenditure elasticities
       for( k in 1:nGoods ) {
          paren <- paren - coef$beta[ k ] * log( prices[ k ] )
@@ -183,6 +185,73 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
             }
             ela$marshall[ i, j ] <- -( i == j ) + coef$gamma[ i, j ] / shares[ i ] -
                ( coef$beta[ i ] / shares[ i ] ) * parenBig
+         }
+      }
+   } else if( method %in% c( "B2" ) && priceIndex == "P" ) {
+      if( is.null( basePrices ) ) {
+         stop( "calculations of demand elasticities with method 'B2'",
+            " for models with Paasche price index",
+            " require argument 'basePrices'" )
+      }
+      paren <- 1  # term in parenthesis for expenditure elasticities
+      for( k in 1:nGoods ) {
+         paren <- paren - coef$beta[ k ] * log( prices[ k ] / basePrices[ k ] )
+      }
+      ela$exp <- ones + ( coef$beta / shares ) * paren
+      ela$marshall <- matrix( NA, nGoods, nGoods )
+      for( i in 1:nGoods ) {
+         for( j in 1:nGoods ) {
+            parenSmall <- coef$alpha[ j ] # term in small par. for Marsh. elast.
+            for( l in 1:nGoods ) {
+               parenSmall <- parenSmall +
+                  coef$gamma[ l, j ] * log( prices[ l ] )
+            }
+            parenBig <- shares[ j ] # term in big parenthesis for Marsh. elast.
+            for( k in 1:nGoods ) {
+               parenBig <- parenBig +
+                  coef$gamma[ k, j ] * log( prices[ k ] / basePrices[ k ] ) -
+                  coef$beta[ k ] * log( prices[ k ] / basePrices[ k ] ) *
+                  parenSmall
+            }
+            ela$marshall[ i, j ] <- -( i == j ) + coef$gamma[ i, j ] / shares[ i ] -
+               ( coef$beta[ i ] / shares[ i ] ) * parenBig
+         }
+      }
+   } else if( method %in% c( "B2" ) && priceIndex == "T" ) {
+      if( is.null( basePrices ) ) {
+         stop( "calculations of demand elasticities with method 'B2'",
+            " for models with Tornqvist price index",
+            " require argument 'basePrices'" )
+      }
+      if( is.null( baseShares ) ) {
+         stop( "calculations of demand elasticities with method 'B2'",
+            " for models with Tornqvist price index",
+            " require argument 'baseShares'" )
+      }
+      paren <- 1  # term in parenthesis for expenditure elasticities
+      for( k in 1:nGoods ) {
+         paren <- paren - 0.5 * coef$beta[ k ] *
+            log( prices[ k ] / basePrices[ k ] )
+      }
+      ela$exp <- ones + ( coef$beta / shares ) * paren
+      ela$marshall <- matrix( NA, nGoods, nGoods )
+      for( i in 1:nGoods ) {
+         for( j in 1:nGoods ) {
+            parenSmall <- coef$alpha[ j ] # term in small par. for Marsh. elast.
+            for( l in 1:nGoods ) {
+               parenSmall <- parenSmall +
+                  coef$gamma[ l, j ] * log( prices[ l ] )
+            }
+            parenBig <- shares[ j ] + baseShares[ j ]
+               # term in big parenthesis for Marsh. elast.
+            for( k in 1:nGoods ) {
+               parenBig <- parenBig +
+                  coef$gamma[ k, j ] * log( prices[ k ] / basePrices[ k ] ) -
+                  coef$beta[ k ] * log( prices[ k ] / basePrices[ k ] ) *
+                  parenSmall
+            }
+            ela$marshall[ i, j ] <- -( i == j ) + coef$gamma[ i, j ] / shares[ i ] -
+               ( coef$beta[ i ] / ( 2 * shares[ i ] ) ) * parenBig
          }
       }
    } else {
