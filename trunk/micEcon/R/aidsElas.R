@@ -62,29 +62,23 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
 
    if( method == "AIDS" ) {
       ela$exp <- ones + coef$beta/shares
-      ela$hicks <- -diag( 1, nGoods, nGoods ) +
-         ones %*% t( shares ) +
+      ela$marshall <- -diag( 1, nGoods, nGoods ) +
          coef$gamma / ( shares %*% t( ones ) ) -
          coef$beta %*% t( ones ) *
-         ( ones %*% t( coef$alpha ) -
-         ones %*% t( shares )+
+         ( ones %*% t( coef$alpha ) +
          ones %*% t( coef$gamma %*% log( prices ))) /
          ( shares %*% t( ones ) )
-      ela$marshall <- ela$hicks - ( ela$exp %*% t( ones ) ) *
-         ( ones %*% t( shares ))
    } else if( method %in% c( "Ch", "Go" ) ) {
       ela$exp <- ones + coef$beta / shares
-      ela$hicks <- -diag( 1, nGoods, nGoods ) + coef$gamma /
-         ( shares %*% t( ones ) ) +
-         ones %*% t( shares )
-      ela$marshall <- ela$hicks - ( ela$exp %*% t( ones ) ) *
-         ( ones %*% t(shares))
+      ela$marshall <- -diag( 1, nGoods, nGoods ) + coef$gamma /
+         ( shares %*% t( ones ) ) -
+         coef$beta %*% t( ones ) *
+         ones %*% t( shares ) /
+         ( shares %*% t( ones ) )
    } else if( method == "EU" ) {
       ela$exp <- ones + coef$beta / shares
       ela$marshall <- -diag( 1, nGoods, nGoods ) + coef$gamma /
          ( shares %*% t( ones ) )
-      ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
-         ( ones %*% t(shares))
    } else if( method %in% c( "GA", "B1" ) ) {
       denom <- 1  # part of denominator for exp. + Marsh. elasticities
       for( k in 1:nGoods ) {
@@ -102,8 +96,6 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
                ( coef$beta[ i ] / shares[ i ] ) * numer / denom
          }
       }
-      ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
-         ( ones %*% t(shares))
    } else if( method %in% c( "B2" ) ) {
       paren <- 1  # term in parenthesis for expenditure elasticities
       for( k in 1:nGoods ) {
@@ -128,12 +120,12 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
                ( coef$beta[ i ] / shares[ i ] ) * parenBig
          }
       }
-      ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
-         ( ones %*% t(shares))
    } else {
       stop( "argument 'method' must be either 'AIDS', 'GA', 'B1', 'B2',",
          " 'Go', 'Ch', or 'EU'" )
    }
+   ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
+      ( ones %*% t(shares))
    names( ela$exp )         <- quantNames
    rownames( ela$hicks )    <- quantNames
    colnames( ela$hicks )    <- priceNames
