@@ -323,11 +323,13 @@ elas( estResultLaLs, method = "EU" )
 elas( estResultLaT, method = "EU" )
 
 cat( "\nLA: Elasticity formula of Green + Alston\n" )
-ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "GA" )
+ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "GA",
+   priceIndex = "S" )
 print( ela )
 
 cat( "\nLA: Elasticity formula of Buse\n" )
-ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B1" )
+ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B1",
+   priceIndex = "S" )
 print( ela )
 
 elas( estResultLaS, method = "B1" )
@@ -366,7 +368,7 @@ aidsElas( coef( estResultLaS ), prices = pMeans, totExp = xtMean,
    method = "Ch", priceIndex = "S" )
 
 aidsElas( coef( estResultLaS ), prices = pMeans, shares = wMeans,
-   method = "B1" )
+   method = "B1", priceIndex = "S" )
 aidsElas( coef( estResultLaS ), prices = pMeans, totExp = xtMean,
    method = "B1", priceIndex = "S" )
 
