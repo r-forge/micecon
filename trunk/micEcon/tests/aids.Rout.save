@@ -3972,7 +3972,8 @@ q_wFood4  0.467  0.1397  0.1142 -0.720
 > cat( "\nLA: Elasticity formula of Buse (alternative formula)\n" )
 
 LA: Elasticity formula of Buse (alternative formula)
-> ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B2" )
+> ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B2",
++    priceIndex = "S" )
 > print( ela )
 
 Demand Elasticities (formulas of Buse (second set))
@@ -4041,42 +4042,42 @@ q_wFood4  0.421  0.1534  0.1381 -0.713
 Demand Elasticities (formulas of Buse (second set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   2.063    1.256    0.401    0.134 
+   2.077    1.259    0.393    0.123 
 
 Marshallian (uncompensated) Price Elasticities
           pFood1 pFood2  pFood3 pFood4
-q_wFood1 -0.9849 -0.661 -0.1825 -0.234
-q_wFood2 -0.7736 -0.266 -0.0187 -0.197
-q_wFood3  0.0946  0.143 -0.8239  0.185
-q_wFood4  0.3966  0.111  0.1064 -0.748
+q_wFood1 -0.9474 -0.677 -0.1928 -0.260
+q_wFood2 -0.7646 -0.270 -0.0212 -0.204
+q_wFood3  0.0734  0.152 -0.8181  0.200
+q_wFood4  0.3660  0.124  0.1147 -0.727
 
 Hicksian (compensated) Price Elasticities
          pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.340 -0.2432  0.0927  0.490
-q_wFood2 -0.381 -0.0120  0.1489  0.244
-q_wFood3  0.220  0.2245 -0.7704  0.326
-q_wFood4  0.439  0.1382  0.1243 -0.701
+q_wFood1 -0.298 -0.2560  0.0843  0.470
+q_wFood2 -0.371 -0.0151  0.1469  0.239
+q_wFood3  0.196  0.2317 -0.7657  0.338
+q_wFood4  0.404  0.1486  0.1311 -0.684
 > 
 > elas( estResultLaL, method = "B2" )
 
 Demand Elasticities (formulas of Buse (second set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   2.055    1.241    0.380    0.158 
+   2.040    1.237    0.389    0.170 
 
 Marshallian (uncompensated) Price Elasticities
-         pFood1 pFood2   pFood3 pFood4
-q_wFood1 -1.014 -0.673 -0.17893 -0.189
-q_wFood2 -0.789 -0.264 -0.00448 -0.183
-q_wFood3  0.107  0.166 -0.81643  0.163
-q_wFood4  0.427  0.112  0.09197 -0.789
+         pFood1  pFood2   pFood3 pFood4
+q_wFood1  -1.02 -0.6452 -0.17023 -0.207
+q_wFood2  -0.79 -0.2581 -0.00249 -0.187
+q_wFood3   0.11  0.1496 -0.82154  0.174
+q_wFood4   0.43  0.0894  0.08502 -0.774
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.372 -0.2569  0.0954  0.533
-q_wFood2 -0.401 -0.0131  0.1611  0.253
-q_wFood3  0.226  0.2430 -0.7657  0.297
-q_wFood4  0.476  0.1437  0.1131 -0.733
+         pFood1   pFood2 pFood3 pFood4
+q_wFood1 -0.381 -0.23200  0.102  0.510
+q_wFood2 -0.404 -0.00745  0.163  0.248
+q_wFood3  0.231  0.22837 -0.770  0.310
+q_wFood4  0.483  0.12385  0.108 -0.714
 Warning message:
 In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
   the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
@@ -4086,21 +4087,21 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices =
 Demand Elasticities (formulas of Buse (second set))
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
-   2.055    1.241    0.380    0.158 
+   2.040    1.237    0.389    0.170 
 
 Marshallian (uncompensated) Price Elasticities
-         pFood1 pFood2   pFood3 pFood4
-q_wFood1 -1.034 -0.676 -0.17397 -0.171
-q_wFood2 -0.794 -0.265 -0.00335 -0.179
-q_wFood3  0.119  0.168 -0.81934  0.153
-q_wFood4  0.442  0.114  0.08800 -0.803
+         pFood1  pFood2   pFood3 pFood4
+q_wFood1  -1.02 -0.6452 -0.17023 -0.207
+q_wFood2  -0.79 -0.2581 -0.00249 -0.187
+q_wFood3   0.11  0.1496 -0.82154  0.174
+q_wFood4   0.43  0.0894  0.08502 -0.774
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2 pFood3 pFood4
-q_wFood1 -0.392 -0.2598  0.100  0.551
-q_wFood2 -0.406 -0.0138  0.162  0.258
-q_wFood3  0.238  0.2447 -0.769  0.286
-q_wFood4  0.492  0.1461  0.109 -0.747
+         pFood1   pFood2 pFood3 pFood4
+q_wFood1 -0.381 -0.23200  0.102  0.510
+q_wFood2 -0.404 -0.00745  0.163  0.248
+q_wFood3  0.231  0.22837 -0.770  0.310
+q_wFood4  0.483  0.12385  0.108 -0.714
 Warning message:
 In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares = baseShares)) :
   the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
@@ -4113,18 +4114,18 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    2.060    1.248    0.390    0.145 
 
 Marshallian (uncompensated) Price Elasticities
-         pFood1 pFood2  pFood3 pFood4
-q_wFood1 -1.000 -0.668 -0.1811 -0.212
-q_wFood2 -0.782 -0.265 -0.0118 -0.190
-q_wFood3  0.101  0.154 -0.8199  0.175
-q_wFood4  0.412  0.112  0.0995 -0.768
+          pFood1 pFood2  pFood3 pFood4
+q_wFood1 -0.9833 -0.662 -0.1820 -0.234
+q_wFood2 -0.7780 -0.264 -0.0120 -0.195
+q_wFood3  0.0913  0.151 -0.8194  0.187
+q_wFood4  0.3988  0.107  0.1003 -0.751
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2  pFood3 pFood4
-q_wFood1 -0.356 -0.2503  0.0939  0.512
-q_wFood2 -0.392 -0.0124  0.1548  0.249
-q_wFood3  0.223  0.2334 -0.7679  0.312
-q_wFood4  0.457  0.1412  0.1189 -0.717
+         pFood1 pFood2  pFood3 pFood4
+q_wFood1 -0.339 -0.244  0.0929  0.490
+q_wFood2 -0.388 -0.011  0.1545  0.244
+q_wFood3  0.213  0.230 -0.7673  0.324
+q_wFood4  0.444  0.136  0.1197 -0.700
 > 
 > aidsElas( coef( estResultTl ), prices = pMeans, shares = wMeans )
 

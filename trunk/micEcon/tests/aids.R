@@ -345,7 +345,8 @@ elas( estResultLaLs, method = "B1" )
 elas( estResultLaT, method = "B1" )
 
 cat( "\nLA: Elasticity formula of Buse (alternative formula)\n" )
-ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B2" )
+ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B2",
+   priceIndex = "S" )
 print( ela )
 
 elas( estResultLaS, method = "B2" )
