@@ -261,6 +261,17 @@ print( elas( estResultLATX, method = "AIDS" ) )
 print( summary( elas( estResultLATX, method = "AIDS", observedShares = TRUE ) ) )
 print( summary( elas( estResultLATX, method = "AIDS" ) ) )
 
+elas( estResultLaS, method = "AIDS" )
+
+elas( estResultLaSl, method = "AIDS" )
+
+elas( estResultLaP, method = "AIDS" )
+
+elas( estResultLaL, method = "AIDS" )
+
+elas( estResultLaLs, method = "AIDS" )
+
+elas( estResultLaT, method = "AIDS" )
 
 cat( "\n********** Elasticities ***************" )
 cat( "\nLA: Elasticity formula of Goddard or Chalfant\n" )
@@ -283,10 +294,33 @@ print( elas( estResultLATX ) )
 print( summary( elas( estResultLATX, observedShares = TRUE ) ) )
 print( summary( elas( estResultLATX ) ) )
 
+elas( estResultLaS, method = "Go" )
+
+elas( estResultLaSl, method = "Go" )
+
+elas( estResultLaP, method = "Go" )
+
+elas( estResultLaL, method = "Go" )
+
+elas( estResultLaLs, method = "Go" )
+
+elas( estResultLaT, method = "Go" )
 
 cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "EU" )
 print( ela )
+
+elas( estResultLaS, method = "EU" )
+
+elas( estResultLaSl, method = "EU" )
+
+elas( estResultLaP, method = "EU" )
+
+elas( estResultLaL, method = "EU" )
+
+elas( estResultLaLs, method = "EU" )
+
+elas( estResultLaT, method = "EU" )
 
 cat( "\nLA: Elasticity formula of Green + Alston\n" )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "GA" )
@@ -296,9 +330,33 @@ cat( "\nLA: Elasticity formula of Buse\n" )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B1" )
 print( ela )
 
+elas( estResultLaS, method = "B1" )
+
+elas( estResultLaSl, method = "B1" )
+
+elas( estResultLaP, method = "B1" )
+
+elas( estResultLaL, method = "B1" )
+
+elas( estResultLaLs, method = "B1" )
+
+elas( estResultLaT, method = "B1" )
+
 cat( "\nLA: Elasticity formula of Buse (alternative formula)\n" )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, prices = pMeans, method = "B2" )
 print( ela )
+
+elas( estResultLaS, method = "B2" )
+
+elas( estResultLaSl, method = "B2" )
+
+elas( estResultLaP, method = "B2" )
+
+elas( estResultLaL, method = "B2" )
+
+elas( estResultLaLs, method = "B2" )
+
+elas( estResultLaT, method = "B2" )
 
 aidsElas( coef( estResultTl ), prices = pMeans, shares = wMeans )
 aidsElas( coef( estResultTl ), prices = pMeans, totExp = xtMean )

@@ -98,7 +98,7 @@ gamma 4 2  0.00277    0.04850    0.06  0.95454
 gamma 4 3 -0.04707    0.02325   -2.02  0.04609 *  
 gamma 4 4 -0.17643    0.09821   -1.80  0.07603 .  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.636  0.830  0.415  0.651 
@@ -157,7 +157,7 @@ gamma 4 2 -0.02050    0.02363   -0.87  0.38805
 gamma 4 3 -0.00440    0.01354   -0.32  0.74600    
 gamma 4 4 -0.02239    0.03829   -0.58  0.56030    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.627  0.832  0.412  0.657 
@@ -216,7 +216,7 @@ gamma 4 2 -0.016216   0.022336   -0.73  0.46995
 gamma 4 3  0.000768   0.013674    0.06  0.95533    
 gamma 4 4 -0.024285   0.032868   -0.74  0.46212    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.701  0.846  0.408  0.734 
@@ -275,7 +275,7 @@ gamma 4 2 -0.02049    0.02384   -0.86  0.39252
 gamma 4 3 -0.00530    0.01357   -0.39  0.69708    
 gamma 4 4 -0.02574    0.03866   -0.67  0.50735    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.634  0.829  0.412  0.649 
@@ -334,7 +334,7 @@ gamma 4 2 -0.01875    0.02442   -0.77  0.44476
 gamma 4 3 -0.00920    0.01379   -0.67  0.50672    
 gamma 4 4 -0.03636    0.03911   -0.93  0.35519    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.620  0.830  0.414  0.640 
@@ -393,7 +393,7 @@ gamma 4 2 -0.01875    0.02442   -0.77  0.44476
 gamma 4 3 -0.00920    0.01379   -0.67  0.50672    
 gamma 4 4 -0.03636    0.03911   -0.93  0.35519    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.620  0.830  0.414  0.640 
@@ -456,7 +456,7 @@ gamma 4 2 -0.01954    0.02409   -0.81  0.41953
 gamma 4 3 -0.00719    0.01366   -0.53  0.60007    
 gamma 4 4 -0.03123    0.03881   -0.80  0.42324    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.628  0.829  0.413  0.645 
@@ -519,7 +519,7 @@ gamma 4 2 -0.016216   0.022336   -0.73  0.46995
 gamma 4 3  0.000768   0.013674    0.06  0.95533    
 gamma 4 4 -0.024285   0.032868   -0.74  0.46212    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.701  0.846  0.408  0.734 
@@ -619,7 +619,7 @@ gamma 4 2 -0.016216   0.022336   -0.73  0.46995
 gamma 4 3  0.000768   0.013674    0.06  0.95533    
 gamma 4 4 -0.024285   0.032868   -0.74  0.46212    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.701  0.846  0.408  0.734 
@@ -719,7 +719,7 @@ gamma 4 2  0.021669   0.060450    0.36  0.72097
 gamma 4 3 -0.016600   0.052457   -0.32  0.75251    
 gamma 4 4 -0.030701   0.036948   -0.83  0.40856    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.709  0.853  0.431  0.740 
@@ -819,7 +819,7 @@ gamma 4 2  0.021669   0.060450    0.36  0.72097
 gamma 4 3 -0.016600   0.052457   -0.32  0.75251    
 gamma 4 4 -0.030701   0.036948   -0.83  0.40856    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.709  0.853  0.431  0.740 
@@ -919,7 +919,7 @@ gamma 4 2 -0.079919   0.051673   -1.55  0.12617
 gamma 4 3 -0.004822   0.040221   -0.12  0.90489    
 gamma 4 4  0.032053   0.031651    1.01  0.31446    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.817  0.864  0.431  0.859 
@@ -1019,7 +1019,7 @@ gamma 4 2 -0.079919   0.051673   -1.55  0.12617
 gamma 4 3 -0.004822   0.040221   -0.12  0.90489    
 gamma 4 4  0.032053   0.031651    1.01  0.31446    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.817  0.864  0.431  0.859 
@@ -1132,7 +1132,7 @@ delta 2 1  0.001174   0.000258    4.55  1.9e-05 ***
 delta 3 1 -0.000228   0.000202   -1.13   0.2617    
 delta 4 1 -0.002820   0.000283   -9.96  1.0e-15 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.822  0.905  0.418 -5.650 
@@ -1205,7 +1205,7 @@ delta 3 2  2.86e-05   1.39e-05    2.07  0.04201 *
 delta 4 1 -3.04e-03   7.01e-04   -4.34  4.2e-05 ***
 delta 4 2  9.20e-06   1.99e-05    0.46  0.64442    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.829  0.939  0.537 -5.680 
@@ -1273,7 +1273,7 @@ gamma 4 2  0.01731    0.04419    0.39  0.69629
 gamma 4 3 -0.03926    0.02176   -1.80  0.07500 .  
 gamma 4 4 -0.19751    0.08462   -2.33  0.02206 *  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.685  0.844  0.431  0.712 
@@ -1376,7 +1376,7 @@ gamma 4 2  0.01731    0.04419    0.39  0.69629
 gamma 4 3 -0.03926    0.02176   -1.80  0.07500 .  
 gamma 4 4 -0.19751    0.08462   -2.33  0.02206 *  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.685  0.844  0.431  0.712 
@@ -1480,7 +1480,7 @@ gamma 4 2  0.05616    0.07559    0.74  0.45973
 gamma 4 3 -0.05583    0.05701   -0.98  0.33046    
 gamma 4 4 -0.21775    0.07901   -2.76  0.00728 ** 
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.695  0.851  0.448  0.718 
@@ -1583,7 +1583,7 @@ gamma 4 2  0.05616    0.07559    0.74  0.45973
 gamma 4 3 -0.05583    0.05701   -0.98  0.33046    
 gamma 4 4 -0.21775    0.07901   -2.76  0.00728 ** 
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.695  0.851  0.448  0.718 
@@ -1687,7 +1687,7 @@ gamma 4 2 -0.08414    0.05477   -1.54  0.12870
 gamma 4 3 -0.01187    0.04220   -0.28  0.77926    
 gamma 4 4  0.01822    0.04641    0.39  0.69565    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.817  0.864  0.444  0.858 
@@ -1790,7 +1790,7 @@ gamma 4 2 -0.08414    0.05477   -1.54  0.12870
 gamma 4 3 -0.01187    0.04220   -0.28  0.77926    
 gamma 4 4  0.01822    0.04641    0.39  0.69565    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.817  0.864  0.444  0.858 
@@ -1894,7 +1894,7 @@ gamma 4 2 -0.02050    0.02363   -0.87  0.38805
 gamma 4 3 -0.00440    0.01354   -0.32  0.74600    
 gamma 4 4 -0.02239    0.03829   -0.58  0.56030    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.627  0.832  0.412  0.657 
@@ -1997,7 +1997,7 @@ gamma 4 2 -0.016216   0.022336   -0.73  0.46995
 gamma 4 3  0.000768   0.013674    0.06  0.95533    
 gamma 4 4 -0.024285   0.032868   -0.74  0.46212    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.701  0.846  0.408  0.734 
@@ -2099,7 +2099,7 @@ gamma 4 2 -0.01875    0.02442   -0.77  0.44476
 gamma 4 3 -0.00920    0.01379   -0.67  0.50672    
 gamma 4 4 -0.03636    0.03911   -0.93  0.35519    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.620  0.830  0.414  0.640 
@@ -2208,7 +2208,7 @@ gamma 4 2  0.00277    0.04850    0.06  0.95454
 gamma 4 3 -0.04707    0.02325   -2.02  0.04609 *  
 gamma 4 4 -0.17643    0.09821   -1.80  0.07603 .  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
 wFood1 wFood2 wFood3 wFood4 
  0.636  0.830  0.415  0.651 
@@ -2323,7 +2323,7 @@ Em q_wFood4 pFood2   0.1392     0.0901    1.55   0.1260
 Em q_wFood4 pFood3   0.1168     0.0524    2.23   0.0287 *  
 Em q_wFood4 pFood4  -0.7745     0.1040   -7.45  9.0e-11 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > elaTX <- aidsElas( estResultAIDSTX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
 +    coefCov = vcov( estResultAIDSTX ), df = df.residual( estResultAIDSTX ) )
 > print( elaTX )
@@ -2385,7 +2385,7 @@ Em q_wFood4 pFood2   0.1392     0.0901    1.55   0.1260
 Em q_wFood4 pFood3   0.1168     0.0524    2.23   0.0287 *  
 Em q_wFood4 pFood4  -0.7745     0.1040   -7.45  9.0e-11 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > print( all.equal( ela, elaTX ) )
 [1] TRUE
 > 
@@ -2468,7 +2468,7 @@ Em q_wFood4 pFood2   0.1401     0.0905    1.55   0.1254
 Em q_wFood4 pFood3   0.1172     0.0526    2.23   0.0288 *  
 Em q_wFood4 pFood4  -0.7739     0.1043   -7.42  1.0e-10 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > print( summary( elas( estResultAIDS ) ) )
                    Estimate Std. Error t value Pr(>|t|)    
 Ex q_wFood1          2.0472     0.1252   16.35  < 2e-16 ***
@@ -2508,7 +2508,7 @@ Em q_wFood4 pFood2   0.1415     0.0914    1.55   0.1254
 Em q_wFood4 pFood3   0.1184     0.0532    2.23   0.0288 *  
 Em q_wFood4 pFood4  -0.7715     0.1054   -7.32  1.6e-10 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > 
 > print( elas( estResultAIDSTX, observedShares = TRUE ) )
 
@@ -2589,7 +2589,7 @@ Em q_wFood4 pFood2   0.1401     0.0905    1.55   0.1254
 Em q_wFood4 pFood3   0.1172     0.0526    2.23   0.0288 *  
 Em q_wFood4 pFood4  -0.7739     0.1043   -7.42  1.0e-10 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > print( summary( elas( estResultAIDSTX ) ) )
                    Estimate Std. Error t value Pr(>|t|)    
 Ex q_wFood1          2.0472     0.1252   16.35  < 2e-16 ***
@@ -2629,7 +2629,7 @@ Em q_wFood4 pFood2   0.1415     0.0914    1.55   0.1254
 Em q_wFood4 pFood3   0.1184     0.0532    2.23   0.0288 *  
 Em q_wFood4 pFood4  -0.7715     0.1054   -7.32  1.6e-10 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > 
 > 
 > cat( "\nLA: Elasticity formula of non-linear AIDS\n" )
@@ -2696,7 +2696,7 @@ Em q_wFood4 pFood2   0.0476     0.0677    0.70  0.48385
 Em q_wFood4 pFood3   0.2307     0.0585    3.94  0.00017 ***
 Em q_wFood4 pFood4  -0.2981     0.2010   -1.48  0.14192    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > elaTX <- aidsElas( estResultLATX$coef, shares = wMeans, prices = pMeans, method = "AIDS",
 +    coefCov = vcov( estResultLATX ), df = df.residual( estResultLATX ) )
 > print( elaTX )
@@ -2758,7 +2758,7 @@ Em q_wFood4 pFood2   0.0476     0.0677    0.70  0.48385
 Em q_wFood4 pFood3   0.2307     0.0585    3.94  0.00017 ***
 Em q_wFood4 pFood4  -0.2981     0.2010   -1.48  0.14192    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > print( all.equal( ela, elaTX ) )
 [1] TRUE
 > 
@@ -2841,7 +2841,7 @@ Em q_wFood4 pFood2   0.0480     0.0680    0.71  0.48173
 Em q_wFood4 pFood3   0.2316     0.0587    3.94  0.00017 ***
 Em q_wFood4 pFood4  -0.2955     0.2018   -1.46  0.14693    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > print( summary( elas( estResultLA, method = "AIDS" ) ) )
                    Estimate Std. Error t value Pr(>|t|)    
 Ex q_wFood1         2.04944    0.12066   16.98  < 2e-16 ***
@@ -2881,7 +2881,7 @@ Em q_wFood4 pFood2  0.04858    0.06874    0.71  0.48173
 Em q_wFood4 pFood3  0.23422    0.05938    3.94  0.00017 ***
 Em q_wFood4 pFood4 -0.28749    0.20405   -1.41  0.16269    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > 
 > print( elas( estResultLATX, method = "AIDS", observedShares = TRUE ) )
 
@@ -2962,7 +2962,7 @@ Em q_wFood4 pFood2   0.0480     0.0680    0.71  0.48173
 Em q_wFood4 pFood3   0.2316     0.0587    3.94  0.00017 ***
 Em q_wFood4 pFood4  -0.2955     0.2018   -1.46  0.14693    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > print( summary( elas( estResultLATX, method = "AIDS" ) ) )
                    Estimate Std. Error t value Pr(>|t|)    
 Ex q_wFood1         2.04944    0.12066   16.98  < 2e-16 ***
@@ -3002,8 +3002,139 @@ Em q_wFood4 pFood2  0.04858    0.06874    0.71  0.48173
 Em q_wFood4 pFood3  0.23422    0.05938    3.94  0.00017 ***
 Em q_wFood4 pFood4 -0.28749    0.20405   -1.41  0.16269    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > 
+> elas( estResultLaS, method = "AIDS" )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.036    1.276    0.411    0.142 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.4140 -0.5576 -0.3152 -0.749
+q_wFood2 -0.6231 -0.2548 -0.0569 -0.341
+q_wFood3 -0.2306  0.0888 -0.7481  0.479
+q_wFood4 -0.0748  0.0330  0.2178 -0.318
+
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1  0.2228 -0.1452 -0.0436 -0.034
+q_wFood2 -0.2241  0.0036  0.1133  0.107
+q_wFood3 -0.1022  0.1720 -0.6933  0.623
+q_wFood4 -0.0303  0.0619  0.2368 -0.268
+> 
+> elas( estResultLaSl, method = "AIDS" )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.049    1.275    0.440    0.114 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.382 -0.5547 -0.3129 -0.800
+q_wFood2 -0.612 -0.2517 -0.0892 -0.323
+q_wFood3 -0.230  0.0340 -0.7440  0.500
+q_wFood4 -0.110  0.0486  0.2342 -0.287
+
+Hicksian (compensated) Price Elasticities
+          pFood1   pFood2  pFood3  pFood4
+q_wFood1  0.2597 -0.13786 -0.0394 -0.0825
+q_wFood2 -0.2123  0.00768  0.0810  0.1236
+q_wFood3 -0.0924  0.12346 -0.6852  0.6542
+q_wFood4 -0.0739  0.07184  0.2495 -0.2475
+> 
+> elas( estResultLaP, method = "AIDS" )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.047    1.252    0.409    0.147 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1  0.969 -0.3571 -0.648 -2.011
+q_wFood2 -0.303 -0.1932 -0.131 -0.625
+q_wFood3 -1.007 -0.0281 -0.561  1.187
+q_wFood4 -1.195 -0.1366  0.486  0.699
+
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1  1.6091  0.0575 -0.3753 -1.291
+q_wFood2  0.0889  0.0604  0.0361 -0.185
+q_wFood3 -0.8795  0.0548 -0.5065  1.331
+q_wFood4 -1.1495 -0.1069  0.5056  0.751
+> 
+> elas( estResultLaL, method = "AIDS" )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.040    1.237    0.389    0.170 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1    pFood2 pFood3 pFood4
+q_wFood1  0.914 -0.388846 -0.658 -1.907
+q_wFood2 -0.349 -0.199539 -0.114 -0.575
+q_wFood3 -1.025 -0.000963 -0.535  1.172
+q_wFood4 -1.111 -0.115085  0.474  0.582
+
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1  1.5515  0.0243 -0.3859 -1.190
+q_wFood2  0.0376  0.0511  0.0513 -0.140
+q_wFood3 -0.9036  0.0778 -0.4830  1.309
+q_wFood4 -1.0579 -0.0806  0.4969  0.642
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> elas( estResultLaLs, method = "AIDS" )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.040    1.237    0.389    0.170 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.4545 -0.5912 -0.3150 -0.680
+q_wFood2 -0.6615 -0.2457 -0.0355 -0.295
+q_wFood3 -0.2215  0.1179 -0.7365  0.451
+q_wFood4 -0.0198  0.0463  0.2005 -0.397
+
+Hicksian (compensated) Price Elasticities
+          pFood1   pFood2  pFood3  pFood4
+q_wFood1  0.1831 -0.17805 -0.0427  0.0376
+q_wFood2 -0.2748  0.00486  0.1296  0.1403
+q_wFood3 -0.0999  0.19668 -0.6846  0.5878
+q_wFood4  0.0334  0.08082  0.2232 -0.3374
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares = baseShares)) :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> elas( estResultLaT, method = "AIDS" )
+
+Demand Elasticities (original AIDS formulas)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.045    1.245    0.399    0.157 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1  0.947 -0.3731 -0.655 -1.964
+q_wFood2 -0.326 -0.1962 -0.123 -0.600
+q_wFood3 -1.019 -0.0150 -0.547  1.183
+q_wFood4 -1.157 -0.1256  0.481  0.644
+
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1  1.5859  0.0411 -0.3818 -1.245
+q_wFood2  0.0634  0.0559  0.0433 -0.163
+q_wFood3 -0.8943  0.0658 -0.4942  1.323
+q_wFood4 -1.1077 -0.0937  0.5023  0.699
 > 
 > cat( "\n********** Elasticities ***************" )
 
@@ -3365,6 +3496,137 @@ q_wFood4  0.427  0.1571  0.1357 -0.719
 [35,]   0.1204         NA      NA       NA
 [36,]  -0.7595         NA      NA       NA
 > 
+> elas( estResultLaS, method = "Go" )
+
+Demand Elasticities (formulas of Goddard / Chalfant)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.036    1.276    0.411    0.142 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1 pFood2  pFood3 pFood4
+q_wFood1 -0.9910 -0.657 -0.1752 -0.213
+q_wFood2 -0.7767 -0.281 -0.0196 -0.198
+q_wFood3  0.0977  0.145 -0.8278  0.174
+q_wFood4  0.4029  0.115  0.1019 -0.763
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.354 -0.2447  0.0965  0.502
+q_wFood2 -0.378 -0.0229  0.1506  0.250
+q_wFood3  0.226  0.2286 -0.7730  0.318
+q_wFood4  0.447  0.1442  0.1209 -0.713
+> 
+> elas( estResultLaSl, method = "Go" )
+
+Demand Elasticities (formulas of Goddard / Chalfant)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.049    1.275    0.440    0.114 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.9754 -0.6557 -0.1780 -0.240
+q_wFood2 -0.7672 -0.2781 -0.0538 -0.176
+q_wFood3  0.0864  0.0879 -0.8159  0.202
+q_wFood4  0.3909  0.1338  0.1204 -0.759
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.333 -0.2388  0.0955  0.477
+q_wFood2 -0.368 -0.0188  0.1164  0.270
+q_wFood3  0.224  0.1773 -0.7572  0.356
+q_wFood4  0.427  0.1571  0.1357 -0.719
+> 
+> elas( estResultLaP, method = "Go" )
+
+Demand Elasticities (formulas of Goddard / Chalfant)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.047    1.252    0.409    0.147 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2  pFood3 pFood4
+q_wFood1 -1.006 -0.665 -0.1732 -0.203
+q_wFood2 -0.779 -0.267 -0.0165 -0.190
+q_wFood3  0.106  0.146 -0.8291  0.168
+q_wFood4  0.413  0.114  0.0988 -0.774
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.365 -0.2506  0.100  0.516
+q_wFood2 -0.387 -0.0138  0.151  0.250
+q_wFood3  0.234  0.2286 -0.775  0.312
+q_wFood4  0.459  0.1442  0.118 -0.722
+> 
+> elas( estResultLaL, method = "Go" )
+
+Demand Elasticities (formulas of Goddard / Chalfant)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.040    1.237    0.389    0.170 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2   pFood3 pFood4
+q_wFood1 -1.034 -0.677 -0.16968 -0.160
+q_wFood2 -0.794 -0.265 -0.00237 -0.176
+q_wFood3  0.119  0.168 -0.82186  0.146
+q_wFood4  0.442  0.115  0.08458 -0.812
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.396 -0.2637  0.103  0.557
+q_wFood2 -0.407 -0.0147  0.163  0.259
+q_wFood3  0.240  0.2470 -0.770  0.283
+q_wFood4  0.495  0.1492  0.107 -0.752
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> elas( estResultLaLs, method = "Go" )
+
+Demand Elasticities (formulas of Goddard / Chalfant)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.040    1.237    0.389    0.170 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2   pFood3 pFood4
+q_wFood1 -1.034 -0.677 -0.16968 -0.160
+q_wFood2 -0.794 -0.265 -0.00237 -0.176
+q_wFood3  0.119  0.168 -0.82186  0.146
+q_wFood4  0.442  0.115  0.08458 -0.812
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.396 -0.2637  0.103  0.557
+q_wFood2 -0.407 -0.0147  0.163  0.259
+q_wFood3  0.240  0.2470 -0.770  0.283
+q_wFood4  0.495  0.1492  0.107 -0.752
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares = baseShares)) :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> elas( estResultLaT, method = "Go" )
+
+Demand Elasticities (formulas of Goddard / Chalfant)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.045    1.245    0.399    0.157 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2   pFood3 pFood4
+q_wFood1 -1.020 -0.672 -0.17174 -0.182
+q_wFood2 -0.787 -0.266 -0.00964 -0.183
+q_wFood3  0.112  0.157 -0.82528  0.157
+q_wFood4  0.428  0.115  0.09199 -0.793
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.381 -0.2574  0.101  0.537
+q_wFood2 -0.397 -0.0140  0.156  0.255
+q_wFood3  0.237  0.2375 -0.772  0.298
+q_wFood4  0.478  0.1469  0.113 -0.737
 > 
 > cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
 
@@ -3390,6 +3652,138 @@ q_wFood1 -0.00439 -0.0338  0.2379  0.859
 q_wFood2 -0.29432  0.0459  0.1542  0.374
 q_wFood3  0.04884  0.0628 -0.8318  0.163
 q_wFood4  0.15146 -0.0201  0.0193 -1.023
+> 
+> elas( estResultLaS, method = "EU" )
+
+Demand Elasticities (formula of Eales and Unnevehr)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.036    1.276    0.411    0.142 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.6670 -0.4473 -0.0370  0.151
+q_wFood2 -0.6905 -0.2255  0.0171 -0.101
+q_wFood3 -0.0867  0.0260 -0.9064 -0.033
+q_wFood4  0.1346 -0.0584 -0.0125 -1.064
+
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2   pFood3 pFood4
+q_wFood1 -0.0302 -0.0348  0.23466  0.866
+q_wFood2 -0.2915  0.0330  0.18735  0.347
+q_wFood3  0.0418  0.1092 -0.85159  0.111
+q_wFood4  0.1792 -0.0295  0.00647 -1.014
+> 
+> elas( estResultLaSl, method = "EU" )
+
+Demand Elasticities (formula of Eales and Unnevehr)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.049    1.275    0.440    0.114 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1  pFood2   pFood3   pFood4
+q_wFood1 -0.647 -0.4422 -0.03793  0.12685
+q_wFood2 -0.681 -0.2222 -0.01709 -0.07973
+q_wFood3 -0.089 -0.0260 -0.89069  0.00576
+q_wFood4  0.114 -0.0463  0.00220 -1.06940
+
+Hicksian (compensated) Price Elasticities
+           pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.00478 -0.0254  0.2356  0.844
+q_wFood2 -0.28164  0.0372  0.1531  0.366
+q_wFood3  0.04878  0.0634 -0.8320  0.160
+q_wFood4  0.14937 -0.0231  0.0175 -1.029
+> 
+> elas( estResultLaP, method = "EU" )
+
+Demand Elasticities (formula of Eales and Unnevehr)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.047    1.252    0.409    0.147 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3  pFood4
+q_wFood1 -0.6782 -0.4532 -0.0335  0.1648
+q_wFood2 -0.6997 -0.2163  0.0172 -0.1012
+q_wFood3 -0.0784  0.0261 -0.9079 -0.0397
+q_wFood4  0.1467 -0.0583 -0.0151 -1.0733
+
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.0380 -0.0385  0.2397  0.884
+q_wFood2 -0.3081  0.0373  0.1843  0.339
+q_wFood3  0.0496  0.1090 -0.8533  0.104
+q_wFood4  0.1926 -0.0286  0.0045 -1.022
+> 
+> elas( estResultLaL, method = "EU" )
+
+Demand Elasticities (formula of Eales and Unnevehr)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.040    1.237    0.389    0.170 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3  pFood4
+q_wFood1 -0.7087 -0.4663 -0.0308  0.2058
+q_wFood2 -0.7195 -0.2172  0.0293 -0.0926
+q_wFood3 -0.0722  0.0445 -0.9034 -0.0689
+q_wFood4  0.1829 -0.0533 -0.0262 -1.1034
+
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2   pFood3  pFood4
+q_wFood1 -0.0710 -0.0531  0.24149  0.9230
+q_wFood2 -0.3328  0.0334  0.19449  0.3424
+q_wFood3  0.0494  0.1233 -0.85150  0.0678
+q_wFood4  0.2361 -0.0189 -0.00344 -1.0436
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> elas( estResultLaLs, method = "EU" )
+
+Demand Elasticities (formula of Eales and Unnevehr)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.040    1.237    0.389    0.170 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3  pFood4
+q_wFood1 -0.7087 -0.4663 -0.0308  0.2058
+q_wFood2 -0.7195 -0.2172  0.0293 -0.0926
+q_wFood3 -0.0722  0.0445 -0.9034 -0.0689
+q_wFood4  0.1829 -0.0533 -0.0262 -1.1034
+
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2   pFood3  pFood4
+q_wFood1 -0.0710 -0.0531  0.24149  0.9230
+q_wFood2 -0.3328  0.0334  0.19449  0.3424
+q_wFood3  0.0494  0.1233 -0.85150  0.0678
+q_wFood4  0.2361 -0.0189 -0.00344 -1.0436
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares = baseShares)) :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> elas( estResultLaT, method = "EU" )
+
+Demand Elasticities (formula of Eales and Unnevehr)
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.045    1.245    0.399    0.157 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3  pFood4
+q_wFood1 -0.6932 -0.4600 -0.0323  0.1854
+q_wFood2 -0.7100 -0.2166  0.0230 -0.0965
+q_wFood3 -0.0756  0.0350 -0.9055 -0.0539
+q_wFood4  0.1649 -0.0556 -0.0205 -1.0889
+
+Hicksian (compensated) Price Elasticities
+          pFood1  pFood2    pFood3  pFood4
+q_wFood1 -0.0538 -0.0458  0.240668  0.9041
+q_wFood2 -0.3208  0.0356  0.189172  0.3410
+q_wFood3  0.0491  0.1157 -0.852328  0.0862
+q_wFood4  0.2142 -0.0237  0.000555 -1.0336
 > 
 > cat( "\nLA: Elasticity formula of Green + Alston\n" )
 
@@ -3441,6 +3835,138 @@ q_wFood2 -0.426 -0.0378  0.0974  0.224
 q_wFood3  0.312  0.2299 -0.7185  0.462
 q_wFood4  0.563  0.2415  0.1968 -0.555
 > 
+> elas( estResultLaS, method = "B1" )
+
+Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   1.522    1.139    0.703    0.568 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2  pFood3 pFood4
+q_wFood1 -0.999 -0.657 -0.1776 -0.217
+q_wFood2 -0.779 -0.281 -0.0203 -0.199
+q_wFood3  0.102  0.146 -0.8264  0.177
+q_wFood4  0.410  0.116  0.1039 -0.759
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.523 -0.3491  0.0254  0.317
+q_wFood2 -0.423 -0.0507  0.1317  0.201
+q_wFood3  0.322  0.2880 -0.7326  0.424
+q_wFood4  0.587  0.2307  0.1797 -0.559
+> 
+> elas( estResultLaSl, method = "B1" )
+
+Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   1.529    1.139    0.718    0.554 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.9832 -0.6562 -0.1810 -0.245
+q_wFood2 -0.7692 -0.2783 -0.0546 -0.177
+q_wFood3  0.0906  0.0882 -0.8143  0.204
+q_wFood4  0.3976  0.1343  0.1229 -0.755
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.504 -0.3453  0.0230  0.290
+q_wFood2 -0.413 -0.0467  0.0974  0.221
+q_wFood3  0.315  0.2342 -0.7185  0.456
+q_wFood4  0.571  0.2469  0.1968 -0.561
+> 
+> elas( estResultLaP, method = "B1" )
+
+Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   1.527    1.127    0.703    0.570 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2  pFood3 pFood4
+q_wFood1 -1.014 -0.666 -0.1756 -0.208
+q_wFood2 -0.781 -0.268 -0.0171 -0.191
+q_wFood3  0.111  0.146 -0.8278  0.170
+q_wFood4  0.420  0.115  0.1007 -0.770
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.536 -0.3561  0.0282  0.329
+q_wFood2 -0.428 -0.0392  0.1333  0.205
+q_wFood3  0.331  0.2882 -0.7340  0.417
+q_wFood4  0.599  0.2302  0.1768 -0.569
+> 
+> elas( estResultLaL, method = "B1" )
+
+Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   1.524    1.120    0.692    0.582 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2   pFood3 pFood4
+q_wFood1 -1.043 -0.677 -0.17190 -0.164
+q_wFood2 -0.796 -0.265 -0.00287 -0.177
+q_wFood3  0.124  0.168 -0.82056  0.148
+q_wFood4  0.449  0.115  0.08635 -0.809
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.566 -0.3687  0.0315  0.372
+q_wFood2 -0.446 -0.0387  0.1466  0.217
+q_wFood3  0.340  0.3087 -0.7282  0.391
+q_wFood4  0.631  0.2329  0.1640 -0.604
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> elas( estResultLaLs, method = "B1" )
+
+Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   1.524    1.120    0.692    0.582 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2   pFood3 pFood4
+q_wFood1 -1.043 -0.677 -0.17190 -0.164
+q_wFood2 -0.796 -0.265 -0.00287 -0.177
+q_wFood3  0.124  0.168 -0.82056  0.148
+q_wFood4  0.449  0.115  0.08635 -0.809
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.566 -0.3687  0.0315  0.372
+q_wFood2 -0.446 -0.0387  0.1466  0.217
+q_wFood3  0.340  0.3087 -0.7282  0.391
+q_wFood4  0.631  0.2329  0.1640 -0.604
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares = baseShares)) :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> elas( estResultLaT, method = "B1" )
+
+Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   1.526    1.123    0.697    0.576 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2  pFood3 pFood4
+q_wFood1 -1.029 -0.672 -0.1741 -0.186
+q_wFood2 -0.789 -0.266 -0.0102 -0.184
+q_wFood3  0.117  0.157 -0.8239  0.160
+q_wFood4  0.435  0.115  0.0939 -0.789
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.551 -0.3628  0.0296  0.350
+q_wFood2 -0.437 -0.0387  0.1397  0.211
+q_wFood3  0.335  0.2981 -0.7309  0.405
+q_wFood4  0.615  0.2319  0.1707 -0.587
+> 
 > cat( "\nLA: Elasticity formula of Buse (alternative formula)\n" )
 
 LA: Elasticity formula of Buse (alternative formula)
@@ -3465,6 +3991,138 @@ q_wFood1 -0.327 -0.2414  0.093  0.476
 q_wFood2 -0.379 -0.0088  0.116  0.272
 q_wFood3  0.219  0.1720 -0.756  0.365
 q_wFood4  0.417  0.1510  0.139 -0.707
+> 
+> elas( estResultLaS, method = "B2" )
+
+Demand Elasticities (formulas of Buse (second set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.051    1.280    0.402    0.130 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1 pFood2  pFood3 pFood4
+q_wFood1 -0.9904 -0.656 -0.1797 -0.225
+q_wFood2 -0.7766 -0.281 -0.0208 -0.201
+q_wFood3  0.0973  0.145 -0.8252  0.181
+q_wFood4  0.4024  0.114  0.1056 -0.752
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.349 -0.2404  0.094  0.495
+q_wFood2 -0.376 -0.0217  0.150  0.248
+q_wFood3  0.223  0.2262 -0.772  0.322
+q_wFood4  0.443  0.1407  0.123 -0.707
+> 
+> elas( estResultLaSl, method = "B2" )
+
+Demand Elasticities (formulas of Buse (second set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.066    1.279    0.431    0.101 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.9739 -0.6547 -0.1831 -0.254
+q_wFood2 -0.7668 -0.2779 -0.0551 -0.180
+q_wFood3  0.0856  0.0873 -0.8132  0.209
+q_wFood4  0.3897  0.1329  0.1247 -0.748
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.327 -0.2345  0.0926  0.469
+q_wFood2 -0.366 -0.0177  0.1156  0.268
+q_wFood3  0.221  0.1750 -0.7557  0.360
+q_wFood4  0.421  0.1534  0.1381 -0.713
+> 
+> elas( estResultLaP, method = "B2" )
+
+Demand Elasticities (formulas of Buse (second set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.063    1.256    0.401    0.134 
+
+Marshallian (uncompensated) Price Elasticities
+          pFood1 pFood2  pFood3 pFood4
+q_wFood1 -0.9849 -0.661 -0.1825 -0.234
+q_wFood2 -0.7736 -0.266 -0.0187 -0.197
+q_wFood3  0.0946  0.143 -0.8239  0.185
+q_wFood4  0.3966  0.111  0.1064 -0.748
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.340 -0.2432  0.0927  0.490
+q_wFood2 -0.381 -0.0120  0.1489  0.244
+q_wFood3  0.220  0.2245 -0.7704  0.326
+q_wFood4  0.439  0.1382  0.1243 -0.701
+> 
+> elas( estResultLaL, method = "B2" )
+
+Demand Elasticities (formulas of Buse (second set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.055    1.241    0.380    0.158 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2   pFood3 pFood4
+q_wFood1 -1.014 -0.673 -0.17893 -0.189
+q_wFood2 -0.789 -0.264 -0.00448 -0.183
+q_wFood3  0.107  0.166 -0.81643  0.163
+q_wFood4  0.427  0.112  0.09197 -0.789
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.372 -0.2569  0.0954  0.533
+q_wFood2 -0.401 -0.0131  0.1611  0.253
+q_wFood3  0.226  0.2430 -0.7657  0.297
+q_wFood4  0.476  0.1437  0.1131 -0.733
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> elas( estResultLaLs, method = "B2" )
+
+Demand Elasticities (formulas of Buse (second set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.055    1.241    0.380    0.158 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2   pFood3 pFood4
+q_wFood1 -1.034 -0.676 -0.17397 -0.171
+q_wFood2 -0.794 -0.265 -0.00335 -0.179
+q_wFood3  0.119  0.168 -0.81934  0.153
+q_wFood4  0.442  0.114  0.08800 -0.803
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2 pFood3 pFood4
+q_wFood1 -0.392 -0.2598  0.100  0.551
+q_wFood2 -0.406 -0.0138  0.162  0.258
+q_wFood3  0.238  0.2447 -0.769  0.286
+q_wFood4  0.492  0.1461  0.109 -0.747
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares = baseShares)) :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> elas( estResultLaT, method = "B2" )
+
+Demand Elasticities (formulas of Buse (second set))
+Expenditure Elasticities
+q_wFood1 q_wFood2 q_wFood3 q_wFood4 
+   2.060    1.248    0.390    0.145 
+
+Marshallian (uncompensated) Price Elasticities
+         pFood1 pFood2  pFood3 pFood4
+q_wFood1 -1.000 -0.668 -0.1811 -0.212
+q_wFood2 -0.782 -0.265 -0.0118 -0.190
+q_wFood3  0.101  0.154 -0.8199  0.175
+q_wFood4  0.412  0.112  0.0995 -0.768
+
+Hicksian (compensated) Price Elasticities
+         pFood1  pFood2  pFood3 pFood4
+q_wFood1 -0.356 -0.2503  0.0939  0.512
+q_wFood2 -0.392 -0.0124  0.1548  0.249
+q_wFood3  0.223  0.2334 -0.7679  0.312
+q_wFood4  0.457  0.1412  0.1189 -0.717
 > 
 > aidsElas( coef( estResultTl ), prices = pMeans, shares = wMeans )
 
@@ -7029,7 +7687,7 @@ delta 4 1  1.24e-02   1.15e-03   10.80  < 2e-16 ***
 delta 4 2 -3.34e-03   1.09e-03   -3.05   0.0025 ** 
 delta 4 3  3.06e-04   4.61e-05    6.64  1.7e-10 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared Values of expenditure shares:
   beef_w   pork_w  chick_w turkey_w 
    0.954    0.778    0.978   -1.380 
@@ -7093,7 +7751,7 @@ Model 4: estResultLA (LA-AIDS, symmetry and homogeneity imposed)
 3  24    365  3  20.6    0.00013 ***
 4  18    353 -6  24.3    0.00046 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > lrtest( estResultLATX, estResultLAhomTX, estResultLAunrTX, estResultLATX )
 Likelihood ratio test
 
@@ -7107,7 +7765,7 @@ Model 4: estResultLATX (LA-AIDS, symmetry and homogeneity imposed)
 3  24    365  3  20.6    0.00013 ***
 4  18    353 -6  24.3    0.00046 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > lrtest( estResultLA, estResultLAtrend, estResultLAtrend2, estResultLA )
 Likelihood ratio test
 
@@ -7121,7 +7779,7 @@ Model 4: estResultLA (LA-AIDS, symmetry and homogeneity imposed)
 3  24    397  3  22.4    5.4e-05 ***
 4  18    353 -6  88.4    < 2e-16 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > lrtest( estResultAIDSunr, estResultAIDShom, estResultAIDS, estResultAIDSunr )
 Likelihood ratio test
 
@@ -7135,7 +7793,7 @@ Model 4: estResultAIDSunr (AIDS, unrestricted)
 3  18    352 -3  3.65    0.30138    
 4  24    365  6 26.20    0.00020 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > lrtest( estResultAIDSunrTX, estResultAIDShomTX, estResultAIDSTX,
 +    estResultAIDSunrTX )
 Likelihood ratio test
@@ -7150,7 +7808,7 @@ Model 4: estResultAIDSunrTX (AIDS, unrestricted)
 3  18    352 -3  3.65    0.30138    
 4  24    365  6 26.20    0.00020 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 > 
 > 
 > ## comparing estimations results with different methods to impose restrictions
