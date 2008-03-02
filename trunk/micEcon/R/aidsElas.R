@@ -75,11 +75,23 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
          coef$beta %*% t( ones ) *
          ones %*% t( shares ) /
          ( shares %*% t( ones ) )
+   } else if( method %in% c( "B1", "GA" ) && priceIndex %in% c( "L", "Ls" ) ) {
+      if( is.null( baseShares ) ) {
+         stop( "calculation of demand elasticities with method 'B1'/'GA'",
+            " for models with Laspeyres or simplified Laspeyres price index",
+            " requires argument 'baseShares'" )
+      }
+      ela$exp <- ones + coef$beta / shares
+      ela$marshall <- -diag( 1, nGoods, nGoods ) + coef$gamma /
+         ( shares %*% t( ones ) ) -
+         coef$beta %*% t( ones ) *
+         ones %*% t( baseShares ) /
+         ( shares %*% t( ones ) )
    } else if( method == "EU" ) {
       ela$exp <- ones + coef$beta / shares
       ela$marshall <- -diag( 1, nGoods, nGoods ) + coef$gamma /
          ( shares %*% t( ones ) )
-   } else if( method %in% c( "GA", "B1" ) ) {
+   } else if( method %in% c( "GA", "B1" ) && priceIndex %in% c( "S", "SL" ) ) {
       denom <- 1  # part of denominator for exp. + Marsh. elasticities
       for( k in 1:nGoods ) {
          denom <- denom + coef$beta[ k ] * log( prices[ k ] )
@@ -94,6 +106,59 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
             }
             ela$marshall[ i, j ] <- -( i == j ) + coef$gamma[ i, j ] / shares[ i ] -
                ( coef$beta[ i ] / shares[ i ] ) * numer / denom
+         }
+      }
+   } else if( method %in% c( "GA", "B1" ) && priceIndex %in% c( "P" ) ) {
+      if( is.null( basePrices ) ) {
+         stop( "calculations of demand elasticities with method 'B1'/'GA'",
+            " for models with Paasche price index",
+            " require argument 'basePrices'" )
+      }
+      denom <- 1  # part of denominator for exp. + Marsh. elasticities
+      for( k in 1:nGoods ) {
+         denom <- denom + coef$beta[ k ] * log( prices[ k ] / basePrices[ k ] )
+      }
+      ela$exp <- ones + coef$beta / ( shares * denom )
+      ela$marshall <- matrix( NA, nGoods, nGoods )
+      for( i in 1:nGoods ) {
+         for( j in 1:nGoods ) {
+            numer <- shares[ j ] # part of numerator for Marsh. elasticities
+            for( k in 1:nGoods ) {
+               numer <- numer + coef$gamma[ k, j ] *
+                  log( prices[ k ] / basePrices[ k ] )
+            }
+            ela$marshall[ i, j ] <- -( i == j ) + coef$gamma[ i, j ] / shares[ i ] -
+               ( coef$beta[ i ] / shares[ i ] ) * numer / denom
+         }
+      }
+   } else if( method %in% c( "GA", "B1" ) && priceIndex %in% c( "T" ) ) {
+      if( is.null( basePrices ) ) {
+         stop( "calculations of demand elasticities with method 'B1'/'GA'",
+            " for models with Tornqvist price index",
+            " require argument 'basePrices'" )
+      }
+      if( is.null( baseShares ) ) {
+         stop( "calculations of demand elasticities with method 'B1'/'GA'",
+            " for models with Tornqvist price index",
+            " require argument 'baseShares'" )
+      }
+      denom <- 1  # part of denominator for exp. + Marsh. elasticities
+      for( k in 1:nGoods ) {
+         denom <- denom + 0.5 * coef$beta[ k ] *
+            log( prices[ k ] / basePrices[ k ] )
+      }
+      ela$exp <- ones + coef$beta / ( shares * denom )
+      ela$marshall <- matrix( NA, nGoods, nGoods )
+      for( i in 1:nGoods ) {
+         for( j in 1:nGoods ) {
+            numer <- shares[ j ] + baseShares[ j ]
+               # part of numerator for Marsh. elasticities
+            for( k in 1:nGoods ) {
+               numer <- numer + coef$gamma[ k, j ] *
+                  log( prices[ k ] / basePrices[ k ] )
+            }
+            ela$marshall[ i, j ] <- -( i == j ) + coef$gamma[ i, j ] / shares[ i ] -
+               ( coef$beta[ i ] / ( 2 * shares[ i ] ) ) * numer / denom
          }
       }
    } else if( method %in% c( "B2" ) ) {
@@ -121,8 +186,11 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
          }
       }
    } else {
-      stop( "argument 'method' must be either 'AIDS', 'GA', 'B1', 'B2',",
-         " 'Go', 'Ch', or 'EU'" )
+      stop( "calculations of demand elasticities",
+         " with elasticity formula '", method, "' (argument 'method')",
+         " for models",
+         " with price index '", priceIndex, "' (argument 'priceIndex')",
+         " are currently not (yet) implemented" )
    }
    ela$hicks <- ela$marshall + ( ela$exp %*% t( ones ) ) *
       ( ones %*% t(shares))
