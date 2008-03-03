@@ -3142,7 +3142,8 @@ q_wFood4 -1.1077 -0.0937  0.5023  0.699
 
 LA: Elasticity formula of Goddard or Chalfant
 > ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Go",
-+    coefCov = vcov( estResultLA ), df = df.residual( estResultLA ) )
++    coefCov = vcov( estResultLA ), df = df.residual( estResultLA ),
++    priceIndex = "S" )
 > print( ela )
 
 Demand Elasticities (formulas of Goddard / Chalfant)
@@ -3202,7 +3203,8 @@ q_wFood4  0.422  0.155  0.1363 -0.713
 [35,]   0.1192         NA      NA       NA
 [36,]  -0.7585         NA      NA       NA
 > ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Ch",
-+    coefCov = vcov( estResultLA ), df = df.residual( estResultLA ) )
++    coefCov = vcov( estResultLA ), df = df.residual( estResultLA ),
++    priceIndex = "S" )
 > print( ela )
 
 Demand Elasticities (formulas of Goddard / Chalfant)
@@ -3567,18 +3569,18 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    2.040    1.237    0.389    0.170 
 
 Marshallian (uncompensated) Price Elasticities
-         pFood1 pFood2   pFood3 pFood4
-q_wFood1 -1.034 -0.677 -0.16968 -0.160
-q_wFood2 -0.794 -0.265 -0.00237 -0.176
-q_wFood3  0.119  0.168 -0.82186  0.146
-q_wFood4  0.442  0.115  0.08458 -0.812
+         pFood1  pFood2   pFood3 pFood4
+q_wFood1  -1.02 -0.6452 -0.17023 -0.207
+q_wFood2  -0.79 -0.2581 -0.00249 -0.187
+q_wFood3   0.11  0.1496 -0.82154  0.174
+q_wFood4   0.43  0.0894  0.08502 -0.774
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2 pFood3 pFood4
-q_wFood1 -0.396 -0.2637  0.103  0.557
-q_wFood2 -0.407 -0.0147  0.163  0.259
-q_wFood3  0.240  0.2470 -0.770  0.283
-q_wFood4  0.495  0.1492  0.107 -0.752
+         pFood1   pFood2 pFood3 pFood4
+q_wFood1 -0.381 -0.23200  0.102  0.510
+q_wFood2 -0.404 -0.00745  0.163  0.248
+q_wFood3  0.231  0.22837 -0.770  0.310
+q_wFood4  0.483  0.12385  0.108 -0.714
 Warning message:
 In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
   the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
@@ -3591,18 +3593,18 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    2.040    1.237    0.389    0.170 
 
 Marshallian (uncompensated) Price Elasticities
-         pFood1 pFood2   pFood3 pFood4
-q_wFood1 -1.034 -0.677 -0.16968 -0.160
-q_wFood2 -0.794 -0.265 -0.00237 -0.176
-q_wFood3  0.119  0.168 -0.82186  0.146
-q_wFood4  0.442  0.115  0.08458 -0.812
+         pFood1  pFood2   pFood3 pFood4
+q_wFood1  -1.02 -0.6452 -0.17023 -0.207
+q_wFood2  -0.79 -0.2581 -0.00249 -0.187
+q_wFood3   0.11  0.1496 -0.82154  0.174
+q_wFood4   0.43  0.0894  0.08502 -0.774
 
 Hicksian (compensated) Price Elasticities
-         pFood1  pFood2 pFood3 pFood4
-q_wFood1 -0.396 -0.2637  0.103  0.557
-q_wFood2 -0.407 -0.0147  0.163  0.259
-q_wFood3  0.240  0.2470 -0.770  0.283
-q_wFood4  0.495  0.1492  0.107 -0.752
+         pFood1   pFood2 pFood3 pFood4
+q_wFood1 -0.381 -0.23200  0.102  0.510
+q_wFood2 -0.404 -0.00745  0.163  0.248
+q_wFood3  0.231  0.22837 -0.770  0.310
+q_wFood4  0.483  0.12385  0.108 -0.714
 Warning message:
 In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares = baseShares)) :
   the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
@@ -3615,18 +3617,18 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
    2.045    1.245    0.399    0.157 
 
 Marshallian (uncompensated) Price Elasticities
-         pFood1 pFood2   pFood3 pFood4
-q_wFood1 -1.020 -0.672 -0.17174 -0.182
-q_wFood2 -0.787 -0.266 -0.00964 -0.183
-q_wFood3  0.112  0.157 -0.82528  0.157
-q_wFood4  0.428  0.115  0.09199 -0.793
+         pFood1 pFood2  pFood3 pFood4
+q_wFood1 -1.012 -0.656 -0.1720 -0.206
+q_wFood2 -0.785 -0.262 -0.0097 -0.188
+q_wFood3  0.108  0.148 -0.8251  0.171
+q_wFood4  0.422  0.102  0.0922 -0.774
 
 Hicksian (compensated) Price Elasticities
          pFood1  pFood2 pFood3 pFood4
-q_wFood1 -0.381 -0.2574  0.101  0.537
-q_wFood2 -0.397 -0.0140  0.156  0.255
-q_wFood3  0.237  0.2375 -0.772  0.298
-q_wFood4  0.478  0.1469  0.113 -0.737
+q_wFood1 -0.373 -0.2415  0.101  0.513
+q_wFood2 -0.396 -0.0103  0.156  0.249
+q_wFood3  0.233  0.2283 -0.772  0.311
+q_wFood4  0.471  0.1341  0.113 -0.718
 > 
 > cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
 
@@ -4168,7 +4170,8 @@ q_wFood2 -0.397 -0.00797  0.1561  0.249
 q_wFood3  0.232  0.23683 -0.7730  0.304
 q_wFood4  0.468  0.14330  0.1155 -0.727
 > 
-> aidsElas( coef( estResultLaS ), shares = wMeans, method = "Ch" )
+> aidsElas( coef( estResultLaS ), shares = wMeans, method = "Ch",
++    priceIndex = "S" )
 
 Demand Elasticities (formulas of Goddard / Chalfant)
 Expenditure Elasticities

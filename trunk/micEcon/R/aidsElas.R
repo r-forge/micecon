@@ -68,14 +68,15 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
          ( ones %*% t( coef$alpha ) +
          ones %*% t( coef$gamma %*% log( prices ))) /
          ( shares %*% t( ones ) )
-   } else if( method %in% c( "Ch", "Go" ) ) {
+   } else if( method %in% c( "Ch", "Go" ) &&
+         priceIndex %in% c( "S", "SL", "P" ) ) {
       ela$exp <- ones + coef$beta / shares
       ela$marshall <- -diag( 1, nGoods, nGoods ) + coef$gamma /
          ( shares %*% t( ones ) ) -
          coef$beta %*% t( ones ) *
          ones %*% t( shares ) /
          ( shares %*% t( ones ) )
-   } else if( method %in% c( "B1", "GA", "B2" ) &&
+   } else if( method %in% c( "Go", "Ch", "B1", "GA", "B2" ) &&
          priceIndex %in% c( "L", "Ls" ) ) {
       if( is.null( baseShares ) ) {
          stop( "calculation of demand elasticities with method",
@@ -89,6 +90,13 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
          coef$beta %*% t( ones ) *
          ones %*% t( baseShares ) /
          ( shares %*% t( ones ) )
+   } else if( method %in% c( "Ch", "Go" ) && priceIndex == "T" ) {
+      ela$exp <- ones + coef$beta / shares
+      ela$marshall <- -diag( 1, nGoods, nGoods ) + coef$gamma /
+         ( shares %*% t( ones ) ) -
+         coef$beta %*% t( ones ) *
+         ( ones %*% t( shares + baseShares ) ) /
+         ( 2 * shares %*% t( ones ) )
    } else if( method == "EU" ) {
       ela$exp <- ones + coef$beta / shares
       ela$marshall <- -diag( 1, nGoods, nGoods ) + coef$gamma /

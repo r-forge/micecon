@@ -276,11 +276,13 @@ elas( estResultLaT, method = "AIDS" )
 cat( "\n********** Elasticities ***************" )
 cat( "\nLA: Elasticity formula of Goddard or Chalfant\n" )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Go",
-   coefCov = vcov( estResultLA ), df = df.residual( estResultLA ) )
+   coefCov = vcov( estResultLA ), df = df.residual( estResultLA ),
+   priceIndex = "S" )
 print( ela )
 print( summary( ela ) )
 ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "Ch",
-   coefCov = vcov( estResultLA ), df = df.residual( estResultLA ) )
+   coefCov = vcov( estResultLA ), df = df.residual( estResultLA ),
+   priceIndex = "S" )
 print( ela )
 print( summary( ela ) )
 
@@ -364,7 +366,8 @@ elas( estResultLaT, method = "B2" )
 aidsElas( coef( estResultTl ), prices = pMeans, shares = wMeans )
 aidsElas( coef( estResultTl ), prices = pMeans, totExp = xtMean )
 
-aidsElas( coef( estResultLaS ), shares = wMeans, method = "Ch" )
+aidsElas( coef( estResultLaS ), shares = wMeans, method = "Ch",
+   priceIndex = "S" )
 aidsElas( coef( estResultLaS ), prices = pMeans, totExp = xtMean,
    method = "Ch", priceIndex = "S" )
 
