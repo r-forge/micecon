@@ -461,6 +461,14 @@ fittedAIDSTX <- aidsCalc( pNames, "xFood", data = Blanciforti86[ -1, ],
 print( fittedAIDSTX )
 print( all.equal( fittedAIDS, fittedAIDSTX ) )
 
+fittedTl <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
+   coef = coef( estResultTl ) )
+print( fittedTl )
+predictedTl <- predict( estResultTl, observedShares = TRUE )
+all.equal( fittedTl, predictedTl )
+predictedTl2 <- predict( estResultTl )
+all.equal( fittedTl, predictedTl2 )
+
 # LA-AIDS with Stone price price index with lagged shares
 fittedLA <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLA$coef, priceIndex = estResultLA$lnp )
@@ -485,6 +493,9 @@ fittedLaSNa <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 print( fittedLaSNa )
 all.equal( fittedLaSNa$shares, estResultLaSNa$wFitted )
 all.equal( fittedLaSNa$quant, estResultLaSNa$qFitted )
+predictedLaSNa <- predict( estResultLaSNa, observedShares = TRUE )
+all.equal( fittedLaSNa$shares, predictedLaSNa$shares[ set, ] )
+all.equal( fittedLaSNa$quant, predictedLaSNa$quant[ set, ] )
 # fitted shares in the Stone price index
 fittedLaSNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSNa$coef, priceIndex = "S" )
@@ -496,6 +507,9 @@ lnp <- aidsPx( "S", pNames, shareNames = c( "w1", "w2", "w3", "w4" ),
 fittedLaSNa2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSNa$coef, priceIndex = lnp )
 all.equal( fittedLaSNa2, fittedLaSNa2b )
+predictedLaSNa2 <- predict( estResultLaSNa )
+all.equal( fittedLaSNa2$shares, predictedLaSNa2$shares[ set, ] )
+all.equal( fittedLaSNa2$quant, predictedLaSNa2$quant[ set, ] )
 
 # LA-AIDS with Stone price index with lagged shares
 # observed shares in the Stone price index
@@ -504,6 +518,8 @@ fittedLaSl <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 print( fittedLaSl )
 all.equal( fittedLaSl$shares, estResultLaSl$wFitted, check.attributes = FALSE )
 all.equal( fittedLaSl$quant, estResultLaSl$qFitted, check.attributes = FALSE )
+predictedLaSl <- predict( estResultLaSl, observedShares = TRUE )
+all.equal( fittedLaSl, predictedLaSl )
 # fitted shares in the Stone price index
 fittedLaSl2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSl$coef, priceIndex = "SL" )
@@ -516,6 +532,8 @@ fittedLaSl2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaSl$coef, priceIndex = lnp )
 all.equal( fittedLaSl2$shares[-1,], fittedLaSl2b$shares[-1,] )
 all.equal( fittedLaSl2$quant[-1,], fittedLaSl2b$quant[-1,] )
+predictedLaSl2 <- predict( estResultLaSl )
+all.equal( fittedLaSl2, predictedLaSl2 )
 
 # LA-AIDS with Paasche price index
 # obsereved shares in the Paasche price index
@@ -524,6 +542,8 @@ fittedLaP <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 print( fittedLaP )
 all.equal( fittedLaP$shares, estResultLaP$wFitted, check.attributes = FALSE )
 all.equal( fittedLaP$quant, estResultLaP$qFitted, check.attributes = FALSE )
+predictedLaP <- predict( estResultLaP, observedShares = TRUE )
+all.equal( fittedLaP, predictedLaP )
 # fitted shares in the Stone price index
 fittedLaP2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaP$coef, priceIndex = "P",
@@ -536,6 +556,8 @@ lnp <- aidsPx( "P", pNames, shareNames = c( "w1", "w2", "w3", "w4" ),
 fittedLaP2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaP$coef, priceIndex = lnp )
 all.equal( fittedLaP2, fittedLaP2b, check.attributes = FALSE )
+predictedLaP2 <- predict( estResultLaP )
+all.equal( fittedLaP2, predictedLaP2 )
 
 # LA-AIDS with Laspeyres price index
 fittedLaL <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
@@ -545,6 +567,8 @@ all.equal( fittedLaL$shares, estResultLaL$wFitted[ set, ],
    check.attributes = FALSE )
 all.equal( fittedLaL$quant, estResultLaL$qFitted[ set, ],
    check.attributes = FALSE )
+predictedLaL <- predict( estResultLaL, observedShares = TRUE )
+all.equal( fittedLaL, predictedLaL )
 fittedLaL2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaL$coef, priceIndex = "L",
    basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
@@ -553,6 +577,8 @@ all.equal( estResultLaL$wFitted, fittedLaL2$shares,
    check.attributes = FALSE )
 all.equal( estResultLaL$qFitted, fittedLaL2$quant,
    check.attributes = FALSE )
+predictedLaL2 <- predict( estResultLaL )
+all.equal( fittedLaL2, predictedLaL2 )
 
 # LA-AIDS with simplified Laspeyres price index and NAs
 fittedLaLsNa <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
@@ -562,12 +588,22 @@ all.equal( fittedLaLsNa$shares, estResultLaLsNa$wFitted[ set, ],
    check.attributes = FALSE )
 all.equal( fittedLaLsNa$quant, estResultLaLsNa$qFitted[ set, ],
    check.attributes = FALSE )
+predictedLaLsNa <- predict( estResultLaLsNa, observedShares = TRUE )
+all.equal( fittedLaLsNa$shares, predictedLaLsNa$shares[ set, ],
+   check.attributes = FALSE )
+all.equal( fittedLaLsNa$quant, predictedLaLsNa$quant[ set, ],
+   check.attributes = FALSE )
 fittedLaLsNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaLsNa$coef, priceIndex = "Ls",
    baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
 all.equal( estResultLaLsNa$wFitted, fittedLaLsNa2$shares,
    check.attributes = FALSE )
 all.equal( estResultLaLsNa$qFitted, fittedLaLsNa2$quant,
+   check.attributes = FALSE )
+predictedLaLsNa2 <- predict( estResultLaLsNa )
+all.equal( fittedLaLsNa2$shares, predictedLaLsNa2$shares[ set, ],
+   check.attributes = FALSE )
+all.equal( fittedLaLsNa2$quant, predictedLaLsNa2$quant[ set, ],
    check.attributes = FALSE )
 
 # LA-AIDS with Tornqvist price index
@@ -577,6 +613,8 @@ fittedLaT <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 print( fittedLaT )
 all.equal( fittedLaT$shares, estResultLaT$wFitted, check.attributes = FALSE )
 all.equal( fittedLaT$quant, estResultLaT$qFitted, check.attributes = FALSE )
+predictedLaT <- predict( estResultLaT, observedShares = TRUE )
+all.equal( fittedLaT, predictedLaT )
 # fitted shares in the Tornqvist price index
 fittedLaT2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaT$coef, priceIndex = "T",
@@ -592,6 +630,37 @@ lnp <- aidsPx( "T", pNames, shareNames = c( "w1", "w2", "w3", "w4" ),
 fittedLaT2b <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
    coef = estResultLaT$coef, priceIndex = lnp )
 all.equal( fittedLaT2, fittedLaT2b, check.attributes = FALSE )
+predictedLaT2 <- predict( estResultLaT )
+all.equal( fittedLaT2, predictedLaT2 )
+
+# prediction with different data
+B86new <- Blanciforti86[ 2 * c( 1:floor( nrow( Blanciforti86 ) / 2 ) ),
+   c( pNames, wNames, "xFood" ) ]
+B86new$pFood1 <- B86new$pFood1 * 1.1
+B86new$xFood <- B86new$xFood * 1.05
+
+predNewAIDS <- predict( estResultTl, newdata = B86new, observedShares = TRUE )
+print( predNewAIDS )
+predNewAIDS2 <- predict( estResultTl, newdata = B86new )
+all.equal( predNewAIDS, predNewAIDS2 )
+
+predict( estResultLaS, newdata = B86new, observedShares = TRUE )
+predict( estResultLaS, newdata = B86new )
+
+predict( estResultLaSl, newdata = B86new, observedShares = TRUE )
+predict( estResultLaSl, newdata = B86new )
+
+predict( estResultLaP, newdata = B86new, observedShares = TRUE )
+predict( estResultLaP, newdata = B86new )
+
+predict( estResultLaL, newdata = B86new, observedShares = TRUE )
+predict( estResultLaL, newdata = B86new )
+
+predict( estResultLaLs, newdata = B86new, observedShares = TRUE )
+predict( estResultLaLs, newdata = B86new )
+
+predict( estResultLaT, newdata = B86new, observedShares = TRUE )
+predict( estResultLaT, newdata = B86new )
 
 
 ####### monotonicity ###################

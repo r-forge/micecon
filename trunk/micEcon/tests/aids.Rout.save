@@ -4922,6 +4922,86 @@ $quant
 > print( all.equal( fittedAIDS, fittedAIDSTX ) )
 [1] TRUE
 > 
+> fittedTl <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
++    coef = coef( estResultTl ) )
+> print( fittedTl )
+$shares
+        w1    w2    w3    w4
+1947 0.317 0.188 0.133 0.362
+1948 0.317 0.172 0.135 0.376
+1949 0.308 0.183 0.136 0.374
+1950 0.313 0.169 0.137 0.381
+1951 0.315 0.164 0.137 0.384
+1952 0.303 0.182 0.137 0.378
+1953 0.306 0.184 0.137 0.373
+1954 0.299 0.183 0.139 0.379
+1955 0.300 0.196 0.138 0.367
+1956 0.294 0.210 0.137 0.358
+1957 0.298 0.198 0.138 0.366
+1958 0.293 0.196 0.138 0.373
+1959 0.300 0.200 0.137 0.363
+1960 0.300 0.206 0.136 0.358
+1961 0.298 0.206 0.137 0.359
+1962 0.303 0.205 0.136 0.356
+1963 0.297 0.216 0.136 0.352
+1964 0.293 0.224 0.135 0.348
+1965 0.302 0.215 0.134 0.348
+1966 0.313 0.206 0.133 0.348
+1967 0.318 0.210 0.132 0.341
+1968 0.314 0.219 0.131 0.336
+1969 0.323 0.208 0.130 0.338
+1970 0.328 0.206 0.130 0.337
+1971 0.319 0.212 0.131 0.338
+1972 0.326 0.208 0.129 0.338
+1973 0.333 0.196 0.128 0.343
+1974 0.317 0.213 0.131 0.338
+1975 0.323 0.204 0.132 0.341
+1976 0.330 0.205 0.130 0.334
+1977 0.313 0.216 0.132 0.338
+1978 0.318 0.211 0.131 0.339
+
+$quant
+       q1    q2    q3   q4
+1947 1.65 1.084 0.792 1.94
+1948 1.53 1.011 0.768 1.98
+1949 1.51 1.028 0.751 2.01
+1950 1.47 0.988 0.741 2.01
+1951 1.46 0.973 0.752 1.98
+1952 1.46 1.004 0.754 2.01
+1953 1.56 1.051 0.738 1.91
+1954 1.51 1.034 0.715 1.87
+1955 1.63 1.102 0.705 1.84
+1956 1.70 1.148 0.705 1.80
+1957 1.63 1.106 0.697 1.86
+1958 1.50 1.052 0.705 1.99
+1959 1.62 1.106 0.697 1.98
+1960 1.67 1.134 0.696 1.95
+1961 1.67 1.135 0.690 1.91
+1962 1.70 1.144 0.685 1.97
+1963 1.72 1.167 0.690 1.95
+1964 1.76 1.187 0.700 1.91
+1965 1.76 1.176 0.704 1.97
+1966 1.77 1.172 0.710 2.00
+1967 1.90 1.226 0.707 1.93
+1968 1.92 1.239 0.731 1.93
+1969 1.92 1.225 0.742 1.94
+1970 1.96 1.238 0.745 1.91
+1971 1.94 1.239 0.734 1.87
+1972 1.91 1.218 0.758 1.98
+1973 1.79 1.151 0.770 2.17
+1974 1.90 1.231 0.694 2.01
+1975 1.92 1.232 0.676 1.96
+1976 2.05 1.274 0.718 1.83
+1977 2.01 1.264 0.742 1.67
+1978 1.94 1.234 0.749 1.82
+
+> predictedTl <- predict( estResultTl, observedShares = TRUE )
+> all.equal( fittedTl, predictedTl )
+[1] TRUE
+> predictedTl2 <- predict( estResultTl )
+> all.equal( fittedTl, predictedTl2 )
+[1] TRUE
+> 
 > # LA-AIDS with Stone price price index with lagged shares
 > fittedLA <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 +    coef = estResultLA$coef, priceIndex = estResultLA$lnp )
@@ -5161,6 +5241,11 @@ $quant
 [1] "Names: 4 string mismatches"                                          
 [2] "Attributes: < Component 2: Modes: character, numeric >"              
 [3] "Attributes: < Component 2: target is character, current is numeric >"
+> predictedLaSNa <- predict( estResultLaSNa, observedShares = TRUE )
+> all.equal( fittedLaSNa$shares, predictedLaSNa$shares[ set, ] )
+[1] TRUE
+> all.equal( fittedLaSNa$quant, predictedLaSNa$quant[ set, ] )
+[1] TRUE
 > # fitted shares in the Stone price index
 > fittedLaSNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 +    coef = estResultLaSNa$coef, priceIndex = "S" )
@@ -5243,6 +5328,11 @@ $quant
 +    coef = estResultLaSNa$coef, priceIndex = lnp )
 > all.equal( fittedLaSNa2, fittedLaSNa2b )
 [1] TRUE
+> predictedLaSNa2 <- predict( estResultLaSNa )
+> all.equal( fittedLaSNa2$shares, predictedLaSNa2$shares[ set, ] )
+[1] TRUE
+> all.equal( fittedLaSNa2$quant, predictedLaSNa2$quant[ set, ] )
+[1] TRUE
 > 
 > # LA-AIDS with Stone price index with lagged shares
 > # observed shares in the Stone price index
@@ -5322,6 +5412,9 @@ $quant
 > all.equal( fittedLaSl$shares, estResultLaSl$wFitted, check.attributes = FALSE )
 [1] TRUE
 > all.equal( fittedLaSl$quant, estResultLaSl$qFitted, check.attributes = FALSE )
+[1] TRUE
+> predictedLaSl <- predict( estResultLaSl, observedShares = TRUE )
+> all.equal( fittedLaSl, predictedLaSl )
 [1] TRUE
 > # fitted shares in the Stone price index
 > fittedLaSl2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
@@ -5407,6 +5500,9 @@ $quant
 [1] TRUE
 > all.equal( fittedLaSl2$quant[-1,], fittedLaSl2b$quant[-1,] )
 [1] TRUE
+> predictedLaSl2 <- predict( estResultLaSl )
+> all.equal( fittedLaSl2, predictedLaSl2 )
+[1] TRUE
 > 
 > # LA-AIDS with Paasche price index
 > # obsereved shares in the Paasche price index
@@ -5486,6 +5582,9 @@ $quant
 > all.equal( fittedLaP$shares, estResultLaP$wFitted, check.attributes = FALSE )
 [1] TRUE
 > all.equal( fittedLaP$quant, estResultLaP$qFitted, check.attributes = FALSE )
+[1] TRUE
+> predictedLaP <- predict( estResultLaP, observedShares = TRUE )
+> all.equal( fittedLaP, predictedLaP )
 [1] TRUE
 > # fitted shares in the Stone price index
 > fittedLaP2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
@@ -5570,6 +5669,9 @@ $quant
 +    coef = estResultLaP$coef, priceIndex = lnp )
 > all.equal( fittedLaP2, fittedLaP2b, check.attributes = FALSE )
 [1] TRUE
+> predictedLaP2 <- predict( estResultLaP )
+> all.equal( fittedLaP2, predictedLaP2 )
+[1] TRUE
 > 
 > # LA-AIDS with Laspeyres price index
 > fittedLaL <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
@@ -5651,6 +5753,12 @@ $quant
 > all.equal( fittedLaL$quant, estResultLaL$qFitted[ set, ],
 +    check.attributes = FALSE )
 [1] TRUE
+> predictedLaL <- predict( estResultLaL, observedShares = TRUE )
+Warning message:
+In aidsPx(priceIndex = object$priceIndex, priceNames = object$priceNames,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> all.equal( fittedLaL, predictedLaL )
+[1] TRUE
 > fittedLaL2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 +    coef = estResultLaL$coef, priceIndex = "L",
 +    basePrices = as.numeric( Blanciforti86[ 1, pNames ] ),
@@ -5663,6 +5771,12 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices =
 [1] TRUE
 > all.equal( estResultLaL$qFitted, fittedLaL2$quant,
 +    check.attributes = FALSE )
+[1] TRUE
+> predictedLaL2 <- predict( estResultLaL )
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> all.equal( fittedLaL2, predictedLaL2 )
 [1] TRUE
 > 
 > # LA-AIDS with simplified Laspeyres price index and NAs
@@ -5745,6 +5859,16 @@ $quant
 > all.equal( fittedLaLsNa$quant, estResultLaLsNa$qFitted[ set, ],
 +    check.attributes = FALSE )
 [1] TRUE
+> predictedLaLsNa <- predict( estResultLaLsNa, observedShares = TRUE )
+Warning message:
+In aidsPx(priceIndex = object$priceIndex, priceNames = object$priceNames,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> all.equal( fittedLaLsNa$shares, predictedLaLsNa$shares[ set, ],
++    check.attributes = FALSE )
+[1] TRUE
+> all.equal( fittedLaLsNa$quant, predictedLaLsNa$quant[ set, ],
++    check.attributes = FALSE )
+[1] TRUE
 > fittedLaLsNa2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
 +    coef = estResultLaLsNa$coef, priceIndex = "Ls",
 +    baseShares = as.numeric( Blanciforti86[ 1, wNames ] ) )
@@ -5755,6 +5879,16 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares =
 +    check.attributes = FALSE )
 [1] TRUE
 > all.equal( estResultLaLsNa$qFitted, fittedLaLsNa2$quant,
++    check.attributes = FALSE )
+[1] TRUE
+> predictedLaLsNa2 <- predict( estResultLaLsNa )
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares = baseShares)) :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> all.equal( fittedLaLsNa2$shares, predictedLaLsNa2$shares[ set, ],
++    check.attributes = FALSE )
+[1] TRUE
+> all.equal( fittedLaLsNa2$quant, predictedLaLsNa2$quant[ set, ],
 +    check.attributes = FALSE )
 [1] TRUE
 > 
@@ -5836,6 +5970,12 @@ $quant
 > all.equal( fittedLaT$shares, estResultLaT$wFitted, check.attributes = FALSE )
 [1] TRUE
 > all.equal( fittedLaT$quant, estResultLaT$qFitted, check.attributes = FALSE )
+[1] TRUE
+> predictedLaT <- predict( estResultLaT, observedShares = TRUE )
+Warning message:
+In aidsPx(priceIndex = object$priceIndex, priceNames = object$priceNames,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> all.equal( fittedLaT, predictedLaT )
 [1] TRUE
 > # fitted shares in the Tornqvist price index
 > fittedLaT2 <- aidsCalc( pNames, "xFood", data = Blanciforti86[ set, ],
@@ -5926,6 +6066,574 @@ In aidsPx("T", pNames, shareNames = c("w1", "w2", "w3", "w4"), data = B86LaT2,  
 +    coef = estResultLaT$coef, priceIndex = lnp )
 > all.equal( fittedLaT2, fittedLaT2b, check.attributes = FALSE )
 [1] TRUE
+> predictedLaT2 <- predict( estResultLaT )
+> all.equal( fittedLaT2, predictedLaT2 )
+[1] TRUE
+> 
+> # prediction with different data
+> B86new <- Blanciforti86[ 2 * c( 1:floor( nrow( Blanciforti86 ) / 2 ) ),
++    c( pNames, wNames, "xFood" ) ]
+> B86new$pFood1 <- B86new$pFood1 * 1.1
+> B86new$xFood <- B86new$xFood * 1.05
+> 
+> predNewAIDS <- predict( estResultTl, newdata = B86new, observedShares = TRUE )
+> print( predNewAIDS )
+$shares
+        w1    w2    w3    w4
+1948 0.333 0.159 0.133 0.376
+1950 0.329 0.156 0.134 0.381
+1952 0.319 0.169 0.134 0.377
+1954 0.315 0.170 0.137 0.379
+1956 0.309 0.198 0.135 0.358
+1958 0.309 0.183 0.136 0.372
+1960 0.316 0.194 0.133 0.357
+1962 0.319 0.192 0.133 0.356
+1964 0.309 0.211 0.133 0.347
+1966 0.329 0.193 0.130 0.348
+1968 0.330 0.206 0.128 0.335
+1970 0.343 0.193 0.127 0.336
+1972 0.342 0.195 0.126 0.337
+1974 0.334 0.201 0.129 0.337
+1976 0.346 0.193 0.128 0.334
+1978 0.334 0.198 0.129 0.339
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.983 0.791 2.07
+1950 1.48 0.959 0.763 2.11
+1952 1.47 0.981 0.776 2.10
+1954 1.52 1.010 0.738 1.96
+1956 1.71 1.132 0.727 1.89
+1958 1.52 1.032 0.726 2.08
+1960 1.68 1.118 0.717 2.04
+1962 1.71 1.127 0.706 2.06
+1964 1.77 1.175 0.721 2.00
+1966 1.78 1.155 0.731 2.10
+1968 1.93 1.225 0.752 2.02
+1970 1.96 1.219 0.766 2.00
+1972 1.92 1.201 0.779 2.07
+1974 1.90 1.216 0.714 2.11
+1976 2.05 1.254 0.740 1.92
+1978 1.95 1.217 0.772 1.91
+1980   NA    NA    NA   NA
+
+> predNewAIDS2 <- predict( estResultTl, newdata = B86new )
+> all.equal( predNewAIDS, predNewAIDS2 )
+[1] TRUE
+> 
+> predict( estResultLaS, newdata = B86new, observedShares = TRUE )
+$shares
+        w1    w2    w3    w4
+1948 0.333 0.160 0.133 0.374
+1950 0.328 0.157 0.134 0.381
+1952 0.320 0.169 0.134 0.376
+1954 0.314 0.170 0.137 0.379
+1956 0.309 0.198 0.135 0.358
+1958 0.310 0.183 0.135 0.371
+1960 0.317 0.194 0.133 0.356
+1962 0.320 0.192 0.133 0.354
+1964 0.310 0.211 0.133 0.347
+1966 0.329 0.194 0.130 0.347
+1968 0.329 0.206 0.129 0.336
+1970 0.345 0.194 0.127 0.334
+1972 0.341 0.196 0.127 0.336
+1974 0.334 0.201 0.129 0.336
+1976 0.347 0.194 0.127 0.331
+1978 0.334 0.199 0.129 0.338
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.988 0.791 2.06
+1950 1.47 0.961 0.765 2.11
+1952 1.47 0.983 0.775 2.10
+1954 1.52 1.010 0.739 1.96
+1956 1.71 1.132 0.727 1.89
+1958 1.52 1.033 0.725 2.08
+1960 1.69 1.119 0.716 2.04
+1962 1.71 1.129 0.704 2.05
+1964 1.78 1.176 0.720 2.00
+1966 1.78 1.158 0.731 2.09
+1968 1.92 1.227 0.755 2.02
+1970 1.97 1.227 0.765 1.99
+1972 1.91 1.206 0.781 2.07
+1974 1.90 1.220 0.714 2.10
+1976 2.06 1.263 0.738 1.91
+1978 1.95 1.223 0.771 1.90
+1980   NA    NA    NA   NA
+
+> predict( estResultLaS, newdata = B86new )
+$shares
+        w1    w2    w3    w4
+1948 0.331 0.159 0.133 0.376
+1950 0.328 0.157 0.134 0.381
+1952 0.319 0.169 0.134 0.377
+1954 0.315 0.170 0.137 0.379
+1956 0.309 0.198 0.135 0.358
+1958 0.310 0.183 0.135 0.371
+1960 0.316 0.194 0.133 0.357
+1962 0.320 0.192 0.133 0.355
+1964 0.310 0.211 0.133 0.347
+1966 0.329 0.194 0.130 0.347
+1968 0.330 0.207 0.128 0.335
+1970 0.343 0.194 0.127 0.336
+1972 0.341 0.196 0.127 0.336
+1974 0.333 0.201 0.129 0.337
+1976 0.345 0.194 0.128 0.333
+1978 0.334 0.199 0.129 0.338
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.986 0.793 2.07
+1950 1.47 0.961 0.765 2.11
+1952 1.47 0.982 0.776 2.10
+1954 1.52 1.010 0.738 1.96
+1956 1.71 1.132 0.727 1.89
+1958 1.52 1.033 0.725 2.08
+1960 1.68 1.119 0.716 2.04
+1962 1.71 1.128 0.705 2.06
+1964 1.78 1.176 0.720 1.99
+1966 1.78 1.158 0.731 2.09
+1968 1.93 1.229 0.753 2.02
+1970 1.96 1.225 0.768 2.00
+1972 1.91 1.206 0.781 2.07
+1974 1.90 1.219 0.715 2.10
+1976 2.04 1.260 0.741 1.92
+1978 1.95 1.222 0.772 1.90
+1980   NA    NA    NA   NA
+
+> 
+> predict( estResultLaSl, newdata = B86new, observedShares = TRUE )
+$shares
+        w1    w2    w3    w4
+1948    NA    NA    NA    NA
+1950 0.331 0.158 0.134 0.377
+1952 0.320 0.170 0.134 0.376
+1954 0.316 0.171 0.137 0.376
+1956 0.308 0.198 0.135 0.359
+1958 0.313 0.184 0.135 0.369
+1960 0.318 0.194 0.133 0.355
+1962 0.322 0.192 0.133 0.353
+1964 0.311 0.211 0.132 0.346
+1966 0.331 0.194 0.130 0.344
+1968 0.332 0.207 0.128 0.333
+1970 0.344 0.195 0.128 0.334
+1972 0.345 0.197 0.126 0.332
+1974 0.335 0.201 0.129 0.335
+1976 0.346 0.194 0.128 0.331
+1978 0.336 0.201 0.129 0.335
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948   NA    NA    NA   NA
+1950 1.49 0.969 0.763 2.09
+1952 1.47 0.988 0.775 2.09
+1954 1.53 1.016 0.738 1.95
+1956 1.70 1.134 0.729 1.89
+1958 1.53 1.037 0.722 2.06
+1960 1.69 1.121 0.715 2.03
+1962 1.72 1.130 0.704 2.04
+1964 1.78 1.178 0.718 1.99
+1966 1.80 1.161 0.729 2.08
+1968 1.94 1.232 0.752 2.00
+1970 1.97 1.229 0.770 1.99
+1972 1.93 1.213 0.777 2.05
+1974 1.91 1.220 0.714 2.09
+1976 2.05 1.264 0.745 1.91
+1978 1.96 1.230 0.771 1.88
+1980   NA    NA    NA   NA
+
+> predict( estResultLaSl, newdata = B86new )
+$shares
+        w1    w2    w3    w4
+1948 0.333 0.161 0.133 0.373
+1950 0.329 0.158 0.134 0.378
+1952 0.320 0.170 0.134 0.375
+1954 0.315 0.171 0.137 0.377
+1956 0.309 0.198 0.135 0.358
+1958 0.312 0.184 0.135 0.370
+1960 0.318 0.194 0.133 0.355
+1962 0.321 0.192 0.133 0.354
+1964 0.311 0.211 0.132 0.345
+1966 0.331 0.194 0.130 0.345
+1968 0.332 0.207 0.128 0.333
+1970 0.345 0.195 0.127 0.333
+1972 0.343 0.196 0.127 0.334
+1974 0.335 0.201 0.129 0.335
+1976 0.346 0.194 0.128 0.331
+1978 0.334 0.200 0.129 0.336
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.994 0.794 2.06
+1950 1.48 0.967 0.765 2.10
+1952 1.47 0.988 0.775 2.09
+1954 1.52 1.016 0.739 1.95
+1956 1.71 1.135 0.728 1.89
+1958 1.53 1.036 0.723 2.07
+1960 1.69 1.121 0.715 2.03
+1962 1.71 1.129 0.705 2.05
+1964 1.78 1.178 0.718 1.99
+1966 1.79 1.160 0.730 2.08
+1968 1.94 1.232 0.752 2.01
+1970 1.97 1.230 0.769 1.98
+1972 1.92 1.211 0.780 2.06
+1974 1.91 1.220 0.714 2.09
+1976 2.05 1.264 0.745 1.91
+1978 1.95 1.228 0.774 1.89
+1980   NA    NA    NA   NA
+
+> 
+> predict( estResultLaP, newdata = B86new, observedShares = TRUE )
+$shares
+        w1    w2    w3    w4
+1948 0.333 0.160 0.133 0.375
+1950 0.329 0.157 0.134 0.381
+1952 0.319 0.169 0.134 0.377
+1954 0.315 0.170 0.136 0.378
+1956 0.309 0.198 0.135 0.359
+1958 0.310 0.183 0.136 0.372
+1960 0.316 0.194 0.133 0.357
+1962 0.320 0.192 0.133 0.355
+1964 0.309 0.211 0.133 0.347
+1966 0.329 0.194 0.130 0.347
+1968 0.330 0.206 0.128 0.335
+1970 0.344 0.194 0.127 0.335
+1972 0.341 0.195 0.127 0.337
+1974 0.334 0.201 0.129 0.337
+1976 0.346 0.193 0.128 0.333
+1978 0.334 0.199 0.129 0.338
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.986 0.791 2.07
+1950 1.48 0.961 0.764 2.11
+1952 1.47 0.982 0.776 2.10
+1954 1.52 1.011 0.737 1.96
+1956 1.71 1.132 0.727 1.89
+1958 1.52 1.033 0.726 2.08
+1960 1.68 1.118 0.717 2.04
+1962 1.71 1.127 0.706 2.06
+1964 1.77 1.175 0.721 2.00
+1966 1.78 1.156 0.731 2.09
+1968 1.93 1.226 0.753 2.02
+1970 1.97 1.223 0.767 1.99
+1972 1.91 1.203 0.781 2.07
+1974 1.90 1.217 0.715 2.10
+1976 2.05 1.258 0.740 1.92
+1978 1.95 1.220 0.772 1.90
+1980   NA    NA    NA   NA
+
+> predict( estResultLaP, newdata = B86new )
+$shares
+        w1    w2    w3    w4
+1948 0.332 0.159 0.133 0.376
+1950 0.328 0.157 0.134 0.381
+1952 0.319 0.169 0.134 0.377
+1954 0.315 0.170 0.137 0.378
+1956 0.309 0.198 0.135 0.358
+1958 0.310 0.183 0.136 0.372
+1960 0.316 0.194 0.133 0.357
+1962 0.320 0.192 0.133 0.355
+1964 0.309 0.211 0.133 0.347
+1966 0.329 0.194 0.130 0.347
+1968 0.330 0.206 0.128 0.335
+1970 0.344 0.194 0.127 0.336
+1972 0.342 0.195 0.127 0.336
+1974 0.333 0.201 0.129 0.337
+1976 0.346 0.193 0.128 0.333
+1978 0.334 0.199 0.129 0.338
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.985 0.793 2.07
+1950 1.47 0.960 0.765 2.11
+1952 1.47 0.982 0.777 2.10
+1954 1.52 1.011 0.737 1.96
+1956 1.71 1.132 0.727 1.89
+1958 1.52 1.033 0.725 2.08
+1960 1.68 1.118 0.717 2.04
+1962 1.71 1.127 0.705 2.06
+1964 1.78 1.175 0.721 2.00
+1966 1.78 1.156 0.732 2.09
+1968 1.93 1.227 0.753 2.02
+1970 1.97 1.222 0.767 2.00
+1972 1.91 1.203 0.781 2.07
+1974 1.90 1.217 0.715 2.10
+1976 2.05 1.258 0.740 1.92
+1978 1.95 1.220 0.771 1.90
+1980   NA    NA    NA   NA
+
+> 
+> predict( estResultLaL, newdata = B86new, observedShares = TRUE )
+$shares
+        w1    w2    w3    w4
+1948 0.332 0.159 0.133 0.377
+1950 0.328 0.156 0.134 0.382
+1952 0.318 0.169 0.134 0.379
+1954 0.314 0.170 0.136 0.379
+1956 0.309 0.198 0.135 0.358
+1958 0.309 0.183 0.136 0.373
+1960 0.316 0.193 0.133 0.357
+1962 0.319 0.192 0.133 0.356
+1964 0.310 0.211 0.133 0.346
+1966 0.328 0.193 0.130 0.348
+1968 0.330 0.206 0.128 0.336
+1970 0.343 0.193 0.127 0.337
+1972 0.341 0.195 0.126 0.338
+1974 0.333 0.201 0.129 0.338
+1976 0.345 0.193 0.128 0.335
+1978 0.333 0.198 0.129 0.340
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.981 0.791 2.08
+1950 1.47 0.957 0.763 2.12
+1952 1.46 0.978 0.777 2.11
+1954 1.52 1.009 0.737 1.96
+1956 1.71 1.132 0.727 1.89
+1958 1.51 1.031 0.726 2.08
+1960 1.68 1.117 0.717 2.04
+1962 1.70 1.126 0.706 2.06
+1964 1.78 1.176 0.720 1.99
+1966 1.78 1.154 0.731 2.10
+1968 1.93 1.225 0.752 2.02
+1970 1.96 1.219 0.766 2.01
+1972 1.91 1.200 0.779 2.08
+1974 1.90 1.216 0.714 2.11
+1976 2.04 1.254 0.740 1.93
+1978 1.94 1.217 0.772 1.91
+1980   NA    NA    NA   NA
+
+Warning message:
+In aidsPx(priceIndex = object$priceIndex, priceNames = object$priceNames,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> predict( estResultLaL, newdata = B86new )
+$shares
+        w1    w2    w3    w4
+1948 0.332 0.159 0.133 0.377
+1950 0.328 0.156 0.134 0.382
+1952 0.318 0.169 0.134 0.379
+1954 0.314 0.170 0.136 0.379
+1956 0.309 0.198 0.135 0.358
+1958 0.309 0.183 0.136 0.373
+1960 0.316 0.193 0.133 0.357
+1962 0.319 0.192 0.133 0.356
+1964 0.310 0.211 0.133 0.346
+1966 0.328 0.193 0.130 0.348
+1968 0.330 0.206 0.128 0.336
+1970 0.343 0.193 0.127 0.337
+1972 0.341 0.195 0.126 0.338
+1974 0.333 0.201 0.129 0.338
+1976 0.345 0.193 0.128 0.335
+1978 0.333 0.198 0.129 0.340
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.981 0.791 2.08
+1950 1.47 0.957 0.763 2.12
+1952 1.46 0.978 0.777 2.11
+1954 1.52 1.009 0.737 1.96
+1956 1.71 1.132 0.727 1.89
+1958 1.51 1.031 0.726 2.08
+1960 1.68 1.117 0.717 2.04
+1962 1.70 1.126 0.706 2.06
+1964 1.78 1.176 0.720 1.99
+1966 1.78 1.154 0.731 2.10
+1968 1.93 1.225 0.752 2.02
+1970 1.96 1.219 0.766 2.01
+1972 1.91 1.200 0.779 2.08
+1974 1.90 1.216 0.714 2.11
+1976 2.04 1.254 0.740 1.93
+1978 1.94 1.217 0.772 1.91
+1980   NA    NA    NA   NA
+
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices = basePrices,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> predict( estResultLaLs, newdata = B86new, observedShares = TRUE )
+$shares
+        w1    w2    w3    w4
+1948 0.332 0.159 0.133 0.377
+1950 0.328 0.156 0.134 0.382
+1952 0.318 0.169 0.134 0.379
+1954 0.314 0.170 0.136 0.379
+1956 0.309 0.198 0.135 0.358
+1958 0.309 0.183 0.136 0.373
+1960 0.316 0.193 0.133 0.357
+1962 0.319 0.192 0.133 0.356
+1964 0.310 0.211 0.133 0.346
+1966 0.328 0.193 0.130 0.348
+1968 0.330 0.206 0.128 0.336
+1970 0.343 0.193 0.127 0.337
+1972 0.341 0.195 0.126 0.338
+1974 0.333 0.201 0.129 0.338
+1976 0.345 0.193 0.128 0.335
+1978 0.333 0.198 0.129 0.340
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.981 0.791 2.08
+1950 1.47 0.957 0.763 2.12
+1952 1.46 0.978 0.777 2.11
+1954 1.52 1.009 0.737 1.96
+1956 1.71 1.132 0.727 1.89
+1958 1.51 1.031 0.726 2.08
+1960 1.68 1.117 0.717 2.04
+1962 1.70 1.126 0.706 2.06
+1964 1.78 1.176 0.720 1.99
+1966 1.78 1.154 0.731 2.10
+1968 1.93 1.225 0.752 2.02
+1970 1.96 1.219 0.766 2.01
+1972 1.91 1.200 0.779 2.08
+1974 1.90 1.216 0.714 2.11
+1976 2.04 1.254 0.740 1.93
+1978 1.94 1.217 0.772 1.91
+1980   NA    NA    NA   NA
+
+Warning message:
+In aidsPx(priceIndex = object$priceIndex, priceNames = object$priceNames,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> predict( estResultLaLs, newdata = B86new )
+$shares
+        w1    w2    w3    w4
+1948 0.332 0.159 0.133 0.377
+1950 0.328 0.156 0.134 0.382
+1952 0.318 0.169 0.134 0.379
+1954 0.314 0.170 0.136 0.379
+1956 0.309 0.198 0.135 0.358
+1958 0.309 0.183 0.136 0.373
+1960 0.316 0.193 0.133 0.357
+1962 0.319 0.192 0.133 0.356
+1964 0.310 0.211 0.133 0.346
+1966 0.328 0.193 0.130 0.348
+1968 0.330 0.206 0.128 0.336
+1970 0.343 0.193 0.127 0.337
+1972 0.341 0.195 0.126 0.338
+1974 0.333 0.201 0.129 0.338
+1976 0.345 0.193 0.128 0.335
+1978 0.333 0.198 0.129 0.340
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.981 0.791 2.08
+1950 1.47 0.957 0.763 2.12
+1952 1.46 0.978 0.777 2.11
+1954 1.52 1.009 0.737 1.96
+1956 1.71 1.132 0.727 1.89
+1958 1.51 1.031 0.726 2.08
+1960 1.68 1.117 0.717 2.04
+1962 1.70 1.126 0.706 2.06
+1964 1.78 1.176 0.720 1.99
+1966 1.78 1.154 0.731 2.10
+1968 1.93 1.225 0.752 2.02
+1970 1.96 1.219 0.766 2.01
+1972 1.91 1.200 0.779 2.08
+1974 1.90 1.216 0.714 2.11
+1976 2.04 1.254 0.740 1.93
+1978 1.94 1.217 0.772 1.91
+1980   NA    NA    NA   NA
+
+Warning message:
+In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares = baseShares)) :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> 
+> predict( estResultLaT, newdata = B86new, observedShares = TRUE )
+$shares
+        w1    w2    w3    w4
+1948 0.332 0.159 0.133 0.376
+1950 0.328 0.156 0.134 0.381
+1952 0.319 0.169 0.134 0.378
+1954 0.315 0.170 0.136 0.379
+1956 0.309 0.198 0.135 0.358
+1958 0.309 0.183 0.136 0.372
+1960 0.316 0.194 0.133 0.357
+1962 0.319 0.192 0.133 0.356
+1964 0.309 0.211 0.133 0.347
+1966 0.328 0.193 0.130 0.348
+1968 0.330 0.206 0.128 0.336
+1970 0.343 0.193 0.127 0.336
+1972 0.341 0.195 0.127 0.337
+1974 0.333 0.201 0.129 0.337
+1976 0.346 0.193 0.128 0.334
+1978 0.333 0.199 0.129 0.339
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.983 0.791 2.07
+1950 1.47 0.959 0.764 2.11
+1952 1.47 0.980 0.776 2.11
+1954 1.52 1.010 0.737 1.96
+1956 1.71 1.132 0.727 1.89
+1958 1.51 1.032 0.726 2.08
+1960 1.68 1.118 0.717 2.04
+1962 1.70 1.127 0.706 2.06
+1964 1.77 1.175 0.721 2.00
+1966 1.78 1.155 0.731 2.10
+1968 1.93 1.226 0.753 2.02
+1970 1.96 1.221 0.766 2.00
+1972 1.91 1.201 0.780 2.08
+1974 1.90 1.216 0.714 2.11
+1976 2.05 1.256 0.740 1.92
+1978 1.95 1.219 0.772 1.91
+1980   NA    NA    NA   NA
+
+Warning message:
+In aidsPx(priceIndex = object$priceIndex, priceNames = object$priceNames,  :
+  the base expenditure shares specified by element 'shares' of argument 'base' do not sum up to 1 (deviation from 1 = 0.001)
+> predict( estResultLaT, newdata = B86new )
+$shares
+        w1    w2    w3    w4
+1948 0.332 0.159 0.133 0.377
+1950 0.328 0.156 0.134 0.382
+1952 0.319 0.169 0.134 0.378
+1954 0.315 0.170 0.137 0.379
+1956 0.309 0.198 0.135 0.358
+1958 0.309 0.183 0.136 0.372
+1960 0.316 0.194 0.133 0.357
+1962 0.319 0.192 0.133 0.356
+1964 0.310 0.211 0.133 0.347
+1966 0.328 0.193 0.130 0.348
+1968 0.330 0.206 0.128 0.335
+1970 0.343 0.193 0.127 0.336
+1972 0.341 0.195 0.127 0.337
+1974 0.333 0.201 0.129 0.337
+1976 0.345 0.193 0.128 0.334
+1978 0.333 0.199 0.129 0.339
+1980    NA    NA    NA    NA
+
+$quant
+       q1    q2    q3   q4
+1948 1.53 0.983 0.792 2.08
+1950 1.47 0.958 0.764 2.11
+1952 1.47 0.980 0.777 2.11
+1954 1.52 1.010 0.737 1.96
+1956 1.71 1.132 0.727 1.89
+1958 1.51 1.032 0.726 2.08
+1960 1.68 1.118 0.717 2.04
+1962 1.71 1.127 0.706 2.06
+1964 1.78 1.176 0.720 2.00
+1966 1.78 1.155 0.731 2.10
+1968 1.93 1.226 0.752 2.02
+1970 1.96 1.221 0.767 2.00
+1972 1.91 1.201 0.780 2.08
+1974 1.90 1.216 0.714 2.11
+1976 2.05 1.256 0.740 1.92
+1978 1.95 1.219 0.772 1.91
+1980   NA    NA    NA   NA
+
 > 
 > 
 > ####### monotonicity ###################
