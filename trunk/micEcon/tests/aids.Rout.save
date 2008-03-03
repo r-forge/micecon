@@ -529,7 +529,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
 > print( elas( estResultLA, method = "Ch", quantNames = wNames,
 +    observedShares = TRUE ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.058  1.278  0.443  0.124 
@@ -549,7 +549,7 @@ wFood3  0.222  0.1753 -0.7571  0.360
 wFood4  0.423  0.1554  0.1363 -0.715
 > print( elas( estResultLA, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.049  1.275  0.440  0.114 
@@ -629,7 +629,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
 > print( elas( estResultLATX, method = "Ch", quantNames = wNames,
 +    observedShares = TRUE ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.058  1.278  0.443  0.124 
@@ -649,7 +649,7 @@ wFood3  0.222  0.1753 -0.7571  0.360
 wFood4  0.423  0.1554  0.1363 -0.715
 > print( elas( estResultLATX, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  2.049  1.275  0.440  0.114 
@@ -729,7 +729,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
 > print( elas( estResultLAhom, method = "Ch", quantNames = wNames,
 +    observedShares = TRUE ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
 2.0702 1.3262 0.5128 0.0593 
@@ -749,7 +749,7 @@ wFood3  0.272  0.0139 -0.6336  0.348
 wFood4  0.383  0.2625  0.0872 -0.733
 > print( elas( estResultLAhom, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
 2.0617 1.3227 0.5105 0.0483 
@@ -829,7 +829,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
 > print( elas( estResultLAhomTX, method = "Ch", quantNames = wNames,
 +    observedShares = TRUE ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
 2.0702 1.3262 0.5128 0.0593 
@@ -849,7 +849,7 @@ wFood3  0.272  0.0139 -0.6336  0.348
 wFood4  0.383  0.2625  0.0872 -0.733
 > print( elas( estResultLAhomTX, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
 2.0617 1.3227 0.5105 0.0483 
@@ -929,7 +929,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
 > print( elas( estResultLAunr, method = "Ch", quantNames = wNames,
 +    observedShares = TRUE ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  1.474  1.002  0.523  0.763 
@@ -949,7 +949,7 @@ wFood3  0.271  0.0098 -0.6331  0.351
 wFood4  0.344 -0.0246  0.1205 -0.556
 > print( elas( estResultLAunr, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  1.472  1.002  0.521  0.761 
@@ -1029,7 +1029,7 @@ q_wFood1 q_wFood2 q_wFood3 q_wFood4
 > print( elas( estResultLAunrTX, method = "Ch", quantNames = wNames,
 +    observedShares = TRUE ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  1.474  1.002  0.523  0.763 
@@ -1049,7 +1049,7 @@ wFood3  0.271  0.0098 -0.6331  0.351
 wFood4  0.344 -0.0246  0.1205 -0.556
 > print( elas( estResultLAunrTX, method = "Ch", quantNames = wNames ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 wFood1 wFood2 wFood3 wFood4 
  1.472  1.002  0.521  0.761 
@@ -3146,7 +3146,7 @@ LA: Elasticity formula of Goddard or Chalfant
 +    priceIndex = "S" )
 > print( ela )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.059    1.279    0.443    0.128 
@@ -3207,7 +3207,7 @@ q_wFood4  0.422  0.155  0.1363 -0.713
 +    priceIndex = "S" )
 > print( ela )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.059    1.279    0.443    0.128 
@@ -3266,7 +3266,7 @@ q_wFood4  0.422  0.155  0.1363 -0.713
 > 
 > print( elas( estResultLA, method = "Go", observedShares = TRUE ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.058    1.278    0.443    0.124 
@@ -3286,7 +3286,7 @@ q_wFood3  0.222  0.1753 -0.7571  0.360
 q_wFood4  0.423  0.1554  0.1363 -0.715
 > print( elas( estResultLA, method = "Go" ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.049    1.275    0.440    0.114 
@@ -3383,7 +3383,7 @@ q_wFood4  0.427  0.1571  0.1357 -0.719
 > 
 > print( elas( estResultLATX, observedShares = TRUE ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.058    1.278    0.443    0.124 
@@ -3403,7 +3403,7 @@ q_wFood3  0.222  0.1753 -0.7571  0.360
 q_wFood4  0.423  0.1554  0.1363 -0.715
 > print( elas( estResultLATX ) )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.049    1.275    0.440    0.114 
@@ -3500,7 +3500,7 @@ q_wFood4  0.427  0.1571  0.1357 -0.719
 > 
 > elas( estResultLaS, method = "Go" )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.036    1.276    0.411    0.142 
@@ -3521,7 +3521,7 @@ q_wFood4  0.447  0.1442  0.1209 -0.713
 > 
 > elas( estResultLaSl, method = "Go" )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.049    1.275    0.440    0.114 
@@ -3542,7 +3542,7 @@ q_wFood4  0.427  0.1571  0.1357 -0.719
 > 
 > elas( estResultLaP, method = "Go" )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Paasche price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.047    1.252    0.409    0.147 
@@ -3563,7 +3563,7 @@ q_wFood4  0.459  0.1442  0.118 -0.722
 > 
 > elas( estResultLaL, method = "Go" )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Laspeyres price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.040    1.237    0.389    0.170 
@@ -3587,7 +3587,7 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices =
 > 
 > elas( estResultLaLs, method = "Go" )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Laspeyres price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.040    1.237    0.389    0.170 
@@ -3611,7 +3611,7 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares =
 > 
 > elas( estResultLaT, method = "Go" )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Tornqvist price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.045    1.245    0.399    0.157 
@@ -3637,7 +3637,7 @@ LA: Elasticity formula of Eales + Unnevehr
 +    priceIndex = "S" )
 > print( ela )
 
-Demand Elasticities (formula of Eales and Unnevehr)
+Demand Elasticities (formulas of Eales and Unnevehr)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.059    1.279    0.443    0.128 
@@ -3658,7 +3658,7 @@ q_wFood4  0.15146 -0.0201  0.0193 -1.023
 > 
 > elas( estResultLaS, method = "EU" )
 
-Demand Elasticities (formula of Eales and Unnevehr)
+Demand Elasticities (formulas of Eales and Unnevehr)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.036    1.276    0.411    0.142 
@@ -3679,7 +3679,7 @@ q_wFood4  0.1792 -0.0295  0.00647 -1.014
 > 
 > elas( estResultLaSl, method = "EU" )
 
-Demand Elasticities (formula of Eales and Unnevehr)
+Demand Elasticities (formulas of Eales and Unnevehr)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.049    1.275    0.440    0.114 
@@ -3700,7 +3700,7 @@ q_wFood4  0.14937 -0.0231  0.0175 -1.029
 > 
 > elas( estResultLaP, method = "EU" )
 
-Demand Elasticities (formula of Eales and Unnevehr)
+Demand Elasticities (formulas of Eales and Unnevehr)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.047    1.252    0.409    0.147 
@@ -3721,7 +3721,7 @@ q_wFood4  0.1926 -0.0286  0.0045 -1.022
 > 
 > elas( estResultLaL, method = "EU" )
 
-Demand Elasticities (formula of Eales and Unnevehr)
+Demand Elasticities (formulas of Eales and Unnevehr)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.040    1.237    0.389    0.170 
@@ -3745,7 +3745,7 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices =
 > 
 > elas( estResultLaLs, method = "EU" )
 
-Demand Elasticities (formula of Eales and Unnevehr)
+Demand Elasticities (formulas of Eales and Unnevehr)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.040    1.237    0.389    0.170 
@@ -3769,7 +3769,7 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares =
 > 
 > elas( estResultLaT, method = "EU" )
 
-Demand Elasticities (formula of Eales and Unnevehr)
+Demand Elasticities (formulas of Eales and Unnevehr)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.045    1.245    0.399    0.157 
@@ -3795,7 +3795,7 @@ LA: Elasticity formula of Green + Alston
 +    priceIndex = "S" )
 > print( ela )
 
-Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Demand Elasticities (formulas of Green and Alston / Buse (first set) for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.075    1.283    0.434    0.114 
@@ -3821,7 +3821,7 @@ LA: Elasticity formula of Buse
 +    priceIndex = "S" )
 > print( ela )
 
-Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Demand Elasticities (formulas of Green and Alston / Buse (first set) for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.075    1.283    0.434    0.114 
@@ -3842,7 +3842,7 @@ q_wFood4  0.425  0.15215  0.137 -0.714
 > 
 > elas( estResultLaS, method = "B1" )
 
-Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Demand Elasticities (formulas of Green and Alston / Buse (first set) for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.051    1.280    0.402    0.130 
@@ -3863,7 +3863,7 @@ q_wFood4  0.450  0.1419  0.121 -0.713
 > 
 > elas( estResultLaSl, method = "B1" )
 
-Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Demand Elasticities (formulas of Green and Alston / Buse (first set) for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.066    1.279    0.431    0.100 
@@ -3884,7 +3884,7 @@ q_wFood4  0.429  0.1547  0.1363 -0.720
 > 
 > elas( estResultLaP, method = "B1" )
 
-Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Demand Elasticities (formulas of Green and Alston / Buse (first set) for Paasche price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.078    1.260    0.392    0.122 
@@ -3905,7 +3905,7 @@ q_wFood4  0.450  0.1560  0.1203 -0.726
 > 
 > elas( estResultLaL, method = "B1" )
 
-Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Demand Elasticities (formulas of Green and Alston / Buse (first set) for Laspeyres price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.040    1.237    0.389    0.170 
@@ -3929,7 +3929,7 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices =
 > 
 > elas( estResultLaLs, method = "B1" )
 
-Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Demand Elasticities (formulas of Green and Alston / Buse (first set) for Laspeyres price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.040    1.237    0.389    0.170 
@@ -3953,7 +3953,7 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares =
 > 
 > elas( estResultLaT, method = "B1" )
 
-Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Demand Elasticities (formulas of Green and Alston / Buse (first set) for Tornqvist price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.060    1.248    0.390    0.145 
@@ -3979,7 +3979,7 @@ LA: Elasticity formula of Buse (alternative formula)
 +    priceIndex = "S" )
 > print( ela )
 
-Demand Elasticities (formulas of Buse (second set))
+Demand Elasticities (formulas of Buse (second set) for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.075    1.283    0.434    0.115 
@@ -4000,7 +4000,7 @@ q_wFood4  0.417  0.1510  0.139 -0.707
 > 
 > elas( estResultLaS, method = "B2" )
 
-Demand Elasticities (formulas of Buse (second set))
+Demand Elasticities (formulas of Buse (second set) for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.051    1.280    0.402    0.130 
@@ -4021,7 +4021,7 @@ q_wFood4  0.443  0.1407  0.123 -0.707
 > 
 > elas( estResultLaSl, method = "B2" )
 
-Demand Elasticities (formulas of Buse (second set))
+Demand Elasticities (formulas of Buse (second set) for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.066    1.279    0.431    0.101 
@@ -4042,7 +4042,7 @@ q_wFood4  0.421  0.1534  0.1381 -0.713
 > 
 > elas( estResultLaP, method = "B2" )
 
-Demand Elasticities (formulas of Buse (second set))
+Demand Elasticities (formulas of Buse (second set) for Paasche price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.077    1.259    0.393    0.123 
@@ -4063,7 +4063,7 @@ q_wFood4  0.404  0.1486  0.1311 -0.684
 > 
 > elas( estResultLaL, method = "B2" )
 
-Demand Elasticities (formulas of Buse (second set))
+Demand Elasticities (formulas of Buse (second set) for Laspeyres price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.040    1.237    0.389    0.170 
@@ -4087,7 +4087,7 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(prices =
 > 
 > elas( estResultLaLs, method = "B2" )
 
-Demand Elasticities (formulas of Buse (second set))
+Demand Elasticities (formulas of Buse (second set) for Laspeyres price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.040    1.237    0.389    0.170 
@@ -4111,7 +4111,7 @@ In aidsPx(priceIndex, priceNames, data = data, coef = coef, base = list(shares =
 > 
 > elas( estResultLaT, method = "B2" )
 
-Demand Elasticities (formulas of Buse (second set))
+Demand Elasticities (formulas of Buse (second set) for Tornqvist price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.060    1.248    0.390    0.145 
@@ -4174,7 +4174,7 @@ q_wFood4  0.468  0.14330  0.1155 -0.727
 > aidsElas( coef( estResultLaS ), shares = wMeans, method = "Ch",
 +    priceIndex = "S" )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.044    1.279    0.414    0.152 
@@ -4195,7 +4195,7 @@ q_wFood4  0.443  0.1426  0.1217 -0.708
 > aidsElas( coef( estResultLaS ), prices = pMeans, totExp = xtMean,
 +    method = "Ch", priceIndex = "S" )
 
-Demand Elasticities (formulas of Goddard / Chalfant)
+Demand Elasticities (formulas of Goddard / Chalfant for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.036    1.276    0.411    0.142 
@@ -4217,7 +4217,7 @@ q_wFood4  0.447  0.1442  0.1209 -0.713
 > aidsElas( coef( estResultLaS ), prices = pMeans, shares = wMeans,
 +    method = "B1", priceIndex = "S" )
 
-Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Demand Elasticities (formulas of Green and Alston / Buse (first set) for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.060    1.283    0.405    0.139 
@@ -4238,7 +4238,7 @@ q_wFood4  0.446  0.1403  0.1220 -0.708
 > aidsElas( coef( estResultLaS ), prices = pMeans, totExp = xtMean,
 +    method = "B1", priceIndex = "S" )
 
-Demand Elasticities (formulas of Green and Alston / Buse (first set))
+Demand Elasticities (formulas of Green and Alston / Buse (first set) for Stone price index)
 Expenditure Elasticities
 q_wFood1 q_wFood2 q_wFood3 q_wFood4 
    2.051    1.280    0.402    0.130 

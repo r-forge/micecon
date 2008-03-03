@@ -63,6 +63,7 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
 
    ela <- list()
    ela$method <- method
+   ela$priceIndex <- priceIndex
 
    ones <- rep( 1, nGoods )
 
