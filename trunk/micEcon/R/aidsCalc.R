@@ -91,7 +91,7 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
    # number of goods
    nGoods <- length( priceNames )
 
-   shareData <- as.data.frame( matrix( 0, nrow = nrow( data ), ncol = nGoods ) )
+   shareData <- as.data.frame( matrix( NA, nrow = nrow( data ), ncol = nGoods ) )
    names( shareData ) <- paste( "w", as.character( 1:nGoods ), sep = "" )
    rownames( shareData ) <- rownames( data )
    quant <- as.data.frame( matrix( 0, nrow = nrow( data ), ncol = nGoods ) )
@@ -110,41 +110,51 @@ aidsCalc <- function( priceNames, totExpName, coef, data,
       for( i in 1:nrow( data ) ) {
          logPrices <- log( as.numeric( data[ i, priceNames ] ) )
          logTotExp <- log( data[ i, totExpName ] )
-         shareData[ i, ] <-
-            solve( diag( nGoods ) + coef$beta %*% t( logPrices ),
-               coef$alpha + coef$gamma %*% logPrices + coef$beta * logTotExp )
+         if( all( !is.na( c( logPrices, logTotExp ) ) ) ) {
+            shareData[ i, ] <-
+               solve( diag( nGoods ) + coef$beta %*% t( logPrices ),
+                  coef$alpha + coef$gamma %*% logPrices + coef$beta * logTotExp )
+         }
       }
    } else if( priceIndex == "SL" ) {
       logPrices <- log( as.numeric( data[ 1, priceNames ] ) )
       logTotExp <- log( data[ 1, totExpName ] )
-      shareData[ 1, ] <-
-            solve( diag( nGoods ) + coef$beta %*% t( logPrices ),
-               coef$alpha + coef$gamma %*% logPrices + coef$beta * logTotExp )
+      if( all( !is.na( c( logPrices, logTotExp ) ) ) ) {
+         shareData[ 1, ] <-
+               solve( diag( nGoods ) + coef$beta %*% t( logPrices ),
+                  coef$alpha + coef$gamma %*% logPrices + coef$beta * logTotExp )
+      }
       for( i in 2:nrow( data ) ) {
          logPrices <- log( as.numeric( data[ i, priceNames ] ) )
          logTotExp <- log( data[ i, totExpName ] )
-         shareData[ i, ] <-
-            coef$alpha + coef$gamma %*% logPrices + coef$beta * logTotExp -
-            coef$beta * t( logPrices ) %*% as.numeric( shareData[ i-1, ] )
+         if( all( !is.na( c( logPrices, logTotExp ) ) ) ) {
+            shareData[ i, ] <-
+               coef$alpha + coef$gamma %*% logPrices + coef$beta * logTotExp -
+               coef$beta * t( logPrices ) %*% as.numeric( shareData[ i-1, ] )
+         }
       }
    } else if( priceIndex == "P" ) {
       for( i in 1:nrow( data ) ) {
          prices <- as.numeric( data[ i, priceNames ] )
          logTotExp <- log( data[ i, totExpName ] )
-         shareData[ i, ] <-
-            solve( diag( nGoods ) + coef$beta %*% t( log( prices / basePrices ) ),
-               coef$alpha + coef$gamma %*% log( prices ) + coef$beta * logTotExp )
+         if( all( !is.na( c( prices, logTotExp ) ) ) ) {
+            shareData[ i, ] <-
+               solve( diag( nGoods ) + coef$beta %*% t( log( prices / basePrices ) ),
+                  coef$alpha + coef$gamma %*% log( prices ) + coef$beta * logTotExp )
+         }
       }
    } else if( priceIndex == "T" ) {
       for( i in 1:nrow( data ) ) {
          prices <- as.numeric( data[ i, priceNames ] )
          logTotExp <- log( data[ i, totExpName ] )
-         shareData[ i, ] <-
-            solve( diag( nGoods ) + 0.5 * coef$beta %*%
-               t( log( prices / basePrices ) ),
-               coef$alpha + coef$gamma %*% log( prices ) +
-               coef$beta * logTotExp - 0.5 * coef$beta *
-               ( t( log( prices / basePrices ) ) %*% baseShares ) )
+         if( all( !is.na( c( prices, logTotExp ) ) ) ) {
+            shareData[ i, ] <-
+               solve( diag( nGoods ) + 0.5 * coef$beta %*%
+                  t( log( prices / basePrices ) ),
+                  coef$alpha + coef$gamma %*% log( prices ) +
+                  coef$beta * logTotExp - 0.5 * coef$beta *
+                  ( t( log( prices / basePrices ) ) %*% baseShares ) )
+         }
       }
    } else {
       stop( "internal error" )
