@@ -309,7 +309,8 @@ elas( estResultLaLs, method = "Go" )
 elas( estResultLaT, method = "Go" )
 
 cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
-ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "EU" )
+ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "EU",
+   priceIndex = "S" )
 print( ela )
 
 elas( estResultLaS, method = "EU" )
