@@ -142,7 +142,8 @@
       data = Blanciforti86 )
    wMeans <- colMeans( Blanciforti86[ , c( "wFood1", "wFood2",
       "wFood3", "wFood4" ) ] )
-   aidsElas( estResult$coef, shares = wMeans, method = "Ch" )
+   aidsElas( estResult$coef, shares = wMeans, method = "Ch",
+      priceIndex = "S" )
 
    ## Repeating the evaluation of different elasticity formulas of
    ## Green & Alston (1990)
