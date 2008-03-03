@@ -32,9 +32,10 @@ aidsCalc( priceNames, totExpName, coef, data, priceIndex = "TL",
    \item{baseShares}{a vector specifying the base expenditure shares for the
       Laspeyres, simplified Laspeyres, and Tornqvist index.}
    \item{object}{an object of class \code{aidsEst}.}
-   \item{newdata}{an optional data frame in which to look for variables with
-      which to predict.
-      If omitted, the data frame used for the estimation is used.}
+   \item{newdata}{an optional data frame which should contain the variables
+      for the prediction.
+      If omitted, the data frame used for the estimation is used
+      also for the prediction.}
    \item{observedShares}{logical. Using observed shares? (see details).}
    \item{...}{currently not used.}
 }
