@@ -3633,7 +3633,8 @@ q_wFood4  0.471  0.1341  0.113 -0.718
 > cat( "\nLA: Elasticity formula of Eales + Unnevehr\n" )
 
 LA: Elasticity formula of Eales + Unnevehr
-> ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "EU" )
+> ela <- aidsElas( estResultLA$coef, shares = wMeans, method = "EU",
++    priceIndex = "S" )
 > print( ela )
 
 Demand Elasticities (formula of Eales and Unnevehr)

@@ -15,6 +15,12 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
       stop( coefCheckResult )
    }
 
+   if( priceIndex == "TL" && method != "AIDS" ) {
+      stop( "there is no formula/method '", method,
+         "' for calculating elasticities",
+         " the original AIDS (with the translog price index 'TL')" )
+   }
+
    if( is.null( shares ) ) {
       if( is.null( prices ) ) {
          stop( "either argument 'prices' or argument 'shares'",
@@ -97,7 +103,8 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
          coef$beta %*% t( ones ) *
          ( ones %*% t( shares + baseShares ) ) /
          ( 2 * shares %*% t( ones ) )
-   } else if( method == "EU" ) {
+   } else if( method == "EU" &&
+         priceIndex %in% c( "S", "SL", "P", "L", "Ls", "T" ) ) {
       ela$exp <- ones + coef$beta / shares
       ela$marshall <- -diag( 1, nGoods, nGoods ) + coef$gamma /
          ( shares %*% t( ones ) )
