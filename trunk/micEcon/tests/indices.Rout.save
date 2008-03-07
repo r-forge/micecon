@@ -1,6 +1,6 @@
 
-R version 2.6.1 (2007-11-26)
-Copyright (C) 2007 The R Foundation for Statistical Computing
+R version 2.6.2 (2008-02-08)
+Copyright (C) 2008 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -801,12 +801,13 @@ attr(,"weights")
 > 
 > ## Blanciforti with some NA prices
 > ## manipulating data of Blanciforti
+> Blanciforti86NaP <- Blanciforti86
 > for( i in 1:4 ) {
-+    Blanciforti86[[ pNames[ i ] ]][ c( 2, i * 4, i * 8 ) ] <- NA
++    Blanciforti86NaP[[ pNames[ i ] ]][ c( 2, i * 4, i * 8 ) ] <- NA
 + }
 > 
 > ## price indices for Blanciforti with some NA prices
-> printIndices( "p",  pNames, qNames, 1, Blanciforti86 )
+> printIndices( "p",  pNames, qNames, 1, Blanciforti86NaP )
 
  Laspeyres 
     1947     1948     1949     1950     1951     1952     1953     1954 
@@ -956,7 +957,7 @@ attr(,"weights")
 1981        NA        NA        NA        NA
 > 
 > ## quantity indices for Blanciforti with some NA prices
-> printIndices( "q",  pNames, qNames, 1, Blanciforti86 )
+> printIndices( "q",  pNames, qNames, 1, Blanciforti86NaP )
 
  Laspeyres 
      1947      1948      1949      1950      1951      1952      1953      1954 
@@ -1106,7 +1107,7 @@ attr(,"weights")
 1981        NA        NA        NA        NA
 > 
 > ## price indices for Blanciforti with some NA prices and na.rm=TRUE
-> printIndices( "p",  pNames, qNames, 1, Blanciforti86, na.rm = TRUE )
+> printIndices( "p",  pNames, qNames, 1, Blanciforti86NaP, na.rm = TRUE )
 
  Laspeyres 
     1947     1948     1949     1950     1951     1952     1953     1954 
@@ -1256,7 +1257,7 @@ attr(,"weights")
 1981        NA        NA        NA        NA
 > 
 > ## quantity indices for Blanciforti with some NA prices and na.rm=TRUE
-> printIndices( "q",  pNames, qNames, 1, Blanciforti86, na.rm = TRUE )
+> printIndices( "q",  pNames, qNames, 1, Blanciforti86NaP, na.rm = TRUE )
 
  Laspeyres 
      1947      1948      1949      1950      1951      1952      1953      1954 
@@ -1406,7 +1407,7 @@ attr(,"weights")
 1981        NA        NA        NA        NA
 > 
 > ## price indices for Blanciforti with some NA prices and base=mean
-> printIndices( "p",  pNames, qNames, 16, Blanciforti86 )
+> printIndices( "p",  pNames, qNames, 16, Blanciforti86NaP )
 
  Laspeyres 
 1947 1948 1949 1950 1951 1952 1953 1954 1955 1956 1957 1958 1959 1960 1961 1962 
@@ -1544,7 +1545,7 @@ attr(,"weights")
 1981     NA     NA     NA     NA
 > 
 > ## quantity indices for Blanciforti with some NA prices and base=mean
-> printIndices( "q",  pNames, qNames, allObs, Blanciforti86 )
+> printIndices( "q",  pNames, qNames, allObs, Blanciforti86NaP )
 
  Laspeyres 
 1947 1948 1949 1950 1951 1952 1953 1954 1955 1956 1957 1958 1959 1960 1961 1962 
@@ -1686,7 +1687,7 @@ attr(,"weights")
 1981     NA     NA     NA     NA
 > 
 > ## price indices for Blanciforti with some NA prices and na.rm=TRUE and base=mean
-> printIndices( "p",  pNames, qNames, allObs, Blanciforti86, na.rm = TRUE )
+> printIndices( "p",  pNames, qNames, allObs, Blanciforti86NaP, na.rm = TRUE )
 
  Laspeyres 
      1947      1948      1949      1950      1951      1952      1953      1954 
@@ -1836,7 +1837,7 @@ attr(,"weights")
 1981        NA        NA        NA        NA
 > 
 > ## quantity indices for Blanciforti with some NA prices and na.rm=TRUE and base=mean
-> printIndices( "q",  pNames, qNames, allObs, Blanciforti86, na.rm = TRUE )
+> printIndices( "q",  pNames, qNames, allObs, Blanciforti86NaP, na.rm = TRUE )
 
  Laspeyres 
      1947      1948      1949      1950      1951      1952      1953      1954 
@@ -1988,12 +1989,13 @@ attr(,"weights")
 > 
 > ## Blanciforti with some NA prices and quantities
 > ## manipulating data of Blanciforti
+> Blanciforti86NaPQ <- Blanciforti86NaP
 > for( i in 1:4 ) {
-+    Blanciforti86[[ qNames[ i ] ]][ c( 2, ( i + 1 ) * 4, i * 8 ) ] <- NA
++    Blanciforti86NaPQ[[ qNames[ i ] ]][ c( 2, ( i + 1 ) * 4, i * 8 ) ] <- NA
 + }
 > 
 > ## price indices for Blanciforti with some NA prices and quantities
-> printIndices( "p",  pNames, qNames, 1, Blanciforti86 )
+> printIndices( "p",  pNames, qNames, 1, Blanciforti86NaPQ )
 
  Laspeyres 
     1947     1948     1949     1950     1951     1952     1953     1954 
@@ -2143,7 +2145,7 @@ attr(,"weights")
 1981        NA        NA        NA        NA
 > 
 > ## quantity indices for Blanciforti with some NA prices and quantities
-> printIndices( "q",  pNames, qNames, 1, Blanciforti86 )
+> printIndices( "q",  pNames, qNames, 1, Blanciforti86NaPQ )
 
  Laspeyres 
      1947      1948      1949      1950      1951      1952      1953      1954 
@@ -2293,7 +2295,7 @@ attr(,"weights")
 1981        NA        NA        NA        NA
 > 
 > ## price indices for Blanciforti with some NA prices and quantities and na.rm=TRUE
-> printIndices( "p",  pNames, qNames, 1, Blanciforti86, na.rm = TRUE )
+> printIndices( "p",  pNames, qNames, 1, Blanciforti86NaPQ, na.rm = TRUE )
 
  Laspeyres 
     1947     1948     1949     1950     1951     1952     1953     1954 
@@ -2443,7 +2445,7 @@ attr(,"weights")
 1981        NA        NA        NA        NA
 > 
 > ## quantity indices for Blanciforti with some NA prices and quantities and na.rm=TRUE
-> printIndices( "q",  pNames, qNames, 1, Blanciforti86, na.rm = TRUE )
+> printIndices( "q",  pNames, qNames, 1, Blanciforti86NaPQ, na.rm = TRUE )
 
  Laspeyres 
      1947      1948      1949      1950      1951      1952      1953      1954 
@@ -2593,7 +2595,7 @@ attr(,"weights")
 1981        NA        NA        NA        NA
 > 
 > ## price indices for Blanciforti with some NA prices and quantities and base=mean
-> printIndices( "p",  pNames, qNames, 16, Blanciforti86 )
+> printIndices( "p",  pNames, qNames, 16, Blanciforti86NaPQ )
 
  Laspeyres 
 1947 1948 1949 1950 1951 1952 1953 1954 1955 1956 1957 1958 1959 1960 1961 1962 
@@ -2731,7 +2733,7 @@ attr(,"weights")
 1981     NA     NA     NA     NA
 > 
 > ## quantity indices for Blanciforti with some NA prices and quantities and base=mean
-> printIndices( "q",  pNames, qNames, 16, Blanciforti86 )
+> printIndices( "q",  pNames, qNames, 16, Blanciforti86NaPQ )
 
  Laspeyres 
 1947 1948 1949 1950 1951 1952 1953 1954 1955 1956 1957 1958 1959 1960 1961 1962 
@@ -2869,7 +2871,7 @@ attr(,"weights")
 1981     NA     NA     NA     NA
 > 
 > ## price indices for Blanciforti with some NA prices and quantities and na.rm=TRUE and base=mean
-> printIndices( "p",  pNames, qNames, allObs, Blanciforti86, na.rm = TRUE )
+> printIndices( "p",  pNames, qNames, allObs, Blanciforti86NaPQ, na.rm = TRUE )
 
  Laspeyres 
      1947      1948      1949      1950      1951      1952      1953      1954 
@@ -3019,7 +3021,7 @@ attr(,"weights")
 1981        NA        NA        NA        NA
 > 
 > ## quantity indices for Blanciforti with some NA prices and quantities and na.rm=TRUE and base=mean
-> printIndices( "q",  pNames, qNames, allObs, Blanciforti86, na.rm = TRUE )
+> printIndices( "q",  pNames, qNames, allObs, Blanciforti86NaPQ, na.rm = TRUE )
 
  Laspeyres 
      1947      1948      1949      1950      1951      1952      1953      1954 
