@@ -128,3 +128,38 @@ printIndices( "p",  pNames, qNames, allObs, Blanciforti86NaPQ, na.rm = TRUE )
 
 ## quantity indices for Blanciforti with some NA prices and quantities and na.rm=TRUE and base=mean
 printIndices( "q",  pNames, qNames, allObs, Blanciforti86NaPQ, na.rm = TRUE )
+
+
+## Blanciforti with some NA prices, where quantities are partly zero
+## manipulating data of Blanciforti
+Blanciforti86NaP0Q <- Blanciforti86
+for( i in 1:4 ) {
+   Blanciforti86NaP0Q[[ pNames[ i ] ]][ c( 2, i * 4, i * 8 ) ] <- NA
+   Blanciforti86NaP0Q[[ qNames[ i ] ]][ c( 2, i * 8 ) ] <- 0
+}
+
+## price indices, base = 1
+printIndices( "p",  pNames, qNames, 1, Blanciforti86NaP0Q )
+
+## quantity indices, base = 1
+printIndices( "q",  pNames, qNames, 1, Blanciforti86NaP0Q )
+
+## price indices, base = 1, na.0 = TRUE
+printIndices( "p",  pNames, qNames, 1, Blanciforti86NaP0Q, na.0 = TRUE )
+
+## quantity indices, base = 1, na.0 = TRUE
+printIndices( "q",  pNames, qNames, 1, Blanciforti86NaP0Q, na.0 = TRUE )
+
+## price indices, base = mean, na.rm = TRUE
+printIndices( "p",  pNames, qNames, allObs, Blanciforti86NaP0Q, na.rm = TRUE )
+
+## quantity indices, base = mean, na.rm = TRUE
+printIndices( "q",  pNames, qNames, allObs, Blanciforti86NaP0Q, na.rm = TRUE )
+
+## price indices, base = mean, na.rm = TRUE, na.0 = TRUE
+printIndices( "p",  pNames, qNames, allObs, Blanciforti86NaP0Q, na.rm = TRUE,
+   na.0 = TRUE )
+
+## quantity indices, base = mean, na.rm = TRUE, na.0 = TRUE
+printIndices( "q",  pNames, qNames, allObs, Blanciforti86NaP0Q, na.rm = TRUE,
+   na.0 = TRUE )
