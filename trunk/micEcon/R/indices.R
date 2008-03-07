@@ -1,5 +1,5 @@
 micEconIndex <- function( prices, quantities, base, data, method, na.rm,
-   na.0, weights, what ) {
+   na.0, weights ) {
 
    if( length( prices ) != length( quantities ) ) {
       stop( "arguments 'prices' and 'quantities' must have the same length" )
@@ -93,7 +93,7 @@ priceIndex <- function( prices, quantities, base, data,
    checkNames( c( prices, quantities ), names( data ) )
 
    result <- micEconIndex( prices, quantities, base, data, method, na.rm,
-      na.0, weights, "price index" )
+      na.0, weights )
 
    return( result )
 }
@@ -104,7 +104,7 @@ quantityIndex <- function( prices, quantities, base, data,
    checkNames( c( prices, quantities ), names( data ) )
 
    result <- micEconIndex( quantities, prices, base, data, method, na.rm,
-      na.0, weights, "quantity index" )
+      na.0, weights )
 
    return( result )
 }
