@@ -1,5 +1,5 @@
 micEconIndex <- function( prices, quantities, base, data, method, na.rm,
-   na.0, weights ) {
+   weights ) {
 
    if( length( prices ) != length( quantities ) ) {
       stop( "arguments 'prices' and 'quantities' must have the same length" )
@@ -60,9 +60,9 @@ micEconIndex <- function( prices, quantities, base, data, method, na.rm,
       }
    } else if( method == "Fisher" ) {
       pL <- priceIndex( prices, quantities, base, data, method = "Laspeyres",
-         na.rm = na.rm, na.0 = na.0, weights )
+         na.rm = na.rm, weights )
       pP <- priceIndex( prices, quantities, base, data, method = "Paasche",
-         na.rm = na.rm, na.0 = na.0, weights )
+         na.rm = na.rm, weights )
       result <- sqrt( pL * pP )
       if( weights ) {
          attributes( result )$weights <-
@@ -78,23 +78,23 @@ micEconIndex <- function( prices, quantities, base, data, method, na.rm,
 }
 
 priceIndex <- function( prices, quantities, base, data,
-   method = "Laspeyres", na.rm = FALSE, na.0 = FALSE, weights = FALSE ) {
+   method = "Laspeyres", na.rm = FALSE, weights = FALSE ) {
 
    checkNames( c( prices, quantities ), names( data ) )
 
    result <- micEconIndex( prices, quantities, base, data, method, na.rm,
-      na.0, weights )
+      weights )
 
    return( result )
 }
 
 quantityIndex <- function( prices, quantities, base, data,
-   method = "Laspeyres", na.rm = FALSE, na.0 = FALSE, weights = FALSE ) {
+   method = "Laspeyres", na.rm = FALSE, weights = FALSE ) {
 
    checkNames( c( prices, quantities ), names( data ) )
 
    result <- micEconIndex( quantities, prices, base, data, method, na.rm,
-      na.0, weights )
+      weights )
 
    return( result )
 }
