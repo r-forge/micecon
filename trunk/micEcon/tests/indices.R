@@ -144,18 +144,6 @@ printIndices( "p",  pNames, qNames, 1, Blanciforti86NaP0Q )
 ## quantity indices, base = 1
 printIndices( "q",  pNames, qNames, 1, Blanciforti86NaP0Q )
 
-## price indices, base = 1
-printIndices( "p",  pNames, qNames, 1, Blanciforti86NaP0Q )
-
-## quantity indices, base = 1
-printIndices( "q",  pNames, qNames, 1, Blanciforti86NaP0Q )
-
-## price indices, base = mean, na.rm = TRUE
-printIndices( "p",  pNames, qNames, allObs, Blanciforti86NaP0Q, na.rm = TRUE )
-
-## quantity indices, base = mean, na.rm = TRUE
-printIndices( "q",  pNames, qNames, allObs, Blanciforti86NaP0Q, na.rm = TRUE )
-
 ## price indices, base = mean, na.rm = TRUE
 printIndices( "p",  pNames, qNames, allObs, Blanciforti86NaP0Q, na.rm = TRUE )
 
