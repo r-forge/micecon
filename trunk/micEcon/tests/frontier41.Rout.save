@@ -268,6 +268,30 @@ gamma         0.7972073 0.13642399  5.843600
 $mleLogl
 [1] -17.02723
 
+$lrTest
+[1] 2.83924
+
+$lrTestRestrict
+[1] 1
+
+$nIter
+[1] 7
+
+$maxIter
+[1] 100
+
+$nCross
+[1] 60
+
+$nPeriods
+[1] 1
+
+$nObs
+[1] 60
+
+$nObsMissing
+[1] 0
+
 $mleCov
                     beta_0        beta_1        beta_2 sigma-squared
 beta_0         0.041053521 -3.144672e-03 -8.003028e-03  4.045649e-03
@@ -344,6 +368,9 @@ $efficiency
 58   58 0.6647146
 59   59 0.8567045
 60   60 0.7084279
+
+$meanEfficiency
+[1] 0.7405677
 
 attr(,"class")
 [1] "front41out"
