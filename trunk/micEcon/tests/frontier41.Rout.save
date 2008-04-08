@@ -1,6 +1,6 @@
 
-R version 2.6.1 (2007-11-26)
-Copyright (C) 2007 The R Foundation for Statistical Computing
+R version 2.6.2 (2008-02-08)
+Copyright (C) 2008 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -211,14 +211,78 @@ Loading required package: zoo
 > 
 > outFile <- system.file( "front41/EG1.OUT", package = "micEcon" )
 > sfa <- readFront41out( outFile )
-> print( sfa$mleResults )
+> print( sfa )
+$version
+[1] "4.1"
+
+$insFile
+[1] "eg1.ins"
+
+$dtaFile
+[1] "eg1.dta"
+
+$modelType
+[1] 1
+
+$modelTypeName
+[1] "Error Components Frontier (see B&C 1992)"
+
+$functionType
+[1] 1
+
+$functionTypeName
+[1] "production function"
+
+$logDepVar
+[1] TRUE
+
+$olsResults
+                   coef    std.err   t-ratio
+beta_0        0.2448983 0.21360307  1.146511
+beta_1        0.2804925 0.04806662  5.835494
+beta_2        0.5333064 0.05149859 10.355748
+sigma-squared 0.1139850         NA        NA
+
+$nXvars
+[1] 3
+
+$olsLogl
+[1] -18.44685
+
+$gridResults
+                   coef
+beta_0        0.5801422
+beta_1        0.2804925
+beta_2        0.5333064
+sigma-squared 0.2206741
+gamma         0.8000000
+
+$mleResults
                    coef    std.err   t-ratio
 beta_0        0.5616196 0.20261668  2.771833
 beta_1        0.2811020 0.04764337  5.900130
 beta_2        0.5364798 0.04525155 11.855501
 sigma-squared 0.2170005 0.06390911  3.395455
 gamma         0.7972073 0.13642399  5.843600
-> print( sfa$efficiency )
+
+$mleLogl
+[1] -17.02723
+
+$mleCov
+                    beta_0        beta_1        beta_2 sigma-squared
+beta_0         0.041053521 -3.144672e-03 -8.003028e-03  4.045649e-03
+beta_1        -0.003144672  2.269890e-03  4.010620e-05 -2.952885e-05
+beta_2        -0.008003028  4.010620e-05  2.047703e-03 -4.719031e-05
+sigma-squared  0.004045649 -2.952885e-05 -4.719031e-05  4.084374e-03
+gamma          0.009251936 -9.155047e-05 -1.640465e-04  6.745077e-03
+                      gamma
+beta_0         9.251936e-03
+beta_1        -9.155047e-05
+beta_2        -1.640465e-04
+sigma-squared  6.745077e-03
+gamma          1.861151e-02
+
+$efficiency
    firm eff.-est.
 1     1 0.6506888
 2     2 0.8288915
@@ -280,4 +344,7 @@ gamma         0.7972073 0.13642399  5.843600
 58   58 0.6647146
 59   59 0.8567045
 60   60 0.7084279
+
+attr(,"class")
+[1] "front41out"
 > 

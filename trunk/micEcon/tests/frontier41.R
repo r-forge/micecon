@@ -36,5 +36,4 @@ close( dtaFile )
 
 outFile <- system.file( "front41/EG1.OUT", package = "micEcon" )
 sfa <- readFront41out( outFile )
-print( sfa$mleResults )
-print( sfa$efficiency )
+print( sfa )
