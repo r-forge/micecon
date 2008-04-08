@@ -40,7 +40,16 @@
    \item{mleLogl}{log likelihood value of the maximum likelihood estimation.}
    \item{mleCov}{coefficient covariance matrix of the maximum likelihood
       estimation.}
+   \item{lrTest}{LR test of the one-sided error.}
+   \item{lrTestRestrict}{number of restrictions of the LR test.}
+   \item{nIter}{number of iterations.}
+   \item{maxIter}{maximum number of iterations set.}
+   \item{nCross}{number of cross-sections.}
+   \item{nPeriods}{umber of time periods.}
+   \item{nObs}{total number of observations.}
+   \item{nObsMissing}{number of observations that are not in the panel.}
    \item{efficiency}{technical efficiency estimates.}
+   \item{meanEfficiency}{mean efficiency.}
 }
 
 \references{

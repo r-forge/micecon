@@ -196,6 +196,38 @@ readFront41out <- function( file = "front41.out", translog = FALSE ) {
    result$mleLogl <- as.numeric( rmParts( c( "log likelihood function",
       "[ =]" ), output[ line ] ) )
 
+   line <- lineSearch( line, "LR test of the one-sided error" )
+   result$lrTest <-  as.numeric( rmParts( c( "LR test of the one-sided error",
+      "[ =]" ), output[ line ] ) )
+
+   line <- lineSearch( line, "with number of restrictions" )
+   result$lrTestRestrict <-  as.numeric( rmParts( c( "with number of restrictions",
+      "[ =]" ), output[ line ] ) )
+
+   line <- lineSearch( line, "number of iterations" )
+   result$nIter <-  as.numeric( rmParts( c( "number of iterations",
+      "[ =]" ), output[ line ] ) )
+
+   line <- lineSearch( line, "\\(maximum number of iterations set at" )
+   result$maxIter <-  as.numeric( rmParts( c(
+      "\\(maximum number of iterations set at", "[ :\\)]" ), output[ line ] ) )
+
+   line <- lineSearch( line, "number of cross-sections" )
+   result$nCross <-  as.numeric( rmParts( c( "number of cross-sections",
+      "[ =]" ), output[ line ] ) )
+
+   line <- lineSearch( line, "number of time periods" )
+   result$nPeriods <-  as.numeric( rmParts( c( "number of time periods",
+      "[ =]" ), output[ line ] ) )
+
+   line <- lineSearch( line, "total number of observations" )
+   result$nObs <-  as.numeric( rmParts( c( "total number of observations",
+      "[ =]" ), output[ line ] ) )
+
+   line <- lineSearch( line, "thus there are.*obsns not in the panel" )
+   result$nObsMissing <-  as.numeric( rmParts( c( "thus there are",
+      "obsns not in the panel", "[ :]" ), output[ line ] ) )
+
    line <- lineSearch( line, "covariance matrix :" ) + 2
    nCoef <- nrow( result$mleResults )
    result$mleCov <- matrix( NA, nCoef, nCoef )
@@ -225,6 +257,10 @@ readFront41out <- function( file = "front41.out", translog = FALSE ) {
    } else if( ncol( result$efficiency ) == 2 ) {
       names( result$efficiency ) <- c( "firm", "eff.-est." )
    }
+
+   line <- lineSearch( line, "mean efficiency" )
+   result$meanEfficiency <-  as.numeric( rmParts( c( "mean efficiency",
+      "[ =]" ), output[ line ] ) )
 
    class( result ) <- "front41out"
    return( result )
