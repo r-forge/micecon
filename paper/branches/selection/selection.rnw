@@ -558,7 +558,7 @@ The main frontend for the estimation of selection models in
 the selection equation (argument \code{selection}), and a formula (or a list
 of two for switching regression models) for the outcome equation
 (\code{outcome}).  One can choose the method (\code{method}) to be
-either ``\code{ml}'' for the ML estimation, or ``\code{2step}'' for
+either \code{"ml"} for the ML estimation, or \code{"2step"} for
 the two-step method.  If the user does not provide initial values
 (\code{start}) for the ML estimation,
 \code{selection} calculates consistent initial values by the
@@ -584,10 +584,10 @@ identification this number may be considerably larger.  Convergence
 issues may appear at the boundary of the parameter space (if
 $|\varrho| \to 1$, see Section~\ref{sec:convergence}).  Other
 maximisation algorithms can be chosen by argument
-``\code{maxMethod}'', e.g.\ ``\code{maxMethod="SANN"}'' uses a variant
+\code{maxMethod}, e.g.\ \code{maxMethod="SANN"} uses a variant
 of the robust ``simulated annealing''
 stochastic global optimization algorithm proposed by \citet{belisle92}
-and ``\code{maxMethod="BHHH"}'' uses the Berndt-Hall-Hall-Hausman algorithm.
+and \code{maxMethod="BHHH"} uses the Berndt-Hall-Hall-Hausman algorithm.
 % ....
 
 The command \code{selection} returns an object of class \code{selection}.
