@@ -587,8 +587,8 @@ maximisation algorithms can be chosen by argument
 \code{maxMethod}, e.g.\ \code{maxMethod="SANN"} uses a variant
 of the robust ``simulated annealing''
 stochastic global optimization algorithm proposed by \citet{belisle92}
-and \code{maxMethod="BHHH"} uses the Berndt-Hall-Hall-Hausman algorithm.
-% ....
+and \code{maxMethod="BHHH"} uses the Berndt-Hall-Hall-Hausman algorithm
+\citep{berndt74}.
 
 The command \code{selection} returns an object of class \code{selection}.
 The corresponding \code{summary}, \code{coef}, \code{coef.summary}
