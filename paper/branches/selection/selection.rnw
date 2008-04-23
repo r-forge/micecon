@@ -161,7 +161,8 @@ is obvious --- these methods are simple, widely available in software
 packages, and they are part of the common econometrics syllabus.
 This is true even though reasonable instruments and parametric assumptions can only seldom be
 justified, and therefore,
-it may be hard to disentangle causal effects from other sources of identification.
+it may be hard to disentangle real causal effects from
+(artificial) effects of parametric assumptions.
 
 Heckman-type selection models also serve as excellent teaching tools.
 They are extensively explained in many recent econometric
