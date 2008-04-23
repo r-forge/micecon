@@ -160,8 +160,8 @@ distributional assumptions are still widely used.  The reason
 is obvious --- these methods are simple, widely available in software
 packages, and they are part of the common econometrics syllabus.
 This is true even though reasonable instruments and parametric assumptions can only seldom be
-justified, and their interference
-may be hard to disentangle from the other sources of identification.
+justified, and therefore,
+it may be hard to disentangle causal effects from other sources of identification.
 
 Heckman-type selection models also serve as excellent teaching tools.
 They are extensively explained in many recent econometric
@@ -364,7 +364,7 @@ covariance matrix of the probit estimate
 \citep{greene81,greene2002}.
 
 This is the original idea by \citet{heckman1976}.  As the model is
-fully parametric, it is straightforward to construct more efficient maximum likelihood (ML)
+fully parametric, it is straightforward to construct a more efficient maximum likelihood (ML)
 estimator.  Using the properties of
 a bivariate normal distribution, it is easy to show that the log-likelihood can
 be written as
@@ -583,8 +583,9 @@ identification this number may be considerably larger.  Convergence
 issues may appear at the boundary of the parameter space (if
 $|\varrho| \to 1$, see Section~\ref{sec:convergence}).  Other
 maximisation algorithms can be chosen by argument
-``\code{maxMethod}'', e.g.\ ``\code{maxMethod="SANN"}'' uses the SANN
-robust global maximisation algorithm
+``\code{maxMethod}'', e.g.\ ``\code{maxMethod="SANN"}'' uses a variant
+of the robust ``simulated annealing''
+stochastic global optimization algorithm proposed by \citet{belisle92}
 and ``\code{maxMethod="BHHH"}'' uses the Berndt-Hall-Hall-Hausman algorithm.
 % ....
 
@@ -626,7 +627,7 @@ generalised Tobit models listed by \cite{amemiya84,amemiya1985} can be specified
 Another possible generalisation is allowing for discrete dependent
 variable models.  While the case of binary-choice can be easily
 distinguished from continuous response, we
-need an additional parameter in multiple-choice case.  This parameter
+need an additional parameter in the multiple-choice case.  This parameter
 (possibly a vector where components correspond to the individual
 equations) will allow the user to specify the exact type of the
 response (like multinominal, ordered or Poissonian).
@@ -731,7 +732,7 @@ dotted line = OLS estimate based on observable outcomes only
   \label{fig:t2ex}
 \end{figure}
 
-Now we repeat the same exercise, but without exclusion restriction,
+Now we repeat the same exercise, but without the exclusion restriction,
 generating \code{yo} using \code{xs} instead of \code{xo}.
 <<>>=
 yoX <- xs + eps[,2]
@@ -746,7 +747,7 @@ have lost.  We are solely relying on the functional form
 identification.
 
 We illustrate this case with an analogous figure (Figure~\ref{fig:t2}).
-The selection model uncovers the true dependence very well.  OLS
+The selection model uncovers the true dependence very well.  The OLS
 estimate is downward biased because of $\varrho < 0$, as in the
 previous case.  However, now the slope is upward biased because $\E [
 \varepsilon^O|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}_i^S ]$ is
@@ -777,7 +778,7 @@ abline(a=cf[1], b=cf[2], lty=3)
 \end{figure}
 
 In order to identify $\beta^\lambda$ and ${\vec{\beta}^O}'$ without
-exclusion restriction, $\lambda(\cdot)$ must differ from a linear
+the exclusion restriction, $\lambda(\cdot)$ must differ from a linear
 combination of $\vec{x}^O$ components \citep[see][]{leung+yu1996}.  The
 degree of non-linearity in $\lambda(\cdot)$ depends on the variability
 in ${\vec{\beta}^S}' \vec{x}^S$ as $\lambda(\cdot)$ is a smooth convex
@@ -860,7 +861,7 @@ We create the following simple switching regression problem:
 We generate 3 disturbance vectors by a 3-dimensional normal distribution using \code{rmvnorm}.  We
 set the correlation between $\varepsilon^S$ and $\varepsilon^{O1}$
 equal to 0.9 and between $\varepsilon^S$ and $\varepsilon^{O2}$ to
-0.5.  The third correlation, 0.1, takes care for the positive
+0.5.  The third correlation, 0.1, takes care of the positive
 definiteness of the covariance matrix and does not affect the results.
 Further, we create three independent explanatory variables (\code{xs},
 \code{xo1} and \code{xo2}, uniformly distributed on $[0,1]$), and
@@ -878,7 +879,7 @@ estimates are close to the true values.
 Next, take an example of functional form misspecification.  We create
 the disturbances as 3-variate $\chi_1^2$ random variables (we subtract
 1 in order to get the mean zero disturbances), and generate \code{xs}
-to be in the interval $[-1,0]$ in order to get asymmetric distribution
+to be in the interval $[-1,0]$ in order to get an asymmetric distribution
 over observed choices:
 <<>>=  
 set.seed(5)
@@ -995,7 +996,7 @@ text(1, -1.4,
   \caption{Correct and assumed control functions}
   \label{fig:cfunctions}
 \end{figure}
-One can see, that the functions differ substantially in the relevant
+One can see that the functions differ substantially in the relevant
 range of $x^S \in [-1, 1]$.  In particular, the true
 $\E [ \varepsilon^{O2}|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}^S ]$ decreases
 substantially faster close to $x^S = 1$ than the normal approximation
@@ -1020,8 +1021,8 @@ statistically significantly different from zero.
 \label{sec:reliability}
 
 In this section we test the reliability of the results from
-\code{selection} by applying the two-step and the ML estimation method,
-re-estimating selected models, already published in the literature.
+\code{selection} by applying the two-step and the ML estimation method
+re-estimating selected models already published in the literature.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Greene (2002): example 22.8, page 786}
@@ -1075,7 +1076,7 @@ maximisation method,
 we have to use the Berndt-Hall-Hall-Hausman (BHHH) method
 to obtain the published standard errors\footnote{We are grateful to
   William Greene for pointing this out.}.
-This is because of different ways of calculating the Hessian
+This is because different ways of calculating the Hessian
 matrix may result in substantially different standard errors
 \citep{calzolari+fiorentini1993}. The NR algorithm uses exact
 analytic Hessian, BHHH uses
@@ -1272,7 +1273,7 @@ demonstrate the usage of the package using a number of simulated and
 real data examples.  The examples illustrate several important issues
 related to exclusion restrictions, identification at infinity, and
 functional form specification.  Our implementation works well for
-correctly specified cases with exclusion restriction fulfilled.  The
+correctly specified cases with the exclusion restriction fulfilled.  The
 problems appearing in the case of misspecification or weak
 identification are related to the model itself.  In these problematic
 cases, the user may gain from a more robust maximisation algorithm.
