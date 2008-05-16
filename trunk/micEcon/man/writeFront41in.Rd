@@ -13,7 +13,9 @@
    translog = FALSE, quadHalf = TRUE, logData = FALSE,
    functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
-   outFile = sub( "\\.ins$", ".out", insFile ) )
+   outFile = sub( "\\.ins$", ".out", insFile ), startUpFile = "front41.000",
+   iprint = 5, indic = 1, tol = 0.00001, tol2 = 0.001, bignum = 1.0E+16,
+   step1 = 0.00001, igrid2 = 1, gridno = 0.1, maxit = 100, ite = 1 )
 }
 
 \arguments{
@@ -42,6 +44,23 @@
    \item{insFile}{name of the instruction file.}
    \item{dtaFile}{name of the data file.}
    \item{outFile}{name of the output file.}
+   \item{startUpFile}{name of the start-up file. If this argument is NULL,
+      no start-up file is written.}
+   \item{iprint}{numeric. Print info every \code{iprint} iterations;
+      if this argument is 0, do not print.}
+   \item{indic}{numeric. Use in unidimensional search procedure:
+      indic = 2 says do not scale step length in unidimensional search;
+      indic = 1 says scale (to length of last step) only if last step was smaller;
+      indic = any other number says scale (to length of last step).}
+   \item{tol}{numeric. Convergence tolerance (proportiona).}
+   \item{tol2}{tolerance used in uni-dimensional search procedure.}
+   \item{bignum}{numeric. Used to set bounds on den \& dist.}
+   \item{step1}{numeric. Size of 1st step in search procedure.}
+   \item{igrid2}{numeric. 1 = double accuracy, 0 = single accuracy.}
+   \item{gridno}{numeric. Steps taken in single accuracy grid search on gamma.}
+   \item{maxit}{numeric. Maximum number of iterations permitted}
+   \item{ite}{numeric. 1 = print all efficiency estimates; 
+      0 = print only the mean efficiency.}
 }
 
 \value{

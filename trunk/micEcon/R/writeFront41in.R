@@ -3,7 +3,9 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
    translog = FALSE, quadHalf = TRUE, logData = FALSE,
    functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
-   outFile = sub( "\\.ins$", ".out", insFile ) ) {
+   outFile = sub( "\\.ins$", ".out", insFile ), startUpFile = "front41.000",
+   iprint = 5, indic = 1, tol = 0.00001, tol2 = 0.001, bignum = 1.0E+16,
+   step1 = 0.00001, igrid2 = 1, gridno = 0.1, maxit = 100, ite = 1 ) {
 
    checkNames( c( crossSectionName, timePeriodName, yName, xNames, zNames ),
       names( data ) )
@@ -24,6 +26,69 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
       if( !is.logical( eta ) ) {
          stop( "argument 'eta' must be logical" )
       }
+   }
+   # iprint
+   if( !is.numeric( iprint ) ) {
+      stop( "argument 'iprint' must be numeric" )
+   } else if( iprint != round( iprint ) ) {
+      stop( "argument 'iprint' must be an iteger" )
+   } else if( iprint < 0 ) {
+      stop( "argument 'iprint' must be non-negative" )
+   }
+   iprint <- as.integer( iprint )
+   # indic
+   if( !is.numeric( indic ) ) {
+      stop( "argument 'indic' must be numeric" )
+   } else if( indic != round( indic ) ) {
+      stop( "argument 'indic' must be an integer" )
+   }
+   indic <- as.integer( indic )
+   # tol
+   if( !is.numeric( tol ) ) {
+      stop( "argument 'tol' must be numeric" )
+   } else if( tol < 0 ) {
+      stop( "argument 'tol' must be non-negative" )
+   }
+   # tol2
+   if( !is.numeric( tol2 ) ) {
+      stop( "argument 'tol2' must be numeric" )
+   } else if( tol2 < 0 ) {
+      stop( "argument 'tol2' must be non-negative" )
+   }
+   # bignum
+   if( !is.numeric( bignum ) ) {
+      stop( "argument 'bignum' must be numeric" )
+   } else if( bignum <= 0 ) {
+      stop( "argument 'bignum' must be positive" )
+   }
+   # step1
+   if( !is.numeric( step1 ) ) {
+      stop( "argument 'step1' must be numeric" )
+   } else if( step1 <= 0 ) {
+      stop( "argument 'step1' must be positive" )
+   }
+   # igrid2
+   if( ! igrid2 %in% c( 1, 2 ) ) {
+      stop( "argument 'igrid2' must be either '1' or '2'" )
+   }
+   # gridno
+   if( !is.numeric( gridno ) ) {
+      stop( "argument 'gridno' must be numeric" )
+   } else if( gridno <= 0 ) {
+      stop( "argument 'gridno' must be positive" )
+   }
+   # maxit
+   if( !is.numeric( maxit ) ) {
+      stop( "argument 'maxit' must be numeric" )
+   } else if( maxit != round( maxit ) ) {
+      stop( "argument 'maxit' must be an integer" )
+   } else if( maxit <= 0 ) {
+      stop( "argument 'maxit' must be positive" )
+   }
+   maxit <- as.integer( maxit )
+   # ite
+   if( ! ite %in% c( 0, 1 ) ) {
+      stop( "argument 'ite' must be either '0' or '1'" )
    }
 
 
@@ -115,4 +180,79 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
    }
    write.table( dataTable, file = dtaFile, row.names = FALSE,
       col.names = FALSE, sep = "\t" )
+
+   if( !is.null( startUpFile ) ) {
+      cat( "KEY VALUES USED IN FRONTIER PROGRAM (VERSION 4.1)\n",
+         file = startUpFile )
+      cat( "NUMBER:         DESCRIPTION:\n", 
+         file = startUpFile, append = TRUE )
+      cat( iprint,
+         rep( " ", 16 - nchar( as.character( iprint ) ) ),
+         "IPRINT - PRINT INFO EVERY \"N\" ITERATIONS, 0=DO NOT PRINT\n",
+         file = startUpFile, append = TRUE, sep = "" )
+      cat( indic,
+         rep( " ", 16 - nchar( as.character( indic ) ) ),
+         "INDIC - USED IN UNIDIMENSIONAL SEARCH PROCEDURE - SEE BELOW\n",
+         file = startUpFile, append = TRUE, sep = "" )
+      tolString <- sub( "e", "D", format( tol, scientific = 2 ) )
+      cat( tolString,
+         rep( " ", 16 - nchar( tolString ) ),
+         "TOL - CONVERGENCE TOLERANCE (PROPORTIONAL)\n",
+         file = startUpFile, append = TRUE, sep = "" )
+      tol2String <- sub( "e", "D", format( tol2, scientific = 2 ) )
+      cat( tol2String,
+         rep( " ", 16 - nchar( tol2String ) ),
+         "TOL2 - TOLERANCE USED IN UNI-DIMENSIONAL SEARCH PROCEDURE\n",
+         file = startUpFile, append = TRUE, sep = "" )
+      bignumString <- sub( "e", "D", format( bignum, scientific = 2 ) )
+      cat( bignumString,
+         rep( " ", 16 - nchar( bignumString ) ),
+         "BIGNUM - USED TO SET BOUNDS ON DEN & DIST\n",
+         file = startUpFile, append = TRUE, sep = "" )
+      step1String <- sub( "e", "D", format( step1, scientific = 2 ) )
+      cat( step1String,
+         rep( " ", 16 - nchar( step1String ) ),
+         "STEP1 - SIZE OF 1ST STEP IN SEARCH PROCEDURE\n",
+         file = startUpFile, append = TRUE, sep = "" )
+      cat( igrid2,
+         rep( " ", 16 - nchar( as.character( igrid2 ) ) ),
+         "IGRID2 - 1=DOUBLE ACCURACY GRID SEARCH, 0=SINGLE\n",
+         file = startUpFile, append = TRUE, sep = "" )
+      cat( gridno,
+         rep( " ", 16 - nchar( as.character( gridno ) ) ),
+         "GRIDNO - STEPS TAKEN IN SINGLE ACCURACY GRID SEARCH ON GAMMA\n",
+         file = startUpFile, append = TRUE, sep = "" )
+      cat( maxit,
+         rep( " ", 16 - nchar( as.character( maxit ) ) ),
+         "MAXIT - MAXIMUM NUMBER OF ITERATIONS PERMITTED\n",
+         file = startUpFile, append = TRUE, sep = "" )
+      cat( ite,
+         rep( " ", 16 - nchar( as.character( ite ) ) ),
+         "ITE - 1=PRINT ALL TE ESTIMATES, 0=PRINT ONLY MEAN TE\n",
+         file = startUpFile, append = TRUE, sep = "" )
+      cat( "\n",
+         file = startUpFile, append = TRUE )
+      cat( "THE NUMBERS IN THIS FILE ARE READ BY THE FRONTIER PROGRAM WHEN IT BEGINS\n",
+         file = startUpFile, append = TRUE )
+      cat( "EXECUTION. YOU MAY CHANGE THE NUMBERS IN THIS FILE IF YOU WISH. IT IS\n",
+         file = startUpFile, append = TRUE )
+      cat( "ADVISED THAT A BACKUP OF THIS FILE IS MADE PRIOR TO ALTERATION.\n",
+         file = startUpFile, append = TRUE )
+      cat( "\n",
+         file = startUpFile, append = TRUE )
+      cat( "FOR MORE INFORMATION ON THESE VARIABLES SEE: COELLI (1996), CEPA WORKING\n",
+         file = startUpFile, append = TRUE )
+      cat( "PAPER 96/07, UNIVERSITY OF NEW ENGLAND, ARMIDALE, NSW, 2351, AUSTRALIA.\n",
+         file = startUpFile, append = TRUE )
+      cat( "\n",
+         file = startUpFile, append = TRUE )
+      cat( "INDIC VALUES:\n",
+         file = startUpFile, append = TRUE )
+      cat( "indic=2 says do not scale step length in unidimensional search\n",
+         file = startUpFile, append = TRUE )
+      cat( "indic=1 says scale (to length of last step) only if last step was smaller\n",
+         file = startUpFile, append = TRUE )
+      cat( "indic= any other number says scale (to length of last step) \n",
+         file = startUpFile, append = TRUE )
+   }
 }
