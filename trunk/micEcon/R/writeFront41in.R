@@ -1,6 +1,6 @@
 writeFront41in <- function( data, crossSectionName, timePeriodName,
    yName, xNames = NULL, zNames = NULL,
-   translog = FALSE, quadHalf = TRUE,
+   translog = FALSE, quadHalf = TRUE, logData = FALSE,
    functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
    outFile = sub( "\\.ins$", ".out", insFile ) ) {
@@ -81,6 +81,15 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
    cat( "n", rep( " ", commentRow - 1 ),
       "STARTING VALUES (Y/N)\n",
       file = insFile, append = TRUE, sep = "" )
+
+   if( logData ) {
+      data[[ yName ]] <- log( data[[ yName ]] )
+      if( nXvars > 0 ) {
+         for( i in 1:nXvars ) {
+            data[[ xNames[ i ] ]] <- log( data[[ xNames[ i ] ]] )
+         }
+      }
+   }
 
    dataTable <- cbind( data[[ crossSectionName ]], data[[ timePeriodName ]],
       data[[ yName ]] )
