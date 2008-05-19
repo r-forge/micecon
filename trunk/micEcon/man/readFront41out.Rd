@@ -8,13 +8,11 @@
 }
 
 \usage{
-   readFront41out( file = "front41.out", translog = FALSE )
+   readFront41out( file = "front41.out" )
 }
 
 \arguments{
    \item{file}{character variable with the name of the file to read.}
-   \item{translog}{logical. Is the estimated function a translog function?
-      (not implemented yet).}
 }
 
 \value{
