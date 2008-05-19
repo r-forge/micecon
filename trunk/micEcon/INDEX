@@ -38,6 +38,7 @@ quasiconcavity          Test for quasiconcavity / quasiconvexity
 readFront41out          Read output of Frontier 4.1
 residuals.snqProfitEst
                         Residuals of an SNQ profit function
+riceProdPhil            Rice Production in the Philippines
 rSquared                Calculate R squared value
 semidefiniteness        Test for negative and positive semidefiniteness
 snqProfitCalc           Calculations with the SNQ Profit function
