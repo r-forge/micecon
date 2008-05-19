@@ -1,4 +1,4 @@
-readFront41out <- function( file = "front41.out", translog = FALSE ) {
+readFront41out <- function( file = "front41.out" ) {
 
    result <- list()
 
