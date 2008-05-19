@@ -1,4 +1,4 @@
-writeFront41in <- function( data, crossSectionName, timePeriodName,
+writeFront41in <- function( data, crossSectionName, timePeriodName = NULL,
    yName, xNames = NULL, zNames = NULL,
    translog = FALSE, quadHalf = TRUE, logData = FALSE,
    functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
@@ -105,7 +105,8 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
 
 
    nCrossSection <- length( unique( data[[ crossSectionName ]] ) )
-   nTimePeriods  <- length( unique( data[[ timePeriodName ]] ) )
+   nTimePeriods  <- ifelse( is.null( timePeriodName ), 1,
+      length( unique( data[[ timePeriodName ]] ) ) )
    nTotalObs     <- nrow( data )
    nXvars        <- length( xNames )
    nTLvars       <- length( translogNames )
@@ -168,14 +169,28 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
       }
    }
 
-   dataTable <- cbind( data[[ crossSectionName ]], data[[ timePeriodName ]],
-      data[[ yName ]] )
+   ## create table for data
+   # cross section identifier
+   dataTable <- matrix( data[[ crossSectionName ]], ncol = 1 )
 
+   # time period identifier
+   if( is.null( timePeriodName ) ) {
+      dataTable <- cbind( dataTable, rep( 1, nrow( dataTable ) ) )
+   } else {
+      dataTable <- cbind( dataTable, data[[ timePeriodName ]] )
+   }
+
+   # endogenous variable
+   dataTable <- cbind( dataTable, data[[ yName ]] )
+
+   # exogenous variables
    if( nXvars > 0 ) {
       for( i in 1:nXvars ) {
          dataTable <- cbind( dataTable, data[[ xNames[ i ] ]] )
       }
    }
+
+   # exogenous variables: quadratic and interaction terms
    if( nTLvars > 0 ) {
       for( i in 1:nTLvars ) {
          for( j in i:nTLvars ) {
@@ -185,14 +200,19 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
          }
       }
    }
+
+   # variables explaining the efficiency level
    if( nZvars > 0 ) {
       for( i in 1:nZvars ) {
          dataTable <- cbind( dataTable, data[[ zNames[ i ] ]] )
       }
    }
+
+   # write data file to disk
    write.table( dataTable, file = dtaFile, row.names = FALSE,
       col.names = FALSE, sep = "\t" )
 
+   ## create start-up file
    if( !is.null( startUpFile ) ) {
       cat( "KEY VALUES USED IN FRONTIER PROGRAM (VERSION 4.1)\n",
          file = startUpFile )

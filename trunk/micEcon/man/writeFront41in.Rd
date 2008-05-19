@@ -8,7 +8,7 @@
 }
 
 \usage{
-   writeFront41in( data, crossSectionName, timePeriodName,
+   writeFront41in( data, crossSectionName, timePeriodName = NULL,
    yName, xNames = NULL, zNames = NULL,
    translog = FALSE, quadHalf = TRUE, logData = FALSE,
    functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
@@ -21,7 +21,8 @@
 \arguments{
    \item{data}{data frame that contains the data.}
    \item{crossSectionName}{string: name of the cross section identifier.}
-   \item{timePeriodName}{string: name of the time period identifier.}
+   \item{timePeriodName}{string: name of the time period identifier
+      or \code{NULL} in case of cross-section data.}
    \item{yName}{string: name of the endogenous variable.}
    \item{xNames}{a vector of strings containing the names of the X variables
       (exogenous variables of the production or cost function).}
