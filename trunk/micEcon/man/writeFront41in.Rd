@@ -27,7 +27,12 @@
       (exogenous variables of the production or cost function).}
    \item{zNames}{a vector of strings containing the names of the Z variables
       (variables explaining the efficiency level).}
-   \item{translog}{logical. Should a translog function be estimated?}
+   \item{translog}{logical (should a translog function be estimated?) or
+      a vector of strings containing the names of the variables
+      that should be used to construct the quadratic and interaction terms
+      of the translog function.
+      If this argument is \code{TRUE}, quadratic and interaction terms of all
+      X variables are added, i.e. it is set equal to argument \code{xNames}.}
    \item{quadHalf}{logical. Multiply the quadratic terms of the translog
       function by one half?}
    \item{logData}{logical. Take the logarithm of the output and input
