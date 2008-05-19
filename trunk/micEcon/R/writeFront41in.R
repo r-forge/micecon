@@ -7,8 +7,20 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
    iprint = 5, indic = 1, tol = 0.00001, tol2 = 0.001, bignum = 1.0E+16,
    step1 = 0.00001, igrid2 = 1, gridno = 0.1, maxit = 100, ite = 1 ) {
 
-   checkNames( c( crossSectionName, timePeriodName, yName, xNames, zNames ),
-      names( data ) )
+   if( is.logical( translog ) ) {
+      if( translog ){
+         translogNames <- xNames
+      } else {
+         translogNames <- NULL
+      }
+   } else if( is.character( translog ) ) {
+      translogNames <- translog
+   } else {
+      stop( "argument 'translog' must be either logical or a vector of strings" )
+   }
+
+   checkNames( c( crossSectionName, timePeriodName, yName, xNames, zNames,
+      translogNames ), names( data ) )
 
    if( !modelType %in% c( 1, 2 ) ) {
       stop( "argument 'modelType' must be either 1 or 2" )
@@ -96,8 +108,8 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
    nTimePeriods  <- length( unique( data[[ timePeriodName ]] ) )
    nTotalObs     <- nrow( data )
    nXvars        <- length( xNames )
-   nXtotal       <- ifelse( translog, nXvars + nXvars * ( nXvars + 1 ) / 2,
-                            nXvars )
+   nTLvars       <- length( translogNames )
+   nXtotal       <- nXvars + nTLvars * ( nTLvars + 1 ) / 2
    nZvars        <- length( zNames )
 
    if( modelType == 2 ) {
@@ -163,13 +175,13 @@ writeFront41in <- function( data, crossSectionName, timePeriodName,
       for( i in 1:nXvars ) {
          dataTable <- cbind( dataTable, data[[ xNames[ i ] ]] )
       }
-      if( translog ) {
-         for( i in 1:nXvars ) {
-            for( j in i:nXvars ) {
-               dataTable <- cbind( dataTable,
-                  ifelse( i == j, 1 , 2 ) * ifelse( quadHalf, 0.5, 1 ) *
-                  data[[ xNames[ i ] ]] * data[[ xNames[ j ] ]] )
-            }
+   }
+   if( nTLvars > 0 ) {
+      for( i in 1:nTLvars ) {
+         for( j in i:nTLvars ) {
+            dataTable <- cbind( dataTable,
+               ifelse( i == j, 1 , 2 ) * ifelse( quadHalf, 0.5, 1 ) *
+               data[[ translogNames[ i ] ]] * data[[ translogNames[ j ] ]] )
          }
       }
    }
