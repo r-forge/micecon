@@ -3,7 +3,7 @@
 \title{Read output of Frontier 4.1}
 
 \description{
-   Read the output file of Coelli's program Frontier 4.1 that
+   Read the output file of Tim Coelli's program Frontier 4.1 that
    performs stochastic frontier analysis.
 }
 

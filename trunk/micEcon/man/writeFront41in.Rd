@@ -3,7 +3,7 @@
 \title{Write instruction file for Frontier 4.1}
 
 \description{
-   Write an instruction file and a data file for Coelli's program
+   Write an instruction file and a data file for Tim Coelli's program
    Frontier 4.1 that performs stochastic frontier analysis.
 }
 
