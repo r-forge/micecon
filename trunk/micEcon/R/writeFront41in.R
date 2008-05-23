@@ -1,26 +1,21 @@
 writeFront41in <- function( data, crossSectionName, timePeriodName = NULL,
-   yName, xNames = NULL, zNames = NULL,
-   quadratic = FALSE, quadHalf = TRUE, logData = FALSE,
+   yName, xNames = NULL, qxNames = NULL, zNames = NULL,
+   quadHalf = TRUE, logData = FALSE,
    functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
    outFile = sub( "\\.ins$", ".out", insFile ), startUpFile = "front41.000",
    iprint = 5, indic = 1, tol = 0.00001, tol2 = 0.001, bignum = 1.0E+16,
    step1 = 0.00001, igrid2 = 1, gridno = 0.1, maxit = 100, ite = 1 ) {
 
-   if( is.logical( quadratic ) ) {
-      if( quadratic ){
-         quadraticNames <- xNames
-      } else {
-         quadraticNames <- NULL
-      }
-   } else if( is.character( quadratic ) ) {
-      quadraticNames <- quadratic
-   } else {
-      stop( "argument 'quadratic' must be either logical or a vector of strings" )
+   if( qxNames == "all" && !is.null( qxNames ) ) {
+      qxNames <- xNames
+   }
+   if( !is.character( qxNames ) && !is.null( qxNames ) ) {
+      stop( "argument 'qxNames' must be either logical or a vector of strings" )
    }
 
    checkNames( c( crossSectionName, timePeriodName, yName, xNames, zNames,
-      quadraticNames ), names( data ) )
+      qxNames ), names( data ) )
 
    if( !modelType %in% c( 1, 2 ) ) {
       stop( "argument 'modelType' must be either 1 or 2" )
@@ -109,7 +104,7 @@ writeFront41in <- function( data, crossSectionName, timePeriodName = NULL,
       length( unique( data[[ timePeriodName ]] ) ) )
    nTotalObs     <- nrow( data )
    nXvars        <- length( xNames )
-   nTLvars       <- length( quadraticNames )
+   nTLvars       <- length( qxNames )
    nXtotal       <- nXvars + nTLvars * ( nTLvars + 1 ) / 2
    nZvars        <- length( zNames )
 
@@ -196,7 +191,7 @@ writeFront41in <- function( data, crossSectionName, timePeriodName = NULL,
          for( j in i:nTLvars ) {
             dataTable <- cbind( dataTable,
                ifelse( i == j, 1 , 2 ) * ifelse( quadHalf, 0.5, 1 ) *
-               data[[ quadraticNames[ i ] ]] * data[[ quadraticNames[ j ] ]] )
+               data[[ qxNames[ i ] ]] * data[[ qxNames[ j ] ]] )
          }
       }
    }

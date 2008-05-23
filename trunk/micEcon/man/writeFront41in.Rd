@@ -9,8 +9,8 @@
 
 \usage{
    writeFront41in( data, crossSectionName, timePeriodName = NULL,
-   yName, xNames = NULL, zNames = NULL,
-   quadratic = FALSE, quadHalf = TRUE, logData = FALSE,
+   yName, xNames = NULL, qxNames = NULL, zNames = NULL,
+   quadHalf = TRUE, logData = FALSE,
    functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
    outFile = sub( "\\.ins$", ".out", insFile ), startUpFile = "front41.000",
@@ -26,15 +26,13 @@
    \item{yName}{string: name of the endogenous variable.}
    \item{xNames}{a vector of strings containing the names of the X variables
       (exogenous variables of the production or cost function).}
+   \item{qxNames}{a vector of strings containing the names of the variables
+      to construct quadratic and interaction terms.
+      As a shortcut, this argument can be set to \code{"all"}
+      for using all variables specified in argument \code{xNames}
+      to get a full quadratic or translog model.}
    \item{zNames}{a vector of strings containing the names of the Z variables
       (variables explaining the efficiency level).}
-   \item{quadratic}{logical (should quadratic and interaction terms
-      of the X variables be added so we get a translog function
-      in case of logarithmic X variables?) or
-      a vector of strings containing the names of the variables
-      that should be used to construct the quadratic and interaction terms.
-      If this argument is \code{TRUE}, quadratic and interaction terms of all
-      X variables are added, i.e. it is set equal to argument \code{xNames}.}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
    \item{logData}{logical. Take the logarithm of the output and input
       quantities before writing them to the data file?}
