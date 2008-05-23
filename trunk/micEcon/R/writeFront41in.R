@@ -1,6 +1,5 @@
 writeFront41in <- function( data, crossSectionName, timePeriodName = NULL,
-   yName, xNames = NULL, qxNames = NULL, zNames = NULL,
-   quadHalf = TRUE, logData = FALSE,
+   yName, xNames = NULL, qxNames = NULL, zNames = NULL, quadHalf = TRUE,
    functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
    outFile = sub( "\\.ins$", ".out", insFile ), startUpFile = "front41.000",
@@ -154,15 +153,6 @@ writeFront41in <- function( data, crossSectionName, timePeriodName = NULL,
    cat( "n", rep( " ", commentRow - 1 ),
       "STARTING VALUES (Y/N)\n",
       file = insFile, append = TRUE, sep = "" )
-
-   if( logData ) {
-      data[[ yName ]] <- log( data[[ yName ]] )
-      if( nXvars > 0 ) {
-         for( i in 1:nXvars ) {
-            data[[ xNames[ i ] ]] <- log( data[[ xNames[ i ] ]] )
-         }
-      }
-   }
 
    ## create table for data
    # cross section identifier
