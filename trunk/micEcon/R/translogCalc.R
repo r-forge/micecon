@@ -1,5 +1,5 @@
 translogCalc <- function( xNames, data, allCoef, quadHalf = TRUE,
-   logValues = FALSE ) {
+   dataLogged = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
 
@@ -11,7 +11,7 @@ translogCalc <- function( xNames, data, allCoef, quadHalf = TRUE,
          " must have exactly ", nCoef, " coefficients" )
    }
 
-   if( logValues ) {
+   if( dataLogged ) {
       logData <- data
    } else {
       logData <- data.frame( no = c( 1:nrow( data ) ) )
@@ -22,7 +22,7 @@ translogCalc <- function( xNames, data, allCoef, quadHalf = TRUE,
 
    result <- quadFuncCalc( xNames, logData, allCoef, quadHalf = quadHalf )
 
-   if( !logValues ) {
+   if( !dataLogged ) {
       result <- exp( result )
    }
 

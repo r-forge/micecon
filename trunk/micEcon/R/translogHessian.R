@@ -1,5 +1,5 @@
 translogHessian <- function( xNames, data, allCoef, yName = NULL,
-   quadHalf = TRUE, logValues = FALSE, bordered = FALSE ) {
+   quadHalf = TRUE, dataLogged = FALSE, bordered = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
 
@@ -18,7 +18,7 @@ translogHessian <- function( xNames, data, allCoef, yName = NULL,
    newXNames <- paste( "x.", c( 1:nExog ), sep = "" )
    dNames    <- paste( "d.", c( 1:nExog ), sep = "" )
 
-   if( logValues ) {
+   if( dataLogged ) {
       logData   <- data.frame( no = c( 1:nrow( data ) ) )
       for( i in seq( along = xNames ) ) {
          logData[[ newXNames[ i ] ]] <- data[[ xNames[ i ] ]]
@@ -32,9 +32,9 @@ translogHessian <- function( xNames, data, allCoef, yName = NULL,
 
    if( is.null( yName ) ){
       logData$yHat <- translogCalc( newXNames, logData, allCoef,
-         quadHalf = quadHalf, logValues = TRUE )
+         quadHalf = quadHalf, dataLogged = TRUE )
    } else {
-      if( logValues ) {
+      if( dataLogged ) {
          logData$yHat <- data[[ yName ]]
       } else {
          logData$yHat <- log( data[[ yName ]] )
@@ -42,7 +42,7 @@ translogHessian <- function( xNames, data, allCoef, yName = NULL,
    }
 
    deriv <- translogDeriv( newXNames, logData, allCoef, yName = "yHat",
-      quadHalf = quadHalf, logValues = TRUE )$deriv
+      quadHalf = quadHalf, dataLogged = TRUE )$deriv
    names( deriv ) <- dNames
    logData <- cbind( logData, deriv )
 
