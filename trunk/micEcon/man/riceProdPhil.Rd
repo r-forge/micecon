@@ -15,12 +15,12 @@
 \format{
    This data frame contains the following vaiables (columns):
    \describe{
-      \item{YEARDUM}{Time PEriod (1= 1990, ..., 8 = 1997).}
+      \item{YEARDUM}{Time period (1= 1990, ..., 8 = 1997).}
       \item{FMERCODE}{Farmer code (1, ..., 43).}
       \item{PROD}{Output (tonnes of freshly threshed rice).}
       \item{AREA}{Area planted (hectares).}
       \item{LABOR}{Labour used (man-days of family and hired labour).}
-      \item{NPK}{Fertiliser used (kg of active ingredients.}
+      \item{NPK}{Fertiliser used (kg of active ingredients).}
       \item{OTHER}{Other inputs used (Laspeyres index = 100 for Firm 17 in 1991).}
       \item{PRICE}{Output price (pesos per kg).}
       \item{AREAP}{Rental price of land (pesos per hectare).}
