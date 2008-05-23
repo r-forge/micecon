@@ -20,7 +20,11 @@
 }
 
 \value{
-   a vector containing the endogenous variable.
+   A vector containing the endogenous variable.
+   If the inputs are provided as logarithmic values
+   (argument \code{dataLogged} is \code{TRUE}),
+   the endogenous variable is returned as logarithm;
+   non-logarithmic values are returned otherwise.
 }
 
 \seealso{\code{\link{translogEst}} and \code{\link{translogDeriv}}.}
