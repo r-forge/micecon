@@ -1,26 +1,26 @@
 writeFront41in <- function( data, crossSectionName, timePeriodName = NULL,
    yName, xNames = NULL, zNames = NULL,
-   translog = FALSE, quadHalf = TRUE, logData = FALSE,
+   quadratic = FALSE, quadHalf = TRUE, logData = FALSE,
    functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
    outFile = sub( "\\.ins$", ".out", insFile ), startUpFile = "front41.000",
    iprint = 5, indic = 1, tol = 0.00001, tol2 = 0.001, bignum = 1.0E+16,
    step1 = 0.00001, igrid2 = 1, gridno = 0.1, maxit = 100, ite = 1 ) {
 
-   if( is.logical( translog ) ) {
-      if( translog ){
-         translogNames <- xNames
+   if( is.logical( quadratic ) ) {
+      if( quadratic ){
+         quadraticNames <- xNames
       } else {
-         translogNames <- NULL
+         quadraticNames <- NULL
       }
-   } else if( is.character( translog ) ) {
-      translogNames <- translog
+   } else if( is.character( quadratic ) ) {
+      quadraticNames <- quadratic
    } else {
-      stop( "argument 'translog' must be either logical or a vector of strings" )
+      stop( "argument 'quadratic' must be either logical or a vector of strings" )
    }
 
    checkNames( c( crossSectionName, timePeriodName, yName, xNames, zNames,
-      translogNames ), names( data ) )
+      quadraticNames ), names( data ) )
 
    if( !modelType %in% c( 1, 2 ) ) {
       stop( "argument 'modelType' must be either 1 or 2" )
@@ -109,7 +109,7 @@ writeFront41in <- function( data, crossSectionName, timePeriodName = NULL,
       length( unique( data[[ timePeriodName ]] ) ) )
    nTotalObs     <- nrow( data )
    nXvars        <- length( xNames )
-   nTLvars       <- length( translogNames )
+   nTLvars       <- length( quadraticNames )
    nXtotal       <- nXvars + nTLvars * ( nTLvars + 1 ) / 2
    nZvars        <- length( zNames )
 
@@ -196,7 +196,7 @@ writeFront41in <- function( data, crossSectionName, timePeriodName = NULL,
          for( j in i:nTLvars ) {
             dataTable <- cbind( dataTable,
                ifelse( i == j, 1 , 2 ) * ifelse( quadHalf, 0.5, 1 ) *
-               data[[ translogNames[ i ] ]] * data[[ translogNames[ j ] ]] )
+               data[[ quadraticNames[ i ] ]] * data[[ quadraticNames[ j ] ]] )
          }
       }
    }
