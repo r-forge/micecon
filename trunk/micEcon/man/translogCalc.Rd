@@ -7,7 +7,7 @@
 }
 
 \usage{
-   translogCalc( xNames, data, allCoef, quadHalf = TRUE, logValues = FALSE  )
+   translogCalc( xNames, data, allCoef, quadHalf = TRUE, dataLogged = FALSE  )
 }
 
 \arguments{
@@ -16,7 +16,7 @@
    \item{data}{dataframe containing the data.}
    \item{allCoef}{vector containing all coefficients.}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
-   \item{logValues}{logical. Are the values in \code{data} already logged?}
+   \item{dataLogged}{logical. Are the values in \code{data} already logged?}
 }
 
 \value{

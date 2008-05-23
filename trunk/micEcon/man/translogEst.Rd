@@ -7,7 +7,7 @@
 }
 
 \usage{
-   translogEst( yName, xNames, data, quadHalf = TRUE, logValues = FALSE )
+   translogEst( yName, xNames, data, quadHalf = TRUE, dataLogged = FALSE )
 }
 
 \arguments{
@@ -17,7 +17,7 @@
       independent variables.}
    \item{data}{dataframe containing the data.}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
-   \item{logValues}{logical. Are the values in \code{data} already logged?}
+   \item{dataLogged}{logical. Are the values in \code{data} already logged?}
 }
 
 \value{

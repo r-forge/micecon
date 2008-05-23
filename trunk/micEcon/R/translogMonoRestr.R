@@ -1,12 +1,12 @@
 translogMonoRestr <- function( xNames, data, quadHalf = TRUE,
-   logValues = FALSE, area = FALSE ) {
+   dataLogged = FALSE, area = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
 
    nExog <- length( xNames )
    nCoef <- 1 + nExog + nExog * ( nExog + 1 ) / 2
 
-   if( logValues ) {
+   if( dataLogged ) {
       logData <- data
    } else {
       logData   <- data.frame( no = c( 1:nrow( data ) ) )

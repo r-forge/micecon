@@ -1,5 +1,5 @@
 translogDeriv <- function( xNames, data, allCoef, allCoefCov = NULL,
-   yName = NULL, quadHalf = TRUE, logValues = FALSE ) {
+   yName = NULL, quadHalf = TRUE, dataLogged = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
 
@@ -16,7 +16,7 @@ translogDeriv <- function( xNames, data, allCoef, allCoefCov = NULL,
    alpha  <- allCoef[ 2:( nExog + 1 ) ]
    beta   <- vecli2m( allCoef[ ( nExog + 2 ):nCoef ] )
 
-   if( logValues ) {
+   if( dataLogged ) {
       logData <- data
    } else {
       logData   <- data.frame( no = c( 1:nrow( data ) ) )
@@ -27,9 +27,9 @@ translogDeriv <- function( xNames, data, allCoef, allCoefCov = NULL,
 
    if( is.null( yName ) ){
       logyHat <- translogCalc( xNames, logData, allCoef, quadHalf = quadHalf,
-         logValues = TRUE )
+         dataLogged = TRUE )
    } else {
-      if( logValues ) {
+      if( dataLogged ) {
          logyHat <- data[[ yName ]]
       } else {
          logyHat <- log( data[[ yName ]] )

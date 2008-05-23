@@ -8,7 +8,7 @@
 
 \usage{
 translogDeriv( xNames, data, allCoef, allCoefCov = NULL,
-   yName = NULL, quadHalf = TRUE, logValues = FALSE )
+   yName = NULL, quadHalf = TRUE, dataLogged = FALSE )
 }
 
 \arguments{
@@ -22,7 +22,7 @@ translogDeriv( xNames, data, allCoef, allCoefCov = NULL,
       If it is \code{NULL}, the dependent variable is calculated
       from the independent variables and the coefficients.}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
-   \item{logValues}{logical. Are the values in \code{data} already logged?}
+   \item{dataLogged}{logical. Are the values in \code{data} already logged?}
 }
 
 \value{
