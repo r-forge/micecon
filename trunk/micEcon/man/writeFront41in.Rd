@@ -9,8 +9,7 @@
 
 \usage{
    writeFront41in( data, crossSectionName, timePeriodName = NULL,
-   yName, xNames = NULL, qxNames = NULL, zNames = NULL,
-   quadHalf = TRUE, logData = FALSE,
+   yName, xNames = NULL, qxNames = NULL, zNames = NULL, quadHalf = TRUE,
    functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
    outFile = sub( "\\.ins$", ".out", insFile ), startUpFile = "front41.000",
@@ -34,8 +33,6 @@
    \item{zNames}{a vector of strings containing the names of the Z variables
       (variables explaining the efficiency level).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
-   \item{logData}{logical. Take the logarithm of the output and input
-      quantities before writing them to the data file?}
    \item{functionType}{function type: either 1 for 'production function' or
       2 for 'cost function'.}
    \item{modelType}{model type: either 1 for 'Error Components Frontier' or
