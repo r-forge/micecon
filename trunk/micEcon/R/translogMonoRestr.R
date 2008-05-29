@@ -40,7 +40,7 @@ translogMonoRestr <- function( xNames, data, quadHalf = TRUE,
 }
 
 # test with (only if area == FALSE):
-# matrix( translogMonoRestr( lnInputNames, estData ) %*% a$coef, ncol=4) *
-# exp(translogCalc( lnInputNames, estData, a$coef) %*% t(c(1,1,1,1))) /
+# matrix( translogMonoRestr( lnInputNames, estData ) %*% coef( a ), ncol=4) *
+# exp(translogCalc( lnInputNames, estData, coef( a ) ) %*% t(c(1,1,1,1))) /
 # estData[ , inputNames ] -
-# translogDeriv( lnInputNames, estData, a$coef )$deriv
+# translogDeriv( lnInputNames, estData, coef( a ) )$deriv
