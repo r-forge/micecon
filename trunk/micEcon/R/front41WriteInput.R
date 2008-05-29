@@ -277,3 +277,27 @@ front41WriteInput <- function( data, crossSectionName, timePeriodName = NULL,
          file = startUpFile, append = TRUE )
    }
 }
+
+writeFront41in <- function( data, crossSectionName, timePeriodName,
+   yName, xNames = NULL, zNames = NULL,
+   translog = FALSE, quadHalf = TRUE,
+   functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
+   insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
+   outFile = sub( "\\.ins$", ".out", insFile ) ) {
+
+   .Deprecated( "front41WriteInput", package="micEcon" )
+
+   if( translog ) {
+      qxNames <- xNames
+   } else {
+      qxNames <- NULL
+   }
+
+   front41WriteInput( data = data, crossSectionName = crossSectionName,
+      timePeriodName = timePeriodName,
+      yName = yName, xNames = xNames, zNames = zNames,
+      qxNames = qxNames, quadHalf = quadHalf,
+      functionType = functionType, logDepVar = logDepVar, mu = mu, eta = eta,
+      insFile = insFile, dtaFile = dtaFile,
+      outFile = outFile, startUpFile = NULL )
+}
