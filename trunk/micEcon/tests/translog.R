@@ -67,14 +67,26 @@ borderedHessiansFitted <- translogHessian( c( "qLabor", "land", "qVarInput", "ti
 all.equal( borderedHessians, borderedHessiansFitted )
 
 ## testing translogCheckMono
-translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ) )
+print( test )
+class( test ) <- NULL
+print( test )
 
-translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ), strict = TRUE )
+print( test )
+class( test ) <- NULL
+print( test )
 
-translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ), increasing = FALSE )
+print( test )
+class( test ) <- NULL
+print( test )
 
-translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ), increasing = FALSE, strict = TRUE )
+print( test )
+class( test ) <- NULL
+print( test )

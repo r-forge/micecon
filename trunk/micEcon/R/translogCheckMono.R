@@ -21,6 +21,8 @@ translogCheckMono <- function( xNames, data, coef, increasing = TRUE,
    }
 
    result$obs <- rowSums( !result$exog ) == 0
+   result$increasing <- increasing
+   result$strict     <- strict
 
    class( result ) <- "translogCheckMono"
    return( result )
