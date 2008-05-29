@@ -7,7 +7,7 @@
 }
 
 \usage{
-   translogHessian( xNames, data, allCoef, yName = NULL,
+   translogHessian( xNames, data, coef, yName = NULL,
    quadHalf = TRUE, dataLogged = FALSE, bordered = FALSE )
 }
 
@@ -15,7 +15,7 @@
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
    \item{data}{dataframe containing the data.}
-   \item{allCoef}{vector containing all coefficients.}
+   \item{coef}{vector containing all coefficients.}
    \item{yName}{an optional string containing the name of the dependent
       variable.
       If it is \code{NULL}, the dependent variable is calculated

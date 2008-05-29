@@ -1,4 +1,4 @@
-translogHessian <- function( xNames, data, allCoef, yName = NULL,
+translogHessian <- function( xNames, data, coef, yName = NULL,
    quadHalf = TRUE, dataLogged = FALSE, bordered = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
@@ -6,15 +6,15 @@ translogHessian <- function( xNames, data, allCoef, yName = NULL,
    nExog <- length( xNames )
    nCoef <- 1 + nExog + nExog * ( nExog + 1 ) / 2
 
-   if( nCoef != length( allCoef ) ) {
+   if( nCoef != length( coef ) ) {
       stop( "a translog function with ", nExog, " exogenous variables",
          " must have exactly ", nCoef, " coefficients" )
    }
 
    result <- list()
 
-   alpha  <- allCoef[ 2:( nExog + 1 ) ]
-   beta   <- vecli2m( allCoef[ ( nExog + 2 ):nCoef ] )
+   alpha  <- coef[ 2:( nExog + 1 ) ]
+   beta   <- vecli2m( coef[ ( nExog + 2 ):nCoef ] )
    newXNames <- paste( "x.", c( 1:nExog ), sep = "" )
    dNames    <- paste( "d.", c( 1:nExog ), sep = "" )
 
@@ -31,7 +31,7 @@ translogHessian <- function( xNames, data, allCoef, yName = NULL,
    }
 
    if( is.null( yName ) ){
-      logData$yHat <- translogCalc( newXNames, logData, allCoef,
+      logData$yHat <- translogCalc( newXNames, logData, coef,
          quadHalf = quadHalf, dataLogged = TRUE )
    } else {
       if( dataLogged ) {
@@ -41,7 +41,7 @@ translogHessian <- function( xNames, data, allCoef, yName = NULL,
       }
    }
 
-   deriv <- translogDeriv( newXNames, logData, allCoef, yName = "yHat",
+   deriv <- translogDeriv( newXNames, logData, coef, yName = "yHat",
       quadHalf = quadHalf, dataLogged = TRUE )$deriv
    names( deriv ) <- dNames
    logData <- cbind( logData, deriv )

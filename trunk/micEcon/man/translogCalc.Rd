@@ -7,14 +7,14 @@
 }
 
 \usage{
-   translogCalc( xNames, data, allCoef, quadHalf = TRUE, dataLogged = FALSE  )
+   translogCalc( xNames, data, coef, quadHalf = TRUE, dataLogged = FALSE  )
 }
 
 \arguments{
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
    \item{data}{dataframe containing the data.}
-   \item{allCoef}{vector containing all coefficients.}
+   \item{coef}{vector containing all coefficients.}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
    \item{dataLogged}{logical. Are the values in \code{data} already logged?}
 }

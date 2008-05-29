@@ -1,4 +1,4 @@
-translogCalc <- function( xNames, data, allCoef, quadHalf = TRUE,
+translogCalc <- function( xNames, data, coef, quadHalf = TRUE,
    dataLogged = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
@@ -6,7 +6,7 @@ translogCalc <- function( xNames, data, allCoef, quadHalf = TRUE,
    nExog <- length( xNames )
    nCoef <- 1 + nExog + nExog * ( nExog + 1 ) / 2
 
-   if( nCoef != length( allCoef ) ) {
+   if( nCoef != length( coef ) ) {
       stop( "a translog function with ", nExog, " exogenous variables",
          " must have exactly ", nCoef, " coefficients" )
    }
@@ -20,7 +20,7 @@ translogCalc <- function( xNames, data, allCoef, quadHalf = TRUE,
       }
    }
 
-   result <- quadFuncCalc( xNames, logData, allCoef, quadHalf = quadHalf )
+   result <- quadFuncCalc( xNames, logData, coef, quadHalf = quadHalf )
 
    if( !dataLogged ) {
       result <- exp( result )
