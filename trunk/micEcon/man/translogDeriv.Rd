@@ -56,12 +56,12 @@ translogDeriv( xNames, data, coef, coefCov = NULL,
 
    # compute the marginal products of the inputs (with "fitted" Output)
    margProducts <- translogDeriv( c( "qLabor", "land", "qVarInput", "time" ),
-      germanFarms, coef( estResult ), estResult$coefCov )
+      germanFarms, coef( estResult ), vcov( estResult ) )
    margProducts$deriv
 
    # compute the marginal products of the inputs (with observed Output)
    margProductsObs <- translogDeriv( c( "qLabor", "land", "qVarInput", "time" ),
-      germanFarms, coef( estResult ), estResult$coefCov, "qOutput" )
+      germanFarms, coef( estResult ), vcov( estResult ), "qOutput" )
    margProductsObs$deriv
 }
 

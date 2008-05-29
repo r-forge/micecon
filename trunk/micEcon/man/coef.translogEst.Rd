@@ -1,15 +1,18 @@
 \name{coef.translogEst}
 \alias{coef.translogEst}
+\alias{vcov.translogEst}
 
 \title{Coefficients of a Translog Function}
 
 \description{
-   This method returns the coefficients from the results
-   of an estimated translog function.
+   These methods return the coefficients and their covariance matrix
+   from an estimated translog function.
 }
 
 \usage{
    \method{coef}{translogEst}( object, ... )
+
+   \method{vcov}{translogEst}( object, ... )
 }
 
 \arguments{
@@ -18,8 +21,11 @@
 }
 
 \value{
-The \code{coef} method returns a vectors containing all (linearly independent)
-coefficients of a translog function.}
+The \code{coef} method returns a vector containing all (linearly independent)
+coefficients of a translog function.
+
+The \code{vcov} method returns the covariance matrix
+of all (linearly independent) coefficients of a translog function.
 }
 
 \author{Arne Henningsen, \email{ahenningsen@agric-econ.uni-kiel.de}}
