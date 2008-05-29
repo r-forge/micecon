@@ -1,5 +1,6 @@
 \name{translogCheckMono}
 \alias{translogCheckMono}
+\alias{print.translogCheckMono}
 \title{Monotonicity of a Translog Function}
 
 \description{
@@ -9,6 +10,8 @@
 \usage{
 translogCheckMono( xNames, data, coef, increasing = TRUE,
    strict = FALSE, quadHalf = TRUE, dataLogged = FALSE )
+
+\method{print}{translogCheckMono}( x, ... )
 }
 
 \arguments{
@@ -22,14 +25,19 @@ translogCheckMono( xNames, data, coef, increasing = TRUE,
       (default, FALSE) monotonicity?}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
    \item{dataLogged}{logical. Are the values in \code{data} already logged?}
+   \item{x}{an object returned by \code{translogCheckMono}.}
+   \item{...}{currently not used.}
 }
 
 \value{
-   a list of class \code{translogCheckMono} containing following objects:
+   \code{translogCheckMono} returns a list of class \code{translogCheckMono}
+   containing following objects:
    \item{obs}{a vector indicating whether monotonicity is fulfilled
       at each observation.}
    \item{exog}{data frame indicating whether monotonicity is fulfilled
       for each exogenous variable at each observation.}
+   \item{increasing}{argument \code{increasing}.}
+   \item{strict}{argument \code{strict}.}
 }
 
 \seealso{

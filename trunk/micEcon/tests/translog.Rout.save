@@ -901,8 +901,12 @@ attr(,"class")
 [1] TRUE
 > 
 > ## testing translogCheckMono
-> translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+> test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ) )
+> print( test )
+This translog function is monotonically increasing at 1 out of 20 observations (5%)
+> class( test ) <- NULL
+> print( test )
 $exog
       qLabor land qVarInput  time
  [1,]   TRUE TRUE     FALSE  TRUE
@@ -930,11 +934,19 @@ $obs
  [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
 [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 
-attr(,"class")
-[1] "translogCheckMono"
+$increasing
+[1] TRUE
+
+$strict
+[1] FALSE
+
 > 
-> translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+> test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ), strict = TRUE )
+> print( test )
+This translog function is strictly monotonically increasing at 1 out of 20 observations (5%)
+> class( test ) <- NULL
+> print( test )
 $exog
       qLabor land qVarInput  time
  [1,]   TRUE TRUE     FALSE  TRUE
@@ -962,11 +974,19 @@ $obs
  [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
 [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 
-attr(,"class")
-[1] "translogCheckMono"
+$increasing
+[1] TRUE
+
+$strict
+[1] TRUE
+
 > 
-> translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+> test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ), increasing = FALSE )
+> print( test )
+This translog function is monotonically decreasing at 0 out of 20 observations (0%)
+> class( test ) <- NULL
+> print( test )
 $exog
       qLabor  land qVarInput  time
  [1,]  FALSE FALSE      TRUE FALSE
@@ -994,11 +1014,19 @@ $obs
  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 
-attr(,"class")
-[1] "translogCheckMono"
+$increasing
+[1] FALSE
+
+$strict
+[1] FALSE
+
 > 
-> translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+> test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ), increasing = FALSE, strict = TRUE )
+> print( test )
+This translog function is strictly monotonically decreasing at 0 out of 20 observations (0%)
+> class( test ) <- NULL
+> print( test )
 $exog
       qLabor  land qVarInput  time
  [1,]  FALSE FALSE      TRUE FALSE
@@ -1026,6 +1054,10 @@ $obs
  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 
-attr(,"class")
-[1] "translogCheckMono"
+$increasing
+[1] FALSE
+
+$strict
+[1] TRUE
+
 > 
