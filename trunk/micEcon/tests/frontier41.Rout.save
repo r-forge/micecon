@@ -32,7 +32,7 @@ Loading required package: lmtest
 Loading required package: zoo
 > 
 > ## *****************************
-> ## Testing writeFront41in
+> ## Testing front41WriteInput
 > 
 > data( Coelli )
 > Coelli$logOutput  <- log( Coelli$output )
@@ -42,7 +42,7 @@ Loading required package: zoo
 > insFile <- file()
 > dtaFile  <- file()
 > 
-> writeFront41in( Coelli, "firm", "time", "logOutput",
+> front41WriteInput( Coelli, "firm", "time", "logOutput",
 +    c( "logCapital", "logLabour" ), insFile = insFile, dtaFile = dtaFile  )
 > 
 > print( readLines( insFile ) )
@@ -124,7 +124,7 @@ Loading required package: zoo
 > set.seed( 20061705 )
 > Coelli$firm <- sample( c( 1:( nrow( Coelli ) + 20 ) ) )[ 1:nrow( Coelli ) ]
 > 
-> writeFront41in( Coelli, "firm", "time", "logOutput",
+> front41WriteInput( Coelli, "firm", "time", "logOutput",
 +    c( "logCapital", "logLabour" ), insFile = insFile, dtaFile = dtaFile  )
 > 
 > print( readLines( insFile ) )

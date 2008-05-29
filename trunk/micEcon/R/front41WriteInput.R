@@ -1,4 +1,4 @@
-writeFront41in <- function( data, crossSectionName, timePeriodName = NULL,
+front41WriteInput <- function( data, crossSectionName, timePeriodName = NULL,
    yName, xNames = NULL, qxNames = NULL, zNames = NULL, quadHalf = TRUE,
    functionType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
