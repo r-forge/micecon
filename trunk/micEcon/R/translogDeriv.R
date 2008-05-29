@@ -1,4 +1,4 @@
-translogDeriv <- function( xNames, data, allCoef, allCoefCov = NULL,
+translogDeriv <- function( xNames, data, coef, coefCov = NULL,
    yName = NULL, quadHalf = TRUE, dataLogged = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
@@ -6,15 +6,15 @@ translogDeriv <- function( xNames, data, allCoef, allCoefCov = NULL,
    nExog <- length( xNames )
    nCoef <- 1 + nExog + nExog * ( nExog + 1 ) / 2
 
-   if( nCoef != length( allCoef ) ) {
+   if( nCoef != length( coef ) ) {
       stop( "a translog function with ", nExog, " exogenous variables",
          " must have exactly ", nCoef, " coefficients" )
    }
 
    result <- list()
 
-   alpha  <- allCoef[ 2:( nExog + 1 ) ]
-   beta   <- vecli2m( allCoef[ ( nExog + 2 ):nCoef ] )
+   alpha  <- coef[ 2:( nExog + 1 ) ]
+   beta   <- vecli2m( coef[ ( nExog + 2 ):nCoef ] )
 
    if( dataLogged ) {
       logData <- data
@@ -26,7 +26,7 @@ translogDeriv <- function( xNames, data, allCoef, allCoefCov = NULL,
    }
 
    if( is.null( yName ) ){
-      logyHat <- translogCalc( xNames, logData, allCoef, quadHalf = quadHalf,
+      logyHat <- translogCalc( xNames, logData, coef, quadHalf = quadHalf,
          dataLogged = TRUE )
    } else {
       if( dataLogged ) {

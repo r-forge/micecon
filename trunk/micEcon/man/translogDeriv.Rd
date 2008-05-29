@@ -7,7 +7,7 @@
 }
 
 \usage{
-translogDeriv( xNames, data, allCoef, allCoefCov = NULL,
+translogDeriv( xNames, data, coef, coefCov = NULL,
    yName = NULL, quadHalf = TRUE, dataLogged = FALSE )
 }
 
@@ -15,8 +15,8 @@ translogDeriv( xNames, data, allCoef, allCoefCov = NULL,
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
    \item{data}{dataframe containing the data.}
-   \item{allCoef}{vector containing all coefficients.}
-   \item{allCoefCov}{optional covariance matrix of the coefficients.}
+   \item{coef}{vector containing all coefficients.}
+   \item{coefCov}{optional covariance matrix of the coefficients.}
    \item{yName}{an optional string containing the name of the dependent
       variable.
       If it is \code{NULL}, the dependent variable is calculated
