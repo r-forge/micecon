@@ -900,3 +900,132 @@ attr(,"class")
 > all.equal( borderedHessians, borderedHessiansFitted )
 [1] TRUE
 > 
+> ## testing translogCheckMono
+> translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, coef( estResult ) )
+$exog
+      qLabor land qVarInput  time
+ [1,]   TRUE TRUE     FALSE  TRUE
+ [2,]   TRUE TRUE     FALSE  TRUE
+ [3,]   TRUE TRUE     FALSE  TRUE
+ [4,]   TRUE TRUE     FALSE  TRUE
+ [5,]   TRUE TRUE     FALSE  TRUE
+ [6,]   TRUE TRUE     FALSE  TRUE
+ [7,]   TRUE TRUE      TRUE  TRUE
+ [8,]   TRUE TRUE      TRUE FALSE
+ [9,]   TRUE TRUE      TRUE FALSE
+[10,]   TRUE TRUE      TRUE FALSE
+[11,]  FALSE TRUE      TRUE FALSE
+[12,]  FALSE TRUE     FALSE FALSE
+[13,]  FALSE TRUE     FALSE FALSE
+[14,]  FALSE TRUE     FALSE FALSE
+[15,]  FALSE TRUE      TRUE FALSE
+[16,]  FALSE TRUE      TRUE FALSE
+[17,]   TRUE TRUE      TRUE FALSE
+[18,]   TRUE TRUE      TRUE FALSE
+[19,]   TRUE TRUE      TRUE FALSE
+[20,]   TRUE TRUE      TRUE FALSE
+
+$obs
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+attr(,"class")
+[1] "translogCheckMono"
+> 
+> translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, coef( estResult ), strict = TRUE )
+$exog
+      qLabor land qVarInput  time
+ [1,]   TRUE TRUE     FALSE  TRUE
+ [2,]   TRUE TRUE     FALSE  TRUE
+ [3,]   TRUE TRUE     FALSE  TRUE
+ [4,]   TRUE TRUE     FALSE  TRUE
+ [5,]   TRUE TRUE     FALSE  TRUE
+ [6,]   TRUE TRUE     FALSE  TRUE
+ [7,]   TRUE TRUE      TRUE  TRUE
+ [8,]   TRUE TRUE      TRUE FALSE
+ [9,]   TRUE TRUE      TRUE FALSE
+[10,]   TRUE TRUE      TRUE FALSE
+[11,]  FALSE TRUE      TRUE FALSE
+[12,]  FALSE TRUE     FALSE FALSE
+[13,]  FALSE TRUE     FALSE FALSE
+[14,]  FALSE TRUE     FALSE FALSE
+[15,]  FALSE TRUE      TRUE FALSE
+[16,]  FALSE TRUE      TRUE FALSE
+[17,]   TRUE TRUE      TRUE FALSE
+[18,]   TRUE TRUE      TRUE FALSE
+[19,]   TRUE TRUE      TRUE FALSE
+[20,]   TRUE TRUE      TRUE FALSE
+
+$obs
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+attr(,"class")
+[1] "translogCheckMono"
+> 
+> translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, coef( estResult ), increasing = FALSE )
+$exog
+      qLabor  land qVarInput  time
+ [1,]  FALSE FALSE      TRUE FALSE
+ [2,]  FALSE FALSE      TRUE FALSE
+ [3,]  FALSE FALSE      TRUE FALSE
+ [4,]  FALSE FALSE      TRUE FALSE
+ [5,]  FALSE FALSE      TRUE FALSE
+ [6,]  FALSE FALSE      TRUE FALSE
+ [7,]  FALSE FALSE     FALSE FALSE
+ [8,]  FALSE FALSE     FALSE  TRUE
+ [9,]  FALSE FALSE     FALSE  TRUE
+[10,]  FALSE FALSE     FALSE  TRUE
+[11,]   TRUE FALSE     FALSE  TRUE
+[12,]   TRUE FALSE      TRUE  TRUE
+[13,]   TRUE FALSE      TRUE  TRUE
+[14,]   TRUE FALSE      TRUE  TRUE
+[15,]   TRUE FALSE     FALSE  TRUE
+[16,]   TRUE FALSE     FALSE  TRUE
+[17,]  FALSE FALSE     FALSE  TRUE
+[18,]  FALSE FALSE     FALSE  TRUE
+[19,]  FALSE FALSE     FALSE  TRUE
+[20,]  FALSE FALSE     FALSE  TRUE
+
+$obs
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+attr(,"class")
+[1] "translogCheckMono"
+> 
+> translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, coef( estResult ), increasing = FALSE, strict = TRUE )
+$exog
+      qLabor  land qVarInput  time
+ [1,]  FALSE FALSE      TRUE FALSE
+ [2,]  FALSE FALSE      TRUE FALSE
+ [3,]  FALSE FALSE      TRUE FALSE
+ [4,]  FALSE FALSE      TRUE FALSE
+ [5,]  FALSE FALSE      TRUE FALSE
+ [6,]  FALSE FALSE      TRUE FALSE
+ [7,]  FALSE FALSE     FALSE FALSE
+ [8,]  FALSE FALSE     FALSE  TRUE
+ [9,]  FALSE FALSE     FALSE  TRUE
+[10,]  FALSE FALSE     FALSE  TRUE
+[11,]   TRUE FALSE     FALSE  TRUE
+[12,]   TRUE FALSE      TRUE  TRUE
+[13,]   TRUE FALSE      TRUE  TRUE
+[14,]   TRUE FALSE      TRUE  TRUE
+[15,]   TRUE FALSE     FALSE  TRUE
+[16,]   TRUE FALSE     FALSE  TRUE
+[17,]  FALSE FALSE     FALSE  TRUE
+[18,]  FALSE FALSE     FALSE  TRUE
+[19,]  FALSE FALSE     FALSE  TRUE
+[20,]  FALSE FALSE     FALSE  TRUE
+
+$obs
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+attr(,"class")
+[1] "translogCheckMono"
+> 

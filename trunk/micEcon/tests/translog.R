@@ -65,3 +65,16 @@ germanFarms$fitted <- fitted
 borderedHessiansFitted <- translogHessian( c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, estResult$coef, yName = "fitted", bordered = TRUE )
 all.equal( borderedHessians, borderedHessiansFitted )
+
+## testing translogCheckMono
+translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, coef( estResult ) )
+
+translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, coef( estResult ), strict = TRUE )
+
+translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, coef( estResult ), increasing = FALSE )
+
+translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, coef( estResult ), increasing = FALSE, strict = TRUE )

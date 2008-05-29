@@ -1,0 +1,28 @@
+translogCheckMono <- function( xNames, data, coef, increasing = TRUE,
+   strict = FALSE, quadHalf = TRUE, dataLogged = FALSE ) {
+
+   result <- list()
+
+   deriv <- translogDeriv( xNames = xNames, data = data, coef = coef,
+      quadHalf = quadHalf, dataLogged = dataLogged )$deriv
+
+   if( increasing ) {
+      if( strict ) {
+         result$exog <- deriv > 0
+      } else {
+         result$exog <- deriv >= 0
+      }
+   } else {
+      if( strict ) {
+         result$exog <- deriv < 0
+      } else {
+         result$exog <- deriv <= 0
+      }
+   }
+
+   result$obs <- rowSums( !result$exog ) == 0
+
+   class( result ) <- "translogCheckMono"
+   return( result )
+}
+
