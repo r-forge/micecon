@@ -85,7 +85,7 @@
       University of New England.
 }
 
-\seealso{\code{\link{readFront41out}}}
+\seealso{\code{\link{front41ReadOutput}}}
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 

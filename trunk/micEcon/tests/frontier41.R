@@ -32,8 +32,8 @@ close( dtaFile )
 
 
 ## *****************************
-## Testing readFront41out
+## Testing front41ReadOutput
 
 outFile <- system.file( "front41/EG1.OUT", package = "micEcon" )
-sfa <- readFront41out( outFile )
+sfa <- front41ReadOutput( outFile )
 print( sfa )
