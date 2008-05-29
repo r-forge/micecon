@@ -69,24 +69,24 @@ all.equal( borderedHessians, borderedHessiansFitted )
 ## testing translogCheckMono
 test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ) )
-print( test )
+summary( test )
 class( test ) <- NULL
 print( test )
 
 test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ), strict = TRUE )
-print( test )
+summary( test )
 class( test ) <- NULL
 print( test )
 
 test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ), increasing = FALSE )
-print( test )
+summary( test )
 class( test ) <- NULL
 print( test )
 
 test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ), increasing = FALSE, strict = TRUE )
-print( test )
+summary( test )
 class( test ) <- NULL
 print( test )

@@ -903,8 +903,13 @@ attr(,"class")
 > ## testing translogCheckMono
 > test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ) )
-> print( test )
+> summary( test )
 This translog function is monotonically increasing at 1 out of 20 observations (5%)
+The monotonicity condition for the exogenous variable
+- 'qLabor' is fulfilled at 14 out of 20 observations (70%)
+- 'land' is fulfilled at 20 out of 20 observations (100%)
+- 'qVarInput' is fulfilled at 11 out of 20 observations (55%)
+- 'time' is fulfilled at 7 out of 20 observations (35%)
 > class( test ) <- NULL
 > print( test )
 $exog
@@ -943,8 +948,13 @@ $strict
 > 
 > test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ), strict = TRUE )
-> print( test )
+> summary( test )
 This translog function is strictly monotonically increasing at 1 out of 20 observations (5%)
+The monotonicity condition for the exogenous variable
+- 'qLabor' is fulfilled at 14 out of 20 observations (70%)
+- 'land' is fulfilled at 20 out of 20 observations (100%)
+- 'qVarInput' is fulfilled at 11 out of 20 observations (55%)
+- 'time' is fulfilled at 7 out of 20 observations (35%)
 > class( test ) <- NULL
 > print( test )
 $exog
@@ -983,8 +993,13 @@ $strict
 > 
 > test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ), increasing = FALSE )
-> print( test )
+> summary( test )
 This translog function is monotonically decreasing at 0 out of 20 observations (0%)
+The monotonicity condition for the exogenous variable
+- 'qLabor' is fulfilled at 6 out of 20 observations (30%)
+- 'land' is fulfilled at 0 out of 20 observations (0%)
+- 'qVarInput' is fulfilled at 9 out of 20 observations (45%)
+- 'time' is fulfilled at 13 out of 20 observations (65%)
 > class( test ) <- NULL
 > print( test )
 $exog
@@ -1023,8 +1038,13 @@ $strict
 > 
 > test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ), increasing = FALSE, strict = TRUE )
-> print( test )
+> summary( test )
 This translog function is strictly monotonically decreasing at 0 out of 20 observations (0%)
+The monotonicity condition for the exogenous variable
+- 'qLabor' is fulfilled at 6 out of 20 observations (30%)
+- 'land' is fulfilled at 0 out of 20 observations (0%)
+- 'qVarInput' is fulfilled at 9 out of 20 observations (45%)
+- 'time' is fulfilled at 13 out of 20 observations (65%)
 > class( test ) <- NULL
 > print( test )
 $exog
