@@ -265,3 +265,10 @@ front41ReadOutput <- function( file = "front41.out" ) {
    class( result ) <- "front41out"
    return( result )
 }
+
+readFront41out <- function( file = "front41.out", translog = FALSE ) {
+
+   .Deprecated( "front41ReadOutput", package="micEcon" )
+
+   return( front41ReadOutput( file = file ) )
+}
