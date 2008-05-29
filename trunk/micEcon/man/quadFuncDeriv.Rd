@@ -47,7 +47,7 @@
 
    # compute the marginal products of the inputs
    margProducts <- quadFuncDeriv( c( "qLabor", "land", "qVarInput", "time" ),
-      germanFarms, estResult$allCoef, estResult$allCoefCov )
+      germanFarms, estResult$coef, estResult$coefCov )
    margProducts$deriv
 }
 
