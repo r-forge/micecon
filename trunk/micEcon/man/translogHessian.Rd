@@ -52,17 +52,17 @@
 
    # compute the Hessian matrices (with "fitted" output)
    hessians <- translogHessian( c( "qLabor", "land", "qVarInput", "time" ),
-      germanFarms, estResult$coef )
+      germanFarms, coef( estResult ) )
    hessians[[ 1 ]]
 
    # compute the Hessian matrices (with observed output)
    hessiansObs <- translogHessian( c( "qLabor", "land", "qVarInput", "time" ),
-      germanFarms, estResult$coef, "qOutput" )
+      germanFarms, coef( estResult ), "qOutput" )
    hessiansObs[[ 1 ]]
 
    # compute the bordered Hessian matrices
    borderedHessians <- translogHessian( c( "qLabor", "land", "qVarInput", "time" ),
-      germanFarms, estResult$coef, bordered = TRUE )
+      germanFarms, coef( estResult ), bordered = TRUE )
    borderedHessians[[ 1 ]]
 }
 

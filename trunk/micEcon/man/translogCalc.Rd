@@ -45,7 +45,7 @@
       germanFarms )
 
    translogCalc( c( "qLabor", "land", "qVarInput", "time" ), germanFarms,
-      estResult$coef )
+      coef( estResult ) )
    #equal to estResult$fitted
 }
 

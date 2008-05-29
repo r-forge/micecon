@@ -53,7 +53,7 @@
    estResult <- quadFuncEst( "qOutput", c( "qLabor", "land", "qVarInput", "time" ),
       germanFarms )
 
-   estResult$coef
+   coef( estResult )
    estResult$r2
 }
 
