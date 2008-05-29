@@ -1,7 +1,7 @@
 library( micEcon )
 
 ## *****************************
-## Testing writeFront41in
+## Testing front41WriteInput
 
 data( Coelli )
 Coelli$logOutput  <- log( Coelli$output )
@@ -11,7 +11,7 @@ Coelli$logLabour  <- log( Coelli$labour )
 insFile <- file()
 dtaFile  <- file()
 
-writeFront41in( Coelli, "firm", "time", "logOutput",
+front41WriteInput( Coelli, "firm", "time", "logOutput",
    c( "logCapital", "logLabour" ), insFile = insFile, dtaFile = dtaFile  )
 
 print( readLines( insFile ) )
@@ -21,7 +21,7 @@ print( readLines( dtaFile ) )
 set.seed( 20061705 )
 Coelli$firm <- sample( c( 1:( nrow( Coelli ) + 20 ) ) )[ 1:nrow( Coelli ) ]
 
-writeFront41in( Coelli, "firm", "time", "logOutput",
+front41WriteInput( Coelli, "firm", "time", "logOutput",
    c( "logCapital", "logLabour" ), insFile = insFile, dtaFile = dtaFile  )
 
 print( readLines( insFile ) )

@@ -1,14 +1,15 @@
-\name{writeFront41in}
-\alias{writeFront41in}
-\title{Write instruction file for Frontier 4.1}
+\name{front41WriteInput}
+\alias{front41WriteInput}
+\title{Write input files for Frontier 4.1}
 
 \description{
-   Write an instruction file and a data file for Tim Coelli's program
-   Frontier 4.1 that performs stochastic frontier analysis.
+   Write an instruction file, a data file, and a start-up file
+   for Tim Coelli's program Frontier 4.1
+   that performs stochastic frontier analysis.
 }
 
 \usage{
-   writeFront41in( data, crossSectionName, timePeriodName = NULL,
+   front41WriteInput( data, crossSectionName, timePeriodName = NULL,
    yName, xNames = NULL, qxNames = NULL, zNames = NULL, quadHalf = TRUE,
    functionType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
@@ -66,7 +67,8 @@
 }
 
 \value{
-   writeFront41in writes an instruction file and an data file to disk.
+   \code{front41WriteInput} writes an instruction file, a data file,
+   and a start-up file for Frontier 4.1 to disk.
 }
 
 \references{
@@ -95,7 +97,7 @@
    Coelli$logCapital <- log( Coelli$capital )
    Coelli$logLabour  <- log( Coelli$labour )
 
-   writeFront41in( Coelli, "firm", "time", "logOutput",
+   front41WriteInput( Coelli, "firm", "time", "logOutput",
       c( "logCapital", "logLabour" ) )
 
    \dontrun{

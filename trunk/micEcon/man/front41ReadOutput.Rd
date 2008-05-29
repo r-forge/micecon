@@ -66,7 +66,7 @@
       University of New England.
 }
 
-\seealso{\code{\link{writeFront41in}}}
+\seealso{\code{\link{front41WriteInput}}}
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
@@ -83,7 +83,7 @@
    Coelli$logCapital <- log( Coelli$capital )
    Coelli$logLabour  <- log( Coelli$labour )
 
-   writeFront41in( Coelli, "firm", "time", "logOutput",
+   front41WriteInput( Coelli, "firm", "time", "logOutput",
       c( "logCapital", "logLabour" ) )
 
    \dontrun{
