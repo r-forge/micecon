@@ -1,5 +1,5 @@
-\name{readFront41out}
-\alias{readFront41out}
+\name{front41ReadOutput}
+\alias{front41ReadOutput}
 \title{Read output of Frontier 4.1}
 
 \description{
@@ -8,7 +8,7 @@
 }
 
 \usage{
-   readFront41out( file = "front41.out" )
+   front41ReadOutput( file = "front41.out" )
 }
 
 \arguments{
@@ -73,7 +73,7 @@
 \examples{
    # read the output file that is provided with Frontier 4.1
    outFile <- system.file( "front41/EG1.OUT", package = "micEcon" )
-   sfa <- readFront41out( outFile )
+   sfa <- front41ReadOutput( outFile )
    sfa$mleResults
    sfa$efficiency
 
@@ -88,7 +88,7 @@
 
    \dontrun{
    system( "wine front41.exe" )
-   sfa <- readFront41out()
+   sfa <- front41ReadOutput()
    sfa$mleResults
    sfa$efficiency
    }
