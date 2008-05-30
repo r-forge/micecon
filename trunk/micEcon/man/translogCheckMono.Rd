@@ -49,7 +49,8 @@ translogCheckMono( xNames, data, coef, increasing = TRUE,
 }
 
 \seealso{
-   \code{\link{translogEst}} and \code{\link{translogDeriv}}
+   \code{\link{translogEst}}, \code{\link{translogDeriv}},
+   and \code{\link{translogCheckCurvature}}
 }
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}

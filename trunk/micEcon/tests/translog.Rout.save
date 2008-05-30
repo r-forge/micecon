@@ -1081,3 +1081,85 @@ $strict
 [1] TRUE
 
 > 
+> 
+> ## testing translogCheckCurvature
+> test <- translogCheckCurvature( c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, coef( estResult ) )
+> summary( test )
+          Length Class  Mode   
+obs       20     -none- logical
+convexity  1     -none- logical
+quasi      1     -none- logical
+> class( test ) <- NULL
+> print( test )
+$obs
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+$convexity
+[1] TRUE
+
+$quasi
+[1] FALSE
+
+> 
+> test <- translogCheckCurvature( c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, coef( estResult ), quasi = TRUE )
+> summary( test )
+          Length Class  Mode   
+obs       20     -none- logical
+convexity  1     -none- logical
+quasi      1     -none- logical
+> class( test ) <- NULL
+> print( test )
+$obs
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+$convexity
+[1] TRUE
+
+$quasi
+[1] TRUE
+
+> 
+> test <- translogCheckCurvature( c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, coef( estResult ), convexity = FALSE )
+> summary( test )
+          Length Class  Mode   
+obs       20     -none- logical
+convexity  1     -none- logical
+quasi      1     -none- logical
+> class( test ) <- NULL
+> print( test )
+$obs
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+$convexity
+[1] FALSE
+
+$quasi
+[1] FALSE
+
+> 
+> test <- translogCheckCurvature( c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, coef( estResult ), convexity = FALSE, quasi = TRUE )
+> summary( test )
+          Length Class  Mode   
+obs       20     -none- logical
+convexity  1     -none- logical
+quasi      1     -none- logical
+> class( test ) <- NULL
+> print( test )
+$obs
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+
+$convexity
+[1] FALSE
+
+$quasi
+[1] TRUE
+
+> 
