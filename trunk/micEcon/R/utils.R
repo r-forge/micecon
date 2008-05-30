@@ -96,30 +96,40 @@ rSquared <- function( y, resid ) {
 
 ## ----- test positive / negative semidefiniteness
 semidefiniteness <- function( m, tol = .Machine$double.eps, method = "det" ) {
-   if( !is.matrix( m ) ) {
-      stop( "argument 'm' must be a matrix" )
-   }
-   if( nrow( m ) != ncol( m ) ) {
-      stop( "argument 'm' must be a _quadratic_ matrix" )
-   }
-   n <- nrow( m )
-   result <- list()
-   if( method == "det" ) {
-      result$negative <- ( max( diag( m ) ) <= tol )
-      result$positive <- ( min( diag( m ) ) >= -tol )
-      if( n > 1 ) {
-         for( i in 2:n ) {
-            result$positive <- result$positive &&
-               ( det( m[ 1:i, 1:i ] ) >= -tol )
-            result$negative <- result$negative &&
-               ( det( m[ 1:i, 1:i ] ) * ( -1 )^i >= -tol )
-         }
+
+   result <- list ()
+   if( is.list( m ) ) {
+      result$negative <- logical( length( m ) )
+      result$positive <- logical( length( m ) )
+      for( t in 1:length( m ) ) {
+         semidef <- semidefiniteness( m[[ t ]], tol = tol, method = method )
+         result$negative[ t ] <- semidef$negative
+         result$positive[ t ] <- semidef$positive
       }
-   } else if( method == "eigen" ) {
-      result$negative <- ( max( eigen( m )$values ) < tol )
-      result$positive <- ( min( eigen( m )$values ) > -tol )
+   } else if( !is.matrix( m ) ) {
+      stop( "argument 'm' must be a matrix or a list of matrices" )
    } else {
-      stop( "argument 'method' must be either 'det' or 'eigen'" )
+      if( nrow( m ) != ncol( m ) ) {
+         stop( "argument 'm' or each of its elements must be a _quadratic_ matrix" )
+      }
+      n <- nrow( m )
+      if( method == "det" ) {
+         result$negative <- ( max( diag( m ) ) <= tol )
+         result$positive <- ( min( diag( m ) ) >= -tol )
+         if( n > 1 ) {
+            for( i in 2:n ) {
+               result$positive <- result$positive &&
+                  ( det( m[ 1:i, 1:i ] ) >= -tol )
+               result$negative <- result$negative &&
+                  ( det( m[ 1:i, 1:i ] ) * ( -1 )^i >= -tol )
+            }
+         }
+      } else if( method == "eigen" ) {
+         result$negative <- ( max( eigen( m )$values ) < tol )
+         result$positive <- ( min( eigen( m )$values ) > -tol )
+      } else {
+         stop( "argument 'method' must be either 'det' or 'eigen'" )
+      }
    }
    return( result )
 }
