@@ -13,12 +13,7 @@ translogCheckCurvature <- function( xNames, data, coef, convexity = TRUE,
          result$obs <- quasiconcavity( hessian, ... )
       }
    } else {
-      semidef <- semidefiniteness( hessian, ... )
-      if( convexity ) {
-         result$obs <- semidef$positive
-      } else {
-         result$obs <- semidef$negative
-      }
+      result$obs <- semidefiniteness( hessian, positive = convexity, ... )
    }
 
    result$convexity <- convexity
