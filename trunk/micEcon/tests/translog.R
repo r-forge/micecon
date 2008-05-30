@@ -90,3 +90,29 @@ test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 summary( test )
 class( test ) <- NULL
 print( test )
+
+
+## testing translogCheckCurvature
+test <- translogCheckCurvature( c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, coef( estResult ) )
+summary( test )
+class( test ) <- NULL
+print( test )
+
+test <- translogCheckCurvature( c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, coef( estResult ), quasi = TRUE )
+summary( test )
+class( test ) <- NULL
+print( test )
+
+test <- translogCheckCurvature( c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, coef( estResult ), convexity = FALSE )
+summary( test )
+class( test ) <- NULL
+print( test )
+
+test <- translogCheckCurvature( c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, coef( estResult ), convexity = FALSE, quasi = TRUE )
+summary( test )
+class( test ) <- NULL
+print( test )
