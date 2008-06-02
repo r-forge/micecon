@@ -36,4 +36,8 @@ close( dtaFile )
 
 outFile <- system.file( "front41/EG1.OUT", package = "micEcon" )
 sfa <- front41ReadOutput( outFile )
+print( coef( sfa, which = "OLS" ) )
+print( coef( sfa, which = "GRID" ) )
+print( coef( sfa ) )
+print( vcov( sfa ) )
 print( sfa )

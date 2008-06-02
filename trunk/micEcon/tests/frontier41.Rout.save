@@ -211,6 +211,28 @@ Loading required package: zoo
 > 
 > outFile <- system.file( "front41/EG1.OUT", package = "micEcon" )
 > sfa <- front41ReadOutput( outFile )
+> print( coef( sfa, which = "OLS" ) )
+       beta_0        beta_1        beta_2 sigma-squared 
+    0.2448983     0.2804925     0.5333064     0.1139850 
+> print( coef( sfa, which = "GRID" ) )
+       beta_0        beta_1        beta_2 sigma-squared         gamma 
+    0.5801422     0.2804925     0.5333064     0.2206741     0.8000000 
+> print( coef( sfa ) )
+       beta_0        beta_1        beta_2 sigma-squared         gamma 
+    0.5616196     0.2811020     0.5364798     0.2170005     0.7972073 
+> print( vcov( sfa ) )
+                    beta_0        beta_1        beta_2 sigma-squared
+beta_0         0.041053521 -3.144672e-03 -8.003028e-03  4.045649e-03
+beta_1        -0.003144672  2.269890e-03  4.010620e-05 -2.952885e-05
+beta_2        -0.008003028  4.010620e-05  2.047703e-03 -4.719031e-05
+sigma-squared  0.004045649 -2.952885e-05 -4.719031e-05  4.084374e-03
+gamma          0.009251936 -9.155047e-05 -1.640465e-04  6.745077e-03
+                      gamma
+beta_0         9.251936e-03
+beta_1        -9.155047e-05
+beta_2        -1.640465e-04
+sigma-squared  6.745077e-03
+gamma          1.861151e-02
 > print( sfa )
 $version
 [1] "4.1"
@@ -373,5 +395,5 @@ $meanEfficiency
 [1] 0.7405677
 
 attr(,"class")
-[1] "front41out"
+[1] "front41Output"
 > 
