@@ -167,7 +167,9 @@ front41ReadOutput <- function( file = "front41.out" ) {
       result$gridResults <- rbind( result$gridResults,
          getValues( line, "eta", NULL ) )
    }
-   colnames( result$gridResults ) <- c( "coef" )
+   result$gridResults <- cbind( result$gridResults,
+      matrix( NA, nrow = nrow( result$gridResults ), ncol = 2 ) )
+   colnames( result$gridResults ) <- c( "coef", "std.err", "t-ratio" )
 
    line <- lineSearch( line, "the final mle estimates are" )
    result$mleResults <- getValues( line, "beta", 0 )
