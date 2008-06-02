@@ -11,7 +11,8 @@
 
 \usage{
 translogCheckMono( xNames, data, coef, increasing = TRUE,
-   strict = FALSE, quadHalf = TRUE, dataLogged = FALSE )
+   strict = FALSE, quadHalf = TRUE, dataLogged = FALSE,
+   tol = 2 * .Machine$double.eps )
 
 \method{print}{translogCheckMono}( x, ... )
 
@@ -31,6 +32,9 @@ translogCheckMono( xNames, data, coef, increasing = TRUE,
       (default, FALSE) monotonicity?}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
    \item{dataLogged}{logical. Are the values in \code{data} already logged?}
+   \item{tol}{tolerance level for checking non-strict monotonicity:
+      values between \code{-tol} and \code{tol} are considered to be zero
+      (ignored if argument \code{strict} is \code{TRUE}).}
    \item{x}{an object returned by \code{translogCheckMono} or
       by \code{summary.translogCheckMono}.}
    \item{object}{an object returned by \code{translogCheckMono}.}
