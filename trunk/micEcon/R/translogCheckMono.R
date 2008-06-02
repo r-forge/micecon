@@ -1,5 +1,6 @@
 translogCheckMono <- function( xNames, data, coef, increasing = TRUE,
-   strict = FALSE, quadHalf = TRUE, dataLogged = FALSE ) {
+   strict = FALSE, quadHalf = TRUE, dataLogged = FALSE,
+   tol = 2 * .Machine$double.eps ) {
 
    result <- list()
 
@@ -10,13 +11,13 @@ translogCheckMono <- function( xNames, data, coef, increasing = TRUE,
       if( strict ) {
          result$exog <- deriv > 0
       } else {
-         result$exog <- deriv >= 0
+         result$exog <- deriv >= - tol
       }
    } else {
       if( strict ) {
          result$exog <- deriv < 0
       } else {
-         result$exog <- deriv <= 0
+         result$exog <- deriv <= tol
       }
    }
 
