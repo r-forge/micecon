@@ -57,7 +57,7 @@
 \value{
    \code{writeFront41in} writes an instruction file and an data file to disk.
 
-   \code{readFront41out} returns a list of class \code{front41out}
+   \code{readFront41out} returns a list of class \code{front41Output}
    containing following objects:
    \item{version}{the version of Frontier 4.1 that produced the output.}
    \item{insFile}{name of the instruction file used by Frontier 4.1.}

@@ -262,7 +262,7 @@ front41ReadOutput <- function( file = "front41.out" ) {
    result$meanEfficiency <-  as.numeric( rmParts( c( "mean efficiency",
       "[ =]" ), output[ line ] ) )
 
-   class( result ) <- "front41out"
+   class( result ) <- "front41Output"
    return( result )
 }
 
