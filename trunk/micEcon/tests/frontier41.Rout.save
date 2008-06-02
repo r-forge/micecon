@@ -220,6 +220,26 @@ Loading required package: zoo
 > print( coef( sfa ) )
        beta_0        beta_1        beta_2 sigma-squared         gamma 
     0.5616196     0.2811020     0.5364798     0.2170005     0.7972073 
+> print( coef( summary( sfa ), which = "OLS" ) )
+                   coef    std.err   t-ratio     Pr(>|t|)
+beta_0        0.2448983 0.21360307  1.146511 2.563738e-01
+beta_1        0.2804925 0.04806662  5.835494 2.670799e-07
+beta_2        0.5333064 0.05149859 10.355748 1.028007e-14
+sigma-squared 0.1139850         NA        NA           NA
+> print( coef( summary( sfa ), which = "GRID" ) )
+                   coef std.err t-ratio Pr(>|z|)
+beta_0        0.5801422      NA      NA       NA
+beta_1        0.2804925      NA      NA       NA
+beta_2        0.5333064      NA      NA       NA
+sigma-squared 0.2206741      NA      NA       NA
+gamma         0.8000000      NA      NA       NA
+> print( coef( summary( sfa ) ) )
+                   coef    std.err   t-ratio     Pr(>|z|)
+beta_0        0.5616196 0.20261668  2.771833 5.574161e-03
+beta_1        0.2811020 0.04764337  5.900130 3.632151e-09
+beta_2        0.5364798 0.04525155 11.855501 2.015153e-32
+sigma-squared 0.2170005 0.06390911  3.395455 6.851476e-04
+gamma         0.7972073 0.13642399  5.843600 5.108449e-09
 > print( vcov( sfa ) )
                     beta_0        beta_1        beta_2 sigma-squared
 beta_0         0.041053521 -3.144672e-03 -8.003028e-03  4.045649e-03
