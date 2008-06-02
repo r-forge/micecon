@@ -272,12 +272,12 @@ $olsLogl
 [1] -18.44685
 
 $gridResults
-                   coef
-beta_0        0.5801422
-beta_1        0.2804925
-beta_2        0.5333064
-sigma-squared 0.2206741
-gamma         0.8000000
+                   coef std.err t-ratio
+beta_0        0.5801422      NA      NA
+beta_1        0.2804925      NA      NA
+beta_2        0.5333064      NA      NA
+sigma-squared 0.2206741      NA      NA
+gamma         0.8000000      NA      NA
 
 $mleResults
                    coef    std.err   t-ratio
