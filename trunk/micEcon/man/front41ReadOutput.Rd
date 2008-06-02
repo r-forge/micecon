@@ -16,7 +16,7 @@
 }
 
 \value{
-   a list of class \code{front41out} containing following objects:
+   a list of class \code{front41Output} containing following objects:
    \item{version}{the version of Frontier 4.1 that produced the output.}
    \item{insFile}{name of the instruction file used by Frontier 4.1.}
    \item{dtaFile}{name of the data file used by Frontier 4.1.}
