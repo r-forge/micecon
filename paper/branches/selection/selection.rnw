@@ -591,11 +591,28 @@ and \code{maxMethod="BHHH"} uses the Berndt-Hall-Hall-Hausman algorithm
 \citep{berndt74}.
 
 The command \code{selection} returns an object of class \code{selection}.
-The corresponding \code{summary}, \code{coef}, \code{coef.summary}
-and \code{vcov} methods include an extra argument \code{part},
-which specifies which part of the model to output.
+The \pkg{sampleSelection} package provides several methods for objects
+of this class:
+a \code{print} method prints the estimation results,
+\code{summary} and \code{print.summary} methods calculate and print
+summary results,
+\code{coef} and \code{coef.summary} methods extract the estimated coefficients,
+a \code{vcov} method extracts their covariance matrix,
+a \code{fitted} method extracts the fitted values,
+a \code{residuals} method extracts the residuals,
+a \code{model.frame} method extracts the model frame,
+and a \code{model.matrix} method extracts the model matrix.
+
+The \code{coef}, \code{coef.summary}, \code{vcov}, and \code{print.summary}
+methods include an extra argument \code{part},
+which specifies which part of the model is returned or printed.
 One may choose either the full model (\code{part="full"}, default),
 or the outcome equation only (\code{part="outcome"}).
+The \code{fitted}, \code{residuals}, and \code{model.matrix} methods
+also include a \code{part} argument.
+However, for these functions the \code{part} argument specifies
+whether the objects of the outcome part (\code{part="outcome"}, default)
+or of the selection part (\code{part="selection"}) should be returned.
 
 Currently, the variance-covariance matrix of the two-step estimators
 is only partially implemented with \code{NA}-s in place of the
