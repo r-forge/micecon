@@ -211,7 +211,7 @@ A comprehensive classification of these models has been proposed
 by \citet{amemiya84,amemiya1985}).
 
 
-\subsection{Tobit-2 Models}
+\subsection{Tobit-2 models}
 \label{sec:theory-tobit2}
 
 Heckman's standard sample selection model
@@ -408,7 +408,7 @@ various semiparametric estimation techniques have been increasingly
 used in addition to the Heckman model (see \citealp{powell1994},
 \citealp{pagan+ullah1999}, and \citealp{li07} for a review).
 
-\subsection{Tobit-5 Models}
+\subsection{Tobit-5 models}
 \label{sec:theory-tobit5}
 
 A straightforward generalisation of the standard sample selection model (Tobit-2)
@@ -1035,7 +1035,7 @@ This is related to the fact that none of the $\varrho$s is
 statistically significantly different from zero.
 
 
-\section{Two Replication Exercises}
+\section{Two replication exercises}
 \label{sec:reliability}
 
 In this section we test the reliability of the results from
@@ -1102,7 +1102,7 @@ outer product approximation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Cameron and Trivedi (2005): Section 16.6, page 553}
+\subsection{Cameron and Trivedi (2005): section 16.6, page 553}
 \label{sec:Cameron16.6}
 
 The data set used in this example is based on the ``RAND Health
@@ -1176,7 +1176,7 @@ Only a few coefficients deviate at the seventh decimal place.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Robustness Issues}
+\section{Robustness issues}
 \label{sec:problems}
 
 \subsection{Convergence}
