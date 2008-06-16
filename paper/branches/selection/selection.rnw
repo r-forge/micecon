@@ -10,7 +10,7 @@
 
 \author{Ott Toomet\\Tartu University
    \And Arne Henningsen\\University of Kiel}
-\Plainauthor{Arne Henningsen, Ott Toomet}
+\Plainauthor{Ott Toomet, Arne Henningsen}
 
 \title{Sample Selection Models in \proglang{R}: Package~\pkg{sampleSelection}}
 \Plaintitle{Sample Selection Models in R: Package sampleSelection}
