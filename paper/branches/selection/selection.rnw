@@ -1,36 +1,22 @@
-% -*- mode: TeX-PDF-mode -*-
 \documentclass[article]{jss}
-\usepackage{amsmath,amssymb}
-\usepackage[utf8]{inputenc}
-\usepackage{bbm}
+\usepackage{amsmath,amssymb,bbm,thumbpdf}
 %% need no \usepackage{Sweave.sty}
 
-% ------- a few definitions ---------
 \newcommand{\dnorm}{\phi}% normal density
 \newcommand{\loglik}{\ell}% log likelihood
-\newcommand*{\mat}[1]{\mathsf{#1}}% Matrix
+\newcommand*{\mat}[1]{\mathbf{#1}}% Matrix
 \newcommand{\pnorm}{\Phi}% normal distribution function
 \renewcommand*{\vec}[1]{\boldsymbol{#1}}% vector
-\renewcommand{\textfraction}{0.1}
-\renewcommand{\floatpagefraction}{0.9}
-%\renewcommand{\baselinestretch}{1.9}
-% -----------------------
 
 \author{Ott Toomet\\Tartu University
-  \And
-  Arne Henningsen\\University of Kiel}
-\title{Sample Selection Models in \proglang{R}:\\
-  Package \pkg{sampleSelection}}
+   \And Arne Henningsen\\University of Kiel}
+\Plainauthor{Arne Henningsen, Ott Toomet}
 
-%% for pretty printing and a nice hypersummary also set:
-\Plainauthor{Arne Henningsen, Ott Toomet} %% comma-separated
-\Plaintitle{Sample Selection Models in R: Package sampleSelection} %% without formatting
-\Shorttitle{Sample Selection Models in R} %% a short title (if necessary)
+\title{Sample Selection Models in \proglang{R}: Package~\pkg{sampleSelection}}
+\Plaintitle{Sample Selection Models in R: Package sampleSelection}
 
-%% an abstract and keywords
 \Abstract{ 
-  % 
-  This paper describes the implementation of Heckman-type sample
+\  This paper describes the implementation of Heckman-type sample
   selection models in \proglang{R}.  We discuss the sample selection
   problem as well as the Heckman solution to it, and argue that
   although modern econometrics has non- and semiparametric estimation
@@ -42,70 +28,52 @@
   restrictions, identification at infinity and misspecification.  We
   argue that the package can be used both in applied research and
   teaching.
-  %
 }
 
-\Keywords{sample-selection models, Heckman selection models, econometrics, \proglang{R}}
-\Plainkeywords{sample-selection models, Heckman selection models, econometrics, R}
+\Keywords{sample selection models, Heckman selection models, econometrics, \proglang{R}}
+\Plainkeywords{sample selection models, Heckman selection models, econometrics, R}
 
-%% publication information
-%% NOTE: This needs to filled out ONLY IF THE PAPER WAS ACCEPTED.
-%% If it was not (yet) accepted, leave them commented.
-%% \Volume{13}
-%% \Issue{9}
-%% \Month{September}
-%% \Year{2004}
-%% \Submitdate{2004-09-29}
-%% \Acceptdate{2004-09-29}
+\Volume{27}
+\Issue{7}
+\Month{July}
+\Year{2008}
+\Submitdate{2007-05-01}
+\Acceptdate{2008-06-06}
 
-%% The address of (at least) one author should be given
-%% in the following format:
 \Address{
   Ott Toomet\\
   Department of Economics\\
   Tartu University\\
   Narva 4-A123\\
   Tartu 51009, Estonia\\
-  Telephone: +372 737 6348\\
+  Telephone: +372/737.6348\\
   E-mail: \email{otoomet@ut.ee}\\
   URL: \url{http://www.obs.ee/~siim/}\\
-  \\
-   Arne Henningsen\\
-   Department of Agricultural Economics\\
-   University of Kiel\\
-   24098 Kiel, Germany\\
-   Telephone: +49 431 880 4445\\
-   E-mail: \email{ahenningsen@agric-econ.uni-kiel.de}\\
-   URL: \url{http://www.uni-kiel.de/agrarpol/ahenningsen/}
+
+  Arne Henningsen\\
+  Department of Agricultural Economics\\
+  University of Kiel\\
+  24098 Kiel, Germany\\
+  Telephone: +49 431/880/4445\\
+  E-mail: \email{ahenningsen@agric-econ.uni-kiel.de}\\
+  URL: \url{http://www.uni-kiel.de/agrarpol/ahenningsen/}
 }
-%% It is also possible to add a telephone and fax number
-%% before the e-mail in the following format:
-%% Telephone: +43/1/31336-5053
-%% Fax: +43/1/31336-734
-
-%% for those who use Sweave please include the following line (with % symbols):
-%% need no \usepackage{Sweave.sty}
-
-%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \begin{document}
-
 <<echo=FALSE>>=
 ## initialisation stuff
-options(width=75)
+options( prompt = "R> ", ctinue = "+  " )
 @ 
-
 
 \section{Introduction}
 \label{sec:intro}
 
-Social scientists are often interested in causal effects --- what is
+Social scientists are often interested in causal effects---what is
 the impact of a new drug, a certain type of school or being born as a
 twin.  Many of these cases are not under the researcher's control.  
 Often, the subjects can decide themselves, whether they take a
 drug or which school they attend.  They cannot control whether they
-are twins, but neither can the researcher --- the twins may tend to be
+are twins, but neither can the researcher---the twins may tend to be
 born in different types of families than singles.  All these cases
 are similar from the statistical point of view.  Whatever is the
 sampling mechanism, from an initial ``random'' sample we extract a
@@ -113,8 +81,8 @@ sample of interest, which may not be representative of the population
 as a whole
 \citep[see][p.~1937, for a discussion]{heckman+macurdy1986}.
 
-This problem --- people who are ``treated'' may be different than the rest
-of the population --- is usually referred to as a \emph{sample
+This problem---people who are ``treated'' may be different than the rest
+of the population---is usually referred to as a \emph{sample
   selection} or \emph{self-selection} problem.  We cannot estimate the
 causal effect, unless we solve the selection
 problem\footnote{Correcting for selectivity is necessary but not
@@ -154,10 +122,10 @@ Here we list a few popular choices:
 \end{itemize}
 
 During recent decades, either randomisation or 
-pseudo-randomisation (natural experiments) have become state-of-the-art
+pseudo-randomisation (natural experiments) have become state of the art
 for estimating causal effects.  However, methods relying on
 distributional assumptions are still widely used.  The reason
-is obvious --- these methods are simple, widely available in software
+is obvious---these methods are simple, widely available in software
 packages, and they are part of the common econometrics syllabus.
 This is true even though reasonable instruments and parametric assumptions can only seldom be
 justified, and therefore,
@@ -168,22 +136,22 @@ Heckman-type selection models also serve as excellent teaching tools.
 They are extensively explained in many recent econometric
 text books \citep[e.g.][]{johnston97, verbeek00, greene2002, wooldridge03,
 cameron05} and they are standard procedures in popular software packages
-like \proglang{Limdep} and \proglang{Stata}.
+like \pkg{Limdep} \citep{Limdep} and \proglang{Stata} \citep{Stata}.
 These
 models easily allow us to experiment with selection bias,
 misspecification, exclusion restrictions etc.  They are easy
-to implement, to visualise, and to understand.
+to implement, to visualize, and to understand.
 
 The aim of this paper is to describe the \proglang{R} \citep{r2007}
-package \pkg{sampleSelection} (version~0.5), which is available on
-the Comprehensive R Archive Network (CRAN)
-(\url{http://CRAN.R-project.org/}).  The package implements two types
+package \pkg{sampleSelection} (version~0.5-5), which is available on
+the Comprehensive \proglang{R} Archive Network 
+at \url{http://CRAN.R-project.org/package=sampleSelection}.  The package implements two types
 of more popular Heckman selection models which, as far as we know,
 were not available for \proglang{R} before.  Our presentation is
 geared toward teaching because we believe that one of the advantages of
 these types of models lies in econometrics training.
 
-The paper is organised as follows: In the next section we introduce
+The paper is organized as follows: In the next section we introduce
 the \citet{heckman1976} solution to the sample selection problem.
 Section~\ref{sec:implementation} briefly describes the current implementation
 of the model in \pkg{sampleSelection} and its possible generalisations.
@@ -205,10 +173,10 @@ The most popular solutions for sample selection problems
 are based on \citet{heckman1976}.
 A variety of generalisations of Heckman's standard sample selection model
 can be found in the literature.
-These models are also called ``generalised Tobit models''
+These models are also called ``generalized Tobit models''
 \citep{amemiya84,amemiya1985}.
 A comprehensive classification of these models has been proposed
-by \citet{amemiya84,amemiya1985}).
+by \citet{amemiya84,amemiya1985}.
 
 
 \subsection{Tobit-2 models}
@@ -394,7 +362,7 @@ maximum-likelihood solution was \$700
 \citep[p.~490]{heckman1976}. %footnote 18, page 490
 Nowadays, costs are no longer an issue, however, the two-step solution
 allows certain generalisations more easily than ML, and is more robust
-in certain circumstances (see section~\ref{sec:problems} below).
+in certain circumstances (see Section~\ref{sec:problems} below).
 
 This model and its derivations were introduced in the 1970s and 1980s.
 The model is well identified if the exclusion restriction
@@ -514,7 +482,7 @@ This system can be estimated as two independent linear models, one for
 the case $y^S = 0$ and another for $y^S = 1$.  The log-likelihood for
 this problem can be written as
 \begin{align}
-  l &= -\frac{N}{2}\log 2\pi + \notag\\
+  \loglik &= -\frac{N}{2}\log 2\pi + \notag\\
   &+ \sum_{\{i:y_i^S = 0\}} \left\{
     -\log\sigma_1
     -\frac{1}{2}\left( \frac{y_i^O - {\vec{\beta}^{O1}}' \vec{x}_i^{O1}}
@@ -594,17 +562,19 @@ The command \code{selection} returns an object of class \code{selection}.
 The \pkg{sampleSelection} package provides several methods for objects
 of this class:
 a \code{print} method prints the estimation results,
-\code{summary} and \code{print.summary} methods calculate and print
+\code{summary} method (and associated \code{print} method) calculate and print
 summary results,
-\code{coef} and \code{coef.summary} methods extract the estimated coefficients,
+\code{coef} methods extract the estimated coefficients,
 a \code{vcov} method extracts their covariance matrix,
 a \code{fitted} method extracts the fitted values,
 a \code{residuals} method extracts the residuals,
 a \code{model.frame} method extracts the model frame,
 and a \code{model.matrix} method extracts the model matrix.
 
-The \code{coef}, \code{coef.summary}, \code{vcov}, and \code{print.summary}
-methods include an extra argument \code{part},
+The \code{coef} and \code{vcov} methods for \code{selection} objects,
+as well as the \code{print} method for\linebreak
+\code{summary.selection} objects
+include an extra argument \code{part},
 which specifies which part of the model is returned or printed.
 One may choose either the full model (\code{part="full"}, default),
 or the outcome equation only (\code{part="outcome"}).
@@ -619,19 +589,19 @@ is only partially implemented with \code{NA}-s in place of the
 unimplemented components.
 
 The package is written completely in \proglang{R} which should
-minimise the portability issues.  It depends on packages
+minimize the portability issues.  It depends on packages
 \pkg{maxLik} \citep{r-maxLik},
 \pkg{systemfit} \citep{henningsen07a,r-systemfit},
 and \pkg{mvtnorm} \citep{r-mvtnorm},
 where \pkg{mvtnorm} is used for examples only.
 All these packages
-are available from the Comprehensive R Archive Network (CRAN) at
+are available from the Comprehensive \proglang{R} Archive Network at
 \url{http://CRAN.R-project.org/}.
 
 \subsection{Current API and a wider range of selection models}
 
 We now briefly discuss possible ways of introducing more general selection
-models using a slightly generalised version of the current API.
+models using a slightly generalized version of the current API.
 
 First, the current argument \code{selection} can be used for
 specifying more general selection conditions.  \code{selection} might
@@ -640,7 +610,7 @@ contain an interval for interval censoring (for instance
 more than one formula (for multiple treatment models), or an indicator
 for the selection mechanism (like \code{"max"} or \code{"min"} for
 switching regression with unobserved separator).  In this way, all 
-generalised Tobit models listed by \cite{amemiya84,amemiya1985} can be specified.
+generalized Tobit models listed by \cite{amemiya84,amemiya1985} can be specified.
 
 Another possible generalisation is allowing for discrete dependent
 variable models.  While the case of binary-choice can be easily
@@ -678,8 +648,8 @@ First, we estimate a correctly specified Tobit-2 model with exclusion
 restriction:
 <<code:t2generate>>=
   set.seed(0)
-  library(sampleSelection)
-  library(mvtnorm)
+  library("sampleSelection")
+  library("mvtnorm")
   eps <- rmvnorm(500, c(0,0), matrix(c(1,-0.7,-0.7,1), 2, 2))
   xs <- runif(500)
   ys <- xs + eps[,1] > 0
@@ -721,7 +691,7 @@ unbiased because $\E [ \varepsilon^O|\varepsilon^S \ge
 -{\vec{\beta}^S}' \vec{x}_i^S ]$ does not depend on $\vec{x}^O$.
 
 \begin{figure}[tp]
-  \centering
+\begin{center}
 <<fig=TRUE,height=4,echo=FALSE>>=
 par(mar=c(3,3,0,0) + 0.1,
     mgp=c(2,1,0))
@@ -736,18 +706,11 @@ abline(a=cf[1], b=cf[2], lty=3)
 # OLS
 @ 
 %
-\begin{small}\\
-\textbf{Legend:}
-\parbox[t]{0.7\textwidth}{
-filled circles = observable outcomes\\
-empty circles = unobservable outcomes\\
-solid line = true dependence\\
-dashed line (partly overlapping the solid) = ML estimate above\\
-dotted line = OLS estimate based on observable outcomes only
-}
-\end{small}
-\caption{Sample selection example with exclusion restriction}
-  \label{fig:t2ex}
+\caption{\label{fig:t2ex} Sample selection example with exclusion restriction
+(filled circles = observable outcomes, empty circles = unobservable outcomes,
+solid line = true dependence, dashed line (partly overlapping the solid) = ML estimate above,
+dotted line = OLS estimate based on observable outcomes only).}
+\end{center}
 \end{figure}
 
 Now we repeat the same exercise, but without the exclusion restriction,
@@ -759,8 +722,8 @@ summary(selection(ys ~ xs, yo ~ xs))
 @
 % 
 The estimates are still unbiased but standard errors are substantially
-larger in this case.  The exclusion restriction --- independent information about
-the selection process --- has a certain identifying power that we now
+larger in this case.  The exclusion restriction---independent information about
+the selection process---has a certain identifying power that we now
 have lost.  We are solely relying on the functional form
 identification.
 
@@ -773,7 +736,7 @@ increasing in the single explanatory variable in the outcome model,
 $\vec{x}^S$. 
 
 \begin{figure}[tp]
-  \centering
+\begin{center}
 <<fig=TRUE,height=4,echo=FALSE>>=
 par(mar=c(3,3,0,0) + 0.1,
     mgp=c(2,1,0))
@@ -788,11 +751,9 @@ abline(a=cf[1], b=cf[2], lty=3)
 # OLS
 @ 
 %
-\begin{small}\\
-\textbf{Legend:} see Figure~\ref{fig:t2ex}
-\end{small}
-\caption{Sample selection example without exclusion restriction}
-  \label{fig:t2}
+\caption{\label{fig:t2} Sample selection example without exclusion restriction
+(for symbols see Figure~\ref{fig:t2ex}).}
+\end{center}
 \end{figure}
 
 In order to identify $\beta^\lambda$ and ${\vec{\beta}^O}'$ without
@@ -833,7 +794,7 @@ Here $\lambda(\beta^S x^S)$
 differs enough from a linear function.
 
 \begin{figure}[tp]
-  \centering
+\begin{center}
 <<fig=TRUE,height=4,echo=FALSE>>=
 par(mar=c(3,3,0,0) + 0.1,
     mgp=c(2,1,0))
@@ -848,11 +809,9 @@ abline(a=cf[1], b=cf[2], lty=3)
 # OLS
 @ 
 %
-\begin{small}\\
-\textbf{Legend:} see Figure~\ref{fig:t2ex}
-\end{small}
-\caption{Sample selection example with more variation in $x^S$}
-  \label{fig:lambda()}
+\caption{\label{fig:lambda()} Sample selection example with more variation in $x^S$ (for
+symbols see Figure~\ref{fig:t2ex}).}
+\end{center}
 \end{figure}
 
 
@@ -886,7 +845,7 @@ Further, we create three independent explanatory variables (\code{xs},
 hence the exclusion restriction is fulfilled.  \code{selection} now
 expects three formulas, one for the selection equation, as before, and
 a list of two for the outcome equation.  Note that we do not have to
-equalise the unobserved values to zero, those are simply ignored.  The
+equalize the unobserved values to zero, those are simply ignored.  The
 results look as follows:
 <<>>=
   summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2)))
@@ -914,7 +873,7 @@ summary(selection(ys~xs, list(yo1 ~ xo1, yo2 ~ xo2), iterlim=20))
 @
 %
 Although we still have an exclusion restriction, now serious problems
-appear --- most intercepts are statistically significantly different from the
+appear---most intercepts are statistically significantly different from the
 true values zero.  This model has serious convergence problems and
 often it does not converge at all (this is why we increased the
 \code{iterlim} and used \code{set.seed(5)}).
@@ -941,7 +900,7 @@ constructing the latter, however, we scale the normal control
 functions (inverse Mill's ratios) to a roughly similar scale as the
 correct ones.
 \begin{figure}[tp]
-  \centering
+\begin{center}
 <<fig=TRUE,height=4,echo=FALSE>>=
    EUlower <- function(alpha) {
       alpha[alpha >= 1] <- NA
@@ -1006,14 +965,14 @@ text(1, -1.4,
          epsilon^S < -bold(beta)^S*minute*bold(x)^S, ""), "]")), pos = 2 )
 @ 
 %
-  \medskip \\
-  \small Note:
-  Dotted vertical lines denote the support of $x^S$ in the simulation experiment;
-  correct control functions are based on the $\chi^2(1)$ distribution;
-  assumed control functions are based on the normal distribution.
-  \caption{Correct and assumed control functions}
-  \label{fig:cfunctions}
+\caption{\label{fig:cfunctions} Correct and assumed control functions. Dotted vertical
+lines denote the support of $x^S$ in the simulation experiment;
+correct control functions are based on the $\chi^2(1)$ distribution;
+assumed control functions are based on the normal distribution.
+}
+\end{center}
 \end{figure}
+
 One can see that the functions differ substantially in the relevant
 range of $x^S \in [-1, 1]$.  In particular, the true
 $\E [ \varepsilon^{O2}|\varepsilon^S \ge -{\vec{\beta}^S}' \vec{x}^S ]$ decreases
@@ -1043,7 +1002,7 @@ In this section we test the reliability of the results from
 re-estimating selected models already published in the literature.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Greene (2002): example 22.8, page 786}
+\subsection{Greene (2002): Example 22.8, page 786}
 \label{sec:Greene22.8}
 
 The first test is example 22.8 from \citet[p.~786]{greene2002}.  The
@@ -1058,7 +1017,7 @@ quadratic polynomial in experience (\code{exper}), education in years
 (\code{educ}), and residence in a big city (\code{city}).  First, we
 have to create a dummy variable for presence of children.
 <<greene22.8start>>=
-data( Mroz87 )
+data( "Mroz87" )
 Mroz87$kids <- ( Mroz87$kids5 + Mroz87$kids618 > 0 )
 @
 %
@@ -1102,7 +1061,7 @@ outer product approximation.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Cameron and Trivedi (2005): section 16.6, page 553}
+\subsection{Cameron and Trivedi (2005): Section 16.6, page 553}
 \label{sec:Cameron16.6}
 
 The data set used in this example is based on the ``RAND Health
@@ -1135,7 +1094,7 @@ is used by \citet{cameron05} and specify the selection as well as the
 outcome equation.
 %
 <<cameron16.6start>>=
-data( RandHIE )
+data( "RandHIE" )
 subsample <- RandHIE$year == 2 & !is.na( RandHIE$educdec )
 selectEq <- binexp ~ logc + idp + lpi + fmde + physlm + disea +
    hlthg + hlthf + hlthp + linc + lfam + educdec + xage + female +
@@ -1205,7 +1164,7 @@ The process did not converge.  In the current case the problem lies
 with the numerical problems at the boundary of the parameter space
 (note that $\varrho$ is close to 1).  A workaround is to use a more
 robust maximisation method.  For instance, one may choose to run the SANN
-maximiser for 10\,000 iterations, and then use the returned coefficients
+maximizer for 10\,000 iterations, and then use the returned coefficients
 as start values for the Newton-Raphson algorithm.%
 \footnote{One has to choose a suitable value for \code{parscale};
 \code{parscale=0.001} worked well for this example.}
@@ -1225,7 +1184,7 @@ cat( greeneStartSANN$message )
 %
 The new Newton-Raphson estimate converged to another maximum
 with a log-likehood value even higher than the one of the original estimate
-published in \citet[p.~786]{greene2002} (see section~\ref{sec:Greene22.8}):
+published in \citet[p.~786]{greene2002} (see Section~\ref{sec:Greene22.8}):
 <<>>=
 logLik( greeneML )
 logLik( greeneStartSANN )
@@ -1299,8 +1258,7 @@ In some cases,
 the two-step estimator is preferable.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Acknowledgements}
+\section*{Acknowledgments}
 
 The authors thank Roger Koenker and two anonymous referees
 for helpful comments and suggestions.
