@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "Sweave(\"selection.rnw\")" | R --no-save --no-restore
+echo "Sweave(\"selection.rnw\")" | LC_ALL="C" R --no-save --no-restore
