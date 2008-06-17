@@ -1,5 +1,6 @@
 \name{summary.front41Output}
 \alias{summary.front41Output}
+\alias{print.summary.front41Output}
 \title{Summarizing the Estimation of Frontier 4.1}
 
 \description{
@@ -9,11 +10,18 @@
 
 \usage{
 \method{summary}{front41Output}( object, ... )
+
+\method{print}{summary.front41Output}( x, efficiencies = FALSE, ... )
 }
 
 \arguments{
    \item{object}{an object of class \code{front41Output}
       (read/created by \code{\link{front41ReadOutput}}.}
+   \item{x}{object of class \code{summary.front41Output}
+      (returned by the \code{summary} method for objects of class
+      \code{front41ReadOutput}).}
+   \item{efficiencies}{logical. Print all efficiency estimates?
+      (If \code{FALSE}, only the mean efficiency is printed.)}
    \item{...}{currently ignored.}
 }
 
