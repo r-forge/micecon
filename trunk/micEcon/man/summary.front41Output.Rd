@@ -32,21 +32,15 @@
    distribution.
 }
 
-\seealso{\code{\link{aidsEst}}, \code{\link{aidsElas}}.}
+\seealso{\code{\link{front41ReadOutput}}, \code{\link{front41WriteInput}}.}
 
 \author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
 
 \examples{
-   # Using data published in Blanciforti, Green & King (1986)
-   data( Blanciforti86 )
-   # Data on food consumption are available only for the first 32 years
-   Blanciforti86 <- Blanciforti86[ 1:32, ]
-
-   ## Repeating the demand analysis of Blanciforti, Green & King (1986)
-   estResult <- aidsEst( c( "pFood1", "pFood2", "pFood3", "pFood4" ),
-      c( "wFood1", "wFood2", "wFood3", "wFood4" ), "xFood",
-      data = Blanciforti86, priceIndex = "SL" )
-   print( summary( estResult ) )
+   # read the output file that is provided with Frontier 4.1
+   outFile <- system.file( "front41/EG1.OUT", package = "micEcon" )
+   sfa <- front41ReadOutput( outFile )
+   summary( sfa )
 }
 
 \keyword{models}
