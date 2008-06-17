@@ -50,6 +50,16 @@
    \item{meanEfficiency}{mean efficiency.}
 }
 
+\details{
+   A modified version of Tim Coelli's FRONTIER 4.1
+   that can be used non-interactively is available on
+   \url{http://www.uni-kiel.de/agrarpol/ahenningsen/frontier/}.
+   It can be called from within R using the \code{system} command
+   (see example).
+   This version is is available as (FORTRAN) source code
+   and (executable) binaries for GNU/Linux and MS-Windows.
+}
+
 \references{
    Battese, G.E. and T. Coelli (1992), Frontier production functions,
       technical efficiency and panel data: with application to paddy
@@ -74,8 +84,7 @@
    # read the output file that is provided with Frontier 4.1
    outFile <- system.file( "front41/EG1.OUT", package = "micEcon" )
    sfa <- front41ReadOutput( outFile )
-   sfa$mleResults
-   sfa$efficiency
+   print( sfa )
 
    # perform an SFA and read the output
    data( Coelli )
@@ -84,13 +93,12 @@
    Coelli$logLabour  <- log( Coelli$labour )
 
    front41WriteInput( Coelli, "firm", "time", "logOutput",
-      c( "logCapital", "logLabour" ) )
+      c( "logCapital", "logLabour" ), insFile = "coelli.ins" )
 
    \dontrun{
-   system( "wine front41.exe" )
-   sfa <- front41ReadOutput()
-   sfa$mleResults
-   sfa$efficiency
+   system( "front41.bin coelli.ins" )
+   sfa <- front41ReadOutput( "coelli.out" )
+   print( sfa )
    }
 }
 

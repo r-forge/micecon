@@ -66,6 +66,16 @@
       0 = print only the mean efficiency.}
 }
 
+\details{
+   A modified version of Tim Coelli's FRONTIER 4.1
+   that can be used non-interactively is available on
+   \url{http://www.uni-kiel.de/agrarpol/ahenningsen/frontier/}.
+   It can be called from within R using the \code{system} command
+   (see example).
+   This version is is available as (FORTRAN) source code
+   and (executable) binaries for GNU/Linux and MS-Windows.
+}
+
 \value{
    \code{front41WriteInput} writes an instruction file, a data file,
    and a start-up file for Frontier 4.1 to disk.
@@ -98,10 +108,11 @@
    Coelli$logLabour  <- log( Coelli$labour )
 
    front41WriteInput( Coelli, "firm", "time", "logOutput",
-      c( "logCapital", "logLabour" ) )
+      c( "logCapital", "logLabour" ), insFile = "coelli.ins" )
 
    \dontrun{
-   system( "wine front41.exe" )
+   system( "front41.bin coelli.ins" )
+   sfa <- front41ReadOutput( "coelli.out" )
    }
 }
 
