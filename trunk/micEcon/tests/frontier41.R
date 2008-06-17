@@ -44,3 +44,6 @@ print( coef( summary( sfa ), which = "GRID" ) )
 print( coef( summary( sfa ) ) )
 print( vcov( sfa ) )
 print( sfa )
+print( sfa, efficiencies = TRUE )
+class( sfa ) <- NULL
+print( sfa )

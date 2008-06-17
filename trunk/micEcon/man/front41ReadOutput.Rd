@@ -1,5 +1,6 @@
 \name{front41ReadOutput}
 \alias{front41ReadOutput}
+\alias{print.front41Output}
 \title{Read output of Frontier 4.1}
 
 \description{
@@ -9,10 +10,17 @@
 
 \usage{
    front41ReadOutput( file = "front41.out" )
+
+   \method{print}{front41Output}( x, efficiencies = FALSE, ... )
 }
 
 \arguments{
    \item{file}{character variable with the name of the file to read.}
+   \item{x}{object of class \code{front41Output}
+      (returned by \code{front41ReadOutput}.}
+   \item{efficiencies}{logical. Print all efficiency estimates?
+      (If \code{FALSE}, only the mean efficiency is printed.)}
+   \item{...}{currently ignored.}
 }
 
 \value{
@@ -84,7 +92,7 @@
    # read the output file that is provided with Frontier 4.1
    outFile <- system.file( "front41/EG1.OUT", package = "micEcon" )
    sfa <- front41ReadOutput( outFile )
-   print( sfa )
+   print( sfa, efficiencies = TRUE )
 
    # perform an SFA and read the output
    data( Coelli )
