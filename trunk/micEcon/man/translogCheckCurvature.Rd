@@ -1,7 +1,7 @@
 \name{translogCheckCurvature}
 \alias{translogCheckCurvature}
 \alias{print.translogCheckCurvature}
-\title{Monotonicity of a Translog Function}
+\title{Curvature of a Translog Function}
 
 \description{
    Check curvature of a translog function.
