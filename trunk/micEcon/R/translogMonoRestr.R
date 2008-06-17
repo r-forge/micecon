@@ -1,5 +1,5 @@
 translogMonoRestr <- function( xNames, data, quadHalf = TRUE,
-   dataLogged = FALSE, area = FALSE ) {
+   dataLogged = FALSE, box = FALSE ) {
 
    checkNames( c( xNames ), names( data ) )
 
@@ -15,7 +15,7 @@ translogMonoRestr <- function( xNames, data, quadHalf = TRUE,
       }
    }
 
-   if( area ) {
+   if( box ) {
       extremeLogValues <- list()
       for( i in seq( along = xNames ) ) {
          extremeLogValues[[ i ]] <- c(
@@ -39,7 +39,7 @@ translogMonoRestr <- function( xNames, data, quadHalf = TRUE,
    return( restr )
 }
 
-# test with (only if area == FALSE):
+# test with (only if box == FALSE):
 # matrix( translogMonoRestr( lnInputNames, estData ) %*% coef( a ), ncol=4) *
 # exp(translogCalc( lnInputNames, estData, coef( a ) ) %*% t(c(1,1,1,1))) /
 # estData[ , inputNames ] -
