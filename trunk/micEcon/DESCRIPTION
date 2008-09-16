@@ -2,8 +2,7 @@ Package: micEcon
 Version: 0.5-2
 Date: 2008/06/17
 Title: Microeconomics
-Author: Arne Henningsen <ahenningsen@agric-econ.uni-kiel.de>,
-   Ott Toomet <otoomet@ut.ee>
+Author: Arne Henningsen <ahenningsen@agric-econ.uni-kiel.de>
 Maintainer: Arne Henningsen <ahenningsen@agric-econ.uni-kiel.de>
 Depends: R (>= 2.4.0), systemfit (>= 1.0-0), lmtest
 Suggests: MASS
