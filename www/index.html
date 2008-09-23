@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>micEcon - Microeconomic Analysis and Modelling in R</title>
+    <meta name="GENERATOR" content="Quanta Plus" />
+    <meta name="AUTHOR" content="Arne Henningsen" />
+    <meta name="KEYWORDS" content="micEcon, microeconomic analysis, microeconomic modelling" />
+  </head>
+  <body background="RLogoLight.jpg">
+    <div align="center">
+      <h1>
+         micEcon 
+      </h1>
+      <h2>
+         Tools for microeconomic analysis and microeconomic modelling in <a href="http://www.r-project.org">R</a>
+      </h2>
+    </div>
+    <h3>
+       News
+    </h3>
+    <ul>
+    <li>September 22, 2008:<br />
+      The micEcon package is developed on <a href="http://R-Forge.R-Project.org/">R-Forge</a> now.
+      Its summary page is available <a href="http://r-forge.r-project.org/projects/micecon/">here</a>.</li>
+    </ul>
+    <h3>
+       What is micEcon? 
+    </h3>
+    <ul>
+      <li>
+        <strong>micEcon</strong> is an extension package for the &quot;language and environment for statistical computing and graphics&quot; called <a href="http://www.r-project.org">R</a>. 
+      </li>
+      <li>
+        <strong>micEcon</strong> provides functions for microeconomic analysis and microeconomic modelling. 
+      </li>
+    </ul>
+    <h3>
+       What can micEcon do? 
+    </h3>
+    <ul>
+      <li>
+        <strong>Demand Analysis with the &quot;Almost Ideal Demand System&quot; (AIDS):</strong> The AIDS is the most popular demand system in empirical demand analysis. <strong>micEcon</strong> provides functions for: 
+      <ul>
+        <li>
+           econometric estimation using the popular but inaccurate &quot;Linear Approximation&quot; (LA-AIDS) and the accurate &quot;Iterated Linear Least Squares Estimator&quot; (ILLE) 
+        </li>
+        <li>
+           searching for the intercept of the translog price index (alpha_0) that gives the best fit to the model 
+        </li>
+        <li>
+           optional imposition homogeneity and symmetry 
+        </li>
+        <li>
+           checking for monotonicity and concavity 
+        </li>
+        <li>
+           predicted quantities and expenditure shares 
+        </li>
+        <li>
+           Marshallian (uncompensated) price elasticities, Hicksian (compensated) price elasticities, income elasticities, and their standard errors 
+        </li>
+      </ul>
+      </li>
+      <li>
+        <strong>Production Analysis with the &quot;Symmetric Normalized Quadratic&quot; (SNQ) profit function:</strong> The SNQ profit function is often used in microeconomic production models because it allows the imposition of global convexity. <strong>micEcon</strong> provides functions for: 
+      <ul>
+        <li>
+           econometric estimation 
+        </li>
+        <li>
+           imposition of global convexity using a recent two-step estimation procedure 
+        </li>
+        <li>
+           price elasticities of inputs and outputs and their standard errors 
+        </li>
+        <li>
+           fixed factor elasticities 
+        </li>
+        <li>
+           shadow prices of fixed factors 
+        </li>
+        <li>
+           Hessian matrix and its derivatives with respect to coefficients 
+        </li>
+        <li>
+           predicted profits and netput quantities including the standard errors and the confidence limits of prediction 
+        </li>
+      </ul>
+      </li>
+      <li>
+        <strong>Analysis with Translog Functions:</strong>
+      <ul>
+        <li>
+           econometric estimation
+        </li>
+        <li>
+           calculation of derivatives with respect to regressors
+        </li>
+        <li>
+           calculation of (bordered) Hessian matrices with respect to regressors
+        </li>
+        <li>
+           checking monotonicity (positive or negative)
+        </li>
+        <li>
+           checking curvature (quasiconcavity, concavity,
+             quasiconvexity, convexity)
+        </li>
+        <li>
+           creating a matrix that can be used to impose monotonicity
+             using a two-step procedure
+        </li>
+      </ul>
+      </li>
+
+      <li>
+        <strong>Analysis with Quadratic Functions:</strong>
+      <ul>
+        <li>
+           econometric estimation
+        </li>
+        <li>
+           calculation of derivatives with respect to regressors
+        </li>
+      </ul>
+      </li>
+      <li>
+        <strong>Stochastic Frontier Analysis (SFA) with
+          FRONTIER 4.1:</strong>
+      <ul>
+        <li>
+           writing input files for
+           <a href="http://www.uq.edu.au/economics/cepa/frontier.htm">
+           FRONTIER 4.1</a> (function &quot;front41WriteInput&quot;)
+        </li>
+        <li>
+           reading output files of
+           <a href="http://www.uq.edu.au/economics/cepa/frontier.htm">
+           FRONTIER 4.1</a> (function &quot;front41ReadOutput&quot;)
+        </li>
+        <li>
+           Several tools for (frontier) translog functions (see above)
+        </li>
+        <li>Note:
+           A modified version of Tim Coelli's FRONTIER 4.1
+           that can be used non-interactively is available on
+           <a href="http://www.uni-kiel.de/agrarpol/ahenningsen/frontier/">
+           http://www.uni-kiel.de/agrarpol/ahenningsen/frontier/</a>.
+           This version can be conveniently called from within R
+           using the &quot;system&quot; command
+          (see example in documentation of &quot;front41WriteInput&quot;).
+        </li>
+      </ul>
+      </li>
+      <li>
+        <strong>Tools for Matrices:</strong>
+      <ul>
+        <li>
+           inserting additional rows and columns into matrices
+        </li>
+        <li>
+           creating symmetric and triangular matrices 
+        </li>
+        <li>
+           conversion between a symmetric matrix and a vector of its linear independent values 
+        </li>
+        <li>
+           tests for positive and negative semidefiniteness 
+        </li>
+      </ul>
+      </li>
+    </ul>
+    <h3>
+       Who has written micEcon? 
+    </h3>
+    <ul>
+      <li>
+        <a href="http://www.uni-kiel.de/agrarpol/ahenningsen/index.html">Arne Henningsen</a>
+      </li>
+    </ul>
+    <h3>
+       Where can I get micEcon?
+    </h3>
+    <ul>
+      <li>
+         If you have internet access, you can install the current version of
+          <strong>micEcon</strong> from a
+          <a href="http://cran.r-project.org/mirrors.html">CRAN mirror</a>
+          by typing at the R prompt:
+        <pre> install.packages( "micEcon" ) 
+        </pre>
+      </li>
+      <li>Download old version 0.3 of micEcon that works with
+        <a href="http://www.systemfit.org/">systemfit</a> version 0.8
+        and that contains the functions, which are in the
+        <a href="http://www.maxLik.org/">maxLik</a> and
+        <a href="http://www.sampleSelection.org/">sampleSelection</a>
+        packages now:
+        <ul>
+          <li>Package source:
+            <a href="http://www.uni-kiel.de/agrarpol/ahenningsen/micEcon/micEcon_0.3-10.tar.gz">micEcon_0.3-10.tar.gz</a>
+          </li>
+          <li>MacOS X binary:
+            <a href="http://www.uni-kiel.de/agrarpol/ahenningsen/micEcon/micEcon_0.3-9.tgz">micEcon_0.3-9.tgz</a>
+          </li>
+          <li>Windows binary:
+            <a href="http://www.uni-kiel.de/agrarpol/ahenningsen/micEcon/micEcon_0.3-10.zip">micEcon_0.3-10.zip</a>
+          </li>
+          <li>Reference manual:
+            <a href="http://www.uni-kiel.de/agrarpol/ahenningsen/micEcon/micEcon_0.3-10.pdf">micEcon_0.3-10.pdf</a>
+          </li>
+        </ul>
+      </li>
+      <li>Download current version 0.5 of micEcon that works with
+        <a href="http://www.systemfit.org/">systemfit</a> version 1.0
+        and that no longer contains the functions, which are in the
+        <a href="http://www.maxLik.org/">maxLik</a> and
+        <a href="http://www.sampleSelection.org/">sampleSelection</a>
+        packages now:
+        <ul>
+          <li>Package source:
+            <a href="http://www.uni-kiel.de/agrarpol/ahenningsen/micEcon/micEcon_0.5-2.tar.gz">micEcon_0.5-2.tar.gz</a>
+          </li>
+          <li>Reference manual:
+            <a href="http://www.uni-kiel.de/agrarpol/ahenningsen/micEcon/micEcon.pdf">micEcon.pdf</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        The current version
+        (including binaries for Mac OS X and MS Windows)
+        is available also at
+        <a href="http://cran.r-project.org/mirrors.html">CRAN</a>
+        (The Comprehensive R Archive Network):
+        <a href="http://cran.r-project.org/web/packages/micEcon/index.html">
+        http://cran.r-project.org/web/packages/micEcon/index.html</a>
+      </li>
+    </ul>
+    <h3>
+       Under which license is micEcon released?
+    </h3>
+    <ul>
+      <li>
+         Under the  <a href="http://www.gnu.org/licenses/gpl.html">
+            GNU General Public License (GPL)</a>
+      </li>
+    </ul>
+    <h3>
+       How can I contact you? 
+    </h3>
+    <ul>
+      <li>
+         Send an email to <a href="mailto:info(at)micEcon.org">info(at)micEcon.org</a>
+      </li>
+      <li>
+         Take a look at <a href="http://www.uni-kiel.de/agrarpol/ahenningsen/index.html">http://www.uni-kiel.de/agrarpol/ahenningsen/index.html</a>
+      </li>
+    </ul>
+    <p>
+       &nbsp; 
+    </p>
+    <div align="center">
+      <a href="http://validator.w3.org/check/referer"> <img src="http://www.uni-kiel.de/agrarpol/ahenningsen/images/vxhtml10.png" alt="Valid XHTML 1.0!" height="31" width="88" border="0"/></a> <a href="http://quanta.kdewebdev.org/"><img src="http://www.uni-kiel.de/agrarpol/ahenningsen/images/quanta.png" width="120" alt="created with Quanta+" height="73" border="0" /></a><a href="http://www.anybrowser.org/campaign/"><img src="http://www.uni-kiel.de/agrarpol/ahenningsen/images/anibrows.gif" width="88" alt="Viewable With Any Browser" height="31" border="0" /></a>
+    </div>
+    <p>
+       &nbsp; 
+    </p>
+    <div align="center">
+       Last Update: 22 September 2008
+    </div>
+  </body>
+</html>
