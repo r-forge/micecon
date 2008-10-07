@@ -91,8 +91,6 @@
    Furthermore, in case of an Efficiency Effects Model,
    the element \code{eta} contains the number of Z variables.
    Additionally, the returned list contains following elements:
-   \item{modelType}{model type: 1 = Error Components Frontier (no Z variables),
-      2 = Efficiency Effects Model (with Z variables).}
    \item{nCrossSection}{number of cross section units.}
    \item{nTimePeriods}{number of time periods.}
    \item{nTotalObs}{total number of observations.}
