@@ -1,6 +1,6 @@
 front41WriteInput <- function( data, crossSectionName, timePeriodName = NULL,
    yName, xNames = NULL, qxNames = NULL, zNames = NULL, quadHalf = TRUE,
-   functionType = 1, modelType = ifelse( is.null( zNames ), 1, 2 ),
+   modelType = ifelse( is.null( zNames ), 1, 2 ), functionType = 1,
    logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
    outFile = sub( "\\.ins$", ".out", insFile ), startUpFile = "front41.000",

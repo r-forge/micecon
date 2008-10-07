@@ -11,7 +11,7 @@
 \usage{
    front41WriteInput( data, crossSectionName, timePeriodName = NULL,
    yName, xNames = NULL, qxNames = NULL, zNames = NULL, quadHalf = TRUE,
-   functionType = 1, modelType = ifelse( is.null( zNames ), 1, 2 ), 
+   modelType = ifelse( is.null( zNames ), 1, 2 ), functionType = 1,
    logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
    outFile = sub( "\\.ins$", ".out", insFile ), startUpFile = "front41.000",
@@ -35,10 +35,10 @@
    \item{zNames}{a vector of strings containing the names of the Z variables
       (variables explaining the efficiency level).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
-   \item{functionType}{function type: either 1 for 'production function' or
-      2 for 'cost function'.}
    \item{modelType}{model type: either 1 for 'Error Components Frontier' or
       2 for 'Tech. Eff. Effects Frontier'.}
+   \item{functionType}{function type: either 1 for 'production function' or
+      2 for 'cost function'.}
    \item{logDepVar}{logical. Is the dependent variable logged.}
    \item{mu}{logical. Should a 'mu' (if modelType = 1) or a delta0
       (if modelType = 2) be included in the estimation.}
