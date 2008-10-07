@@ -35,15 +35,18 @@
    \item{zNames}{a vector of strings containing the names of the Z variables
       (variables explaining the efficiency level).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
-   \item{modelType}{model type: either 1 for 'Error Components Frontier' or
-      2 for 'Tech. Eff. Effects Frontier'.}
+   \item{modelType}{model type: either 1 for an 'Error Components Frontier'
+      or 2 for an 'Efficiency Effects Frontier'.}
    \item{functionType}{function type: either 1 for 'production function' or
       2 for 'cost function'.}
    \item{logDepVar}{logical. Is the dependent variable logged.}
-   \item{mu}{logical. Should a 'mu' (if modelType = 1) or a delta0
-      (if modelType = 2) be included in the estimation.}
+   \item{mu}{logical. Should a 'mu' (in case of an 'Error Components Frontier',
+      i.e. modelType = 1)
+      or a delta0 (in case of an 'Efficiency Effects Frontier',
+      i.e. modelType = 2)
+      be included in the estimation.}
    \item{eta}{logical. Should an 'eta' be included in the estimation
-      (only if modelType = 1).}
+      (only in case of an 'Error Components Frontier', i.e. modelType = 1).}
    \item{insFile}{name of the instruction file.}
    \item{dtaFile}{name of the data file.}
    \item{outFile}{name of the output file.}
@@ -56,8 +59,8 @@
       indic = 1 says scale (to length of last step) only if last step was smaller;
       indic = any other number says scale (to length of last step).}
    \item{tol}{numeric. Convergence tolerance (proportiona).}
-   \item{tol2}{tolerance used in uni-dimensional search procedure.}
-   \item{bignum}{numeric. Used to set bounds on den \& dist.}
+   \item{tol2}{numeric. Tolerance used in uni-dimensional search procedure.}
+   \item{bignum}{numeric. Used to set bounds on densities and distributions.}
    \item{step1}{numeric. Size of 1st step in search procedure.}
    \item{igrid2}{numeric. 1 = double accuracy, 0 = single accuracy.}
    \item{gridno}{numeric. Steps taken in single accuracy grid search on gamma.}
