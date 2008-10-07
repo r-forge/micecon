@@ -11,7 +11,7 @@
 \usage{
    front41WriteInput( data, crossSectionName, timePeriodName = NULL,
    yName, xNames = NULL, qxNames = NULL, zNames = NULL, quadHalf = TRUE,
-   functionType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
+   functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
    outFile = sub( "\\.ins$", ".out", insFile ), startUpFile = "front41.000",
    iprint = 5, indic = 1, tol = 0.00001, tol2 = 0.001, bignum = 1.0E+16,
@@ -32,18 +32,17 @@
       for using all variables specified in argument \code{xNames}
       to get a full quadratic or translog model.}
    \item{zNames}{a vector of strings containing the names of the Z variables
-      (variables explaining the efficiency level).
-      If it is null, an 'Error Components Frontier' is estimated;
-      otherwise a 'Technical Efficiency Effects Frontier' is estimated.}
+      (variables explaining the efficiency level).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
    \item{functionType}{function type: either 1 for 'production function' or
       2 for 'cost function'.}
+   \item{modelType}{model type: either 1 for 'Error Components Frontier' or
+      2 for 'Tech. Eff. Effects Frontier'.}
    \item{logDepVar}{logical. Is the dependent variable logged.}
-   \item{mu}{logical. Should a 'mu' (in case of an 'Error Components Frontier')
-      or a delta0 (in case of a 'Technical Efficiency Effects Frontier')
-      be included in the estimation.}
+   \item{mu}{logical. Should a 'mu' (if modelType = 1) or a delta0
+      (if modelType = 2) be included in the estimation.}
    \item{eta}{logical. Should an 'eta' be included in the estimation
-      (only in case of an 'Error Components Frontier').}
+      (only if modelType = 1).}
    \item{insFile}{name of the instruction file.}
    \item{dtaFile}{name of the data file.}
    \item{outFile}{name of the output file.}

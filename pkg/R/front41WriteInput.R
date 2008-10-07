@@ -1,6 +1,6 @@
 front41WriteInput <- function( data, crossSectionName, timePeriodName = NULL,
    yName, xNames = NULL, qxNames = NULL, zNames = NULL, quadHalf = TRUE,
-   functionType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
+   functionType = 1, modelType = 1, logDepVar = TRUE, mu = FALSE, eta = FALSE,
    insFile = "front41.ins", dtaFile = sub( "\\.ins$", ".dta", insFile ),
    outFile = sub( "\\.ins$", ".out", insFile ), startUpFile = "front41.000",
    iprint = 5, indic = 1, tol = 0.00001, tol2 = 0.001, bignum = 1.0E+16,
@@ -13,16 +13,12 @@ front41WriteInput <- function( data, crossSectionName, timePeriodName = NULL,
       stop( "argument 'qxNames' must be either logical or a vector of strings" )
    }
 
-   # determine model type
-   if( is.null( zNames ) ) {
-      modelType <- 1
-   } else {
-      modelType <- 2
-   }
-
    checkNames( c( crossSectionName, timePeriodName, yName, xNames, zNames,
       qxNames ), names( data ) )
 
+   if( !modelType %in% c( 1, 2 ) ) {
+      stop( "argument 'modelType' must be either 1 or 2" )
+   }
    if( !functionType %in% c( 1, 2 ) ) {
       stop( "argument 'functionType' must be either 1 or 2" )
    }
