@@ -1,4 +1,5 @@
 library( micEcon )
+library( plm )
 
 ## preparing data
 data( germanFarms )
@@ -47,3 +48,10 @@ estResult2 <- quadFuncEst( yName = "qOutput",
    germanFarms, x = TRUE, y = TRUE )
 coef( estResult2 )
 print( estResult2 )
+
+## panel data
+data( "GrunfeldGreene", package = "systemfit" )
+ggData <- plm.data( GrunfeldGreene, c( "firm", "year" ) )
+ggResult <- quadFuncEst( "invest", c( "value", "capital" ), ggData )
+coef( ggResult )
+print( ggResult )

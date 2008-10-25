@@ -7,7 +7,13 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    nShifter <- length( shifterNames )
    result <- list()
 
-   estData <- data.frame( y = data[[  yName ]] )
+   if( "plm.dim" %in% class( data ) ) {
+      estData <- data[ , 1:2 ]
+      estData$y <- data[[ yName ]]
+   } else {
+      estData <- data.frame( y = data[[  yName ]] )
+   }
+
    estFormula <- "y ~ 1"
    for( i in 1:nExog ) {
       xName <- paste( "x", as.character( i ), sep = "" )
@@ -33,13 +39,21 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    }
    result$nExog <- nExog
    result$nShifter <- nShifter
-   result$est <- lm( as.formula( estFormula ), estData, ... )
+   if( "plm.dim" %in% class( data ) ) {
+      result$est <- plm( as.formula( estFormula ), estData, ... )
+   } else {
+      result$est <- lm( as.formula( estFormula ), estData, ... )
+   }
    result$residuals <- residuals( result$est )
    result$fitted    <- fitted( result$est )
 
    # coefficients and their covariance matrix
    result$coef      <- coef( result$est )
    result$coefCov   <- vcov( result$est )
+   if( "plm.dim" %in% class( data ) ) {
+      result$coef <- c( result$est$alpha, result$coef )
+      result$coefCov <- rbind( NA, cbind( NA, vcov( result$est ) ) )
+   }
    coefNames <- .quadFuncCoefNames( nExog, nShifter )
    names( result$coef )      <- coefNames
    rownames( result$coefCov ) <- coefNames
@@ -48,8 +62,13 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    result$r2    <- summary( result$est )$r.squared
    result$r2bar <- summary( result$est )$adj.r.squared
    result$nObs  <- length( result$residuals )
-   result$model.matrix <- cbind( rep( 1, result$nObs ),
-      as.matrix( estData[ , 2:( ncol( estData ) ) ] ) )
+   if( "plm.dim" %in% class( data ) ) {
+      result$model.matrix <- cbind( rep( 1, result$nObs ),
+         as.matrix( estData[ , 4:( ncol( estData ) ) ] ) )
+   } else {
+      result$model.matrix <- cbind( rep( 1, result$nObs ),
+         as.matrix( estData[ , 2:( ncol( estData ) ) ] ) )
+   }
    class( result ) <- "quadFuncEst"
    return( result )
 }
