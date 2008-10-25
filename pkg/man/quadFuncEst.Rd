@@ -16,7 +16,9 @@
       variable.}
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
-   \item{data}{dataframe containing the data.}
+   \item{data}{data frame containing the data
+      (possibly a panel data frame created with
+      \code{\link[plm]{plm.data}}).}
    \item{shifterNames}{a vector of strings containing the names
       of the independent variables that should be included
       as shifters only (not in quadratic or interaction terms).}
@@ -29,7 +31,8 @@
 
 \value{
    a list of class \code{quadFuncEst} containing following objects:
-   \item{est}{a list returned by \code{lm}.}
+   \item{est}{the object returned by \code{\link[stats]{lm}}
+      or \code{\link[plm]{plm}}.}
    \item{nExog}{length of argument \code{xNames}.}
    \item{nShifter}{length of argument \code{shifterNames}.}
    \item{residuals}{residuals.}
