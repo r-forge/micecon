@@ -1,9 +1,10 @@
-quadFuncEst <- function( yName, xNames, data, quadHalf = TRUE,
-   exVarScale = 1, ... ) {
+quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
+   quadHalf = TRUE, exVarScale = 1, ... ) {
 
-   checkNames( c( yName, xNames ), names( data ) )
+   checkNames( c( yName, xNames, shifterNames ), names( data ) )
 
    nExog   <- length( xNames )
+   nShifter <- length( shifterNames )
    result <- list()
 
    estData <- data.frame( y = data[[  yName ]] )
@@ -23,6 +24,15 @@ quadFuncEst <- function( yName, xNames, data, quadHalf = TRUE,
          estFormula <- paste( estFormula, "+", xName )
       }
    }
+   if( nShifter > 0 ) {
+      for( i in 1:nShifter ) {
+         xName <- paste( "s", as.character( i ), sep = "" )
+         estData[[ xName ]] <- data[[ shifterNames[ i ] ]] / exVarScale
+         estFormula <- paste( estFormula, "+", xName )
+      }
+   }
+   result$nExog <- nExog
+   result$nShifter <- nShifter
    result$est <- lm( as.formula( estFormula ), estData, ... )
    result$residuals <- residuals( result$est )
    result$fitted    <- fitted( result$est )
@@ -30,7 +40,7 @@ quadFuncEst <- function( yName, xNames, data, quadHalf = TRUE,
    # coefficients and their covariance matrix
    result$coef      <- coef( result$est )
    result$coefCov   <- vcov( result$est )
-   coefNames <- .quadFuncCoefNames( nExog )
+   coefNames <- .quadFuncCoefNames( nExog, nShifter )
    names( result$coef )      <- coefNames
    rownames( result$coefCov ) <- coefNames
    colnames( result$coefCov ) <- coefNames

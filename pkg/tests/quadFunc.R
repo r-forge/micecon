@@ -26,6 +26,21 @@ margProducts <- quadFuncDeriv(
    germanFarms, coef( estResult ), vcov( estResult ) )
 print( margProducts )
 
+## estimate a quadratic production function with a shifter
+estResultShifter <- quadFuncEst( yName = "qOutput",
+   xNames = c( "qLabor", "land", "qVarInput" ),
+   shifterNames = "time", data = germanFarms )
+coef( estResultShifter )
+print( estResultShifter )
+
+## estimate a quadratic production function with 2 shifters
+germanFarms$timeSq <- germanFarms$time^2
+estResultShifter2 <- quadFuncEst( yName = "qOutput",
+   xNames = c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "time", "timeSq" ), data = germanFarms )
+coef( estResultShifter2 )
+print( estResultShifter2 )
+
 ## estimate with further argument passed to lm()
 estResult2 <- quadFuncEst( yName = "qOutput",
    xNames = c( "qLabor", "land", "qVarInput", "time" ),
