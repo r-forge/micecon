@@ -23,8 +23,8 @@ quadFuncEst <- function( yName, xNames, data, quadHalf = TRUE, exVarScale = 1 ) 
       }
    }
    result$lm <- lm( as.formula( estFormula ), estData )
-   result$residuals <- result$lm$residuals
-   result$fitted    <- result$lm$fitted.values
+   result$residuals <- residuals( result$lm )
+   result$fitted    <- fitted( result$lm )
 
    # coefficients and their covariance matrix
    result$coef      <- coef( result$lm )
