@@ -8,7 +8,8 @@
 }
 
 \usage{
-   translogEst( yName, xNames, data, quadHalf = TRUE, dataLogged = FALSE )
+   translogEst( yName, xNames, data, shifterNames = NULL,
+      quadHalf = TRUE, dataLogged = FALSE )
 
    \method{print}{translogEst}( x, ... )
 }
@@ -19,6 +20,9 @@
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
    \item{data}{dataframe containing the data.}
+   \item{shifterNames}{a vector of strings containing the names
+      of the independent variables that should be included
+      as shifters only (not in quadratic or interaction terms).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
    \item{dataLogged}{logical. Are the values in \code{data} already logged?}
    \item{x}{An object of class \code{translogEst}.}

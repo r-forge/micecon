@@ -122,3 +122,23 @@ test <- translogCheckCurvature( c( "qLabor", "land", "qVarInput", "time" ),
 summary( test )
 class( test ) <- NULL
 print( test )
+
+## testing translogEst with one shifter
+germanFarms$tech <- exp( germanFarms$time )
+estResultShifter <- translogEst( "qOutput",
+   c( "qLabor", "land", "qVarInput" ),
+   shifterNames = "tech", data = germanFarms )
+print( estResultShifter )
+summary( estResultShifter )
+residuals( estResultShifter )
+print.default( estResultShifter )
+
+## testing translogEst with one shifter
+germanFarms$techSq <- exp( germanFarms$time^2 )
+estResultShifter2 <- translogEst( "qOutput",
+   c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "tech", "techSq" ), data = germanFarms )
+print( estResultShifter2 )
+summary( estResultShifter2 )
+residuals( estResultShifter2 )
+print.default( estResultShifter2 )
