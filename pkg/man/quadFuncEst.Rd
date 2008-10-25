@@ -7,7 +7,8 @@
 }
 
 \usage{
-   quadFuncEst( yName, xNames, data, quadHalf = TRUE, exVarScale = 1 )
+   quadFuncEst( yName, xNames, data, quadHalf = TRUE, exVarScale = 1,
+      ... )
 }
 
 \arguments{
@@ -20,6 +21,7 @@
    \item{exVarScale}{a scalar or vector with length equal to nrow( data ).
       All exogenous variables (including the quadratic terms) are
       divided by this value/these values.}
+   \item{...}{further arguments passed to \code{\link{lm}}.}
 }
 
 \value{
