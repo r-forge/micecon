@@ -7,8 +7,8 @@
 }
 
 \usage{
-   quadFuncEst( yName, xNames, data, quadHalf = TRUE, exVarScale = 1,
-      ... )
+   quadFuncEst( yName, xNames, data, shifterNames = NULL,
+      quadHalf = TRUE, exVarScale = 1, ... )
 }
 
 \arguments{
@@ -17,6 +17,9 @@
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
    \item{data}{dataframe containing the data.}
+   \item{shifterNames}{a vector of strings containing the names
+      of the independent variables that should be included
+      as shifters only (not in quadratic or interaction terms).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
    \item{exVarScale}{a scalar or vector with length equal to nrow( data ).
       All exogenous variables (including the quadratic terms) are
@@ -27,6 +30,8 @@
 \value{
    a list of class \code{quadFuncEst} containing following objects:
    \item{est}{a list returned by \code{lm}.}
+   \item{nExog}{length of argument \code{xNames}.}
+   \item{nShifter}{length of argument \code{shifterNames}.}
    \item{residuals}{residuals.}
    \item{fitted}{fitted values.}
    \item{coef}{vector of all coefficients.}
