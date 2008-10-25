@@ -27,7 +27,7 @@
 
 \value{
    a list of class \code{translogEst} containing following objects:
-   \item{lm}{a list returned by \code{lm}.}
+   \item{est}{a list returned by \code{lm}.}
    \item{residuals}{residuals.}
    \item{fitted}{fitted values.}
    \item{coef}{vector of all coefficients.}

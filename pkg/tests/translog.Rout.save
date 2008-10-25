@@ -1,5 +1,5 @@
 
-R version 2.7.2 (2008-08-25)
+R version 2.6.2 (2008-02-08)
 Copyright (C) 2008 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -30,14 +30,6 @@ Attaching package: 'Matrix'
 Loading required package: car
 Loading required package: lmtest
 Loading required package: zoo
-
-Attaching package: 'zoo'
-
-
-	The following object(s) are masked from package:base :
-
-	 as.Date.numeric 
-
 > 
 > ## preparing data
 > data( germanFarms )
@@ -95,7 +87,7 @@ R-squared: 0.9982506     Adjusted R-squared: 0.9933521
  0.0045336669 -0.0139967789  0.0078810229 -0.0002631054 -0.0004748046 
 > 
 > print.default( estResult )
-$lm
+$est
 
 Call:
 lm(formula = as.formula(estFormula), data = estData)
