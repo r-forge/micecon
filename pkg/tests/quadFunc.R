@@ -42,6 +42,13 @@ estResultShifter2 <- quadFuncEst( yName = "qOutput",
 coef( estResultShifter2 )
 print( estResultShifter2 )
 
+## estimate a linear functions with quadFuncEst
+estResultLinear <- quadFuncEst( yName = "qOutput", xNames = NULL,
+   shifterNames = c( "time", "qLabor", "land", "qVarInput" ),
+   data = germanFarms )
+coef( estResultLinear )
+print( estResultLinear )
+
 ## estimate with further argument passed to lm()
 estResult2 <- quadFuncEst( yName = "qOutput",
    xNames = c( "qLabor", "land", "qVarInput", "time" ),

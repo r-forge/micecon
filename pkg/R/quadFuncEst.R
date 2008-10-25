@@ -15,19 +15,21 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    }
 
    estFormula <- "y ~ 1"
-   for( i in 1:nExog ) {
-      xName <- paste( "x", as.character( i ), sep = "" )
-      estData[[ xName ]] <- data[[ xNames[ i ] ]] / exVarScale
-      estFormula <- paste( estFormula, "+", xName )
-   }
-   for( i in 1:nExog ) {
-      for( j in i:nExog ) {
-         xName <- paste( "x", as.character( i ), ".", as.character( j ),
-            sep = "" )
-         estData[[ xName ]] <- ifelse( quadHalf, 0.5, 1 ) *
-            ifelse( i == j, 1, 2 ) *
-            data[[ xNames[ i ] ]] * data[[ xNames[ j ] ]] / exVarScale
+   if( nExog > 0 ) {
+      for( i in 1:nExog ) {
+         xName <- paste( "x", as.character( i ), sep = "" )
+         estData[[ xName ]] <- data[[ xNames[ i ] ]] / exVarScale
          estFormula <- paste( estFormula, "+", xName )
+      }
+      for( i in 1:nExog ) {
+         for( j in i:nExog ) {
+            xName <- paste( "x", as.character( i ), ".", as.character( j ),
+               sep = "" )
+            estData[[ xName ]] <- ifelse( quadHalf, 0.5, 1 ) *
+               ifelse( i == j, 1, 2 ) *
+               data[[ xNames[ i ] ]] * data[[ xNames[ j ] ]] / exVarScale
+            estFormula <- paste( estFormula, "+", xName )
+         }
       }
    }
    if( nShifter > 0 ) {
