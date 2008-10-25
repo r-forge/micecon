@@ -22,21 +22,21 @@ quadFuncEst <- function( yName, xNames, data, quadHalf = TRUE, exVarScale = 1 ) 
          estFormula <- paste( estFormula, "+", xName )
       }
    }
-   result$lm <- lm( as.formula( estFormula ), estData )
-   result$residuals <- residuals( result$lm )
-   result$fitted    <- fitted( result$lm )
+   result$est <- lm( as.formula( estFormula ), estData )
+   result$residuals <- residuals( result$est )
+   result$fitted    <- fitted( result$est )
 
    # coefficients and their covariance matrix
-   result$coef      <- coef( result$lm )
-   result$coefCov   <- vcov( result$lm )
+   result$coef      <- coef( result$est )
+   result$coefCov   <- vcov( result$est )
    coefNames <- .quadFuncCoefNames( nExog )
    names( result$coef )      <- coefNames
    rownames( result$coefCov ) <- coefNames
    colnames( result$coefCov ) <- coefNames
 
-   result$r2    <- summary( result$lm )$r.squared
-   result$r2bar <- summary( result$lm )$adj.r.squared
-   result$nObs  <- length( result$lm$residuals )
+   result$r2    <- summary( result$est )$r.squared
+   result$r2bar <- summary( result$est )$adj.r.squared
+   result$nObs  <- length( result$est$residuals )
    result$model.matrix <- cbind( rep( 1, result$nObs ),
       as.matrix( estData[ , 2:( ncol( estData ) ) ] ) )
    class( result ) <- "quadFuncEst"
