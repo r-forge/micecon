@@ -1,4 +1,5 @@
-quadFuncEst <- function( yName, xNames, data, quadHalf = TRUE, exVarScale = 1 ) {
+quadFuncEst <- function( yName, xNames, data, quadHalf = TRUE,
+   exVarScale = 1, ... ) {
 
    checkNames( c( yName, xNames ), names( data ) )
 
@@ -22,7 +23,7 @@ quadFuncEst <- function( yName, xNames, data, quadHalf = TRUE, exVarScale = 1 ) 
          estFormula <- paste( estFormula, "+", xName )
       }
    }
-   result$est <- lm( as.formula( estFormula ), estData )
+   result$est <- lm( as.formula( estFormula ), estData, ... )
    result$residuals <- residuals( result$est )
    result$fitted    <- fitted( result$est )
 

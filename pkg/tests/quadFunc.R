@@ -9,19 +9,26 @@ germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 # a time trend to account for technical progress:
 germanFarms$time <- c(1:20)
 
-# estimate a quadratic production function
+## estimate a quadratic production function
 estResult <- quadFuncEst( "qOutput",
    c( "qLabor", "land", "qVarInput", "time" ), germanFarms )
 coef( estResult )
 print( estResult )
 
-# compute fitted values
+## compute fitted values
 fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ) )
 all.equal( fitted, estResult$fitted )
 
-# compute the marginal products of the inputs
+## compute the marginal products of the inputs
 margProducts <- quadFuncDeriv(
    c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ), vcov( estResult ) )
 print( margProducts )
+
+## estimate with further argument passed to lm()
+estResult2 <- quadFuncEst( yName = "qOutput",
+   xNames = c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, x = TRUE, y = TRUE )
+coef( estResult2 )
+print( estResult2 )
