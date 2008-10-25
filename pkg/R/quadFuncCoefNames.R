@@ -1,8 +1,10 @@
 .quadFuncCoefNames <- function( nExog, nShifter = 0 ) {
    result <- paste( "alpha", c( 0:nExog ), sep = "_" )
-   for( i in 1:nExog ) {
-      for( j in i:nExog ) {
-         result <- c( result, paste( "beta", i, j, sep = "_" ) )
+   if( nExog > 0 ) {
+      for( i in 1:nExog ) {
+         for( j in i:nExog ) {
+            result <- c( result, paste( "beta", i, j, sep = "_" ) )
+         }
       }
    }
    if( nShifter > 0 ){
