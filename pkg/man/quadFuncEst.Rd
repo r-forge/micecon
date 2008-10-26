@@ -26,7 +26,8 @@
    \item{exVarScale}{a scalar or vector with length equal to nrow( data ).
       All exogenous variables (including the quadratic terms) are
       divided by this value/these values.}
-   \item{...}{further arguments passed to \code{\link{lm}}.}
+   \item{...}{further arguments are passed to \code{\link[stats]{lm}}
+      or \code{\link[plm]{plm}}.}
 }
 
 \value{
