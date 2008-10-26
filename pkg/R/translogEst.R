@@ -6,7 +6,11 @@ translogEst <- function( yName, xNames, data, shifterNames = NULL,
    if( dataLogged ) {
       logData   <- data
    } else {
-      logData <- data.frame( no = c( 1:nrow( data ) ) )
+      if( "plm.dim" %in% class( data ) ) {
+         logData <- data[ , 1:2 ]
+      } else {
+         logData <- data.frame( no = c( 1:nrow( data ) ) )
+      }
       logData[[ yName ]] <- log( data[[ yName ]] )
       for( i in seq( along = xNames ) ) {
          logData[[ xNames[ i ] ]] <- log( data[[ xNames[ i ] ]] )
