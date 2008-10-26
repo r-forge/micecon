@@ -1,4 +1,5 @@
 library( micEcon )
+library( plm )
 
 ## preparing data
 data( germanFarms )
@@ -133,7 +134,7 @@ summary( estResultShifter )
 residuals( estResultShifter )
 print.default( estResultShifter )
 
-## testing translogEst with one shifter
+## testing translogEst with two shifters
 germanFarms$techSq <- exp( germanFarms$time^2 )
 estResultShifter2 <- translogEst( "qOutput",
    c( "qLabor", "land", "qVarInput" ),
@@ -142,3 +143,10 @@ print( estResultShifter2 )
 summary( estResultShifter2 )
 residuals( estResultShifter2 )
 print.default( estResultShifter2 )
+
+## panel data
+data( "GrunfeldGreene", package = "systemfit" )
+ggData <- plm.data( GrunfeldGreene, c( "firm", "year" ) )
+ggResult <- translogEst( "invest", c( "value", "capital" ), ggData )
+print( ggResult )
+print.default( ggResult )
