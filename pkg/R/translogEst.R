@@ -1,5 +1,5 @@
 translogEst <- function( yName, xNames, data, shifterNames = NULL,
-   quadHalf = TRUE, dataLogged = FALSE ) {
+   quadHalf = TRUE, dataLogged = FALSE, ... ) {
 
    checkNames( c( yName, xNames, shifterNames ), names( data ) )
 
@@ -21,8 +21,8 @@ translogEst <- function( yName, xNames, data, shifterNames = NULL,
       }
    }
 
-   result <- quadFuncEst( yName, xNames, logData,
-      shifterNames = shifterNames, quadHalf = quadHalf )
+   result <- quadFuncEst( yName = yName, xNames = xNames, data = logData,
+      shifterNames = shifterNames, quadHalf = quadHalf, ... )
 
    result$r2nonLog <- rSquared( exp( logData[[ yName ]] ),
       exp( logData[[ yName ]] ) - exp( result$fitted ) )

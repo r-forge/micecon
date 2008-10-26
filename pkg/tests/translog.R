@@ -144,9 +144,23 @@ summary( estResultShifter2 )
 residuals( estResultShifter2 )
 print.default( estResultShifter2 )
 
+## estimate with further argument passed to lm()
+estResult2 <- translogEst( yName = "qOutput",
+   xNames = c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, x = TRUE, y = TRUE )
+print( estResult2 )
+summary( estResult2 )
+print.default( estResult2 )
+
 ## panel data
 data( "GrunfeldGreene", package = "systemfit" )
 ggData <- plm.data( GrunfeldGreene, c( "firm", "year" ) )
+# fixed effects
 ggResult <- translogEst( "invest", c( "value", "capital" ), ggData )
 print( ggResult )
 print.default( ggResult )
+# random effects
+ggResultRan <- translogEst( "invest", c( "value", "capital" ), ggData,
+   model = "random", random.method = "amemiya" )
+print( ggResultRan )
+print.default( ggResultRan )
