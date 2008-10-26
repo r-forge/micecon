@@ -47,7 +47,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       result$est <- lm( as.formula( estFormula ), estData, ... )
    }
    result$residuals <- residuals( result$est )
-   result$fitted    <- fitted( result$est )
+   result$fitted    <- estData$y - result$residuals
 
    # coefficients and their covariance matrix
    result$coef      <- coef( result$est )
