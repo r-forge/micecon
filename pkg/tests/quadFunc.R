@@ -59,6 +59,12 @@ print( estResult2 )
 ## panel data
 data( "GrunfeldGreene", package = "systemfit" )
 ggData <- plm.data( GrunfeldGreene, c( "firm", "year" ) )
+# fixed effects
 ggResult <- quadFuncEst( "invest", c( "value", "capital" ), ggData )
 coef( ggResult )
 print( ggResult )
+# random effects
+ggResultRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
+   model = "random", random.method = "amemiya" )
+coef( ggResultRan )
+print( ggResultRan )
