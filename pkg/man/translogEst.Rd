@@ -32,6 +32,8 @@
 \value{
    a list of class \code{translogEst} containing following objects:
    \item{est}{a list returned by \code{lm}.}
+   \item{nExog}{length of argument \code{xNames}.}
+   \item{nShifter}{length of argument \code{shifterNames}.}
    \item{residuals}{residuals.}
    \item{fitted}{fitted values.}
    \item{coef}{vector of all coefficients.}
