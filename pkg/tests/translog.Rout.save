@@ -1,5 +1,5 @@
 
-R version 2.6.2 (2008-02-08)
+R version 2.8.0 (2008-10-20)
 Copyright (C) 2008 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -27,9 +27,26 @@ Attaching package: 'Matrix'
 
 	 xtabs 
 
+
+	The following object(s) are masked from package:base :
+
+	 colMeans,
+	 colSums,
+	 rcond,
+	 rowMeans,
+	 rowSums 
+
 Loading required package: car
 Loading required package: lmtest
 Loading required package: zoo
+
+Attaching package: 'zoo'
+
+
+	The following object(s) are masked from package:base :
+
+	 as.Date.numeric 
+
 > library( plm )
 Loading required package: kinship
 Loading required package: survival
@@ -79,7 +96,7 @@ beta_3_3   -3.90964    9.32307 -0.4194  0.69237
 beta_3_4    2.79333    0.74993  3.7248  0.01364 *
 beta_4_4   -0.24565    0.15974 -1.5378  0.18471  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared: 0.9982506     Adjusted R-squared: 0.9933521 
 > 
 > residuals( estResult )
@@ -1425,7 +1442,7 @@ beta_3_3   4.4920670   7.1604770  0.6273  0.54792
 delta_1    0.0370709   0.0160729  2.3064  0.04997 *
 delta_2   -0.0024315   0.0011743 -2.0706  0.07216 .
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared: 0.9940234     Adjusted R-squared: 0.9858055 
 > residuals( estResultShifter2 )
            1            2            3            4            5            6 
@@ -1613,7 +1630,7 @@ beta_3_3   -3.90964    9.32307 -0.4194  0.69237
 beta_3_4    2.79333    0.74993  3.7248  0.01364 *
 beta_4_4   -0.24565    0.15974 -1.5378  0.18471  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared: 0.9982506     Adjusted R-squared: 0.9933521 
 > print.default( estResult2 )
 $nExog

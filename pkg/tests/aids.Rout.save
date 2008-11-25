@@ -1,5 +1,5 @@
 
-R version 2.6.2 (2008-02-08)
+R version 2.8.0 (2008-10-20)
 Copyright (C) 2008 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -27,9 +27,26 @@ Attaching package: 'Matrix'
 
 	 xtabs 
 
+
+	The following object(s) are masked from package:base :
+
+	 colMeans,
+	 colSums,
+	 rcond,
+	 rowMeans,
+	 rowSums 
+
 Loading required package: car
 Loading required package: lmtest
 Loading required package: zoo
+
+Attaching package: 'zoo'
+
+
+	The following object(s) are masked from package:base :
+
+	 as.Date.numeric 
+
 > data( Blanciforti86 )
 > options( digits = 3 )
 > 
@@ -46,6 +63,11 @@ Loading required package: zoo
 > # AIDS: translog
 > estResultTl <- aidsEst( pNames, wNames, "xFood",
 +    data = Blanciforti86[ set, ], method = "IL" )
+Warning message:
+Ambiguous method selection for "crossprod", target "dgCMatrix#dgTMatrix" (the first of the signatures shown will be used)
+    Matrix#ANY
+    ANY#Matrix
+ 
 > print( estResultTl )
 
 Demand analysis with the Almost Ideal Demand System (AIDS)
