@@ -23,7 +23,7 @@ aidsUtility( priceNames, totExpName, coef, data )
 
 \value{
    \code{aidsUtility} returns a numeric vector
-   that contains the utility levels.}
+   that contains the utility levels.
 }
 
 \references{
