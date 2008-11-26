@@ -24,7 +24,7 @@ aidsUtility <- function( priceNames, totExpName, coef, data ) {
    # number of goods
    nGoods <- length( priceNames )
 
-   numerator <- data[[ totExpName ]] - coef$alpha0
+   numerator <- log( data[[ totExpName ]] ) - coef$alpha0
    for( i in 1:nGoods ) {
       numerator <- numerator -
          coef$alpha[ i ] * log( data[[ priceNames[ i ] ]] )
