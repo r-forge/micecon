@@ -1,15 +1,21 @@
 \name{aidsUtility}
 \alias{aidsUtility}
+\alias{aidsUtilityDeriv}
 \title{Indirect Utility Function of the Almost Ideal Demand System}
 
 \description{
-   This function calculates the utility level
-   given prices and total expenditure using the indirect utility function
-   of the Almost Ideal Demand System.
+   These functions calculate the utility level
+   given prices and total expenditure
+   using the indirect utility function
+   of the Almost Ideal Demand System
+   and the partial derivatives of this indirect utility function
+   with repect to prices and total expenditure.
 }
 
 \usage{
 aidsUtility( priceNames, totExpName, coef, data )
+
+aidsUtilityDeriv( priceNames, totExpName, coef, data )
 }
 
 \arguments{
@@ -23,7 +29,11 @@ aidsUtility( priceNames, totExpName, coef, data )
 
 \value{
    \code{aidsUtility} returns a numeric vector
-   that contains the utility levels.
+   that contains the utility levels;
+   \code{aidsUtilityDeriv} returns a data.frame
+   that contains the partial derivatives
+   of the indirect utility function
+   with repect to prices and total expenditure.
 }
 
 \references{
@@ -51,6 +61,9 @@ aidsUtility( priceNames, totExpName, coef, data )
    # calculate the utility levels of each year
    utility <- aidsUtility( priceNames, "xFood", coef = coef( estResult ),
       data = Blanciforti86 )
+
+   utilityDeriv <- aidsUtilityDeriv( priceNames, "xFood",
+      coef = coef( estResult ), data = Blanciforti86 )
 }
 
 \keyword{ models }
