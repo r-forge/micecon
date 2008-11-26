@@ -682,6 +682,28 @@ aidsUtility( pNames, "xFood", coef = coef( estResultAIDSNa ),
    data = Blanciforti86[ setWo1, ] )
 
 
+###############  aidsUtilityDeriv  #################
+coefTl <- coef( estResultTl )
+aidsUtilityDeriv( pNames, "xFood", coef = coefTl,
+   data = Blanciforti86[ set, ] )
+
+coefTl$beta0 <- 2
+aidsUtilityDeriv( pNames, "xFood", coef = coefTl,
+   data = Blanciforti86[ set, ] )
+
+aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDS ),
+   data = Blanciforti86[ setWo1, ] )
+
+aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDShom ),
+   data = Blanciforti86[ setWo1, ] )
+
+aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDSunr ),
+   data = Blanciforti86[ setWo1, ] )
+
+aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDSNa ),
+   data = Blanciforti86[ setWo1, ] )
+
+
 ####### monotonicity ###################
 # AIDS
 monoAids <- aidsMono( pNames, "xFood", coef = coef( estResultAIDS ),
