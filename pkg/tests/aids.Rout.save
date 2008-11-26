@@ -6658,6 +6658,42 @@ $quant
 
 > 
 > 
+> ###############  aidsUtility  #################
+> coefTl <- coef( estResultTl )
+> aidsUtility( pNames, "xFood", coef = coefTl, data = Blanciforti86[ set, ] )
+ [1]  302  313  302  300  332  341  352  348  358  371  372  369  377  389  396
+[16]  401  413  426  430  452  474  496  516  552  570  582  631  768  839  906
+[31]  969 1033
+> coefTl$beta0 <- 2
+> aidsUtility( pNames, "xFood", coef = coefTl, data = Blanciforti86[ set, ] )
+ [1] 151 156 151 150 166 171 176 174 179 186 186 184 188 195 198 200 206 213 215
+[20] 226 237 248 258 276 285 291 315 384 419 453 485 516
+> 
+> aidsUtility( pNames, "xFood", coef = coef( estResultAIDS ),
++    data = Blanciforti86[ setWo1, ] )
+ [1]  314  302  300  333  342  353  349  359  372  373  369  377  389  396  400
+[16]  412  426  430  451  474  495  516  552  571  582  630  767  838  907  972
+[31] 1034
+> 
+> aidsUtility( pNames, "xFood", coef = coef( estResultAIDShom ),
++    data = Blanciforti86[ setWo1, ] )
+ [1]  314  302  300  333  342  353  349  359  372  373  369  377  389  396  400
+[16]  412  426  429  451  474  496  516  553  571  582  629  766  838  908  974
+[31] 1036
+> 
+> aidsUtility( pNames, "xFood", coef = coef( estResultAIDSunr ),
++    data = Blanciforti86[ setWo1, ] )
+ [1]  316  306  305  337  347  351  344  351  360  365  371  377  387  391  399
+[16]  409  419  428  452  468  490  512  545  559  582  653  767  831  879  916
+[31] 1004
+> 
+> aidsUtility( pNames, "xFood", coef = coef( estResultAIDSNa ),
++    data = Blanciforti86[ setWo1, ] )
+ [1]  313  302  300  332  341  352  348  358  371  372  369  377  389  396  401
+[16]  413  426  430  452  474  496  516  552  570  582  631  768  839  906  969
+[31] 1033
+> 
+> 
 > ####### monotonicity ###################
 > # AIDS
 > monoAids <- aidsMono( pNames, "xFood", coef = coef( estResultAIDS ),

@@ -663,6 +663,25 @@ predict( estResultLaT, newdata = B86new, observedShares = TRUE )
 predict( estResultLaT, newdata = B86new )
 
 
+###############  aidsUtility  #################
+coefTl <- coef( estResultTl )
+aidsUtility( pNames, "xFood", coef = coefTl, data = Blanciforti86[ set, ] )
+coefTl$beta0 <- 2
+aidsUtility( pNames, "xFood", coef = coefTl, data = Blanciforti86[ set, ] )
+
+aidsUtility( pNames, "xFood", coef = coef( estResultAIDS ),
+   data = Blanciforti86[ setWo1, ] )
+
+aidsUtility( pNames, "xFood", coef = coef( estResultAIDShom ),
+   data = Blanciforti86[ setWo1, ] )
+
+aidsUtility( pNames, "xFood", coef = coef( estResultAIDSunr ),
+   data = Blanciforti86[ setWo1, ] )
+
+aidsUtility( pNames, "xFood", coef = coef( estResultAIDSNa ),
+   data = Blanciforti86[ setWo1, ] )
+
+
 ####### monotonicity ###################
 # AIDS
 monoAids <- aidsMono( pNames, "xFood", coef = coef( estResultAIDS ),
