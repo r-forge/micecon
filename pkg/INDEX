@@ -8,6 +8,8 @@ aidsEst                 Estimating the Almost Ideal Demand System
                         (AIDS)
 aidsMono                Monotonicity of the AIDS
 aidsPx                  Price Index for the AIDS
+aidsUtility             Indirect Utility Function of the Almost Ideal
+                        Demand System
 Blanciforti86           U.S. consumption data
 Bleymueller79E25.1      Artificial Prices and Quantities
 checkConsist            Testing Theoretical Consistency
