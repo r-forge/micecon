@@ -32,7 +32,7 @@ aidsUtilityDeriv <- function( priceNames, totExpName, coef, data,
    for( i in 1:nGoods ) {
       termA <- termA + coef$alpha[ i ] * log( data[[ priceNames[ i ] ]] )
       for( j in 1:nGoods ) {
-         termA <- termA - 0.5 * coef$gamma[ i, j ] *
+         termA <- termA + 0.5 * coef$gamma[ i, j ] *
             log( data[[ priceNames[ i ] ]] ) *
             log( data[[ priceNames[ j ] ]] )
       }
