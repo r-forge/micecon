@@ -686,22 +686,34 @@ aidsUtility( pNames, "xFood", coef = coef( estResultAIDSNa ),
 coefTl <- coef( estResultTl )
 aidsUtilityDeriv( pNames, "xFood", coef = coefTl,
    data = Blanciforti86[ set, ] )
+aidsUtilityDeriv( pNames, "xFood", coef = coefTl,
+   data = Blanciforti86[ set, ], rel = TRUE )
 
 coefTl$beta0 <- 2
 aidsUtilityDeriv( pNames, "xFood", coef = coefTl,
    data = Blanciforti86[ set, ] )
+aidsUtilityDeriv( pNames, "xFood", coef = coefTl,
+   data = Blanciforti86[ set, ], rel = TRUE )
 
 aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDS ),
    data = Blanciforti86[ setWo1, ] )
+aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDS ),
+   data = Blanciforti86[ setWo1, ], rel = TRUE )
 
 aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDShom ),
    data = Blanciforti86[ setWo1, ] )
+aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDShom ),
+   data = Blanciforti86[ setWo1, ], rel = TRUE )
 
 aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDSunr ),
    data = Blanciforti86[ setWo1, ] )
+aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDSunr ),
+   data = Blanciforti86[ setWo1, ], rel = TRUE )
 
 aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDSNa ),
    data = Blanciforti86[ setWo1, ] )
+aidsUtilityDeriv( pNames, "xFood", coef = coef( estResultAIDSNa ),
+   data = Blanciforti86[ setWo1, ], rel = TRUE )
 
 
 ####### monotonicity ###################
