@@ -64,7 +64,7 @@ aidsUtilityDeriv <- function( priceNames, totExpName, coef, data,
       }
    }
 
-   result[[ totExpName ]] <- 1 / ( data[[ totExpName ]] - termB )
+   result[[ totExpName ]] <- 1 / ( data[[ totExpName ]] * termB )
    if( rel ) {
       result[[ totExpName ]] <- result[[ totExpName ]] *
          data[[ totExpName ]] / utility
