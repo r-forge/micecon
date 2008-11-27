@@ -15,7 +15,7 @@
 \usage{
 aidsUtility( priceNames, totExpName, coef, data )
 
-aidsUtilityDeriv( priceNames, totExpName, coef, data )
+aidsUtilityDeriv( priceNames, totExpName, coef, data, rel = FALSE )
 }
 
 \arguments{
@@ -25,6 +25,10 @@ aidsUtilityDeriv( priceNames, totExpName, coef, data )
       alpha0 (scalar), alpha (vector), beta (vector), gamma (matrix),
       and possibly beta0 (scalar, if not given, it is assumed to be 1).}
    \item{data}{a data frame containing the data.}
+   \item{rel}{logical. If \code{TRUE} the returned partial derivatives are
+      given in relative terms (like elasticities),
+      i.e.\ they indicate the percentage change in the utility level
+      when a price or total expenditure is increased by 1\%.}
 }
 
 \value{
@@ -64,6 +68,9 @@ aidsUtilityDeriv( priceNames, totExpName, coef, data )
 
    utilityDeriv <- aidsUtilityDeriv( priceNames, "xFood",
       coef = coef( estResult ), data = Blanciforti86 )
+
+   utilityEla <- aidsUtilityDeriv( priceNames, "xFood",
+      coef = coef( estResult ), data = Blanciforti86, rel = TRUE )
 }
 
 \keyword{ models }
