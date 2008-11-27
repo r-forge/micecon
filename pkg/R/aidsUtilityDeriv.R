@@ -1,4 +1,5 @@
-aidsUtilityDeriv <- function( priceNames, totExpName, coef, data ) {
+aidsUtilityDeriv <- function( priceNames, totExpName, coef, data,
+      rel = FALSE ) {
 
    # check argument 'coef' (coefficients)
    coefCheckResult <- .aidsCheckCoef( coef, variables = list(
@@ -24,7 +25,7 @@ aidsUtilityDeriv <- function( priceNames, totExpName, coef, data ) {
    # number of goods
    nGoods <- length( priceNames )
 
-   #
+   # data.frame that contains the partial derivatives
    result <- data.frame( temp = rep( NA, nrow( data ) ) )
 
    termA <- rep( coef$alpha0, nrow( result ) )
@@ -42,6 +43,11 @@ aidsUtilityDeriv <- function( priceNames, totExpName, coef, data ) {
       termB <- termB * data[[ priceNames[ i ] ]]^coef$beta[ i ]
    }
 
+   if( rel ) {
+      utility <- aidsUtility( priceNames = priceNames,
+         totExpName = totExpName, coef = coef, data = data )
+   }
+
    for( i in 1:nGoods ){
       numerator <- - coef$alpha[ i ] -
          coef$beta[ i ] * ( log( data[[ totExpName ]] ) - termA )
@@ -52,9 +58,17 @@ aidsUtilityDeriv <- function( priceNames, totExpName, coef, data ) {
       }
       denominator <- data[[ priceNames[ i ] ]] * termB
       result[[ priceNames[ i ] ]] <- numerator / denominator
+      if( rel ) {
+         result[[ priceNames[ i ] ]] <- result[[ priceNames[ i ] ]] *
+            data[[ priceNames[ i ] ]] / utility
+      }
    }
 
    result[[ totExpName ]] <- 1 / ( data[[ totExpName ]] - termB )
+   if( rel ) {
+      result[[ totExpName ]] <- result[[ totExpName ]] *
+         data[[ totExpName ]] / utility
+   }
 
    result$temp <- NULL
 
