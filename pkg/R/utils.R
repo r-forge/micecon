@@ -2,8 +2,10 @@
 insertCol <- function( m, c, v = NA ) {
    nr <- nrow( m )
    nc <- ncol( m )
-   if( c > nc ) {
-      m2 <- cbind( m[ , 1:nc ], matrix( v, nrow = nr ) )
+   if( c == 1 ) {
+      m2 <- cbind( matrix( v, nrow = nr ), m )
+   } else if( c == nc + 1 ) {
+      m2 <- cbind( m, matrix( v, nrow = nr ) )
    } else {
       m2 <- cbind( m[ , 1:( c - 1 ) ], matrix( v, nrow = nr ), m[ , c:nc ] )
    }
@@ -14,8 +16,10 @@ insertCol <- function( m, c, v = NA ) {
 insertRow <- function( m, r, v = NA ) {
    nr <- nrow( m )
    nc <- ncol( m )
-   if( r > nr ) {
-      m2 <- rbind( m[ 1:nr, ], matrix( v,ncol = nc ) )
+   if( r == 1 ) {
+      m2 <- rbind( matrix( v,ncol = nc ), m )
+   } else if( r == nr + 1 ) {
+      m2 <- rbind( m, matrix( v,ncol = nc ) )
    } else {
       m2 <- rbind( m[ 1:( r - 1 ), ], matrix( v, ncol = nc ), m[ r:nr, ] )
    }
