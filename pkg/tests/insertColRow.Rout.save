@@ -55,11 +55,10 @@ Attaching package: 'zoo'
 > # insert rows
 > print( insertRow( m, 1, 10:12 ) )
      [,1] [,2] [,3]
-[1,]    1    4    7
-[2,]   10   11   12
-[3,]    1    4    7
-[4,]    2    5    8
-[5,]    3    6    9
+[1,]   10   11   12
+[2,]    1    4    7
+[3,]    2    5    8
+[4,]    3    6    9
 > print( insertRow( m, 2, 10:12 ) )
      [,1] [,2] [,3]
 [1,]    1    4    7
@@ -81,10 +80,10 @@ Attaching package: 'zoo'
 > 
 > # insert columns
 > print( insertCol( m, 1, 10:12 ) )
-     [,1] [,2] [,3] [,4] [,5]
-[1,]    1   10    1    4    7
-[2,]    2   11    2    5    8
-[3,]    3   12    3    6    9
+     [,1] [,2] [,3] [,4]
+[1,]   10    1    4    7
+[2,]   11    2    5    8
+[3,]   12    3    6    9
 > print( insertCol( m, 2, 10:12 ) )
      [,1] [,2] [,3] [,4]
 [1,]    1   10    4    7
@@ -108,7 +107,6 @@ Attaching package: 'zoo'
 > # insert rows
 > print( insertRow( m, 1, 10:12 ) )
    C1 C2 C3
-    1  4  7
    10 11 12
 R1  1  4  7
 R2  2  5  8
@@ -134,10 +132,10 @@ R3  3  6  9
 > 
 > # insert columns
 > print( insertCol( m, 1, 10:12 ) )
-        C1 C2 C3
-R1 1 10  1  4  7
-R2 2 11  2  5  8
-R3 3 12  3  6  9
+      C1 C2 C3
+R1 10  1  4  7
+R2 11  2  5  8
+R3 12  3  6  9
 > print( insertCol( m, 2, 10:12 ) )
         C2 C3
 R1 1 10  4  7
