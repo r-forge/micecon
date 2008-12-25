@@ -24,12 +24,16 @@ insertCol <- function( m, c, v = NA ) {
 
    nr <- nrow( m )
    nc <- ncol( m )
+   cNames <- colnames( m )
    if( c == 1 ) {
       m2 <- cbind( matrix( v, nrow = nr ), m )
    } else if( c == nc + 1 ) {
       m2 <- cbind( m, matrix( v, nrow = nr ) )
    } else {
       m2 <- cbind( m[ , 1:( c - 1 ) ], matrix( v, nrow = nr ), m[ , c:nc ] )
+      if( !is.null( cNames ) ) {
+         colnames( m2 ) <- c( cNames[ 1:( c - 1 ) ], "", cNames[ c:nc ] )
+      }
    }
    return( m2 )
 }
@@ -60,12 +64,16 @@ insertRow <- function( m, r, v = NA ) {
 
    nr <- nrow( m )
    nc <- ncol( m )
+   rNames <- rownames( m )
    if( r == 1 ) {
       m2 <- rbind( matrix( v,ncol = nc ), m )
    } else if( r == nr + 1 ) {
       m2 <- rbind( m, matrix( v,ncol = nc ) )
    } else {
       m2 <- rbind( m[ 1:( r - 1 ), ], matrix( v, ncol = nc ), m[ r:nr, ] )
+      if( !is.null( rNames ) ) {
+         rownames( m2 ) <- c( rNames[ 1:( r - 1 ) ], "", rNames[ r:nr ] )
+      }
    }
    return( m2 )
 }
