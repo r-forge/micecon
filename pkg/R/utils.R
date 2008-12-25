@@ -1,5 +1,27 @@
 ## ----- insert a column into a matrix --------------
 insertCol <- function( m, c, v = NA ) {
+
+   # checking the argument 'm'
+   if( class( m ) != "matrix" ) {
+      stop( "argument 'm' must be a matrix" )
+   }
+   # checking the argument 'c'
+   if( c == as.integer( c ) ) {
+      c <- as.integer( c )
+   } else {
+      stop( "argument 'c' must be an integer" )
+   }
+   if( length( c ) != 1 ) {
+      stop( "argument 'c' must be a scalar" )
+   }
+   if( c < 1 ) {
+      stop( "argument 'c' must be positive" )
+   }
+   if( c > ncol( m ) + 1 ) {
+      stop( "argument 'c' must not be larger than the number of columns",
+         " of matrix 'm' plus one" )
+   }
+
    nr <- nrow( m )
    nc <- ncol( m )
    if( c == 1 ) {
@@ -14,6 +36,28 @@ insertCol <- function( m, c, v = NA ) {
 
 ## ----- insert a row into a matrix --------------
 insertRow <- function( m, r, v = NA ) {
+
+   # checking the argument 'm'
+   if( class( m ) != "matrix" ) {
+      stop( "argument 'm' must be a matrix" )
+   }
+   # checking the argument 'r'
+   if( r == as.integer( r ) ) {
+      r <- as.integer( r )
+   } else {
+      stop( "argument 'r' must be an integer" )
+   }
+   if( length( r ) != 1 ) {
+      stop( "argument 'r' must be a scalar" )
+   }
+   if( r < 1 ) {
+      stop( "argument 'r' must be positive" )
+   }
+   if( r > nrow( m ) + 1 ) {
+      stop( "argument 'r' must not be larger than the number of rows",
+         " of matrix 'm' plus one" )
+   }
+
    nr <- nrow( m )
    nc <- ncol( m )
    if( r == 1 ) {
