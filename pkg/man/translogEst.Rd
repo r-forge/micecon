@@ -9,9 +9,9 @@
 
 \usage{
    translogEst( yName, xNames, data, shifterNames = NULL,
-      quadHalf = TRUE, dataLogged = FALSE, ... )
+      quadHalf = TRUE, dataLogged = FALSE, \dots )
 
-   \method{print}{translogEst}( x, ... )
+   \method{print}{translogEst}( x, \dots )
 }
 
 \arguments{
@@ -28,7 +28,7 @@
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
    \item{dataLogged}{logical. Are the values in \code{data} already logged?}
    \item{x}{An object of class \code{translogEst}.}
-   \item{...}{further arguments of \code{translogEst}
+   \item{\dots}{further arguments of \code{translogEst}
       are passed to \code{\link[stats]{lm}}
       or \code{\link[plm]{plm}};
       further arguments of \code{print.translogEst}
