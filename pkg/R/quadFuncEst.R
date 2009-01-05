@@ -43,6 +43,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    result$nShifter <- nShifter
    if( "plm.dim" %in% class( data ) ) {
       result$est <- plm( as.formula( estFormula ), estData, ... )
+      result$est$call$formula <- as.formula( estFormula )
    } else {
       result$est <- lm( as.formula( estFormula ), estData, ... )
    }
