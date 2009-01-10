@@ -54,7 +54,7 @@
 \seealso{\code{\link{translogCalc}}, \code{\link{translogDeriv}}
    and \code{\link{quadFuncEst}}.}
 
-\author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
+\author{Arne Henningsen}
 
 \examples{
    data( germanFarms )

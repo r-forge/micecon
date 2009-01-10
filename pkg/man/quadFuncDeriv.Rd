@@ -30,7 +30,7 @@
 
 \seealso{\code{\link{quadFuncEst}} and \code{\link{quadFuncCalc}}}
 
-\author{Arne Henningsen \email{ahenningsen@agric-econ.uni-kiel.de}}
+\author{Arne Henningsen}
 
 \examples{
    data( germanFarms )
