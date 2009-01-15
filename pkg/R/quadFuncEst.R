@@ -34,8 +34,14 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    }
    if( nShifter > 0 ) {
       for( i in 1:nShifter ) {
-         xName <- paste( "s", as.character( i ), sep = "" )
-         estData[[ xName ]] <- data[[ shifterNames[ i ] ]] / exVarScale
+         if( is.factor( data[[ shifterNames[ i ] ]] ) | 
+               is.logical( data[[ shifterNames[ i ] ]] ) ) {
+            xName <- paste( "s", as.character( i ), ".", sep = "" )
+            estData[[ xName ]] <- data[[ shifterNames[ i ] ]]
+         } else {
+            xName <- paste( "s", as.character( i ), sep = "" )
+            estData[[ xName ]] <- data[[ shifterNames[ i ] ]] / exVarScale
+         }
          estFormula <- paste( estFormula, "+", xName )
       }
    }
@@ -61,6 +67,17 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       }
    }
    coefNames <- .quadFuncCoefNames( nExog, nShifter )
+   for( i in names( result$est$xlevels ) ) {
+      shiftNum <- as.integer( sub( "^s", "", sub( "\\.$", "", i ) ) )
+      coefNum <- which( coefNames == paste( "delta", shiftNum, sep = "_" ) )
+      coefNamesFac <- grep( paste( "^", i, sep = "" ), names( result$coef ), 
+         value = TRUE )
+      newCoefNames <- paste( "delta", shiftNum, 
+         sub( paste( "^", i, sep = "" ), "", coefNamesFac ),
+         sep = "_" )
+      coefNames <- c( coefNames[ 1:( coefNum - 1 ) ], newCoefNames,
+         coefNames[ -c( 1:coefNum ) ] )
+   }
    names( result$coef )      <- coefNames
    rownames( result$coefCov ) <- coefNames
    colnames( result$coefCov ) <- coefNames
