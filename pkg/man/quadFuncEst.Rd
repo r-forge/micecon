@@ -23,9 +23,11 @@
       of the independent variables that should be included
       as shifters only (not in quadratic or interaction terms).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
-   \item{exVarScale}{a scalar or vector with length equal to nrow( data ).
-      All exogenous variables (including the quadratic terms) are
-      divided by this value/these values.}
+   \item{exVarScale}{a scalar or vector with length equal to \code{nrow( data )}.
+      All regressors except for shifter variables that are logical 
+      or factors are divided by \code{exVarScale}
+      (NOTE: quadratic and interaction terms are also divided by 
+      \code{exVarScale} and NOT divided by the square of \code{exVarScale}).}
    \item{\dots}{further arguments are passed to \code{\link[stats]{lm}}
       or \code{\link[plm]{plm}}.}
 }
