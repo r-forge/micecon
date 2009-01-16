@@ -17,14 +17,14 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    estFormula <- "y ~ 1"
    if( nExog > 0 ) {
       for( i in 1:nExog ) {
-         xName <- paste( "x", as.character( i ), sep = "" )
+         xName <- paste( "a", as.character( i ), sep = "_" )
          estData[[ xName ]] <- data[[ xNames[ i ] ]] / regScale
          estFormula <- paste( estFormula, "+", xName )
       }
       for( i in 1:nExog ) {
          for( j in i:nExog ) {
-            xName <- paste( "x", as.character( i ), ".", as.character( j ),
-               sep = "" )
+            xName <- paste( "b", as.character( i ), as.character( j ),
+               sep = "_" )
             estData[[ xName ]] <- ifelse( quadHalf, 0.5, 1 ) *
                ifelse( i == j, 1, 2 ) *
                data[[ xNames[ i ] ]] * data[[ xNames[ j ] ]] / regScale
@@ -36,10 +36,10 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       for( i in 1:nShifter ) {
          if( is.factor( data[[ shifterNames[ i ] ]] ) | 
                is.logical( data[[ shifterNames[ i ] ]] ) ) {
-            xName <- paste( "s", as.character( i ), ".", sep = "" )
+            xName <- paste( "d", "_", as.character( i ), "_", sep = "" )
             estData[[ xName ]] <- data[[ shifterNames[ i ] ]]
          } else {
-            xName <- paste( "s", as.character( i ), sep = "" )
+            xName <- paste( "d", as.character( i ), sep = "_" )
             estData[[ xName ]] <- data[[ shifterNames[ i ] ]] / regScale
          }
          estFormula <- paste( estFormula, "+", xName )
@@ -66,21 +66,9 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
          result$coefCov <- rbind( NA, cbind( NA, vcov( result$est ) ) )
       }
    }
-   coefNames <- .quadFuncCoefNames( nExog, nShifter )
-   for( i in names( result$est$xlevels ) ) {
-      shiftNum <- as.integer( sub( "^s", "", sub( "\\.$", "", i ) ) )
-      coefNum <- which( coefNames == paste( "d", shiftNum, sep = "_" ) )
-      coefNamesFac <- grep( paste( "^", i, sep = "" ), names( result$coef ), 
-         value = TRUE )
-      newCoefNames <- paste( "d", shiftNum, 
-         sub( paste( "^", i, sep = "" ), "", coefNamesFac ),
-         sep = "_" )
-      coefNames <- c( coefNames[ 1:( coefNum - 1 ) ], newCoefNames,
-         coefNames[ -c( 1:coefNum ) ] )
-   }
-   names( result$coef )      <- coefNames
-   rownames( result$coefCov ) <- coefNames
-   colnames( result$coefCov ) <- coefNames
+   names( result$coef )[ 1 ]       <- "a_0"
+   rownames( result$coefCov )[ 1 ] <- "a_0"
+   colnames( result$coefCov )[ 1 ] <- "a_0"
 
    result$r2    <- summary( result$est )$r.squared
    result$r2bar <- summary( result$est )$adj.r.squared
