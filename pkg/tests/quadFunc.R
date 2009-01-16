@@ -99,3 +99,44 @@ ggResultRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
    model = "random", random.method = "amemiya" )
 coef( ggResultRan )
 print( ggResultRan )
+
+## panel data with a shifter
+ggData$yearInt <- as.integer( as.character( ggData$year ) )
+ggData$tech <- exp( ggData$yearInt - min( ggData$yearInt ) )
+# fixed effects
+ggResShifter <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "tech" )
+coef( ggResShifter )
+print.default( ggResShifter )
+# random effects
+ggResShifterRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "tech", model = "random", random.method = "amemiya" )
+coef( ggResShifterRan )
+print.default( ggResShifterRan )
+
+## panel data with a logical variable as shifter
+ggData$war <- ggData$yearInt >= 1939 & ggData$yearInt <= 1945
+# fixed effects
+ggResShifterLogi <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "war" )
+coef( ggResShifterLogi )
+print.default( ggResShifterLogi )
+# random effects
+ggResShifterLogiRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "war", model = "random", random.method = "amemiya" )
+coef( ggResShifterLogiRan )
+print.default( ggResShifterLogiRan )
+
+## panel data with a factor as shifter
+ggData$decade <- as.factor( ifelse( ggData$yearInt <= 1939, "30s",
+   ifelse( ggData$yearInt <= 1949, "40s", "50s" ) ) )
+# fixed effects
+ggResShifterFac <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "decade" )
+coef( ggResShifterFac )
+print.default( ggResShifterFac )
+# random effects
+ggResShifterFacRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "decade", model = "random", random.method = "amemiya" )
+coef( ggResShifterFacRan )
+print.default( ggResShifterFacRan )

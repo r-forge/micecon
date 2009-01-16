@@ -203,3 +203,44 @@ ggResultRan <- translogEst( "invest", c( "value", "capital" ), ggData,
    model = "random", random.method = "amemiya" )
 print( ggResultRan )
 print.default( ggResultRan )
+
+## panel data with a shifter
+ggData$yearInt <- as.integer( as.character( ggData$year ) )
+ggData$tech <- exp( ggData$yearInt - min( ggData$yearInt ) )
+# fixed effects
+ggResShifter <- translogEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "tech" )
+print( ggResShifter )
+print.default( ggResShifter )
+# random effects
+ggResShifterRan <- translogEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "tech", model = "random", random.method = "amemiya" )
+print( ggResShifterRan )
+print.default( ggResShifterRan )
+
+## panel data with a logical variable as shifter
+ggData$war <- ggData$yearInt >= 1939 & ggData$yearInt <= 1945
+# fixed effects
+ggResShifterLogi <- translogEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "war" )
+print( ggResShifterLogi )
+print.default( ggResShifterLogi )
+# random effects
+ggResShifterLogiRan <- translogEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "war", model = "random", random.method = "amemiya" )
+print( ggResShifterLogiRan )
+print.default( ggResShifterLogiRan )
+
+## panel data with a factor as shifter
+ggData$decade <- as.factor( ifelse( ggData$yearInt <= 1939, "30s",
+   ifelse( ggData$yearInt <= 1949, "40s", "50s" ) ) )
+# fixed effects
+ggResShifterFac <- translogEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "decade" )
+print( ggResShifterFac )
+print.default( ggResShifterFac )
+# random effects
+ggResShifterFacRan <- translogEst( "invest", c( "value", "capital" ), ggData,
+   shifterNames = "decade", model = "random", random.method = "amemiya" )
+print( ggResShifterFacRan )
+print.default( ggResShifterFacRan )
