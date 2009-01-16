@@ -144,6 +144,45 @@ summary( estResultShifter2 )
 residuals( estResultShifter2 )
 print.default( estResultShifter2 )
 
+## testing translogEst with a logical variable as shifter
+germanFarms$reUnif <- germanFarms$time >= 16
+estResultShifterLogi <- translogEst( "qOutput",
+   c( "qLabor", "land", "qVarInput" ),
+   shifterNames = "reUnif", data = germanFarms )
+print( estResultShifterLogi )
+summary( estResultShifterLogi )
+residuals( estResultShifterLogi )
+print.default( estResultShifterLogi )
+
+## testing translogEst with a factor as shifter
+germanFarms$decade <- as.factor( c( rep( "70s", 5 ), rep( "80s", 10 ), 
+   rep( "90s", 5 ) ) )
+estResultShifterFac <- translogEst( "qOutput",
+   c( "qLabor", "land", "qVarInput" ),
+   shifterNames = "decade", data = germanFarms )
+print( estResultShifterFac )
+summary( estResultShifterFac )
+residuals( estResultShifterFac )
+print.default( estResultShifterFac )
+
+## testing translogEst with some shifters and one is logical
+estResultShifterLogi2 <- translogEst( "qOutput",
+   c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "tech", "reUnif" ), data = germanFarms )
+print( estResultShifterLogi2 )
+summary( estResultShifterLogi2 )
+residuals( estResultShifterLogi2 )
+print.default( estResultShifterLogi2 )
+
+## testing translogEst with some shifters and one is a factor
+estResultShifterFac2 <- translogEst( "qOutput",
+   c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "tech", "decade" ), data = germanFarms )
+print( estResultShifterFac2 )
+summary( estResultShifterFac2 )
+residuals( estResultShifterFac2 )
+print.default( estResultShifterFac2 )
+
 ## estimate with further argument passed to lm()
 estResult2 <- translogEst( yName = "qOutput",
    xNames = c( "qLabor", "land", "qVarInput", "time" ),
