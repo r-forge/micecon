@@ -69,10 +69,10 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    coefNames <- .quadFuncCoefNames( nExog, nShifter )
    for( i in names( result$est$xlevels ) ) {
       shiftNum <- as.integer( sub( "^s", "", sub( "\\.$", "", i ) ) )
-      coefNum <- which( coefNames == paste( "delta", shiftNum, sep = "_" ) )
+      coefNum <- which( coefNames == paste( "d", shiftNum, sep = "_" ) )
       coefNamesFac <- grep( paste( "^", i, sep = "" ), names( result$coef ), 
          value = TRUE )
-      newCoefNames <- paste( "delta", shiftNum, 
+      newCoefNames <- paste( "d", shiftNum, 
          sub( paste( "^", i, sep = "" ), "", coefNamesFac ),
          sep = "_" )
       coefNames <- c( coefNames[ 1:( coefNum - 1 ) ], newCoefNames,
