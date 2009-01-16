@@ -26,7 +26,10 @@
       of the independent variables that should be included
       as shifters only (not in quadratic or interaction terms).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
-   \item{dataLogged}{logical. Are the values in \code{data} already logged?}
+   \item{dataLogged}{logical. Are the values in \code{data} already logged?
+      If \code{FALSE}, the logarithms of all variables (\code{yName}, 
+      \code{xNames}, \code{shifterNames}) are used except for
+      shifter variables that are factors or logical variables.}
    \item{x}{An object of class \code{translogEst}.}
    \item{\dots}{further arguments of \code{translogEst}
       are passed to \code{\link[stats]{lm}}
