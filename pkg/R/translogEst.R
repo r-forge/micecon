@@ -16,8 +16,13 @@ translogEst <- function( yName, xNames, data, shifterNames = NULL,
          logData[[ xNames[ i ] ]] <- log( data[[ xNames[ i ] ]] )
       }
       for( i in seq( along = shifterNames ) ) {
-         logData[[ shifterNames[ i ] ]] <-
-            log( data[[ shifterNames[ i ] ]] )
+         if( is.factor( data[[ shifterNames[ i ] ]] ) | 
+               is.logical( data[[ shifterNames[ i ] ]] ) ) {
+            logData[[ shifterNames[ i ] ]] <- data[[ shifterNames[ i ] ]]
+         } else {
+            logData[[ shifterNames[ i ] ]] <-
+               log( data[[ shifterNames[ i ] ]] )
+         }
       }
    }
 
