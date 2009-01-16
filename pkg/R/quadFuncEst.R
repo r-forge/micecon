@@ -1,5 +1,5 @@
 quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
-   quadHalf = TRUE, exVarScale = 1, ... ) {
+   quadHalf = TRUE, regScale = 1, ... ) {
 
    checkNames( c( yName, xNames, shifterNames ), names( data ) )
 
@@ -18,7 +18,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    if( nExog > 0 ) {
       for( i in 1:nExog ) {
          xName <- paste( "x", as.character( i ), sep = "" )
-         estData[[ xName ]] <- data[[ xNames[ i ] ]] / exVarScale
+         estData[[ xName ]] <- data[[ xNames[ i ] ]] / regScale
          estFormula <- paste( estFormula, "+", xName )
       }
       for( i in 1:nExog ) {
@@ -27,7 +27,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
                sep = "" )
             estData[[ xName ]] <- ifelse( quadHalf, 0.5, 1 ) *
                ifelse( i == j, 1, 2 ) *
-               data[[ xNames[ i ] ]] * data[[ xNames[ j ] ]] / exVarScale
+               data[[ xNames[ i ] ]] * data[[ xNames[ j ] ]] / regScale
             estFormula <- paste( estFormula, "+", xName )
          }
       }
@@ -40,7 +40,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
             estData[[ xName ]] <- data[[ shifterNames[ i ] ]]
          } else {
             xName <- paste( "s", as.character( i ), sep = "" )
-            estData[[ xName ]] <- data[[ shifterNames[ i ] ]] / exVarScale
+            estData[[ xName ]] <- data[[ shifterNames[ i ] ]] / regScale
          }
          estFormula <- paste( estFormula, "+", xName )
       }

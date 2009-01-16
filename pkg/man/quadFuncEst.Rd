@@ -8,7 +8,7 @@
 
 \usage{
    quadFuncEst( yName, xNames, data, shifterNames = NULL,
-      quadHalf = TRUE, exVarScale = 1, \dots )
+      quadHalf = TRUE, regScale = 1, \dots )
 }
 
 \arguments{
@@ -23,11 +23,11 @@
       of the independent variables that should be included
       as shifters only (not in quadratic or interaction terms).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
-   \item{exVarScale}{a scalar or vector with length equal to \code{nrow( data )}.
+   \item{regScale}{a scalar or vector with length equal to \code{nrow( data )}.
       All regressors except for shifter variables that are logical 
-      or factors are divided by \code{exVarScale}
+      or factors are divided by \code{regScale}
       (NOTE: quadratic and interaction terms are also divided by 
-      \code{exVarScale} and NOT divided by the square of \code{exVarScale}).}
+      \code{regScale} and NOT divided by the square of \code{regScale}).}
    \item{\dots}{further arguments are passed to \code{\link[stats]{lm}}
       or \code{\link[plm]{plm}}.}
 }
