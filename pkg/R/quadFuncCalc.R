@@ -7,10 +7,10 @@ quadFuncCalc <- function( xNames, data, coef, shifterNames = NULL,
    nShifter <- length( shifterNames )
    nCoef <- 1 + nExog + nExog * ( nExog + 1 ) / 2 + nShifter
 
-   if( nCoef != length( coef ) ) {
+   if( nCoef > length( coef ) ) {
       stop( "a quadratic function with ", nExog, " exogenous variables",
-         " and ", nShifter, "shifter variables",
-         " must have exactly ", nCoef, " coefficients" )
+         " and ", nShifter, " shifter variables",
+         " must have at least ", nCoef, " coefficients" )
    }
 
    result <- rep( coef[ "a_0" ], nrow( data ) )
@@ -24,8 +24,21 @@ quadFuncCalc <- function( xNames, data, coef, shifterNames = NULL,
       }
    }
    for( i in seq( along = shifterNames ) ) {
-      result <- result + coef[ paste( "d", i, sep = "_" ) ] * 
-         data[[ shifterNames[ i ] ]]
+      if( is.logical( data[[ shifterNames[ i ] ]] ) ) {
+         result <- result + coef[ paste( "d", i, "TRUE", sep = "_" ) ] * 
+            data[[ shifterNames[ i ] ]]
+      } else if( is.factor( data[[ shifterNames[ i ] ]] ) ) {
+         for( j in levels( data[[ shifterNames[ i ] ]] ) ) {
+            thisCoefName <- paste( "d", i, j, sep = "_" )
+            if( thisCoefName %in% names( coef ) ) {
+               result <- result + coef[ thisCoefName ] * 
+                  ( data[[ shifterNames[ i ] ]] == j )
+            }
+         }
+      } else {
+         result <- result + coef[ paste( "d", i, sep = "_" ) ] * 
+            data[[ shifterNames[ i ] ]]
+      }
    }
 
    names( result ) <- rownames( data )

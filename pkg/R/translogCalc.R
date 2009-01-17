@@ -7,10 +7,10 @@ translogCalc <- function( xNames, data, coef, shifterNames = NULL,
    nShifter <- length( shifterNames )
    nCoef <- 1 + nExog + nExog * ( nExog + 1 ) / 2 + nShifter
 
-   if( nCoef != length( coef ) ) {
+   if( nCoef > length( coef ) ) {
       stop( "a translog function with ", nExog, " exogenous variables",
          " and ", nShifter, " shifter variables",
-         " must have exactly ", nCoef, " coefficients" )
+         " must have at least ", nCoef, " coefficients" )
    }
 
    if( dataLogged ) {
