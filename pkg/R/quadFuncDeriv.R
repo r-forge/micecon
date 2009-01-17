@@ -13,16 +13,14 @@ quadFuncDeriv <- function( xNames, data, coef, coefCov = NULL,
          " must have exactly ", nCoef, " coefficients" )
    }
 
-   alpha  <- coef[ 2:( nExog + 1 ) ]
-   beta   <- vecli2m( coef[ ( nExog + 2 ):nCoef ] )
-
    ## derivatives
    deriv <- array( NA, c( nrow( data ), nExog ) )
    for( i in 1:nExog ) {
-      deriv[ , i ] <- alpha[ i ]
+      deriv[ , i ] <- coef[ paste( "a", i, sep = "_" ) ]
       for( j in 1:nExog ) {
          deriv[ , i ] <- deriv[ , i ] + ifelse( quadHalf, 1, 2 ) *
-            beta[ i, j ] * data[[ xNames[ j ] ]]
+            coef[ paste( "b", min( i, j ), max( i, j ), sep = "_" ) ] * 
+            data[[ xNames[ j ] ]]
       }
    }
    colnames( deriv ) <- xNames
@@ -32,18 +30,20 @@ quadFuncDeriv <- function( xNames, data, coef, coefCov = NULL,
       ## variances of the derivatives
       variance <- array( NA, c( nrow( data ), nExog ) )
       for(i in 1:nExog ) {
-         variance[ , i ] <- coefCov[ i + 1, i + 1 ]   # variance of aplha(i)
+         variance[ , i ] <- coefCov[ paste( "a", i, sep = "_" ), 
+            paste( "a", i, sep = "_" ) ]   # variance of aplha(i)
          for( j in 1:nExog ) {
             variance[ , i ] <- variance[ , i ] +
-               coefCov[ i + 1, 1 + nExog + veclipos( i, j, nExog ) ] *
+               coefCov[ paste( "a", i, sep = "_" ), 
+                  paste( "b", min( i, j ), max( i, j ), sep = "_" ) ] *
                ifelse( quadHalf, 1, 2 ) * data[[ xNames[ j ] ]]
                # covariance alpha(i)-beta(i,_)
          }
          for( j in 1:nExog ) {
             for( k in 1:nExog ) {
                variance[ , i ] <- variance[ , i ] +
-                  coefCov[ 1 + nExog + veclipos( i, j, nExog ),
-                  1 + nExog + veclipos( i, k, nExog ) ] *
+                  coefCov[ paste( "b", min( i, j ), max( i, j ), sep = "_" ),
+                     paste( "b", min( i, k ), max( i, k ), sep = "_" ) ] *
                   ifelse( quadHalf, 1, 4 ) *
                   data[[ xNames[ j ] ]] * data[[ xNames[ k ] ]]
                   # variances + covariance beta(i,_)-beta(i,_)
