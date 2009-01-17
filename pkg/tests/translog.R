@@ -244,6 +244,18 @@ ggResultRan <- translogEst( "invest", c( "value", "capital" ), ggData,
 print( ggResultRan )
 print.default( ggResultRan )
 
+## testing translogEla with panel data
+# fixed effects
+ggEla <- translogEla( c( "value", "capital" ), 
+   data = ggData, coef = coef( ggResult ), 
+   coefCov = vcov( ggResult ) )
+print( ggEla )
+# random effects
+ggElaRan <- translogEla( c( "value", "capital" ), 
+   data = ggData, coef = coef( ggResultRan ), 
+   coefCov = vcov( ggResultRan ) )
+print( ggElaRan )
+
 ## panel data with a shifter
 ggData$yearInt <- as.integer( as.character( ggData$year ) )
 ggData$tech <- exp( ggData$yearInt - min( ggData$yearInt ) )
