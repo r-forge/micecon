@@ -44,6 +44,12 @@ margProductsFitted <- translogDeriv( c( "qLabor", "land", "qVarInput", "time" ),
 all.equal( margProducts, margProductsFitted )
 
 
+## testing calculation of elasticities with translogEla
+estEla <- translogEla( c( "qLabor", "land", "qVarInput", "time" ), 
+   data = germanFarms, coef = coef( estResult ), coefCov = vcov( estResult ) )
+print( estEla )
+
+
 ## testing translogHessian
 # compute the Hessian matrices
 hessians <- translogHessian( c( "qLabor", "land", "qVarInput", "time" ),
@@ -137,6 +143,11 @@ print.default( estResultShifter )
 fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
    shifterNames = "tech", data = germanFarms, coef = estResultShifter$coef )
 all.equal( fitted, estResultShifter$fitted )
+# testing calculation of elasticities with translogEla
+estElaShifter <- translogEla( c( "qLabor", "land", "qVarInput" ), 
+   data = germanFarms, coef = coef( estResultShifter ), 
+   coefCov = vcov( estResultShifter ) )
+print( estElaShifter )
 
 ## testing translogEst with two shifters
 germanFarms$techSq <- exp( germanFarms$time^2 )
