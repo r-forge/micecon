@@ -1,0 +1,79 @@
+\name{translogEla}
+\alias{translogEla}
+\title{Elasticities of a translog Function}
+
+\description{
+   Calculate the elasticities of a translog function.
+}
+
+\usage{
+translogEla( xNames, data, coef, coefCov = NULL, quadHalf = TRUE, 
+   dataLogged = FALSE  )
+}
+
+\arguments{
+   \item{xNames}{a vector of strings containing the names of the
+      independent variables.}
+   \item{data}{dataframe containing the data.}
+   \item{coef}{vector containing all coefficients:
+      if there are \code{n} exogenous variables in \code{xNames},
+      the \code{n+1} alpha coefficients must have names 
+      \code{a_0}, \ldots, \code{a_n}
+      and the \code{n*(n+1)/2} beta coefficients must have names
+      \code{b_1_1}, \ldots, \code{b_1_n}, \ldots, \code{b_n_n}
+      (only the elements of the upper right triangle of the beta matrix
+      are directly obtained from \code{coef};
+      the elements of the lower left triangle are obtained by assuming
+      symmetry of the beta matrix).}
+   \item{coefCov}{optional covariance matrix of the coefficients:
+      the row names and column names must be the same as the names
+      of \code{coef}.}
+   \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
+   \item{dataLogged}{logical. Are the values in \code{data} already logged?}
+}
+
+\details{
+   Shifter variables do not need to be specified, 
+   because they have no effect on the elasticities.
+   Hence, you can use this function to calculate elasticities
+   even for translog functions that have been estimated
+   with shifter variables.
+}
+
+\value{
+   a list of class \code{translogEla} containing following objects:
+   \item{ela}{data frame containing the elasticities.}
+   \item{variance}{data frame containing the variances of the elasticities
+      (only if argument \code{coefCov} is provided).}
+   \item{stdDev}{data frame containing the standard deviations of the elasticities
+      (only if argument \code{coefCov} is provided).}
+}
+
+\seealso{\code{\link{translogEst}} and \code{\link{translogCalc}}}
+
+\author{Arne Henningsen}
+
+\examples{
+   data( germanFarms )
+   # output quantity:
+   germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
+   # quantity of variable inputs
+   germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
+   # a time trend to account for technical progress:
+   germanFarms$time <- c(1:20)
+
+   # estimate a quadratic production function
+   estResult <- translogEst( "qOutput", c( "qLabor", "land", "qVarInput", "time" ),
+      germanFarms )
+
+   # calculate production elasticities of all inputs
+   estEla <- translogEla( c( "qLabor", "land", "qVarInput", "time" ), 
+      data = germanFarms, coef = coef( estResult ), 
+      coefCov = vcov( estResult ) )
+   # all elasticities
+   estEla$ela
+   # t-values of all elasticities
+   estEla$ela / estEla$stdDev
+}
+
+\keyword{models}
