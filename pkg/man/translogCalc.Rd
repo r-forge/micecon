@@ -7,23 +7,30 @@
 }
 
 \usage{
-   translogCalc( xNames, data, coef, quadHalf = TRUE, dataLogged = FALSE  )
+translogCalc( xNames, data, coef, shifterNames = NULL,
+   quadHalf = TRUE, dataLogged = FALSE  )
 }
 
 \arguments{
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
    \item{data}{dataframe containing the data.}
-   \item{coef}{vector containing all coefficients:
-      if there are \code{n} exogenous variables,
+   \item{coef}{vector containing all coefficients: 
+      if there are \code{n} exogenous variables in \code{xNames}
+      and \code{m} shifter variables in \code{shifterNames},
       the \code{n+1} alpha coefficients must have names 
-      \code{a_0}, \ldots, \code{a_n}
-      and the \code{n*(n+1)/2} beta coefficients must have names
-      \code{b_1_1}, \ldots, \code{b_1_n}, \ldots, \code{b_n_n}
+      \code{a_0}, \ldots, \code{a_n},
+      the \code{n*(n+1)/2} beta coefficients must have names
+      \code{b_1_1}, \ldots, \code{b_1_n}, \ldots, \code{b_n_n},
+      and the \code{m} delta coefficients must have names
+      \code{d_1}, \ldots, \code{d_m}
       (only the elements of the upper right triangle of the beta matrix
-      are directly obtained from \code{coef}; 
+      are directly obtained from \code{coef};
       the elements of the lower left triangle are obtained by assuming
       symmetry of the beta matrix).}
+   \item{shifterNames}{a vector of strings containing the names
+      of the independent variables that should be included
+      as shifters only (not in quadratic or interaction terms).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
    \item{dataLogged}{logical. Are the values in \code{data} already logged?}
 }
