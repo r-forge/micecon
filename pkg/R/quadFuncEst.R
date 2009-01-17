@@ -6,6 +6,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    nExog   <- length( xNames )
    nShifter <- length( shifterNames )
    result <- list()
+   result$call <- match.call()
 
    if( "plm.dim" %in% class( data ) ) {
       estData <- data[ , 1:2 ]

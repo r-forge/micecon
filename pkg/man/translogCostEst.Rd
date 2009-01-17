@@ -50,6 +50,7 @@
    \item{r2bar}{adjusted \eqn{R^2} value.}
    \item{nObs}{number of observations.}
    \item{model.matrix}{the model matrix.}
+   \item{call}{the matched call.}
 }
 
 \seealso{\code{\link{translogEst}}

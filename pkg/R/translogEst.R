@@ -20,6 +20,8 @@ translogEst <- function( yName, xNames, data, shifterNames = NULL,
       result$fitted <- exp( result$fitted )
    }
 
+   result$call <- match.call()
+
    class( result ) <- "translogEst"
    return( result )
 }

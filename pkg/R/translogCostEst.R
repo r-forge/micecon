@@ -31,6 +31,8 @@ translogCostEst <- function( cName, yName, pNames, data,
       result$fitted <- exp( result$fitted )
    }
 
+   result$call <- match.call()
+
    class( result ) <- "translogCostEst"
    return( result )
 }
