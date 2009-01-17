@@ -75,6 +75,10 @@ Loading required package: Formula
         b_2_3         b_2_4         b_3_3         b_3_4         b_4_4 
 -3.671761e-01  5.183312e+00 -7.898751e-03  5.062034e-01 -1.299008e+01 
 > print( estResult )
+$call
+quadFuncEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput", 
+    "time"), data = germanFarms)
+
 $nExog
 [1] 4
 
@@ -322,6 +326,10 @@ attr(,"class")
           d_1 
  9.662219e+00 
 > print( estResultShifter )
+$call
+quadFuncEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = "time")
+
 $nExog
 [1] 3
 
@@ -552,6 +560,10 @@ attr(,"class")
           d_1           d_2 
  3.967699e+01 -2.576534e+00 
 > print( estResultShifter2 )
+$call
+quadFuncEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = c("time", "timeSq"))
+
 $nExog
 [1] 3
 
@@ -705,6 +717,10 @@ attr(,"class")
         a_0         d_1         d_2         d_3         d_4 
  -97.668526   21.027452 -185.952873   29.341691    1.060923 
 > print( estResultLinear )
+$call
+quadFuncEst(yName = "qOutput", xNames = NULL, data = germanFarms, 
+    shifterNames = c("time", "qLabor", "land", "qVarInput"))
+
 $nExog
 [1] 0
 
@@ -803,6 +819,10 @@ attr(,"class")
      d_1_TRUE 
 -9.482580e+01 
 > print( estResultShifterLogi )
+$call
+quadFuncEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = c("reUnif"))
+
 $nExog
 [1] 3
 
@@ -959,6 +979,10 @@ attr(,"class")
       d_1_80s       d_1_90s 
  7.611663e+00 -8.287946e+01 
 > print( estResultShifterFac )
+$call
+quadFuncEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = c("decade"))
+
 $nExog
 [1] 3
 
@@ -1116,6 +1140,10 @@ attr(,"class")
           d_1      d_2_TRUE 
  5.352456e+00 -8.704237e+01 
 > print( estResultShifterLogi2 )
+$call
+quadFuncEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = c("time", "reUnif"))
+
 $nExog
 [1] 3
 
@@ -1273,6 +1301,10 @@ attr(,"class")
           d_1       d_2_80s       d_2_90s 
  7.933391e+00 -1.299204e+01 -1.036800e+02 
 > print( estResultShifterFac2 )
+$call
+quadFuncEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = c("time", "decade"))
+
 $nExog
 [1] 3
 
@@ -1435,6 +1467,10 @@ attr(,"class")
         b_2_3         b_2_4         b_3_3         b_3_4         b_4_4 
 -3.671761e-01  5.183312e+00 -7.898751e-03  5.062034e-01 -1.299008e+01 
 > print( estResult2 )
+$call
+quadFuncEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput", 
+    "time"), data = germanFarms, x = TRUE, y = TRUE)
+
 $nExog
 [1] 4
 
@@ -1596,6 +1632,10 @@ attr(,"class")
          a_0          a_1          a_2        b_1_1        b_1_2        b_2_2 
 5.311242e+01 5.089985e-02 1.108780e-01 7.569854e-06 3.008554e-05 1.230247e-04 
 > print( ggResult )
+$call
+quadFuncEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData)
+
 $nExog
 [1] 2
 
@@ -1811,6 +1851,10 @@ attr(,"class")
          a_0          a_1          a_2        b_1_1        b_1_2        b_2_2 
 3.949693e+01 6.159186e-02 1.075103e-01 5.177555e-06 3.163931e-05 1.186991e-04 
 > print( ggResultRan )
+$call
+quadFuncEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, model = "random", random.method = "amemiya")
+
 $nExog
 [1] 2
 
@@ -2039,6 +2083,10 @@ attr(,"class")
          d_1 
 3.015003e-09 
 > print.default( ggResShifter )
+$call
+quadFuncEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "tech")
+
 $nExog
 [1] 2
 
@@ -2267,6 +2315,10 @@ attr(,"class")
         b_2_2           d_1 
  1.229737e-04 -2.100077e-08 
 > print.default( ggResShifterRan )
+$call
+quadFuncEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "tech", model = "random", random.method = "amemiya")
+
 $nExog
 [1] 2
 
@@ -2500,6 +2552,10 @@ attr(,"class")
         b_2_2      d_1_TRUE 
  1.129886e-04 -1.579945e+01 
 > print.default( ggResShifterLogi )
+$call
+quadFuncEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "war")
+
 $nExog
 [1] 2
 
@@ -2734,6 +2790,10 @@ attr(,"class")
         b_2_2      d_1_TRUE 
  1.085287e-04 -1.600487e+01 
 > print.default( ggResShifterLogiRan )
+$call
+quadFuncEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "war", model = "random", random.method = "amemiya")
+
 $nExog
 [1] 2
 
@@ -2968,6 +3028,10 @@ attr(,"class")
         b_2_2       d_1_40s       d_1_50s 
  2.049045e-04  6.310224e+01  1.076940e+02 
 > print.default( ggResShifterFac )
+$call
+quadFuncEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "decade")
+
 $nExog
 [1] 2
 
@@ -3200,6 +3264,11 @@ attr(,"class")
         b_2_2       d_1_40s       d_1_50s 
  1.992566e-04  6.137612e+01  1.015753e+02 
 > print.default( ggResShifterFacRan )
+$call
+quadFuncEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "decade", model = "random", 
+    random.method = "amemiya")
+
 $nExog
 [1] 2
 

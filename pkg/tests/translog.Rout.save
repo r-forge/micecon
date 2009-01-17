@@ -111,6 +111,10 @@ R-squared: 0.9982506     Adjusted R-squared: 0.9933521
  0.0045336669 -0.0139967789  0.0078810229 -0.0002631054 -0.0004748046 
 > 
 > print.default( estResult )
+$call
+translogEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput", 
+    "time"), data = germanFarms)
+
 $nExog
 [1] 4
 
@@ -1349,6 +1353,10 @@ R-squared: 0.9908202     Adjusted R-squared: 0.9806205
           19           20 
  0.012425232 -0.004881030 
 > print.default( estResultShifter )
+$call
+translogEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = "tech")
+
 $nExog
 [1] 3
 
@@ -1613,6 +1621,10 @@ R-squared: 0.9940234     Adjusted R-squared: 0.9858055
           19           20 
  0.008854090 -0.003476829 
 > print.default( estResultShifter2 )
+$call
+translogEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = c("tech", "techSq"))
+
 $nExog
 [1] 3
 
@@ -1800,6 +1812,10 @@ R-squared: 0.992122     Adjusted R-squared: 0.9833685
            16            17            18            19            20 
  0.0085570816 -0.0113566702 -0.0009083695  0.0063595541 -0.0026515960 
 > print.default( estResultShifterLogi )
+$call
+translogEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = "reUnif")
+
 $nExog
 [1] 3
 
@@ -1986,6 +2002,10 @@ R-squared: 0.9921397     Adjusted R-squared: 0.9813317
            16            17            18            19            20 
  0.0086179222 -0.0114224526 -0.0007810782  0.0061877042 -0.0026020956 
 > print.default( estResultShifterFac )
+$call
+translogEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = "decade")
+
 $nExog
 [1] 3
 
@@ -2175,6 +2195,10 @@ R-squared: 0.9924661     Adjusted R-squared: 0.982107
            16            17            18            19            20 
  0.0086314957 -0.0113947926 -0.0008446608  0.0064018596 -0.0027939020 
 > print.default( estResultShifterLogi2 )
+$call
+translogEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = c("tech", "reUnif"))
+
 $nExog
 [1] 3
 
@@ -2365,6 +2389,10 @@ R-squared: 0.9926278     Adjusted R-squared: 0.9799898
           19           20 
  0.007167973 -0.003104457 
 > print.default( estResultShifterFac2 )
+$call
+translogEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput"), 
+    data = germanFarms, shifterNames = c("tech", "decade"))
+
 $nExog
 [1] 3
 
@@ -2555,6 +2583,10 @@ b_4_4   -0.24565    0.15974 -1.5378  0.18471
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared: 0.9982506     Adjusted R-squared: 0.9933521 
 > print.default( estResult2 )
+$call
+translogEst(yName = "qOutput", xNames = c("qLabor", "land", "qVarInput", 
+    "time"), data = germanFarms, x = TRUE, y = TRUE)
+
 $nExog
 [1] 4
 
@@ -2721,6 +2753,10 @@ Estimated Translog function with 100 observations.
        a_0        a_1        a_2      b_1_1      b_1_2      b_2_2 
  2.9470305 -0.7640393  0.4576190  0.2852946 -0.1183160  0.1481877 
 > print.default( ggResult )
+$call
+translogEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData)
+
 $nExog
 [1] 2
 
@@ -2937,6 +2973,10 @@ Estimated Translog function with 100 observations.
        a_0        a_1        a_2      b_1_1      b_1_2      b_2_2 
  3.0978906 -0.8247813  0.4620631  0.2963226 -0.1190501  0.1482487 
 > print.default( ggResultRan )
+$call
+translogEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, model = "random", random.method = "amemiya")
+
 $nExog
 [1] 2
 
@@ -3800,6 +3840,10 @@ Estimated Translog function with 100 observations.
         d_1 
  0.04077943 
 > print.default( ggResShifter )
+$call
+translogEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "tech")
+
 $nExog
 [1] 2
 
@@ -4029,6 +4073,10 @@ Estimated Translog function with 100 observations.
         d_1 
  0.03891689 
 > print.default( ggResShifterRan )
+$call
+translogEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "tech", model = "random", random.method = "amemiya")
+
 $nExog
 [1] 2
 
@@ -4267,6 +4315,10 @@ Estimated Translog function with 100 observations.
        a_0        a_1        a_2      b_1_1      b_1_2      b_2_2   d_1_TRUE 
  2.9297370 -0.7177146  0.4375904  0.2704630 -0.1062832  0.1308974 -0.0980450 
 > print.default( ggResShifterLogi )
+$call
+translogEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "war")
+
 $nExog
 [1] 2
 
@@ -4494,6 +4546,10 @@ Estimated Translog function with 100 observations.
    d_1_TRUE 
 -0.09784307 
 > print.default( ggResShifterLogiRan )
+$call
+translogEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "war", model = "random", random.method = "amemiya")
+
 $nExog
 [1] 2
 
@@ -4729,6 +4785,10 @@ Estimated Translog function with 100 observations.
    d_1_50s 
  0.4307791 
 > print.default( ggResShifterFac )
+$call
+translogEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "decade")
+
 $nExog
 [1] 2
 
@@ -4960,6 +5020,11 @@ Estimated Translog function with 100 observations.
     d_1_40s     d_1_50s 
  0.28204202  0.41801416 
 > print.default( ggResShifterFacRan )
+$call
+translogEst(yName = "invest", xNames = c("value", "capital"), 
+    data = ggData, shifterNames = "decade", model = "random", 
+    random.method = "amemiya")
+
 $nExog
 [1] 2
 
