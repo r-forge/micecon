@@ -1,5 +1,6 @@
 \name{translogEla}
 \alias{translogEla}
+\alias{elas.translogEst}
 \title{Elasticities of a translog Function}
 
 \description{
@@ -9,12 +10,17 @@
 \usage{
 translogEla( xNames, data, coef, coefCov = NULL, quadHalf = TRUE, 
    dataLogged = FALSE  )
+
+\method{elas}{translogEst}( object, data = NULL, \dots )
 }
 
 \arguments{
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
-   \item{data}{dataframe containing the data.}
+   \item{data}{dataframe containing the data;
+      if argument \code{data} of \code{elas.translogEst} is not specified,
+      the data frame that was used for the estimation 
+      is used for calculating elasticities.}
    \item{coef}{vector containing all coefficients:
       if there are \code{n} exogenous variables in \code{xNames},
       the \code{n+1} alpha coefficients must have names 
@@ -30,6 +36,9 @@ translogEla( xNames, data, coef, coefCov = NULL, quadHalf = TRUE,
       of \code{coef}.}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
    \item{dataLogged}{logical. Are the values in \code{data} already logged?}
+   \item{object}{object of class \code{translogEst} 
+      (returned by \code{\link{translogEst}}).}
+   \item{\ldots}{currently ignored.}
 }
 
 \details{
