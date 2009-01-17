@@ -9,6 +9,12 @@ germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
 germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 # a time trend to account for technical progress:
 germanFarms$time <- c(1:20)
+# taking logarithms
+germanFarms$qLogOutput   <- log( germanFarms$qOutput ) 
+germanFarms$qLogLabor    <- log( germanFarms$qLabor ) 
+germanFarms$qLogLand     <- log( germanFarms$land ) 
+germanFarms$qLogVarInput <- log( germanFarms$qVarInput ) 
+germanFarms$logTime      <- log( germanFarms$time ) 
 
 ## testing translogEst
 # estimate a translog production function
@@ -22,6 +28,13 @@ summary( estResult )
 residuals( estResult )
 
 print.default( estResult )
+
+## testing translogEst with dataLogged = TRUE
+estResultLog <- translogEst( "qLogOutput", 
+   xNames = c( "qLogLabor", "qLogLand", "qLogVarInput", "logTime" ),
+   data = germanFarms, dataLogged = TRUE )
+all.equal( estResult[ -c(1,6) ], estResultLog[ -c(1,6) ] )
+all.equal( estResult$fitted, exp( estResultLog$fitted ) )
 
 ## testing translogCalc
 fitted <- translogCalc( c( "qLabor", "land", "qVarInput", "time" ),
@@ -140,6 +153,12 @@ print( estResultShifter )
 summary( estResultShifter )
 residuals( estResultShifter )
 print.default( estResultShifter )
+# with dataLogged = TRUE
+estResultShifterLog <- translogEst( "qLogOutput", 
+   xNames = c( "qLogLabor", "qLogLand", "qLogVarInput" ),
+   data = germanFarms, shifterNames = "time", dataLogged = TRUE )
+all.equal( estResultShifter[ -c(1,6) ], estResultShifterLog[ -c(1,6) ] )
+all.equal( estResultShifter$fitted, exp( estResultShifterLog$fitted ) )
 # testing translogCalc
 fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
    shifterNames = "tech", data = germanFarms, coef = estResultShifter$coef )
@@ -176,6 +195,12 @@ print( estResultShifterLogi )
 summary( estResultShifterLogi )
 residuals( estResultShifterLogi )
 print.default( estResultShifterLogi )
+# with dataLogged = TRUE
+estResultShifterLogiLog <- translogEst( "qLogOutput", 
+   xNames = c( "qLogLabor", "qLogLand", "qLogVarInput" ),
+   data = germanFarms, shifterNames = "reUnif", dataLogged = TRUE )
+all.equal( estResultShifterLogi[ -c(1,6) ], estResultShifterLogiLog[ -c(1,6) ] )
+all.equal( estResultShifterLogi$fitted, exp( estResultShifterLogiLog$fitted ) )
 # testing translogCalc
 fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
    shifterNames = c( "reUnif" ), data = germanFarms, 
@@ -192,6 +217,12 @@ print( estResultShifterFac )
 summary( estResultShifterFac )
 residuals( estResultShifterFac )
 print.default( estResultShifterFac )
+# with dataLogged = TRUE
+estResultShifterFacLog <- translogEst( "qLogOutput", 
+   xNames = c( "qLogLabor", "qLogLand", "qLogVarInput" ),
+   data = germanFarms, shifterNames = "decade", dataLogged = TRUE )
+all.equal( estResultShifterFac[ -c(1,6) ], estResultShifterFacLog[ -c(1,6) ] )
+all.equal( estResultShifterFac$fitted, exp( estResultShifterFacLog$fitted ) )
 # testing translogCalc
 fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
    shifterNames = c( "decade" ), data = germanFarms, 
@@ -237,15 +268,31 @@ print.default( estResult2 )
 ## panel data
 data( "GrunfeldGreene", package = "systemfit" )
 ggData <- plm.data( GrunfeldGreene, c( "firm", "year" ) )
+ggData$logInvest <- log( ggData$invest )
+ggData$logValue <- log( ggData$value )
+ggData$logCapital <- log( ggData$capital )
 # fixed effects
 ggResult <- translogEst( "invest", c( "value", "capital" ), ggData )
 print( ggResult )
 print.default( ggResult )
+# with dataLogged = TRUE
+ggResultLog <- translogEst( "logInvest", 
+   xNames = c( "logValue", "logCapital" ),
+   data = ggData, dataLogged = TRUE )
+all.equal( ggResult[ -c(1,6) ], ggResultLog[ -c(1,6) ] )
+all.equal( ggResult$fitted, exp( ggResultLog$fitted ) )
 # random effects
 ggResultRan <- translogEst( "invest", c( "value", "capital" ), ggData,
    model = "random", random.method = "amemiya" )
 print( ggResultRan )
 print.default( ggResultRan )
+# with dataLogged = TRUE
+ggResultRanLog <- translogEst( "logInvest", 
+   xNames = c( "logValue", "logCapital" ),
+   data = ggData, dataLogged = TRUE,
+   model = "random", random.method = "amemiya" )
+all.equal( ggResultRan[ -c(1,6) ], ggResultRanLog[ -c(1,6) ] )
+all.equal( ggResultRan$fitted, exp( ggResultRanLog$fitted ) )
 
 ## testing translogEla with panel data
 # fixed effects
