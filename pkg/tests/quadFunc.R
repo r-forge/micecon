@@ -33,6 +33,10 @@ estResultShifter <- quadFuncEst( yName = "qOutput",
    shifterNames = "time", data = germanFarms )
 coef( estResultShifter )
 print( estResultShifter )
+# compute fitted values
+fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = "time", data = germanFarms, coef( estResultShifter ) )
+all.equal( fitted, estResultShifter$fitted )
 
 ## estimate a quadratic production function with 2 shifters
 germanFarms$timeSq <- germanFarms$time^2
@@ -41,6 +45,11 @@ estResultShifter2 <- quadFuncEst( yName = "qOutput",
    shifterNames = c( "time", "timeSq" ), data = germanFarms )
 coef( estResultShifter2 )
 print( estResultShifter2 )
+# compute fitted values
+fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "time", "timeSq" ), data = germanFarms, 
+   coef( estResultShifter2 ) )
+all.equal( fitted, estResultShifter2$fitted )
 
 ## estimate a linear functions with quadFuncEst
 estResultLinear <- quadFuncEst( yName = "qOutput", xNames = NULL,

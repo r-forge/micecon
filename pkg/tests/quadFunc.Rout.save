@@ -457,6 +457,11 @@ $model.matrix
 
 attr(,"class")
 [1] "quadFuncEst"
+> # compute fitted values
+> fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
++    shifterNames = "time", data = germanFarms, coef( estResultShifter ) )
+> all.equal( fitted, estResultShifter$fitted )
+[1] TRUE
 > 
 > ## estimate a quadratic production function with 2 shifters
 > germanFarms$timeSq <- germanFarms$time^2
@@ -609,6 +614,12 @@ $model.matrix
 
 attr(,"class")
 [1] "quadFuncEst"
+> # compute fitted values
+> fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
++    shifterNames = c( "time", "timeSq" ), data = germanFarms, 
++    coef( estResultShifter2 ) )
+> all.equal( fitted, estResultShifter2$fitted )
+[1] TRUE
 > 
 > ## estimate a linear functions with quadFuncEst
 > estResultLinear <- quadFuncEst( yName = "qOutput", xNames = NULL,
