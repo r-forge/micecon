@@ -13,32 +13,19 @@ quadFuncCalc <- function( xNames, data, coef, shifterNames = NULL,
          " must have exactly ", nCoef, " coefficients" )
    }
 
-   alpha0 <- coef[ "a_0" ]
-   alpha <- rep( NA, nExog )
+   result <- rep( coef[ "a_0" ], nrow( data ) )
    for( i in seq( along = xNames ) ) {
-      alpha[ i ] <- coef[ paste( "a", i, sep = "_" ) ]
-   }
-   beta <- matrix( NA, nrow = nExog, ncol = nExog )
-   for( i in seq( along = xNames ) ) {
+      result <- result + coef[ paste( "a", i, sep = "_" ) ] * 
+         data[[ xNames[ i ] ]]
       for( j in seq( along = xNames ) ) {
-         beta[ i, j ] <- coef[ paste( "b", min( i, j ), max( i, j ), sep = "_" ) ]
-      }
-   }
-   delta <- rep( NA, nExog )
-   for( i in seq( along = shifterNames ) ) {
-      delta[ i ] <- coef[ paste( "d", i, sep = "_" ) ]
-   }
-
-   result <- rep( alpha0, nrow( data ) )
-   for( i in 1:nExog ) {
-      result <- result + alpha[ i ] * data[[ xNames[ i ] ]]
-      for( j in 1:nExog ) {
-         result <- result + ifelse( quadHalf, 0.5, 1 ) * beta[ i, j ] *
+         result <- result + ifelse( quadHalf, 0.5, 1 ) * 
+            coef[ paste( "b", min( i, j ), max( i, j ), sep = "_" ) ] *
             data[[ xNames[ i ] ]]  * data[[ xNames[ j ] ]]
       }
    }
    for( i in seq( along = shifterNames ) ) {
-      result <- result + delta[ i ] * data[[ shifterNames[ i ] ]]
+      result <- result + coef[ paste( "d", i, sep = "_" ) ] * 
+         data[[ shifterNames[ i ] ]]
    }
 
    names( result ) <- rownames( data )
