@@ -7,24 +7,9 @@ translogCostEst <- function( cName, yName, pNames, data,
    if( dataLogged ) {
       logData   <- data
    } else {
-      if( "plm.dim" %in% class( data ) ) {
-         logData <- data[ , 1:2 ]
-      } else {
-         logData <- data.frame( no = c( 1:nrow( data ) ) )
-      }
-      logData[[ cName ]] <- log( data[[ cName ]] )
-      logData[[ yName ]] <- log( data[[ yName ]] )
-      for( i in seq( along = pNames ) ) {
-         logData[[ pNames[ i ] ]] <- log( data[[ pNames[ i ] ]] )
-      }
-      for( i in seq( along = fNames ) ) {
-         logData[[ fNames[ i ] ]] <-
-            log( data[[ fNames[ i ] ]] )
-      }
-      for( i in seq( along = shifterNames ) ) {
-         logData[[ shifterNames[ i ] ]] <-
-            log( data[[ shifterNames[ i ] ]] )
-      }
+      logData <- .micEconLogData( data = data, 
+         varNames = c( cName, yName, pNames, fNames ), 
+         varNamesNum = shifterNames )
    }
 
    qxVars <- yName
