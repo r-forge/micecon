@@ -10,9 +10,17 @@ quadFuncCalc <- function( xNames, data, coef, quadHalf = TRUE ) {
          " must have exactly ", nCoef, " coefficients" )
    }
 
-   alpha0 <- coef[ 1 ]
-   alpha  <- coef[ 2:( nExog + 1 ) ]
-   beta   <- vecli2m( coef[ ( nExog + 2 ):nCoef ] )
+   alpha0 <- coef[ "a_0" ]
+   alpha <- rep( NA, nExog )
+   for( i in seq( along = xNames ) ) {
+      alpha[ i ] <- coef[ paste( "a", i, sep = "_" ) ]
+   }
+   beta <- matrix( NA, nrow = nExog, ncol = nExog )
+   for( i in seq( along = xNames ) ) {
+      for( j in seq( along = xNames ) ) {
+         beta[ i, j ] <- coef[ paste( "b", min( i, j ), max( i, j ), sep = "_" ) ]
+      }
+   }
 
    result <- rep( alpha0, nrow( data ) )
    for( i in 1:nExog ) {
