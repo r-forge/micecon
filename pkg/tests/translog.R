@@ -133,6 +133,10 @@ print( estResultShifter )
 summary( estResultShifter )
 residuals( estResultShifter )
 print.default( estResultShifter )
+# testing translogCalc
+fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = "tech", data = germanFarms, coef = estResultShifter$coef )
+all.equal( fitted, estResultShifter$fitted )
 
 ## testing translogEst with two shifters
 germanFarms$techSq <- exp( germanFarms$time^2 )
@@ -143,6 +147,11 @@ print( estResultShifter2 )
 summary( estResultShifter2 )
 residuals( estResultShifter2 )
 print.default( estResultShifter2 )
+# testing translogCalc
+fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "tech", "techSq" ), data = germanFarms, 
+   coef = estResultShifter2$coef )
+all.equal( fitted, estResultShifter2$fitted )
 
 ## testing translogEst with a logical variable as shifter
 germanFarms$reUnif <- germanFarms$time >= 16
