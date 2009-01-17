@@ -37,6 +37,11 @@ print( estResultShifter )
 fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
    shifterNames = "time", data = germanFarms, coef( estResultShifter ) )
 all.equal( fitted, estResultShifter$fitted )
+# compute marginal products = partial derivatives
+margProdShifter <- quadFuncDeriv(
+   c( "qLabor", "land", "qVarInput" ),
+   germanFarms, coef( estResultShifter ), vcov( estResultShifter ) )
+print( margProdShifter )
 
 ## estimate a quadratic production function with 2 shifters
 germanFarms$timeSq <- germanFarms$time^2
