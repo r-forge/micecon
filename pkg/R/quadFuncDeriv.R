@@ -8,9 +8,9 @@ quadFuncDeriv <- function( xNames, data, coef, coefCov = NULL,
    nExog <- length( xNames )
    nCoef <- 1 + nExog + nExog * ( nExog + 1 ) / 2
 
-   if( nCoef != length( coef ) ) {
+   if( nCoef > length( coef ) ) {
       stop( "a quadratic function with ", nExog, " exogenous variables",
-         " must have exactly ", nCoef, " coefficients" )
+         " must have at least ", nCoef, " coefficients" )
    }
 
    ## derivatives

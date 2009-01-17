@@ -30,6 +30,14 @@
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
 }
 
+\details{
+   Shifter variables do not need to be specified, 
+   because they have no effect on the partial derivatives.
+   Hence, you can use this function to calculate partial derivatives
+   even for quadratic functions that have been estimated
+   with shifter variables.
+}
+
 \value{
    a list of class \code{quadFuncDeriv} containing following objects:
    \item{deriv}{data frame containing the derivatives.}
