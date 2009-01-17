@@ -707,6 +707,12 @@ $model.matrix
 
 attr(,"class")
 [1] "quadFuncEst"
+> # compute fitted values
+> fitted <- quadFuncCalc( xNames = NULL,
++    shifterNames = c( "time", "qLabor", "land", "qVarInput" ), 
++    data = germanFarms, coef( estResultLinear ) )
+> all.equal( fitted, estResultLinear$fitted )
+[1] TRUE
 > 
 > ## estimate a quadratic production function with a logical variable as shifter
 > germanFarms$reUnif <- germanFarms$time >= 16
@@ -856,6 +862,12 @@ $model.matrix
 
 attr(,"class")
 [1] "quadFuncEst"
+> # compute fitted values
+> fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
++    shifterNames = c( "reUnif" ), data = germanFarms, 
++    coef( estResultShifterLogi ) )
+> all.equal( fitted, estResultShifterLogi$fitted )
+[1] TRUE
 > 
 > ## estimate a quadratic production function with a factor as shifter
 > germanFarms$decade <- as.factor( c( rep( "70s", 5 ), rep( "80s", 10 ), 
@@ -1009,6 +1021,12 @@ $model.matrix
 
 attr(,"class")
 [1] "quadFuncEst"
+> # compute fitted values
+> fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
++    shifterNames = c( "decade" ), data = germanFarms, 
++    coef( estResultShifterFac ) )
+> all.equal( fitted, estResultShifterFac$fitted )
+[1] TRUE
 > 
 > ## estimate a quadratic production function with some shifters are logical
 > estResultShifterLogi2 <- quadFuncEst( yName = "qOutput",
@@ -1160,6 +1178,12 @@ $model.matrix
 
 attr(,"class")
 [1] "quadFuncEst"
+> # compute fitted values
+> fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
++    shifterNames = c( "time", "reUnif" ), data = germanFarms, 
++    coef( estResultShifterLogi2 ) )
+> all.equal( fitted, estResultShifterLogi2$fitted )
+[1] TRUE
 > 
 > ## estimate a quadratic production function with some shifters are factors
 > estResultShifterFac2 <- quadFuncEst( yName = "qOutput",
@@ -1316,6 +1340,12 @@ $model.matrix
 
 attr(,"class")
 [1] "quadFuncEst"
+> # compute fitted values
+> fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
++    shifterNames = c( "time", "decade" ), data = germanFarms, 
++    coef( estResultShifterFac2 ) )
+> all.equal( fitted, estResultShifterFac2$fitted )
+[1] TRUE
 > 
 > ## estimate with further argument passed to lm()
 > estResult2 <- quadFuncEst( yName = "qOutput",
