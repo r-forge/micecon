@@ -162,6 +162,11 @@ print( estResultShifterLogi )
 summary( estResultShifterLogi )
 residuals( estResultShifterLogi )
 print.default( estResultShifterLogi )
+# testing translogCalc
+fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "reUnif" ), data = germanFarms, 
+   coef = estResultShifterLogi$coef )
+all.equal( fitted, estResultShifterLogi$fitted )
 
 ## testing translogEst with a factor as shifter
 germanFarms$decade <- as.factor( c( rep( "70s", 5 ), rep( "80s", 10 ), 
@@ -173,6 +178,11 @@ print( estResultShifterFac )
 summary( estResultShifterFac )
 residuals( estResultShifterFac )
 print.default( estResultShifterFac )
+# testing translogCalc
+fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "decade" ), data = germanFarms, 
+   coef = estResultShifterFac$coef )
+all.equal( fitted, estResultShifterFac$fitted )
 
 ## testing translogEst with some shifters and one is logical
 estResultShifterLogi2 <- translogEst( "qOutput",
@@ -182,6 +192,11 @@ print( estResultShifterLogi2 )
 summary( estResultShifterLogi2 )
 residuals( estResultShifterLogi2 )
 print.default( estResultShifterLogi2 )
+# testing translogCalc
+fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "tech", "reUnif" ), data = germanFarms, 
+   coef = estResultShifterLogi2$coef )
+all.equal( fitted, estResultShifterLogi2$fitted )
 
 ## testing translogEst with some shifters and one is a factor
 estResultShifterFac2 <- translogEst( "qOutput",
@@ -191,6 +206,11 @@ print( estResultShifterFac2 )
 summary( estResultShifterFac2 )
 residuals( estResultShifterFac2 )
 print.default( estResultShifterFac2 )
+# testing translogCalc
+fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "tech", "decade" ), data = germanFarms, 
+   coef = estResultShifterFac2$coef )
+all.equal( fitted, estResultShifterFac2$fitted )
 
 ## estimate with further argument passed to lm()
 estResult2 <- translogEst( yName = "qOutput",

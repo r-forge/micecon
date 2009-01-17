@@ -57,6 +57,11 @@ estResultLinear <- quadFuncEst( yName = "qOutput", xNames = NULL,
    data = germanFarms )
 coef( estResultLinear )
 print( estResultLinear )
+# compute fitted values
+fitted <- quadFuncCalc( xNames = NULL,
+   shifterNames = c( "time", "qLabor", "land", "qVarInput" ), 
+   data = germanFarms, coef( estResultLinear ) )
+all.equal( fitted, estResultLinear$fitted )
 
 ## estimate a quadratic production function with a logical variable as shifter
 germanFarms$reUnif <- germanFarms$time >= 16
@@ -65,6 +70,11 @@ estResultShifterLogi <- quadFuncEst( yName = "qOutput",
    shifterNames = c( "reUnif" ), data = germanFarms )
 coef( estResultShifterLogi )
 print( estResultShifterLogi )
+# compute fitted values
+fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "reUnif" ), data = germanFarms, 
+   coef( estResultShifterLogi ) )
+all.equal( fitted, estResultShifterLogi$fitted )
 
 ## estimate a quadratic production function with a factor as shifter
 germanFarms$decade <- as.factor( c( rep( "70s", 5 ), rep( "80s", 10 ), 
@@ -74,6 +84,11 @@ estResultShifterFac <- quadFuncEst( yName = "qOutput",
    shifterNames = c( "decade" ), data = germanFarms )
 coef( estResultShifterFac )
 print( estResultShifterFac )
+# compute fitted values
+fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "decade" ), data = germanFarms, 
+   coef( estResultShifterFac ) )
+all.equal( fitted, estResultShifterFac$fitted )
 
 ## estimate a quadratic production function with some shifters are logical
 estResultShifterLogi2 <- quadFuncEst( yName = "qOutput",
@@ -81,6 +96,11 @@ estResultShifterLogi2 <- quadFuncEst( yName = "qOutput",
    shifterNames = c( "time", "reUnif" ), data = germanFarms )
 coef( estResultShifterLogi2 )
 print( estResultShifterLogi2 )
+# compute fitted values
+fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "time", "reUnif" ), data = germanFarms, 
+   coef( estResultShifterLogi2 ) )
+all.equal( fitted, estResultShifterLogi2$fitted )
 
 ## estimate a quadratic production function with some shifters are factors
 estResultShifterFac2 <- quadFuncEst( yName = "qOutput",
@@ -88,6 +108,11 @@ estResultShifterFac2 <- quadFuncEst( yName = "qOutput",
    shifterNames = c( "time", "decade" ), data = germanFarms )
 coef( estResultShifterFac2 )
 print( estResultShifterFac2 )
+# compute fitted values
+fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput" ),
+   shifterNames = c( "time", "decade" ), data = germanFarms, 
+   coef( estResultShifterFac2 ) )
+all.equal( fitted, estResultShifterFac2$fitted )
 
 ## estimate with further argument passed to lm()
 estResult2 <- quadFuncEst( yName = "qOutput",

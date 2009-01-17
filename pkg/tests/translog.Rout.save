@@ -1786,6 +1786,12 @@ $r2nonLog
 
 attr(,"class")
 [1] "translogEst"
+> # testing translogCalc
+> fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
++    shifterNames = c( "reUnif" ), data = germanFarms, 
++    coef = estResultShifterLogi$coef )
+> all.equal( fitted, estResultShifterLogi$fitted )
+[1] TRUE
 > 
 > ## testing translogEst with a factor as shifter
 > germanFarms$decade <- as.factor( c( rep( "70s", 5 ), rep( "80s", 10 ), 
@@ -1971,6 +1977,12 @@ $r2nonLog
 
 attr(,"class")
 [1] "translogEst"
+> # testing translogCalc
+> fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
++    shifterNames = c( "decade" ), data = germanFarms, 
++    coef = estResultShifterFac$coef )
+> all.equal( fitted, estResultShifterFac$fitted )
+[1] TRUE
 > 
 > ## testing translogEst with some shifters and one is logical
 > estResultShifterLogi2 <- translogEst( "qOutput",
@@ -2154,6 +2166,12 @@ $r2nonLog
 
 attr(,"class")
 [1] "translogEst"
+> # testing translogCalc
+> fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
++    shifterNames = c( "tech", "reUnif" ), data = germanFarms, 
++    coef = estResultShifterLogi2$coef )
+> all.equal( fitted, estResultShifterLogi2$fitted )
+[1] TRUE
 > 
 > ## testing translogEst with some shifters and one is a factor
 > estResultShifterFac2 <- translogEst( "qOutput",
@@ -2343,6 +2361,12 @@ $r2nonLog
 
 attr(,"class")
 [1] "translogEst"
+> # testing translogCalc
+> fitted <- translogCalc( c( "qLabor", "land", "qVarInput" ),
++    shifterNames = c( "tech", "decade" ), data = germanFarms, 
++    coef = estResultShifterFac2$coef )
+> all.equal( fitted, estResultShifterFac2$fitted )
+[1] TRUE
 > 
 > ## estimate with further argument passed to lm()
 > estResult2 <- translogEst( yName = "qOutput",
