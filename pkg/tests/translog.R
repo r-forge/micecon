@@ -48,7 +48,8 @@ all.equal( margProducts, margProductsFitted )
 estEla <- translogEla( c( "qLabor", "land", "qVarInput", "time" ), 
    data = germanFarms, coef = coef( estResult ), coefCov = vcov( estResult ) )
 print( estEla )
-
+estElaMet <- elas( estResult )
+all.equal( estEla, estElaMet )
 
 ## testing translogHessian
 # compute the Hessian matrices
@@ -148,6 +149,8 @@ estElaShifter <- translogEla( c( "qLabor", "land", "qVarInput" ),
    data = germanFarms, coef = coef( estResultShifter ), 
    coefCov = vcov( estResultShifter ) )
 print( estElaShifter )
+estElaShifterMet <- elas( estResultShifter )
+all.equal( estElaShifter, estElaShifterMet )
 
 ## testing translogEst with two shifters
 germanFarms$techSq <- exp( germanFarms$time^2 )
@@ -250,11 +253,15 @@ ggEla <- translogEla( c( "value", "capital" ),
    data = ggData, coef = coef( ggResult ), 
    coefCov = vcov( ggResult ) )
 print( ggEla )
+ggElaMet <- elas( ggResult )
+all.equal( ggEla, ggElaMet )
 # random effects
 ggElaRan <- translogEla( c( "value", "capital" ), 
    data = ggData, coef = coef( ggResultRan ), 
    coefCov = vcov( ggResultRan ) )
 print( ggElaRan )
+ggElaRanMet <- elas( ggResultRan )
+all.equal( ggElaRan, ggElaRanMet )
 
 ## panel data with a shifter
 ggData$yearInt <- as.integer( as.character( ggData$year ) )

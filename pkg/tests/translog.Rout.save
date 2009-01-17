@@ -419,7 +419,9 @@ $stdDev
 
 attr(,"class")
 [1] "translogEla"
-> 
+> estElaMet <- elas( estResult )
+> all.equal( estEla, estElaMet )
+[1] TRUE
 > 
 > ## testing translogHessian
 > # compute the Hessian matrices
@@ -1579,6 +1581,9 @@ $stdDev
 
 attr(,"class")
 [1] "translogEla"
+> estElaShifterMet <- elas( estResultShifter )
+> all.equal( estElaShifter, estElaShifterMet )
+[1] TRUE
 > 
 > ## testing translogEst with two shifters
 > germanFarms$techSq <- exp( germanFarms$time^2 )
@@ -3510,6 +3515,9 @@ $stdDev
 
 attr(,"class")
 [1] "translogEla"
+> ggElaMet <- elas( ggResult )
+> all.equal( ggEla, ggElaMet )
+[1] TRUE
 > # random effects
 > ggElaRan <- translogEla( c( "value", "capital" ), 
 +    data = ggData, coef = coef( ggResultRan ), 
@@ -3826,6 +3834,9 @@ $stdDev
 
 attr(,"class")
 [1] "translogEla"
+> ggElaRanMet <- elas( ggResultRan )
+> all.equal( ggElaRan, ggElaRanMet )
+[1] TRUE
 > 
 > ## panel data with a shifter
 > ggData$yearInt <- as.integer( as.character( ggData$year ) )
