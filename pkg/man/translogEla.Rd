@@ -11,7 +11,8 @@
 translogEla( xNames, data, coef, coefCov = NULL, quadHalf = TRUE, 
    dataLogged = FALSE  )
 
-\method{elas}{translogEst}( object, data = NULL, \dots )
+\method{elas}{translogEst}( object, data = NULL, dataLogged = NULL,
+   \dots )
 }
 
 \arguments{
@@ -35,7 +36,10 @@ translogEla( xNames, data, coef, coefCov = NULL, quadHalf = TRUE,
       the row names and column names must be the same as the names
       of \code{coef}.}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
-   \item{dataLogged}{logical. Are the values in \code{data} already logged?}
+   \item{dataLogged}{logical. Are the values in \code{data} already logged?
+      If argument \code{dataLogged} of \code{elas.translogEst} is not specified,
+      the same value as used in \code{translogEst} for creating \code{object}
+      is used.}
    \item{object}{object of class \code{translogEst} 
       (returned by \code{\link{translogEst}}).}
    \item{\ldots}{currently ignored.}
