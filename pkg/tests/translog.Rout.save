@@ -437,6 +437,9 @@ attr(,"class")
 > estElaMet <- elas( estResult )
 > all.equal( estEla, estElaMet )
 [1] TRUE
+> estElaLogMet <- elas( estResultLog )
+> all.equal( estElaMet, estElaLogMet, check.attributes = FALSE )
+[1] TRUE
 > 
 > ## testing translogHessian
 > # compute the Hessian matrices
@@ -1606,6 +1609,9 @@ attr(,"class")
 [1] "translogEla"
 > estElaShifterMet <- elas( estResultShifter )
 > all.equal( estElaShifter, estElaShifterMet )
+[1] TRUE
+> estElaShifterLogMet <- elas( estResultShifterLog )
+> all.equal( estElaShifterMet, estElaShifterLogMet, check.attributes = FALSE )
 [1] TRUE
 > 
 > ## testing translogEst with two shifters
@@ -3577,6 +3583,9 @@ attr(,"class")
 > ggElaMet <- elas( ggResult )
 > all.equal( ggEla, ggElaMet )
 [1] TRUE
+> ggElaLogMet <- elas( ggResultLog )
+> all.equal( ggElaMet, ggElaLogMet, check.attributes = FALSE )
+[1] TRUE
 > # random effects
 > ggElaRan <- translogEla( c( "value", "capital" ), 
 +    data = ggData, coef = coef( ggResultRan ), 
@@ -3895,6 +3904,9 @@ attr(,"class")
 [1] "translogEla"
 > ggElaRanMet <- elas( ggResultRan )
 > all.equal( ggElaRan, ggElaRanMet )
+[1] TRUE
+> ggElaRanLogMet <- elas( ggResultRanLog )
+> all.equal( ggElaRanMet, ggElaRanLogMet, check.attributes = FALSE )
 [1] TRUE
 > 
 > ## panel data with a shifter
