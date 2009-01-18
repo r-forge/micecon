@@ -63,6 +63,8 @@ estEla <- translogEla( c( "qLabor", "land", "qVarInput", "time" ),
 print( estEla )
 estElaMet <- elas( estResult )
 all.equal( estEla, estElaMet )
+estElaLogMet <- elas( estResultLog )
+all.equal( estElaMet, estElaLogMet, check.attributes = FALSE )
 
 ## testing translogHessian
 # compute the Hessian matrices
@@ -170,6 +172,8 @@ estElaShifter <- translogEla( c( "qLabor", "land", "qVarInput" ),
 print( estElaShifter )
 estElaShifterMet <- elas( estResultShifter )
 all.equal( estElaShifter, estElaShifterMet )
+estElaShifterLogMet <- elas( estResultShifterLog )
+all.equal( estElaShifterMet, estElaShifterLogMet, check.attributes = FALSE )
 
 ## testing translogEst with two shifters
 germanFarms$techSq <- exp( germanFarms$time^2 )
@@ -302,6 +306,8 @@ ggEla <- translogEla( c( "value", "capital" ),
 print( ggEla )
 ggElaMet <- elas( ggResult )
 all.equal( ggEla, ggElaMet )
+ggElaLogMet <- elas( ggResultLog )
+all.equal( ggElaMet, ggElaLogMet, check.attributes = FALSE )
 # random effects
 ggElaRan <- translogEla( c( "value", "capital" ), 
    data = ggData, coef = coef( ggResultRan ), 
@@ -309,6 +315,8 @@ ggElaRan <- translogEla( c( "value", "capital" ),
 print( ggElaRan )
 ggElaRanMet <- elas( ggResultRan )
 all.equal( ggElaRan, ggElaRanMet )
+ggElaRanLogMet <- elas( ggResultRanLog )
+all.equal( ggElaRanMet, ggElaRanLogMet, check.attributes = FALSE )
 
 ## panel data with a shifter
 ggData$yearInt <- as.integer( as.character( ggData$year ) )
