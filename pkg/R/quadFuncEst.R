@@ -1,5 +1,5 @@
 quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
-   quadHalf = TRUE, regScale = 1, ... ) {
+   linear = FALSE, quadHalf = TRUE, regScale = 1, ... ) {
 
    checkNames( c( yName, xNames, shifterNames ), names( data ) )
 
@@ -22,14 +22,16 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
          estData[[ xName ]] <- data[[ xNames[ i ] ]] / regScale
          estFormula <- paste( estFormula, "+", xName )
       }
-      for( i in 1:nExog ) {
-         for( j in i:nExog ) {
-            xName <- paste( "b", as.character( i ), as.character( j ),
-               sep = "_" )
-            estData[[ xName ]] <- ifelse( quadHalf, 0.5, 1 ) *
-               ifelse( i == j, 1, 2 ) *
-               data[[ xNames[ i ] ]] * data[[ xNames[ j ] ]] / regScale
-            estFormula <- paste( estFormula, "+", xName )
+      if( !linear ) {
+         for( i in 1:nExog ) {
+            for( j in i:nExog ) {
+               xName <- paste( "b", as.character( i ), as.character( j ),
+                  sep = "_" )
+               estData[[ xName ]] <- ifelse( quadHalf, 0.5, 1 ) *
+                  ifelse( i == j, 1, 2 ) *
+                  data[[ xNames[ i ] ]] * data[[ xNames[ j ] ]] / regScale
+               estFormula <- paste( estFormula, "+", xName )
+            }
          }
       }
    }
@@ -70,6 +72,28 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    names( result$coef )[ 1 ]       <- "a_0"
    rownames( result$coefCov )[ 1 ] <- "a_0"
    colnames( result$coefCov )[ 1 ] <- "a_0"
+
+   if( linear & nExog > 0 ) {
+      nQuadCoef <- nExog * ( nExog + 1 ) / 2
+      quadCoefNames <- paste( "b", 
+         vecli( matrix( rep( 1:nExog, nExog ), nrow = nExog ) ), 
+         vecli( matrix( rep( 1:nExog, each = nExog ), nrow = nExog ) ),
+         sep = "_" )
+      quadCoef <- rep( 0, nQuadCoef )
+      names( quadCoef ) <- quadCoefNames
+      result$coef <- c( result$coef[ 1:( nExog + 1 ) ], quadCoef,
+         result$coef[ -c( 1:( nExog + 1 ) ) ] )
+      quadCoefCovRows <- matrix( 0, nrow = nQuadCoef, 
+         ncol = ncol( result$coefCov ) ) 
+      rownames( quadCoefCovRows ) <- quadCoefNames
+      result$coefCov <- rbind( result$coefCov[ 1:( nExog + 1 ), ],
+         quadCoefCovRows, result$coefCov[ -c( 1:( nExog + 1 ) ), ] )
+      quadCoefCovCols <- matrix( 0, nrow = nrow( result$coefCov ), 
+         ncol = nQuadCoef ) 
+      colnames( quadCoefCovCols ) <- quadCoefNames
+      result$coefCov <- cbind( result$coefCov[ , 1:( nExog + 1 ) ],
+         quadCoefCovCols, result$coefCov[ , -c( 1:( nExog + 1 ) ) ] )
+   }
 
    result$r2    <- summary( result$est )$r.squared
    result$r2bar <- summary( result$est )$adj.r.squared
