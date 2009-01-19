@@ -62,11 +62,35 @@ estResultLinear <- quadFuncEst( yName = "qOutput", xNames = NULL,
    data = germanFarms )
 coef( estResultLinear )
 print( estResultLinear )
+estResultLin <- quadFuncEst( yName = "qOutput", 
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   data = germanFarms, linear = TRUE )
+all.equal( coef( estResultLinear ), coef( estResultLin )[1:5],
+   check.attributes = FALSE )
+all.equal( vcov( estResultLinear ), vcov( estResultLin )[1:5,1:5],
+   check.attributes = FALSE )
+coef( estResultLin )
+vcov( estResultLin )
+print( estResultLin )
 # compute fitted values
 fitted <- quadFuncCalc( xNames = NULL,
    shifterNames = c( "time", "qLabor", "land", "qVarInput" ), 
    data = germanFarms, coef( estResultLinear ) )
 all.equal( fitted, estResultLinear$fitted )
+fitted <- quadFuncCalc( xNames = c( "time", "qLabor", "land", "qVarInput" ), 
+   data = germanFarms, coef( estResultLin ) )
+all.equal( fitted, estResultLin$fitted )
+all.equal( estResultLinear$fitted, estResultLin$fitted )
+# compute partial derivatives
+margProducts <- quadFuncDeriv(
+   c( "qLabor", "land", "qVarInput", "time" ),
+   data = germanFarms, coef = coef( estResultLin ), 
+   coefCov = vcov( estResultLin ) )
+sd( margProducts$deriv )
+all.equal( margProducts$deriv[1,], coef( estResultLin )[2:5], 
+   check.attributes = FALSE )
+all.equal( margProducts$variance[1,], diag( vcov( estResultLin ) )[2:5], 
+   check.attributes = FALSE )
 
 ## estimate a quadratic production function with a logical variable as shifter
 germanFarms$reUnif <- germanFarms$time >= 16
@@ -179,3 +203,35 @@ ggResShifterFacRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
    shifterNames = "decade", model = "random", random.method = "amemiya" )
 coef( ggResShifterFacRan )
 print.default( ggResShifterFacRan )
+
+## linear estimations with panel data
+# fixed effects
+ggResultLin <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
+   linear = TRUE )
+coef( ggResultLin )
+vcov( ggResultLin )
+print( ggResultLin )
+# random effects
+ggResultLinRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
+   linear = TRUE, model = "random", random.method = "amemiya" )
+coef( ggResultLinRan )
+vcov( ggResultLinRan )
+print( ggResultLinRan )
+
+## compute partial derivatives of linear estimation results with panel data
+# fixed effects
+margProducts <- quadFuncDeriv( c( "value", "capital" ),
+   data = ggData, coef = coef( ggResultLin ), coefCov = vcov( ggResultLin ) )
+sd( margProducts$deriv )
+all.equal( margProducts$deriv[1,], coef( ggResultLin )[2:3], 
+   check.attributes = FALSE )
+all.equal( margProducts$variance[1,], diag( vcov( ggResultLin ) )[2:3], 
+   check.attributes = FALSE )
+# random effects
+margProducts <- quadFuncDeriv( c( "value", "capital" ),
+   data = ggData, coef = coef( ggResultLinRan ), coefCov = vcov( ggResultLinRan ) )
+sd( margProducts$deriv )
+all.equal( margProducts$deriv[1,], coef( ggResultLinRan )[2:3], 
+   check.attributes = FALSE )
+all.equal( margProducts$variance[1,], diag( vcov( ggResultLinRan ) )[2:3], 
+   check.attributes = FALSE )
