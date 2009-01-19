@@ -1,7 +1,20 @@
 quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
-   linear = FALSE, quadHalf = TRUE, regScale = 1, ... ) {
+   linear = FALSE, homWeights = NULL, quadHalf = TRUE, regScale = 1, ... ) {
 
    checkNames( c( yName, xNames, shifterNames ), names( data ) )
+
+   # check argument 'homWeights'
+   if( !is.null( homWeights ) ) {
+      if( is.null( names( homWeights ) ) ) {
+         stop( "the elements of argument 'homWeights' must have names" )
+      }
+      if( !all( names( homWeights ) %in% xNames ) ) {
+         stop( "all names in argument 'homWeights' must be in argument 'xNames'" )
+      }
+      if( abs( sum( homWeights ) - 1 ) > .Machine$double.eps ^ 0.5 ) {
+         stop( "the sum of the elements in argument 'homWeights' must be 1" )
+      }
+   }
 
    nExog   <- length( xNames )
    nShifter <- length( shifterNames )
@@ -15,11 +28,34 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       estData <- data.frame( y = data[[  yName ]] )
    }
 
+   if( !is.null( homWeights ) ) {
+      if( ! linear ) {
+         stop( "imposing homogeneity of degree zero currently works",
+            "only for linear functions" )
+      }
+      estData$deflator <- 0
+      for( i in seq( along = homWeights ) ) {
+         estData$deflator <- estData$deflator + 
+            homWeights[ i ] * data[[ names( homWeights )[ i ] ]]
+      }
+      whichHom <- which( xNames %in% names( homWeights ) )
+      iOmit <- which( xNames == names( homWeights )[ length( homWeights ) ] )
+   }
+
    estFormula <- "y ~ 1"
    for( i in seq( along = xNames ) ) {
       xName <- paste( "a", as.character( i ), sep = "_" )
-      estData[[ xName ]] <- data[[ xNames[ i ] ]] / regScale
-      estFormula <- paste( estFormula, "+", xName )
+      if( is.null( homWeights ) | ! xNames[ i ] %in% names( homWeights ) ) {
+         estData[[ xName ]] <- data[[ xNames[ i ] ]] / regScale
+         estFormula <- paste( estFormula, "+", xName )
+      } else {
+         if( i != iOmit ) {
+            estData[[ xName ]] <- 
+               ( data[[ xNames[ i ] ]] - data[[ xNames[ iOmit ] ]] ) / 
+               estData$deflator / regScale
+            estFormula <- paste( estFormula, "+", xName )
+         }
+      }
    }
    if( !linear ) {
       for( i in seq( along = xNames ) ) {
@@ -68,6 +104,37 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    names( result$coef )[ 1 ]       <- "a_0"
    rownames( result$coefCov )[ 1 ] <- "a_0"
    colnames( result$coefCov )[ 1 ] <- "a_0"
+
+   # adding coefficient that has been dropped due to the homogeneity restriction
+   # and its covariances
+   if( !is.null( homWeights ) ) {
+      # missing coefficient
+      coefOmit <- 0
+      for( i in whichHom[ whichHom != iOmit ] ) {
+         coefOmit <- coefOmit - result$coef[ paste( "a", i, sep = "_" ) ]
+      }
+      result$coef <- c( result$coef[ 1:iOmit ], coefOmit, 
+         result$coef[ -c( 1:iOmit ) ] )
+      names( result$coef )[ iOmit + 1 ] <- paste( "a", iOmit, sep = "_" )
+      # missing row of covariance matrix
+      coefCovOmit <- rep( 0, ncol( result$coefCov ) )
+      for( i in whichHom[ whichHom != iOmit ] ) {
+         coefCovOmit <- coefCovOmit - 
+            result$coefCov[ paste( "a", i, sep = "_" ), ]
+      }
+      result$coefCov <- rbind( result$coefCov[ 1:iOmit, ], coefCovOmit, 
+         result$coefCov[ -c( 1:iOmit ), ] )
+      rownames( result$coefCov )[ iOmit + 1 ] <- paste( "a", iOmit, sep = "_" )
+      # missing column of covariance matrix
+      coefCovOmit <- rep( 0, nrow( result$coefCov ) )
+      for( i in whichHom[ whichHom != iOmit ] ) {
+         coefCovOmit <- coefCovOmit - 
+            result$coefCov[ , paste( "a", i, sep = "_" ) ]
+      }
+      result$coefCov <- cbind( result$coefCov[ , 1:iOmit ], coefCovOmit, 
+         result$coefCov[ , -c( 1:iOmit ) ] )
+      colnames( result$coefCov )[ iOmit + 1 ] <- paste( "a", iOmit, sep = "_" )
+   }
 
    if( linear & nExog > 0 ) {
       nQuadCoef <- nExog * ( nExog + 1 ) / 2
