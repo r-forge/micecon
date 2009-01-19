@@ -16,37 +16,33 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    }
 
    estFormula <- "y ~ 1"
-   if( nExog > 0 ) {
-      for( i in 1:nExog ) {
-         xName <- paste( "a", as.character( i ), sep = "_" )
-         estData[[ xName ]] <- data[[ xNames[ i ] ]] / regScale
-         estFormula <- paste( estFormula, "+", xName )
-      }
-      if( !linear ) {
-         for( i in 1:nExog ) {
-            for( j in i:nExog ) {
-               xName <- paste( "b", as.character( i ), as.character( j ),
-                  sep = "_" )
-               estData[[ xName ]] <- ifelse( quadHalf, 0.5, 1 ) *
-                  ifelse( i == j, 1, 2 ) *
-                  data[[ xNames[ i ] ]] * data[[ xNames[ j ] ]] / regScale
-               estFormula <- paste( estFormula, "+", xName )
-            }
+   for( i in seq( along = xNames ) ) {
+      xName <- paste( "a", as.character( i ), sep = "_" )
+      estData[[ xName ]] <- data[[ xNames[ i ] ]] / regScale
+      estFormula <- paste( estFormula, "+", xName )
+   }
+   if( !linear ) {
+      for( i in seq( along = xNames ) ) {
+         for( j in i:nExog ) {
+            xName <- paste( "b", as.character( i ), as.character( j ),
+               sep = "_" )
+            estData[[ xName ]] <- ifelse( quadHalf, 0.5, 1 ) *
+               ifelse( i == j, 1, 2 ) *
+               data[[ xNames[ i ] ]] * data[[ xNames[ j ] ]] / regScale
+            estFormula <- paste( estFormula, "+", xName )
          }
       }
    }
-   if( nShifter > 0 ) {
-      for( i in 1:nShifter ) {
-         if( is.factor( data[[ shifterNames[ i ] ]] ) | 
-               is.logical( data[[ shifterNames[ i ] ]] ) ) {
-            xName <- paste( "d", "_", as.character( i ), "_", sep = "" )
-            estData[[ xName ]] <- data[[ shifterNames[ i ] ]]
-         } else {
-            xName <- paste( "d", as.character( i ), sep = "_" )
-            estData[[ xName ]] <- data[[ shifterNames[ i ] ]] / regScale
-         }
-         estFormula <- paste( estFormula, "+", xName )
+   for( i in seq( along = shifterNames ) ) {
+      if( is.factor( data[[ shifterNames[ i ] ]] ) | 
+            is.logical( data[[ shifterNames[ i ] ]] ) ) {
+         xName <- paste( "d", "_", as.character( i ), "_", sep = "" )
+         estData[[ xName ]] <- data[[ shifterNames[ i ] ]]
+      } else {
+         xName <- paste( "d", as.character( i ), sep = "_" )
+         estData[[ xName ]] <- data[[ shifterNames[ i ] ]] / regScale
       }
+      estFormula <- paste( estFormula, "+", xName )
    }
    result$nExog <- nExog
    result$nShifter <- nShifter
