@@ -40,21 +40,17 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       }
       whichHom <- which( xNames %in% names( homWeights ) )
       iOmit <- which( xNames == names( homWeights )[ length( homWeights ) ] )
+   } else {
+      iOmit <- 0
    }
 
    estFormula <- "y ~ 1"
    for( i in seq( along = xNames ) ) {
-      xName <- paste( "a", as.character( i ), sep = "_" )
-      if( is.null( homWeights ) | ! xNames[ i ] %in% names( homWeights ) ) {
-         estData[[ xName ]] <- data[[ xNames[ i ] ]] / regScale
+      if( i != iOmit ) {
+         xName <- paste( "a", as.character( i ), sep = "_" )
+         estData[[ xName ]] <- .quadFuncVarHom( data, xNames[ i ], 
+            homWeights, estData$deflator ) / regScale
          estFormula <- paste( estFormula, "+", xName )
-      } else {
-         if( i != iOmit ) {
-            estData[[ xName ]] <- 
-               ( data[[ xNames[ i ] ]] - data[[ xNames[ iOmit ] ]] ) / 
-               estData$deflator / regScale
-            estFormula <- paste( estFormula, "+", xName )
-         }
       }
    }
    if( !linear ) {
