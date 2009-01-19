@@ -150,7 +150,56 @@ estResult2 <- quadFuncEst( yName = "qOutput",
 coef( estResult2 )
 print( estResult2 )
 
-## panel data
+
+################ imposing homogeneity #####################
+## linear functions
+estResultLinHom <- quadFuncEst( yName = "qOutput", 
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   data = germanFarms, linear = TRUE, 
+   homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+coef( estResultLinHom )
+all.equal( sum( coef( estResultLinHom )[3:5] ), 0 )
+vcov( estResultLinHom )
+all.equal( rowSums( vcov( estResultLinHom )[ , 3:5] ), rep( 0, 15 ),
+   check.attributes = FALSE )
+all.equal( colSums( vcov( estResultLinHom )[ 3:5, ] ), rep( 0, 15 ),
+   check.attributes = FALSE )
+# different order of weights
+estResultLinHom2 <- quadFuncEst( yName = "qOutput", 
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   data = germanFarms, linear = TRUE, 
+   homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
+all.equal( coef( estResultLinHom ), coef( estResultLinHom2 ) )
+all.equal( vcov( estResultLinHom ), vcov( estResultLinHom2 ) )
+# different order of xNames
+estResultLinHom3 <- quadFuncEst( yName = "qOutput", 
+   xNames = c( "qLabor", "land", "qVarInput", "time" ),
+   data = germanFarms, linear = TRUE, 
+   homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+all.equal( coef( estResultLinHom ), 
+   coef( estResultLinHom3 )[ c( 1, 5, 2:4, 6:15 ) ],
+   check.attributes = FALSE )
+all.equal( vcov( estResultLinHom ), 
+   vcov( estResultLinHom3 )[ c( 1, 5, 2:4, 6:15 ), c( 1, 5, 2:4, 6:15 ) ],
+   check.attributes = FALSE )
+# homogenous in all variables
+estResultLinHom4 <- quadFuncEst( yName = "qOutput", 
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   data = germanFarms, linear = TRUE, 
+   homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3, time = 0 ) )
+coef( estResultLinHom4 )
+all.equal( sum( coef( estResultLinHom4 )[2:5] ), 0 )
+vcov( estResultLinHom4 )
+all.equal( rowSums( vcov( estResultLinHom4 )[ , 2:5 ] ), rep( 0, 15 ),
+   check.attributes = FALSE )
+all.equal( colSums( vcov( estResultLinHom4 )[ 2:5, ] ), rep( 0, 15 ),
+   check.attributes = FALSE )
+
+
+
+
+
+################ panel data #####################
 data( "GrunfeldGreene", package = "systemfit" )
 ggData <- plm.data( GrunfeldGreene, c( "firm", "year" ) )
 # fixed effects
@@ -234,4 +283,16 @@ sd( margProducts$deriv )
 all.equal( margProducts$deriv[1,], coef( ggResultLinRan )[2:3], 
    check.attributes = FALSE )
 all.equal( margProducts$variance[1,], diag( vcov( ggResultLinRan ) )[2:3], 
+   check.attributes = FALSE )
+
+## imposing homogeneity on linear functions with panel data
+ggResultLinHom <- quadFuncEst( "invest", 
+   xNames = c( "value", "capital" ), data = ggData,
+   linear = TRUE, homWeights = c( value = 0.3, capital = 0.7 ) )
+coef( ggResultLinHom )
+all.equal( sum( coef( ggResultLinHom )[2:3] ), 0 )
+vcov( ggResultLinHom )
+all.equal( rowSums( vcov( ggResultLinHom )[ -1, 2:3 ] ), rep( 0, 5 ),
+   check.attributes = FALSE )
+all.equal( colSums( vcov( ggResultLinHom )[ 2:3, -1 ] ), rep( 0, 5 ),
    check.attributes = FALSE )

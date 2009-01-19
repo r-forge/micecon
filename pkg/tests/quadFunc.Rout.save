@@ -1805,7 +1805,142 @@ $model.matrix
 attr(,"class")
 [1] "quadFuncEst"
 > 
-> ## panel data
+> 
+> ################ imposing homogeneity #####################
+> ## linear functions
+> estResultLinHom <- quadFuncEst( yName = "qOutput", 
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    data = germanFarms, linear = TRUE, 
++    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+> coef( estResultLinHom )
+          a_0           a_1           a_2           a_3           a_4 
+-204866.29706      35.00369 -169743.59534  107690.54362   62053.05172 
+        b_1_1         b_1_2         b_1_3         b_1_4         b_2_2 
+      0.00000       0.00000       0.00000       0.00000       0.00000 
+        b_2_3         b_2_4         b_3_3         b_3_4         b_4_4 
+      0.00000       0.00000       0.00000       0.00000       0.00000 
+> all.equal( sum( coef( estResultLinHom )[3:5] ), 0 )
+[1] TRUE
+> vcov( estResultLinHom )
+                a_0           a_1           a_2           a_3           a_4
+a_0    2849737704.3  197398.24103  2342807089.3 -1483057708.7 -859749380.60
+a_1        197398.2      23.45175      165444.1     -105986.7     -59457.32
+a_2    2342807089.3  165444.06435  1927795476.4 -1221045218.8 -706750257.61
+a_3   -1483057708.7 -105986.74450 -1221045218.8   773678582.7  447366636.12
+a_4    -859749380.6  -59457.31985  -706750257.6   447366636.1  259383621.49
+b_1_1           0.0       0.00000           0.0           0.0          0.00
+b_1_2           0.0       0.00000           0.0           0.0          0.00
+b_1_3           0.0       0.00000           0.0           0.0          0.00
+b_1_4           0.0       0.00000           0.0           0.0          0.00
+b_2_2           0.0       0.00000           0.0           0.0          0.00
+b_2_3           0.0       0.00000           0.0           0.0          0.00
+b_2_4           0.0       0.00000           0.0           0.0          0.00
+b_3_3           0.0       0.00000           0.0           0.0          0.00
+b_3_4           0.0       0.00000           0.0           0.0          0.00
+b_4_4           0.0       0.00000           0.0           0.0          0.00
+      b_1_1 b_1_2 b_1_3 b_1_4 b_2_2 b_2_3 b_2_4 b_3_3 b_3_4 b_4_4
+a_0       0     0     0     0     0     0     0     0     0     0
+a_1       0     0     0     0     0     0     0     0     0     0
+a_2       0     0     0     0     0     0     0     0     0     0
+a_3       0     0     0     0     0     0     0     0     0     0
+a_4       0     0     0     0     0     0     0     0     0     0
+b_1_1     0     0     0     0     0     0     0     0     0     0
+b_1_2     0     0     0     0     0     0     0     0     0     0
+b_1_3     0     0     0     0     0     0     0     0     0     0
+b_1_4     0     0     0     0     0     0     0     0     0     0
+b_2_2     0     0     0     0     0     0     0     0     0     0
+b_2_3     0     0     0     0     0     0     0     0     0     0
+b_2_4     0     0     0     0     0     0     0     0     0     0
+b_3_3     0     0     0     0     0     0     0     0     0     0
+b_3_4     0     0     0     0     0     0     0     0     0     0
+b_4_4     0     0     0     0     0     0     0     0     0     0
+> all.equal( rowSums( vcov( estResultLinHom )[ , 3:5] ), rep( 0, 15 ),
++    check.attributes = FALSE )
+[1] TRUE
+> all.equal( colSums( vcov( estResultLinHom )[ 3:5, ] ), rep( 0, 15 ),
++    check.attributes = FALSE )
+[1] TRUE
+> # different order of weights
+> estResultLinHom2 <- quadFuncEst( yName = "qOutput", 
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    data = germanFarms, linear = TRUE, 
++    homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
+> all.equal( coef( estResultLinHom ), coef( estResultLinHom2 ) )
+[1] TRUE
+> all.equal( vcov( estResultLinHom ), vcov( estResultLinHom2 ) )
+[1] TRUE
+> # different order of xNames
+> estResultLinHom3 <- quadFuncEst( yName = "qOutput", 
++    xNames = c( "qLabor", "land", "qVarInput", "time" ),
++    data = germanFarms, linear = TRUE, 
++    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+> all.equal( coef( estResultLinHom ), 
++    coef( estResultLinHom3 )[ c( 1, 5, 2:4, 6:15 ) ],
++    check.attributes = FALSE )
+[1] TRUE
+> all.equal( vcov( estResultLinHom ), 
++    vcov( estResultLinHom3 )[ c( 1, 5, 2:4, 6:15 ), c( 1, 5, 2:4, 6:15 ) ],
++    check.attributes = FALSE )
+[1] TRUE
+> # homogenous in all variables
+> estResultLinHom4 <- quadFuncEst( yName = "qOutput", 
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    data = germanFarms, linear = TRUE, 
++    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3, time = 0 ) )
+> coef( estResultLinHom4 )
+       a_0        a_1        a_2        a_3        a_4      b_1_1      b_1_2 
+-281897.53    6870.61 -240607.07  148455.93   85280.52       0.00       0.00 
+     b_1_3      b_1_4      b_2_2      b_2_3      b_2_4      b_3_3      b_3_4 
+      0.00       0.00       0.00       0.00       0.00       0.00       0.00 
+     b_4_4 
+      0.00 
+> all.equal( sum( coef( estResultLinHom4 )[2:5] ), 0 )
+[1] TRUE
+> vcov( estResultLinHom4 )
+                        a_1         a_2         a_3         a_4 b_1_1 b_1_2
+       4022245963  62725525  3235440872 -2084488113 -1213678284     0     0
+a_1      62725525   1980508    50755181   -33849741   -18885947     0     0
+a_2    3235440872  50755181  2603870701 -1678422712  -976203169     0     0
+a_3   -2084488113 -33849741 -1678422712  1083404187   628868267     0     0
+a_4   -1213678284 -18885947  -976203169   628868267   366220850     0     0
+b_1_1           0         0           0           0           0     0     0
+b_1_2           0         0           0           0           0     0     0
+b_1_3           0         0           0           0           0     0     0
+b_1_4           0         0           0           0           0     0     0
+b_2_2           0         0           0           0           0     0     0
+b_2_3           0         0           0           0           0     0     0
+b_2_4           0         0           0           0           0     0     0
+b_3_3           0         0           0           0           0     0     0
+b_3_4           0         0           0           0           0     0     0
+b_4_4           0         0           0           0           0     0     0
+      b_1_3 b_1_4 b_2_2 b_2_3 b_2_4 b_3_3 b_3_4 b_4_4
+          0     0     0     0     0     0     0     0
+a_1       0     0     0     0     0     0     0     0
+a_2       0     0     0     0     0     0     0     0
+a_3       0     0     0     0     0     0     0     0
+a_4       0     0     0     0     0     0     0     0
+b_1_1     0     0     0     0     0     0     0     0
+b_1_2     0     0     0     0     0     0     0     0
+b_1_3     0     0     0     0     0     0     0     0
+b_1_4     0     0     0     0     0     0     0     0
+b_2_2     0     0     0     0     0     0     0     0
+b_2_3     0     0     0     0     0     0     0     0
+b_2_4     0     0     0     0     0     0     0     0
+b_3_3     0     0     0     0     0     0     0     0
+b_3_4     0     0     0     0     0     0     0     0
+b_4_4     0     0     0     0     0     0     0     0
+> all.equal( rowSums( vcov( estResultLinHom4 )[ , 2:5 ] ), rep( 0, 15 ),
++    check.attributes = FALSE )
+[1] TRUE
+> all.equal( colSums( vcov( estResultLinHom4 )[ 2:5, ] ), rep( 0, 15 ),
++    check.attributes = FALSE )
+[1] TRUE
+> 
+> 
+> 
+> 
+> 
+> ################ panel data #####################
 > data( "GrunfeldGreene", package = "systemfit" )
 > ggData <- plm.data( GrunfeldGreene, c( "firm", "year" ) )
 > # fixed effects
@@ -4160,6 +4295,30 @@ attr(,"class")
 +    check.attributes = FALSE )
 [1] TRUE
 > all.equal( margProducts$variance[1,], diag( vcov( ggResultLinRan ) )[2:3], 
++    check.attributes = FALSE )
+[1] TRUE
+> 
+> ## imposing homogeneity on linear functions with panel data
+> ggResultLinHom <- quadFuncEst( "invest", 
++    xNames = c( "value", "capital" ), data = ggData,
++    linear = TRUE, homWeights = c( value = 0.3, capital = 0.7 ) )
+> coef( ggResultLinHom )
+      a_0       a_1       a_2     b_1_1     b_1_2     b_2_2 
+ 515.5525 -123.3956  123.3956    0.0000    0.0000    0.0000 
+> all.equal( sum( coef( ggResultLinHom )[2:3] ), 0 )
+[1] TRUE
+> vcov( ggResultLinHom )
+      a_0       a_1       a_2 b_1_1 b_1_2 b_2_2
+a_0    NA        NA        NA     0     0     0
+a_1    NA  474.9821 -474.9821     0     0     0
+a_2    NA -474.9821  474.9821     0     0     0
+b_1_1   0    0.0000    0.0000     0     0     0
+b_1_2   0    0.0000    0.0000     0     0     0
+b_2_2   0    0.0000    0.0000     0     0     0
+> all.equal( rowSums( vcov( ggResultLinHom )[ -1, 2:3 ] ), rep( 0, 5 ),
++    check.attributes = FALSE )
+[1] TRUE
+> all.equal( colSums( vcov( ggResultLinHom )[ 2:3, -1 ] ), rep( 0, 5 ),
 +    check.attributes = FALSE )
 [1] TRUE
 > 
