@@ -109,9 +109,12 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       for( i in whichHom[ whichHom != iOmit ] ) {
          coefOmit <- coefOmit - result$coef[ paste( "a", i, sep = "_" ) ]
       }
+      coefNames <- c( names( result$coef )[ 1:iOmit ], 
+         paste( "a", iOmit, sep = "_" ), 
+         names( result$coef )[ -c( 1:iOmit ) ] )
       result$coef <- c( result$coef[ 1:iOmit ], coefOmit, 
          result$coef[ -c( 1:iOmit ) ] )
-      names( result$coef )[ iOmit + 1 ] <- paste( "a", iOmit, sep = "_" )
+      names( result$coef ) <- coefNames
       # missing row of covariance matrix
       coefCovOmit <- rep( 0, ncol( result$coefCov ) )
       for( i in whichHom[ whichHom != iOmit ] ) {
@@ -120,7 +123,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       }
       result$coefCov <- rbind( result$coefCov[ 1:iOmit, ], coefCovOmit, 
          result$coefCov[ -c( 1:iOmit ), ] )
-      rownames( result$coefCov )[ iOmit + 1 ] <- paste( "a", iOmit, sep = "_" )
+      rownames( result$coefCov ) <- coefNames
       # missing column of covariance matrix
       coefCovOmit <- rep( 0, nrow( result$coefCov ) )
       for( i in whichHom[ whichHom != iOmit ] ) {
@@ -129,7 +132,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       }
       result$coefCov <- cbind( result$coefCov[ , 1:iOmit ], coefCovOmit, 
          result$coefCov[ , -c( 1:iOmit ) ] )
-      colnames( result$coefCov )[ iOmit + 1 ] <- paste( "a", iOmit, sep = "_" )
+      colnames( result$coefCov ) <- coefNames
    }
 
    if( linear & nExog > 0 ) {
