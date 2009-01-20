@@ -109,30 +109,27 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       for( i in whichHom[ whichHom != iOmit ] ) {
          coefOmit <- coefOmit - result$coef[ paste( "a", i, sep = "_" ) ]
       }
-      coefNames <- c( names( result$coef )[ 1:iOmit ], 
-         paste( "a", iOmit, sep = "_" ), 
-         names( result$coef )[ -c( 1:iOmit ) ] )
-      result$coef <- c( result$coef[ 1:iOmit ], coefOmit, 
-         result$coef[ -c( 1:iOmit ) ] )
-      names( result$coef ) <- coefNames
+      result$coef <- c( result$coef, coefOmit )
+      names( result$coef )[ length( result$coef ) ] <- 
+         paste( "a", iOmit, sep = "_" )
       # missing row of covariance matrix
       coefCovOmit <- rep( 0, ncol( result$coefCov ) )
       for( i in whichHom[ whichHom != iOmit ] ) {
          coefCovOmit <- coefCovOmit - 
             result$coefCov[ paste( "a", i, sep = "_" ), ]
       }
-      result$coefCov <- rbind( result$coefCov[ 1:iOmit, ], coefCovOmit, 
-         result$coefCov[ -c( 1:iOmit ), ] )
-      rownames( result$coefCov ) <- coefNames
+      result$coefCov <- rbind( result$coefCov, coefCovOmit )
+      rownames( result$coefCov )[ nrow( result$coefCov ) ] <- 
+         paste( "a", iOmit, sep = "_" )
       # missing column of covariance matrix
       coefCovOmit <- rep( 0, nrow( result$coefCov ) )
       for( i in whichHom[ whichHom != iOmit ] ) {
          coefCovOmit <- coefCovOmit - 
             result$coefCov[ , paste( "a", i, sep = "_" ) ]
       }
-      result$coefCov <- cbind( result$coefCov[ , 1:iOmit ], coefCovOmit, 
-         result$coefCov[ , -c( 1:iOmit ) ] )
-      colnames( result$coefCov ) <- coefNames
+      result$coefCov <- cbind( result$coefCov, coefCovOmit )
+      colnames( result$coefCov )[ ncol( result$coefCov ) ] <- 
+         paste( "a", iOmit, sep = "_" )
    }
 
    if( linear & nExog > 0 ) {
@@ -143,19 +140,20 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
          sep = "_" )
       quadCoef <- rep( 0, nQuadCoef )
       names( quadCoef ) <- quadCoefNames
-      result$coef <- c( result$coef[ 1:( nExog + 1 ) ], quadCoef,
-         result$coef[ -c( 1:( nExog + 1 ) ) ] )
+      result$coef <- c( result$coef, quadCoef )
       quadCoefCovRows <- matrix( 0, nrow = nQuadCoef, 
          ncol = ncol( result$coefCov ) ) 
       rownames( quadCoefCovRows ) <- quadCoefNames
-      result$coefCov <- rbind( result$coefCov[ 1:( nExog + 1 ), ],
-         quadCoefCovRows, result$coefCov[ -c( 1:( nExog + 1 ) ), ] )
+      result$coefCov <- rbind( result$coefCov, quadCoefCovRows )
       quadCoefCovCols <- matrix( 0, nrow = nrow( result$coefCov ), 
          ncol = nQuadCoef ) 
       colnames( quadCoefCovCols ) <- quadCoefNames
-      result$coefCov <- cbind( result$coefCov[ , 1:( nExog + 1 ) ],
-         quadCoefCovCols, result$coefCov[ , -c( 1:( nExog + 1 ) ) ] )
+      result$coefCov <- cbind( result$coefCov, quadCoefCovCols )
    }
+
+   result$coef <- result$coef[ order( names( result$coef ) ) ] 
+   result$coefCov <- result$coefCov[ order( rownames( result$coefCov ) ), ] 
+   result$coefCov <- result$coefCov[ , order( colnames( result$coefCov ) ) ] 
 
    result$r2    <- summary( result$est )$r.squared
    result$r2bar <- summary( result$est )$adj.r.squared
