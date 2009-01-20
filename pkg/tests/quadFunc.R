@@ -152,7 +152,7 @@ print( estResult2 )
 
 
 ################ imposing homogeneity #####################
-## linear functions
+## linear functions with homogeneity imposed
 estResultLinHom <- quadFuncEst( yName = "qOutput", 
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    data = germanFarms, linear = TRUE, 
@@ -196,6 +196,99 @@ all.equal( rowSums( vcov( estResultLinHom4 )[ , 2:4 ] ),
    - vcov( estResultLinHom4 )[ , 5 ] )
 all.equal( colSums( vcov( estResultLinHom4 )[ 2:4, ] ), 
    - vcov( estResultLinHom4 )[ 5, ] )
+
+## quadratic functions with homogeneity imposed
+estResultHom <- quadFuncEst( yName = "qOutput", 
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   data = germanFarms,
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+coef( estResultHom )
+all.equal( sum( coef( estResultHom )[3:4] ), - coef( estResultHom )[5],
+   check.attributes = FALSE ) # a_2:4
+all.equal( sum( coef( estResultHom )[7:8] ), - coef( estResultHom )[9],
+   check.attributes = FALSE ) # b_1_2:4
+all.equal( sum( coef( estResultHom )[10:11] ), - coef( estResultHom )[12],
+   check.attributes = FALSE ) # b_2_2:4
+all.equal( sum( coef( estResultHom )[13:14] ), - coef( estResultHom )[11],
+   check.attributes = FALSE ) # b_3_2:4
+all.equal( sum( coef( estResultHom )[14:15] ), - coef( estResultHom )[12],
+   check.attributes = FALSE ) # b_4_2:4
+vcov( estResultHom )
+all.equal( rowSums( vcov( estResultHom )[ , 3:4 ] ), 
+   - vcov( estResultHom )[ , 5 ] ) # a_2:4
+all.equal( rowSums( vcov( estResultHom )[ , 7:8 ] ), 
+   - vcov( estResultHom )[ , 9 ] ) # b_1_2:4
+all.equal( rowSums( vcov( estResultHom )[ , 10:11 ] ), 
+   - vcov( estResultHom )[ , 12 ] ) # b_2_2:4
+all.equal( rowSums( vcov( estResultHom )[ , 13:14 ] ), 
+   - vcov( estResultHom )[ , 11 ] ) # b_3_2:4
+all.equal( rowSums( vcov( estResultHom )[ , 14:15 ] ), 
+   - vcov( estResultHom )[ , 12 ] ) # b_4_2:4
+all.equal( colSums( vcov( estResultHom )[ 3:4, ] ), 
+   - vcov( estResultHom )[ 5, ] ) # a_2:4
+all.equal( colSums( vcov( estResultHom )[ 7:8, ] ), 
+   - vcov( estResultHom )[ 9, ] ) # b_1_2:4
+all.equal( colSums( vcov( estResultHom )[ 10:11, ] ), 
+   - vcov( estResultHom )[ 12, ] ) # b_2_2:4
+all.equal( colSums( vcov( estResultHom )[ 13:14, ] ), 
+   - vcov( estResultHom )[ 11, ] ) # b_3_2:4
+all.equal( colSums( vcov( estResultHom )[ 14:15, ] ), 
+   - vcov( estResultHom )[ 12, ] ) # b_4_2:4
+# different order of weights
+estResultHom2 <- quadFuncEst( yName = "qOutput", 
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   data = germanFarms,
+   homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+all.equal( coef( estResultHom ), coef( estResultHom2 ) )
+all.equal( vcov( estResultHom ), vcov( estResultHom2 ) )
+# different order of xNames
+estResultHom3 <- quadFuncEst( yName = "qOutput", 
+   xNames = c( "qLabor", "land", "qVarInput", "time" ),
+   data = germanFarms, 
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+coefOrderHom3 <- c( 1, 5, 2:4, 15, 9, 12, 14, 6:8, 10, 11, 13 )
+all.equal( coef( estResultHom ), coef( estResultHom3 )[ coefOrderHom3 ],
+   check.attributes = FALSE )
+all.equal( vcov( estResultHom ), 
+   vcov( estResultHom3 )[ coefOrderHom3, coefOrderHom3 ],
+   check.attributes = FALSE )
+# homogenous in all variables
+estResultHom4 <- quadFuncEst( yName = "qOutput", 
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   data = germanFarms, 
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2, time = 0 ) )
+coef( estResultHom4 )
+all.equal( sum( coef( estResultHom4 )[2:4] ), - coef( estResultHom4 )[5], 
+   check.attributes = FALSE ) # a_1:4
+all.equal( sum( coef( estResultHom4 )[6:8] ), - coef( estResultHom4 )[9], 
+   check.attributes = FALSE ) # b_1_1:4
+all.equal( sum( coef( estResultHom4 )[10:12] ), - coef( estResultHom4 )[7], 
+   check.attributes = FALSE ) # b_2_1:4
+all.equal( sum( coef( estResultHom4 )[c(11,13,14)] ), - coef( estResultHom4 )[8], 
+   check.attributes = FALSE ) # b_3_1:4
+all.equal( sum( coef( estResultHom4 )[c(12,14,15)] ), - coef( estResultHom4 )[9], 
+   check.attributes = FALSE ) # b_4_1:4
+vcov( estResultHom4 )
+all.equal( rowSums( vcov( estResultHom4 )[ , 2:4 ] ), 
+   - vcov( estResultHom4 )[ , 5 ] ) # a_1:4
+all.equal( rowSums( vcov( estResultHom4 )[ , 6:8 ] ), 
+   - vcov( estResultHom4 )[ , 9 ] ) # b_1_1:4
+all.equal( rowSums( vcov( estResultHom4 )[ , 10:12 ] ), 
+   - vcov( estResultHom4 )[ , 7 ] ) # b_2_1:4
+all.equal( rowSums( vcov( estResultHom4 )[ , c(11,13,14) ] ), 
+   - vcov( estResultHom4 )[ , 8 ] ) # b_3_1:4
+all.equal( rowSums( vcov( estResultHom4 )[ , c(12,14,15) ] ), 
+   - vcov( estResultHom4 )[ , 9 ] ) # b_4_1:4
+all.equal( colSums( vcov( estResultHom4 )[ 2:4, ] ), 
+   - vcov( estResultHom4 )[ 5, ] ) # a_1:4
+all.equal( colSums( vcov( estResultHom4 )[ 6:8, ] ), 
+   - vcov( estResultHom4 )[ 9, ] ) # b_1_1:4
+all.equal( colSums( vcov( estResultHom4 )[ 10:12, ] ), 
+   - vcov( estResultHom4 )[ 7, ] ) # b_2_1:4
+all.equal( colSums( vcov( estResultHom4 )[ c(11,13,14), ] ), 
+   - vcov( estResultHom4 )[ 8, ] ) # b_3_1:4
+all.equal( colSums( vcov( estResultHom4 )[ c(12,14,15), ] ), 
+   - vcov( estResultHom4 )[ 9, ] ) # b_4_1:4
 
 
 ################ panel data #####################
@@ -296,3 +389,28 @@ all.equal( vcov( ggResultLinHom )[ -1, 2 ],
    - vcov( ggResultLinHom )[ -1, 3 ] )
 all.equal( vcov( ggResultLinHom )[ 2, -1 ], 
    - vcov( ggResultLinHom )[ 3, -1 ] )
+
+## imposing homogeneity on quadratic functions with panel data
+ggResultHom <- quadFuncEst( "invest", 
+   xNames = c( "value", "capital" ), data = ggData,
+   homWeights = c( value = 0.3, capital = 0.7 ) )
+coef( ggResultHom )
+all.equal( coef( ggResultHom )[2], - coef( ggResultHom )[3],
+   check.attributes = FALSE ) # a_1:2
+all.equal( coef( ggResultHom )[4], - coef( ggResultHom )[5],
+   check.attributes = FALSE ) # b_1_1:2
+all.equal( coef( ggResultHom )[5], - coef( ggResultHom )[6],
+   check.attributes = FALSE ) # b_2_1:2
+vcov( ggResultHom )
+all.equal( vcov( ggResultHom )[ -1, 2 ], 
+   - vcov( ggResultHom )[ -1, 3 ] ) # a_1:2
+all.equal( vcov( ggResultHom )[ -1, 4 ], 
+   - vcov( ggResultHom )[ -1, 5 ] ) # b_1_1:2
+all.equal( vcov( ggResultHom )[ -1, 5 ], 
+   - vcov( ggResultHom )[ -1, 6 ] ) # b_2_1:2
+all.equal( vcov( ggResultHom )[ 2, -1 ], 
+   - vcov( ggResultHom )[ 3, -1 ] ) # a_1:2
+all.equal( vcov( ggResultHom )[ 4, -1 ], 
+   - vcov( ggResultHom )[ 5, -1 ] ) # b_1_1:2
+all.equal( vcov( ggResultHom )[ 5, -1 ], 
+   - vcov( ggResultHom )[ 6, -1 ] ) # b_2_1:2
