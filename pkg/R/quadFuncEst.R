@@ -39,7 +39,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
             homWeights[ i ] * data[[ names( homWeights )[ i ] ]]
       }
       whichHom <- which( xNames %in% names( homWeights ) )
-      iOmit <- which( xNames == names( homWeights )[ length( homWeights ) ] )
+      iOmit <- which( xNames == names( homWeights )[ 1 ] )
    } else {
       iOmit <- 0
    }

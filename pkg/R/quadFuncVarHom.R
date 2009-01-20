@@ -3,7 +3,7 @@
    if( is.null( homWeights ) | ! xName %in% names( homWeights ) ) {
       result <- data[[ xName ]]
    } else {
-      xOmit <- names( homWeights )[ length( homWeights ) ]
+      xOmit <- names( homWeights )[ 1 ]
       result <- ( data[[ xName ]] - data[[ xOmit ]] ) / deflator
    }
 
