@@ -29,10 +29,6 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    }
 
    if( !is.null( homWeights ) ) {
-      if( ! linear ) {
-         stop( "imposing homogeneity of degree zero currently works",
-            "only for linear functions" )
-      }
       estData$deflator <- 0
       for( i in seq( along = homWeights ) ) {
          estData$deflator <- estData$deflator + 
@@ -56,12 +52,18 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    if( !linear ) {
       for( i in seq( along = xNames ) ) {
          for( j in i:nExog ) {
-            xName <- paste( "b", as.character( i ), as.character( j ),
-               sep = "_" )
-            estData[[ xName ]] <- ifelse( quadHalf, 0.5, 1 ) *
-               ifelse( i == j, 1, 2 ) *
-               data[[ xNames[ i ] ]] * data[[ xNames[ j ] ]] / regScale
-            estFormula <- paste( estFormula, "+", xName )
+            if( i != iOmit & j != iOmit ) {
+               xName <- paste( "b", as.character( i ), as.character( j ),
+                  sep = "_" )
+               estData[[ xName ]] <- ifelse( quadHalf, 0.5, 1 ) *
+                  ifelse( i == j, 1, 2 ) *
+                  .quadFuncVarHom( data, xNames[ i ], homWeights, 
+                     estData$deflator ) * 
+                  .quadFuncVarHom( data, xNames[ j ], homWeights, 
+                     estData$deflator ) / 
+                  regScale
+               estFormula <- paste( estFormula, "+", xName )
+            }
          }
       }
    }
@@ -101,10 +103,10 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    rownames( result$coefCov )[ 1 ] <- "a_0"
    colnames( result$coefCov )[ 1 ] <- "a_0"
 
-   # adding coefficient that has been dropped due to the homogeneity restriction
-   # and its covariances
+   # adding coefficients and covariances that have been dropped 
+   # due to the homogeneity restriction
    if( !is.null( homWeights ) ) {
-      # missing coefficient
+      # missing coefficients
       coefOmit <- 0
       for( i in whichHom[ whichHom != iOmit ] ) {
          coefOmit <- coefOmit - result$coef[ paste( "a", i, sep = "_" ) ]
@@ -112,7 +114,19 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       result$coef <- c( result$coef, coefOmit )
       names( result$coef )[ length( result$coef ) ] <- 
          paste( "a", iOmit, sep = "_" )
-      # missing row of covariance matrix
+      if( !linear & nExog > 0 ) {
+         for( i in c( (1:nExog)[ (1:nExog) != iOmit ], iOmit ) ) {
+            coefOmit <- 0
+            for( j in whichHom[ whichHom != iOmit ] ) {
+               coefOmit <- coefOmit - result$coef[ 
+                  paste( "b", min( i, j ), max( i, j ), sep = "_" ) ]
+            }
+            result$coef <- c( result$coef, coefOmit )
+            names( result$coef )[ length( result$coef ) ] <- 
+               paste( "b", min( i, iOmit ), max( i, iOmit ), sep = "_" )
+         }
+      }
+      # missing rows of covariance matrix
       coefCovOmit <- rep( 0, ncol( result$coefCov ) )
       for( i in whichHom[ whichHom != iOmit ] ) {
          coefCovOmit <- coefCovOmit - 
@@ -121,7 +135,19 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       result$coefCov <- rbind( result$coefCov, coefCovOmit )
       rownames( result$coefCov )[ nrow( result$coefCov ) ] <- 
          paste( "a", iOmit, sep = "_" )
-      # missing column of covariance matrix
+      if( !linear & nExog > 0 ) {
+         for( i in c( (1:nExog)[ (1:nExog) != iOmit ], iOmit ) ) {
+            coefCovOmit <- rep( 0, ncol( result$coefCov ) )
+            for( j in whichHom[ whichHom != iOmit ] ) {
+               coefCovOmit <- coefCovOmit - result$coefCov[ 
+                  paste( "b", min( i, j ), max( i, j ), sep = "_" ), ]
+            }
+            result$coefCov <- rbind( result$coefCov, coefCovOmit )
+            rownames( result$coefCov )[ nrow( result$coefCov ) ] <- 
+               paste( "b", min( i, iOmit ), max( i, iOmit ), sep = "_" )
+         }
+      }
+      # missing columns of covariance matrix
       coefCovOmit <- rep( 0, nrow( result$coefCov ) )
       for( i in whichHom[ whichHom != iOmit ] ) {
          coefCovOmit <- coefCovOmit - 
@@ -130,6 +156,18 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       result$coefCov <- cbind( result$coefCov, coefCovOmit )
       colnames( result$coefCov )[ ncol( result$coefCov ) ] <- 
          paste( "a", iOmit, sep = "_" )
+      if( !linear & nExog > 0 ) {
+         for( i in c( (1:nExog)[ (1:nExog) != iOmit ], iOmit ) ) {
+            coefCovOmit <- rep( 0, nrow( result$coefCov ) )
+            for( j in whichHom[ whichHom != iOmit ] ) {
+               coefCovOmit <- coefCovOmit - result$coefCov[ ,
+                  paste( "b", min( i, j ), max( i, j ), sep = "_" ) ]
+            }
+            result$coefCov <- cbind( result$coefCov, coefCovOmit )
+            colnames( result$coefCov )[ ncol( result$coefCov ) ] <- 
+               paste( "b", min( i, iOmit ), max( i, iOmit ), sep = "_" )
+         }
+      }
    }
 
    if( linear & nExog > 0 ) {
