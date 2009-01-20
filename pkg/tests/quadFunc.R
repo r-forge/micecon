@@ -158,12 +158,13 @@ estResultLinHom <- quadFuncEst( yName = "qOutput",
    data = germanFarms, linear = TRUE, 
    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
 coef( estResultLinHom )
-all.equal( sum( coef( estResultLinHom )[3:5] ), 0 )
+all.equal( sum( coef( estResultLinHom )[3:4] ), - coef( estResultLinHom )[5],
+   check.attributes = FALSE )
 vcov( estResultLinHom )
-all.equal( rowSums( vcov( estResultLinHom )[ , 3:5] ), rep( 0, 15 ),
-   check.attributes = FALSE )
-all.equal( colSums( vcov( estResultLinHom )[ 3:5, ] ), rep( 0, 15 ),
-   check.attributes = FALSE )
+all.equal( rowSums( vcov( estResultLinHom )[ , 3:4 ] ), 
+   - vcov( estResultLinHom )[ , 5 ] )
+all.equal( colSums( vcov( estResultLinHom )[ 3:4, ] ), 
+   - vcov( estResultLinHom )[ 5, ] )
 # different order of weights
 estResultLinHom2 <- quadFuncEst( yName = "qOutput", 
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
@@ -188,15 +189,13 @@ estResultLinHom4 <- quadFuncEst( yName = "qOutput",
    data = germanFarms, linear = TRUE, 
    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3, time = 0 ) )
 coef( estResultLinHom4 )
-all.equal( sum( coef( estResultLinHom4 )[2:5] ), 0 )
+all.equal( sum( coef( estResultLinHom4 )[2:4] ), 
+ - coef( estResultLinHom4 )[5], check.attributes = FALSE )
 vcov( estResultLinHom4 )
-all.equal( rowSums( vcov( estResultLinHom4 )[ , 2:5 ] ), rep( 0, 15 ),
-   check.attributes = FALSE )
-all.equal( colSums( vcov( estResultLinHom4 )[ 2:5, ] ), rep( 0, 15 ),
-   check.attributes = FALSE )
-
-
-
+all.equal( rowSums( vcov( estResultLinHom4 )[ , 2:4 ] ), 
+   - vcov( estResultLinHom4 )[ , 5 ] )
+all.equal( colSums( vcov( estResultLinHom4 )[ 2:4, ] ), 
+   - vcov( estResultLinHom4 )[ 5, ] )
 
 
 ################ panel data #####################
@@ -290,9 +289,10 @@ ggResultLinHom <- quadFuncEst( "invest",
    xNames = c( "value", "capital" ), data = ggData,
    linear = TRUE, homWeights = c( value = 0.3, capital = 0.7 ) )
 coef( ggResultLinHom )
-all.equal( sum( coef( ggResultLinHom )[2:3] ), 0 )
+all.equal( coef( ggResultLinHom )[2], - coef( ggResultLinHom )[3],
+   check.attributes = FALSE )
 vcov( ggResultLinHom )
-all.equal( rowSums( vcov( ggResultLinHom )[ -1, 2:3 ] ), rep( 0, 5 ),
-   check.attributes = FALSE )
-all.equal( colSums( vcov( ggResultLinHom )[ 2:3, -1 ] ), rep( 0, 5 ),
-   check.attributes = FALSE )
+all.equal( vcov( ggResultLinHom )[ -1, 2 ], 
+   - vcov( ggResultLinHom )[ -1, 3 ] )
+all.equal( vcov( ggResultLinHom )[ 2, -1 ], 
+   - vcov( ggResultLinHom )[ 3, -1 ] )
