@@ -150,6 +150,35 @@ estResult2 <- quadFuncEst( yName = "qOutput",
 coef( estResult2 )
 print( estResult2 )
 
+## calculating elasticities
+estElaFit <- quadFuncEla( 
+   xNames = c( "qLabor", "land", "qVarInput", "time" ), 
+   data = germanFarms, coef = coef( estResult ) )
+print( estElaFit )
+estElaObs <- quadFuncEla( 
+   xNames = c( "qLabor", "land", "qVarInput", "time" ), 
+   data = germanFarms, coef = coef( estResult ),
+   yName = "qOutput" )
+print( estElaObs )
+max( abs( estElaFit - estElaObs ) )
+# with a shifter
+estElaShifterFit <- quadFuncEla( 
+   xNames = c( "qLabor", "land", "qVarInput" ), 
+   data = germanFarms, coef = coef( estResultShifter ),
+   shifterNames = "time" )
+print( estElaShifterFit )
+estElaShifterObs <- quadFuncEla( 
+   xNames = c( "qLabor", "land", "qVarInput" ), 
+   data = germanFarms, coef = coef( estResultShifter ),
+   yName = "qOutput" )
+print( estElaShifterObs )
+max( abs( estElaShifterFit - estElaShifterObs ) )
+estElaShifterObs2 <- quadFuncEla( 
+   xNames = c( "qLabor", "land", "qVarInput" ), 
+   data = germanFarms, coef = coef( estResultShifter ),
+   yName = "qOutput", shifterNames = "time" )
+all.equal( estElaShifterObs, estElaShifterObs2 )
+
 
 ################ imposing homogeneity #####################
 ## linear functions with homogeneity imposed
@@ -446,6 +475,25 @@ all.equal( margProducts$deriv[1,], coef( ggResultLinRan )[2:3],
    check.attributes = FALSE )
 all.equal( margProducts$variance[1,], diag( vcov( ggResultLinRan ) )[2:3], 
    check.attributes = FALSE )
+
+## compute elasticities using results of estimations with panel data
+ggElaObs <- quadFuncEla( xNames = c( "value", "capital" ), 
+   data = ggData, coef = coef( ggResult ), yName = "invest" )
+print( ggElaObs )
+ggElaObsRan <- quadFuncEla( xNames = c( "value", "capital" ), 
+   data = ggData, coef = coef( ggResultRan ), yName = "invest" )
+print( ggElaObsRan )
+# with shifter variables
+ggShifterElaObs <- quadFuncEla( xNames = c( "value", "capital" ), 
+   data = ggData, coef = coef( ggResShifter ), yName = "invest" )
+print( ggShifterElaObs )
+ggShifterElaObs2 <- quadFuncEla( xNames = c( "value", "capital" ), 
+   data = ggData, coef = coef( ggResShifter ), yName = "invest",
+   shifterNames = "tech" )
+all.equal( ggShifterElaObs, ggShifterElaObs2 )
+ggShifterElaObsRan <- quadFuncEla( xNames = c( "value", "capital" ), 
+   data = ggData, coef = coef( ggResShifterRan ), yName = "invest" )
+print( ggShifterElaObsRan )
 
 ## imposing homogeneity on linear functions with panel data
 ggResultLinHom <- quadFuncEst( "invest", 
