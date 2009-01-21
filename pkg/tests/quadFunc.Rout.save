@@ -2121,18 +2121,21 @@ attr(,"class")
 +    estResultLinHomDeriv$deriv$land * germanFarms$land, 
 +    - estResultLinHomDeriv$deriv$qVarInput * germanFarms$qVarInput )
 [1] TRUE
+> # different order of weights (different from order used for estimation)
 > estResultLinHom1Deriv <- quadFuncDeriv(
 +    xNames = c( "time", "qLabor", "land", "qVarInput" ),
 +    coef = coef( estResultLinHom ), data = germanFarms, 
 +    homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
 > all.equal( estResultLinHomDeriv, estResultLinHom1Deriv )
 [1] TRUE
+> # different order of weights (same order as used for estimation)
 > estResultLinHom2Deriv <- quadFuncDeriv(
 +    xNames = c( "time", "qLabor", "land", "qVarInput" ),
 +    coef = coef( estResultLinHom2 ), data = germanFarms, 
 +    homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
 > all.equal( estResultLinHomDeriv, estResultLinHom2Deriv )
 [1] TRUE
+> # different order of independent variables
 > estResultLinHom3Deriv <- quadFuncDeriv(
 +    xNames = c( "qLabor", "land", "qVarInput", "time" ),
 +    coef = coef( estResultLinHom3 ), data = germanFarms,
@@ -2140,6 +2143,7 @@ attr(,"class")
 > all.equal( estResultLinHomDeriv$deriv, 
 +    estResultLinHom3Deriv$deriv[ , c( 4, 1, 2, 3 ) ] )
 [1] TRUE
+> # homogenous in all independent variables
 > estResultLinHom4Deriv <- quadFuncDeriv(
 +    xNames = c( "time", "qLabor", "land", "qVarInput" ),
 +    coef = coef( estResultLinHom4 ), data = germanFarms,
@@ -2447,30 +2451,30 @@ b_4_4 -7.218313e+13 -1.217472e+14  2.888829e+13  4.823309e+13  8.155095e+13
 > estResultHomDeriv <- quadFuncDeriv(
 +    xNames = c( "time", "qLabor", "land", "qVarInput" ),
 +    coef = coef( estResultHom ), data = germanFarms, 
-+    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
++    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
 > print( estResultHomDeriv )
 $deriv
-        time    qLabor      land qVarInput
-1  -12064.39 -185616.3 -77511.69  3739.236
-2  -12011.32 -170329.8 -71376.02  3254.450
-3  -12027.08 -170022.0 -71186.11  3293.906
-4  -11970.20 -158133.2 -66453.27  2889.148
-5  -11980.69 -159754.4 -67099.02  2945.946
-6  -11978.66 -157530.4 -66182.07  2894.025
-7  -11977.70 -153711.0 -64590.21  2815.929
-8  -12020.26 -159874.5 -67009.15  3053.603
-9  -12006.79 -161951.4 -67945.33  3047.844
-10 -12028.64 -159901.5 -67001.86  3070.865
-11 -12004.09 -152000.0 -63797.78  2843.624
-12 -12005.09 -136356.3 -57235.63  2549.489
-13 -11992.89 -129530.4 -54419.42  2387.720
-14 -12025.30 -130111.6 -54560.26  2473.762
-15 -12084.61 -140915.3 -58877.81  2833.634
-16 -12119.31 -144512.3 -60256.76  2996.286
-17 -12197.06 -148241.1 -61515.92  3287.294
-18 -12241.40 -148014.1 -61256.89  3401.933
-19 -12260.39 -142048.9 -58725.36  3310.966
-20 -12259.25 -134888.8 -55777.28  3136.424
+        time      qLabor       land qVarInput
+1   5.570767 -1158.69402  26.066323 1.9020266
+2  30.035570  -196.11320  -7.962407 0.7863887
+3  34.395179  -125.58337 -10.407945 0.7201859
+4  42.461348   -94.90863 -18.437067 0.9170773
+5  38.420460  -446.53677 -10.235982 1.4141676
+6  44.686086  -339.03226 -15.220252 1.3430729
+7  57.501418    71.58386 -27.923282 0.9201682
+8  36.581545  -982.56253   1.837118 2.1859856
+9  30.551788 -1519.06448  12.353442 3.0269131
+10 23.941363 -1935.72889  24.140588 3.5966067
+11 38.896289 -1415.96528   6.833414 2.9067415
+12 40.997827 -1343.64038   6.316471 2.7361060
+13 54.705105  -931.98574  -6.169027 2.2168703
+14 62.760146  -697.95510 -11.594364 1.9287999
+15 44.582069 -1522.60182  11.795401 2.9044131
+16 47.899609 -1493.18626  11.611655 2.8296129
+17 45.487519 -1589.51131  19.150920 2.7582372
+18 51.167361 -1385.46948  16.048696 2.3964270
+19 68.463112  -718.06286  -1.172802 1.6506120
+20 85.948230  -145.60137 -17.405512 1.1964559
 
 attr(,"class")
 [1] "quadFuncDeriv"
@@ -2478,52 +2482,56 @@ attr(,"class")
 +    estResultHomDeriv$deriv$land * germanFarms$land, 
 +    - estResultHomDeriv$deriv$qVarInput * germanFarms$qVarInput )
 [1] TRUE
+> # different order of weights (different from order used for estimation)
 > estResultHom1Deriv <- quadFuncDeriv(
 +    xNames = c( "time", "qLabor", "land", "qVarInput" ),
 +    coef = coef( estResultHom ), data = germanFarms, 
-+    homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
++    homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
 > all.equal( estResultHomDeriv, estResultHom1Deriv )
 [1] TRUE
+> # different order of weights (same order as used for estimation)
 > estResultHom2Deriv <- quadFuncDeriv(
 +    xNames = c( "time", "qLabor", "land", "qVarInput" ),
 +    coef = coef( estResultHom2 ), data = germanFarms, 
-+    homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
++    homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
 > all.equal( estResultHomDeriv, estResultHom2Deriv )
 [1] TRUE
+> # different order of independent variables
 > estResultHom3Deriv <- quadFuncDeriv(
 +    xNames = c( "qLabor", "land", "qVarInput", "time" ),
 +    coef = coef( estResultHom3 ), data = germanFarms,
-+    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
++    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
 > all.equal( estResultHomDeriv$deriv, 
 +    estResultHom3Deriv$deriv[ , c( 4, 1, 2, 3 ) ] )
 [1] TRUE
+> # homogenous in all independent variables
 > estResultHom4Deriv <- quadFuncDeriv(
 +    xNames = c( "time", "qLabor", "land", "qVarInput" ),
 +    coef = coef( estResultHom4 ), data = germanFarms,
-+    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3, time = 0 ) )
++    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2, time = 0 ) )
 > print( estResultHom4Deriv )
 $deriv
-        time    qLabor       land qVarInput
-1  -17232.76 -229228.6 -101754.64  4902.335
-2  -15797.96 -210359.8  -93657.13  4291.050
-3  -15768.96 -209961.4  -93367.19  4367.197
-4  -14650.15 -195273.0  -87118.57  3849.971
-5  -14798.62 -197257.0  -87926.20  3946.988
-6  -14588.13 -194491.3  -86685.96  3897.351
-7  -14230.10 -189750.5  -84563.19  3809.854
-8  -14806.05 -197340.0  -87691.84  4151.608
-9  -14991.81 -199901.2  -88877.19  4170.003
-10 -14802.16 -197335.2  -87603.56  4215.671
-11 -14060.76 -187544.2  -83375.68  3918.031
-12 -12607.26 -168152.4  -74762.84  3506.906
-13 -11969.31 -159686.7  -71050.91  3291.635
-14 -12025.08 -160371.4  -71203.49  3419.644
-15 -13032.95 -173699.3  -76806.09  3939.070
-16 -13369.31 -178119.9  -78570.79  4181.455
-17 -13726.44 -182685.7  -80177.53  4593.224
-18 -13710.15 -182365.3  -79803.99  4759.448
-19 -13155.81 -174946.6  -76470.66  4631.069
-20 -12486.88 -166057.4  -72597.85  4386.524
+        time      qLabor       land   qVarInput
+1  11.350230  -606.91202   7.656194  1.22801484
+2  51.772621   293.18816 -19.611718 -0.08912130
+3  56.280852   192.46655 -21.266615  0.13008114
+4  60.854725    76.99890 -15.939893  0.06068481
+5  49.439822  -535.89877  -1.177296  0.88825471
+6  56.472649  -529.59723  -4.109440  0.82703522
+7  75.518507   -90.20073 -19.935964  0.17625769
+8  34.660916 -1656.95081  21.229655  2.53160332
+9  16.833432 -2579.70049  46.590123  3.89594502
+10  1.747514 -3170.22564  61.331554  4.98714971
+11 26.669639 -2422.76825  39.549836  3.45075658
+12 31.265858 -1895.98716  27.510183  2.63783546
+13 50.763770 -1241.44142   8.365598  1.48549099
+14 62.463271  -991.21034  -3.478080  1.11906301
+15 31.211787 -2455.00756  30.995623  3.53550220
+16 34.205043 -2639.38903  29.978562  3.82098071
+17 29.725138 -2955.81997  30.477384  4.65378476
+18 39.116972 -2742.60992  18.779413  4.38950049
+19 69.074919 -1651.65027 -14.259502  2.59180554
+20 96.013513  -627.62087 -42.790031  1.01532446
 
 attr(,"class")
 [1] "quadFuncDeriv"

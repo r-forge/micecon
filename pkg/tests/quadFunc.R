@@ -262,22 +262,26 @@ print( estResultLinHomDeriv )
 all.equal( estResultLinHomDeriv$deriv$qLabor * germanFarms$qLabor + 
    estResultLinHomDeriv$deriv$land * germanFarms$land, 
    - estResultLinHomDeriv$deriv$qVarInput * germanFarms$qVarInput )
+# different order of weights (different from order used for estimation)
 estResultLinHom1Deriv <- quadFuncDeriv(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultLinHom ), data = germanFarms, 
    homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
 all.equal( estResultLinHomDeriv, estResultLinHom1Deriv )
+# different order of weights (same order as used for estimation)
 estResultLinHom2Deriv <- quadFuncDeriv(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultLinHom2 ), data = germanFarms, 
    homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
 all.equal( estResultLinHomDeriv, estResultLinHom2Deriv )
+# different order of independent variables
 estResultLinHom3Deriv <- quadFuncDeriv(
    xNames = c( "qLabor", "land", "qVarInput", "time" ),
    coef = coef( estResultLinHom3 ), data = germanFarms,
    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
 all.equal( estResultLinHomDeriv$deriv, 
    estResultLinHom3Deriv$deriv[ , c( 4, 1, 2, 3 ) ] )
+# homogenous in all independent variables
 estResultLinHom4Deriv <- quadFuncDeriv(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultLinHom4 ), data = germanFarms,
@@ -412,31 +416,35 @@ all.equal( estResultHom4$fitted, fitted )
 estResultHomDeriv <- quadFuncDeriv(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultHom ), data = germanFarms, 
-   homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
 print( estResultHomDeriv )
 all.equal( estResultHomDeriv$deriv$qLabor * germanFarms$qLabor + 
    estResultHomDeriv$deriv$land * germanFarms$land, 
    - estResultHomDeriv$deriv$qVarInput * germanFarms$qVarInput )
+# different order of weights (different from order used for estimation)
 estResultHom1Deriv <- quadFuncDeriv(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultHom ), data = germanFarms, 
-   homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
+   homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
 all.equal( estResultHomDeriv, estResultHom1Deriv )
+# different order of weights (same order as used for estimation)
 estResultHom2Deriv <- quadFuncDeriv(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultHom2 ), data = germanFarms, 
-   homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
+   homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
 all.equal( estResultHomDeriv, estResultHom2Deriv )
+# different order of independent variables
 estResultHom3Deriv <- quadFuncDeriv(
    xNames = c( "qLabor", "land", "qVarInput", "time" ),
    coef = coef( estResultHom3 ), data = germanFarms,
-   homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
 all.equal( estResultHomDeriv$deriv, 
    estResultHom3Deriv$deriv[ , c( 4, 1, 2, 3 ) ] )
+# homogenous in all independent variables
 estResultHom4Deriv <- quadFuncDeriv(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultHom4 ), data = germanFarms,
-   homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3, time = 0 ) )
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2, time = 0 ) )
 print( estResultHom4Deriv )
 all.equal( estResultHom4Deriv$deriv$qLabor * germanFarms$qLabor + 
    estResultHom4Deriv$deriv$land * germanFarms$land +
