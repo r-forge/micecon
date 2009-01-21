@@ -1,7 +1,10 @@
 quadFuncDeriv <- function( xNames, data, coef, coefCov = NULL,
-   quadHalf = TRUE ) {
+      homWeights = NULL, quadHalf = TRUE ) {
 
    checkNames( c( xNames ), names( data ) )
+
+   # check argument 'homWeights'
+   .quadFuncCheckHomWeights( homWeights, xNames )
 
    result <- list()
 
@@ -13,6 +16,18 @@ quadFuncDeriv <- function( xNames, data, coef, coefCov = NULL,
          " must have at least ", nCoef, " coefficients" )
    }
 
+   # calculate index to normalize variables
+   if( !is.null( homWeights ) ) {
+      deflator <- 0
+      for( i in seq( along = homWeights ) ) {
+         deflator <- deflator + 
+            homWeights[ i ] * data[[ names( homWeights )[ i ] ]]
+      }
+      whichHom <- which( xNames %in% names( homWeights ) )
+   } else {
+      whichHom <- NULL
+   }
+
    ## derivatives
    deriv <- array( NA, c( nrow( data ), nExog ) )
    for( i in 1:nExog ) {
@@ -20,13 +35,29 @@ quadFuncDeriv <- function( xNames, data, coef, coefCov = NULL,
       for( j in 1:nExog ) {
          deriv[ , i ] <- deriv[ , i ] + ifelse( quadHalf, 1, 2 ) *
             coef[ paste( "b", min( i, j ), max( i, j ), sep = "_" ) ] * 
-            data[[ xNames[ j ] ]]
+            .quadFuncVarHom( data, xNames[ j ], homWeights, deflator )
+      }
+      if( i %in% whichHom ) {
+         deriv[ , i ] <- deriv[ , i ] / deflator
+         for( j in whichHom ) {
+            deriv[ , i ] <- deriv[ , i ] - homWeights[ xNames[ i ] ] *
+               coef[ paste( "a", j, sep = "_" ) ] *
+               .quadFuncVarHom( data, xNames[ j ], homWeights, deflator ) / 
+               deflator
+            for( k in 1:nExog ) {
+               deriv[ , i ] <- deriv[ , i ] - homWeights[ xNames[ i ] ] *
+                  coef[ paste( "b", min( j, k ), max( j, k ), sep = "_" ) ] *
+                  .quadFuncVarHom( data, xNames[ j ], homWeights, deflator ) *
+                  .quadFuncVarHom( data, xNames[ k ], homWeights, deflator ) / 
+                  deflator
+            }
+         }
       }
    }
    colnames( deriv ) <- xNames
    result$deriv    <- as.data.frame( deriv )
 
-   if( !is.null( coefCov ) ) {
+   if( !is.null( coefCov ) & is.null( homWeights ) ) {
       ## variances of the derivatives
       variance <- array( NA, c( nrow( data ), nExog ) )
       for(i in 1:nExog ) {
