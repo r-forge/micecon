@@ -2541,6 +2541,168 @@ attr(,"class")
 +    - estResultHom4Deriv$deriv$time * germanFarms$time )
 [1] TRUE
 > 
+> ## elasticities of quadratic functions with homogeneity imposed
+> estResultHomEla <- quadFuncEla(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom ), data = germanFarms,
++    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+> print( estResultHomEla )
+          time      qLabor        land qVarInput
+1  0.005943199 -1.78006796  0.65073020 1.1293378
+2  0.058888959 -0.27876795 -0.18889816 0.4676661
+3  0.098238561 -0.17217013 -0.24465227 0.4168224
+4  0.151745565 -0.12549594 -0.41032482 0.5358208
+5  0.166704749 -0.57350122 -0.22126803 0.7947693
+6  0.222200265 -0.41302788 -0.31824392 0.7312718
+7  0.318418521  0.08211166 -0.57234198 0.4902303
+8  0.233419758 -1.16770207  0.03805350 1.1296486
+9  0.215891766 -1.76520381  0.24423091 1.5209729
+10 0.190183490 -2.35266400  0.49993417 1.8527298
+11 0.303314980 -1.53580841  0.12968183 1.4061266
+12 0.334258743 -1.54280288  0.12818890 1.4146140
+13 0.442408519 -0.98562216 -0.11939028 1.1050124
+14 0.524896209 -0.69631445 -0.22296124 0.9192757
+15 0.416744197 -1.56562724  0.23169517 1.3339321
+16 0.460788667 -1.44540550  0.22256777 1.2228377
+17 0.463222324 -1.54250630  0.38476982 1.1577365
+18 0.527117179 -1.28455772  0.32202776 0.9625300
+19 0.691089546 -0.61801862 -0.02324739 0.6412660
+20 0.861960553 -0.11827717 -0.34379000 0.4620672
+> all.equal( estResultHomEla$qLabor + estResultHomEla$land,
++    - estResultHomEla$qVarInput )
+[1] TRUE
+> estResultHomElaObs <- quadFuncEla(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom ), data = germanFarms, yName = "qOutput",
++    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+> print( estResultHomElaObs )
+          time     qLabor        land qVarInput
+1  0.005887932 -1.7635146  0.64467888 1.1188357
+2  0.062396631 -0.2953725 -0.20014972 0.4955223
+3  0.096473024 -0.1690759 -0.24025539 0.4093313
+4  0.144944448 -0.1198713 -0.39193439 0.5118057
+5  0.163058896 -0.5609587 -0.21642887 0.7773876
+6  0.226104110 -0.4202844 -0.32383516 0.7441195
+7  0.324772974  0.0837503 -0.58376380 0.5000135
+8  0.227115660 -1.1361653  0.03702577 1.0991395
+9  0.227676314 -1.8615582  0.25756237 1.6039959
+10 0.187274746 -2.3166814  0.49228797 1.8243934
+11 0.314465312 -1.5922671  0.13444913 1.4578180
+12 0.319301016 -1.4737641  0.12245258 1.3513115
+13 0.451524263 -1.0059307 -0.12185030 1.1277810
+14 0.518079651 -0.6872718 -0.22006576 0.9073375
+15 0.406600269 -1.5275185  0.22605551 1.3014630
+16 0.471327840 -1.4784649  0.22765834 1.2508065
+17 0.467232145 -1.5558588  0.38810053 1.1677583
+18 0.524614149 -1.2784580  0.32049860 0.9579594
+19 0.689194219 -0.6163237 -0.02318363 0.6395073
+20 0.862979947 -0.1184171 -0.34419658 0.4626136
+> all.equal( estResultHomElaObs$qLabor + estResultHomElaObs$land,
++    - estResultHomElaObs$qVarInput )
+[1] TRUE
+> max( abs( estResultHomEla - estResultHomElaObs ) )
+[1] 0.09635443
+> # different order of weights (different from order used for estimation)
+> estResultHom1Ela <- quadFuncEla(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom ), data = germanFarms,
++    homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+> all.equal( estResultHomEla, estResultHom1Ela )
+[1] TRUE
+> estResultHom1ElaObs <- quadFuncEla(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom ), data = germanFarms, yName = "qOutput",
++    homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+> all.equal( estResultHomElaObs, estResultHom1ElaObs )
+[1] TRUE
+> # different order of weights (same order as used for estimation)
+> estResultHom2Ela <- quadFuncEla(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom2 ), data = germanFarms,
++    homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+> all.equal( estResultHomEla, estResultHom2Ela )
+[1] TRUE
+> estResultHom2ElaObs <- quadFuncEla(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom2 ), data = germanFarms, yName = "qOutput",
++    homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+> all.equal( estResultHomElaObs, estResultHom2ElaObs )
+[1] TRUE
+> # different order of independent variables
+> estResultHom3Ela <- quadFuncEla(
++    xNames = c( "qLabor", "land", "qVarInput", "time" ),
++    coef = coef( estResultHom3 ), data = germanFarms,
++    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+> all.equal( estResultHomEla, estResultHom3Ela[ , c( 4, 1, 2, 3 ) ] )
+[1] TRUE
+> estResultHom3ElaObs <- quadFuncEla(
++    xNames = c( "qLabor", "land", "qVarInput", "time" ),
++    coef = coef( estResultHom3 ), data = germanFarms, yName = "qOutput",
++    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+> all.equal( estResultHomElaObs, estResultHom3ElaObs[ , c( 4, 1, 2, 3 ) ] )
+[1] TRUE
+> # homogenous in all independent variables
+> estResultHom4Ela <- quadFuncEla(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom4 ), data = germanFarms,
++    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2, time = 0 ) )
+> print( estResultHom4Ela )
+         time     qLabor        land   qVarInput
+1  0.01196856 -0.9215639  0.18891483  0.72068055
+2  0.10347880  0.4248501 -0.47429906 -0.05402980
+3  0.16199697  0.2659149 -0.50378407  0.07587218
+4  0.21996933  0.1029803 -0.35881200  0.03586239
+5  0.21331834 -0.6844248 -0.02530700  0.49641350
+6  0.27674984 -0.6358593 -0.08468332  0.44379275
+7  0.40773449 -0.1008798 -0.39841041  0.09155568
+8  0.21577172 -1.9211461  0.42902183  1.27635251
+9  0.11835893 -2.9827499  0.91650622  1.94788471
+10 0.01419384 -3.9396783  1.29868600  2.62679850
+11 0.20617519 -2.6051329  0.74408002  1.65487770
+12 0.25892459 -2.2112803  0.56708793  1.38526780
+13 0.41801331 -1.3368049  0.16485036  0.75394127
+14 0.52459200 -0.9930044 -0.06716290  0.53557536
+15 0.29188322 -2.5254340  0.60909609  1.62445466
+16 0.32526953 -2.5255882  0.56801835  1.63230036
+17 0.30434730 -2.8839628  0.61565499  1.96396048
+18 0.40531894 -2.5576329  0.37901212  1.77330189
+19 0.69172559 -1.4102398 -0.28040740  0.99892161
+20 0.96572320 -0.5113317 -0.84765453  0.39326301
+> all.equal( estResultHom4Ela$qLabor + estResultHom4Ela$land +
++    estResultHom4Ela$qVarInput, - estResultHom4Ela$time )
+[1] TRUE
+> estResultHom4ElaObs <- quadFuncEla(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom4 ), data = germanFarms, yName = "qOutput",
++    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2, time = 0 ) )
+> print( estResultHom4ElaObs )
+         time     qLabor        land   qVarInput
+1  0.01199644 -0.9237108  0.18935493  0.72235947
+2  0.10755372  0.4415803 -0.49297658 -0.05615746
+3  0.15785887  0.2591223 -0.49091525  0.07393408
+4  0.20773138  0.0972510 -0.33884957  0.03386719
+5  0.20982577 -0.6732191 -0.02489266  0.48828595
+6  0.28574215 -0.6565200 -0.08743489  0.45821271
+7  0.42653505 -0.1055313 -0.41678103  0.09577730
+8  0.21519148 -1.9159798  0.42786813  1.27292021
+9  0.12544515 -3.1613291  0.97137806  2.06450586
+10 0.01366945 -3.7941278  1.25070633  2.52975200
+11 0.21561637 -2.7244271  0.77815292  1.73065785
+12 0.24350608 -2.0796024  0.53331883  1.30277750
+13 0.41899333 -1.3399390  0.16523684  0.75570886
+14 0.51562897 -0.9760383 -0.06601538  0.52642467
+15 0.28465976 -2.4629351  0.59402231  1.58425299
+16 0.33657454 -2.6133672  0.58776030  1.68903231
+17 0.30532639 -2.8932405  0.61763556  1.97027856
+18 0.40106265 -2.5307750  0.37503207  1.75468027
+19 0.69535306 -1.4176352 -0.28187788  1.00416004
+20 0.96404239 -0.5104417 -0.84617922  0.39257855
+> all.equal( estResultHom4ElaObs$qLabor + estResultHom4ElaObs$land +
++    estResultHom4ElaObs$qVarInput, - estResultHom4ElaObs$time )
+[1] TRUE
+> max( abs( estResultHom4Ela - estResultHom4ElaObs ) )
+[1] 0.1785792
+> 
 > 
 > ################ panel data #####################
 > data( "GrunfeldGreene", package = "systemfit" )
