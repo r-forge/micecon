@@ -451,6 +451,72 @@ all.equal( estResultHom4Deriv$deriv$qLabor * germanFarms$qLabor +
    estResultHom4Deriv$deriv$qVarInput * germanFarms$qVarInput,
    - estResultHom4Deriv$deriv$time * germanFarms$time )
 
+## elasticities of quadratic functions with homogeneity imposed
+estResultHomEla <- quadFuncEla(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom ), data = germanFarms,
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+print( estResultHomEla )
+all.equal( estResultHomEla$qLabor + estResultHomEla$land,
+   - estResultHomEla$qVarInput )
+estResultHomElaObs <- quadFuncEla(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom ), data = germanFarms, yName = "qOutput",
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+print( estResultHomElaObs )
+all.equal( estResultHomElaObs$qLabor + estResultHomElaObs$land,
+   - estResultHomElaObs$qVarInput )
+max( abs( estResultHomEla - estResultHomElaObs ) )
+# different order of weights (different from order used for estimation)
+estResultHom1Ela <- quadFuncEla(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom ), data = germanFarms,
+   homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+all.equal( estResultHomEla, estResultHom1Ela )
+estResultHom1ElaObs <- quadFuncEla(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom ), data = germanFarms, yName = "qOutput",
+   homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+all.equal( estResultHomElaObs, estResultHom1ElaObs )
+# different order of weights (same order as used for estimation)
+estResultHom2Ela <- quadFuncEla(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom2 ), data = germanFarms,
+   homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+all.equal( estResultHomEla, estResultHom2Ela )
+estResultHom2ElaObs <- quadFuncEla(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom2 ), data = germanFarms, yName = "qOutput",
+   homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+all.equal( estResultHomElaObs, estResultHom2ElaObs )
+# different order of independent variables
+estResultHom3Ela <- quadFuncEla(
+   xNames = c( "qLabor", "land", "qVarInput", "time" ),
+   coef = coef( estResultHom3 ), data = germanFarms,
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+all.equal( estResultHomEla, estResultHom3Ela[ , c( 4, 1, 2, 3 ) ] )
+estResultHom3ElaObs <- quadFuncEla(
+   xNames = c( "qLabor", "land", "qVarInput", "time" ),
+   coef = coef( estResultHom3 ), data = germanFarms, yName = "qOutput",
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+all.equal( estResultHomElaObs, estResultHom3ElaObs[ , c( 4, 1, 2, 3 ) ] )
+# homogenous in all independent variables
+estResultHom4Ela <- quadFuncEla(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom4 ), data = germanFarms,
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2, time = 0 ) )
+print( estResultHom4Ela )
+all.equal( estResultHom4Ela$qLabor + estResultHom4Ela$land +
+   estResultHom4Ela$qVarInput, - estResultHom4Ela$time )
+estResultHom4ElaObs <- quadFuncEla(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom4 ), data = germanFarms, yName = "qOutput",
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2, time = 0 ) )
+print( estResultHom4ElaObs )
+all.equal( estResultHom4ElaObs$qLabor + estResultHom4ElaObs$land +
+   estResultHom4ElaObs$qVarInput, - estResultHom4ElaObs$time )
+max( abs( estResultHom4Ela - estResultHom4ElaObs ) )
+
 
 ################ panel data #####################
 data( "GrunfeldGreene", package = "systemfit" )
