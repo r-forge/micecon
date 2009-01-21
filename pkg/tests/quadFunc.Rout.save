@@ -1938,6 +1938,96 @@ b_4_4     0     0     0     0     0     0     0     0
 +    - vcov( estResultLinHom4 )[ 5, ] )
 [1] TRUE
 > 
+> ## derivatives of linear functions with homogeneity imposed
+> estResultLinHomDeriv <- quadFuncDeriv(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultLinHom ), data = germanFarms, 
++    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+> print( estResultLinHomDeriv )
+$deriv
+       time     qLabor     land qVarInput
+1  35.00369 -1178.4390 27.04124  1.912124
+2  35.00369 -1084.9966 24.64462  1.610257
+3  35.00369 -1081.5401 24.50168  1.566782
+4  35.00369 -1009.4570 22.79144  1.416388
+5  35.00369 -1018.7123 23.02246  1.442505
+6  35.00369 -1004.3502 22.62432  1.378383
+7  35.00369  -979.7844 21.93796  1.265518
+8  35.00369 -1015.7088 22.91918  1.417178
+9  35.00369 -1029.4467 23.27705  1.464841
+10 35.00369 -1014.5477 22.98394  1.469698
+11 35.00369  -965.7368 21.73324  1.312731
+12 35.00369  -865.9962 19.45889  1.159445
+13 35.00369  -823.0884 18.37840  1.032744
+14 35.00369  -824.7389 18.33428  0.986623
+15 35.00369  -889.3152 19.89781  1.140042
+16 35.00369  -909.6247 20.30333  1.136973
+17 35.00369  -928.0012 20.70432  1.154479
+18 35.00369  -923.6061 20.53430  1.106181
+19 35.00369  -885.0597 19.51752  0.964913
+20 35.00369  -840.2963 18.38134  0.827398
+
+attr(,"class")
+[1] "quadFuncDeriv"
+> all.equal( estResultLinHomDeriv$deriv$qLabor * germanFarms$qLabor + 
++    estResultLinHomDeriv$deriv$land * germanFarms$land, 
++    - estResultLinHomDeriv$deriv$qVarInput * germanFarms$qVarInput )
+[1] TRUE
+> estResultLinHom1Deriv <- quadFuncDeriv(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultLinHom ), data = germanFarms, 
++    homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
+> all.equal( estResultLinHomDeriv, estResultLinHom1Deriv )
+[1] TRUE
+> estResultLinHom2Deriv <- quadFuncDeriv(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultLinHom2 ), data = germanFarms, 
++    homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
+> all.equal( estResultLinHomDeriv, estResultLinHom2Deriv )
+[1] TRUE
+> estResultLinHom3Deriv <- quadFuncDeriv(
++    xNames = c( "qLabor", "land", "qVarInput", "time" ),
++    coef = coef( estResultLinHom3 ), data = germanFarms,
++    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+> all.equal( estResultLinHomDeriv$deriv, 
++    estResultLinHom3Deriv$deriv[ , c( 4, 1, 2, 3 ) ] )
+[1] TRUE
+> estResultLinHom4Deriv <- quadFuncDeriv(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultLinHom4 ), data = germanFarms,
++    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3, time = 0 ) )
+> print( estResultLinHom4Deriv )
+$deriv
+       time    qLabor     land qVarInput
+1  38.39356 -1660.528 39.59729 2.5625684
+2  35.34595 -1528.890 36.02354 2.1008025
+3  35.23251 -1524.056 35.72655 1.9852346
+4  32.88332 -1422.503 33.18017 1.7543156
+5  33.18510 -1435.579 33.43161 1.7385777
+6  32.71629 -1415.368 32.78441 1.6090717
+7  31.91436 -1380.774 31.73200 1.4203479
+8  33.08680 -1431.443 33.04181 1.5589649
+9  33.53493 -1450.839 33.46721 1.5668100
+10 33.05015 -1429.870 32.97370 1.5383324
+11 31.45821 -1361.091 31.14948 1.3226638
+12 28.20884 -1220.512 27.90588 1.1703705
+13 26.80966 -1160.046 26.34044 1.0035442
+14 26.86238 -1162.395 26.22263 0.9037540
+15 28.96733 -1253.461 28.32844 1.0051633
+16 29.62824 -1282.122 28.81818 0.9341477
+17 30.22667 -1308.061 29.29308 0.8887099
+18 30.08259 -1301.892 28.98846 0.7854790
+19 28.82504 -1247.564 27.53856 0.6097922
+20 27.36524 -1184.466 25.93625 0.4543152
+
+attr(,"class")
+[1] "quadFuncDeriv"
+> all.equal( estResultLinHom4Deriv$deriv$qLabor * germanFarms$qLabor + 
++    estResultLinHom4Deriv$deriv$land * germanFarms$land +
++    estResultLinHom4Deriv$deriv$qVarInput * germanFarms$qVarInput,
++    - estResultLinHom4Deriv$deriv$time * germanFarms$time )
+[1] TRUE
+> 
 > ## quadratic functions with homogeneity imposed
 > estResultHom <- quadFuncEst( yName = "qOutput", 
 +    xNames = c( "time", "qLabor", "land", "qVarInput" ),
@@ -2171,6 +2261,96 @@ b_4_4 -7.218313e+13 -1.217472e+14  2.888829e+13  4.823309e+13  8.155095e+13
 [1] TRUE
 > all.equal( colSums( vcov( estResultHom4 )[ c(12,14,15), ] ), 
 +    - vcov( estResultHom4 )[ 9, ] ) # b_4_1:4
+[1] TRUE
+> 
+> ## derivatives of quadratic functions with homogeneity imposed
+> estResultHomDeriv <- quadFuncDeriv(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom ), data = germanFarms, 
++    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+> print( estResultHomDeriv )
+$deriv
+        time    qLabor      land qVarInput
+1  -12064.39 -185616.3 -77511.69  3739.236
+2  -12011.32 -170329.8 -71376.02  3254.450
+3  -12027.08 -170022.0 -71186.11  3293.906
+4  -11970.20 -158133.2 -66453.27  2889.148
+5  -11980.69 -159754.4 -67099.02  2945.946
+6  -11978.66 -157530.4 -66182.07  2894.025
+7  -11977.70 -153711.0 -64590.21  2815.929
+8  -12020.26 -159874.5 -67009.15  3053.603
+9  -12006.79 -161951.4 -67945.33  3047.844
+10 -12028.64 -159901.5 -67001.86  3070.865
+11 -12004.09 -152000.0 -63797.78  2843.624
+12 -12005.09 -136356.3 -57235.63  2549.489
+13 -11992.89 -129530.4 -54419.42  2387.720
+14 -12025.30 -130111.6 -54560.26  2473.762
+15 -12084.61 -140915.3 -58877.81  2833.634
+16 -12119.31 -144512.3 -60256.76  2996.286
+17 -12197.06 -148241.1 -61515.92  3287.294
+18 -12241.40 -148014.1 -61256.89  3401.933
+19 -12260.39 -142048.9 -58725.36  3310.966
+20 -12259.25 -134888.8 -55777.28  3136.424
+
+attr(,"class")
+[1] "quadFuncDeriv"
+> all.equal( estResultHomDeriv$deriv$qLabor * germanFarms$qLabor + 
++    estResultHomDeriv$deriv$land * germanFarms$land, 
++    - estResultHomDeriv$deriv$qVarInput * germanFarms$qVarInput )
+[1] TRUE
+> estResultHom1Deriv <- quadFuncDeriv(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom ), data = germanFarms, 
++    homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
+> all.equal( estResultHomDeriv, estResultHom1Deriv )
+[1] TRUE
+> estResultHom2Deriv <- quadFuncDeriv(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom2 ), data = germanFarms, 
++    homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
+> all.equal( estResultHomDeriv, estResultHom2Deriv )
+[1] TRUE
+> estResultHom3Deriv <- quadFuncDeriv(
++    xNames = c( "qLabor", "land", "qVarInput", "time" ),
++    coef = coef( estResultHom3 ), data = germanFarms,
++    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+> all.equal( estResultHomDeriv$deriv, 
++    estResultHom3Deriv$deriv[ , c( 4, 1, 2, 3 ) ] )
+[1] TRUE
+> estResultHom4Deriv <- quadFuncDeriv(
++    xNames = c( "time", "qLabor", "land", "qVarInput" ),
++    coef = coef( estResultHom4 ), data = germanFarms,
++    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3, time = 0 ) )
+> print( estResultHom4Deriv )
+$deriv
+        time    qLabor       land qVarInput
+1  -17232.76 -229228.6 -101754.64  4902.335
+2  -15797.96 -210359.8  -93657.13  4291.050
+3  -15768.96 -209961.4  -93367.19  4367.197
+4  -14650.15 -195273.0  -87118.57  3849.971
+5  -14798.62 -197257.0  -87926.20  3946.988
+6  -14588.13 -194491.3  -86685.96  3897.351
+7  -14230.10 -189750.5  -84563.19  3809.854
+8  -14806.05 -197340.0  -87691.84  4151.608
+9  -14991.81 -199901.2  -88877.19  4170.003
+10 -14802.16 -197335.2  -87603.56  4215.671
+11 -14060.76 -187544.2  -83375.68  3918.031
+12 -12607.26 -168152.4  -74762.84  3506.906
+13 -11969.31 -159686.7  -71050.91  3291.635
+14 -12025.08 -160371.4  -71203.49  3419.644
+15 -13032.95 -173699.3  -76806.09  3939.070
+16 -13369.31 -178119.9  -78570.79  4181.455
+17 -13726.44 -182685.7  -80177.53  4593.224
+18 -13710.15 -182365.3  -79803.99  4759.448
+19 -13155.81 -174946.6  -76470.66  4631.069
+20 -12486.88 -166057.4  -72597.85  4386.524
+
+attr(,"class")
+[1] "quadFuncDeriv"
+> all.equal( estResultHom4Deriv$deriv$qLabor * germanFarms$qLabor + 
++    estResultHom4Deriv$deriv$land * germanFarms$land +
++    estResultHom4Deriv$deriv$qVarInput * germanFarms$qVarInput,
++    - estResultHom4Deriv$deriv$time * germanFarms$time )
 [1] TRUE
 > 
 > 
