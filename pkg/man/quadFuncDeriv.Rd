@@ -7,7 +7,8 @@
 }
 
 \usage{
-   quadFuncDeriv( xNames, data, coef, coefCov = NULL, quadHalf = TRUE  )
+   quadFuncDeriv( xNames, data, coef, coefCov = NULL, 
+      homWeights = NULL, quadHalf = TRUE  )
 }
 
 \arguments{
@@ -27,6 +28,10 @@
    \item{coefCov}{optional covariance matrix of the coefficients:
       the row names and column names must be the same as the names
       of \code{coef}.}
+   \item{homWeights}{named numeric vector with weighting factors
+      for calculating an index that is used to normalize the variables
+      for imposing homogeneity of degree zero in these variables
+      (see documentation of \code{\link{quadFuncEst}}).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
 }
 
