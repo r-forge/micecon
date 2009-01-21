@@ -1,10 +1,13 @@
-.quadFuncVarHom <- function( data, xName, homWeights, deflator ) {
+.quadFuncVarHom <- function( data, xName, homWeights, deflator, 
+      xSubtract = NULL ) {
 
    if( is.null( homWeights ) | ! xName %in% names( homWeights ) ) {
       result <- data[[ xName ]]
    } else {
-      xOmit <- names( homWeights )[ 1 ]
-      result <- ( data[[ xName ]] - data[[ xOmit ]] ) / deflator
+      result <- data[[ xName ]] / deflator
+      if( !is.null( xSubtract ) ) {
+         result <- result - data[[ xSubtract ]] / deflator
+      }
    }
 
    return( result )
