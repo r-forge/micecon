@@ -1,7 +1,10 @@
 quadFuncCalc <- function( xNames, data, coef, shifterNames = NULL,
-      quadHalf = TRUE ) {
+      homWeights = NULL, quadHalf = TRUE ) {
 
    checkNames( c( xNames, shifterNames ), names( data ) )
+
+   # check argument 'homWeights'
+   .quadFuncCheckHomWeights( homWeights, xNames )
 
    nExog <- length( xNames )
    nShifter <- length( shifterNames )
@@ -13,14 +16,24 @@ quadFuncCalc <- function( xNames, data, coef, shifterNames = NULL,
          " must have at least ", nCoef, " coefficients" )
    }
 
+   # calculate index to normalize variables
+   if( !is.null( homWeights ) ) {
+      deflator <- 0
+      for( i in seq( along = homWeights ) ) {
+         deflator <- deflator + 
+            homWeights[ i ] * data[[ names( homWeights )[ i ] ]]
+      }
+   }
+
    result <- rep( coef[ "a_0" ], nrow( data ) )
    for( i in seq( along = xNames ) ) {
       result <- result + coef[ paste( "a", i, sep = "_" ) ] * 
-         data[[ xNames[ i ] ]]
+         .quadFuncVarHom( data, xNames[ i ], homWeights, deflator )
       for( j in seq( along = xNames ) ) {
          result <- result + ifelse( quadHalf, 0.5, 1 ) * 
             coef[ paste( "b", min( i, j ), max( i, j ), sep = "_" ) ] *
-            data[[ xNames[ i ] ]]  * data[[ xNames[ j ] ]]
+            .quadFuncVarHom( data, xNames[ i ], homWeights, deflator ) *
+            .quadFuncVarHom( data, xNames[ j ], homWeights, deflator )
       }
    }
    for( i in seq( along = shifterNames ) ) {
