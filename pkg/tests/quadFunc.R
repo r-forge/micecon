@@ -226,6 +226,33 @@ all.equal( rowSums( vcov( estResultLinHom4 )[ , 2:4 ] ),
 all.equal( colSums( vcov( estResultLinHom4 )[ 2:4, ] ), 
    - vcov( estResultLinHom4 )[ 5, ] )
 
+## computing fitted values of linear functions with homogeneity imposed
+fitted <- quadFuncCalc(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultLinHom ), data = germanFarms, 
+   homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+all.equal( estResultLinHom$fitted, fitted )
+fitted <- quadFuncCalc(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultLinHom ), data = germanFarms, 
+   homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
+all.equal( estResultLinHom$fitted, fitted )
+fitted <- quadFuncCalc(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultLinHom2 ), data = germanFarms, 
+   homWeights = c( qVarInput = 0.3, land = 0.5, qLabor = 0.2 ) )
+all.equal( estResultLinHom2$fitted, fitted )
+fitted <- quadFuncCalc(
+   xNames = c( "qLabor", "land", "qVarInput", "time" ),
+   coef = coef( estResultLinHom3 ), data = germanFarms,
+   homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
+all.equal( estResultLinHom3$fitted, fitted )
+fitted <- quadFuncCalc(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultLinHom4 ), data = germanFarms,
+   homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3, time = 0 ) )
+all.equal( estResultLinHom4$fitted, fitted )
+
 ## derivatives of linear functions with homogeneity imposed
 estResultLinHomDeriv <- quadFuncDeriv(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
@@ -353,6 +380,33 @@ all.equal( colSums( vcov( estResultHom4 )[ c(11,13,14), ] ),
    - vcov( estResultHom4 )[ 8, ] ) # b_3_1:4
 all.equal( colSums( vcov( estResultHom4 )[ c(12,14,15), ] ), 
    - vcov( estResultHom4 )[ 9, ] ) # b_4_1:4
+
+## computing fitted values of quadratic functions with homogeneity imposed
+fitted <- quadFuncCalc(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom ), data = germanFarms, 
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+all.equal( estResultHom$fitted, fitted )
+fitted <- quadFuncCalc(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom ), data = germanFarms, 
+   homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+all.equal( estResultHom$fitted, fitted )
+fitted <- quadFuncCalc(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom2 ), data = germanFarms, 
+   homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+all.equal( estResultHom2$fitted, fitted )
+fitted <- quadFuncCalc(
+   xNames = c( "qLabor", "land", "qVarInput", "time" ),
+   coef = coef( estResultHom3 ), data = germanFarms,
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+all.equal( estResultHom3$fitted, fitted )
+fitted <- quadFuncCalc(
+   xNames = c( "time", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHom4 ), data = germanFarms,
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2, time = 0 ) )
+all.equal( estResultHom4$fitted, fitted )
 
 ## derivatives of quadratic functions with homogeneity imposed
 estResultHomDeriv <- quadFuncDeriv(
