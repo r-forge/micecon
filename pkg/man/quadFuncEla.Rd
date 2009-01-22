@@ -1,5 +1,6 @@
 \name{quadFuncEla}
 \alias{quadFuncEla}
+\alias{elas.quadFuncEst}
 \title{Elasticities of a Quadratic Function}
 
 \description{
@@ -9,12 +10,17 @@
 \usage{
 quadFuncEla( xNames, data, coef, yName = NULL, 
    shifterNames = NULL, homWeights = NULL, quadHalf = TRUE )
+
+\method{elas}{quadFuncEst}( object, data = NULL, yObs = FALSE, ... )
 }
 
 \arguments{
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
-   \item{data}{dataframe containing the data.}
+   \item{data}{dataframe containing the data;
+      if argument \code{data} of \code{elas.quadFuncEst} is not specified,
+      the data frame that was used for the estimation
+      is used for calculating elasticities.}
    \item{coef}{vector containing all coefficients.}
    \item{yName}{an optional string containing the name of the dependent
       variable.
@@ -28,6 +34,12 @@ quadFuncEla( xNames, data, coef, yName = NULL,
       for imposing homogeneity of degree zero in these variables
       (see documentation of \code{\link{quadFuncEst}}).}
    \item{quadHalf}{logical. Multiply the quadratic terms by one half?}
+   \item{object}{object of class \code{quadFuncEst}
+      (returned by \code{\link{quadFuncEst}}).}
+   \item{yObs}{logical. Use observed values of the andogenous variable.
+      If \code{FALSE} (default) predicted values calculated by
+      \code{\link{quadFuncCalc}} are used.}
+   \item{\ldots}{currently ignored.}
 }
 
 \value{
@@ -60,11 +72,17 @@ quadFuncEla( xNames, data, coef, yName = NULL,
    elaFit <- quadFuncEla( xNames = c( "qLabor", "land", "qVarInput", "time" ),
       data = germanFarms, coef = coef( estResult ) )
    elaFit
+   # same as
+   elaFit2 <- elas( estResult )
+   all.equal( elaFit, elaFit2 )
 
    # compute the partial production elasticities with observed output
    elaObs <- quadFuncEla( xNames = c( "qLabor", "land", "qVarInput", "time" ),
       data = germanFarms, coef = coef( estResult ), yName = "qOutput" )
    elaObs
+   # same as
+   elaObs2 <- elas( estResult, yObs = TRUE )
+   all.equal( elaObs, elaObs2 )
 }
 
 \keyword{models}
