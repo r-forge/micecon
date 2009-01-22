@@ -53,6 +53,11 @@
    \item{nObs}{number of observations.}
    \item{model.matrix}{the model matrix.}
    \item{call}{the matched call.}
+   \item{yName}{argument \code{yName}.}
+   \item{xNames}{argument \code{xNames}.}
+   \item{shifterNames}{argument \code{shifterNames}.}
+   \item{quadHalf}{argument \code{quadHalf}.}
+   \item{dataLogged}{argument \code{dataLogged}.}
 }
 
 \seealso{\code{\link{translogCalc}}, \code{\link{translogDeriv}}

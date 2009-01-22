@@ -21,6 +21,13 @@ translogEst <- function( yName, xNames, data, shifterNames = NULL,
    }
 
    result$call <- match.call()
+   result$yName         <- yName
+   result$xNames        <- xNames
+   result$shifterNames  <- shifterNames
+   result$quadHalf      <- quadHalf
+   result$dataLogged    <- dataLogged
+   result$homWeights    <- NULL
+   result$regScale      <- NULL
 
    class( result ) <- "translogEst"
    return( result )

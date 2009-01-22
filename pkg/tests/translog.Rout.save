@@ -226,6 +226,15 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput" "time"     
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
               a_1      a_2      a_3       a_4      b_1_1    b_1_2    b_1_3
  [1,] 1 0.3646431 3.152736 6.321752 0.0000000 0.06648230 1.149623 2.305183
@@ -274,6 +283,9 @@ $r2nonLog
           [,1]
 [1,] 0.9985457
 
+$dataLogged
+[1] FALSE
+
 attr(,"class")
 [1] "translogEst"
 > 
@@ -281,7 +293,7 @@ attr(,"class")
 > estResultLog <- translogEst( "qLogOutput", 
 +    xNames = c( "qLogLabor", "qLogLand", "qLogVarInput", "logTime" ),
 +    data = germanFarms, dataLogged = TRUE )
-> all.equal( estResult[ -c(1,6) ], estResultLog[ -c(1,6) ] )
+> all.equal( estResult[ -c(1,6,12,13,17) ], estResultLog[ -c(1,6,12,13,17) ] )
 [1] TRUE
 > all.equal( estResult$fitted, exp( estResultLog$fitted ) )
 [1] TRUE
@@ -1468,6 +1480,18 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "tech"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
               a_1      a_2      a_3      b_1_1    b_1_2    b_1_3    b_2_2
  [1,] 1 0.3646431 3.152736 6.321752 0.06648230 1.149623 2.305183 4.969872
@@ -1516,13 +1540,17 @@ $r2nonLog
           [,1]
 [1,] 0.9927126
 
+$dataLogged
+[1] FALSE
+
 attr(,"class")
 [1] "translogEst"
 > # with dataLogged = TRUE
 > estResultShifterLog <- translogEst( "qLogOutput", 
 +    xNames = c( "qLogLabor", "qLogLand", "qLogVarInput" ),
 +    data = germanFarms, shifterNames = "time", dataLogged = TRUE )
-> all.equal( estResultShifter[ -c(1,6) ], estResultShifterLog[ -c(1,6) ] )
+> all.equal( estResultShifter[ -c(1,6,12,13,14,18) ],
++    estResultShifterLog[ -c(1,6,12,13,14,18) ] )
 [1] TRUE
 > all.equal( estResultShifter$fitted, exp( estResultShifterLog$fitted ) )
 [1] TRUE
@@ -1753,6 +1781,18 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "tech"   "techSq"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
               a_1      a_2      a_3      b_1_1    b_1_2    b_1_3    b_2_2
  [1,] 1 0.3646431 3.152736 6.321752 0.06648230 1.149623 2.305183 4.969872
@@ -1800,6 +1840,9 @@ $model.matrix
 $r2nonLog
           [,1]
 [1,] 0.9952364
+
+$dataLogged
+[1] FALSE
 
 attr(,"class")
 [1] "translogEst"
@@ -1939,6 +1982,18 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "reUnif"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
               a_1      a_2      a_3      b_1_1    b_1_2    b_1_3    b_2_2
  [1,] 1 0.3646431 3.152736 6.321752 0.06648230 1.149623 2.305183 4.969872
@@ -1987,13 +2042,17 @@ $r2nonLog
          [,1]
 [1,] 0.994633
 
+$dataLogged
+[1] FALSE
+
 attr(,"class")
 [1] "translogEst"
 > # with dataLogged = TRUE
 > estResultShifterLogiLog <- translogEst( "qLogOutput", 
 +    xNames = c( "qLogLabor", "qLogLand", "qLogVarInput" ),
 +    data = germanFarms, shifterNames = "reUnif", dataLogged = TRUE )
-> all.equal( estResultShifterLogi[ -c(1,6) ], estResultShifterLogiLog[ -c(1,6) ] )
+> all.equal( estResultShifterLogi[ -c(1,6,12,13,18) ],
++    estResultShifterLogiLog[ -c(1,6,12,13,18) ] )
 [1] TRUE
 > all.equal( estResultShifterLogi$fitted, exp( estResultShifterLogiLog$fitted ) )
 [1] TRUE
@@ -2142,6 +2201,18 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "decade"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
           a_1         a_2        a_3        b_1_1        b_1_2      b_1_3     
  [1,] "1" "0.3646431" "3.152736" "6.321752" "0.06648230" "1.149623" "2.305183"
@@ -2190,13 +2261,17 @@ $r2nonLog
           [,1]
 [1,] 0.9946677
 
+$dataLogged
+[1] FALSE
+
 attr(,"class")
 [1] "translogEst"
 > # with dataLogged = TRUE
 > estResultShifterFacLog <- translogEst( "qLogOutput", 
 +    xNames = c( "qLogLabor", "qLogLand", "qLogVarInput" ),
 +    data = germanFarms, shifterNames = "decade", dataLogged = TRUE )
-> all.equal( estResultShifterFac[ -c(1,6) ], estResultShifterFacLog[ -c(1,6) ] )
+> all.equal( estResultShifterFac[ -c(1,6,12,13,18) ],
++    estResultShifterFacLog[ -c(1,6,12,13,18) ] )
 [1] TRUE
 > all.equal( estResultShifterFac$fitted, exp( estResultShifterFacLog$fitted ) )
 [1] TRUE
@@ -2343,6 +2418,18 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "tech"   "reUnif"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
               a_1      a_2      a_3      b_1_1    b_1_2    b_1_3    b_2_2
  [1,] 1 0.3646431 3.152736 6.321752 0.06648230 1.149623 2.305183 4.969872
@@ -2390,6 +2477,9 @@ $model.matrix
 $r2nonLog
           [,1]
 [1,] 0.9947783
+
+$dataLogged
+[1] FALSE
 
 attr(,"class")
 [1] "translogEst"
@@ -2542,6 +2632,18 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "tech"   "decade"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
           a_1         a_2        a_3        b_1_1        b_1_2      b_1_3     
  [1,] "1" "0.3646431" "3.152736" "6.321752" "0.06648230" "1.149623" "2.305183"
@@ -2589,6 +2691,9 @@ $model.matrix
 $r2nonLog
          [,1]
 [1,] 0.994717
+
+$dataLogged
+[1] FALSE
 
 attr(,"class")
 [1] "translogEst"
@@ -2742,6 +2847,15 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput" "time"     
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
               a_1      a_2      a_3       a_4      b_1_1    b_1_2    b_1_3
  [1,] 1 0.3646431 3.152736 6.321752 0.0000000 0.06648230 1.149623 2.305183
@@ -2789,6 +2903,9 @@ $model.matrix
 $r2nonLog
           [,1]
 [1,] 0.9985457
+
+$dataLogged
+[1] FALSE
 
 attr(,"class")
 [1] "translogEst"
@@ -2909,6 +3026,15 @@ b_2_2  NA -0.004966937  0.001988245  0.001049252 -0.0005528464  0.0004946647
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2
 1   1 8.032198  1.0296194 32.25810  8.270107  0.53005807
@@ -3016,13 +3142,16 @@ $r2nonLog
           [,1]
 [1,] 0.9525587
 
+$dataLogged
+[1] FALSE
+
 attr(,"class")
 [1] "translogEst"
 > # with dataLogged = TRUE
 > ggResultLog <- translogEst( "logInvest", 
 +    xNames = c( "logValue", "logCapital" ),
 +    data = ggData, dataLogged = TRUE )
-> all.equal( ggResult[ -c(1,6) ], ggResultLog[ -c(1,6) ] )
+> all.equal( ggResult[ -c(1,6,10,11,15) ], ggResultLog[ -c(1,6,10,11,15) ] )
 [1] TRUE
 > all.equal( ggResult$fitted, exp( ggResultLog$fitted ) )
 [1] TRUE
@@ -3144,6 +3273,15 @@ b_2_2  0.0004981046
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2
 1   1 8.032198  1.0296194 32.25810  8.270107  0.53005807
@@ -3251,6 +3389,9 @@ $r2nonLog
           [,1]
 [1,] 0.9504738
 
+$dataLogged
+[1] FALSE
+
 attr(,"class")
 [1] "translogEst"
 > # with dataLogged = TRUE
@@ -3258,7 +3399,7 @@ attr(,"class")
 +    xNames = c( "logValue", "logCapital" ),
 +    data = ggData, dataLogged = TRUE,
 +    model = "random", random.method = "amemiya" )
-> all.equal( ggResultRan[ -c(1,6) ], ggResultRanLog[ -c(1,6) ] )
+> all.equal( ggResultRan[ -c(1,6,10,11,15) ], ggResultRanLog[ -c(1,6,10,11,15) ] )
 [1] TRUE
 > all.equal( ggResultRan$fitted, exp( ggResultRanLog$fitted ) )
 [1] TRUE
@@ -4036,6 +4177,18 @@ d_1    0.0001029177
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "tech"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2 d_1
 1   1 8.032198  1.0296194 32.25810  8.270107  0.53005807   0
@@ -4142,6 +4295,9 @@ $model.matrix
 $r2nonLog
          [,1]
 [1,] 0.961499
+
+$dataLogged
+[1] FALSE
 
 attr(,"class")
 [1] "translogEst"
@@ -4277,6 +4433,18 @@ d_1   -0.0002098146  0.0001000339
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "tech"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2 d_1
 1   1 8.032198  1.0296194 32.25810  8.270107  0.53005807   0
@@ -4383,6 +4551,9 @@ $model.matrix
 $r2nonLog
          [,1]
 [1,] 0.958877
+
+$dataLogged
+[1] FALSE
 
 attr(,"class")
 [1] "translogEst"
@@ -4509,6 +4680,18 @@ d_1_TRUE  0.0005211238  0.0029550452
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "war"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2 d_1_
 1   1 8.032198  1.0296194 32.25810  8.270107  0.53005807    0
@@ -4615,6 +4798,9 @@ $model.matrix
 $r2nonLog
           [,1]
 [1,] 0.9535368
+
+$dataLogged
+[1] FALSE
 
 attr(,"class")
 [1] "translogEst"
@@ -4744,6 +4930,18 @@ d_1_TRUE  0.0005236327  0.0029823124
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "war"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2 d_1_
 1   1 8.032198  1.0296194 32.25810  8.270107  0.53005807    0
@@ -4850,6 +5048,9 @@ $model.matrix
 $r2nonLog
         [,1]
 [1,] 0.95129
+
+$dataLogged
+[1] FALSE
 
 attr(,"class")
 [1] "translogEst"
@@ -4983,6 +5184,18 @@ d_1_50s  0.0066631418  0.014014476
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "decade"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
         a_1        a_2          b_1_1      b_1_2       b_2_2         d_1_ 
 1   "1" "8.032198" " 1.0296194" "32.25810" " 8.270107" " 0.53005807" "30s"
@@ -5089,6 +5302,9 @@ $model.matrix
 $r2nonLog
           [,1]
 [1,] 0.9593528
+
+$dataLogged
+[1] FALSE
 
 attr(,"class")
 [1] "translogEst"
@@ -5221,6 +5437,18 @@ d_1_50s -0.0016177859  0.0066343679  0.013796852
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "decade"
+
+$quadHalf
+[1] TRUE
+
 $model.matrix
         a_1        a_2          b_1_1      b_1_2       b_2_2         d_1_ 
 1   "1" "8.032198" " 1.0296194" "32.25810" " 8.270107" " 0.53005807" "30s"
@@ -5327,6 +5555,9 @@ $model.matrix
 $r2nonLog
           [,1]
 [1,] 0.9573472
+
+$dataLogged
+[1] FALSE
 
 attr(,"class")
 [1] "translogEst"
