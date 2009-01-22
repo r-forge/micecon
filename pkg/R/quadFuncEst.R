@@ -188,6 +188,13 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    result$r2    <- summary( result$est )$r.squared
    result$r2bar <- summary( result$est )$adj.r.squared
    result$nObs  <- length( result$residuals )
+   result$yName        <- yName
+   result$xNames       <- xNames
+   result$shifterNames <- shifterNames
+   result$homWeights   <- homWeights
+   result$quadHalf     <- quadHalf
+   result$regScale     <- regScale
+
    if( "plm.dim" %in% class( data ) ) {
       result$model.matrix <- cbind( rep( 1, result$nObs ),
          as.matrix( estData[ , 4:( ncol( estData ) ) ] ) )

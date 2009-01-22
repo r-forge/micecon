@@ -184,6 +184,18 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput" "time"     
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
+
 $model.matrix
          a_1   a_2      a_3 a_4   b_1_1   b_1_2     b_1_3 b_1_4    b_2_2
  [1,] 1 1.44 23.40 556.5471   1 1.03680 33.6960  801.4279  1.44 273.7800
@@ -418,6 +430,21 @@ $r2bar
 
 $nObs
 [1] 20
+
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "time"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
 
 $model.matrix
          a_1   a_2      a_3   b_1_1   b_1_2     b_1_3    b_2_2    b_2_3
@@ -656,6 +683,21 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "time"   "timeSq"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
+
 $model.matrix
          a_1   a_2      a_3   b_1_1   b_1_2     b_1_3    b_2_2    b_2_3
  [1,] 1 1.44 23.40 556.5471 1.03680 33.6960  801.4279 273.7800 13023.20
@@ -773,6 +815,18 @@ $r2bar
 
 $nObs
 [1] 20
+
+$yName
+[1] "qOutput"
+
+$shifterNames
+[1] "time"      "qLabor"    "land"      "qVarInput"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
 
 $model.matrix
         d_1  d_2   d_3      d_4
@@ -936,6 +990,18 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "time"      "qLabor"    "land"      "qVarInput"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
+
 $model.matrix
         a_1  a_2   a_3      a_4
  [1,] 1   1 1.44 23.40 556.5471
@@ -1093,6 +1159,21 @@ $r2bar
 
 $nObs
 [1] 20
+
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "reUnif"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
 
 $model.matrix
          a_1   a_2      a_3   b_1_1   b_1_2     b_1_3    b_2_2    b_2_3
@@ -1257,6 +1338,21 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "decade"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
+
 $model.matrix
           a_1    a_2     a_3        b_1_1     b_1_2     b_1_3       b_2_2     
  [1,] "1" "1.44" "23.40" "556.5471" "1.03680" "33.6960" " 801.4279" "273.7800"
@@ -1417,6 +1513,21 @@ $r2bar
 
 $nObs
 [1] 20
+
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "time"   "reUnif"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
 
 $model.matrix
          a_1   a_2      a_3   b_1_1   b_1_2     b_1_3    b_2_2    b_2_3
@@ -1583,6 +1694,21 @@ $r2bar
 
 $nObs
 [1] 20
+
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput"
+
+$shifterNames
+[1] "time"   "decade"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
 
 $model.matrix
           a_1    a_2     a_3        b_1_1     b_1_2     b_1_3       b_2_2     
@@ -1757,6 +1883,18 @@ $r2bar
 
 $nObs
 [1] 20
+
+$yName
+[1] "qOutput"
+
+$xNames
+[1] "qLabor"    "land"      "qVarInput" "time"     
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
 
 $model.matrix
          a_1   a_2      a_3 a_4   b_1_1   b_1_2     b_1_3 b_1_4    b_2_2
@@ -2820,6 +2958,18 @@ b_2_2  NA  1.607408e-07  3.042654e-07  1.346447e-10 -2.467402e-09  1.275228e-08
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
+
 $model.matrix
          a_1    a_2       b_1_1       b_1_2       b_2_2
 1   1 3078.5    2.8  4738581.12     8619.80       3.920
@@ -3045,6 +3195,18 @@ b_2_2  1.286653e-08
 
 $nObs
 [1] 100
+
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
 
 $model.matrix
          a_1    a_2       b_1_1       b_1_2       b_2_2
@@ -3282,6 +3444,21 @@ d_1    4.910799e-14
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "tech"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
+
 $model.matrix
          a_1    a_2       b_1_1       b_1_2       b_2_2          d_1
 1   1 3078.5    2.8  4738581.12     8619.80       3.920 1.000000e+00
@@ -3515,6 +3692,21 @@ d_1   -9.649229e-12  4.693922e-14
 
 $nObs
 [1] 100
+
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "tech"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
 
 $model.matrix
          a_1    a_2       b_1_1       b_1_2       b_2_2          d_1
@@ -3757,6 +3949,21 @@ d_1_TRUE  1.266778e-04  1.994230e+02
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "war"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
+
 $model.matrix
          a_1    a_2       b_1_1       b_1_2       b_2_2 d_1_
 1   1 3078.5    2.8  4738581.12     8619.80       3.920    0
@@ -3990,6 +4197,21 @@ d_1_TRUE  1.277457e-04  2.012923e+02
 
 $nObs
 [1] 100
+
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "war"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
 
 $model.matrix
          a_1    a_2       b_1_1       b_1_2       b_2_2 d_1_
@@ -4231,6 +4453,21 @@ d_1_50s  3.863747e-04  3.113033e+02  7.507415e+02
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "decade"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
+
 $model.matrix
         a_1      a_2      b_1_1         b_1_2         b_2_2         d_1_ 
 1   "1" "3078.5" "   2.8" " 4738581.12" "    8619.80" "      3.920" "30s"
@@ -4468,6 +4705,21 @@ d_1_50s  3.715393e-04  3.045426e+02  7.252818e+02
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$shifterNames
+[1] "decade"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
+
 $model.matrix
         a_1      a_2      b_1_1         b_1_2         b_2_2         d_1_ 
 1   "1" "3078.5" "   2.8" " 4738581.12" "    8619.80" "      3.920" "30s"
@@ -4703,6 +4955,18 @@ b_2_2   0  0.0000000000  0.0000000000     0     0     0
 $nObs
 [1] 100
 
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
+
 $model.matrix
          a_1    a_2
 1   1 3078.5    2.8
@@ -4929,6 +5193,18 @@ b_2_2    0.00000000  0.0000000000  0.0000000000     0     0     0
 
 $nObs
 [1] 100
+
+$yName
+[1] "invest"
+
+$xNames
+[1] "value"   "capital"
+
+$quadHalf
+[1] TRUE
+
+$regScale
+[1] 1
 
 $model.matrix
          a_1    a_2
