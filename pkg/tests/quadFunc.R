@@ -154,11 +154,13 @@ print( estResult2 )
 estElaFit <- quadFuncEla( 
    xNames = c( "qLabor", "land", "qVarInput", "time" ), 
    data = germanFarms, coef = coef( estResult ) )
+all.equal( estElaFit, elas( estResult ) )
 print( estElaFit )
 estElaObs <- quadFuncEla( 
    xNames = c( "qLabor", "land", "qVarInput", "time" ), 
    data = germanFarms, coef = coef( estResult ),
    yName = "qOutput" )
+all.equal( estElaObs, elas( estResult, yObs = TRUE ) )
 print( estElaObs )
 max( abs( estElaFit - estElaObs ) )
 # with a shifter
@@ -166,11 +168,13 @@ estElaShifterFit <- quadFuncEla(
    xNames = c( "qLabor", "land", "qVarInput" ), 
    data = germanFarms, coef = coef( estResultShifter ),
    shifterNames = "time" )
+all.equal( estElaShifterFit, elas( estResultShifter ) )
 print( estElaShifterFit )
 estElaShifterObs <- quadFuncEla( 
    xNames = c( "qLabor", "land", "qVarInput" ), 
    data = germanFarms, coef = coef( estResultShifter ),
    yName = "qOutput" )
+all.equal( estElaShifterObs, elas( estResultShifter, yObs = TRUE ) )
 print( estElaShifterObs )
 max( abs( estElaShifterFit - estElaShifterObs ) )
 estElaShifterObs2 <- quadFuncEla( 
@@ -456,6 +460,7 @@ estResultHomEla <- quadFuncEla(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultHom ), data = germanFarms,
    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+all.equal( estResultHomEla, elas( estResultHom ) )
 print( estResultHomEla )
 all.equal( estResultHomEla$qLabor + estResultHomEla$land,
    - estResultHomEla$qVarInput )
@@ -463,6 +468,7 @@ estResultHomElaObs <- quadFuncEla(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultHom ), data = germanFarms, yName = "qOutput",
    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+all.equal( estResultHomElaObs, elas( estResultHom, yObs = TRUE ) )
 print( estResultHomElaObs )
 all.equal( estResultHomElaObs$qLabor + estResultHomElaObs$land,
    - estResultHomElaObs$qVarInput )
@@ -483,28 +489,33 @@ estResultHom2Ela <- quadFuncEla(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultHom2 ), data = germanFarms,
    homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+all.equal( estResultHom2Ela, elas( estResultHom2 ) )
 all.equal( estResultHomEla, estResultHom2Ela )
 estResultHom2ElaObs <- quadFuncEla(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultHom2 ), data = germanFarms, yName = "qOutput",
    homWeights = c( qVarInput = 0.2, land = 0.1, qLabor = 0.7 ) )
+all.equal( estResultHom2ElaObs, elas( estResultHom2, yObs = TRUE ) )
 all.equal( estResultHomElaObs, estResultHom2ElaObs )
 # different order of independent variables
 estResultHom3Ela <- quadFuncEla(
    xNames = c( "qLabor", "land", "qVarInput", "time" ),
    coef = coef( estResultHom3 ), data = germanFarms,
    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+all.equal( estResultHom3Ela, elas( estResultHom3 ) )
 all.equal( estResultHomEla, estResultHom3Ela[ , c( 4, 1, 2, 3 ) ] )
 estResultHom3ElaObs <- quadFuncEla(
    xNames = c( "qLabor", "land", "qVarInput", "time" ),
    coef = coef( estResultHom3 ), data = germanFarms, yName = "qOutput",
    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+all.equal( estResultHom3ElaObs, elas( estResultHom3, yObs = TRUE ) )
 all.equal( estResultHomElaObs, estResultHom3ElaObs[ , c( 4, 1, 2, 3 ) ] )
 # homogenous in all independent variables
 estResultHom4Ela <- quadFuncEla(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultHom4 ), data = germanFarms,
    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2, time = 0 ) )
+all.equal( estResultHom4Ela, elas( estResultHom4 ) )
 print( estResultHom4Ela )
 all.equal( estResultHom4Ela$qLabor + estResultHom4Ela$land +
    estResultHom4Ela$qVarInput, - estResultHom4Ela$time )
@@ -512,6 +523,7 @@ estResultHom4ElaObs <- quadFuncEla(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
    coef = coef( estResultHom4 ), data = germanFarms, yName = "qOutput",
    homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2, time = 0 ) )
+all.equal( estResultHom4ElaObs, elas( estResultHom4, yObs = TRUE ) )
 print( estResultHom4ElaObs )
 all.equal( estResultHom4ElaObs$qLabor + estResultHom4ElaObs$land +
    estResultHom4ElaObs$qVarInput, - estResultHom4ElaObs$time )
@@ -607,13 +619,16 @@ all.equal( margProducts$variance[1,], diag( vcov( ggResultLinRan ) )[2:3],
 ## compute elasticities using results of estimations with panel data
 ggElaObs <- quadFuncEla( xNames = c( "value", "capital" ), 
    data = ggData, coef = coef( ggResult ), yName = "invest" )
+all.equal( ggElaObs, elas( ggResult, yObs = TRUE ) )
 print( ggElaObs )
 ggElaObsRan <- quadFuncEla( xNames = c( "value", "capital" ), 
    data = ggData, coef = coef( ggResultRan ), yName = "invest" )
+all.equal( ggElaObsRan, elas( ggResultRan, yObs = TRUE ) )
 print( ggElaObsRan )
 # with shifter variables
 ggShifterElaObs <- quadFuncEla( xNames = c( "value", "capital" ), 
    data = ggData, coef = coef( ggResShifter ), yName = "invest" )
+all.equal( ggShifterElaObs, elas( ggResShifter, yObs = TRUE ) )
 print( ggShifterElaObs )
 ggShifterElaObs2 <- quadFuncEla( xNames = c( "value", "capital" ), 
    data = ggData, coef = coef( ggResShifter ), yName = "invest",
@@ -621,6 +636,7 @@ ggShifterElaObs2 <- quadFuncEla( xNames = c( "value", "capital" ),
 all.equal( ggShifterElaObs, ggShifterElaObs2 )
 ggShifterElaObsRan <- quadFuncEla( xNames = c( "value", "capital" ), 
    data = ggData, coef = coef( ggResShifterRan ), yName = "invest" )
+all.equal( ggShifterElaObsRan, elas( ggResShifterRan, yObs = TRUE ) )
 print( ggShifterElaObsRan )
 
 ## imposing homogeneity on linear functions with panel data
