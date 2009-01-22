@@ -51,6 +51,13 @@
    \item{nObs}{number of observations.}
    \item{model.matrix}{the model matrix.}
    \item{call}{the matched call.}
+   \item{cName}{argument \code{cName}.}
+   \item{yName}{argument \code{yName}.}
+   \item{pNames}{argument \code{pNames}.}
+   \item{fNames}{argument \code{fNames}.}
+   \item{shifterNames}{argument \code{shifterNames}.}
+   \item{dataLogged}{argument \code{dataLogged}.}
+   \item{homPrice}{argument \code{homPrice}.}
 }
 
 \seealso{\code{\link{translogEst}}

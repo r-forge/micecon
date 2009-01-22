@@ -142,6 +142,9 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
 $model.matrix
              a_1       a_2      a_3    b_1_1    b_1_2    b_1_3    b_2_2
  [1,] 1 6.852383  9.022504 4.413213 23.47758 61.82565 30.24103 40.70279
@@ -189,6 +192,18 @@ $model.matrix
 $r2nonLog
           [,1]
 [1,] -94793.75
+
+$cName
+[1] "cost"
+
+$pNames
+[1] "pLabor"    "pVarInput"
+
+$dataLogged
+[1] FALSE
+
+$homPrice
+[1] FALSE
 
 attr(,"class")
 [1] "translogCostEst"
@@ -310,6 +325,12 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$shifterNames
+[1] "time"
+
 $model.matrix
              a_1       a_2      a_3    b_1_1    b_1_2    b_1_3    b_2_2
  [1,] 1 6.852383  9.022504 4.413213 23.47758 61.82565 30.24103 40.70279
@@ -357,6 +378,18 @@ $model.matrix
 $r2nonLog
           [,1]
 [1,] -94793.76
+
+$cName
+[1] "cost"
+
+$pNames
+[1] "pLabor"    "pVarInput"
+
+$dataLogged
+[1] FALSE
+
+$homPrice
+[1] FALSE
 
 attr(,"class")
 [1] "translogCostEst"
@@ -504,6 +537,9 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
 $model.matrix
              a_1       a_2      a_3      a_4    b_1_1    b_1_2    b_1_3
  [1,] 1 6.852383  9.022504 4.413213 3.152736 23.47758 61.82565 30.24103
@@ -551,6 +587,21 @@ $model.matrix
 $r2nonLog
          [,1]
 [1,] -94817.1
+
+$cName
+[1] "cost"
+
+$pNames
+[1] "pLabor"    "pVarInput"
+
+$fNames
+[1] "land"
+
+$dataLogged
+[1] FALSE
+
+$homPrice
+[1] FALSE
 
 attr(,"class")
 [1] "translogCostEst"
@@ -725,6 +776,12 @@ $r2bar
 $nObs
 [1] 20
 
+$yName
+[1] "qOutput"
+
+$shifterNames
+[1] "time"
+
 $model.matrix
              a_1       a_2      a_3      a_4    b_1_1    b_1_2    b_1_3
  [1,] 1 6.852383  9.022504 4.413213 3.152736 23.47758 61.82565 30.24103
@@ -772,6 +829,21 @@ $model.matrix
 $r2nonLog
           [,1]
 [1,] -94821.35
+
+$cName
+[1] "cost"
+
+$pNames
+[1] "pLabor"    "pVarInput"
+
+$fNames
+[1] "land"
+
+$dataLogged
+[1] FALSE
+
+$homPrice
+[1] FALSE
 
 attr(,"class")
 [1] "translogCostEst"

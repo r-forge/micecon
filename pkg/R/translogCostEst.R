@@ -32,6 +32,17 @@ translogCostEst <- function( cName, yName, pNames, data,
    }
 
    result$call <- match.call()
+   result$cName         <- cName
+   result$yName         <- yName
+   result$pNames        <- pNames
+   result$fNames        <- fNames
+   result$shifterNames  <- shifterNames
+   result$dataLogged    <- dataLogged
+   result$homPrice      <- homPrice
+   result$xNames        <- NULL
+   result$homWeights    <- NULL
+   result$quadHalf      <- NULL
+   result$regScale      <- NULL
 
    class( result ) <- "translogCostEst"
    return( result )
