@@ -78,6 +78,12 @@ quadFuncEst( yName, xNames, data, shifterNames = NULL,
    \item{nObs}{number of observations.}
    \item{model.matrix}{the model matrix.}
    \item{call}{the matched call.}
+   \item{yName}{argument \code{yName}.}
+   \item{xNames}{argument \code{xNames}.}
+   \item{shifterNames}{argument \code{shifterNames}.}
+   \item{homWeights}{argument \code{homWeights}.}
+   \item{quadHalf}{argument \code{quadHalf}.}
+   \item{regScale}{argument \code{regScale}.}
 }
 
 \seealso{\code{\link{quadFuncCalc}}, \code{\link{quadFuncDeriv}},
