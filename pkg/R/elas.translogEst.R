@@ -5,16 +5,12 @@ elas.translogEst <- function( object, data = NULL, dataLogged = NULL, ... ) {
    }
 
    if( is.null( dataLogged ) ) {
-      if( is.null( object$call$dataLogged ) ) {
-         dataLogged <- FALSE
-      } else {
-         dataLogged <- object$call$dataLogged
-      }
+      dataLogged <- object$dataLogged
    }
 
-   result <- translogEla( xNames = eval( object$call$xNames ), 
-      data = data, coef = coef( object ), 
-      coefCov = vcov( object ), dataLogged = dataLogged )
+   result <- translogEla( xNames = object$xNames,
+      data = data, coef = coef( object ), coefCov = vcov( object ),
+      quadHalf = object$quadHalf,dataLogged = dataLogged )
 
    return( result )
 }
