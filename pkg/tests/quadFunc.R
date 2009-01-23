@@ -9,6 +9,8 @@ germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
 germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 # a time trend to account for technical progress:
 germanFarms$time <- c(1:20)
+# mean values of all variables
+germanFarmsMeans <- colMeans( germanFarms[ , -1 ] )
 
 ## estimate a quadratic production function
 estResult <- quadFuncEst( "qOutput",
@@ -20,12 +22,23 @@ print( estResult )
 fitted <- quadFuncCalc( c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ) )
 all.equal( fitted, estResult$fitted )
+# only at mean values
+fittedMean <- quadFuncCalc(
+   xNames = c( "qLabor", "land", "qVarInput", "time" ),
+   data = germanFarmsMeans, coef = coef( estResult ) )
+print( fittedMean )
 
 ## compute the marginal products of the inputs
 margProducts <- quadFuncDeriv(
    c( "qLabor", "land", "qVarInput", "time" ),
    germanFarms, coef( estResult ), vcov( estResult ) )
 print( margProducts )
+# only at mean values
+margProductsMean <- quadFuncDeriv(
+   xNames = c( "qLabor", "land", "qVarInput", "time" ),
+   data = germanFarmsMeans, coef = coef( estResult ),
+   coefCov = vcov( estResult ) )
+print( margProductsMean )
 
 ## estimate a quadratic production function with a shifter
 estResultShifter <- quadFuncEst( yName = "qOutput",
@@ -163,6 +176,12 @@ estElaObs <- quadFuncEla(
 all.equal( estElaObs, elas( estResult, yObs = TRUE ) )
 print( estElaObs )
 max( abs( estElaFit - estElaObs ) )
+# only at mean values
+estElaMeanFit <- elas( estResult, data = germanFarmsMeans )
+print( estElaMeanFit )
+estElaMeanObs <- elas( estResult, data = germanFarmsMeans, yObs = TRUE )
+print( estElaMeanObs )
+print( estElaMeanFit - estElaMeanObs )
 # with a shifter
 estElaShifterFit <- quadFuncEla( 
    xNames = c( "qLabor", "land", "qVarInput" ), 
@@ -182,6 +201,13 @@ estElaShifterObs2 <- quadFuncEla(
    data = germanFarms, coef = coef( estResultShifter ),
    yName = "qOutput", shifterNames = "time" )
 all.equal( estElaShifterObs, estElaShifterObs2 )
+# only at mean values
+estElaShifterMeanFit <- elas( estResultShifter, data = germanFarmsMeans )
+print( estElaShifterMeanFit )
+estElaShifterMeanObs <- elas( estResultShifter, data = germanFarmsMeans,
+   yObs = TRUE )
+print( estElaShifterMeanObs )
+print( estElaShifterMeanFit - estElaShifterMeanObs )
 
 
 ################ imposing homogeneity #####################
@@ -473,6 +499,13 @@ print( estResultHomElaObs )
 all.equal( estResultHomElaObs$qLabor + estResultHomElaObs$land,
    - estResultHomElaObs$qVarInput )
 max( abs( estResultHomEla - estResultHomElaObs ) )
+# only at mean values
+estResultHomElaMeanFit <- elas( estResultHom, data = germanFarmsMeans )
+print( estResultHomElaMeanFit )
+estResultHomElaMeanObs <- elas( estResultHom, data = germanFarmsMeans,
+   yObs = TRUE )
+print( estResultHomElaMeanObs )
+print( estResultHomElaMeanFit - estResultHomElaMeanObs )
 # different order of weights (different from order used for estimation)
 estResultHom1Ela <- quadFuncEla(
    xNames = c( "time", "qLabor", "land", "qVarInput" ),
