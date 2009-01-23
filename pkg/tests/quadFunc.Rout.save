@@ -63,6 +63,8 @@ Loading required package: Formula
 > germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 > # a time trend to account for technical progress:
 > germanFarms$time <- c(1:20)
+> # mean values of all variables
+> germanFarmsMeans <- colMeans( germanFarms[ , -1 ] )
 > 
 > ## estimate a quadratic production function
 > estResult <- quadFuncEst( "qOutput",
@@ -248,6 +250,13 @@ attr(,"class")
 +    germanFarms, coef( estResult ) )
 > all.equal( fitted, estResult$fitted )
 [1] TRUE
+> # only at mean values
+> fittedMean <- quadFuncCalc(
++    xNames = c( "qLabor", "land", "qVarInput", "time" ),
++    data = germanFarmsMeans, coef = coef( estResult ) )
+> print( fittedMean )
+       1 
+1555.937 
 > 
 > ## compute the marginal products of the inputs
 > margProducts <- quadFuncDeriv(
@@ -322,6 +331,26 @@ $stdDev
 18 16901.25 727.3102  19.03914 635.4195
 19 17022.61 729.6242  19.06946 639.9136
 20 17109.00 731.4129  19.11298 643.4748
+
+attr(,"class")
+[1] "quadFuncDeriv"
+> # only at mean values
+> margProductsMean <- quadFuncDeriv(
++    xNames = c( "qLabor", "land", "qVarInput", "time" ),
++    data = germanFarmsMeans, coef = coef( estResult ),
++    coefCov = vcov( estResult ) )
+> print( margProductsMean )
+$deriv
+    qLabor     land qVarInput      time
+1 561.1157 72.52029 0.2683399 -13.31031
+
+$variance
+     qLabor     land qVarInput     time
+1 282720621 532305.4  361.3141 395950.4
+
+$stdDev
+    qLabor     land qVarInput     time
+1 16814.30 729.5926  19.00826 629.2459
 
 attr(,"class")
 [1] "quadFuncDeriv"
@@ -2001,6 +2030,18 @@ attr(,"class")
 20  0.4272972 1.145913  0.08883948 -0.50604185
 > max( abs( estElaFit - estElaObs ) )
 [1] 0.1312566
+> # only at mean values
+> estElaMeanFit <- elas( estResult, data = germanFarmsMeans )
+> print( estElaMeanFit )
+    qLabor    land qVarInput        time
+1 0.559696 1.34958 0.1184950 -0.08982257
+> estElaMeanObs <- elas( estResult, data = germanFarmsMeans, yObs = TRUE )
+> print( estElaMeanObs )
+     qLabor     land qVarInput        time
+1 0.6162868 1.486036  0.130476 -0.09890453
+> print( estElaMeanFit - estElaMeanObs )
+       qLabor       land   qVarInput        time
+1 -0.05659083 -0.1364560 -0.01198102 0.009081956
 > # with a shifter
 > estElaShifterFit <- quadFuncEla( 
 +    xNames = c( "qLabor", "land", "qVarInput" ), 
@@ -2066,6 +2107,19 @@ attr(,"class")
 +    yName = "qOutput", shifterNames = "time" )
 > all.equal( estElaShifterObs, estElaShifterObs2 )
 [1] TRUE
+> # only at mean values
+> estElaShifterMeanFit <- elas( estResultShifter, data = germanFarmsMeans )
+> print( estElaShifterMeanFit )
+      qLabor      land qVarInput
+1 0.06309733 0.7751863 0.5264432
+> estElaShifterMeanObs <- elas( estResultShifter, data = germanFarmsMeans,
++    yObs = TRUE )
+> print( estElaShifterMeanObs )
+      qLabor      land qVarInput
+1 0.06525597 0.8017064 0.5444535
+> print( estElaShifterMeanFit - estElaShifterMeanObs )
+        qLabor        land   qVarInput
+1 -0.002158641 -0.02652013 -0.01801030
 > 
 > 
 > ################ imposing homogeneity #####################
@@ -2752,6 +2806,19 @@ attr(,"class")
 [1] TRUE
 > max( abs( estResultHomEla - estResultHomElaObs ) )
 [1] 0.09635443
+> # only at mean values
+> estResultHomElaMeanFit <- elas( estResultHom, data = germanFarmsMeans )
+> print( estResultHomElaMeanFit )
+       time    qLabor        land qVarInput
+1 0.3507008 -0.914567 -0.04139098  0.955958
+> estResultHomElaMeanObs <- elas( estResultHom, data = germanFarmsMeans,
++    yObs = TRUE )
+> print( estResultHomElaMeanObs )
+       time     qLabor        land qVarInput
+1 0.3428515 -0.8940974 -0.04046458  0.934562
+> print( estResultHomElaMeanFit - estResultHomElaMeanObs )
+         time      qLabor          land  qVarInput
+1 0.007849273 -0.02046954 -0.0009263997 0.02139594
 > # different order of weights (different from order used for estimation)
 > estResultHom1Ela <- quadFuncEla(
 +    xNames = c( "time", "qLabor", "land", "qVarInput" ),
