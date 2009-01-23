@@ -14,7 +14,7 @@
 \arguments{
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
-   \item{data}{dataframe containing the data.}
+   \item{data}{dataframe or a vector with named elements containing the data.}
    \item{coef}{vector containing all coefficients:
       if there are \code{n} exogenous variables in \code{xNames},
       the \code{n+1} alpha coefficients must have names 

@@ -1,6 +1,9 @@
 quadFuncDeriv <- function( xNames, data, coef, coefCov = NULL,
       homWeights = NULL, quadHalf = TRUE ) {
 
+   # if 'data' is a vector, convert it to a data.frame
+   data <- .micEconVectorToDataFrame( data )
+
    checkNames( c( xNames ), names( data ) )
 
    # check argument 'homWeights'

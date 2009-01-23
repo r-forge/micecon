@@ -1,6 +1,9 @@
 quadFuncCalc <- function( xNames, data, coef, shifterNames = NULL,
       homWeights = NULL, quadHalf = TRUE ) {
 
+   # if 'data' is a vector, convert it to a data.frame
+   data <- .micEconVectorToDataFrame( data )
+
    checkNames( c( xNames, shifterNames ), names( data ) )
 
    # check argument 'homWeights'
