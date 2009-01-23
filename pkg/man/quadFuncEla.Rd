@@ -29,7 +29,7 @@ quadFuncEla( xNames, data, coef, yName = NULL,
    \item{shifterNames}{an optional vector of strings containing the names
       of the independent variables that are included
       as shifters only (not in quadratic or interaction terms).}
-   \item{homWeights}{named numeric vector with weighting factors
+   \item{homWeights}{numeric vector with named elements that are weighting factors
       for calculating an index that is used to normalize the variables
       for imposing homogeneity of degree zero in these variables
       (see documentation of \code{\link{quadFuncEst}}).}

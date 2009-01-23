@@ -26,7 +26,7 @@ quadFuncEst( yName, xNames, data, shifterNames = NULL,
    \item{linear}{logical. Restrict the coefficients of all quadratic
       and interaction terms to be zero so that the estimated function
       is linear in the exogenous variables?}
-   \item{homWeights}{named numeric vector with weighting factors
+   \item{homWeights}{numeric vector with named elements that are weighting factors
       for calculating an index that is used to normalize the variables
       for imposing homogeneity of degree zero in these variables
       (see details).}
