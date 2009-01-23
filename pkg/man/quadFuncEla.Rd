@@ -63,7 +63,7 @@ quadFuncEla( xNames, data, coef, yName = NULL,
    # a time trend to account for technical progress:
    germanFarms$time <- c(1:20)
 
-   # estimate a translog production function
+   # estimate a quadratic production function
    estResult <- quadFuncEst( yName = "qOutput", 
       xNames = c( "qLabor", "land", "qVarInput", "time" ),
       data = germanFarms )
