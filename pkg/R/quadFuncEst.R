@@ -181,9 +181,11 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       result$coefCov <- cbind( result$coefCov, quadCoefCovCols )
    }
 
-   result$coef <- result$coef[ order( names( result$coef ) ) ] 
-   result$coefCov <- result$coefCov[ order( rownames( result$coefCov ) ), ] 
-   result$coefCov <- result$coefCov[ , order( colnames( result$coefCov ) ) ] 
+   result$coef <- result$coef[ .micEconCoefOrder( names( result$coef ) ) ]
+   result$coefCov <- result$coefCov[
+      .micEconCoefOrder( rownames( result$coefCov ) ), ]
+   result$coefCov <- result$coefCov[ ,
+      .micEconCoefOrder( colnames( result$coefCov ) ) ]
 
    result$r2    <- summary( result$est )$r.squared
    result$r2bar <- summary( result$est )$adj.r.squared
