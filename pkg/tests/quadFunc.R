@@ -676,3 +676,19 @@ all.equal( vcov( ggResultHom )[ 4, -1 ],
    - vcov( ggResultHom )[ 5, -1 ] ) # b_1_1:2
 all.equal( vcov( ggResultHom )[ 5, -1 ], 
    - vcov( ggResultHom )[ 6, -1 ] ) # b_2_1:2
+
+########## many coefficients ##############
+set.seed( 123 )
+nObs <- 200
+testData <- data.frame( y = rep( 3, nObs ) )
+for( i in 1:15 ) {
+   xName <- paste( "x", i, sep = "_" )
+   testData[[ xName ]] <- rnorm( nObs )
+   testData$y <- testData$y + log( i + 1 ) * testData[[ xName ]]
+}
+testResult <- quadFuncEst( yName = "y",
+   xNames = paste( "x", 1:15, sep = "_" ),
+   data = testData, linear = TRUE )
+coef( testResult )
+rownames( vcov( testResult ) )
+colnames( vcov( testResult ) )
