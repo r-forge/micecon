@@ -3,6 +3,9 @@ quadFuncEla <- function( xNames, data, coef,
 
    checkNames( c( xNames, yName ), names( data ) )
 
+   # if 'data' is a vector, convert it to a data.frame
+   data <- .micEconVectorToDataFrame( data )
+
    # check argument 'homWeights'
    .quadFuncCheckHomWeights( homWeights, xNames )
 

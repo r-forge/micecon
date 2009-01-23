@@ -17,7 +17,7 @@ quadFuncEla( xNames, data, coef, yName = NULL,
 \arguments{
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
-   \item{data}{dataframe containing the data;
+   \item{data}{dataframe or a vector with named elements containing the data;
       if argument \code{data} of \code{elas.quadFuncEst} is not specified,
       the data frame that was used for the estimation
       is used for calculating elasticities.}
