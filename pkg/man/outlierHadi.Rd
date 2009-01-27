@@ -17,6 +17,9 @@
    are used for the detection of outliers.
    Since this methodology works for numeric variables only,
    all variables in the provided data frame must be numeric.
+
+   The original S-Plus code written by Ali S. Hadi is available at
+   \url{http://www1.aucegypt.edu/faculty/hadi/Research.html#splus}.
 }
 
 \value{
