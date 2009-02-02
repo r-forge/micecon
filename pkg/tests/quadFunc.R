@@ -725,3 +725,57 @@ testResult <- quadFuncEst( yName = "y",
 coef( testResult )
 rownames( vcov( testResult ) )
 colnames( vcov( testResult ) )
+
+########## scaling regressors ###########
+germanFarms$landAr <- germanFarms$land * 100
+germanFarms$timeCent <- germanFarms$time / 100
+germanFarmsMeans <- colMeans( germanFarms[ ,
+   - which( names( germanFarms ) %in% c( "year", "decade" ) ) ] )
+
+## standard quadratic function
+# estimation
+estResultAr <- quadFuncEst( "qOutput",
+   xNames = c( "qLabor", "landAr", "qVarInput", "time" ), data = germanFarms )
+print( coef( estResult ) / coef( estResultAr ) )
+# fitted values
+fitted <- quadFuncCalc( xNames = c( "qLabor", "landAr", "qVarInput", "time" ),
+   data = germanFarms, coef = coef( estResultAr ) )
+all.equal( fitted, estResult$fitted )
+# derivatives
+margProductsMeanAr <- quadFuncDeriv(
+   xNames = c( "qLabor", "landAr", "qVarInput", "time" ),
+   data = germanFarmsMeans, coef = coef( estResultAr ),
+   coefCov = vcov( estResultAr ) )
+print( margProductsMean$deriv / margProductsMeanAr$deriv )
+print( margProductsMean$variance / margProductsMeanAr$variance )
+print( margProductsMean$stdDev / margProductsMeanAr$stdDev )
+# elasticities
+estElaFitAr <- elas( estResultAr )
+all.equal( estElaFit, estElaFitAr, check.attributes = FALSE )
+estElaObsAr <- elas( estResultAr, yObs = TRUE )
+all.equal( estElaObs, estElaObsAr, check.attributes = FALSE )
+
+## estimation with homogeneity imposed (non-homogenous variable scaled)
+# estimation
+estResultHomCent <- quadFuncEst( yName = "qOutput",
+   xNames = c( "timeCent", "qLabor", "land", "qVarInput" ),
+   data = germanFarms,
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+print( coef( estResultHomCent ) / coef( estResultHom ) )
+# fitted values
+fitted <- quadFuncCalc(
+   xNames = c( "timeCent", "qLabor", "land", "qVarInput" ),
+   data = germanFarms, coef( estResultHomCent ),
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+all.equal( fitted, estResultHom$fitted )
+# derivatives
+estResultHomDerivCent <- quadFuncDeriv(
+   xNames = c( "timeCent", "qLabor", "land", "qVarInput" ),
+   coef = coef( estResultHomCent ), data = germanFarms,
+   homWeights = c( qLabor = 0.7, land = 0.1, qVarInput = 0.2 ) )
+print( estResultHomDerivCent$deriv / estResultHomDeriv$deriv )
+# elasticities
+estResultHomElaCent <- elas( estResultHomCent )
+all.equal( estResultHomEla, estResultHomElaCent, check.attributes = FALSE )
+estResultHomElaObsCent <- elas( estResultHomCent, yObs = TRUE )
+all.equal( estResultHomElaObs, estResultHomElaObsCent, check.attributes = FALSE )
