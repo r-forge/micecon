@@ -1,0 +1,379 @@
+
+R version 2.8.1 (2008-12-22)
+Copyright (C) 2008 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # load micEcon package
+> library( micEcon )
+Loading required package: systemfit
+Loading required package: Matrix
+Loading required package: lattice
+
+Attaching package: 'Matrix'
+
+
+	The following object(s) are masked from package:stats :
+
+	 xtabs 
+
+
+	The following object(s) are masked from package:base :
+
+	 colMeans,
+	 colSums,
+	 rcond,
+	 rowMeans,
+	 rowSums 
+
+Loading required package: car
+Loading required package: lmtest
+Loading required package: zoo
+
+Attaching package: 'zoo'
+
+
+	The following object(s) are masked from package:base :
+
+	 as.Date.numeric 
+
+Loading required package: np
+Loading required package: boot
+
+Attaching package: 'boot'
+
+
+	The following object(s) are masked from package:car :
+
+	 logit 
+
+
+	The following object(s) are masked from package:lattice :
+
+	 melanoma 
+
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
+> 
+> # load data
+> data( germanFarms )
+> # output quantity
+> germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
+> # quantity of variable inputs
+> germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
+> # a time trend to account for technical progress:
+> germanFarms$time <- c(1:20)
+> 
+> # weights to impose normalize prices
+> weights <- c(
++    pOutput = mean( germanFarms$qOutput ),
++    pVarInput = mean( germanFarms$qVarInput ),
++    pLabor = mean( germanFarms$qLabor ) )
+> weights <- weights / sum( weights )
+> 
+> # estimation
+> npseed( 123 )
+> estResult <- npregHom( "qVarInput",
++    xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
++    data = germanFarms, homWeights = weights )
+Multistart 1 of 3 |Multistart 1 of 3 |Multistart 1 of 3 |Multistart 1 of 3 /Multistart 1 of 3 -Multistart 1 of 3 \Multistart 1 of 3 |Multistart 1 of 3 /Multistart 1 of 3 |Multistart 1 of 3 |Multistart 1 of 3 /Multistart 1 of 3 -Multistart 1 of 3 \Multistart 2 of 3 |Multistart 2 of 3 |Multistart 2 of 3 /Multistart 2 of 3 -Multistart 2 of 3 |Multistart 2 of 3 |Multistart 2 of 3 /Multistart 2 of 3 -Multistart 3 of 3 |Multistart 3 of 3 |Multistart 3 of 3 /Multistart 3 of 3 -Multistart 3 of 3 \Multistart 3 of 3 |Multistart 3 of 3 |Multistart 3 of 3 /Multistart 3 of 3 -                   > print( estResult )
+$call
+npregHom(yName = "qVarInput", xNames = c("pOutput", "pVarInput", 
+    "pLabor", "land"), homWeights = weights, data = germanFarms)
+
+$yName
+[1] "qVarInput"
+
+$xNames
+[1] "pOutput"   "pVarInput" "pLabor"    "land"     
+
+$est
+
+Regression Data: 20 training points, in 3 variable(s)
+                     r_2      r_3      r_4
+Bandwidth(s): 0.01664024 26.66757 1.589505
+
+Kernel Regression Estimator: Local-Constant
+Bandwidth Type: Fixed
+
+Continuous Kernel Type: Second-Order Gaussian
+No. Continuous Explanatory Vars.: 3
+
+
+$grad
+         pOutput  pVarInput        pLabor       land
+ [1,] -2.3490390  2.5457658  1.944729e-03  0.8427033
+ [2,] -2.4945193  2.5631547  1.757982e-03  0.8750527
+ [3,] -2.2761223  2.5519635  1.014854e-04  0.2673162
+ [4,] -1.7078677  1.8671461 -1.423326e-04  0.1994970
+ [5,] -0.4717483  0.4819729  7.956272e-05  0.3086799
+ [6,]  2.9975397 -2.9945389 -1.775171e-05  0.6788984
+ [7,]  2.1748425 -2.1824080 -1.510609e-05  0.7419406
+ [8,]  3.9802649 -3.9058795  5.643105e-05  0.5801248
+ [9,]  1.7326372 -1.7035494  1.959667e-04  0.7900884
+[10,] -6.1168493  5.5697928  8.101433e-04  6.1365156
+[11,] -3.5216759  2.9839011  1.348740e-03  9.0304932
+[12,] -2.7541361  2.1746765  1.831971e-03  9.6005933
+[13,] -3.2856128  2.9087990  5.800799e-04  3.0583681
+[14,] -3.8457662  3.4981217  2.865945e-04  2.2558040
+[15,] -5.8787911  5.4073115  5.923245e-04  1.8341178
+[16,]  6.8291615 -5.8619223 -6.684419e-04 -3.9806270
+[17,]  1.7756946 -1.4851998 -2.666554e-04 -2.8689168
+[18,] -2.0945439  1.6128532  2.564680e-04  2.7735967
+[19,]  1.4899094 -1.4744823  1.264643e-03  6.3116327
+[20,]  3.0108686 -2.7017335  1.215329e-03  5.4040091
+
+attr(,"class")
+[1] "npregHom"
+> all.equal( estResult$grad[ , "pOutput" ] * germanFarms$pOutput +
++    estResult$grad[ , "pVarInput" ] * germanFarms$pVarInput,
++    - estResult$grad[ , "pLabor" ] * germanFarms$pLabor )
+[1] TRUE
+> # different normalized variable omitted
+> npseed( 123 )
+> estResult2 <- npregHom( "qVarInput",
++    xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
++    data = germanFarms, homWeights = weights[ c( 3, 2, 1 ) ] )
+Multistart 1 of 3 |Multistart 1 of 3 |Multistart 1 of 3 |Multistart 1 of 3 /Multistart 1 of 3 -Multistart 1 of 3 \Multistart 1 of 3 |Multistart 1 of 3 |Multistart 1 of 3 |Multistart 1 of 3 /Multistart 1 of 3 -Multistart 1 of 3 \Multistart 2 of 3 |Multistart 2 of 3 |Multistart 2 of 3 /Multistart 2 of 3 -Multistart 2 of 3 |Multistart 2 of 3 |Multistart 2 of 3 /Multistart 2 of 3 -Multistart 2 of 3 \Multistart 3 of 3 |Multistart 3 of 3 |Multistart 3 of 3 /Multistart 3 of 3 |Multistart 3 of 3 |Multistart 3 of 3 /Multistart 3 of 3 -                   > print( estResult2 )
+$call
+npregHom(yName = "qVarInput", xNames = c("pOutput", "pVarInput", 
+    "pLabor", "land"), homWeights = weights[c(3, 2, 1)], data = germanFarms)
+
+$yName
+[1] "qVarInput"
+
+$xNames
+[1] "pOutput"   "pVarInput" "pLabor"    "land"     
+
+$est
+
+Regression Data: 20 training points, in 3 variable(s)
+                   r_1      r_2      r_4
+Bandwidth(s): 10.00022 49.44949 2.664297
+
+Kernel Regression Estimator: Local-Constant
+Bandwidth Type: Fixed
+
+Continuous Kernel Type: Second-Order Gaussian
+No. Continuous Explanatory Vars.: 3
+
+
+$grad
+            pOutput     pVarInput        pLabor          land
+ [1,] -0.0001431196 -6.851992e-05  2.345547e-06  5.643267e-05
+ [2,] -1.8535105849 -8.923047e-01  1.885732e-02  1.591404e+00
+ [3,]  0.5814599262  2.805705e-01 -4.426118e-03  3.461576e+00
+ [4,] -0.1435942773 -6.922062e-02  1.242717e-03  7.145150e-01
+ [5,] -0.3062707276 -1.476173e-01  2.707063e-03  7.077178e-01
+ [6,] -0.2302589072 -1.109877e-01  2.018721e-03  7.054700e-01
+ [7,] -0.0850801741 -4.101630e-02  7.286193e-04  7.820469e-01
+ [8,]  0.0716724133  3.456424e-02 -5.940025e-04  1.072268e+00
+ [9,] -0.2106179315 -1.015207e-01  1.846224e-03  7.046138e-01
+[10,]  0.2033760786  9.810130e-02 -1.627767e-03  1.777070e+00
+[11,] -0.0105185247 -5.068641e-03  8.260744e-05  2.757352e+00
+[12,] -1.3036381258 -6.294880e-01  8.824600e-03  2.951282e+00
+[13,]  0.7071353991  3.415665e-01 -4.525460e-03 -8.668812e-02
+[14,] -0.5843229870 -2.821507e-01  3.958725e-03  1.299767e+00
+[15,] -0.7336860123 -3.542624e-01  4.996436e-03  1.714555e+00
+[16,]  3.5758340757  1.728056e+00 -2.095281e-02 -3.432601e+00
+[17,]  1.0842209093  5.240669e-01 -6.102466e-03 -1.678024e+00
+[18,] -0.5588907749 -2.702153e-01  2.979901e-03  7.012375e-01
+[19,] -2.4018357018 -1.161704e+00  1.175295e-02  3.414314e+00
+[20,] -1.4227917215 -6.883422e-01  6.552250e-03  2.174884e+00
+
+attr(,"class")
+[1] "npregHom"
+> all.equal( estResult2$grad[ , "pOutput" ] * germanFarms$pOutput +
++    estResult2$grad[ , "pVarInput" ] * germanFarms$pVarInput,
++    - estResult2$grad[ , "pLabor" ] * germanFarms$pLabor )
+[1] TRUE
+> 
+> # estimation with Epanechnikov kernel
+> npseed( 123 )
+> estResultEpa <- npregHom( "qVarInput",
++    xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
++    data = germanFarms, homWeights = weights, ckertype="epanechnikov" )
+Multistart 1 of 3 |Multistart 1 of 3 |Multistart 1 of 3 |Multistart 1 of 3 /Multistart 1 of 3 -Multistart 1 of 3 \Multistart 1 of 3 |Multistart 1 of 3 |Multistart 2 of 3 |Multistart 2 of 3 |Multistart 2 of 3 /Multistart 2 of 3 |Multistart 2 of 3 |Multistart 3 of 3 |Multistart 3 of 3 |Multistart 3 of 3 /Multistart 3 of 3 |Multistart 3 of 3 |Multistart 3 of 3 /                   > print( estResultEpa )
+$call
+npregHom(yName = "qVarInput", xNames = c("pOutput", "pVarInput", 
+    "pLabor", "land"), homWeights = weights, data = germanFarms, 
+    ckertype = "epanechnikov")
+
+$yName
+[1] "qVarInput"
+
+$xNames
+[1] "pOutput"   "pVarInput" "pLabor"    "land"     
+
+$est
+
+Regression Data: 20 training points, in 3 variable(s)
+                     r_2      r_3      r_4
+Bandwidth(s): 0.01630222 21.37180 1.699412
+
+Kernel Regression Estimator: Local-Constant
+Bandwidth Type: Fixed
+
+Continuous Kernel Type: Second-Order Epanechnikov
+No. Continuous Explanatory Vars.: 3
+
+
+$grad
+         pOutput   pVarInput        pLabor        land
+ [1,] -1.1479846  0.38360678  9.520206e-03  0.09743693
+ [2,] -1.1393594  0.20703814  6.850352e-03  0.10179852
+ [3,] -0.0579661  0.02558468  1.885318e-04  0.01580823
+ [4,]  0.7253859 -0.78116754 -5.379665e-06  0.00000000
+ [5,]  0.7024502 -0.73941060  6.856644e-06  0.00000000
+ [6,]  4.1006848 -4.09389991 -4.013747e-05  0.19466313
+ [7,]  5.2202281 -5.23177377 -7.435267e-05  0.13285615
+ [8,]  2.8646694 -2.81181253  4.447016e-05  0.24941501
+ [9,]  6.9406719 -6.73454853  2.420465e-04  0.15980084
+[10,] -5.5308766  5.13481084  1.754435e-04 19.43192465
+[11,] -1.8379614  1.33714446  1.941260e-03 13.07239455
+[12,] -0.8462923  0.44026197  1.656515e-03 22.51412894
+[13,] -2.5076579  2.22867300  4.035805e-04  1.09362478
+[14,] -2.5905486  2.32466529  3.456191e-04  1.42246502
+[15,] -2.7339886  2.49245634  3.819714e-04  0.89794785
+[16,]  0.5384236 -0.43420068 -1.727941e-04 -1.25872439
+[17,]  0.5183273 -0.41341936 -1.613216e-04 -1.25872439
+[18,] -4.5864638  3.67070275 -1.609360e-05  2.17238372
+[19,] -2.0002821  1.25979561  1.107406e-03  6.09546190
+[20,]  2.8374824 -2.52621949  1.073063e-03  3.52724720
+
+attr(,"class")
+[1] "npregHom"
+> all.equal( estResultEpa$grad[ , "pOutput" ] * germanFarms$pOutput +
++    estResultEpa$grad[ , "pVarInput" ] * germanFarms$pVarInput,
++    - estResultEpa$grad[ , "pLabor" ] * germanFarms$pLabor )
+[1] TRUE
+> 
+> # estimation with manual bandwidth selection
+> estResultMan <- npregHom( "qVarInput",
++    xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
++    data = germanFarms, homWeights = weights, bws = rep( 1, 3 ),
++    bwscaling = TRUE )
+> print( estResultMan )
+$call
+npregHom(yName = "qVarInput", xNames = c("pOutput", "pVarInput", 
+    "pLabor", "land"), homWeights = weights, data = germanFarms, 
+    bws = rep(1, 3), bwscaling = TRUE)
+
+$yName
+[1] "qVarInput"
+
+$xNames
+[1] "pOutput"   "pVarInput" "pLabor"    "land"     
+
+$est
+
+Regression Data: 20 training points, in 3 variable(s)
+                 r_2 r_3 r_4
+Scale Factor(s):   1   1   1
+
+Kernel Regression Estimator: Local-Constant
+Bandwidth Type: Fixed
+
+Continuous Kernel Type: Second-Order Gaussian
+No. Continuous Explanatory Vars.: 3
+
+
+$grad
+          pOutput    pVarInput        pLabor       land
+ [1,] -1.57635057  0.991422639  8.444994e-03  0.9427534
+ [2,] -2.83857697  2.491356228  4.669516e-03  1.4129624
+ [3,] -2.07453689  2.347574461 -9.551493e-06  1.1601769
+ [4,] -1.88147604  1.874236024  8.566194e-04  1.3011841
+ [5,] -1.56251489  1.490158221  8.760078e-04  1.3927804
+ [6,] -1.19646306  0.987039251  1.238894e-03  2.1214829
+ [7,] -1.32680288  1.064882689  1.544478e-03  2.8041318
+ [8,] -1.41264728  0.985799886  2.251467e-03  4.1378024
+ [9,] -0.98861116  0.699349589  1.540456e-03  2.7604051
+[10,] -1.67048667  0.916369858  3.638438e-03  6.6809555
+[11,] -2.16768322  1.034593211  5.338201e-03  9.1186278
+[12,] -1.51283979  0.366407246  4.978857e-03  8.8944021
+[13,]  0.19848637 -0.405148424  1.008374e-03  3.5072734
+[14,]  0.26680945 -0.330454388  4.024227e-04  3.9637744
+[15,] -0.47136333  0.004351884  2.100518e-03  6.2566045
+[16,]  2.08861762 -1.221672685 -2.657166e-03 -1.5072291
+[17,]  2.42360642 -1.319516978 -3.301160e-03 -2.5632617
+[18,] -0.07368454 -0.151801658  8.756801e-04  2.0099016
+[19,] -0.83611942  0.049025389  2.324182e-03  3.9817589
+[20,] -0.44418364 -0.201890752  1.998397e-03  3.7651185
+
+attr(,"class")
+[1] "npregHom"
+> all.equal( estResultMan$grad[ , "pOutput" ] * germanFarms$pOutput +
++    estResultMan$grad[ , "pVarInput" ] * germanFarms$pVarInput,
++    - estResultMan$grad[ , "pLabor" ] * germanFarms$pLabor )
+[1] TRUE
+> # different normalized variable omitted
+> estResultMan2 <- npregHom( "qVarInput",
++    xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
++    data = germanFarms, homWeights = weights[ c( 3, 2, 1 ) ],
++    bws = rep( 1, 3 ), bwscaling = TRUE )
+> print( estResultMan2 )
+$call
+npregHom(yName = "qVarInput", xNames = c("pOutput", "pVarInput", 
+    "pLabor", "land"), homWeights = weights[c(3, 2, 1)], data = germanFarms, 
+    bws = rep(1, 3), bwscaling = TRUE)
+
+$yName
+[1] "qVarInput"
+
+$xNames
+[1] "pOutput"   "pVarInput" "pLabor"    "land"     
+
+$est
+
+Regression Data: 20 training points, in 3 variable(s)
+                 r_1 r_2 r_4
+Scale Factor(s):   1   1   1
+
+Kernel Regression Estimator: Local-Constant
+Bandwidth Type: Fixed
+
+Continuous Kernel Type: Second-Order Gaussian
+No. Continuous Explanatory Vars.: 3
+
+
+$grad
+         pOutput   pVarInput        pLabor        land
+ [1,] -0.3346884 -0.16425801  0.0055251735  0.33621380
+ [2,] -0.4521373 -0.22115739  0.0046218903  1.29140243
+ [3,] -0.3296662 -0.16102865  0.0025186722  4.35090056
+ [4,] -0.1987278 -0.09712347  0.0017272135  1.63559747
+ [5,] -0.1973915 -0.09648024  0.0017524333  1.47173270
+ [6,] -0.2028850 -0.09916195  0.0017868264  1.60810292
+ [7,] -0.2385393 -0.11657709  0.0020519292  2.15194813
+ [8,] -0.2846660 -0.13910014  0.0023695569  2.81273632
+ [9,] -0.1843323 -0.09009408  0.0016233456  1.59472959
+[10,] -0.3904939 -0.19078525  0.0031391107  3.91699187
+[11,] -0.6714398 -0.32802679  0.0052983172  5.75167024
+[12,] -1.3702067 -0.66902722  0.0093106917  9.79732005
+[13,]  0.1310055  0.06395225 -0.0008414572  2.00652032
+[14,] -0.1091054 -0.05327333  0.0007420158  4.20519692
+[15,] -0.4587158 -0.22398179  0.0031357844  6.03653634
+[16,]  1.1869787  0.57928217 -0.0069794947 -2.61385366
+[17,]  1.1183006  0.54569804 -0.0063156941 -2.77990043
+[18,]  0.2089895  0.10196293 -0.0011181149  0.09287105
+[19,] -0.9947068 -0.48520235  0.0048833544  4.12096811
+[20,] -0.7239911 -0.35309920  0.0033444087  3.16663946
+
+attr(,"class")
+[1] "npregHom"
+> all.equal( estResultMan2$grad[ , "pOutput" ] * germanFarms$pOutput +
++    estResultMan2$grad[ , "pVarInput" ] * germanFarms$pVarInput,
++    - estResultMan2$grad[ , "pLabor" ] * germanFarms$pLabor )
+[1] TRUE
+> 
