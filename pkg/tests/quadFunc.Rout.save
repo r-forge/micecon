@@ -47,10 +47,34 @@ Attaching package: 'zoo'
 
 	 as.Date.numeric 
 
+Loading required package: np
+Loading required package: boot
+
+Attaching package: 'boot'
+
+
+	The following object(s) are masked from package:car :
+
+	 logit 
+
+
+	The following object(s) are masked from package:lattice :
+
+	 melanoma 
+
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
 > library( plm )
 Loading required package: kinship
 Loading required package: survival
 Loading required package: splines
+
+Attaching package: 'survival'
+
+
+	The following object(s) are masked from package:boot :
+
+	 aml 
+
 Loading required package: nlme
 [1] "kinship is loaded"
 Loading required package: Formula
