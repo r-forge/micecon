@@ -17,15 +17,17 @@ npregHom <- function( yName, xNames, homWeights, data,
    yData <- data[[ yName ]]
 
    # variable for normalization
-   deflator <- 0
+   weightVarMatrix <- matrix( NA, nrow = nrow( data ),
+      ncol = length( homWeights ) )
    for( i in seq( along = homWeights ) ) {
       varName <- names( homWeights )[ i ]
       if( "factor" %in% class( data[[ varName ]] ) ) {
          stop( "homogeneity can be imposed only on continuous variables",
             " but variable '", varName, "' is an (un)ordered factor" )
       }
-      deflator <- deflator + homWeights[ i ] * data[[ varName ]]
+      weightVarMatrix[ , i ] <- homWeights[ i ] * data[[ varName ]]
    }
+   deflator <- rowSums( weightVarMatrix )
    whichHom <- which( xNames %in% names( homWeights ) )
    if( restrictGrad ) {
       xOmit <- names( homWeights )[ 1 ]
