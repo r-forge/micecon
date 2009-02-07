@@ -8,7 +8,8 @@
 }
 
 \usage{
-npregHom( yName, xNames, homWeights, data, bws = NULL, \dots )
+npregHom( yName, xNames, homWeights, data, restrictGrad = TRUE,
+   bws = NULL, \dots )
 }
 
 \arguments{
@@ -21,6 +22,9 @@ npregHom( yName, xNames, homWeights, data, bws = NULL, \dots )
       for imposing homogeneity of degree zero in these variables
       (see details).}
    \item{data}{data frame containing the data.}
+   \item{restrictGrad}{logical value indicating
+      whether the sum of the gradients of all normalized variables
+      should be restricted to be zero? (see details).}
    \item{bws}{bandwidths (see \code{\link[np]{npreg}}).}
    \item{\dots}{further arguments are passed to \code{\link[np]{npreg}}.}
 }
@@ -46,6 +50,22 @@ npregHom( yName, xNames, homWeights, data, bws = NULL, \dots )
    in particular,
    if the numerical values of the variables (\eqn{P_1, \ldots, P_n})
    are rather different.
+
+   The variables that are normalized with the weighted index of theses variables
+   are linearly dependent.
+   Hence, a model that includes these variables cannot be estimated
+   by standard econometric methods such as OLS.
+   To allow the estimation of this model by standard econometric methods,
+   the sum of the gradients (=coefficients) of the normalized variables
+   is generally restricted to zero.
+   If argument \code{restrictGrad} is \code{TRUE},
+   this is done also by \code{npregHom}.
+   In contrast to OLS results that do not depend on
+   which variable is eliminated by the restriction,
+   the results of \code{npregHom} depend on
+   which variable is eliminated by the restriction.
+   The variable that corresponds to the first weight
+   in argument \code{homWeights} is eliminated in \code{npregHom}.
 }
 
 \value{
@@ -56,6 +76,7 @@ npregHom( yName, xNames, homWeights, data, bws = NULL, \dots )
    \item{yName}{argument \code{yName}.}
    \item{xNames}{argument \code{xcNames}.}
    \item{homWeights}{argument \code{homWeights}.}
+   \item{restrictGrad}{argument \code{restrictGrad}.}
 }
 
 \seealso{\code{\link{quadFuncEst}}, \code{\link[np]{npreg}},
