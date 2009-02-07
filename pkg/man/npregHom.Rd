@@ -31,14 +31,14 @@ npregHom( yName, xNames, homWeights, data, restrictGrad = TRUE,
 
 \details{
    Argument \code{homWeights} is used to impose homogeneity of degree
-   zero in some continuous independent variables.
+   zero in some (continuous) independent variables.
    The weighting factors in this vector must have names
-   that are equal to the variable names in argument \code{xcNames}.
+   that are equal to the variable names in argument \code{xNames}.
    The order of the elements in \code{homWeights}
    is arbitrary and may or may not be equal 
-   to the order of the elements in \code{xcNames}.
+   to the order of the elements in \code{xNames}.
    Argument \code{homWeights} may contain less elements 
-   than \code{xcNames};
+   than \code{xNames};
    in this case, homogeneity of degree zero is imposed only
    on variables with names in \code{homWeights}.
    Please note that the weighting factor of a variable
