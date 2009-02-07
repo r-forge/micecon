@@ -79,8 +79,8 @@ npregHom( yName, xNames, homWeights, data, restrictGrad = TRUE,
    \item{restrictGrad}{argument \code{restrictGrad}.}
 }
 
-\seealso{\code{\link{quadFuncEst}}, \code{\link[np]{npreg}},
-   and \code{\link[np]{npregbw}}.}
+\seealso{\code{\link{elas.npregHom}}, \code{\link{quadFuncEst}},
+   \code{\link[np]{npreg}}, and \code{\link[np]{npregbw}}.}
 
 \author{Arne Henningsen}
 
