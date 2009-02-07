@@ -15,7 +15,11 @@ elas.npregHom <- function( object, data = NULL, yObs = FALSE, ... ) {
    names( result ) <- colnames( object$grad )
 
    for( i in colnames( object$grad ) ) {
-      result[[ i ]] <- object$grad[ , i ] * data[[ i ]] / yValues
+      if( is.factor( data[[ i ]] ) ) {
+         result[[ i ]] <- NULL
+      } else {
+         result[[ i ]] <- object$grad[ , i ] * data[[ i ]] / yValues
+      }
    }
 
    return( result )

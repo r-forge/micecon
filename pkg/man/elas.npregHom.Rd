@@ -24,8 +24,8 @@
 }
 
 \value{
-   A data.frame of class \code{quadFuncEla},
-   where each column corresponds to one of the independent variables.
+   A data.frame,
+   where each column corresponds to one of the continuous independent variables.
 }
 
 \seealso{
