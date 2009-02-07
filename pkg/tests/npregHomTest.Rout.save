@@ -97,6 +97,10 @@ $yName
 $xNames
 [1] "pOutput"   "pVarInput" "pLabor"    "land"     
 
+$homWeights
+     pOutput    pVarInput       pLabor 
+0.6723446781 0.3269168696 0.0007384522 
+
 $restrictGrad
 [1] TRUE
 
@@ -157,6 +161,10 @@ $yName
 
 $xNames
 [1] "pOutput"   "pVarInput" "pLabor"    "land"     
+
+$homWeights
+      pLabor    pVarInput      pOutput 
+0.0007384522 0.3269168696 0.6723446781 
 
 $restrictGrad
 [1] TRUE
@@ -220,6 +228,10 @@ $yName
 
 $xNames
 [1] "pOutput"   "pVarInput" "pLabor"    "land"     
+
+$homWeights
+     pOutput    pVarInput       pLabor 
+0.6723446781 0.3269168696 0.0007384522 
 
 $restrictGrad
 [1] FALSE
@@ -293,6 +305,10 @@ $yName
 $xNames
 [1] "pOutput"   "pVarInput" "pLabor"    "land"     
 
+$homWeights
+     pOutput    pVarInput       pLabor 
+0.6723446781 0.3269168696 0.0007384522 
+
 $restrictGrad
 [1] TRUE
 
@@ -356,6 +372,10 @@ $yName
 
 $xNames
 [1] "pOutput"   "pVarInput" "pLabor"    "land"     
+
+$homWeights
+     pOutput    pVarInput       pLabor 
+0.6723446781 0.3269168696 0.0007384522 
 
 $restrictGrad
 [1] FALSE
@@ -429,6 +449,10 @@ $yName
 $xNames
 [1] "pOutput"   "pVarInput" "pLabor"    "land"     
 
+$homWeights
+     pOutput    pVarInput       pLabor 
+0.6723446781 0.3269168696 0.0007384522 
+
 $restrictGrad
 [1] TRUE
 
@@ -490,6 +514,10 @@ $yName
 
 $xNames
 [1] "pOutput"   "pVarInput" "pLabor"    "land"     
+
+$homWeights
+      pLabor    pVarInput      pOutput 
+0.0007384522 0.3269168696 0.6723446781 
 
 $restrictGrad
 [1] TRUE
@@ -553,6 +581,10 @@ $yName
 
 $xNames
 [1] "pOutput"   "pVarInput" "pLabor"    "land"     
+
+$homWeights
+     pOutput    pVarInput       pLabor 
+0.6723446781 0.3269168696 0.0007384522 
 
 $restrictGrad
 [1] FALSE
