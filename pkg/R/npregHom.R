@@ -1,4 +1,5 @@
-npregHom <- function( yName, xNames, homWeights, data, bws = NULL, ... ) {
+npregHom <- function( yName, xNames, homWeights, data,
+   restrictGrad = TRUE, bws = NULL, ... ) {
 
    checkNames( c( yName, xNames ), names( data ) )
 
@@ -9,6 +10,7 @@ npregHom <- function( yName, xNames, homWeights, data, bws = NULL, ... ) {
    result$call <- match.call()
    result$yName  <- yName
    result$xNames <- xNames
+   result$restrictGrad <- restrictGrad
 
    # endogenous variable
    yData <- data[[ yName ]]
@@ -24,8 +26,13 @@ npregHom <- function( yName, xNames, homWeights, data, bws = NULL, ... ) {
       deflator <- deflator + homWeights[ i ] * data[[ varName ]]
    }
    whichHom <- which( xNames %in% names( homWeights ) )
-   xOmit <- names( homWeights )[ 1 ]
-   iOmit <- which( xNames == xOmit )
+   if( restrictGrad ) {
+      xOmit <- names( homWeights )[ 1 ]
+      iOmit <- which( xNames == xOmit )
+   } else {
+      xOmit <- NULL
+      iOmit <- 0
+   }
 
    # regressors
    xData <- data.frame( no = 1:nrow( data ) )
@@ -33,7 +40,7 @@ npregHom <- function( yName, xNames, homWeights, data, bws = NULL, ... ) {
       if( i != iOmit ) {
          xName <- paste( "r", as.character( i ), sep = "_" )
          xData[[ xName ]] <- .quadFuncVarHom( data, xNames[ i ],
-            homWeights, deflator, xOmit )
+            homWeights, deflator, xSubtract = xOmit )
       }
    }
    xData$no <- NULL
@@ -47,9 +54,14 @@ npregHom <- function( yName, xNames, homWeights, data, bws = NULL, ... ) {
    }
 
    # gradients
-   npAllGrad <- cbind( rep( 0, nrow( result$est$grad ) ), result$est$grad )
-   colnames( npAllGrad ) <- c( paste( "r", iOmit, sep = "_" ),
-      colnames( xData ) )
+   if( restrictGrad ) {
+      npAllGrad <- cbind( rep( 0, nrow( result$est$grad ) ), result$est$grad )
+      colnames( npAllGrad ) <- c( paste( "r", iOmit, sep = "_" ),
+         colnames( xData ) )
+   } else {
+      npAllGrad <- result$est$grad
+      colnames( npAllGrad ) <- colnames( xData )
+   }
    for( i in whichHom[ whichHom != iOmit ] ) {
       npAllGrad[ , 1 ] <- npAllGrad[ , 1 ] -
          npAllGrad[ , paste( "r", i, sep = "_" ) ]
