@@ -26,6 +26,14 @@ print( estResult )
 all.equal( estResult$grad[ , "pOutput" ] * germanFarms$pOutput +
    estResult$grad[ , "pVarInput" ] * germanFarms$pVarInput,
    - estResult$grad[ , "pLabor" ] * germanFarms$pLabor )
+estEla <- elas( estResult )
+print( estEla )
+all.equal( estEla[[ "pOutput" ]] + estEla[[ "pVarInput" ]],
+   - estEla[[ "pLabor" ]] )
+estElaObs <- elas( estResult, yObs = TRUE )
+print( estElaObs )
+all.equal( estElaObs[[ "pOutput" ]] + estElaObs[[ "pVarInput" ]],
+   - estElaObs[[ "pLabor" ]] )
 # different normalized variable omitted
 npseed( 123 )
 estResult2 <- npregHom( "qVarInput",
@@ -35,6 +43,14 @@ print( estResult2 )
 all.equal( estResult2$grad[ , "pOutput" ] * germanFarms$pOutput +
    estResult2$grad[ , "pVarInput" ] * germanFarms$pVarInput,
    - estResult2$grad[ , "pLabor" ] * germanFarms$pLabor )
+estEla2 <- elas( estResult2 )
+print( estEla2 )
+all.equal( estEla2[[ "pOutput" ]] + estEla2[[ "pVarInput" ]],
+   - estEla2[[ "pLabor" ]] )
+estEla2Obs <- elas( estResult2, yObs = TRUE )
+print( estEla2Obs )
+all.equal( estEla2Obs[[ "pOutput" ]] + estEla2Obs[[ "pVarInput" ]],
+   - estEla2Obs[[ "pLabor" ]] )
 
 # estimation (gradients not restricted)
 npseed( 123 )
@@ -45,6 +61,14 @@ print( estResultAll )
 all.equal( estResultAll$grad[ , "pOutput" ] * germanFarms$pOutput +
    estResultAll$grad[ , "pVarInput" ] * germanFarms$pVarInput,
    - estResultAll$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaAll <- elas( estResultAll )
+print( estElaAll )
+all.equal( estElaAll[[ "pOutput" ]] + estElaAll[[ "pVarInput" ]],
+   - estElaAll[[ "pLabor" ]] )
+estElaAllObs <- elas( estResultAll, yObs = TRUE )
+print( estElaAllObs )
+all.equal( estElaAllObs[[ "pOutput" ]] + estElaAllObs[[ "pVarInput" ]],
+   - estElaAllObs[[ "pLabor" ]] )
 # different order of weights
 npseed( 123 )
 estResultAll2 <- npregHom( "qVarInput",
@@ -52,6 +76,9 @@ estResultAll2 <- npregHom( "qVarInput",
    data = germanFarms, homWeights = weights[ c( 3, 2, 1 ) ],
    restrictGrad = FALSE )
 all.equal( estResultAll$grad, estResultAll2$grad, tolerance = 1e-6 )
+all.equal( elas( estResultAll ), elas( estResultAll2 ), tolerance = 1e-6 )
+all.equal( elas( estResultAll, yObs = TRUE ),
+   elas( estResultAll2, yObs = TRUE ), tolerance = 1e-6 )
 
 
 # estimation with Epanechnikov kernel (restricted gradients)
@@ -63,6 +90,14 @@ print( estResultEpa )
 all.equal( estResultEpa$grad[ , "pOutput" ] * germanFarms$pOutput +
    estResultEpa$grad[ , "pVarInput" ] * germanFarms$pVarInput,
    - estResultEpa$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaEpa <- elas( estResultEpa )
+print( estElaEpa )
+all.equal( estElaEpa[[ "pOutput" ]] + estElaEpa[[ "pVarInput" ]],
+   - estElaEpa[[ "pLabor" ]] )
+estElaEpaObs <- elas( estResultEpa, yObs = TRUE )
+print( estElaEpaObs )
+all.equal( estElaEpaObs[[ "pOutput" ]] + estElaEpaObs[[ "pVarInput" ]],
+   - estElaEpaObs[[ "pLabor" ]] )
 
 # estimation with Epanechnikov kernel (gradients not restricted)
 npseed( 123 )
@@ -74,6 +109,14 @@ print( estResultEpaAll )
 all.equal( estResultEpaAll$grad[ , "pOutput" ] * germanFarms$pOutput +
    estResultEpaAll$grad[ , "pVarInput" ] * germanFarms$pVarInput,
    - estResultEpaAll$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaEpaAll <- elas( estResultEpaAll )
+print( estElaEpaAll )
+all.equal( estElaEpaAll[[ "pOutput" ]] + estElaEpaAll[[ "pVarInput" ]],
+   - estElaEpaAll[[ "pLabor" ]] )
+estElaEpaAllObs <- elas( estResultEpaAll, yObs = TRUE )
+print( estElaEpaAllObs )
+all.equal( estElaEpaAllObs[[ "pOutput" ]] + estElaEpaAllObs[[ "pVarInput" ]],
+   - estElaEpaAllObs[[ "pLabor" ]] )
 # different order of weights
 npseed( 123 )
 estResultEpaAll2 <- npregHom( "qVarInput",
@@ -81,6 +124,9 @@ estResultEpaAll2 <- npregHom( "qVarInput",
    data = germanFarms, homWeights = weights[ c( 3, 2, 1 ) ],
    restrictGrad = FALSE, ckertype="epanechnikov" )
 all.equal( estResultEpaAll$grad, estResultEpaAll2$grad, tolerance = 1e-6 )
+all.equal( elas( estResultEpaAll ), elas( estResultEpaAll2 ), tolerance = 1e-6 )
+all.equal( elas( estResultEpaAll, yObs = TRUE ),
+   elas( estResultEpaAll2, yObs = TRUE ), tolerance = 1e-6 )
 
 
 # estimation with manual bandwidth selection (restricted gradients)
@@ -92,6 +138,14 @@ print( estResultMan )
 all.equal( estResultMan$grad[ , "pOutput" ] * germanFarms$pOutput +
    estResultMan$grad[ , "pVarInput" ] * germanFarms$pVarInput,
    - estResultMan$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaMan <- elas( estResultMan )
+print( estElaMan )
+all.equal( estElaMan[[ "pOutput" ]] + estElaMan[[ "pVarInput" ]],
+   - estElaMan[[ "pLabor" ]] )
+estElaManObs <- elas( estResultMan, yObs = TRUE )
+print( estElaManObs )
+all.equal( estElaManObs[[ "pOutput" ]] + estElaManObs[[ "pVarInput" ]],
+   - estElaManObs[[ "pLabor" ]] )
 # different normalized variable omitted
 estResultMan2 <- npregHom( "qVarInput",
    xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
@@ -101,6 +155,14 @@ print( estResultMan2 )
 all.equal( estResultMan2$grad[ , "pOutput" ] * germanFarms$pOutput +
    estResultMan2$grad[ , "pVarInput" ] * germanFarms$pVarInput,
    - estResultMan2$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaMan2 <- elas( estResultMan2 )
+print( estElaMan2 )
+all.equal( estElaMan2[[ "pOutput" ]] + estElaMan2[[ "pVarInput" ]],
+   - estElaMan2[[ "pLabor" ]] )
+estElaMan2Obs <- elas( estResultMan2, yObs = TRUE )
+print( estElaMan2Obs )
+all.equal( estElaMan2Obs[[ "pOutput" ]] + estElaMan2Obs[[ "pVarInput" ]],
+   - estElaMan2Obs[[ "pLabor" ]] )
 
 # estimation with manual bandwidth selection (gradients not restricted)
 estResultManAll <- npregHom( "qVarInput",
@@ -111,9 +173,20 @@ print( estResultManAll )
 all.equal( estResultManAll$grad[ , "pOutput" ] * germanFarms$pOutput +
    estResultManAll$grad[ , "pVarInput" ] * germanFarms$pVarInput,
    - estResultManAll$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaManAll <- elas( estResultManAll )
+print( estElaManAll )
+all.equal( estElaManAll[[ "pOutput" ]] + estElaManAll[[ "pVarInput" ]],
+   - estElaManAll[[ "pLabor" ]] )
+estElaManAllObs <- elas( estResultManAll, yObs = TRUE )
+print( estElaManAllObs )
+all.equal( estElaManAllObs[[ "pOutput" ]] + estElaManAllObs[[ "pVarInput" ]],
+   - estElaManAllObs[[ "pLabor" ]] )
 # different order of weights
 estResultManAll2 <- npregHom( "qVarInput",
    xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
    data = germanFarms, homWeights = weights[ c( 3, 2, 1 ) ],
    restrictGrad = FALSE, bws = rep( 1, 4 ), bwscaling = TRUE )
 all.equal( estResultManAll$grad, estResultManAll2$grad )
+all.equal( elas( estResultManAll ), elas( estResultManAll2 ) )
+all.equal( elas( estResultManAll, yObs = TRUE ),
+   elas( estResultManAll2, yObs = TRUE ) )
