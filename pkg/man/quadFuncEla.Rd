@@ -48,8 +48,8 @@ quadFuncEla( xNames, data, coef, yName = NULL,
 }
 
 \seealso{
-   \code{\link{quadFuncEst}}, \code{\link{quadFuncDeriv}} nad
-   \code{\link{quadFuncCalc}}
+   \code{\link{quadFuncEst}}, \code{\link{quadFuncDeriv}}, and
+   \code{\link{quadFuncCalc}}.
 }
 
 \author{Arne Henningsen}
