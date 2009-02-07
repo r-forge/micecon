@@ -10,6 +10,7 @@ npregHom <- function( yName, xNames, homWeights, data,
    result$call <- match.call()
    result$yName  <- yName
    result$xNames <- xNames
+   result$homWeights <- homWeights
    result$restrictGrad <- restrictGrad
 
    # endogenous variable
