@@ -14,10 +14,18 @@ cobbDouglasCalc( xNames, data, coef, dataLogged = FALSE  )
    \item{xNames}{a vector of strings containing the names of the
       independent variables.}
    \item{data}{data frame containing the data.}
-   \item{coef}{vector of named elements containing the coefficients:
-      if there are \code{n} exogenous variables in \code{xNames},
-      the \code{n+1} coefficients must have names
-      \code{a_0}, \ldots, \code{a_n}.}
+   \item{coef}{vector containing the coefficients:
+      if the elements of the vector have no names,
+      the first element is taken as intercept of the \emph{logged} equation
+      and the following elements are taken as coefficients of
+      the independent variables defined in argument \code{xNames}
+      (in the same order);
+      if the elements of \code{coef} have names,
+      the element named \code{a_0} is taken as intercept of the \emph{logged}
+      equation
+      and the elements named \code{a_1}, \ldots, \code{a_n}
+      are taken as coefficients of the independent variables
+      defined in argument \code{xNames} (numbered in that order).}
    \item{dataLogged}{logical. Are the values in \code{data} already logged?}
 }
 
