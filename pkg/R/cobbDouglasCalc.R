@@ -9,6 +9,18 @@ cobbDouglasCalc <- function( xNames, data, coef, dataLogged = FALSE) {
          " must have exactly ", nExog + 1, " coefficients" )
    }
 
+   coefNames <- paste( "a", c( 0:nExog ), sep = "_" )
+   if( is.null( names( coef ) ) ) {
+      names( coef ) <- coefNames
+   } else {
+      coefMissing <- !( coefNames %in% names( coef ) )
+      if( any( coefMissing ) ) {
+         stop( "coefficient(s) ",
+            paste( coefNames[ coefMissing ], collapse = ", " ),
+            " are missing" )
+      }
+   }
+
    if( dataLogged ) {
       logData <- data
    } else {
