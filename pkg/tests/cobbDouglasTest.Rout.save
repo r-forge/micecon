@@ -99,3 +99,18 @@ Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
 > all.equal( fitted, exp( fittedLogged ) )
 [1] TRUE
 > 
+> # coefficients not named
+> coefNoNames <- coef( estResult )[ 1:5 ]
+> names( coefNoNames ) <- NULL
+> fittedNoNames <- cobbDouglasCalc( c( "qLabor", "land", "qVarInput", "time" ),
++    data = germanFarms, coef = coefNoNames )
+> all.equal( fitted, fittedNoNames )
+[1] TRUE
+> 
+> # coefficients in a different order
+> coefDiffOrder <- coef( estResult )[ c( 3, 5, 1, 2, 4 ) ]
+> fittedDiffOrder <- cobbDouglasCalc( c( "qLabor", "land", "qVarInput", "time" ),
++    data = germanFarms, coef = coefDiffOrder )
+> all.equal( fitted, fittedDiffOrder )
+[1] TRUE
+> 

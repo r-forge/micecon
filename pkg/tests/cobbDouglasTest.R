@@ -26,3 +26,16 @@ germanFarms$lTime      <- log( germanFarms$time )
 fittedLogged <- cobbDouglasCalc( c( "lQLabor", "lLand", "lQVarInput", "lTime" ),
    data = germanFarms, coef = coef( estResult )[ 1:5 ], dataLogged = TRUE )
 all.equal( fitted, exp( fittedLogged ) )
+
+# coefficients not named
+coefNoNames <- coef( estResult )[ 1:5 ]
+names( coefNoNames ) <- NULL
+fittedNoNames <- cobbDouglasCalc( c( "qLabor", "land", "qVarInput", "time" ),
+   data = germanFarms, coef = coefNoNames )
+all.equal( fitted, fittedNoNames )
+
+# coefficients in a different order
+coefDiffOrder <- coef( estResult )[ c( 3, 5, 1, 2, 4 ) ]
+fittedDiffOrder <- cobbDouglasCalc( c( "qLabor", "land", "qVarInput", "time" ),
+   data = germanFarms, coef = coefDiffOrder )
+all.equal( fitted, fittedDiffOrder )
