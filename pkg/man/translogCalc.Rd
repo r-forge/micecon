@@ -56,7 +56,7 @@ translogCalc( xNames, data, coef, shifterNames = NULL,
    # a time trend to account for technical progress:
    germanFarms$time <- c(1:20)
 
-   # estimate a quadratic production function
+   # estimate a Translog production function
    estResult <- translogEst( "qOutput", c( "qLabor", "land", "qVarInput", "time" ),
       germanFarms )
 
