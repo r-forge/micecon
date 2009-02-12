@@ -1,0 +1,101 @@
+
+R version 2.8.1 (2008-12-22)
+Copyright (C) 2008 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library( micEcon )
+Loading required package: systemfit
+Loading required package: Matrix
+Loading required package: lattice
+
+Attaching package: 'Matrix'
+
+
+	The following object(s) are masked from package:stats :
+
+	 xtabs 
+
+
+	The following object(s) are masked from package:base :
+
+	 colMeans,
+	 colSums,
+	 rcond,
+	 rowMeans,
+	 rowSums 
+
+Loading required package: car
+Loading required package: lmtest
+Loading required package: zoo
+
+Attaching package: 'zoo'
+
+
+	The following object(s) are masked from package:base :
+
+	 as.Date.numeric 
+
+Loading required package: np
+Loading required package: boot
+
+Attaching package: 'boot'
+
+
+	The following object(s) are masked from package:car :
+
+	 logit 
+
+
+	The following object(s) are masked from package:lattice :
+
+	 melanoma 
+
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
+> 
+> data( germanFarms )
+> # output quantity:
+> germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
+> # quantity of variable inputs
+> germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
+> # a time trend to account for technical progress:
+> germanFarms$time <- c(1:20)
+> 
+> # estimate a Cobb-Douglas production function
+> estResult <- translogEst( "qOutput", c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, linear = TRUE )
+> 
+> # calculate fitted values
+> fitted <- cobbDouglasCalc( c( "qLabor", "land", "qVarInput", "time" ),
++    data = germanFarms, coef = coef( estResult )[ 1:5 ] )
+> print( fitted )
+        1         2         3         4         5         6         7         8 
+ 915.9295 1024.0093 1078.8583 1140.0400 1160.8934 1195.0936 1242.1365 1253.3053 
+        9        10        11        12        13        14        15        16 
+1231.9718 1288.6305 1343.3516 1537.1326 1619.5938 1667.9966 1617.0959 1624.9890 
+       17        18        19        20 
+1690.8755 1759.8691 1874.5322 1989.0299 
+> all.equal( fitted, estResult$fitted )
+[1] TRUE
+> 
+> # calculate fitted values using logged independent variables
+> germanFarms$lQLabor    <- log( germanFarms$qLabor )
+> germanFarms$lLand      <- log( germanFarms$land )
+> germanFarms$lQVarInput <- log( germanFarms$qVarInput )
+> germanFarms$lTime      <- log( germanFarms$time )
+> fittedLogged <- cobbDouglasCalc( c( "lQLabor", "lLand", "lQVarInput", "lTime" ),
++    data = germanFarms, coef = coef( estResult )[ 1:5 ], dataLogged = TRUE )
+> all.equal( fitted, exp( fittedLogged ) )
+[1] TRUE
+> 
