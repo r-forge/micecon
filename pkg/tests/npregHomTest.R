@@ -190,3 +190,124 @@ all.equal( estResultManAll$grad, estResultManAll2$grad )
 all.equal( elas( estResultManAll ), elas( estResultManAll2 ) )
 all.equal( elas( estResultManAll, yObs = TRUE ),
    elas( estResultManAll2, yObs = TRUE ) )
+
+
+# local-linear estimation (restricted gradients)
+npseed( 123 )
+estResultLl <- npregHom( "qVarInput",
+   xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
+   data = germanFarms, homWeights = weights, regtype = "ll" )
+print( estResultLl )
+all.equal( estResultLl$grad[ , "pOutput" ] * germanFarms$pOutput +
+   estResultLl$grad[ , "pVarInput" ] * germanFarms$pVarInput,
+   - estResultLl$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaLl <- elas( estResultLl )
+print( estElaLl )
+all.equal( estElaLl[[ "pOutput" ]] + estElaLl[[ "pVarInput" ]],
+   - estElaLl[[ "pLabor" ]] )
+estElaLlObs <- elas( estResultLl, yObs = TRUE )
+print( estElaLlObs )
+all.equal( estElaLlObs[[ "pOutput" ]] + estElaLlObs[[ "pVarInput" ]],
+   - estElaLlObs[[ "pLabor" ]] )
+
+# local-linear estimation (gradients not restricted)
+npseed( 123 )
+estResultLlAll <- npregHom( "qVarInput",
+   xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
+   data = germanFarms, homWeights = weights, restrictGrad = FALSE,
+   regtype = "ll" )
+print( estResultLlAll )
+all.equal( estResultLlAll$grad[ , "pOutput" ] * germanFarms$pOutput +
+   estResultLlAll$grad[ , "pVarInput" ] * germanFarms$pVarInput,
+   - estResultLlAll$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaLlAll <- elas( estResultLlAll )
+print( estElaLlAll )
+all.equal( estElaLlAll[[ "pOutput" ]] + estElaLlAll[[ "pVarInput" ]],
+   - estElaLlAll[[ "pLabor" ]] )
+estElaLlAllObs <- elas( estResultLlAll, yObs = TRUE )
+print( estElaLlAllObs )
+all.equal( estElaLlAllObs[[ "pOutput" ]] + estElaLlAllObs[[ "pVarInput" ]],
+   - estElaLlAllObs[[ "pLabor" ]] )
+
+
+# local-linear estimation with Epanechnikov kernel (restricted gradients)
+npseed( 123 )
+estResultLlEpa <- npregHom( "qVarInput",
+   xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
+   data = germanFarms, homWeights = weights, ckertype="epanechnikov",
+   regtype = "ll" )
+print( estResultLlEpa )
+all.equal( estResultLlEpa$grad[ , "pOutput" ] * germanFarms$pOutput +
+   estResultLlEpa$grad[ , "pVarInput" ] * germanFarms$pVarInput,
+   - estResultLlEpa$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaLlEpa <- elas( estResultLlEpa )
+print( estElaLlEpa )
+all.equal( estElaLlEpa[[ "pOutput" ]] + estElaLlEpa[[ "pVarInput" ]],
+   - estElaLlEpa[[ "pLabor" ]] )
+estElaLlEpaObs <- elas( estResultLlEpa, yObs = TRUE )
+print( estElaLlEpaObs )
+all.equal( estElaLlEpaObs[[ "pOutput" ]] + estElaLlEpaObs[[ "pVarInput" ]],
+   - estElaLlEpaObs[[ "pLabor" ]] )
+
+# local linear estimation with Epanechnikov kernel (gradients not restricted)
+npseed( 123 )
+estResultLlEpaAll <- npregHom( "qVarInput",
+   xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
+   data = germanFarms, homWeights = weights, restrictGrad = FALSE,
+   ckertype = "epanechnikov", regtype = "ll" )
+print( estResultLlEpaAll )
+all.equal( estResultLlEpaAll$grad[ , "pOutput" ] * germanFarms$pOutput +
+   estResultLlEpaAll$grad[ , "pVarInput" ] * germanFarms$pVarInput,
+   - estResultLlEpaAll$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaLlEpaAll <- elas( estResultLlEpaAll )
+print( estElaLlEpaAll )
+all.equal( estElaLlEpaAll[[ "pOutput" ]] + estElaLlEpaAll[[ "pVarInput" ]],
+   - estElaLlEpaAll[[ "pLabor" ]] )
+estElaLlEpaAllObs <- elas( estResultLlEpaAll, yObs = TRUE )
+print( estElaLlEpaAllObs )
+all.equal( estElaLlEpaAllObs[[ "pOutput" ]] + estElaLlEpaAllObs[[ "pVarInput" ]],
+   - estElaLlEpaAllObs[[ "pLabor" ]] )
+
+
+# local-linear estimation with manual bandwidth selection (restricted gradients)
+estResultLlMan <- npregHom( "qVarInput",
+   xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
+   data = germanFarms, homWeights = weights, bws = rep( 1, 3 ),
+   bwscaling = TRUE, regtype = "ll" )
+print( estResultLlMan )
+all.equal( estResultLlMan$grad[ , "pOutput" ] * germanFarms$pOutput +
+   estResultLlMan$grad[ , "pVarInput" ] * germanFarms$pVarInput,
+   - estResultLlMan$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaLlMan <- elas( estResultLlMan )
+print( estElaLlMan )
+all.equal( estElaLlMan[[ "pOutput" ]] + estElaLlMan[[ "pVarInput" ]],
+   - estElaLlMan[[ "pLabor" ]] )
+estElaLlManObs <- elas( estResultLlMan, yObs = TRUE )
+print( estElaLlManObs )
+all.equal( estElaLlManObs[[ "pOutput" ]] + estElaLlManObs[[ "pVarInput" ]],
+   - estElaLlManObs[[ "pLabor" ]] )
+
+# local-linear estimation with manual bandwidth selection (gradients not restricted)
+estResultLlManAll <- npregHom( "qVarInput",
+   xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
+   data = germanFarms, homWeights = weights, restrictGrad = FALSE,
+   bws = rep( 1, 4 ), bwscaling = TRUE, regtype = "ll" )
+print( estResultLlManAll )
+all.equal( estResultLlManAll$grad[ , "pOutput" ] * germanFarms$pOutput +
+   estResultLlManAll$grad[ , "pVarInput" ] * germanFarms$pVarInput,
+   - estResultLlManAll$grad[ , "pLabor" ] * germanFarms$pLabor )
+estElaLlManAll <- elas( estResultLlManAll )
+print( estElaLlManAll )
+all.equal( estElaLlManAll[[ "pOutput" ]] + estElaLlManAll[[ "pVarInput" ]],
+   - estElaLlManAll[[ "pLabor" ]] )
+estElaLlManAllObs <- elas( estResultLlManAll, yObs = TRUE )
+print( estElaLlManAllObs )
+all.equal( estElaLlManAllObs[[ "pOutput" ]] + estElaLlManAllObs[[ "pVarInput" ]],
+   - estElaLlManAllObs[[ "pLabor" ]] )
+# different order of weights
+estResultLlManAll2 <- npregHom( "qVarInput",
+   xNames = c( "pOutput", "pVarInput", "pLabor", "land" ),
+   data = germanFarms, homWeights = weights[ c( 3, 2, 1 ) ], restrictGrad = FALSE,
+   bws = rep( 1, 4 ), bwscaling = TRUE, regtype = "ll" )
+all.equal( estResultLlManAll$grad, estResultLlManAll2$grad )
+all.equal( estResultLlManAll$est, estResultLlManAll2$est, check.attributes = FALSE )
