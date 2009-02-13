@@ -37,7 +37,7 @@ cobbDouglasCalc( xNames, data, coef, dataLogged = FALSE  )
    non-logarithmic values are returned otherwise.
 }
 
-\seealso{\code{\link{translogCalc}}.}
+\seealso{\code{\link{translogCalc}}, \code{\link{cobbDouglasOpt}}.}
 
 \author{Arne Henningsen}
 
