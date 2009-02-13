@@ -73,11 +73,11 @@ Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
 > germanFarms$time <- c(1:20)
 > 
 > # estimate a Cobb-Douglas production function
-> estResult <- translogEst( "qOutput", c( "qLabor", "land", "qVarInput", "time" ),
+> estResult <- translogEst( "qOutput", c( "qLabor", "qVarInput", "land", "time" ),
 +    germanFarms, linear = TRUE )
 > 
 > # calculate fitted values
-> fitted <- cobbDouglasCalc( c( "qLabor", "land", "qVarInput", "time" ),
+> fitted <- cobbDouglasCalc( c( "qLabor", "qVarInput", "land", "time" ),
 +    data = germanFarms, coef = coef( estResult )[ 1:5 ] )
 > print( fitted )
         1         2         3         4         5         6         7         8 
@@ -94,7 +94,7 @@ Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
 > germanFarms$lLand      <- log( germanFarms$land )
 > germanFarms$lQVarInput <- log( germanFarms$qVarInput )
 > germanFarms$lTime      <- log( germanFarms$time )
-> fittedLogged <- cobbDouglasCalc( c( "lQLabor", "lLand", "lQVarInput", "lTime" ),
+> fittedLogged <- cobbDouglasCalc( c( "lQLabor", "lQVarInput", "lLand", "lTime" ),
 +    data = germanFarms, coef = coef( estResult )[ 1:5 ], dataLogged = TRUE )
 > all.equal( fitted, exp( fittedLogged ) )
 [1] TRUE
@@ -102,14 +102,14 @@ Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
 > # coefficients not named
 > coefNoNames <- coef( estResult )[ 1:5 ]
 > names( coefNoNames ) <- NULL
-> fittedNoNames <- cobbDouglasCalc( c( "qLabor", "land", "qVarInput", "time" ),
+> fittedNoNames <- cobbDouglasCalc( c( "qLabor", "qVarInput", "land", "time" ),
 +    data = germanFarms, coef = coefNoNames )
 > all.equal( fitted, fittedNoNames )
 [1] TRUE
 > 
 > # coefficients in a different order
 > coefDiffOrder <- coef( estResult )[ c( 3, 5, 1, 2, 4 ) ]
-> fittedDiffOrder <- cobbDouglasCalc( c( "qLabor", "land", "qVarInput", "time" ),
+> fittedDiffOrder <- cobbDouglasCalc( c( "qLabor", "qVarInput", "land", "time" ),
 +    data = germanFarms, coef = coefDiffOrder )
 > all.equal( fitted, fittedDiffOrder )
 [1] TRUE
