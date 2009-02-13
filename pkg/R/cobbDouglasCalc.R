@@ -19,7 +19,9 @@ cobbDouglasCalc <- function( xNames, data, coef, dataLogged = FALSE) {
             paste( coefNames[ coefMissing ], collapse = ", " ),
             " are missing" )
       }
+      rm( coefMissing )
    }
+   rm( coefNames )
 
    if( dataLogged ) {
       logData <- data
