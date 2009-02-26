@@ -87,7 +87,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    if( "plm.dim" %in% class( data ) ) {
       if( is.null( result$est$call$model ) ||
             result$est$call$model == "within" ) {
-         result$coef <- c( result$est$alpha, result$coef )
+         result$coef <- c( mean( fixef( result$est ) ), result$coef )
          result$coefCov <- rbind( NA, cbind( NA, vcov( result$est ) ) )
       }
    }
