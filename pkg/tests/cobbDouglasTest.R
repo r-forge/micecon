@@ -40,6 +40,18 @@ fittedDiffOrder <- cobbDouglasCalc( c( "qLabor", "qVarInput", "land", "time" ),
    data = germanFarms, coef = coefDiffOrder )
 all.equal( fitted, fittedDiffOrder )
 
+## derivatioves (marginal products)
+# compute the marginal products of the inputs (with "fitted" Output)
+margProducts <- cobbDouglasDeriv( c( "qLabor", "qVarInput", "land", "time" ),
+   data = germanFarms, coef = coef( estResult )[1:5] )
+print( margProducts$deriv )
+
+# compute the marginal products of the inputs (with observed Output)
+margProductsObs <- cobbDouglasDeriv( c( "qLabor", "qVarInput", "land", "time" ),
+   data = germanFarms, coef = coef( estResult )[1:5], yName = "qOutput" )
+print( margProductsObs$deriv )
+
+
 # calculate optimal quantities of variable inputs
 xCoef <- coef( estResult )[ 1:3 ]
 zCoef <- coef( estResult )[ 4:5 ]
