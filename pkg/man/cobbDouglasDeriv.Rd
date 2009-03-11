@@ -7,7 +7,8 @@
 }
 
 \usage{
-cobbDouglasDeriv( xNames, data, coef, yName = NULL, dataLogged = FALSE )
+cobbDouglasDeriv( xNames, data, coef, coefCov = NULL,
+   yName = NULL, dataLogged = FALSE )
 }
 
 \arguments{
@@ -26,6 +27,9 @@ cobbDouglasDeriv( xNames, data, coef, yName = NULL, dataLogged = FALSE )
       and the elements named \code{a_1}, \ldots, \code{a_n}
       are taken as coefficients of the independent variables
       defined in argument \code{xNames} (numbered in that order).}
+   \item{coefCov}{optional covariance matrix of the coefficients
+      (the order of the rows and columns must correspond
+      to the order of the coefficients in argument \code{coef}).}
    \item{yName}{an optional string containing the name of the dependent
       variable.
       If it is \code{NULL}, the dependent variable is calculated
@@ -37,9 +41,8 @@ cobbDouglasDeriv( xNames, data, coef, yName = NULL, dataLogged = FALSE )
    a list of class \code{cobbDouglasDeriv} containing following objects:
    \item{deriv}{data frame containing the derivatives.}
    \item{variance}{data frame containing the variances of the derivatives
-      (not implemented yet).}
-   \item{stdDev}{data frame containing the standard deviations of the derivatives
-      (not implemented yet).}
+      (only if argument \code{coefCov} is provided).
+      NOTE: the variance of the endogenous variable is currently set to zero.}
 }
 
 \seealso{\code{\link{cobbDouglasCalc}}, \code{\link{translogDeriv}}.}
@@ -61,13 +64,19 @@ cobbDouglasDeriv( xNames, data, coef, yName = NULL, dataLogged = FALSE )
 
    # compute the marginal products of the inputs (with "fitted" Output)
    margProducts <- cobbDouglasDeriv( c( "qLabor", "qVarInput", "land", "time" ),
-      data = germanFarms, coef = coef( estResult )[1:5] )
+      data = germanFarms, coef = coef( estResult )[1:5],
+      coefCov = vcov( estResult )[1:5,1:5] )
    margProducts$deriv
+   # t-values
+   margProducts$deriv / margProducts$variance^0.5
 
    # compute the marginal products of the inputs (with observed Output)
    margProductsObs <- cobbDouglasDeriv( c( "qLabor", "qVarInput", "land", "time" ),
-      data = germanFarms, coef = coef( estResult )[1:5], yName = "qOutput" )
+      data = germanFarms, coef = coef( estResult )[1:5], yName = "qOutput",
+      coefCov = vcov( estResult )[1:5,1:5] )
    margProductsObs$deriv
+   # t-values
+   margProductsObs$deriv / margProductsObs$variance^0.5
 }
 
 \keyword{models}
