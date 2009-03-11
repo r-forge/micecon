@@ -68,6 +68,8 @@ cobbDouglasDeriv <- function( xNames, data, coef, coefCov = NULL,
          jacobian[ , paste( "a", i, sep = "_" ) ] <-
             exp( logyHat ) / exp( logData[[ xNames[ i ] ]] )
          if( is.null( yName ) ) {
+            jacobian[ , "a_0" ] <- coef[ paste( "a", i, sep = "_" ) ] *
+               exp( logyHat ) / exp( logData[[ xNames[ i ] ]] )
             for( j in 1:nExog ) {
                jacobian[ , paste( "a", j, sep = "_" ) ] <-
                   jacobian[ , paste( "a", j, sep = "_" ) ] +
