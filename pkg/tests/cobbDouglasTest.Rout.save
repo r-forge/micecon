@@ -78,7 +78,8 @@ Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
 > 
 > # calculate fitted values
 > fitted <- cobbDouglasCalc( c( "qLabor", "qVarInput", "land", "time" ),
-+    data = germanFarms, coef = coef( estResult )[ 1:5 ] )
++    data = germanFarms, coef = coef( estResult )[ 1:5 ],
++    coefCov = vcov( estResult )[ 1:5, 1:5 ] )
 > print( fitted )
         1         2         3         4         5         6         7         8 
  915.9295 1024.0093 1078.8583 1140.0400 1160.8934 1195.0936 1242.1365 1253.3053 
@@ -86,7 +87,20 @@ Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
 1231.9718 1288.6305 1343.3516 1537.1326 1619.5938 1667.9966 1617.0959 1624.9890 
        17        18        19        20 
 1690.8755 1759.8691 1874.5322 1989.0299 
-> all.equal( fitted, estResult$fitted )
+attr(,"variance")
+ [1]  329.20857  154.08326  109.67965  111.80262   83.10454  128.85083
+ [7]  333.48783  125.05065  214.02153  267.92747  155.14825  478.36206
+[13]  594.82886  484.25370  218.29493  157.19359  379.67332  498.05931
+[19]  594.48172 1227.50230
+> # t-values
+> print( c( fitted ) / attributes( fitted )$variance^0.5 )
+        1         2         3         4         5         6         7         8 
+ 50.48083  82.49472 103.01522 107.81870 127.34444 105.28301  68.01886 112.07633 
+        9        10        11        12        13        14        15        16 
+ 84.21162  78.72629 107.84903  70.28020  66.40642  75.79816 109.44954 129.60836 
+       17        18        19        20 
+ 86.77739  78.85693  76.88182  56.77147 
+> all.equal( fitted, estResult$fitted, check.attributes = FALSE )
 [1] TRUE
 > 
 > # calculate logged variables
@@ -105,8 +119,18 @@ Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
 > 
 > # calculate fitted values using logged independent variables
 > fittedLogged <- cobbDouglasCalc( c( "lQLabor", "lQVarInput", "lLand", "lTime" ),
-+    data = germanFarms, coef = coef( estResult )[ 1:5 ], dataLogged = TRUE )
-> all.equal( fitted, exp( fittedLogged ) )
++    data = germanFarms, coef = coef( estResult )[ 1:5 ],
++    coefCov = vcov( estResult )[ 1:5, 1:5 ], dataLogged = TRUE )
+> all.equal( fitted, exp( fittedLogged ), check.attributes = FALSE )
+[1] TRUE
+> all.equal( attributes( fitted )$variance/fitted^2,
++    attributes( fittedLogged )$variance, check.attributes = FALSE )
+[1] TRUE
+> all.equal( fittedLogged, predict( estResult$est, se.fit=T )$fit,
++    check.attributes = FALSE )
+[1] TRUE
+> all.equal( attributes( fittedLogged )$variance^0.5,
++    predict( estResult$est, se.fit=T )$se.fit )
 [1] TRUE
 > 
 > # coefficients not named
@@ -114,14 +138,14 @@ Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
 > names( coefNoNames ) <- NULL
 > fittedNoNames <- cobbDouglasCalc( c( "qLabor", "qVarInput", "land", "time" ),
 +    data = germanFarms, coef = coefNoNames )
-> all.equal( fitted, fittedNoNames )
+> all.equal( fitted, fittedNoNames, check.attributes = FALSE )
 [1] TRUE
 > 
 > # coefficients in a different order
 > coefDiffOrder <- coef( estResult )[ c( 3, 5, 1, 2, 4 ) ]
 > fittedDiffOrder <- cobbDouglasCalc( c( "qLabor", "qVarInput", "land", "time" ),
 +    data = germanFarms, coef = coefDiffOrder )
-> all.equal( fitted, fittedDiffOrder )
+> all.equal( fitted, fittedDiffOrder, check.attributes = FALSE )
 [1] TRUE
 > 
 > ## derivatives (marginal products)
