@@ -62,10 +62,14 @@ cobbDouglasDeriv <- function( xNames, data, coef, coefCov = NULL,
       rownames( coefCov ) <- names( coef )
       colnames( coefCov ) <- names( coef )
       variance <- matrix( NA, nrow( data ), nExog )
-      for( i in seq( along = xNames ) ) {
-         variance[ , i ] <-
-            coefCov[ paste( "a", i, sep = "_" ), paste( "a", i, sep = "_" ) ] *
-            exp( logyHat )^2 / exp( logData[[ xNames[ i ] ]] )^2
+      for( i in 1:nrow( data ) ) {
+         jacobian <- matrix( 0, nrow = nExog, ncol = nExog + 1 )
+         colnames( jacobian ) <- names( coef )
+         for( j in seq( along = xNames ) ) {
+            jacobian[ j, paste( "a", j, sep = "_" ) ] <-
+               exp( logyHat[ i ] ) / exp( logData[ i, xNames[ j ] ] )
+         }
+         variance[ i, ] <- diag( jacobian %*% coefCov %*% t( jacobian ) )
       }
       colnames( variance ) <- xNames
       result$variance <- as.data.frame( variance )
