@@ -54,7 +54,7 @@ cobbDouglasDeriv <- function( xNames, data, coef, coefCov = NULL,
 
    if( !is.null( coefCov ) ) {
       if( nrow( coefCov ) != nExog + 1 | ncol( coefCov ) != nExog + 1 ) {
-         stop( "the covariance matrix of the coefficients must have exactly",
+         stop( "the covariance matrix of the coefficients",
             " must have exactly ", nExog + 1, " rows and ",
             nExog + 1, " columns" )
       }
