@@ -66,7 +66,15 @@ cobbDouglasDeriv <- function( xNames, data, coef, coefCov = NULL,
          jacobian <- matrix( 0, nrow = nrow( data ), ncol = nExog + 1 )
          colnames( jacobian ) <- names( coef )
          jacobian[ , paste( "a", i, sep = "_" ) ] <-
-               exp( logyHat ) / exp( logData[[ xNames[ i ] ]] )
+            exp( logyHat ) / exp( logData[[ xNames[ i ] ]] )
+         if( is.null( yName ) ) {
+            for( j in 1:nExog ) {
+               jacobian[ , paste( "a", j, sep = "_" ) ] <-
+                  jacobian[ , paste( "a", j, sep = "_" ) ] +
+                  coef[ paste( "a", i, sep = "_" ) ] * exp( logyHat ) *
+                  logData[[ xNames[ j ] ]] / exp( logData[[ xNames[ i ] ]] )
+            }
+         }
          variance[ , i ] <- diag( jacobian %*% coefCov %*% t( jacobian ) )
       }
       colnames( variance ) <- xNames

@@ -42,7 +42,8 @@ cobbDouglasDeriv( xNames, data, coef, coefCov = NULL,
    \item{deriv}{data frame containing the derivatives.}
    \item{variance}{data frame containing the variances of the derivatives
       (only if argument \code{coefCov} is provided).
-      NOTE: the variance of the endogenous variable is currently set to zero.}
+      NOTE: if argument \code{yName} is specified,
+      the variance of the endogenous variable is currently ignored.}
 }
 
 \seealso{\code{\link{cobbDouglasCalc}}, \code{\link{translogDeriv}}.}
