@@ -1,4 +1,4 @@
-cobbDouglasDeriv <- function( xNames, data, coef,
+cobbDouglasDeriv <- function( xNames, data, coef, coefCov = NULL,
    yName = NULL, dataLogged = FALSE ) {
 
    checkNames( c( xNames, yName ), names( data ) )
@@ -51,6 +51,25 @@ cobbDouglasDeriv <- function( xNames, data, coef,
 
    colnames( deriv ) <- xNames
    result$deriv      <- as.data.frame( deriv )
+
+   if( !is.null( coefCov ) ) {
+      if( nrow( coefCov ) != nExog + 1 | ncol( coefCov ) != nExog + 1 ) {
+         stop( "the covariance matrix of the coefficients must have exactly",
+            " must have exactly ", nExog + 1, " rows and ",
+            nExog + 1, " columns" )
+      }
+
+      rownames( coefCov ) <- names( coef )
+      colnames( coefCov ) <- names( coef )
+      variance <- matrix( NA, nrow( data ), nExog )
+      for( i in seq( along = xNames ) ) {
+         variance[ , i ] <-
+            coefCov[ paste( "a", i, sep = "_" ), paste( "a", i, sep = "_" ) ] *
+            exp( logyHat )^2 / exp( logData[[ xNames[ i ] ]] )^2
+      }
+      colnames( variance ) <- xNames
+      result$variance <- as.data.frame( variance )
+   }
 
    class( result ) <- "cobbDouglasDeriv"
    return( result )
