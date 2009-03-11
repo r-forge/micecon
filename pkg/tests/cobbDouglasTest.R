@@ -18,11 +18,20 @@ fitted <- cobbDouglasCalc( c( "qLabor", "qVarInput", "land", "time" ),
 print( fitted )
 all.equal( fitted, estResult$fitted )
 
-# calculate fitted values using logged independent variables
+# calculate logged variables
 germanFarms$lQLabor    <- log( germanFarms$qLabor )
 germanFarms$lLand      <- log( germanFarms$land )
 germanFarms$lQVarInput <- log( germanFarms$qVarInput )
 germanFarms$lTime      <- log( germanFarms$time )
+germanFarms$lQOutput   <- log( germanFarms$qOutput )
+
+# estimation with logged variables
+estResultLog <- translogEst( "lQOutput",
+   c( "lQLabor", "lQVarInput", "lLand", "lTime" ),
+   germanFarms, dataLogged = TRUE, linear = TRUE )
+all.equal( estResult[c(2:5,7:11,14:16)], estResultLog[c(2:5,7:11,14:16)] )
+
+# calculate fitted values using logged independent variables
 fittedLogged <- cobbDouglasCalc( c( "lQLabor", "lQVarInput", "lLand", "lTime" ),
    data = germanFarms, coef = coef( estResult )[ 1:5 ], dataLogged = TRUE )
 all.equal( fitted, exp( fittedLogged ) )
