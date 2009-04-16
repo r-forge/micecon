@@ -29,6 +29,31 @@ residuals( estResult )
 
 print.default( estResult )
 
+# estimate the translog production function with a different order of inputs
+estResultOrder <- translogEst( yName = "qOutput",
+   xNames = c( "qLabor", "qVarInput", "land", "time" ),
+   data = germanFarms )
+print( estResultOrder )
+summary( estResultOrder )
+all.equal( residuals( estResult ), residuals( estResultOrder ) )
+
+# estimate the translog production function with a different order of inputs
+estResultOrder2 <- translogEst( yName = "qOutput",
+   xNames = c( "land", "qVarInput", "qLabor", "time" ),
+   data = germanFarms )
+print( estResultOrder2 )
+summary( estResultOrder2 )
+all.equal( residuals( estResult ), residuals( estResultOrder2 ) )
+
+# estimate the translog production function with a different order of inputs
+estResultOrder3 <- translogEst( yName = "qOutput",
+   xNames = c( "land", "qVarInput", "time", "qLabor" ),
+   data = germanFarms )
+print( estResultOrder3 )
+summary( estResultOrder3 )
+all.equal( residuals( estResult ), residuals( estResultOrder3 ) )
+
+
 ## testing translogEst with dataLogged = TRUE
 estResultLog <- translogEst( "qLogOutput", 
    xNames = c( "qLogLabor", "qLogLand", "qLogVarInput", "logTime" ),
@@ -147,6 +172,41 @@ test <- translogCheckCurvature( c( "qLabor", "land", "qVarInput", "time" ),
 summary( test )
 class( test ) <- NULL
 print( test )
+
+
+## testing translogProdFuncMargCost
+# generate (artificial) prices
+germanFarms$pLand <- 200 + 15 * germanFarms$time
+germanFarms$pTime <- 1
+
+# compute the marginal costs of producing the output
+margCost <- translogProdFuncMargCost( yName = "qOutput",
+   xNames = c( "qLabor", "land", "qVarInput", "time" ),
+   wNames = c( "pLabor", "pLand", "pVarInput", "pTime" ),
+   data = germanFarms, coef = coef( estResult ) )
+print( margCost )
+
+# compute the marginal costs again with different order of inputs
+margCostOrder <- translogProdFuncMargCost( yName = "qOutput",
+   xNames = c( "qLabor", "qVarInput", "land", "time" ),
+   wNames = c( "pLabor", "pVarInput", "pLand", "pTime" ),
+   data = germanFarms, coef = coef( estResultOrder ) )
+all.equal( margCost, margCostOrder )
+
+# compute the marginal costs again with different order of inputs
+margCostOrder2 <- translogProdFuncMargCost( yName = "qOutput",
+   xNames = c( "land", "qVarInput", "qLabor", "time" ),
+   wNames = c( "pLand", "pVarInput", "pLabor", "pTime" ),
+   data = germanFarms, coef = coef( estResultOrder2 ) )
+all.equal( margCost, margCostOrder2 )
+
+# compute the marginal costs again with different order of inputs
+margCostOrder3 <- translogProdFuncMargCost( yName = "qOutput",
+   xNames = c( "land", "qVarInput", "time", "qLabor" ),
+   wNames = c( "pLand", "pVarInput", "pTime", "pLabor" ),
+   data = germanFarms, coef = coef( estResultOrder3 ) )
+all.equal( margCost, margCostOrder3 )
+
 
 ## testing translogEst with one shifter
 germanFarms$tech <- exp( germanFarms$time )

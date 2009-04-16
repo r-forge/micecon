@@ -323,6 +323,115 @@ $dataLogged
 attr(,"class")
 [1] "translogEst"
 > 
+> # estimate the translog production function with a different order of inputs
+> estResultOrder <- translogEst( yName = "qOutput",
++    xNames = c( "qLabor", "qVarInput", "land", "time" ),
++    data = germanFarms )
+> print( estResultOrder )
+Estimated Translog function with 20 observations.
+         a_0          a_1          a_2          a_3          a_4        b_1_1 
+-133.4851620   24.5892366   34.6307963   19.9228713  -12.4674226  -16.8647382 
+       b_1_2        b_1_3        b_1_4        b_2_2        b_2_3        b_2_4 
+  -8.5911234   14.3472829   -3.5734031   -3.9096383   -3.4684787    2.7933263 
+       b_3_3        b_3_4        b_4_4 
+   0.2644969   -1.1633161   -0.2456535 
+> summary( estResultOrder )
+Estimated Translog function with 20 observations.
+        Estimate Std. Error t value Pr(>|t|)  
+a_0   -133.48516  165.54756 -0.8063  0.45668  
+a_1     24.58924   66.49741  0.3698  0.72669  
+a_2     34.63080   55.32287  0.6260  0.55879  
+a_3     19.92287   16.49954  1.2075  0.28124  
+a_4    -12.46742    5.22824 -2.3846  0.06280 .
+b_1_1  -16.86474   19.10077 -0.8829  0.41769  
+b_1_2   -8.59112   10.55065 -0.8143  0.45251  
+b_1_3   14.34728    8.76958  1.6360  0.16276  
+b_1_4   -3.57340    1.89984 -1.8809  0.11874  
+b_2_2   -3.90964    9.32307 -0.4194  0.69237  
+b_2_3   -3.46848    3.48959 -0.9939  0.36588  
+b_2_4    2.79333    0.74993  3.7248  0.01364 *
+b_3_3    0.26450    4.82223  0.0548  0.95838  
+b_3_4   -1.16332    1.54187 -0.7545  0.48456  
+b_4_4   -0.24565    0.15974 -1.5378  0.18471  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+R-squared: 0.9982506     Adjusted R-squared: 0.9933521 
+> all.equal( residuals( estResult ), residuals( estResultOrder ) )
+[1] TRUE
+> 
+> # estimate the translog production function with a different order of inputs
+> estResultOrder2 <- translogEst( yName = "qOutput",
++    xNames = c( "land", "qVarInput", "qLabor", "time" ),
++    data = germanFarms )
+> print( estResultOrder2 )
+Estimated Translog function with 20 observations.
+         a_0          a_1          a_2          a_3          a_4        b_1_1 
+-133.4851620   19.9228713   34.6307963   24.5892366  -12.4674226    0.2644969 
+       b_1_2        b_1_3        b_1_4        b_2_2        b_2_3        b_2_4 
+  -3.4684787   14.3472829   -1.1633161   -3.9096383   -8.5911234    2.7933263 
+       b_3_3        b_3_4        b_4_4 
+ -16.8647382   -3.5734031   -0.2456535 
+> summary( estResultOrder2 )
+Estimated Translog function with 20 observations.
+        Estimate Std. Error t value Pr(>|t|)  
+a_0   -133.48516  165.54756 -0.8063  0.45668  
+a_1     19.92287   16.49954  1.2075  0.28124  
+a_2     34.63080   55.32287  0.6260  0.55879  
+a_3     24.58924   66.49741  0.3698  0.72669  
+a_4    -12.46742    5.22824 -2.3846  0.06280 .
+b_1_1    0.26450    4.82223  0.0548  0.95838  
+b_1_2   -3.46848    3.48959 -0.9939  0.36588  
+b_1_3   14.34728    8.76958  1.6360  0.16276  
+b_1_4   -1.16332    1.54187 -0.7545  0.48456  
+b_2_2   -3.90964    9.32307 -0.4194  0.69237  
+b_2_3   -8.59112   10.55065 -0.8143  0.45251  
+b_2_4    2.79333    0.74993  3.7248  0.01364 *
+b_3_3  -16.86474   19.10077 -0.8829  0.41769  
+b_3_4   -3.57340    1.89984 -1.8809  0.11874  
+b_4_4   -0.24565    0.15974 -1.5378  0.18471  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+R-squared: 0.9982506     Adjusted R-squared: 0.9933521 
+> all.equal( residuals( estResult ), residuals( estResultOrder2 ) )
+[1] TRUE
+> 
+> # estimate the translog production function with a different order of inputs
+> estResultOrder3 <- translogEst( yName = "qOutput",
++    xNames = c( "land", "qVarInput", "time", "qLabor" ),
++    data = germanFarms )
+> print( estResultOrder3 )
+Estimated Translog function with 20 observations.
+         a_0          a_1          a_2          a_3          a_4        b_1_1 
+-133.4851620   19.9228713   34.6307963  -12.4674226   24.5892366    0.2644969 
+       b_1_2        b_1_3        b_1_4        b_2_2        b_2_3        b_2_4 
+  -3.4684787   -1.1633161   14.3472829   -3.9096383    2.7933263   -8.5911234 
+       b_3_3        b_3_4        b_4_4 
+  -0.2456535   -3.5734031  -16.8647382 
+> summary( estResultOrder3 )
+Estimated Translog function with 20 observations.
+        Estimate Std. Error t value Pr(>|t|)  
+a_0   -133.48516  165.54756 -0.8063  0.45668  
+a_1     19.92287   16.49954  1.2075  0.28124  
+a_2     34.63080   55.32287  0.6260  0.55879  
+a_3    -12.46742    5.22824 -2.3846  0.06280 .
+a_4     24.58924   66.49741  0.3698  0.72669  
+b_1_1    0.26450    4.82223  0.0548  0.95838  
+b_1_2   -3.46848    3.48959 -0.9939  0.36588  
+b_1_3   -1.16332    1.54187 -0.7545  0.48456  
+b_1_4   14.34728    8.76958  1.6360  0.16276  
+b_2_2   -3.90964    9.32307 -0.4194  0.69237  
+b_2_3    2.79333    0.74993  3.7248  0.01364 *
+b_2_4   -8.59112   10.55065 -0.8143  0.45251  
+b_3_3   -0.24565    0.15974 -1.5378  0.18471  
+b_3_4   -3.57340    1.89984 -1.8809  0.11874  
+b_4_4  -16.86474   19.10077 -0.8829  0.41769  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+R-squared: 0.9982506     Adjusted R-squared: 0.9933521 
+> all.equal( residuals( estResult ), residuals( estResultOrder3 ) )
+[1] TRUE
+> 
+> 
 > ## testing translogEst with dataLogged = TRUE
 > estResultLog <- translogEst( "qLogOutput", 
 +    xNames = c( "qLogLabor", "qLogLand", "qLogVarInput", "logTime" ),
@@ -1374,6 +1483,65 @@ $convexity
 $quasi
 [1] TRUE
 
+> 
+> 
+> ## testing translogProdFuncMargCost
+> # generate (artificial) prices
+> germanFarms$pLand <- 200 + 15 * germanFarms$time
+> germanFarms$pTime <- 1
+> 
+> # compute the marginal costs of producing the output
+> margCost <- translogProdFuncMargCost( yName = "qOutput",
++    xNames = c( "qLabor", "land", "qVarInput", "time" ),
++    wNames = c( "pLabor", "pLand", "pVarInput", "pTime" ),
++    data = germanFarms, coef = coef( estResult ) )
+> print( margCost )
+      qOutput
+1    72.11431
+2    46.48731
+3    29.45556
+4    27.92428
+5    26.98740
+6    27.71317
+7    28.89256
+8    29.51751
+9    27.88100
+10   28.83129
+11   28.99058
+12   18.18645
+13   12.96290
+14   26.24096
+15   34.33378
+16   39.85884
+17   57.60993
+18   79.61372
+19  604.22249
+20 -100.06247
+> 
+> # compute the marginal costs again with different order of inputs
+> margCostOrder <- translogProdFuncMargCost( yName = "qOutput",
++    xNames = c( "qLabor", "qVarInput", "land", "time" ),
++    wNames = c( "pLabor", "pVarInput", "pLand", "pTime" ),
++    data = germanFarms, coef = coef( estResultOrder ) )
+> all.equal( margCost, margCostOrder )
+[1] TRUE
+> 
+> # compute the marginal costs again with different order of inputs
+> margCostOrder2 <- translogProdFuncMargCost( yName = "qOutput",
++    xNames = c( "land", "qVarInput", "qLabor", "time" ),
++    wNames = c( "pLand", "pVarInput", "pLabor", "pTime" ),
++    data = germanFarms, coef = coef( estResultOrder2 ) )
+> all.equal( margCost, margCostOrder2 )
+[1] TRUE
+> 
+> # compute the marginal costs again with different order of inputs
+> margCostOrder3 <- translogProdFuncMargCost( yName = "qOutput",
++    xNames = c( "land", "qVarInput", "time", "qLabor" ),
++    wNames = c( "pLand", "pVarInput", "pTime", "pLabor" ),
++    data = germanFarms, coef = coef( estResultOrder3 ) )
+> all.equal( margCost, margCostOrder3 )
+[1] TRUE
+> 
 > 
 > ## testing translogEst with one shifter
 > germanFarms$tech <- exp( germanFarms$time )
