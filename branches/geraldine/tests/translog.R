@@ -429,3 +429,17 @@ ggResShifterFacRan <- translogEst( "invest", c( "value", "capital" ), ggData,
    shifterNames = "decade", model = "random", random.method = "amemiya" )
 print( ggResShifterFacRan )
 print.default( ggResShifterFacRan )
+
+
+## translog ray production function
+# quantity of crop outputs
+germanFarms$qCrop <- germanFarms$vCrop / germanFarms$pOutput
+# quantity of animal outputs
+germanFarms$qAnimal <- germanFarms$vAnimal / germanFarms$pOutput
+
+# estimate a translog ray production function
+estResultRay <- translogRayEst( yNames = c( "qCrop", "qAnimal" ),
+   xNames = c( "qLabor", "land", "qVarInput" ),
+   data = germanFarms )
+print( estResultRay )
+summary( estResultRay )
