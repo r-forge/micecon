@@ -59,7 +59,7 @@ translogEla( xNames, data, coef, coefCov = NULL, quadHalf = TRUE,
    If argument \code{coefCov} is provided, it has the attributes
    \code{variance} and \code{stdDev},
    which are two data frames containing the variances
-   and the standard deviations, respectively, of the elasticities.}
+   and the standard deviations, respectively, of the elasticities.
 }
 
 \seealso{\code{\link{translogEst}} and \code{\link{translogCalc}}}
