@@ -49,7 +49,7 @@
    If argument \code{coefCov} is provided, it has the attributes
    \code{variance} and \code{stdDev},
    which are two data frames containing the variances
-   and the standard deviations, respectively, of the derivatives.}
+   and the standard deviations, respectively, of the derivatives.
 }
 
 \seealso{\code{\link{quadFuncEst}} and \code{\link{quadFuncCalc}}}
