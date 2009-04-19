@@ -443,6 +443,7 @@ estResultRay <- translogRayEst( yNames = c( "qCrop", "qAnimal" ),
    data = germanFarms )
 print( estResultRay )
 summary( estResultRay )
+print.default( estResultRay )
 
 # different order of outputs
 estResultRay2 <- translogRayEst( yNames = c( "qAnimal", "qCrop" ),
