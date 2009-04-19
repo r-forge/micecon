@@ -41,6 +41,11 @@ translogRayEst( yNames, xNames, data, shifterNames = NULL, \dots )
 \value{
    A list of class \code{translogRayEst} (and \code{translogEst})
    that is very similar to the object returned by \code{\link{translogEst}}.
+   It additionally includes following objects:
+   \item{distance}{the \dQuote{distance} from the origin (zero)
+      to the point of the dependent variables.}
+   \item{theta}{the \dQuote{direction} from the origin (zero)
+      to the point of the dependent variables.}
 }
 
 \seealso{\code{\link{translogEst}}.}
