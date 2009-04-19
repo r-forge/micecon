@@ -443,3 +443,12 @@ estResultRay <- translogRayEst( yNames = c( "qCrop", "qAnimal" ),
    data = germanFarms )
 print( estResultRay )
 summary( estResultRay )
+
+# different order of outputs
+estResultRay2 <- translogRayEst( yNames = c( "qAnimal", "qCrop" ),
+   xNames = c( "qLabor", "land", "qVarInput" ),
+   data = germanFarms )
+print( estResultRay2 )
+summary( estResultRay2 )
+all.equal( abs( coef( estResultRay2 )[ 6:15 ] ),
+   abs( coef( estResultRay )[ 6:15 ] ) )

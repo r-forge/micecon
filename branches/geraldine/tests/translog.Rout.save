@@ -6093,3 +6093,42 @@ b_t_t -133.8304    65.3549 -2.0477  0.09592 .
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 R-squared: 0.9978144     Adjusted R-squared: 0.9916946 
 > 
+> # different order of outputs
+> estResultRay2 <- translogRayEst( yNames = c( "qAnimal", "qCrop" ),
++    xNames = c( "qLabor", "land", "qVarInput" ),
++    data = germanFarms )
+> print( estResultRay2 )
+Estimated Translog ray function with 2 dependent variables,
+3 independent variables, and 20 observations.
+        a_0         a_1         a_2         a_3         a_t       b_1_1 
+ 242.231746  119.027835   31.865566  -91.921745 -121.511762  -25.355108 
+      b_1_2       b_1_3       b_1_t       b_2_2       b_2_3       b_2_t 
+  12.125150  -17.762254 -114.289404   -6.713577   -3.628978   35.704874 
+      b_3_3       b_3_t       b_t_t 
+  16.582689   13.657600 -133.830408 
+> summary( estResultRay2 )
+Estimated Translog ray function with 2 dependent variables,
+3 independent variables, and 20 observations.
+       Estimate Std. Error t value Pr(>|t|)  
+a_0    242.2317   112.5715  2.1518  0.08405 .
+a_1    119.0278    65.8287  1.8081  0.13038  
+a_2     31.8656    20.8123  1.5311  0.18631  
+a_3    -91.9217    38.7332 -2.3732  0.06370 .
+a_t   -121.5118    78.2827 -1.5522  0.18131  
+b_1_1  -25.3551    21.1587 -1.1983  0.28449  
+b_1_2   12.1252     9.1498  1.3252  0.24243  
+b_1_3  -17.7623    11.6235 -1.5281  0.18702  
+b_1_t -114.2894    38.8992 -2.9381  0.03233 *
+b_2_2   -6.7136     3.4957 -1.9205  0.11285  
+b_2_3   -3.6290     3.4526 -1.0511  0.34135  
+b_2_t   35.7049    14.8411  2.4058  0.06118 .
+b_3_3   16.5827     7.1232  2.3280  0.06738 .
+b_3_t   13.6576    12.3866  1.1026  0.32042  
+b_t_t -133.8304    65.3549 -2.0477  0.09592 .
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+R-squared: 0.9978144     Adjusted R-squared: 0.9916946 
+> all.equal( abs( coef( estResultRay2 )[ 6:15 ] ),
++    abs( coef( estResultRay )[ 6:15 ] ) )
+[1] TRUE
+> 
