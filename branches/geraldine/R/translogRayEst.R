@@ -32,6 +32,8 @@ translogRayEst <- function( yNames, xNames, data, shifterNames = NULL, ... ) {
    result$yNames        <- yNames
    result$xNames        <- xNames
    result$shifterNames  <- shifterNames
+   result$distance      <- distance
+   result$theta         <- logData$theta
 
    coefNames <- names( result$coef )
    coefNames[ coefNames ==
