@@ -1487,7 +1487,7 @@ $quasi
 > germanFarms$pTime <- 1
 > 
 > # compute the marginal costs of producing the output
-> margCost <- translogProdFuncMargCost( yName = "qOutput",
+> margCost <- translogProdFuncMargCost( yNames = "qOutput",
 +    xNames = c( "qLabor", "land", "qVarInput", "time" ),
 +    wNames = c( "pLabor", "pLand", "pVarInput", "pTime" ),
 +    data = germanFarms, coef = coef( estResult ) )
@@ -1515,7 +1515,7 @@ $quasi
 20 -100.06247
 > 
 > # compute the marginal costs again with different order of inputs
-> margCostOrder <- translogProdFuncMargCost( yName = "qOutput",
+> margCostOrder <- translogProdFuncMargCost( yNames = "qOutput",
 +    xNames = c( "qLabor", "qVarInput", "land", "time" ),
 +    wNames = c( "pLabor", "pVarInput", "pLand", "pTime" ),
 +    data = germanFarms, coef = coef( estResultOrder ) )
@@ -1523,7 +1523,7 @@ $quasi
 [1] TRUE
 > 
 > # compute the marginal costs again with different order of inputs
-> margCostOrder2 <- translogProdFuncMargCost( yName = "qOutput",
+> margCostOrder2 <- translogProdFuncMargCost( yNames = "qOutput",
 +    xNames = c( "land", "qVarInput", "qLabor", "time" ),
 +    wNames = c( "pLand", "pVarInput", "pLabor", "pTime" ),
 +    data = germanFarms, coef = coef( estResultOrder2 ) )
@@ -1531,7 +1531,7 @@ $quasi
 [1] TRUE
 > 
 > # compute the marginal costs again with different order of inputs
-> margCostOrder3 <- translogProdFuncMargCost( yName = "qOutput",
+> margCostOrder3 <- translogProdFuncMargCost( yNames = "qOutput",
 +    xNames = c( "land", "qVarInput", "time", "qLabor" ),
 +    wNames = c( "pLand", "pVarInput", "pTime", "pLabor" ),
 +    data = germanFarms, coef = coef( estResultOrder3 ) )
@@ -6312,5 +6312,88 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.9978144     Adjusted R-squared: 0.9916946 
 > all.equal( abs( coef( estResultRay2 )[ 6:15 ] ),
 +    abs( coef( estResultRay )[ 6:15 ] ) )
+[1] TRUE
+> 
+> # different order of inputs
+> estResultRay3 <- translogRayEst( yNames = c( "qCrop", "qAnimal" ),
++    xNames = c( "qVarInput", "qLabor", "land" ),
++    data = germanFarms )
+> print( estResultRay3 )
+Estimated Translog ray function with 2 dependent variables,
+3 independent variables, and 20 observations.
+        a_0         a_1         a_2         a_3         a_t       b_1_1 
+-113.745131  -70.468436  -60.497541   87.950650  331.732075   16.582689 
+      b_1_2       b_1_3       b_1_t       b_2_2       b_2_3       b_2_t 
+ -17.762254   -3.628978  -13.657600  -25.355108   12.125150  114.289404 
+      b_3_3       b_3_t       b_t_t 
+  -6.713577  -35.704874 -133.830408 
+> summary( estResultRay3 )
+Estimated Translog ray function with 2 dependent variables,
+3 independent variables, and 20 observations.
+       Estimate Std. Error t value Pr(>|t|)  
+a_0   -113.7451   210.6085 -0.5401  0.61232  
+a_1    -70.4684    50.4917 -1.3956  0.22163  
+a_2    -60.4975    94.9532 -0.6371  0.55207  
+a_3     87.9506    36.3808  2.4175  0.06030 .
+a_t    331.7321   129.7812  2.5561  0.05089 .
+b_1_1   16.5827     7.1232  2.3280  0.06738 .
+b_1_2  -17.7623    11.6235 -1.5281  0.18702  
+b_1_3   -3.6290     3.4526 -1.0511  0.34135  
+b_1_t  -13.6576    12.3866 -1.1026  0.32042  
+b_2_2  -25.3551    21.1587 -1.1983  0.28449  
+b_2_3   12.1252     9.1498  1.3252  0.24243  
+b_2_t  114.2894    38.8992  2.9381  0.03233 *
+b_3_3   -6.7136     3.4957 -1.9205  0.11285  
+b_3_t  -35.7049    14.8411 -2.4058  0.06118 .
+b_t_t -133.8304    65.3549 -2.0477  0.09592 .
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+R-squared: 0.9978144     Adjusted R-squared: 0.9916946 
+> all.equal( coef( estResultRay ), coef( estResultRay3 )[
++    c( 1, 3, 4, 2, 5, 10, 11, 7, 12, 13, 8, 14, 6, 9, 15 ) ],
++    check.attributes = FALSE )
+[1] TRUE
+> 
+> ## testing translogProdFuncMargCost with a ray function
+> # compute the marginal costs of producing the output
+> margCostRay <- translogProdFuncMargCost( yNames = c( "qCrop", "qAnimal" ),
++    xNames = c( "qLabor", "land", "qVarInput" ),
++    wNames = c( "pLabor", "pLand", "pVarInput" ),
++    data = germanFarms, coef = coef( estResultRay ) )
+> print( margCostRay )
+        qCrop    qAnimal
+1   -15.33371 -16.713331
+2   -70.34138  -4.603070
+3  -217.51828  55.531747
+4  -187.24327  45.221682
+5  -174.34942  31.146490
+6  -182.66292  31.500720
+7  -175.22870  26.135686
+8  -216.43924  46.766520
+9  -187.07957  27.703767
+10 -209.61446  37.937154
+11 -138.82214   5.118408
+12 -152.28541  44.130470
+13 -111.42821  76.487159
+14 -175.91738 -46.930229
+15 -182.44837 -24.398399
+16 -185.64288  42.339513
+17 -141.24659  49.328448
+18  260.11268  40.671861
+19   24.06514  14.671295
+20  276.76258 -42.643928
+> 
+> margCostRay2 <- translogProdFuncMargCost( yNames = c( "qAnimal", "qCrop" ),
++    xNames = c( "qLabor", "land", "qVarInput" ),
++    wNames = c( "pLabor", "pLand", "pVarInput" ),
++    data = germanFarms, coef = coef( estResultRay2 ) )
+> all.equal( margCostRay, margCostRay2[ , c( 2:1 ) ] )
+[1] TRUE
+> 
+> margCostRay3 <- translogProdFuncMargCost( yNames = c( "qCrop", "qAnimal" ),
++    xNames = c( "qVarInput", "qLabor", "land" ),
++    wNames = c( "pVarInput", "pLabor", "pLand" ),
++    data = germanFarms, coef = coef( estResultRay3 ) )
+> all.equal( margCostRay, margCostRay3 )
 [1] TRUE
 > 

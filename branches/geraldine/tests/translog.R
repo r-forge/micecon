@@ -180,28 +180,28 @@ germanFarms$pLand <- 200 + 15 * germanFarms$time
 germanFarms$pTime <- 1
 
 # compute the marginal costs of producing the output
-margCost <- translogProdFuncMargCost( yName = "qOutput",
+margCost <- translogProdFuncMargCost( yNames = "qOutput",
    xNames = c( "qLabor", "land", "qVarInput", "time" ),
    wNames = c( "pLabor", "pLand", "pVarInput", "pTime" ),
    data = germanFarms, coef = coef( estResult ) )
 print( margCost )
 
 # compute the marginal costs again with different order of inputs
-margCostOrder <- translogProdFuncMargCost( yName = "qOutput",
+margCostOrder <- translogProdFuncMargCost( yNames = "qOutput",
    xNames = c( "qLabor", "qVarInput", "land", "time" ),
    wNames = c( "pLabor", "pVarInput", "pLand", "pTime" ),
    data = germanFarms, coef = coef( estResultOrder ) )
 all.equal( margCost, margCostOrder )
 
 # compute the marginal costs again with different order of inputs
-margCostOrder2 <- translogProdFuncMargCost( yName = "qOutput",
+margCostOrder2 <- translogProdFuncMargCost( yNames = "qOutput",
    xNames = c( "land", "qVarInput", "qLabor", "time" ),
    wNames = c( "pLand", "pVarInput", "pLabor", "pTime" ),
    data = germanFarms, coef = coef( estResultOrder2 ) )
 all.equal( margCost, margCostOrder2 )
 
 # compute the marginal costs again with different order of inputs
-margCostOrder3 <- translogProdFuncMargCost( yName = "qOutput",
+margCostOrder3 <- translogProdFuncMargCost( yNames = "qOutput",
    xNames = c( "land", "qVarInput", "time", "qLabor" ),
    wNames = c( "pLand", "pVarInput", "pTime", "pLabor" ),
    data = germanFarms, coef = coef( estResultOrder3 ) )
@@ -453,3 +453,33 @@ print( estResultRay2 )
 summary( estResultRay2 )
 all.equal( abs( coef( estResultRay2 )[ 6:15 ] ),
    abs( coef( estResultRay )[ 6:15 ] ) )
+
+# different order of inputs
+estResultRay3 <- translogRayEst( yNames = c( "qCrop", "qAnimal" ),
+   xNames = c( "qVarInput", "qLabor", "land" ),
+   data = germanFarms )
+print( estResultRay3 )
+summary( estResultRay3 )
+all.equal( coef( estResultRay ), coef( estResultRay3 )[
+   c( 1, 3, 4, 2, 5, 10, 11, 7, 12, 13, 8, 14, 6, 9, 15 ) ],
+   check.attributes = FALSE )
+
+## testing translogProdFuncMargCost with a ray function
+# compute the marginal costs of producing the output
+margCostRay <- translogProdFuncMargCost( yNames = c( "qCrop", "qAnimal" ),
+   xNames = c( "qLabor", "land", "qVarInput" ),
+   wNames = c( "pLabor", "pLand", "pVarInput" ),
+   data = germanFarms, coef = coef( estResultRay ) )
+print( margCostRay )
+
+margCostRay2 <- translogProdFuncMargCost( yNames = c( "qAnimal", "qCrop" ),
+   xNames = c( "qLabor", "land", "qVarInput" ),
+   wNames = c( "pLabor", "pLand", "pVarInput" ),
+   data = germanFarms, coef = coef( estResultRay2 ) )
+all.equal( margCostRay, margCostRay2[ , c( 2:1 ) ] )
+
+margCostRay3 <- translogProdFuncMargCost( yNames = c( "qCrop", "qAnimal" ),
+   xNames = c( "qVarInput", "qLabor", "land" ),
+   wNames = c( "pVarInput", "pLabor", "pLand" ),
+   data = germanFarms, coef = coef( estResultRay3 ) )
+all.equal( margCostRay, margCostRay3 )
