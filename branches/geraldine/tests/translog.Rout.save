@@ -6354,6 +6354,47 @@ R-squared: 0.9978144     Adjusted R-squared: 0.9916946
 +    check.attributes = FALSE )
 [1] TRUE
 > 
+> 
+> ## testing translogRayDeriv
+> tlRayDeriv <- translogRayDeriv( yNames = c( "qCrop", "qAnimal" ),
++    xNames = c( "qLabor", "land", "qVarInput" ),
++    data = germanFarms, coef = coef( estResultRay ) )
+> print( tlRayDeriv )
+        qLabor        land     qVarInput         qCrop       qAnimal
+1   6.16136038 0.024232310 -3.233803e-03  0.0050086929 -0.0025086688
+2   4.48254790 0.018513694 -8.031058e-04  0.0053286505 -0.0026260717
+3  -0.30959902 0.101694521  7.786806e-04 -0.0030798468 -0.0002516048
+4  -0.72362908 0.085318237  1.551768e-03 -0.0031423919 -0.0001518128
+5   0.46410716 0.066858004  1.025289e-03 -0.0013589328 -0.0007001683
+6   0.63073893 0.055203355  1.455081e-03  0.0002815927 -0.0011692916
+7   1.31742733 0.027904879  2.113525e-03  0.0038554734 -0.0021247395
+8  -0.19502726 0.072132078  8.583573e-04 -0.0020015668 -0.0004037314
+9   0.98765707 0.059605800  5.876710e-04 -0.0006017117 -0.0008930297
+10 -0.04591935 0.072743902 -2.557495e-05 -0.0037490207  0.0000947740
+11  1.01539196 0.031526035  6.864701e-04  0.0001963922 -0.0009908354
+12 -1.14035095 0.034432554  2.019729e-04 -0.0047395068  0.0004882390
+13 -1.68502071 0.024221701  9.990870e-04 -0.0038470528  0.0002691945
+14 -0.90669594 0.006109421  1.093565e-03 -0.0009978234 -0.0004763196
+15 -0.15649755 0.017227174 -1.736369e-04 -0.0015322179 -0.0003496799
+16 -0.83754094 0.030640389  1.753739e-04 -0.0014405397 -0.0003662608
+17 -1.71247617 0.045722867 -4.442582e-04 -0.0028706369  0.0001295131
+18  0.20174234 0.012000821 -1.077089e-03  0.0004740147 -0.0008815095
+19 -1.72889163 0.022471603  1.052228e-04 -0.0001524695 -0.0006540333
+20 -2.46384878 0.014617102  1.104604e-03  0.0007898713 -0.0009389297
+> 
+> tlRayDeriv2 <- translogRayDeriv( yNames = c( "qAnimal", "qCrop" ),
++    xNames = c( "qLabor", "land", "qVarInput" ),
++    data = germanFarms, coef = coef( estResultRay2 ) )
+> all.equal( tlRayDeriv, tlRayDeriv2[ , c( 1:3, 5, 4 ) ] )
+[1] TRUE
+> 
+> tlRayDeriv3 <- translogRayDeriv( yNames = c( "qCrop", "qAnimal" ),
++    xNames = c( "qVarInput", "qLabor", "land" ),
++    data = germanFarms, coef = coef( estResultRay3 ) )
+> all.equal( tlRayDeriv, tlRayDeriv3[ , c( 2, 3, 1, 4, 5 ) ] )
+[1] TRUE
+> 
+> 
 > ## testing translogProdFuncMargCost with a ray function
 > # compute the marginal costs of producing the output
 > margCostRay <- translogProdFuncMargCost( yNames = c( "qCrop", "qAnimal" ),

@@ -464,6 +464,24 @@ all.equal( coef( estResultRay ), coef( estResultRay3 )[
    c( 1, 3, 4, 2, 5, 10, 11, 7, 12, 13, 8, 14, 6, 9, 15 ) ],
    check.attributes = FALSE )
 
+
+## testing translogRayDeriv
+tlRayDeriv <- translogRayDeriv( yNames = c( "qCrop", "qAnimal" ),
+   xNames = c( "qLabor", "land", "qVarInput" ),
+   data = germanFarms, coef = coef( estResultRay ) )
+print( tlRayDeriv )
+
+tlRayDeriv2 <- translogRayDeriv( yNames = c( "qAnimal", "qCrop" ),
+   xNames = c( "qLabor", "land", "qVarInput" ),
+   data = germanFarms, coef = coef( estResultRay2 ) )
+all.equal( tlRayDeriv, tlRayDeriv2[ , c( 1:3, 5, 4 ) ] )
+
+tlRayDeriv3 <- translogRayDeriv( yNames = c( "qCrop", "qAnimal" ),
+   xNames = c( "qVarInput", "qLabor", "land" ),
+   data = germanFarms, coef = coef( estResultRay3 ) )
+all.equal( tlRayDeriv, tlRayDeriv3[ , c( 2, 3, 1, 4, 5 ) ] )
+
+
 ## testing translogProdFuncMargCost with a ray function
 # compute the marginal costs of producing the output
 margCostRay <- translogProdFuncMargCost( yNames = c( "qCrop", "qAnimal" ),
