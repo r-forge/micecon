@@ -1,7 +1,7 @@
 \name{translogRayEst}
 \alias{translogRayEst}
 \alias{print.translogRayEst}
-\title{Estimate a translog ray function}
+\title{Estimate a Translog Ray Function}
 
 \description{
    Estimate a translog ray function with two endogenous variables,
