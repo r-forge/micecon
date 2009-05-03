@@ -38,9 +38,10 @@ translogProdFuncMargCost <- function( yNames, xNames, wNames,
    # calculate distance and theta
    xNamesTheta <- xNames
    if( length( yNames ) >  1 ) {
-      distance <- sqrt( data[[ yNames[ 1 ] ]]^2 + data[[ yNames[ 2 ] ]]^2 )
+      distance <- sqrt( exp( logData[[ yNames[ 1 ] ]] )^2 +
+            exp( logData[[ yNames[ 2 ] ]] )^2 )
       logData$distance <- log( distance )
-      logData$theta <- acos( data[[ yNames[ 1 ] ]] / distance )
+      logData$theta <- acos( exp( logData[[ yNames[ 1 ] ]] ) / distance )
       xNamesTheta <- c( xNamesTheta, "theta" )
    }
 
