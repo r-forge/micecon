@@ -58,7 +58,7 @@ Attaching package: 'boot'
 
 	 melanoma 
 
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-1)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-2)
 > data( germanFarms )
 > options( digits = 3 )
 > 
@@ -78,9 +78,6 @@ Note: Method with signature "ANY#diagonalMatrix" chosen for function "kronecker"
 Note: Method with signature "ANY#sparseMatrix" chosen for function "kronecker",
  target signature "dspMatrix#dtTMatrix".
  "Matrix#ANY" would also be valid
-Note: Method with signature "Matrix#ANY" chosen for function "crossprod",
- target signature "dgCMatrix#dgTMatrix".
- "ANY#Matrix" would also be valid
 Note: Method with signature "ANY#TsparseMatrix" chosen for function "%*%",
  target signature "dgCMatrix#dgTMatrix".
  "Matrix#ANY" would also be valid
