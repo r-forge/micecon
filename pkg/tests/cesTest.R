@@ -22,6 +22,12 @@ cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
    method = "BFGS" )
 print( cesLandLaborBfgs )
 
+# using the L-BFGS-B optimization method with constrained alpha
+cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
+   germanFarms, method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
+   upper = c( Inf, 1, Inf ) )
+print( cesLandLaborBfgsCon )
+
 
 ## CES: Land & Intermediate Inputs
 cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
@@ -36,3 +42,9 @@ print( cesLandIntVrs )
 cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    method = "BFGS" )
 print( cesLandIntBfgs )
+
+# using the L-BFGS-B optimization method with constrained alpha
+cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
+   upper = c( Inf, 1, Inf ) )
+print( cesLandIntBfgsCon )
