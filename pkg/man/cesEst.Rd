@@ -42,7 +42,10 @@ cesEst( yName, xNames, data, vrs = FALSE, \dots )
 
 \value{
    A list of class \code{cesEst}. It is the object returned
-   by \code{\link[stats]{optim}} plus following element:
+   by \code{\link[stats]{optim}} plus following elements:
+   \item{hessian}{Hessian matrix of the objective function
+      with respect to the estimated parameters.}
+   \item{vcov}{covariance matrix of the estimated parameters.}
    \item{call}{the matched call.}
 }
 
