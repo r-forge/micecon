@@ -1,5 +1,5 @@
 
-R version 2.9.0 (2009-04-17)
+R version 2.9.1 (2009-06-26)
 Copyright (C) 2009 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -58,7 +58,7 @@ Attaching package: 'boot'
 
 	 melanoma 
 
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-2)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-3)
 > library( plm )
 Loading required package: kinship
 Loading required package: survival
@@ -3104,6 +3104,7 @@ attr(,"class")
 > ggData$logCapital <- log( ggData$capital )
 > # fixed effects
 > ggResult <- translogEst( "invest", c( "value", "capital" ), ggData )
+[1] 100   5
 > print( ggResult )
 Estimated Translog function with 100 observations.
        a_0        a_1        a_2      b_1_1      b_1_2      b_2_2 
@@ -3377,6 +3378,7 @@ attr(,"class")
 > ggResultLog <- translogEst( "logInvest", 
 +    xNames = c( "logValue", "logCapital" ),
 +    data = ggData, dataLogged = TRUE )
+[1] 100   5
 > all.equal( ggResult[ -c(1,6,10,11,15) ], ggResultLog[ -c(1,6,10,11,15) ] )
 [1] TRUE
 > all.equal( ggResult$fitted, exp( ggResultLog$fitted ) )
@@ -3384,6 +3386,7 @@ attr(,"class")
 > # random effects
 > ggResultRan <- translogEst( "invest", c( "value", "capital" ), ggData,
 +    model = "random", random.method = "amemiya" )
+[1] 100   5
 > print( ggResultRan )
 Estimated Translog function with 100 observations.
        a_0        a_1        a_2      b_1_1      b_1_2      b_2_2 
@@ -3665,6 +3668,7 @@ attr(,"class")
 +    xNames = c( "logValue", "logCapital" ),
 +    data = ggData, dataLogged = TRUE,
 +    model = "random", random.method = "amemiya" )
+[1] 100   5
 > all.equal( ggResultRan[ -c(1,6,10,11,15) ], ggResultRanLog[ -c(1,6,10,11,15) ] )
 [1] TRUE
 > all.equal( ggResultRan$fitted, exp( ggResultRanLog$fitted ) )
@@ -4310,6 +4314,7 @@ attr(,"class")
 > # fixed effects
 > ggResShifter <- translogEst( "invest", c( "value", "capital" ), ggData,
 +    shifterNames = "tech" )
+[1] 100   6
 > print( ggResShifter )
 Estimated Translog function with 100 observations.
         a_0         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4598,6 +4603,7 @@ attr(,"class")
 > # random effects
 > ggResShifterRan <- translogEst( "invest", c( "value", "capital" ), ggData,
 +    shifterNames = "tech", model = "random", random.method = "amemiya" )
+[1] 100   6
 > print( ggResShifterRan )
 Estimated Translog function with 100 observations.
         a_0         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4891,6 +4897,7 @@ attr(,"class")
 > # fixed effects
 > ggResShifterLogi <- translogEst( "invest", c( "value", "capital" ), ggData,
 +    shifterNames = "war" )
+[1] 100   6
 > print( ggResShifterLogi )
 Estimated Translog function with 100 observations.
        a_0        a_1        a_2      b_1_1      b_1_2      b_2_2   d_1_TRUE 
@@ -5175,6 +5182,7 @@ attr(,"class")
 > # random effects
 > ggResShifterLogiRan <- translogEst( "invest", c( "value", "capital" ), ggData,
 +    shifterNames = "war", model = "random", random.method = "amemiya" )
+[1] 100   6
 > print( ggResShifterLogiRan )
 Estimated Translog function with 100 observations.
         a_0         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -5469,6 +5477,7 @@ attr(,"class")
 > # fixed effects
 > ggResShifterFac <- translogEst( "invest", c( "value", "capital" ), ggData,
 +    shifterNames = "decade" )
+[1] 100   7
 > print( ggResShifterFac )
 Estimated Translog function with 100 observations.
        a_0        a_1        a_2      b_1_1      b_1_2      b_2_2    d_1_40s 
@@ -5759,6 +5768,7 @@ attr(,"class")
 > # random effects
 > ggResShifterFacRan <- translogEst( "invest", c( "value", "capital" ), ggData,
 +    shifterNames = "decade", model = "random", random.method = "amemiya" )
+[1] 100   7
 > print( ggResShifterFacRan )
 Estimated Translog function with 100 observations.
         a_0         a_1         a_2       b_1_1       b_1_2       b_2_2 
