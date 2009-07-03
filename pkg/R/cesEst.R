@@ -75,10 +75,20 @@ cesEst <- function( yName, xNames, data, vrs = FALSE, ... ) {
    }
 
    if( is.null( matchedCall$method ) || matchedCall$method == "SANN" ) {
-      result <- optim( par = startVal, fn = cesRss, data = estData, ... )
+      result <- optim( par = startVal, fn = cesRss, data = estData,
+         hessian = TRUE, ... )
    } else {
       result <- optim( par = startVal, fn = cesRss, gr = cesRssDeriv,
-         data = estData, ... )
+         data = estData, hessian = TRUE, ... )
+   }
+
+   # covariance matrix of the estimated parameters
+   if( det( result$hessian ) >= .Machine$double.eps ) {
+      result$vcov <- solve( result$hessian )
+   } else {
+      result$vcov <- matrix( NA, nrow = length( result$par ),
+         ncol = length( result$par ) )
+      dimnames( result$vcov ) <- dimnames( result$hessian )
    }
 
    # return also the call
