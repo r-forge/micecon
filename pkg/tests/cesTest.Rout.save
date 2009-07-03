@@ -88,6 +88,9 @@ $convergence
 $message
 NULL
 
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms)
+
 attr(,"class")
 [1] "cesEst" "list"  
 > 
@@ -111,6 +114,10 @@ $convergence
 
 $message
 NULL
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    vrs = TRUE)
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -136,6 +143,10 @@ $convergence
 $message
 NULL
 
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "BFGS")
+
 attr(,"class")
 [1] "cesEst" "list"  
 > 
@@ -159,6 +170,9 @@ $convergence
 
 $message
 NULL
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -184,6 +198,10 @@ $convergence
 $message
 NULL
 
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    vrs = TRUE)
+
 attr(,"class")
 [1] "cesEst" "list"  
 > 
@@ -207,6 +225,10 @@ $convergence
 
 $message
 NULL
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "BFGS")
 
 attr(,"class")
 [1] "cesEst" "list"  
