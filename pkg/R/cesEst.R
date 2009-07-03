@@ -10,6 +10,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE, ... ) {
          " two variable names" )
    }
 
+   # store the (matched) call
+   matchedCall <- match.call()
+
    # prepare data for estimation
    estData <- data.frame( y = data[[ yName ]],
       x1 = data[[ xNames[ 1 ] ]], x2 = data[[ xNames[ 2 ] ]] )
@@ -36,6 +39,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE, ... ) {
    }
 
    result <- optim( startVal, cesRSS, data = estData, ... )
+
+   # return also the call
+   result$call <- matchedCall 
 
    # nonlinear least squares
 #    result$nls <- nls(

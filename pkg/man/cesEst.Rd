@@ -36,8 +36,9 @@ cesEst( yName, xNames, data, vrs = FALSE, \dots )
 }
 
 \value{
-   a list of class \code{cesEst} that is the object returned
-   by \code{\link[stats]{optim}}.
+   A list of class \code{cesEst}. It is the object returned
+   by \code{\link[stats]{optim}} plus following element:
+   \item{call}{the matched call.}
 }
 
 \seealso{\code{\link{translogEst}} and \code{\link{quadFuncEst}}.}
