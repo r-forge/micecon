@@ -35,6 +35,11 @@ cesEst( yName, xNames, data, vrs = FALSE, \dots )
    \item{\dots}{further arguments are passed to \code{\link[stats]{optim}}.}
 }
 
+\details{
+   Analytical gradients are used (only) if the \dQuote{BFGS}, \dQuote{CG},
+   or \dQuote{L-BFGS-B} method is used.
+}
+
 \value{
    A list of class \code{cesEst}. It is the object returned
    by \code{\link[stats]{optim}} plus following element:

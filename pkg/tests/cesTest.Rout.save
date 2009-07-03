@@ -128,7 +128,7 @@ attr(,"class")
 > print( cesLandLaborBfgs )
 $par
     gamma     alpha       rho 
- 47.10913 561.14542 149.76309 
+ 47.10913 561.14577 149.76314 
 
 $value
 [1] 165832.4
@@ -211,7 +211,7 @@ attr(,"class")
 > print( cesLandIntBfgs )
 $par
     gamma     alpha       rho 
- 55.44508 336.65013 -48.22729 
+ 55.44507 336.65007 -48.22737 
 
 $value
 [1] 165832.4
