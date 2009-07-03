@@ -1,0 +1,213 @@
+
+R version 2.9.1 (2009-06-26)
+Copyright (C) 2009 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library( micEcon )
+Loading required package: systemfit
+Loading required package: Matrix
+Loading required package: lattice
+
+Attaching package: 'Matrix'
+
+
+	The following object(s) are masked from package:stats :
+
+	 xtabs 
+
+
+	The following object(s) are masked from package:base :
+
+	 rcond 
+
+Loading required package: car
+Loading required package: lmtest
+Loading required package: zoo
+
+Attaching package: 'zoo'
+
+
+	The following object(s) are masked from package:base :
+
+	 as.Date.numeric 
+
+Loading required package: np
+Loading required package: boot
+
+Attaching package: 'boot'
+
+
+	The following object(s) are masked from package:car :
+
+	 logit 
+
+
+	The following object(s) are masked from package:lattice :
+
+	 melanoma 
+
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-3)
+> 
+> # load data
+> data( germanFarms )
+> # output quantity:
+> germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
+> # quantity of intermediate inputs
+> germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
+> 
+> 
+> ## CES: Land & Labor
+> cesLandLabor <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms )
+> print( cesLandLabor )
+$par
+    gamma     alpha       rho 
+41.302277  2.740694  5.802162 
+
+$value
+[1] 165832.5
+
+$counts
+function gradient 
+      62       NA 
+
+$convergence
+[1] 0
+
+$message
+NULL
+
+attr(,"class")
+[1] "cesEst" "list"  
+> 
+> # variable returns to scale
+> cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    vrs = TRUE )
+> print( cesLandLaborVrs )
+$par
+    gamma     alpha       rho       phi 
+19.649459  2.999448 17.175560  1.245646 
+
+$value
+[1] 97679.9
+
+$counts
+function gradient 
+     191       NA 
+
+$convergence
+[1] 0
+
+$message
+NULL
+
+attr(,"class")
+[1] "cesEst" "list"  
+> 
+> # using the BFGS optimization method
+> cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    method = "BFGS" )
+> print( cesLandLaborBfgs )
+$par
+    gamma     alpha       rho 
+ 47.10913 561.14542 149.76309 
+
+$value
+[1] 165832.4
+
+$counts
+function gradient 
+      31        8 
+
+$convergence
+[1] 0
+
+$message
+NULL
+
+attr(,"class")
+[1] "cesEst" "list"  
+> 
+> 
+> ## CES: Land & Intermediate Inputs
+> cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
+> print( cesLandInt )
+$par
+     gamma      alpha        rho 
+39.8571749  0.6649561 -1.9327816 
+
+$value
+[1] 166073.7
+
+$counts
+function gradient 
+      92       NA 
+
+$convergence
+[1] 0
+
+$message
+NULL
+
+attr(,"class")
+[1] "cesEst" "list"  
+> 
+> # variable returns to scale
+> cesLandIntVrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
++    vrs = TRUE )
+> print( cesLandIntVrs )
+$par
+    gamma     alpha       rho       phi 
+37.492672  1.319760 -0.983313  1.173182 
+
+$value
+[1] 104671.2
+
+$counts
+function gradient 
+     233       NA 
+
+$convergence
+[1] 0
+
+$message
+NULL
+
+attr(,"class")
+[1] "cesEst" "list"  
+> 
+> # using the BFGS optimization method
+> cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
++    method = "BFGS" )
+> print( cesLandIntBfgs )
+$par
+    gamma     alpha       rho 
+ 55.44508 336.65013 -48.22729 
+
+$value
+[1] 165832.4
+
+$counts
+function gradient 
+      50       11 
+
+$convergence
+[1] 0
+
+$message
+NULL
+
+attr(,"class")
+[1] "cesEst" "list"  
+> 
