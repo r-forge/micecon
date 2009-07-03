@@ -69,6 +69,11 @@ cesEst( yName, xNames, data, vrs = FALSE, \dots )
    cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
       method = "BFGS" )
 
+   # using the L-BFGS-B optimization method with constrained alpha
+   cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
+      germanFarms, method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
+      upper = c( Inf, 1, Inf ) )
+
    # using the SANN optimization method
    cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
       method = "SANN" )
@@ -84,6 +89,11 @@ cesEst( yName, xNames, data, vrs = FALSE, \dots )
    # using the BFGS optimization method
    cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
       method = "BFGS" )
+
+   # using the L-BFGS-B optimization method with constrained alpha
+   cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+      method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
+      upper = c( Inf, 1, Inf ) )
 
    # using the SANN optimization method
    cesLandIntSann <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,

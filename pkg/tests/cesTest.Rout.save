@@ -150,6 +150,36 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 attr(,"class")
 [1] "cesEst" "list"  
 > 
+> # using the L-BFGS-B optimization method with constrained alpha
+> cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
++    germanFarms, method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
++    upper = c( Inf, 1, Inf ) )
+> print( cesLandLaborBfgsCon )
+$par
+    gamma     alpha       rho 
+49.142950  1.000000  4.610031 
+
+$value
+[1] 165832.4
+
+$counts
+function gradient 
+      50       50 
+
+$convergence
+[1] 52
+
+$message
+[1] "ERROR: ABNORMAL_TERMINATION_IN_LNSRCH"
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
+        1, Inf))
+
+attr(,"class")
+[1] "cesEst" "list"  
+> 
 > 
 > ## CES: Land & Intermediate Inputs
 > cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
@@ -229,6 +259,36 @@ NULL
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "BFGS")
+
+attr(,"class")
+[1] "cesEst" "list"  
+> 
+> # using the L-BFGS-B optimization method with constrained alpha
+> cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
++    method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
++    upper = c( Inf, 1, Inf ) )
+> print( cesLandIntBfgsCon )
+$par
+     gamma      alpha        rho 
+37.7516577  0.2663054 -5.0172748 
+
+$value
+[1] 165832.4
+
+$counts
+function gradient 
+     128      128 
+
+$convergence
+[1] 1
+
+$message
+[1] "NEW_X"
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
+        1, Inf))
 
 attr(,"class")
 [1] "cesEst" "list"  
