@@ -33,7 +33,7 @@ translogMonoRestr( xNames, data, quadHalf = TRUE,
    \eqn{N} is the number of data points at which monotonicity
    should be imposed (if argument \code{box} is \code{FALSE},
    \eqn{N} is the number of rows in \code{data};
-   if argument \code{box} is \code{TRUE}, \eqn{N = n^2}),
+   if argument \code{box} is \code{TRUE}, \eqn{N = 2^n}),
    and \eqn{c = 1 + n ( n + 3 ) / 2} is the number of (linearly independent) 
    coefficients.
    Multiplying a row of this matrix (e.g.\ the \eqn{k}th row of \eqn{M})
