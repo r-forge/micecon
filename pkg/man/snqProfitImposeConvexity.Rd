@@ -40,7 +40,7 @@
    a list of class \code{snqProfitImposeConvexity} containing the same
    objects as an object of class \code{\link{snqProfitEst}}
    and additionally the objects:
-   \item{mindist}{object returned by \code{\optim}.}
+   \item{mindist}{object returned by \code{\link{optim}}.}
    \item{sim}{results of the simulation to obtain the standard errors
       of the estimated coefficients.}
 }
