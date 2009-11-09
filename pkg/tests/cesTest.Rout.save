@@ -1,5 +1,5 @@
 
-R version 2.9.1 (2009-06-26)
+R version 2.10.0 (2009-10-26)
 Copyright (C) 2009 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -19,19 +19,6 @@ Type 'q()' to quit R.
 Loading required package: systemfit
 Loading required package: Matrix
 Loading required package: lattice
-
-Attaching package: 'Matrix'
-
-
-	The following object(s) are masked from package:stats :
-
-	 xtabs 
-
-
-	The following object(s) are masked from package:base :
-
-	 rcond 
-
 Loading required package: car
 Loading required package: lmtest
 Loading required package: zoo
@@ -358,7 +345,7 @@ attr(,"class")
 > print( cesLandIntBfgsCon )
 $par
      gamma      alpha        rho 
-37.7516577  0.2663054 -5.0172748 
+37.6795833  0.2614992 -5.0497881 
 
 $value
 [1] 165832.4
@@ -375,15 +362,15 @@ $message
 
 $hessian
             gamma    alpha        rho
-gamma    58293.76 -1647082   115669.7
-alpha -1647081.83 46540580 -3268319.0
-rho     115669.67 -3268319   229529.6
+gamma    58516.71 -1669731   115977.4
+alpha -1669730.81 47646708 -3309396.8
+rho     115977.37 -3309397   229869.6
 
 $vcov
-             gamma        alpha          rho
-gamma  0.433118693 0.0070811257 -0.117437199
-alpha  0.007081126 0.0005468081  0.004217633
-rho   -0.117437199 0.0042176331  0.119241653
+            gamma        alpha          rho
+gamma  0.57828914 0.0071670102 -0.188585046
+alpha  0.00716701 0.0006306428  0.005463255
+rho   -0.18858505 0.0054632549  0.173805806
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
