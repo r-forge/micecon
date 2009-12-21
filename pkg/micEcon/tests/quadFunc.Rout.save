@@ -1,5 +1,5 @@
 
-R version 2.10.0 (2009-10-26)
+R version 2.10.1 (2009-12-14)
 Copyright (C) 2009 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -22,14 +22,6 @@ Loading required package: lattice
 Loading required package: car
 Loading required package: lmtest
 Loading required package: zoo
-
-Attaching package: 'zoo'
-
-
-	The following object(s) are masked from package:base :
-
-	 as.Date.numeric 
-
 Loading required package: np
 Loading required package: boot
 
@@ -2121,7 +2113,7 @@ attr(,"class")
 +    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
 > coef( estResultLinHom )
           a_0           a_1           a_2           a_3           a_4 
--204866.29706      35.00369 -169743.59535  107690.54362   62053.05172 
+-204866.29706      35.00369 -169743.59534  107690.54362   62053.05172 
         b_1_1         b_1_2         b_1_3         b_1_4         b_2_2 
       0.00000       0.00000       0.00000       0.00000       0.00000 
         b_2_3         b_2_4         b_3_3         b_3_4         b_4_4 
