@@ -1,5 +1,5 @@
 
-R version 2.10.0 (2009-10-26)
+R version 2.10.1 (2009-12-14)
 Copyright (C) 2009 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
@@ -22,14 +22,6 @@ Loading required package: lattice
 Loading required package: car
 Loading required package: lmtest
 Loading required package: zoo
-
-Attaching package: 'zoo'
-
-
-	The following object(s) are masked from package:base :
-
-	 as.Date.numeric 
-
 Loading required package: np
 Loading required package: boot
 
@@ -189,19 +181,19 @@ $value
 
 $counts
 function gradient 
-      50       50 
+      20       20 
 
 $convergence
-[1] 52
+[1] 0
 
 $message
-[1] "ERROR: ABNORMAL_TERMINATION_IN_LNSRCH"
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
 $hessian
-              gamma        alpha           rho
-gamma  3.440056e+04 3.667095e+05 -9.065424e-08
-alpha  3.667095e+05 3.909125e+06  1.642427e+00
-rho   -9.065424e-08 1.642427e+00 -1.543764e-08
+             gamma        alpha          rho
+gamma 3.440056e+04 3.667095e+05 2.957779e-08
+alpha 3.667095e+05 3.909125e+06 1.642428e+00
+rho   2.957779e-08 1.642428e+00 8.213450e-08
 
 $vcov
       gamma alpha rho
@@ -345,7 +337,7 @@ attr(,"class")
 > print( cesLandIntBfgsCon )
 $par
      gamma      alpha        rho 
-37.6795833  0.2614992 -5.0497881 
+37.6785181  0.2645720 -5.0053076 
 
 $value
 [1] 165832.4
@@ -362,15 +354,15 @@ $message
 
 $hessian
             gamma    alpha        rho
-gamma    58516.71 -1669731   115977.4
-alpha -1669730.81 47646708 -3309396.8
-rho     115977.37 -3309397   229869.6
+gamma    58519.81 -1665042   117022.3
+alpha -1665042.26 47376621 -3329644.9
+rho     117022.32 -3329645   234015.5
 
 $vcov
-            gamma        alpha          rho
-gamma  0.57828914 0.0071670102 -0.188585046
-alpha  0.00716701 0.0006306428  0.005463255
-rho   -0.18858505 0.0054632549  0.173805806
+             gamma        alpha          rho
+gamma  0.800330467 0.0070796916 -0.299483041
+alpha  0.007079692 0.0007763862  0.007506377
+rho   -0.299483041 0.0075063773  0.256567513
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
