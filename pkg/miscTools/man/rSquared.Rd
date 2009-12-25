@@ -16,7 +16,7 @@
 \author{Arne Henningsen}
 
 \examples{
-   data( Blanciforti86 )
+   data( "Blanciforti86", package = "micEcon" )
    reg <- lm( wFood1 ~ pFood1 + xFood, Blanciforti86 )
    rSquared( Blanciforti86$wFood1, reg$residuals )
    summary( reg )$r.squared  # returns the same value
