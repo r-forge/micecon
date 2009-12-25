@@ -1,5 +1,4 @@
 \name{micEcon-internal}
-\alias{checkNames}
 \alias{micEconIndex}
 \alias{print.snqProfitImposeConvexity}
 \alias{snqProfitCoef}

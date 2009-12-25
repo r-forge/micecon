@@ -28,7 +28,7 @@ rowMedians( x, na.rm = FALSE )
 \author{Arne Henningsen}
 
 \examples{
-   data( "germanFarms" )
+   data( "germanFarms", package = "micEcon" )
    colMedians( germanFarms[ , -1 ] )
 }
 

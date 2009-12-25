@@ -1,4 +1,4 @@
-library( micEcon )
+library( "miscTools" )
 
 
 ## matrix
@@ -15,7 +15,7 @@ all.equal( rm1, colMedians( t( m ) ) )
 
 
 ## data.frame
-data( germanFarms )
+data( "germanFarms", package = "micEcon" )
 
 cm2 <- colMedians( germanFarms[ , -1 ] )
 print( cm2 )

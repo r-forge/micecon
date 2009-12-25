@@ -1,5 +1,5 @@
-## load micEcon package
-library( micEcon )
+## load miscTools package
+library( "miscTools" )
 
 ## create a matrix
 m <- matrix( 1:9, 3 )
