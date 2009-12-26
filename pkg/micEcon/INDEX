@@ -21,10 +21,7 @@ cobbDouglasOpt          Optimal Values of Independent Variables of a
                         Cobb-Douglas Function
 coef.aidsEst            Coefficients of an Almost Ideal Demand System
 coef.quadFuncEst        Coefficients of a Quadratic Function
-coefTable               Coefficient Table
 coef.translogEst        Coefficients of a Translog Function
-colMedians              Medians of Columns and Rows
-compPlot                Scatterplot to Compare two Variables
 df.residual.aidsEst     Covariance matrix of an Almost Ideal Demand
                         System
 elas                    Calculating and returning elasticities
@@ -32,8 +29,6 @@ elas.npregHom           Elasticities of a Homogeneous Nonparametric
                         Function
 fitted.aidsEst          Fitted values of an Almost Ideal Demand System
 germanFarms             Output and Inputs of Farms in West-Germany
-insertCol               Insert Column into a Matrix
-insertRow               Insert Row into a Matrix
 logLik.aidsEst          Log-Likelihood value of an object of class
                         aidsEst
 lrtest.aidsEst          Likelihood Ratio test for Almost Ideal Demand
@@ -50,12 +45,9 @@ quadFuncDeriv           Derivatives of a quadratic function
 quadFuncEla             Elasticities of a Quadratic Function
 quadFuncEst             Estimate a quadratic function
 quantityIndex           Calculate Quantity Indices
-quasiconcavity          Test for quasiconcavity / quasiconvexity
 residuals.snqProfitEst
                         Residuals of an SNQ profit function
 residuals.translogEst   Residuals of a Translog function
-rSquared                Calculate R squared value
-semidefiniteness        Positive or Negative Semidefiniteness
 snqProfitCalc           Calculations with the SNQ Profit function
 snqProfitEla            Price Elasticities of SNQ Profit function
 snqProfitEst            Estimation of a SNQ Profit function
@@ -77,7 +69,6 @@ summary.translogEst     Summarizing the Estimation of a Translog
 summary.translogRayEst
                         Summarizing the Estimation of a Translog Ray
                         Function
-symMatrix               Symmetric Matrix
 translogCalc            Calculate dependent variable of a translog
                         function
 translogCheckCurvature
@@ -94,12 +85,6 @@ translogProdFuncMargCost
                         Marginal Costs of Translog Production Function
 translogRayDeriv        Derivatives of a Translog Ray Function
 translogRayEst          Estimate a Translog Ray Function
-triang                  Upper triangular matrix from a vector
 USMeatConsump           U.S. Meat Consumption Data
 vcov.aidsEst            Covariance matrix of an Almost Ideal Demand
                         System
-vecli                   Vector of linear independent values
-vecli2m                 Convert vector of linear independent values
-                        into a Matrix
-veclipos                Position in a vector of linear independent
-                        values
