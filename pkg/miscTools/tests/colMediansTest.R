@@ -15,13 +15,14 @@ all.equal( rm1, colMedians( t( m ) ) )
 
 
 ## data.frame
-data( "germanFarms", package = "micEcon" )
+data( "Electricity", package = "Ecdat" )
+Electricity <- Electricity[ 1:20, ]
 
-cm2 <- colMedians( germanFarms[ , -1 ] )
+cm2 <- colMedians( Electricity )
 print( cm2 )
 
-rm2 <- rowMedians( germanFarms[ , -1 ] )
+rm2 <- rowMedians( Electricity )
 print( rm2 )
 
-all.equal( cm2, rowMedians( t( germanFarms[ , -1 ] ) ) )
-all.equal( rm2, colMedians( t( germanFarms[ , -1 ] ) ) )
+all.equal( cm2, rowMedians( t( Electricity ) ) )
+all.equal( rm2, colMedians( t( Electricity ) ) )
