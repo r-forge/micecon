@@ -1,4 +1,4 @@
-library( micEcon )
+library( "micEconAids" )
 data( Blanciforti86 )
 options( digits = 3 )
 
