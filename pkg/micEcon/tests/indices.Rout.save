@@ -38,6 +38,7 @@ Attaching package: 'boot'
 	 melanoma 
 
 Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-3)
+Loading required package: miscTools
 > 
 > ## function for printIndexing indices
 > printIndices <- function( what, ... ) {
@@ -195,7 +196,7 @@ attr(,"weights")
 > 
 > 
 > ## Blanciforti
-> data( Blanciforti86 )
+> data( "Blanciforti86", package = "micEconAids" )
 > ## preparing data of Blanciforti
 > pNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
 > qNames <- c( "qFood1", "qFood2", "qFood3", "qFood4" )

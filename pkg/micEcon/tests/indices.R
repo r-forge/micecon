@@ -42,7 +42,7 @@ printIndices( "q",  c( "p.A", "p.B", "p.C", "p.D" ),
 
 
 ## Blanciforti
-data( Blanciforti86 )
+data( "Blanciforti86", package = "micEconAids" )
 ## preparing data of Blanciforti
 pNames <- c( "pFood1", "pFood2", "pFood3", "pFood4" )
 qNames <- c( "qFood1", "qFood2", "qFood3", "qFood4" )
