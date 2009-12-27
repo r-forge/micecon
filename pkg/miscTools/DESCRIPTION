@@ -4,7 +4,7 @@ Date: 2009/12/25
 Title: Miscellanneous Tools and Utilities
 Author: Arne Henningsen
 Maintainer: Arne Henningsen <arne.henningsen@googlemail.com>
-Suggests: micEcon
+Suggests: Ecdat (>= 0.1-5)
 Description: Miscellanneous small tools and utilities
 License: GPL (>= 2)
 URL: http://www.r-project.org, http://www.micEcon.org

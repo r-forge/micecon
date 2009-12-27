@@ -16,9 +16,9 @@
 \author{Arne Henningsen}
 
 \examples{
-   data( "Blanciforti86", package = "micEcon" )
-   reg <- lm( wFood1 ~ pFood1 + xFood, Blanciforti86 )
-   rSquared( Blanciforti86$wFood1, reg$residuals )
+   data( "Electricity", package = "Ecdat" )
+   reg <- lm( cost ~ q + pl + pk + pf, Electricity )
+   rSquared( Electricity$cost, reg$residuals )
    summary( reg )$r.squared  # returns the same value
 }
 

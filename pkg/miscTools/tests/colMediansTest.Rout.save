@@ -36,26 +36,27 @@ Type 'q()' to quit R.
 > 
 > 
 > ## data.frame
-> data( "germanFarms", package = "micEcon" )
+> data( "Electricity", package = "Ecdat" )
+> Electricity <- Electricity[ 1:20, ]
 > 
-> cm2 <- colMedians( germanFarms[ , -1 ] )
+> cm2 <- colMedians( Electricity )
 > print( cm2 )
-       vCrop      vAnimal      vOutput    vVarInput       qLabor       pLabor 
- 31067.10000 106288.10000 137031.85000  73459.23500      1.53000  19594.79000 
-     pOutput    pVarInput         land 
-    98.13398    107.35075     26.42000 
+      cost          q         pl         sl         pk         sk         pf 
+   3.09655  422.50000 7794.10000    0.21090   69.26100    0.24415   25.95070 
+        sf 
+   0.59860 
 > 
-> rm2 <- rowMedians( germanFarms[ , -1 ] )
+> rm2 <- rowMedians( Electricity )
 > print( rm2 )
        1        2        3        4        5        6        7        8 
- 8287.50 14036.00 18444.88 15863.74 16329.89 16904.10 18655.20 19347.65 
+ 4.20985 12.05485 25.04895 14.64980 20.72935 18.42610 16.34295  7.24435 
        9       10       11       12       13       14       15       16 
-18381.40 19813.20 19376.38 21193.48 22059.82 21801.41 22514.29 24972.67 
+11.32520  8.27460 14.17730 13.01815 22.80935 17.95680 14.06405 15.67750 
       17       18       19       20 
-27018.33 26879.33 28604.33 31293.17 
+15.49855 12.44370 15.61920 21.87700 
 > 
-> all.equal( cm2, rowMedians( t( germanFarms[ , -1 ] ) ) )
+> all.equal( cm2, rowMedians( t( Electricity ) ) )
 [1] TRUE
-> all.equal( rm2, colMedians( t( germanFarms[ , -1 ] ) ) )
+> all.equal( rm2, colMedians( t( Electricity ) ) )
 [1] TRUE
 > 
