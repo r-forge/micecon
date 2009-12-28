@@ -28,8 +28,8 @@ rowMedians( x, na.rm = FALSE )
 \author{Arne Henningsen}
 
 \examples{
-   data( "germanFarms", package = "micEcon" )
-   colMedians( germanFarms[ , -1 ] )
+   data( "Electricity", package = "Ecdat" )
+   colMedians( Electricity )
 }
 
 \keyword{array}
