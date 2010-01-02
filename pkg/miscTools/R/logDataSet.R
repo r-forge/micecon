@@ -1,4 +1,4 @@
-.micEconLogData <- function( data, varNames, varNamesNum = NULL ) {
+logDataSet <- function( data, varNames, varNamesNum = NULL ) {
 
    if( "plm.dim" %in% class( data ) ) {
       logData <- data[ , 1:2 ]
