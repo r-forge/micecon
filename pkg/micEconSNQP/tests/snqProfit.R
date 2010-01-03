@@ -1,4 +1,4 @@
-library( micEcon )
+library( micEconSNQP )
 data( germanFarms )
 options( digits = 3 )
 
