@@ -7,7 +7,7 @@ on R-Forge.
 
             CHANGES IN VERSION 0.6-0 and 0.6-2
 
-* The "micEcon" package has been split into four packages:
+* The "micEcon" package has been split into five packages:
 a) miscTools (version >= 0.6-0): includes miscellaneous small tools and
    utilities that are not related to (micro)economics, e.g. colMedians(),
    rowMedians(), insertCol(), insertRow(), vecli(), symMatrix(), triang(),
@@ -16,7 +16,9 @@ b) micEconAids (version >= 0.6-0): includes all functions and methods for demand
    analysis with the Almost Ideal Demand System (AIDS).
 c) micEconSNQP (version >= 0.6-0): includes all functions and methods for production
    analysis with the Symmetric Normalized Profit (SNQ) function.
-d) micEcon (version >= 0.6-0): includes the remaining parts of the "old" micEcon
+d) micEconCES (version >= 0.6-0): includes all functions and methods for economic
+   analysis with the Constant Elasticity of Scale (CES) function.
+e) micEcon (version >= 0.6-0): includes the remaining parts of the "old" micEcon
    package
 
 

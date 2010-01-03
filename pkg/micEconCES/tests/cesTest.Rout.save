@@ -15,13 +15,15 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> library( micEcon )
+> library( micEconCES )
 Loading required package: systemfit
 Loading required package: Matrix
 Loading required package: lattice
 Loading required package: car
 Loading required package: lmtest
 Loading required package: zoo
+Loading required package: miscTools
+Loading required package: micEcon
 Loading required package: np
 Loading required package: boot
 
