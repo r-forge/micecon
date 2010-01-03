@@ -1,4 +1,4 @@
-library( micEcon )
+library( micEconCES )
 
 # load data
 data( germanFarms )
