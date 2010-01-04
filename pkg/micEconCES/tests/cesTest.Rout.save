@@ -102,6 +102,11 @@ attr(,"class")
 > coef( cesLandLabor ) 
     gamma     alpha       rho 
 41.302277  2.740694  5.802162 
+> vcov( cesLandLabor ) 
+      gamma alpha rho
+gamma    NA    NA  NA
+alpha    NA    NA  NA
+rho      NA    NA  NA
 > 
 > # variable returns to scale
 > cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -147,6 +152,12 @@ attr(,"class")
 > coef( cesLandLaborVrs )
     gamma     alpha       rho       phi 
 19.649459  2.999448 17.175560  1.245646 
+> vcov( cesLandLaborVrs )
+      gamma alpha rho phi
+gamma    NA    NA  NA  NA
+alpha    NA    NA  NA  NA
+rho      NA    NA  NA  NA
+phi      NA    NA  NA  NA
 > 
 > # using the BFGS optimization method
 > cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -190,6 +201,11 @@ attr(,"class")
 > coef( cesLandLaborBfgs )
     gamma     alpha       rho 
  47.10913 561.14577 149.76314 
+> vcov( cesLandLaborBfgs )
+      gamma alpha rho
+gamma    NA    NA  NA
+alpha    NA    NA  NA
+rho      NA    NA  NA
 > 
 > # using the L-BFGS-B optimization method with constrained alpha
 > cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
@@ -235,6 +251,11 @@ attr(,"class")
 > coef( cesLandLaborBfgsCon )
     gamma     alpha       rho 
 49.142950  1.000000  4.610031 
+> vcov( cesLandLaborBfgsCon )
+      gamma alpha rho
+gamma    NA    NA  NA
+alpha    NA    NA  NA
+rho      NA    NA  NA
 > 
 > 
 > ## CES: Land & Intermediate Inputs
