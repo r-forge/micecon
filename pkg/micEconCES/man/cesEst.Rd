@@ -49,7 +49,7 @@ cesEst( yName, xNames, data, vrs = FALSE, \dots )
    \item{call}{the matched call.}
 }
 
-\seealso{\code{\link{translogEst}} and \code{\link{quadFuncEst}}.}
+\seealso{\code{\link[micEcon]{translogEst}} and \code{\link[micEcon]{quadFuncEst}}.}
 
 \author{Arne Henningsen}
 
