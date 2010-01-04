@@ -10,23 +10,27 @@ germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 
 ## CES: Land & Labor
 cesLandLabor <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms )
-print( cesLandLabor )
+print( cesLandLabor ) 
+coef( cesLandLabor ) 
 
 # variable returns to scale
 cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
    vrs = TRUE )
 print( cesLandLaborVrs )
+coef( cesLandLaborVrs )
 
 # using the BFGS optimization method
 cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
    method = "BFGS" )
 print( cesLandLaborBfgs )
+coef( cesLandLaborBfgs )
 
 # using the L-BFGS-B optimization method with constrained alpha
 cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
    germanFarms, method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
    upper = c( Inf, 1, Inf ) )
 print( cesLandLaborBfgsCon )
+coef( cesLandLaborBfgsCon )
 
 
 ## CES: Land & Intermediate Inputs
