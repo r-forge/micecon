@@ -1,4 +1,5 @@
-cesEst <- function( yName, xNames, data, vrs = FALSE, ... ) {
+cesEst <- function( yName, xNames, data, vrs = FALSE,
+      method = "Nelder-Mead", ... ) {
 
    # y = gamma * ( alpha * x1^rho + ( 1 - alpha ) * x2^rho )^(phi/rho)
    # s = 1 / ( 1 - rho )
@@ -74,12 +75,15 @@ cesEst <- function( yName, xNames, data, vrs = FALSE, ... ) {
       return( result )
    }
 
-   if( is.null( matchedCall$method ) || matchedCall$method == "SANN" ) {
+   if( method %in% c( "Nelder-Mead", "SANN" ) ) {
       result <- optim( par = startVal, fn = cesRss, data = estData,
-         hessian = TRUE, ... )
-   } else {
+         hessian = TRUE, method = method, ... )
+   } else if( method %in% c( "BFGS", "CG", "L-BFGS-B" ) ) {
       result <- optim( par = startVal, fn = cesRss, gr = cesRssDeriv,
-         data = estData, hessian = TRUE, ... )
+         data = estData, hessian = TRUE, method = method, ... )
+   } else {
+      stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
+         " 'CG', 'L-BFGS-B', or 'SANN'" )
    }
 
    # covariance matrix of the estimated parameters
@@ -92,7 +96,10 @@ cesEst <- function( yName, xNames, data, vrs = FALSE, ... ) {
    }
 
    # return also the call
-   result$call <- matchedCall 
+   result$call <- matchedCall
+
+   # returned the method used for the estimation
+   result$method <- method
 
    # nonlinear least squares
 #    result$nls <- nls(
