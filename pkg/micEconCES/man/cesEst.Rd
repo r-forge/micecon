@@ -33,8 +33,10 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead", \dots )
    \item{data}{data frame containing the data.}
    \item{vrs}{logical. Allow for variable returns to scale?}
    \item{method}{character string indicationg the estimation method:
-      either \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"},
-      \code{"L-BFGS-B"}, or \code{"SANN")}.}
+      either \code{"Kmenta"} for the Kmenta approximation
+      or \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"},
+      \code{"L-BFGS-B"}, or \code{"SANN")} for a non-linear least-squares
+      estimation (using \code{\link[stats]{optim}}).}
    \item{\dots}{further arguments are passed to \code{\link[stats]{optim}}.}
 }
 
@@ -44,13 +46,23 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead", \dots )
 }
 
 \value{
-   A list of class \code{cesEst}. It is the object returned
-   by \code{\link[stats]{optim}} plus following elements:
+   A list of class \code{cesEst}.
+   If the CES is estimated by non-linear least-squares using
+   \code{\link[stats]{optim}},
+   the returned object contains all elements returned
+   by \code{\link[stats]{optim}} in addition to the following elements:
+   \item{par}{estimated coefficients/parameters of the CES.}
    \item{hessian}{Hessian matrix of the objective function
       with respect to the estimated parameters.}
    \item{vcov}{covariance matrix of the estimated parameters.}
    \item{call}{the matched call.}
    \item{method}{argument \code{method}.}
+   \item{translogUnr}{unrestricted estimation of the translog model
+      (only if argument \code{method} is \code{"Kmenta"}).}
+   \item{translog}{restricted estimation of the translog model
+      (only if argument \code{method} is \code{"Kmenta"}).}
+   \item{test}{test for the restrictions of translog model
+      (only if argument \code{method} is \code{"Kmenta"}).}
 }
 
 \seealso{\code{\link[micEcon]{translogEst}} and \code{\link[micEcon]{quadFuncEst}}.}

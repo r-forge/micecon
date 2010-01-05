@@ -48,6 +48,16 @@ coef( cesLandLaborBfgsCon )
 vcov( cesLandLaborBfgsCon )
 coef( summary( cesLandLaborBfgsCon ) )
 
+# Kmenta approximation
+cesLandLaborKmenta <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   vrs = TRUE, method = "Kmenta" )
+print.default( cesLandLaborKmenta )
+print( cesLandLaborKmenta )
+summary( cesLandLaborKmenta )
+coef( cesLandLaborKmenta )
+vcov( cesLandLaborKmenta )
+coef( summary( cesLandLaborKmenta ) )
+
 
 ## CES: Land & Intermediate Inputs
 cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
@@ -80,3 +90,11 @@ print.default( cesLandIntBfgsCon )
 print( cesLandIntBfgsCon )
 summary( cesLandIntBfgsCon )
 coef( summary( cesLandIntBfgsCon ) )
+
+# Kmenta approximation
+cesLandIntKmenta <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "Kmenta" )
+print.default( cesLandIntKmenta )
+print( cesLandIntKmenta )
+summary( cesLandIntKmenta )
+coef( summary( cesLandIntKmenta ) )
