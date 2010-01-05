@@ -12,6 +12,7 @@ germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 cesLandLabor <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms )
 print.default( cesLandLabor ) 
 print( cesLandLabor )
+summary( cesLandLabor )
 coef( cesLandLabor ) 
 vcov( cesLandLabor ) 
 coef( summary( cesLandLabor ) )
@@ -21,6 +22,7 @@ cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
    vrs = TRUE )
 print.default( cesLandLaborVrs )
 print( cesLandLaborVrs )
+summary( cesLandLaborVrs )
 coef( cesLandLaborVrs )
 vcov( cesLandLaborVrs )
 coef( summary( cesLandLaborVrs ) )
@@ -30,6 +32,7 @@ cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
    method = "BFGS" )
 print.default( cesLandLaborBfgs )
 print( cesLandLaborBfgs )
+summary( cesLandLaborBfgs )
 coef( cesLandLaborBfgs )
 vcov( cesLandLaborBfgs )
 coef( summary( cesLandLaborBfgs ) )
@@ -40,6 +43,7 @@ cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
    upper = c( Inf, 1, Inf ) )
 print.default( cesLandLaborBfgsCon )
 print( cesLandLaborBfgsCon )
+summary( cesLandLaborBfgsCon )
 coef( cesLandLaborBfgsCon )
 vcov( cesLandLaborBfgsCon )
 coef( summary( cesLandLaborBfgsCon ) )
@@ -49,6 +53,7 @@ coef( summary( cesLandLaborBfgsCon ) )
 cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
 print.default( cesLandInt )
 print( cesLandInt )
+summary( cesLandInt )
 coef( summary( cesLandInt ) )
 
 # variable returns to scale
@@ -56,6 +61,7 @@ cesLandIntVrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    vrs = TRUE )
 print.default( cesLandIntVrs )
 print( cesLandIntVrs )
+summary( cesLandIntVrs )
 coef( summary( cesLandIntVrs ) )
 
 # using the BFGS optimization method
@@ -63,6 +69,7 @@ cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    method = "BFGS" )
 print.default( cesLandIntBfgs )
 print( cesLandIntBfgs )
+summary( cesLandIntBfgs )
 coef( summary( cesLandIntBfgs ) )
 
 # using the L-BFGS-B optimization method with constrained alpha
@@ -71,4 +78,5 @@ cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    upper = c( Inf, 1, Inf ) )
 print.default( cesLandIntBfgsCon )
 print( cesLandIntBfgsCon )
+summary( cesLandIntBfgsCon )
 coef( summary( cesLandIntBfgsCon ) )
