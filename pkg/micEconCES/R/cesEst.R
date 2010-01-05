@@ -14,6 +14,21 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    # store the (matched) call
    matchedCall <- match.call()
 
+   # Estimation by the Kmenta approximation
+   if( method == "Kmenta" ) {
+      if( !vrs ) {
+         warning( "allowing for variable returns to scale",
+            " in the Kmanta approximation",
+            " although argument 'vrs' is 'FALSE'." )
+         matchedCall$vrs <- TRUE
+      }
+      result <- cesEstKmenta( yName = yName, xNames = xNames, data = data )
+      result$call <- matchedCall
+      result$method <- method
+      class( result ) <- "cesEst"
+      return( result )
+   }
+
    # prepare data for estimation
    estData <- data.frame( y = data[[ yName ]],
       x1 = data[[ xNames[ 1 ] ]], x2 = data[[ xNames[ 2 ] ]] )
