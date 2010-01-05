@@ -104,7 +104,7 @@ Coefficients:
 gamma    NA    NA  NA
 alpha    NA    NA  NA
 rho      NA    NA  NA
-> summary( cesLandLabor )$coefficients
+> coef( summary( cesLandLabor ) )
        Estimate Std. Error t value Pr(>|t|)
 gamma 41.302277         NA      NA       NA
 alpha  2.740694         NA      NA       NA
@@ -171,7 +171,7 @@ gamma    NA    NA  NA  NA
 alpha    NA    NA  NA  NA
 rho      NA    NA  NA  NA
 phi      NA    NA  NA  NA
-> summary( cesLandLaborVrs )$coefficients
+> coef( summary( cesLandLaborVrs ) )
        Estimate Std. Error t value Pr(>|t|)
 gamma 19.649459         NA      NA       NA
 alpha  2.999448         NA      NA       NA
@@ -236,7 +236,7 @@ Coefficients:
 gamma    NA    NA  NA
 alpha    NA    NA  NA
 rho      NA    NA  NA
-> summary( cesLandLaborBfgs )$coefficients
+> coef( summary( cesLandLaborBfgs ) )
        Estimate Std. Error t value Pr(>|t|)
 gamma  47.10913         NA      NA       NA
 alpha 561.14577         NA      NA       NA
@@ -303,7 +303,7 @@ gamma alpha   rho
 gamma    NA    NA  NA
 alpha    NA    NA  NA
 rho      NA    NA  NA
-> summary( cesLandLaborBfgsCon )$coefficients
+> coef( summary( cesLandLaborBfgsCon ) )
        Estimate Std. Error t value Pr(>|t|)
 gamma 49.142950         NA      NA       NA
 alpha  1.000000         NA      NA       NA
@@ -357,7 +357,7 @@ Coefficients:
  gamma  alpha    rho 
 39.857  0.665 -1.933 
 
-> summary( cesLandInt )$coefficients
+> coef( summary( cesLandInt ) )
         Estimate Std. Error t value Pr(>|t|)
 gamma 39.8571749         NA      NA       NA
 alpha  0.6649561         NA      NA       NA
@@ -415,7 +415,7 @@ Coefficients:
   gamma   alpha     rho     phi 
 37.4927  1.3198 -0.9833  1.1732 
 
-> summary( cesLandIntVrs )$coefficients
+> coef( summary( cesLandIntVrs ) )
        Estimate Std. Error t value Pr(>|t|)
 gamma 37.492672         NA      NA       NA
 alpha  1.319760         NA      NA       NA
@@ -472,7 +472,7 @@ Coefficients:
  gamma  alpha    rho 
  55.45 336.65 -48.23 
 
-> summary( cesLandIntBfgs )$coefficients
+> coef( summary( cesLandIntBfgs ) )
        Estimate Std. Error t value Pr(>|t|)
 gamma  55.44507         NA      NA       NA
 alpha 336.65007         NA      NA       NA
@@ -531,7 +531,7 @@ Coefficients:
   gamma   alpha     rho 
 37.6785  0.2646 -5.0053 
 
-> summary( cesLandIntBfgsCon )$coefficients
+> coef( summary( cesLandIntBfgsCon ) )
         Estimate Std. Error   t value     Pr(>|t|)
 gamma 37.6785181 0.89461191 42.117166 0.000000e+00
 alpha  0.2645720 0.02786371  9.495217 2.197522e-21
