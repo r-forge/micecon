@@ -2,5 +2,6 @@ export( "cesEst" )
 
 S3method( "coef", "cesEst" )
 S3method( "print", "cesEst" )
+S3method( "summary", "cesEst" )
 S3method( "vcov", "cesEst" )
 
