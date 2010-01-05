@@ -14,6 +14,7 @@ print.default( cesLandLabor )
 print( cesLandLabor )
 coef( cesLandLabor ) 
 vcov( cesLandLabor ) 
+summary( cesLandLabor )$coefficients
 
 # variable returns to scale
 cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -22,6 +23,7 @@ print.default( cesLandLaborVrs )
 print( cesLandLaborVrs )
 coef( cesLandLaborVrs )
 vcov( cesLandLaborVrs )
+summary( cesLandLaborVrs )$coefficients
 
 # using the BFGS optimization method
 cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -30,6 +32,7 @@ print.default( cesLandLaborBfgs )
 print( cesLandLaborBfgs )
 coef( cesLandLaborBfgs )
 vcov( cesLandLaborBfgs )
+summary( cesLandLaborBfgs )$coefficients
 
 # using the L-BFGS-B optimization method with constrained alpha
 cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
@@ -39,24 +42,28 @@ print.default( cesLandLaborBfgsCon )
 print( cesLandLaborBfgsCon )
 coef( cesLandLaborBfgsCon )
 vcov( cesLandLaborBfgsCon )
+summary( cesLandLaborBfgsCon )$coefficients
 
 
 ## CES: Land & Intermediate Inputs
 cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
 print.default( cesLandInt )
 print( cesLandInt )
+summary( cesLandInt )$coefficients
 
 # variable returns to scale
 cesLandIntVrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    vrs = TRUE )
 print.default( cesLandIntVrs )
 print( cesLandIntVrs )
+summary( cesLandIntVrs )$coefficients
 
 # using the BFGS optimization method
 cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    method = "BFGS" )
 print.default( cesLandIntBfgs )
 print( cesLandIntBfgs )
+summary( cesLandIntBfgs )$coefficients
 
 # using the L-BFGS-B optimization method with constrained alpha
 cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -64,3 +71,4 @@ cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    upper = c( Inf, 1, Inf ) )
 print.default( cesLandIntBfgsCon )
 print( cesLandIntBfgsCon )
+summary( cesLandIntBfgsCon )$coefficients

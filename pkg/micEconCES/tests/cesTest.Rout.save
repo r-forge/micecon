@@ -104,6 +104,11 @@ Coefficients:
 gamma    NA    NA  NA
 alpha    NA    NA  NA
 rho      NA    NA  NA
+> summary( cesLandLabor )$coefficients
+       Estimate Std. Error t value Pr(>|t|)
+gamma 41.302277         NA      NA       NA
+alpha  2.740694         NA      NA       NA
+rho    5.802162         NA      NA       NA
 > 
 > # variable returns to scale
 > cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -166,6 +171,12 @@ gamma    NA    NA  NA  NA
 alpha    NA    NA  NA  NA
 rho      NA    NA  NA  NA
 phi      NA    NA  NA  NA
+> summary( cesLandLaborVrs )$coefficients
+       Estimate Std. Error t value Pr(>|t|)
+gamma 19.649459         NA      NA       NA
+alpha  2.999448         NA      NA       NA
+rho   17.175560         NA      NA       NA
+phi    1.245646         NA      NA       NA
 > 
 > # using the BFGS optimization method
 > cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -225,6 +236,11 @@ Coefficients:
 gamma    NA    NA  NA
 alpha    NA    NA  NA
 rho      NA    NA  NA
+> summary( cesLandLaborBfgs )$coefficients
+       Estimate Std. Error t value Pr(>|t|)
+gamma  47.10913         NA      NA       NA
+alpha 561.14577         NA      NA       NA
+rho   149.76314         NA      NA       NA
 > 
 > # using the L-BFGS-B optimization method with constrained alpha
 > cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
@@ -287,6 +303,11 @@ gamma alpha   rho
 gamma    NA    NA  NA
 alpha    NA    NA  NA
 rho      NA    NA  NA
+> summary( cesLandLaborBfgsCon )$coefficients
+       Estimate Std. Error t value Pr(>|t|)
+gamma 49.142950         NA      NA       NA
+alpha  1.000000         NA      NA       NA
+rho    4.610031         NA      NA       NA
 > 
 > 
 > ## CES: Land & Intermediate Inputs
@@ -336,6 +357,11 @@ Coefficients:
  gamma  alpha    rho 
 39.857  0.665 -1.933 
 
+> summary( cesLandInt )$coefficients
+        Estimate Std. Error t value Pr(>|t|)
+gamma 39.8571749         NA      NA       NA
+alpha  0.6649561         NA      NA       NA
+rho   -1.9327816         NA      NA       NA
 > 
 > # variable returns to scale
 > cesLandIntVrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -389,6 +415,12 @@ Coefficients:
   gamma   alpha     rho     phi 
 37.4927  1.3198 -0.9833  1.1732 
 
+> summary( cesLandIntVrs )$coefficients
+       Estimate Std. Error t value Pr(>|t|)
+gamma 37.492672         NA      NA       NA
+alpha  1.319760         NA      NA       NA
+rho   -0.983313         NA      NA       NA
+phi    1.173182         NA      NA       NA
 > 
 > # using the BFGS optimization method
 > cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -440,6 +472,11 @@ Coefficients:
  gamma  alpha    rho 
  55.45 336.65 -48.23 
 
+> summary( cesLandIntBfgs )$coefficients
+       Estimate Std. Error t value Pr(>|t|)
+gamma  55.44507         NA      NA       NA
+alpha 336.65007         NA      NA       NA
+rho   -48.22737         NA      NA       NA
 > 
 > # using the L-BFGS-B optimization method with constrained alpha
 > cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -494,4 +531,9 @@ Coefficients:
   gamma   alpha     rho 
 37.6785  0.2646 -5.0053 
 
+> summary( cesLandIntBfgsCon )$coefficients
+        Estimate Std. Error   t value     Pr(>|t|)
+gamma 37.6785181 0.89461191 42.117166 0.000000e+00
+alpha  0.2645720 0.02786371  9.495217 2.197522e-21
+rho   -5.0053076 0.50652494 -9.881661 4.999730e-23
 > 
