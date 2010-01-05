@@ -84,6 +84,9 @@ rho      NA    NA  NA
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms)
 
+$method
+[1] "Nelder-Mead"
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLabor )
@@ -102,7 +105,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms)
 
-Estimation method: Nelder-Mead
+Estimation method:  Nelder-Mead 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -163,6 +166,9 @@ $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE)
 
+$method
+[1] "Nelder-Mead"
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLaborVrs )
@@ -183,7 +189,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE)
 
-Estimation method: Nelder-Mead
+Estimation method:  Nelder-Mead 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -245,6 +251,9 @@ $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "BFGS")
 
+$method
+[1] "BFGS"
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLaborBfgs )
@@ -265,7 +274,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "BFGS")
 
-Estimation method: BFGS
+Estimation method:  BFGS 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -326,6 +335,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
         1, Inf))
 
+$method
+[1] "L-BFGS-B"
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLaborBfgsCon )
@@ -348,7 +360,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
         1, Inf))
 
-Estimation method: L-BFGS-B
+Estimation method:  L-BFGS-B 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -406,6 +418,9 @@ rho      NA    NA  NA
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 
+$method
+[1] "Nelder-Mead"
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandInt )
@@ -424,7 +439,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 
-Estimation method: Nelder-Mead
+Estimation method:  Nelder-Mead 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -477,6 +492,9 @@ $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE)
 
+$method
+[1] "Nelder-Mead"
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandIntVrs )
@@ -497,7 +515,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE)
 
-Estimation method: Nelder-Mead
+Estimation method:  Nelder-Mead 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -550,6 +568,9 @@ $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "BFGS")
 
+$method
+[1] "BFGS"
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandIntBfgs )
@@ -570,7 +591,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "BFGS")
 
-Estimation method: BFGS
+Estimation method:  BFGS 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -623,6 +644,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
         1, Inf))
 
+$method
+[1] "L-BFGS-B"
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandIntBfgsCon )
@@ -645,7 +669,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
         1, Inf))
 
-Estimation method: L-BFGS-B
+Estimation method:  L-BFGS-B 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    

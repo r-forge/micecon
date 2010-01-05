@@ -22,7 +22,7 @@
 }
 
 \usage{
-cesEst( yName, xNames, data, vrs = FALSE, \dots )
+cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead", \dots )
 }
 
 \arguments{
@@ -32,6 +32,9 @@ cesEst( yName, xNames, data, vrs = FALSE, \dots )
       independent variables.}
    \item{data}{data frame containing the data.}
    \item{vrs}{logical. Allow for variable returns to scale?}
+   \item{method}{character string indicationg the estimation method:
+      either \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"},
+      \code{"L-BFGS-B"}, or \code{"SANN")}.}
    \item{\dots}{further arguments are passed to \code{\link[stats]{optim}}.}
 }
 
@@ -47,6 +50,7 @@ cesEst( yName, xNames, data, vrs = FALSE, \dots )
       with respect to the estimated parameters.}
    \item{vcov}{covariance matrix of the estimated parameters.}
    \item{call}{the matched call.}
+   \item{method}{argument \code{method}.}
 }
 
 \seealso{\code{\link[micEcon]{translogEst}} and \code{\link[micEcon]{quadFuncEst}}.}
