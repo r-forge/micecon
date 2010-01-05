@@ -96,6 +96,20 @@ Coefficients:
  gamma  alpha    rho 
 41.302  2.741  5.802 
 
+> summary( cesLandLabor )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms)
+
+Estimation method: Nelder-Mead
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma   41.302         NA      NA       NA
+alpha    2.741         NA      NA       NA
+rho      5.802         NA      NA       NA
+
 > coef( cesLandLabor ) 
     gamma     alpha       rho 
 41.302277  2.740694  5.802162 
@@ -162,6 +176,22 @@ Coefficients:
  gamma  alpha    rho    phi 
 19.649  2.999 17.176  1.246 
 
+> summary( cesLandLaborVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    vrs = TRUE)
+
+Estimation method: Nelder-Mead
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma   19.649         NA      NA       NA
+alpha    2.999         NA      NA       NA
+rho     17.176         NA      NA       NA
+phi      1.246         NA      NA       NA
+
 > coef( cesLandLaborVrs )
     gamma     alpha       rho       phi 
 19.649459  2.999448 17.175560  1.245646 
@@ -227,6 +257,21 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
  gamma  alpha    rho 
  47.11 561.15 149.76 
+
+> summary( cesLandLaborBfgs )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "BFGS")
+
+Estimation method: BFGS
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma    47.11         NA      NA       NA
+alpha   561.15         NA      NA       NA
+rho     149.76         NA      NA       NA
 
 > coef( cesLandLaborBfgs )
     gamma     alpha       rho 
@@ -295,6 +340,22 @@ Coefficients:
 gamma alpha   rho 
 49.14  1.00  4.61 
 
+> summary( cesLandLaborBfgsCon )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
+        1, Inf))
+
+Estimation method: L-BFGS-B
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma    49.14         NA      NA       NA
+alpha     1.00         NA      NA       NA
+rho       4.61         NA      NA       NA
+
 > coef( cesLandLaborBfgsCon )
     gamma     alpha       rho 
 49.142950  1.000000  4.610031 
@@ -357,6 +418,20 @@ Coefficients:
  gamma  alpha    rho 
 39.857  0.665 -1.933 
 
+> summary( cesLandInt )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
+
+Estimation method: Nelder-Mead
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma   39.857         NA      NA       NA
+alpha    0.665         NA      NA       NA
+rho     -1.933         NA      NA       NA
+
 > coef( summary( cesLandInt ) )
         Estimate Std. Error t value Pr(>|t|)
 gamma 39.8571749         NA      NA       NA
@@ -415,6 +490,22 @@ Coefficients:
   gamma   alpha     rho     phi 
 37.4927  1.3198 -0.9833  1.1732 
 
+> summary( cesLandIntVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    vrs = TRUE)
+
+Estimation method: Nelder-Mead
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma  37.4927         NA      NA       NA
+alpha   1.3198         NA      NA       NA
+rho    -0.9833         NA      NA       NA
+phi     1.1732         NA      NA       NA
+
 > coef( summary( cesLandIntVrs ) )
        Estimate Std. Error t value Pr(>|t|)
 gamma 37.492672         NA      NA       NA
@@ -471,6 +562,21 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
  gamma  alpha    rho 
  55.45 336.65 -48.23 
+
+> summary( cesLandIntBfgs )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "BFGS")
+
+Estimation method: BFGS
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma    55.45         NA      NA       NA
+alpha   336.65         NA      NA       NA
+rho     -48.23         NA      NA       NA
 
 > coef( summary( cesLandIntBfgs ) )
        Estimate Std. Error t value Pr(>|t|)
@@ -530,6 +636,24 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   alpha     rho 
 37.6785  0.2646 -5.0053 
+
+> summary( cesLandIntBfgsCon )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
+        1, Inf))
+
+Estimation method: L-BFGS-B
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma 37.67852    0.89461  42.117   <2e-16 ***
+alpha  0.26457    0.02786   9.495   <2e-16 ***
+rho   -5.00531    0.50652  -9.882   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( summary( cesLandIntBfgsCon ) )
         Estimate Std. Error   t value     Pr(>|t|)
