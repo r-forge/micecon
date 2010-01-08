@@ -6,10 +6,10 @@
    Estimate a Constant-Elasticities-of-Scale (CES) function
    with two exogenous variables by Least Squares.
 
-   \deqn{y = \gamma * ( \alpha * x1^\rho + ( 1 - \alpha ) * x2^\rho )^{\phi/\rho}}{%
-      y = gamma * ( alpha * x1^rho + ( 1 - alpha ) * x2^rho )^(phi/rho)}
+   \deqn{y = \gamma * ( \alpha * x1^{-\rho} + ( 1 - \alpha ) * x2^{-\rho} )^{-\phi/\rho}}{%
+      y = gamma * ( alpha * x1^(-rho) + ( 1 - alpha ) * x2^(-rho) )^(-phi/rho)}
    where the elesticity of substitution is
-   \eqn{s = 1 / ( 1 - \rho )}{s = 1 / ( 1 - rho )}
+   \eqn{s = 1 / ( 1 + \rho )}{s = 1 / ( 1 + rho )}
 
    Warning: The econometric estimation of a CES function is (almost)
    always very problematic,
