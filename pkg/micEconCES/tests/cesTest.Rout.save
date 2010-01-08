@@ -87,6 +87,11 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms)
 $method
 [1] "Nelder-Mead"
 
+$fitted.values
+ [1] 1149.886 1189.199 1213.277 1224.088 1224.088 1239.813 1273.229 1276.177
+ [9] 1237.356 1281.091 1315.490 1467.825 1528.759 1581.831 1548.907 1566.597
+[17] 1648.170 1722.864 1833.430 1935.642
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLabor )
@@ -168,6 +173,11 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 
 $method
 [1] "Nelder-Mead"
+
+$fitted.values
+ [1] 1080.203 1126.396 1154.876 1167.708 1167.708 1186.423 1226.386 1229.924
+ [9] 1183.495 1235.826 1277.296 1464.090 1540.181 1607.065 1565.507 1587.810
+[17] 1691.447 1787.457 1931.456 2066.489
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -254,6 +264,11 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "BFGS"
 
+$fitted.values
+ [1] 1149.945 1189.259 1213.340 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.420 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.524 1935.741
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLaborBfgs )
@@ -337,6 +352,11 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 
 $method
 [1] "L-BFGS-B"
+
+$fitted.values
+ [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.523 1935.741
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -436,6 +456,12 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "Kmenta"
 
+$fitted.values
+ [1] 6.825534e+32 3.017661e+34 2.137404e+36 1.125503e+35 1.125503e+35
+ [6] 2.625256e+36 4.956137e+39 4.010225e+37 6.214657e+35 8.396901e+35
+[11] 8.516523e+37 6.947415e+38 1.393095e+42 8.400157e+48 3.195394e+47
+[16] 1.318337e+54 1.631878e+71          NaN          NaN          NaN
+
 attr(,"class")
 [1] "cesEst"
 > print( cesLandLaborKmenta )
@@ -522,6 +548,11 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 $method
 [1] "Nelder-Mead"
 
+$fitted.values
+ [1] 1151.224 1190.648 1214.734 1225.634 1225.623 1241.369 1274.824 1277.726
+ [9] 1238.881 1282.642 1317.114 1469.637 1530.662 1583.740 1550.679 1568.322
+[17] 1649.820 1724.479 1835.089 1937.386
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandInt )
@@ -595,6 +626,11 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "Nelder-Mead"
+
+$fitted.values
+ [1] 1101.843 1145.418 1172.931 1184.296 1184.430 1202.278 1240.408 1244.386
+ [9] 1199.826 1250.054 1289.143 1465.994 1537.447 1600.988 1563.111 1584.837
+[17] 1683.872 1774.869 1909.843 2035.424
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -672,6 +708,11 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "BFGS"
 
+$fitted.values
+ [1] 1149.946 1189.260 1213.340 1224.152 1224.152 1239.878 1273.295 1276.243
+ [9] 1237.420 1281.158 1315.558 1467.901 1528.838 1581.913 1548.987 1566.678
+[17] 1648.256 1722.953 1833.525 1935.742
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandIntBfgs )
@@ -747,6 +788,11 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "L-BFGS-B"
+
+$fitted.values
+ [1] 1149.949 1189.263 1213.343 1224.155 1224.155 1239.880 1273.298 1276.246
+ [9] 1237.423 1281.161 1315.561 1467.904 1528.842 1581.916 1548.991 1566.682
+[17] 1648.259 1722.957 1833.529 1935.746
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -842,6 +888,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "Kmenta"
+
+$fitted.values
+ [1] NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN
+[20] NaN
 
 attr(,"class")
 [1] "cesEst"

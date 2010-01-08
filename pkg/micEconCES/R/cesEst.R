@@ -25,6 +25,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result <- cesEstKmenta( yName = yName, xNames = xNames, data = data )
       result$call <- matchedCall
       result$method <- method
+      # fitted values
+      result$fitted.values <- cesCalc( xNames = xNames, data = data,
+      coef = result$par )
       class( result ) <- "cesEst"
       return( result )
    }
@@ -115,6 +118,10 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # returned the method used for the estimation
    result$method <- method
+
+   # fitted values
+   result$fitted.values <- cesCalc( xNames = xNames, data = data,
+      coef = result$par )
 
    # nonlinear least squares
 #    result$nls <- nls(

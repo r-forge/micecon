@@ -54,6 +54,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead", \dots )
    \item{par}{estimated coefficients/parameters of the CES.}
    \item{hessian}{Hessian matrix of the objective function
       with respect to the estimated parameters.}
+   \item{fitted.values}{the fitted values.}
    \item{vcov}{covariance matrix of the estimated parameters.}
    \item{call}{the matched call.}
    \item{method}{argument \code{method}.}
