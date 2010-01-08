@@ -26,9 +26,9 @@ cesCalc <- function( xNames, data, coef ) {
    }
 
    result <- coef[ "gamma" ] *
-      ( coef[ "alpha" ] * data[[ xNames[ 1 ] ]]^coef[ "rho" ] +
-      ( 1 - coef[ "alpha" ] ) * data[[ xNames[ 2 ] ]]^coef[ "rho" ] )^
-      ( coef[ "phi" ] / coef[ "rho" ] )
+      ( coef[ "alpha" ] * data[[ xNames[ 1 ] ]]^(-coef[ "rho" ]) +
+      ( 1 - coef[ "alpha" ] ) * data[[ xNames[ 2 ] ]]^(-coef[ "rho" ]) )^
+      ( -coef[ "phi" ] / coef[ "rho" ] )
 
    return( result )
 }
