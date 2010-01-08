@@ -1,3 +1,4 @@
+export( "cesCalc" )
 export( "cesEst" )
 
 S3method( "coef", "cesEst" )
