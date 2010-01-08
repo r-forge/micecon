@@ -98,3 +98,21 @@ print.default( cesLandIntKmenta )
 print( cesLandIntKmenta )
 summary( cesLandIntKmenta )
 coef( summary( cesLandIntKmenta ) )
+
+
+############  cesCalc  ################
+outLandLabor <- cesCalc( c( "land", "qLabor" ), germanFarms,
+   coef( cesLandLabor ) )
+print( outLandLabor )
+all.equal( outLandLabor, cesCalc( c( "land", "qLabor" ), germanFarms,
+   coef( cesLandLabor )[ c( 2, 3, 1 ) ] ) )
+all.equal( outLandLabor, cesCalc( c( "land", "qLabor" ), germanFarms,
+   unname( coef( cesLandLabor ) ) ) )
+
+outLandLaborVrs <- cesCalc( c( "land", "qLabor" ), germanFarms,
+   coef( cesLandLaborVrs ) )
+print( outLandLaborVrs )
+all.equal( outLandLaborVrs, cesCalc( c( "land", "qLabor" ), germanFarms,
+   coef( cesLandLaborVrs )[ c( 3, 1, 4, 2 ) ] ) )
+all.equal( outLandLaborVrs, cesCalc( c( "land", "qLabor" ), germanFarms,
+   unname( coef( cesLandLaborVrs ) ) ) )

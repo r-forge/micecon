@@ -881,3 +881,31 @@ alpha -1.130309435 5.62101369 -0.20108640 8.406310e-01
 rho   -0.227662809 0.57389361 -0.39669863 6.915897e-01
 phi    1.697679744 0.11542340 14.70828018 5.703867e-49
 > 
+> 
+> ############  cesCalc  ################
+> outLandLabor <- cesCalc( c( "land", "qLabor" ), germanFarms,
++    coef( cesLandLabor ) )
+> print( outLandLabor )
+ [1] 1149.886 1189.199 1213.277 1224.088 1224.088 1239.813 1273.229 1276.177
+ [9] 1237.356 1281.091 1315.490 1467.825 1528.759 1581.831 1548.907 1566.597
+[17] 1648.170 1722.864 1833.430 1935.642
+> all.equal( outLandLabor, cesCalc( c( "land", "qLabor" ), germanFarms,
++    coef( cesLandLabor )[ c( 2, 3, 1 ) ] ) )
+[1] TRUE
+> all.equal( outLandLabor, cesCalc( c( "land", "qLabor" ), germanFarms,
++    unname( coef( cesLandLabor ) ) ) )
+[1] TRUE
+> 
+> outLandLaborVrs <- cesCalc( c( "land", "qLabor" ), germanFarms,
++    coef( cesLandLaborVrs ) )
+> print( outLandLaborVrs )
+ [1] 1080.203 1126.396 1154.876 1167.708 1167.708 1186.423 1226.386 1229.924
+ [9] 1183.495 1235.826 1277.296 1464.090 1540.181 1607.065 1565.507 1587.810
+[17] 1691.447 1787.457 1931.456 2066.489
+> all.equal( outLandLaborVrs, cesCalc( c( "land", "qLabor" ), germanFarms,
++    coef( cesLandLaborVrs )[ c( 3, 1, 4, 2 ) ] ) )
+[1] TRUE
+> all.equal( outLandLaborVrs, cesCalc( c( "land", "qLabor" ), germanFarms,
++    unname( coef( cesLandLaborVrs ) ) ) )
+[1] TRUE
+> 
