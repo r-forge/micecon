@@ -27,6 +27,27 @@ coef( cesLandLaborVrs )
 vcov( cesLandLaborVrs )
 coef( summary( cesLandLaborVrs ) )
 
+# using the CG optimization method
+cesLandLaborCg <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "CG" )
+print.default( cesLandLaborCg )
+print( cesLandLaborCg )
+summary( cesLandLaborCg )
+coef( cesLandLaborCg )
+vcov( cesLandLaborCg )
+coef( summary( cesLandLaborCg ) )
+
+# using the SANN optimization method
+set.seed( 123 )
+cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "SANN" )
+print.default( cesLandLaborSann )
+print( cesLandLaborSann )
+summary( cesLandLaborSann )
+coef( cesLandLaborSann )
+vcov( cesLandLaborSann )
+coef( summary( cesLandLaborSann ) )
+
 # using the BFGS optimization method
 cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
    method = "BFGS" )
@@ -73,6 +94,23 @@ print.default( cesLandIntVrs )
 print( cesLandIntVrs )
 summary( cesLandIntVrs )
 coef( summary( cesLandIntVrs ) )
+
+# using the CG optimization method
+cesLandIntCg <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "CG" )
+print.default( cesLandIntCg )
+print( cesLandIntCg )
+summary( cesLandIntCg )
+coef( summary( cesLandIntCg ) )
+
+# using the SANN optimization method
+set.seed( 234 )
+cesLandIntSann <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "SANN" )
+print.default( cesLandIntSann )
+print( cesLandIntSann )
+summary( cesLandIntSann )
+coef( summary( cesLandIntSann ) )
 
 # using the BFGS optimization method
 cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,

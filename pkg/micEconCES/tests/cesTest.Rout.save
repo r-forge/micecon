@@ -236,6 +236,195 @@ alpha  0.6045810         NA      NA       NA
 rho   -0.9349716         NA      NA       NA
 phi    1.2704379         NA      NA       NA
 > 
+> # using the CG optimization method
+> cesLandLaborCg <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    method = "CG" )
+> print.default( cesLandLaborCg )
+$optim
+$optim$par
+     gamma      alpha        rho 
+  47.50869  548.70721 -186.49980 
+
+$optim$value
+[1] 165832.4
+
+$optim$counts
+function gradient 
+     758      101 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+$optim$hessian
+            gamma        alpha         rho
+gamma 36807.96375 17.088179516 317.1172145
+alpha    17.08818  0.007933225   0.1472224
+rho     317.11721  0.147222377   2.7321079
+
+
+$coefficients
+     gamma      alpha        rho 
+  47.50869  548.70721 -186.49980 
+
+$vcov
+      gamma alpha rho
+gamma    NA    NA  NA
+alpha    NA    NA  NA
+rho      NA    NA  NA
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "CG")
+
+$method
+[1] "CG"
+
+$fitted.values
+ [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.523 1935.741
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandLaborCg )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "CG")
+
+Coefficients:
+  gamma   alpha     rho 
+  47.51  548.71 -186.50 
+
+> summary( cesLandLaborCg )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "CG")
+
+Estimation method:  CG 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma    47.51         NA      NA       NA
+alpha   548.71         NA      NA       NA
+rho    -186.50         NA      NA       NA
+
+> coef( cesLandLaborCg )
+     gamma      alpha        rho 
+  47.50869  548.70721 -186.49980 
+> vcov( cesLandLaborCg )
+      gamma alpha rho
+gamma    NA    NA  NA
+alpha    NA    NA  NA
+rho      NA    NA  NA
+> coef( summary( cesLandLaborCg ) )
+        Estimate Std. Error t value Pr(>|t|)
+gamma   47.50869         NA      NA       NA
+alpha  548.70721         NA      NA       NA
+rho   -186.49980         NA      NA       NA
+> 
+> # using the SANN optimization method
+> set.seed( 123 )
+> cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    method = "SANN" )
+> print.default( cesLandLaborSann )
+$optim
+$optim$par
+     gamma      alpha        rho 
+37.6955089  1.0272590  0.6452962 
+
+$optim$value
+[1] 128995.3
+
+$optim$counts
+function gradient 
+   10000       NA 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+$optim$hessian
+            gamma      alpha       rho
+gamma    58411.58   23401383   1317982
+alpha 23401382.50 9514611998 538196288
+rho    1317981.97  538196288  30577578
+
+
+$coefficients
+     gamma      alpha        rho 
+37.6955089  1.0272590  0.6452962 
+
+$vcov
+              gamma         alpha           rho
+gamma  1.634830e-03 -7.959175e-06  6.962362e-05
+alpha -7.959175e-06  6.266523e-08 -7.599079e-07
+rho    6.962362e-05 -7.599079e-07  1.040687e-05
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "SANN")
+
+$method
+[1] "SANN"
+
+$fitted.values
+ [1] 1109.338 1153.191 1182.809 1188.985 1188.985 1208.923 1251.673 1248.227
+ [9] 1204.429 1247.373 1287.679 1439.747 1510.329 1580.205 1544.296 1574.300
+[17] 1673.100 1767.230 1909.543 2044.300
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandLaborSann )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "SANN")
+
+Coefficients:
+  gamma   alpha     rho 
+37.6955  1.0273  0.6453 
+
+> summary( cesLandLaborSann )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "SANN")
+
+Estimation method:  SANN 
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)    
+gamma 3.770e+01  4.043e-02   932.3   <2e-16 ***
+alpha 1.027e+00  2.503e-04  4103.6   <2e-16 ***
+rho   6.453e-01  3.226e-03   200.0   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+> coef( cesLandLaborSann )
+     gamma      alpha        rho 
+37.6955089  1.0272590  0.6452962 
+> vcov( cesLandLaborSann )
+              gamma         alpha           rho
+gamma  1.634830e-03 -7.959175e-06  6.962362e-05
+alpha -7.959175e-06  6.266523e-08 -7.599079e-07
+rho    6.962362e-05 -7.599079e-07  1.040687e-05
+> coef( summary( cesLandLaborSann ) )
+        Estimate   Std. Error   t value Pr(>|t|)
+gamma 37.6955089 0.0404330343  932.2948        0
+alpha  1.0272590 0.0002503302 4103.6154        0
+rho    0.6452962 0.0032259684  200.0318        0
+> 
 > # using the BFGS optimization method
 > cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
 +    method = "BFGS" )
@@ -702,6 +891,179 @@ gamma 36.132869         NA      NA       NA
 alpha  2.315477         NA      NA       NA
 rho    2.014573         NA      NA       NA
 phi    1.241926         NA      NA       NA
+> 
+> # using the CG optimization method
+> cesLandIntCg <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
++    method = "CG" )
+> print.default( cesLandIntCg )
+$optim
+$optim$par
+    gamma     alpha       rho 
+ 53.58074 163.07101  58.92213 
+
+$optim$value
+[1] 165832.4
+
+$optim$counts
+function gradient 
+     758      101 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+$optim$hessian
+           gamma        alpha        rho
+gamma 28938.1340 -161.3704380 2275.08204
+alpha  -161.3704    0.8998652  -12.68675
+rho    2275.0820  -12.6867538  178.86427
+
+
+$coefficients
+    gamma     alpha       rho 
+ 53.58074 163.07101  58.92213 
+
+$vcov
+      gamma alpha rho
+gamma    NA    NA  NA
+alpha    NA    NA  NA
+rho      NA    NA  NA
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "CG")
+
+$method
+[1] "CG"
+
+$fitted.values
+ [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.523 1935.741
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandIntCg )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "CG")
+
+Coefficients:
+ gamma  alpha    rho 
+ 53.58 163.07  58.92 
+
+> summary( cesLandIntCg )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "CG")
+
+Estimation method:  CG 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma    53.58         NA      NA       NA
+alpha   163.07         NA      NA       NA
+rho      58.92         NA      NA       NA
+
+> coef( summary( cesLandIntCg ) )
+       Estimate Std. Error t value Pr(>|t|)
+gamma  53.58074         NA      NA       NA
+alpha 163.07101         NA      NA       NA
+rho    58.92213         NA      NA       NA
+> 
+> # using the SANN optimization method
+> set.seed( 234 )
+> cesLandIntSann <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
++    method = "SANN" )
+> print.default( cesLandIntSann )
+$optim
+$optim$par
+     gamma      alpha        rho 
+39.4034688  0.4298509  3.8197376 
+
+$optim$value
+[1] 165834.9
+
+$optim$counts
+function gradient 
+   10000       NA 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+$optim$hessian
+            gamma    alpha       rho
+gamma    53525.02 -1284707 -122051.0
+alpha -1284706.94 30849975 2931148.5
+rho    -122050.96  2931149  278677.3
+
+
+$coefficients
+     gamma      alpha        rho 
+39.4034688  0.4298509  3.8197376 
+
+$vcov
+             gamma         alpha           rho
+gamma  0.041405449  0.0020060414 -0.0029655475
+alpha  0.002006041  0.0001473566 -0.0006713318
+rho   -0.002965548 -0.0006713318  0.0057659000
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "SANN")
+
+$method
+[1] "SANN"
+
+$fitted.values
+ [1] 1150.128 1189.449 1213.533 1224.346 1224.346 1240.075 1273.497 1276.446
+ [9] 1237.617 1281.361 1315.767 1468.134 1529.081 1582.164 1549.232 1566.926
+[17] 1648.515 1723.223 1833.811 1936.045
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandIntSann )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "SANN")
+
+Coefficients:
+  gamma   alpha     rho 
+39.4035  0.4299  3.8197 
+
+> summary( cesLandIntSann )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "SANN")
+
+Estimation method:  SANN 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma 39.40347    0.20348  193.65   <2e-16 ***
+alpha  0.42985    0.01214   35.41   <2e-16 ***
+rho    3.81974    0.07593   50.30   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+> coef( summary( cesLandIntSann ) )
+        Estimate Std. Error   t value      Pr(>|t|)
+gamma 39.4034688 0.20348329 193.64474  0.000000e+00
+alpha  0.4298509 0.01213905  35.41058 1.173726e-274
+rho    3.8197376 0.07593352  50.30370  0.000000e+00
 > 
 > # using the BFGS optimization method
 > cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
