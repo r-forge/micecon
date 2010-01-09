@@ -35,22 +35,24 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       }
       result <- cesEstKmenta( yName = yName, xNames = xNames, data = data )
    } else if( method %in% c( "Nelder-Mead", "SANN" ) ) {
-      result <- optim( par = startVal, fn = cesRss, data = estData,
+      result <- list()
+      result$optim <- optim( par = startVal, fn = cesRss, data = estData,
          hessian = TRUE, method = method, ... )
-      result$coefficients <- result$par
+      result$coefficients <- result$optim$par
    } else if( method %in% c( "BFGS", "CG", "L-BFGS-B" ) ) {
-      result <- optim( par = startVal, fn = cesRss, gr = cesRssDeriv,
+      result <- list()
+      result$optim <- optim( par = startVal, fn = cesRss, gr = cesRssDeriv,
          data = estData, hessian = TRUE, method = method, ... )
-      result$coefficients <- result$par
+      result$coefficients <- result$optim$par
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
          " 'CG', 'L-BFGS-B', 'SANN', or 'Kmenta'" )
    }
 
    # covariance matrix of the estimated parameters
-   if( is.null( result$vcov ) && !is.null( result$hessian ) ) {
-      if( det( result$hessian ) >= .Machine$double.eps ) {
-         result$vcov <- solve( result$hessian )
+   if( is.null( result$vcov ) && !is.null( result$optim$hessian ) ) {
+      if( det( result$optim$hessian ) >= .Machine$double.eps ) {
+         result$vcov <- solve( result$optim$hessian )
       }
    }
    if( is.null( result$vcov ) ) {
