@@ -51,7 +51,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead", \dots )
    \code{\link[stats]{optim}},
    the returned object contains all elements returned
    by \code{\link[stats]{optim}} in addition to the following elements:
-   \item{par}{estimated coefficients/parameters of the CES.}
+   \item{coefficients}{estimated coefficients/parameters of the CES.}
    \item{hessian}{Hessian matrix of the objective function
       with respect to the estimated parameters.}
    \item{fitted.values}{the fitted values.}

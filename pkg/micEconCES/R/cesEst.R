@@ -37,9 +37,11 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    } else if( method %in% c( "Nelder-Mead", "SANN" ) ) {
       result <- optim( par = startVal, fn = cesRss, data = estData,
          hessian = TRUE, method = method, ... )
+      result$coefficients <- result$par
    } else if( method %in% c( "BFGS", "CG", "L-BFGS-B" ) ) {
       result <- optim( par = startVal, fn = cesRss, gr = cesRssDeriv,
          data = estData, hessian = TRUE, method = method, ... )
+      result$coefficients <- result$par
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
          " 'CG', 'L-BFGS-B', 'SANN', or 'Kmenta'" )
@@ -52,9 +54,10 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       }
    }
    if( is.null( result$vcov ) ) {
-      result$vcov <- matrix( NA, nrow = length( result$par ),
-         ncol = length( result$par ) )
-      dimnames( result$vcov ) <- dimnames( result$hessian )
+      result$vcov <- matrix( NA, nrow = length( result$coefficients ),
+         ncol = length( result$coefficients ) )
+      rownames( result$vcov ) <- names( result$coefficients )
+      colnames( result$vcov ) <- names( result$coefficients )
    }
 
    # return also the call
@@ -65,7 +68,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # fitted values
    result$fitted.values <- cesCalc( xNames = xNames, data = data,
-      coef = result$par )
+      coef = result$coefficients )
 
    # nonlinear least squares
 #    result$nls <- nls(
