@@ -92,9 +92,17 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead", \dots )
       germanFarms, method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
       upper = c( Inf, 1, Inf ) )
 
+   # using the CG optimization method
+   cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+      method = "CG" )
+
    # using the SANN optimization method
    cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
       method = "SANN" )
+
+   # using the Kmenta approximation
+   cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+      method = "Kmenta" )
 
 
    ## CES: Land & Intermediate Inputs
