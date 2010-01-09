@@ -462,7 +462,7 @@ $fitted.values
 [15]  831222.5 1015749.1 1381972.3 1854547.9 2793606.8 3981968.9
 
 attr(,"class")
-[1] "cesEst"
+[1] "cesEst" "list"  
 > print( cesLandLaborKmenta )
 Estimated CES function
 
@@ -894,7 +894,7 @@ $fitted.values
 [15] 11673.142 10947.650 10010.382  9775.171 10345.047 11280.007
 
 attr(,"class")
-[1] "cesEst"
+[1] "cesEst" "list"  
 > print( cesLandIntKmenta )
 Estimated CES function
 

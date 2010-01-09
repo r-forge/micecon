@@ -14,24 +14,6 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    # store the (matched) call
    matchedCall <- match.call()
 
-   # Estimation by the Kmenta approximation
-   if( method == "Kmenta" ) {
-      if( !vrs ) {
-         warning( "allowing for variable returns to scale",
-            " in the Kmanta approximation",
-            " although argument 'vrs' is 'FALSE'." )
-         matchedCall$vrs <- TRUE
-      }
-      result <- cesEstKmenta( yName = yName, xNames = xNames, data = data )
-      result$call <- matchedCall
-      result$method <- method
-      # fitted values
-      result$fitted.values <- cesCalc( xNames = xNames, data = data,
-      coef = result$par )
-      class( result ) <- "cesEst"
-      return( result )
-   }
-
    # prepare data for estimation
    estData <- data.frame( y = data[[ yName ]],
       x1 = data[[ xNames[ 1 ] ]], x2 = data[[ xNames[ 2 ] ]] )
@@ -43,7 +25,16 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       startVal <- c( startVal, phi = 1 )
    }
 
-   if( method %in% c( "Nelder-Mead", "SANN" ) ) {
+   # Estimation by the Kmenta approximation
+   if( method == "Kmenta" ) {
+      if( !vrs ) {
+         warning( "allowing for variable returns to scale",
+            " in the Kmanta approximation",
+            " although argument 'vrs' is 'FALSE'." )
+         matchedCall$vrs <- TRUE
+      }
+      result <- cesEstKmenta( yName = yName, xNames = xNames, data = data )
+   } else if( method %in% c( "Nelder-Mead", "SANN" ) ) {
       result <- optim( par = startVal, fn = cesRss, data = estData,
          hessian = TRUE, method = method, ... )
    } else if( method %in% c( "BFGS", "CG", "L-BFGS-B" ) ) {
@@ -51,13 +42,16 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          data = estData, hessian = TRUE, method = method, ... )
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
-         " 'CG', 'L-BFGS-B', or 'SANN'" )
+         " 'CG', 'L-BFGS-B', 'SANN', or 'Kmenta'" )
    }
 
    # covariance matrix of the estimated parameters
-   if( det( result$hessian ) >= .Machine$double.eps ) {
-      result$vcov <- solve( result$hessian )
-   } else {
+   if( is.null( result$vcov ) && !is.null( result$hessian ) ) {
+      if( det( result$hessian ) >= .Machine$double.eps ) {
+         result$vcov <- solve( result$hessian )
+      }
+   }
+   if( is.null( result$vcov ) ) {
       result$vcov <- matrix( NA, nrow = length( result$par ),
          ncol = length( result$par ) )
       dimnames( result$vcov ) <- dimnames( result$hessian )
