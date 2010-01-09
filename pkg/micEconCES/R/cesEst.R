@@ -1,5 +1,7 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
-      method = "Nelder-Mead", ... ) {
+      method = "Nelder-Mead",
+      startVal = c( sqrt( mean( data[[ yName ]] ) ), 0.5, -0.5, 1 ),
+      ... ) {
 
    # y = gamma * ( alpha * x1^(-rho) + ( 1 - alpha ) * x2^(-rho) )^(-phi/rho)
    # s = 1 / ( 1 + rho )
@@ -11,19 +13,26 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          " two variable names" )
    }
 
+   # start values
+   if( length( startVal ) != 4 && vrs ) {
+      stop( "a CES function with 2 explanatory variables and VRS has 4",
+         " parameters but you provided ", length( startVal ),
+         " starting values" )
+   } else if( ! length( startVal ) %in% c( 3, 4 ) && !vrs ) {
+      stop( "a CES function with 2 explanatory variables and CRS has 3",
+         " parameters but you provided ", length( startVal ),
+         " starting values" )
+   }
+   names( startVal ) <- c( "gamma", "alpha", "rho", "phi" )[
+      1:length( startVal ) ]
+   startVal <- startVal[ 1:( 3 + vrs ) ]
+
    # store the (matched) call
    matchedCall <- match.call()
 
    # prepare data for estimation
    estData <- data.frame( y = data[[ yName ]],
       x1 = data[[ xNames[ 1 ] ]], x2 = data[[ xNames[ 2 ] ]] )
-
-   # start values
-   startVal <- c( gamma = sqrt( mean( estData$y ) ),
-      alpha = 0.5, rho = -0.5 )
-   if( vrs ) {
-      startVal <- c( startVal, phi = 1 )
-   }
 
    # Estimation by the Kmenta approximation
    if( method == "Kmenta" ) {
