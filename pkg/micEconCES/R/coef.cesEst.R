@@ -1,3 +1,3 @@
 coef.cesEst <- function( object, ... ) {
-   return( object$par )
+   return( object$coefficients )
 }

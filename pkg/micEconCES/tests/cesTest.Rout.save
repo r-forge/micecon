@@ -75,6 +75,10 @@ gamma  38858.63 183465.63 16675.458
 alpha 183465.63 866471.17 78682.178
 rho    16675.46  78682.18  7146.835
 
+$coefficients
+    gamma     alpha       rho 
+46.236274  1.491768 -6.564428 
+
 $vcov
       gamma alpha rho
 gamma    NA    NA  NA
@@ -159,6 +163,10 @@ gamma    61907.71   4568388   -1160579    6600081
 alpha  4568388.02 338516030  -86147948  488209129
 rho   -1160578.92 -86147948   21938110 -124178175
 phi    6600080.58 488209129 -124178175  707419885
+
+$coefficients
+     gamma      alpha        rho        phi 
+36.5786357  0.6045810 -0.9349716  1.2704379 
 
 $vcov
       gamma alpha rho phi
@@ -251,6 +259,10 @@ gamma 37434.99411 20.98467607 497.7089204
 alpha    20.98468  0.01176313   0.2789976
 rho     497.70892  0.27899764   6.6172004
 
+$coefficients
+     gamma      alpha        rho 
+  47.10913  561.14577 -149.76314 
+
 $vcov
       gamma alpha rho
 gamma    NA    NA  NA
@@ -338,6 +350,10 @@ $hessian
 gamma  3.440056e+04  3.667095e+05 -7.638124e-08
 alpha  3.667095e+05  3.909125e+06 -1.642429e+00
 rho   -7.638124e-08 -1.642429e+00 -1.246176e-07
+
+$coefficients
+    gamma     alpha       rho 
+49.142950  1.000000 -4.610031 
 
 $vcov
       gamma alpha rho
@@ -438,7 +454,7 @@ eq1_(Intercept)         eq1_a_1         eq1_a_2       eq1_b_1_1       eq1_b_1_2
       eq1_b_2_2 
         -3.7741 
 
-$par
+$coefficients
         gamma         alpha           rho           phi 
  1.314540e-06  7.480918e+00 -4.701592e-02  1.655682e+00 
 
@@ -535,6 +551,10 @@ gamma    54219.07 -1347570 -139921.5
 alpha -1347570.49 33457587 3472547.5
 rho    -139921.45  3472548  359901.8
 
+$coefficients
+     gamma      alpha        rho 
+39.1271322  0.4565819  3.4462902 
+
 $vcov
              gamma         alpha           rho
 gamma -0.019805711 -1.029379e-03  0.0022320649
@@ -611,6 +631,10 @@ gamma   63715.32   -612346.9   586024.7   6907406
 alpha -612346.87   5884379.6 -5635149.7 -66392705
 rho    586024.72  -5635149.7  5396554.0  63533245
 phi   6907405.73 -66392705.3 63533245.1 751235920
+
+$coefficients
+    gamma     alpha       rho       phi 
+36.132869  2.315477  2.014573  1.241926 
 
 $vcov
       gamma alpha rho phi
@@ -694,6 +718,10 @@ gamma 27024.8177 -92.2898068 3748.78503
 alpha   -92.2898   0.3151814  -12.80202
 rho    3748.7850 -12.8020166  520.01085
 
+$coefficients
+    gamma     alpha       rho 
+ 55.44507 336.65007  48.22737 
+
 $vcov
       gamma alpha rho
 gamma    NA    NA  NA
@@ -773,6 +801,10 @@ $hessian
 gamma    58519.81 -1665042 -117022.3
 alpha -1665042.26 47376621 3329644.9
 rho    -117022.32  3329645  234015.5
+
+$coefficients
+     gamma      alpha        rho 
+37.6785181  0.2645720  5.0053076 
 
 $vcov
             gamma         alpha          rho
@@ -870,7 +902,7 @@ eq1_(Intercept)         eq1_a_1         eq1_a_2       eq1_b_1_1       eq1_b_1_2
       eq1_b_2_2 
       -0.930653 
 
-$par
+$coefficients
        gamma        alpha          rho          phi 
  0.005251082 -1.130309435 -0.227662809  1.697679744 
 
