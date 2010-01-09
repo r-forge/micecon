@@ -21,9 +21,10 @@ cesCalc( xNames, data, coef )
    \item{xNames}{a vector of two strings containing the names of the
       explanatory variables.}
    \item{data}{data frame containing the explanatory variables.}
-   \item{coef}{numeric vector of length 3 for constant returns to scale
-      (without \eqn{\phi}{phi}, i.e. \eqn{\phi}{phi} = 1)
-      or of length 4 (without \eqn{\phi}{phi});
+   \item{coef}{coefficients of the CES:
+      numeric vector of length 3 for constant returns to scale
+      (CRS, without \eqn{\phi}{phi}, i.e. \eqn{\phi}{phi} = 1)
+      or of length 4 for variable returns to scale (VRS, with \eqn{\phi}{phi});
       if the vector is unnamed, the order is assumed to be
       \eqn{\gamma}{gamma}, \eqn{\alpha}{alpha}, \eqn{\rho}{rho},
       and eventually \eqn{\phi}{phi};
