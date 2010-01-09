@@ -46,18 +46,16 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead", \dots )
 }
 
 \value{
-   A list of class \code{cesEst}.
-   If the CES is estimated by non-linear least-squares using
-   \code{\link[stats]{optim}},
-   the returned object contains all elements returned
-   by \code{\link[stats]{optim}} in addition to the following elements:
+   A list of class \code{cesEst}
+   that contains following elements:
    \item{coefficients}{estimated coefficients/parameters of the CES.}
-   \item{hessian}{Hessian matrix of the objective function
-      with respect to the estimated parameters.}
    \item{fitted.values}{the fitted values.}
    \item{vcov}{covariance matrix of the estimated parameters.}
    \item{call}{the matched call.}
    \item{method}{argument \code{method}.}
+   \item{optim}{object returned by \code{\link[stats]{optim}}
+      (only if argument \code{method} is \code{"Nelder-Mead"}, \code{"BFGS"},
+      \code{"CG"}, \code{"L-BFGS-B"}, or \code{"SANN")}).}
    \item{translogUnr}{unrestricted estimation of the translog model
       (only if argument \code{method} is \code{"Kmenta"}).}
    \item{translog}{restricted estimation of the translog model
