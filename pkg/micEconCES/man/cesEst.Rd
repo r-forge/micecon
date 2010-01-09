@@ -22,7 +22,9 @@
 }
 
 \usage{
-cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead", \dots )
+cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
+   startVal = c( sqrt( mean( data[[ yName ]] ) ), 0.5, -0.5, 1 ),
+   \dots )
 }
 
 \arguments{
@@ -37,6 +39,13 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead", \dots )
       or \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"},
       \code{"L-BFGS-B"}, or \code{"SANN")} for a non-linear least-squares
       estimation (using \code{\link[stats]{optim}}).}
+   \item{startVal}{starting values for the non-linear estimations:
+      a numeric vector of length 3 for constant returns to scale
+      (CRS, without \eqn{\phi}{phi}, i.e. \eqn{\phi}{phi} = 1)
+      or of length 4 for variable returns to scale (VRS, with \eqn{\phi}{phi});
+      the order must be \eqn{\gamma}{gamma}, \eqn{\alpha}{alpha},
+      \eqn{\rho}{rho}, and eventually \eqn{\phi}{phi};
+      names of the elements are ignored.}
    \item{\dots}{further arguments are passed to \code{\link[stats]{optim}}.}
 }
 
