@@ -58,8 +58,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    A list of class \code{cesEst}
    that contains following elements:
    \item{coefficients}{estimated coefficients/parameters of the CES.}
-   \item{fitted.values}{the fitted values.}
    \item{vcov}{covariance matrix of the estimated parameters.}
+   \item{fitted.values}{the fitted values.}
+   \item{residuals}{the residuals.}
    \item{call}{the matched call.}
    \item{method}{argument \code{method}.}
    \item{optim}{object returned by \code{\link[stats]{optim}}

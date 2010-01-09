@@ -80,6 +80,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    result$fitted.values <- cesCalc( xNames = xNames, data = data,
       coef = result$coefficients )
 
+   # residuals
+   result$residuals <- estData$y - result$fitted.values
+
    # nonlinear least squares
 #    result$nls <- nls(
 #       y ~ gamma * ( alpha * x1^rho + ( 1 - alpha ) * x2^rho )^(1/rho),
