@@ -47,27 +47,15 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result <- list()
       if( method %in% c( "Nelder-Mead", "SANN" ) ) {
          result$optim <- optim( par = startVal, fn = cesRss, data = estData,
-            hessian = TRUE, method = method, ... )
+            method = method, ... )
       } else {
          result$optim <- optim( par = startVal, fn = cesRss, gr = cesRssDeriv,
-            data = estData, hessian = TRUE, method = method, ... )
+            data = estData, method = method, ... )
       }
       result$coefficients <- result$optim$par
-      # covariance matrix of the estimated parameters
-      if( det( result$optim$hessian ) >= .Machine$double.eps ) {
-         result$vcov <- solve( result$optim$hessian )
-      }
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
          " 'CG', 'L-BFGS-B', 'SANN', or 'Kmenta'" )
-   }
-
-   # covariance matrix of the estimated parameters
-   if( is.null( result$vcov ) ) {
-      result$vcov <- matrix( NA, nrow = length( result$coefficients ),
-         ncol = length( result$coefficients ) )
-      rownames( result$vcov ) <- names( result$coefficients )
-      colnames( result$vcov ) <- names( result$coefficients )
    }
 
    # return also the call
@@ -82,6 +70,10 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # residuals
    result$residuals <- estData$y - result$fitted.values
+
+   # unscaled covariance matrix
+   gradients <- cesDerivCoef( par = result$coefficients, data = estData )
+   result$cov.unscaled <- t( gradients ) %*% gradients
 
    # nonlinear least squares
 #    result$nls <- nls(

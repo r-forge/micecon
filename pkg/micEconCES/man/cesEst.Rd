@@ -58,7 +58,12 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    A list of class \code{cesEst}
    that contains following elements:
    \item{coefficients}{estimated coefficients/parameters of the CES.}
-   \item{vcov}{covariance matrix of the estimated parameters.}
+   \item{vcov}{approximate covariance matrix of the estimated parameters
+      calculated from the parameters of the linearized model by the Delta method
+      (only if argument \code{method} is \code{"Kmenta"}).}
+   \item{cov.unscaled}{unscaled covariance matrix of the estimated parameters,
+      i.e. the product of the gradient matrices evaluated at the estimated
+      parameters.}
    \item{fitted.values}{the fitted values.}
    \item{residuals}{the residuals.}
    \item{call}{the matched call.}
