@@ -19,5 +19,8 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
    printCoefmat( coef( x ), digits = digits )
    cat( "\n" )
 
+   cat( "Residual standard error:", x$sigma, "\n" )
+   cat( "\n" )
+
    invisible( x )
 }

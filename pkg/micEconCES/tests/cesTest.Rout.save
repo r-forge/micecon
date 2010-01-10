@@ -130,6 +130,8 @@ gamma   46.236         NA      NA       NA
 alpha    1.492         NA      NA       NA
 rho     -6.564         NA      NA       NA
 
+Residual standard error: 91.05834 
+
 > coef( cesLandLabor ) 
     gamma     alpha       rho 
 46.236274  1.491768 -6.564428 
@@ -232,6 +234,8 @@ alpha   0.6046         NA      NA       NA
 rho    -0.9350         NA      NA       NA
 phi     1.2704         NA      NA       NA
 
+Residual standard error: 68.81152 
+
 > coef( cesLandLaborVrs )
      gamma      alpha        rho        phi 
 36.5786357  0.6045810 -0.9349716  1.2704379 
@@ -332,6 +336,8 @@ Coefficients:
 gamma    47.51         NA      NA       NA
 alpha   548.71         NA      NA       NA
 rho    -186.50         NA      NA       NA
+
+Residual standard error: 91.05832 
 
 > coef( cesLandLaborCg )
      gamma      alpha        rho 
@@ -435,6 +441,8 @@ rho   6.453e-01  3.226e-03   200.0   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
+Residual standard error: 80.31043 
+
 > coef( cesLandLaborSann )
      gamma      alpha        rho 
 37.6955089  1.0272590  0.6452962 
@@ -533,6 +541,8 @@ Coefficients:
 gamma    47.11         NA      NA       NA
 alpha   561.15         NA      NA       NA
 rho    -149.76         NA      NA       NA
+
+Residual standard error: 91.05832 
 
 > coef( cesLandLaborBfgs )
      gamma      alpha        rho 
@@ -636,6 +646,8 @@ Coefficients:
 gamma    49.14         NA      NA       NA
 alpha     1.00         NA      NA       NA
 rho      -4.61         NA      NA       NA
+
+Residual standard error: 91.05832 
 
 > coef( cesLandLaborBfgsCon )
     gamma     alpha       rho 
@@ -747,6 +759,8 @@ phi    1.656e+00  3.196e-01   5.180 2.22e-07 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
+Residual standard error: 1291888 
+
 > coef( cesLandLaborKmenta )
         gamma         alpha           rho           phi 
  1.314540e-06  7.480918e+00 -4.701592e-02  1.655682e+00 
@@ -845,6 +859,8 @@ gamma  39.1271         NA      NA       NA
 alpha   0.4566         NA      NA       NA
 rho     3.4463         NA      NA       NA
 
+Residual standard error: 91.06165 
+
 > coef( summary( cesLandInt ) )
         Estimate Std. Error t value Pr(>|t|)
 gamma 39.1271322        NaN     NaN      NaN
@@ -939,6 +955,8 @@ alpha    2.315         NA      NA       NA
 rho      2.015         NA      NA       NA
 phi      1.242         NA      NA       NA
 
+Residual standard error: 69.96825 
+
 > coef( summary( cesLandIntVrs ) )
        Estimate Std. Error t value Pr(>|t|)
 gamma 36.132869         NA      NA       NA
@@ -1030,6 +1048,8 @@ Coefficients:
 gamma    53.58         NA      NA       NA
 alpha   163.07         NA      NA       NA
 rho      58.92         NA      NA       NA
+
+Residual standard error: 91.05832 
 
 > coef( summary( cesLandIntCg ) )
        Estimate Std. Error t value Pr(>|t|)
@@ -1125,6 +1145,8 @@ rho    3.81974    0.07593   50.30   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
+Residual standard error: 91.05901 
+
 > coef( summary( cesLandIntSann ) )
         Estimate Std. Error   t value      Pr(>|t|)
 gamma 39.4034688 0.20348329 193.64474  0.000000e+00
@@ -1215,6 +1237,8 @@ Coefficients:
 gamma    55.45         NA      NA       NA
 alpha   336.65         NA      NA       NA
 rho      48.23         NA      NA       NA
+
+Residual standard error: 91.05832 
 
 > coef( summary( cesLandIntBfgs ) )
        Estimate Std. Error t value Pr(>|t|)
@@ -1312,6 +1336,8 @@ alpha  0.26457    0.02786   9.495   <2e-16 ***
 rho    5.00531    0.50652   9.882   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 91.05834 
 
 > coef( summary( cesLandIntBfgsCon ) )
         Estimate Std. Error   t value    Pr(>|t|)
@@ -1417,6 +1443,8 @@ rho   -0.227663   0.573894  -0.397    0.692
 phi    1.697680   0.115423  14.708   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 9241.72 
 
 > coef( summary( cesLandIntKmenta ) )
           Estimate Std. Error     t value     Pr(>|t|)
