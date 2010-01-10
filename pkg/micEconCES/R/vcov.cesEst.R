@@ -1,4 +1,9 @@
 vcov.cesEst <- function( object, ... ){
-   return( object$vcov ) 
+
+   if( !is.null( object$vcov ) ) {
+      return( object$vcov )
+   } else {
+      return( summary( object )$vcov )
+   }
 }
 
