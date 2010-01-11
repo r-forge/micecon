@@ -3,6 +3,7 @@ export( "cesEst" )
 
 S3method( "coef", "cesEst" )
 S3method( "coef", "summary.cesEst" )
+S3method( "fitted", "cesEst" )
 S3method( "print", "cesEst" )
 S3method( "print", "summary.cesEst" )
 S3method( "summary", "cesEst" )
