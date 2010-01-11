@@ -3,7 +3,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       startVal = c( sqrt( mean( data[[ yName ]] ) ), 0.5, -0.5, 1 ),
       ... ) {
 
-   # y = gamma * ( alpha * x1^(-rho) + ( 1 - alpha ) * x2^(-rho) )^(-phi/rho)
+   # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-phi/rho)
    # s = 1 / ( 1 + rho )
 
    checkNames( c( yName, xNames ), names( data ) )
@@ -23,7 +23,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          " parameters but you provided ", length( startVal ),
          " starting values" )
    }
-   names( startVal ) <- c( "gamma", "alpha", "rho", "phi" )[
+   names( startVal ) <- c( "gamma", "delta", "rho", "phi" )[
       1:length( startVal ) ]
    startVal <- startVal[ 1:( 3 + vrs ) ]
 
@@ -77,7 +77,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # nonlinear least squares
 #    result$nls <- nls(
-#       y ~ gamma * ( alpha * x1^rho + ( 1 - alpha ) * x2^rho )^(1/rho),
+#       y ~ gamma * ( delta * x1^rho + ( 1 - delta ) * x2^rho )^(1/rho),
 #       data = estData, start = result$startVal, trace = TRUE,
 #       algorithm = "port", lower = c( -Inf, 0.01 , -Inf ),
 #       upper = c( Inf, 0.99, Inf ) )

@@ -6,8 +6,8 @@
    Estimate a Constant-Elasticities-of-Scale (CES) function
    with two exogenous variables by Least Squares.
 
-   \deqn{y = \gamma * ( \alpha * x1^{-\rho} + ( 1 - \alpha ) * x2^{-\rho} )^{-\phi/\rho}}{%
-      y = gamma * ( alpha * x1^(-rho) + ( 1 - alpha ) * x2^(-rho) )^(-phi/rho)}
+   \deqn{y = \gamma * ( \delta * x1^{-\rho} + ( 1 - \delta ) * x2^{-\rho} )^{-\phi/\rho}}{%
+      y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-phi/rho)}
    where the elesticity of substitution is
    \eqn{s = 1 / ( 1 + \rho )}{s = 1 / ( 1 + rho )}
 
@@ -43,7 +43,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       a numeric vector of length 3 for constant returns to scale
       (CRS, without \eqn{\phi}{phi}, i.e. \eqn{\phi}{phi} = 1)
       or of length 4 for variable returns to scale (VRS, with \eqn{\phi}{phi});
-      the order must be \eqn{\gamma}{gamma}, \eqn{\alpha}{alpha},
+      the order must be \eqn{\gamma}{gamma}, \eqn{\delta}{delta},
       \eqn{\rho}{rho}, and eventually \eqn{\phi}{phi};
       names of the elements are ignored.}
    \item{\dots}{further arguments are passed to \code{\link[stats]{optim}}.}
@@ -102,7 +102,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
       method = "BFGS" )
 
-   # using the L-BFGS-B optimization method with constrained alpha
+   # using the L-BFGS-B optimization method with constrained delta
    cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
       germanFarms, method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
       upper = c( Inf, 1, Inf ) )
@@ -131,7 +131,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
       method = "BFGS" )
 
-   # using the L-BFGS-B optimization method with constrained alpha
+   # using the L-BFGS-B optimization method with constrained delta
    cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
       method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
       upper = c( Inf, 1, Inf ) )

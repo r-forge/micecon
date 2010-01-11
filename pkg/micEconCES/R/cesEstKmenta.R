@@ -16,7 +16,7 @@ cesEstKmenta <- function( yName, xNames, data ){
 
    ## Parameter vector
    result$coefficients <- numeric( 4 )
-   names( result$coefficients ) <- c( "gamma", "alpha", "rho", "phi" )
+   names( result$coefficients ) <- c( "gamma", "delta", "rho", "phi" )
 
    ## Defining gamma
    result$coefficients[ "gamma" ] <- exp( coef( result$translog )[ "eq1_(Intercept)" ] )
@@ -25,8 +25,8 @@ cesEstKmenta <- function( yName, xNames, data ){
    result$coefficients[ "phi" ] <- coef( result$translog )[ "eq1_a_1" ] +
                              coef( result$translog )[ "eq1_a_2" ]
 
-   ## Defining alpha
-   result$coefficients[ "alpha" ] <- coef( result$translog )[ "eq1_a_1" ] /
+   ## Defining delta
+   result$coefficients[ "delta" ] <- coef( result$translog )[ "eq1_a_1" ] /
                                result$coefficients[ "phi" ]
 
    ## Defining rho
@@ -43,9 +43,9 @@ cesEstKmenta <- function( yName, xNames, data ){
    jacobian[ "gamma", "eq1_(Intercept)" ] <-
       exp( coef( result$translog )[ "eq1_(Intercept)" ] )
    jacobian[ "phi", c( "eq1_a_1", "eq1_a_2" )] <- 1
-   jacobian[ "alpha", "eq1_a_1" ] <- 1 / result$coefficients[ "phi" ] -
+   jacobian[ "delta", "eq1_a_1" ] <- 1 / result$coefficients[ "phi" ] -
       coef( result$translog )[ "eq1_a_1" ] / result$coefficients[ "phi" ]^2
-   jacobian[ "alpha", "eq1_a_2" ] <-
+   jacobian[ "delta", "eq1_a_2" ] <-
       - coef( result$translog )[ "eq1_a_1" ] / result$coefficients[ "phi" ]^2
    jacobian[ "rho", "eq1_a_1" ] <- coef( result$translog )[ "eq1_b_1_2" ] /
       coef( result$translog )[ "eq1_a_1" ] * coef( result$translog )[ "eq1_a_2" ] -
