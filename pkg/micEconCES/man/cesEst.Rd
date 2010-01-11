@@ -88,7 +88,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
 
 \seealso{\code{\link[micEcon]{translogEst}} and \code{\link[micEcon]{quadFuncEst}}.}
 
-\author{Arne Henningsen}
+\author{Arne Henningsen and Geraldine Henningsen}
 
 \examples{
    data( germanFarms )
