@@ -86,7 +86,12 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       (only if argument \code{method} is \code{"Kmenta"}).}
 }
 
-\seealso{\code{\link[micEcon]{translogEst}} and \code{\link[micEcon]{quadFuncEst}}.}
+\seealso{
+   \code{\link{summary.cesEst}} for the \code{summary} method,
+   \code{\link{coef.cesEst}} for several further methods,
+   \code{\link{cesCalc}} for calculations or simulations with the CES,
+   \code{\link[micEcon]{translogEst}} for estimating translog functions, and
+   \code{\link[micEcon]{quadFuncEst}} for estimating quadratic functions.}
 
 \author{Arne Henningsen and Geraldine Henningsen}
 
