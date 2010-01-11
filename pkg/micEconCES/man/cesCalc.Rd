@@ -6,8 +6,8 @@
    Calculate endogenous variable of a Constant-Elasticities-of-Scale (CES)
    function with two exogenous variables.
 
-   \deqn{y = \gamma * ( \alpha * x1^{-\rho} + ( 1 - \alpha ) * x2^{-\rho} )^{-\phi/\rho}}{%
-      y = gamma * ( alpha * x1^(-rho) + ( 1 - alpha ) * x2^(-rho) )^(-phi/rho)}
+   \deqn{y = \gamma * ( \delta * x1^{-\rho} + ( 1 - \delta ) * x2^{-\rho} )^{-\phi/\rho}}{%
+      y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-phi/rho)}
    where the elesticity of substitution is
    \eqn{s = 1 / ( 1 + \rho )}{s = 1 / ( 1 + rho )}
 
@@ -26,10 +26,10 @@ cesCalc( xNames, data, coef )
       (CRS, without \eqn{\phi}{phi}, i.e. \eqn{\phi}{phi} = 1)
       or of length 4 for variable returns to scale (VRS, with \eqn{\phi}{phi});
       if the vector is unnamed, the order is assumed to be
-      \eqn{\gamma}{gamma}, \eqn{\alpha}{alpha}, \eqn{\rho}{rho},
+      \eqn{\gamma}{gamma}, \eqn{\delta}{delta}, \eqn{\rho}{rho},
       and eventually \eqn{\phi}{phi};
       if the vector is named, the names must be \code{"gamma"},
-      \code{"alpha"}, \code{"rho"}, and eventually \code{"phi"},
+      \code{"delta"}, \code{"rho"}, and eventually \code{"phi"},
       where the order is irrelevant.}
 }
 

@@ -58,7 +58,7 @@ coef( cesLandLaborBfgs )
 vcov( cesLandLaborBfgs )
 coef( summary( cesLandLaborBfgs ) )
 
-# using the L-BFGS-B optimization method with constrained alpha
+# using the L-BFGS-B optimization method with constrained delta
 cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
    germanFarms, method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
    upper = c( Inf, 1, Inf ) )
@@ -120,7 +120,7 @@ print( cesLandIntBfgs )
 summary( cesLandIntBfgs )
 coef( summary( cesLandIntBfgs ) )
 
-# using the L-BFGS-B optimization method with constrained alpha
+# using the L-BFGS-B optimization method with constrained delta
 cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
    upper = c( Inf, 1, Inf ) )

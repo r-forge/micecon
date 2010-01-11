@@ -10,7 +10,7 @@ cesCalc <- function( xNames, data, coef ) {
          nExog + 2, " (VRS) coefficients" )
    }
 
-   coefNames <- c( "gamma", "alpha", "rho", "phi" )[ 1:length( coef ) ]
+   coefNames <- c( "gamma", "delta", "rho", "phi" )[ 1:length( coef ) ]
    if( is.null( names( coef ) ) ) {
       names( coef ) <- coefNames
    } else {
@@ -26,8 +26,8 @@ cesCalc <- function( xNames, data, coef ) {
    }
 
    result <- coef[ "gamma" ] *
-      ( coef[ "alpha" ] * data[[ xNames[ 1 ] ]]^(-coef[ "rho" ]) +
-      ( 1 - coef[ "alpha" ] ) * data[[ xNames[ 2 ] ]]^(-coef[ "rho" ]) )^
+      ( coef[ "delta" ] * data[[ xNames[ 1 ] ]]^(-coef[ "rho" ]) +
+      ( 1 - coef[ "delta" ] ) * data[[ xNames[ 2 ] ]]^(-coef[ "rho" ]) )^
       ( -coef[ "phi" ] / coef[ "rho" ] )
 
    return( result )
