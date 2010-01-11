@@ -1350,7 +1350,7 @@ rho    5.0053076   31147.32 1.606979e-04 0.9998718
 +    method = "Kmenta" )
 Warning message:
 In cesEst("qOutput", c("land", "qVarInput"), germanFarms, method = "Kmenta") :
-  allowing for variable returns to scale in the Kmanta approximation although argument 'vrs' is 'FALSE'.
+  allowing for variable returns to scale in the Kmenta approximation although argument 'vrs' is 'FALSE'.
 > print.default( cesLandIntKmenta )
 $translogUnr
 Estimated Translog function with 20 observations.
