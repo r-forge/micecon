@@ -2,6 +2,7 @@
 \alias{coef.cesEst}
 \alias{coef.summary.cesEst}
 \alias{fitted.cesEst}
+\alias{residuals.cesEst}
 \alias{vcov.cesEst}
 \title{Methods for Estimated CES Functions}
 
@@ -13,6 +14,7 @@ Methods for Objects of Class \code{cesEst} and \code{cesEst}.
 \method{coef}{cesEst}( object, \dots )
 \method{coef}{summary.cesEst}( object, \dots )
 \method{fitted}{cesEst}( object, \dots )
+\method{residuals}{cesEst}( object, \dots )
 \method{vcov}{cesEst}( object, \dots )
 }
 
@@ -31,6 +33,8 @@ Methods for Objects of Class \code{cesEst} and \code{cesEst}.
       and corresponding (two-sided) P-values.
 
    \code{fitted.cesEst} returns a vector of the fitted values.
+
+   \code{residuals.cesEst} returns a vector of the residuals.
 
    \code{vcov.cesEst} returns the variance covariance matrix
    of the estimated coefficients.
@@ -59,6 +63,9 @@ Methods for Objects of Class \code{cesEst} and \code{cesEst}.
 
    # fitted values of the estimated model
    fitted( cesLandLabor )
+
+   # residuals of the estimated model
+   residuals( cesLandLabor )
 
    # covariance matrix of the estimated coefficients
    vcov( cesLandLabor )

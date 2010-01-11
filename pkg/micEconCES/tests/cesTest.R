@@ -16,7 +16,8 @@ summary( cesLandLabor )
 coef( cesLandLabor ) 
 vcov( cesLandLabor ) 
 coef( summary( cesLandLabor ) )
-fitted( cesLandLabor ) 
+fitted( cesLandLabor )
+residuals( cesLandLabor )
 
 # variable returns to scale
 cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -28,6 +29,7 @@ coef( cesLandLaborVrs )
 vcov( cesLandLaborVrs )
 coef( summary( cesLandLaborVrs ) )
 fitted( cesLandLaborVrs )
+residuals( cesLandLaborVrs )
 
 # using the CG optimization method
 cesLandLaborCg <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -39,6 +41,7 @@ coef( cesLandLaborCg )
 vcov( cesLandLaborCg )
 coef( summary( cesLandLaborCg ) )
 fitted( cesLandLaborCg )
+residuals( cesLandLaborCg )
 
 # using the SANN optimization method
 set.seed( 123 )
@@ -51,6 +54,7 @@ coef( cesLandLaborSann )
 vcov( cesLandLaborSann )
 coef( summary( cesLandLaborSann ) )
 fitted( cesLandLaborSann )
+residuals( cesLandLaborSann )
 
 # using the BFGS optimization method
 cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -62,6 +66,7 @@ coef( cesLandLaborBfgs )
 vcov( cesLandLaborBfgs )
 coef( summary( cesLandLaborBfgs ) )
 fitted( cesLandLaborBfgs )
+residuals( cesLandLaborBfgs )
 
 # using the L-BFGS-B optimization method with constrained delta
 cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
@@ -74,6 +79,7 @@ coef( cesLandLaborBfgsCon )
 vcov( cesLandLaborBfgsCon )
 coef( summary( cesLandLaborBfgsCon ) )
 fitted( cesLandLaborBfgsCon )
+residuals( cesLandLaborBfgsCon )
 
 # Kmenta approximation
 cesLandLaborKmenta <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -85,6 +91,7 @@ coef( cesLandLaborKmenta )
 vcov( cesLandLaborKmenta )
 coef( summary( cesLandLaborKmenta ) )
 fitted( cesLandLaborKmenta )
+residuals( cesLandLaborKmenta )
 
 
 ## CES: Land & Intermediate Inputs
