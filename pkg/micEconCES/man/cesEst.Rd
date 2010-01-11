@@ -1,5 +1,6 @@
 \name{cesEst}
 \alias{cesEst}
+\alias{print.cesEst}
 \title{Estimate a CES function}
 
 \description{
@@ -25,6 +26,8 @@
 cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    startVal = c( sqrt( mean( data[[ yName ]] ) ), 0.5, -0.5, 1 ),
    \dots )
+\method{print}{cesEst}( x, digits = max(3, getOption("digits") - 3),
+   \dots )
 }
 
 \arguments{
@@ -46,7 +49,11 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       the order must be \eqn{\gamma}{gamma}, \eqn{\delta}{delta},
       \eqn{\rho}{rho}, and eventually \eqn{\phi}{phi};
       names of the elements are ignored.}
-   \item{\dots}{further arguments are passed to \code{\link[stats]{optim}}.}
+   \item{x}{an object of class \code{cesEst}.}
+   \item{digits}{number of digits.}
+   \item{\dots}{further arguments to \code{cesEst} are passed to
+      \code{\link[stats]{optim}};
+      further arguments to \code{print.cesEst} are currently ignored.}
 }
 
 \details{
@@ -55,7 +62,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
 }
 
 \value{
-   A list of class \code{cesEst}
+   \code{cesEst} returns a list of class \code{cesEst}
    that contains following elements:
    \item{coefficients}{estimated coefficients/parameters of the CES.}
    \item{vcov}{approximate covariance matrix of the estimated parameters
