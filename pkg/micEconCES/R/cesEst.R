@@ -38,7 +38,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    if( method == "Kmenta" ) {
       if( !vrs ) {
          warning( "allowing for variable returns to scale",
-            " in the Kmanta approximation",
+            " in the Kmenta approximation",
             " although argument 'vrs' is 'FALSE'." )
          matchedCall$vrs <- TRUE
       }
