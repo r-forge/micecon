@@ -1,0 +1,114 @@
+
+R version 2.10.1 (2009-12-14)
+Copyright (C) 2009 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # load the micEconCES package
+> library( micEconCES )
+Loading required package: systemfit
+Loading required package: Matrix
+Loading required package: lattice
+Loading required package: car
+Loading required package: lmtest
+Loading required package: zoo
+Loading required package: miscTools
+Loading required package: micEcon
+Loading required package: np
+Loading required package: boot
+
+Attaching package: 'boot'
+
+
+	The following object(s) are masked from package:car :
+
+	 logit 
+
+
+	The following object(s) are masked from package:lattice :
+
+	 melanoma 
+
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-3)
+Loading required package: minpack.lm
+> 
+> # seed for random number generation
+> set.seed( 123 )
+> 
+> # number of observations
+> nObs <- 200
+> 
+> # number of explanatory variables
+> nExog <- 4
+> 
+> # create data set
+> cesData <- data.frame( obsNo = 1:nObs )
+> 
+> # names of explanatory variables
+> xxNames <- paste( "xx", 1:nExog, sep = "." )
+> 
+> # add explanatory variables
+> for( i in 1:nExog ) {
++    cesData[[ xxNames[ i ] ]] <- rchisq( 200, 10 + i )
++ }
+> 
+> # coefficients
+> cesCoef <- c( 1, 1:nExog / sum( 1:nExog ), 0.5, 1.1 )
+> names( cesCoef ) <- c( "gamma", paste( "delta", 1:nExog, sep = "_" ),
++    "rho", "phi" )
+> 
+> # calculate deterministic endogenous variable
+> cesData$y <- cesCalc( xNames = xxNames, data = cesData, coef = cesCoef )
+> print( cesData$y )
+  [1] 14.848625 11.970421 10.739203 14.883620 15.535230 14.935229 20.806368
+  [8]  9.803082 26.787754 10.649418 15.971223 13.427501 11.335151 23.384630
+ [15] 20.153760  9.887757 14.453192 15.376441 11.971869 17.526705 14.975446
+ [22] 12.051767 10.220882 15.429930 10.425045 14.465145 11.691491 17.604464
+ [29] 17.819062 21.031560 16.711011 10.057375 18.457676 21.891074 18.073391
+ [36]  8.757554 14.209666 13.079591 19.412187 12.223466 11.437076 16.957713
+ [43] 14.784928 10.816139 11.027034 17.393049 16.193970 18.017309 13.042017
+ [50] 20.320752 13.982932 16.004740 16.744459  8.726522 19.763878 15.953272
+ [57] 15.028901 10.351853 22.218991 10.839558 12.296094 11.631039 13.481794
+ [64] 19.410561 11.855219 15.653113 15.105207 16.242316 12.958878  9.700794
+ [71] 18.526227 16.155976 18.826507 17.951994 30.003852 12.229179 25.096224
+ [78] 20.972230 13.546812 29.683889 12.266724  9.490848 15.909421 13.242661
+ [85] 16.481238  6.001391 11.115496 15.300235 11.814082 12.623937  9.815252
+ [92] 17.946849 11.391715 17.157999 13.940245 16.183382 13.379635 14.863752
+ [99] 11.931794 19.585063 15.159031 16.290298 14.468932 15.484081 14.354868
+[106] 13.803116 18.405815 15.127372 14.512234 12.261568 11.956427 14.647894
+[113] 24.522309 16.892534 15.826469 19.702755 14.507567 13.100091 16.694070
+[120] 17.007131 15.300592  9.036645 14.872371 13.971230 19.034836 19.762580
+[127] 14.631902 10.077768 13.303489 15.562162 19.863503 17.236683 15.176831
+[134] 15.135941 20.189160 12.178079  9.147706 15.732710 15.181915 14.943310
+[141]  8.372290 18.006622  8.071935 13.248692 22.279142 12.080192 15.645794
+[148] 15.287438 19.000706 15.664670 14.865792 21.506374 21.096809 14.693976
+[155] 12.419261 22.138850 12.155290  9.875017 17.181010 11.936055 19.268107
+[162] 10.798626 16.170179 16.644418 12.565766 19.950484 10.721659 10.388963
+[169] 17.103158 12.290792 11.873107 18.443930 17.082243 10.606307 18.549608
+[176] 15.315191 13.921089 10.146345 12.113064 17.555870 17.094181 25.114687
+[183] 14.429032 13.639015 14.299852 12.346822 14.915680 11.166134 16.037850
+[190] 16.073649 11.704216 12.477803 16.153751 10.515336 15.074299  8.249979
+[197] 16.114151 16.567942 19.777939 19.727936
+> # check if removing the names of the coefficients makes a difference
+> all.equal( cesData$y,
++    cesCalc( xNames = xxNames, data = cesData, coef = unname( cesCoef ) ) )
+[1] TRUE
+> # check if permuting the coefficients makes a difference
+> all.equal( cesData$y,
++    cesCalc( xNames = xxNames, data = cesData, coef = sample( cesCoef, 7 ) ) )
+[1] TRUE
+> 
+> # adding noise to the endogenous variable
+> cesData$y <- cesData$y + rnorm( 200 )
+> 
