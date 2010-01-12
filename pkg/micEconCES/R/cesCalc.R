@@ -1,16 +1,34 @@
 cesCalc <- function( xNames, data, coef ) {
 
-   checkNames( xNames, names( data ) )
-
+   # check number of exogenous variables
    nExog <- length( xNames )
-
-   if( length( coef ) < nExog + 1 | length( coef ) > nExog + 2 ) {
-      stop( "a CES function with ", nExog, " exogenous variables",
-         " must have either ", nExog + 1, " (CRS) or ",
-         nExog + 2, " (VRS) coefficients" )
+   if( nExog < 2 ) {
+      stop( "argument 'xNames' must include the names of at least 2 variables" )
    }
 
-   coefNames <- c( "gamma", "delta", "rho", "phi" )[ 1:length( coef ) ]
+   # check names of exogenous variables
+   checkNames( xNames, names( data ) )
+
+   # check number of coefficients
+   if( nExog == 2 && ( length( coef ) < 3 || length( coef ) > 4 ) ) {
+      stop( "a CES function with 2 exogenous variables",
+         " must have either 3 (CRS) or 4 (VRS) coefficients" )
+   } else if( nExog > 2 &&
+         ( length( coef ) < nExog + 2 | length( coef ) > nExog + 3 ) ) {
+      stop( "a CES function with ", nExog, " exogenous variables",
+         " must have either ", nExog + 2, " (CRS) or ",
+         nExog + 3, " (VRS) coefficients" )
+   }
+
+   # names of coefficients
+   if( nExog == 2 ) {
+      coefNames <- c( "gamma", "delta", "rho", "phi" )[ 1:length( coef ) ]
+   } else {
+      coefNames <- c( "gamma", paste( "delta", 1:nExog, sep = "_" ),
+         "rho", "phi" )[ 1:length( coef ) ]
+   }
+
+   # assign or check names of coefficients
    if( is.null( names( coef ) ) ) {
       names( coef ) <- coefNames
    } else {
@@ -21,14 +39,31 @@ cesCalc <- function( xNames, data, coef ) {
       }
    }
 
+   # make the case of two explanatory compatible to the case of N variables
+   if( nExog == 2 ) {
+      names( coef )[ names( coef ) == "delta" ] <- "delta_1"
+      coef <- c( coef, delta_2 = 1 - unname( coef[ "delta_1" ] ) )
+   }
+
+   # check if the deltas sum up to one
+   if( abs( sum( coef[ grep( "delta\\_", names( coef ) ) ] ) - 1 ) >
+         .Machine$double.eps ) {
+      stop( "the sum of the delta coefficients must sum up to 1" )
+   }
+
+   # make the case of constant returns to scale (CRS) compatible to the VRS case
    if( ! "phi" %in% names( coef ) ) {
       coef <- c( coef, phi = 1 )
    }
 
-   result <- coef[ "gamma" ] *
-      ( coef[ "delta" ] * data[[ xNames[ 1 ] ]]^(-coef[ "rho" ]) +
-      ( 1 - coef[ "delta" ] ) * data[[ xNames[ 2 ] ]]^(-coef[ "rho" ]) )^
-      ( -coef[ "phi" ] / coef[ "rho" ] )
+   # calculate the endogenous variable
+   result <- 0
+   for( i in 1:nExog ) {
+      result <- result + coef[ paste( "delta", i, sep = "_" ) ] *
+         data[[ xNames[ i ] ]]^( -coef[ "rho" ] )
+   }
+   result <- result^( -coef[ "phi" ] / coef[ "rho" ] )
+   result <- coef[ "gamma" ] * result 
 
    return( result )
 }
