@@ -89,7 +89,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       (a restricted translog model)
       returned by \code{\link[systemfit]{systemfit}}
       (only if argument \code{method} is \code{"Kmenta"}).}
-   \item{test}{test for the restrictions of translog model
+   \item{testKmenta}{test of the Kmenta approximation
+      against the unrestricted translog model
+      returned by \code{\link[car]{linear.hypothesis}}
       (only if argument \code{method} is \code{"Kmenta"}).}
 }
 
