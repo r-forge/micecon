@@ -8,8 +8,7 @@ cesRssDeriv <- function( par, data ) {
    } else {
       phi <- 1
    }
-   yHat <- gamma *
-      ( delta * data$x1^(-rho) + ( 1 - delta ) * data$x2^(-rho) )^( -phi / rho )
+   yHat <- cesCalc( xNames = c( "x1", "x2" ), data = data, coef = par )
    resid <- data$y - yHat
    result[ "gamma" ] <- sum( - 2 * resid *
       ( ( delta * data$x1^(-rho) + ( 1 - delta ) * data$x2^(-rho) )^( -phi / rho ) ) )
