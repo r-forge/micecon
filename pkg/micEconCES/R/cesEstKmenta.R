@@ -6,7 +6,7 @@ cesEstKmenta <- function( yName, xNames, data ){
    result$translog <- translogEst( yName = yName, xNames = xNames, data = data )
 
    ## Testing linear approximation - Wald test
-   result$test <- lht( result$translog$est,
+   result$testKmenta <- lht( result$translog$est,
       c( "b_1_2 = -b_1_1", "b_1_2 = -b_2_2" ))
 
    ## Estimating restricted model

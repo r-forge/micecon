@@ -694,7 +694,7 @@ Estimated Translog function with 20 observations.
         a_0         a_1         a_2       b_1_1       b_1_2       b_2_2 
 -16.6619242   6.6736594  47.6852700   0.4633037 -15.5762602  10.3461931 
 
-$test
+$testKmenta
 Linear hypothesis test
 
 Hypothesis:
@@ -1453,7 +1453,7 @@ Estimated Translog function with 20 observations.
          a_0          a_1          a_2        b_1_1        b_1_2        b_2_2 
 -110.3756140   -0.9209255   35.4144570   -2.5638577    1.6354298   -6.1874110 
 
-$test
+$testKmenta
 Linear hypothesis test
 
 Hypothesis:
