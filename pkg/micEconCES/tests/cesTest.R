@@ -81,7 +81,19 @@ coef( summary( cesLandLaborBfgsCon ) )
 fitted( cesLandLaborBfgsCon )
 residuals( cesLandLaborBfgsCon )
 
-# Kmenta approximation
+# Kmenta approximation with CRS
+cesLandLaborKmentaCrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "Kmenta" )
+print.default( cesLandLaborKmentaCrs )
+print( cesLandLaborKmentaCrs )
+summary( cesLandLaborKmentaCrs )
+coef( cesLandLaborKmentaCrs )
+vcov( cesLandLaborKmentaCrs )
+coef( summary( cesLandLaborKmentaCrs ) )
+fitted( cesLandLaborKmentaCrs )
+residuals( cesLandLaborKmentaCrs )
+
+# Kmenta approximation with VRS
 cesLandLaborKmenta <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
    vrs = TRUE, method = "Kmenta" )
 print.default( cesLandLaborKmenta )
@@ -155,9 +167,17 @@ print( cesLandIntBfgsCon )
 summary( cesLandIntBfgsCon )
 coef( summary( cesLandIntBfgsCon ) )
 
-# Kmenta approximation
-cesLandIntKmenta <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+# Kmenta approximation with CRS
+cesLandIntKmentaCrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    method = "Kmenta" )
+print.default( cesLandIntKmentaCrs )
+print( cesLandIntKmentaCrs )
+summary( cesLandIntKmentaCrs )
+coef( summary( cesLandIntKmentaCrs ) )
+
+# Kmenta approximation with VRS
+cesLandIntKmenta <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "Kmenta", vrs = TRUE )
 print.default( cesLandIntKmenta )
 print( cesLandIntKmenta )
 summary( cesLandIntKmenta )
