@@ -1,18 +1,24 @@
-cesEstKmenta <- function( yName, xNames, data ){
+cesEstKmenta <- function( yName, xNames, data, vrs ){
 
    result <- list()
 
-   ## Estimating unrestricted model
+   ## Estimating the unrestricted translog model
    result$translog <- translogEst( yName = yName, xNames = xNames, data = data )
 
-   ## Testing linear approximation - Wald test
-   result$testKmenta <- lht( result$translog$est,
-      c( "b_1_2 = -b_1_1", "b_1_2 = -b_2_2" ))
+   ## Testing restrictions implied by the Kmenta approximation - Wald test
+   restrictions <- c( "b_1_2 = -b_1_1", "b_1_2 = -b_2_2" )
+   result$testKmenta <- lht( result$translog$est, restrictions )
+
+   ## Testing restrictions implied by the Kmenta approximation - Wald test
+   if( !vrs ) {
+      restrictions <- c( "a_1 + a_2 = 1", restrictions )
+      result$testCrs <- lht( result$translog$est, restrictions )
+   }
 
    ## Estimating restricted model
    result$kmenta <- systemfit( formula = formula(result$translog$est),
       data = model.frame( result$translog$est ),
-      restrict.matrix = c( "eq1_b_1_2 = -eq1_b_1_1", "eq1_b_1_2 = -eq1_b_2_2" ))
+      restrict.matrix = gsub( "([ab]\\_)", "eq1_\\1", restrictions) )
 
    ## Parameter vector
    result$coefficients <- numeric( 4 )
@@ -58,6 +64,11 @@ cesEstKmenta <- function( yName, xNames, data ){
    jacobian[ "rho", "eq1_b_1_2" ] <-  result$coefficients[ "phi" ] /
       coef( result$kmenta )[ "eq1_a_1" ] / coef( result$kmenta )[ "eq1_a_2" ]
    result$vcov <- jacobian %*% vcov( result$kmenta ) %*%  t( jacobian )
+
+   if( !vrs ) {
+      result$coefficients <- result$coefficients[ 1:3 ]
+      result$vcov <- result$vcov[ 1:3, 1:3 ]
+   }
 
    return(result)
 }

@@ -36,13 +36,8 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # Estimation by the Kmenta approximation
    if( method == "Kmenta" ) {
-      if( !vrs ) {
-         warning( "allowing for variable returns to scale",
-            " in the Kmenta approximation",
-            " although argument 'vrs' is 'FALSE'." )
-         matchedCall$vrs <- TRUE
-      }
-      result <- cesEstKmenta( yName = yName, xNames = xNames, data = data )
+      result <- cesEstKmenta( yName = yName, xNames = xNames, data = data,
+         vrs = vrs )
    } else if( method %in% c( "Nelder-Mead", "SANN", "BFGS", "CG", "L-BFGS-B" ) ) {
       result <- list()
       if( method %in% c( "Nelder-Mead", "SANN" ) ) {

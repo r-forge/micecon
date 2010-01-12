@@ -685,7 +685,151 @@ rho   -4.610031 3.706584e-10 -1.243741e+10 0.0000000
 [13]   46.197491  114.047832   95.703326   59.353878    6.785316   32.647977
 [19]   53.896799   56.153212
 > 
-> # Kmenta approximation
+> # Kmenta approximation with CRS
+> cesLandLaborKmentaCrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    method = "Kmenta" )
+> print.default( cesLandLaborKmentaCrs )
+$translog
+Estimated Translog function with 20 observations.
+        a_0         a_1         a_2       b_1_1       b_1_2       b_2_2 
+-16.6619242   6.6736594  47.6852700   0.4633037 -15.5762602  10.3461931 
+
+$testKmenta
+Linear hypothesis test
+
+Hypothesis:
+b_1_1 + b_1_2 = 0
+b_1_2 + b_2_2 = 0
+
+Model 1: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
+Model 2: restricted model
+
+  Res.Df      RSS Df Sum of Sq      F   Pr(>F)   
+1     14 0.015804                                
+2     16 0.040974 -2 -0.025170 11.148 0.001270 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+$testCrs
+Linear hypothesis test
+
+Hypothesis:
+a_1 + a_2 = 1
+b_1_1 + b_1_2 = 0
+b_1_2 + b_2_2 = 0
+
+Model 1: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
+Model 2: restricted model
+
+  Res.Df      RSS Df Sum of Sq      F    Pr(>F)    
+1     14 0.015804                                  
+2     17 0.051750 -3 -0.035946 10.614 0.0006663 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+$kmenta
+
+systemfit results 
+method: OLS 
+
+Coefficients:
+eq1_(Intercept)         eq1_a_1         eq1_a_2       eq1_b_1_1       eq1_b_1_2 
+      -26.76460        21.26958       -20.26958        -6.68519         6.68519 
+      eq1_b_2_2 
+       -6.68519 
+
+$coefficients
+        gamma         delta           rho 
+ 2.378381e-12  2.126958e+01 -1.550637e-02 
+
+$vcov
+              gamma         delta           rho
+gamma  4.833165e-22 -1.366604e-10  1.059153e-13
+delta -1.366604e-10  3.865291e+01 -2.996619e-02
+rho    1.059153e-13 -2.996619e-02  2.323915e-05
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "Kmenta")
+
+$method
+[1] "Kmenta"
+
+$fitted.values
+ [1]   12325757   16837641   22724773   18920176   18920176   23467316
+ [7]   36515797   28321557   21388645   22493809   30376466   37616643
+[13]   55984744   98323479   87885165  127854985  210576996  342586582
+[19]  674471878 1211394448
+
+$residuals
+ [1]   -12324811   -16836678   -22723703   -18919004   -18918998   -23466130
+ [7]   -36514557   -28320269   -21387437   -22492531   -30375106   -37615102
+[13]   -55983169   -98321783   -87883520  -127853359  -210575341  -342584827
+[19]  -674469990 -1211392456
+
+$cov.unscaled
+             gamma        delta          rho
+gamma 3.763018e+41 1.402447e+30 7.362270e+32
+delta 1.402447e+30 5.227146e+18 2.744310e+21
+rho   7.362270e+32 2.744310e+21 1.441014e+24
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandLaborKmentaCrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "Kmenta")
+
+Coefficients:
+     gamma      delta        rho 
+ 2.378e-12  2.127e+01 -1.551e-02 
+
+> summary( cesLandLaborKmentaCrs )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "Kmenta")
+
+Estimation method:  Kmenta 
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma  2.378e-12  2.198e-11   0.108 0.913849    
+delta  2.127e+01  6.217e+00   3.421 0.000624 ***
+rho   -1.551e-02  4.821e-03  -3.217 0.001297 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 326237150 
+
+> coef( cesLandLaborKmentaCrs )
+        gamma         delta           rho 
+ 2.378381e-12  2.126958e+01 -1.550637e-02 
+> vcov( cesLandLaborKmentaCrs )
+              gamma         delta           rho
+gamma  4.833165e-22 -1.366604e-10  1.059153e-13
+delta -1.366604e-10  3.865291e+01 -2.996619e-02
+rho    1.059153e-13 -2.996619e-02  2.323915e-05
+> coef( summary( cesLandLaborKmentaCrs ) )
+           Estimate   Std. Error    t value     Pr(>|t|)
+gamma  2.378381e-12 2.198446e-11  0.1081846 0.9138492274
+delta  2.126958e+01 6.217146e+00  3.4211156 0.0006236481
+rho   -1.550637e-02 4.820700e-03 -3.2166220 0.0012970936
+> fitted( cesLandLaborKmentaCrs )
+ [1]   12325757   16837641   22724773   18920176   18920176   23467316
+ [7]   36515797   28321557   21388645   22493809   30376466   37616643
+[13]   55984744   98323479   87885165  127854985  210576996  342586582
+[19]  674471878 1211394448
+> residuals( cesLandLaborKmentaCrs )
+ [1]   -12324811   -16836678   -22723703   -18919004   -18918998   -23466130
+ [7]   -36514557   -28320269   -21387437   -22492531   -30375106   -37615102
+[13]   -55983169   -98321783   -87883520  -127853359  -210575341  -342584827
+[19]  -674469990 -1211392456
+> 
+> # Kmenta approximation with VRS
 > cesLandLaborKmenta <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
 +    vrs = TRUE, method = "Kmenta" )
 > print.default( cesLandLaborKmenta )
@@ -1441,12 +1585,131 @@ gamma 37.6785181   15576.01 2.419010e-03 0.9980699
 delta  0.2645720  443174.87 5.969923e-07 0.9999995
 rho    5.0053076   31147.32 1.606979e-04 0.9998718
 > 
-> # Kmenta approximation
-> cesLandIntKmenta <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+> # Kmenta approximation with CRS
+> cesLandIntKmentaCrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
 +    method = "Kmenta" )
-Warning message:
-In cesEst("qOutput", c("land", "qVarInput"), germanFarms, method = "Kmenta") :
-  allowing for variable returns to scale in the Kmenta approximation although argument 'vrs' is 'FALSE'.
+> print.default( cesLandIntKmentaCrs )
+$translog
+Estimated Translog function with 20 observations.
+         a_0          a_1          a_2        b_1_1        b_1_2        b_2_2 
+-110.3756140   -0.9209255   35.4144570   -2.5638577    1.6354298   -6.1874110 
+
+$testKmenta
+Linear hypothesis test
+
+Hypothesis:
+b_1_1 + b_1_2 = 0
+b_1_2 + b_2_2 = 0
+
+Model 1: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
+Model 2: restricted model
+
+  Res.Df      RSS Df Sum of Sq      F  Pr(>F)  
+1     14 0.017794                              
+2     16 0.032596 -2 -0.014802 5.8227 0.01445 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+$testCrs
+Linear hypothesis test
+
+Hypothesis:
+a_1 + a_2 = 1
+b_1_1 + b_1_2 = 0
+b_1_2 + b_2_2 = 0
+
+Model 1: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
+Model 2: restricted model
+
+  Res.Df      RSS Df Sum of Sq      F    Pr(>F)    
+1     14 0.017794                                  
+2     17 0.107030 -3 -0.089235 23.402 1.020e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+$kmenta
+
+systemfit results 
+method: OLS 
+
+Coefficients:
+eq1_(Intercept)         eq1_a_1         eq1_a_2       eq1_b_1_1       eq1_b_1_2 
+       18.12806         9.94637        -8.94637         2.80556        -2.80556 
+      eq1_b_2_2 
+        2.80556 
+
+$coefficients
+       gamma        delta          rho 
+7.463082e+07 9.946367e+00 3.152891e-02 
+
+$vcov
+             gamma        delta          rho
+gamma 3.667607e+18 3.152675e+10 1.111310e+08
+delta 3.152675e+10 2.710399e+02 9.555328e-01
+rho   1.111310e+08 9.555328e-01 3.369099e-03
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Kmenta")
+
+$method
+[1] "Kmenta"
+
+$fitted.values
+ [1]  5.797421  4.768828  5.259662  4.020871  4.192944  4.217838  4.365911
+ [8]  5.224878  4.674069  5.312756  4.906876  5.488607  5.452881  6.664272
+[15]  8.415676  9.989443 14.746590 18.676872 21.859112 23.329535
+
+$residuals
+ [1]  940.3356  957.9617 1064.3195 1167.7756 1173.9231 1181.5922 1234.9919
+ [8] 1283.3360 1203.0321 1273.0958 1355.6857 1535.2955 1569.5818 1689.2951
+[15] 1636.2734 1616.0417 1640.2933 1736.9229 1865.5612 1968.5645
+
+$cov.unscaled
+              gamma         delta           rho
+gamma  3.805054e-13 -4.527770e-05  4.825823e-03
+delta -4.527770e-05  5.389161e+03 -5.746293e+05
+rho    4.825823e-03 -5.746293e+05  6.131109e+07
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandIntKmentaCrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Kmenta")
+
+Coefficients:
+    gamma     delta       rho 
+7.463e+07 9.946e+00 3.153e-02 
+
+> summary( cesLandIntKmentaCrs )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Kmenta")
+
+Estimation method:  Kmenta 
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)
+gamma 7.463e+07  1.915e+09   0.039    0.969
+delta 9.946e+00  1.646e+01   0.604    0.546
+rho   3.153e-02  5.804e-02   0.543    0.587
+
+Residual standard error: 1434.873 
+
+> coef( summary( cesLandIntKmentaCrs ) )
+          Estimate   Std. Error    t value  Pr(>|t|)
+gamma 7.463082e+07 1.915100e+09 0.03896968 0.9689146
+delta 9.946367e+00 1.646329e+01 0.60415436 0.5457410
+rho   3.152891e-02 5.804394e-02 0.54319046 0.5869987
+> 
+> # Kmenta approximation with VRS
+> cesLandIntKmenta <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
++    method = "Kmenta", vrs = TRUE )
 > print.default( cesLandIntKmenta )
 $translog
 Estimated Translog function with 20 observations.
@@ -1493,7 +1756,7 @@ phi   -0.002344101 -0.1245906 -0.03466450  0.013322562
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "Kmenta", vrs = TRUE)
+    vrs = TRUE, method = "Kmenta")
 
 $method
 [1] "Kmenta"
@@ -1523,7 +1786,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "Kmenta", vrs = TRUE)
+    vrs = TRUE, method = "Kmenta")
 
 Coefficients:
     gamma     delta       rho       phi 
@@ -1534,7 +1797,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "Kmenta", vrs = TRUE)
+    vrs = TRUE, method = "Kmenta")
 
 Estimation method:  Kmenta 
 
