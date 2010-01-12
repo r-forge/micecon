@@ -3,15 +3,15 @@ cesEstKmenta <- function( yName, xNames, data ){
    result <- list()
 
    ## Estimating unrestricted model
-   result$translogUnr <- translogEst( yName = yName, xNames = xNames, data = data )
+   result$translog <- translogEst( yName = yName, xNames = xNames, data = data )
 
    ## Testing linear approximation - Wald test
-   result$test <- lht( result$translogUnr$est,
+   result$test <- lht( result$translog$est,
       c( "b_1_2 = -b_1_1", "b_1_2 = -b_2_2" ))
 
    ## Estimating restricted model
-   result$kmenta <- systemfit( formula = formula(result$translogUnr$est),
-      data = model.frame( result$translogUnr$est ),
+   result$kmenta <- systemfit( formula = formula(result$translog$est),
+      data = model.frame( result$translog$est ),
       restrict.matrix = c( "eq1_b_1_2 = -eq1_b_1_1", "eq1_b_1_2 = -eq1_b_2_2" ))
 
    ## Parameter vector

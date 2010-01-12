@@ -82,7 +82,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       \code{"CG"}, \code{"L-BFGS-B"}, or \code{"SANN")}).}
    \item{nls.lm}{object returned by \code{\link[minpack.lm]{nls.lm}}
       (only if argument \code{method} is \code{"LM"}).}
-   \item{translogUnr}{unrestricted estimation of the translog model
+   \item{translog}{estimation results of the (unrestricted) translog model
+      returned by \code{\link[micEcon]{translogEst}}
       (only if argument \code{method} is \code{"Kmenta"}).}
    \item{kmenta}{estimation results of the Kmenta approximation
       (a restricted translog model)

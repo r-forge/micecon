@@ -689,7 +689,7 @@ rho   -4.610031 3.706584e-10 -1.243741e+10 0.0000000
 > cesLandLaborKmenta <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
 +    vrs = TRUE, method = "Kmenta" )
 > print.default( cesLandLaborKmenta )
-$translogUnr
+$translog
 Estimated Translog function with 20 observations.
         a_0         a_1         a_2       b_1_1       b_1_2       b_2_2 
 -16.6619242   6.6736594  47.6852700   0.4633037 -15.5762602  10.3461931 
@@ -1448,7 +1448,7 @@ Warning message:
 In cesEst("qOutput", c("land", "qVarInput"), germanFarms, method = "Kmenta") :
   allowing for variable returns to scale in the Kmenta approximation although argument 'vrs' is 'FALSE'.
 > print.default( cesLandIntKmenta )
-$translogUnr
+$translog
 Estimated Translog function with 20 observations.
          a_0          a_1          a_2        b_1_1        b_1_2        b_2_2 
 -110.3756140   -0.9209255   35.4144570   -2.5638577    1.6354298   -6.1874110 
