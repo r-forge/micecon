@@ -41,7 +41,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       either \code{"Kmenta"} for the Kmenta approximation
       or \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"},
       \code{"L-BFGS-B"}, or \code{"SANN")} for a non-linear least-squares
-      estimation (using \code{\link[stats]{optim}}).}
+      estimation (using \code{\link[stats]{optim}}),
+      or \code{"LM"} for non-linear least-squares using the Levenberg-Marquardt
+      algorithm (using \code{\link[minpack.lm]{nls.lm}}).}
    \item{startVal}{starting values for the non-linear estimations:
       a numeric vector of length 3 for constant returns to scale
       (CRS, without \eqn{\phi}{phi}, i.e. \eqn{\phi}{phi} = 1)
@@ -52,7 +54,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{x}{an object of class \code{cesEst}.}
    \item{digits}{number of digits.}
    \item{\dots}{further arguments to \code{cesEst} are passed to
-      \code{\link[stats]{optim}};
+      \code{\link[stats]{optim}} or \code{\link[minpack.lm]{nls.lm}};
       further arguments to \code{print.cesEst} are currently ignored.}
 }
 
@@ -78,6 +80,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{optim}{object returned by \code{\link[stats]{optim}}
       (only if argument \code{method} is \code{"Nelder-Mead"}, \code{"BFGS"},
       \code{"CG"}, \code{"L-BFGS-B"}, or \code{"SANN")}).}
+   \item{nls.lm}{object returned by \code{\link[minpack.lm]{nls.lm}}
+      (only if argument \code{method} is \code{"LM"}).}
    \item{translogUnr}{unrestricted estimation of the translog model
       (only if argument \code{method} is \code{"Kmenta"}).}
    \item{translog}{restricted estimation of the translog model
@@ -151,6 +155,10 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    # using the SANN optimization method
    cesLandIntSann <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
       method = "SANN" )
+
+   # using the Levenberg-Marquardt optimization method
+   cesLandIntLm <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+      method = "LM", control = nls.lm.control( maxiter = 200 ) )
 }
 
 \keyword{models}

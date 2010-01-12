@@ -93,6 +93,18 @@ coef( summary( cesLandLaborKmenta ) )
 fitted( cesLandLaborKmenta )
 residuals( cesLandLaborKmenta )
 
+# using the Levenberg-Marquardt optimization method
+cesLandLaborLm <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "LM", control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLandLaborLm )
+print( cesLandLaborLm )
+summary( cesLandLaborLm )
+coef( cesLandLaborLm )
+vcov( cesLandLaborLm )
+coef( summary( cesLandLaborLm ) )
+fitted( cesLandLaborLm )
+residuals( cesLandLaborLm )
+
 
 ## CES: Land & Intermediate Inputs
 cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
@@ -150,6 +162,14 @@ print.default( cesLandIntKmenta )
 print( cesLandIntKmenta )
 summary( cesLandIntKmenta )
 coef( summary( cesLandIntKmenta ) )
+
+# using the Levenberg-Marquardt optimization method
+cesLandIntLm <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "LM", control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLandIntLm )
+print( cesLandIntLm )
+summary( cesLandIntLm )
+coef( summary( cesLandIntLm ) )
 
 
 ############  cesCalc  ################

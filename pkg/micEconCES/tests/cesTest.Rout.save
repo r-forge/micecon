@@ -40,6 +40,7 @@ Attaching package: 'boot'
 	 melanoma 
 
 Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-3)
+Loading required package: minpack.lm
 > 
 > # load data
 > data( germanFarms )
@@ -814,6 +815,101 @@ phi    1.655682e+00 3.196346e-01  5.17992004 2.219810e-07
 [13]  -651845.8  -899132.0  -829577.8 -1014123.1 -1380317.2 -1852792.3
 [19] -2791719.4 -3979977.0
 > 
+> # using the Levenberg-Marquardt optimization method
+> cesLandLaborLm <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    method = "LM", control = nls.lm.control( maxiter = 200 ) )
+Warning message:
+In nls.lm(par = startVal, fn = residFun, data = estData, jac = jac,  :
+  lmder: info = -1. Number of iterations has reached `maxiter' == 200.
+
+> print.default( cesLandLaborLm )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 3.10004273343899, 4.37548743293658, -0.451844116401714 
+residual sum-of-squares: 123041
+reason terminated: Number of iterations has reached `maxiter' == 200.
+
+$coefficients
+     gamma      delta        rho 
+ 3.1000427  4.3754874 -0.4518441 
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "LM", control = nls.lm.control(maxiter = 200))
+
+$method
+[1] "LM"
+
+$fitted.values
+ [1] 1101.156 1147.287 1179.191 1183.694 1183.694 1205.314 1251.259 1245.840
+ [9] 1200.060 1242.988 1285.547 1438.304 1511.846 1585.423 1548.874 1580.847
+[17] 1681.583 1776.672 1918.410 2050.404
+
+$residuals
+ [1] -155.023328 -184.556920 -109.612227  -11.897036   -5.577469  -19.504329
+ [7]  -11.901264   42.720954    7.646490   35.420382   75.045634  102.480229
+[13]   63.188389  110.536893   95.815020   45.183966  -26.543547  -21.072276
+[19]  -30.989613  -58.509794
+
+$cov.unscaled
+         gamma    delta       rho
+gamma  4325032  6269902  59728204
+delta  6269902  9089634  86599713
+rho   59728204 86599713 825416116
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandLaborLm )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "LM", control = nls.lm.control(maxiter = 200))
+
+Coefficients:
+  gamma   delta     rho 
+ 3.1000  4.3755 -0.4518 
+
+> summary( cesLandLaborLm )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "LM", control = nls.lm.control(maxiter = 200))
+
+Estimation method:  LM 
+
+Coefficients:
+        Estimate Std. Error   t value Pr(>|t|)
+gamma  3.100e+00  1.631e+05  1.90e-05        1
+delta  4.375e+00  2.365e+05  1.85e-05        1
+rho   -4.518e-01  2.253e+06 -2.01e-07        1
+
+Residual standard error: 78.43496 
+
+> coef( cesLandLaborLm )
+     gamma      delta        rho 
+ 3.1000427  4.3754874 -0.4518441 
+> vcov( cesLandLaborLm )
+             gamma        delta          rho
+gamma  26607782212  38572709896 3.674505e+11
+delta  38572709896  55919821914 5.327652e+11
+rho   367450513295 532765204111 5.077996e+12
+> coef( summary( cesLandLaborLm ) )
+        Estimate Std. Error       t value  Pr(>|t|)
+gamma  3.1000427   163118.9  1.900480e-05 0.9999848
+delta  4.3754874   236473.7  1.850306e-05 0.9999852
+rho   -0.4518441  2253440.9 -2.005130e-07 0.9999998
+> fitted( cesLandLaborLm )
+ [1] 1101.156 1147.287 1179.191 1183.694 1183.694 1205.314 1251.259 1245.840
+ [9] 1200.060 1242.988 1285.547 1438.304 1511.846 1585.423 1548.874 1580.847
+[17] 1681.583 1776.672 1918.410 2050.404
+> residuals( cesLandLaborLm )
+ [1] -155.023328 -184.556920 -109.612227  -11.897036   -5.577469  -19.504329
+ [7]  -11.901264   42.720954    7.646490   35.420382   75.045634  102.480229
+[13]   63.188389  110.536893   95.815020   45.183966  -26.543547  -21.072276
+[19]  -30.989613  -58.509794
+> 
 > 
 > ## CES: Land & Intermediate Inputs
 > cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
@@ -1459,6 +1555,84 @@ gamma  0.005251082 0.07929558  0.06622162 9.472014e-01
 delta -1.130309435 5.62101369 -0.20108640 8.406310e-01
 rho   -0.227662809 0.57389361 -0.39669863 6.915897e-01
 phi    1.697679744 0.11542340 14.70828018 5.703867e-49
+> 
+> # using the Levenberg-Marquardt optimization method
+> cesLandIntLm <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
++    method = "LM", control = nls.lm.control( maxiter = 200 ) )
+Warning message:
+In nls.lm(par = startVal, fn = residFun, data = estData, jac = jac,  :
+  lmder: info = -1. Number of iterations has reached `maxiter' == 200.
+
+> print.default( cesLandIntLm )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 102.801983905987, 1.34613651874603, 0.208810685160289 
+residual sum-of-squares: 153699
+reason terminated: Number of iterations has reached `maxiter' == 200.
+
+$coefficients
+      gamma       delta         rho 
+102.8019839   1.3461365   0.2088107 
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "LM", control = nls.lm.control(maxiter = 200))
+
+$method
+[1] "LM"
+
+$fitted.values
+ [1] 1145.631 1175.368 1202.429 1201.486 1203.236 1218.404 1251.586 1262.247
+ [9] 1220.424 1267.675 1296.918 1447.227 1504.833 1566.126 1547.218 1573.695
+[17] 1675.493 1763.347 1882.844 1988.575
+
+$residuals
+ [1] -199.497551 -212.637975 -132.849684  -29.689964  -25.120355  -32.593684
+ [7]  -12.228183   26.313558  -12.717409   10.733762   63.674779   93.557444
+[13]   70.201755  129.833477   97.471091   52.335706  -20.453615   -7.746728
+[19]    4.576525    3.318620
+
+$cov.unscaled
+            gamma       delta         rho
+gamma    3931.792   -798261.7    491846.1
+delta -798261.673 162144278.3 -99967406.5
+rho    491846.122 -99967406.5  61685628.4
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandIntLm )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "LM", control = nls.lm.control(maxiter = 200))
+
+Coefficients:
+   gamma    delta      rho 
+102.8020   1.3461   0.2088 
+
+> summary( cesLandIntLm )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "LM", control = nls.lm.control(maxiter = 200))
+
+Estimation method:  LM 
+
+Coefficients:
+       Estimate Std. Error  t value Pr(>|t|)
+gamma 1.028e+02  5.497e+03    0.019    0.985
+delta 1.346e+00  1.116e+06 1.21e-06    1.000
+rho   2.088e-01  6.885e+05 3.03e-07    1.000
+
+Residual standard error: 87.66397 
+
+> coef( summary( cesLandIntLm ) )
+         Estimate  Std. Error      t value  Pr(>|t|)
+gamma 102.8019839    5496.882 1.870187e-02 0.9850789
+delta   1.3461365 1116276.892 1.205916e-06 0.9999990
+rho     0.2088107  688514.542 3.032771e-07 0.9999998
 > 
 > 
 > ############  cesCalc  ################

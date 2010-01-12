@@ -53,9 +53,27 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
             data = estData, method = method, ... )
       }
       result$coefficients <- result$optim$par
+   } else if( method == "LM" ) {
+      result <- list()
+      # residual function
+      residFun <- function( par, data2 ) {
+         result <- data2$y - cesCalc( xNames = c( "x1", "x2" ),
+            data = data2, coef = par )
+         return( result )
+      }
+
+      # jacobian function
+      jac <- function( par, data3 ) {
+         return( -c( cesDerivCoef( par = par, data = data3 ) ) )
+      }
+
+      # perform fit
+      result$nls.lm <- nls.lm( par = startVal, fn = residFun, data = estData,
+         jac = jac, ... )
+      result$coefficients <- result$nls.lm$par
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
-         " 'CG', 'L-BFGS-B', 'SANN', or 'Kmenta'" )
+         " 'CG', 'L-BFGS-B', 'SANN', 'LM', or 'Kmenta'" )
    }
 
    # return also the call
