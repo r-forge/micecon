@@ -34,12 +34,14 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    estData <- data.frame( y = data[[ yName ]],
       x1 = data[[ xNames[ 1 ] ]], x2 = data[[ xNames[ 2 ] ]] )
 
+   # prepare list that will be returned
+   result <- list()
+
    # Estimation by the Kmenta approximation
    if( method == "Kmenta" ) {
       result <- cesEstKmenta( yName = yName, xNames = xNames, data = data,
          vrs = vrs )
    } else if( method %in% c( "Nelder-Mead", "SANN", "BFGS", "CG", "L-BFGS-B" ) ) {
-      result <- list()
       if( method %in% c( "Nelder-Mead", "SANN" ) ) {
          result$optim <- optim( par = startVal, fn = cesRss, data = estData,
             method = method, ... )
@@ -52,7 +54,6 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$convergence <- result$optim$convergence == 0
       result$message <- result$optim$message
    } else if( method == "LM" ) {
-      result <- list()
       # residual function
       residFun <- function( par, data2 ) {
          result <- data2$y - cesCalc( xNames = c( "x1", "x2" ),
@@ -72,9 +73,21 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$iter <- result$nls.lm$niter
       result$convergence <- result$nls.lm$info > 0 && result$nls.lm$info < 5
       result$message <- result$nls.lm$message
+   } else if( method == "Newton" ) {
+      cesRss2 <- function( par, data ) {
+         result <- cesRss( par = par, data = data )
+         attributes( result )$gradient <- cesRssDeriv( par = par, data = data )
+         return( result )
+      }
+      # perform fit
+      result$nlm <- nlm( f = cesRss2, p = startVal, data = estData, ... )
+      result$coefficients <- result$nlm$estimate
+      result$iter <- result$nlm$iterations
+      result$convergence <- result$nlm$code <= 2
+      result$message <- as.character( result$nlm$code )
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
-         " 'CG', 'L-BFGS-B', 'SANN', 'LM', or 'Kmenta'" )
+         " 'CG', 'L-BFGS-B', 'SANN', 'LM', 'Newton', or 'Kmenta'" )
    }
 
    # return also the call

@@ -166,6 +166,28 @@ coef( summary( cesLmVrs ) )
 fitted( cesLmVrs )
 residuals( cesLmVrs )
 
+## Newton-type, CRS
+cesNewton <- cesEst( "ys", xxNames, cesData, method = "Newton" )
+print.default( cesNewton )
+print( cesNewton )
+summary( cesNewton )
+coef( cesNewton )
+vcov( cesNewton )
+coef( summary( cesNewton ) )
+fitted( cesNewton )
+residuals( cesNewton )
+
+## Newton-type, VRS
+cesNewtonVrs <- cesEst( "ys", xxNames, cesData, method = "Newton", vrs = TRUE )
+print.default( cesNewtonVrs )
+print( cesNewtonVrs )
+summary( cesNewtonVrs )
+coef( cesNewtonVrs )
+vcov( cesNewtonVrs )
+coef( summary( cesNewtonVrs ) )
+fitted( cesNewtonVrs )
+residuals( cesNewtonVrs )
+
 ## Kmenta approximation, CRS
 cesKmenta <- cesEst( "ys", xxNames, cesData, method = "Kmenta" )
 print.default( cesKmenta )

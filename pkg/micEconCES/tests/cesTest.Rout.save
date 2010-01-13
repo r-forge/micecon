@@ -1108,6 +1108,123 @@ rho   -0.4518441    6.02012 -0.07505567 0.9401704
 [13]   63.188389  110.536893   95.815020   45.183966  -26.543547  -21.072276
 [19]  -30.989613  -58.509794
 > 
+> # using the Newton-type optimization method implemented in nlm()
+> cesLandLaborNewton <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    method = "Newton" )
+Warning messages:
+1: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
+  gradient supplied is of the wrong length or mode, so ignored
+2: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
+  NA/Inf replaced by maximum positive value
+3: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
+  NA/Inf replaced by maximum positive value
+> print.default( cesLandLaborNewton )
+$nlm
+$nlm$minimum
+[1] 165832.4
+
+$nlm$estimate
+[1]   46.81757  356.54341 -121.22821
+
+$nlm$gradient
+[1]  0.0002542521 -0.0009530854 -0.0158014792
+
+$nlm$code
+[1] 2
+
+$nlm$iterations
+[1] 5
+
+
+$coefficients
+[1]   46.81757  356.54341 -121.22821
+
+$iter
+[1] 5
+
+$convergence
+[1] TRUE
+
+$message
+[1] "2"
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "Newton")
+
+$method
+[1] "Newton"
+
+$fitted.values
+ [1] 1149.944 1189.259 1213.339 1224.150 1224.150 1239.876 1273.293 1276.242
+ [9] 1237.419 1281.156 1315.556 1467.899 1528.836 1581.911 1548.985 1566.676
+[17] 1648.254 1722.951 1833.523 1935.740
+
+$residuals
+ [1] -203.811455 -226.528313 -143.759659  -52.353799  -46.034233  -54.066011
+ [7]  -33.935369   12.319141  -29.712665   -2.747561   45.036494   72.884908
+[13]   46.198255  114.048622   95.704100   59.354661    6.786140   32.648839
+[19]   53.897715   56.154180
+
+$cov.unscaled
+     [,1] [,2] [,3]
+[1,]   NA   NA   NA
+[2,]   NA   NA   NA
+[3,]   NA   NA   NA
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandLaborNewton )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "Newton")
+
+Coefficients:
+[1]   46.82  356.54 -121.23
+
+> summary( cesLandLaborNewton )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "Newton")
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+Convergence achieved after 5 iterations
+Message: 2 
+
+Coefficients:
+     Estimate Std. Error t value Pr(>|t|)
+[1,]    46.82         NA      NA       NA
+[2,]   356.54         NA      NA       NA
+[3,]  -121.23         NA      NA       NA
+
+Residual standard error: 91.05832 
+
+> coef( cesLandLaborNewton )
+[1]   46.81757  356.54341 -121.22821
+> vcov( cesLandLaborNewton )
+     [,1] [,2] [,3]
+[1,]   NA   NA   NA
+[2,]   NA   NA   NA
+[3,]   NA   NA   NA
+> coef( summary( cesLandLaborNewton ) )
+       Estimate Std. Error t value Pr(>|t|)
+[1,]   46.81757         NA      NA       NA
+[2,]  356.54341         NA      NA       NA
+[3,] -121.22821         NA      NA       NA
+> fitted( cesLandLaborNewton )
+ [1] 1149.944 1189.259 1213.339 1224.150 1224.150 1239.876 1273.293 1276.242
+ [9] 1237.419 1281.156 1315.556 1467.899 1528.836 1581.911 1548.985 1566.676
+[17] 1648.254 1722.951 1833.523 1935.740
+> residuals( cesLandLaborNewton )
+ [1] -203.811455 -226.528313 -143.759659  -52.353799  -46.034233  -54.066011
+ [7]  -33.935369   12.319141  -29.712665   -2.747561   45.036494   72.884908
+[13]   46.198255  114.048622   95.704100   59.354661    6.786140   32.648839
+[19]   53.897715   56.154180
+> 
 > 
 > ## CES: Land & Intermediate Inputs
 > cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
@@ -2004,6 +2121,107 @@ Residual standard error: 87.66397
 gamma 102.8019839 3751.46398 0.02740316 0.9781382
 delta   1.3461365   32.12355 0.04190497 0.9665745
 rho     0.2088107   22.14913 0.00942749 0.9924781
+> 
+> # using the Newton-type optimization method implemented in nlm()
+> cesLandIntNewton <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
++    method = "Newton" )
+Warning messages:
+1: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
+  gradient supplied is of the wrong length or mode, so ignored
+2: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
+  NA/Inf replaced by maximum positive value
+3: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
+  NA/Inf replaced by maximum positive value
+> print.default( cesLandIntNewton )
+$nlm
+$nlm$minimum
+[1] 165832.4
+
+$nlm$estimate
+[1]  51.47088 354.30377 126.83106
+
+$nlm$gradient
+[1]  0.000182638  0.000931674 -0.014452204
+
+$nlm$code
+[1] 2
+
+$nlm$iterations
+[1] 5
+
+
+$coefficients
+[1]  51.47088 354.30377 126.83106
+
+$iter
+[1] 5
+
+$convergence
+[1] TRUE
+
+$message
+[1] "2"
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Newton")
+
+$method
+[1] "Newton"
+
+$fitted.values
+ [1] 1149.944 1189.259 1213.339 1224.150 1224.150 1239.876 1273.293 1276.242
+ [9] 1237.419 1281.156 1315.556 1467.899 1528.836 1581.911 1548.985 1566.676
+[17] 1648.254 1722.951 1833.523 1935.740
+
+$residuals
+ [1] -203.811455 -226.528313 -143.759659  -52.353799  -46.034233  -54.066011
+ [7]  -33.935369   12.319141  -29.712665   -2.747561   45.036495   72.884908
+[13]   46.198255  114.048622   95.704100   59.354661    6.786140   32.648839
+[19]   53.897715   56.154180
+
+$cov.unscaled
+     [,1] [,2] [,3]
+[1,]   NA   NA   NA
+[2,]   NA   NA   NA
+[3,]   NA   NA   NA
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandIntNewton )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Newton")
+
+Coefficients:
+[1]  51.47 354.30 126.83
+
+> summary( cesLandIntNewton )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Newton")
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+Convergence achieved after 5 iterations
+Message: 2 
+
+Coefficients:
+     Estimate Std. Error t value Pr(>|t|)
+[1,]    51.47         NA      NA       NA
+[2,]   354.30         NA      NA       NA
+[3,]   126.83         NA      NA       NA
+
+Residual standard error: 91.05832 
+
+> coef( summary( cesLandIntNewton ) )
+      Estimate Std. Error t value Pr(>|t|)
+[1,]  51.47088         NA      NA       NA
+[2,] 354.30377         NA      NA       NA
+[3,] 126.83106         NA      NA       NA
 > 
 > 
 > ############  cesCalc  ################

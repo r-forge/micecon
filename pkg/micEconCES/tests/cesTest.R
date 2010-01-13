@@ -117,6 +117,18 @@ coef( summary( cesLandLaborLm ) )
 fitted( cesLandLaborLm )
 residuals( cesLandLaborLm )
 
+# using the Newton-type optimization method implemented in nlm()
+cesLandLaborNewton <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "Newton" )
+print.default( cesLandLaborNewton )
+print( cesLandLaborNewton )
+summary( cesLandLaborNewton )
+coef( cesLandLaborNewton )
+vcov( cesLandLaborNewton )
+coef( summary( cesLandLaborNewton ) )
+fitted( cesLandLaborNewton )
+residuals( cesLandLaborNewton )
+
 
 ## CES: Land & Intermediate Inputs
 cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
@@ -190,6 +202,14 @@ print.default( cesLandIntLm )
 print( cesLandIntLm )
 summary( cesLandIntLm )
 coef( summary( cesLandIntLm ) )
+
+# using the Newton-type optimization method implemented in nlm()
+cesLandIntNewton <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "Newton" )
+print.default( cesLandIntNewton )
+print( cesLandIntNewton )
+summary( cesLandIntNewton )
+coef( summary( cesLandIntNewton ) )
 
 
 ############  cesCalc  ################
