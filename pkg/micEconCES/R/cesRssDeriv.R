@@ -6,7 +6,7 @@ cesRssDeriv <- function( par, data ) {
 
    derivCoef <- cesDerivCoef( par = par, data = data )
 
-   for( coefName in names( par ) ) {
+   for( coefName in colnames( derivCoef ) ) {
       result[ coefName ] <- sum( - 2 * resid * derivCoef[ , coefName ] )
    }
 
