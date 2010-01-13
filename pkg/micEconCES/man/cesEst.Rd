@@ -67,6 +67,13 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \code{cesEst} returns a list of class \code{cesEst}
    that contains following elements:
    \item{coefficients}{estimated coefficients/parameters of the CES.}
+   \item{iter}{number of iterations
+      (only for non-linear least-squares estimations).}
+   \item{convergence}{logical value indicating if the non-linear estimation
+      has converged (only for non-linear least-squares estimations).}
+   \item{message}{additional information from the optimizer
+      (only if a message was returned by \code{\link{optim}} or
+      \code{\link[minpack.lm]{nls.lm}}.}
    \item{vcov}{approximate covariance matrix of the estimated parameters
       calculated from the parameters of the linearized model by the Delta method
       (only if argument \code{method} is \code{"Kmenta"}).}

@@ -76,6 +76,12 @@ $coefficients
     gamma     delta       rho 
 46.236274  1.491768 -6.564428 
 
+$iter
+[1] 78
+
+$convergence
+[1] TRUE
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms)
 
@@ -117,7 +123,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms)
 
-Estimation method:  Nelder-Mead 
+Estimation method: Nelder-Mead 
 
 Coefficients:
         Estimate Std. Error   t value Pr(>|t|)
@@ -177,6 +183,12 @@ $coefficients
      gamma      delta        rho        phi 
 36.5786357  0.6045810 -0.9349716  1.2704379 
 
+$iter
+[1] 501
+
+$convergence
+[1] FALSE
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE)
@@ -222,7 +234,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE)
 
-Estimation method:  Nelder-Mead 
+Estimation method: Nelder-Mead 
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)    
@@ -287,6 +299,12 @@ $coefficients
      gamma      delta        rho 
   47.50869  548.70721 -186.49980 
 
+$iter
+[1] 101
+
+$convergence
+[1] FALSE
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "CG")
@@ -331,7 +349,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "CG")
 
-Estimation method:  CG 
+Estimation method: CG 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -392,6 +410,12 @@ $coefficients
      gamma      delta        rho 
 37.6955089  1.0272590  0.6452962 
 
+$iter
+[1] 10000
+
+$convergence
+[1] TRUE
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "SANN")
@@ -436,7 +460,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "SANN")
 
-Estimation method:  SANN 
+Estimation method: SANN 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)  
@@ -498,6 +522,12 @@ $coefficients
      gamma      delta        rho 
   47.10913  561.14577 -149.76314 
 
+$iter
+[1] 8
+
+$convergence
+[1] TRUE
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "BFGS")
@@ -542,7 +572,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "BFGS")
 
-Estimation method:  BFGS 
+Estimation method: BFGS 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -603,6 +633,15 @@ $coefficients
     gamma     delta       rho 
 49.142950  1.000000 -4.610031 
 
+$iter
+[1] 20
+
+$convergence
+[1] TRUE
+
+$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
@@ -650,7 +689,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
         1, Inf))
 
-Estimation method:  L-BFGS-B 
+Estimation method: L-BFGS-B 
 
 Coefficients:
         Estimate Std. Error   t value Pr(>|t|)
@@ -791,7 +830,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "Kmenta")
 
-Estimation method:  Kmenta 
+Estimation method: Kmenta 
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
@@ -919,7 +958,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE, method = "Kmenta")
 
-Estimation method:  Kmenta 
+Estimation method: Kmenta 
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
@@ -975,6 +1014,15 @@ $coefficients
      gamma      delta        rho 
  3.1000427  4.3754874 -0.4518441 
 
+$iter
+[1] 200
+
+$convergence
+[1] FALSE
+
+$message
+[1] "Number of iterations has reached `maxiter' == 200."
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "LM", control = nls.lm.control(maxiter = 200))
@@ -1019,7 +1067,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "LM", control = nls.lm.control(maxiter = 200))
 
-Estimation method:  LM 
+Estimation method: LM 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -1079,6 +1127,12 @@ $coefficients
      gamma      delta        rho 
 39.1271322  0.4565819  3.4462902 
 
+$iter
+[1] 58
+
+$convergence
+[1] TRUE
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 
@@ -1120,7 +1174,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 
-Estimation method:  Nelder-Mead 
+Estimation method: Nelder-Mead 
 
 Coefficients:
        Estimate Std. Error  t value Pr(>|t|)
@@ -1162,6 +1216,12 @@ NULL
 $coefficients
     gamma     delta       rho       phi 
 36.132869  2.315477  2.014573  1.241926 
+
+$iter
+[1] 131
+
+$convergence
+[1] TRUE
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
@@ -1208,7 +1268,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE)
 
-Estimation method:  Nelder-Mead 
+Estimation method: Nelder-Mead 
 
 Coefficients:
        Estimate Std. Error  t value Pr(>|t|)    
@@ -1255,6 +1315,12 @@ $coefficients
     gamma     delta       rho 
  53.58074 163.07101  58.92213 
 
+$iter
+[1] 101
+
+$convergence
+[1] FALSE
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "CG")
@@ -1299,7 +1365,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "CG")
 
-Estimation method:  CG 
+Estimation method: CG 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -1342,6 +1408,12 @@ NULL
 $coefficients
      gamma      delta        rho 
 39.4034688  0.4298509  3.8197376 
+
+$iter
+[1] 10000
+
+$convergence
+[1] TRUE
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
@@ -1387,7 +1459,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "SANN")
 
-Estimation method:  SANN 
+Estimation method: SANN 
 
 Coefficients:
        Estimate Std. Error  t value Pr(>|t|)
@@ -1429,6 +1501,12 @@ NULL
 $coefficients
     gamma     delta       rho 
  55.44507 336.65007  48.22737 
+
+$iter
+[1] 11
+
+$convergence
+[1] TRUE
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
@@ -1474,7 +1552,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "BFGS")
 
-Estimation method:  BFGS 
+Estimation method: BFGS 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -1517,6 +1595,15 @@ $optim$message
 $coefficients
      gamma      delta        rho 
 37.6785181  0.2645720  5.0053076 
+
+$iter
+[1] 128
+
+$convergence
+[1] FALSE
+
+$message
+[1] "NEW_X"
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
@@ -1565,7 +1652,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
         1, Inf))
 
-Estimation method:  L-BFGS-B 
+Estimation method: L-BFGS-B 
 
 Coefficients:
        Estimate Std. Error  t value Pr(>|t|)
@@ -1687,7 +1774,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "Kmenta")
 
-Estimation method:  Kmenta 
+Estimation method: Kmenta 
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
@@ -1795,7 +1882,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "Kmenta")
 
-Estimation method:  Kmenta 
+Estimation method: Kmenta 
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)    
@@ -1832,6 +1919,15 @@ reason terminated: Number of iterations has reached `maxiter' == 200.
 $coefficients
       gamma       delta         rho 
 102.8019839   1.3461365   0.2088107 
+
+$iter
+[1] 200
+
+$convergence
+[1] FALSE
+
+$message
+[1] "Number of iterations has reached `maxiter' == 200."
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
@@ -1877,7 +1973,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "LM", control = nls.lm.control(maxiter = 200))
 
-Estimation method:  LM 
+Estimation method: LM 
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)

@@ -48,6 +48,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
             data = estData, method = method, ... )
       }
       result$coefficients <- result$optim$par
+      result$iter <- min( result$optim$counts, na.rm = TRUE )
+      result$convergence <- result$optim$convergence == 0
+      result$message <- result$optim$message
    } else if( method == "LM" ) {
       result <- list()
       # residual function
@@ -66,6 +69,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$nls.lm <- nls.lm( par = startVal, fn = residFun, data = estData,
          jac = jac, ... )
       result$coefficients <- result$nls.lm$par
+      result$iter <- result$nls.lm$niter
+      result$convergence <- result$nls.lm$info > 0 && result$nls.lm$info < 5
+      result$message <- result$nls.lm$message
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
          " 'CG', 'L-BFGS-B', 'SANN', 'LM', or 'Kmenta'" )
