@@ -129,6 +129,12 @@ $coefficients
     gamma     delta       rho 
 1.2697049 0.5990222 0.5169131 
 
+$iter
+[1] 144
+
+$convergence
+[1] TRUE
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData)
 
@@ -232,7 +238,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData)
 
-Estimation method:  Nelder-Mead 
+Estimation method: Nelder-Mead 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -355,6 +361,12 @@ $coefficients
     gamma     delta       rho       phi 
 0.9550319 0.5886571 0.3418479 1.1169085 
 
+$iter
+[1] 393
+
+$convergence
+[1] TRUE
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE)
 
@@ -453,7 +465,7 @@ Estimated CES function with variable returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE)
 
-Estimation method:  Nelder-Mead 
+Estimation method: Nelder-Mead 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -573,6 +585,12 @@ $coefficients
     gamma     delta       rho 
 1.2666624 0.5972064 0.4481061 
 
+$iter
+[1] 101
+
+$convergence
+[1] FALSE
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "CG")
 
@@ -676,7 +694,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "CG")
 
-Estimation method:  CG 
+Estimation method: CG 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -799,6 +817,12 @@ $coefficients
       gamma       delta         rho         phi 
   0.6295909   0.9463710  -0.1400105 -21.2265907 
 
+$iter
+[1] 101
+
+$convergence
+[1] FALSE
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "CG")
@@ -906,7 +930,7 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "CG")
 
-Estimation method:  CG 
+Estimation method: CG 
 
 Coefficients:
         Estimate Std. Error   t value Pr(>|t|)
@@ -1030,6 +1054,12 @@ $coefficients
     gamma     delta       rho 
 1.2724872 0.5958142 0.5123797 
 
+$iter
+[1] 10000
+
+$convergence
+[1] TRUE
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "SANN")
 
@@ -1133,7 +1163,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "SANN")
 
-Estimation method:  SANN 
+Estimation method: SANN 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -1256,6 +1286,12 @@ $coefficients
     gamma     delta       rho       phi 
 0.9898116 0.5897281 0.4298487 1.1041843 
 
+$iter
+[1] 10000
+
+$convergence
+[1] TRUE
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "SANN")
@@ -1363,7 +1399,7 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "SANN")
 
-Estimation method:  SANN 
+Estimation method: SANN 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -1489,6 +1525,12 @@ $coefficients
     gamma     delta       rho 
 1.2696092 0.5990816 0.5173721 
 
+$iter
+[1] 41
+
+$convergence
+[1] TRUE
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "BFGS")
 
@@ -1592,7 +1634,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "BFGS")
 
-Estimation method:  BFGS 
+Estimation method: BFGS 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -1715,6 +1757,12 @@ $coefficients
       gamma       delta         rho         phi 
  -2.1116547   0.8765936   0.3862718 -43.4609109 
 
+$iter
+[1] 3
+
+$convergence
+[1] TRUE
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "BFGS")
@@ -1822,7 +1870,7 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "BFGS")
 
-Estimation method:  BFGS 
+Estimation method: BFGS 
 
 Coefficients:
         Estimate Std. Error   t value Pr(>|t|)
@@ -1947,6 +1995,15 @@ $coefficients
     gamma     delta       rho 
 1.2696092 0.5990816 0.5173726 
 
+$iter
+[1] 16
+
+$convergence
+[1] TRUE
+
+$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B", 
     lower = c(-Inf, 0, -Inf), upper = c(Inf, 1, Inf))
@@ -2053,7 +2110,7 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B", 
     lower = c(-Inf, 0, -Inf), upper = c(Inf, 1, Inf))
 
-Estimation method:  L-BFGS-B 
+Estimation method: L-BFGS-B 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -2177,6 +2234,15 @@ $coefficients
     gamma     delta       rho       phi 
 0.9548391 0.5886661 0.3421980 1.1169555 
 
+$iter
+[1] 27
+
+$convergence
+[1] TRUE
+
+$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf, 0), upper = c(Inf, 
@@ -2287,7 +2353,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf, 0), upper = c(Inf, 
         1, Inf, Inf))
 
-Estimation method:  L-BFGS-B 
+Estimation method: L-BFGS-B 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -2401,6 +2467,15 @@ $coefficients
     gamma     delta       rho 
 1.2696091 0.5990816 0.5173696 
 
+$iter
+[1] 6
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "LM", 
     control = nls.lm.control(maxiter = 200))
@@ -2507,7 +2582,7 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "LM", 
     control = nls.lm.control(maxiter = 200))
 
-Estimation method:  LM 
+Estimation method: LM 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -2618,6 +2693,15 @@ $coefficients
     gamma     delta       rho       phi 
 0.9548196 0.5886691 0.3421455 1.1169634 
 
+$iter
+[1] 6
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "LM", control = nls.lm.control(maxiter = 200))
@@ -2725,7 +2809,7 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "LM", control = nls.lm.control(maxiter = 200))
 
-Estimation method:  LM 
+Estimation method: LM 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -2990,7 +3074,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Kmenta")
 
-Estimation method:  Kmenta 
+Estimation method: Kmenta 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -3240,7 +3324,7 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "Kmenta")
 
-Estimation method:  Kmenta 
+Estimation method: Kmenta 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
