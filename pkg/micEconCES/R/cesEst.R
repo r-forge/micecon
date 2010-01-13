@@ -86,13 +86,14 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # unscaled covariance matrix
    gradients <- cesDerivCoef( par = result$coefficients, data = estData )
-   result$cov.unscaled <- try( solve( crossprod( gradients ) ), silent = TRUE )
+   result$cov.unscaled <- try( chol2inv( chol( crossprod( gradients ) ) ),
+      silent = TRUE )
    if( !is.matrix( result$cov.unscaled ) ) {
       result$cov.unscaled <- matrix( NA, nrow = length( result$coefficients ),
          ncol = length( result$coefficients ) )
-      rownames( result$cov.unscaled ) <- names( result$coefficients )
-      colnames( result$cov.unscaled ) <- names( result$coefficients )
    }
+   rownames( result$cov.unscaled ) <- names( result$coefficients )
+   colnames( result$cov.unscaled ) <- names( result$coefficients )
 
    # nonlinear least squares
 #    result$nls <- nls(
