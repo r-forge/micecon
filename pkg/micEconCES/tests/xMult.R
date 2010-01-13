@@ -18,7 +18,7 @@ xxNames <- paste( "xx", 1:nExog, sep = "." )
 
 # add explanatory variables
 for( i in 1:nExog ) {
-   cesData[[ xxNames[ i ] ]] <- rchisq( 200, 10 + i )
+   cesData[[ xxNames[ i ] ]] <- rchisq( nObs, 10 + i )
 }
 
 # coefficients
@@ -37,4 +37,4 @@ all.equal( cesData$y,
    cesCalc( xNames = xxNames, data = cesData, coef = sample( cesCoef, 7 ) ) )
 
 # adding noise to the endogenous variable
-cesData$y <- cesData$y + rnorm( 200 )
+cesData$y <- cesData$y + rnorm( nObs )

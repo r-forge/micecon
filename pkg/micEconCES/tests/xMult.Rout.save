@@ -60,7 +60,7 @@ Loading required package: minpack.lm
 > 
 > # add explanatory variables
 > for( i in 1:nExog ) {
-+    cesData[[ xxNames[ i ] ]] <- rchisq( 200, 10 + i )
++    cesData[[ xxNames[ i ] ]] <- rchisq( nObs, 10 + i )
 + }
 > 
 > # coefficients
@@ -110,5 +110,5 @@ Loading required package: minpack.lm
 [1] TRUE
 > 
 > # adding noise to the endogenous variable
-> cesData$y <- cesData$y + rnorm( 200 )
+> cesData$y <- cesData$y + rnorm( nObs )
 > 
