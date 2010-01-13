@@ -2,10 +2,10 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
       ... ) {
 
    cat( "Estimated CES function with " )
-   if( is.null( x$call$vrs ) || !x$call$vrs ){
-      cat( "constant " )
-   } else {
+   if( "phi" %in% rownames( coef( x ) ) ){
       cat( "variable " )
+   } else {
+      cat( "constant " )
    }
    cat( "returns to scale\n\n" )
 
