@@ -3,6 +3,7 @@ cesDerivCoef <- function( par, data ) {
    # derivatives of the CES with respect to the coefficients/parameters
    result <- matrix( NA, nrow = nrow( data ), ncol = length( par ) )
    colnames( result ) <- c( "gamma", "delta", "rho", "phi" )[ 1:length( par ) ]
+   names( par ) <- c( "gamma", "delta", "rho", "phi" )[ 1:length( par ) ]
 
    gamma <- par[ "gamma" ]
    delta <- par[ "delta" ]
