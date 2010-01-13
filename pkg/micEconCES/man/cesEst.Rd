@@ -71,8 +71,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       calculated from the parameters of the linearized model by the Delta method
       (only if argument \code{method} is \code{"Kmenta"}).}
    \item{cov.unscaled}{unscaled covariance matrix of the estimated parameters,
-      i.e. the product of the gradient matrices evaluated at the estimated
-      parameters.}
+      i.e. the inverse of the cross-product of the gradient matrix
+      evaluated at the estimated parameters.}
    \item{fitted.values}{the fitted values.}
    \item{residuals}{the residuals.}
    \item{call}{the matched call.}

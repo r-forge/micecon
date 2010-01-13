@@ -94,10 +94,10 @@ $residuals
 [19]   53.970261   56.230770
 
 $cov.unscaled
-          gamma     delta       rho
-gamma 19429.313  91736.49  8338.063
-delta 91736.486 433138.47 39368.586
-rho    8338.063  39368.59  3578.268
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -120,10 +120,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms)
 Estimation method:  Nelder-Mead 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma    46.236  12692.537    0.004    0.997
-delta     1.492  59928.458 2.49e-05    1.000
-rho      -6.564   5446.985   -0.001    0.999
+      Estimate Std. Error t value Pr(>|t|)
+gamma   46.236         NA      NA       NA
+delta    1.492         NA      NA       NA
+rho     -6.564         NA      NA       NA
 
 Residual standard error: 91.05834 
 
@@ -131,15 +131,15 @@ Residual standard error: 91.05834
     gamma     delta       rho 
 46.236274  1.491768 -6.564428 
 > vcov( cesLandLabor ) 
-          gamma      delta       rho
-gamma 161100504  760644194  69136059
-delta 760644194 3591420111 326429405
-rho    69136059  326429405  29669644
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 > coef( summary( cesLandLabor ) )
-       Estimate Std. Error       t value  Pr(>|t|)
-gamma 46.236274  12692.537  3.642792e-03 0.9970935
-delta  1.491768  59928.458  2.489248e-05 0.9999801
-rho   -6.564428   5446.985 -1.205149e-03 0.9990384
+       Estimate Std. Error t value Pr(>|t|)
+gamma 46.236274         NA      NA       NA
+delta  1.491768         NA      NA       NA
+rho   -6.564428         NA      NA       NA
 > fitted( cesLandLabor )
  [1] 1149.899 1189.212 1213.291 1224.102 1224.102 1239.827 1273.243 1276.191
  [9] 1237.370 1281.105 1315.504 1467.841 1528.776 1581.848 1548.924 1566.614
@@ -196,11 +196,11 @@ $residuals
 [16]   42.5928145  -30.2637490  -23.6811525  -32.9074350  -60.8027548
 
 $cov.unscaled
-           gamma     delta         rho       phi
-gamma   30953.86   2289430   -581552.1   3308141
-delta 2289430.12 169357739 -43031239.3 244835589
-rho   -581552.14 -43031239  10938939.1 -62263849
-phi   3308141.42 244835589 -62263849.0 354586201
+             gamma        delta           rho           phi
+gamma 451.37776574 -9.411411279 -12.712250992  5.503109e-02
+delta  -9.41141128  0.196262251   0.265266023 -1.131518e-03
+rho   -12.71225099  0.265266023   0.359646882 -1.409078e-03
+phi     0.05503109 -0.001131518  -0.001409078  2.045097e-05
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -225,11 +225,13 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Estimation method:  Nelder-Mead 
 
 Coefficients:
-        Estimate Std. Error   t value Pr(>|t|)
-gamma  3.658e+01  1.211e+04     0.003    0.998
-delta  6.046e-01  8.955e+05  6.75e-07    1.000
-rho   -9.350e-01  2.276e+05 -4.11e-06    1.000
-phi    1.270e+00  1.296e+06  9.80e-07    1.000
+       Estimate Std. Error t value Pr(>|t|)    
+gamma   36.5786  1461.9457   0.025    0.980    
+delta    0.6046    30.4845   0.020    0.984    
+rho     -0.9350    41.2667  -0.023    0.982    
+phi      1.2704     0.3112   4.083 4.45e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 68.81152 
 
@@ -237,17 +239,17 @@ Residual standard error: 68.81152
      gamma      delta        rho        phi 
 36.5786357  0.6045810 -0.9349716  1.2704379 
 > vcov( cesLandLaborVrs )
-            gamma         delta           rho           phi
-gamma   146567301   10840510453   -2753664309   15664134636
-delta 10840510453  801913246492 -203754023939 1159302805599
-rho   -2753664309 -203754023939   51796157914 -294820925355
-phi   15664134636 1159302805599 -294820925355 1678974777069
+             gamma         delta           rho          phi
+gamma 2137285.3217 -44563.274288 -60192.835166 260.57360473
+delta  -44563.2743    929.306802   1256.041438  -5.35776717
+rho    -60192.8352   1256.041438   1702.937231  -6.67202281
+phi       260.5736     -5.357767     -6.672023   0.09683586
 > coef( summary( cesLandLaborVrs ) )
-        Estimate Std. Error       t value  Pr(>|t|)
-gamma 36.5786357   12106.50  3.021405e-03 0.9975893
-delta  0.6045810  895496.09  6.751353e-07 0.9999995
-rho   -0.9349716  227587.69 -4.108182e-06 0.9999967
-phi    1.2704379 1295752.59  9.804633e-07 0.9999992
+        Estimate   Std. Error     t value     Pr(>|t|)
+gamma 36.5786357 1461.9457314  0.02502052 9.800386e-01
+delta  0.6045810   30.4845338  0.01983239 9.841771e-01
+rho   -0.9349716   41.2666600 -0.02265683 9.819240e-01
+phi    1.2704379    0.3111846  4.08258595 4.453733e-05
 > fitted( cesLandLaborVrs )
  [1] 1080.386 1125.789 1153.072 1167.355 1167.355 1185.138 1223.166 1228.426
  [9] 1182.734 1235.991 1276.431 1466.271 1541.166 1605.166 1563.549 1583.438
@@ -304,10 +306,10 @@ $residuals
 [19]   53.896798   56.153211
 
 $cov.unscaled
-            gamma       delta          rho
-gamma 18403.98187 8.544089750 158.55860724
-delta     8.54409 0.003966613   0.07361119
-rho     158.55861 0.073611188   1.36605394
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -332,12 +334,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Estimation method:  CG 
 
 Coefficients:
-       Estimate Std. Error t value Pr(>|t|)    
-gamma    47.509  12353.088   0.004   0.9969    
-delta   548.707      5.735  95.678   <2e-16 ***
-rho    -186.500    106.427  -1.752   0.0797 .  
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+      Estimate Std. Error t value Pr(>|t|)
+gamma    47.51         NA      NA       NA
+delta   548.71         NA      NA       NA
+rho    -186.50         NA      NA       NA
 
 Residual standard error: 91.05832 
 
@@ -345,15 +345,15 @@ Residual standard error: 91.05832
      gamma      delta        rho 
   47.50869  548.70721 -186.49980 
 > vcov( cesLandLaborCg )
-             gamma       delta          rho
-gamma 152598786.35 70844.32788 1314707.3929
-delta     70844.33    32.88964     610.3558
-rho     1314707.39   610.35585   11326.7974
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 > coef( summary( cesLandLaborCg ) )
-        Estimate   Std. Error      t value  Pr(>|t|)
-gamma   47.50869 12353.088130  0.003845896 0.9969314
-delta  548.70721     5.734949 95.677787504 0.0000000
-rho   -186.49980   106.427428 -1.752365992 0.0797109
+        Estimate Std. Error t value Pr(>|t|)
+gamma   47.50869         NA      NA       NA
+delta  548.70721         NA      NA       NA
+rho   -186.49980         NA      NA       NA
 > fitted( cesLandLaborCg )
  [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
  [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
@@ -411,10 +411,10 @@ $residuals
 [19]  -22.122762  -52.405886
 
 $cov.unscaled
-            gamma      delta         rho
-gamma    29205.79   11709728    659649.6
-delta 11709727.71 4759261461 269895863.5
-rho     659649.57  269895864  15354927.5
+             gamma         delta           rho
+gamma  0.928118018 -6.991767e-03  0.0830232686
+delta -0.006991767  5.273642e-05 -0.0006265887
+rho    0.083023269 -6.265887e-04  0.0074470192
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -439,10 +439,12 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Estimation method:  SANN 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 3.770e+01  1.372e+04    0.003    0.998
-delta 1.027e+00  5.540e+06 1.85e-07    1.000
-rho   6.453e-01  3.147e+05 2.05e-06    1.000
+      Estimate Std. Error t value Pr(>|t|)  
+gamma  37.6955    77.3702   0.487   0.6261  
+delta   1.0273     0.5832   1.761   0.0782 .
+rho     0.6453     6.9305   0.093   0.9258  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 80.31043 
 
@@ -450,15 +452,15 @@ Residual standard error: 80.31043
      gamma      delta        rho 
 37.6955089  1.0272590  0.6452962 
 > vcov( cesLandLaborSann )
-            gamma        delta          rho
-gamma   188370479 7.552499e+10 4.254584e+09
-delta 75524987098 3.069612e+13 1.740765e+12
-rho    4254584451 1.740765e+12 9.903567e+10
+           gamma       delta       rho
+gamma 5986.14273 -45.0952496 535.48054
+delta  -45.09525   0.3401375  -4.04135
+rho    535.48054  -4.0413497  48.03152
 > coef( summary( cesLandLaborSann ) )
-        Estimate Std. Error      t value  Pr(>|t|)
-gamma 37.6955089   13724.81 2.746523e-03 0.9978086
-delta  1.0272590 5540407.57 1.854122e-07 0.9999999
-rho    0.6452962  314699.33 2.050517e-06 0.9999984
+        Estimate Std. Error    t value   Pr(>|t|)
+gamma 37.6955089  77.370167 0.48720987 0.62610961
+delta  1.0272590   0.583213 1.76137863 0.07817434
+rho    0.6452962   6.930478 0.09310991 0.92581624
 > fitted( cesLandLaborSann )
  [1] 1109.338 1153.191 1182.809 1188.985 1188.985 1208.923 1251.673 1248.227
  [9] 1204.429 1247.373 1287.679 1439.747 1510.329 1580.205 1544.296 1574.300
@@ -515,10 +517,10 @@ $residuals
 [19]   53.896688   56.153095
 
 $cov.unscaled
-            gamma        delta         rho
-gamma 18717.49706 10.492337401 248.8544452
-delta    10.49234  0.005881617   0.1394986
-rho     248.85445  0.139498609   3.3085906
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -543,12 +545,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Estimation method:  BFGS 
 
 Coefficients:
-       Estimate Std. Error t value Pr(>|t|)    
-gamma    47.109  12457.862   0.004    0.997    
-delta   561.146      6.983  80.354   <2e-16 ***
-rho    -149.763    165.631  -0.904    0.366    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+      Estimate Std. Error t value Pr(>|t|)
+gamma    47.11         NA      NA       NA
+delta   561.15         NA      NA       NA
+rho    -149.76         NA      NA       NA
 
 Residual standard error: 91.05832 
 
@@ -556,15 +556,15 @@ Residual standard error: 91.05832
      gamma      delta        rho 
   47.10913  561.14577 -149.76314 
 > vcov( cesLandLaborBfgs )
-             gamma       delta         rho
-gamma 155198334.45 86998.45307 2063405.983
-delta     86998.45    48.76812    1156.669
-rho     2063405.98  1156.66917   27433.569
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 > coef( summary( cesLandLaborBfgs ) )
-        Estimate   Std. Error      t value  Pr(>|t|)
-gamma   47.10913 12457.862355  0.003781478 0.9969828
-delta  561.14577     6.983417 80.354035235 0.0000000
-rho   -149.76314   165.630822 -0.904198470 0.3658902
+        Estimate Std. Error t value Pr(>|t|)
+gamma   47.10913         NA      NA       NA
+delta  561.14577         NA      NA       NA
+rho   -149.76314         NA      NA       NA
 > fitted( cesLandLaborBfgs )
  [1] 1149.945 1189.259 1213.340 1224.151 1224.151 1239.877 1273.294 1276.242
  [9] 1237.420 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
@@ -623,10 +623,10 @@ $residuals
 [19]   53.896799   56.153212
 
 $cov.unscaled
-             gamma        delta          rho
-gamma 1.720028e+04 1.833548e+05 5.227548e-10
-delta 1.833548e+05 1.954560e+06 5.572561e-09
-rho   5.227548e-10 5.572561e-09 1.656946e-23
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -653,12 +653,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Estimation method:  L-BFGS-B 
 
 Coefficients:
-        Estimate Std. Error    t value Pr(>|t|)    
-gamma  4.914e+01  1.194e+04  4.000e-03    0.997    
-delta  1.000e+00  1.273e+05   7.86e-06    1.000    
-rho   -4.610e+00  3.707e-10 -1.244e+10   <2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+      Estimate Std. Error t value Pr(>|t|)
+gamma    49.14         NA      NA       NA
+delta     1.00         NA      NA       NA
+rho      -4.61         NA      NA       NA
 
 Residual standard error: 91.05832 
 
@@ -666,15 +664,15 @@ Residual standard error: 91.05832
     gamma     delta       rho 
 49.142950  1.000000 -4.610031 
 > vcov( cesLandLaborBfgsCon )
-             gamma        delta          rho
-gamma 1.426181e+08 1.520308e+09 4.334483e-06
-delta 1.520308e+09 1.620646e+10 4.620554e-05
-rho   4.334483e-06 4.620554e-05 1.373876e-19
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 > coef( summary( cesLandLaborBfgsCon ) )
-       Estimate   Std. Error       t value  Pr(>|t|)
-gamma 49.142950 1.194228e+04  4.115038e-03 0.9967167
-delta  1.000000 1.273046e+05  7.855175e-06 0.9999937
-rho   -4.610031 3.706584e-10 -1.243741e+10 0.0000000
+       Estimate Std. Error t value Pr(>|t|)
+gamma 49.142950         NA      NA       NA
+delta  1.000000         NA      NA       NA
+rho   -4.610031         NA      NA       NA
 > fitted( cesLandLaborBfgsCon )
  [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
  [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
@@ -768,10 +766,10 @@ $residuals
 [19]  -674469990 -1211392456
 
 $cov.unscaled
-             gamma        delta          rho
-gamma 3.763018e+41 1.402447e+30 7.362270e+32
-delta 1.402447e+30 5.227146e+18 2.744310e+21
-rho   7.362270e+32 2.744310e+21 1.441014e+24
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -895,11 +893,11 @@ $residuals
 [19] -2791719.4 -3979977.0
 
 $cov.unscaled
-             gamma        delta          rho          phi
-gamma 1.935064e+25 6.486592e+19 3.771655e+21 4.344692e+20
-delta 6.486592e+19 2.174887e+14 1.265041e+16 1.456888e+15
-rho   3.771655e+21 1.265041e+16 7.362197e+17 8.475517e+16
-phi   4.344692e+20 1.456888e+15 8.475517e+16 9.759739e+15
+      gamma delta rho phi
+gamma    NA    NA  NA  NA
+delta    NA    NA  NA  NA
+rho      NA    NA  NA  NA
+phi      NA    NA  NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -996,10 +994,10 @@ $residuals
 [19]  -30.989613  -58.509794
 
 $cov.unscaled
-         gamma    delta       rho
-gamma  4325032  6269902  59728204
-delta  6269902  9089634  86599713
-rho   59728204 86599713 825416116
+            gamma       delta          rho
+gamma  14.8038460 -13.0243493  0.295242325
+delta -13.0243493  11.4590135 -0.259779610
+rho     0.2952423  -0.2597796  0.005891025
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1024,10 +1022,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Estimation method:  LM 
 
 Coefficients:
-        Estimate Std. Error   t value Pr(>|t|)
-gamma  3.100e+00  1.631e+05  1.90e-05        1
-delta  4.375e+00  2.365e+05  1.85e-05        1
-rho   -4.518e-01  2.253e+06 -2.01e-07        1
+      Estimate Std. Error t value Pr(>|t|)
+gamma   3.1000   301.7845   0.010    0.992
+delta   4.3755   265.5115   0.016    0.987
+rho    -0.4518     6.0201  -0.075    0.940
 
 Residual standard error: 78.43496 
 
@@ -1035,15 +1033,15 @@ Residual standard error: 78.43496
      gamma      delta        rho 
  3.1000427  4.3754874 -0.4518441 
 > vcov( cesLandLaborLm )
-             gamma        delta          rho
-gamma  26607782212  38572709896 3.674505e+11
-delta  38572709896  55919821914 5.327652e+11
-rho   367450513295 532765204111 5.077996e+12
+           gamma      delta         rho
+gamma  91073.906 -80126.364  1816.34364
+delta -80126.364  70496.350 -1598.17547
+rho     1816.344  -1598.175    36.24184
 > coef( summary( cesLandLaborLm ) )
-        Estimate Std. Error       t value  Pr(>|t|)
-gamma  3.1000427   163118.9  1.900480e-05 0.9999848
-delta  4.3754874   236473.7  1.850306e-05 0.9999852
-rho   -0.4518441  2253440.9 -2.005130e-07 0.9999998
+        Estimate Std. Error     t value  Pr(>|t|)
+gamma  3.1000427  301.78453  0.01027237 0.9918040
+delta  4.3754874  265.51149  0.01647947 0.9868519
+rho   -0.4518441    6.02012 -0.07505567 0.9401704
 > fitted( cesLandLaborLm )
  [1] 1101.156 1147.287 1179.191 1183.694 1183.694 1205.314 1251.259 1245.840
  [9] 1200.060 1242.988 1285.547 1438.304 1511.846 1585.423 1548.874 1580.847
@@ -1099,10 +1097,10 @@ $residuals
 [19]   54.707322   57.009117
 
 $cov.unscaled
-           gamma    delta        rho
-gamma   27109.54  -674077  -69991.16
-delta -674077.01 16760885 1740326.09
-rho    -69991.16  1740326  180702.56
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1125,18 +1123,18 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 Estimation method:  Nelder-Mead 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 3.913e+01  1.499e+04    0.003    0.998
-delta 4.566e-01  3.728e+05 1.22e-06    1.000
-rho   3.446e+00  3.871e+04 8.90e-05    1.000
+      Estimate Std. Error t value Pr(>|t|)
+gamma  39.1271         NA      NA       NA
+delta   0.4566         NA      NA       NA
+rho     3.4463         NA      NA       NA
 
 Residual standard error: 91.06165 
 
 > coef( summary( cesLandInt ) )
-        Estimate Std. Error      t value  Pr(>|t|)
-gamma 39.1271322   14993.28 2.609645e-03 0.9979178
-delta  0.4565819  372806.94 1.224714e-06 0.9999990
-rho    3.4462902   38709.51 8.902955e-05 0.9999290
+        Estimate Std. Error t value Pr(>|t|)
+gamma 39.1271322         NA      NA       NA
+delta  0.4565819         NA      NA       NA
+rho    3.4462902         NA      NA       NA
 > 
 > # variable returns to scale
 > cesLandIntVrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -1184,11 +1182,11 @@ $residuals
 [19]  -42.689068  -72.746431
 
 $cov.unscaled
-           gamma       delta        rho       phi
-gamma   31857.66   -306226.8   293071.9   3454335
-delta -306226.76   2943556.9 -2817109.0 -33203967
-rho    293071.93  -2817109.0  2696100.3  31775136
-phi   3454335.31 -33203967.2 31775136.1 375659240
+              gamma         delta           rho           phi
+gamma  8.047159e+06  9.314515e+05  9.851808e+04 -3.386005e-01
+delta  9.314515e+05  1.078152e+05  1.140390e+04 -3.802838e-02
+rho    9.851808e+04  1.140390e+04  1.206645e+03 -2.970173e-03
+phi   -3.386004e-01 -3.802838e-02 -2.970172e-03  3.527153e-06
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1213,20 +1211,22 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation method:  Nelder-Mead 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 3.613e+01  1.249e+04    0.003    0.998
-delta 2.315e+00  1.200e+05 1.93e-05    1.000
-rho   2.015e+00  1.149e+05 1.75e-05    1.000
-phi   1.242e+00  1.356e+06 9.16e-07    1.000
+       Estimate Std. Error  t value Pr(>|t|)    
+gamma 3.613e+01  1.985e+05 0.000182        1    
+delta 2.316e+00  2.297e+04 0.000101        1    
+rho   2.015e+00  2.430e+03    0.001        1    
+phi   1.242e+00  1.314e-01    9.451   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 69.96825 
 
 > coef( summary( cesLandIntVrs ) )
-       Estimate Std. Error      t value  Pr(>|t|)
-gamma 36.132869   12488.43 2.893307e-03 0.9976915
-delta  2.315477  120043.10 1.928871e-05 0.9999846
-rho    2.014573  114886.50 1.753533e-05 0.9999860
-phi    1.241926 1356119.69 9.157936e-07 0.9999993
+       Estimate   Std. Error      t value     Pr(>|t|)
+gamma 36.132869 1.984825e+05 0.0001820456 9.998547e-01
+delta  2.315477 2.297423e+04 0.0001007858 9.999196e-01
+rho    2.014573 2.430473e+03 0.0008288810 9.993386e-01
+phi    1.241926 1.314054e-01 9.4511028726 3.352792e-21
 > 
 > # using the CG optimization method
 > cesLandIntCg <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -1274,10 +1274,10 @@ $residuals
 [19]   53.896798   56.153211
 
 $cov.unscaled
-            gamma       delta         rho
-gamma 14469.06701 -80.6852190 1137.541019
-delta   -80.68522   0.4499326   -6.343377
-rho    1137.54102  -6.3433769   89.432136
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1302,20 +1302,18 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation method:  CG 
 
 Coefficients:
-      Estimate Std. Error t value Pr(>|t|)   
-gamma    53.58   10953.17   0.005  0.99610   
-delta   163.07      61.08   2.670  0.00759 **
-rho      58.92     861.13   0.068  0.94545   
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+      Estimate Std. Error t value Pr(>|t|)
+gamma    53.58         NA      NA       NA
+delta   163.07         NA      NA       NA
+rho      58.92         NA      NA       NA
 
 Residual standard error: 91.05832 
 
 > coef( summary( cesLandIntCg ) )
-       Estimate Std. Error     t value    Pr(>|t|)
-gamma  53.58074 10953.1719 0.004891801 0.996096923
-delta 163.07101    61.0792 2.669828785 0.007588993
-rho    58.92213   861.1255 0.068424561 0.945447671
+       Estimate Std. Error t value Pr(>|t|)
+gamma  53.58074         NA      NA       NA
+delta 163.07101         NA      NA       NA
+rho    58.92213         NA      NA       NA
 > 
 > # using the SANN optimization method
 > set.seed( 234 )
@@ -1364,10 +1362,10 @@ $residuals
 [19]   53.608988   55.849428
 
 $cov.unscaled
-           gamma      delta        rho
-gamma   26762.51  -642248.7  -61015.73
-delta -642248.67 15412731.1 1464260.02
-rho    -61015.73  1464260.0  139109.51
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1392,18 +1390,18 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation method:  SANN 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 3.940e+01  1.490e+04    0.003    0.998
-delta 4.299e-01  3.575e+05 1.20e-06    1.000
-rho   3.820e+00  3.396e+04 1.12e-04    1.000
+      Estimate Std. Error t value Pr(>|t|)
+gamma  39.4035         NA      NA       NA
+delta   0.4299         NA      NA       NA
+rho     3.8197         NA      NA       NA
 
 Residual standard error: 91.05901 
 
 > coef( summary( cesLandIntSann ) )
-        Estimate Std. Error      t value  Pr(>|t|)
-gamma 39.4034688   14896.57 2.645137e-03 0.9978895
-delta  0.4298509  357489.04 1.202417e-06 0.9999990
-rho    3.8197376   33962.63 1.124688e-04 0.9999103
+        Estimate Std. Error t value Pr(>|t|)
+gamma 39.4034688         NA      NA       NA
+delta  0.4298509         NA      NA       NA
+rho    3.8197376         NA      NA       NA
 > 
 > # using the BFGS optimization method
 > cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -1451,10 +1449,10 @@ $residuals
 [19]   53.895383   56.151717
 
 $cov.unscaled
-            gamma       delta         rho
-gamma 13512.40886 -46.1448678 1874.391066
-delta   -46.14487   0.1575847   -6.401044
-rho    1874.39107  -6.4010443  260.008553
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1479,20 +1477,18 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation method:  BFGS 
 
 Coefficients:
-      Estimate Std. Error t value Pr(>|t|)    
-gamma    55.45   10584.88   0.005    0.996    
-delta   336.65      36.15   9.313   <2e-16 ***
-rho      48.23    1468.30   0.033    0.974    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+      Estimate Std. Error t value Pr(>|t|)
+gamma    55.45         NA      NA       NA
+delta   336.65         NA      NA       NA
+rho      48.23         NA      NA       NA
 
 Residual standard error: 91.05832 
 
 > coef( summary( cesLandIntBfgs ) )
-       Estimate  Std. Error     t value     Pr(>|t|)
-gamma  55.44507 10584.88223 0.005238137 9.958206e-01
-delta 336.65007    36.14737 9.313267037 1.239595e-20
-rho    48.22737  1468.29547 0.032845819 9.737975e-01
+       Estimate Std. Error t value Pr(>|t|)
+gamma  55.44507         NA      NA       NA
+delta 336.65007         NA      NA       NA
+rho    48.22737         NA      NA       NA
 > 
 > # using the L-BFGS-B optimization method with constrained delta
 > cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -1542,10 +1538,10 @@ $residuals
 [19]   53.891419   56.147537
 
 $cov.unscaled
-           gamma      delta        rho
-gamma   29259.90  -832514.6  -58510.98
-delta -832514.56 23687038.6 1664777.85
-rho    -58510.98  1664777.9  117004.30
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1572,18 +1568,18 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation method:  L-BFGS-B 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 3.768e+01  1.558e+04    0.002    0.998
-delta 2.646e-01  4.432e+05 5.97e-07    1.000
-rho   5.005e+00  3.115e+04 1.61e-04    1.000
+      Estimate Std. Error t value Pr(>|t|)
+gamma  37.6785         NA      NA       NA
+delta   0.2646         NA      NA       NA
+rho     5.0053         NA      NA       NA
 
 Residual standard error: 91.05834 
 
 > coef( summary( cesLandIntBfgsCon ) )
-        Estimate Std. Error      t value  Pr(>|t|)
-gamma 37.6785181   15576.01 2.419010e-03 0.9980699
-delta  0.2645720  443174.87 5.969923e-07 0.9999995
-rho    5.0053076   31147.32 1.606979e-04 0.9998718
+        Estimate Std. Error t value Pr(>|t|)
+gamma 37.6785181         NA      NA       NA
+delta  0.2645720         NA      NA       NA
+rho    5.0053076         NA      NA       NA
 > 
 > # Kmenta approximation with CRS
 > cesLandIntKmentaCrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -1666,10 +1662,10 @@ $residuals
 [15] 1636.2734 1616.0417 1640.2933 1736.9229 1865.5612 1968.5645
 
 $cov.unscaled
-              gamma         delta           rho
-gamma  3.805054e-13 -4.527770e-05  4.825823e-03
-delta -4.527770e-05  5.389161e+03 -5.746293e+05
-rho    4.825823e-03 -5.746293e+05  6.131109e+07
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1774,10 +1770,10 @@ $residuals
 
 $cov.unscaled
               gamma         delta           rho           phi
-gamma  8.245217e+13 -1.050611e+12 2949177976536 3710082377769
-delta -1.050611e+12  1.338937e+10  -37596716026  -47275207211
-rho    2.949178e+12 -3.759672e+10  105623003567  132711641179
-phi    3.710082e+12 -4.727521e+10  132711641179  166960802224
+gamma  2.231400e-07  2.790746e-05  3.716972e-06 -1.091277e-08
+delta  2.790746e-05  3.492003e-03  4.651127e-04 -1.076335e-06
+rho    3.716972e-06  4.651127e-04  6.195762e-05 -1.465858e-07
+phi   -1.091277e-08 -1.076335e-06 -1.465858e-07  5.425219e-08
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1856,10 +1852,10 @@ $residuals
 [19]    4.576525    3.318620
 
 $cov.unscaled
-            gamma       delta         rho
-gamma    3931.792   -798261.7    491846.1
-delta -798261.673 162144278.3 -99967406.5
-rho    491846.122 -99967406.5  61685628.4
+           gamma       delta         rho
+gamma 1831.29927 15.68087776 10.81060947
+delta   15.68088  0.13427802  0.09257985
+rho     10.81061  0.09257985  0.06383678
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1884,18 +1880,18 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation method:  LM 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 1.028e+02  5.497e+03    0.019    0.985
-delta 1.346e+00  1.116e+06 1.21e-06    1.000
-rho   2.088e-01  6.885e+05 3.03e-07    1.000
+       Estimate Std. Error t value Pr(>|t|)
+gamma  102.8020  3751.4640   0.027    0.978
+delta    1.3461    32.1236   0.042    0.967
+rho      0.2088    22.1491   0.009    0.992
 
 Residual standard error: 87.66397 
 
 > coef( summary( cesLandIntLm ) )
-         Estimate  Std. Error      t value  Pr(>|t|)
-gamma 102.8019839    5496.882 1.870187e-02 0.9850789
-delta   1.3461365 1116276.892 1.205916e-06 0.9999990
-rho     0.2088107  688514.542 3.032771e-07 0.9999998
+         Estimate Std. Error    t value  Pr(>|t|)
+gamma 102.8019839 3751.46398 0.02740316 0.9781382
+delta   1.3461365   32.12355 0.04190497 0.9665745
+rho     0.2088107   22.14913 0.00942749 0.9924781
 > 
 > 
 > ############  cesCalc  ################
