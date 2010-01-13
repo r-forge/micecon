@@ -1145,9 +1145,6 @@ $iter
 $convergence
 [1] TRUE
 
-$message
-[1] "2"
-
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "Newton")
@@ -1193,7 +1190,6 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
 Convergence achieved after 5 iterations
-Message: 2 
 
 Coefficients:
      Estimate Std. Error t value Pr(>|t|)
@@ -2159,9 +2155,6 @@ $iter
 $convergence
 [1] TRUE
 
-$message
-[1] "2"
-
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "Newton")
@@ -2207,7 +2200,6 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
 Convergence achieved after 5 iterations
-Message: 2 
 
 Coefficients:
      Estimate Std. Error t value Pr(>|t|)

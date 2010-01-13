@@ -2967,9 +2967,6 @@ $iter
 $convergence
 [1] TRUE
 
-$message
-[1] "1"
-
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Newton")
 
@@ -3074,7 +3071,6 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Newton")
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
 Convergence achieved after 19 iterations
-Message: 1 
 
 Coefficients:
      Estimate Std. Error t value Pr(>|t|)    
@@ -3214,9 +3210,6 @@ $iter
 $convergence
 [1] TRUE
 
-$message
-[1] "1"
-
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "Newton")
@@ -3325,7 +3318,6 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
 Convergence achieved after 1 iterations
-Message: 1 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)

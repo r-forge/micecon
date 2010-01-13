@@ -84,7 +84,6 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$coefficients <- result$nlm$estimate
       result$iter <- result$nlm$iterations
       result$convergence <- result$nlm$code <= 2
-      result$message <- as.character( result$nlm$code )
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
          " 'CG', 'L-BFGS-B', 'SANN', 'LM', 'Newton', or 'Kmenta'" )
