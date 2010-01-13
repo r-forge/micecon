@@ -47,7 +47,7 @@ cesCalc <- function( xNames, data, coef ) {
 
    # check if the deltas sum up to one
    if( abs( sum( coef[ grep( "delta\\_", names( coef ) ) ] ) - 1 ) >
-         .Machine$double.eps ) {
+         .Machine$double.eps^0.5 ) {
       stop( "the sum of the delta coefficients must sum up to 1" )
    }
 
