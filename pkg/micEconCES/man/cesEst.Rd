@@ -43,7 +43,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       \code{"L-BFGS-B"}, or \code{"SANN")} for a non-linear least-squares
       estimation (using \code{\link[stats]{optim}}),
       or \code{"LM"} for non-linear least-squares using the Levenberg-Marquardt
-      algorithm (using \code{\link[minpack.lm]{nls.lm}}).}
+      algorithm (using \code{\link[minpack.lm]{nls.lm}})
+      or \code{"Newton"} for non-linear least-squares using a Newton-type
+      algorithm (using \code{\link[stats]{nlm}}).}
    \item{startVal}{starting values for the non-linear estimations:
       a numeric vector of length 3 for constant returns to scale
       (CRS, without \eqn{\phi}{phi}, i.e. \eqn{\phi}{phi} = 1)
@@ -86,9 +88,11 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{method}{argument \code{method}.}
    \item{optim}{object returned by \code{\link[stats]{optim}}
       (only if argument \code{method} is \code{"Nelder-Mead"}, \code{"BFGS"},
-      \code{"CG"}, \code{"L-BFGS-B"}, or \code{"SANN")}).}
+      \code{"CG"}, \code{"L-BFGS-B"}, or \code{"SANN"})).}
    \item{nls.lm}{object returned by \code{\link[minpack.lm]{nls.lm}}
       (only if argument \code{method} is \code{"LM"}).}
+   \item{nlm}{object returned by \code{\link[stats]{nlm}}
+      (only if argument \code{method} is \code{"Newton"}).}
    \item{translog}{estimation results of the (unrestricted) translog model
       returned by \code{\link[micEcon]{translogEst}}
       (only if argument \code{method} is \code{"Kmenta"}).}
