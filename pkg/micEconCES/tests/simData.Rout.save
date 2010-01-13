@@ -881,10 +881,10 @@ $residuals
 
 $cov.unscaled
               gamma         delta           rho           phi
-gamma  4.998672e+23 -4.642664e+22  7.250709e+23 -2.635298e+23
-delta -4.642649e+22  5.450813e+21 -8.881590e+22  1.023816e+22
-rho    7.250680e+23 -8.881585e+22  1.456617e+24 -1.137925e+23
-phi   -2.635317e+23  1.023842e+22 -1.137968e+23  3.169406e+23
+gamma  4.998809e+23 -4.642823e+22  7.250967e+23 -2.635331e+23
+delta -4.642823e+22  5.451004e+21 -8.881898e+22  1.023871e+22
+rho    7.250967e+23 -8.881898e+22  1.456667e+24 -1.138019e+23
+phi   -2.635331e+23  1.023871e+22 -1.138019e+23  3.169392e+23
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -922,16 +922,16 @@ Residual standard error: 12.27933
   0.6295909   0.9463710  -0.1400105 -21.2265907 
 > vcov( cesCgVrs )
               gamma         delta           rho           phi
-gamma  7.537097e+25 -7.000301e+24  1.093276e+26 -3.973555e+25
-delta -7.000278e+24  8.218844e+23 -1.339184e+25  1.543730e+24
-rho    1.093272e+26 -1.339183e+25  2.196315e+26 -1.715786e+25
-phi   -3.973583e+25  1.543769e+24 -1.715851e+25  4.778893e+25
+gamma  7.537304e+25 -7.000541e+24  1.093315e+26 -3.973604e+25
+delta -7.000541e+24  8.219133e+23 -1.339230e+25  1.543813e+24
+rho    1.093315e+26 -1.339230e+25  2.196391e+26 -1.715928e+25
+phi   -3.973604e+25  1.543813e+24 -1.715928e+25  4.778873e+25
 > coef( summary( cesCgVrs ) )
          Estimate   Std. Error       t value Pr(>|t|)
-gamma   0.6295909 8.681646e+12  7.251977e-14        1
-delta   0.9463710 9.065784e+11  1.043893e-12        1
-rho    -0.1400105 1.481997e+13 -9.447418e-15        1
-phi   -21.2265907 6.912954e+12 -3.070553e-12        1
+gamma   0.6295909 8.681765e+12  7.251877e-14        1
+delta   0.9463710 9.065943e+11  1.043875e-12        1
+rho    -0.1400105 1.482023e+13 -9.447255e-15        1
+phi   -21.2265907 6.912939e+12 -3.070559e-12        1
 > fitted( cesCgVrs )
   [1] 1.083568e-18 1.907275e-25 2.516674e-12 6.712698e-22 4.800974e-27
   [6] 5.397620e-23 2.536163e-15 1.283725e-12 6.497689e-26 1.423108e-22
@@ -1796,11 +1796,11 @@ $residuals
 [197] 12.455520  6.969321 11.492981 14.849242
 
 $cov.unscaled
-      gamma delta rho phi
-gamma    NA    NA  NA  NA
-delta    NA    NA  NA  NA
-rho      NA    NA  NA  NA
-phi      NA    NA  NA  NA
+              gamma         delta           rho           phi
+gamma  1.448877e+44  6.633061e+41 -1.758579e+42  5.491758e+43
+delta  6.633061e+41  5.772598e+39 -3.341416e+40  1.944951e+41
+rho   -1.758579e+42 -3.341416e+40  2.564726e+41 -1.388787e+41
+phi    5.491758e+43  1.944951e+41 -1.388787e+41  2.199996e+43
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1825,11 +1825,11 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Estimation method:  BFGS 
 
 Coefficients:
-      Estimate Std. Error t value Pr(>|t|)
-gamma  -2.1117         NA      NA       NA
-delta   0.8766         NA      NA       NA
-rho     0.3863         NA      NA       NA
-phi   -43.4609         NA      NA       NA
+        Estimate Std. Error   t value Pr(>|t|)
+gamma -2.112e+00  1.478e+23 -1.43e-23        1
+delta  8.766e-01  9.330e+20  9.40e-22        1
+rho    3.863e-01  6.219e+21  6.21e-23        1
+phi   -4.346e+01  5.760e+22 -7.55e-22        1
 
 Residual standard error: 12.27933 
 
@@ -1837,17 +1837,17 @@ Residual standard error: 12.27933
       gamma       delta         rho         phi 
  -2.1116547   0.8765936   0.3862718 -43.4609109 
 > vcov( cesBfgsVrs )
-      gamma delta rho phi
-gamma    NA    NA  NA  NA
-delta    NA    NA  NA  NA
-rho      NA    NA  NA  NA
-phi      NA    NA  NA  NA
+              gamma         delta           rho           phi
+gamma  2.184646e+46  1.000146e+44 -2.651620e+44  8.280581e+45
+delta  1.000146e+44  8.704038e+41 -5.038253e+42  2.932635e+43
+rho   -2.651620e+44 -5.038253e+42  3.867145e+43 -2.094041e+43
+phi    8.280581e+45  2.932635e+43 -2.094041e+43  3.317198e+45
 > coef( summary( cesBfgsVrs ) )
-         Estimate Std. Error t value Pr(>|t|)
-gamma  -2.1116547         NA      NA       NA
-delta   0.8765936         NA      NA       NA
-rho     0.3862718         NA      NA       NA
-phi   -43.4609109         NA      NA       NA
+         Estimate   Std. Error       t value Pr(>|t|)
+gamma  -2.1116547 1.478055e+23 -1.428672e-23        1
+delta   0.8765936 9.329544e+20  9.395890e-22        1
+rho     0.3862718 6.218637e+21  6.211519e-23        1
+phi   -43.4609109 5.759512e+22 -7.545936e-22        1
 > fitted( cesBfgsVrs )
   [1] -4.587462e-37 -1.356489e-49 -1.310284e-24 -1.013270e-43 -2.103147e-52
   [6] -2.521782e-45 -7.307258e-31 -2.159591e-25 -1.048125e-51 -2.127509e-44
