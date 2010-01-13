@@ -123,7 +123,8 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms)
 
-Estimation method: Nelder-Mead 
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Convergence achieved after 78 iterations
 
 Coefficients:
         Estimate Std. Error   t value Pr(>|t|)
@@ -234,7 +235,8 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE)
 
-Estimation method: Nelder-Mead 
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Convergence NOT achieved after 501 iterations
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)    
@@ -349,7 +351,8 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "CG")
 
-Estimation method: CG 
+Estimation by non-linear least-squares using the 'CG' optimizer
+Convergence NOT achieved after 101 iterations
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -460,7 +463,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "SANN")
 
-Estimation method: SANN 
+Estimation by non-linear least-squares using the 'SANN' optimizer
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)  
@@ -572,7 +575,8 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "BFGS")
 
-Estimation method: BFGS 
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+Convergence achieved after 8 iterations
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -689,7 +693,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
         1, Inf))
 
-Estimation method: L-BFGS-B 
+Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+Convergence achieved after 20 iterations
+Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
         Estimate Std. Error   t value Pr(>|t|)
@@ -830,7 +836,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "Kmenta")
 
-Estimation method: Kmenta 
+Estimation by the linear Kmenta approximation
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
@@ -958,7 +964,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE, method = "Kmenta")
 
-Estimation method: Kmenta 
+Estimation by the linear Kmenta approximation
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
@@ -1067,7 +1073,9 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "LM", control = nls.lm.control(maxiter = 200))
 
-Estimation method: LM 
+Estimation by non-linear least-squares using the 'LM' optimizer
+Convergence NOT achieved after 200 iterations
+Message: Number of iterations has reached `maxiter' == 200. 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -1174,7 +1182,8 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 
-Estimation method: Nelder-Mead 
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Convergence achieved after 58 iterations
 
 Coefficients:
        Estimate Std. Error  t value Pr(>|t|)
@@ -1268,7 +1277,8 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE)
 
-Estimation method: Nelder-Mead 
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Convergence achieved after 131 iterations
 
 Coefficients:
        Estimate Std. Error  t value Pr(>|t|)    
@@ -1365,7 +1375,8 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "CG")
 
-Estimation method: CG 
+Estimation by non-linear least-squares using the 'CG' optimizer
+Convergence NOT achieved after 101 iterations
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -1459,7 +1470,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "SANN")
 
-Estimation method: SANN 
+Estimation by non-linear least-squares using the 'SANN' optimizer
 
 Coefficients:
        Estimate Std. Error  t value Pr(>|t|)
@@ -1552,7 +1563,8 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "BFGS")
 
-Estimation method: BFGS 
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+Convergence achieved after 11 iterations
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -1652,7 +1664,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
         1, Inf))
 
-Estimation method: L-BFGS-B 
+Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+Convergence NOT achieved after 128 iterations
+Message: NEW_X 
 
 Coefficients:
        Estimate Std. Error  t value Pr(>|t|)
@@ -1774,7 +1788,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "Kmenta")
 
-Estimation method: Kmenta 
+Estimation by the linear Kmenta approximation
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
@@ -1882,7 +1896,7 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "Kmenta")
 
-Estimation method: Kmenta 
+Estimation by the linear Kmenta approximation
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)    
@@ -1973,7 +1987,9 @@ Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "LM", control = nls.lm.control(maxiter = 200))
 
-Estimation method: LM 
+Estimation by non-linear least-squares using the 'LM' optimizer
+Convergence NOT achieved after 200 iterations
+Message: Number of iterations has reached `maxiter' == 200. 
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)

@@ -13,7 +13,21 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
    print( x$call )
    cat( "\n" )
 
-   cat( "Estimation method: ", x$method, "\n\n" )
+   cat( "Estimation by " )
+   if( x$method == "Kmenta" ) {
+      cat( "the linear Kmenta approximation\n" )
+   } else {
+      cat( "non-linear least-squares using the '", x$method, "' optimizer\n",
+         sep = "" )
+      if( x$method != "SANN" ) {
+         cat( "Convergence ", ifelse( x$convergence, "", "NOT " ),
+            "achieved after ", x$iter, " iterations\n", sep = "" )
+      }
+      if( !is.null( x$message ) ) {
+         cat( "Message:", x$message, "\n" )
+      }
+   }
+   cat( "\n" )
 
    cat( "Coefficients:\n" )
    printCoefmat( coef( x ), digits = digits )

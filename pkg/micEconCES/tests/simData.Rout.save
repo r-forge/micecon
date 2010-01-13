@@ -238,7 +238,8 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData)
 
-Estimation method: Nelder-Mead 
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Convergence achieved after 144 iterations
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -465,7 +466,8 @@ Estimated CES function with variable returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE)
 
-Estimation method: Nelder-Mead 
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Convergence achieved after 393 iterations
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -694,7 +696,8 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "CG")
 
-Estimation method: CG 
+Estimation by non-linear least-squares using the 'CG' optimizer
+Convergence NOT achieved after 101 iterations
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -930,7 +933,8 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "CG")
 
-Estimation method: CG 
+Estimation by non-linear least-squares using the 'CG' optimizer
+Convergence NOT achieved after 101 iterations
 
 Coefficients:
         Estimate Std. Error   t value Pr(>|t|)
@@ -1163,7 +1167,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "SANN")
 
-Estimation method: SANN 
+Estimation by non-linear least-squares using the 'SANN' optimizer
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -1399,7 +1403,7 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "SANN")
 
-Estimation method: SANN 
+Estimation by non-linear least-squares using the 'SANN' optimizer
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -1634,7 +1638,8 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "BFGS")
 
-Estimation method: BFGS 
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+Convergence achieved after 41 iterations
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -1870,7 +1875,8 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "BFGS")
 
-Estimation method: BFGS 
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+Convergence achieved after 3 iterations
 
 Coefficients:
         Estimate Std. Error   t value Pr(>|t|)
@@ -2110,7 +2116,9 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B", 
     lower = c(-Inf, 0, -Inf), upper = c(Inf, 1, Inf))
 
-Estimation method: L-BFGS-B 
+Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+Convergence achieved after 16 iterations
+Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -2353,7 +2361,9 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
     method = "L-BFGS-B", lower = c(-Inf, 0, -Inf, 0), upper = c(Inf, 
         1, Inf, Inf))
 
-Estimation method: L-BFGS-B 
+Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+Convergence achieved after 27 iterations
+Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -2582,7 +2592,9 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "LM", 
     control = nls.lm.control(maxiter = 200))
 
-Estimation method: LM 
+Estimation by non-linear least-squares using the 'LM' optimizer
+Convergence achieved after 6 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -2809,7 +2821,9 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "LM", control = nls.lm.control(maxiter = 200))
 
-Estimation method: LM 
+Estimation by non-linear least-squares using the 'LM' optimizer
+Convergence achieved after 6 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -3074,7 +3088,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Kmenta")
 
-Estimation method: Kmenta 
+Estimation by the linear Kmenta approximation
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -3324,7 +3338,7 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "Kmenta")
 
-Estimation method: Kmenta 
+Estimation by the linear Kmenta approximation
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
