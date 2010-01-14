@@ -20,6 +20,11 @@ cesCalc <- function( xNames, data, coef ) {
          nExog + 3, " (VRS) coefficients" )
    }
 
+   # check for NAs in coefficients
+   if( sum( is.na( coef ) ) > 0 ) {
+      warning( "some of the coefficiencients are 'NA'" )
+   }
+
    # names of coefficients
    if( nExog == 2 ) {
       coefNames <- c( "gamma", "delta", "rho", "phi" )[ 1:length( coef ) ]
@@ -46,8 +51,9 @@ cesCalc <- function( xNames, data, coef ) {
    }
 
    # check if the deltas sum up to one
-   if( abs( sum( coef[ grep( "delta\\_", names( coef ) ) ] ) - 1 ) >
-         .Machine$double.eps^0.5 ) {
+   deltaCoefs <- coef[ grep( "delta\\_", names( coef ) ) ]
+   if( sum( is.na( deltaCoefs ) ) == 0 &&
+         abs( sum( deltaCoefs, na.rm = TRUE ) - 1 ) > .Machine$double.eps^0.5 ) {
       stop( "the sum of the delta coefficients must sum up to 1" )
    }
 
