@@ -50,7 +50,10 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
             data = estData, method = method, ... )
       }
       result$coefficients <- result$optim$par
-      result$iter <- min( result$optim$counts, na.rm = TRUE )
+      result$iter <- result$optim$counts[ !is.na( result$optim$counts ) ]
+      if( length( result$iter ) == 1 ) {
+         result$iter <- unname( result$iter )
+      }
       result$convergence <- result$optim$convergence == 0
       result$message <- result$optim$message
    } else if( method == "LM" ) {

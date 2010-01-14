@@ -302,7 +302,8 @@ $coefficients
   47.50869  548.70721 -186.49980 
 
 $iter
-[1] 101
+function gradient 
+     758      101 
 
 $convergence
 [1] FALSE
@@ -352,7 +353,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
     method = "CG")
 
 Estimation by non-linear least-squares using the 'CG' optimizer
-Convergence NOT achieved after 101 iterations
+Convergence NOT achieved after 758 function and 101 gradient calls
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -526,7 +527,8 @@ $coefficients
   47.10913  561.14577 -149.76314 
 
 $iter
-[1] 8
+function gradient 
+      31        8 
 
 $convergence
 [1] TRUE
@@ -576,7 +578,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
     method = "BFGS")
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
-Convergence achieved after 8 iterations
+Convergence achieved after 31 function and 8 gradient calls
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -638,7 +640,8 @@ $coefficients
 49.142950  1.000000 -4.610031 
 
 $iter
-[1] 20
+function gradient 
+      20       20 
 
 $convergence
 [1] TRUE
@@ -694,7 +697,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
         1, Inf))
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
-Convergence achieved after 20 iterations
+Convergence achieved after 20 function and 20 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
@@ -1432,7 +1435,8 @@ $coefficients
  53.58074 163.07101  58.92213 
 
 $iter
-[1] 101
+function gradient 
+     758      101 
 
 $convergence
 [1] FALSE
@@ -1482,7 +1486,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
     method = "CG")
 
 Estimation by non-linear least-squares using the 'CG' optimizer
-Convergence NOT achieved after 101 iterations
+Convergence NOT achieved after 758 function and 101 gradient calls
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -1620,7 +1624,8 @@ $coefficients
  55.44507 336.65007  48.22737 
 
 $iter
-[1] 11
+function gradient 
+      50       11 
 
 $convergence
 [1] TRUE
@@ -1670,7 +1675,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
     method = "BFGS")
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
-Convergence achieved after 11 iterations
+Convergence achieved after 50 function and 11 gradient calls
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)
@@ -1715,7 +1720,8 @@ $coefficients
 37.6785181  0.2645720  5.0053076 
 
 $iter
-[1] 128
+function gradient 
+     128      128 
 
 $convergence
 [1] FALSE
@@ -1771,7 +1777,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
         1, Inf))
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
-Convergence NOT achieved after 128 iterations
+Convergence NOT achieved after 128 function and 128 gradient calls
 Message: NEW_X 
 
 Coefficients:

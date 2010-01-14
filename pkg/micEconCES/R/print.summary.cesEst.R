@@ -21,7 +21,13 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
          sep = "" )
       if( x$method != "SANN" ) {
          cat( "Convergence ", ifelse( x$convergence, "", "NOT " ),
-            "achieved after ", x$iter, " iterations\n", sep = "" )
+            "achieved after ", sep = "" )
+         if( length( x$iter ) == 1 ) {
+            cat( x$iter, "iterations\n" )
+         } else {
+            cat( paste( x$iter, names( x$iter ), collapse = " and " ),
+               "calls\n" )
+         }
       }
       if( !is.null( x$message ) ) {
          cat( "Message:", x$message, "\n" )
