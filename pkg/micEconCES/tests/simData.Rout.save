@@ -2925,19 +2925,6 @@ phi   1.1169634 0.01787700 62.480456  0.000000e+00
 > 
 > ## Newton-type, CRS
 > cesNewton <- cesEst( "ys", xxNames, cesData, method = "Newton" )
-Warning messages:
-1: In log(delta * data$x1^(-rho) + (1 - delta) * data$x2^(-rho)) :
-  NaNs produced
-2: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
-  NA/Inf replaced by maximum positive value
-3: In log(delta * data$x1^(-rho) + (1 - delta) * data$x2^(-rho)) :
-  NaNs produced
-4: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
-  NA/Inf replaced by maximum positive value
-5: In log(delta * data$x1^(-rho) + (1 - delta) * data$x2^(-rho)) :
-  NaNs produced
-6: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
-  NA/Inf replaced by maximum positive value
 > print.default( cesNewton )
 $nlm
 $nlm$minimum
@@ -3166,19 +3153,6 @@ Residual standard error: 1.063507
 > 
 > ## Newton-type, VRS
 > cesNewtonVrs <- cesEst( "ys", xxNames, cesData, method = "Newton", vrs = TRUE )
-Warning messages:
-1: In log(delta * data$x1^(-rho) + (1 - delta) * data$x2^(-rho)) :
-  NaNs produced
-2: In log(delta * data$x1^(-rho) + (1 - delta) * data$x2^(-rho)) :
-  NaNs produced
-3: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
-  NA/Inf replaced by maximum positive value
-4: In log(delta * data$x1^(-rho) + (1 - delta) * data$x2^(-rho)) :
-  NaNs produced
-5: In log(delta * data$x1^(-rho) + (1 - delta) * data$x2^(-rho)) :
-  NaNs produced
-6: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
-  NA/Inf replaced by maximum positive value
 > print.default( cesNewtonVrs )
 $nlm
 $nlm$minimum

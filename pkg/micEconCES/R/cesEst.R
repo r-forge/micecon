@@ -79,8 +79,14 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          attributes( result )$gradient <- cesRssDeriv( par = par, data = data )
          return( result )
       }
+      # save current setting for warning messages and suppress warning messages
+      warnSaved <- options()$warn
+      options( warn = -1 )
       # perform fit
       result$nlm <- nlm( f = cesRss2, p = startVal, data = estData, ... )
+      # restore previous setting for warning messages
+      options( warn = warnSaved )
+      # extract results
       result$coefficients <- result$nlm$estimate
       result$iter <- result$nlm$iterations
       result$convergence <- result$nlm$code <= 2
