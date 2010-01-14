@@ -129,6 +129,18 @@ coef( summary( cesLandLaborNewton ) )
 fitted( cesLandLaborNewton )
 residuals( cesLandLaborNewton )
 
+# using the PORT optimization rountine implemented in nlminb()
+cesLandLaborPort <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "PORT" )
+print.default( cesLandLaborPort )
+print( cesLandLaborPort )
+summary( cesLandLaborPort )
+coef( cesLandLaborPort )
+vcov( cesLandLaborPort )
+coef( summary( cesLandLaborPort ) )
+fitted( cesLandLaborPort )
+residuals( cesLandLaborPort )
+
 
 ## CES: Land & Intermediate Inputs
 cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
@@ -210,6 +222,14 @@ print.default( cesLandIntNewton )
 print( cesLandIntNewton )
 summary( cesLandIntNewton )
 coef( summary( cesLandIntNewton ) )
+
+# using the PORT optimization rountine implemented in nlminb()
+cesLandIntPort <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "PORT" )
+print.default( cesLandIntPort )
+print( cesLandIntPort )
+summary( cesLandIntPort )
+coef( summary( cesLandIntPort ) )
 
 
 ############  cesCalc  ################
