@@ -1111,11 +1111,6 @@ rho   -0.4518441    6.02012 -0.07505567 0.9401704
 > # using the Newton-type optimization method implemented in nlm()
 > cesLandLaborNewton <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
 +    method = "Newton" )
-Warning messages:
-1: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
-  NA/Inf replaced by maximum positive value
-2: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
-  NA/Inf replaced by maximum positive value
 > print.default( cesLandLaborNewton )
 $nlm
 $nlm$minimum
@@ -2119,11 +2114,6 @@ rho     0.2088107   22.14913 0.00942749 0.9924781
 > # using the Newton-type optimization method implemented in nlm()
 > cesLandIntNewton <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
 +    method = "Newton" )
-Warning messages:
-1: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
-  NA/Inf replaced by maximum positive value
-2: In nlm(f = cesRss2, p = startVal, data = estData, ...) :
-  NA/Inf replaced by maximum positive value
 > print.default( cesLandIntNewton )
 $nlm
 $nlm$minimum
