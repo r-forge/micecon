@@ -588,7 +588,8 @@ $coefficients
 1.2666624 0.5972064 0.4481061 
 
 $iter
-[1] 101
+function gradient 
+     427      101 
 
 $convergence
 [1] FALSE
@@ -697,7 +698,7 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "CG")
 
 Estimation by non-linear least-squares using the 'CG' optimizer
-Convergence NOT achieved after 101 iterations
+Convergence NOT achieved after 427 function and 101 gradient calls
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -821,7 +822,8 @@ $coefficients
   0.6295909   0.9463710  -0.1400105 -21.2265907 
 
 $iter
-[1] 101
+function gradient 
+     207      101 
 
 $convergence
 [1] FALSE
@@ -934,7 +936,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
     method = "CG")
 
 Estimation by non-linear least-squares using the 'CG' optimizer
-Convergence NOT achieved after 101 iterations
+Convergence NOT achieved after 207 function and 101 gradient calls
 
 Coefficients:
         Estimate Std. Error   t value Pr(>|t|)
@@ -1530,7 +1532,8 @@ $coefficients
 1.2696092 0.5990816 0.5173721 
 
 $iter
-[1] 41
+function gradient 
+     166       41 
 
 $convergence
 [1] TRUE
@@ -1639,7 +1642,7 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "BFGS")
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
-Convergence achieved after 41 iterations
+Convergence achieved after 166 function and 41 gradient calls
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -1763,7 +1766,8 @@ $coefficients
  -2.1116547   0.8765936   0.3862718 -43.4609109 
 
 $iter
-[1] 3
+function gradient 
+      12        3 
 
 $convergence
 [1] TRUE
@@ -1876,7 +1880,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
     method = "BFGS")
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
-Convergence achieved after 3 iterations
+Convergence achieved after 12 function and 3 gradient calls
 
 Coefficients:
         Estimate Std. Error   t value Pr(>|t|)
@@ -2002,7 +2006,8 @@ $coefficients
 1.2696092 0.5990816 0.5173726 
 
 $iter
-[1] 16
+function gradient 
+      16       16 
 
 $convergence
 [1] TRUE
@@ -2117,7 +2122,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B",
     lower = c(-Inf, 0, -Inf), upper = c(Inf, 1, Inf))
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
-Convergence achieved after 16 iterations
+Convergence achieved after 16 function and 16 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
@@ -2243,7 +2248,8 @@ $coefficients
 0.9548391 0.5886661 0.3421980 1.1169555 
 
 $iter
-[1] 27
+function gradient 
+      27       27 
 
 $convergence
 [1] TRUE
@@ -2362,7 +2368,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
         1, Inf, Inf))
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
-Convergence achieved after 27 iterations
+Convergence achieved after 27 function and 27 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
