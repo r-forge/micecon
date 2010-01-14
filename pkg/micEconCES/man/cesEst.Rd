@@ -1,6 +1,7 @@
 \name{cesEst}
 \alias{cesEst}
 \alias{print.cesEst}
+\encoding{UTF-8}
 \title{Estimate a CES function}
 
 \description{
@@ -16,7 +17,7 @@
    always very problematic,
    because very different parameter vectors could result in very similar
    values of the objective function (sum of squared residuals).
-   Hence, even if \code{\link[stats]{optim}} reports
+   Hence, even if the optimizer reports
    that the nonlinear minimization has converged,
    there might be another rather different parameter vector
    that results in a lower sum of squared residuals.
@@ -40,12 +41,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{method}{character string indicationg the estimation method:
       either \code{"Kmenta"} for the Kmenta approximation
       or \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"},
-      \code{"L-BFGS-B"}, or \code{"SANN")} for a non-linear least-squares
-      estimation (using \code{\link[stats]{optim}}),
-      or \code{"LM"} for non-linear least-squares using the Levenberg-Marquardt
-      algorithm (using \code{\link[minpack.lm]{nls.lm}})
-      or \code{"Newton"} for non-linear least-squares using a Newton-type
-      algorithm (using \code{\link[stats]{nlm}}).}
+      \code{"L-BFGS-B"}, \code{"SANN"}, \code{"LM"},
+      or \code{"Newton"} for non-linear least-squares
+      (see section \sQuote{Details}).}
    \item{startVal}{starting values for the non-linear estimations:
       a numeric vector of length 3 for constant returns to scale
       (CRS, without \eqn{\phi}{phi}, i.e. \eqn{\phi}{phi} = 1)
@@ -56,18 +54,39 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{x}{an object of class \code{cesEst}.}
    \item{digits}{number of digits.}
    \item{\dots}{further arguments to \code{cesEst} are passed to
-      \code{\link[stats]{optim}} or \code{\link[minpack.lm]{nls.lm}};
+      \code{\link[stats]{optim}}, \code{\link[minpack.lm]{nls.lm}},
+      or \code{\link[stats]{nlm}};
       further arguments to \code{print.cesEst} are currently ignored.}
 }
 
 \details{
-   Analytical gradients are used (only) if the \dQuote{BFGS}, \dQuote{CG},
-   or \dQuote{L-BFGS-B} method is used.
+   Argument \code{method} determines the estimation method.
+   If it is \code{"Kmenta"},
+   the CES is estimated by ordinary least squares using the Kmenta
+   approximation;
+   otherwise, it is estimated by non-linear least-squares.
+   Several different optimizers can be used for the non-linear estimation.
+   The optimization methods
+   \code{Nelder-Mead} (Nelder and Mead 1965),
+   \code{BFGS} (Broyden 1970, Fletcher 1970, Goldfarb 1970, Shanno 1970),
+   \code{CG} (Conjugate Gradients based on Fletcher and Reeves 1964),
+   \code{L-BFGS-B} (with box-constraints, Byrd, Lu, Nocedal, and Zhu 1995), and
+   \code{SANN} (Simulated Annealing, Bélisle 1992)
+   use \code{\link[stats]{optim}} for the optimization.
+   The optimization method
+   \code{LM} (Levenberg-Marquardt, see Moré 1978)
+   uses \code{\link[minpack.lm]{nls.lm}} for the optimization.
+   And the optimization method
+   \code{Newton} (Newton-type, see Dennis and Schnabel 1983
+   and Schnabel, Koontz, and Weiss 1985)
+   uses \code{\link[stats]{nlm}} for the optimization.
+   Analytical gradients are used in the \code{BFGS}, \code{CG},
+   \code{L-BFGS-B}, \code{LM}, and \code{Newton} method.
 }
 
 \value{
    \code{cesEst} returns a list of class \code{cesEst}
-   that contains following elements:
+   that has following components:
    \item{coefficients}{estimated coefficients/parameters of the CES.}
    \item{iter}{number of iterations
       (only for non-linear least-squares estimations).}
@@ -111,6 +130,53 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       returned by \code{\link[car]{linear.hypothesis}}
       (only if argument \code{vrs} is \code{FALSE}
       and argument \code{method} is \code{"Kmenta"}).}
+}
+
+\references{
+   Bélisle, C.J.P. (1992):
+   Convergence theorems for a class of simulated annealing algorithms on Rd,
+   Journal of Applied Probability 29, p. 885-895.
+
+   Broyden, C.G. (1970):
+   The Convergence of a Class of Double-rank Minimization Algorithms,
+   Journal of the Institute of Mathematics and Its Applications 6, p. 76-90.
+
+   Byrd, R.H., Lu, P., Nocedal, J. and Zhu, C. (1995):
+   A limited memory algorithm for bound constrained optimization,
+   SIAM J. Scientific Computing 16, p. 1190-1208.
+
+   Dennis, J.E. and Schnabel, R.B. (1983):
+   Numerical Methods for Unconstrained Optimization and Nonlinear Equations,
+   Prentice-Hall, Englewood Cliffs, NJ.
+
+   Fletcher, R. (1970):
+   A New Approach to Variable Metric Algorithms,
+   Computer Journal 13, p. 317-322.
+
+   Fletcher, R. and Reeves, C.M. (1964):
+   Function minimization by conjugate gradients,
+   Computer Journal 7, p. 148-154.
+
+   Goldfarb, D. (1970):
+   A Family of Variable Metric Updates Derived by Variational Means,
+   Mathematics of Computation 24, p. 23-26.
+
+   Moré, J.J. (1978):
+   The Levenberg-Marquardt algorithm: implementation and theory,
+   in G.A. Watson (Ed.), Lecture Notes in Mathematics 630: Numerical Analysis,
+   pp. 105-116, Springer-Verlag: Berlin.
+
+   Nelder, J.A. and Mead, R. (1965):
+   A simplex algorithm for function minimization,
+   Computer Journal 7, p. 308-313.
+
+   Schnabel, R.B., Koontz, J.E. and Weiss, B.E. (1985):
+   A modular system of algorithms for unconstrained minimization,
+   ACM Trans. Math. Software, 11, pp. 419-440.
+
+   Shanno, D.F. (1970):
+   Conditioning of Quasi-Newton Methods for Function Minimization,
+   Mathematics of Computation 24, p. 647-656.
 }
 
 \seealso{
@@ -185,3 +251,5 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
 }
 
 \keyword{models}
+\keyword{regression}
+\keyword{nonlinear}
