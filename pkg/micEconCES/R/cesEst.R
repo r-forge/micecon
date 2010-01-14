@@ -93,9 +93,16 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$coefficients <- result$nlm$estimate
       result$iter <- result$nlm$iterations
       result$convergence <- result$nlm$code <= 2
+   } else if( method == "PORT" ) {
+      result$nlminb <- nlminb( start = startVal, objective = cesRss,
+         gradient = cesRssDeriv, data = estData, ... )
+      result$coefficients <- result$nlminb$par
+      result$iter <- result$nlminb$iterations
+      result$convergence <- result$nlminb$convergence == 0
+      result$message <- result$nlminb$message
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
-         " 'CG', 'L-BFGS-B', 'SANN', 'LM', 'Newton', or 'Kmenta'" )
+         " 'CG', 'L-BFGS-B', 'SANN', 'LM', 'Newton', 'PORT', or 'Kmenta'" )
    }
 
    # return also the call

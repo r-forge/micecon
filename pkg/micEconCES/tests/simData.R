@@ -188,6 +188,28 @@ coef( summary( cesNewtonVrs ) )
 fitted( cesNewtonVrs )
 residuals( cesNewtonVrs )
 
+## PORT, CRS
+cesPort <- cesEst( "ys", xxNames, cesData, method = "PORT" )
+print.default( cesPort )
+print( cesPort )
+summary( cesPort )
+coef( cesPort )
+vcov( cesPort )
+coef( summary( cesPort ) )
+fitted( cesPort )
+residuals( cesPort )
+
+## PORT, VRS
+cesPortVrs <- cesEst( "ys", xxNames, cesData, method = "PORT", vrs = TRUE )
+print.default( cesPortVrs )
+print( cesPortVrs )
+summary( cesPortVrs )
+coef( cesPortVrs )
+vcov( cesPortVrs )
+coef( summary( cesPortVrs ) )
+fitted( cesPortVrs )
+residuals( cesPortVrs )
+
 ## Kmenta approximation, CRS
 cesKmenta <- cesEst( "ys", xxNames, cesData, method = "Kmenta" )
 print.default( cesKmenta )

@@ -42,7 +42,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       either \code{"Kmenta"} for the Kmenta approximation
       or \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"},
       \code{"L-BFGS-B"}, \code{"SANN"}, \code{"LM"},
-      or \code{"Newton"} for non-linear least-squares
+      \code{"Newton"}, or \code{"PORT"} for non-linear least-squares
       (see section \sQuote{Details}).}
    \item{startVal}{starting values for the non-linear estimations:
       a numeric vector of length 3 for constant returns to scale
@@ -55,7 +55,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{digits}{number of digits.}
    \item{\dots}{further arguments to \code{cesEst} are passed to
       \code{\link[stats]{optim}}, \code{\link[minpack.lm]{nls.lm}},
-      or \code{\link[stats]{nlm}};
+      \code{\link[stats]{nlm}}, or \code{\link[stats]{nlminb}};
       further arguments to \code{print.cesEst} are currently ignored.}
 }
 
@@ -76,12 +76,15 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    The optimization method
    \code{LM} (Levenberg-Marquardt, see Moré 1978)
    uses \code{\link[minpack.lm]{nls.lm}} for the optimization.
-   And the optimization method
+   The optimization method
    \code{Newton} (Newton-type, see Dennis and Schnabel 1983
    and Schnabel, Koontz, and Weiss 1985)
    uses \code{\link[stats]{nlm}} for the optimization.
+   The optimization method
+   \code{PORT} (PORT routines, see Gay 1990)
+   uses \code{\link[stats]{nlminb}} for the optimization.
    Analytical gradients are used in the \code{BFGS}, \code{CG},
-   \code{L-BFGS-B}, \code{LM}, and \code{Newton} method.
+   \code{L-BFGS-B}, \code{LM}, \code{Newton}, and \code{PORT} method.
 }
 
 \value{
@@ -112,6 +115,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       (only if argument \code{method} is \code{"LM"}).}
    \item{nlm}{object returned by \code{\link[stats]{nlm}}
       (only if argument \code{method} is \code{"Newton"}).}
+   \item{nlminb}{object returned by \code{\link[stats]{nlminb}}
+      (only if argument \code{method} is \code{"PORT"}).}
    \item{translog}{estimation results of the (unrestricted) translog model
       returned by \code{\link[micEcon]{translogEst}}
       (only if argument \code{method} is \code{"Kmenta"}).}
@@ -156,6 +161,12 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    Fletcher, R. and Reeves, C.M. (1964):
    Function minimization by conjugate gradients,
    Computer Journal 7, p. 148-154.
+
+   Gay, D.M. (1990):
+   Usage Summary for Selected Optimization Routines,
+   Computing Science Technical Report No. 153,
+   AT&T Bell Laboratories, Murray Hill NJ,
+   \url{http://netlib.bell-labs.com/cm/cs/cstr/153.pdf}.
 
    Goldfarb, D. (1970):
    A Family of Variable Metric Updates Derived by Variational Means,
