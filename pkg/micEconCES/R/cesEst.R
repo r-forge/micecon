@@ -27,6 +27,36 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       1:length( startVal ) ]
    startVal <- startVal[ 1:( 3 + vrs ) ]
 
+   # checking lower and upper bounds
+   dots <- list( ... )
+   if( method == "L-BFGS-B" ) {
+      if( !is.null( dots$lower ) ) {
+         if( length( startVal ) != length( dots$lower ) ) {
+            stop( "the lower bound has ", length( dots$lower ), " elements",
+               " but the model has ", length( startVal ), " parameters" )
+         }
+         if( any( startVal < dots$lower ) ) {
+            stop( "at least one starting value is smaller than its lower bound" )
+         }
+      }
+      if( !is.null( dots$upper ) ) {
+         if( length( startVal ) != length( dots$upper ) ) {
+            stop( "the upper bound has ", length( dots$upper ), " elements",
+               " but the model has ", length( startVal ), " parameters" )
+         }
+         if( any( startVal > dots$upper ) ) {
+            stop( "at least one starting value is greater than its upper bound" )
+         }
+      }
+      if( !is.null( dots$lower ) && is.null( dots$upper ) ) {
+         if( any( dots$lower > dots$upper ) ) {
+            stop( "at least one lower bound is greater than its upper bound" )
+         }
+      }
+   } else if( !is.null( dots$lower ) || !is.null( dots$upper ) ) {
+      warning( "lower and upper bounds are ignored in method '", method, "'" )
+   }
+
    # store the (matched) call
    matchedCall <- match.call()
 
