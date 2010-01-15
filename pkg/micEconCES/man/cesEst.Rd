@@ -239,9 +239,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
       method = "BFGS" )
 
-   # using the L-BFGS-B optimization method with constrained delta
+   # using the L-BFGS-B optimization method with constrained parameters
    cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
-      germanFarms, method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
+      germanFarms, method = "L-BFGS-B", lower = c( 0, 0, -1 ),
       upper = c( Inf, 1, Inf ) )
 
    # using the CG optimization method
@@ -256,6 +256,11 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
       method = "Kmenta" )
 
+   # using the PORT optimization routine with constrained parameters and VRS
+   cesLandLaborPortCon <- cesEst( "qOutput", c( "land", "qLabor" ),
+      germanFarms, vrs = TRUE, method = "PORT",
+      lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
+
 
    ## CES: Land & Intermediate Inputs
    cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
@@ -268,10 +273,10 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
       method = "BFGS" )
 
-   # using the L-BFGS-B optimization method with constrained delta
+   # using the L-BFGS-B optimization method with constrained parameters, VRS
    cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-      method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
-      upper = c( Inf, 1, Inf ) )
+      method = "L-BFGS-B", vrs = TRUE, lower = c( 0, 0, -1, 0 ),
+      upper = c( Inf, 1, Inf, Inf ) )
 
    # using the SANN optimization method
    cesLandIntSann <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
