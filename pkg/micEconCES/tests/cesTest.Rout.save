@@ -133,6 +133,7 @@ delta  6.909e-02  2.284e+03  3.03e-05        1
 rho   -3.746e+00  1.204e+04 -3.11e-04        1
 
 Residual standard error: 91.08077 
+Multiple R-squared: 0.9062694 
 
 > coef( cesLandLabor ) 
        gamma        delta          rho 
@@ -248,6 +249,7 @@ phi      1.43203    0.29038   4.932 8.16e-07 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 64.72791 
+Multiple R-squared: 0.9526618 
 
 > coef( cesLandLaborVrs )
        gamma        delta          rho          phi 
@@ -362,6 +364,7 @@ delta    0.4588    13.9633   0.033    0.974
 rho      0.1230    18.8438   0.007    0.995
 
 Residual standard error: 174.7496 
+Multiple R-squared: 0.654967 
 
 > coef( cesLandLaborCg )
       gamma       delta         rho 
@@ -473,6 +476,7 @@ delta  8.014e-03  1.956e+00   0.004    0.997
 rho   -2.790e+00  8.310e+01  -0.034    0.973
 
 Residual standard error: 94.21012 
+Multiple R-squared: 0.899718 
 
 > coef( cesLandLaborSann )
         gamma         delta           rho 
@@ -585,6 +589,7 @@ delta  7.176e-02  1.704e+04  4.21e-06        1
 rho   -4.396e+00  8.692e+04 -5.06e-05        1
 
 Residual standard error: 91.06148 
+Multiple R-squared: 0.906309 
 
 > coef( cesLandLaborBfgs )
       gamma       delta         rho 
@@ -705,6 +710,7 @@ delta  2.966e-04  7.745e-01 0.000383    1.000
 rho   -4.721e+00  8.883e+02   -0.005    0.996
 
 Residual standard error: 91.37154 
+Multiple R-squared: 0.90567 
 
 > coef( cesLandLaborBfgsCon )
         gamma         delta           rho 
@@ -848,6 +854,7 @@ rho   -1.551e-02  4.821e-03  -3.217 0.001297 **
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 326237150 
+Multiple R-squared: -1.202527e+12 
 
 > coef( cesLandLaborKmentaCrs )
         gamma         delta           rho 
@@ -977,6 +984,7 @@ phi    1.656e+00  3.196e-01   5.180 2.22e-07 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 1291888 
+Multiple R-squared: -18857212 
 
 > coef( cesLandLaborKmenta )
         gamma         delta           rho           phi 
@@ -1085,6 +1093,7 @@ delta   4.8556   336.1042   0.014    0.988
 rho    -0.4613     6.0125  -0.077    0.939
 
 Residual standard error: 78.41723 
+Multiple R-squared: 0.9305214 
 
 > coef( cesLandLaborLm )
      gamma      delta        rho 
@@ -1192,6 +1201,7 @@ Coefficients:
 [3,] -4.079e+00  3.978e+02  -0.010    0.992
 
 Residual standard error: 91.73288 
+Multiple R-squared: 0.9049224 
 
 > coef( cesLandLaborNewton )
 [1]  2.743530e+02  8.909107e-04 -4.078588e+00
@@ -1309,6 +1319,7 @@ delta  0.05813         NA      NA       NA
 rho   -5.84102         NA      NA       NA
 
 Residual standard error: 91.05838 
+Multiple R-squared: 0.9063155 
 
 > coef( cesLandLaborPort )
       gamma       delta         rho 
@@ -1417,6 +1428,7 @@ delta 2.008e-01  7.431e+04 2.70e-06        1
 rho   3.800e+00  1.498e+05 2.54e-05        1
 
 Residual standard error: 91.05962 
+Multiple R-squared: 0.9063129 
 
 > coef( summary( cesLandInt ) )
         Estimate Std. Error      t value  Pr(>|t|)
@@ -1515,6 +1527,7 @@ phi    1.31339    0.11134  11.797   <2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 59.99837 
+Multiple R-squared: 0.959327 
 
 > coef( summary( cesLandIntVrs ) )
         Estimate Std. Error     t value     Pr(>|t|)
@@ -1611,6 +1624,7 @@ delta   0.4822    19.0350   0.025    0.980
 rho     0.2904    24.4700   0.012    0.991
 
 Residual standard error: 113.5098 
+Multiple R-squared: 0.8544223 
 
 > coef( summary( cesLandIntCg ) )
         Estimate Std. Error    t value  Pr(>|t|)
@@ -1705,6 +1719,7 @@ delta 2.101e-02  5.342e+01 0.000393    1.000
 rho   2.925e+00  8.390e+02    0.003    0.997
 
 Residual standard error: 91.29195 
+Multiple R-squared: 0.9058342 
 
 > coef( summary( cesLandIntSann ) )
          Estimate Std. Error     t value  Pr(>|t|)
@@ -1800,6 +1815,7 @@ delta 2.558e-01  1.979e+05 1.29e-06        1
 rho   3.947e+00  3.364e+05 1.17e-05        1
 
 Residual standard error: 91.05892 
+Multiple R-squared: 0.9063144 
 
 > coef( summary( cesLandIntBfgs ) )
         Estimate Std. Error      t value  Pr(>|t|)
@@ -1903,6 +1919,7 @@ delta 8.486e-03  1.629e+02 5.21e-05        1
 rho   3.866e+00  6.265e+03    0.001        1
 
 Residual standard error: 91.0897 
+Multiple R-squared: 0.906251 
 
 > coef( summary( cesLandIntBfgsCon ) )
           Estimate Std. Error      t value  Pr(>|t|)
@@ -2025,6 +2042,7 @@ delta 9.946e+00  1.646e+01   0.604    0.546
 rho   3.153e-02  5.804e-02   0.543    0.587
 
 Residual standard error: 1434.873 
+Multiple R-squared: -22.26242 
 
 > coef( summary( cesLandIntKmentaCrs ) )
           Estimate   Std. Error    t value  Pr(>|t|)
@@ -2136,6 +2154,7 @@ phi    1.697680   0.115423  14.708   <2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 9241.72 
+Multiple R-squared: -964.0144 
 
 > coef( summary( cesLandIntKmenta ) )
           Estimate Std. Error     t value     Pr(>|t|)
@@ -2222,6 +2241,7 @@ delta 8.519e-01  4.674e+06 1.82e-07        1
 rho   4.362e+00  1.200e+07 3.64e-07        1
 
 Residual standard error: 91.05833 
+Multiple R-squared: 0.9063156 
 
 > coef( summary( cesLandIntLm ) )
         Estimate Std. Error      t value  Pr(>|t|)
@@ -2312,6 +2332,7 @@ Coefficients:
 [3,] 3.499e+00  2.824e+03    0.001        1
 
 Residual standard error: 91.12705 
+Multiple R-squared: 0.9061741 
 
 > coef( summary( cesLandIntNewton ) )
         Estimate Std. Error      t value  Pr(>|t|)
@@ -2413,6 +2434,7 @@ delta   0.4068         NA      NA       NA
 rho     5.7604         NA      NA       NA
 
 Residual standard error: 91.05832 
+Multiple R-squared: 0.9063156 
 
 > coef( summary( cesLandIntPort ) )
         Estimate Std. Error t value Pr(>|t|)
