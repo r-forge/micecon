@@ -94,8 +94,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    Names of the elements are ignored.
    If argument \code{startVal} is \code{NULL},
    the starting value of \eqn{\delta}{delta} is set to 0.5,
-   the starting value of \eqn{\rho}{rho} is set to -0.5
-      (i.e.\ elasticity of substitution = 2),
+   the starting value of \eqn{\rho}{rho} is set to 0.25
+      (i.e.\ elasticity of substitution = 0.8),
    the starting value of \eqn{\phi}{phi} is set to 1
       (only if argument \code{vrs} is \code{TRUE}),
    and \eqn{\gamma}{gamma} is set to a value
@@ -103,7 +103,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    is equal to the mean of its fitted values,
    i.e. \eqn{\gamma}{gamma} =  mean( y ) /
       mean( CES( X, \eqn{\gamma}{gamma} = 1, \eqn{\delta}{delta} = 0.5,
-         \eqn{\rho}{rho} = -0.5, \eqn{\phi}{phi} = 1 ) ).
+         \eqn{\rho}{rho} = 0.25, \eqn{\phi}{phi} = 1 ) ).
 }
 
 \value{

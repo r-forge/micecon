@@ -19,7 +19,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       }
    } else {
       if( is.null( startVal ) ) {
-         startVal <- c( 1, 0.5, -0.5, 1 )[ 1:( 3 + vrs ) ]
+         startVal <- c( 1, 0.5, 0.25, 1 )[ 1:( 3 + vrs ) ]
          yTemp <- cesCalc( xNames = xNames, data = data, coef = startVal )
          startVal[ 1 ] <- mean( data[[ yName ]], na.rm = TRUE ) /
             mean( yTemp, na.rm = TRUE )
