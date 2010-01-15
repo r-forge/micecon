@@ -19,7 +19,7 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
    } else {
       cat( "non-linear least-squares using the '", x$method, "' optimizer\n",
          sep = "" )
-      if( x$method != "SANN" ) {
+      if( ! x$method %in% c( "SANN", "DE" ) ) {
          cat( "Convergence ", ifelse( x$convergence, "", "NOT " ),
             "achieved after ", sep = "" )
          if( length( x$iter ) == 1 ) {

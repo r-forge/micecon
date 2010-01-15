@@ -212,6 +212,30 @@ coef( summary( cesPortVrs ) )
 fitted( cesPortVrs )
 residuals( cesPortVrs )
 
+## DE, CRS
+cesDe <- cesEst( "ys", xxNames, cesData, method = "DE",
+   control = DEoptim.control( trace = FALSE ) )
+print.default( cesDe )
+print( cesDe )
+summary( cesDe )
+coef( cesDe )
+vcov( cesDe )
+coef( summary( cesDe ) )
+fitted( cesDe )
+residuals( cesDe )
+
+## DE, VRS
+cesDeVrs <- cesEst( "ys", xxNames, cesData, method = "DE", vrs = TRUE,
+   control = DEoptim.control( trace = FALSE ) )
+print.default( cesDeVrs )
+print( cesDeVrs )
+summary( cesDeVrs )
+coef( cesDeVrs )
+vcov( cesDeVrs )
+coef( summary( cesDeVrs ) )
+fitted( cesDeVrs )
+residuals( cesDeVrs )
+
 ## Kmenta approximation, CRS
 cesKmenta <- cesEst( "ys", xxNames, cesData, method = "Kmenta" )
 print.default( cesKmenta )
