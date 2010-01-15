@@ -2002,9 +2002,9 @@ phi   1.1169635 0.01787700 62.480463  0.000000e+00
 [191]  0.725262534 -0.375091168 -0.303092069  0.299841455  1.411623613
 [196] -1.268103529  2.197931510 -0.344729027 -0.437520031  0.815029426
 > 
-> ## L-BFGS-B with constrained delta, CRS
+> ## L-BFGS-B with constrained parameters, CRS
 > cesBfgsCon <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B",
-+    lower = c( -Inf, 0, -Inf ), upper = c( Inf, 1, Inf ) )
++    lower = c( 0, 0, -1 ), upper = c( Inf, 1, Inf ) )
 > print.default( cesBfgsCon )
 $optim
 $optim$par
@@ -2041,7 +2041,7 @@ $message
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B", 
-    lower = c(-Inf, 0, -Inf), upper = c(Inf, 1, Inf))
+    lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
 
 $method
 [1] "L-BFGS-B"
@@ -2132,7 +2132,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B", 
-    lower = c(-Inf, 0, -Inf), upper = c(Inf, 1, Inf))
+    lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
 
 Coefficients:
  gamma  delta    rho 
@@ -2143,7 +2143,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B", 
-    lower = c(-Inf, 0, -Inf), upper = c(Inf, 1, Inf))
+    lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 Convergence achieved after 16 function and 16 gradient calls
@@ -2245,9 +2245,9 @@ rho   0.5173723 0.12733470   4.06309 4.84274e-05
 [191]  0.524509688 -0.971405034 -0.739597108 -0.257898130  1.050247167
 [196] -1.767557343  1.867462645 -0.592468212 -0.677291551  0.900879047
 > 
-> ## L-BFGS-B with constrained delta + phi, VRS
+> ## L-BFGS-B with constrained parameters, VRS
 > cesBfgsConVrs <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B",
-+    vrs = TRUE, lower = c( -Inf, 0, -Inf, 0 ), upper = c( Inf, 1, Inf, Inf ) )
++    vrs = TRUE, lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
 > print.default( cesBfgsConVrs )
 $optim
 $optim$par
@@ -2284,7 +2284,7 @@ $message
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
-    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf, 0), upper = c(Inf, 
+    method = "L-BFGS-B", lower = c(0, 0, -1, 0), upper = c(Inf, 
         1, Inf, Inf))
 
 $method
@@ -2371,7 +2371,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
-    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf, 0), upper = c(Inf, 
+    method = "L-BFGS-B", lower = c(0, 0, -1, 0), upper = c(Inf, 
         1, Inf, Inf))
 
 Coefficients:
@@ -2383,7 +2383,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
-    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf, 0), upper = c(Inf, 
+    method = "L-BFGS-B", lower = c(0, 0, -1, 0), upper = c(Inf, 
         1, Inf, Inf))
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer

@@ -118,9 +118,9 @@ coef( summary( cesBfgsVrs ) )
 fitted( cesBfgsVrs )
 residuals( cesBfgsVrs )
 
-## L-BFGS-B with constrained delta, CRS
+## L-BFGS-B with constrained parameters, CRS
 cesBfgsCon <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B",
-   lower = c( -Inf, 0, -Inf ), upper = c( Inf, 1, Inf ) )
+   lower = c( 0, 0, -1 ), upper = c( Inf, 1, Inf ) )
 print.default( cesBfgsCon )
 print( cesBfgsCon )
 summary( cesBfgsCon )
@@ -130,9 +130,9 @@ coef( summary( cesBfgsCon ) )
 fitted( cesBfgsCon )
 residuals( cesBfgsCon )
 
-## L-BFGS-B with constrained delta + phi, VRS
+## L-BFGS-B with constrained parameters, VRS
 cesBfgsConVrs <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B",
-   vrs = TRUE, lower = c( -Inf, 0, -Inf, 0 ), upper = c( Inf, 1, Inf, Inf ) )
+   vrs = TRUE, lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
 print.default( cesBfgsConVrs )
 print( cesBfgsConVrs )
 summary( cesBfgsConVrs )
