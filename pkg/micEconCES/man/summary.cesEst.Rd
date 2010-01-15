@@ -31,6 +31,8 @@
    \item{sigma}{square root of the estimated (asymptotic) variance
       of the random error
       (calculated without correcting for degrees of freedom).}
+   \item{r.squared}{\eqn{R^2}-value, i.e. the
+      \sQuote{fraction of variance explained by the model}.}
    \item{vcov}{covariance matrix of the estimated parameters.}
 }
 

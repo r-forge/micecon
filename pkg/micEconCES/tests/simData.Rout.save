@@ -250,6 +250,7 @@ rho   0.517418   0.127337   4.063 4.84e-05 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 1.063507 
+Multiple R-squared: 0.9469736 
 
 > coef( cesNm ) 
     gamma     delta       rho 
@@ -485,6 +486,7 @@ phi    1.11695    0.01788  62.480  < 2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.964597 
+Multiple R-squared: 0.9563783 
 
 > coef( cesNmVrs )
     gamma     delta       rho       phi 
@@ -721,6 +723,7 @@ rho   0.511392   0.127033   4.026 5.68e-05 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 1.063513 
+Multiple R-squared: 0.946973 
 
 > coef( cesCg )
     gamma     delta       rho 
@@ -960,6 +963,7 @@ phi    1.11796    0.01788  62.523  < 2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.9646683 
+Multiple R-squared: 0.9563718 
 
 > coef( cesCgVrs )
     gamma     delta       rho       phi 
@@ -1194,6 +1198,7 @@ rho   0.516931   0.127671   4.049 5.15e-05 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 1.063886 
+Multiple R-squared: 0.9469359 
 
 > coef( cesSann )
     gamma     delta       rho 
@@ -1431,6 +1436,7 @@ phi    1.10689    0.01786  61.976  < 2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.9655275 
+Multiple R-squared: 0.956294 
 
 > coef( cesSannVrs )
     gamma     delta       rho       phi 
@@ -1667,6 +1673,7 @@ rho   0.517366   0.127334   4.063 4.84e-05 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 1.063507 
+Multiple R-squared: 0.9469736 
 
 > coef( cesBfgs )
     gamma     delta       rho 
@@ -1906,6 +1913,7 @@ phi    1.11696    0.01788  62.480  < 2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.964597 
+Multiple R-squared: 0.9563783 
 
 > coef( cesBfgsVrs )
     gamma     delta       rho       phi 
@@ -2150,6 +2158,7 @@ rho   0.517372   0.127335   4.063 4.84e-05 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 1.063507 
+Multiple R-squared: 0.9469736 
 
 > coef( cesBfgsCon )
     gamma     delta       rho 
@@ -2391,6 +2400,7 @@ phi    1.11696    0.01788  62.480  < 2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.964597 
+Multiple R-squared: 0.9563783 
 
 > coef( cesBfgsConVrs )
     gamma     delta       rho       phi 
@@ -2615,6 +2625,7 @@ rho   0.517371   0.127335   4.063 4.84e-05 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 1.063507 
+Multiple R-squared: 0.9469736 
 
 > coef( cesLm )
     gamma     delta       rho 
@@ -2845,6 +2856,7 @@ phi    1.11696    0.01788  62.480  < 2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.964597 
+Multiple R-squared: 0.9563783 
 
 > coef( cesLmVrs )
     gamma     delta       rho       phi 
@@ -3076,6 +3088,7 @@ Coefficients:
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 1.063507 
+Multiple R-squared: 0.9469736 
 
 > coef( cesNewton )
 [1] 1.2696092 0.5990816 0.5173721
@@ -3309,6 +3322,7 @@ Coefficients:
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.964597 
+Multiple R-squared: 0.9563783 
 
 > coef( cesNewtonVrs )
 [1] 0.9548195 0.5886691 0.3421447 1.1169634
@@ -3550,6 +3564,7 @@ rho   0.517372   0.127335   4.063 4.84e-05 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 1.063507 
+Multiple R-squared: 0.9469736 
 
 > coef( cesPort )
     gamma     delta       rho 
@@ -3789,6 +3804,7 @@ phi    1.11696    0.01788  62.480  < 2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.964597 
+Multiple R-squared: 0.9563783 
 
 > coef( cesPortVrs )
     gamma     delta       rho       phi 
@@ -4047,6 +4063,7 @@ rho    0.51877    0.13273   3.908  9.3e-05 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 1.142371 
+Multiple R-squared: 0.9388177 
 
 > coef( cesKmenta )
     gamma     delta       rho 
@@ -4298,6 +4315,7 @@ phi    1.14136    0.02183  52.292  < 2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.9732643 
+Multiple R-squared: 0.9555908 
 
 > coef( cesKmentaVrs )
     gamma     delta       rho       phi 

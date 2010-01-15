@@ -40,6 +40,7 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
    cat( "\n" )
 
    cat( "Residual standard error:", x$sigma, "\n" )
+   cat( "Multiple R-squared:", x$r.squared, "\n" )
    cat( "\n" )
 
    invisible( x )
