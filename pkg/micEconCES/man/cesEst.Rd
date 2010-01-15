@@ -25,8 +25,7 @@
 
 \usage{
 cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
-   startVal = c( sqrt( mean( data[[ yName ]] ) ), 0.5, -0.5, 1 ),
-   \dots )
+   startVal = NULL, \dots )
 \method{print}{cesEst}( x, digits = max(3, getOption("digits") - 3),
    \dots )
 }
@@ -44,13 +43,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       \code{"L-BFGS-B"}, \code{"SANN"}, \code{"LM"},
       \code{"Newton"}, or \code{"PORT"} for non-linear least-squares
       (see section \sQuote{Details}).}
-   \item{startVal}{starting values for the non-linear estimations:
-      a numeric vector of length 3 for constant returns to scale
-      (CRS, without \eqn{\phi}{phi}, i.e. \eqn{\phi}{phi} = 1)
-      or of length 4 for variable returns to scale (VRS, with \eqn{\phi}{phi});
-      the order must be \eqn{\gamma}{gamma}, \eqn{\delta}{delta},
-      \eqn{\rho}{rho}, and eventually \eqn{\phi}{phi};
-      names of the elements are ignored.}
+   \item{startVal}{optional numeric vector giving the starting values
+      of the parameters in the non-linear estimations
+      (see section \sQuote{Details}).}
    \item{x}{an object of class \code{cesEst}.}
    \item{digits}{number of digits.}
    \item{\dots}{further arguments to \code{cesEst} are passed to
@@ -60,6 +55,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
 }
 
 \details{
+   \bold{Estimation method}\cr
    Argument \code{method} determines the estimation method.
    If it is \code{"Kmenta"},
    the CES is estimated by ordinary least squares using the Kmenta
@@ -84,7 +80,30 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \code{PORT} (PORT routines, see Gay 1990)
    uses \code{\link[stats]{nlminb}} for the optimization.
    Analytical gradients are used in the \code{BFGS}, \code{CG},
-   \code{L-BFGS-B}, \code{LM}, \code{Newton}, and \code{PORT} method.
+   \code{L-BFGS-B}, \code{LM}, \code{Newton}, and \code{PORT} method.\cr\cr
+
+
+   \bold{Starting values}\cr
+   Argument \code{startVal} should be a numeric vector
+   of length 3 for estimations of the CES with constant returns to scale
+   (CRS, i.e. with \eqn{\phi}{phi} fixed at 1)
+   or of length 4 for estimations of the CES with variable returns to scale
+   (VRS, i.e. with \eqn{\phi}{phi} estimated).
+   The order must be \eqn{\gamma}{gamma}, \eqn{\delta}{delta},
+   \eqn{\rho}{rho}, and eventually \eqn{\phi}{phi}.
+   Names of the elements are ignored.
+   If argument \code{startVal} is \code{NULL},
+   the starting value of \eqn{\delta}{delta} is set to 0.5,
+   the starting value of \eqn{\rho}{rho} is set to -0.5
+      (i.e.\ elasticity of substitution = 2),
+   the starting value of \eqn{\phi}{phi} is set to 1
+      (only if argument \code{vrs} is \code{TRUE}),
+   and \eqn{\gamma}{gamma} is set to a value
+   so that the mean of the endogenous variable
+   is equal to the mean of its fitted values,
+   i.e. \eqn{\gamma}{gamma} =  mean( y ) /
+      mean( CES( X, \eqn{\gamma}{gamma} = 1, \eqn{\delta}{delta} = 0.5,
+         \eqn{\rho}{rho} = -0.5, \eqn{\phi}{phi} = 1 ) ).
 }
 
 \value{
