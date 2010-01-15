@@ -1,7 +1,5 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
-      method = "Nelder-Mead",
-      startVal = c( sqrt( mean( data[[ yName ]] ) ), 0.5, -0.5, 1 ),
-      ... ) {
+      method = "Nelder-Mead", startVal = NULL, ... ) {
 
    # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-phi/rho)
    # s = 1 / ( 1 + rho )
@@ -14,18 +12,29 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    }
 
    # start values
-   if( length( startVal ) != 4 && vrs ) {
-      stop( "a CES function with 2 explanatory variables and VRS has 4",
-         " parameters but you provided ", length( startVal ),
-         " starting values" )
-   } else if( ! length( startVal ) %in% c( 3, 4 ) && !vrs ) {
-      stop( "a CES function with 2 explanatory variables and CRS has 3",
-         " parameters but you provided ", length( startVal ),
-         " starting values" )
+   if( method == "Kmenta" ) {
+      if( !is.null( startVal ) ) {
+         warning( "ignoring starting values because they are not required",
+            " for estimating the Kmenta approximation" )
+      }
+   } else {
+      if( is.null( startVal ) ) {
+         startVal <- c( 1, 0.5, -0.5, 1 )[ 1:( 3 + vrs ) ]
+         yTemp <- cesCalc( xNames = xNames, data = data, coef = startVal )
+         startVal[ 1 ] <- mean( data[[ yName ]], na.rm = TRUE ) /
+            mean( yTemp, na.rm = TRUE )
+      }
+      if( length( startVal ) != 4 && vrs ) {
+         stop( "a CES function with 2 explanatory variables and VRS has 4",
+            " parameters but you provided ", length( startVal ),
+            " starting values" )
+      } else if( length( startVal ) != 3 && !vrs ) {
+         stop( "a CES function with 2 explanatory variables and CRS has 3",
+            " parameters but you provided ", length( startVal ),
+            " starting values" )
+      }
+      names( startVal ) <- c( "gamma", "delta", "rho", "phi" )[ 1:( 3 + vrs ) ]
    }
-   names( startVal ) <- c( "gamma", "delta", "rho", "phi" )[
-      1:length( startVal ) ]
-   startVal <- startVal[ 1:( 3 + vrs ) ]
 
    # checking lower and upper bounds
    dots <- list( ... )
