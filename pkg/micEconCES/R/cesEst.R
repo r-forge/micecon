@@ -38,7 +38,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # checking lower and upper bounds
    dots <- list( ... )
-   if( method == "L-BFGS-B" ) {
+   if( method %in% c( "L-BFGS-B", "PORT" ) ) {
       if( !is.null( dots$lower ) ) {
          if( length( startVal ) != length( dots$lower ) ) {
             stop( "the lower bound has ", length( dots$lower ), " elements",
