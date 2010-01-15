@@ -141,6 +141,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData)
 $method
 [1] "Nelder-Mead"
 
+$startVal
+   gamma    delta      rho 
+1.240747 0.500000 0.250000 
+
 $fitted.values
   [1]  9.446779 14.239392  5.757818 13.725194 15.313350 13.016852  8.460625
   [8]  7.033639 19.849926 12.239706 14.241704 13.754291  8.546949 18.505052
@@ -374,6 +378,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE)
 
 $method
 [1] "Nelder-Mead"
+
+$startVal
+   gamma    delta      rho      phi 
+1.240747 0.500000 0.250000 1.000000 
 
 $fitted.values
   [1]  9.021479 14.236768  5.330193 13.720015 15.525056 12.835263  8.321092
@@ -614,6 +622,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "CG")
 $method
 [1] "CG"
 
+$startVal
+   gamma    delta      rho 
+1.240747 0.500000 0.250000 
+
 $fitted.values
   [1]  9.445409 14.238859  5.760866 13.723824 15.316033 13.013863  8.468573
   [8]  7.048635 19.846020 12.236968 14.238837 13.753172  8.545001 18.500732
@@ -849,6 +861,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 
 $method
 [1] "CG"
+
+$startVal
+   gamma    delta      rho      phi 
+1.240747 0.500000 0.250000 1.000000 
 
 $fitted.values
   [1]  9.014651 14.236354  5.336293 13.716966 15.536560 12.825786  8.346498
@@ -1090,6 +1106,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "SANN")
 $method
 [1] "SANN"
 
+$startVal
+   gamma    delta      rho 
+1.240747 0.500000 0.250000 
+
 $fitted.values
   [1]  9.422024 14.225394  5.735983 13.687250 15.305258 12.992899  8.425162
   [8]  6.998457 19.802385 12.218172 14.207964 13.715563  8.528648 18.468886
@@ -1323,6 +1343,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 
 $method
 [1] "SANN"
+
+$startVal
+   gamma    delta      rho      phi 
+1.240747 0.500000 0.250000 1.000000 
 
 $fitted.values
   [1]  9.066865 14.266230  5.356245 13.731743 15.535481 12.875066  8.305533
@@ -1564,6 +1588,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "BFGS")
 $method
 [1] "BFGS"
 
+$startVal
+   gamma    delta      rho 
+1.240747 0.500000 0.250000 
+
 $fitted.values
   [1]  9.446779 14.239482  5.757827 13.725192 15.313497 13.016876  8.460656
   [8]  7.033716 19.849931 12.239733 14.241708 13.754288  8.546957 18.505078
@@ -1799,6 +1827,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 
 $method
 [1] "BFGS"
+
+$startVal
+   gamma    delta      rho      phi 
+1.240747 0.500000 0.250000 1.000000 
 
 $fitted.values
   [1]  9.021425 14.236692  5.330128 13.719995 15.524956 12.835217  8.321020
@@ -2046,6 +2078,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B",
 $method
 [1] "L-BFGS-B"
 
+$startVal
+   gamma    delta      rho 
+1.240747 0.500000 0.250000 
+
 $fitted.values
   [1]  9.446783 14.239482  5.757827 13.725198 15.313492 13.016881  8.460653
   [8]  7.033706 19.849941 12.239737 14.241715 13.754295  8.546961 18.505086
@@ -2290,6 +2326,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 $method
 [1] "L-BFGS-B"
 
+$startVal
+   gamma    delta      rho      phi 
+1.240747 0.500000 0.250000 1.000000 
+
 $fitted.values
   [1]  9.021424 14.236689  5.330124 13.719996 15.524949 12.835218  8.321011
   [8]  7.083339 20.624712 11.981334 14.230554 13.763367  8.031773 19.018375
@@ -2512,6 +2552,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "LM",
 
 $method
 [1] "LM"
+
+$startVal
+   gamma    delta      rho 
+1.240747 0.500000 0.250000 
 
 $fitted.values
   [1]  9.446783 14.239483  5.757828 13.725198 15.313494 13.016881  8.460655
@@ -2741,6 +2785,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 
 $method
 [1] "LM"
+
+$startVal
+   gamma    delta      rho      phi 
+1.240747 0.500000 0.250000 1.000000 
 
 $fitted.values
   [1]  9.021423 14.236693  5.330131 13.719994 15.524962 12.835214  8.321030
@@ -2980,6 +3028,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Newton")
 $method
 [1] "Newton"
 
+$startVal
+   gamma    delta      rho 
+1.240747 0.500000 0.250000 
+
 $fitted.values
   [1]  9.446783 14.239482  5.757827 13.725198 15.313493 13.016882  8.460654
   [8]  7.033707 19.849941 12.239737 14.241715 13.754295  8.546961 18.505086
@@ -3209,6 +3261,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 
 $method
 [1] "Newton"
+
+$startVal
+   gamma    delta      rho      phi 
+1.240747 0.500000 0.250000 1.000000 
 
 $fitted.values
   [1]  9.021426 14.236692  5.330128 13.719995 15.524956 12.835217  8.321020
@@ -3454,6 +3510,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "PORT")
 $method
 [1] "PORT"
 
+$startVal
+   gamma    delta      rho 
+1.240747 0.500000 0.250000 
+
 $fitted.values
   [1]  9.446783 14.239482  5.757827 13.725198 15.313493 13.016882  8.460654
   [8]  7.033707 19.849941 12.239737 14.241715 13.754295  8.546961 18.505086
@@ -3695,6 +3755,10 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 
 $method
 [1] "PORT"
+
+$startVal
+   gamma    delta      rho      phi 
+1.240747 0.500000 0.250000 1.000000 
 
 $fitted.values
   [1]  9.021426 14.236692  5.330128 13.719995 15.524956 12.835217  8.321020
