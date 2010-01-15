@@ -41,8 +41,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       either \code{"Kmenta"} for the Kmenta approximation
       or \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"},
       \code{"L-BFGS-B"}, \code{"SANN"}, \code{"LM"},
-      \code{"Newton"}, or \code{"PORT"} for non-linear least-squares
-      (see section \sQuote{Details}).}
+      \code{"Newton"}, \code{"PORT"}, or \code{"DE"}
+      for non-linear least-squares (see section \sQuote{Details}).}
    \item{startVal}{optional numeric vector giving the starting values
       of the parameters in the non-linear estimations
       (see section \sQuote{Details}).}
@@ -50,7 +50,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{digits}{number of digits.}
    \item{\dots}{further arguments to \code{cesEst} are passed to
       \code{\link[stats]{optim}}, \code{\link[minpack.lm]{nls.lm}},
-      \code{\link[stats]{nlm}}, or \code{\link[stats]{nlminb}};
+      \code{\link[stats]{nlm}}, \code{\link[stats]{nlminb}},
+      or \code{\link[DEoptim]{DEoptim}};
       further arguments to \code{print.cesEst} are currently ignored.}
 }
 
@@ -79,6 +80,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    The optimization method
    \code{PORT} (PORT routines, see Gay 1990)
    uses \code{\link[stats]{nlminb}} for the optimization.
+   The optimization method
+   \code{DE} (Differential Evolution, see Storn and Price 1997)
+   uses \code{\link[DEoptim]{DEoptim}} for the optimization.
    Analytical gradients are used in the \code{BFGS}, \code{CG},
    \code{L-BFGS-B}, \code{LM}, \code{Newton}, and \code{PORT} method.\cr\cr
 
@@ -138,6 +142,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       (only if argument \code{method} is \code{"Newton"}).}
    \item{nlminb}{object returned by \code{\link[stats]{nlminb}}
       (only if argument \code{method} is \code{"PORT"}).}
+   \item{DEoptim}{object returned by \code{\link[DEoptim]{DEoptim}}
+      (only if argument \code{method} is \code{"DE"}).}
    \item{translog}{estimation results of the (unrestricted) translog model
       returned by \code{\link[micEcon]{translogEst}}
       (only if argument \code{method} is \code{"Kmenta"}).}
@@ -209,6 +215,11 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    Shanno, D.F. (1970):
    Conditioning of Quasi-Newton Methods for Function Minimization,
    Mathematics of Computation 24, p. 647-656.
+
+   Storn, R. and Price, K. (1997):
+   Differential Evolution - A Simple and Efficient Heuristic
+   for Global Optimization over Continuous Spaces,
+   Journal of Global Optimization, 11(4), p. 341-359.
 }
 
 \seealso{
@@ -253,13 +264,17 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       method = "SANN" )
 
    # using the Kmenta approximation
-   cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   cesLandLaborKmenta <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
       method = "Kmenta" )
 
    # using the PORT optimization routine with constrained parameters and VRS
    cesLandLaborPortCon <- cesEst( "qOutput", c( "land", "qLabor" ),
       germanFarms, vrs = TRUE, method = "PORT",
       lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
+
+   # using the Differential Evolution optimization method
+   cesLandLaborDe <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+      method = "DE" )
 
 
    ## CES: Land & Intermediate Inputs
@@ -285,6 +300,10 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    # using the Levenberg-Marquardt optimization method
    cesLandIntLm <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
       method = "LM", control = nls.lm.control( maxiter = 200 ) )
+
+   # using the Differential Evolution optimization method
+   cesLandIntDe <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+      method = "DE" )
 }
 
 \keyword{models}

@@ -12,10 +12,10 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    }
 
    # start values
-   if( method == "Kmenta" ) {
+   if( method %in% c( "Kmenta", "DE" ) ) {
       if( !is.null( startVal ) ) {
          warning( "ignoring starting values because they are not required",
-            " for estimating the Kmenta approximation" )
+            " for method '", method, "'" )
       }
    } else {
       if( is.null( startVal ) ) {
@@ -139,9 +139,19 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$iter <- result$nlminb$iterations
       result$convergence <- result$nlminb$convergence == 0
       result$message <- result$nlminb$message
+   } else if( method == "DE" ) {
+      lower <- c( 0, 0, -1, 0 )[ 1:( 3 + vrs ) ]
+      upper <- c( 1e10, 1, 10, 10 )[ 1:( 3 + vrs ) ]
+      result$DEoptim <- DEoptim( fn = cesRss, lower = lower,
+         upper = upper, data = estData, ... )
+      result$coefficients <- result$DEoptim$optim$bestmem
+      names( result$coefficients ) <-
+         c( "gamma", "delta", "rho", "phi" )[ 1:( 3 + vrs ) ]
+      result$iter <- result$DEoptim$optim$iter
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
-         " 'CG', 'L-BFGS-B', 'SANN', 'LM', 'Newton', 'PORT', or 'Kmenta'" )
+         " 'CG', 'L-BFGS-B', 'SANN', 'LM', 'Newton', 'PORT',",
+         " 'DE', or 'Kmenta'" )
    }
 
    # return also the call
@@ -151,7 +161,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    result$method <- method
 
    # return the starting values
-   if( method != "Kmenta" ) {
+   if( ! method %in% c( "Kmenta", "DE" ) ) {
       result$startVal <- startVal
    }
 

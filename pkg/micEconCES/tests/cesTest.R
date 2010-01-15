@@ -178,6 +178,30 @@ coef( summary( cesLandLaborPortVrsCon ) )
 fitted( cesLandLaborPortVrsCon )
 residuals( cesLandLaborPortVrsCon )
 
+# using the DE optimization method implemented in DEoptim(), CRS
+cesLandLaborDe <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "DE", control = DEoptim.control( trace = FALSE ) )
+print.default( cesLandLaborDe )
+print( cesLandLaborDe )
+summary( cesLandLaborDe )
+coef( cesLandLaborDe )
+vcov( cesLandLaborDe )
+coef( summary( cesLandLaborDe ) )
+fitted( cesLandLaborDe )
+residuals( cesLandLaborDe )
+
+# using the DE optimization method implemented in DEoptim(), VRS
+cesLandLaborDeVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "DE", vrs = TRUE, control = DEoptim.control( trace = FALSE ) )
+print.default( cesLandLaborDeVrs )
+print( cesLandLaborDeVrs )
+summary( cesLandLaborDeVrs )
+coef( cesLandLaborDeVrs )
+vcov( cesLandLaborDeVrs )
+coef( summary( cesLandLaborDeVrs ) )
+fitted( cesLandLaborDeVrs )
+residuals( cesLandLaborDeVrs )
+
 
 ## CES: Land & Intermediate Inputs
 cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
@@ -292,6 +316,22 @@ print.default( cesLandIntPortVrsCon )
 print( cesLandIntPortVrsCon )
 summary( cesLandIntPortVrsCon )
 coef( summary( cesLandIntPortVrsCon ) )
+
+# using the DE optimization method implemented in DEoptim()
+cesLandIntDe <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "DE", control = DEoptim.control( trace = FALSE ) )
+print.default( cesLandIntDe )
+print( cesLandIntDe )
+summary( cesLandIntDe )
+coef( summary( cesLandIntDe ) )
+
+# using the DE optimization method implemented in DEoptim(), VRS
+cesLandIntDeVrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "DE", vrs = TRUE, control = DEoptim.control( trace = FALSE ) )
+print.default( cesLandIntDeVrs )
+print( cesLandIntDeVrs )
+summary( cesLandIntDeVrs )
+coef( summary( cesLandIntDeVrs ) )
 
 
 ############  cesCalc  ################
