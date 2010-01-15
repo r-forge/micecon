@@ -189,7 +189,8 @@ fitted( cesNewtonVrs )
 residuals( cesNewtonVrs )
 
 ## PORT, CRS
-cesPort <- cesEst( "ys", xxNames, cesData, method = "PORT" )
+cesPort <- cesEst( "ys", xxNames, cesData, method = "PORT",
+   lower = c( 0, 0, -1 ), upper = c( Inf, 1, Inf ) )
 print.default( cesPort )
 print( cesPort )
 summary( cesPort )
@@ -200,7 +201,8 @@ fitted( cesPort )
 residuals( cesPort )
 
 ## PORT, VRS
-cesPortVrs <- cesEst( "ys", xxNames, cesData, method = "PORT", vrs = TRUE )
+cesPortVrs <- cesEst( "ys", xxNames, cesData, method = "PORT", vrs = TRUE,
+   lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
 print.default( cesPortVrs )
 print( cesPortVrs )
 summary( cesPortVrs )
