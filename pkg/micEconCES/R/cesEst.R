@@ -147,8 +147,13 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    # return also the call
    result$call <- matchedCall
 
-   # returned the method used for the estimation
+   # return the method used for the estimation
    result$method <- method
+
+   # return the starting values
+   if( method != "Kmenta" ) {
+      result$startVal <- startVal
+   }
 
    # fitted values
    result$fitted.values <- cesCalc( xNames = xNames, data = data,

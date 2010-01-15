@@ -88,6 +88,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms)
 $method
 [1] "Nelder-Mead"
 
+$startVal
+   gamma    delta      rho 
+274.3737   0.5000   0.2500 
+
 $fitted.values
  [1] 1149.621 1188.912 1212.974 1223.790 1223.790 1239.503 1272.895 1275.852
  [9] 1237.050 1280.773 1315.152 1467.444 1528.348 1581.387 1548.475 1566.150
@@ -197,6 +201,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 
 $method
 [1] "Nelder-Mead"
+
+$startVal
+   gamma    delta      rho      phi 
+274.3737   0.5000   0.2500   1.0000 
 
 $fitted.values
  [1] 1086.866 1129.241 1150.992 1173.398 1173.398 1186.789 1216.082 1230.378
@@ -317,6 +325,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "CG"
 
+$startVal
+   gamma    delta      rho 
+274.3737   0.5000   0.2500 
+
 $fitted.values
  [1] 1262.946 1284.519 1288.607 1315.248 1315.248 1315.953 1317.729 1341.555
  [9] 1320.568 1365.953 1379.551 1529.581 1558.702 1561.018 1537.193 1520.006
@@ -430,6 +442,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "SANN"
 
+$startVal
+   gamma    delta      rho 
+274.3737   0.5000   0.2500 
+
 $fitted.values
  [1] 1155.792 1193.791 1216.511 1228.346 1228.346 1243.063 1274.493 1278.702
  [9] 1241.068 1284.850 1317.886 1469.906 1528.928 1579.261 1546.828 1562.788
@@ -541,6 +557,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 
 $method
 [1] "BFGS"
+
+$startVal
+   gamma    delta      rho 
+274.3737   0.5000   0.2500 
 
 $fitted.values
  [1] 1149.862 1189.171 1213.248 1224.060 1224.060 1239.783 1273.196 1276.145
@@ -659,6 +679,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 
 $method
 [1] "L-BFGS-B"
+
+$startVal
+   gamma    delta      rho 
+274.3737   0.5000   0.2500 
 
 $fitted.values
  [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
@@ -1045,6 +1069,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "LM"
 
+$startVal
+   gamma    delta      rho 
+274.3737   0.5000   0.2500 
+
 $fitted.values
  [1] 1101.247 1147.408 1179.339 1183.826 1183.826 1205.466 1251.448 1246.010
  [9] 1200.204 1243.138 1285.725 1438.512 1512.093 1585.712 1549.153 1581.147
@@ -1154,6 +1182,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 
 $method
 [1] "Newton"
+
+$startVal
+   gamma    delta      rho 
+274.3737   0.5000   0.2500 
 
 $fitted.values
  [1] 1150.916 1189.880 1213.617 1224.673 1224.673 1240.147 1273.088 1276.326
@@ -1271,6 +1303,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "PORT"
 
+$startVal
+   gamma    delta      rho 
+274.3737   0.5000   0.2500 
+
 $fitted.values
  [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.876 1273.294 1276.242
  [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.911 1548.985 1566.677
@@ -1383,6 +1419,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 $method
 [1] "Nelder-Mead"
 
+$startVal
+   gamma    delta      rho 
+13.61709  0.50000  0.25000 
+
 $fitted.values
  [1] 1149.991 1189.308 1213.389 1224.202 1224.202 1239.928 1273.347 1276.294
  [9] 1237.470 1281.209 1315.611 1467.960 1528.900 1581.976 1549.047 1566.737
@@ -1475,6 +1515,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "Nelder-Mead"
+
+$startVal
+   gamma    delta      rho      phi 
+13.61709  0.50000  0.25000  1.00000 
 
 $fitted.values
  [1] 1071.232 1132.942 1158.581 1188.294 1185.925 1206.370 1248.780 1241.706
@@ -1577,6 +1621,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "CG"
 
+$startVal
+   gamma    delta      rho 
+13.61709  0.50000  0.25000 
+
 $fitted.values
  [1] 1152.384 1210.600 1228.548 1263.218 1259.609 1276.387 1310.081 1297.303
  [9] 1264.781 1301.155 1345.806 1501.400 1568.778 1604.872 1544.337 1544.922
@@ -1673,6 +1721,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "SANN"
 
+$startVal
+   gamma    delta      rho 
+13.61709  0.50000  0.25000 
+
 $fitted.values
  [1] 1150.943 1190.545 1214.567 1225.674 1225.634 1241.385 1274.835 1277.599
  [9] 1238.821 1282.504 1317.060 1469.574 1530.640 1583.553 1550.211 1567.640
@@ -1767,6 +1819,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "BFGS"
+
+$startVal
+   gamma    delta      rho 
+13.61709  0.50000  0.25000 
 
 $fitted.values
  [1] 1149.939 1189.254 1213.334 1224.146 1224.146 1239.871 1273.288 1276.237
@@ -1868,6 +1924,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "L-BFGS-B"
+
+$startVal
+   gamma    delta      rho 
+13.61709  0.50000  0.25000 
 
 $fitted.values
  [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
@@ -2193,6 +2253,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "LM"
 
+$startVal
+   gamma    delta      rho 
+13.61709  0.50000  0.25000 
+
 $fitted.values
  [1] 1149.947 1189.261 1213.341 1224.153 1224.153 1239.878 1273.296 1276.244
  [9] 1237.421 1281.159 1315.559 1467.902 1528.839 1581.914 1548.988 1566.679
@@ -2285,6 +2349,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "Newton"
+
+$startVal
+   gamma    delta      rho 
+13.61709  0.50000  0.25000 
 
 $fitted.values
  [1] 1150.331 1189.731 1213.797 1224.691 1224.680 1240.414 1273.844 1276.742
@@ -2385,6 +2453,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "PORT"
+
+$startVal
+   gamma    delta      rho 
+13.61709  0.50000  0.25000 
 
 $fitted.values
  [1] 1149.947 1189.262 1213.342 1224.153 1224.153 1239.879 1273.296 1276.245
