@@ -614,68 +614,68 @@ rho   -4.39599297   86923.97 -5.057285e-05 0.9999596
 [13]   46.316962  114.174130   95.826583   59.480114    6.919847   32.790076
 [19]   54.049758   56.315939
 > 
-> # using the L-BFGS-B optimization method with constrained delta
+> # using the L-BFGS-B optimization method with constrained parameters
 > cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
-+    germanFarms, method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
++    germanFarms, method = "L-BFGS-B", lower = c( 0, 0, -1 ),
 +    upper = c( Inf, 1, Inf ) )
 > print.default( cesLandLaborBfgsCon )
 $optim
 $optim$par
-        gamma         delta           rho 
- 2.743296e+02  2.966352e-04 -4.721221e+00 
+     gamma      delta        rho 
+49.1429501  1.0000000 -0.9999998 
 
 $optim$value
-[1] 166975.2
+[1] 165832.4
 
 $optim$counts
 function gradient 
-     149      149 
+      60       60 
 
 $optim$convergence
-[1] 1
+[1] 0
 
 $optim$message
-[1] "NEW_X"
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
 
 $coefficients
-        gamma         delta           rho 
- 2.743296e+02  2.966352e-04 -4.721221e+00 
+     gamma      delta        rho 
+49.1429501  1.0000000 -0.9999998 
 
 $iter
 function gradient 
-     149      149 
+      60       60 
 
 $convergence
-[1] FALSE
+[1] TRUE
 
 $message
-[1] "NEW_X"
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
+    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
         1, Inf))
 
 $method
 [1] "L-BFGS-B"
 
 $fitted.values
- [1] 1150.442 1189.582 1213.494 1224.425 1224.425 1240.028 1273.217 1276.304
- [9] 1237.626 1281.360 1315.597 1467.879 1528.603 1581.401 1548.527 1566.058
-[17] 1647.434 1721.953 1832.295 1934.329
+ [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.523 1935.741
 
 $residuals
- [1] -204.309082 -226.851040 -143.914574  -52.628538  -46.308971  -54.218031
- [7]  -33.859010   12.256935  -29.919451   -2.951667   44.995584   72.905125
-[13]   46.431795  114.558350   96.162267   59.973546    7.605379   33.646946
-[19]   55.124838   57.565037
+ [1] -203.812030 -226.528907 -143.760265  -52.354411  -46.034845  -54.066630
+ [7]  -33.936006   12.318503  -29.713284   -2.748202   45.035837   72.884174
+[13]   46.197491  114.047832   95.703326   59.353878    6.785316   32.647977
+[19]   53.896799   56.153212
 
 $cov.unscaled
-              gamma         delta          rho
-gamma 474792.979785 -5.8392871968 -6694.265906
-delta     -5.839287  0.0000718496     0.082398
-rho    -6694.265906  0.0823980000    94.518170
+              gamma         delta           rho
+gamma  1.363269e+00 -2.927712e-02  5.039476e+10
+delta -2.927712e-02  6.287732e-04 -1.077020e+09
+rho    5.039476e+10 -1.077020e+09  7.098080e+22
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -684,56 +684,56 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
+    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
         1, Inf))
 
 Coefficients:
-     gamma      delta        rho 
- 2.743e+02  2.966e-04 -4.721e+00 
+gamma delta   rho 
+49.14  1.00 -1.00 
 
 > summary( cesLandLaborBfgsCon )
 Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
+    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
         1, Inf))
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
-Convergence NOT achieved after 149 function and 149 gradient calls
-Message: NEW_X 
+Convergence achieved after 60 function and 60 gradient calls
+Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
-        Estimate Std. Error  t value Pr(>|t|)
-gamma  2.743e+02  6.296e+04    0.004    0.997
-delta  2.966e-04  7.745e-01 0.000383    1.000
-rho   -4.721e+00  8.883e+02   -0.005    0.996
+        Estimate Std. Error   t value Pr(>|t|)
+gamma  4.914e+01  1.063e+02     0.462    0.644
+delta  1.000e+00  2.283e+00     0.438    0.661
+rho   -1.000e+00  2.426e+13 -4.12e-14    1.000
 
-Residual standard error: 91.37154 
-Multiple R-squared: 0.90567 
+Residual standard error: 91.05832 
+Multiple R-squared: 0.9063156 
 
 > coef( cesLandLaborBfgsCon )
-        gamma         delta           rho 
- 2.743296e+02  2.966352e-04 -4.721221e+00 
+     gamma      delta        rho 
+49.1429501  1.0000000 -0.9999998 
 > vcov( cesLandLaborBfgsCon )
-             gamma        delta           rho
-gamma 3963931792.6 -4.87508e+04 -55888807.503
-delta     -48750.8  5.99855e-01       687.921
-rho    -55888807.5  6.87921e+02    789109.346
+              gamma         delta           rho
+gamma  1.130370e+04 -2.427547e+02  4.178541e+14
+delta -2.427547e+02  5.213547e+00 -8.930238e+12
+rho    4.178541e+14 -8.930238e+12  5.885457e+26
 > coef( summary( cesLandLaborBfgsCon ) )
-           Estimate   Std. Error       t value  Pr(>|t|)
-gamma  2.743296e+02 62959.763282  0.0043572216 0.9965235
-delta  2.966352e-04     0.774503  0.0003830007 0.9996944
-rho   -4.721221e+00   888.318269 -0.0053147856 0.9957594
+        Estimate   Std. Error       t value  Pr(>|t|)
+gamma 49.1429501 1.063189e+02  4.622223e-01 0.6439219
+delta  1.0000000 2.283319e+00  4.379589e-01 0.6614161
+rho   -0.9999998 2.425996e+13 -4.122018e-14 1.0000000
 > fitted( cesLandLaborBfgsCon )
- [1] 1150.442 1189.582 1213.494 1224.425 1224.425 1240.028 1273.217 1276.304
- [9] 1237.626 1281.360 1315.597 1467.879 1528.603 1581.401 1548.527 1566.058
-[17] 1647.434 1721.953 1832.295 1934.329
+ [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.523 1935.741
 > residuals( cesLandLaborBfgsCon )
- [1] -204.309082 -226.851040 -143.914574  -52.628538  -46.308971  -54.218031
- [7]  -33.859010   12.256935  -29.919451   -2.951667   44.995584   72.905125
-[13]   46.431795  114.558350   96.162267   59.973546    7.605379   33.646946
-[19]   55.124838   57.565037
+ [1] -203.812030 -226.528907 -143.760265  -52.354411  -46.034845  -54.066630
+ [7]  -33.936006   12.318503  -29.713284   -2.748202   45.035837   72.884174
+[13]   46.197491  114.047832   95.703326   59.353878    6.785316   32.647977
+[19]   53.896799   56.153212
 > 
 > # Kmenta approximation with CRS
 > cesLandLaborKmentaCrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -1823,68 +1823,68 @@ gamma 34.7911440  5792654.9 6.006079e-06 0.9999952
 delta  0.2558348   197851.3 1.293066e-06 0.9999990
 rho    3.9471595   336359.8 1.173493e-05 0.9999906
 > 
-> # using the L-BFGS-B optimization method with constrained delta
+> # using the L-BFGS-B optimization method with constrained parameters
 > cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-+    method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
++    method = "L-BFGS-B", lower = c( 0, 0, -1 ),
 +    upper = c( Inf, 1, Inf ) )
 > print.default( cesLandIntBfgsCon )
 $optim
 $optim$par
-       gamma        delta          rho 
-14.316042849  0.008486453  3.865694236 
+     gamma      delta        rho 
+49.1429501  1.0000000  0.6510633 
 
 $optim$value
-[1] 165946.7
+[1] 165832.4
 
 $optim$counts
 function gradient 
-     146      146 
+      34       34 
 
 $optim$convergence
-[1] 1
+[1] 0
 
 $optim$message
-[1] "NEW_X"
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
 
 $coefficients
-       gamma        delta          rho 
-14.316042849  0.008486453  3.865694236 
+     gamma      delta        rho 
+49.1429501  1.0000000  0.6510633 
 
 $iter
 function gradient 
-     146      146 
+      34       34 
 
 $convergence
-[1] FALSE
+[1] TRUE
 
 $message
-[1] "NEW_X"
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
+    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
         1, Inf))
 
 $method
 [1] "L-BFGS-B"
 
 $fitted.values
- [1] 1150.231 1189.587 1213.663 1224.512 1224.507 1240.238 1273.664 1276.591
- [9] 1237.768 1281.505 1315.929 1468.315 1529.276 1582.339 1549.356 1567.015
-[17] 1648.510 1723.145 1833.685 1935.906
+ [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.523 1935.741
 
 $residuals
- [1] -204.098065 -226.856327 -144.084035  -52.715053  -46.390855  -54.427992
- [7]  -34.306183   11.969944  -30.061546   -3.096333   44.663933   72.469561
-[13]   45.758659  113.620695   95.333307   59.016144    6.530332   32.455279
-[19]   53.735504   55.988428
+ [1] -203.812030 -226.528907 -143.760265  -52.354411  -46.034845  -54.066630
+ [7]  -33.936006   12.318503  -29.713284   -2.748202   45.035837   72.884174
+[13]   46.197491  114.047832   95.703326   59.353878    6.785316   32.647977
+[19]   53.896799   56.153212
 
 $cov.unscaled
-            gamma       delta         rho
-gamma 217349.9238  833.687618 -32059.4161
-delta    833.6876    3.197893   -122.9818
-rho   -32059.4161 -122.981835   4729.9322
+             gamma        delta          rho
+gamma 4.991855e-01 7.597528e-03 7.332675e+09
+delta 7.597528e-03 1.156554e-04 1.294089e+08
+rho   7.332675e+09 1.294089e+08 3.637099e+22
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1893,39 +1893,39 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
+    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
         1, Inf))
 
 Coefficients:
-    gamma     delta       rho 
-14.316043  0.008486  3.865694 
+ gamma  delta    rho 
+49.143  1.000  0.651 
 
 > summary( cesLandIntBfgsCon )
 Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(-Inf, 0, -Inf), upper = c(Inf, 
+    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
         1, Inf))
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
-Convergence NOT achieved after 146 function and 146 gradient calls
-Message: NEW_X 
+Convergence achieved after 34 function and 34 gradient calls
+Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
        Estimate Std. Error  t value Pr(>|t|)
-gamma 1.432e+01  4.247e+04 3.37e-04        1
-delta 8.486e-03  1.629e+02 5.21e-05        1
-rho   3.866e+00  6.265e+03    0.001        1
+gamma 4.914e+01  6.434e+01    0.764    0.445
+delta 1.000e+00  9.793e-01    1.021    0.307
+rho   6.511e-01  1.737e+13 3.75e-14    1.000
 
-Residual standard error: 91.0897 
-Multiple R-squared: 0.906251 
+Residual standard error: 91.05832 
+Multiple R-squared: 0.9063156 
 
 > coef( summary( cesLandIntBfgsCon ) )
-          Estimate Std. Error      t value  Pr(>|t|)
-gamma 14.316042849 42466.7480 3.371118e-04 0.9997310
-delta  0.008486453   162.8925 5.209847e-05 0.9999584
-rho    3.865694236  6264.6486 6.170648e-04 0.9995077
+        Estimate   Std. Error      t value  Pr(>|t|)
+gamma 49.1429501 6.433549e+01 7.638544e-01 0.4449540
+delta  1.0000000 9.792705e-01 1.021168e+00 0.3071747
+rho    0.6510633 1.736590e+13 3.749091e-14 1.0000000
 > 
 > # Kmenta approximation with CRS
 > cesLandIntKmentaCrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,

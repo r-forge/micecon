@@ -68,9 +68,9 @@ coef( summary( cesLandLaborBfgs ) )
 fitted( cesLandLaborBfgs )
 residuals( cesLandLaborBfgs )
 
-# using the L-BFGS-B optimization method with constrained delta
+# using the L-BFGS-B optimization method with constrained parameters
 cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
-   germanFarms, method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
+   germanFarms, method = "L-BFGS-B", lower = c( 0, 0, -1 ),
    upper = c( Inf, 1, Inf ) )
 print.default( cesLandLaborBfgsCon )
 print( cesLandLaborBfgsCon )
@@ -182,9 +182,9 @@ print( cesLandIntBfgs )
 summary( cesLandIntBfgs )
 coef( summary( cesLandIntBfgs ) )
 
-# using the L-BFGS-B optimization method with constrained delta
+# using the L-BFGS-B optimization method with constrained parameters
 cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-   method = "L-BFGS-B", lower = c( -Inf, 0, -Inf ),
+   method = "L-BFGS-B", lower = c( 0, 0, -1 ),
    upper = c( Inf, 1, Inf ) )
 print.default( cesLandIntBfgsCon )
 print( cesLandIntBfgsCon )
