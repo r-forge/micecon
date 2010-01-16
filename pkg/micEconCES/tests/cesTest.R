@@ -70,8 +70,7 @@ residuals( cesLandLaborBfgs )
 
 # using the L-BFGS-B optimization method with constrained parameters
 cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
-   germanFarms, method = "L-BFGS-B", lower = c( 0, 0, -1 ),
-   upper = c( Inf, 1, Inf ) )
+   germanFarms, method = "L-BFGS-B" )
 print.default( cesLandLaborBfgsCon )
 print( cesLandLaborBfgsCon )
 summary( cesLandLaborBfgsCon )
@@ -129,9 +128,9 @@ coef( summary( cesLandLaborNewton ) )
 fitted( cesLandLaborNewton )
 residuals( cesLandLaborNewton )
 
-# using the PORT optimization rountine implemented in nlminb()
+# using the PORT optimization rountine implemented in nlminb(), UNconstrained
 cesLandLaborPort <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-   method = "PORT" )
+   method = "PORT", lower = -Inf, upper = Inf )
 print.default( cesLandLaborPort )
 print( cesLandLaborPort )
 summary( cesLandLaborPort )
@@ -143,7 +142,7 @@ residuals( cesLandLaborPort )
 
 # using the PORT optimization rountine implemented in nlminb(), constrained
 cesLandLaborPortCon <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-   method = "PORT", lower = c( 0, 0, -1 ), upper = c( Inf, 1, Inf ) )
+   method = "PORT" )
 print.default( cesLandLaborPortCon )
 print( cesLandLaborPortCon )
 summary( cesLandLaborPortCon )
@@ -153,9 +152,21 @@ coef( summary( cesLandLaborPortCon ) )
 fitted( cesLandLaborPortCon )
 residuals( cesLandLaborPortCon )
 
-# using the PORT optimization rountine implemented in nlminb(), VRS
+# using the PORT optimization rountine implemented in nlminb(), constrained by hand
+cesLandLaborPortCon2 <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "PORT", lower = c( 0.1, 0.1, -0.5 ), upper = c( 300, 0.9, 4 ) )
+print.default( cesLandLaborPortCon2 )
+print( cesLandLaborPortCon2 )
+summary( cesLandLaborPortCon2 )
+coef( cesLandLaborPortCon2 )
+vcov( cesLandLaborPortCon2 )
+coef( summary( cesLandLaborPortCon2 ) )
+fitted( cesLandLaborPortCon2 )
+residuals( cesLandLaborPortCon2 )
+
+# using the PORT optimization rountine implemented in nlminb(), VRS, UNconstrained
 cesLandLaborPortVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-   method = "PORT", vrs = TRUE )
+   method = "PORT", vrs = TRUE, lower = -Inf, upper = Inf )
 print.default( cesLandLaborPortVrs )
 print( cesLandLaborPortVrs )
 summary( cesLandLaborPortVrs )
@@ -167,8 +178,7 @@ residuals( cesLandLaborPortVrs )
 
 # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 cesLandLaborPortVrsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
-   germanFarms, method = "PORT", vrs = TRUE,
-   lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
+   germanFarms, method = "PORT", vrs = TRUE )
 print.default( cesLandLaborPortVrsCon )
 print( cesLandLaborPortVrsCon )
 summary( cesLandLaborPortVrsCon )
@@ -201,6 +211,19 @@ vcov( cesLandLaborDeVrs )
 coef( summary( cesLandLaborDeVrs ) )
 fitted( cesLandLaborDeVrs )
 residuals( cesLandLaborDeVrs )
+
+# using the DE optimization method implemented in DEoptim(), CRS, user-specified bounds
+cesLandLaborDe2 <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "DE", control = DEoptim.control( trace = FALSE ),
+   lower = c( 1, 0.01, -0.99 ), upper = c( 50, 0.99, 3 ) )
+print.default( cesLandLaborDe2 )
+print( cesLandLaborDe2 )
+summary( cesLandLaborDe2 )
+coef( cesLandLaborDe2 )
+vcov( cesLandLaborDe2 )
+coef( summary( cesLandLaborDe2 ) )
+fitted( cesLandLaborDe2 )
+residuals( cesLandLaborDe2 )
 
 
 ## CES: Land & Intermediate Inputs
@@ -245,8 +268,7 @@ coef( summary( cesLandIntBfgs ) )
 
 # using the L-BFGS-B optimization method with constrained parameters
 cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-   method = "L-BFGS-B", lower = c( 0, 0, -1 ),
-   upper = c( Inf, 1, Inf ) )
+   method = "L-BFGS-B" )
 print.default( cesLandIntBfgsCon )
 print( cesLandIntBfgsCon )
 summary( cesLandIntBfgsCon )
@@ -284,9 +306,9 @@ print( cesLandIntNewton )
 summary( cesLandIntNewton )
 coef( summary( cesLandIntNewton ) )
 
-# using the PORT optimization rountine implemented in nlminb()
+# using the PORT optimization rountine implemented in nlminb(), UNconstrained
 cesLandIntPort <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-   method = "PORT" )
+   method = "PORT", lower = -Inf, upper = Inf )
 print.default( cesLandIntPort )
 print( cesLandIntPort )
 summary( cesLandIntPort )
@@ -294,15 +316,15 @@ coef( summary( cesLandIntPort ) )
 
 # using the PORT optimization rountine implemented in nlminb(), constrained
 cesLandIntPortCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-   method = "PORT", lower = c( 0, 0, -1 ), upper = c( Inf, 1, Inf ) )
+   method = "PORT" )
 print.default( cesLandIntPortCon )
 print( cesLandIntPortCon )
 summary( cesLandIntPortCon )
 coef( summary( cesLandIntPortCon ) )
 
-# using the PORT optimization rountine implemented in nlminb(), VRS
+# using the PORT optimization rountine implemented in nlminb(), VRS, UNconstrained
 cesLandIntPortVrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-   method = "PORT", vrs = TRUE )
+   method = "PORT", vrs = TRUE, lower = -Inf, upper = Inf )
 print.default( cesLandIntPortVrs )
 print( cesLandIntPortVrs )
 summary( cesLandIntPortVrs )
@@ -310,8 +332,7 @@ coef( summary( cesLandIntPortVrs ) )
 
 # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 cesLandIntPortVrsCon <- cesEst( "qOutput", c( "land", "qVarInput" ),
-   germanFarms, method = "PORT", vrs = TRUE,
-   lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
+   germanFarms, method = "PORT", vrs = TRUE )
 print.default( cesLandIntPortVrsCon )
 print( cesLandIntPortVrsCon )
 summary( cesLandIntPortVrsCon )
@@ -332,6 +353,19 @@ print.default( cesLandIntDeVrs )
 print( cesLandIntDeVrs )
 summary( cesLandIntDeVrs )
 coef( summary( cesLandIntDeVrs ) )
+
+# using the DE optimization method implemented in DEoptim(), CRS, user-specified bounds
+cesLandLaborDe2 <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "DE", control = DEoptim.control( trace = FALSE ),
+   lower = c( 1, 0.01, -0.99 ), upper = c( 50, 0.99, 3 ) )
+print.default( cesLandLaborDe2 )
+print( cesLandLaborDe2 )
+summary( cesLandLaborDe2 )
+coef( cesLandLaborDe2 )
+vcov( cesLandLaborDe2 )
+coef( summary( cesLandLaborDe2 ) )
+fitted( cesLandLaborDe2 )
+residuals( cesLandLaborDe2 )
 
 
 ############  cesCalc  ################

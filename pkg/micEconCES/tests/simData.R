@@ -119,8 +119,7 @@ fitted( cesBfgsVrs )
 residuals( cesBfgsVrs )
 
 ## L-BFGS-B with constrained parameters, CRS
-cesBfgsCon <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B",
-   lower = c( 0, 0, -1 ), upper = c( Inf, 1, Inf ) )
+cesBfgsCon <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B" )
 print.default( cesBfgsCon )
 print( cesBfgsCon )
 summary( cesBfgsCon )
@@ -132,7 +131,7 @@ residuals( cesBfgsCon )
 
 ## L-BFGS-B with constrained parameters, VRS
 cesBfgsConVrs <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B",
-   vrs = TRUE, lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
+   vrs = TRUE )
 print.default( cesBfgsConVrs )
 print( cesBfgsConVrs )
 summary( cesBfgsConVrs )
@@ -189,8 +188,7 @@ fitted( cesNewtonVrs )
 residuals( cesNewtonVrs )
 
 ## PORT, CRS
-cesPort <- cesEst( "ys", xxNames, cesData, method = "PORT",
-   lower = c( 0, 0, -1 ), upper = c( Inf, 1, Inf ) )
+cesPort <- cesEst( "ys", xxNames, cesData, method = "PORT" )
 print.default( cesPort )
 print( cesPort )
 summary( cesPort )
@@ -201,8 +199,7 @@ fitted( cesPort )
 residuals( cesPort )
 
 ## PORT, VRS
-cesPortVrs <- cesEst( "ys", xxNames, cesData, method = "PORT", vrs = TRUE,
-   lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
+cesPortVrs <- cesEst( "ys", xxNames, cesData, method = "PORT", vrs = TRUE )
 print.default( cesPortVrs )
 print( cesPortVrs )
 summary( cesPortVrs )

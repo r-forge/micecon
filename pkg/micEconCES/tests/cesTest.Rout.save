@@ -637,8 +637,7 @@ rho   -4.39599297   86923.97 -5.057285e-05 0.9999596
 > 
 > # using the L-BFGS-B optimization method with constrained parameters
 > cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
-+    germanFarms, method = "L-BFGS-B", lower = c( 0, 0, -1 ),
-+    upper = c( Inf, 1, Inf ) )
++    germanFarms, method = "L-BFGS-B" )
 > print.default( cesLandLaborBfgsCon )
 $optim
 $optim$par
@@ -675,8 +674,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
-        1, Inf))
+    method = "L-BFGS-B")
 
 $method
 [1] "L-BFGS-B"
@@ -709,8 +707,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
-        1, Inf))
+    method = "L-BFGS-B")
 
 Coefficients:
 gamma delta   rho 
@@ -721,8 +718,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
-        1, Inf))
+    method = "L-BFGS-B")
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 Convergence achieved after 60 function and 60 gradient calls
@@ -1258,9 +1254,9 @@ Multiple R-squared: 0.9049224
 [13]   46.747075  115.201068   96.741946   60.751335    8.640617   34.921515
 [19]   56.718628   59.424534
 > 
-> # using the PORT optimization rountine implemented in nlminb()
+> # using the PORT optimization rountine implemented in nlminb(), UNconstrained
 > cesLandLaborPort <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-+    method = "PORT" )
++    method = "PORT", lower = -Inf, upper = Inf )
 > print.default( cesLandLaborPort )
 $nlminb
 $nlminb$par
@@ -1299,7 +1295,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "PORT")
+    method = "PORT", lower = -Inf, upper = Inf)
 
 $method
 [1] "PORT"
@@ -1332,7 +1328,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "PORT")
+    method = "PORT", lower = -Inf, upper = Inf)
 
 Coefficients:
    gamma    delta      rho 
@@ -1343,7 +1339,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "PORT")
+    method = "PORT", lower = -Inf, upper = Inf)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 Convergence NOT achieved after 142 iterations
@@ -1383,7 +1379,7 @@ rho   -5.84102067         NA      NA       NA
 > 
 > # using the PORT optimization rountine implemented in nlminb(), constrained
 > cesLandLaborPortCon <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-+    method = "PORT", lower = c( 0, 0, -1 ), upper = c( Inf, 1, Inf ) )
++    method = "PORT" )
 > print.default( cesLandLaborPortCon )
 $nlminb
 $nlminb$par
@@ -1422,7 +1418,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "PORT", lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+    method = "PORT")
 
 $method
 [1] "PORT"
@@ -1455,7 +1451,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "PORT", lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+    method = "PORT")
 
 Coefficients:
 gamma delta   rho 
@@ -1466,7 +1462,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "PORT", lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+    method = "PORT")
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 Convergence achieved after 65 iterations
@@ -1504,9 +1500,135 @@ rho   -1.00000 2.690376e+13 -3.716953e-14 1.0000000
 [13]   46.197491  114.047832   95.703326   59.353878    6.785316   32.647977
 [19]   53.896799   56.153212
 > 
-> # using the PORT optimization rountine implemented in nlminb(), VRS
+> # using the PORT optimization rountine implemented in nlminb(), constrained by hand
+> cesLandLaborPortCon2 <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    method = "PORT", lower = c( 0.1, 0.1, -0.5 ), upper = c( 300, 0.9, 4 ) )
+> print.default( cesLandLaborPortCon2 )
+$nlminb
+$nlminb$par
+   gamma    delta      rho 
+57.69045  0.90000 -0.50000 
+
+$nlminb$objective
+[1] 174341.5
+
+$nlminb$convergence
+[1] 0
+
+$nlminb$message
+[1] "relative convergence (4)"
+
+$nlminb$iterations
+[1] 37
+
+$nlminb$evaluations
+function gradient 
+      71       38 
+
+
+$coefficients
+   gamma    delta      rho 
+57.69045  0.90000 -0.50000 
+
+$iter
+[1] 37
+
+$convergence
+[1] TRUE
+
+$message
+[1] "relative convergence (4)"
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "PORT", lower = c(0.1, 0.1, -0.5), upper = c(300, 
+        0.9, 4))
+
+$method
+[1] "PORT"
+
+$startVal
+   gamma    delta      rho 
+274.3737   0.5000   0.2500 
+
+$fitted.values
+ [1] 1154.574 1193.198 1216.494 1227.931 1227.931 1243.068 1275.241 1279.015
+ [9] 1240.889 1284.698 1318.283 1470.558 1530.246 1581.315 1548.746 1565.054
+[17] 1644.779 1717.523 1825.136 1924.552
+
+$residuals
+ [1] -208.441418 -230.467345 -146.915242  -56.134583  -49.815016  -57.257608
+ [7]  -35.883241    9.546400  -33.182546   -6.289234   42.309738   70.226274
+[13]   44.788508  114.644117   95.942997   60.977610   10.261059   38.077277
+[19]   62.284747   67.341776
+
+$cov.unscaled
+           gamma       delta        rho
+gamma 261.317656 -4.43884282 -16.513536
+delta  -4.438843  0.07540909   0.280593
+rho   -16.513536  0.28059303   1.044383
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandLaborPortCon2 )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "PORT", lower = c(0.1, 0.1, -0.5), upper = c(300, 
+        0.9, 4))
+
+Coefficients:
+gamma delta   rho 
+57.69  0.90 -0.50 
+
+> summary( cesLandLaborPortCon2 )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "PORT", lower = c(0.1, 0.1, -0.5), upper = c(300, 
+        0.9, 4))
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+Convergence achieved after 37 iterations
+Message: relative convergence (4) 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma    57.69    1509.28   0.038    0.970
+delta     0.90      25.64   0.035    0.972
+rho      -0.50      95.41  -0.005    0.996
+
+Residual standard error: 93.36527 
+Multiple R-squared: 0.9015085 
+
+> coef( cesLandLaborPortCon2 )
+   gamma    delta      rho 
+57.69045  0.90000 -0.50000 
+> vcov( cesLandLaborPortCon2 )
+           gamma       delta         rho
+gamma 2277925.28 -38693.7203 -143949.714
+delta  -38693.72    657.3466    2445.950
+rho   -143949.71   2445.9501    9103.968
+> coef( summary( cesLandLaborPortCon2 ) )
+      Estimate Std. Error      t value  Pr(>|t|)
+gamma 57.69045 1509.27972  0.038223827 0.9695092
+delta  0.90000   25.63877  0.035103086 0.9719975
+rho   -0.50000   95.41471 -0.005240282 0.9958189
+> fitted( cesLandLaborPortCon2 )
+ [1] 1154.574 1193.198 1216.494 1227.931 1227.931 1243.068 1275.241 1279.015
+ [9] 1240.889 1284.698 1318.283 1470.558 1530.246 1581.315 1548.746 1565.054
+[17] 1644.779 1717.523 1825.136 1924.552
+> residuals( cesLandLaborPortCon2 )
+ [1] -208.441418 -230.467345 -146.915242  -56.134583  -49.815016  -57.257608
+ [7]  -35.883241    9.546400  -33.182546   -6.289234   42.309738   70.226274
+[13]   44.788508  114.644117   95.942997   60.977610   10.261059   38.077277
+[19]   62.284747   67.341776
+> 
+> # using the PORT optimization rountine implemented in nlminb(), VRS, UNconstrained
 > cesLandLaborPortVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-+    method = "PORT", vrs = TRUE )
++    method = "PORT", vrs = TRUE, lower = -Inf, upper = Inf )
 > print.default( cesLandLaborPortVrs )
 $nlminb
 $nlminb$par
@@ -1545,7 +1667,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "PORT")
+    vrs = TRUE, method = "PORT", lower = -Inf, upper = Inf)
 
 $method
 [1] "PORT"
@@ -1579,7 +1701,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "PORT")
+    vrs = TRUE, method = "PORT", lower = -Inf, upper = Inf)
 
 Coefficients:
   gamma   delta     rho     phi 
@@ -1590,7 +1712,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "PORT")
+    vrs = TRUE, method = "PORT", lower = -Inf, upper = Inf)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 Convergence NOT achieved after 117 iterations
@@ -1635,8 +1757,7 @@ phi    1.8946189   0.2443736  7.7529619 8.977358e-15
 > 
 > # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 > cesLandLaborPortVrsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
-+    germanFarms, method = "PORT", vrs = TRUE,
-+    lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
++    germanFarms, method = "PORT", vrs = TRUE )
 > print.default( cesLandLaborPortVrsCon )
 $nlminb
 $nlminb$par
@@ -1675,8 +1796,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "PORT", lower = c(0, 0, -1, 0), upper = c(Inf, 
-        1, Inf, Inf))
+    vrs = TRUE, method = "PORT")
 
 $method
 [1] "PORT"
@@ -1710,8 +1830,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "PORT", lower = c(0, 0, -1, 0), upper = c(Inf, 
-        1, Inf, Inf))
+    vrs = TRUE, method = "PORT")
 
 Coefficients:
   gamma   delta     rho     phi 
@@ -1722,8 +1841,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "PORT", lower = c(0, 0, -1, 0), upper = c(Inf, 
-        1, Inf, Inf))
+    vrs = TRUE, method = "PORT")
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 Convergence NOT achieved after 139 iterations
@@ -2608,6 +2726,418 @@ phi     2.9638031         NA      NA       NA
 [13] -291.95226  -75.06216  -64.20701   37.01880   36.59704  137.15694
 [19]  268.97734  373.45105
 > 
+> # using the DE optimization method implemented in DEoptim(), CRS, user-specified bounds
+> cesLandLaborDe2 <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    method = "DE", control = DEoptim.control( trace = FALSE ),
++    lower = c( 1, 0.01, -0.99 ), upper = c( 50, 0.99, 3 ) )
+> print.default( cesLandLaborDe2 )
+$DEoptim
+$optim
+$optim$bestmem
+      par1       par2       par3 
+49.6157434  0.9900000 -0.9899676 
+
+$optim$bestval
+[1] 166012.8
+
+$optim$nfeval
+[1] 10050
+
+$optim$iter
+[1] 200
+
+
+$member
+$member$lower
+ par1  par2  par3 
+ 1.00  0.01 -0.99 
+
+$member$upper
+ par1  par2  par3 
+50.00  0.99  3.00 
+
+$member$bestmemit
+        par1      par2       par3
+1   47.20673 0.7533116 -0.8843950
+2   47.20673 0.7533116 -0.8843950
+3   47.20673 0.7533116 -0.8843950
+4   49.67203 0.7533116 -0.8843950
+5   42.06052 0.9614269 -0.7780499
+6   42.06052 0.9614269 -0.7780499
+7   42.06052 0.9614269 -0.8421843
+8   42.06052 0.9614269 -0.8421843
+9   42.06052 0.9614269 -0.8581596
+10  42.06052 0.9614269 -0.8581596
+11  42.06052 0.9614269 -0.8581596
+12  42.90701 0.9614269 -0.8581596
+13  42.90701 0.9614269 -0.8581596
+14  42.90701 0.9614269 -0.8581596
+15  42.90701 0.9614269 -0.8581596
+16  42.90701 0.9614269 -0.8581596
+17  42.90701 0.9614269 -0.8581596
+18  42.90701 0.9614269 -0.8581596
+19  43.04732 0.9679867 -0.6427464
+20  43.04732 0.9679867 -0.6427464
+21  42.50192 0.9828240 -0.4189492
+22  42.50192 0.9828240 -0.4189492
+23  42.50192 0.9828240 -0.4189492
+24  42.50192 0.9828240 -0.4242469
+25  42.50192 0.9862920 -0.4242469
+26  42.67721 0.9862920 -0.4927093
+27  42.67721 0.9862920 -0.4927093
+28  43.68353 0.9833302 -0.4927093
+29  43.68353 0.9838922 -0.7493313
+30  44.00077 0.9838922 -0.7493313
+31  44.00077 0.9838922 -0.7493313
+32  45.62209 0.9838922 -0.6672706
+33  45.62209 0.9838922 -0.6672706
+34  45.62209 0.9838922 -0.6672706
+35  45.62209 0.9842511 -0.6672706
+36  45.62209 0.9842511 -0.6672706
+37  45.62209 0.9842511 -0.6672706
+38  46.41471 0.9811221 -0.5220815
+39  48.43692 0.9802909 -0.5572030
+40  48.82460 0.9802909 -0.5572030
+41  49.45537 0.9754140 -0.7025749
+42  49.45537 0.9754140 -0.7025749
+43  49.45537 0.9754140 -0.8237541
+44  49.63443 0.9748874 -0.8237541
+45  49.63443 0.9748874 -0.8237541
+46  49.50753 0.9766211 -0.9692509
+47  49.50753 0.9766211 -0.9692509
+48  49.50753 0.9766211 -0.9692509
+49  49.63729 0.9773795 -0.9846749
+50  49.63729 0.9773795 -0.9846749
+51  49.63729 0.9773795 -0.9846749
+52  49.63729 0.9773795 -0.9846749
+53  49.63729 0.9773795 -0.9846749
+54  49.77692 0.9773795 -0.9404387
+55  49.94061 0.9773795 -0.9404387
+56  49.94061 0.9773795 -0.9404387
+57  49.94061 0.9773795 -0.9665067
+58  49.94061 0.9773795 -0.9665067
+59  49.94061 0.9780309 -0.9665067
+60  49.94061 0.9780309 -0.9665067
+61  49.94061 0.9780309 -0.9665067
+62  49.94061 0.9780309 -0.9665067
+63  49.94061 0.9780309 -0.9665067
+64  49.94061 0.9780309 -0.9665067
+65  49.94061 0.9780309 -0.9665067
+66  49.94061 0.9780309 -0.9665067
+67  49.94061 0.9780309 -0.9665067
+68  49.94061 0.9780309 -0.9665067
+69  49.94061 0.9780309 -0.9665067
+70  49.94061 0.9781199 -0.9665067
+71  49.89631 0.9791336 -0.9665067
+72  49.94404 0.9794223 -0.9320758
+73  49.94404 0.9794223 -0.9320758
+74  49.94404 0.9794223 -0.9320758
+75  49.94404 0.9794223 -0.9320758
+76  49.94404 0.9794223 -0.9320758
+77  49.94404 0.9794223 -0.9320758
+78  49.94404 0.9794223 -0.9320758
+79  49.94404 0.9794223 -0.9320758
+80  49.94404 0.9794223 -0.9320758
+81  49.94404 0.9794223 -0.9320758
+82  49.94404 0.9794223 -0.9320758
+83  49.94404 0.9794223 -0.9800521
+84  49.94404 0.9794223 -0.9800521
+85  49.83252 0.9842475 -0.9458369
+86  49.83252 0.9879398 -0.9458369
+87  49.83252 0.9851910 -0.9455042
+88  49.83252 0.9851910 -0.9455042
+89  49.83252 0.9851910 -0.9455042
+90  49.83252 0.9851910 -0.9455042
+91  49.83252 0.9851910 -0.9455042
+92  49.91330 0.9851910 -0.9349757
+93  49.91330 0.9851910 -0.9349757
+94  49.91330 0.9851910 -0.9349757
+95  49.91330 0.9851910 -0.9349757
+96  49.91330 0.9851910 -0.9349757
+97  49.80364 0.9873559 -0.9359112
+98  49.80364 0.9873559 -0.9359112
+99  49.80364 0.9873559 -0.9359112
+100 49.69475 0.9899092 -0.9536054
+101 49.73898 0.9885082 -0.9628664
+102 49.73898 0.9885082 -0.9628664
+103 49.73892 0.9885082 -0.9628664
+104 49.76141 0.9875022 -0.9644994
+105 49.64436 0.9895769 -0.9494255
+106 49.63736 0.9895297 -0.9810937
+107 49.63736 0.9895297 -0.9810937
+108 49.63736 0.9895297 -0.9810937
+109 49.69021 0.9889478 -0.9777316
+110 49.69021 0.9889478 -0.9777316
+111 49.65312 0.9894743 -0.9736151
+112 49.63736 0.9898089 -0.9810937
+113 49.63138 0.9896720 -0.9704066
+114 49.63138 0.9896720 -0.9704066
+115 49.63138 0.9896720 -0.9704066
+116 49.62138 0.9898613 -0.9885494
+117 49.63856 0.9898613 -0.9804329
+118 49.62439 0.9899196 -0.9804329
+119 49.62439 0.9899196 -0.9804329
+120 49.62439 0.9899196 -0.9804329
+121 49.62439 0.9899196 -0.9804329
+122 49.62439 0.9899196 -0.9804329
+123 49.62439 0.9899196 -0.9804329
+124 49.62439 0.9899196 -0.9804329
+125 49.62439 0.9899196 -0.9804329
+126 49.62439 0.9899196 -0.9804329
+127 49.62439 0.9899196 -0.9804329
+128 49.62439 0.9899721 -0.9848523
+129 49.62439 0.9899721 -0.9887183
+130 49.62439 0.9899721 -0.9887183
+131 49.62439 0.9899721 -0.9887183
+132 49.62439 0.9899721 -0.9887183
+133 49.61664 0.9899983 -0.9886256
+134 49.62663 0.9899850 -0.9899179
+135 49.62663 0.9899850 -0.9899179
+136 49.62663 0.9899850 -0.9899179
+137 49.62663 0.9899850 -0.9899179
+138 49.62232 0.9899850 -0.9899179
+139 49.62232 0.9899850 -0.9899179
+140 49.62232 0.9899850 -0.9899179
+141 49.62232 0.9899850 -0.9899179
+142 49.62232 0.9899850 -0.9899179
+143 49.62232 0.9899850 -0.9899179
+144 49.62232 0.9899850 -0.9899179
+145 49.62232 0.9899825 -0.9899957
+146 49.62232 0.9899825 -0.9899957
+147 49.62232 0.9899878 -0.9899957
+148 49.62232 0.9899878 -0.9899957
+149 49.62232 0.9899878 -0.9899957
+150 49.62232 0.9899878 -0.9899957
+151 49.62232 0.9899878 -0.9899957
+152 49.62232 0.9899878 -0.9899957
+153 49.62232 0.9899878 -0.9899957
+154 49.62232 0.9899878 -0.9899957
+155 49.62106 0.9899878 -0.9899957
+156 49.62106 0.9899878 -0.9899957
+157 49.62106 0.9899878 -0.9899957
+158 49.62106 0.9899878 -0.9899957
+159 49.62106 0.9899878 -0.9899957
+160 49.62106 0.9899878 -0.9899957
+161 49.62079 0.9899878 -0.9899957
+162 49.62079 0.9899878 -0.9899957
+163 49.61826 0.9899878 -0.9899614
+164 49.61826 0.9899878 -0.9899614
+165 49.61826 0.9899878 -0.9899614
+166 49.61707 0.9899877 -0.9899614
+167 49.61707 0.9899877 -0.9899614
+168 49.61797 0.9899898 -0.9899544
+169 49.61797 0.9899898 -0.9899544
+170 49.61809 0.9899899 -0.9899591
+171 49.61809 0.9899899 -0.9899591
+172 49.61809 0.9899899 -0.9899591
+173 49.61809 0.9899899 -0.9899591
+174 49.61809 0.9899899 -0.9899591
+175 49.61809 0.9899899 -0.9899591
+176 49.61645 0.9899931 -0.9899459
+177 49.61645 0.9899964 -0.9899751
+178 49.61645 0.9899964 -0.9899751
+179 49.61561 0.9899987 -0.9899405
+180 49.61561 0.9899997 -0.9899405
+181 49.61561 0.9899997 -0.9899405
+182 49.61561 0.9899997 -0.9899405
+183 49.61561 0.9899997 -0.9899405
+184 49.61561 0.9899999 -0.9899405
+185 49.61561 0.9899999 -0.9899405
+186 49.61561 0.9899999 -0.9899405
+187 49.61561 0.9899999 -0.9899405
+188 49.61561 0.9899999 -0.9899405
+189 49.61561 0.9899999 -0.9899405
+190 49.61561 0.9899999 -0.9899571
+191 49.61561 0.9899999 -0.9899571
+192 49.61574 0.9899999 -0.9899599
+193 49.61574 0.9899999 -0.9899599
+194 49.61574 0.9899999 -0.9899676
+195 49.61574 0.9899999 -0.9899676
+196 49.61574 0.9899999 -0.9899676
+197 49.61574 0.9899999 -0.9899676
+198 49.61574 0.9899999 -0.9899676
+199 49.61574 0.9900000 -0.9899676
+200 49.61574 0.9900000 -0.9899676
+
+$member$bestvalit
+  [1] 3511480.2 2170808.9 1702481.8 1702481.8 1543963.2 1509997.1  642626.7
+  [8]  398703.7  398703.7  398703.7  364416.9  224280.7  188411.8  188411.8
+ [15]  188411.8  180852.7  180852.7  180852.7  171535.2  171535.2  169127.4
+ [22]  169127.4  169127.4  169127.4  168786.6  167448.3  167448.3  167448.3
+ [29]  167448.3  166930.5  166562.6  166104.6  166104.6  166104.6  166104.6
+ [36]  166104.6  166104.6  166104.6  166104.6  166104.6  166104.6  166104.6
+ [43]  166104.6  166104.6  166103.5  166103.5  166103.5  166103.5  166103.5
+ [50]  166054.1  166054.1  166054.1  166054.1  166054.1  166041.0  166041.0
+ [57]  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0
+ [64]  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0
+ [71]  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0
+ [78]  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0
+ [85]  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0
+ [92]  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0
+ [99]  166041.0  166041.0  166041.0  166041.0  166041.0  166041.0  166037.5
+[106]  166026.9  166026.9  166026.9  166026.9  166026.9  166026.9  166022.1
+[113]  166021.0  166021.0  166021.0  166015.0  166015.0  166015.0  166015.0
+[120]  166015.0  166015.0  166015.0  166015.0  166015.0  166014.4  166014.4
+[127]  166014.4  166014.2  166013.6  166013.6  166013.6  166013.6  166013.4
+[134]  166013.4  166013.2  166013.2  166012.9  166012.9  166012.9  166012.9
+[141]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[148]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[155]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[162]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[169]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[176]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[183]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[190]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[197]  166012.8  166012.8  166012.8  166012.8
+
+$member$pop
+          [,1]      [,2]       [,3]
+ [1,] 49.61613 0.9899997 -0.9899745
+ [2,] 49.61695 0.9899999 -0.9899841
+ [3,] 49.61658 0.9900000 -0.9899949
+ [4,] 49.61635 0.9899999 -0.9899948
+ [5,] 49.61714 0.9899996 -0.9899906
+ [6,] 49.61668 0.9900000 -0.9899818
+ [7,] 49.61619 0.9899998 -0.9899825
+ [8,] 49.61693 0.9900000 -0.9899867
+ [9,] 49.61702 0.9899998 -0.9899968
+[10,] 49.61655 0.9899995 -0.9899826
+[11,] 49.61709 0.9900000 -0.9899847
+[12,] 49.61690 0.9899998 -0.9899972
+[13,] 49.61643 0.9899999 -0.9899880
+[14,] 49.61711 0.9899999 -0.9899982
+[15,] 49.61609 0.9899998 -0.9899687
+[16,] 49.61606 0.9900000 -0.9899988
+[17,] 49.61657 0.9900000 -0.9899654
+[18,] 49.61615 0.9899998 -0.9899938
+[19,] 49.61634 0.9899998 -0.9899962
+[20,] 49.61685 0.9899999 -0.9899698
+[21,] 49.61574 0.9900000 -0.9899676
+[22,] 49.61619 0.9899997 -0.9899929
+[23,] 49.61721 0.9899997 -0.9899893
+[24,] 49.61646 0.9899998 -0.9899748
+[25,] 49.61687 0.9899997 -0.9899805
+[26,] 49.61663 0.9899995 -0.9899868
+[27,] 49.61660 0.9899994 -0.9899962
+[28,] 49.61627 0.9900000 -0.9899828
+[29,] 49.61684 0.9899999 -0.9899819
+[30,] 49.61645 0.9900000 -0.9899968
+[31,] 49.61625 0.9899996 -0.9899908
+[32,] 49.61713 0.9899998 -0.9899624
+[33,] 49.61689 0.9900000 -0.9899959
+[34,] 49.61671 0.9900000 -0.9899935
+[35,] 49.61703 0.9900000 -0.9899962
+[36,] 49.61708 0.9899997 -0.9899921
+[37,] 49.61736 0.9900000 -0.9899905
+[38,] 49.61612 0.9899998 -0.9899998
+[39,] 49.61647 0.9900000 -0.9899699
+[40,] 49.61714 0.9900000 -0.9899963
+[41,] 49.61667 0.9899997 -0.9899975
+[42,] 49.61638 0.9900000 -0.9899955
+[43,] 49.61684 0.9899999 -0.9899729
+[44,] 49.61641 0.9899998 -0.9899778
+[45,] 49.61686 0.9899999 -0.9899957
+[46,] 49.61690 0.9899999 -0.9899932
+[47,] 49.61711 0.9899999 -0.9899864
+[48,] 49.61650 0.9900000 -0.9899730
+[49,] 49.61677 0.9899999 -0.9899864
+[50,] 49.61707 0.9899997 -0.9899985
+
+$member$storepop
+list()
+
+
+attr(,"class")
+[1] "DEoptim"
+
+$coefficients
+     gamma      delta        rho 
+49.6157434  0.9900000 -0.9899676 
+
+$iter
+[1] 200
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "DE", lower = c(1, 0.01, -0.99), upper = c(50, 0.99, 
+        3), control = DEoptim.control(trace = FALSE))
+
+$method
+[1] "DE"
+
+$fitted.values
+ [1] 1150.023 1189.320 1213.382 1224.207 1224.207 1239.919 1273.307 1276.274
+ [9] 1237.468 1281.206 1315.586 1467.924 1528.832 1581.860 1548.943 1566.604
+[17] 1648.140 1722.794 1833.303 1935.462
+
+$residuals
+ [1] -203.890311 -226.589847 -143.802350  -52.410739  -46.091172  -54.108873
+ [7]  -33.948947   12.286822  -29.762034   -2.797495   45.006192   72.859866
+[13]   46.202896  114.098905   95.745794   59.426907    6.899900   32.805309
+[19]   54.117438   56.432402
+
+$cov.unscaled
+            gamma      delta         rho
+gamma  2206.09927 -64.353842 -2180.83840
+delta   -64.35384   1.877345    63.62737
+rho   -2180.83840  63.627371  2157.11049
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandLaborDe2 )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "DE", lower = c(1, 0.01, -0.99), upper = c(50, 0.99, 
+        3), control = DEoptim.control(trace = FALSE))
+
+Coefficients:
+gamma delta   rho 
+49.62  0.99 -0.99 
+
+> summary( cesLandLaborDe2 )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "DE", lower = c(1, 0.01, -0.99), upper = c(50, 0.99, 
+        3), control = DEoptim.control(trace = FALSE))
+
+Estimation by non-linear least-squares using the 'DE' optimizer
+
+Coefficients:
+      Estimate Std. Error   t value Pr(>|t|)
+gamma    49.62    4279.26     0.012    0.991
+delta     0.99     124.83     0.008    0.994
+rho      -0.99    4231.48 -0.000234    1.000
+
+Residual standard error: 91.10785 
+Multiple R-squared: 0.9062136 
+
+> coef( cesLandLaborDe2 )
+     gamma      delta        rho 
+49.6157434  0.9900000 -0.9899676 
+> vcov( cesLandLaborDe2 )
+            gamma      delta         rho
+gamma  18312035.4 -534178.06 -18102354.1
+delta   -534178.1   15583.16    528147.9
+rho   -18102354.1  528147.89  17905397.2
+> coef( summary( cesLandLaborDe2 ) )
+        Estimate Std. Error       t value  Pr(>|t|)
+gamma 49.6157434  4279.2564  0.0115944778 0.9907492
+delta  0.9900000   124.8325  0.0079306239 0.9936723
+rho   -0.9899676  4231.4770 -0.0002339532 0.9998133
+> fitted( cesLandLaborDe2 )
+ [1] 1150.023 1189.320 1213.382 1224.207 1224.207 1239.919 1273.307 1276.274
+ [9] 1237.468 1281.206 1315.586 1467.924 1528.832 1581.860 1548.943 1566.604
+[17] 1648.140 1722.794 1833.303 1935.462
+> residuals( cesLandLaborDe2 )
+ [1] -203.890311 -226.589847 -143.802350  -52.410739  -46.091172  -54.108873
+ [7]  -33.948947   12.286822  -29.762034   -2.797495   45.006192   72.859866
+[13]   46.202896  114.098905   95.745794   59.426907    6.899900   32.805309
+[19]   54.117438   56.432402
+> 
 > 
 > ## CES: Land & Intermediate Inputs
 > cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
@@ -3109,8 +3639,7 @@ rho    3.9471595   336359.8 1.173493e-05 0.9999906
 > 
 > # using the L-BFGS-B optimization method with constrained parameters
 > cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-+    method = "L-BFGS-B", lower = c( 0, 0, -1 ),
-+    upper = c( Inf, 1, Inf ) )
++    method = "L-BFGS-B" )
 > print.default( cesLandIntBfgsCon )
 $optim
 $optim$par
@@ -3147,8 +3676,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
-        1, Inf))
+    method = "L-BFGS-B")
 
 $method
 [1] "L-BFGS-B"
@@ -3181,8 +3709,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
-        1, Inf))
+    method = "L-BFGS-B")
 
 Coefficients:
  gamma  delta    rho 
@@ -3193,8 +3720,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "L-BFGS-B", lower = c(0, 0, -1), upper = c(Inf, 
-        1, Inf))
+    method = "L-BFGS-B")
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 Convergence achieved after 34 function and 34 gradient calls
@@ -3636,9 +4162,9 @@ Multiple R-squared: 0.9061741
 [2,]  0.01195882   103.2067 0.0001158725 0.9999075
 [3,]  3.49913110  2824.4964 0.0012388513 0.9990115
 > 
-> # using the PORT optimization rountine implemented in nlminb()
+> # using the PORT optimization rountine implemented in nlminb(), UNconstrained
 > cesLandIntPort <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-+    method = "PORT" )
++    method = "PORT", lower = -Inf, upper = Inf )
 > print.default( cesLandIntPort )
 $nlminb
 $nlminb$par
@@ -3677,7 +4203,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "PORT")
+    method = "PORT", lower = -Inf, upper = Inf)
 
 $method
 [1] "PORT"
@@ -3710,7 +4236,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "PORT")
+    method = "PORT", lower = -Inf, upper = Inf)
 
 Coefficients:
   gamma   delta     rho 
@@ -3721,7 +4247,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "PORT")
+    method = "PORT", lower = -Inf, upper = Inf)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 Convergence NOT achieved after 142 iterations
@@ -3744,7 +4270,7 @@ rho    5.7603719         NA      NA       NA
 > 
 > # using the PORT optimization rountine implemented in nlminb(), constrained
 > cesLandIntPortCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-+    method = "PORT", lower = c( 0, 0, -1 ), upper = c( Inf, 1, Inf ) )
++    method = "PORT" )
 > print.default( cesLandIntPortCon )
 $nlminb
 $nlminb$par
@@ -3783,7 +4309,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "PORT", lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+    method = "PORT")
 
 $method
 [1] "PORT"
@@ -3816,7 +4342,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "PORT", lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+    method = "PORT")
 
 Coefficients:
   gamma   delta     rho 
@@ -3827,7 +4353,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "PORT", lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+    method = "PORT")
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 Convergence NOT achieved after 141 iterations
@@ -3848,9 +4374,9 @@ gamma 36.3335844   33036374 1.099805e-06 0.9999991
 delta  0.2220242    1150920 1.929102e-07 0.9999998
 rho    4.9834355    2161817 2.305207e-06 0.9999982
 > 
-> # using the PORT optimization rountine implemented in nlminb(), VRS
+> # using the PORT optimization rountine implemented in nlminb(), VRS, UNconstrained
 > cesLandIntPortVrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-+    method = "PORT", vrs = TRUE )
++    method = "PORT", vrs = TRUE, lower = -Inf, upper = Inf )
 > print.default( cesLandIntPortVrs )
 $nlminb
 $nlminb$par
@@ -3889,7 +4415,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, method = "PORT")
+    vrs = TRUE, method = "PORT", lower = -Inf, upper = Inf)
 
 $method
 [1] "PORT"
@@ -3923,7 +4449,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, method = "PORT")
+    vrs = TRUE, method = "PORT", lower = -Inf, upper = Inf)
 
 Coefficients:
   gamma   delta     rho     phi 
@@ -3934,7 +4460,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, method = "PORT")
+    vrs = TRUE, method = "PORT", lower = -Inf, upper = Inf)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 Convergence NOT achieved after 128 iterations
@@ -3961,8 +4487,7 @@ phi    1.580769  0.09314611 16.97085786 1.349462e-64
 > 
 > # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 > cesLandIntPortVrsCon <- cesEst( "qOutput", c( "land", "qVarInput" ),
-+    germanFarms, method = "PORT", vrs = TRUE,
-+    lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
++    germanFarms, method = "PORT", vrs = TRUE )
 > print.default( cesLandIntPortVrsCon )
 $nlminb
 $nlminb$par
@@ -4001,8 +4526,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, method = "PORT", lower = c(0, 0, -1, 0), upper = c(Inf, 
-        1, Inf, Inf))
+    vrs = TRUE, method = "PORT")
 
 $method
 [1] "PORT"
@@ -4036,8 +4560,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, method = "PORT", lower = c(0, 0, -1, 0), upper = c(Inf, 
-        1, Inf, Inf))
+    vrs = TRUE, method = "PORT")
 
 Coefficients:
   gamma   delta     rho     phi 
@@ -4048,8 +4571,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, method = "PORT", lower = c(0, 0, -1, 0), upper = c(Inf, 
-        1, Inf, Inf))
+    vrs = TRUE, method = "PORT")
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 Convergence NOT achieved after 129 iterations
@@ -4880,6 +5402,418 @@ gamma 714.9493824         NA      NA       NA
 delta   0.7126136         NA      NA       NA
 rho     8.5071287         NA      NA       NA
 phi     0.2012858         NA      NA       NA
+> 
+> # using the DE optimization method implemented in DEoptim(), CRS, user-specified bounds
+> cesLandLaborDe2 <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    method = "DE", control = DEoptim.control( trace = FALSE ),
++    lower = c( 1, 0.01, -0.99 ), upper = c( 50, 0.99, 3 ) )
+> print.default( cesLandLaborDe2 )
+$DEoptim
+$optim
+$optim$bestmem
+    par1     par2     par3 
+49.61683  0.99000 -0.99000 
+
+$optim$bestval
+[1] 166012.8
+
+$optim$nfeval
+[1] 10050
+
+$optim$iter
+[1] 200
+
+
+$member
+$member$lower
+ par1  par2  par3 
+ 1.00  0.01 -0.99 
+
+$member$upper
+ par1  par2  par3 
+50.00  0.99  3.00 
+
+$member$bestmemit
+        par1      par2        par3
+1   42.67414 0.7441656 -0.41849003
+2   39.43272 0.8753791 -0.56448542
+3   46.56178 0.9541604  0.02295392
+4   46.56178 0.9541604  0.02295392
+5   49.75827 0.8127538 -0.93736350
+6   49.75827 0.8127538 -0.93736350
+7   49.75827 0.8127538 -0.93736350
+8   49.75827 0.8532741 -0.93736350
+9   47.90455 0.9778912 -0.67087087
+10  49.94601 0.9857360  0.25836684
+11  47.85695 0.9882073 -0.69465933
+12  49.94601 0.9857360 -0.43705671
+13  49.94601 0.9722961 -0.43705671
+14  49.94601 0.9722961 -0.43705671
+15  49.94601 0.9722961 -0.43705671
+16  49.94601 0.9722961 -0.43705671
+17  49.94601 0.9857360 -0.85324447
+18  49.94601 0.9857360 -0.85324447
+19  49.49719 0.9857360 -0.75041312
+20  49.49719 0.9857360 -0.75041312
+21  49.49719 0.9857360 -0.75041312
+22  49.49719 0.9857360 -0.75041312
+23  49.95465 0.9893611 -0.95338956
+24  49.95465 0.9893611 -0.95338956
+25  49.95465 0.9893611 -0.95338956
+26  49.95465 0.9893611 -0.95338956
+27  49.95465 0.9835862 -0.95338956
+28  49.69127 0.9892514 -0.89592999
+29  49.70525 0.9891315 -0.88810426
+30  49.70525 0.9891315 -0.88810426
+31  49.70525 0.9891315 -0.88810426
+32  49.70525 0.9891315 -0.91697835
+33  49.66755 0.9895011 -0.93077637
+34  49.66755 0.9895011 -0.93077637
+35  49.66755 0.9897765 -0.98119585
+36  49.66755 0.9896534 -0.98119585
+37  49.66755 0.9896534 -0.98119585
+38  49.66755 0.9896534 -0.98119585
+39  49.66755 0.9896534 -0.98119585
+40  49.66755 0.9893584 -0.98119585
+41  49.66755 0.9893584 -0.98119585
+42  49.66557 0.9892354 -0.98869791
+43  49.61684 0.9899229 -0.96733603
+44  49.61684 0.9899229 -0.96733603
+45  49.63074 0.9899821 -0.98161642
+46  49.63074 0.9899821 -0.98161642
+47  49.63835 0.9898889 -0.97166460
+48  49.63835 0.9898889 -0.97166460
+49  49.62842 0.9899844 -0.98483817
+50  49.62842 0.9899844 -0.97065094
+51  49.62842 0.9899844 -0.97065094
+52  49.62842 0.9899844 -0.97065094
+53  49.62842 0.9899844 -0.97065094
+54  49.62366 0.9899976 -0.98385626
+55  49.62366 0.9899976 -0.98685850
+56  49.62366 0.9899976 -0.98938221
+57  49.62366 0.9899976 -0.98974265
+58  49.62366 0.9899976 -0.98974265
+59  49.62275 0.9899968 -0.98981976
+60  49.62275 0.9899968 -0.98981976
+61  49.62275 0.9899968 -0.98981976
+62  49.62275 0.9899968 -0.98981976
+63  49.62275 0.9899968 -0.98981976
+64  49.62275 0.9899968 -0.98981976
+65  49.62275 0.9899968 -0.98981976
+66  49.62319 0.9899830 -0.98981976
+67  49.61222 0.9899821 -0.98994683
+68  49.61222 0.9899821 -0.98994683
+69  49.61222 0.9899821 -0.98994683
+70  49.61222 0.9899821 -0.98994683
+71  49.61571 0.9899934 -0.98944365
+72  49.61571 0.9899934 -0.98950069
+73  49.61576 0.9899997 -0.98976233
+74  49.61576 0.9899997 -0.98976233
+75  49.61576 0.9899997 -0.98976233
+76  49.61576 0.9899997 -0.98976233
+77  49.61677 0.9899997 -0.98957071
+78  49.61677 0.9899997 -0.98957071
+79  49.61697 0.9899992 -0.98984611
+80  49.61697 0.9899992 -0.98984611
+81  49.61697 0.9899992 -0.98984611
+82  49.61697 0.9899992 -0.98984611
+83  49.61697 0.9899992 -0.98984611
+84  49.61697 0.9899992 -0.98984611
+85  49.61697 0.9899992 -0.98984611
+86  49.61697 0.9899992 -0.98984611
+87  49.61718 0.9899996 -0.98999215
+88  49.61718 0.9899996 -0.98999215
+89  49.61718 0.9899996 -0.98999215
+90  49.61718 0.9899996 -0.98999215
+91  49.61718 0.9899996 -0.98999215
+92  49.61718 0.9899996 -0.98999215
+93  49.61718 0.9899996 -0.98999215
+94  49.61715 0.9899999 -0.98999215
+95  49.61728 0.9899999 -0.98999215
+96  49.61728 0.9899999 -0.98999215
+97  49.61728 0.9899999 -0.98999215
+98  49.61728 0.9899999 -0.98999215
+99  49.61674 0.9899997 -0.98999215
+100 49.61674 0.9899997 -0.98999215
+101 49.61657 0.9899997 -0.98999590
+102 49.61657 0.9899997 -0.98999590
+103 49.61657 0.9899997 -0.98999590
+104 49.61657 0.9899997 -0.98999590
+105 49.61657 0.9899997 -0.98999590
+106 49.61644 0.9899998 -0.98999590
+107 49.61644 0.9899998 -0.98999590
+108 49.61644 0.9899998 -0.98999590
+109 49.61660 0.9899998 -0.98999590
+110 49.61660 0.9899998 -0.98999590
+111 49.61660 0.9899998 -0.98999590
+112 49.61669 0.9899997 -0.98999816
+113 49.61684 0.9900000 -0.98999964
+114 49.61684 0.9900000 -0.98999958
+115 49.61684 0.9900000 -0.98999958
+116 49.61684 0.9900000 -0.98999958
+117 49.61681 0.9900000 -0.98999994
+118 49.61677 0.9900000 -0.98999994
+119 49.61677 0.9900000 -0.98999994
+120 49.61677 0.9900000 -0.98999994
+121 49.61677 0.9900000 -0.98999994
+122 49.61692 0.9900000 -0.98999999
+123 49.61692 0.9900000 -0.98999999
+124 49.61692 0.9900000 -0.98999999
+125 49.61692 0.9900000 -0.98999999
+126 49.61683 0.9900000 -0.98999998
+127 49.61683 0.9900000 -0.98999998
+128 49.61687 0.9900000 -0.98999993
+129 49.61687 0.9900000 -0.98999993
+130 49.61687 0.9900000 -0.98999993
+131 49.61685 0.9900000 -0.98999993
+132 49.61685 0.9900000 -0.98999993
+133 49.61685 0.9900000 -0.98999993
+134 49.61685 0.9900000 -0.99000000
+135 49.61687 0.9900000 -0.99000000
+136 49.61685 0.9900000 -0.98999999
+137 49.61685 0.9900000 -0.98999999
+138 49.61685 0.9900000 -0.98999999
+139 49.61685 0.9900000 -0.98999999
+140 49.61685 0.9900000 -0.98999999
+141 49.61683 0.9900000 -0.99000000
+142 49.61683 0.9900000 -0.99000000
+143 49.61683 0.9900000 -0.99000000
+144 49.61683 0.9900000 -0.99000000
+145 49.61684 0.9900000 -0.98999999
+146 49.61684 0.9900000 -0.98999999
+147 49.61684 0.9900000 -0.98999999
+148 49.61684 0.9900000 -0.98999999
+149 49.61683 0.9900000 -0.99000000
+150 49.61683 0.9900000 -0.99000000
+151 49.61683 0.9900000 -0.99000000
+152 49.61683 0.9900000 -0.99000000
+153 49.61683 0.9900000 -0.99000000
+154 49.61683 0.9900000 -0.99000000
+155 49.61683 0.9900000 -0.99000000
+156 49.61683 0.9900000 -0.99000000
+157 49.61683 0.9900000 -0.99000000
+158 49.61683 0.9900000 -0.99000000
+159 49.61683 0.9900000 -0.99000000
+160 49.61683 0.9900000 -0.99000000
+161 49.61683 0.9900000 -0.99000000
+162 49.61683 0.9900000 -0.99000000
+163 49.61683 0.9900000 -0.99000000
+164 49.61683 0.9900000 -0.99000000
+165 49.61683 0.9900000 -0.99000000
+166 49.61683 0.9900000 -0.99000000
+167 49.61683 0.9900000 -0.99000000
+168 49.61683 0.9900000 -0.99000000
+169 49.61683 0.9900000 -0.99000000
+170 49.61683 0.9900000 -0.99000000
+171 49.61683 0.9900000 -0.99000000
+172 49.61683 0.9900000 -0.99000000
+173 49.61683 0.9900000 -0.99000000
+174 49.61683 0.9900000 -0.99000000
+175 49.61683 0.9900000 -0.99000000
+176 49.61683 0.9900000 -0.99000000
+177 49.61683 0.9900000 -0.99000000
+178 49.61683 0.9900000 -0.99000000
+179 49.61683 0.9900000 -0.99000000
+180 49.61683 0.9900000 -0.99000000
+181 49.61683 0.9900000 -0.99000000
+182 49.61683 0.9900000 -0.99000000
+183 49.61683 0.9900000 -0.99000000
+184 49.61683 0.9900000 -0.99000000
+185 49.61683 0.9900000 -0.99000000
+186 49.61683 0.9900000 -0.99000000
+187 49.61683 0.9900000 -0.99000000
+188 49.61683 0.9900000 -0.99000000
+189 49.61683 0.9900000 -0.99000000
+190 49.61683 0.9900000 -0.99000000
+191 49.61683 0.9900000 -0.99000000
+192 49.61683 0.9900000 -0.99000000
+193 49.61683 0.9900000 -0.99000000
+194 49.61683 0.9900000 -0.99000000
+195 49.61683 0.9900000 -0.99000000
+196 49.61683 0.9900000 -0.99000000
+197 49.61683 0.9900000 -0.99000000
+198 49.61683 0.9900000 -0.99000000
+199 49.61683 0.9900000 -0.99000000
+200 49.61683 0.9900000 -0.99000000
+
+$member$bestvalit
+  [1] 9036401.8 4848613.3 1468304.6 1468304.6 1300972.3 1300972.3 1006140.4
+  [8]  773038.8  282375.2  261397.6  234564.5  169485.6  169485.6  169485.6
+ [15]  169485.6  169485.6  166241.6  166241.6  166241.6  166241.6  166241.6
+ [22]  166241.6  166091.8  166091.8  166091.8  166091.8  166091.8  166088.4
+ [29]  166068.4  166068.4  166068.4  166068.4  166057.8  166057.8  166032.7
+ [36]  166032.7  166032.7  166032.7  166032.7  166032.7  166032.7  166029.7
+ [43]  166025.9  166025.9  166019.2  166019.2  166019.2  166019.2  166017.1
+ [50]  166017.1  166017.1  166017.1  166017.1  166016.4  166015.0  166013.8
+ [57]  166013.7  166013.7  166013.5  166013.5  166013.5  166013.5  166013.5
+ [64]  166013.5  166013.5  166013.5  166013.2  166013.2  166013.2  166013.2
+ [71]  166013.2  166013.2  166012.9  166012.9  166012.9  166012.8  166012.8
+ [78]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+ [85]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+ [92]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+ [99]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[106]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[113]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[120]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[127]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[134]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[141]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[148]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[155]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[162]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[169]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[176]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[183]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[190]  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8  166012.8
+[197]  166012.8  166012.8  166012.8  166012.8
+
+$member$pop
+          [,1] [,2]  [,3]
+ [1,] 49.61683 0.99 -0.99
+ [2,] 49.61683 0.99 -0.99
+ [3,] 49.61683 0.99 -0.99
+ [4,] 49.61683 0.99 -0.99
+ [5,] 49.61683 0.99 -0.99
+ [6,] 49.61683 0.99 -0.99
+ [7,] 49.61683 0.99 -0.99
+ [8,] 49.61683 0.99 -0.99
+ [9,] 49.61683 0.99 -0.99
+[10,] 49.61683 0.99 -0.99
+[11,] 49.61683 0.99 -0.99
+[12,] 49.61683 0.99 -0.99
+[13,] 49.61683 0.99 -0.99
+[14,] 49.61683 0.99 -0.99
+[15,] 49.61683 0.99 -0.99
+[16,] 49.61683 0.99 -0.99
+[17,] 49.61683 0.99 -0.99
+[18,] 49.61683 0.99 -0.99
+[19,] 49.61683 0.99 -0.99
+[20,] 49.61683 0.99 -0.99
+[21,] 49.61683 0.99 -0.99
+[22,] 49.61683 0.99 -0.99
+[23,] 49.61683 0.99 -0.99
+[24,] 49.61683 0.99 -0.99
+[25,] 49.61683 0.99 -0.99
+[26,] 49.61683 0.99 -0.99
+[27,] 49.61683 0.99 -0.99
+[28,] 49.61683 0.99 -0.99
+[29,] 49.61683 0.99 -0.99
+[30,] 49.61683 0.99 -0.99
+[31,] 49.61683 0.99 -0.99
+[32,] 49.61683 0.99 -0.99
+[33,] 49.61683 0.99 -0.99
+[34,] 49.61683 0.99 -0.99
+[35,] 49.61683 0.99 -0.99
+[36,] 49.61683 0.99 -0.99
+[37,] 49.61683 0.99 -0.99
+[38,] 49.61683 0.99 -0.99
+[39,] 49.61683 0.99 -0.99
+[40,] 49.61683 0.99 -0.99
+[41,] 49.61683 0.99 -0.99
+[42,] 49.61683 0.99 -0.99
+[43,] 49.61683 0.99 -0.99
+[44,] 49.61683 0.99 -0.99
+[45,] 49.61683 0.99 -0.99
+[46,] 49.61683 0.99 -0.99
+[47,] 49.61683 0.99 -0.99
+[48,] 49.61683 0.99 -0.99
+[49,] 49.61683 0.99 -0.99
+[50,] 49.61683 0.99 -0.99
+
+$member$storepop
+list()
+
+
+attr(,"class")
+[1] "DEoptim"
+
+$coefficients
+   gamma    delta      rho 
+49.61683  0.99000 -0.99000 
+
+$iter
+[1] 200
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "DE", lower = c(1, 0.01, -0.99), upper = c(50, 0.99, 
+        3), control = DEoptim.control(trace = FALSE))
+
+$method
+[1] "DE"
+
+$fitted.values
+ [1] 1150.049 1189.347 1213.409 1224.234 1224.234 1239.946 1273.335 1276.303
+ [9] 1237.496 1281.235 1315.616 1467.957 1528.866 1581.896 1548.978 1566.639
+[17] 1648.177 1722.833 1833.344 1935.505
+
+$residuals
+ [1] -203.915908 -226.616320 -143.829362  -52.437989  -46.118423  -54.136475
+ [7]  -33.977295   12.258409  -29.789581   -2.826016   44.976904   72.827186
+[13]   46.168857  114.063681   95.711303   59.392020    6.863193   32.766936
+[19]   54.076598   56.389281
+
+$cov.unscaled
+            gamma      delta         rho
+gamma  2206.43823 -64.363587 -2181.17773
+delta   -64.36359   1.877625    63.63713
+rho   -2181.17773  63.637130  2157.45030
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLandLaborDe2 )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "DE", lower = c(1, 0.01, -0.99), upper = c(50, 0.99, 
+        3), control = DEoptim.control(trace = FALSE))
+
+Coefficients:
+gamma delta   rho 
+49.62  0.99 -0.99 
+
+> summary( cesLandLaborDe2 )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "DE", lower = c(1, 0.01, -0.99), upper = c(50, 0.99, 
+        3), control = DEoptim.control(trace = FALSE))
+
+Estimation by non-linear least-squares using the 'DE' optimizer
+
+Coefficients:
+      Estimate Std. Error   t value Pr(>|t|)
+gamma    49.62    4279.58     0.012    0.991
+delta     0.99     124.84     0.008    0.994
+rho      -0.99    4231.81 -0.000234    1.000
+
+Residual standard error: 91.10784 
+Multiple R-squared: 0.9062137 
+
+> coef( cesLandLaborDe2 )
+   gamma    delta      rho 
+49.61683  0.99000 -0.99000 
+> vcov( cesLandLaborDe2 )
+            gamma      delta         rho
+gamma  18314844.8 -534258.83 -18105166.5
+delta   -534258.8   15585.49    528228.8
+rho   -18105166.5  528228.77  17908213.7
+> coef( summary( cesLandLaborDe2 ) )
+      Estimate Std. Error       t value  Pr(>|t|)
+gamma 49.61683  4279.5847  0.0115938432 0.9907497
+delta  0.99000   124.8418  0.0079300336 0.9936728
+rho   -0.99000  4231.8097 -0.0002339425 0.9998133
+> fitted( cesLandLaborDe2 )
+ [1] 1150.049 1189.347 1213.409 1224.234 1224.234 1239.946 1273.335 1276.303
+ [9] 1237.496 1281.235 1315.616 1467.957 1528.866 1581.896 1548.978 1566.639
+[17] 1648.177 1722.833 1833.344 1935.505
+> residuals( cesLandLaborDe2 )
+ [1] -203.915908 -226.616320 -143.829362  -52.437989  -46.118423  -54.136475
+ [7]  -33.977295   12.258409  -29.789581   -2.826016   44.976904   72.827186
+[13]   46.168857  114.063681   95.711303   59.392020    6.863193   32.766936
+[19]   54.076598   56.389281
 > 
 > 
 > ############  cesCalc  ################
