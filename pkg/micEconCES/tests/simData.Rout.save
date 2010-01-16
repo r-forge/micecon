@@ -2036,8 +2036,7 @@ phi   1.1169635 0.01787700 62.480463  0.000000e+00
 [196] -1.268103529  2.197931510 -0.344729027 -0.437520031  0.815029426
 > 
 > ## L-BFGS-B with constrained parameters, CRS
-> cesBfgsCon <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B",
-+    lower = c( 0, 0, -1 ), upper = c( Inf, 1, Inf ) )
+> cesBfgsCon <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B" )
 > print.default( cesBfgsCon )
 $optim
 $optim$par
@@ -2073,8 +2072,7 @@ $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
 $call
-cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B", 
-    lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B")
 
 $method
 [1] "L-BFGS-B"
@@ -2168,8 +2166,7 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B", 
-    lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B")
 
 Coefficients:
  gamma  delta    rho 
@@ -2179,8 +2176,7 @@ Coefficients:
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B", 
-    lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B")
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 Convergence achieved after 16 function and 16 gradient calls
@@ -2284,7 +2280,7 @@ rho   0.5173723 0.12733470   4.06309 4.84274e-05
 > 
 > ## L-BFGS-B with constrained parameters, VRS
 > cesBfgsConVrs <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B",
-+    vrs = TRUE, lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
++    vrs = TRUE )
 > print.default( cesBfgsConVrs )
 $optim
 $optim$par
@@ -2321,8 +2317,7 @@ $message
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
-    method = "L-BFGS-B", lower = c(0, 0, -1, 0), upper = c(Inf, 
-        1, Inf, Inf))
+    method = "L-BFGS-B")
 
 $method
 [1] "L-BFGS-B"
@@ -2412,8 +2407,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
-    method = "L-BFGS-B", lower = c(0, 0, -1, 0), upper = c(Inf, 
-        1, Inf, Inf))
+    method = "L-BFGS-B")
 
 Coefficients:
  gamma  delta    rho    phi 
@@ -2424,8 +2418,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
-    method = "L-BFGS-B", lower = c(0, 0, -1, 0), upper = c(Inf, 
-        1, Inf, Inf))
+    method = "L-BFGS-B")
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 Convergence achieved after 35 function and 35 gradient calls
@@ -3468,8 +3461,7 @@ Multiple R-squared: 0.9563783
 [196] -1.268103827  2.197931436 -0.344729043 -0.437520040  0.815029314
 > 
 > ## PORT, CRS
-> cesPort <- cesEst( "ys", xxNames, cesData, method = "PORT",
-+    lower = c( 0, 0, -1 ), upper = c( Inf, 1, Inf ) )
+> cesPort <- cesEst( "ys", xxNames, cesData, method = "PORT" )
 > print.default( cesPort )
 $nlminb
 $nlminb$par
@@ -3507,8 +3499,7 @@ $message
 [1] "relative convergence (4)"
 
 $call
-cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "PORT", 
-    lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "PORT")
 
 $method
 [1] "PORT"
@@ -3602,8 +3593,7 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "PORT", 
-    lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "PORT")
 
 Coefficients:
  gamma  delta    rho 
@@ -3613,8 +3603,7 @@ Coefficients:
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "PORT", 
-    lower = c(0, 0, -1), upper = c(Inf, 1, Inf))
+cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "PORT")
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 Convergence achieved after 18 iterations
@@ -3717,8 +3706,7 @@ rho   0.5173720 0.12733468   4.063088 4.842777e-05
 [196] -1.767557431  1.867462562 -0.592468509 -0.677291645  0.900878310
 > 
 > ## PORT, VRS
-> cesPortVrs <- cesEst( "ys", xxNames, cesData, method = "PORT", vrs = TRUE,
-+    lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
+> cesPortVrs <- cesEst( "ys", xxNames, cesData, method = "PORT", vrs = TRUE )
 > print.default( cesPortVrs )
 $nlminb
 $nlminb$par
@@ -3757,8 +3745,7 @@ $message
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
-    method = "PORT", lower = c(0, 0, -1, 0), upper = c(Inf, 1, 
-        Inf, Inf))
+    method = "PORT")
 
 $method
 [1] "PORT"
@@ -3848,8 +3835,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
-    method = "PORT", lower = c(0, 0, -1, 0), upper = c(Inf, 1, 
-        Inf, Inf))
+    method = "PORT")
 
 Coefficients:
  gamma  delta    rho    phi 
@@ -3860,8 +3846,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
-    method = "PORT", lower = c(0, 0, -1, 0), upper = c(Inf, 1, 
-        Inf, Inf))
+    method = "PORT")
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 Convergence achieved after 29 iterations

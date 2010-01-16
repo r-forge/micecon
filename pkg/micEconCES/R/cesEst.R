@@ -1,5 +1,6 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
-      method = "Nelder-Mead", startVal = NULL, ... ) {
+      method = "Nelder-Mead", startVal = NULL, lower = "auto", upper = "auto",
+      ... ) {
 
    # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-phi/rho)
    # s = 1 / ( 1 + rho )
@@ -10,6 +11,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       stop( "currently, argument 'xNames' must contain exactly",
          " two variable names" )
    }
+
+   # number of parameters
+   nParam <- 3 + vrs
 
    # start values
    if( method %in% c( "Kmenta", "DE" ) ) {
@@ -36,34 +40,49 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       names( startVal ) <- c( "gamma", "delta", "rho", "phi" )[ 1:( 3 + vrs ) ]
    }
 
+   # dertermining lower and upper bounds automatically
+   if( lower[1] == "auto" ) {
+      if( method %in% c( "L-BFGS-B", "PORT", "DE" ) ) {
+         lower <- c( 0, 0, -1, 0 )[ 1:nParam ]
+      } else {
+         lower <- -Inf
+      }
+   }
+   if( upper[1] == "auto" ) {
+      if( method %in% c( "L-BFGS-B", "PORT" ) ) {
+         upper <- c( Inf, 1, Inf, Inf )[ 1:nParam ]
+      } else if( method == "DE" ) {
+         upper <- c( 1e10, 1, 10, 10 )[ 1:nParam ]
+      } else {
+         upper <- Inf
+      }
+   }
+
    # checking lower and upper bounds
-   dots <- list( ... )
-   if( method %in% c( "L-BFGS-B", "PORT" ) ) {
-      if( !is.null( dots$lower ) ) {
-         if( length( startVal ) != length( dots$lower ) ) {
-            stop( "the lower bound has ", length( dots$lower ), " elements",
-               " but the model has ", length( startVal ), " parameters" )
-         }
-         if( any( startVal < dots$lower ) ) {
-            stop( "at least one starting value is smaller than its lower bound" )
-         }
+   if( method %in% c( "L-BFGS-B", "PORT", "DE" ) ) {
+      if( length( lower ) > 1 && length( lower ) != nParam ) {
+         stop( "the lower bound has ", length( lower ), " elements",
+            " but the model has ", nParam, " parameters" )
       }
-      if( !is.null( dots$upper ) ) {
-         if( length( startVal ) != length( dots$upper ) ) {
-            stop( "the upper bound has ", length( dots$upper ), " elements",
-               " but the model has ", length( startVal ), " parameters" )
-         }
-         if( any( startVal > dots$upper ) ) {
-            stop( "at least one starting value is greater than its upper bound" )
-         }
+      if( method != "DE" && any( startVal < lower ) ) {
+         stop( "at least one starting value is smaller than its lower bound" )
       }
-      if( !is.null( dots$lower ) && is.null( dots$upper ) ) {
-         if( any( dots$lower > dots$upper ) ) {
+      if( length( upper ) > 1 && length( upper ) != nParam ) {
+         stop( "the upper bound has ", length( upper ), " elements",
+            " but the model has ", nParam, " parameters" )
+      }
+      if( method != "DE" && any( startVal > upper ) ) {
+         stop( "at least one starting value is greater than its upper bound" )
+      }
+      if( length( lower ) == length( upper ) ) {
+         if( any( lower > upper ) ) {
             stop( "at least one lower bound is greater than its upper bound" )
          }
       }
-   } else if( !is.null( dots$lower ) || !is.null( dots$upper ) ) {
+   } else if( max( lower ) != -Inf || min( upper ) != Inf ) {
       warning( "lower and upper bounds are ignored in method '", method, "'" )
+      lower <- -Inf
+      upper <- Inf
    }
 
    # store the (matched) call
@@ -86,7 +105,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
             method = method, ... )
       } else {
          result$optim <- optim( par = startVal, fn = cesRss, gr = cesRssDeriv,
-            data = estData, method = method, ... )
+            data = estData, method = method, lower = lower, upper = upper, ... )
       }
       result$coefficients <- result$optim$par
       result$iter <- result$optim$counts[ !is.na( result$optim$counts ) ]
@@ -134,14 +153,13 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$convergence <- result$nlm$code <= 2
    } else if( method == "PORT" ) {
       result$nlminb <- nlminb( start = startVal, objective = cesRss,
-         gradient = cesRssDeriv, data = estData, ... )
+         gradient = cesRssDeriv, data = estData,
+         lower = lower, upper = upper, ... )
       result$coefficients <- result$nlminb$par
       result$iter <- result$nlminb$iterations
       result$convergence <- result$nlminb$convergence == 0
       result$message <- result$nlminb$message
    } else if( method == "DE" ) {
-      lower <- c( 0, 0, -1, 0 )[ 1:( 3 + vrs ) ]
-      upper <- c( 1e10, 1, 10, 10 )[ 1:( 3 + vrs ) ]
       result$DEoptim <- DEoptim( fn = cesRss, lower = lower,
          upper = upper, data = estData, ... )
       result$coefficients <- result$DEoptim$optim$bestmem

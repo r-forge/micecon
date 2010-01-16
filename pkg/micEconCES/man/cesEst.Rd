@@ -25,7 +25,7 @@
 
 \usage{
 cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
-   startVal = NULL, \dots )
+   startVal = NULL, lower = "auto", upper = "auto", \dots )
 \method{print}{cesEst}( x, digits = max(3, getOption("digits") - 3),
    \dots )
 }
@@ -45,6 +45,10 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       for non-linear least-squares (see section \sQuote{Details}).}
    \item{startVal}{optional numeric vector giving the starting values
       of the parameters in the non-linear estimations
+      (see section \sQuote{Details}).}
+   \item{lower}{lower bounds of the parameters
+      (see section \sQuote{Details}).}
+   \item{upper}{upper bounds of the parameters
       (see section \sQuote{Details}).}
    \item{x}{an object of class \code{cesEst}.}
    \item{digits}{number of digits.}
@@ -107,7 +111,37 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    is equal to the mean of its fitted values,
    i.e. \eqn{\gamma}{gamma} =  mean( y ) /
       mean( CES( X, \eqn{\gamma}{gamma} = 1, \eqn{\delta}{delta} = 0.5,
-         \eqn{\rho}{rho} = 0.25, \eqn{\phi}{phi} = 1 ) ).
+         \eqn{\rho}{rho} = 0.25, \eqn{\phi}{phi} = 1 ) ).\cr\cr
+
+   \bold{Lower and upper bounds}\cr
+   Arguments \code{lower} and \code{upper} can be used
+   to set lower and upper bounds for the estimated parameters.
+   If these arguments are \code{-Inf} and \code{Inf}, respectively,
+   the parameters are estimated without unconstraints.
+   By default, arguments \code{lower} and \code{upper} are both equal
+   to the character string \code{"auto"},
+   which means that the bounds are set automatically
+   depending on the estimation method:
+   In case of the \code{L-BFGS-B}, \code{PORT}, and \code{DE} method,
+   the lower bound is \code{0} for \eqn{\gamma}{gamma},
+   \code{0} for \eqn{\delta}{delta}, \code{-1} for \eqn{\rho}{rho},
+   and eventually \code{0} for \eqn{\phi}{phi}.
+   In case of the \code{L-BFGS-B} and \code{PORT} method,
+   the upper bound is infinity for \eqn{\gamma}{gamma},
+   \code{1} for \eqn{\delta}{delta}, infinity for \eqn{\rho}{rho},
+   and eventually infinity for \eqn{\phi}{phi}.
+   Since the \sQuote{Differential Evulation} algorithm requires finit bounds,
+   the upper bounds for the \code{DE} method are set
+   to \code{1e10} for \eqn{\gamma}{gamma},
+   \code{1} for \eqn{\delta}{delta}, \code{10} for \eqn{\rho}{rho},
+   and eventually \code{10} for \eqn{\phi}{phi}.
+   In case of all other estimation methods,
+   the lower and upper bounds are set to \code{-Inf} and \code{Inf}, respectively,
+   because these methods do not support parameter constraints.
+   Of course, the user can specify own lower and upper bounds
+   by setting arguments \code{lower} and \code{upper} to numeric vectors
+   that should have the same format as argument \code{startVal}
+   (see above).
 }
 
 \value{
@@ -252,8 +286,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
 
    # using the L-BFGS-B optimization method with constrained parameters
    cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
-      germanFarms, method = "L-BFGS-B", lower = c( 0, 0, -1 ),
-      upper = c( Inf, 1, Inf ) )
+      germanFarms, method = "L-BFGS-B" )
 
    # using the CG optimization method
    cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -267,10 +300,13 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    cesLandLaborKmenta <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
       method = "Kmenta" )
 
+   # using the PORT optimization routine with unconstrained parameters
+   cesLandLaborPortCon <- cesEst( "qOutput", c( "land", "qLabor" ),
+      germanFarms, vrs = TRUE, method = "PORT", lower = -Inf, upper = Inf )
+
    # using the PORT optimization routine with constrained parameters and VRS
    cesLandLaborPortCon <- cesEst( "qOutput", c( "land", "qLabor" ),
-      germanFarms, vrs = TRUE, method = "PORT",
-      lower = c( 0, 0, -1, 0 ), upper = c( Inf, 1, Inf, Inf ) )
+      germanFarms, vrs = TRUE, method = "PORT" )
 
    # using the Differential Evolution optimization method
    cesLandLaborDe <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -290,8 +326,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
 
    # using the L-BFGS-B optimization method with constrained parameters, VRS
    cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-      method = "L-BFGS-B", vrs = TRUE, lower = c( 0, 0, -1, 0 ),
-      upper = c( Inf, 1, Inf, Inf ) )
+      method = "L-BFGS-B", vrs = TRUE )
 
    # using the SANN optimization method
    cesLandIntSann <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
