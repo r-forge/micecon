@@ -7,7 +7,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    checkNames( c( yName, xNames ), names( data ) )
 
-   if( length( xNames ) != 2 ) {
+   # number of exogenous variables
+   nExog <- length( xNames )
+   if( nExog != 2 ) {
       stop( "currently, argument 'xNames' must contain exactly",
          " two variable names" )
    }
@@ -37,7 +39,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
             " parameters but you provided ", length( startVal ),
             " starting values" )
       }
-      names( startVal ) <- c( "gamma", "delta", "rho", "phi" )[ 1:( 3 + vrs ) ]
+      names( startVal ) <- cesCoefNames( nExog, vrs )
    }
 
    # dertermining lower and upper bounds automatically
@@ -163,8 +165,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$DEoptim <- DEoptim( fn = cesRss, lower = lower,
          upper = upper, data = estData, ... )
       result$coefficients <- result$DEoptim$optim$bestmem
-      names( result$coefficients ) <-
-         c( "gamma", "delta", "rho", "phi" )[ 1:( 3 + vrs ) ]
+      names( result$coefficients ) <- cesCoefNames( nExog, vrs )
       result$iter <- result$DEoptim$optim$iter
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
