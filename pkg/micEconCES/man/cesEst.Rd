@@ -166,7 +166,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{call}{the matched call.}
    \item{method}{argument \code{method}.}
    \item{startVal}{starting values for the non-linear estimation
-      (only for non-linear least-squares estimations).}
+      (not for the \code{Kmenta} and \code{DE} method).}
    \item{optim}{object returned by \code{\link[stats]{optim}}
       (only if argument \code{method} is \code{"Nelder-Mead"}, \code{"BFGS"},
       \code{"CG"}, \code{"L-BFGS-B"}, or \code{"SANN"})).}
