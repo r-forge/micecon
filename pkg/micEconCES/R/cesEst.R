@@ -183,6 +183,10 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$startVal <- startVal
    }
 
+   # return lower and upper bounds
+   result$lower <- lower
+   result$upper <- upper
+
    # fitted values
    result$fitted.values <- cesCalc( xNames = xNames, data = data,
       coef = result$coefficients )
