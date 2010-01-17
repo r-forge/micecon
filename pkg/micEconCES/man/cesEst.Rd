@@ -25,7 +25,8 @@
 
 \usage{
 cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
-   startVal = NULL, lower = "auto", upper = "auto", \dots )
+   startVal = NULL, lower = NULL, upper = NULL, \dots )
+
 \method{print}{cesEst}( x, digits = max(3, getOption("digits") - 3),
    \dots )
 }
@@ -118,8 +119,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    to set lower and upper bounds for the estimated parameters.
    If these arguments are \code{-Inf} and \code{Inf}, respectively,
    the parameters are estimated without unconstraints.
-   By default, arguments \code{lower} and \code{upper} are both equal
-   to the character string \code{"auto"},
+   By default, arguments \code{lower} and \code{upper} are both \code{NULL},
    which means that the bounds are set automatically
    depending on the estimation method:
    In case of the \code{L-BFGS-B}, \code{PORT}, and \code{DE} method,
