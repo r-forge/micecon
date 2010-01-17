@@ -1,7 +1,4 @@
-cesDerivCoef <- function( par, xNames, data ) {
-
-   # check for VRS
-   vrs <- length( par ) >= 4
+cesDerivCoef <- function( par, xNames, data, vrs ) {
 
    # names of coefficients
    coefNames <- cesCoefNames( 2, vrs )

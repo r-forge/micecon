@@ -100,11 +100,11 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    } else if( method %in% c( "Nelder-Mead", "SANN", "BFGS", "CG", "L-BFGS-B" ) ) {
       if( method %in% c( "Nelder-Mead", "SANN" ) ) {
          result$optim <- optim( par = startVal, fn = cesRss, data = data,
-            method = method, yName = yName, xNames = xNames, ... )
+            method = method, yName = yName, xNames = xNames, vrs = vrs, ... )
       } else {
          result$optim <- optim( par = startVal, fn = cesRss, gr = cesRssDeriv,
             data = data, method = method, lower = lower, upper = upper, 
-	    yName = yName, xNames = xNames, ... )
+	    yName = yName, xNames = xNames, vrs = vrs, ... )
       }
       result$coefficients <- result$optim$par
       result$iter <- result$optim$counts[ !is.na( result$optim$counts ) ]
@@ -115,30 +115,31 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$message <- result$optim$message
    } else if( method == "LM" ) {
       # residual function
-      residFun <- function( par, yName, xNames, data ) {
+      residFun <- function( par, yName, xNames, data, vrs ) {
          result <- data[[ yName ]] - cesCalc( xNames = xNames,
             data = data, coef = par )
          return( result )
       }
 
       # jacobian function
-      jac <- function( par, yName, xNames, data ) {
-         return( -c( cesDerivCoef( par = par, xNames = xNames, data = data ) ) )
+      jac <- function( par, yName, xNames, data, vrs ) {
+         return( -c( cesDerivCoef( par = par, xNames = xNames, data = data,
+	    vrs = vrs ) ) )
       }
 
       # perform fit
       result$nls.lm <- nls.lm( par = startVal, fn = residFun, data = data,
-         jac = jac, yName = yName, xNames = xNames, ... )
+         jac = jac, yName = yName, xNames = xNames, vrs = vrs, ... )
       result$coefficients <- result$nls.lm$par
       result$iter <- result$nls.lm$niter
       result$convergence <- result$nls.lm$info > 0 && result$nls.lm$info < 5
       result$message <- result$nls.lm$message
    } else if( method == "Newton" ) {
-      cesRss2 <- function( par, yName, xNames, data ) {
+      cesRss2 <- function( par, yName, xNames, data, vrs ) {
          result <- cesRss( par = par, yName = yName, xNames = xNames,
-	    data = data )
+	    data = data, vrs = vrs )
          attributes( result )$gradient <- cesRssDeriv( par = par, 
-	    yName = yName, xNames = xNames, data = data )
+	    yName = yName, xNames = xNames, data = data, vrs = vrs )
          return( result )
       }
       # save current setting for warning messages and suppress warning messages
@@ -146,7 +147,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       options( warn = -1 )
       # perform fit
       result$nlm <- nlm( f = cesRss2, p = startVal, data = data, 
-	 yName = yName, xNames = xNames, ... )
+	 yName = yName, xNames = xNames, vrs = vrs, ... )
       # restore previous setting for warning messages
       options( warn = warnSaved )
       # extract results
@@ -156,14 +157,15 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    } else if( method == "PORT" ) {
       result$nlminb <- nlminb( start = startVal, objective = cesRss,
          gradient = cesRssDeriv, data = data, yName = yName, xNames = xNames,
-         lower = lower, upper = upper, ... )
+         vrs = vrs, lower = lower, upper = upper, ... )
       result$coefficients <- result$nlminb$par
       result$iter <- result$nlminb$iterations
       result$convergence <- result$nlminb$convergence == 0
       result$message <- result$nlminb$message
    } else if( method == "DE" ) {
       result$DEoptim <- DEoptim( fn = cesRss, lower = lower,
-         upper = upper, data = data, yName = yName, xNames = xNames, ... )
+         upper = upper, data = data, yName = yName, xNames = xNames,
+	 vrs = vrs, ... )
       result$coefficients <- result$DEoptim$optim$bestmem
       names( result$coefficients ) <- cesCoefNames( nExog, vrs )
       result$iter <- result$DEoptim$optim$iter
@@ -197,7 +199,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # unscaled covariance matrix
    gradients <- cesDerivCoef( par = result$coefficients, xNames = xNames,
-      data = data )
+      data = data, vrs = vrs )
    result$cov.unscaled <- try( chol2inv( chol( crossprod( gradients ) ) ),
       silent = TRUE )
    if( !is.matrix( result$cov.unscaled ) ) {

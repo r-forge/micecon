@@ -1,4 +1,4 @@
-cesRss <- function( par, yName, xNames, data ) {
+cesRss <- function( par, yName, xNames, data, vrs ) {
 
    yHat <- cesCalc( xNames = xNames, data = data, coef = par )
 
