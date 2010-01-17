@@ -2,6 +2,9 @@ cesEstKmenta <- function( yName, xNames, data, vrs ){
 
    result <- list()
 
+   ## number of exogenous variables
+   nExog <- length( xNames )
+
    ## Estimating the unrestricted translog model
    result$translog <- translogEst( yName = yName, xNames = xNames, data = data )
 
@@ -22,7 +25,7 @@ cesEstKmenta <- function( yName, xNames, data, vrs ){
 
    ## Parameter vector
    result$coefficients <- numeric( 4 )
-   names( result$coefficients ) <- c( "gamma", "delta", "rho", "phi" )
+   names( result$coefficients ) <- cesCoefNames( nExog, vrs )
 
    ## Defining gamma
    result$coefficients[ "gamma" ] <- exp( coef( result$kmenta )[ "eq1_(Intercept)" ] )
