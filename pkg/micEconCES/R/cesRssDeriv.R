@@ -1,11 +1,11 @@
-cesRssDeriv <- function( par, data ) {
+cesRssDeriv <- function( par, yName, xNames, data ) {
 
    # calculate fitted values and residuals
-   yHat <- cesCalc( xNames = names( data )[ -1 ], data = data, coef = par )
-   resid <- data$y - yHat
+   yHat <- cesCalc( xNames = xNames, data = data, coef = par )
+   resid <- data[[ yName ]] - yHat
 
    # obtain derivatives of the CES with respect to coefficients
-   derivCoef <- cesDerivCoef( par = par, data = data )
+   derivCoef <- cesDerivCoef( par = par, xNames = xNames, data = data )
 
    # prepare vector of gradients (to be returned)
    result <- numeric( length( par ) )

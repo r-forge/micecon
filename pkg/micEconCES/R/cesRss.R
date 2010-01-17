@@ -1,8 +1,8 @@
-cesRss <- function( par, data ) {
+cesRss <- function( par, yName, xNames, data ) {
 
-   yHat <- cesCalc( xNames = names( data )[ -1 ], data = data, coef = par )
+   yHat <- cesCalc( xNames = xNames, data = data, coef = par )
 
-   result <- sum( ( data$y - yHat )^2 )
+   result <- sum( ( data[[ yName ]] - yHat )^2 )
    if( is.na( result ) ) {
       result <- Inf
    }

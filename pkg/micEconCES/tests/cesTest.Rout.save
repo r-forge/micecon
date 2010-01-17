@@ -1084,7 +1084,7 @@ phi    1.655682e+00 3.196346e-01  5.17992004 2.219810e-07
 > cesLandLaborLm <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
 +    method = "LM", control = nls.lm.control( maxiter = 200 ) )
 Warning message:
-In nls.lm(par = startVal, fn = residFun, data = estData, jac = jac,  :
+In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
   lmder: info = -1. Number of iterations has reached `maxiter' == 200.
 
 > print.default( cesLandLaborLm )
