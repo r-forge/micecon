@@ -167,6 +167,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{method}{argument \code{method}.}
    \item{startVal}{starting values for the non-linear estimation
       (not for the \code{Kmenta} and \code{DE} method).}
+   \item{lower}{lower bounds of the parameters.}
+   \item{upper}{upper bounds of the parameters.}
    \item{optim}{object returned by \code{\link[stats]{optim}}
       (only if argument \code{method} is \code{"Nelder-Mead"}, \code{"BFGS"},
       \code{"CG"}, \code{"L-BFGS-B"}, or \code{"SANN"})).}
