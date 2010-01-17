@@ -9,12 +9,18 @@ cesCalc <- function( xNames, data, coef ) {
    # check names of exogenous variables
    checkNames( xNames, names( data ) )
 
+   # check for VRS
+   if( nExog == 2 ) {
+      vrs <- length( coef ) >= 4
+   } else {
+      vrs <- length( coef ) - nExog  >= 3
+   }
+
    # check number of coefficients
-   if( nExog == 2 && ( length( coef ) < 3 || length( coef ) > 4 ) ) {
+   if( nExog == 2 && length( coef ) != 3 + vrs ) {
       stop( "a CES function with 2 exogenous variables",
          " must have either 3 (CRS) or 4 (VRS) coefficients" )
-   } else if( nExog > 2 &&
-         ( length( coef ) < nExog + 2 | length( coef ) > nExog + 3 ) ) {
+   } else if( nExog > 2 && length( coef ) != nExog + 2 + vrs ) {
       stop( "a CES function with ", nExog, " exogenous variables",
          " must have either ", nExog + 2, " (CRS) or ",
          nExog + 3, " (VRS) coefficients" )
@@ -27,10 +33,10 @@ cesCalc <- function( xNames, data, coef ) {
 
    # names of coefficients
    if( nExog == 2 ) {
-      coefNames <- c( "gamma", "delta", "rho", "phi" )[ 1:length( coef ) ]
+      coefNames <- c( "gamma", "delta", "rho", "phi" )[ 1:( 3 + vrs ) ]
    } else {
       coefNames <- c( "gamma", paste( "delta", 1:nExog, sep = "_" ),
-         "rho", "phi" )[ 1:length( coef ) ]
+         "rho", "phi" )[ 1:( nExog + 2 + vrs ) ]
    }
 
    # assign or check names of coefficients
@@ -59,7 +65,7 @@ cesCalc <- function( xNames, data, coef ) {
    }
 
    # make the case of constant returns to scale (CRS) compatible to the VRS case
-   if( ! "phi" %in% names( coef ) ) {
+   if( !vrs ) {
       coef <- c( coef, phi = 1 )
    }
 
