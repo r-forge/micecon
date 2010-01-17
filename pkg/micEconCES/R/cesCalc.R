@@ -32,12 +32,7 @@ cesCalc <- function( xNames, data, coef ) {
    }
 
    # names of coefficients
-   if( nExog == 2 ) {
-      coefNames <- c( "gamma", "delta", "rho", "phi" )[ 1:( 3 + vrs ) ]
-   } else {
-      coefNames <- c( "gamma", paste( "delta", 1:nExog, sep = "_" ),
-         "rho", "phi" )[ 1:( nExog + 2 + vrs ) ]
-   }
+   coefNames <- cesCoefNames( nExog, vrs )
 
    # assign or check names of coefficients
    if( is.null( names( coef ) ) ) {
