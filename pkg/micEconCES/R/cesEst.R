@@ -44,20 +44,10 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # dertermining lower and upper bounds automatically
    if( is.null( lower ) ) {
-      if( method %in% c( "L-BFGS-B", "PORT", "DE" ) ) {
-         lower <- c( 0, 0, -1, 0 )[ 1:nParam ]
-      } else {
-         lower <- -Inf
-      }
+      lower <- cesCoefBounds( vrs = vrs, method = method, lower = TRUE )
    }
    if( is.null( upper ) ) {
-      if( method %in% c( "L-BFGS-B", "PORT" ) ) {
-         upper <- c( Inf, 1, Inf, Inf )[ 1:nParam ]
-      } else if( method == "DE" ) {
-         upper <- c( 1e10, 1, 10, 10 )[ 1:nParam ]
-      } else {
-         upper <- Inf
-      }
+      upper <- cesCoefBounds( vrs = vrs, method = method, lower = FALSE )
    }
 
    # checking lower and upper bounds
