@@ -3,10 +3,13 @@ cesDerivCoef <- function( par, data ) {
    # check for VRS
    vrs <- length( par ) >= 4
 
+   # names of coefficients
+   coefNames <- cesCoefNames( 2, vrs )
+
    # derivatives of the CES with respect to the coefficients/parameters
    result <- matrix( NA, nrow = nrow( data ), ncol = length( par ) )
-   colnames( result ) <- c( "gamma", "delta", "rho", "phi" )[ 1:( 3 + vrs ) ]
-   names( par ) <- c( "gamma", "delta", "rho", "phi" )[ 1:( 3 + vrs ) ]
+   colnames( result ) <- coefNames
+   names( par ) <- coefNames
 
    gamma <- par[ "gamma" ]
    delta <- par[ "delta" ]
