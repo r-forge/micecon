@@ -1,5 +1,5 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
-      method = "Nelder-Mead", startVal = NULL, lower = "auto", upper = "auto",
+      method = "Nelder-Mead", startVal = NULL, lower = NULL, upper = NULL,
       ... ) {
 
    # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-phi/rho)
@@ -41,14 +41,14 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    }
 
    # dertermining lower and upper bounds automatically
-   if( lower[1] == "auto" ) {
+   if( is.null( lower ) ) {
       if( method %in% c( "L-BFGS-B", "PORT", "DE" ) ) {
          lower <- c( 0, 0, -1, 0 )[ 1:nParam ]
       } else {
          lower <- -Inf
       }
    }
-   if( upper[1] == "auto" ) {
+   if( is.null( upper ) ) {
       if( method %in% c( "L-BFGS-B", "PORT" ) ) {
          upper <- c( Inf, 1, Inf, Inf )[ 1:nParam ]
       } else if( method == "DE" ) {
