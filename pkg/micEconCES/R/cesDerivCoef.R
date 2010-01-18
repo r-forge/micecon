@@ -12,37 +12,37 @@ cesDerivCoef <- function( par, xNames, data, vrs, returnRho = TRUE ) {
    delta <- par[ "delta" ]
    rho <- par[ "rho" ]
    if( vrs ) {
-      phi <- par[ "phi" ]
+      nu <- par[ "nu" ]
    } else {
-      phi <- 1
+      nu <- 1
    }
 
    # derivatives with respect to gamma
    result[ , "gamma" ] <-
-      ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -phi / rho )
+      ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho )
 
    # derivatives with respect to delta
-   result[ , "delta" ] <- gamma * ( -phi / rho ) *
-      ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -phi / rho - 1 ) *
+   result[ , "delta" ] <- gamma * ( -nu / rho ) *
+      ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho - 1 ) *
       ( data[[ xNames[ 1 ] ]]^(-rho) - data[[ xNames[ 2 ] ]]^(-rho) )
 
    # derivatives with respect to rho
    if( returnRho ) {
       result[ , "rho" ] <- gamma *
          log( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) ) *
-         ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -phi / rho ) *
-         ( phi / rho^2 ) +
-         gamma * ( phi / rho ) *
-         ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -phi / rho - 1 ) *
+         ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho ) *
+         ( nu / rho^2 ) +
+         gamma * ( nu / rho ) *
+         ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho - 1 ) *
          ( delta * log( data[[ xNames[ 1 ] ]] ) * data[[ xNames[ 1 ] ]]^(-rho) +
             ( 1 - delta ) * log( data[[ xNames[ 2 ] ]] ) * data[[ xNames[ 2 ] ]]^(-rho) )
    }
 
-   # derivatives with respect to phi
+   # derivatives with respect to nu
    if( vrs ) {
-      result[ , "phi" ] <- gamma *
+      result[ , "nu" ] <- gamma *
          log( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) ) *
-         ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -phi / rho ) *
+         ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho ) *
          ( -1 / rho )
    }
 

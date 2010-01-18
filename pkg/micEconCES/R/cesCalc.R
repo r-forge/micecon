@@ -64,7 +64,7 @@ cesCalc <- function( xNames, data, coef ) {
 
    # make the case of constant returns to scale (CRS) compatible to the VRS case
    if( !vrs ) {
-      coef <- c( coef, phi = 1 )
+      coef <- c( coef, nu = 1 )
    }
 
    # calculate the endogenous variable
@@ -73,7 +73,7 @@ cesCalc <- function( xNames, data, coef ) {
       result <- result + coef[ paste( "delta", i, sep = "_" ) ] *
          data[[ xNames[ i ] ]]^( -coef[ "rho" ] )
    }
-   result <- result^( -coef[ "phi" ] / coef[ "rho" ] )
+   result <- result^( -coef[ "nu" ] / coef[ "rho" ] )
    result <- coef[ "gamma" ] * result 
 
    return( result )

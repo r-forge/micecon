@@ -8,14 +8,14 @@
    function with two explanatory variables
 
    \deqn{y = \gamma \: ( \delta \: x_1^{-\rho} + ( 1 - \delta ) \: x_2^{-\rho} )
-      ^{-\frac{\phi}{\rho}}}{%
-      y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-phi/rho)}
+      ^{-\frac{\nu}{\rho}}}{%
+      y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)}
 
    and with \eqn{N} explanatory variables
 
    \deqn{y = \gamma \: \left( \sum_{i=1}^N \delta_i \: x_i^{-\rho} \right)
-      ^{-\frac{\phi}{\rho}}}{%
-      y = gamma * ( sum(i=1 to N) delta_i * x_i^(-rho) )^(-phi/rho)}
+      ^{-\frac{\nu}{\rho}}}{%
+      y = gamma * ( sum(i=1 to N) delta_i * x_i^(-rho) )^(-nu/rho)}
 
    where in the latter case
    \eqn{\sum_{i=1}^N \delta_i = 1}{sum(i=1 to N) delta_i = 1}.
@@ -37,18 +37,18 @@ cesCalc( xNames, data, coef )
       if the vector is unnamed,
       the order of the coefficients must be
       \eqn{\gamma}{gamma}, \eqn{\delta}{delta}, \eqn{\rho}{rho},
-      and eventually \eqn{\phi}{phi}
+      and eventually \eqn{\nu}{nu}
       in case of two expanatory variables,
       \eqn{\gamma}{gamma}, \eqn{\delta_1}{delta_1}, \ldots,
-      \eqn{\delta_N}{delta_N}, \eqn{\rho}{rho}, and eventually \eqn{\phi}{phi}
+      \eqn{\delta_N}{delta_N}, \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}
       in case of \eqn{N>2} explanatory variables,
-      where the \eqn{\phi}{phi} is only required if the model
+      where the \eqn{\nu}{nu} is only required if the model
       has variable returns to scale;
       if the vector is named, the names must be \code{"gamma"},
-      \code{"delta"}, \code{"rho"}, and eventually \code{"phi"}
+      \code{"delta"}, \code{"rho"}, and eventually \code{"nu"}
       in case of two expanatory variables,
       and \code{"gamma"}, \code{"delta_1"}, \ldots, \code{"delta_N"},
-      \code{"rho"}, and eventually \code{"phi"}
+      \code{"rho"}, and eventually \code{"nu"}
       in case of \eqn{N>2} explanatory variables,
       where the order is irrelevant in both cases.}
 }

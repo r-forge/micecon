@@ -8,8 +8,8 @@
    Estimate a Constant-Elasticities-of-Scale (CES) function
    with two exogenous variables by Least Squares.
 
-   \deqn{y = \gamma * ( \delta * x1^{-\rho} + ( 1 - \delta ) * x2^{-\rho} )^{-\phi/\rho}}{%
-      y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-phi/rho)}
+   \deqn{y = \gamma * ( \delta * x1^{-\rho} + ( 1 - \delta ) * x2^{-\rho} )^{-\nu/\rho}}{%
+      y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)}
    where the elesticity of substitution is
    \eqn{s = 1 / ( 1 + \rho )}{s = 1 / ( 1 + rho )}
 
@@ -98,24 +98,24 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \bold{Starting values}\cr
    Argument \code{startVal} should be a numeric vector
    of length 3 for estimations of the CES with constant returns to scale
-   (CRS, i.e. with \eqn{\phi}{phi} fixed at 1)
+   (CRS, i.e. with \eqn{\nu}{nu} fixed at 1)
    or of length 4 for estimations of the CES with variable returns to scale
-   (VRS, i.e. with \eqn{\phi}{phi} estimated).
+   (VRS, i.e. with \eqn{\nu}{nu} estimated).
    The order must be \eqn{\gamma}{gamma}, \eqn{\delta}{delta},
-   \eqn{\rho}{rho}, and eventually \eqn{\phi}{phi}.
+   \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}.
    Names of the elements are ignored.
    If argument \code{startVal} is \code{NULL},
    the starting value of \eqn{\delta}{delta} is set to 0.5,
    the starting value of \eqn{\rho}{rho} is set to 0.25
       (i.e.\ elasticity of substitution = 0.8),
-   the starting value of \eqn{\phi}{phi} is set to 1
+   the starting value of \eqn{\nu}{nu} is set to 1
       (only if argument \code{vrs} is \code{TRUE}),
    and \eqn{\gamma}{gamma} is set to a value
    so that the mean of the endogenous variable
    is equal to the mean of its fitted values,
    i.e. \eqn{\gamma}{gamma} =  mean( y ) /
       mean( CES( X, \eqn{\gamma}{gamma} = 1, \eqn{\delta}{delta} = 0.5,
-         \eqn{\rho}{rho} = 0.25, \eqn{\phi}{phi} = 1 ) ).\cr\cr
+         \eqn{\rho}{rho} = 0.25, \eqn{\nu}{nu} = 1 ) ).\cr\cr
 
    \bold{Lower and upper bounds}\cr
    Arguments \code{lower} and \code{upper} can be used
@@ -128,16 +128,16 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    In case of the \code{L-BFGS-B}, \code{PORT}, and \code{DE} method,
    the lower bound is \code{0} for \eqn{\gamma}{gamma},
    \code{0} for \eqn{\delta}{delta}, \code{-1} for \eqn{\rho}{rho},
-   and eventually \code{0} for \eqn{\phi}{phi}.
+   and eventually \code{0} for \eqn{\nu}{nu}.
    In case of the \code{L-BFGS-B} and \code{PORT} method,
    the upper bound is infinity for \eqn{\gamma}{gamma},
    \code{1} for \eqn{\delta}{delta}, infinity for \eqn{\rho}{rho},
-   and eventually infinity for \eqn{\phi}{phi}.
+   and eventually infinity for \eqn{\nu}{nu}.
    Since the \sQuote{Differential Evulation} algorithm requires finit bounds,
    the upper bounds for the \code{DE} method are set
    to \code{1e10} for \eqn{\gamma}{gamma},
    \code{1} for \eqn{\delta}{delta}, \code{10} for \eqn{\rho}{rho},
-   and eventually \code{10} for \eqn{\phi}{phi}.
+   and eventually \code{10} for \eqn{\nu}{nu}.
    In case of all other estimation methods,
    the lower and upper bounds are set to \code{-Inf} and \code{Inf}, respectively,
    because these methods do not support parameter constraints.

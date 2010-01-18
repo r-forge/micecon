@@ -2,7 +2,7 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
       ... ) {
 
    cat( "Estimated CES function with " )
-   if( "phi" %in% rownames( coef( x ) ) ){
+   if( "nu" %in% rownames( coef( x ) ) ){
       cat( "variable " )
    } else {
       cat( "constant " )

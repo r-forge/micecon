@@ -24,7 +24,7 @@ for( i in 1:nExog ) {
 # coefficients
 cesCoef <- c( 1, 1:nExog / sum( 1:nExog ), 0.5, 1.1 )
 names( cesCoef ) <- c( "gamma", paste( "delta", 1:nExog, sep = "_" ),
-   "rho", "phi" )
+   "rho", "nu" )
 
 # calculate deterministic endogenous variable
 cesData$y <- cesCalc( xNames = xxNames, data = cesData, coef = cesCoef )

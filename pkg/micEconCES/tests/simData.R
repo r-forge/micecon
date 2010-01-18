@@ -14,7 +14,7 @@ cesData <- data.frame( xx1 = rchisq( nObs, 10 ), xx2 = rchisq( nObs, 10 ) )
 xxNames <- c( "xx1", "xx2" )
 
 # coefficients
-cesCoef <- c( gamma = 1, delta = 0.6, rho = 0.5, phi = 1.1 )
+cesCoef <- c( gamma = 1, delta = 0.6, rho = 0.5, nu = 1.1 )
 
 # calculate deterministic endogenous variable
 cesData$yd <- cesCalc( xNames = xxNames, data = cesData, coef = cesCoef )
