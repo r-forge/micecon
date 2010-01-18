@@ -22,6 +22,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       if( !is.null( startVal ) ) {
          warning( "ignoring starting values because they are not required",
             " for method '", method, "'" )
+         startVal <- NULL
       }
    } else {
       if( is.null( startVal ) ) {
@@ -172,9 +173,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    result$method <- method
 
    # return the starting values
-   if( ! method %in% c( "Kmenta", "DE" ) ) {
-      result$startVal <- startVal
-   }
+   result$startVal <- startVal
 
    # return lower and upper bounds
    result$lower <- lower
