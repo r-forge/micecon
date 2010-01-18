@@ -25,7 +25,7 @@
 
 \usage{
 cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
-   startVal = NULL, lower = NULL, upper = NULL, \dots )
+   startVal = NULL, lower = NULL, upper = NULL, rho = NULL, \dots )
 
 \method{print}{cesEst}( x, digits = max(3, getOption("digits") - 3),
    \dots )
@@ -51,6 +51,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       (see section \sQuote{Details}).}
    \item{upper}{upper bounds of the parameters
       (see section \sQuote{Details}).}
+   \item{rho}{numeric scalar at which the coefficient \eqn{\rho}{rho}
+      should be fixed;
+      if \code{NULL} (default), \eqn{\rho}{rho} is estimated.}
    \item{x}{an object of class \code{cesEst}.}
    \item{digits}{number of digits.}
    \item{\dots}{further arguments to \code{cesEst} are passed to
@@ -147,7 +150,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
 \value{
    \code{cesEst} returns a list of class \code{cesEst}
    that has following components:
-   \item{coefficients}{estimated coefficients/parameters of the CES.}
+   \item{coefficients}{estimated coefficients/parameters of the CES
+      (including a possible fixed \eqn{\rho}{rho}).}
    \item{iter}{number of iterations
       (only for non-linear least-squares estimations).}
    \item{convergence}{logical value indicating if the non-linear estimation
@@ -158,7 +162,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{vcov}{approximate covariance matrix of the estimated parameters
       calculated from the parameters of the linearized model by the Delta method
       (only if argument \code{method} is \code{"Kmenta"}).}
-   \item{cov.unscaled}{unscaled covariance matrix of the estimated parameters,
+   \item{cov.unscaled}{unscaled covariance matrix of the estimated parameters
+      (including a possible fixed \eqn{\rho}{rho}),
       i.e. the inverse of the cross-product of the gradient matrix
       evaluated at the estimated parameters.}
    \item{fitted.values}{the fitted values.}
@@ -169,6 +174,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       (not for the \code{Kmenta} and \code{DE} method).}
    \item{lower}{lower bounds of the parameters.}
    \item{upper}{upper bounds of the parameters.}
+   \item{rho}{argument \code{rho}.}
    \item{optim}{object returned by \code{\link[stats]{optim}}
       (only if argument \code{method} is \code{"Nelder-Mead"}, \code{"BFGS"},
       \code{"CG"}, \code{"L-BFGS-B"}, or \code{"SANN"})).}

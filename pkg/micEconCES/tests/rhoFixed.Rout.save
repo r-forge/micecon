@@ -1,0 +1,2804 @@
+
+R version 2.10.1 (2009-12-14)
+Copyright (C) 2009 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # load the micEconCES package
+> library( micEconCES )
+Loading required package: systemfit
+Loading required package: Matrix
+Loading required package: lattice
+Loading required package: car
+Loading required package: lmtest
+Loading required package: zoo
+Loading required package: miscTools
+Loading required package: micEcon
+Loading required package: np
+Loading required package: boot
+
+Attaching package: 'boot'
+
+
+	The following object(s) are masked from package:car :
+
+	 logit 
+
+
+	The following object(s) are masked from package:lattice :
+
+	 melanoma 
+
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-3)
+Loading required package: minpack.lm
+Loading required package: DEoptim
+> 
+> # load data
+> data( germanFarms )
+> # output quantity:
+> germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
+> # quantity of intermediate inputs
+> germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
+> 
+> # seed for random number generation
+> set.seed( 123 )
+> 
+> # names of explanatory variables
+> xxNames <- c( "land", "qVarInput" )
+> 
+> 
+> ## Nelder-Mead, CRS
+> cesNm <- cesEst( "qOutput", xxNames, germanFarms, rho = 2 )
+> print.default( cesNm ) 
+$optim
+$optim$par
+    gamma     delta 
+84.481925  2.958593 
+
+$optim$value
+[1] 165627.5
+
+$optim$counts
+function gradient 
+     501       NA 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+    gamma     delta       rho 
+84.481925  2.958593  2.000000 
+
+$iter
+[1] 501
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    rho = 2)
+
+$method
+[1] "Nelder-Mead"
+
+$startVal
+  gamma   delta 
+34.5393  0.5000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 2
+
+$fitted.values
+ [1] 1149.983 1189.229 1213.332 1224.062 1224.074 1239.797 1273.214 1276.216
+ [9] 1237.370 1281.134 1315.500 1467.838 1528.755 1581.890 1549.068 1566.832
+[17] 1648.594 1723.424 1834.091 1936.348
+
+$residuals
+ [1] -203.849629 -226.498270 -143.752386  -52.265915  -45.957914  -53.986784
+ [7]  -33.856295   12.344914  -29.663643   -2.725735   45.092540   72.946590
+[13]   46.279369  114.069394   95.621155   59.199094    6.445430   32.175811
+[19]   53.328994   55.545714
+
+$cov.unscaled
+           gamma      delta        rho
+gamma 68750113.0 5286677.98 294106.914
+delta  5286678.0  406530.08  22616.169
+rho     294106.9   22616.17   1258.306
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesNm )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    rho = 2)
+
+Coefficients:
+ gamma  delta    rho 
+84.482  2.959  2.000 
+
+> summary( cesNm )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    rho = 2)
+
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Convergence NOT achieved after 501 iterations
+
+Coefficients:
+       Estimate Std. Error  t value Pr(>|t|)
+gamma 8.448e+01  7.545e+05 0.000112        1
+delta 2.959e+00  5.802e+04 0.000051        1
+rho   2.000e+00  3.228e+03    0.001        1
+
+Residual standard error: 91.00207 
+Multiple R-squared: 0.9064313 
+
+> coef( cesNm ) 
+    gamma     delta       rho 
+84.481925  2.958593  2.000000 
+> vcov( cesNm ) 
+             gamma       delta        rho
+gamma 569345614626 43780974216 2435610273
+delta  43780974216  3366628912  187293022
+rho     2435610273   187293022   10420506
+> coef( summary( cesNm ) )
+       Estimate Std. Error      t value  Pr(>|t|)
+gamma 84.481925 754549.942 1.119633e-04 0.9999107
+delta  2.958593  58022.659 5.099031e-05 0.9999593
+rho    2.000000   3228.081 6.195632e-04 0.9995057
+> 
+> ## Nelder-Mead, VRS
+> cesNmVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE, rho = -0.1 )
+> print.default( cesNmVrs )
+$optim
+$optim$par
+    gamma     delta       phi 
+1.5303673 0.7174523 1.5625053 
+
+$optim$value
+[1] 50203.6
+
+$optim$counts
+function gradient 
+     502       NA 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho        phi 
+ 1.5303673  0.7174523 -0.1000000  1.5625053 
+
+$iter
+[1] 502
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, rho = -0.1)
+
+$method
+[1] "Nelder-Mead"
+
+$startVal
+   gamma    delta      phi 
+8.852626 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.1
+
+$fitted.values
+ [1] 1009.037 1094.607 1118.345 1174.723 1168.433 1193.016 1242.378 1219.037
+ [9] 1173.534 1224.386 1293.436 1534.487 1645.051 1698.811 1592.155 1588.728
+[17] 1649.866 1727.596 1882.312 2046.168
+
+$residuals
+ [1]  -62.904221 -131.876587  -48.765589   -2.926923    9.682748   -7.205877
+ [7]   -3.020195   69.523919   34.172481   54.022206   67.156645    6.296741
+[13]  -70.015959   -2.851106   52.533855   37.303266    5.173364   28.003532
+[19]    5.108579  -54.273530
+
+$cov.unscaled
+              gamma         delta           rho           phi
+gamma  0.0998602668  2.549692e-02 -4.029273e-02 -1.085427e-04
+delta  0.0254969174  6.527913e-03 -1.032316e-02 -2.014954e-05
+rho   -0.0402927322 -1.032316e-02  1.632862e-02  2.918040e-05
+phi   -0.0001085427 -2.014954e-05  2.918040e-05  3.450127e-06
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesNmVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, rho = -0.1)
+
+Coefficients:
+  gamma   delta     rho     phi 
+ 1.5304  0.7175 -0.1000  1.5625 
+
+> summary( cesNmVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, rho = -0.1)
+
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Convergence NOT achieved after 502 iterations
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  1.53037   15.83247   0.097    0.923    
+delta  0.71745    4.04799   0.177    0.859    
+rho   -0.10000    6.40217  -0.016    0.988    
+phi    1.56251    0.09306  16.790   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 50.1017 
+Multiple R-squared: 0.9716383 
+
+> coef( cesNmVrs )
+     gamma      delta        rho        phi 
+ 1.5303673  0.7174523 -0.1000000  1.5625053 
+> vcov( cesNmVrs )
+             gamma        delta           rho          phi
+gamma  250.6672492  64.00185335 -101.14201250 -0.272461680
+delta   64.0018533  16.38623708  -25.91298588 -0.050578961
+rho   -101.1420125 -25.91298588   40.98778549  0.073248069
+phi     -0.2724617  -0.05057896    0.07324807  0.008660441
+> coef( summary( cesNmVrs ) )
+        Estimate  Std. Error     t value     Pr(>|t|)
+gamma  1.5303673 15.83247451  0.09666002 9.229964e-01
+delta  0.7174523  4.04799173  0.17723660 8.593225e-01
+rho   -0.1000000  6.40217037 -0.01561970 9.875378e-01
+phi    1.5625053  0.09306149 16.79003135 2.886924e-63
+> 
+> ## Conjugate Gradients, CRS
+> cesCg <- cesEst( "qOutput", xxNames, germanFarms, method = "CG", rho = 2 )
+> print.default( cesCg )
+$optim
+$optim$par
+     gamma      delta 
+34.5396489  0.4930429 
+
+$optim$value
+[1] 166153.1
+
+$optim$counts
+function gradient 
+     754      101 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho 
+34.5396489  0.4930429  2.0000000 
+
+$iter
+function gradient 
+     754      101 
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "CG", rho = 2)
+
+$method
+[1] "CG"
+
+$startVal
+  gamma   delta 
+34.5393  0.5000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 2
+
+$fitted.values
+ [1] 1149.998 1189.422 1213.469 1224.406 1224.388 1240.120 1273.540 1276.407
+ [9] 1237.616 1281.315 1315.772 1468.139 1529.112 1582.098 1549.008 1566.589
+[17] 1647.888 1722.388 1832.822 1934.988
+
+$residuals
+ [1] -203.864954 -226.691326 -143.889756  -52.609858  -46.272367  -54.310192
+ [7]  -34.182586   12.154223  -29.909801   -2.906846   44.820825   72.645586
+[13]   45.922856  113.861517   95.680850   59.442105    7.152052   33.212040
+[19]   54.598040   56.905969
+
+$cov.unscaled
+           gamma     delta         rho
+gamma 234707.088 8637.0176 -11138.7943
+delta   8637.018  317.8372   -409.9121
+rho   -11138.794 -409.9121    528.7101
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesCg )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "CG", rho = 2)
+
+Coefficients:
+ gamma  delta    rho 
+34.540  0.493  2.000 
+
+> summary( cesCg )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "CG", rho = 2)
+
+Estimation by non-linear least-squares using the 'CG' optimizer
+Convergence NOT achieved after 754 function and 101 gradient calls
+
+Coefficients:
+       Estimate Std. Error  t value Pr(>|t|)
+gamma    34.540  44157.287    0.001        1
+delta     0.493   1624.956 0.000303        1
+rho       2.000   2095.791    0.001        1
+
+Residual standard error: 91.14635 
+Multiple R-squared: 0.9061344 
+
+> coef( cesCg )
+     gamma      delta        rho 
+34.5396489  0.4930429  2.0000000 
+> vcov( cesCg )
+           gamma    delta       rho
+gamma 1949866001 71753380 -92537284
+delta   71753380  2640482  -3405409
+rho    -92537284 -3405409   4392342
+> coef( summary( cesCg ) )
+        Estimate Std. Error      t value  Pr(>|t|)
+gamma 34.5396489  44157.287 0.0007821959 0.9993759
+delta  0.4930429   1624.956 0.0003034192 0.9997579
+rho    2.0000000   2095.792 0.0009542934 0.9992386
+> 
+> ## Conjugate Gradients, VRS
+> cesCgVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "CG", vrs = TRUE,
++    rho = -0.1 )
+> print.default( cesCgVrs )
+$optim
+$optim$par
+    gamma     delta       phi 
+8.8515065 0.6795295 1.1311791 
+
+$optim$value
+[1] 203705.1
+
+$optim$counts
+function gradient 
+     658      101 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho        phi 
+ 8.8515065  0.6795295 -0.1000000  1.1311791 
+
+$iter
+function gradient 
+     658      101 
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "CG", rho = -0.1)
+
+$method
+[1] "CG"
+
+$startVal
+   gamma    delta      phi 
+8.852626 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.1
+
+$fitted.values
+ [1] 1122.963 1194.112 1211.767 1259.536 1254.068 1273.210 1311.019 1290.616
+ [9] 1256.670 1294.531 1348.553 1526.113 1605.787 1640.599 1561.032 1555.905
+[17] 1593.248 1643.907 1747.473 1856.112
+
+$residuals
+ [1] -176.829703 -231.381442 -142.187837  -87.739686  -75.951626  -87.400098
+ [7]  -71.661405   -2.055216  -48.963358  -16.122749   12.039515   14.670692
+[13]  -30.752517   55.360099   83.657602   70.126526   61.791979  111.692557
+[19]  139.947236  135.782096
+
+$cov.unscaled
+             gamma         delta           rho           phi
+gamma  3.501241529  2.150759e-01 -3.162004e-01 -6.611720e-04
+delta  0.215075883  1.324607e-02 -1.948673e-02 -3.042148e-05
+rho   -0.316200438 -1.948673e-02  2.867386e-02  4.146114e-05
+phi   -0.000661172 -3.042148e-05  4.146114e-05  3.295931e-06
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesCgVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "CG", rho = -0.1)
+
+Coefficients:
+  gamma   delta     rho     phi 
+ 8.8515  0.6795 -0.1000  1.1312 
+
+> summary( cesCgVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "CG", rho = -0.1)
+
+Estimation by non-linear least-squares using the 'CG' optimizer
+Convergence NOT achieved after 658 function and 101 gradient calls
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma   8.8515   189.2226   0.047    0.963    
+delta   0.6795    11.6387   0.058    0.953    
+rho    -0.1000    17.1240  -0.006    0.995    
+phi     1.1312     0.1836   6.161 7.21e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 101.1258 
+Multiple R-squared: 0.8844548 
+
+> coef( cesCgVrs )
+     gamma      delta        rho        phi 
+ 8.8515065  0.6795295 -0.1000000  1.1311791 
+> vcov( cesCgVrs )
+             gamma        delta           rho         phi
+gamma 35805.193273 2199.4579634 -3233.6009109 -6.76142814
+delta  2199.457963  135.4599781  -199.2795894 -0.31110311
+rho   -3233.600911 -199.2795894   293.2311184  0.42399932
+phi      -6.761428   -0.3111031     0.4239993  0.03370560
+> coef( summary( cesCgVrs ) )
+        Estimate  Std. Error     t value     Pr(>|t|)
+gamma  8.8515065 189.2226024  0.04677827 9.626899e-01
+delta  0.6795295  11.6387275  0.05838520 9.534418e-01
+rho   -0.1000000  17.1239925 -0.00583976 9.953406e-01
+phi    1.1311791   0.1835908  6.16141365 7.209838e-10
+> 
+> ## Simulated Annealing, CRS
+> cesSann <- cesEst( "qOutput", xxNames, germanFarms, method = "SANN", rho = 2 )
+> print.default( cesSann )
+$optim
+$optim$par
+     gamma      delta 
+35.9750345  0.5349214 
+
+$optim$value
+[1] 166103.7
+
+$optim$counts
+function gradient 
+   10000       NA 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho 
+35.9750345  0.5349214  2.0000000 
+
+$iter
+[1] 10000
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "SANN", rho = 2)
+
+$method
+[1] "SANN"
+
+$startVal
+  gamma   delta 
+34.5393  0.5000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 2
+
+$fitted.values
+ [1] 1150.108 1189.519 1213.574 1224.493 1224.478 1240.210 1273.633 1276.512
+ [9] 1237.713 1281.422 1315.874 1468.252 1529.226 1582.232 1549.164 1566.764
+[17] 1648.114 1722.652 1833.119 1935.303
+
+$residuals
+ [1] -203.974896 -226.788429 -143.994408  -52.696204  -46.361476  -54.399985
+ [7]  -34.275346   12.048473  -30.006594   -3.013969   44.718858   72.531607
+[13]   45.808175  113.727771   95.525235   59.267615    6.926282   32.948212
+[19]   54.301735   56.591233
+
+$cov.unscaled
+          gamma      delta         rho
+gamma 305442.48 11589.3102 -15016.6617
+delta  11589.31   439.7327   -569.7911
+rho   -15016.66  -569.7911    738.3860
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesSann )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "SANN", rho = 2)
+
+Coefficients:
+  gamma   delta     rho 
+35.9750  0.5349  2.0000 
+
+> summary( cesSann )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "SANN", rho = 2)
+
+Estimation by non-linear least-squares using the 'SANN' optimizer
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)
+gamma 3.598e+01  5.037e+04   0.001        1
+delta 5.349e-01  1.911e+03 0.00028        1
+rho   2.000e+00  2.476e+03   0.001        1
+
+Residual standard error: 91.1328 
+Multiple R-squared: 0.9061623 
+
+> coef( cesSann )
+     gamma      delta        rho 
+35.9750345  0.5349214  2.0000000 
+> vcov( cesSann )
+           gamma    delta        rho
+gamma 2536757034 96251394 -124716190
+delta   96251394  3652062   -4732222
+rho   -124716190 -4732222    6132434
+> coef( summary( cesSann ) )
+        Estimate Std. Error      t value  Pr(>|t|)
+gamma 35.9750345  50366.229 0.0007142690 0.9994301
+delta  0.5349214   1911.037 0.0002799116 0.9997767
+rho    2.0000000   2476.375 0.0008076320 0.9993556
+> 
+> ## Simulated Annealing, VRS
+> cesSannVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "SANN", vrs = TRUE,
++    rho = -0.1 )
+> print.default( cesSannVrs )
+$optim
+$optim$par
+    gamma     delta       phi 
+8.6340007 0.8777559 1.3369272 
+
+$optim$value
+[1] 70385.4
+
+$optim$counts
+function gradient 
+   10000       NA 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho        phi 
+ 8.6340007  0.8777559 -0.1000000  1.3369272 
+
+$iter
+[1] 10000
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "SANN", rho = -0.1)
+
+$method
+[1] "SANN"
+
+$startVal
+   gamma    delta      phi 
+8.852626 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.1
+
+$fitted.values
+ [1] 1060.599 1121.965 1147.995 1177.882 1175.405 1196.046 1238.846 1231.736
+ [9] 1186.646 1237.292 1288.686 1491.811 1578.902 1638.959 1573.693 1585.382
+[17] 1669.384 1755.318 1899.051 2040.871
+
+$residuals
+ [1] -114.4661247 -159.2348679  -78.4156359   -6.0851194    2.7111634
+ [6]  -10.2361735    0.5118417   56.8251732   21.0602883   41.1162329
+[11]   71.9064154   48.9727369   -3.8671672   57.0000717   70.9963124
+[16]   40.6491901  -14.3439110    0.2817659  -11.6306795  -48.9774077
+
+$cov.unscaled
+             gamma         delta           rho           phi
+gamma  2.757941514  1.405889e-01 -4.194039e-01 -6.231240e-04
+delta  0.140588950  7.187180e-03 -2.145886e-02 -2.366266e-05
+rho   -0.419403853 -2.145886e-02  6.408899e-02  6.406701e-05
+phi   -0.000623124 -2.366266e-05  6.406701e-05  3.478523e-06
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesSannVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "SANN", rho = -0.1)
+
+Coefficients:
+  gamma   delta     rho     phi 
+ 8.6340  0.8778 -0.1000  1.3369 
+
+> summary( cesSannVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "SANN", rho = -0.1)
+
+Estimation by non-linear least-squares using the 'SANN' optimizer
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma   8.6340    98.5187   0.088    0.930    
+delta   0.8778     5.0293   0.175    0.861    
+rho    -0.1000    15.0182  -0.007    0.995    
+phi     1.3369     0.1106  12.083   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 59.32343 
+Multiple R-squared: 0.9602369 
+
+> coef( cesSannVrs )
+     gamma      delta        rho        phi 
+ 8.6340007  0.8777559 -0.1000000  1.3369272 
+> vcov( cesSannVrs )
+             gamma        delta           rho         phi
+gamma  9705.939984 494.77043085 -1475.9952690 -2.19294142
+delta   494.770431  25.29362406   -75.5195331 -0.08327528
+rho   -1475.995269 -75.51953312   225.5464444  0.22546909
+phi      -2.192941  -0.08327528     0.2254691  0.01224186
+> coef( summary( cesSannVrs ) )
+        Estimate Std. Error      t value     Pr(>|t|)
+gamma  8.6340007 98.5187291  0.087638165 9.301643e-01
+delta  0.8777559  5.0292767  0.174529250 8.614495e-01
+rho   -0.1000000 15.0182038 -0.006658586 9.946873e-01
+phi    1.3369272  0.1106429 12.083257761 1.294858e-33
+> 
+> ## BFGS, CRS
+> cesBfgs <- cesEst( "qOutput", xxNames, germanFarms, method = "BFGS", rho = 2 )
+> print.default( cesBfgs )
+$optim
+$optim$par
+   gamma    delta 
+79.50010  2.62027 
+
+$optim$value
+[1] 165640.8
+
+$optim$counts
+function gradient 
+     368      100 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+   gamma    delta      rho 
+79.50010  2.62027  2.00000 
+
+$iter
+function gradient 
+     368      100 
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "BFGS", rho = 2)
+
+$method
+[1] "BFGS"
+
+$startVal
+  gamma   delta 
+34.5393  0.5000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 2
+
+$fitted.values
+ [1] 1149.868 1189.115 1213.214 1223.949 1223.960 1239.681 1273.095 1276.093
+ [9] 1237.253 1281.011 1315.376 1467.699 1528.612 1581.737 1548.912 1566.669
+[17] 1648.411 1723.225 1833.875 1936.119
+
+$residuals
+ [1] -203.735069 -226.384387 -143.634653  -52.152455  -45.843690  -53.871219
+ [7]  -33.737465   12.467554  -29.546322   -2.602356   45.217009   73.085530
+[13]   46.422961  114.222145   95.777552   59.362015    6.628539   32.374947
+[19]   53.545231   55.774537
+
+$cov.unscaled
+           gamma      delta        rho
+gamma 47093414.9 3432879.40 260661.178
+delta  3432879.4  250240.36  19001.131
+rho     260661.2   19001.13   1442.921
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesBfgs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "BFGS", rho = 2)
+
+Coefficients:
+ gamma  delta    rho 
+79.500  2.620  2.000 
+
+> summary( cesBfgs )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "BFGS", rho = 2)
+
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+Convergence NOT achieved after 368 function and 100 gradient calls
+
+Coefficients:
+       Estimate Std. Error  t value Pr(>|t|)
+gamma     79.50  624523.54 1.27e-04        1
+delta      2.62   45524.73 5.76e-05        1
+rho        2.00    3456.93    0.001        1
+
+Residual standard error: 91.00573 
+Multiple R-squared: 0.9064238 
+
+> coef( cesBfgs )
+   gamma    delta      rho 
+79.50010  2.62027  2.00000 
+> vcov( cesBfgs )
+             gamma       delta        rho
+gamma 390029647868 28431251956 2158806867
+delta  28431251956  2072501235  157368171
+rho     2158806867   157368171   11950329
+> coef( summary( cesBfgs ) )
+      Estimate Std. Error      t value  Pr(>|t|)
+gamma 79.50010 624523.537 1.272972e-04 0.9998984
+delta  2.62027  45524.732 5.755707e-05 0.9999541
+rho    2.00000   3456.925 5.785489e-04 0.9995384
+> 
+> ## BFGS, VRS
+> cesBfgsVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "BFGS", vrs = TRUE,
++    rho = -0.1 )
+> print.default( cesBfgsVrs )
+$optim
+$optim$par
+    gamma     delta       phi 
+1.3473827 0.7070535 1.5787972 
+
+$optim$value
+[1] 50073.4
+
+$optim$counts
+function gradient 
+     564      100 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho        phi 
+ 1.3473827  0.7070535 -0.1000000  1.5787972 
+
+$iter
+function gradient 
+     564      100 
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "BFGS", rho = -0.1)
+
+$method
+[1] "BFGS"
+
+$startVal
+   gamma    delta      phi 
+8.852626 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.1
+
+$fitted.values
+ [1] 1004.630 1091.807 1115.365 1173.580 1167.021 1191.868 1241.665 1217.177
+ [9] 1171.679 1222.508 1292.772 1536.419 1648.649 1701.892 1592.258 1587.734
+[17] 1647.180 1724.261 1879.634 2044.946
+
+$residuals
+ [1]  -58.497170 -129.076471  -45.785867   -1.783501   11.094752   -6.057771
+ [7]   -2.307376   71.383730   36.026721   55.900915   67.820251    4.364857
+[13]  -73.614186   -5.932447   52.430959   38.297246    7.860081   31.338658
+[19]    7.786002  -53.052375
+
+$cov.unscaled
+              gamma         delta           rho           phi
+gamma  7.822006e-02  2.250242e-02 -3.480428e-02 -9.554315e-05
+delta  2.250242e-02  6.491254e-03 -1.004678e-02 -1.994861e-05
+rho   -3.480428e-02 -1.004678e-02  1.555330e-02  2.829278e-05
+phi   -9.554315e-05 -1.994861e-05  2.829278e-05  3.453366e-06
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesBfgsVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "BFGS", rho = -0.1)
+
+Coefficients:
+ gamma  delta    rho    phi 
+ 1.347  0.707 -0.100  1.579 
+
+> summary( cesBfgsVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "BFGS", rho = -0.1)
+
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+Convergence NOT achieved after 564 function and 100 gradient calls
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  1.34738   13.99419   0.096    0.923    
+delta  0.70705    4.03137   0.175    0.861    
+rho   -0.10000    6.24022  -0.016    0.987    
+phi    1.57880    0.09298  16.979   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 50.03669 
+Multiple R-squared: 0.9717118 
+
+> coef( cesBfgsVrs )
+     gamma      delta        rho        phi 
+ 1.3473827  0.7070535 -0.1000000  1.5787972 
+> vcov( cesBfgsVrs )
+            gamma        delta          rho         phi
+gamma 195.8372275  56.33864064 -87.13843194 -0.23920852
+delta  56.3386406  16.25195994 -25.15383013 -0.04994474
+rho   -87.1384319 -25.15383013  38.94033118  0.07083578
+phi    -0.2392085  -0.04994474   0.07083578  0.00864609
+> coef( summary( cesBfgsVrs ) )
+        Estimate  Std. Error     t value     Pr(>|t|)
+gamma  1.3473827 13.99418549  0.09628161 9.232969e-01
+delta  0.7070535  4.03137197  0.17538782 8.607749e-01
+rho   -0.1000000  6.24021884 -0.01602508 9.872144e-01
+phi    1.5787972  0.09298435 16.97917082 1.171292e-64
+> 
+> ## L-BFGS-B with constrained parameters, CRS
+> cesBfgsCon <- cesEst( "qOutput", xxNames, germanFarms, method = "L-BFGS-B",
++    rho = 2 )
+> print.default( cesBfgsCon )
+$optim
+$optim$par
+   gamma    delta 
+49.14295  1.00000 
+
+$optim$value
+[1] 165832.4
+
+$optim$counts
+function gradient 
+      42       42 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+
+$coefficients
+   gamma    delta      rho 
+49.14295  1.00000  2.00000 
+
+$iter
+function gradient 
+      42       42 
+
+$convergence
+[1] TRUE
+
+$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "L-BFGS-B", rho = 2)
+
+$method
+[1] "L-BFGS-B"
+
+$startVal
+  gamma   delta 
+34.5393  0.5000 
+
+$lower
+[1] 0 0
+
+$upper
+[1] Inf   1
+
+$rho
+[1] 2
+
+$fitted.values
+ [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.523 1935.741
+
+$residuals
+ [1] -203.812030 -226.528907 -143.760265  -52.354411  -46.034845  -54.066630
+ [7]  -33.936006   12.318503  -29.713284   -2.748202   45.035837   72.884174
+[13]   46.197491  114.047832   95.703326   59.353878    6.785316   32.647977
+[19]   53.896799   56.153212
+
+$cov.unscaled
+              gamma         delta           rho
+gamma  3.058431e+02  1.247071e+01 -1.552149e+12
+delta  1.247071e+01  5.084919e-01 -6.329279e+10
+rho   -1.552149e+12 -6.329279e+10  6.320135e+23
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesBfgsCon )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "L-BFGS-B", rho = 2)
+
+Coefficients:
+gamma delta   rho 
+49.14  1.00  2.00 
+
+> summary( cesBfgsCon )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "L-BFGS-B", rho = 2)
+
+Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+Convergence achieved after 42 function and 42 gradient calls
+Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
+
+Coefficients:
+       Estimate Std. Error  t value Pr(>|t|)
+gamma 4.914e+01  1.592e+03    0.031    0.975
+delta 1.000e+00  6.493e+01    0.015    0.988
+rho   2.000e+00  7.239e+13 2.76e-14    1.000
+
+Residual standard error: 91.05832 
+Multiple R-squared: 0.9063156 
+
+> coef( cesBfgsCon )
+   gamma    delta      rho 
+49.14295  1.00000  2.00000 
+> vcov( cesBfgsCon )
+              gamma         delta           rho
+gamma  2.535934e+06  1.034024e+05 -1.286983e+16
+delta  1.034024e+05  4.216221e+03 -5.247996e+14
+rho   -1.286983e+16 -5.247996e+14  5.240415e+27
+> coef( summary( cesBfgsCon ) )
+      Estimate   Std. Error      t value  Pr(>|t|)
+gamma 49.14295 1.592462e+03 3.085974e-02 0.9753814
+delta  1.00000 6.493243e+01 1.540062e-02 0.9877126
+rho    2.00000 7.239071e+13 2.762786e-14 1.0000000
+> 
+> ## L-BFGS-B with constrained parameters, VRS
+> cesBfgsConVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "L-BFGS-B",
++    vrs = TRUE, rho = -0.1 )
+> print.default( cesBfgsConVrs )
+$optim
+$optim$par
+    gamma     delta       phi 
+1.2919634 0.7035413 1.5842273 
+
+$optim$value
+[1] 50044.76
+
+$optim$counts
+function gradient 
+     140      140 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+
+$coefficients
+     gamma      delta        rho        phi 
+ 1.2919634  0.7035413 -0.1000000  1.5842273 
+
+$iter
+function gradient 
+     140      140 
+
+$convergence
+[1] TRUE
+
+$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "L-BFGS-B", rho = -0.1)
+
+$method
+[1] "L-BFGS-B"
+
+$startVal
+   gamma    delta      phi 
+8.852626 0.500000 1.000000 
+
+$lower
+[1] 0 0 0
+
+$upper
+[1] Inf   1 Inf
+
+$rho
+[1] -0.1
+
+$fitted.values
+ [1] 1004.069 1091.865 1115.382 1174.271 1167.616 1192.573 1242.561 1217.661
+ [9] 1172.127 1222.990 1293.727 1538.462 1651.354 1704.463 1593.722 1588.820
+[17] 1647.738 1724.662 1880.384 2046.325
+
+$residuals
+ [1]  -57.935858 -129.134920  -45.803210   -2.474937   10.500335   -6.763028
+ [7]   -3.202841   70.899557   35.578951   55.418697   66.865196    2.321877
+[13]  -76.318864   -8.503726   50.966635   37.210719    7.301647   30.938236
+[19]    7.036036  -54.431219
+
+$cov.unscaled
+              gamma         delta           rho           phi
+gamma  0.0720417310  2.155695e-02 -3.311190e-02 -9.144070e-05
+delta  0.0215569541  6.468115e-03 -9.941870e-03 -1.984660e-05
+rho   -0.0331119049 -9.941870e-03  1.528463e-02  2.795987e-05
+phi   -0.0000914407 -1.984660e-05  2.795987e-05  3.448197e-06
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesBfgsConVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "L-BFGS-B", rho = -0.1)
+
+Coefficients:
+  gamma   delta     rho     phi 
+ 1.2920  0.7035 -0.1000  1.5842 
+
+> summary( cesBfgsConVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "L-BFGS-B", rho = -0.1)
+
+Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+Convergence achieved after 140 function and 140 gradient calls
+Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  1.29196   13.42630   0.096    0.923    
+delta  0.70354    4.02303   0.175    0.861    
+rho   -0.10000    6.18432  -0.016    0.987    
+phi    1.58423    0.09289  17.055   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 50.02238 
+Multiple R-squared: 0.971728 
+
+> coef( cesBfgsConVrs )
+     gamma      delta        rho        phi 
+ 1.2919634  0.7035413 -0.1000000  1.5842273 
+> vcov( cesBfgsConVrs )
+            gamma        delta          rho         phi
+gamma 180.2655593  53.94063044 -82.85386769 -0.22880640
+delta  53.9406304  16.18476336 -24.87692630 -0.04966091
+rho   -82.8538677 -24.87692630  38.24579361  0.06996225
+phi    -0.2288064  -0.04966091   0.06996225  0.00862821
+> coef( summary( cesBfgsConVrs ) )
+        Estimate  Std. Error     t value     Pr(>|t|)
+gamma  1.2919634 13.42630103  0.09622631 9.233408e-01
+delta  0.7035413  4.02302913  0.17487850 8.611751e-01
+rho   -0.1000000  6.18431836 -0.01616993 9.870988e-01
+phi    1.5842273  0.09288816 17.05521329 3.197038e-65
+> 
+> ## Levenberg-Marquardt, CRS
+> cesLm <- cesEst( "qOutput", xxNames, germanFarms, method = "LM",
++    control = nls.lm.control( maxiter = 200 ), rho = 2 )
+Warning message:
+In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
+  lmder: info = -1. Number of iterations has reached `maxiter' == 200.
+
+> print.default( cesLm )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 424.329313237011, 74.6923487191897 
+residual sum-of-squares: 165527
+reason terminated: Number of iterations has reached `maxiter' == 200.
+
+$coefficients
+    gamma     delta       rho 
+424.32931  74.69235   2.00000 
+
+$iter
+[1] 200
+
+$convergence
+[1] FALSE
+
+$message
+[1] "Number of iterations has reached `maxiter' == 200."
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "LM", rho = 2, control = nls.lm.control(maxiter = 200))
+
+$method
+[1] "LM"
+
+$startVal
+  gamma   delta 
+34.5393  0.5000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 2
+
+$fitted.values
+ [1] 1149.900 1189.109 1213.221 1223.911 1223.928 1239.648 1273.063 1276.090
+ [9] 1237.236 1281.010 1315.356 1467.677 1528.580 1581.740 1548.971 1566.770
+[17] 1648.616 1723.504 1834.208 1936.476
+
+$residuals
+ [1] -203.76652 -226.37818 -143.64134  -52.11434  -45.81202  -53.83807
+ [7]  -33.70469   12.47061  -29.52997   -2.60154   45.23658   73.10689
+[13]   46.45461  114.21971   95.71762   59.26146    6.42405   32.09601
+[19]   53.21195   55.41819
+
+$cov.unscaled
+             gamma        delta          rho
+gamma 1.414976e+12 502883137442 2.945282e+07
+delta 5.028831e+11 178724929437 1.046756e+07
+rho   2.945282e+07     10467555 6.131165e+02
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLm )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "LM", rho = 2, control = nls.lm.control(maxiter = 200))
+
+Coefficients:
+ gamma  delta    rho 
+424.33  74.69   2.00 
+
+> summary( cesLm )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "LM", rho = 2, control = nls.lm.control(maxiter = 200))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+Convergence NOT achieved after 200 iterations
+Message: Number of iterations has reached `maxiter' == 200. 
+
+Coefficients:
+       Estimate Std. Error  t value Pr(>|t|)
+gamma 4.243e+02  1.082e+08 3.92e-06        1
+delta 7.469e+01  3.846e+07 1.94e-06        1
+rho   2.000e+00  2.253e+03    0.001        1
+
+Residual standard error: 90.97451 
+Multiple R-squared: 0.906488 
+
+> coef( cesLm )
+    gamma     delta       rho 
+424.32931  74.69235   2.00000 
+> vcov( cesLm )
+             gamma        delta          rho
+gamma 1.171085e+16 4.162043e+15 243762167804
+delta 4.162043e+15 1.479192e+15  86633272960
+rho   2.437622e+11 8.663327e+10      5074374
+> coef( summary( cesLm ) )
+       Estimate   Std. Error      t value  Pr(>|t|)
+gamma 424.32931 1.082167e+08 3.921108e-06 0.9999969
+delta  74.69235 3.846027e+07 1.942065e-06 0.9999985
+rho     2.00000 2.252637e+03 8.878482e-04 0.9992916
+> 
+> ## Levenberg-Marquardt, VRS
+> cesLmVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "LM", vrs = TRUE,
++    control = nls.lm.control( maxiter = 200 ), rho = -0.1 )
+> print.default( cesLmVrs )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 1.29196188463481, 0.703541220961593, 1.58422750324929 
+residual sum-of-squares: 50045
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+     gamma      delta        rho        phi 
+ 1.2919619  0.7035412 -0.1000000  1.5842275 
+
+$iter
+[1] 32
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "LM", rho = -0.1, control = nls.lm.control(maxiter = 200))
+
+$method
+[1] "LM"
+
+$startVal
+   gamma    delta      phi 
+8.852626 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.1
+
+$fitted.values
+ [1] 1004.069 1091.865 1115.382 1174.271 1167.616 1192.573 1242.561 1217.661
+ [9] 1172.127 1222.990 1293.727 1538.462 1651.354 1704.463 1593.722 1588.820
+[17] 1647.738 1724.662 1880.384 2046.325
+
+$residuals
+ [1]  -57.935810 -129.134885  -45.803175   -2.474915   10.500358   -6.763007
+ [7]   -3.202825   70.899582   35.578977   55.418722   66.865210    2.321864
+[13]  -76.318894   -8.503755   50.966631   37.210723    7.301659   30.938249
+[19]    7.036036  -54.431237
+
+$cov.unscaled
+              gamma         delta           rho           phi
+gamma  0.0720415683  2.155693e-02 -3.311186e-02 -9.144059e-05
+delta  0.0215569284  6.468114e-03 -9.941868e-03 -1.984659e-05
+rho   -0.0331118610 -9.941868e-03  1.528463e-02  2.795986e-05
+phi   -0.0000914406 -1.984659e-05  2.795986e-05  3.448197e-06
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLmVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "LM", rho = -0.1, control = nls.lm.control(maxiter = 200))
+
+Coefficients:
+  gamma   delta     rho     phi 
+ 1.2920  0.7035 -0.1000  1.5842 
+
+> summary( cesLmVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "LM", rho = -0.1, control = nls.lm.control(maxiter = 200))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+Convergence achieved after 32 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  1.29196   13.42629   0.096    0.923    
+delta  0.70354    4.02303   0.175    0.861    
+rho   -0.10000    6.18432  -0.016    0.987    
+phi    1.58423    0.09289  17.055   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 50.02238 
+Multiple R-squared: 0.971728 
+
+> coef( cesLmVrs )
+     gamma      delta        rho        phi 
+ 1.2919619  0.7035412 -0.1000000  1.5842275 
+> vcov( cesLmVrs )
+            gamma       delta          rho         phi
+gamma 180.2651522  53.9405662 -82.85375792 -0.22880613
+delta  53.9405662  16.1847613 -24.87691989 -0.04966090
+rho   -82.8537579 -24.8769199  38.24577865  0.06996223
+phi    -0.2288061  -0.0496609   0.06996223  0.00862821
+> coef( summary( cesLmVrs ) )
+        Estimate  Std. Error     t value     Pr(>|t|)
+gamma  1.2919619 13.42628587  0.09622631 9.233408e-01
+delta  0.7035412  4.02302888  0.17487849 8.611751e-01
+rho   -0.1000000  6.18431715 -0.01616993 9.870988e-01
+phi    1.5842275  0.09288816 17.05521509 3.196940e-65
+> 
+> ## Newton-type, CRS
+> cesNewton <- cesEst( "qOutput", xxNames, germanFarms, method = "Newton", rho = 2 )
+> print.default( cesNewton )
+$nlm
+$nlm$minimum
+[1] 166153.1
+
+$nlm$estimate
+[1] 34.5395061  0.4930391
+
+$nlm$gradient
+[1] -36.889207  -1.759474
+
+$nlm$code
+[1] 2
+
+$nlm$iterations
+[1] 4
+
+
+$coefficients
+[1] 34.5395061  0.4930391  2.0000000
+
+$iter
+[1] 4
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "Newton", rho = 2)
+
+$method
+[1] "Newton"
+
+$startVal
+  gamma   delta 
+34.5393  0.5000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 2
+
+$fitted.values
+ [1] 1149.998 1189.422 1213.469 1224.406 1224.388 1240.120 1273.540 1276.406
+ [9] 1237.616 1281.315 1315.771 1468.138 1529.111 1582.097 1549.008 1566.589
+[17] 1647.887 1722.387 1832.822 1934.988
+
+$residuals
+ [1] -203.864672 -226.691036 -143.889460  -52.609561  -46.272070  -54.309891
+ [7]  -34.182276   12.154535  -29.909499   -2.906533   44.821145   72.645944
+[13]   45.923228  113.861903   95.681231   59.442491    7.152462   33.212472
+[19]   54.598502   56.906457
+
+$cov.unscaled
+           [,1]      [,2]        [,3]
+[1,] 234701.753 8636.7981 -11138.5137
+[2,]   8636.798  317.8283   -409.9006
+[3,] -11138.514 -409.9006    528.6955
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesNewton )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "Newton", rho = 2)
+
+Coefficients:
+[1] 34.540  0.493  2.000
+
+> summary( cesNewton )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "Newton", rho = 2)
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+Convergence achieved after 4 iterations
+
+Coefficients:
+      Estimate Std. Error  t value Pr(>|t|)
+[1,]    34.539  44156.786    0.001        1
+[2,]     0.493   1624.933 0.000303        1
+[3,]     2.000   2095.763    0.001        1
+
+Residual standard error: 91.14635 
+Multiple R-squared: 0.9061344 
+
+> coef( cesNewton )
+[1] 34.5395061  0.4930391  2.0000000
+> vcov( cesNewton )
+           [,1]     [,2]      [,3]
+[1,] 1949821747 71751559 -92534955
+[2,]   71751559  2640408  -3405314
+[3,]  -92534955 -3405314   4392221
+> coef( summary( cesNewton ) )
+       Estimate Std. Error      t value  Pr(>|t|)
+[1,] 34.5395061  44156.786 0.0007822015 0.9993759
+[2,]  0.4930391   1624.933 0.0003034211 0.9997579
+[3,]  2.0000000   2095.763 0.0009543066 0.9992386
+> 
+> ## Newton-type, VRS
+> cesNewtonVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "Newton",
++    vrs = TRUE, rho = -0.1 )
+> print.default( cesNewtonVrs )
+$nlm
+$nlm$minimum
+[1] 50058.83
+
+$nlm$estimate
+[1] 1.3515610 0.7072522 1.5784289
+
+$nlm$gradient
+[1] -15633.88 113932.44 -96051.18
+
+$nlm$code
+[1] 4
+
+$nlm$iterations
+[1] 100
+
+
+$coefficients
+[1]  1.3515610  0.7072522 -0.1000000  1.5784289
+
+$iter
+[1] 100
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "Newton", rho = -0.1)
+
+$method
+[1] "Newton"
+
+$startVal
+   gamma    delta      phi 
+8.852626 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.1
+
+$fitted.values
+ [1] 1005.132 1092.311 1115.881 1174.082 1167.526 1192.377 1242.185 1217.710
+ [9] 1172.195 1223.043 1293.310 1536.997 1649.235 1702.507 1592.891 1588.386
+[17] 1647.886 1725.008 1880.425 2045.768
+
+$residuals
+ [1]  -58.998549 -129.580043  -46.301764   -2.285985   10.589563   -6.567191
+ [7]   -2.827020   70.851172   35.511288   55.366004   67.282545    3.787412
+[13]  -74.200367   -6.547884   51.797932   37.644762    7.153444   30.591650
+[19]    6.995730  -53.873632
+
+$cov.unscaled
+              [,1]          [,2]          [,3]          [,4]
+[1,]  0.0786272631  2.255389e-02 -3.489772e-02 -9.576339e-05
+[2,]  0.0225538913  6.487213e-03 -1.004451e-02 -1.993729e-05
+[3,] -0.0348977230 -1.004451e-02  1.555596e-02  2.828761e-05
+[4,] -0.0000957634 -1.993729e-05  2.828761e-05  3.450516e-06
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesNewtonVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "Newton", rho = -0.1)
+
+Coefficients:
+[1]  1.3516  0.7073 -0.1000  1.5784
+
+> summary( cesNewtonVrs )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "Newton", rho = -0.1)
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+Convergence NOT achieved after 100 iterations
+
+Coefficients:
+     Estimate Std. Error t value Pr(>|t|)    
+[1,]  1.35156   14.02852   0.096    0.923    
+[2,]  0.70725    4.02953   0.176    0.861    
+[3,] -0.10000    6.23984  -0.016    0.987    
+[4,]  1.57843    0.09293  16.985   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 50.0294 
+Multiple R-squared: 0.97172 
+
+> coef( cesNewtonVrs )
+[1]  1.3515610  0.7072522 -0.1000000  1.5784289
+> vcov( cesNewtonVrs )
+            [,1]         [,2]         [,3]        [,4]
+[1,] 196.7994256  56.45106632 -87.34695272 -0.23969015
+[2,]  56.4510663  16.23711254 -25.14082312 -0.04990186
+[3,] -87.3469527 -25.14082312  38.93564306  0.07080224
+[4,]  -0.2396901  -0.04990186   0.07080224  0.00863644
+> coef( summary( cesNewtonVrs ) )
+       Estimate  Std. Error     t value     Pr(>|t|)
+[1,]  1.3515610 14.02852186  0.09634379 9.232475e-01
+[2,]  0.7072522  4.02953006  0.17551730 8.606732e-01
+[3,] -0.1000000  6.23984319 -0.01602604 9.872136e-01
+[4,]  1.5784289  0.09293245 16.98469088 1.066138e-64
+> 
+> ## PORT, CRS
+> cesPort <- cesEst( "qOutput", xxNames, germanFarms, method = "PORT", rho = 2 )
+> print.default( cesPort )
+$nlminb
+$nlminb$par
+   gamma    delta 
+49.14295  1.00000 
+
+$nlminb$objective
+[1] 165832.4
+
+$nlminb$convergence
+[1] 0
+
+$nlminb$message
+[1] "both X-convergence and relative convergence (5)"
+
+$nlminb$iterations
+[1] 28
+
+$nlminb$evaluations
+function gradient 
+      37       28 
+
+
+$coefficients
+   gamma    delta      rho 
+49.14295  1.00000  2.00000 
+
+$iter
+[1] 28
+
+$convergence
+[1] TRUE
+
+$message
+[1] "both X-convergence and relative convergence (5)"
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "PORT", rho = 2)
+
+$method
+[1] "PORT"
+
+$startVal
+  gamma   delta 
+34.5393  0.5000 
+
+$lower
+[1] 0 0
+
+$upper
+[1] Inf   1
+
+$rho
+[1] 2
+
+$fitted.values
+ [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.523 1935.741
+
+$residuals
+ [1] -203.812030 -226.528907 -143.760265  -52.354411  -46.034845  -54.066630
+ [7]  -33.936006   12.318503  -29.713284   -2.748202   45.035837   72.884174
+[13]   46.197491  114.047832   95.703326   59.353878    6.785316   32.647977
+[19]   53.896799   56.153212
+
+$cov.unscaled
+              gamma         delta           rho
+gamma  3.058431e+02  1.247071e+01 -1.552149e+12
+delta  1.247071e+01  5.084919e-01 -6.329279e+10
+rho   -1.552149e+12 -6.329279e+10  6.320135e+23
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesPort )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "PORT", rho = 2)
+
+Coefficients:
+gamma delta   rho 
+49.14  1.00  2.00 
+
+> summary( cesPort )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "PORT", rho = 2)
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+Convergence achieved after 28 iterations
+Message: both X-convergence and relative convergence (5) 
+
+Coefficients:
+       Estimate Std. Error  t value Pr(>|t|)
+gamma 4.914e+01  1.592e+03    0.031    0.975
+delta 1.000e+00  6.493e+01    0.015    0.988
+rho   2.000e+00  7.239e+13 2.76e-14    1.000
+
+Residual standard error: 91.05832 
+Multiple R-squared: 0.9063156 
+
+> coef( cesPort )
+   gamma    delta      rho 
+49.14295  1.00000  2.00000 
+> vcov( cesPort )
+              gamma         delta           rho
+gamma  2.535934e+06  1.034024e+05 -1.286983e+16
+delta  1.034024e+05  4.216221e+03 -5.247996e+14
+rho   -1.286983e+16 -5.247996e+14  5.240415e+27
+> coef( summary( cesPort ) )
+      Estimate   Std. Error      t value  Pr(>|t|)
+gamma 49.14295 1.592462e+03 3.085974e-02 0.9753814
+delta  1.00000 6.493243e+01 1.540062e-02 0.9877126
+rho    2.00000 7.239071e+13 2.762786e-14 1.0000000
+> 
+> ## PORT, VRS
+> cesPortVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "PORT", vrs = TRUE,
++    rho = -0.1 )
+> print.default( cesPortVrs )
+$nlminb
+$nlminb$par
+    gamma     delta       phi 
+1.2919625 0.7035412 1.5842274 
+
+$nlminb$objective
+[1] 50044.76
+
+$nlminb$convergence
+[1] 0
+
+$nlminb$message
+[1] "relative convergence (4)"
+
+$nlminb$iterations
+[1] 94
+
+$nlminb$evaluations
+function gradient 
+     140       95 
+
+
+$coefficients
+     gamma      delta        rho        phi 
+ 1.2919625  0.7035412 -0.1000000  1.5842274 
+
+$iter
+[1] 94
+
+$convergence
+[1] TRUE
+
+$message
+[1] "relative convergence (4)"
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "PORT", rho = -0.1)
+
+$method
+[1] "PORT"
+
+$startVal
+   gamma    delta      phi 
+8.852626 0.500000 1.000000 
+
+$lower
+[1] 0 0 0
+
+$upper
+[1] Inf   1 Inf
+
+$rho
+[1] -0.1
+
+$fitted.values
+ [1] 1004.069 1091.865 1115.382 1174.271 1167.616 1192.573 1242.561 1217.661
+ [9] 1172.127 1222.990 1293.727 1538.462 1651.354 1704.463 1593.722 1588.820
+[17] 1647.738 1724.662 1880.384 2046.325
+
+$residuals
+ [1]  -57.935839 -129.134910  -45.803198   -2.474936   10.500337   -6.763026
+ [7]   -3.202841   70.899563   35.578956   55.418704   66.865197    2.321866
+[13]  -76.318883   -8.503740   50.966638   37.210729    7.301669   30.938265
+[19]    7.036066  -54.431193
+
+$cov.unscaled
+              gamma         delta           rho           phi
+gamma  7.204164e-02  2.155694e-02 -3.311188e-02 -9.144064e-05
+delta  2.155694e-02  6.468115e-03 -9.941869e-03 -1.984659e-05
+rho   -3.311188e-02 -9.941869e-03  1.528463e-02  2.795986e-05
+phi   -9.144064e-05 -1.984659e-05  2.795986e-05  3.448197e-06
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesPortVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "PORT", rho = -0.1)
+
+Coefficients:
+  gamma   delta     rho     phi 
+ 1.2920  0.7035 -0.1000  1.5842 
+
+> summary( cesPortVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "PORT", rho = -0.1)
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+Convergence achieved after 94 iterations
+Message: relative convergence (4) 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  1.29196   13.42629   0.096    0.923    
+delta  0.70354    4.02303   0.175    0.861    
+rho   -0.10000    6.18432  -0.016    0.987    
+phi    1.58423    0.09289  17.055   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 50.02238 
+Multiple R-squared: 0.971728 
+
+> coef( cesPortVrs )
+     gamma      delta        rho        phi 
+ 1.2919625  0.7035412 -0.1000000  1.5842274 
+> vcov( cesPortVrs )
+            gamma       delta          rho         phi
+gamma 180.2653312  53.9405967 -82.85380485 -0.22880625
+delta  53.9405967  16.1847636 -24.87692337 -0.04966090
+rho   -82.8538049 -24.8769234  38.24578400  0.06996224
+phi    -0.2288062  -0.0496609   0.06996224  0.00862821
+> coef( summary( cesPortVrs ) )
+        Estimate  Std. Error     t value     Pr(>|t|)
+gamma  1.2919625 13.42629253  0.09622631 9.233408e-01
+delta  0.7035412  4.02302916  0.17487848 8.611751e-01
+rho   -0.1000000  6.18431759 -0.01616993 9.870988e-01
+phi    1.5842274  0.09288816 17.05521400 3.197000e-65
+> 
+> ## DE, CRS
+> set.seed( 123 )
+> cesDe <- cesEst( "qOutput", xxNames, germanFarms, method = "DE",
++    control = DEoptim.control( trace = FALSE ), rho = 2 )
+> print.default( cesDe )
+$DEoptim
+$optim
+$optim$bestmem
+     par1      par2 
+49.142811  0.999999 
+
+$optim$bestval
+[1] 165832.4
+
+$optim$nfeval
+[1] 10050
+
+$optim$iter
+[1] 200
+
+
+$member
+$member$lower
+par1 par2 
+   0    0 
+
+$member$upper
+ par1  par2 
+1e+10 1e+00 
+
+$member$bestmemit
+            par1      par2
+1   2.461368e+08 0.4777960
+2   2.461368e+08 0.4777960
+3   2.461368e+08 0.4777960
+4   2.461368e+08 0.4777960
+5   2.461368e+08 0.4777960
+6   2.461368e+08 0.4777960
+7   2.461368e+08 0.4777960
+8   2.461368e+08 0.6179513
+9   2.461368e+08 0.6179513
+10  1.402005e+08 0.7800649
+11  1.402005e+08 0.7800649
+12  1.402005e+08 0.7800649
+13  1.402005e+08 0.7800649
+14  1.402005e+08 0.7800649
+15  1.402005e+08 0.7800649
+16  1.402005e+08 0.7800649
+17  1.077686e+08 0.9129156
+18  1.077686e+08 0.9129156
+19  7.662659e+07 0.9129156
+20  7.662659e+07 0.9129156
+21  7.662659e+07 0.9129156
+22  5.477601e+07 0.8396368
+23  5.477601e+07 0.8396368
+24  5.477601e+07 0.8396368
+25  5.477601e+07 0.8396368
+26  5.449552e+07 0.8396368
+27  5.449552e+07 0.8396368
+28  5.449552e+07 0.8495505
+29  5.449552e+07 0.8495505
+30  4.192650e+07 0.9540950
+31  4.192650e+07 0.9540950
+32  3.789081e+07 0.9540950
+33  3.789081e+07 0.9540950
+34  3.789081e+07 0.9540950
+35  3.789081e+07 0.9540950
+36  3.789081e+07 0.9540950
+37  2.456198e+07 0.9597018
+38  1.228888e+07 0.8431668
+39  1.228888e+07 0.8431668
+40  1.228888e+07 0.8431668
+41  9.791448e+06 0.8431668
+42  3.102620e+06 0.8505356
+43  3.102620e+06 0.8505356
+44  3.102620e+06 0.8505356
+45  1.434401e+05 0.9138361
+46  6.471971e+05 0.9767888
+47  6.471971e+05 0.9767888
+48  6.471971e+05 0.9900465
+49  6.471971e+05 0.9900465
+50  6.471971e+05 0.9900465
+51  1.870091e+05 0.9900465
+52  1.870091e+05 0.9900465
+53  1.870091e+05 0.9900465
+54  3.806305e+04 0.9781352
+55  3.806305e+04 0.9781352
+56  3.806305e+04 0.9781352
+57  3.806305e+04 0.9781352
+58  3.806305e+04 0.9781352
+59  3.806305e+04 0.9781352
+60  2.302670e+04 0.9558457
+61  2.302670e+04 0.9558457
+62  1.284516e+04 0.9565593
+63  1.284516e+04 0.9565593
+64  1.222256e+04 0.9163139
+65  1.222256e+04 0.9163139
+66  1.222256e+04 0.9163139
+67  1.222256e+04 0.9400057
+68  1.222256e+04 0.9400057
+69  1.222256e+04 0.9400057
+70  1.222256e+04 0.9400057
+71  1.222256e+04 0.9400057
+72  1.222256e+04 0.9400057
+73  1.222256e+04 0.9400057
+74  7.099918e+03 0.9400057
+75  2.344760e+02 0.9510783
+76  2.344760e+02 0.9510783
+77  2.344760e+02 0.9510783
+78  8.696718e+02 0.9246975
+79  8.696718e+02 0.9246975
+80  8.696718e+02 0.9246975
+81  8.696718e+02 0.9246975
+82  8.696718e+02 0.9246975
+83  8.696718e+02 0.9246975
+84  8.696718e+02 0.9246975
+85  8.696718e+02 0.9391299
+86  8.696718e+02 0.9391299
+87  7.856088e+02 0.9391299
+88  7.856088e+02 0.9391299
+89  7.214139e+02 0.9671115
+90  7.214139e+02 0.9671115
+91  7.214139e+02 0.9671115
+92  3.403132e+02 0.8616306
+93  3.403132e+02 0.8616306
+94  1.633829e+02 0.8616306
+95  1.633829e+02 0.8616306
+96  9.434806e+01 0.8708814
+97  9.434806e+01 0.8708814
+98  4.813308e+01 0.9027375
+99  4.813308e+01 0.9027375
+100 4.286583e+01 0.9958455
+101 4.286583e+01 0.9958455
+102 4.286583e+01 0.9958455
+103 3.059405e+01 0.5032236
+104 3.059405e+01 0.5032236
+105 3.059405e+01 0.5032236
+106 4.429527e+01 0.8910839
+107 4.429527e+01 0.8910839
+108 4.429527e+01 0.8910839
+109 4.429527e+01 0.8697938
+110 4.664824e+01 0.8989059
+111 4.463074e+01 0.8071968
+112 4.463074e+01 0.8071968
+113 4.463074e+01 0.8071968
+114 4.463074e+01 0.8071968
+115 4.463074e+01 0.8071968
+116 4.463074e+01 0.8071968
+117 4.463074e+01 0.8071968
+118 4.463074e+01 0.8071968
+119 4.826049e+01 0.9634703
+120 4.566948e+01 0.8671363
+121 4.566948e+01 0.8671363
+122 4.566948e+01 0.8671363
+123 4.830818e+01 0.9657125
+124 4.830818e+01 0.9657125
+125 4.879025e+01 0.9867327
+126 4.879025e+01 0.9867327
+127 4.879025e+01 0.9867327
+128 4.879025e+01 0.9867327
+129 4.879025e+01 0.9867327
+130 4.879025e+01 0.9867327
+131 4.879025e+01 0.9867327
+132 4.879025e+01 0.9867327
+133 4.880758e+01 0.9874446
+134 4.880758e+01 0.9874446
+135 4.880758e+01 0.9874446
+136 4.880758e+01 0.9874446
+137 4.880758e+01 0.9874446
+138 4.880758e+01 0.9874446
+139 4.880758e+01 0.9874446
+140 4.880758e+01 0.9874446
+141 4.880758e+01 0.9874446
+142 4.880758e+01 0.9874446
+143 4.880758e+01 0.9874446
+144 4.880758e+01 0.9874446
+145 4.880758e+01 0.9874446
+146 4.897723e+01 0.9943778
+147 4.897723e+01 0.9943778
+148 4.897723e+01 0.9943778
+149 4.897723e+01 0.9943778
+150 4.897723e+01 0.9943778
+151 4.897723e+01 0.9943778
+152 4.897723e+01 0.9943778
+153 4.884573e+01 0.9887096
+154 4.884573e+01 0.9887096
+155 4.884573e+01 0.9887096
+156 4.899995e+01 0.9942182
+157 4.899995e+01 0.9942182
+158 4.902447e+01 0.9950442
+159 4.902447e+01 0.9950442
+160 4.902447e+01 0.9950442
+161 4.902447e+01 0.9950442
+162 4.902447e+01 0.9950442
+163 4.902447e+01 0.9950442
+164 4.902447e+01 0.9950442
+165 4.902447e+01 0.9950442
+166 4.902447e+01 0.9950442
+167 4.902447e+01 0.9950442
+168 4.902447e+01 0.9950442
+169 4.904977e+01 0.9960180
+170 4.904977e+01 0.9960180
+171 4.904977e+01 0.9960180
+172 4.913348e+01 0.9999175
+173 4.909195e+01 0.9980891
+174 4.909195e+01 0.9980891
+175 4.911703e+01 0.9989068
+176 4.911703e+01 0.9989068
+177 4.914026e+01 0.9998917
+178 4.914203e+01 0.9999038
+179 4.914203e+01 0.9999038
+180 4.914144e+01 0.9999404
+181 4.914144e+01 0.9999404
+182 4.914051e+01 0.9998714
+183 4.914051e+01 0.9998714
+184 4.914300e+01 0.9999986
+185 4.914207e+01 0.9999986
+186 4.914207e+01 0.9999986
+187 4.914207e+01 0.9999986
+188 4.914207e+01 0.9999986
+189 4.914207e+01 0.9999986
+190 4.914207e+01 0.9999986
+191 4.914207e+01 0.9999986
+192 4.914207e+01 0.9999986
+193 4.914207e+01 0.9999986
+194 4.914207e+01 0.9999986
+195 4.914207e+01 0.9999841
+196 4.914207e+01 0.9999841
+197 4.914244e+01 0.9999841
+198 4.914244e+01 0.9999841
+199 4.914281e+01 0.9999990
+200 4.914281e+01 0.9999990
+
+$member$bestvalit
+  [1] 2.176446e+21 6.153865e+16 6.153865e+16 6.153865e+16 6.153865e+16
+  [6] 6.153865e+16 6.153865e+16 6.153865e+16 6.153865e+16 6.153865e+16
+ [11] 6.153865e+16 6.153865e+16 6.153865e+16 6.153865e+16 6.153865e+16
+ [16] 6.153865e+16 6.153865e+16 6.153865e+16 6.153865e+16 5.171691e+16
+ [21] 5.171691e+16 5.171691e+16 5.171691e+16 5.171691e+16 5.171691e+16
+ [26] 5.171691e+16 5.171691e+16 5.171691e+16 5.171691e+16 5.171691e+16
+ [31] 5.171691e+16 5.171691e+16 4.015255e+16 3.702766e+16 3.702766e+16
+ [36] 3.702766e+16 3.702766e+16 3.702766e+16 1.470041e+15 1.470041e+15
+ [41] 1.182178e+15 1.125453e+15 1.125453e+15 1.125453e+15 3.869423e+14
+ [46] 2.306243e+13 2.306243e+13 2.306243e+13 2.306243e+13 1.248534e+13
+ [51] 1.248534e+13 7.340590e+09 7.340590e+09 7.340590e+09 7.340590e+09
+ [56] 7.340590e+09 7.340590e+09 7.340590e+09 7.340590e+09 7.340590e+09
+ [61] 7.340590e+09 6.680448e+08 6.680448e+08 6.680448e+08 6.680448e+08
+ [66] 6.680448e+08 6.680448e+08 6.680448e+08 6.680448e+08 6.680448e+08
+ [71] 6.680448e+08 6.680448e+08 6.680448e+08 6.680448e+08 1.697538e+08
+ [76] 2.075452e+06 2.075452e+06 2.075452e+06 2.075452e+06 2.075452e+06
+ [81] 2.075452e+06 2.075452e+06 2.075452e+06 2.075452e+06 2.075452e+06
+ [86] 2.075452e+06 2.075452e+06 2.075452e+06 2.075452e+06 2.075452e+06
+ [91] 1.081800e+06 2.915780e+05 2.915780e+05 2.915780e+05 2.915780e+05
+ [96] 2.915780e+05 2.915780e+05 2.051690e+05 2.051690e+05 2.051690e+05
+[101] 1.661822e+05 1.661822e+05 1.661040e+05 1.661040e+05 1.661040e+05
+[106] 1.659297e+05 1.659297e+05 1.659297e+05 1.659297e+05 1.658775e+05
+[111] 1.658775e+05 1.658718e+05 1.658718e+05 1.658718e+05 1.658718e+05
+[116] 1.658718e+05 1.658718e+05 1.658718e+05 1.658526e+05 1.658526e+05
+[121] 1.658526e+05 1.658526e+05 1.658430e+05 1.658430e+05 1.658401e+05
+[126] 1.658401e+05 1.658361e+05 1.658331e+05 1.658331e+05 1.658331e+05
+[131] 1.658331e+05 1.658331e+05 1.658331e+05 1.658331e+05 1.658331e+05
+[136] 1.658331e+05 1.658331e+05 1.658331e+05 1.658326e+05 1.658326e+05
+[141] 1.658326e+05 1.658326e+05 1.658326e+05 1.658326e+05 1.658326e+05
+[146] 1.658326e+05 1.658326e+05 1.658326e+05 1.658326e+05 1.658326e+05
+[151] 1.658326e+05 1.658326e+05 1.658326e+05 1.658326e+05 1.658326e+05
+[156] 1.658326e+05 1.658326e+05 1.658326e+05 1.658326e+05 1.658326e+05
+[161] 1.658326e+05 1.658326e+05 1.658325e+05 1.658325e+05 1.658325e+05
+[166] 1.658325e+05 1.658325e+05 1.658325e+05 1.658325e+05 1.658325e+05
+[171] 1.658325e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[176] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[181] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[186] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[191] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[196] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+
+$member$pop
+          [,1]      [,2]
+ [1,] 49.14259 0.9999812
+ [2,] 49.14298 0.9999968
+ [3,] 49.14274 0.9999840
+ [4,] 49.14241 0.9999972
+ [5,] 49.14281 0.9999990
+ [6,] 49.14281 0.9999946
+ [7,] 49.14279 0.9999942
+ [8,] 49.14188 0.9999720
+ [9,] 49.14272 0.9999989
+[10,] 49.14304 0.9999983
+[11,] 49.14265 0.9999959
+[12,] 49.14115 0.9999676
+[13,] 49.14300 0.9999986
+[14,] 49.14241 0.9999902
+[15,] 49.14273 0.9999861
+[16,] 49.14278 0.9999954
+[17,] 49.14200 0.9999708
+[18,] 49.14281 0.9999990
+[19,] 49.14250 0.9999898
+[20,] 49.14287 0.9999980
+[21,] 49.14258 0.9999854
+[22,] 49.14248 0.9999791
+[23,] 49.14280 0.9999955
+[24,] 49.14257 0.9999952
+[25,] 49.14270 0.9999856
+[26,] 49.14307 0.9999933
+[27,] 49.14304 0.9999976
+[28,] 49.14240 0.9999892
+[29,] 49.14299 0.9999969
+[30,] 49.14152 0.9999597
+[31,] 49.14276 0.9999959
+[32,] 49.14306 0.9999991
+[33,] 49.14264 0.9999917
+[34,] 40.74470 0.6868289
+[35,] 49.14313 0.9999885
+[36,] 49.14241 0.9999923
+[37,] 49.14289 0.9999975
+[38,] 49.14297 0.9999941
+[39,] 49.14282 0.9999919
+[40,] 49.14157 0.9999644
+[41,] 49.14302 0.9999990
+[42,] 49.14215 0.9999732
+[43,] 49.14261 0.9999852
+[44,] 49.14245 0.9999773
+[45,] 49.14307 0.9999955
+[46,] 49.14321 0.9999999
+[47,] 49.14262 0.9999914
+[48,] 49.14311 0.9999962
+[49,] 49.14266 0.9999897
+[50,] 49.14223 0.9999787
+
+$member$storepop
+list()
+
+
+attr(,"class")
+[1] "DEoptim"
+
+$coefficients
+    gamma     delta       rho 
+49.142811  0.999999  2.000000 
+
+$iter
+[1] 200
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "DE", rho = 2, control = DEoptim.control(trace = FALSE))
+
+$method
+[1] "DE"
+
+$lower
+[1] 0 0
+
+$upper
+[1] 1e+10 1e+00
+
+$rho
+[1] 2
+
+$fitted.values
+ [1] 1149.942 1189.257 1213.337 1224.148 1224.148 1239.874 1273.291 1276.239
+ [9] 1237.417 1281.154 1315.554 1467.896 1528.834 1581.908 1548.982 1566.674
+[17] 1648.251 1722.948 1833.519 1935.736
+
+$residuals
+ [1] -203.809345 -226.526130 -143.757432  -52.351553  -46.031986  -54.063736
+ [7]  -33.933033   12.321483  -29.710395   -2.745210   45.038908   72.887602
+[13]   46.201061  114.051525   95.706943   59.357536    6.789165   32.652001
+[19]   53.901081   56.157733
+
+$cov.unscaled
+              gamma         delta           rho
+gamma  2.267873e+06  1.099906e+05 -3.614577e+10
+delta  1.099906e+05  5.334504e+03 -1.753088e+09
+rho   -3.614577e+10 -1.753088e+09  5.761745e+14
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesDe )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "DE", rho = 2, control = DEoptim.control(trace = FALSE))
+
+Coefficients:
+gamma delta   rho 
+49.14  1.00  2.00 
+
+> summary( cesDe )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    method = "DE", rho = 2, control = DEoptim.control(trace = FALSE))
+
+Estimation by non-linear least-squares using the 'DE' optimizer
+
+Coefficients:
+       Estimate Std. Error  t value Pr(>|t|)
+gamma 4.914e+01  1.371e+05 3.58e-04        1
+delta 1.000e+00  6.651e+03 1.50e-04        1
+rho   2.000e+00  2.186e+09 9.15e-10        1
+
+Residual standard error: 91.05832 
+Multiple R-squared: 0.9063156 
+
+> coef( cesDe )
+    gamma     delta       rho 
+49.142811  0.999999  2.000000 
+> vcov( cesDe )
+              gamma         delta           rho
+gamma  1.880434e+10  9.120003e+08 -2.997069e+14
+delta  9.120003e+08  4.423167e+07 -1.453593e+13
+rho   -2.997069e+14 -1.453593e+13  4.777419e+18
+> coef( summary( cesDe ) )
+       Estimate   Std. Error      t value Pr(>|t|)
+gamma 49.142811 1.371289e+05 3.583694e-04 0.999714
+delta  0.999999 6.650690e+03 1.503602e-04 0.999880
+rho    2.000000 2.185731e+09 9.150258e-10 1.000000
+> 
+> ## DE, VRS
+> set.seed( 234 )
+> cesDeVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "DE", vrs = TRUE,
++    control = DEoptim.control( trace = FALSE ), rho = -0.1 )
+> print.default( cesDeVrs )
+$DEoptim
+$optim
+$optim$bestmem
+        par1         par2         par3 
+1.357547e+03 9.880141e-01 1.029189e-02 
+
+$optim$bestval
+[1] 1706354
+
+$optim$nfeval
+[1] 10050
+
+$optim$iter
+[1] 200
+
+
+$member
+$member$lower
+par1 par2 par3 
+   0    0    0 
+
+$member$upper
+ par1  par2  par3 
+1e+10 1e+00 1e+01 
+
+$member$bestmemit
+            par1       par2         par3
+1   5.828479e+09 0.58298991 0.0119834114
+2   5.828479e+09 0.58298991 0.0119834114
+3   5.828479e+09 0.58298991 0.0119834114
+4   5.828479e+09 0.58298991 0.0119834114
+5   2.213575e+09 0.74274747 0.0119834114
+6   1.712284e+09 0.83598242 0.0162595681
+7   1.090475e+09 0.83598242 0.0162595681
+8   1.090475e+09 0.83598242 0.0162595681
+9   1.090475e+09 0.83598242 0.0162595681
+10  1.090475e+09 0.83598242 0.0162595681
+11  1.090475e+09 0.83598242 0.0162595681
+12  1.090475e+09 0.83598242 0.0162595681
+13  1.090475e+09 0.83598242 0.0162595681
+14  1.090475e+09 0.83598242 0.0162595681
+15  1.090475e+09 0.83598242 0.0162595681
+16  1.090475e+09 0.83598242 0.0162595681
+17  1.090475e+09 0.83598242 0.0162595681
+18  1.614732e+07 0.29014766 0.0093068679
+19  1.614732e+07 0.29014766 0.0093068679
+20  1.614732e+07 0.29014766 0.0093068679
+21  1.614732e+07 0.29014766 0.0093068679
+22  1.614732e+07 0.29014766 0.0093068679
+23  1.614732e+07 0.29014766 0.0093068679
+24  1.614732e+07 0.29014766 0.0093068679
+25  1.614732e+07 0.29014766 0.0093068679
+26  1.614732e+07 0.29014766 0.0093068679
+27  1.614732e+07 0.29014766 0.0093068679
+28  8.850507e+06 0.60172658 0.0095631548
+29  8.850507e+06 0.60172658 0.0095631548
+30  8.850507e+06 0.60172658 0.0095631548
+31  8.850507e+06 0.60172658 0.0095631548
+32  8.850507e+06 0.60172658 0.0095631548
+33  8.850507e+06 0.60172658 0.0095631548
+34  8.850507e+06 0.60172658 0.0095631548
+35  8.850507e+06 0.60172658 0.0095631548
+36  8.850507e+06 0.60172658 0.0095631548
+37  5.273707e+06 0.95849759 0.0132475702
+38  5.273707e+06 0.95849759 0.0132475702
+39  5.273707e+06 0.95849759 0.0132475702
+40  5.273707e+06 0.95849759 0.0132475702
+41  5.273707e+06 0.95849759 0.0132475702
+42  1.111126e+06 0.22292095 0.0136228747
+43  7.087313e+05 0.22292095 0.0154396611
+44  7.087313e+05 0.22292095 0.0154396611
+45  3.349014e+05 0.02838281 0.0154396611
+46  3.349014e+05 0.02838281 0.0154396611
+47  3.349014e+05 0.02838281 0.0154396611
+48  3.349014e+05 0.40364404 0.0063104691
+49  3.349014e+05 0.40364404 0.0063104691
+50  3.349014e+05 0.40364404 0.0051741975
+51  3.349014e+05 0.40364404 0.0051741975
+52  3.349014e+05 0.40364404 0.0051741975
+53  3.349014e+05 0.40364404 0.0051741975
+54  3.349014e+05 0.40364404 0.0051741975
+55  1.815485e+05 0.39292121 0.0072595545
+56  1.815485e+05 0.52558657 0.0072595545
+57  1.815485e+05 0.53117149 0.0072595545
+58  1.815485e+05 0.53117149 0.0070846393
+59  1.605512e+05 0.53117149 0.0070846393
+60  9.852503e+04 0.81952191 0.0110577317
+61  9.505160e+04 0.81952191 0.0060966204
+62  9.505160e+04 0.81952191 0.0060966204
+63  9.505160e+04 0.81952191 0.0060966204
+64  9.505160e+04 0.81952191 0.0057485626
+65  9.505160e+04 0.96129247 0.0057485626
+66  9.505160e+04 0.96129247 0.0057485626
+67  9.505160e+04 0.96129247 0.0015408321
+68  9.505160e+04 0.96129247 0.0015408321
+69  9.505160e+04 0.96129247 0.0015408321
+70  9.505160e+04 0.96129247 0.0015408321
+71  9.505160e+04 0.96129247 0.0015408321
+72  8.201283e+04 0.95792546 0.0027431144
+73  5.880862e+04 0.32986052 0.0070984073
+74  5.880862e+04 0.41761693 0.0070984073
+75  5.113267e+04 0.68829905 0.0071237616
+76  5.113267e+04 0.68829905 0.0071237616
+77  2.566435e+04 0.68829905 0.0071237616
+78  2.566435e+04 0.68829905 0.0071237616
+79  2.566435e+04 0.68829905 0.0071237616
+80  2.566435e+04 0.68829905 0.0071237616
+81  2.566435e+04 0.68829905 0.0071237616
+82  2.566435e+04 0.68829905 0.0044735064
+83  2.566435e+04 0.85004164 0.0044735064
+84  2.566435e+04 0.85004164 0.0044735064
+85  2.566435e+04 0.85004164 0.0021467914
+86  2.566435e+04 0.94547309 0.0021467914
+87  2.566435e+04 0.94547309 0.0021467914
+88  2.566435e+04 0.94547309 0.0021467914
+89  2.159667e+04 0.94547309 0.0021467914
+90  2.159667e+04 0.94547309 0.0021467914
+91  1.969903e+04 0.94547309 0.0014353786
+92  1.969903e+04 0.94547309 0.0014353786
+93  1.386010e+04 0.94547309 0.0011210035
+94  1.342387e+04 0.94547309 0.0011210035
+95  1.342387e+04 0.98487978 0.0011210035
+96  1.342387e+04 0.98487978 0.0011210035
+97  1.342387e+04 0.98487978 0.0011210035
+98  1.342387e+04 0.98487978 0.0011210035
+99  1.342387e+04 0.98487978 0.0011210035
+100 1.342387e+04 0.98487978 0.0011210035
+101 1.342387e+04 0.98487978 0.0011210035
+102 1.342387e+04 0.81892185 0.0009431292
+103 1.342387e+04 0.81892185 0.0009431292
+104 1.342387e+04 0.81892185 0.0009431292
+105 1.342387e+04 0.81892185 0.0009431292
+106 1.342387e+04 0.84797523 0.0009431292
+107 1.342387e+04 0.84797523 0.0009431292
+108 1.342387e+04 0.84797523 0.0009431292
+109 1.342387e+04 0.84797523 0.0009431292
+110 1.170258e+04 0.94525837 0.0017941904
+111 1.170258e+04 0.94525837 0.0017941904
+112 1.170258e+04 0.94525837 0.0017941904
+113 1.170258e+04 0.94525837 0.0017941904
+114 5.101074e+03 0.94525837 0.0017941904
+115 4.083423e+03 0.93386306 0.0022530045
+116 3.951951e+03 0.93386306 0.0022530045
+117 3.951951e+03 0.93386306 0.0022530045
+118 3.951951e+03 0.93386306 0.0022530045
+119 3.951951e+03 0.93386306 0.0021350970
+120 3.951951e+03 0.93386306 0.0021350970
+121 3.328711e+03 0.93386306 0.0024952130
+122 3.328711e+03 0.93386306 0.0024952130
+123 3.006745e+03 0.93386306 0.0024952130
+124 2.522185e+03 0.93386306 0.0024952130
+125 2.522185e+03 0.93386306 0.0024952130
+126 2.150698e+03 0.79538205 0.0019157934
+127 2.150698e+03 0.79538205 0.0019157934
+128 2.150698e+03 0.94753458 0.0019157934
+129 2.150698e+03 0.94753458 0.0019157934
+130 2.150698e+03 0.94753458 0.0019157934
+131 1.852754e+03 0.94753458 0.0021356929
+132 1.738728e+03 0.96650536 0.0030096457
+133 1.738728e+03 0.96650536 0.0030096457
+134 1.738728e+03 0.96650536 0.0030096457
+135 1.701183e+03 0.44139238 0.0026437542
+136 1.701183e+03 0.44315206 0.0026437542
+137 1.684376e+03 0.44315206 0.0022118226
+138 1.684376e+03 0.44315206 0.0022118226
+139 1.684376e+03 0.44315206 0.0022118226
+140 1.677879e+03 0.54097777 0.0022118226
+141 1.677879e+03 0.54097777 0.0022118226
+142 1.677879e+03 0.56028846 0.0022118226
+143 1.677879e+03 0.56028846 0.0022118226
+144 1.677879e+03 0.56028846 0.0022118226
+145 1.677879e+03 0.80870250 0.0022118226
+146 1.635925e+03 0.42384004 0.0021328290
+147 1.528537e+03 0.42384004 0.0021328290
+148 1.528537e+03 0.42384004 0.0021328290
+149 1.528537e+03 0.42384004 0.0021328290
+150 1.528537e+03 0.42384004 0.0021328290
+151 1.502963e+03 0.89520329 0.0038068812
+152 1.502963e+03 0.89520329 0.0038068812
+153 1.502963e+03 0.89520329 0.0038068812
+154 1.502963e+03 0.89520329 0.0038068812
+155 1.502963e+03 0.89520329 0.0038068812
+156 1.502963e+03 0.89520329 0.0038068812
+157 1.502963e+03 0.89520329 0.0038068812
+158 1.502963e+03 0.89520329 0.0038068812
+159 1.502963e+03 0.89520329 0.0038068812
+160 1.462350e+03 0.89520329 0.0090913377
+161 1.462350e+03 0.89520329 0.0090913377
+162 1.462350e+03 0.93514223 0.0090913377
+163 1.462350e+03 0.93514223 0.0090913377
+164 1.462350e+03 0.93514223 0.0090913377
+165 1.462350e+03 0.93514223 0.0090913377
+166 1.462350e+03 0.93514223 0.0090913377
+167 1.462350e+03 0.93514223 0.0090913377
+168 1.463501e+03 0.62150027 0.0022713472
+169 1.463501e+03 0.62150027 0.0022713472
+170 1.463501e+03 0.62150027 0.0022713472
+171 1.463501e+03 0.62150027 0.0022713472
+172 1.397906e+03 0.51840545 0.0072302336
+173 1.397906e+03 0.51840545 0.0072302336
+174 1.397906e+03 0.51227689 0.0041947011
+175 1.397906e+03 0.51227689 0.0041947011
+176 1.397906e+03 0.51227689 0.0041947011
+177 1.397906e+03 0.51227689 0.0041947011
+178 1.391483e+03 0.60119590 0.0041947011
+179 1.381417e+03 0.63580447 0.0059131615
+180 1.381417e+03 0.63580447 0.0059131615
+181 1.381417e+03 0.78379699 0.0087237798
+182 1.381417e+03 0.78379699 0.0087237798
+183 1.381417e+03 0.78379699 0.0087237798
+184 1.381417e+03 0.78379699 0.0087237798
+185 1.381417e+03 0.78379699 0.0087237798
+186 1.381417e+03 0.78379699 0.0087237798
+187 1.381417e+03 0.78379699 0.0087237798
+188 1.381417e+03 0.78379699 0.0087237798
+189 1.381417e+03 0.78379699 0.0087237798
+190 1.381417e+03 0.78379699 0.0087237798
+191 1.381417e+03 0.78379699 0.0087237798
+192 1.369326e+03 0.78379699 0.0114189608
+193 1.369326e+03 0.78379699 0.0114189608
+194 1.369326e+03 0.78379699 0.0089058558
+195 1.369326e+03 0.78379699 0.0089058558
+196 1.369326e+03 0.78379699 0.0089058558
+197 1.348066e+03 0.83665990 0.0107541288
+198 1.348066e+03 0.83665990 0.0107541288
+199 1.350737e+03 0.93908921 0.0107541288
+200 1.357547e+03 0.98801406 0.0102918921
+
+$member$bestvalit
+  [1] 7.622905e+20 7.622905e+20 7.622905e+20 1.953779e+20 1.085624e+20
+  [6] 6.667271e+19 2.553519e+18 1.773955e+17 1.752653e+17 9.069219e+16
+ [11] 1.601752e+16 1.601752e+16 1.601752e+16 1.601752e+16 1.601752e+16
+ [16] 1.601752e+16 1.601752e+16 5.798111e+15 5.798111e+15 2.508700e+15
+ [21] 2.508700e+15 2.508700e+15 2.508700e+15 2.508700e+15 2.508700e+15
+ [26] 2.508700e+15 2.508700e+15 1.220489e+14 1.142503e+14 2.756836e+13
+ [31] 2.756836e+13 2.756836e+13 2.744809e+13 2.579820e+13 2.579820e+13
+ [36] 1.188549e+11 1.188549e+11 1.188549e+11 1.188549e+11 1.188549e+11
+ [41] 1.188549e+11 2.219108e+08 2.219108e+08 2.219108e+08 2.219108e+08
+ [46] 2.219108e+08 2.219108e+08 2.219108e+08 2.940768e+06 2.940768e+06
+ [51] 2.940768e+06 2.940768e+06 2.940768e+06 2.940768e+06 2.940768e+06
+ [56] 2.940768e+06 2.940768e+06 2.082008e+06 1.976886e+06 1.976886e+06
+ [61] 1.976886e+06 1.976886e+06 1.976886e+06 1.976886e+06 1.976886e+06
+ [66] 1.976886e+06 1.976886e+06 1.976886e+06 1.976886e+06 1.976886e+06
+ [71] 1.976886e+06 1.976886e+06 1.976886e+06 1.976886e+06 1.976886e+06
+ [76] 1.976886e+06 1.967180e+06 1.967180e+06 1.967180e+06 1.967180e+06
+ [81] 1.967180e+06 1.967180e+06 1.967180e+06 1.967180e+06 1.934559e+06
+ [86] 1.934559e+06 1.900634e+06 1.900634e+06 1.900634e+06 1.900634e+06
+ [91] 1.900634e+06 1.900634e+06 1.900634e+06 1.900634e+06 1.900634e+06
+ [96] 1.900634e+06 1.892068e+06 1.892068e+06 1.762185e+06 1.762185e+06
+[101] 1.762185e+06 1.762185e+06 1.762185e+06 1.762185e+06 1.762185e+06
+[106] 1.762185e+06 1.762185e+06 1.762185e+06 1.762185e+06 1.762185e+06
+[111] 1.762185e+06 1.762185e+06 1.762185e+06 1.762185e+06 1.762185e+06
+[116] 1.762185e+06 1.762185e+06 1.762185e+06 1.761656e+06 1.761656e+06
+[121] 1.761656e+06 1.759774e+06 1.759774e+06 1.759774e+06 1.759774e+06
+[126] 1.759774e+06 1.758407e+06 1.758407e+06 1.753344e+06 1.753344e+06
+[131] 1.753344e+06 1.751725e+06 1.751725e+06 1.751725e+06 1.751725e+06
+[136] 1.751725e+06 1.751725e+06 1.751725e+06 1.751725e+06 1.751725e+06
+[141] 1.751642e+06 1.747618e+06 1.747618e+06 1.747618e+06 1.747618e+06
+[146] 1.747618e+06 1.747618e+06 1.747618e+06 1.747618e+06 1.747618e+06
+[151] 1.735447e+06 1.735447e+06 1.735447e+06 1.735447e+06 1.735447e+06
+[156] 1.735447e+06 1.735447e+06 1.735447e+06 1.735447e+06 1.735447e+06
+[161] 1.735447e+06 1.735447e+06 1.735447e+06 1.735447e+06 1.735447e+06
+[166] 1.735447e+06 1.735447e+06 1.735447e+06 1.735447e+06 1.710055e+06
+[171] 1.710055e+06 1.710055e+06 1.710055e+06 1.710055e+06 1.710055e+06
+[176] 1.710055e+06 1.710055e+06 1.710055e+06 1.710055e+06 1.710055e+06
+[181] 1.710055e+06 1.710055e+06 1.710055e+06 1.710055e+06 1.710055e+06
+[186] 1.710055e+06 1.706931e+06 1.706931e+06 1.706931e+06 1.706931e+06
+[191] 1.706354e+06 1.706354e+06 1.706354e+06 1.706354e+06 1.706354e+06
+[196] 1.706354e+06 1.706354e+06 1.706354e+06 1.706354e+06 1.706354e+06
+
+$member$pop
+          [,1]      [,2]       [,3]
+ [1,] 1323.499 0.9068714 0.02119066
+ [2,] 1343.546 0.9772297 0.01622777
+ [3,] 1327.460 0.9667148 0.01478598
+ [4,] 1329.752 0.9406206 0.01858453
+ [5,] 1357.547 0.9880141 0.01029189
+ [6,] 1302.092 0.8021568 0.01896558
+ [7,] 1334.395 0.9738300 0.01736957
+ [8,] 1319.967 0.9663123 0.02365817
+ [9,] 1339.364 0.9102837 0.01519330
+[10,] 1334.017 0.9062139 0.01706961
+[11,] 1299.293 0.9389247 0.02468641
+[12,] 1321.160 0.8914994 0.02275866
+[13,] 1308.391 0.6557700 0.01991144
+[14,] 1337.212 0.7213135 0.01391431
+[15,] 1325.126 0.9755753 0.01921084
+[16,] 1311.131 0.8429411 0.02252141
+[17,] 1351.692 0.9276730 0.01406848
+[18,] 1339.530 0.9541813 0.01338688
+[19,] 1338.108 0.8966672 0.01405135
+[20,] 1350.134 0.9457796 0.01612284
+[21,] 1305.030 0.8311976 0.01879793
+[22,] 1296.985 0.8922709 0.02109973
+[23,] 1295.542 0.5939634 0.01802779
+[24,] 1277.491 0.4649644 0.01954346
+[25,] 1287.638 0.9500651 0.02193722
+[26,] 1336.989 0.8071111 0.01435314
+[27,] 1325.126 0.9116181 0.01886226
+[28,] 1320.867 0.8461843 0.01928499
+[29,] 1336.970 0.7900197 0.01331410
+[30,] 1344.538 0.9509812 0.01192820
+[31,] 1361.479 0.9437904 0.01265165
+[32,] 1350.609 0.8784998 0.01390988
+[33,] 1355.532 0.8914906 0.01545252
+[34,] 1336.569 0.9574505 0.01866509
+[35,] 1349.019 0.9450886 0.01513689
+[36,] 1333.053 0.9986679 0.01755674
+[37,] 1320.875 0.9212122 0.01833574
+[38,] 1280.467 0.7551406 0.02274052
+[39,] 1329.387 0.9823683 0.01775794
+[40,] 1332.076 0.9556966 0.01728804
+[41,] 1299.312 0.7121337 0.01956635
+[42,] 1266.137 0.8784131 0.02640137
+[43,] 1334.488 0.9239136 0.01544384
+[44,] 1352.481 0.9844137 0.01707790
+[45,] 1284.052 0.9115545 0.02529298
+[46,] 1299.702 0.9786882 0.02583304
+[47,] 1339.808 0.9604674 0.01716875
+[48,] 1312.195 0.9202271 0.02091023
+[49,] 1339.002 0.7764300 0.01503678
+[50,] 1328.957 0.9575692 0.01776286
+
+$member$storepop
+list()
+
+
+attr(,"class")
+[1] "DEoptim"
+
+$coefficients
+        gamma         delta           rho           phi 
+1357.54670240    0.98801406   -0.10000000    0.01029189 
+
+$iter
+[1] 200
+
+$call
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "DE", rho = -0.1, control = DEoptim.control(trace = FALSE))
+
+$method
+[1] "DE"
+
+$lower
+[1] 0 0 0
+
+$upper
+[1] 1e+10 1e+00 1e+01
+
+$rho
+[1] -0.1
+
+$fitted.values
+ [1] 1402.962 1403.460 1403.745 1403.889 1403.886 1404.071 1404.455 1404.479
+ [9] 1404.037 1404.534 1404.923 1406.508 1407.099 1407.584 1407.266 1407.422
+[17] 1408.139 1408.772 1409.669 1410.456
+
+$residuals
+ [1] -456.82902 -440.72949 -334.16611 -232.09225 -225.77036 -218.26123
+ [7] -165.09732 -115.91790 -196.33058 -126.12516  -44.32995  134.27643
+[13]  167.93548  288.37508  237.42332  218.60944  246.90066  346.82813
+[19]  477.75138  581.43840
+
+$cov.unscaled
+              gamma         delta           rho           phi
+gamma  7.023457e+04  2.868560e+03 -7.726702e+04 -1.286368e-01
+delta  2.868560e+03  1.174471e+02 -3.166242e+03 -4.343710e-03
+rho   -7.726702e+04 -3.166242e+03  8.538770e+04  1.093063e-01
+phi   -1.286368e-01 -4.343710e-03  1.093063e-01  3.309747e-06
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesDeVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "DE", rho = -0.1, control = DEoptim.control(trace = FALSE))
+
+Coefficients:
+     gamma      delta        rho        phi 
+1357.54670    0.98801   -0.10000    0.01029 
+
+> summary( cesDeVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
+    vrs = TRUE, method = "DE", rho = -0.1, control = DEoptim.control(trace = FALSE))
+
+Estimation by non-linear least-squares using the 'DE' optimizer
+
+Coefficients:
+        Estimate Std. Error   t value Pr(>|t|)
+gamma  1.358e+03  7.829e+04     0.017    0.986
+delta  9.880e-01  3.201e+03  3.09e-04    1.000
+rho   -1.000e-01  8.632e+04 -1.16e-06    1.000
+phi    1.029e-02  5.374e-01     0.019    0.985
+
+Residual standard error: 295.4074 
+Multiple R-squared: 0.01401358 
+
+> coef( cesDeVrs )
+        gamma         delta           rho           phi 
+1357.54670240    0.98801406   -0.10000000    0.01029189 
+> vcov( cesDeVrs )
+              gamma         delta           rho           phi
+gamma  6.129058e+09  2.503264e+08 -6.742749e+09 -1.122556e+04
+delta  2.503264e+08  1.024908e+07 -2.763038e+08 -3.790563e+02
+rho   -6.742749e+09 -2.763038e+08  7.451405e+09  9.538676e+03
+phi   -1.122556e+04 -3.790563e+02  9.538676e+03  2.888269e-01
+> coef( summary( cesDeVrs ) )
+           Estimate   Std. Error       t value  Pr(>|t|)
+gamma 1357.54670240 7.828830e+04  1.734035e-02 0.9861651
+delta    0.98801406 3.201419e+03  3.086175e-04 0.9997538
+rho     -0.10000000 8.632152e+04 -1.158460e-06 0.9999991
+phi      0.01029189 5.374262e-01  1.915034e-02 0.9847212
+> 
+> 
