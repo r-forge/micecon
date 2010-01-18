@@ -1,4 +1,7 @@
-cesRssDeriv <- function( par, yName, xNames, data, vrs ) {
+cesRssDeriv <- function( par, yName, xNames, data, vrs, rho = NULL ) {
+
+   # add coefficient 'rho' if it is fixed
+   par <- cesCoefAddRho( coef = par, vrs = vrs, rho = rho )
 
    # calculate fitted values and residuals
    yHat <- cesCalc( xNames = xNames, data = data, coef = par )
@@ -6,10 +9,10 @@ cesRssDeriv <- function( par, yName, xNames, data, vrs ) {
 
    # obtain derivatives of the CES with respect to coefficients
    derivCoef <- cesDerivCoef( par = par, xNames = xNames, data = data, 
-      vrs = vrs )
+      vrs = vrs, returnRho = is.null( rho ) )
 
    # prepare vector of gradients (to be returned)
-   result <- numeric( length( par ) )
+   result <- numeric( ncol( derivCoef ) )
    names( result ) <- colnames( derivCoef )
    for( coefName in colnames( derivCoef ) ) {
       result[ coefName ] <- sum( - 2 * resid * derivCoef[ , coefName ] )

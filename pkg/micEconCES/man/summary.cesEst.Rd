@@ -25,7 +25,8 @@
    that contains the elements of the provided \code{object} with with
    following changes or additions:
    \item{coefficients}{a matrix with four columns:
-      the estimated coefficients/parameters of the CES,
+      the estimated coefficients/parameters of the CES
+      (including a possible fixed \eqn{\rho}{rho}),
       their standard errors, the t-statistic,
       and corresponding (two-sided) P-values.}
    \item{sigma}{square root of the estimated (asymptotic) variance
@@ -33,7 +34,8 @@
       (calculated without correcting for degrees of freedom).}
    \item{r.squared}{\eqn{R^2}-value, i.e. the
       \sQuote{fraction of variance explained by the model}.}
-   \item{vcov}{covariance matrix of the estimated parameters.}
+   \item{vcov}{covariance matrix of the estimated parameters
+      (including a possible fixed \eqn{\rho}{rho}).}
 }
 
 \seealso{\code{\link{cesEst}} and \code{\link{cesCalc}}.}

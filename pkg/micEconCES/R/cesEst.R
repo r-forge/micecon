@@ -1,6 +1,6 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
       method = "Nelder-Mead", startVal = NULL, lower = NULL, upper = NULL,
-      ... ) {
+      rho = NULL, ... ) {
 
    # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-phi/rho)
    # s = 1 / ( 1 + rho )
@@ -14,8 +14,17 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          " two variable names" )
    }
 
+   # checking "rho"
+   if( !is.null( rho ) ) {
+      if( !is.numeric( rho ) || length( rho ) != 1 ) {
+         stop( "argument 'rho' must be either 'NULL' or a numeric scalar" )
+      } else if( rho < -1 ) {
+         stop( "argument 'rho' must not be smaller than '-1'" )
+      }
+   }
+
    # number of parameters
-   nParam <- 3 + vrs
+   nParam <- 3 + vrs - length( rho )
 
    # start values
    if( method %in% c( "Kmenta", "DE" ) ) {
@@ -26,25 +35,31 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       }
    } else {
       if( is.null( startVal ) ) {
-         startVal <- c( 1, 0.5, 0.25, 1 )[ 1:( 3 + vrs ) ]
+         rhoStart <- ifelse( is.null( rho ), 0.25, rho )
+         startVal <- c( 1, 0.5, rhoStart, 1 )[ 1:( 3 + vrs ) ]
          yTemp <- cesCalc( xNames = xNames, data = data, coef = startVal )
          startVal[ 1 ] <- mean( data[[ yName ]], na.rm = TRUE ) /
             mean( yTemp, na.rm = TRUE )
+         if( !is.null( rho ) ) {
+            startVal <- startVal[ -3 ]
+         }
       }
       if( length( startVal ) != nParam ) {
          stop( "wrong number of starting values:",
             " you provided ", length( startVal ), " values",
             " but the model has ", nParam, " parameters" )
       }
-      names( startVal ) <- cesCoefNames( nExog, vrs )
+      names( startVal ) <- cesCoefNames( nExog, vrs, returnRho = is.null( rho ) )
    }
 
    # dertermining lower and upper bounds automatically
    if( is.null( lower ) ) {
-      lower <- cesCoefBounds( vrs = vrs, method = method, lower = TRUE )
+      lower <- cesCoefBounds( vrs = vrs, returnRho = is.null( rho ),
+         method = method, lower = TRUE )
    }
    if( is.null( upper ) ) {
-      upper <- cesCoefBounds( vrs = vrs, method = method, lower = FALSE )
+      upper <- cesCoefBounds( vrs = vrs, returnRho = is.null( rho ),
+         method = method, lower = FALSE )
    }
 
    # checking lower and upper bounds
@@ -82,16 +97,21 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # Estimation by the Kmenta approximation
    if( method == "Kmenta" ) {
+      if( !is.null( rho ) ) {
+         stop( "fixing 'rho' is currently not supported for the",
+            " Kmenta approximation" )
+      }
       result <- cesEstKmenta( yName = yName, xNames = xNames, data = data,
          vrs = vrs )
    } else if( method %in% c( "Nelder-Mead", "SANN", "BFGS", "CG", "L-BFGS-B" ) ) {
       if( method %in% c( "Nelder-Mead", "SANN" ) ) {
          result$optim <- optim( par = startVal, fn = cesRss, data = data,
-            method = method, yName = yName, xNames = xNames, vrs = vrs, ... )
+            method = method, yName = yName, xNames = xNames, vrs = vrs,
+            rho = rho, ... )
       } else {
          result$optim <- optim( par = startVal, fn = cesRss, gr = cesRssDeriv,
             data = data, method = method, lower = lower, upper = upper, 
-	    yName = yName, xNames = xNames, vrs = vrs, ... )
+            yName = yName, xNames = xNames, vrs = vrs, rho = rho, ... )
       }
       result$coefficients <- result$optim$par
       result$iter <- result$optim$counts[ !is.na( result$optim$counts ) ]
@@ -102,39 +122,43 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$message <- result$optim$message
    } else if( method == "LM" ) {
       # residual function
-      residFun <- function( par, yName, xNames, data, vrs ) {
+      residFun <- function( par, yName, xNames, data, vrs, rho ) {
+         # add coefficient 'rho' if it is fixed
+         par <- cesCoefAddRho( coef = par, vrs = vrs, rho = rho )
          result <- data[[ yName ]] - cesCalc( xNames = xNames,
             data = data, coef = par )
          return( result )
       }
 
       # jacobian function
-      jac <- function( par, yName, xNames, data, vrs ) {
+      jac <- function( par, yName, xNames, data, vrs, rho ) {
+         # add coefficient 'rho' if it is fixed
+         par <- cesCoefAddRho( coef = par, vrs = vrs, rho = rho )
          return( -c( cesDerivCoef( par = par, xNames = xNames, data = data,
-	    vrs = vrs ) ) )
+            vrs = vrs, returnRho = is.null( rho ) ) ) )
       }
 
       # perform fit
       result$nls.lm <- nls.lm( par = startVal, fn = residFun, data = data,
-         jac = jac, yName = yName, xNames = xNames, vrs = vrs, ... )
+         jac = jac, yName = yName, xNames = xNames, vrs = vrs, rho = rho, ... )
       result$coefficients <- result$nls.lm$par
       result$iter <- result$nls.lm$niter
       result$convergence <- result$nls.lm$info > 0 && result$nls.lm$info < 5
       result$message <- result$nls.lm$message
    } else if( method == "Newton" ) {
-      cesRss2 <- function( par, yName, xNames, data, vrs ) {
+      cesRss2 <- function( par, yName, xNames, data, vrs, rho ) {
          result <- cesRss( par = par, yName = yName, xNames = xNames,
-	    data = data, vrs = vrs )
+            data = data, vrs = vrs, rho = rho )
          attributes( result )$gradient <- cesRssDeriv( par = par, 
-	    yName = yName, xNames = xNames, data = data, vrs = vrs )
+            yName = yName, xNames = xNames, data = data, vrs = vrs, rho = rho )
          return( result )
       }
       # save current setting for warning messages and suppress warning messages
       warnSaved <- options()$warn
       options( warn = -1 )
       # perform fit
-      result$nlm <- nlm( f = cesRss2, p = startVal, data = data, 
-	 yName = yName, xNames = xNames, vrs = vrs, ... )
+      result$nlm <- nlm( f = cesRss2, p = startVal, data = data,
+         yName = yName, xNames = xNames, vrs = vrs, rho = rho, ... )
       # restore previous setting for warning messages
       options( warn = warnSaved )
       # extract results
@@ -144,7 +168,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    } else if( method == "PORT" ) {
       result$nlminb <- nlminb( start = startVal, objective = cesRss,
          gradient = cesRssDeriv, data = data, yName = yName, xNames = xNames,
-         vrs = vrs, lower = lower, upper = upper, ... )
+         vrs = vrs, rho = rho, lower = lower, upper = upper, ... )
       result$coefficients <- result$nlminb$par
       result$iter <- result$nlminb$iterations
       result$convergence <- result$nlminb$convergence == 0
@@ -152,15 +176,20 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    } else if( method == "DE" ) {
       result$DEoptim <- DEoptim( fn = cesRss, lower = lower,
          upper = upper, data = data, yName = yName, xNames = xNames,
-	 vrs = vrs, ... )
+         vrs = vrs, rho = rho, ... )
       result$coefficients <- result$DEoptim$optim$bestmem
-      names( result$coefficients ) <- cesCoefNames( nExog, vrs )
+      names( result$coefficients ) <- cesCoefNames( nExog, vrs,
+         returnRho = is.null( rho ) )
       result$iter <- result$DEoptim$optim$iter
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
          " 'CG', 'L-BFGS-B', 'SANN', 'LM', 'Newton', 'PORT',",
          " 'DE', or 'Kmenta'" )
    }
+
+   # add the 'rho' if it is fixed
+   result$coefficients <- cesCoefAddRho( coef = result$coefficients,
+      vrs = vrs, rho = rho )
 
    # return also the call
    result$call <- matchedCall
@@ -174,6 +203,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    # return lower and upper bounds
    result$lower <- lower
    result$upper <- upper
+
+   # return fixed rho
+   result$rho <- rho
 
    # fitted values
    result$fitted.values <- cesCalc( xNames = xNames, data = data,
