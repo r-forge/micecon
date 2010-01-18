@@ -30,8 +30,15 @@ for( i in 1:length( rhos ) ) {
 # print matrix of endogenous variables
 print( y )
 
-# print endogenous variables for different rhos (mean-adjusted)
-for( i in 1:nObs ) {
-   print( y[ , i, drop = FALSE ] - mean( y[-21,i] ) )
-}
+# endogenous variables in case of a Cobb-Douglas function (rho = 0)
+cdCoef <- c( a_0 = unname( log( cesCoef[ "gamma" ] ) ), 
+   a_1 = unname( cesCoef[ "delta" ] * cesCoef[ "nu" ] ),
+   a_2 = unname( ( 1 - cesCoef[ "delta" ] ) * cesCoef[ "nu" ] ) )
+yCd <- cobbDouglasCalc( xNames = xxNames, data = cesData, 
+   coef = cdCoef )
 
+# print endogenous variables for different rhos (adjusted with the y at rho=0)
+for( i in 1:nObs ) {
+   print( format( round( y[ , i, drop = FALSE ] - yCd[i], 11 ), 
+      scientific = FALSE ) )
+}
