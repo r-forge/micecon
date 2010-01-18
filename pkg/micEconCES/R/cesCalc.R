@@ -18,12 +18,15 @@ cesCalc <- function( xNames, data, coef ) {
 
    # check number of coefficients
    if( nExog == 2 && length( coef ) != 3 + vrs ) {
-      stop( "a CES function with 2 exogenous variables",
-         " must have either 3 (CRS) or 4 (VRS) coefficients" )
+      stop( "a CES function with 2 exogenous variables and",
+         ifelse( vrs, " variable", " constant" ), " returns to scale",
+         " must have ", 3 + vrs, " coefficients",
+         " but you provided ", length( coef ), " coefficients" )
    } else if( nExog > 2 && length( coef ) != nExog + 2 + vrs ) {
-      stop( "a CES function with ", nExog, " exogenous variables",
-         " must have either ", nExog + 2, " (CRS) or ",
-         nExog + 3, " (VRS) coefficients" )
+      stop( "a CES function with ", nExog, " exogenous variables and",
+         ifelse( vrs, " variable", " constant" ), " returns to scale",
+         " must have ", nExog + 2 + vrs, " coefficients",
+         " but you provided ", length( coef ), " coefficients" )
    }
 
    # check for NAs in coefficients
