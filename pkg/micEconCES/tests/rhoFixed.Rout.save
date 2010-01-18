@@ -148,6 +148,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     rho = 2)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Coefficient 'rho' was fixed at 2 
 Convergence NOT achieved after 501 iterations
 
 Coefficients:
@@ -264,6 +265,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, rho = -0.1)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Coefficient 'rho' was fixed at -0.1 
 Convergence NOT achieved after 502 iterations
 
 Coefficients:
@@ -385,6 +387,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "CG", rho = 2)
 
 Estimation by non-linear least-squares using the 'CG' optimizer
+Coefficient 'rho' was fixed at 2 
 Convergence NOT achieved after 754 function and 101 gradient calls
 
 Coefficients:
@@ -503,6 +506,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "CG", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'CG' optimizer
+Coefficient 'rho' was fixed at -0.1 
 Convergence NOT achieved after 658 function and 101 gradient calls
 
 Coefficients:
@@ -623,6 +627,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "SANN", rho = 2)
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
+Coefficient 'rho' was fixed at 2 
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
@@ -739,6 +744,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "SANN", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
+Coefficient 'rho' was fixed at -0.1 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -859,6 +865,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "BFGS", rho = 2)
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
+Coefficient 'rho' was fixed at 2 
 Convergence NOT achieved after 368 function and 100 gradient calls
 
 Coefficients:
@@ -977,6 +984,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "BFGS", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
+Coefficient 'rho' was fixed at -0.1 
 Convergence NOT achieved after 564 function and 100 gradient calls
 
 Coefficients:
@@ -1102,6 +1110,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "L-BFGS-B", rho = 2)
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+Coefficient 'rho' was fixed at 2 
 Convergence achieved after 42 function and 42 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
@@ -1224,6 +1233,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "L-BFGS-B", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+Coefficient 'rho' was fixed at -0.1 
 Convergence achieved after 140 function and 140 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
@@ -1340,6 +1350,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "LM", rho = 2, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho' was fixed at 2 
 Convergence NOT achieved after 200 iterations
 Message: Number of iterations has reached `maxiter' == 200. 
 
@@ -1448,6 +1459,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "LM", rho = -0.1, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho' was fixed at -0.1 
 Convergence achieved after 32 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -1565,6 +1577,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "Newton", rho = 2)
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
+Coefficient 'rho' was fixed at 2 
 Convergence achieved after 4 iterations
 
 Coefficients:
@@ -1677,6 +1690,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "Newton", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
+Coefficient 'rho' was fixed at -0.1 
 Convergence NOT achieved after 100 iterations
 
 Coefficients:
@@ -1802,6 +1816,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "PORT", rho = 2)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+Coefficient 'rho' was fixed at 2 
 Convergence achieved after 28 iterations
 Message: both X-convergence and relative convergence (5) 
 
@@ -1926,6 +1941,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "PORT", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+Coefficient 'rho' was fixed at -0.1 
 Convergence achieved after 94 iterations
 Message: relative convergence (4) 
 
@@ -2353,6 +2369,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "DE", rho = 2, control = DEoptim.control(trace = FALSE))
 
 Estimation by non-linear least-squares using the 'DE' optimizer
+Coefficient 'rho' was fixed at 2 
 
 Coefficients:
        Estimate Std. Error  t value Pr(>|t|)
@@ -2774,6 +2791,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "DE", rho = -0.1, control = DEoptim.control(trace = FALSE))
 
 Estimation by non-linear least-squares using the 'DE' optimizer
+Coefficient 'rho' was fixed at -0.1 
 
 Coefficients:
         Estimate Std. Error   t value Pr(>|t|)
