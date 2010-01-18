@@ -9,7 +9,7 @@ cesCoefNames <- function( nExog, vrs, returnRho = TRUE ) {
       result <- c( result, "rho" )
    }
    if( vrs ) {
-      result <- c( result, "phi" )
+      result <- c( result, "nu" )
    }
    return( result )
 }

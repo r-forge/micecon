@@ -2,7 +2,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       method = "Nelder-Mead", startVal = NULL, lower = NULL, upper = NULL,
       rho = NULL, ... ) {
 
-   # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-phi/rho)
+   # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)
    # s = 1 / ( 1 + rho )
 
    checkNames( c( yName, xNames ), names( data ) )
