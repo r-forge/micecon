@@ -31,14 +31,10 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          startVal[ 1 ] <- mean( data[[ yName ]], na.rm = TRUE ) /
             mean( yTemp, na.rm = TRUE )
       }
-      if( length( startVal ) != 4 && vrs ) {
-         stop( "a CES function with 2 explanatory variables and VRS has 4",
-            " parameters but you provided ", length( startVal ),
-            " starting values" )
-      } else if( length( startVal ) != 3 && !vrs ) {
-         stop( "a CES function with 2 explanatory variables and CRS has 3",
-            " parameters but you provided ", length( startVal ),
-            " starting values" )
+      if( length( startVal ) != nParam ) {
+         stop( "wrong number of starting values:",
+            " you provided ", length( startVal ), " values",
+            " but the model has ", nParam, " parameters" )
       }
       names( startVal ) <- cesCoefNames( nExog, vrs )
    }
