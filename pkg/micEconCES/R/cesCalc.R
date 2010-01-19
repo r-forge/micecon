@@ -1,4 +1,4 @@
-cesCalc <- function( xNames, data, coef ) {
+cesCalc <- function( xNames, data, coef, rhoApprox = 5e-6 ) {
 
    # check number of exogenous variables
    nExog <- length( xNames )
@@ -68,13 +68,34 @@ cesCalc <- function( xNames, data, coef ) {
    }
 
    # calculate the endogenous variable
-   result <- 0
-   for( i in 1:nExog ) {
-      result <- result + coef[ paste( "delta", i, sep = "_" ) ] *
-         data[[ xNames[ i ] ]]^( -coef[ "rho" ] )
+   if( abs( coef[ "rho" ] ) <= rhoApprox ) {
+      result <- log( coef[ "gamma" ] )
+      for( i in 1:nExog ) {
+         result <- result + coef[ paste( "delta", i, sep = "_" ) ] *
+            coef[ "nu" ] * log( data[[ xNames[ i ] ]] )
+      }
+      for( i in 1:( nExog - 1 ) ) {
+         for( j in ( i + 1 ):nExog ) {
+            result <- result - 0.5 * coef[ "rho" ] * coef[ "nu" ] *
+               coef[ paste( "delta", i, sep = "_" ) ] *
+               coef[ paste( "delta", j, sep = "_" ) ] *
+               ( log( data[[ xNames[ i ] ]] ) - log( data[[ xNames[ j ] ]] ) )^2
+         }
+      }
+      result <- exp( result )
+   } else {
+      if( coef[ "rho" ] == 0 ) {
+         result <- NaN
+      } else {
+         result <- 0
+         for( i in 1:nExog ) {
+            result <- result + coef[ paste( "delta", i, sep = "_" ) ] *
+               data[[ xNames[ i ] ]]^( -coef[ "rho" ] )
+         }
+         result <- result^( -coef[ "nu" ] / coef[ "rho" ] )
+         result <- coef[ "gamma" ] * result
+      }
    }
-   result <- result^( -coef[ "nu" ] / coef[ "rho" ] )
-   result <- coef[ "gamma" ] * result 
 
    return( result )
 }
