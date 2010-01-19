@@ -26,7 +26,7 @@
 }
 
 \usage{
-cesCalc( xNames, data, coef )
+cesCalc( xNames, data, coef, rhoApprox = 5e-6 )
 }
 
 \arguments{
@@ -51,6 +51,12 @@ cesCalc( xNames, data, coef )
       \code{"rho"}, and eventually \code{"nu"}
       in case of \eqn{N>2} explanatory variables,
       where the order is irrelevant in both cases.}
+   \item{rhoApprox}{if the absolute value of the coefficient \eqn{\rho}{rho}
+      is smaller than or equal to this argument,
+      the endogenous variable is calculated using the Kmenta approximation,
+      which is more precise than the non-linear CES formula
+      for very small values of \eqn{\rho}{rho}
+      (and the CES formula cannot even be used for \eqn{\rho=0}{rho = 0}).}
 }
 
 \value{
