@@ -168,6 +168,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       evaluated at the estimated parameters.}
    \item{fitted.values}{the fitted values.}
    \item{residuals}{the residuals.}
+   \item{rss}{the sum of the squared residuals 
+      (i.e. the value of the objective function of the non-linear 
+      least-squares estimation evaluated at the estimated parameters).}
    \item{call}{the matched call.}
    \item{method}{argument \code{method}.}
    \item{startVal}{starting values for the non-linear estimation

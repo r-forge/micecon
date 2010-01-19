@@ -214,6 +214,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    # residuals
    result$residuals <- data[[ yName ]] - result$fitted.values
 
+   # sum of squared residuals
+   result$rss <- sum( result$residuals^2 )
+
    # unscaled covariance matrix
    gradients <- cesDerivCoef( par = result$coefficients, xNames = xNames,
       data = data, vrs = vrs )

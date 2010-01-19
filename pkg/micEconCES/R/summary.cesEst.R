@@ -4,7 +4,7 @@ summary.cesEst <- function( object, ... ) {
    nObs <- length( residuals( object ) )
 
    # square root of the estimated variance of the random error
-   object$sigma <- sqrt( sum( residuals( object )^2 ) / nObs )
+   object$sigma <- sqrt( object$rss / nObs )
 
    # R-squared value
    object$r.squared <- rSquared( y = fitted( object ) + residuals( object ),
