@@ -18,32 +18,60 @@ cesDerivCoef <- function( par, xNames, data, vrs, returnRho = TRUE ) {
    }
 
    # derivatives with respect to gamma
-   result[ , "gamma" ] <-
-      ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho )
+   if( rho != 0 ) {
+      result[ , "gamma" ] <-
+         ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho )
+   } else {
+      result[ , "gamma" ] <- 
+         data[[ xNames[ 1 ] ]]^( nu * delta ) *
+         data[[ xNames[ 2 ] ]]^( nu * ( 1 - delta ) )
+   }
 
    # derivatives with respect to delta
-   result[ , "delta" ] <- gamma * ( -nu / rho ) *
-      ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho - 1 ) *
-      ( data[[ xNames[ 1 ] ]]^(-rho) - data[[ xNames[ 2 ] ]]^(-rho) )
+   if( rho != 0 ) {
+      result[ , "delta" ] <- gamma * ( -nu / rho ) *
+         ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho - 1 ) *
+         ( data[[ xNames[ 1 ] ]]^(-rho) - data[[ xNames[ 2 ] ]]^(-rho) )
+   } else {
+      result[ , "delta" ] <- gamma * nu *
+         ( log( data[[ xNames[ 1 ] ]] ) - log( data[[ xNames[ 2 ] ]] ) ) *
+         data[[ xNames[ 1 ] ]]^( nu * delta ) *
+         data[[ xNames[ 2 ] ]]^( nu * ( 1 - delta ) )
+   }
 
    # derivatives with respect to rho
    if( returnRho ) {
-      result[ , "rho" ] <- gamma *
-         log( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) ) *
-         ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho ) *
-         ( nu / rho^2 ) +
-         gamma * ( nu / rho ) *
-         ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho - 1 ) *
-         ( delta * log( data[[ xNames[ 1 ] ]] ) * data[[ xNames[ 1 ] ]]^(-rho) +
-            ( 1 - delta ) * log( data[[ xNames[ 2 ] ]] ) * data[[ xNames[ 2 ] ]]^(-rho) )
+      if( rho != 0 ) {
+         result[ , "rho" ] <- gamma *
+            log( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) ) *
+            ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho ) *
+            ( nu / rho^2 ) +
+            gamma * ( nu / rho ) *
+            ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho - 1 ) *
+            ( delta * log( data[[ xNames[ 1 ] ]] ) * data[[ xNames[ 1 ] ]]^(-rho) +
+               ( 1 - delta ) * log( data[[ xNames[ 2 ] ]] ) * data[[ xNames[ 2 ] ]]^(-rho) )
+      } else {
+         result[ , "nu" ] <- gamma * 
+            ( delta * log( data[[ xNames[ 1 ] ]] ) + 
+            ( 1 - delta ) * log( data[[ xNames[ 2 ] ]] ) ) *
+            data[[ xNames[ 1 ] ]]^( nu * delta ) *
+            data[[ xNames[ 2 ] ]]^( nu * ( 1 - delta ) )
+      }
    }
 
    # derivatives with respect to nu
    if( vrs ) {
-      result[ , "nu" ] <- gamma *
-         log( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) ) *
-         ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho ) *
-         ( -1 / rho )
+      if( rho != 0 ) {
+         result[ , "nu" ] <- gamma *
+            log( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) ) *
+            ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho ) *
+            ( -1 / rho )
+      } else {
+         result[ , "rho" ] <- - 0.5 * gamma * nu * delta * ( 1 - delta ) *
+            data[[ xNames[ 1 ] ]]^( nu * delta ) *
+            data[[ xNames[ 2 ] ]]^( nu * ( 1 - delta ) ) *
+            ( log( data[[ xNames[ 1 ] ]] ) - log( data[[ xNames[ 2 ] ]] ) )^2
+      }
    }
 
    return( result )
