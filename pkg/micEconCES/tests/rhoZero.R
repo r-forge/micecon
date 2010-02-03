@@ -14,7 +14,8 @@ cesData <- data.frame( xx1 = rchisq( nObs, 10 ), xx2 = rchisq( nObs, 10 ) )
 xxNames <- c( "xx1", "xx2" )
 
 # vector with values around 0 for coefficient "rho"
-rhos = c( -exp(-(1:20)),0,exp(-(20:1)) )
+rhos <- c( -exp(-(1:20)),0,exp(-(20:1)) )
+# rhos <- c( -2^(-(1:40)),0,2^(-(40:1)) )
 
 # matrix for returned endogenous variables
 y <- matrix( NA, nrow = length( rhos ), ncol = nObs )
@@ -41,4 +42,55 @@ yCd <- cobbDouglasCalc( xNames = xxNames, data = cesData,
 for( i in 1:nObs ) {
    print( format( round( y[ , i, drop = FALSE ] - yCd[i], 11 ), 
       scientific = FALSE ) )
+}
+
+
+## checking derivatives of the CES with respect to coefficients
+# array for returned endogenous variables
+deriv <- array( NA, c( length( rhos ), nObs, length( cesCoef ) ) )
+dimnames( deriv ) <- list( rhos, 1:nObs, names( cesCoef ) )
+
+# calculate the derivatives
+for( i in 1:length( rhos ) ) {
+   # coefficients
+   cesCoef <- c( gamma = 1, delta = 0.6, rho = rhos[ i ], nu = 1.1 )
+   deriv[ i, , ] <- micEconCES:::cesDerivCoef( par = cesCoef, 
+      xNames = xxNames, data = cesData, vrs = TRUE )
+}
+
+# print array of derivatives
+print( deriv )
+
+# derivatives in case of a Cobb-Douglas function (rho = 0)
+derivCd <- matrix( NA, nrow = nObs, ncol = length( cesCoef ) )
+dimnames( derivCd ) <- list( 1:nObs, names( cesCoef ) )
+# derivCd[ , "gamma" ] <- exp( cesCoef[ "nu" ] *
+#    ( cesCoef[ "delta" ] * log( cesData[[ xxNames[ 1 ] ]] ) +
+#    ( 1 - cesCoef[ "delta" ] ) * log( cesData[[ xxNames[ 2 ] ]] ) ) )
+derivCd[ , "gamma" ] <- 
+   cesData[[ xxNames[ 1 ] ]]^( cesCoef[ "nu" ] * cesCoef[ "delta" ] ) *
+   cesData[[ xxNames[ 2 ] ]]^( cesCoef[ "nu" ] * ( 1 - cesCoef[ "delta" ] ) )
+derivCd[ , "delta" ] <- cesCoef[ "gamma" ] * cesCoef[ "nu" ] * 
+   ( log( cesData[[ xxNames[ 1 ] ]] ) - log( cesData[[ xxNames[ 2 ] ]] ) ) *
+   cesData[[ xxNames[ 1 ] ]]^( cesCoef[ "nu" ] * cesCoef[ "delta" ] ) *
+   cesData[[ xxNames[ 2 ] ]]^( cesCoef[ "nu" ] * ( 1 - cesCoef[ "delta" ] ) )
+derivCd[ , "nu" ] <- cesCoef[ "gamma" ] * 
+   ( cesCoef[ "delta" ] * log( cesData[[ xxNames[ 1 ] ]] ) +
+   ( 1 - cesCoef[ "delta" ] ) * log( cesData[[ xxNames[ 2 ] ]] ) ) *
+   cesData[[ xxNames[ 1 ] ]]^( cesCoef[ "nu" ] * cesCoef[ "delta" ] ) *
+   cesData[[ xxNames[ 2 ] ]]^( cesCoef[ "nu" ] * ( 1 - cesCoef[ "delta" ] ) )
+derivCd[ , "rho" ] <- - 0.5 * cesCoef[ "gamma" ] * cesCoef[ "nu" ] *
+   cesCoef[ "delta" ] * ( 1 - cesCoef[ "delta" ] ) *
+   cesData[[ xxNames[ 1 ] ]]^( cesCoef[ "nu" ] * cesCoef[ "delta" ] ) *
+   cesData[[ xxNames[ 2 ] ]]^( cesCoef[ "nu" ] * ( 1 - cesCoef[ "delta" ] ) ) *
+   ( log( cesData[[ xxNames[ 1 ] ]] ) - log( cesData[[ xxNames[ 2 ] ]] ) )^2
+
+
+
+# print derivatives for different rhos (adjusted with the derivatives at rho=0)
+for( k in 1:ncol( derivCd ) ) {
+   for( i in 1:nObs ) {
+      print( format( round( deriv[ , i, k, drop = FALSE ] - 
+	 derivCd[ i, k ], 11 ), scientific = FALSE ) )
+   }
 }
