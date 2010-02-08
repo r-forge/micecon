@@ -47,7 +47,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, returnRho = TRUE,
 
    # derivatives with respect to rho
    if( returnRho ) {
-      if( abs( rho ) > 0 ) {
+      if( abs( rho ) > rhoApprox * 200 ) {
          result[ , "rho" ] <- gamma *
             log( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) ) *
             ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho ) *
@@ -60,18 +60,12 @@ cesDerivCoef <- function( par, xNames, data, vrs, returnRho = TRUE,
          result[ , "rho" ] <- gamma * nu * delta * ( 1 - delta ) *
             data[[ xNames[ 1 ] ]]^( nu * delta ) *
             data[[ xNames[ 2 ] ]]^( nu * ( 1 - delta ) ) *
-            ( - 0.5 * 
+            ( - ( 1 / 2 ) * 
             ( log( data[[ xNames[ 1 ] ]] ) - log( data[[ xNames[ 2 ] ]] ) )^2
-            - 0.5 * rho * nu * delta * ( 1 - delta ) *
-            ( log( data[[ xNames[ 1 ] ]] )^4 -
-            4 * log( data[[ xNames[ 1 ] ]] )^2 * log( data[[ xNames[ 2 ] ]] )^2 +
-            4 * log( data[[ xNames[ 1 ] ]] ) * log( data[[ xNames[ 2 ] ]] )^3 -
-            log( data[[ xNames[ 2 ] ]] )^4 ) +
-            ( 2 / 3 ) * rho * ( 1 - 2 * delta ) *
-            ( log( data[[ xNames[ 1 ] ]] )^3 -
-            3 * log( data[[ xNames[ 1 ] ]] )^2 * log( data[[ xNames[ 2 ] ]] ) -
-            6 * log( data[[ xNames[ 1 ] ]] ) * log( data[[ xNames[ 2 ] ]] )^2 -
-            log( data[[ xNames[ 2 ] ]] )^3 ) )
+            + ( 1 / 3 ) * rho * ( 1 - 2 * delta ) *
+            ( log( data[[ xNames[ 1 ] ]] ) - log( data[[ xNames[ 2 ] ]] ) )^3
+            + ( 1 / 4 ) * rho * nu * delta * ( 1 - delta ) *
+            ( log( data[[ xNames[ 1 ] ]] ) - log( data[[ xNames[ 2 ] ]] ) )^4 )
       }
    }
 
