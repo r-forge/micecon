@@ -118,7 +118,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       if( length( result$iter ) == 1 ) {
          result$iter <- unname( result$iter )
       }
-      result$convergence <- result$optim$convergence == 0
+      if( method != "SANN" ) {
+         result$convergence <- result$optim$convergence == 0
+      }
       result$message <- result$optim$message
    } else if( method == "LM" ) {
       # residual function
