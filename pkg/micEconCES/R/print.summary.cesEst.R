@@ -19,7 +19,9 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
    } else {
       cat( "non-linear least-squares using the '", x$method, "' optimizer\n",
          sep = "" )
-      if( !is.null( x$rho ) ) {
+      if( "cesEstRhoGrid" %in% class( x ) ) {
+         cat( "and a one-dimensional grid search for coefficient 'rho'\n" )
+      } else if( !is.null( x$rho ) ) {
          cat( "Coefficient 'rho' was fixed at", x$rho, "\n" )
       }
       if( ! x$method %in% c( "SANN", "DE" ) ) {

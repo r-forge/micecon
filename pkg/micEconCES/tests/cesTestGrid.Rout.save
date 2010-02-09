@@ -153,7 +153,7 @@ Call:
 cesEst(yName = "qOutput", xNames = ..2, data = ..3, rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
-Coefficient 'rho' was fixed at 0.4 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence achieved after 253 iterations
 
 Coefficients:
@@ -292,7 +292,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE,
     rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
-Coefficient 'rho' was fixed at -0.4 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence NOT achieved after 502 iterations
 
 Coefficients:
@@ -427,7 +427,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "CG",
     rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'CG' optimizer
-Coefficient 'rho' was fixed at 1.2 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence NOT achieved after 764 function and 101 gradient calls
 
 Coefficients:
@@ -568,7 +568,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE,
     method = "CG", rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'CG' optimizer
-Coefficient 'rho' was fixed at 0 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence NOT achieved after 658 function and 101 gradient calls
 
 Coefficients:
@@ -700,7 +700,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "SANN",
     rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
-Coefficient 'rho' was fixed at 0.8 
+and a one-dimensional grid search for coefficient 'rho'
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
@@ -827,7 +827,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE,
     method = "SANN", rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
-Coefficient 'rho' was fixed at -0.8 
+and a one-dimensional grid search for coefficient 'rho'
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -961,7 +961,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "BFGS",
     rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
-Coefficient 'rho' was fixed at 0.4 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence achieved after 311 function and 73 gradient calls
 
 Coefficients:
@@ -1093,7 +1093,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE,
     method = "BFGS", rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
-Coefficient 'rho' was fixed at 0 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence NOT achieved after 545 function and 100 gradient calls
 
 Coefficients:
@@ -1231,7 +1231,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "L-BFGS-B",
     rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
-Coefficient 'rho' was fixed at 0.8 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence achieved after 22 function and 22 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
@@ -1366,7 +1366,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE,
     method = "L-BFGS-B", rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
-Coefficient 'rho' was fixed at 0 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence NOT achieved after 137 function and 137 gradient calls
 Message: NEW_X 
 
@@ -1498,7 +1498,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "LM",
     rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'LM' optimizer
-Coefficient 'rho' was fixed at 0.4 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence achieved after 22 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -1624,7 +1624,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE,
     method = "LM", rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'LM' optimizer
-Coefficient 'rho' was fixed at 1.2 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence achieved after 47 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -1755,7 +1755,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "Newton",
     rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
-Coefficient 'rho' was fixed at 0.4 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence achieved after 70 iterations
 
 Coefficients:
@@ -1880,7 +1880,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE,
     method = "Newton", rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
-Coefficient 'rho' was fixed at 0 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence NOT achieved after 100 iterations
 
 Coefficients:
@@ -2019,7 +2019,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "PORT",
     rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
-Coefficient 'rho' was fixed at -0.8 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence achieved after 47 iterations
 Message: relative convergence (4) 
 
@@ -2158,7 +2158,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE,
     method = "PORT", rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
-Coefficient 'rho' was fixed at 1.2 
+and a one-dimensional grid search for coefficient 'rho'
 Convergence NOT achieved after 131 iterations
 Message: function evaluation limit reached without convergence (9) 
 
@@ -3195,7 +3195,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "DE",
     rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'DE' optimizer
-Coefficient 'rho' was fixed at 0 
+and a one-dimensional grid search for coefficient 'rho'
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
@@ -4226,7 +4226,7 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE,
     method = "DE", rho = sumResults$rho[i])
 
 Estimation by non-linear least-squares using the 'DE' optimizer
-Coefficient 'rho' was fixed at 0.8 
+and a one-dimensional grid search for coefficient 'rho'
 
 Coefficients:
        Estimate Std. Error  t value Pr(>|t|)    
