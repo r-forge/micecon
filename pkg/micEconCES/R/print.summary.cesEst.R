@@ -24,7 +24,7 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
       } else if( !is.null( x$rho ) ) {
          cat( "Coefficient 'rho' was fixed at", x$rho, "\n" )
       }
-      if( ! x$method %in% c( "SANN", "DE" ) ) {
+      if( !is.null( x$convergence ) ) {
          cat( "Convergence ", ifelse( x$convergence, "", "NOT " ),
             "achieved after ", sep = "" )
          if( length( x$iter ) == 1 ) {

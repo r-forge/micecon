@@ -460,9 +460,6 @@ $coefficients
 $iter
 [1] 10000
 
-$convergence
-[1] TRUE
-
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "SANN")
@@ -3657,9 +3654,6 @@ $coefficients
 
 $iter
 [1] 10000
-
-$convergence
-[1] TRUE
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 

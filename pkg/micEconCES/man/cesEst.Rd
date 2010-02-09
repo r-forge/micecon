@@ -155,7 +155,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{iter}{number of iterations
       (only for non-linear least-squares estimations).}
    \item{convergence}{logical value indicating if the non-linear estimation
-      has converged (only for non-linear least-squares estimations).}
+      has converged (only for non-linear least-squares estimations
+      with solvers that have a convergence criterion).}
    \item{message}{additional information from the optimizer
       (only if a message was returned by \code{\link{optim}} or
       \code{\link[minpack.lm]{nls.lm}}.}

@@ -1134,9 +1134,6 @@ $coefficients
 $iter
 [1] 10000
 
-$convergence
-[1] TRUE
-
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "SANN")
 
@@ -1379,9 +1376,6 @@ $coefficients
 
 $iter
 [1] 10000
-
-$convergence
-[1] TRUE
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
