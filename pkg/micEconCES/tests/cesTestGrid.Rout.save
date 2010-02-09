@@ -1,0 +1,4258 @@
+
+R version 2.10.1 (2009-12-14)
+Copyright (C) 2009 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library( micEconCES )
+Loading required package: systemfit
+Loading required package: Matrix
+Loading required package: lattice
+Loading required package: car
+Loading required package: lmtest
+Loading required package: zoo
+Loading required package: miscTools
+Loading required package: micEcon
+Loading required package: np
+Loading required package: boot
+
+Attaching package: 'boot'
+
+
+	The following object(s) are masked from package:car :
+
+	 logit 
+
+
+	The following object(s) are masked from package:lattice :
+
+	 melanoma 
+
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-3)
+Loading required package: minpack.lm
+Loading required package: DEoptim
+> 
+> # load data
+> data( germanFarms )
+> # output quantity:
+> germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
+> # quantity of intermediate inputs
+> germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
+> 
+> 
+> ############  cesEstGridRho  ################
+> ## CES: Land & Intermediate inputs
+> ## Nelder-Mead, CRS
+> cesGridNm <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, by = 0.4, to = 1.2 )
+> print.default( cesGridNm ) 
+$optim
+$optim$par
+     gamma      delta 
+165.451976   1.873604 
+
+$optim$value
+[1] 153698.6
+
+$optim$counts
+function gradient 
+     253       NA 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho 
+165.451976   1.873604   0.400000 
+
+$iter
+[1] 253
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, rho = sumResults$rho[i])
+
+$method
+[1] "Nelder-Mead"
+
+$startVal
+   gamma    delta 
+16.06668  0.50000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0.4
+
+$fitted.values
+ [1] 1145.421 1175.322 1202.310 1201.676 1203.370 1218.548 1251.723 1262.176
+ [9] 1220.439 1267.590 1296.949 1447.258 1504.935 1566.003 1546.893 1573.324
+[17] 1675.257 1763.352 1883.031 1988.798
+
+$residuals
+ [1] -199.287826 -212.591141 -132.731035  -29.879531  -25.253543  -32.737675
+ [7]  -12.365274   26.384897  -12.732401   10.818020   63.643561   93.525968
+[13]   70.099403  129.956124   97.796473   52.706943  -20.216796   -7.752477
+[19]    4.388877    3.096481
+
+$rss
+[1] 153698.6
+
+$cov.unscaled
+            gamma       delta         rho
+gamma 25044.31430 204.3997002 40.13715129
+delta   204.39970   1.6682512  0.32760345
+rho      40.13715   0.3276034  0.06433956
+
+$otherSum
+   rho      rss convergence
+1 -0.8 153725.4        TRUE
+2 -0.4 153710.7        TRUE
+3  0.0 153701.8        TRUE
+4  0.4 153698.6        TRUE
+5  0.8 156353.9       FALSE
+6  1.2 162424.9       FALSE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridNm )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, rho = sumResults$rho[i])
+
+Coefficients:
+  gamma   delta     rho 
+165.452   1.874   0.400 
+
+> summary( cesGridNm )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Coefficient 'rho' was fixed at 0.4 
+Convergence achieved after 253 iterations
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)
+gamma   165.452  13873.133   0.012    0.990
+delta     1.874    113.227   0.017    0.987
+rho       0.400     22.236   0.018    0.986
+
+Residual standard error: 87.66374 
+Multiple R-squared: 0.9131703 
+
+> coef( cesGridNm )
+     gamma      delta        rho 
+165.451976   1.873604   0.400000 
+> vcov( cesGridNm )
+            gamma      delta         rho
+gamma 192463827.8 1570797.60 308451.2390
+delta   1570797.6   12820.40   2517.6099
+rho      308451.2    2517.61    494.4451
+> coef( summary( cesGridNm ) )
+        Estimate  Std. Error    t value  Pr(>|t|)
+gamma 165.451976 13873.13331 0.01192607 0.9904846
+delta   1.873604   113.22718 0.01654730 0.9867978
+rho     0.400000    22.23612 0.01798875 0.9856478
+> fitted( cesGridNm )
+ [1] 1145.421 1175.322 1202.310 1201.676 1203.370 1218.548 1251.723 1262.176
+ [9] 1220.439 1267.590 1296.949 1447.258 1504.935 1566.003 1546.893 1573.324
+[17] 1675.257 1763.352 1883.031 1988.798
+> residuals( cesGridNm )
+ [1] -199.287826 -212.591141 -132.731035  -29.879531  -25.253543  -32.737675
+ [7]  -12.365274   26.384897  -12.732401   10.818020   63.643561   93.525968
+[13]   70.099403  129.956124   97.796473   52.706943  -20.216796   -7.752477
+[19]    4.388877    3.096481
+> 
+> ## Nelder-Mead, VRS
+> cesGridNmVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, vrs = TRUE, by = 0.4, to = 1.2 )
+> print.default( cesGridNmVrs )
+$optim
+$optim$par
+    gamma     delta        nu 
+2.2576334 0.8649508 1.5670310 
+
+$optim$value
+[1] 50384.7
+
+$optim$counts
+function gradient 
+     502       NA 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho         nu 
+ 2.2576334  0.8649508 -0.4000000  1.5670310 
+
+$iter
+[1] 502
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    rho = sumResults$rho[i])
+
+$method
+[1] "Nelder-Mead"
+
+$startVal
+   gamma    delta       nu 
+6.258033 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.4
+
+$fitted.values
+ [1] 1007.271 1093.638 1117.146 1174.866 1168.337 1193.025 1242.491 1218.253
+ [9] 1172.984 1223.563 1293.257 1535.020 1646.262 1699.194 1591.246 1587.502
+[17] 1648.860 1727.290 1882.857 2047.312
+
+$residuals
+ [1]  -61.137841 -130.907506  -47.566719   -3.069683    9.779173   -7.215228
+ [7]   -3.132706   70.308303   34.722374   54.845794   67.336035    5.764507
+[13]  -71.227774   -3.234177   53.443505   38.529493    6.180242   28.310089
+[19]    4.563365  -55.418100
+
+$rss
+[1] 50384.7
+
+$cov.unscaled
+              gamma         delta           rho            nu
+gamma  0.1166752385  1.578392e-02 -4.326885e-02 -1.289928e-04
+delta  0.0157839156  2.144597e-03 -5.884107e-03 -1.199442e-05
+rho   -0.0432688517 -5.884107e-03  1.614781e-02  3.025097e-05
+nu    -0.0001289928 -1.199442e-05  3.025097e-05  3.451601e-06
+
+$otherSum
+   rho       rss convergence
+1 -0.8  50626.98        TRUE
+2 -0.4  50384.70       FALSE
+3  0.0 151216.59       FALSE
+4  0.4  68688.96       FALSE
+5  0.8 105470.02       FALSE
+6  1.2  70789.74       FALSE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridNmVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    rho = sumResults$rho[i])
+
+Coefficients:
+ gamma  delta    rho     nu 
+ 2.258  0.865 -0.400  1.567 
+
+> summary( cesGridNmVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+Coefficient 'rho' was fixed at -0.4 
+Convergence NOT achieved after 502 iterations
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  2.25763   17.14445   0.132    0.895    
+delta  0.86495    2.32438   0.372    0.710    
+rho   -0.40000    6.37810  -0.063    0.950    
+nu     1.56703    0.09325  16.805   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 50.19198 
+Multiple R-squared: 0.971536 
+
+> coef( cesGridNmVrs )
+     gamma      delta        rho         nu 
+ 2.2576334  0.8649508 -0.4000000  1.5670310 
+> vcov( cesGridNmVrs )
+             gamma        delta          rho           nu
+gamma  293.9323292  39.76339045 -109.0043999 -0.324963176
+delta   39.7633905   5.40274418  -14.8234473 -0.030216762
+rho   -109.0043999 -14.82344729   40.6801337  0.076209303
+nu      -0.3249632  -0.03021676    0.0762093  0.008695393
+> coef( summary( cesGridNmVrs ) )
+        Estimate Std. Error     t value     Pr(>|t|)
+gamma  2.2576334 17.1444548  0.13168301 8.952350e-01
+delta  0.8649508  2.3243804  0.37212100 7.098028e-01
+rho   -0.4000000  6.3780980 -0.06271462 9.499938e-01
+nu     1.5670310  0.0932491 16.80478547 2.251256e-63
+> 
+> # using the CG optimization method
+> cesGridCg <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "CG", by = 0.4, to = 1.2 )
+> print.default( cesGridCg )
+$optim
+$optim$par
+     gamma      delta 
+27.9068606  0.4955612 
+
+$optim$value
+[1] 169812.4
+
+$optim$counts
+function gradient 
+     764      101 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho 
+27.9068606  0.4955612  1.2000000 
+
+$iter
+function gradient 
+     764      101 
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "CG", 
+    rho = sumResults$rho[i])
+
+$method
+[1] "CG"
+
+$startVal
+   gamma    delta 
+27.90554  0.50000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 1.2
+
+$fitted.values
+ [1] 1150.499 1191.180 1214.839 1227.279 1227.042 1242.844 1276.294 1278.175
+ [9] 1239.772 1283.017 1318.137 1470.761 1532.158 1584.087 1549.139 1565.514
+[17] 1643.929 1716.484 1825.582 1927.227
+
+$residuals
+ [1] -204.366049 -228.449350 -145.259629  -55.482559  -48.925516  -57.033884
+ [7]  -36.936419   10.385547  -32.065721   -4.608809   42.455964   70.022711
+[13]   42.876569  111.871950   95.550360   60.517571   11.111192   39.116120
+[19]   61.838593   64.666686
+
+$rss
+[1] 169812.4
+
+$cov.unscaled
+           gamma     delta        rho
+gamma 2146.45422 71.519690 -92.056246
+delta   71.51969  2.383087  -3.067528
+rho    -92.05625 -3.067528   3.948932
+
+$otherSum
+   rho      rss convergence
+1 -0.8 699932.3       FALSE
+2 -0.4 567846.4       FALSE
+3  0.0 364164.0       FALSE
+4  0.4 225699.0       FALSE
+5  0.8 180872.4       FALSE
+6  1.2 169812.4       FALSE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridCg )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "CG", 
+    rho = sumResults$rho[i])
+
+Coefficients:
+  gamma   delta     rho 
+27.9069  0.4956  1.2000 
+
+> summary( cesGridCg )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "CG", 
+    rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'CG' optimizer
+Coefficient 'rho' was fixed at 1.2 
+Convergence NOT achieved after 764 function and 101 gradient calls
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)
+gamma   27.9069  4269.0433   0.007    0.995
+delta    0.4956   142.2459   0.003    0.997
+rho      1.2000   183.1089   0.007    0.995
+
+Residual standard error: 92.14457 
+Multiple R-squared: 0.9040671 
+
+> coef( cesGridCg )
+     gamma      delta        rho 
+27.9068606  0.4955612  1.2000000 
+> vcov( cesGridCg )
+           gamma     delta        rho
+gamma 18224730.7 607246.63 -781614.76
+delta   607246.6  20233.89  -26045.22
+rho    -781614.8 -26045.22   33528.88
+> coef( summary( cesGridCg ) )
+        Estimate Std. Error     t value  Pr(>|t|)
+gamma 27.9068606  4269.0433 0.006537029 0.9947842
+delta  0.4955612   142.2459 0.003483835 0.9972203
+rho    1.2000000   183.1089 0.006553476 0.9947711
+> fitted( cesGridCg )
+ [1] 1150.499 1191.180 1214.839 1227.279 1227.042 1242.844 1276.294 1278.175
+ [9] 1239.772 1283.017 1318.137 1470.761 1532.158 1584.087 1549.139 1565.514
+[17] 1643.929 1716.484 1825.582 1927.227
+> residuals( cesGridCg )
+ [1] -204.366049 -228.449350 -145.259629  -55.482559  -48.925516  -57.033884
+ [7]  -36.936419   10.385547  -32.065721   -4.608809   42.455964   70.022711
+[13]   42.876569  111.871950   95.550360   60.517571   11.111192   39.116120
+[19]   61.838593   64.666686
+> 
+> # using the CG optimization method, VRS
+> cesGridCgVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "CG", vrs = TRUE, by = 0.4, to = 1.2 )
+There were 50 or more warnings (use warnings() to see the first 50)
+> print.default( cesGridCgVrs )
+$optim
+$optim$par
+     gamma      delta         nu 
+10.0279173  0.8660399  1.3052536 
+
+$optim$value
+[1] 75358.38
+
+$optim$counts
+function gradient 
+     658      101 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho         nu 
+10.0279173  0.8660399  0.0000000  1.3052536 
+
+$iter
+function gradient 
+     658      101 
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "CG", rho = sumResults$rho[i])
+
+$method
+[1] "CG"
+
+$startVal
+   gamma    delta       nu 
+10.03123  0.50000  1.00000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0
+
+$fitted.values
+ [1] 1069.131 1127.402 1153.664 1180.262 1178.256 1198.384 1240.316 1235.180
+ [9] 1190.227 1240.750 1289.916 1488.097 1572.237 1632.839 1572.518 1585.882
+[17] 1672.076 1758.465 1900.171 2038.746
+
+$residuals
+ [1] -122.9980225 -164.6712955  -84.0846000   -8.4657483   -0.1394763
+ [6]  -12.5735008   -0.9581171   53.3810213   17.4793206   37.6587043
+[11]   70.6761942   52.6872297    2.7977576   63.1204337   72.1715116
+[16]   40.1487975  -17.0366126   -2.8652052  -12.7505132  -46.8522749
+
+$rss
+[1] 75359.21
+
+$cov.unscaled
+              gamma         delta           rho            nu
+gamma  4.9683760354  2.418508e-01 -6.674141e-01 -8.061446e-04
+delta  0.2418507541  1.179941e-02 -3.258690e-02 -3.002531e-05
+rho   -0.6674140778 -3.258690e-02  9.002403e-02  7.492278e-05
+nu    -0.0008061446 -3.002531e-05  7.492278e-05  3.474107e-06
+
+$otherSum
+   rho       rss convergence
+1 -0.8 620063.30       FALSE
+2 -0.4 333290.62       FALSE
+3  0.0  75359.21       FALSE
+4  0.4 150282.47       FALSE
+5  0.8 145977.55       FALSE
+6  1.2 116269.78       FALSE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridCgVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "CG", rho = sumResults$rho[i])
+
+Coefficients:
+ gamma  delta    rho     nu 
+10.028  0.866  0.000  1.305 
+
+> summary( cesGridCgVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "CG", rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'CG' optimizer
+Coefficient 'rho' was fixed at 0 
+Convergence NOT achieved after 658 function and 101 gradient calls
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  10.0279   136.8234   0.073    0.942    
+delta   0.8660     6.6678   0.130    0.897    
+rho     0.0000    18.4176   0.000    1.000    
+nu      1.3053     0.1144  11.408   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 61.38372 
+Multiple R-squared: 0.957427 
+
+> coef( cesGridCgVrs )
+     gamma      delta        rho         nu 
+10.0279173  0.8660399  0.0000000  1.3052536 
+> vcov( cesGridCgVrs )
+             gamma        delta           rho          nu
+gamma 18720.645013  911.2841059 -2514.7899310 -3.03752088
+delta   911.284106   44.4597279  -122.7861380 -0.11313419
+rho   -2514.789931 -122.7861380   339.2070044  0.28230606
+nu       -3.037521   -0.1131342     0.2823061  0.01309030
+> coef( summary( cesGridCgVrs ) )
+        Estimate  Std. Error     t value     Pr(>|t|)
+gamma 10.0279173 136.8234081  0.07329095 9.415746e-01
+delta  0.8660399   6.6678128  0.12988366 8.966585e-01
+rho    0.0000000  18.4175732  0.00000000 1.000000e+00
+nu     1.3052536   0.1144128 11.40827978 3.801733e-30
+> 
+> # using the SANN optimization method
+> set.seed( 1 )
+> cesGridSann <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "SANN", by = 0.8, to = 0.8 )
+> print.default( cesGridSann )
+$optim
+$optim$par
+    gamma     delta 
+27.036143  0.586649 
+
+$optim$value
+[1] 175929.3
+
+$optim$counts
+function gradient 
+   10000       NA 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+    gamma     delta       rho 
+27.036143  0.586649  0.800000 
+
+$iter
+[1] 10000
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "SANN", 
+    rho = sumResults$rho[i])
+
+$method
+[1] "SANN"
+
+$startVal
+   gamma    delta 
+22.58930  0.50000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0.8
+
+$fitted.values
+ [1] 1151.310 1193.920 1216.977 1231.787 1231.196 1247.111 1280.607 1280.932
+ [9] 1243.136 1285.670 1321.828 1474.855 1536.921 1587.190 1549.416 1564.019
+[17] 1638.363 1708.277 1815.582 1916.518
+
+$residuals
+ [1] -205.176993 -231.189751 -147.397671  -59.990127  -53.080367  -61.300522
+ [7]  -41.248737    7.628624  -35.429828   -7.261993   38.764517   65.928812
+[13]   38.114125  108.769633   95.273422   62.012169   16.676589   47.322805
+[19]   71.837959   75.376225
+
+$rss
+[1] 175929.3
+
+$cov.unscaled
+          gamma      delta         rho
+gamma 417.78957 13.5152877 -17.9159820
+delta  13.51529  0.4372298  -0.5796314
+rho   -17.91598 -0.5796314   0.7684887
+
+$otherSum
+   rho      rss convergence
+1 -0.8 493550.6        TRUE
+2  0.0 271439.3        TRUE
+3  0.8 175929.3        TRUE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridSann )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "SANN", 
+    rho = sumResults$rho[i])
+
+Coefficients:
+  gamma   delta     rho 
+27.0361  0.5866  0.8000 
+
+> summary( cesGridSann )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "SANN", 
+    rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'SANN' optimizer
+Coefficient 'rho' was fixed at 0.8 
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)
+gamma   27.0361  1917.0476   0.014    0.989
+delta    0.5866    62.0167   0.009    0.992
+rho      0.8000    82.2191   0.010    0.992
+
+Residual standard error: 93.78947 
+Multiple R-squared: 0.9006115 
+
+> coef( cesGridSann )
+    gamma     delta       rho 
+27.036143  0.586649  0.800000 
+> vcov( cesGridSann )
+          gamma      delta         rho
+gamma 3675071.4 118886.759 -157597.313
+delta  118886.8   3846.076   -5098.708
+rho   -157597.3  -5098.708    6759.984
+> coef( summary( cesGridSann ) )
+       Estimate Std. Error     t value  Pr(>|t|)
+gamma 27.036143 1917.04758 0.014103011 0.9887478
+delta  0.586649   62.01674 0.009459526 0.9924525
+rho    0.800000   82.21912 0.009730096 0.9922366
+> 
+> # using the SANN optimization method, VRS
+> set.seed( 21 )
+> cesGridSannVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "SANN", vrs = TRUE, by = 0.8, to = 0.8 )
+> print.default( cesGridSannVrs )
+$optim
+$optim$par
+    gamma     delta        nu 
+4.3276772 0.9603577 1.5073915 
+
+$optim$value
+[1] 52703.57
+
+$optim$counts
+function gradient 
+   10000       NA 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho         nu 
+ 4.3276772  0.9603577 -0.8000000  1.5073915 
+
+$iter
+[1] 10000
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "SANN", rho = sumResults$rho[i])
+
+$method
+[1] "SANN"
+
+$startVal
+ gamma  delta     nu 
+4.4463 0.5000 1.0000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.8
+
+$fitted.values
+ [1] 1023.812 1107.075 1130.274 1185.445 1179.207 1203.150 1251.120 1228.253
+ [9] 1184.014 1233.459 1300.530 1533.628 1640.190 1691.758 1590.087 1587.999
+[17] 1651.205 1729.720 1881.109 2039.130
+
+$residuals
+ [1]  -77.678854 -144.344596  -60.695176  -13.648215   -1.091417  -17.339744
+ [7]  -11.762603   60.307674   23.692034   44.949983   60.062290    7.156072
+[13]  -65.155581    4.201635   54.602084   38.031967    3.834900   25.879890
+[19]    6.311267  -47.236203
+
+$rss
+[1] 52703.57
+
+$cov.unscaled
+              gamma         delta           rho            nu
+gamma  0.1398484685  5.984076e-03 -0.0502810257 -1.733671e-04
+delta  0.0059840759  2.588693e-04 -0.0021781336 -4.458956e-06
+rho   -0.0502810257 -2.178134e-03  0.0183311397  3.463990e-05
+nu    -0.0001733671 -4.458956e-06  0.0000346399  3.423941e-06
+
+$otherSum
+   rho      rss convergence
+1 -0.8 52703.57        TRUE
+2  0.0 73990.27        TRUE
+3  0.8 98305.72        TRUE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridSannVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "SANN", rho = sumResults$rho[i])
+
+Coefficients:
+  gamma   delta     rho      nu 
+ 4.3277  0.9604 -0.8000  1.5074 
+
+> summary( cesGridSannVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "SANN", rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'SANN' optimizer
+Coefficient 'rho' was fixed at -0.8 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  4.32768   19.19702   0.225    0.822    
+delta  0.96036    0.82593   1.163    0.245    
+rho   -0.80000    6.95024  -0.115    0.908    
+nu     1.50739    0.09499  15.869   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 51.33399 
+Multiple R-squared: 0.970226 
+
+> coef( cesGridSannVrs )
+     gamma      delta        rho         nu 
+ 4.3276772  0.9603577 -0.8000000  1.5073915 
+> vcov( cesGridSannVrs )
+             gamma       delta           rho           nu
+gamma  368.5256519 15.76910701 -132.49946885 -0.456853342
+delta   15.7691070  0.68216666   -5.73977036 -0.011750145
+rho   -132.4994689 -5.73977036   48.30582188  0.091282312
+nu      -0.4568533 -0.01175015    0.09128231  0.009022696
+> coef( summary( cesGridSannVrs ) )
+        Estimate  Std. Error    t value     Pr(>|t|)
+gamma  4.3276772 19.19702195  0.2254348 8.216410e-01
+delta  0.9603577  0.82593381  1.1627539 2.449294e-01
+rho   -0.8000000  6.95023898 -0.1151040 9.083627e-01
+nu     1.5073915  0.09498787 15.8693049 1.033794e-56
+> 
+> # using the BFGS optimization method
+> cesGridBfgs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "BFGS", by = 0.4, to = 1.2 )
+> print.default( cesGridBfgs )
+$optim
+$optim$par
+     gamma      delta 
+165.416166   1.873405 
+
+$optim$value
+[1] 153698.6
+
+$optim$counts
+function gradient 
+     311       73 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma      delta        rho 
+165.416166   1.873405   0.400000 
+
+$iter
+function gradient 
+     311       73 
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "BFGS", 
+    rho = sumResults$rho[i])
+
+$method
+[1] "BFGS"
+
+$startVal
+   gamma    delta 
+16.06668  0.50000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0.4
+
+$fitted.values
+ [1] 1145.424 1175.326 1202.314 1201.682 1203.375 1218.553 1251.729 1262.181
+ [9] 1220.443 1267.595 1296.954 1447.264 1504.942 1566.009 1546.896 1573.326
+[17] 1675.256 1763.350 1883.028 1988.794
+
+$residuals
+ [1] -199.290790 -212.595468 -132.735016  -29.885080  -25.258865  -32.743104
+ [7]  -12.370804   26.380374  -12.737239   10.813556   63.638344   93.520163
+[13]   70.093032  129.950726   97.793030   52.704670  -20.216390   -7.750328
+[19]    4.392094    3.099990
+
+$rss
+[1] 153698.6
+
+$cov.unscaled
+            gamma       delta         rho
+gamma 25028.06542 204.2973646 40.13042138
+delta   204.29736   1.6676631  0.32759707
+rho      40.13042   0.3275971  0.06435975
+
+$otherSum
+   rho      rss convergence
+1 -0.8 153725.4        TRUE
+2 -0.4 153710.7        TRUE
+3  0.0 153701.8        TRUE
+4  0.4 153698.6        TRUE
+5  0.8 156492.7       FALSE
+6  1.2 162512.0       FALSE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridBfgs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "BFGS", 
+    rho = sumResults$rho[i])
+
+Coefficients:
+  gamma   delta     rho 
+165.416   1.873   0.400 
+
+> summary( cesGridBfgs )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "BFGS", 
+    rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+Coefficient 'rho' was fixed at 0.4 
+Convergence achieved after 311 function and 73 gradient calls
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)
+gamma   165.416  13868.632   0.012    0.990
+delta     1.873    113.207   0.017    0.987
+rho       0.400     22.240   0.018    0.986
+
+Residual standard error: 87.66374 
+Multiple R-squared: 0.9131703 
+
+> coef( cesGridBfgs )
+     gamma      delta        rho 
+165.416166   1.873405   0.400000 
+> vcov( cesGridBfgs )
+            gamma       delta         rho
+gamma 192338955.9 1570011.151 308399.5194
+delta   1570011.2   12815.876   2517.5609
+rho      308399.5    2517.561    494.6002
+> coef( summary( cesGridBfgs ) )
+        Estimate  Std. Error    t value  Pr(>|t|)
+gamma 165.416166 13868.63208 0.01192736 0.9904836
+delta   1.873405   113.20723 0.01654846 0.9867968
+rho     0.400000    22.23961 0.01798593 0.9856501
+> 
+> # using the BFGS optimization method, VRS
+> cesGridBfgsVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "BFGS", vrs = TRUE, by = 0.4, to = 1.2 )
+There were 50 or more warnings (use warnings() to see the first 50)
+> print.default( cesGridBfgsVrs )
+$optim
+$optim$par
+    gamma     delta        nu 
+1.2492161 0.6466248 1.5666065 
+
+$optim$value
+[1] 50070.49
+
+$optim$counts
+function gradient 
+     545      100 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+    gamma     delta       rho        nu 
+1.2492161 0.6466248 0.0000000 1.5666065 
+
+$iter
+function gradient 
+     545      100 
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "BFGS", rho = sumResults$rho[i])
+
+$method
+[1] "BFGS"
+
+$startVal
+   gamma    delta       nu 
+10.03123  0.50000  1.00000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0
+
+$fitted.values
+ [1] 1008.258 1094.162 1117.908 1174.525 1168.214 1192.858 1242.345 1218.874
+ [9] 1173.299 1224.229 1293.513 1535.266 1646.207 1700.039 1592.720 1588.988
+[17] 1649.408 1726.644 1881.288 2045.450
+
+$residuals
+ [1]  -62.125376 -131.431814  -48.328480   -2.728572    9.901919   -7.048462
+ [7]   -2.987034   69.686738   34.407277   54.179556   67.079861    5.518344
+[13]  -71.172296   -4.079306   51.969589   37.043396    5.632220   28.955409
+[19]    6.132260  -53.556023
+
+$rss
+[1] 50070.49
+
+$cov.unscaled
+              gamma         delta           rho            nu
+gamma  7.690092e-02  2.503990e-02 -3.510931e-02 -9.302903e-05
+delta  2.503990e-02  8.173779e-03 -1.146827e-02 -2.219424e-05
+rho   -3.510931e-02 -1.146827e-02  1.609427e-02  2.848650e-05
+nu    -9.302903e-05 -2.219424e-05  2.848650e-05  3.449553e-06
+
+$otherSum
+   rho      rss convergence
+1 -0.8 50626.23        TRUE
+2 -0.4 50286.89        TRUE
+3  0.0 50070.49       FALSE
+4  0.4 53286.77       FALSE
+5  0.8 57262.79       FALSE
+6  1.2 55633.04       FALSE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridBfgsVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "BFGS", rho = sumResults$rho[i])
+
+Coefficients:
+ gamma  delta    rho     nu 
+1.2492 0.6466 0.0000 1.5666 
+
+> summary( cesGridBfgsVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "BFGS", rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+Coefficient 'rho' was fixed at 0 
+Convergence NOT achieved after 545 function and 100 gradient calls
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  1.24922   13.87528   0.090    0.928    
+delta  0.64662    4.52363   0.143    0.886    
+rho    0.00000    6.34763   0.000    1.000    
+nu     1.56661    0.09293  16.858   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 50.03523 
+Multiple R-squared: 0.9717135 
+
+> coef( cesGridBfgsVrs )
+    gamma     delta       rho        nu 
+1.2492161 0.6466248 0.0000000 1.5666065 
+> vcov( cesGridBfgsVrs )
+            gamma        delta          rho          nu
+gamma 192.5233245  62.68798669 -87.89701963 -0.23290044
+delta  62.6879867  20.46325415 -28.71109101 -0.05556382
+rho   -87.8970196 -28.71109101  40.29238485  0.07131666
+nu     -0.2329004  -0.05556382   0.07131666  0.00863604
+> coef( summary( cesGridNmVrs ) )
+        Estimate Std. Error     t value     Pr(>|t|)
+gamma  2.2576334 17.1444548  0.13168301 8.952350e-01
+delta  0.8649508  2.3243804  0.37212100 7.098028e-01
+rho   -0.4000000  6.3780980 -0.06271462 9.499938e-01
+nu     1.5670310  0.0932491 16.80478547 2.251256e-63
+> 
+> # using the L-BFGS-B optimization method with constrained parameters
+> cesGridBfgsCon <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "L-BFGS-B", by = 0.4, to = 1.2 )
+> print.default( cesGridBfgsCon )
+$optim
+$optim$par
+   gamma    delta 
+49.14295  1.00000 
+
+$optim$value
+[1] 165832.4
+
+$optim$counts
+function gradient 
+      22       22 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+
+$coefficients
+   gamma    delta      rho 
+49.14295  1.00000  0.80000 
+
+$iter
+function gradient 
+      22       22 
+
+$convergence
+[1] TRUE
+
+$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "L-BFGS-B", 
+    rho = sumResults$rho[i])
+
+$method
+[1] "L-BFGS-B"
+
+$startVal
+   gamma    delta 
+22.58930  0.50000 
+
+$lower
+[1] 0 0
+
+$upper
+[1] Inf   1
+
+$rho
+[1] 0.8
+
+$fitted.values
+ [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.523 1935.741
+
+$residuals
+ [1] -203.812030 -226.528907 -143.760265  -52.354411  -46.034845  -54.066630
+ [7]  -33.936006   12.318503  -29.713284   -2.748202   45.035837   72.884174
+[13]   46.197491  114.047832   95.703326   59.353878    6.785316   32.647977
+[19]   53.896799   56.153212
+
+$rss
+[1] 165832.4
+
+$cov.unscaled
+             gamma        delta          rho
+gamma 9.295226e-01 1.646978e-02 1.208179e+10
+delta 1.646978e-02 2.918532e-04 2.444588e+08
+rho   1.208179e+10 2.444588e+08 6.393529e+22
+
+$otherSum
+   rho      rss convergence
+1 -0.8 165832.4        TRUE
+2 -0.4 165832.4        TRUE
+3  0.0 165832.4        TRUE
+4  0.4 165832.4        TRUE
+5  0.8 165832.4        TRUE
+6  1.2 165832.4        TRUE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridBfgsCon )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "L-BFGS-B", 
+    rho = sumResults$rho[i])
+
+Coefficients:
+gamma delta   rho 
+49.14  1.00  0.80 
+
+> summary( cesGridBfgsCon )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "L-BFGS-B", 
+    rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+Coefficient 'rho' was fixed at 0.8 
+Convergence achieved after 22 function and 22 gradient calls
+Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
+
+Coefficients:
+       Estimate Std. Error  t value Pr(>|t|)
+gamma 4.914e+01  8.779e+01    0.560    0.576
+delta 1.000e+00  1.556e+00    0.643    0.520
+rho   8.000e-01  2.302e+13 3.47e-14    1.000
+
+Residual standard error: 91.05832 
+Multiple R-squared: 0.9063156 
+
+> coef( cesGridBfgsCon )
+   gamma    delta      rho 
+49.14295  1.00000  0.80000 
+> vcov( cesGridBfgsCon )
+             gamma        delta          rho
+gamma 7.707247e+03 1.365611e+02 1.001776e+14
+delta 1.365611e+02 2.419935e+00 2.026959e+12
+rho   1.001776e+14 2.026959e+12 5.301270e+26
+> coef( summary( cesGridBfgsCon ) )
+      Estimate   Std. Error      t value  Pr(>|t|)
+gamma 49.14295 8.779093e+01 5.597726e-01 0.5756346
+delta  1.00000 1.555614e+00 6.428330e-01 0.5203325
+rho    0.80000 2.302449e+13 3.474562e-14 1.0000000
+> 
+> # using the L-BFGS-B optimization method with constrained parameters, VRS
+> cesGridBfgsConVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "L-BFGS-B", vrs = TRUE, by = 0.4, to = 1.2 )
+> print.default( cesGridBfgsConVrs )
+$optim
+$optim$par
+   gamma    delta       nu 
+1.084423 0.634565 1.584593 
+
+$optim$value
+[1] 49966.45
+
+$optim$counts
+function gradient 
+     137      137 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+[1] "NEW_X"
+
+
+$coefficients
+   gamma    delta      rho       nu 
+1.084423 0.634565 0.000000 1.584593 
+
+$iter
+function gradient 
+     137      137 
+
+$convergence
+[1] FALSE
+
+$message
+[1] "NEW_X"
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "L-BFGS-B", rho = sumResults$rho[i])
+
+$method
+[1] "L-BFGS-B"
+
+$startVal
+   gamma    delta       nu 
+10.03123  0.50000  1.00000 
+
+$lower
+[1] 0 0 0
+
+$upper
+[1] Inf   1 Inf
+
+$rho
+[1] 0
+
+$fitted.values
+ [1] 1004.172 1091.848 1115.436 1174.031 1167.433 1192.383 1242.386 1217.693
+ [9] 1172.065 1223.035 1293.673 1538.463 1651.301 1704.677 1594.094 1589.211
+[17] 1647.944 1724.609 1880.164 2046.099
+
+$residuals
+ [1]  -58.039495 -129.117519  -45.856409   -2.234364   10.682838   -6.573018
+ [7]   -3.027975   70.867857   35.640830   55.373431   66.919755    2.321556
+[13]  -76.266818   -8.717528   50.595357   36.820287    7.096093   30.990992
+[19]    7.256072  -54.204808
+
+$rss
+[1] 49966.45
+
+$cov.unscaled
+              gamma         delta           rho            nu
+gamma  0.0579392389  2.148633e-02 -2.968736e-02 -8.034451e-05
+delta  0.0214863331  7.988170e-03 -1.104432e-02 -2.176766e-05
+rho   -0.0296873631 -1.104432e-02  1.527309e-02  2.755062e-05
+nu    -0.0000803445 -2.176766e-05  2.755062e-05  3.448088e-06
+
+$otherSum
+   rho      rss convergence
+1 -0.8 50626.23        TRUE
+2 -0.4 50286.89        TRUE
+3  0.0 49966.45       FALSE
+4  0.4 50156.32       FALSE
+5  0.8 58458.58       FALSE
+6  1.2 50829.32       FALSE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridBfgsConVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "L-BFGS-B", rho = sumResults$rho[i])
+
+Coefficients:
+ gamma  delta    rho     nu 
+1.0844 0.6346 0.0000 1.5846 
+
+> summary( cesGridBfgsConVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "L-BFGS-B", rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+Coefficient 'rho' was fixed at 0 
+Convergence NOT achieved after 137 function and 137 gradient calls
+Message: NEW_X 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  1.08442   12.03125   0.090    0.928    
+delta  0.63457    4.46733   0.142    0.887    
+rho    0.00000    6.17714   0.000    1.000    
+nu     1.58459    0.09281  17.073   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 49.98322 
+Multiple R-squared: 0.9717722 
+
+> coef( cesGridBfgsConVrs )
+   gamma    delta      rho       nu 
+1.084423 0.634565 0.000000 1.584593 
+> vcov( cesGridBfgsConVrs )
+            gamma        delta          rho           nu
+gamma 144.7509106  53.67979185 -74.16861032 -0.200726495
+delta  53.6797919  19.95702684 -27.59226361 -0.054382625
+rho   -74.1686103 -27.59226361  38.15710415  0.068830343
+nu     -0.2007265  -0.05438262   0.06883034  0.008614435
+> coef( summary( cesGridBfgsConVrs ) )
+      Estimate  Std. Error     t value     Pr(>|t|)
+gamma 1.084423 12.03124726  0.09013386 9.281808e-01
+delta 0.634565  4.46732883  0.14204575 8.870439e-01
+rho   0.000000  6.17714369  0.00000000 1.000000e+00
+nu    1.584593  0.09281398 17.07278230 2.366482e-65
+> 
+> # using the Levenberg-Marquardt optimization method
+> cesGridLm <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "LM", by = 0.4, to = 1.2 )
+Warning messages:
+1: In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
+  lmder: info = -1. Number of iterations has reached `maxiter' == 50.
+
+2: In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
+  lmder: info = -1. Number of iterations has reached `maxiter' == 50.
+
+> print.default( cesGridLm )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 165.42387636634, 1.87344744871236 
+residual sum-of-squares: 153699
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+     gamma      delta        rho 
+165.423876   1.873447   0.400000 
+
+$iter
+[1] 22
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "LM", 
+    rho = sumResults$rho[i])
+
+$method
+[1] "LM"
+
+$startVal
+   gamma    delta 
+16.06668  0.50000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0.4
+
+$fitted.values
+ [1] 1145.424 1175.326 1202.314 1201.681 1203.375 1218.553 1251.728 1262.180
+ [9] 1220.443 1267.595 1296.954 1447.264 1504.941 1566.009 1546.896 1573.327
+[17] 1675.257 1763.352 1883.030 1988.796
+
+$residuals
+ [1] -199.290890 -212.595297 -132.734936  -29.884667  -25.258501  -32.742726
+ [7]  -12.370427   26.380531  -12.736988   10.813697   63.638626   93.520475
+[13]   70.093427  129.950875   97.792776   52.704151  -20.217542   -7.751907
+[19]    4.390212    3.097979
+
+$rss
+[1] 153698.6
+
+$cov.unscaled
+            gamma      delta         rho
+gamma 25031.51556 204.318965 40.13182496
+delta   204.31896   1.667786  0.32759801
+rho      40.13182   0.327598  0.06435538
+
+$otherSum
+   rho      rss convergence
+1 -0.8 153725.4        TRUE
+2 -0.4 153710.7        TRUE
+3  0.0 153701.8        TRUE
+4  0.4 153698.6        TRUE
+5  0.8 156028.7       FALSE
+6  1.2 162374.1       FALSE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridLm )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "LM", 
+    rho = sumResults$rho[i])
+
+Coefficients:
+  gamma   delta     rho 
+165.424   1.873   0.400 
+
+> summary( cesGridLm )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "LM", 
+    rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho' was fixed at 0.4 
+Convergence achieved after 22 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)
+gamma   165.424  13869.588   0.012    0.990
+delta     1.873    113.211   0.017    0.987
+rho       0.400     22.239   0.018    0.986
+
+Residual standard error: 87.66374 
+Multiple R-squared: 0.9131703 
+
+> coef( cesGridLm )
+     gamma      delta        rho 
+165.423876   1.873447   0.400000 
+> vcov( cesGridLm )
+            gamma       delta         rho
+gamma 192365469.9 1570177.147 308410.3058
+delta   1570177.1   12816.820   2517.5681
+rho      308410.3    2517.568    494.5666
+> coef( summary( cesGridLm ) )
+        Estimate  Std. Error    t value  Pr(>|t|)
+gamma 165.423876 13869.58795 0.01192709 0.9904838
+delta   1.873447   113.21139 0.01654822 0.9867970
+rho     0.400000    22.23885 0.01798654 0.9856496
+> 
+> # using the Levenberg-Marquardt optimization method, VRS
+> cesGridLmVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "LM", vrs = TRUE, by = 0.4, to = 1.2 )
+Warning messages:
+1: In log(coef["gamma"]) : NaNs produced
+2: In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
+  lmder: info = -1. Number of iterations has reached `maxiter' == 50.
+
+> print.default( cesGridLmVrs )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 0.165069324985032, 0.039375862397587, 1.58848816342804 
+residual sum-of-squares: 49123
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+     gamma      delta        rho         nu 
+0.16506932 0.03937586 1.20000000 1.58848816 
+
+$iter
+[1] 47
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "LM", rho = sumResults$rho[i])
+
+$method
+[1] "LM"
+
+$startVal
+   gamma    delta       nu 
+27.90554  0.50000  1.00000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 1.2
+
+$fitted.values
+ [1] 1005.531 1091.710 1116.144 1171.216 1165.307 1190.161 1240.331 1218.113
+ [9] 1171.374 1223.617 1293.036 1538.404 1650.579 1707.123 1598.527 1593.921
+[17] 1650.480 1724.012 1877.487 2043.283
+
+$residuals
+ [1]  -59.3977607 -128.9800132  -46.5649000    0.5809323   12.8091247
+ [6]   -4.3514307   -0.9728616   70.4483579   36.3321209   54.7918763
+[11]   67.5569840    2.3800553  -75.5443215  -11.1640338   46.1623948
+[16]   32.1102257    4.5597783   31.5880894    9.9336786  -51.3889320
+
+$rss
+[1] 49122.99
+
+$cov.unscaled
+              gamma         delta           rho            nu
+gamma  3.464972e-04  2.694964e-04 -2.283070e-03 -7.675387e-06
+delta  2.694964e-04  2.123928e-04 -1.801904e-03 -2.984097e-06
+rho   -2.283070e-03 -1.801904e-03  1.529043e-02  2.277279e-05
+nu    -7.675387e-06 -2.984097e-06  2.277279e-05  3.446075e-06
+
+$otherSum
+   rho      rss convergence
+1 -0.8 50626.23        TRUE
+2 -0.4 50286.89        TRUE
+3  0.0 49966.45        TRUE
+4  0.4 49665.41        TRUE
+5  0.8 49384.15       FALSE
+6  1.2 49122.99        TRUE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridLmVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "LM", rho = sumResults$rho[i])
+
+Coefficients:
+  gamma   delta     rho      nu 
+0.16507 0.03938 1.20000 1.58849 
+
+> summary( cesGridLmVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "LM", rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho' was fixed at 1.2 
+Convergence achieved after 47 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  0.16507    0.92252   0.179    0.858    
+delta  0.03938    0.72227   0.055    0.957    
+rho    1.20000    6.12826   0.196    0.845    
+nu     1.58849    0.09200  17.266   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 49.55955 
+Multiple R-squared: 0.9722487 
+
+> coef( cesGridLmVrs )
+     gamma      delta        rho         nu 
+0.16506932 0.03937586 1.20000000 1.58848816 
+> vcov( cesGridLmVrs )
+            gamma        delta         rho           nu
+gamma  0.85104899  0.661923533 -5.60756035 -0.018851897
+delta  0.66192353  0.521668349 -4.42574530 -0.007329388
+rho   -5.60756035 -4.425745301 37.55557114  0.055933363
+nu    -0.01885190 -0.007329388  0.05593336  0.008464076
+> coef( summary( cesGridLmVrs ) )
+        Estimate Std. Error     t value     Pr(>|t|)
+gamma 0.16506932 0.92252316  0.17893244 8.579907e-01
+delta 0.03937586 0.72226612  0.05451711 9.565232e-01
+rho   1.20000000 6.12826004  0.19581414 8.447556e-01
+nu    1.58848816 0.09200041 17.26609852 8.467703e-67
+> 
+> # using the Newton-type optimization method implemented in nlm()
+> cesGridNewton <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "Newton", by = 0.4, to = 1.2 )
+> print.default( cesGridNewton )
+$nlm
+$nlm$minimum
+[1] 153698.6
+
+$nlm$estimate
+[1] 165.423876   1.873447
+
+$nlm$gradient
+[1] -9.974737e-07  1.848265e-04
+
+$nlm$code
+[1] 1
+
+$nlm$iterations
+[1] 70
+
+
+$coefficients
+[1] 165.423876   1.873447   0.400000
+
+$iter
+[1] 70
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "Newton", 
+    rho = sumResults$rho[i])
+
+$method
+[1] "Newton"
+
+$startVal
+   gamma    delta 
+16.06668  0.50000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0.4
+
+$fitted.values
+ [1] 1145.424 1175.326 1202.314 1201.681 1203.375 1218.553 1251.728 1262.180
+ [9] 1220.443 1267.595 1296.954 1447.264 1504.941 1566.009 1546.896 1573.327
+[17] 1675.257 1763.352 1883.030 1988.796
+
+$residuals
+ [1] -199.290890 -212.595297 -132.734936  -29.884667  -25.258501  -32.742726
+ [7]  -12.370427   26.380531  -12.736988   10.813697   63.638626   93.520475
+[13]   70.093427  129.950875   97.792776   52.704151  -20.217542   -7.751907
+[19]    4.390212    3.097979
+
+$rss
+[1] 153698.6
+
+$cov.unscaled
+            [,1]       [,2]        [,3]
+[1,] 25031.51527 204.318962 40.13182447
+[2,]   204.31896   1.667786  0.32759800
+[3,]    40.13182   0.327598  0.06435538
+
+$otherSum
+   rho      rss convergence
+1 -0.8 153725.4        TRUE
+2 -0.4 153710.7        TRUE
+3  0.0 153701.8       FALSE
+4  0.4 153698.6        TRUE
+5  0.8 180874.6        TRUE
+6  1.2 169812.9        TRUE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridNewton )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "Newton", 
+    rho = sumResults$rho[i])
+
+Coefficients:
+[1] 165.424   1.873   0.400
+
+> summary( cesGridNewton )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "Newton", 
+    rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+Coefficient 'rho' was fixed at 0.4 
+Convergence achieved after 70 iterations
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+[1,]   165.424  13869.588   0.012    0.990
+[2,]     1.873    113.211   0.017    0.987
+[3,]     0.400     22.239   0.018    0.986
+
+Residual standard error: 87.66374 
+Multiple R-squared: 0.9131703 
+
+> coef( cesGridNewton )
+[1] 165.423876   1.873447   0.400000
+> vcov( cesGridNewton )
+            [,1]        [,2]        [,3]
+[1,] 192365467.7 1570177.129 308410.3021
+[2,]   1570177.1   12816.819   2517.5681
+[3,]    308410.3    2517.568    494.5666
+> coef( summary( cesGridNewton ) )
+       Estimate  Std. Error    t value  Pr(>|t|)
+[1,] 165.423876 13869.58787 0.01192709 0.9904838
+[2,]   1.873447   113.21139 0.01654822 0.9867970
+[3,]   0.400000    22.23885 0.01798654 0.9856496
+> 
+> # using the Newton-type optimization method implemented in nlm(), VRS
+> cesGridNewtonVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "Newton", vrs = TRUE, by = 0.4, to = 1.2 )
+> print.default( cesGridNewtonVrs )
+$nlm
+$nlm$minimum
+[1] 50253.65
+
+$nlm$estimate
+[1] 1.364098 0.654290 1.555338
+
+$nlm$gradient
+[1]  -33428.09  231697.83 -218084.20
+
+$nlm$code
+[1] 4
+
+$nlm$iterations
+[1] 100
+
+
+$coefficients
+[1] 1.364098 0.654290 0.000000 1.555338
+
+$iter
+[1] 100
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "Newton", rho = sumResults$rho[i])
+
+$method
+[1] "Newton"
+
+$startVal
+   gamma    delta       nu 
+10.03123  0.50000  1.00000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0
+
+$fitted.values
+ [1] 1010.328 1095.077 1118.909 1174.261 1168.132 1192.573 1241.712 1219.016
+ [9] 1173.497 1224.376 1292.779 1532.515 1642.219 1696.305 1591.072 1588.060
+[17] 1649.500 1727.053 1881.046 2044.015
+
+$residuals
+ [1]  -64.1949005 -132.3465370  -49.3296295   -2.4644740    9.9838110
+ [6]   -6.7631602   -2.3539750   69.5450089   34.2091619   54.0326417
+[11]   67.8138176    8.2689534  -67.1845131   -0.3460493   53.6167279
+[16]   37.9713639    5.5394736   28.5464332    6.3747391  -52.1204926
+
+$rss
+[1] 50253.65
+
+$cov.unscaled
+              [,1]          [,2]          [,3]          [,4]
+[1,]  0.0917967086  2.757090e-02 -3.905133e-02 -1.020105e-04
+[2,]  0.0275708962  8.301569e-03 -1.176609e-02 -2.248921e-05
+[3,] -0.0390513318 -1.176609e-02  1.668029e-02  2.914592e-05
+[4,] -0.0001020105 -2.248921e-05  2.914592e-05  3.453859e-06
+
+$otherSum
+   rho      rss convergence
+1 -0.8 50626.23       FALSE
+2 -0.4 59749.78        TRUE
+3  0.0 50253.65       FALSE
+4  0.4 52400.04       FALSE
+5  0.8 98004.85        TRUE
+6  1.2 98745.97        TRUE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridNewtonVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "Newton", rho = sumResults$rho[i])
+
+Coefficients:
+[1] 1.3641 0.6543 0.0000 1.5553
+
+> summary( cesGridNewtonVrs )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "Newton", rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+Coefficient 'rho' was fixed at 0 
+Convergence NOT achieved after 100 iterations
+
+Coefficients:
+     Estimate Std. Error t value Pr(>|t|)    
+[1,]  1.36410   15.18736   0.090    0.928    
+[2,]  0.65429    4.56719   0.143    0.886    
+[3,]  0.00000    6.47397   0.000    1.000    
+[4,]  1.55534    0.09316  16.696   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 50.12666 
+Multiple R-squared: 0.97161 
+
+> coef( cesGridNewtonVrs )
+[1] 1.364098 0.654290 0.000000 1.555338
+> vcov( cesGridNewtonVrs )
+            [,1]         [,2]         [,3]         [,4]
+[1,] 230.6559839  69.27690863 -98.12359826 -0.256320046
+[2,]  69.2769086  20.85920739 -29.56445163 -0.056508248
+[3,] -98.1235983 -29.56445163  41.91227369  0.073234447
+[4,]  -0.2563200  -0.05650825   0.07323445  0.008678452
+> coef( summary( cesGridNewtonVrs ) )
+     Estimate  Std. Error     t value     Pr(>|t|)
+[1,] 1.364098 15.18736264  0.08981793 9.284319e-01
+[2,] 0.654290  4.56718813  0.14325883 8.860858e-01
+[3,] 0.000000  6.47396893  0.00000000 1.000000e+00
+[4,] 1.555338  0.09315821 16.69566296 1.409449e-62
+> 
+> # using the PORT optimization rountine implemented in nlminb(), constrained
+> cesGridPort <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "PORT", by = 0.4, to = 1.2 )
+> print.default( cesGridPort )
+$nlminb
+$nlminb$par
+   gamma    delta 
+49.14295  1.00000 
+
+$nlminb$objective
+[1] 165832.4
+
+$nlminb$convergence
+[1] 0
+
+$nlminb$message
+[1] "relative convergence (4)"
+
+$nlminb$iterations
+[1] 47
+
+$nlminb$evaluations
+function gradient 
+      71       48 
+
+
+$coefficients
+   gamma    delta      rho 
+49.14295  1.00000 -0.80000 
+
+$iter
+[1] 47
+
+$convergence
+[1] TRUE
+
+$message
+[1] "relative convergence (4)"
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "PORT", 
+    rho = sumResults$rho[i])
+
+$method
+[1] "PORT"
+
+$startVal
+ gamma  delta 
+4.4463 0.5000 
+
+$lower
+[1] 0 0
+
+$upper
+[1] Inf   1
+
+$rho
+[1] -0.8
+
+$fitted.values
+ [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.523 1935.741
+
+$residuals
+ [1] -203.812030 -226.528907 -143.760265  -52.354411  -46.034845  -54.066630
+ [7]  -33.936006   12.318503  -29.713284   -2.748202   45.035837   72.884174
+[13]   46.197491  114.047832   95.703326   59.353878    6.785316   32.647977
+[19]   53.896799   56.153212
+
+$rss
+[1] 165832.4
+
+$cov.unscaled
+              gamma         delta           rho
+gamma  7.100341e-03  1.011053e-05 -5.010052e+09
+delta  1.011053e-05  1.454345e-08 -8.680952e+06
+rho   -5.010052e+09 -8.680952e+06  8.348972e+22
+
+$otherSum
+   rho      rss convergence
+1 -0.8 165832.4        TRUE
+2 -0.4 165832.4        TRUE
+3  0.0 165832.4        TRUE
+4  0.4 165832.4        TRUE
+5  0.8 165832.4        TRUE
+6  1.2 165832.4        TRUE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridPort )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "PORT", 
+    rho = sumResults$rho[i])
+
+Coefficients:
+gamma delta   rho 
+49.14  1.00 -0.80 
+
+> summary( cesGridPort )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "PORT", 
+    rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+Coefficient 'rho' was fixed at -0.8 
+Convergence achieved after 47 iterations
+Message: relative convergence (4) 
+
+Coefficients:
+        Estimate Std. Error   t value Pr(>|t|)    
+gamma  4.914e+01  7.673e+00     6.405 1.51e-10 ***
+delta  1.000e+00  1.098e-02    91.064  < 2e-16 ***
+rho   -8.000e-01  2.631e+13 -3.04e-14        1    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 91.05832 
+Multiple R-squared: 0.9063156 
+
+> coef( cesGridPort )
+   gamma    delta      rho 
+49.14295  1.00000 -0.80000 
+> vcov( cesGridNm )
+            gamma      delta         rho
+gamma 192463827.8 1570797.60 308451.2390
+delta   1570797.6   12820.40   2517.6099
+rho      308451.2    2517.61    494.4451
+> coef( summary( cesGridPort ) )
+      Estimate   Std. Error       t value     Pr(>|t|)
+gamma 49.14295 7.672895e+00  6.404747e+00 1.506191e-10
+delta  1.00000 1.098129e-02  9.106398e+01 0.000000e+00
+rho   -0.80000 2.631093e+13 -3.040562e-14 1.000000e+00
+> 
+> # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
+> cesGridPortVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "PORT", vrs = TRUE, by = 0.4, to = 1.2 )
+> print.default( cesGridPortVrs )
+$nlminb
+$nlminb$par
+     gamma      delta         nu 
+0.16621352 0.03947923 1.58766025 
+
+$nlminb$objective
+[1] 49123.25
+
+$nlminb$convergence
+[1] 1
+
+$nlminb$message
+[1] "function evaluation limit reached without convergence (9)"
+
+$nlminb$iterations
+[1] 131
+
+$nlminb$evaluations
+function gradient 
+     200      131 
+
+
+$coefficients
+     gamma      delta        rho         nu 
+0.16621352 0.03947923 1.20000000 1.58766025 
+
+$iter
+[1] 131
+
+$convergence
+[1] FALSE
+
+$message
+[1] "function evaluation limit reached without convergence (9)"
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "PORT", rho = sumResults$rho[i])
+
+$method
+[1] "PORT"
+
+$startVal
+   gamma    delta       nu 
+27.90554  0.50000  1.00000 
+
+$lower
+[1] 0 0 0
+
+$upper
+[1] Inf   1 Inf
+
+$rho
+[1] 1.2
+
+$fitted.values
+ [1] 1005.700 1091.792 1116.234 1171.208 1165.313 1190.153 1240.297 1218.139
+ [9] 1171.402 1223.644 1292.997 1538.219 1650.303 1706.871 1598.437 1593.892
+[17] 1650.548 1724.120 1877.562 2043.280
+
+$residuals
+ [1]  -59.5672709 -129.0610659  -46.6543732    0.5888577   12.8031264
+ [6]   -4.3426603   -0.9392048   70.4218268   36.3037843   54.7645841
+[11]   67.5959348    2.5648588  -75.2681735  -10.9118805   46.2520955
+[16]   32.1392647    4.4917365   31.4798830    9.8580201  -51.3862770
+
+$rss
+[1] 49123.25
+
+$cov.unscaled
+              gamma         delta           rho            nu
+gamma  3.528760e-04  2.730045e-04 -2.306991e-03 -7.738244e-06
+delta  2.730045e-04  2.140069e-04 -1.811044e-03 -2.995634e-06
+rho   -2.306991e-03 -1.811044e-03  1.532944e-02  2.280152e-05
+nu    -7.738244e-06 -2.995634e-06  2.280152e-05  3.446292e-06
+
+$otherSum
+   rho      rss convergence
+1 -0.8 50626.23        TRUE
+2 -0.4 50286.89        TRUE
+3  0.0 49966.45        TRUE
+4  0.4 49665.41        TRUE
+5  0.8 49533.36       FALSE
+6  1.2 49123.25       FALSE
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridPortVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "PORT", rho = sumResults$rho[i])
+
+Coefficients:
+  gamma   delta     rho      nu 
+0.16621 0.03948 1.20000 1.58766 
+
+> summary( cesGridPortVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "PORT", rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+Coefficient 'rho' was fixed at 1.2 
+Convergence NOT achieved after 131 iterations
+Message: function evaluation limit reached without convergence (9) 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  0.16621    0.93098   0.179    0.858    
+delta  0.03948    0.72501   0.054    0.957    
+rho    1.20000    6.13609   0.196    0.845    
+nu     1.58766    0.09200  17.257   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 49.55969 
+Multiple R-squared: 0.9722486 
+
+> coef( cesGridPortVrs )
+     gamma      delta        rho         nu 
+0.16621352 0.03947923 1.20000000 1.58766025 
+> vcov( cesGridPortVrs )
+            gamma        delta         rho           nu
+gamma  0.86672070  0.670543371 -5.66634488 -0.019006384
+delta  0.67054337  0.525635662 -4.44821717 -0.007357765
+rho   -5.66634488 -4.448217170 37.65158405  0.056004239
+nu    -0.01900638 -0.007357765  0.05600424  0.008464653
+> coef( summary( cesGridPortVrs ) )
+        Estimate Std. Error     t value     Pr(>|t|)
+gamma 0.16621352 0.93097836  0.17853639 8.583017e-01
+delta 0.03947923 0.72500735  0.05445355 9.565738e-01
+rho   1.20000000 6.13608866  0.19556432 8.449512e-01
+nu    1.58766025 0.09200355 17.25651074 9.997235e-67
+> 
+> # using the DE optimization method implemented in DEoptim(), CRS
+> set.seed( 321 )
+> cesGridDe <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "DE", by = 0.8, to = 0.8 )
+Iteration: 1 bestvalit: 1350499681399490740224.000000 bestmemit:129982747.603208    0.926056
+Iteration: 2 bestvalit: 1350499681399490740224.000000 bestmemit:129982747.603208    0.926056
+Iteration: 3 bestvalit: 422630671127088660480.000000 bestmemit:98784966.394305    0.961033
+Iteration: 4 bestvalit: 422630671127088660480.000000 bestmemit:98784966.394305    0.961033
+Iteration: 5 bestvalit: 189768080456149762048.000000 bestmemit:23770667.798818    0.801415
+Iteration: 6 bestvalit: 189768080456149762048.000000 bestmemit:23770667.798818    0.801415
+Iteration: 7 bestvalit: 189768080456149762048.000000 bestmemit:23770667.798818    0.801415
+Iteration: 8 bestvalit: 18877838087984930816.000000 bestmemit:9718046.887219    0.854876
+Iteration: 9 bestvalit: 18877838087984930816.000000 bestmemit:9718046.887219    0.854876
+Iteration: 10 bestvalit: 18877838087984930816.000000 bestmemit:9718046.887219    0.854876
+Iteration: 11 bestvalit: 6712810971693551616.000000 bestmemit:9718046.887219    0.865897
+Iteration: 12 bestvalit: 6712810971693551616.000000 bestmemit:9718046.887219    0.865897
+Iteration: 13 bestvalit: 1182624903593589248.000000 bestmemit:2015907.935053    0.817302
+Iteration: 14 bestvalit: 599618810313474432.000000 bestmemit:2015907.935053    0.868151
+Iteration: 15 bestvalit: 599618810313474432.000000 bestmemit:2015907.935053    0.868151
+Iteration: 16 bestvalit: 599618810313474432.000000 bestmemit:2015907.935053    0.876218
+Iteration: 17 bestvalit: 29561647969296144.000000 bestmemit:763198.871487    0.952779
+Iteration: 18 bestvalit: 29561647969296144.000000 bestmemit:763198.871487    0.952779
+Iteration: 19 bestvalit: 15503318573327114.000000 bestmemit:763198.871487    0.952779
+Iteration: 20 bestvalit: 2891338950708799.000000 bestmemit:333758.483154    0.984373
+Iteration: 21 bestvalit: 2891338950708799.000000 bestmemit:333758.483154    0.329941
+Iteration: 22 bestvalit: 2891338950708799.000000 bestmemit:115086.342026    0.214018
+Iteration: 23 bestvalit: 2891338950708799.000000 bestmemit:115086.342026    0.214018
+Iteration: 24 bestvalit: 2891338950708799.000000 bestmemit:115086.342026    0.214018
+Iteration: 25 bestvalit: 393416727201046.937500 bestmemit:10255.859615    0.338674
+Iteration: 26 bestvalit: 393416727201046.937500 bestmemit:10255.859615    0.338674
+Iteration: 27 bestvalit: 393416727201046.937500 bestmemit:10255.859615    0.338674
+Iteration: 28 bestvalit: 368183926738760.812500 bestmemit:10255.859615    0.338674
+Iteration: 29 bestvalit: 368183926738760.812500 bestmemit:10255.859615    0.338674
+Iteration: 30 bestvalit: 277536739445424.718750 bestmemit: 9929.644722    0.419008
+Iteration: 31 bestvalit: 277536739445424.718750 bestmemit:83602.543988    0.403573
+Iteration: 32 bestvalit: 277536739445424.718750 bestmemit:83602.543988    0.403573
+Iteration: 33 bestvalit: 63929472759450.664062 bestmemit: 9929.644722    0.715345
+Iteration: 34 bestvalit: 63929472759450.664062 bestmemit: 9929.644722    0.715345
+Iteration: 35 bestvalit: 63929472759450.664062 bestmemit: 9929.644722    0.377480
+Iteration: 36 bestvalit: 63929472759450.664062 bestmemit: 9929.644722    0.377480
+Iteration: 37 bestvalit: 63929472759450.664062 bestmemit: 9929.644722    0.622681
+Iteration: 38 bestvalit: 40316524779.130249 bestmemit: 1063.121722    0.967462
+Iteration: 39 bestvalit: 40316524779.130249 bestmemit: 1063.121722    0.967462
+Iteration: 40 bestvalit: 40316524779.130249 bestmemit: 1063.121722    0.967462
+Iteration: 41 bestvalit: 40316524779.130249 bestmemit: 1063.121722    0.967462
+Iteration: 42 bestvalit: 40316524779.130249 bestmemit: 1063.121722    0.967462
+Iteration: 43 bestvalit: 40316524779.130249 bestmemit: 1063.121722    0.967462
+Iteration: 44 bestvalit: 40316524779.130249 bestmemit: 1063.121722    0.967462
+Iteration: 45 bestvalit: 40316524779.130249 bestmemit: 1063.121722    0.967462
+Iteration: 46 bestvalit: 1331053109.434666 bestmemit:  207.113080    0.961466
+Iteration: 47 bestvalit: 1184709547.606812 bestmemit:  207.113080    0.966319
+Iteration: 48 bestvalit: 1184709547.606812 bestmemit:  207.113080    0.966319
+Iteration: 49 bestvalit: 157523124.900158 bestmemit:   71.235586    0.933582
+Iteration: 50 bestvalit: 609506.961588 bestmemit:    8.045731    0.788915
+Iteration: 51 bestvalit: 609506.961588 bestmemit:    8.045731    0.788915
+Iteration: 52 bestvalit: 609506.961588 bestmemit:    8.045731    0.788915
+Iteration: 53 bestvalit: 609506.961588 bestmemit:    8.045731    0.788915
+Iteration: 54 bestvalit: 609506.961588 bestmemit:    8.045731    0.788915
+Iteration: 55 bestvalit: 609506.961588 bestmemit:    8.045731    0.788915
+Iteration: 56 bestvalit: 609506.961588 bestmemit:    8.045731    0.788915
+Iteration: 57 bestvalit: 609506.961588 bestmemit:    8.045731    0.788915
+Iteration: 58 bestvalit: 380344.335844 bestmemit:    8.045731    0.788915
+Iteration: 59 bestvalit: 380344.335844 bestmemit:    8.045731    0.788915
+Iteration: 60 bestvalit: 380344.335844 bestmemit:    8.045731    0.788915
+Iteration: 61 bestvalit: 380344.335844 bestmemit:    8.045731    0.788915
+Iteration: 62 bestvalit: 380344.335844 bestmemit:    8.045731    0.788915
+Iteration: 63 bestvalit: 380344.335844 bestmemit:    8.045731    0.788915
+Iteration: 64 bestvalit: 380344.335844 bestmemit:    8.045731    0.788915
+Iteration: 65 bestvalit: 380344.335844 bestmemit:    8.045731    0.757265
+Iteration: 66 bestvalit: 380344.335844 bestmemit:    8.045731    0.757265
+Iteration: 67 bestvalit: 208056.763270 bestmemit:   47.544846    0.995645
+Iteration: 68 bestvalit: 208056.763270 bestmemit:   47.544846    0.995645
+Iteration: 69 bestvalit: 208056.763270 bestmemit:   47.544846    0.995645
+Iteration: 70 bestvalit: 208056.763270 bestmemit:   47.544846    0.995645
+Iteration: 71 bestvalit: 208056.763270 bestmemit:   47.544846    0.995645
+Iteration: 72 bestvalit: 208056.763270 bestmemit:   47.544846    0.995645
+Iteration: 73 bestvalit: 208056.763270 bestmemit:   47.544846    0.995645
+Iteration: 74 bestvalit: 208056.763270 bestmemit:   47.544846    0.995645
+Iteration: 75 bestvalit: 187918.042874 bestmemit:   49.167057    0.998537
+Iteration: 76 bestvalit: 167982.663792 bestmemit:   48.658349    0.999754
+Iteration: 77 bestvalit: 167982.663792 bestmemit:   48.658349    0.999754
+Iteration: 78 bestvalit: 167982.663792 bestmemit:   47.597284    0.998570
+Iteration: 79 bestvalit: 167982.663792 bestmemit:   47.597284    0.998570
+Iteration: 80 bestvalit: 167982.663792 bestmemit:   47.597284    0.998570
+Iteration: 81 bestvalit: 167982.663792 bestmemit:   47.597284    0.998570
+Iteration: 82 bestvalit: 167982.663792 bestmemit:   47.597284    0.998570
+Iteration: 83 bestvalit: 167982.663792 bestmemit:   47.597284    0.998570
+Iteration: 84 bestvalit: 167982.663792 bestmemit:   47.597284    0.998570
+Iteration: 85 bestvalit: 167982.663792 bestmemit:   47.597284    0.998570
+Iteration: 86 bestvalit: 167982.663792 bestmemit:   47.597284    0.998570
+Iteration: 87 bestvalit: 167982.663792 bestmemit:   47.597284    0.998570
+Iteration: 88 bestvalit: 166909.112447 bestmemit:   49.068634    0.999666
+Iteration: 89 bestvalit: 166909.112447 bestmemit:   49.068634    0.999666
+Iteration: 90 bestvalit: 166909.112447 bestmemit:   49.068634    0.999666
+Iteration: 91 bestvalit: 166909.112447 bestmemit:   49.068634    0.999666
+Iteration: 92 bestvalit: 166909.112447 bestmemit:   49.068634    0.999666
+Iteration: 93 bestvalit: 166909.112447 bestmemit:   49.068634    0.999666
+Iteration: 94 bestvalit: 165895.845443 bestmemit:   47.613700    0.997875
+Iteration: 95 bestvalit: 165895.845443 bestmemit:   48.191591    0.999142
+Iteration: 96 bestvalit: 165895.845443 bestmemit:   48.191591    0.999142
+Iteration: 97 bestvalit: 165895.845443 bestmemit:   48.191591    0.999142
+Iteration: 98 bestvalit: 165895.845443 bestmemit:   48.191591    0.999142
+Iteration: 99 bestvalit: 165895.845443 bestmemit:   48.191591    0.999142
+Iteration: 100 bestvalit: 165895.845443 bestmemit:   48.191591    0.999142
+Iteration: 101 bestvalit: 165895.845443 bestmemit:   48.191591    0.999142
+Iteration: 102 bestvalit: 165895.845443 bestmemit:   48.191591    0.999142
+Iteration: 103 bestvalit: 165895.845443 bestmemit:   48.191591    0.999142
+Iteration: 104 bestvalit: 165895.845443 bestmemit:   48.407956    0.999142
+Iteration: 105 bestvalit: 165895.845443 bestmemit:   48.451060    0.999142
+Iteration: 106 bestvalit: 165895.845443 bestmemit:   48.451060    0.999142
+Iteration: 107 bestvalit: 165895.845443 bestmemit:   48.451060    0.999142
+Iteration: 108 bestvalit: 165856.361797 bestmemit:   48.665779    0.999318
+Iteration: 109 bestvalit: 165856.361797 bestmemit:   48.665779    0.999430
+Iteration: 110 bestvalit: 165856.361797 bestmemit:   48.665779    0.999430
+Iteration: 111 bestvalit: 165856.361797 bestmemit:   48.665779    0.999430
+Iteration: 112 bestvalit: 165856.361797 bestmemit:   48.665779    0.999430
+Iteration: 113 bestvalit: 165856.361797 bestmemit:   48.665779    0.999430
+Iteration: 114 bestvalit: 165856.361797 bestmemit:   48.665779    0.999430
+Iteration: 115 bestvalit: 165856.361797 bestmemit:   48.665779    0.999430
+Iteration: 116 bestvalit: 165856.361797 bestmemit:   48.665779    0.999430
+Iteration: 117 bestvalit: 165856.361797 bestmemit:   48.665779    0.999430
+Iteration: 118 bestvalit: 165856.361797 bestmemit:   48.749952    0.999527
+Iteration: 119 bestvalit: 165856.361797 bestmemit:   48.749952    0.999527
+Iteration: 120 bestvalit: 165856.361797 bestmemit:   48.996028    0.999823
+Iteration: 121 bestvalit: 165856.361797 bestmemit:   48.996028    0.999823
+Iteration: 122 bestvalit: 165856.361797 bestmemit:   48.996028    0.999823
+Iteration: 123 bestvalit: 165856.361797 bestmemit:   48.996028    0.999823
+Iteration: 124 bestvalit: 165856.361797 bestmemit:   48.996028    0.999823
+Iteration: 125 bestvalit: 165856.361797 bestmemit:   48.996028    0.999823
+Iteration: 126 bestvalit: 165856.361797 bestmemit:   48.996028    0.999823
+Iteration: 127 bestvalit: 165856.361797 bestmemit:   48.996028    0.999948
+Iteration: 128 bestvalit: 165856.361797 bestmemit:   49.061751    0.999968
+Iteration: 129 bestvalit: 165856.361797 bestmemit:   49.070912    0.999968
+Iteration: 130 bestvalit: 165840.616431 bestmemit:   49.070912    0.999968
+Iteration: 131 bestvalit: 165835.147124 bestmemit:   49.117859    0.999968
+Iteration: 132 bestvalit: 165835.147124 bestmemit:   49.117859    0.999968
+Iteration: 133 bestvalit: 165835.147124 bestmemit:   49.119840    0.999968
+Iteration: 134 bestvalit: 165835.147124 bestmemit:   49.119840    0.999968
+Iteration: 135 bestvalit: 165835.147124 bestmemit:   49.119840    0.999968
+Iteration: 136 bestvalit: 165835.147124 bestmemit:   49.119840    0.999968
+Iteration: 137 bestvalit: 165835.147124 bestmemit:   49.119840    0.999968
+Iteration: 138 bestvalit: 165835.147124 bestmemit:   49.126369    0.999969
+Iteration: 139 bestvalit: 165835.147124 bestmemit:   49.126369    0.999976
+Iteration: 140 bestvalit: 165834.374761 bestmemit:   49.145317    0.999999
+Iteration: 141 bestvalit: 165834.374761 bestmemit:   49.159699    0.999999
+Iteration: 142 bestvalit: 165834.374761 bestmemit:   49.159699    0.999999
+Iteration: 143 bestvalit: 165834.374761 bestmemit:   49.159699    0.999999
+Iteration: 144 bestvalit: 165833.639075 bestmemit:   49.140389    0.999999
+Iteration: 145 bestvalit: 165832.717406 bestmemit:   49.144874    1.000000
+Iteration: 146 bestvalit: 165832.717406 bestmemit:   49.144874    1.000000
+Iteration: 147 bestvalit: 165832.657249 bestmemit:   49.142050    1.000000
+Iteration: 148 bestvalit: 165832.657249 bestmemit:   49.142050    1.000000
+Iteration: 149 bestvalit: 165832.657249 bestmemit:   49.142050    1.000000
+Iteration: 150 bestvalit: 165832.624869 bestmemit:   49.141528    1.000000
+Iteration: 151 bestvalit: 165832.624869 bestmemit:   49.141528    1.000000
+Iteration: 152 bestvalit: 165832.597362 bestmemit:   49.145475    1.000000
+Iteration: 153 bestvalit: 165832.454642 bestmemit:   49.143530    1.000000
+Iteration: 154 bestvalit: 165832.454642 bestmemit:   49.143530    1.000000
+Iteration: 155 bestvalit: 165832.383910 bestmemit:   49.143530    1.000000
+Iteration: 156 bestvalit: 165832.383910 bestmemit:   49.143530    1.000000
+Iteration: 157 bestvalit: 165832.383910 bestmemit:   49.143530    1.000000
+Iteration: 158 bestvalit: 165832.365622 bestmemit:   49.142436    1.000000
+Iteration: 159 bestvalit: 165832.364219 bestmemit:   49.143466    1.000000
+Iteration: 160 bestvalit: 165832.364219 bestmemit:   49.143520    1.000000
+Iteration: 161 bestvalit: 165832.364219 bestmemit:   49.143520    1.000000
+Iteration: 162 bestvalit: 165832.364219 bestmemit:   49.143520    1.000000
+Iteration: 163 bestvalit: 165832.361767 bestmemit:   49.143280    1.000000
+Iteration: 164 bestvalit: 165832.361767 bestmemit:   49.143280    1.000000
+Iteration: 165 bestvalit: 165832.361767 bestmemit:   49.143280    1.000000
+Iteration: 166 bestvalit: 165832.361767 bestmemit:   49.143488    1.000000
+Iteration: 167 bestvalit: 165832.359542 bestmemit:   49.142776    1.000000
+Iteration: 168 bestvalit: 165832.359542 bestmemit:   49.143204    1.000000
+Iteration: 169 bestvalit: 165832.359542 bestmemit:   49.143204    1.000000
+Iteration: 170 bestvalit: 165832.359542 bestmemit:   49.143204    1.000000
+Iteration: 171 bestvalit: 165832.359542 bestmemit:   49.143204    1.000000
+Iteration: 172 bestvalit: 165832.359047 bestmemit:   49.142909    1.000000
+Iteration: 173 bestvalit: 165832.359047 bestmemit:   49.142707    1.000000
+Iteration: 174 bestvalit: 165832.359047 bestmemit:   49.142707    1.000000
+Iteration: 175 bestvalit: 165832.359047 bestmemit:   49.142707    1.000000
+Iteration: 176 bestvalit: 165832.359047 bestmemit:   49.142707    1.000000
+Iteration: 177 bestvalit: 165832.358942 bestmemit:   49.142889    1.000000
+Iteration: 178 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 179 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 180 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 181 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 182 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 183 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 184 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 185 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 186 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 187 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 188 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 189 bestvalit: 165832.358882 bestmemit:   49.142806    1.000000
+Iteration: 190 bestvalit: 165832.358880 bestmemit:   49.143028    1.000000
+Iteration: 191 bestvalit: 165832.358880 bestmemit:   49.143028    1.000000
+Iteration: 192 bestvalit: 165832.358880 bestmemit:   49.142912    1.000000
+Iteration: 193 bestvalit: 165832.358880 bestmemit:   49.142912    1.000000
+Iteration: 194 bestvalit: 165832.358878 bestmemit:   49.142949    1.000000
+Iteration: 195 bestvalit: 165832.358878 bestmemit:   49.142954    1.000000
+Iteration: 196 bestvalit: 165832.358878 bestmemit:   49.142954    1.000000
+Iteration: 197 bestvalit: 165832.358878 bestmemit:   49.142954    1.000000
+Iteration: 198 bestvalit: 165832.358878 bestmemit:   49.142954    1.000000
+Iteration: 199 bestvalit: 165832.358878 bestmemit:   49.142954    1.000000
+Iteration: 200 bestvalit: 165832.358878 bestmemit:   49.142954    1.000000
+Iteration: 1 bestvalit: 11641962716543606784.000000 bestmemit:15521774.068475    0.835976
+Iteration: 2 bestvalit: 11641962716543606784.000000 bestmemit:15521774.068475    0.835976
+Iteration: 3 bestvalit: 11641962716543606784.000000 bestmemit:15521774.068475    0.835976
+Iteration: 4 bestvalit: 11641962716543606784.000000 bestmemit:15521774.068475    0.835976
+Iteration: 5 bestvalit: 3241431995286766080.000000 bestmemit:6994085.144996    0.785876
+Iteration: 6 bestvalit: 3241431995286766080.000000 bestmemit:6994085.144996    0.785876
+Iteration: 7 bestvalit: 3241431995286766080.000000 bestmemit:6994085.144996    0.785876
+Iteration: 8 bestvalit: 1584894625689655808.000000 bestmemit:6994085.144996    0.899425
+Iteration: 9 bestvalit: 1584894625689655808.000000 bestmemit:6994085.144996    0.899425
+Iteration: 10 bestvalit: 1030779873501285632.000000 bestmemit:6994085.144996    0.967745
+Iteration: 11 bestvalit: 386400109280043520.000000 bestmemit:4189578.961134    0.960797
+Iteration: 12 bestvalit: 136626058487052816.000000 bestmemit:2270292.494153    0.931292
+Iteration: 13 bestvalit: 136626058487052816.000000 bestmemit:2270292.494153    0.931292
+Iteration: 14 bestvalit: 105146756145454096.000000 bestmemit:2270292.494153    0.972888
+Iteration: 15 bestvalit: 105146756145454096.000000 bestmemit:2270292.494153    0.972888
+Iteration: 16 bestvalit: 105146756145454096.000000 bestmemit:2270292.494153    0.972888
+Iteration: 17 bestvalit: 105146756145454096.000000 bestmemit:2270292.494153    0.972888
+Iteration: 18 bestvalit: 105146756145454096.000000 bestmemit:2270292.494153    0.972888
+Iteration: 19 bestvalit: 105146756145454096.000000 bestmemit:2270292.494153    0.972888
+Iteration: 20 bestvalit: 40799813589901416.000000 bestmemit:1183995.959980    0.865889
+Iteration: 21 bestvalit: 19628029446273844.000000 bestmemit:604274.242115    0.819057
+Iteration: 22 bestvalit: 3527145536764353.000000 bestmemit:429332.062545    0.983027
+Iteration: 23 bestvalit: 3527145536764353.000000 bestmemit:429332.062545    0.983027
+Iteration: 24 bestvalit: 483966786767136.187500 bestmemit:173254.124107    0.967048
+Iteration: 25 bestvalit: 483966786767136.187500 bestmemit:173254.124107    0.967048
+Iteration: 26 bestvalit: 483966786767136.187500 bestmemit:173254.124107    0.967048
+Iteration: 27 bestvalit: 325037726334429.875000 bestmemit:173254.124107    0.967048
+Iteration: 28 bestvalit: 325037726334429.875000 bestmemit:173254.124107    0.967048
+Iteration: 29 bestvalit: 2134090381841.339600 bestmemit:1223978.794927    0.913413
+Iteration: 30 bestvalit: 2134090381841.339600 bestmemit:1223978.794927    0.913413
+Iteration: 31 bestvalit: 2134090381841.339600 bestmemit:1223978.794927    0.913413
+Iteration: 32 bestvalit: 2134090381841.339600 bestmemit:1084781.568770    0.913413
+Iteration: 33 bestvalit: 2134090381841.339600 bestmemit:1084781.568770    0.913413
+Iteration: 34 bestvalit: 2134090381841.339600 bestmemit:611468.170901    0.898170
+Iteration: 35 bestvalit: 1618754898479.152832 bestmemit:167882.436346    0.996264
+Iteration: 36 bestvalit: 1618754898479.152832 bestmemit:167882.436346    0.996264
+Iteration: 37 bestvalit: 1618754898479.152832 bestmemit:83931.710517    0.996264
+Iteration: 38 bestvalit: 1350104115595.405029 bestmemit: 7770.074014    0.956549
+Iteration: 39 bestvalit: 65131181565.149277 bestmemit: 1649.010405    0.939477
+Iteration: 40 bestvalit: 65131181565.149277 bestmemit: 1649.010405    0.939477
+Iteration: 41 bestvalit: 65131181565.149277 bestmemit: 1649.010405    0.939477
+Iteration: 42 bestvalit: 278319823.122326 bestmemit:  149.453896    0.947510
+Iteration: 43 bestvalit: 278319823.122326 bestmemit:  149.453896    0.947510
+Iteration: 44 bestvalit: 278319823.122326 bestmemit:  149.453896    0.947510
+Iteration: 45 bestvalit: 278319823.122326 bestmemit:  149.453896    0.947510
+Iteration: 46 bestvalit: 242572513.632769 bestmemit:  149.453896    0.963112
+Iteration: 47 bestvalit: 242572513.632769 bestmemit:  149.453896    0.963112
+Iteration: 48 bestvalit: 191289193.039462 bestmemit:  124.291596    0.930792
+Iteration: 49 bestvalit: 191289193.039462 bestmemit:  124.291596    0.930792
+Iteration: 50 bestvalit: 96030986.688146 bestmemit:  118.430658    0.985920
+Iteration: 51 bestvalit: 96030986.688146 bestmemit:  118.430658    0.985920
+Iteration: 52 bestvalit: 96030986.688146 bestmemit:  118.430658    0.985920
+Iteration: 53 bestvalit: 94271114.676080 bestmemit:  118.430658    0.987691
+Iteration: 54 bestvalit: 17851266.628105 bestmemit:   75.501860    0.976870
+Iteration: 55 bestvalit: 17386652.419047 bestmemit:   75.501860    0.978532
+Iteration: 56 bestvalit: 274208.327569 bestmemit:   46.110508    0.964403
+Iteration: 57 bestvalit: 235369.820758 bestmemit:   46.110508    0.967553
+Iteration: 58 bestvalit: 172543.043240 bestmemit:   43.560779    0.962292
+Iteration: 59 bestvalit: 172543.043240 bestmemit:   43.560779    0.962292
+Iteration: 60 bestvalit: 172543.043240 bestmemit:   43.560779    0.962292
+Iteration: 61 bestvalit: 172168.138355 bestmemit:   45.313014    0.972250
+Iteration: 62 bestvalit: 172168.138355 bestmemit:   45.313014    0.972250
+Iteration: 63 bestvalit: 170203.262101 bestmemit:   45.313014    0.974806
+Iteration: 64 bestvalit: 170203.262101 bestmemit:   45.313014    0.974806
+Iteration: 65 bestvalit: 170203.262101 bestmemit:   45.313014    0.974806
+Iteration: 66 bestvalit: 170203.262101 bestmemit:   45.313014    0.974806
+Iteration: 67 bestvalit: 168426.572082 bestmemit:   46.778114    0.984191
+Iteration: 68 bestvalit: 168426.572082 bestmemit:   46.778114    0.984191
+Iteration: 69 bestvalit: 168426.572082 bestmemit:   46.778114    0.984191
+Iteration: 70 bestvalit: 168426.572082 bestmemit:   46.778114    0.984191
+Iteration: 71 bestvalit: 166776.949809 bestmemit:   49.119507    0.998533
+Iteration: 72 bestvalit: 166776.949809 bestmemit:   49.119507    0.998533
+Iteration: 73 bestvalit: 166776.949809 bestmemit:   49.119507    0.998533
+Iteration: 74 bestvalit: 166776.949809 bestmemit:   49.119507    0.998533
+Iteration: 75 bestvalit: 166161.772617 bestmemit:   49.010326    0.998618
+Iteration: 76 bestvalit: 166161.772617 bestmemit:   49.010326    0.998618
+Iteration: 77 bestvalit: 166161.772617 bestmemit:   49.010326    0.998618
+Iteration: 78 bestvalit: 166161.772617 bestmemit:   49.010326    0.998618
+Iteration: 79 bestvalit: 165875.910681 bestmemit:   49.085174    0.999801
+Iteration: 80 bestvalit: 165875.910681 bestmemit:   49.085174    0.999801
+Iteration: 81 bestvalit: 165875.910681 bestmemit:   49.085174    0.999801
+Iteration: 82 bestvalit: 165875.910681 bestmemit:   48.116201    0.993506
+Iteration: 83 bestvalit: 165875.910681 bestmemit:   48.116201    0.993506
+Iteration: 84 bestvalit: 165875.910681 bestmemit:   48.116201    0.993506
+Iteration: 85 bestvalit: 165875.910681 bestmemit:   48.116201    0.993506
+Iteration: 86 bestvalit: 165875.910681 bestmemit:   48.116201    0.993506
+Iteration: 87 bestvalit: 165875.910681 bestmemit:   48.116201    0.993506
+Iteration: 88 bestvalit: 165875.910681 bestmemit:   48.800646    0.999217
+Iteration: 89 bestvalit: 165875.910681 bestmemit:   48.800646    0.999217
+Iteration: 90 bestvalit: 165875.910681 bestmemit:   48.932554    0.999217
+Iteration: 91 bestvalit: 165875.910681 bestmemit:   48.932554    0.999217
+Iteration: 92 bestvalit: 165866.051874 bestmemit:   49.094987    0.999862
+Iteration: 93 bestvalit: 165866.051874 bestmemit:   49.094987    0.999862
+Iteration: 94 bestvalit: 165866.051874 bestmemit:   49.094987    0.999862
+Iteration: 95 bestvalit: 165866.051874 bestmemit:   49.094987    0.999862
+Iteration: 96 bestvalit: 165866.051874 bestmemit:   49.094987    0.999862
+Iteration: 97 bestvalit: 165837.792269 bestmemit:   49.214295    0.999988
+Iteration: 98 bestvalit: 165837.792269 bestmemit:   49.214295    0.999988
+Iteration: 99 bestvalit: 165837.792269 bestmemit:   49.214295    0.999988
+Iteration: 100 bestvalit: 165837.792269 bestmemit:   49.214295    0.999988
+Iteration: 101 bestvalit: 165836.935472 bestmemit:   49.127856    0.999992
+Iteration: 102 bestvalit: 165836.935472 bestmemit:   49.127856    0.999992
+Iteration: 103 bestvalit: 165836.935472 bestmemit:   49.124051    0.999916
+Iteration: 104 bestvalit: 165836.830428 bestmemit:   49.147747    0.999979
+Iteration: 105 bestvalit: 165833.991750 bestmemit:   49.128909    0.999992
+Iteration: 106 bestvalit: 165833.593685 bestmemit:   49.142094    0.999992
+Iteration: 107 bestvalit: 165833.593685 bestmemit:   49.142094    0.999992
+Iteration: 108 bestvalit: 165833.593685 bestmemit:   49.145972    0.999992
+Iteration: 109 bestvalit: 165833.593685 bestmemit:   49.137648    0.999992
+Iteration: 110 bestvalit: 165833.593685 bestmemit:   49.137648    0.999992
+Iteration: 111 bestvalit: 165832.530975 bestmemit:   49.137648    0.999992
+Iteration: 112 bestvalit: 165832.530975 bestmemit:   49.137648    0.999992
+Iteration: 113 bestvalit: 165832.530975 bestmemit:   49.137648    0.999992
+Iteration: 114 bestvalit: 165832.530975 bestmemit:   49.145524    0.999992
+Iteration: 115 bestvalit: 165832.530975 bestmemit:   49.145524    0.999992
+Iteration: 116 bestvalit: 165832.530975 bestmemit:   49.145524    0.999994
+Iteration: 117 bestvalit: 165832.487500 bestmemit:   49.145524    1.000000
+Iteration: 118 bestvalit: 165832.487500 bestmemit:   49.145524    1.000000
+Iteration: 119 bestvalit: 165832.413697 bestmemit:   49.143079    1.000000
+Iteration: 120 bestvalit: 165832.413697 bestmemit:   49.143079    1.000000
+Iteration: 121 bestvalit: 165832.413697 bestmemit:   49.143079    1.000000
+Iteration: 122 bestvalit: 165832.398265 bestmemit:   49.142631    1.000000
+Iteration: 123 bestvalit: 165832.397828 bestmemit:   49.143144    1.000000
+Iteration: 124 bestvalit: 165832.362927 bestmemit:   49.142631    1.000000
+Iteration: 125 bestvalit: 165832.362927 bestmemit:   49.142631    1.000000
+Iteration: 126 bestvalit: 165832.362927 bestmemit:   49.142631    1.000000
+Iteration: 127 bestvalit: 165832.362927 bestmemit:   49.142631    1.000000
+Iteration: 128 bestvalit: 165832.362263 bestmemit:   49.142757    1.000000
+Iteration: 129 bestvalit: 165832.362263 bestmemit:   49.142615    1.000000
+Iteration: 130 bestvalit: 165832.360849 bestmemit:   49.142631    1.000000
+Iteration: 131 bestvalit: 165832.359836 bestmemit:   49.142929    1.000000
+Iteration: 132 bestvalit: 165832.359836 bestmemit:   49.142929    1.000000
+Iteration: 133 bestvalit: 165832.359836 bestmemit:   49.142929    1.000000
+Iteration: 134 bestvalit: 165832.359836 bestmemit:   49.142869    1.000000
+Iteration: 135 bestvalit: 165832.359836 bestmemit:   49.142869    1.000000
+Iteration: 136 bestvalit: 165832.359293 bestmemit:   49.142898    1.000000
+Iteration: 137 bestvalit: 165832.359080 bestmemit:   49.142979    1.000000
+Iteration: 138 bestvalit: 165832.359080 bestmemit:   49.142979    1.000000
+Iteration: 139 bestvalit: 165832.358948 bestmemit:   49.143001    1.000000
+Iteration: 140 bestvalit: 165832.358948 bestmemit:   49.143001    1.000000
+Iteration: 141 bestvalit: 165832.358914 bestmemit:   49.142973    1.000000
+Iteration: 142 bestvalit: 165832.358911 bestmemit:   49.142968    1.000000
+Iteration: 143 bestvalit: 165832.358911 bestmemit:   49.142968    1.000000
+Iteration: 144 bestvalit: 165832.358883 bestmemit:   49.142958    1.000000
+Iteration: 145 bestvalit: 165832.358883 bestmemit:   49.142935    1.000000
+Iteration: 146 bestvalit: 165832.358883 bestmemit:   49.142935    1.000000
+Iteration: 147 bestvalit: 165832.358882 bestmemit:   49.142954    1.000000
+Iteration: 148 bestvalit: 165832.358882 bestmemit:   49.142954    1.000000
+Iteration: 149 bestvalit: 165832.358881 bestmemit:   49.142943    1.000000
+Iteration: 150 bestvalit: 165832.358880 bestmemit:   49.142942    1.000000
+Iteration: 151 bestvalit: 165832.358879 bestmemit:   49.142941    1.000000
+Iteration: 152 bestvalit: 165832.358878 bestmemit:   49.142952    1.000000
+Iteration: 153 bestvalit: 165832.358878 bestmemit:   49.142952    1.000000
+Iteration: 154 bestvalit: 165832.358878 bestmemit:   49.142952    1.000000
+Iteration: 155 bestvalit: 165832.358878 bestmemit:   49.142952    1.000000
+Iteration: 156 bestvalit: 165832.358878 bestmemit:   49.142945    1.000000
+Iteration: 157 bestvalit: 165832.358877 bestmemit:   49.142948    1.000000
+Iteration: 158 bestvalit: 165832.358877 bestmemit:   49.142948    1.000000
+Iteration: 159 bestvalit: 165832.358877 bestmemit:   49.142948    1.000000
+Iteration: 160 bestvalit: 165832.358877 bestmemit:   49.142949    1.000000
+Iteration: 161 bestvalit: 165832.358877 bestmemit:   49.142949    1.000000
+Iteration: 162 bestvalit: 165832.358877 bestmemit:   49.142949    1.000000
+Iteration: 163 bestvalit: 165832.358877 bestmemit:   49.142949    1.000000
+Iteration: 164 bestvalit: 165832.358877 bestmemit:   49.142946    1.000000
+Iteration: 165 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 166 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 167 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 168 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 169 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 170 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 171 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 172 bestvalit: 165832.358877 bestmemit:   49.142951    1.000000
+Iteration: 173 bestvalit: 165832.358877 bestmemit:   49.142952    1.000000
+Iteration: 174 bestvalit: 165832.358877 bestmemit:   49.142951    1.000000
+Iteration: 175 bestvalit: 165832.358877 bestmemit:   49.142951    1.000000
+Iteration: 176 bestvalit: 165832.358877 bestmemit:   49.142951    1.000000
+Iteration: 177 bestvalit: 165832.358877 bestmemit:   49.142951    1.000000
+Iteration: 178 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 179 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 180 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 181 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 182 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 183 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 184 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 185 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 186 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 187 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 188 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 189 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 190 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 191 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 192 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 193 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 194 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 195 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 196 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 197 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 198 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 199 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 200 bestvalit: 165832.358877 bestmemit:   49.142950    1.000000
+Iteration: 1 bestvalit: 547760739081290907648.000000 bestmemit:14134463.854134    0.051094
+Iteration: 2 bestvalit: 257076411271635730432.000000 bestmemit:14134463.854134    0.051094
+Iteration: 3 bestvalit: 257076411271635730432.000000 bestmemit:14134463.854134    0.051094
+Iteration: 4 bestvalit: 5086873528789925888.000000 bestmemit:4971875.894069    0.315214
+Iteration: 5 bestvalit: 5086873528789925888.000000 bestmemit:4971875.894069    0.315214
+Iteration: 6 bestvalit: 5086873528789925888.000000 bestmemit:4971875.894069    0.315214
+Iteration: 7 bestvalit: 2694327258562392064.000000 bestmemit:5044138.034582    0.437892
+Iteration: 8 bestvalit: 2694327258562392064.000000 bestmemit:5044138.034582    0.437892
+Iteration: 9 bestvalit: 2694327258562392064.000000 bestmemit:5044138.034582    0.437892
+Iteration: 10 bestvalit: 2694327258562392064.000000 bestmemit:5044138.034582    0.437892
+Iteration: 11 bestvalit: 2694327258562392064.000000 bestmemit:5044138.034582    0.437892
+Iteration: 12 bestvalit: 2694327258562392064.000000 bestmemit:23043180.409794    0.317245
+Iteration: 13 bestvalit: 217649206998190144.000000 bestmemit:23043180.409794    0.317245
+Iteration: 14 bestvalit: 217649206998190144.000000 bestmemit:10988771.583498    0.317245
+Iteration: 15 bestvalit: 217649206998190144.000000 bestmemit:10988771.583498    0.317245
+Iteration: 16 bestvalit: 217649206998190144.000000 bestmemit:10988771.583498    0.317245
+Iteration: 17 bestvalit: 217649206998190144.000000 bestmemit:10988771.583498    0.317245
+Iteration: 18 bestvalit: 11470318594360798.000000 bestmemit:1035131.301976    0.495514
+Iteration: 19 bestvalit: 11470318594360798.000000 bestmemit:1035131.301976    0.632353
+Iteration: 20 bestvalit: 8361318749873085.000000 bestmemit:1035131.301976    0.652503
+Iteration: 21 bestvalit: 8361318749873085.000000 bestmemit:1035131.301976    0.652503
+Iteration: 22 bestvalit: 6836096724037756.000000 bestmemit:1035131.301976    0.652503
+Iteration: 23 bestvalit: 5182269560334.184570 bestmemit:13727.668387    0.811752
+Iteration: 24 bestvalit: 5182269560334.184570 bestmemit:13727.668387    0.687268
+Iteration: 25 bestvalit: 5182269560334.184570 bestmemit:13727.668387    0.687268
+Iteration: 26 bestvalit: 5182269560334.184570 bestmemit:13727.668387    0.687268
+Iteration: 27 bestvalit: 5182269560334.184570 bestmemit:13727.668387    0.738608
+Iteration: 28 bestvalit: 3421798123418.159180 bestmemit:13727.668387    0.973718
+Iteration: 29 bestvalit: 3421798123418.159180 bestmemit:13727.668387    0.973718
+Iteration: 30 bestvalit: 3421798123418.159180 bestmemit:13727.668387    0.973718
+Iteration: 31 bestvalit: 3421798123418.159180 bestmemit:13727.668387    0.973718
+Iteration: 32 bestvalit: 3421798123418.159180 bestmemit:13727.668387    0.907331
+Iteration: 33 bestvalit: 85802738760.224625 bestmemit: 5938.536908    0.994148
+Iteration: 34 bestvalit: 85802738760.224625 bestmemit: 5938.536908    0.994148
+Iteration: 35 bestvalit: 85802738760.224625 bestmemit: 5938.536908    0.962181
+Iteration: 36 bestvalit: 85802738760.224625 bestmemit: 5938.536908    0.962181
+Iteration: 37 bestvalit: 85802738760.224625 bestmemit: 5938.536908    0.976690
+Iteration: 38 bestvalit: 85802738760.224625 bestmemit: 5938.536908    0.976690
+Iteration: 39 bestvalit: 21728693091.697178 bestmemit: 1114.542657    0.956331
+Iteration: 40 bestvalit: 10187145929.273285 bestmemit: 1114.542657    0.956331
+Iteration: 41 bestvalit: 5265108.527793 bestmemit:   29.663327    0.242139
+Iteration: 42 bestvalit: 5265108.527793 bestmemit:   29.663327    0.242139
+Iteration: 43 bestvalit: 5265108.527793 bestmemit:   29.663327    0.242139
+Iteration: 44 bestvalit: 5265108.527793 bestmemit:   29.663327    0.242139
+Iteration: 45 bestvalit: 5265108.527793 bestmemit:   29.663327    0.242139
+Iteration: 46 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 47 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 48 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 49 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 50 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 51 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 52 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 53 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 54 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 55 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 56 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 57 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 58 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 59 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 60 bestvalit: 177559.981818 bestmemit:   29.663327    0.633206
+Iteration: 61 bestvalit: 177361.354485 bestmemit:   26.087974    0.569680
+Iteration: 62 bestvalit: 177361.354485 bestmemit:   26.087974    0.569680
+Iteration: 63 bestvalit: 177361.354485 bestmemit:   26.087974    0.569680
+Iteration: 64 bestvalit: 172804.372272 bestmemit:   46.539659    0.964177
+Iteration: 65 bestvalit: 172574.293814 bestmemit:   36.354082    0.761637
+Iteration: 66 bestvalit: 171746.478055 bestmemit:   32.867114    0.700482
+Iteration: 67 bestvalit: 168304.009972 bestmemit:   32.867114    0.700482
+Iteration: 68 bestvalit: 168304.009972 bestmemit:   32.867114    0.700482
+Iteration: 69 bestvalit: 168304.009972 bestmemit:   32.867114    0.700482
+Iteration: 70 bestvalit: 166862.139005 bestmemit:   32.867114    0.700482
+Iteration: 71 bestvalit: 166862.139005 bestmemit:   32.867114    0.700482
+Iteration: 72 bestvalit: 166138.009187 bestmemit:   38.258502    0.798120
+Iteration: 73 bestvalit: 166138.009187 bestmemit:   38.258502    0.798120
+Iteration: 74 bestvalit: 166138.009187 bestmemit:   38.258502    0.798120
+Iteration: 75 bestvalit: 166138.009187 bestmemit:   38.258502    0.798120
+Iteration: 76 bestvalit: 166138.009187 bestmemit:   38.258502    0.798120
+Iteration: 77 bestvalit: 166138.009187 bestmemit:   40.387283    0.844431
+Iteration: 78 bestvalit: 166138.009187 bestmemit:   40.387283    0.844431
+Iteration: 79 bestvalit: 166138.009187 bestmemit:   40.387283    0.844431
+Iteration: 80 bestvalit: 166138.009187 bestmemit:   44.595931    0.918704
+Iteration: 81 bestvalit: 166138.009187 bestmemit:   44.595931    0.918704
+Iteration: 82 bestvalit: 166138.009187 bestmemit:   44.595931    0.918704
+Iteration: 83 bestvalit: 165866.894995 bestmemit:   44.595931    0.918704
+Iteration: 84 bestvalit: 165866.894995 bestmemit:   44.595931    0.918704
+Iteration: 85 bestvalit: 165866.894995 bestmemit:   44.595931    0.918704
+Iteration: 86 bestvalit: 165866.894995 bestmemit:   44.595931    0.918704
+Iteration: 87 bestvalit: 165866.894995 bestmemit:   44.595931    0.918704
+Iteration: 88 bestvalit: 165866.894995 bestmemit:   44.595931    0.918704
+Iteration: 89 bestvalit: 165866.894995 bestmemit:   44.595931    0.918704
+Iteration: 90 bestvalit: 165866.894995 bestmemit:   44.595931    0.918704
+Iteration: 91 bestvalit: 165866.894995 bestmemit:   44.595931    0.918704
+Iteration: 92 bestvalit: 165866.894995 bestmemit:   45.399312    0.934309
+Iteration: 93 bestvalit: 165866.894995 bestmemit:   45.399312    0.934309
+Iteration: 94 bestvalit: 165857.223994 bestmemit:   45.399312    0.934309
+Iteration: 95 bestvalit: 165857.223994 bestmemit:   45.399312    0.934309
+Iteration: 96 bestvalit: 165857.223994 bestmemit:   45.621918    0.937182
+Iteration: 97 bestvalit: 165857.223994 bestmemit:   45.621918    0.937182
+Iteration: 98 bestvalit: 165857.223994 bestmemit:   47.557362    0.969799
+Iteration: 99 bestvalit: 165857.223994 bestmemit:   47.497756    0.969799
+Iteration: 100 bestvalit: 165857.223994 bestmemit:   47.497756    0.969799
+Iteration: 101 bestvalit: 165857.223994 bestmemit:   47.497756    0.969799
+Iteration: 102 bestvalit: 165857.223994 bestmemit:   47.497756    0.969799
+Iteration: 103 bestvalit: 165857.223994 bestmemit:   47.497756    0.969799
+Iteration: 104 bestvalit: 165857.223994 bestmemit:   47.497756    0.969799
+Iteration: 105 bestvalit: 165857.223994 bestmemit:   47.497756    0.969799
+Iteration: 106 bestvalit: 165857.223994 bestmemit:   47.497756    0.969799
+Iteration: 107 bestvalit: 165857.223994 bestmemit:   47.497756    0.969799
+Iteration: 108 bestvalit: 165857.223994 bestmemit:   47.758073    0.975297
+Iteration: 109 bestvalit: 165857.223994 bestmemit:   47.758073    0.975297
+Iteration: 110 bestvalit: 165857.223994 bestmemit:   47.758073    0.975297
+Iteration: 111 bestvalit: 165857.223994 bestmemit:   47.758073    0.975297
+Iteration: 112 bestvalit: 165857.223994 bestmemit:   47.758073    0.975297
+Iteration: 113 bestvalit: 165857.223994 bestmemit:   47.758073    0.975297
+Iteration: 114 bestvalit: 165857.223994 bestmemit:   47.758073    0.975297
+Iteration: 115 bestvalit: 165857.223994 bestmemit:   47.758073    0.975297
+Iteration: 116 bestvalit: 165857.223994 bestmemit:   47.758073    0.975297
+Iteration: 117 bestvalit: 165857.223994 bestmemit:   47.758073    0.975297
+Iteration: 118 bestvalit: 165857.223994 bestmemit:   47.758073    0.975297
+Iteration: 119 bestvalit: 165857.223994 bestmemit:   48.016542    0.979204
+Iteration: 120 bestvalit: 165857.223994 bestmemit:   48.016542    0.979204
+Iteration: 121 bestvalit: 165857.223994 bestmemit:   48.075260    0.980442
+Iteration: 122 bestvalit: 165857.223994 bestmemit:   48.075260    0.980442
+Iteration: 123 bestvalit: 165857.223994 bestmemit:   48.325334    0.984927
+Iteration: 124 bestvalit: 165857.223994 bestmemit:   48.325334    0.984927
+Iteration: 125 bestvalit: 165857.223994 bestmemit:   48.325334    0.984927
+Iteration: 126 bestvalit: 165857.223994 bestmemit:   48.325334    0.984927
+Iteration: 127 bestvalit: 165857.223994 bestmemit:   48.738617    0.992788
+Iteration: 128 bestvalit: 165842.949971 bestmemit:   48.836067    0.994452
+Iteration: 129 bestvalit: 165838.041526 bestmemit:   49.160732    0.999944
+Iteration: 130 bestvalit: 165838.041526 bestmemit:   49.160732    0.999944
+Iteration: 131 bestvalit: 165836.046387 bestmemit:   49.160732    0.999944
+Iteration: 132 bestvalit: 165836.046387 bestmemit:   49.160732    0.999944
+Iteration: 133 bestvalit: 165836.046387 bestmemit:   49.088977    0.999031
+Iteration: 134 bestvalit: 165836.046387 bestmemit:   49.088977    0.999031
+Iteration: 135 bestvalit: 165836.046387 bestmemit:   49.088977    0.999031
+Iteration: 136 bestvalit: 165833.534161 bestmemit:   49.088977    0.999031
+Iteration: 137 bestvalit: 165833.534161 bestmemit:   49.088977    0.999031
+Iteration: 138 bestvalit: 165833.534161 bestmemit:   49.088977    0.999031
+Iteration: 139 bestvalit: 165833.534161 bestmemit:   49.088977    0.999031
+Iteration: 140 bestvalit: 165833.534161 bestmemit:   49.088977    0.999031
+Iteration: 141 bestvalit: 165833.534161 bestmemit:   49.088977    0.999031
+Iteration: 142 bestvalit: 165833.534161 bestmemit:   49.088977    0.999031
+Iteration: 143 bestvalit: 165833.534161 bestmemit:   49.088977    0.999031
+Iteration: 144 bestvalit: 165833.534161 bestmemit:   49.088977    0.999100
+Iteration: 145 bestvalit: 165833.534161 bestmemit:   49.088977    0.999100
+Iteration: 146 bestvalit: 165833.534161 bestmemit:   49.088977    0.999100
+Iteration: 147 bestvalit: 165833.534161 bestmemit:   49.088977    0.999100
+Iteration: 148 bestvalit: 165833.534161 bestmemit:   49.098285    0.999233
+Iteration: 149 bestvalit: 165832.732838 bestmemit:   49.098285    0.999233
+Iteration: 150 bestvalit: 165832.732838 bestmemit:   49.098285    0.999233
+Iteration: 151 bestvalit: 165832.732838 bestmemit:   49.098285    0.999233
+Iteration: 152 bestvalit: 165832.732838 bestmemit:   49.098285    0.999369
+Iteration: 153 bestvalit: 165832.732838 bestmemit:   49.105821    0.999369
+Iteration: 154 bestvalit: 165832.732838 bestmemit:   49.105821    0.999369
+Iteration: 155 bestvalit: 165832.732838 bestmemit:   49.105821    0.999369
+Iteration: 156 bestvalit: 165832.732838 bestmemit:   49.105821    0.999369
+Iteration: 157 bestvalit: 165832.732838 bestmemit:   49.105821    0.999369
+Iteration: 158 bestvalit: 165832.732838 bestmemit:   49.105821    0.999369
+Iteration: 159 bestvalit: 165832.732838 bestmemit:   49.105821    0.999369
+Iteration: 160 bestvalit: 165832.732838 bestmemit:   49.105821    0.999369
+Iteration: 161 bestvalit: 165832.732838 bestmemit:   49.105821    0.999547
+Iteration: 162 bestvalit: 165832.732838 bestmemit:   49.105821    0.999547
+Iteration: 163 bestvalit: 165832.732838 bestmemit:   49.113809    0.999583
+Iteration: 164 bestvalit: 165832.732838 bestmemit:   49.118102    0.999621
+Iteration: 165 bestvalit: 165832.732838 bestmemit:   49.118102    0.999621
+Iteration: 166 bestvalit: 165832.732838 bestmemit:   49.127093    0.999653
+Iteration: 167 bestvalit: 165832.732838 bestmemit:   49.127093    0.999653
+Iteration: 168 bestvalit: 165832.732838 bestmemit:   49.127093    0.999781
+Iteration: 169 bestvalit: 165832.732838 bestmemit:   49.127093    0.999781
+Iteration: 170 bestvalit: 165832.732838 bestmemit:   49.127093    0.999781
+Iteration: 171 bestvalit: 165832.732838 bestmemit:   49.127093    0.999795
+Iteration: 172 bestvalit: 165832.732838 bestmemit:   49.127093    0.999795
+Iteration: 173 bestvalit: 165832.732838 bestmemit:   49.134031    0.999854
+Iteration: 174 bestvalit: 165832.441122 bestmemit:   49.136924    0.999975
+Iteration: 175 bestvalit: 165832.441122 bestmemit:   49.136924    0.999975
+Iteration: 176 bestvalit: 165832.441122 bestmemit:   49.136924    0.999975
+Iteration: 177 bestvalit: 165832.441122 bestmemit:   49.136924    0.999975
+Iteration: 178 bestvalit: 165832.441122 bestmemit:   49.136924    0.999975
+Iteration: 179 bestvalit: 165832.436754 bestmemit:   49.140508    0.999975
+Iteration: 180 bestvalit: 165832.426032 bestmemit:   49.140456    0.999975
+Iteration: 181 bestvalit: 165832.412759 bestmemit:   49.139536    0.999990
+Iteration: 182 bestvalit: 165832.397187 bestmemit:   49.144077    0.999990
+Iteration: 183 bestvalit: 165832.376010 bestmemit:   49.145677    0.999998
+Iteration: 184 bestvalit: 165832.376010 bestmemit:   49.144090    0.999998
+Iteration: 185 bestvalit: 165832.373928 bestmemit:   49.143399    0.999999
+Iteration: 186 bestvalit: 165832.360203 bestmemit:   49.143399    0.999999
+Iteration: 187 bestvalit: 165832.360203 bestmemit:   49.143399    0.999999
+Iteration: 188 bestvalit: 165832.359963 bestmemit:   49.143301    0.999999
+Iteration: 189 bestvalit: 165832.359963 bestmemit:   49.143301    0.999999
+Iteration: 190 bestvalit: 165832.359963 bestmemit:   49.143301    0.999999
+Iteration: 191 bestvalit: 165832.359963 bestmemit:   49.143301    0.999999
+Iteration: 192 bestvalit: 165832.359963 bestmemit:   49.143301    0.999999
+Iteration: 193 bestvalit: 165832.359963 bestmemit:   49.143301    0.999999
+Iteration: 194 bestvalit: 165832.359963 bestmemit:   49.143000    1.000000
+Iteration: 195 bestvalit: 165832.359963 bestmemit:   49.143000    1.000000
+Iteration: 196 bestvalit: 165832.359084 bestmemit:   49.142852    1.000000
+Iteration: 197 bestvalit: 165832.359084 bestmemit:   49.142852    1.000000
+Iteration: 198 bestvalit: 165832.359084 bestmemit:   49.142852    1.000000
+Iteration: 199 bestvalit: 165832.359084 bestmemit:   49.142852    1.000000
+Iteration: 200 bestvalit: 165832.359084 bestmemit:   49.142852    1.000000
+> print.default( cesGridDe )
+$DEoptim
+$optim
+$optim$bestmem
+    par1     par2 
+49.14295  1.00000 
+
+$optim$bestval
+[1] 165832.4
+
+$optim$nfeval
+[1] 10050
+
+$optim$iter
+[1] 200
+
+
+$member
+$member$lower
+par1 par2 
+   0    0 
+
+$member$upper
+ par1  par2 
+1e+10 1e+00 
+
+$member$bestmemit
+            par1      par2
+1   1.734108e+08 0.9472903
+2   1.552177e+07 0.8359757
+3   1.552177e+07 0.8359757
+4   1.552177e+07 0.8359757
+5   1.552177e+07 0.8359757
+6   6.994085e+06 0.7858764
+7   6.994085e+06 0.7858764
+8   6.994085e+06 0.7858764
+9   6.994085e+06 0.8994254
+10  6.994085e+06 0.8994254
+11  6.994085e+06 0.9677450
+12  4.189579e+06 0.9607971
+13  2.270292e+06 0.9312922
+14  2.270292e+06 0.9312922
+15  2.270292e+06 0.9728878
+16  2.270292e+06 0.9728878
+17  2.270292e+06 0.9728878
+18  2.270292e+06 0.9728878
+19  2.270292e+06 0.9728878
+20  2.270292e+06 0.9728878
+21  1.183996e+06 0.8658890
+22  6.042742e+05 0.8190575
+23  4.293321e+05 0.9830270
+24  4.293321e+05 0.9830270
+25  1.732541e+05 0.9670477
+26  1.732541e+05 0.9670477
+27  1.732541e+05 0.9670477
+28  1.732541e+05 0.9670477
+29  1.732541e+05 0.9670477
+30  1.223979e+06 0.9134134
+31  1.223979e+06 0.9134134
+32  1.223979e+06 0.9134134
+33  1.084782e+06 0.9134134
+34  1.084782e+06 0.9134134
+35  6.114682e+05 0.8981703
+36  1.678824e+05 0.9962641
+37  1.678824e+05 0.9962641
+38  8.393171e+04 0.9962641
+39  7.770074e+03 0.9565488
+40  1.649010e+03 0.9394774
+41  1.649010e+03 0.9394774
+42  1.649010e+03 0.9394774
+43  1.494539e+02 0.9475097
+44  1.494539e+02 0.9475097
+45  1.494539e+02 0.9475097
+46  1.494539e+02 0.9475097
+47  1.494539e+02 0.9631123
+48  1.494539e+02 0.9631123
+49  1.242916e+02 0.9307921
+50  1.242916e+02 0.9307921
+51  1.184307e+02 0.9859199
+52  1.184307e+02 0.9859199
+53  1.184307e+02 0.9859199
+54  1.184307e+02 0.9876911
+55  7.550186e+01 0.9768701
+56  7.550186e+01 0.9785319
+57  4.611051e+01 0.9644028
+58  4.611051e+01 0.9675529
+59  4.356078e+01 0.9622924
+60  4.356078e+01 0.9622924
+61  4.356078e+01 0.9622924
+62  4.531301e+01 0.9722496
+63  4.531301e+01 0.9722496
+64  4.531301e+01 0.9748062
+65  4.531301e+01 0.9748062
+66  4.531301e+01 0.9748062
+67  4.531301e+01 0.9748062
+68  4.677811e+01 0.9841912
+69  4.677811e+01 0.9841912
+70  4.677811e+01 0.9841912
+71  4.677811e+01 0.9841912
+72  4.911951e+01 0.9985334
+73  4.911951e+01 0.9985334
+74  4.911951e+01 0.9985334
+75  4.911951e+01 0.9985334
+76  4.901033e+01 0.9986178
+77  4.901033e+01 0.9986178
+78  4.901033e+01 0.9986178
+79  4.901033e+01 0.9986178
+80  4.908517e+01 0.9998014
+81  4.908517e+01 0.9998014
+82  4.908517e+01 0.9998014
+83  4.811620e+01 0.9935061
+84  4.811620e+01 0.9935061
+85  4.811620e+01 0.9935061
+86  4.811620e+01 0.9935061
+87  4.811620e+01 0.9935061
+88  4.811620e+01 0.9935061
+89  4.880065e+01 0.9992172
+90  4.880065e+01 0.9992172
+91  4.893255e+01 0.9992172
+92  4.893255e+01 0.9992172
+93  4.909499e+01 0.9998620
+94  4.909499e+01 0.9998620
+95  4.909499e+01 0.9998620
+96  4.909499e+01 0.9998620
+97  4.909499e+01 0.9998620
+98  4.921430e+01 0.9999883
+99  4.921430e+01 0.9999883
+100 4.921430e+01 0.9999883
+101 4.921430e+01 0.9999883
+102 4.912786e+01 0.9999917
+103 4.912786e+01 0.9999917
+104 4.912405e+01 0.9999163
+105 4.914775e+01 0.9999786
+106 4.912891e+01 0.9999917
+107 4.914209e+01 0.9999921
+108 4.914209e+01 0.9999921
+109 4.914597e+01 0.9999921
+110 4.913765e+01 0.9999921
+111 4.913765e+01 0.9999921
+112 4.913765e+01 0.9999921
+113 4.913765e+01 0.9999921
+114 4.913765e+01 0.9999921
+115 4.914552e+01 0.9999921
+116 4.914552e+01 0.9999921
+117 4.914552e+01 0.9999939
+118 4.914552e+01 0.9999995
+119 4.914552e+01 0.9999995
+120 4.914308e+01 0.9999997
+121 4.914308e+01 0.9999997
+122 4.914308e+01 0.9999997
+123 4.914263e+01 0.9999998
+124 4.914314e+01 0.9999998
+125 4.914263e+01 1.0000000
+126 4.914263e+01 1.0000000
+127 4.914263e+01 1.0000000
+128 4.914263e+01 1.0000000
+129 4.914276e+01 1.0000000
+130 4.914261e+01 1.0000000
+131 4.914263e+01 1.0000000
+132 4.914293e+01 1.0000000
+133 4.914293e+01 1.0000000
+134 4.914293e+01 1.0000000
+135 4.914287e+01 1.0000000
+136 4.914287e+01 1.0000000
+137 4.914290e+01 1.0000000
+138 4.914298e+01 1.0000000
+139 4.914298e+01 1.0000000
+140 4.914300e+01 1.0000000
+141 4.914300e+01 1.0000000
+142 4.914297e+01 1.0000000
+143 4.914297e+01 1.0000000
+144 4.914297e+01 1.0000000
+145 4.914296e+01 1.0000000
+146 4.914294e+01 1.0000000
+147 4.914294e+01 1.0000000
+148 4.914295e+01 1.0000000
+149 4.914295e+01 1.0000000
+150 4.914294e+01 1.0000000
+151 4.914294e+01 1.0000000
+152 4.914294e+01 1.0000000
+153 4.914295e+01 1.0000000
+154 4.914295e+01 1.0000000
+155 4.914295e+01 1.0000000
+156 4.914295e+01 1.0000000
+157 4.914295e+01 1.0000000
+158 4.914295e+01 1.0000000
+159 4.914295e+01 1.0000000
+160 4.914295e+01 1.0000000
+161 4.914295e+01 1.0000000
+162 4.914295e+01 1.0000000
+163 4.914295e+01 1.0000000
+164 4.914295e+01 1.0000000
+165 4.914295e+01 1.0000000
+166 4.914295e+01 1.0000000
+167 4.914295e+01 1.0000000
+168 4.914295e+01 1.0000000
+169 4.914295e+01 1.0000000
+170 4.914295e+01 1.0000000
+171 4.914295e+01 1.0000000
+172 4.914295e+01 1.0000000
+173 4.914295e+01 1.0000000
+174 4.914295e+01 1.0000000
+175 4.914295e+01 1.0000000
+176 4.914295e+01 1.0000000
+177 4.914295e+01 1.0000000
+178 4.914295e+01 1.0000000
+179 4.914295e+01 1.0000000
+180 4.914295e+01 1.0000000
+181 4.914295e+01 1.0000000
+182 4.914295e+01 1.0000000
+183 4.914295e+01 1.0000000
+184 4.914295e+01 1.0000000
+185 4.914295e+01 1.0000000
+186 4.914295e+01 1.0000000
+187 4.914295e+01 1.0000000
+188 4.914295e+01 1.0000000
+189 4.914295e+01 1.0000000
+190 4.914295e+01 1.0000000
+191 4.914295e+01 1.0000000
+192 4.914295e+01 1.0000000
+193 4.914295e+01 1.0000000
+194 4.914295e+01 1.0000000
+195 4.914295e+01 1.0000000
+196 4.914295e+01 1.0000000
+197 4.914295e+01 1.0000000
+198 4.914295e+01 1.0000000
+199 4.914295e+01 1.0000000
+200 4.914295e+01 1.0000000
+
+$member$bestvalit
+  [1] 7.207571e+20 1.164196e+19 1.164196e+19 1.164196e+19 1.164196e+19
+  [6] 3.241432e+18 3.241432e+18 3.241432e+18 1.584895e+18 1.584895e+18
+ [11] 1.030780e+18 3.864001e+17 1.366261e+17 1.366261e+17 1.051468e+17
+ [16] 1.051468e+17 1.051468e+17 1.051468e+17 1.051468e+17 1.051468e+17
+ [21] 4.079981e+16 1.962803e+16 3.527146e+15 3.527146e+15 4.839668e+14
+ [26] 4.839668e+14 4.839668e+14 3.250377e+14 3.250377e+14 2.134090e+12
+ [31] 2.134090e+12 2.134090e+12 2.134090e+12 2.134090e+12 2.134090e+12
+ [36] 1.618755e+12 1.618755e+12 1.618755e+12 1.350104e+12 6.513118e+10
+ [41] 6.513118e+10 6.513118e+10 2.783198e+08 2.783198e+08 2.783198e+08
+ [46] 2.783198e+08 2.425725e+08 2.425725e+08 1.912892e+08 1.912892e+08
+ [51] 9.603099e+07 9.603099e+07 9.603099e+07 9.427111e+07 1.785127e+07
+ [56] 1.738665e+07 2.742083e+05 2.353698e+05 1.725430e+05 1.725430e+05
+ [61] 1.725430e+05 1.721681e+05 1.721681e+05 1.702033e+05 1.702033e+05
+ [66] 1.702033e+05 1.702033e+05 1.684266e+05 1.684266e+05 1.684266e+05
+ [71] 1.684266e+05 1.667769e+05 1.667769e+05 1.667769e+05 1.667769e+05
+ [76] 1.661618e+05 1.661618e+05 1.661618e+05 1.661618e+05 1.658759e+05
+ [81] 1.658759e+05 1.658759e+05 1.658759e+05 1.658759e+05 1.658759e+05
+ [86] 1.658759e+05 1.658759e+05 1.658759e+05 1.658759e+05 1.658759e+05
+ [91] 1.658759e+05 1.658759e+05 1.658661e+05 1.658661e+05 1.658661e+05
+ [96] 1.658661e+05 1.658661e+05 1.658378e+05 1.658378e+05 1.658378e+05
+[101] 1.658378e+05 1.658369e+05 1.658369e+05 1.658369e+05 1.658368e+05
+[106] 1.658340e+05 1.658336e+05 1.658336e+05 1.658336e+05 1.658336e+05
+[111] 1.658336e+05 1.658325e+05 1.658325e+05 1.658325e+05 1.658325e+05
+[116] 1.658325e+05 1.658325e+05 1.658325e+05 1.658325e+05 1.658324e+05
+[121] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[126] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[131] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[136] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[141] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[146] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[151] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[156] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[161] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[166] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[171] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[176] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[181] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[186] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[191] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[196] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
+
+$member$pop
+          [,1] [,2]
+ [1,] 49.14295    1
+ [2,] 49.14295    1
+ [3,] 49.14295    1
+ [4,] 49.14295    1
+ [5,] 49.14295    1
+ [6,] 49.14295    1
+ [7,] 49.14295    1
+ [8,] 49.14295    1
+ [9,] 49.14295    1
+[10,] 49.14295    1
+[11,] 49.14295    1
+[12,] 49.14295    1
+[13,] 49.14295    1
+[14,] 49.14295    1
+[15,] 49.14295    1
+[16,] 49.14295    1
+[17,] 49.14295    1
+[18,] 49.14295    1
+[19,] 49.14295    1
+[20,] 49.14295    1
+[21,] 49.14295    1
+[22,] 49.14295    1
+[23,] 49.14295    1
+[24,] 49.14295    1
+[25,] 49.14295    1
+[26,] 49.14295    1
+[27,] 49.14295    1
+[28,] 49.14295    1
+[29,] 49.14295    1
+[30,] 49.14295    1
+[31,] 49.14295    1
+[32,] 49.14295    1
+[33,] 49.14295    1
+[34,] 49.14295    1
+[35,] 49.14295    1
+[36,] 49.14295    1
+[37,] 49.14295    1
+[38,] 49.14295    1
+[39,] 49.14295    1
+[40,] 49.14295    1
+[41,] 49.14295    1
+[42,] 49.14295    1
+[43,] 49.14295    1
+[44,] 49.14295    1
+[45,] 49.14295    1
+[46,] 49.14295    1
+[47,] 49.14295    1
+[48,] 49.14295    1
+[49,] 49.14295    1
+[50,] 49.14295    1
+
+$member$storepop
+list()
+
+
+attr(,"class")
+[1] "DEoptim"
+
+$coefficients
+   gamma    delta      rho 
+49.14295  1.00000  0.00000 
+
+$iter
+[1] 200
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "DE", 
+    rho = sumResults$rho[i])
+
+$method
+[1] "DE"
+
+$lower
+[1] 0 0
+
+$upper
+[1] 1e+10 1e+00
+
+$rho
+[1] 0
+
+$fitted.values
+ [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
+ [9] 1237.419 1281.157 1315.557 1467.900 1528.837 1581.912 1548.986 1566.677
+[17] 1648.255 1722.952 1833.523 1935.741
+
+$residuals
+ [1] -203.812032 -226.528910 -143.760268  -52.354414  -46.034847  -54.066633
+ [7]  -33.936008   12.318500  -29.713286   -2.748205   45.035834   72.884171
+[13]   46.197488  114.047828   95.703322   59.353875    6.785313   32.647974
+[19]   53.896795   56.153208
+
+$rss
+[1] 165832.4
+
+$cov.unscaled
+              gamma         delta           rho
+gamma  1.153355e+02  1.508618e+00 -5.451855e+14
+delta  1.508618e+00  1.973522e-02 -7.132667e+12
+rho   -5.451855e+14 -7.132667e+12  2.578137e+27
+
+$otherSum
+   rho      rss convergence
+1 -0.8 165832.4          NA
+2  0.0 165832.4          NA
+3  0.8 165832.4          NA
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridDe )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "DE", 
+    rho = sumResults$rho[i])
+
+Coefficients:
+gamma delta   rho 
+49.14  1.00  0.00 
+
+> summary( cesGridDe )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "DE", 
+    rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'DE' optimizer
+Coefficient 'rho' was fixed at 0 
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)
+gamma 4.914e+01  9.779e+02   0.050    0.960
+delta 1.000e+00  1.279e+01   0.078    0.938
+rho   0.000e+00  4.624e+15   0.000    1.000
+
+Residual standard error: 91.05832 
+Multiple R-squared: 0.9063156 
+
+> coef( cesGridDe )
+   gamma    delta      rho 
+49.14295  1.00000  0.00000 
+> vcov( cesGridDe )
+              gamma         delta           rho
+gamma  9.563178e+05  1.250888e+04 -4.520470e+18
+delta  1.250888e+04  1.636369e+02 -5.914135e+16
+rho   -4.520470e+18 -5.914135e+16  2.137693e+31
+> coef( summary( cesGridDe ) )
+      Estimate   Std. Error    t value Pr(>|t|)
+gamma 49.14295 9.779150e+02 0.05025278 0.959921
+delta  1.00000 1.279206e+01 0.07817347 0.937690
+rho    0.00000 4.623519e+15 0.00000000 1.000000
+> 
+> # using the DE optimization method implemented in DEoptim(), VRS
+> set.seed( 4321 )
+> cesGridDeVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "DE", vrs = TRUE, by = 0.8, to = 0.8 )
+Iteration: 1 bestvalit: 11823896766167237263360.000000 bestmemit:3706601476.296782    0.892650    0.429895
+Iteration: 2 bestvalit: 260404849770983161856.000000 bestmemit:4568633723.538369    0.839126    0.079927
+Iteration: 3 bestvalit: 260404849770983161856.000000 bestmemit:4568633723.538369    0.839126    0.079927
+Iteration: 4 bestvalit: 260404849770983161856.000000 bestmemit:4568633723.538369    0.839126    0.079927
+Iteration: 5 bestvalit: 260404849770983161856.000000 bestmemit:4568633723.538369    0.839126    0.079927
+Iteration: 6 bestvalit: 260404849770983161856.000000 bestmemit:4568633723.538369    0.839126    0.079927
+Iteration: 7 bestvalit: 260404849770983161856.000000 bestmemit:4568633723.538369    0.839126    0.079927
+Iteration: 8 bestvalit: 591033423312265856.000000 bestmemit:4264048047.046184    0.571912    0.021346
+Iteration: 9 bestvalit: 591033423312265856.000000 bestmemit:4264048047.046184    0.571912    0.021346
+Iteration: 10 bestvalit: 591033423312265856.000000 bestmemit:3472783558.536321    0.693918    0.053493
+Iteration: 11 bestvalit: 591033423312265856.000000 bestmemit:3472783558.536321    0.693918    0.053493
+Iteration: 12 bestvalit: 591033423312265856.000000 bestmemit:521393253.002316    0.965499    0.053493
+Iteration: 13 bestvalit: 372497711714211968.000000 bestmemit:24446984.507142    0.951162    0.438076
+Iteration: 14 bestvalit: 372497711714211968.000000 bestmemit:24446984.507142    0.951162    0.438076
+Iteration: 15 bestvalit: 372497711714211968.000000 bestmemit:24446984.507142    0.951162    0.438076
+Iteration: 16 bestvalit: 39757682023821872.000000 bestmemit:25003190.321551    0.812316    0.120356
+Iteration: 17 bestvalit: 39757682023821872.000000 bestmemit:25003190.321551    0.607910    0.120356
+Iteration: 18 bestvalit: 18776773024763128.000000 bestmemit:24446984.507142    0.951162    0.057627
+Iteration: 19 bestvalit: 18776773024763128.000000 bestmemit:24446984.507142    0.951162    0.057627
+Iteration: 20 bestvalit: 18776773024763128.000000 bestmemit:24446984.507142    0.919125    0.057627
+Iteration: 21 bestvalit: 18776773024763128.000000 bestmemit:24446984.507142    0.919125    0.057627
+Iteration: 22 bestvalit: 2912282410150150.500000 bestmemit:9920854.310891    0.861592    0.043003
+Iteration: 23 bestvalit: 2912282410150150.500000 bestmemit:9920854.310891    0.861592    0.043003
+Iteration: 24 bestvalit: 2912282410150150.500000 bestmemit:9920854.310891    0.861592    0.043003
+Iteration: 25 bestvalit: 2912282410150150.500000 bestmemit:9920854.310891    0.861592    0.043003
+Iteration: 26 bestvalit: 2779093058233263.500000 bestmemit:9920854.310891    0.940709    0.043003
+Iteration: 27 bestvalit: 862773064004587.000000 bestmemit:5675291.527170    0.972859    0.071702
+Iteration: 28 bestvalit: 862773064004587.000000 bestmemit:5675291.527170    0.972859    0.071702
+Iteration: 29 bestvalit: 862773064004587.000000 bestmemit:5675291.527170    0.972859    0.071702
+Iteration: 30 bestvalit: 862773064004587.000000 bestmemit:5675291.527170    0.972859    0.071702
+Iteration: 31 bestvalit: 237618049552973.875000 bestmemit:2878147.355406    0.964362    0.079977
+Iteration: 32 bestvalit: 237618049552973.875000 bestmemit:2878147.355406    0.964362    0.079977
+Iteration: 33 bestvalit: 125556609658305.000000 bestmemit:2319862.200816    0.911239    0.018279
+Iteration: 34 bestvalit: 54855360154176.031250 bestmemit:1066091.408353    0.185366    0.070112
+Iteration: 35 bestvalit: 15341364357494.757812 bestmemit:660286.878163    0.914227    0.067281
+Iteration: 36 bestvalit: 15341364357494.757812 bestmemit:660286.878163    0.914227    0.067281
+Iteration: 37 bestvalit: 1385789885468.362061 bestmemit:199524.735151    0.960607    0.079733
+Iteration: 38 bestvalit: 175696641966.355682 bestmemit:82192.431174    0.972859    0.039551
+Iteration: 39 bestvalit: 175696641966.355682 bestmemit:82192.431174    0.972859    0.039551
+Iteration: 40 bestvalit: 175696641966.355682 bestmemit:82192.431174    0.972859    0.039551
+Iteration: 41 bestvalit: 175696641966.355682 bestmemit:82192.431174    0.972859    0.138775
+Iteration: 42 bestvalit: 175696641966.355682 bestmemit:82192.431174    0.972859    0.138775
+Iteration: 43 bestvalit: 175696641966.355682 bestmemit:82192.431174    0.996293    0.138775
+Iteration: 44 bestvalit: 12465374928.159863 bestmemit:20571.715899    0.985615    0.070059
+Iteration: 45 bestvalit: 12465374928.159863 bestmemit:20571.715899    0.985615    0.140068
+Iteration: 46 bestvalit: 12465374928.159863 bestmemit:20571.715899    0.985615    0.140068
+Iteration: 47 bestvalit: 12465374928.159863 bestmemit:20571.715899    0.985615    0.140068
+Iteration: 48 bestvalit: 12465374928.159863 bestmemit:20571.715899    0.985615    0.140068
+Iteration: 49 bestvalit: 3634155029.403376 bestmemit:10408.398681    0.961883    0.093895
+Iteration: 50 bestvalit: 3634155029.403376 bestmemit:10408.398681    0.961883    0.093895
+Iteration: 51 bestvalit: 3438456622.906662 bestmemit:11688.125460    0.864110    0.047807
+Iteration: 52 bestvalit: 1419626075.183668 bestmemit: 8566.829008    0.884930    0.031215
+Iteration: 53 bestvalit: 1037220690.675869 bestmemit: 8566.829008    0.884930    0.001096
+Iteration: 54 bestvalit: 1037220690.675869 bestmemit: 8566.829008    0.884930    0.001096
+Iteration: 55 bestvalit: 1037220690.675869 bestmemit: 8566.829008    0.884930    0.001096
+Iteration: 56 bestvalit: 1037220690.675869 bestmemit: 8566.829008    0.884930    0.001096
+Iteration: 57 bestvalit: 33857472.767641 bestmemit:  109.827440    0.526922    0.050294
+Iteration: 58 bestvalit: 22387070.543507 bestmemit: 2027.726004    0.050701    0.027976
+Iteration: 59 bestvalit: 19659406.521438 bestmemit: 1654.815590    0.406550    0.059915
+Iteration: 60 bestvalit: 3442136.670148 bestmemit: 1281.781217    0.607839    0.062537
+Iteration: 61 bestvalit: 2202978.766953 bestmemit: 1245.795343    0.005413    0.055092
+Iteration: 62 bestvalit: 1795944.715986 bestmemit: 1370.551132    0.636572    0.011643
+Iteration: 63 bestvalit: 1795944.715986 bestmemit: 1644.681162    0.636572    0.011643
+Iteration: 64 bestvalit: 1795944.715986 bestmemit: 1644.681162    0.636572    0.011643
+Iteration: 65 bestvalit: 1795944.715986 bestmemit: 1644.681162    0.636572    0.011643
+Iteration: 66 bestvalit: 1795944.715986 bestmemit: 1644.681162    0.636572    0.011643
+Iteration: 67 bestvalit: 1745560.706715 bestmemit: 1094.125324    0.863460    0.045233
+Iteration: 68 bestvalit: 1661268.709937 bestmemit:  962.121354    0.832829    0.072668
+Iteration: 69 bestvalit: 1661268.709937 bestmemit:  962.121354    0.832829    0.072668
+Iteration: 70 bestvalit: 1661268.709937 bestmemit:  962.121354    0.832829    0.072668
+Iteration: 71 bestvalit: 1661268.709937 bestmemit:  962.121354    0.832829    0.072668
+Iteration: 72 bestvalit: 1661268.709937 bestmemit:  962.121354    0.832829    0.072668
+Iteration: 73 bestvalit: 1661268.709937 bestmemit:  962.121354    0.832829    0.072668
+Iteration: 74 bestvalit: 1659214.578541 bestmemit:  921.204287    0.634081    0.077338
+Iteration: 75 bestvalit: 1659214.578541 bestmemit:  921.204287    0.634081    0.077338
+Iteration: 76 bestvalit: 1649127.664025 bestmemit:  887.292130    0.761743    0.088767
+Iteration: 77 bestvalit: 1649127.664025 bestmemit:  887.292130    0.761743    0.088767
+Iteration: 78 bestvalit: 1536945.395423 bestmemit:  654.465747    0.760575    0.147259
+Iteration: 79 bestvalit: 1536945.395423 bestmemit:  654.465747    0.760575    0.147259
+Iteration: 80 bestvalit: 1536945.395423 bestmemit:  706.092381    0.715349    0.133713
+Iteration: 81 bestvalit: 1536945.395423 bestmemit:  706.092381    0.715349    0.133713
+Iteration: 82 bestvalit: 1536945.395423 bestmemit:  706.092381    0.715349    0.133713
+Iteration: 83 bestvalit: 1536945.395423 bestmemit:  706.092381    0.715349    0.133713
+Iteration: 84 bestvalit: 1523719.326274 bestmemit:  789.720697    0.928436    0.137417
+Iteration: 85 bestvalit: 1466836.429480 bestmemit:  679.603179    0.898912    0.171514
+Iteration: 86 bestvalit: 1353864.957015 bestmemit:  565.982500    0.929173    0.226317
+Iteration: 87 bestvalit: 1353864.957015 bestmemit:  565.982500    0.929173    0.226317
+Iteration: 88 bestvalit: 1353864.957015 bestmemit:  565.982500    0.929173    0.226317
+Iteration: 89 bestvalit: 1348722.548287 bestmemit:  565.982500    0.931579    0.226317
+Iteration: 90 bestvalit: 1334924.618275 bestmemit:  384.648672    0.831768    0.275774
+Iteration: 91 bestvalit: 1334924.618275 bestmemit:  384.648672    0.831768    0.275774
+Iteration: 92 bestvalit: 1121861.404810 bestmemit:  341.030358    0.973061    0.354626
+Iteration: 93 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 94 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 95 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 96 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 97 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 98 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 99 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 100 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 101 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 102 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 103 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 104 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 105 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 106 bestvalit: 974968.922251 bestmemit:  212.143154    0.931579    0.470928
+Iteration: 107 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 108 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 109 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 110 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 111 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 112 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 113 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 114 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 115 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 116 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 117 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 118 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 119 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 120 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 121 bestvalit: 912845.013154 bestmemit:  234.016547    0.969162    0.473820
+Iteration: 122 bestvalit: 902468.846554 bestmemit:  246.965380    0.969162    0.476604
+Iteration: 123 bestvalit: 902468.846554 bestmemit:  246.965380    0.969162    0.476604
+Iteration: 124 bestvalit: 902468.846554 bestmemit:  246.965380    0.969162    0.476604
+Iteration: 125 bestvalit: 902468.846554 bestmemit:  246.965380    0.969162    0.476604
+Iteration: 126 bestvalit: 902468.846554 bestmemit:  246.965380    0.969162    0.476604
+Iteration: 127 bestvalit: 902468.846554 bestmemit:  246.965380    0.969162    0.476604
+Iteration: 128 bestvalit: 902468.846554 bestmemit:  246.965380    0.969162    0.476604
+Iteration: 129 bestvalit: 739705.975017 bestmemit:  182.315514    0.978888    0.555823
+Iteration: 130 bestvalit: 739705.975017 bestmemit:  182.315514    0.978888    0.555823
+Iteration: 131 bestvalit: 739705.975017 bestmemit:  182.315514    0.978888    0.555823
+Iteration: 132 bestvalit: 739705.975017 bestmemit:  182.315514    0.978888    0.555823
+Iteration: 133 bestvalit: 739705.975017 bestmemit:  182.315514    0.978888    0.555823
+Iteration: 134 bestvalit: 739705.975017 bestmemit:  182.315514    0.978888    0.555823
+Iteration: 135 bestvalit: 739705.975017 bestmemit:  182.315514    0.978888    0.555823
+Iteration: 136 bestvalit: 739705.975017 bestmemit:  176.011591    0.971920    0.558715
+Iteration: 137 bestvalit: 739705.975017 bestmemit:  176.011591    0.971920    0.558715
+Iteration: 138 bestvalit: 692314.832630 bestmemit:  157.324787    0.978767    0.597721
+Iteration: 139 bestvalit: 692314.832630 bestmemit:  157.324787    0.978767    0.597721
+Iteration: 140 bestvalit: 692314.832630 bestmemit:  157.324787    0.978767    0.597721
+Iteration: 141 bestvalit: 692314.832630 bestmemit:  157.324787    0.978767    0.597721
+Iteration: 142 bestvalit: 692314.832630 bestmemit:  157.324787    0.978767    0.597721
+Iteration: 143 bestvalit: 692314.832630 bestmemit:  157.324787    0.978767    0.597721
+Iteration: 144 bestvalit: 692314.832630 bestmemit:  157.324787    0.978767    0.597721
+Iteration: 145 bestvalit: 692314.832630 bestmemit:  157.324787    0.978767    0.597721
+Iteration: 146 bestvalit: 692314.832630 bestmemit:  157.324787    0.978767    0.597721
+Iteration: 147 bestvalit: 692314.832630 bestmemit:  157.324787    0.978767    0.597721
+Iteration: 148 bestvalit: 692314.832630 bestmemit:  157.324787    0.978767    0.597721
+Iteration: 149 bestvalit: 600945.995161 bestmemit:  150.689589    0.985430    0.627032
+Iteration: 150 bestvalit: 600945.995161 bestmemit:  150.689589    0.985430    0.627032
+Iteration: 151 bestvalit: 600945.995161 bestmemit:  150.689589    0.985430    0.627032
+Iteration: 152 bestvalit: 600945.995161 bestmemit:  150.689589    0.985430    0.627032
+Iteration: 153 bestvalit: 579498.742063 bestmemit:  138.721884    0.991874    0.684422
+Iteration: 154 bestvalit: 579498.742063 bestmemit:  138.721884    0.991874    0.684422
+Iteration: 155 bestvalit: 579498.742063 bestmemit:  138.721884    0.991874    0.684422
+Iteration: 156 bestvalit: 474851.813248 bestmemit:  138.721884    0.999177    0.684422
+Iteration: 157 bestvalit: 474851.813248 bestmemit:  138.721884    0.999177    0.684422
+Iteration: 158 bestvalit: 474851.813248 bestmemit:  138.721884    0.999177    0.684422
+Iteration: 159 bestvalit: 474851.813248 bestmemit:  138.721884    0.999177    0.684422
+Iteration: 160 bestvalit: 474851.813248 bestmemit:  138.721884    0.999177    0.684422
+Iteration: 161 bestvalit: 474851.813248 bestmemit:  138.721884    0.999177    0.684422
+Iteration: 162 bestvalit: 474851.813248 bestmemit:  138.721884    0.999177    0.684422
+Iteration: 163 bestvalit: 474851.813248 bestmemit:  138.721884    0.999177    0.684422
+Iteration: 164 bestvalit: 474851.813248 bestmemit:  138.721884    0.999177    0.684422
+Iteration: 165 bestvalit: 472911.778777 bestmemit:   42.836251    0.932676    0.857969
+Iteration: 166 bestvalit: 472911.778777 bestmemit:   42.836251    0.932676    0.857969
+Iteration: 167 bestvalit: 472911.778777 bestmemit:   42.836251    0.932676    0.857969
+Iteration: 168 bestvalit: 472911.778777 bestmemit:   42.836251    0.932676    0.857969
+Iteration: 169 bestvalit: 472911.778777 bestmemit:   42.836251    0.932676    0.857969
+Iteration: 170 bestvalit: 472911.778777 bestmemit:   42.836251    0.932676    0.857969
+Iteration: 171 bestvalit: 472911.778777 bestmemit:   42.836251    0.932676    0.857969
+Iteration: 172 bestvalit: 472911.778777 bestmemit:   42.836251    0.932676    0.857969
+Iteration: 173 bestvalit: 472911.778777 bestmemit:   42.836251    0.932676    0.857969
+Iteration: 174 bestvalit: 472911.778777 bestmemit:   42.836251    0.932676    0.857969
+Iteration: 175 bestvalit: 472911.778777 bestmemit:   42.836251    0.932676    0.857969
+Iteration: 176 bestvalit: 342721.950092 bestmemit:   44.570981    0.964252    0.909852
+Iteration: 177 bestvalit: 342721.950092 bestmemit:   44.570981    0.964252    0.909852
+Iteration: 178 bestvalit: 337489.081440 bestmemit:   68.038141    0.985430    0.861575
+Iteration: 179 bestvalit: 337489.081440 bestmemit:   68.038141    0.985430    0.861575
+Iteration: 180 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 181 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 182 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 183 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 184 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 185 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 186 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 187 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 188 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 189 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 190 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 191 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 192 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 193 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 194 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 195 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 196 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 197 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 198 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 199 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 200 bestvalit: 283425.301430 bestmemit:   73.019980    0.994092    0.863011
+Iteration: 1 bestvalit: 7786692277213195264.000000 bestmemit:410018077.585845    0.522949    0.086236
+Iteration: 2 bestvalit: 7786692277213195264.000000 bestmemit:410018077.585845    0.522949    0.086236
+Iteration: 3 bestvalit: 7786692277213195264.000000 bestmemit:410018077.585845    0.522949    0.086236
+Iteration: 4 bestvalit: 7786692277213195264.000000 bestmemit:410018077.585845    0.522949    0.086236
+Iteration: 5 bestvalit: 7786692277213195264.000000 bestmemit:410018077.585845    0.522949    0.086236
+Iteration: 6 bestvalit: 50323477544558096.000000 bestmemit:10864175.856113    0.513380    0.362443
+Iteration: 7 bestvalit: 50323477544558096.000000 bestmemit:10864175.856113    0.513380    0.362443
+Iteration: 8 bestvalit: 50323477544558096.000000 bestmemit:10864175.856113    0.513380    0.362443
+Iteration: 9 bestvalit: 50323477544558096.000000 bestmemit:10864175.856113    0.513380    0.362443
+Iteration: 10 bestvalit: 50323477544558096.000000 bestmemit:10864175.856113    0.513380    0.362443
+Iteration: 11 bestvalit: 50323477544558096.000000 bestmemit:10864175.856113    0.513380    0.362443
+Iteration: 12 bestvalit: 36035845311590048.000000 bestmemit:10864175.856113    0.874345    0.362443
+Iteration: 13 bestvalit: 36035845311590048.000000 bestmemit:10864175.856113    0.874345    0.362443
+Iteration: 14 bestvalit: 36035845311590048.000000 bestmemit:10864175.856113    0.874345    0.362443
+Iteration: 15 bestvalit: 10154781603591548.000000 bestmemit:15990067.302530    0.915511    0.094673
+Iteration: 16 bestvalit: 10154781603591548.000000 bestmemit:15990067.302530    0.915511    0.094673
+Iteration: 17 bestvalit: 9758762139458118.000000 bestmemit:15990067.302530    0.981733    0.094673
+Iteration: 18 bestvalit: 9758762139458118.000000 bestmemit:15990067.302530    0.981733    0.094673
+Iteration: 19 bestvalit: 9758762139458118.000000 bestmemit:15990067.302530    0.981733    0.094673
+Iteration: 20 bestvalit: 121067744173367.671875 bestmemit:6822905.508232    0.303539    0.061999
+Iteration: 21 bestvalit: 121067744173367.671875 bestmemit:6822905.508232    0.008566    0.061999
+Iteration: 22 bestvalit: 121067744173367.671875 bestmemit:6822905.508232    0.008566    0.061999
+Iteration: 23 bestvalit: 11063819201454.800781 bestmemit:6822905.508232    0.008566    0.061999
+Iteration: 24 bestvalit: 11063819201454.800781 bestmemit:6822905.508232    0.008566    0.061999
+Iteration: 25 bestvalit: 11063819201454.800781 bestmemit:6822905.508232    0.008566    0.061999
+Iteration: 26 bestvalit: 11063819201454.800781 bestmemit:6822905.508232    0.008566    0.061999
+Iteration: 27 bestvalit: 11063819201454.800781 bestmemit:6822905.508232    0.008566    0.061999
+Iteration: 28 bestvalit: 11063819201454.800781 bestmemit:6822905.508232    0.008566    0.061999
+Iteration: 29 bestvalit: 11063819201454.800781 bestmemit:6822905.508232    0.008566    0.001402
+Iteration: 30 bestvalit: 11063819201454.800781 bestmemit:6822905.508232    0.008566    0.001402
+Iteration: 31 bestvalit: 10274659723842.691406 bestmemit:6822905.508232    0.008566    0.001402
+Iteration: 32 bestvalit: 10274659723842.691406 bestmemit:6822905.508232    0.008566    0.001402
+Iteration: 33 bestvalit: 2453166021639.329590 bestmemit:234816.412667    0.074968    0.064191
+Iteration: 34 bestvalit: 2453166021639.329590 bestmemit:234816.412667    0.074968    0.064191
+Iteration: 35 bestvalit: 2453166021639.329590 bestmemit:234816.412667    0.074968    0.068548
+Iteration: 36 bestvalit: 2453166021639.329590 bestmemit:234816.412667    0.074968    0.068548
+Iteration: 37 bestvalit: 2453166021639.329590 bestmemit:234816.412667    0.074968    0.068548
+Iteration: 38 bestvalit: 57151989966.739037 bestmemit:234816.412667    0.074968    0.068548
+Iteration: 39 bestvalit: 5170435491.193882 bestmemit:11472.566897    0.212509    0.072040
+Iteration: 40 bestvalit: 5170435491.193882 bestmemit:11472.566897    0.026356    0.072040
+Iteration: 41 bestvalit: 4807122533.576451 bestmemit:11472.566897    0.358721    0.072040
+Iteration: 42 bestvalit: 4807122533.576451 bestmemit:11472.566897    0.358721    0.072040
+Iteration: 43 bestvalit: 4807122533.576451 bestmemit:11472.566897    0.358721    0.072040
+Iteration: 44 bestvalit: 2916141205.038075 bestmemit:11472.566897    0.853377    0.042338
+Iteration: 45 bestvalit: 2916141205.038075 bestmemit:11472.566897    0.853377    0.042338
+Iteration: 46 bestvalit: 2284888653.167835 bestmemit:11472.566897    0.853377    0.013900
+Iteration: 47 bestvalit: 2284888653.167835 bestmemit:11472.566897    0.853377    0.013900
+Iteration: 48 bestvalit: 1463472412.371860 bestmemit: 9412.710825    0.819576    0.014463
+Iteration: 49 bestvalit: 1463472412.371860 bestmemit: 9412.710825    0.819576    0.014463
+Iteration: 50 bestvalit: 1463472412.371860 bestmemit: 9412.710825    0.819576    0.014463
+Iteration: 51 bestvalit: 1339258663.063028 bestmemit: 9412.710825    0.776605    0.004617
+Iteration: 52 bestvalit: 1339258663.063028 bestmemit: 9412.710825    0.268462    0.004617
+Iteration: 53 bestvalit: 1339258663.063028 bestmemit: 9412.710825    0.268462    0.004617
+Iteration: 54 bestvalit: 1339258663.063028 bestmemit: 9412.710825    0.268462    0.004617
+Iteration: 55 bestvalit: 15050032.302570 bestmemit: 4060.092494    0.628453    0.024655
+Iteration: 56 bestvalit: 15050032.302570 bestmemit: 4060.092494    0.628453    0.018156
+Iteration: 57 bestvalit: 11180558.431863 bestmemit: 4060.092494    0.628453    0.018156
+Iteration: 58 bestvalit: 11180558.431863 bestmemit: 4060.092494    0.628453    0.018156
+Iteration: 59 bestvalit: 5227658.100682 bestmemit: 4060.092494    0.505674    0.013769
+Iteration: 60 bestvalit: 5227658.100682 bestmemit: 4060.092494    0.505674    0.013769
+Iteration: 61 bestvalit: 5227658.100682 bestmemit: 4060.092494    0.505674    0.013769
+Iteration: 62 bestvalit: 2424720.877978 bestmemit: 4060.092494    0.505674    0.013769
+Iteration: 63 bestvalit: 1735992.554450 bestmemit: 1325.405170    0.818162    0.021416
+Iteration: 64 bestvalit: 1735992.554450 bestmemit: 1804.285912    0.818162    0.017764
+Iteration: 65 bestvalit: 1735992.554450 bestmemit: 1804.285912    0.818162    0.017764
+Iteration: 66 bestvalit: 1735992.554450 bestmemit: 1804.285912    0.818162    0.017764
+Iteration: 67 bestvalit: 1735992.554450 bestmemit: 1804.285912    0.818162    0.004681
+Iteration: 68 bestvalit: 1700487.772154 bestmemit: 1266.896006    0.894600    0.029090
+Iteration: 69 bestvalit: 1700487.772154 bestmemit: 1266.896006    0.894600    0.029090
+Iteration: 70 bestvalit: 1700487.772154 bestmemit: 1266.896006    0.894600    0.029090
+Iteration: 71 bestvalit: 1697281.943542 bestmemit: 1153.688998    0.540962    0.046997
+Iteration: 72 bestvalit: 1697281.943542 bestmemit: 1153.688998    0.540962    0.046997
+Iteration: 73 bestvalit: 1634486.973005 bestmemit: 1153.688998    0.540962    0.046997
+Iteration: 74 bestvalit: 1634486.973005 bestmemit: 1153.688998    0.540962    0.046997
+Iteration: 75 bestvalit: 1634486.973005 bestmemit: 1153.688998    0.540962    0.046997
+Iteration: 76 bestvalit: 1599833.743493 bestmemit: 1153.688998    0.540962    0.046997
+Iteration: 77 bestvalit: 1599833.743493 bestmemit: 1153.688998    0.540962    0.046997
+Iteration: 78 bestvalit: 1599833.743493 bestmemit: 1153.688998    0.540962    0.046997
+Iteration: 79 bestvalit: 1599833.743493 bestmemit: 1153.688998    0.540962    0.046997
+Iteration: 80 bestvalit: 1596701.271514 bestmemit: 1153.200071    0.540962    0.046997
+Iteration: 81 bestvalit: 1538096.589852 bestmemit: 1153.200071    0.540962    0.046533
+Iteration: 82 bestvalit: 1538096.589852 bestmemit: 1153.200071    0.540962    0.046533
+Iteration: 83 bestvalit: 1538096.589852 bestmemit: 1153.200071    0.540962    0.046533
+Iteration: 84 bestvalit: 1538096.589852 bestmemit: 1153.200071    0.540962    0.046533
+Iteration: 85 bestvalit: 1538096.589852 bestmemit: 1153.200071    0.540962    0.041764
+Iteration: 86 bestvalit: 1538096.589852 bestmemit: 1153.200071    0.540962    0.041764
+Iteration: 87 bestvalit: 1538096.589852 bestmemit: 1153.200071    0.540962    0.041764
+Iteration: 88 bestvalit: 1538096.589852 bestmemit: 1153.200071    0.540962    0.041764
+Iteration: 89 bestvalit: 1538096.589852 bestmemit: 1153.200071    0.540962    0.041764
+Iteration: 90 bestvalit: 1538096.589852 bestmemit: 1153.200071    0.540962    0.041764
+Iteration: 91 bestvalit: 1538096.589852 bestmemit: 1153.200071    0.540962    0.041764
+Iteration: 92 bestvalit: 1538096.589852 bestmemit:  850.088442    0.540962    0.117756
+Iteration: 93 bestvalit: 1538096.589852 bestmemit:  850.088442    0.540962    0.117756
+Iteration: 94 bestvalit: 1501514.714102 bestmemit:  856.426954    0.762420    0.122902
+Iteration: 95 bestvalit: 1443160.412473 bestmemit:  903.873542    0.962052    0.134914
+Iteration: 96 bestvalit: 1443160.412473 bestmemit:  903.873542    0.962052    0.134914
+Iteration: 97 bestvalit: 1443160.412473 bestmemit:  903.873542    0.962052    0.134914
+Iteration: 98 bestvalit: 1437945.344023 bestmemit:  841.853500    0.874207    0.154849
+Iteration: 99 bestvalit: 1376782.405829 bestmemit:  683.073137    0.782207    0.181926
+Iteration: 100 bestvalit: 1376782.405829 bestmemit:  683.073137    0.782207    0.181926
+Iteration: 101 bestvalit: 1343979.916548 bestmemit:  626.258493    0.757781    0.197103
+Iteration: 102 bestvalit: 1277525.289526 bestmemit:  617.163450    0.762420    0.206100
+Iteration: 103 bestvalit: 1277525.289526 bestmemit:  617.163450    0.762420    0.206100
+Iteration: 104 bestvalit: 1277525.289526 bestmemit:  617.163450    0.762420    0.206100
+Iteration: 105 bestvalit: 1277525.289526 bestmemit:  617.163450    0.838681    0.206100
+Iteration: 106 bestvalit: 1277525.289526 bestmemit:  617.163450    0.838681    0.206100
+Iteration: 107 bestvalit: 1277525.289526 bestmemit:  617.163450    0.838681    0.206100
+Iteration: 108 bestvalit: 1277525.289526 bestmemit:  617.163450    0.838681    0.206100
+Iteration: 109 bestvalit: 1277525.289526 bestmemit:  617.163450    0.838681    0.206100
+Iteration: 110 bestvalit: 1277525.289526 bestmemit:  617.163450    0.838681    0.206100
+Iteration: 111 bestvalit: 1198976.379519 bestmemit:  659.474871    0.975573    0.232115
+Iteration: 112 bestvalit: 981097.436793 bestmemit:  406.272919    0.937876    0.336395
+Iteration: 113 bestvalit: 981097.436793 bestmemit:  398.006696    0.937876    0.336395
+Iteration: 114 bestvalit: 981097.436793 bestmemit:  398.006696    0.852680    0.336395
+Iteration: 115 bestvalit: 981097.436793 bestmemit:  398.006696    0.852680    0.336395
+Iteration: 116 bestvalit: 981097.436793 bestmemit:  398.006696    0.852680    0.336395
+Iteration: 117 bestvalit: 981097.436793 bestmemit:  407.390914    0.885047    0.336395
+Iteration: 118 bestvalit: 981097.436793 bestmemit:  407.390914    0.885047    0.336395
+Iteration: 119 bestvalit: 947374.634718 bestmemit:  260.299486    0.793183    0.418456
+Iteration: 120 bestvalit: 947374.634718 bestmemit:  260.299486    0.793183    0.418456
+Iteration: 121 bestvalit: 784208.727332 bestmemit:  179.803677    0.783531    0.502037
+Iteration: 122 bestvalit: 742117.800433 bestmemit:  172.478015    0.809552    0.531967
+Iteration: 123 bestvalit: 701985.457885 bestmemit:  115.435608    0.720755    0.589544
+Iteration: 124 bestvalit: 701985.457885 bestmemit:  115.435608    0.720755    0.589544
+Iteration: 125 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.589544
+Iteration: 126 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.589544
+Iteration: 127 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.589544
+Iteration: 128 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.581100
+Iteration: 129 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.581100
+Iteration: 130 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.581100
+Iteration: 131 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.581100
+Iteration: 132 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.581100
+Iteration: 133 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.581100
+Iteration: 134 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.581100
+Iteration: 135 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.581100
+Iteration: 136 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.581100
+Iteration: 137 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.581100
+Iteration: 138 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.581100
+Iteration: 139 bestvalit: 622492.560394 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 140 bestvalit: 596664.482817 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 141 bestvalit: 596664.482817 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 142 bestvalit: 596664.482817 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 143 bestvalit: 596664.482817 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 144 bestvalit: 596664.482817 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 145 bestvalit: 596664.482817 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 146 bestvalit: 586255.957758 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 147 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 148 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 149 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 150 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 151 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 152 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 153 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 154 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 155 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 156 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 157 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 158 bestvalit: 538935.425628 bestmemit:  115.435608    0.720755    0.595310
+Iteration: 159 bestvalit: 538935.425628 bestmemit:  109.355507    0.716372    0.608495
+Iteration: 160 bestvalit: 538935.425628 bestmemit:  109.355507    0.716372    0.608495
+Iteration: 161 bestvalit: 538935.425628 bestmemit:  109.355507    0.716436    0.608495
+Iteration: 162 bestvalit: 538935.425628 bestmemit:  109.355507    0.716436    0.608495
+Iteration: 163 bestvalit: 538935.425628 bestmemit:  109.355507    0.716436    0.608495
+Iteration: 164 bestvalit: 533185.658609 bestmemit:  133.269853    0.906401    0.649447
+Iteration: 165 bestvalit: 533185.658609 bestmemit:   98.017212    0.797620    0.665045
+Iteration: 166 bestvalit: 501159.196105 bestmemit:   98.017212    0.797620    0.665045
+Iteration: 167 bestvalit: 501159.196105 bestmemit:   98.017212    0.797620    0.665045
+Iteration: 168 bestvalit: 437907.271542 bestmemit:  108.053308    0.940634    0.722482
+Iteration: 169 bestvalit: 437907.271542 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 170 bestvalit: 410711.386936 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 171 bestvalit: 410711.386936 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 172 bestvalit: 410711.386936 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 173 bestvalit: 410711.386936 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 174 bestvalit: 410711.386936 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 175 bestvalit: 410711.386936 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 176 bestvalit: 374821.894075 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 177 bestvalit: 374821.894075 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 178 bestvalit: 374821.894075 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 179 bestvalit: 374821.894075 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 180 bestvalit: 374821.894075 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 181 bestvalit: 374821.894075 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 182 bestvalit: 374821.894075 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 183 bestvalit: 374821.894075 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 184 bestvalit: 369322.144651 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 185 bestvalit: 369322.144651 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 186 bestvalit: 369322.144651 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 187 bestvalit: 369322.144651 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 188 bestvalit: 369322.144651 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 189 bestvalit: 369322.144651 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 190 bestvalit: 369322.144651 bestmemit:  106.748318    0.940634    0.722482
+Iteration: 191 bestvalit: 369322.144651 bestmemit:  106.297912    0.964484    0.736661
+Iteration: 192 bestvalit: 369322.144651 bestmemit:  106.297912    0.964484    0.736661
+Iteration: 193 bestvalit: 347734.844288 bestmemit:   83.136252    0.964762    0.810858
+Iteration: 194 bestvalit: 344807.671142 bestmemit:   85.604916    0.945906    0.795247
+Iteration: 195 bestvalit: 279433.475976 bestmemit:   94.699938    0.994931    0.804099
+Iteration: 196 bestvalit: 279433.475976 bestmemit:   94.699938    0.994931    0.798040
+Iteration: 197 bestvalit: 279433.475976 bestmemit:   94.699938    0.994931    0.798040
+Iteration: 198 bestvalit: 279433.475976 bestmemit:   94.699938    0.994931    0.798040
+Iteration: 199 bestvalit: 279433.475976 bestmemit:   94.699938    0.994931    0.798040
+Iteration: 200 bestvalit: 279433.475976 bestmemit:   94.699938    0.994931    0.798040
+Iteration: 1 bestvalit: 909207017056780288000.000000 bestmemit:6215848629.362881    0.886992    0.023291
+Iteration: 2 bestvalit: 909207017056780288000.000000 bestmemit:6215848629.362881    0.886992    0.023291
+Iteration: 3 bestvalit: 117882429701154045952.000000 bestmemit:6215848629.362881    0.886992    0.023291
+Iteration: 4 bestvalit: 117882429701154045952.000000 bestmemit:6215848629.362881    0.886992    0.023291
+Iteration: 5 bestvalit: 117882429701154045952.000000 bestmemit:6215848629.362881    0.886992    0.023291
+Iteration: 6 bestvalit: 74250821103756591104.000000 bestmemit:6215848629.362881    0.886992    0.023291
+Iteration: 7 bestvalit: 74250821103756591104.000000 bestmemit:6215848629.362881    0.886992    0.023291
+Iteration: 8 bestvalit: 907349485437091584.000000 bestmemit:65449570.116371    0.962180    0.346425
+Iteration: 9 bestvalit: 907349485437091584.000000 bestmemit:65449570.116371    0.962180    0.346425
+Iteration: 10 bestvalit: 116741177533154064.000000 bestmemit:649105959.783974    0.412097    0.077402
+Iteration: 11 bestvalit: 116741177533154064.000000 bestmemit:649105959.783974    0.412097    0.077402
+Iteration: 12 bestvalit: 116741177533154064.000000 bestmemit:649105959.783974    0.412097    0.077402
+Iteration: 13 bestvalit: 116741177533154064.000000 bestmemit:649105959.783974    0.412097    0.077402
+Iteration: 14 bestvalit: 79958621355373184.000000 bestmemit:31841355.375946    0.460125    0.162701
+Iteration: 15 bestvalit: 79958621355373184.000000 bestmemit:31841355.375946    0.460125    0.162701
+Iteration: 16 bestvalit: 79958621355373184.000000 bestmemit:31841355.375946    0.460125    0.162701
+Iteration: 17 bestvalit: 36858413303399120.000000 bestmemit:31841355.375946    0.397962    0.068451
+Iteration: 18 bestvalit: 24312628982011692.000000 bestmemit:27869148.179889    0.271643    0.047232
+Iteration: 19 bestvalit: 24312628982011692.000000 bestmemit:244043583.393220    0.276908    0.099329
+Iteration: 20 bestvalit: 24312628982011692.000000 bestmemit:244043583.393220    0.276908    0.099329
+Iteration: 21 bestvalit: 24312628982011692.000000 bestmemit:244043583.393220    0.276908    0.099329
+Iteration: 22 bestvalit: 23507046577112072.000000 bestmemit:27869148.179889    0.153576    0.043681
+Iteration: 23 bestvalit: 2614253335189842.000000 bestmemit:27869148.179889    0.153576    0.043681
+Iteration: 24 bestvalit: 1341013938620429.500000 bestmemit:27869148.179889    0.153576    0.043681
+Iteration: 25 bestvalit: 785506328152254.250000 bestmemit:5083735.767012    0.558202    0.052270
+Iteration: 26 bestvalit: 757316084844496.875000 bestmemit:5083735.767012    0.766044    0.052270
+Iteration: 27 bestvalit: 757316084844496.875000 bestmemit:5083735.767012    0.766044    0.052270
+Iteration: 28 bestvalit: 749101819905118.625000 bestmemit:5083735.767012    0.840189    0.052270
+Iteration: 29 bestvalit: 31625103673729.511719 bestmemit:1128876.432121    0.836541    0.030637
+Iteration: 30 bestvalit: 31625103673729.511719 bestmemit:1128876.432121    0.804467    0.063738
+Iteration: 31 bestvalit: 31625103673729.511719 bestmemit:1128876.432121    0.804467    0.063738
+Iteration: 32 bestvalit: 31625103673729.511719 bestmemit:1128876.432121    0.804467    0.063738
+Iteration: 33 bestvalit: 31625103673729.511719 bestmemit:1128876.432121    0.804467    0.063738
+Iteration: 34 bestvalit: 1174415168.652192 bestmemit: 6558.898177    0.919223    0.094053
+Iteration: 35 bestvalit: 874069964.436328 bestmemit: 6558.898177    0.730152    0.054185
+Iteration: 36 bestvalit: 874069964.436328 bestmemit: 6558.898177    0.730152    0.054185
+Iteration: 37 bestvalit: 874069964.436328 bestmemit: 6558.898177    0.730152    0.054185
+Iteration: 38 bestvalit: 835147623.349392 bestmemit: 6558.898177    0.990460    0.054185
+Iteration: 39 bestvalit: 835147623.349392 bestmemit: 6558.898177    0.990460    0.054185
+Iteration: 40 bestvalit: 835147623.349392 bestmemit: 6558.898177    0.990460    0.054185
+Iteration: 41 bestvalit: 835147623.349392 bestmemit: 6558.898177    0.990460    0.054185
+Iteration: 42 bestvalit: 835147623.349392 bestmemit: 6558.898177    0.990460    0.054185
+Iteration: 43 bestvalit: 835147623.349392 bestmemit: 6558.898177    0.990460    0.054185
+Iteration: 44 bestvalit: 835147623.349392 bestmemit: 6558.898177    0.990460    0.054185
+Iteration: 45 bestvalit: 835147623.349392 bestmemit: 6558.898177    0.990460    0.054185
+Iteration: 46 bestvalit: 742143802.272584 bestmemit: 6558.898177    0.990460    0.039821
+Iteration: 47 bestvalit: 732313590.468835 bestmemit: 6558.898177    0.949633    0.037666
+Iteration: 48 bestvalit: 732313590.468835 bestmemit: 6558.898177    0.949633    0.037666
+Iteration: 49 bestvalit: 732313590.468835 bestmemit: 6558.898177    0.949633    0.037666
+Iteration: 50 bestvalit: 732313590.468835 bestmemit: 6558.898177    0.883439    0.037666
+Iteration: 51 bestvalit: 732313590.468835 bestmemit: 6558.898177    0.883439    0.037666
+Iteration: 52 bestvalit: 68687325.665268 bestmemit: 2906.190656    0.698439    0.029281
+Iteration: 53 bestvalit: 68687325.665268 bestmemit: 2906.190656    0.698439    0.029281
+Iteration: 54 bestvalit: 67125900.330921 bestmemit: 2906.190656    0.854153    0.029281
+Iteration: 55 bestvalit: 67125900.330921 bestmemit: 2906.190656    0.854153    0.029281
+Iteration: 56 bestvalit: 15851310.588752 bestmemit: 2019.269328    0.590807    0.029416
+Iteration: 57 bestvalit: 2554043.459207 bestmemit: 2019.269328    0.697221    0.019949
+Iteration: 58 bestvalit: 1954987.194142 bestmemit: 2019.269328    0.697221    0.019949
+Iteration: 59 bestvalit: 1954987.194142 bestmemit: 2019.269328    0.697221    0.019949
+Iteration: 60 bestvalit: 1954987.194142 bestmemit: 2019.269328    0.697221    0.028932
+Iteration: 61 bestvalit: 1954987.194142 bestmemit: 2019.269328    0.697221    0.028932
+Iteration: 62 bestvalit: 1780350.197927 bestmemit: 1326.326547    0.721414    0.029209
+Iteration: 63 bestvalit: 1780350.197927 bestmemit: 1326.326547    0.721414    0.043721
+Iteration: 64 bestvalit: 1780350.197927 bestmemit: 1326.326547    0.721414    0.043721
+Iteration: 65 bestvalit: 1780350.197927 bestmemit: 1326.326547    0.721414    0.043721
+Iteration: 66 bestvalit: 1780350.197927 bestmemit: 1326.326547    0.731720    0.043721
+Iteration: 67 bestvalit: 1606411.020196 bestmemit: 1072.169719    0.625692    0.068902
+Iteration: 68 bestvalit: 1606411.020196 bestmemit: 1072.169719    0.625692    0.068902
+Iteration: 69 bestvalit: 1597098.304950 bestmemit: 1072.169719    0.625692    0.071034
+Iteration: 70 bestvalit: 1597098.304950 bestmemit: 1072.169719    0.625692    0.071034
+Iteration: 71 bestvalit: 1597098.304950 bestmemit: 1072.169719    0.625692    0.071034
+Iteration: 72 bestvalit: 1436230.166424 bestmemit: 1077.424473    0.854160    0.079755
+Iteration: 73 bestvalit: 1436230.166424 bestmemit:  974.772711    0.990097    0.103870
+Iteration: 74 bestvalit: 1343706.662764 bestmemit:  780.965882    0.958415    0.166994
+Iteration: 75 bestvalit: 1343706.662764 bestmemit:  780.965882    0.958415    0.166994
+Iteration: 76 bestvalit: 1343706.662764 bestmemit:  785.718603    0.958415    0.166994
+Iteration: 77 bestvalit: 1301938.824070 bestmemit:  785.718603    0.958415    0.166994
+Iteration: 78 bestvalit: 1301938.824070 bestmemit:  817.997709    0.958415    0.166994
+Iteration: 79 bestvalit: 1293789.957754 bestmemit:  817.997709    0.958415    0.166994
+Iteration: 80 bestvalit: 1293789.957754 bestmemit:  817.997709    0.958415    0.166994
+Iteration: 81 bestvalit: 1237665.915729 bestmemit:  661.074371    0.958889    0.227027
+Iteration: 82 bestvalit: 1237665.915729 bestmemit:  661.074371    0.958889    0.209840
+Iteration: 83 bestvalit: 1119241.313489 bestmemit:  554.555335    0.978880    0.276341
+Iteration: 84 bestvalit: 1044431.481104 bestmemit:  455.604713    0.845057    0.321084
+Iteration: 85 bestvalit: 1044431.481104 bestmemit:  455.604713    0.845057    0.321084
+Iteration: 86 bestvalit: 938968.677312 bestmemit:  455.604713    0.845057    0.321084
+Iteration: 87 bestvalit: 923087.003386 bestmemit:  455.604713    0.845057    0.321084
+Iteration: 88 bestvalit: 923087.003386 bestmemit:  455.604713    0.845057    0.321084
+Iteration: 89 bestvalit: 923087.003386 bestmemit:  455.604713    0.845057    0.321084
+Iteration: 90 bestvalit: 923087.003386 bestmemit:  455.604713    0.845057    0.324563
+Iteration: 91 bestvalit: 899701.490127 bestmemit:  455.604713    0.845057    0.324563
+Iteration: 92 bestvalit: 831004.921203 bestmemit:  289.467731    0.776471    0.437279
+Iteration: 93 bestvalit: 797352.496271 bestmemit:  250.919537    0.813593    0.470404
+Iteration: 94 bestvalit: 764818.625030 bestmemit:  263.130312    0.868178    0.476853
+Iteration: 95 bestvalit: 753187.853400 bestmemit:  252.992822    0.821589    0.481926
+Iteration: 96 bestvalit: 694858.248977 bestmemit:  220.199318    0.805154    0.521256
+Iteration: 97 bestvalit: 694858.248977 bestmemit:  220.199318    0.869070    0.521256
+Iteration: 98 bestvalit: 629524.254361 bestmemit:  177.195296    0.861802    0.601887
+Iteration: 99 bestvalit: 629524.254361 bestmemit:  177.195296    0.861802    0.601887
+Iteration: 100 bestvalit: 618336.430145 bestmemit:  177.195296    0.962776    0.601887
+Iteration: 101 bestvalit: 551690.177265 bestmemit:  172.320683    0.950573    0.614633
+Iteration: 102 bestvalit: 551690.177265 bestmemit:  172.320683    0.950573    0.614633
+Iteration: 103 bestvalit: 551690.177265 bestmemit:  172.320683    0.950573    0.614633
+Iteration: 104 bestvalit: 460528.061333 bestmemit:  103.878422    0.680005    0.688807
+Iteration: 105 bestvalit: 460528.061333 bestmemit:  103.878422    0.680005    0.688807
+Iteration: 106 bestvalit: 460528.061333 bestmemit:  103.878422    0.680005    0.688807
+Iteration: 107 bestvalit: 452621.739786 bestmemit:  119.304676    0.858318    0.718756
+Iteration: 108 bestvalit: 452621.739786 bestmemit:  119.304676    0.858318    0.718756
+Iteration: 109 bestvalit: 421703.017871 bestmemit:  113.857484    0.858318    0.718756
+Iteration: 110 bestvalit: 421703.017871 bestmemit:  113.857484    0.858318    0.718756
+Iteration: 111 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 112 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 113 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 114 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 115 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 116 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 117 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 118 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 119 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 120 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 121 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 122 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 123 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 124 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 125 bestvalit: 330533.265183 bestmemit:   89.136760    0.903157    0.795159
+Iteration: 126 bestvalit: 310211.849916 bestmemit:   77.790913    0.891492    0.825815
+Iteration: 127 bestvalit: 310211.849916 bestmemit:   77.790913    0.891492    0.825815
+Iteration: 128 bestvalit: 310211.849916 bestmemit:   77.790913    0.891492    0.825815
+Iteration: 129 bestvalit: 310211.849916 bestmemit:   77.790913    0.891492    0.825815
+Iteration: 130 bestvalit: 310211.849916 bestmemit:   77.790913    0.891492    0.825815
+Iteration: 131 bestvalit: 310211.849916 bestmemit:   77.790913    0.891492    0.825815
+Iteration: 132 bestvalit: 243711.250353 bestmemit:   68.428329    0.949577    0.888074
+Iteration: 133 bestvalit: 243711.250353 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 134 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 135 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 136 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 137 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 138 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 139 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 140 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 141 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 142 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 143 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 144 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 145 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 146 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 147 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 148 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 149 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 150 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 151 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 152 bestvalit: 171572.028393 bestmemit:   68.428329    0.968194    0.888074
+Iteration: 153 bestvalit: 171572.028393 bestmemit:   53.419378    0.968194    0.961894
+Iteration: 154 bestvalit: 171572.028393 bestmemit:   53.419378    0.968194    0.961894
+Iteration: 155 bestvalit: 171572.028393 bestmemit:   53.419378    0.968194    0.961894
+Iteration: 156 bestvalit: 171572.028393 bestmemit:   53.419378    0.968194    0.961894
+Iteration: 157 bestvalit: 171572.028393 bestmemit:   53.419378    0.968194    0.961894
+Iteration: 158 bestvalit: 171572.028393 bestmemit:   53.419378    0.968194    0.961894
+Iteration: 159 bestvalit: 156458.779369 bestmemit:   46.570415    0.966428    1.004820
+Iteration: 160 bestvalit: 156458.779369 bestmemit:   46.570415    0.966428    1.004820
+Iteration: 161 bestvalit: 156458.779369 bestmemit:   46.570415    0.966428    1.004820
+Iteration: 162 bestvalit: 156458.779369 bestmemit:   46.570415    0.966428    1.004820
+Iteration: 163 bestvalit: 156458.779369 bestmemit:   46.570415    0.966428    1.002193
+Iteration: 164 bestvalit: 156458.779369 bestmemit:   46.570415    0.966428    1.002193
+Iteration: 165 bestvalit: 156458.779369 bestmemit:   46.570415    0.966428    1.002193
+Iteration: 166 bestvalit: 156458.779369 bestmemit:   46.570415    0.966428    1.002193
+Iteration: 167 bestvalit: 156458.779369 bestmemit:   46.570415    0.966428    1.002193
+Iteration: 168 bestvalit: 153906.442133 bestmemit:   38.938065    0.961947    1.049586
+Iteration: 169 bestvalit: 153906.442133 bestmemit:   38.938065    0.961947    1.049586
+Iteration: 170 bestvalit: 153906.442133 bestmemit:   38.938065    0.961947    1.049586
+Iteration: 171 bestvalit: 153906.442133 bestmemit:   38.938065    0.961947    1.049586
+Iteration: 172 bestvalit: 153906.442133 bestmemit:   38.808496    0.961947    1.049586
+Iteration: 173 bestvalit: 137151.388531 bestmemit:   40.124715    0.962211    1.049427
+Iteration: 174 bestvalit: 137151.388531 bestmemit:   40.124715    0.962211    1.049427
+Iteration: 175 bestvalit: 137151.388531 bestmemit:   40.124715    0.962211    1.049427
+Iteration: 176 bestvalit: 137151.388531 bestmemit:   40.124715    0.962211    1.049427
+Iteration: 177 bestvalit: 137151.388531 bestmemit:   40.124715    0.962211    1.049427
+Iteration: 178 bestvalit: 137151.388531 bestmemit:   40.124715    0.962211    1.049427
+Iteration: 179 bestvalit: 137151.388531 bestmemit:   40.124715    0.969135    1.049427
+Iteration: 180 bestvalit: 137151.388531 bestmemit:   40.124715    0.969135    1.049427
+Iteration: 181 bestvalit: 137151.388531 bestmemit:   40.124715    0.969135    1.049427
+Iteration: 182 bestvalit: 137151.388531 bestmemit:   40.124715    0.969135    1.049427
+Iteration: 183 bestvalit: 137151.388531 bestmemit:   40.124715    0.969135    1.049427
+Iteration: 184 bestvalit: 127862.669658 bestmemit:   40.124715    0.969135    1.049427
+Iteration: 185 bestvalit: 119815.766478 bestmemit:   32.852938    0.997709    1.115038
+Iteration: 186 bestvalit: 119815.766478 bestmemit:   32.852938    0.997709    1.115038
+Iteration: 187 bestvalit: 115160.430524 bestmemit:   30.360793    0.974652    1.128674
+Iteration: 188 bestvalit: 111329.273135 bestmemit:   27.698649    0.982037    1.158088
+Iteration: 189 bestvalit: 111329.273135 bestmemit:   27.698649    0.982037    1.158088
+Iteration: 190 bestvalit: 109302.664457 bestmemit:   27.698649    0.982037    1.158088
+Iteration: 191 bestvalit: 106637.884287 bestmemit:   27.285035    0.964795    1.157902
+Iteration: 192 bestvalit: 106637.884287 bestmemit:   27.285035    0.964795    1.157902
+Iteration: 193 bestvalit: 106637.884287 bestmemit:   27.285035    0.964795    1.157902
+Iteration: 194 bestvalit: 106637.884287 bestmemit:   27.285035    0.964795    1.157902
+Iteration: 195 bestvalit: 106637.884287 bestmemit:   27.285035    0.964795    1.157902
+Iteration: 196 bestvalit: 101036.714015 bestmemit:   27.383154    0.985047    1.167693
+Iteration: 197 bestvalit: 101036.714015 bestmemit:   27.383154    0.985047    1.167693
+Iteration: 198 bestvalit: 101036.714015 bestmemit:   27.383154    0.985047    1.167693
+Iteration: 199 bestvalit: 101036.714015 bestmemit:   27.383154    0.985047    1.167693
+Iteration: 200 bestvalit: 101036.714015 bestmemit:   27.383154    0.985047    1.167693
+> print.default( cesGridDeVrs )
+$DEoptim
+$optim
+$optim$bestmem
+      par1       par2       par3 
+27.3831536  0.9850466  1.1676931 
+
+$optim$bestval
+[1] 101036.7
+
+$optim$nfeval
+[1] 10050
+
+$optim$iter
+[1] 200
+
+
+$member
+$member$lower
+par1 par2 par3 
+   0    0    0 
+
+$member$upper
+ par1  par2  par3 
+1e+10 1e+00 1e+01 
+
+$member$bestmemit
+            par1      par2       par3
+1   6.215849e+09 0.8869924 0.02329064
+2   6.215849e+09 0.8869924 0.02329064
+3   6.215849e+09 0.8869924 0.02329064
+4   6.215849e+09 0.8869924 0.02329064
+5   6.215849e+09 0.8869924 0.02329064
+6   6.215849e+09 0.8869924 0.02329064
+7   6.215849e+09 0.8869924 0.02329064
+8   6.215849e+09 0.8869924 0.02329064
+9   6.544957e+07 0.9621803 0.34642490
+10  6.544957e+07 0.9621803 0.34642490
+11  6.491060e+08 0.4120967 0.07740161
+12  6.491060e+08 0.4120967 0.07740161
+13  6.491060e+08 0.4120967 0.07740161
+14  6.491060e+08 0.4120967 0.07740161
+15  3.184136e+07 0.4601251 0.16270105
+16  3.184136e+07 0.4601251 0.16270105
+17  3.184136e+07 0.4601251 0.16270105
+18  3.184136e+07 0.3979617 0.06845135
+19  2.786915e+07 0.2716431 0.04723242
+20  2.440436e+08 0.2769077 0.09932858
+21  2.440436e+08 0.2769077 0.09932858
+22  2.440436e+08 0.2769077 0.09932858
+23  2.786915e+07 0.1535765 0.04368116
+24  2.786915e+07 0.1535765 0.04368116
+25  2.786915e+07 0.1535765 0.04368116
+26  5.083736e+06 0.5582021 0.05227031
+27  5.083736e+06 0.7660436 0.05227031
+28  5.083736e+06 0.7660436 0.05227031
+29  5.083736e+06 0.8401889 0.05227031
+30  1.128876e+06 0.8365413 0.03063663
+31  1.128876e+06 0.8044675 0.06373796
+32  1.128876e+06 0.8044675 0.06373796
+33  1.128876e+06 0.8044675 0.06373796
+34  1.128876e+06 0.8044675 0.06373796
+35  6.558898e+03 0.9192225 0.09405339
+36  6.558898e+03 0.7301524 0.05418486
+37  6.558898e+03 0.7301524 0.05418486
+38  6.558898e+03 0.7301524 0.05418486
+39  6.558898e+03 0.9904597 0.05418486
+40  6.558898e+03 0.9904597 0.05418486
+41  6.558898e+03 0.9904597 0.05418486
+42  6.558898e+03 0.9904597 0.05418486
+43  6.558898e+03 0.9904597 0.05418486
+44  6.558898e+03 0.9904597 0.05418486
+45  6.558898e+03 0.9904597 0.05418486
+46  6.558898e+03 0.9904597 0.05418486
+47  6.558898e+03 0.9904597 0.03982132
+48  6.558898e+03 0.9496329 0.03766630
+49  6.558898e+03 0.9496329 0.03766630
+50  6.558898e+03 0.9496329 0.03766630
+51  6.558898e+03 0.8834394 0.03766630
+52  6.558898e+03 0.8834394 0.03766630
+53  2.906191e+03 0.6984394 0.02928121
+54  2.906191e+03 0.6984394 0.02928121
+55  2.906191e+03 0.8541530 0.02928121
+56  2.906191e+03 0.8541530 0.02928121
+57  2.019269e+03 0.5908067 0.02941607
+58  2.019269e+03 0.6972206 0.01994865
+59  2.019269e+03 0.6972206 0.01994865
+60  2.019269e+03 0.6972206 0.01994865
+61  2.019269e+03 0.6972206 0.02893197
+62  2.019269e+03 0.6972206 0.02893197
+63  1.326327e+03 0.7214136 0.02920934
+64  1.326327e+03 0.7214136 0.04372058
+65  1.326327e+03 0.7214136 0.04372058
+66  1.326327e+03 0.7214136 0.04372058
+67  1.326327e+03 0.7317199 0.04372058
+68  1.072170e+03 0.6256923 0.06890207
+69  1.072170e+03 0.6256923 0.06890207
+70  1.072170e+03 0.6256923 0.07103377
+71  1.072170e+03 0.6256923 0.07103377
+72  1.072170e+03 0.6256923 0.07103377
+73  1.077424e+03 0.8541599 0.07975548
+74  9.747727e+02 0.9900966 0.10387006
+75  7.809659e+02 0.9584146 0.16699440
+76  7.809659e+02 0.9584146 0.16699440
+77  7.857186e+02 0.9584146 0.16699440
+78  7.857186e+02 0.9584146 0.16699440
+79  8.179977e+02 0.9584146 0.16699440
+80  8.179977e+02 0.9584146 0.16699440
+81  8.179977e+02 0.9584146 0.16699440
+82  6.610744e+02 0.9588894 0.22702712
+83  6.610744e+02 0.9588894 0.20983975
+84  5.545553e+02 0.9788799 0.27634060
+85  4.556047e+02 0.8450571 0.32108441
+86  4.556047e+02 0.8450571 0.32108441
+87  4.556047e+02 0.8450571 0.32108441
+88  4.556047e+02 0.8450571 0.32108441
+89  4.556047e+02 0.8450571 0.32108441
+90  4.556047e+02 0.8450571 0.32108441
+91  4.556047e+02 0.8450571 0.32456299
+92  4.556047e+02 0.8450571 0.32456299
+93  2.894677e+02 0.7764712 0.43727892
+94  2.509195e+02 0.8135933 0.47040354
+95  2.631303e+02 0.8681780 0.47685281
+96  2.529928e+02 0.8215892 0.48192581
+97  2.201993e+02 0.8051544 0.52125611
+98  2.201993e+02 0.8690704 0.52125611
+99  1.771953e+02 0.8618021 0.60188670
+100 1.771953e+02 0.8618021 0.60188670
+101 1.771953e+02 0.9627758 0.60188670
+102 1.723207e+02 0.9505726 0.61463301
+103 1.723207e+02 0.9505726 0.61463301
+104 1.723207e+02 0.9505726 0.61463301
+105 1.038784e+02 0.6800049 0.68880681
+106 1.038784e+02 0.6800049 0.68880681
+107 1.038784e+02 0.6800049 0.68880681
+108 1.193047e+02 0.8583177 0.71875559
+109 1.193047e+02 0.8583177 0.71875559
+110 1.138575e+02 0.8583177 0.71875559
+111 1.138575e+02 0.8583177 0.71875559
+112 8.913676e+01 0.9031565 0.79515875
+113 8.913676e+01 0.9031565 0.79515875
+114 8.913676e+01 0.9031565 0.79515875
+115 8.913676e+01 0.9031565 0.79515875
+116 8.913676e+01 0.9031565 0.79515875
+117 8.913676e+01 0.9031565 0.79515875
+118 8.913676e+01 0.9031565 0.79515875
+119 8.913676e+01 0.9031565 0.79515875
+120 8.913676e+01 0.9031565 0.79515875
+121 8.913676e+01 0.9031565 0.79515875
+122 8.913676e+01 0.9031565 0.79515875
+123 8.913676e+01 0.9031565 0.79515875
+124 8.913676e+01 0.9031565 0.79515875
+125 8.913676e+01 0.9031565 0.79515875
+126 8.913676e+01 0.9031565 0.79515875
+127 7.779091e+01 0.8914916 0.82581508
+128 7.779091e+01 0.8914916 0.82581508
+129 7.779091e+01 0.8914916 0.82581508
+130 7.779091e+01 0.8914916 0.82581508
+131 7.779091e+01 0.8914916 0.82581508
+132 7.779091e+01 0.8914916 0.82581508
+133 6.842833e+01 0.9495770 0.88807420
+134 6.842833e+01 0.9681943 0.88807420
+135 6.842833e+01 0.9681943 0.88807420
+136 6.842833e+01 0.9681943 0.88807420
+137 6.842833e+01 0.9681943 0.88807420
+138 6.842833e+01 0.9681943 0.88807420
+139 6.842833e+01 0.9681943 0.88807420
+140 6.842833e+01 0.9681943 0.88807420
+141 6.842833e+01 0.9681943 0.88807420
+142 6.842833e+01 0.9681943 0.88807420
+143 6.842833e+01 0.9681943 0.88807420
+144 6.842833e+01 0.9681943 0.88807420
+145 6.842833e+01 0.9681943 0.88807420
+146 6.842833e+01 0.9681943 0.88807420
+147 6.842833e+01 0.9681943 0.88807420
+148 6.842833e+01 0.9681943 0.88807420
+149 6.842833e+01 0.9681943 0.88807420
+150 6.842833e+01 0.9681943 0.88807420
+151 6.842833e+01 0.9681943 0.88807420
+152 6.842833e+01 0.9681943 0.88807420
+153 6.842833e+01 0.9681943 0.88807420
+154 5.341938e+01 0.9681943 0.96189397
+155 5.341938e+01 0.9681943 0.96189397
+156 5.341938e+01 0.9681943 0.96189397
+157 5.341938e+01 0.9681943 0.96189397
+158 5.341938e+01 0.9681943 0.96189397
+159 5.341938e+01 0.9681943 0.96189397
+160 4.657041e+01 0.9664279 1.00481970
+161 4.657041e+01 0.9664279 1.00481970
+162 4.657041e+01 0.9664279 1.00481970
+163 4.657041e+01 0.9664279 1.00481970
+164 4.657041e+01 0.9664279 1.00219318
+165 4.657041e+01 0.9664279 1.00219318
+166 4.657041e+01 0.9664279 1.00219318
+167 4.657041e+01 0.9664279 1.00219318
+168 4.657041e+01 0.9664279 1.00219318
+169 3.893807e+01 0.9619472 1.04958611
+170 3.893807e+01 0.9619472 1.04958611
+171 3.893807e+01 0.9619472 1.04958611
+172 3.893807e+01 0.9619472 1.04958611
+173 3.880850e+01 0.9619472 1.04958611
+174 4.012471e+01 0.9622113 1.04942701
+175 4.012471e+01 0.9622113 1.04942701
+176 4.012471e+01 0.9622113 1.04942701
+177 4.012471e+01 0.9622113 1.04942701
+178 4.012471e+01 0.9622113 1.04942701
+179 4.012471e+01 0.9622113 1.04942701
+180 4.012471e+01 0.9691350 1.04942701
+181 4.012471e+01 0.9691350 1.04942701
+182 4.012471e+01 0.9691350 1.04942701
+183 4.012471e+01 0.9691350 1.04942701
+184 4.012471e+01 0.9691350 1.04942701
+185 4.012471e+01 0.9691350 1.04942701
+186 3.285294e+01 0.9977095 1.11503801
+187 3.285294e+01 0.9977095 1.11503801
+188 3.036079e+01 0.9746522 1.12867385
+189 2.769865e+01 0.9820365 1.15808791
+190 2.769865e+01 0.9820365 1.15808791
+191 2.769865e+01 0.9820365 1.15808791
+192 2.728503e+01 0.9647948 1.15790246
+193 2.728503e+01 0.9647948 1.15790246
+194 2.728503e+01 0.9647948 1.15790246
+195 2.728503e+01 0.9647948 1.15790246
+196 2.728503e+01 0.9647948 1.15790246
+197 2.738315e+01 0.9850466 1.16769314
+198 2.738315e+01 0.9850466 1.16769314
+199 2.738315e+01 0.9850466 1.16769314
+200 2.738315e+01 0.9850466 1.16769314
+
+$member$bestvalit
+  [1] 9.092070e+20 9.092070e+20 9.092070e+20 1.178824e+20 1.178824e+20
+  [6] 1.178824e+20 7.425082e+19 7.425082e+19 9.073495e+17 9.073495e+17
+ [11] 1.167412e+17 1.167412e+17 1.167412e+17 1.167412e+17 7.995862e+16
+ [16] 7.995862e+16 7.995862e+16 3.685841e+16 2.431263e+16 2.431263e+16
+ [21] 2.431263e+16 2.431263e+16 2.350705e+16 2.614253e+15 1.341014e+15
+ [26] 7.855063e+14 7.573161e+14 7.573161e+14 7.491018e+14 3.162510e+13
+ [31] 3.162510e+13 3.162510e+13 3.162510e+13 3.162510e+13 1.174415e+09
+ [36] 8.740700e+08 8.740700e+08 8.740700e+08 8.351476e+08 8.351476e+08
+ [41] 8.351476e+08 8.351476e+08 8.351476e+08 8.351476e+08 8.351476e+08
+ [46] 8.351476e+08 7.421438e+08 7.323136e+08 7.323136e+08 7.323136e+08
+ [51] 7.323136e+08 7.323136e+08 6.868733e+07 6.868733e+07 6.712590e+07
+ [56] 6.712590e+07 1.585131e+07 2.554043e+06 1.954987e+06 1.954987e+06
+ [61] 1.954987e+06 1.954987e+06 1.780350e+06 1.780350e+06 1.780350e+06
+ [66] 1.780350e+06 1.780350e+06 1.606411e+06 1.606411e+06 1.597098e+06
+ [71] 1.597098e+06 1.597098e+06 1.436230e+06 1.436230e+06 1.343707e+06
+ [76] 1.343707e+06 1.343707e+06 1.301939e+06 1.301939e+06 1.293790e+06
+ [81] 1.293790e+06 1.237666e+06 1.237666e+06 1.119241e+06 1.044431e+06
+ [86] 1.044431e+06 9.389687e+05 9.230870e+05 9.230870e+05 9.230870e+05
+ [91] 9.230870e+05 8.997015e+05 8.310049e+05 7.973525e+05 7.648186e+05
+ [96] 7.531879e+05 6.948582e+05 6.948582e+05 6.295243e+05 6.295243e+05
+[101] 6.183364e+05 5.516902e+05 5.516902e+05 5.516902e+05 4.605281e+05
+[106] 4.605281e+05 4.605281e+05 4.526217e+05 4.526217e+05 4.217030e+05
+[111] 4.217030e+05 3.305333e+05 3.305333e+05 3.305333e+05 3.305333e+05
+[116] 3.305333e+05 3.305333e+05 3.305333e+05 3.305333e+05 3.305333e+05
+[121] 3.305333e+05 3.305333e+05 3.305333e+05 3.305333e+05 3.305333e+05
+[126] 3.305333e+05 3.102118e+05 3.102118e+05 3.102118e+05 3.102118e+05
+[131] 3.102118e+05 3.102118e+05 2.437113e+05 2.437113e+05 1.715720e+05
+[136] 1.715720e+05 1.715720e+05 1.715720e+05 1.715720e+05 1.715720e+05
+[141] 1.715720e+05 1.715720e+05 1.715720e+05 1.715720e+05 1.715720e+05
+[146] 1.715720e+05 1.715720e+05 1.715720e+05 1.715720e+05 1.715720e+05
+[151] 1.715720e+05 1.715720e+05 1.715720e+05 1.715720e+05 1.715720e+05
+[156] 1.715720e+05 1.715720e+05 1.715720e+05 1.715720e+05 1.564588e+05
+[161] 1.564588e+05 1.564588e+05 1.564588e+05 1.564588e+05 1.564588e+05
+[166] 1.564588e+05 1.564588e+05 1.564588e+05 1.539064e+05 1.539064e+05
+[171] 1.539064e+05 1.539064e+05 1.539064e+05 1.371514e+05 1.371514e+05
+[176] 1.371514e+05 1.371514e+05 1.371514e+05 1.371514e+05 1.371514e+05
+[181] 1.371514e+05 1.371514e+05 1.371514e+05 1.371514e+05 1.278627e+05
+[186] 1.198158e+05 1.198158e+05 1.151604e+05 1.113293e+05 1.113293e+05
+[191] 1.093027e+05 1.066379e+05 1.066379e+05 1.066379e+05 1.066379e+05
+[196] 1.066379e+05 1.010367e+05 1.010367e+05 1.010367e+05 1.010367e+05
+
+$member$pop
+           [,1]      [,2]      [,3]
+ [1,]  34.13376 0.9528805 1.0900800
+ [2,]  30.36079 0.9715480 1.1286738
+ [3,]  29.09808 0.9379860 1.1291160
+ [4,] 401.34336 0.9112417 0.3642836
+ [5,]  33.54307 0.9697554 1.0980521
+ [6,]  46.29484 0.9799620 1.0101734
+ [7,]  26.67016 0.9973312 1.1732369
+ [8,]  27.28503 0.9647948 1.1579025
+ [9,]  46.52822 0.9888049 1.0119429
+[10,]  45.34729 0.9925706 1.0115734
+[11,]  29.22560 0.9593779 1.1454730
+[12,] 557.17386 0.8067674 0.2600364
+[13,]  33.81594 0.9664279 1.1065064
+[14,]  24.26436 0.9485205 1.1859566
+[15,]  27.20335 0.9820365 1.1633500
+[16,]  28.18634 0.9739096 1.1501272
+[17,]  39.26606 0.9981873 1.0666464
+[18,] 396.73159 0.7297361 0.3410836
+[19,]  26.06953 0.9937365 1.1876049
+[20,]  39.41951 0.9763656 1.0564573
+[21,] 410.78331 0.7966691 0.3429511
+[22,]  24.80498 0.9623939 1.1826554
+[23,]  26.87162 0.9822745 1.1730595
+[24,]  27.38315 0.9850466 1.1676931
+[25,]  40.12471 0.9715051 1.0494270
+[26,]  27.52905 0.9892329 1.1623859
+[27,]  32.85294 0.9891470 1.1150380
+[28,]  27.50493 0.9548695 1.1635480
+[29,]  26.69097 0.9454275 1.1534810
+[30,]  40.63804 0.9679267 1.0451047
+[31,] 406.27181 0.8181069 0.3489400
+[32,]  26.99764 0.9246967 1.1492159
+[33,]  27.38315 0.9850466 1.1676931
+[34,]  43.67775 0.9826507 1.0289021
+[35,]  34.36546 0.9923414 1.0984946
+[36,]  26.21201 0.9966524 1.1793284
+[37,]  28.19754 0.9498439 1.1476946
+[38,] 396.76083 0.9217834 0.3699319
+[39,]  39.74712 0.9692580 1.0493013
+[40,]  40.33547 0.9946408 1.0548765
+[41,]  38.83813 0.9327748 1.0429512
+[42,]  22.95725 0.9205232 1.1916662
+[43,]  41.26864 0.9506510 1.0389269
+[44,]  25.32411 0.9563836 1.1808413
+[45,]  24.56798 0.9533074 1.1889843
+[46,]  31.20586 0.9430248 1.1088917
+[47,] 261.34445 0.7383169 0.4640794
+[48,]  29.80568 0.9979567 1.1509640
+[49,] 423.53350 0.8134969 0.3406802
+[50,]  36.27386 0.9989937 1.0881849
+
+$member$storepop
+list()
+
+
+attr(,"class")
+[1] "DEoptim"
+
+$coefficients
+     gamma      delta        rho         nu 
+27.3831536  0.9850466  0.8000000  1.1676931 
+
+$iter
+[1] 200
+
+$call
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "DE", rho = sumResults$rho[i])
+
+$method
+[1] "DE"
+
+$lower
+[1] 0 0 0
+
+$upper
+[1] 1e+10 1e+00 1e+01
+
+$rho
+[1] 0.8
+
+$fitted.values
+ [1] 1109.420 1153.918 1181.218 1193.619 1193.604 1211.531 1249.742 1253.054
+ [9] 1208.689 1258.685 1298.280 1475.485 1547.277 1610.097 1570.906 1591.793
+[17] 1688.800 1778.384 1912.291 2037.342
+
+$residuals
+ [1] -163.2868358 -191.1877584 -111.6389305  -21.8228732  -15.4881865
+ [6]  -25.7205877  -10.3842332   35.5071025   -0.9826297   19.7237836
+[11]   62.3129819   65.2992462   27.7576289   85.8621907   73.7826584
+[16]   34.2376896  -33.7601562  -22.7843515  -24.8708469  -45.4482908
+
+$rss
+[1] 106063.6
+
+$cov.unscaled
+              gamma         delta           rho            nu
+gamma  1.328231e+03  5.198311e+01 -1.132594e+03 -8.907764e-03
+delta  5.198311e+01  2.034812e+00 -4.434471e+01 -3.166223e-04
+rho   -1.132594e+03 -4.434471e+01  9.667537e+02  5.967616e-03
+nu    -8.907764e-03 -3.166223e-04  5.967616e-03  3.439826e-06
+
+$otherSum
+   rho      rss convergence
+1 -0.8 283425.3          NA
+2  0.0 335022.0          NA
+3  0.8 106063.6          NA
+
+attr(,"class")
+[1] "cesEstRhoGrid" "cesEst"        "list"         
+> print( cesGridDeVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "DE", rho = sumResults$rho[i])
+
+Coefficients:
+ gamma  delta    rho     nu 
+27.383  0.985  0.800  1.168 
+
+> summary( cesGridDeVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
+    method = "DE", rho = sumResults$rho[i])
+
+Estimation by non-linear least-squares using the 'DE' optimizer
+Coefficient 'rho' was fixed at 0.8 
+
+Coefficients:
+       Estimate Std. Error  t value Pr(>|t|)    
+gamma   27.3832  2654.0249    0.010    0.992    
+delta    0.9850   103.8796    0.009    0.992    
+rho      0.8000  2264.2594 0.000353    1.000    
+nu       1.1677     0.1351    8.646   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 72.82295 
+Multiple R-squared: 0.940081 
+
+> coef( cesGridDeVrs )
+     gamma      delta        rho         nu 
+27.3831536  0.9850466  0.8000000  1.1676931 
+> vcov( cesGridDeVrs )
+              gamma         delta           rho           nu
+gamma  7.043848e+06  2.756759e+05 -6.006352e+06 -47.23949061
+delta  2.756759e+05  1.079098e+04 -2.351680e+05  -1.67910546
+rho   -6.006352e+06 -2.351680e+05  5.126870e+06  31.64735334
+nu    -4.723949e+01 -1.679105e+00  3.164735e+01   0.01824202
+> coef( summary( cesGridDeVrs ) )
+        Estimate   Std. Error      t value     Pr(>|t|)
+gamma 27.3831536 2654.0248874 0.0103175949 9.917679e-01
+delta  0.9850466  103.8796429 0.0094825756 9.924341e-01
+rho    0.8000000 2264.2593643 0.0003533164 9.997181e-01
+nu     1.1676931    0.1350630 8.6455425523 5.355024e-18
+> 
