@@ -16,6 +16,9 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
    cat( "Estimation by " )
    if( x$method == "Kmenta" ) {
       cat( "the linear Kmenta approximation\n" )
+      cat( "Test of the null hypothesis that the restrictions of the Translog\n",
+         "function required by the Kmenta approximation are true:\n",
+         "P-value = ", x$testKmenta[ 2, "Pr(>F)" ], "\n", sep = "" )
    } else {
       cat( "non-linear least-squares using the '", x$method, "' optimizer\n",
          sep = "" )

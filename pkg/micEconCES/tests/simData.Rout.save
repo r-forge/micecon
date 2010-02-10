@@ -5358,6 +5358,9 @@ Call:
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Kmenta")
 
 Estimation by the linear Kmenta approximation
+Test of the null hypothesis that the restrictions of the Translog
+function required by the Kmenta approximation are true:
+P-value = 0.01879826
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -5618,6 +5621,9 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
     method = "Kmenta")
 
 Estimation by the linear Kmenta approximation
+Test of the null hypothesis that the restrictions of the Translog
+function required by the Kmenta approximation are true:
+P-value = 0.01879826
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
