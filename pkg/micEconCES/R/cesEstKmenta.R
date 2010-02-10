@@ -39,9 +39,9 @@ cesEstKmenta <- function( yName, xNames, data, vrs ){
                                result$coefficients[ "nu" ]
 
    ## Defining rho
-   result$coefficients[ "rho" ] <- coef( result$kmenta )[ "eq1_b_1_2" ] /
-      ( coef( result$kmenta )[ "eq1_a_1" ] * coef( result$kmenta )[ "eq1_a_2" ] /
-         result$coefficients[ "nu" ] )
+   result$coefficients[ "rho" ] <-
+      coef( result$kmenta )[ "eq1_b_1_2" ] * result$coefficients[ "nu" ] /
+      ( coef( result$kmenta )[ "eq1_a_1" ] * coef( result$kmenta )[ "eq1_a_2" ] )
 
    ## Delta method
    jacobian <- matrix( 0, nrow = length( result$coefficients ),
