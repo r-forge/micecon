@@ -38,6 +38,6 @@ cesEstGridRho <- function( from = -0.8, to = 4, by = 0.2,
       result$otherFull <- allResults
    }
 
-   class( result ) <- c( "cesEstRhoGrid", class( result ) )
+   class( result ) <- c( "cesEstGridRho", class( result ) )
    return( result )
 }
