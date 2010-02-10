@@ -21,6 +21,7 @@ vcov( cesGridNm )
 coef( summary( cesGridNm ) )
 fitted( cesGridNm )
 residuals( cesGridNm )
+plot( cesGridNm )
 
 ## Nelder-Mead, VRS
 cesGridNmVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -31,6 +32,7 @@ summary( cesGridNmVrs )
 coef( cesGridNmVrs )
 vcov( cesGridNmVrs )
 coef( summary( cesGridNmVrs ) )
+plot( cesGridNmVrs )
 
 # using the CG optimization method
 cesGridCg <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -43,6 +45,7 @@ vcov( cesGridCg )
 coef( summary( cesGridCg ) )
 fitted( cesGridCg )
 residuals( cesGridCg )
+plot( cesGridCg )
 
 # using the CG optimization method, VRS
 cesGridCgVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -53,6 +56,7 @@ summary( cesGridCgVrs )
 coef( cesGridCgVrs )
 vcov( cesGridCgVrs )
 coef( summary( cesGridCgVrs ) )
+plot( cesGridCgVrs )
 
 # using the SANN optimization method
 set.seed( 1 )
@@ -64,6 +68,7 @@ summary( cesGridSann )
 coef( cesGridSann )
 vcov( cesGridSann )
 coef( summary( cesGridSann ) )
+plot( cesGridSann )
 
 # using the SANN optimization method, VRS
 set.seed( 21 )
@@ -75,6 +80,7 @@ summary( cesGridSannVrs )
 coef( cesGridSannVrs )
 vcov( cesGridSannVrs )
 coef( summary( cesGridSannVrs ) )
+plot( cesGridSannVrs )
 
 # using the BFGS optimization method
 cesGridBfgs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -85,6 +91,7 @@ summary( cesGridBfgs )
 coef( cesGridBfgs )
 vcov( cesGridBfgs )
 coef( summary( cesGridBfgs ) )
+plot( cesGridBfgs )
 
 # using the BFGS optimization method, VRS
 cesGridBfgsVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -95,6 +102,7 @@ summary( cesGridBfgsVrs )
 coef( cesGridBfgsVrs )
 vcov( cesGridBfgsVrs )
 coef( summary( cesGridNmVrs ) )
+plot( cesGridBfgsVrs )
 
 # using the L-BFGS-B optimization method with constrained parameters
 cesGridBfgsCon <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -105,6 +113,7 @@ summary( cesGridBfgsCon )
 coef( cesGridBfgsCon )
 vcov( cesGridBfgsCon )
 coef( summary( cesGridBfgsCon ) )
+plot( cesGridBfgsCon )
 
 # using the L-BFGS-B optimization method with constrained parameters, VRS
 cesGridBfgsConVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -115,6 +124,7 @@ summary( cesGridBfgsConVrs )
 coef( cesGridBfgsConVrs )
 vcov( cesGridBfgsConVrs )
 coef( summary( cesGridBfgsConVrs ) )
+plot( cesGridBfgsConVrs )
 
 # using the Levenberg-Marquardt optimization method
 cesGridLm <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -125,6 +135,7 @@ summary( cesGridLm )
 coef( cesGridLm )
 vcov( cesGridLm )
 coef( summary( cesGridLm ) )
+plot( cesGridLm )
 
 # using the Levenberg-Marquardt optimization method, VRS
 cesGridLmVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -135,6 +146,7 @@ summary( cesGridLmVrs )
 coef( cesGridLmVrs )
 vcov( cesGridLmVrs )
 coef( summary( cesGridLmVrs ) )
+plot( cesGridLmVrs )
 
 # using the Newton-type optimization method implemented in nlm()
 cesGridNewton <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -145,6 +157,7 @@ summary( cesGridNewton )
 coef( cesGridNewton )
 vcov( cesGridNewton )
 coef( summary( cesGridNewton ) )
+plot( cesGridNewton )
 
 # using the Newton-type optimization method implemented in nlm(), VRS
 cesGridNewtonVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -155,6 +168,7 @@ summary( cesGridNewtonVrs )
 coef( cesGridNewtonVrs )
 vcov( cesGridNewtonVrs )
 coef( summary( cesGridNewtonVrs ) )
+plot( cesGridNewtonVrs )
 
 # using the PORT optimization rountine implemented in nlminb(), constrained
 cesGridPort <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -165,6 +179,7 @@ summary( cesGridPort )
 coef( cesGridPort )
 vcov( cesGridNm )
 coef( summary( cesGridPort ) )
+plot( cesGridNm )
 
 # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 cesGridPortVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -175,6 +190,7 @@ summary( cesGridPortVrs )
 coef( cesGridPortVrs )
 vcov( cesGridPortVrs )
 coef( summary( cesGridPortVrs ) )
+plot( cesGridPortVrs )
 
 # using the DE optimization method implemented in DEoptim(), CRS
 set.seed( 321 )
@@ -186,6 +202,7 @@ summary( cesGridDe )
 coef( cesGridDe )
 vcov( cesGridDe )
 coef( summary( cesGridDe ) )
+plot( cesGridDe )
 
 # using the DE optimization method implemented in DEoptim(), VRS
 set.seed( 4321 )
@@ -197,3 +214,4 @@ summary( cesGridDeVrs )
 coef( cesGridDeVrs )
 vcov( cesGridDeVrs )
 coef( summary( cesGridDeVrs ) )
+plot( cesGridDeVrs )
