@@ -187,6 +187,7 @@ rho     0.400000    22.23612 0.01798875 0.9856478
  [7]  -12.365274   26.384897  -12.732401   10.818020   63.643561   93.525968
 [13]   70.099403  129.956124   97.796473   52.706943  -20.216796   -7.752477
 [19]    4.388877    3.096481
+> plot( cesGridNm )
 > 
 > ## Nelder-Mead, VRS
 > cesGridNmVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -322,6 +323,7 @@ gamma  2.2576334 17.1444548  0.13168301 8.952350e-01
 delta  0.8649508  2.3243804  0.37212100 7.098028e-01
 rho   -0.4000000  6.3780980 -0.06271462 9.499938e-01
 nu     1.5670310  0.0932491 16.80478547 2.251256e-63
+> plot( cesGridNmVrs )
 > 
 > # using the CG optimization method
 > cesGridCg <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -461,6 +463,7 @@ rho    1.2000000   183.1089 0.006553476 0.9947711
  [7]  -36.936419   10.385547  -32.065721   -4.608809   42.455964   70.022711
 [13]   42.876569  111.871950   95.550360   60.517571   11.111192   39.116120
 [19]   61.838593   64.666686
+> plot( cesGridCg )
 > 
 > # using the CG optimization method, VRS
 > cesGridCgVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -598,6 +601,7 @@ gamma 10.0279173 136.8234081  0.07329095 9.415746e-01
 delta  0.8660399   6.6678128  0.12988366 8.966585e-01
 rho    0.0000000  18.4175732  0.00000000 1.000000e+00
 nu     1.3052536   0.1144128 11.40827978 3.801733e-30
+> plot( cesGridCgVrs )
 > 
 > # using the SANN optimization method
 > set.seed( 1 )
@@ -721,6 +725,7 @@ rho   -157597.3  -5098.708    6759.984
 gamma 27.036143 1917.04758 0.014103011 0.9887478
 delta  0.586649   62.01674 0.009459526 0.9924525
 rho    0.800000   82.21912 0.009730096 0.9922366
+> plot( cesGridSann )
 > 
 > # using the SANN optimization method, VRS
 > set.seed( 21 )
@@ -850,6 +855,7 @@ gamma  4.3276772 19.19702195  0.2254348 8.216410e-01
 delta  0.9603577  0.82593381  1.1627539 2.449294e-01
 rho   -0.8000000  6.95023898 -0.1151040 9.083627e-01
 nu     1.5073915  0.09498787 15.8693049 1.033794e-56
+> plot( cesGridSannVrs )
 > 
 > # using the BFGS optimization method
 > cesGridBfgs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -980,6 +986,7 @@ rho      308399.5    2517.561    494.6002
 gamma 165.416166 13868.63208 0.01192736 0.9904836
 delta   1.873405   113.20723 0.01654846 0.9867968
 rho     0.400000    22.23961 0.01798593 0.9856501
+> plot( cesGridBfgs )
 > 
 > # using the BFGS optimization method, VRS
 > cesGridBfgsVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1117,6 +1124,7 @@ gamma  2.2576334 17.1444548  0.13168301 8.952350e-01
 delta  0.8649508  2.3243804  0.37212100 7.098028e-01
 rho   -0.4000000  6.3780980 -0.06271462 9.499938e-01
 nu     1.5670310  0.0932491 16.80478547 2.251256e-63
+> plot( cesGridBfgsVrs )
 > 
 > # using the L-BFGS-B optimization method with constrained parameters
 > cesGridBfgsCon <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1251,6 +1259,7 @@ rho   1.001776e+14 2.026959e+12 5.301270e+26
 gamma 49.14295 8.779093e+01 5.597726e-01 0.5756346
 delta  1.00000 1.555614e+00 6.428330e-01 0.5203325
 rho    0.80000 2.302449e+13 3.474562e-14 1.0000000
+> plot( cesGridBfgsCon )
 > 
 > # using the L-BFGS-B optimization method with constrained parameters, VRS
 > cesGridBfgsConVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1391,6 +1400,7 @@ gamma 1.084423 12.03124726  0.09013386 9.281808e-01
 delta 0.634565  4.46732883  0.14204575 8.870439e-01
 rho   0.000000  6.17714369  0.00000000 1.000000e+00
 nu    1.584593  0.09281398 17.07278230 2.366482e-65
+> plot( cesGridBfgsConVrs )
 > 
 > # using the Levenberg-Marquardt optimization method
 > cesGridLm <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1518,6 +1528,7 @@ rho      308410.3    2517.568    494.5666
 gamma 165.423876 13869.58795 0.01192709 0.9904838
 delta   1.873447   113.21139 0.01654822 0.9867970
 rho     0.400000    22.23885 0.01798654 0.9856496
+> plot( cesGridLm )
 > 
 > # using the Levenberg-Marquardt optimization method, VRS
 > cesGridLmVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1649,6 +1660,7 @@ gamma 0.16506932 0.92252316  0.17893244 8.579907e-01
 delta 0.03937586 0.72226612  0.05451711 9.565232e-01
 rho   1.20000000 6.12826004  0.19581414 8.447556e-01
 nu    1.58848816 0.09200041 17.26609852 8.467703e-67
+> plot( cesGridLmVrs )
 > 
 > # using the Newton-type optimization method implemented in nlm()
 > cesGridNewton <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1773,6 +1785,7 @@ Multiple R-squared: 0.9131703
 [1,] 165.423876 13869.58787 0.01192709 0.9904838
 [2,]   1.873447   113.21139 0.01654822 0.9867970
 [3,]   0.400000    22.23885 0.01798654 0.9856496
+> plot( cesGridNewton )
 > 
 > # using the Newton-type optimization method implemented in nlm(), VRS
 > cesGridNewtonVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1903,6 +1916,7 @@ Multiple R-squared: 0.97161
 [2,] 0.654290  4.56718813  0.14325883 8.860858e-01
 [3,] 0.000000  6.47396893  0.00000000 1.000000e+00
 [4,] 1.555338  0.09315821 16.69566296 1.409449e-62
+> plot( cesGridNewtonVrs )
 > 
 > # using the PORT optimization rountine implemented in nlminb(), constrained
 > cesGridPort <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -2041,6 +2055,7 @@ rho      308451.2    2517.61    494.4451
 gamma 49.14295 7.672895e+00  6.404747e+00 1.506191e-10
 delta  1.00000 1.098129e-02  9.106398e+01 0.000000e+00
 rho   -0.80000 2.631093e+13 -3.040562e-14 1.000000e+00
+> plot( cesGridNm )
 > 
 > # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 > cesGridPortVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -2183,6 +2198,7 @@ gamma 0.16621352 0.93097836  0.17853639 8.583017e-01
 delta 0.03947923 0.72500735  0.05445355 9.565738e-01
 rho   1.20000000 6.13608866  0.19556432 8.449512e-01
 nu    1.58766025 0.09200355 17.25651074 9.997235e-67
+> plot( cesGridPortVrs )
 > 
 > # using the DE optimization method implemented in DEoptim(), CRS
 > set.seed( 321 )
@@ -3213,6 +3229,7 @@ rho   -4.520470e+18 -5.914135e+16  2.137693e+31
 gamma 49.14295 9.779150e+02 0.05025278 0.959921
 delta  1.00000 1.279206e+01 0.07817347 0.937690
 rho    0.00000 4.623519e+15 0.00000000 1.000000
+> plot( cesGridDe )
 > 
 > # using the DE optimization method implemented in DEoptim(), VRS
 > set.seed( 4321 )
@@ -4249,4 +4266,5 @@ gamma 27.3831536 2654.0248874 0.0103175949 9.917679e-01
 delta  0.9850466  103.8796429 0.0094825756 9.924341e-01
 rho    0.8000000 2264.2593643 0.0003533164 9.997181e-01
 nu     1.1676931    0.1350630 8.6455425523 5.355024e-18
+> plot( cesGridDeVrs )
 > 

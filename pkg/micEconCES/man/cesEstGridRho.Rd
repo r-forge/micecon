@@ -1,5 +1,6 @@
 \name{cesEstGridRho}
 \alias{cesEstGridRho}
+\alias{plot.cesEstGridRho}
 \encoding{UTF-8}
 \title{Estimate a CES function by a grid search for rho}
 
@@ -14,6 +15,8 @@
 
 \usage{
 cesEstGridRho(from = -0.8, to = 4, by = 0.2, returnAll = FALSE, \dots )
+
+\method{plot}{cesEstGridRho}( x, \dots )
 }
 
 \arguments{
@@ -25,12 +28,23 @@ cesEstGridRho(from = -0.8, to = 4, by = 0.2, returnAll = FALSE, \dots )
       used in the grid search.}
    \item{returnAll}{logical. Return all objects returned
       by \code{\link{cesEst}} during the grid search?}
-   \item{\dots}{All further arguments are passed to \code{\link{cesEst}};
+   \item{x}{object returned by \code{cesEstGridRho}.}
+   \item{\dots}{All further arguments of \code{cesEstGridRho} are passed
+      to \code{\link{cesEst}};
+      all further arguments of \code{plot.cesEstGridRho} are passed
+      to \code{\link[graphics]{plot.default}};
       please note that they have to be named.}
 }
 
+\details{
+   The \code{plot} method plots a scatter plot,
+   where the values of \eqn{\rho}{rho} are on the x axis
+   and the sum of the squared residuals is on the y axis.
+   Estimations that did not converge are marked with red.
+}
+
 \value{
-   \code{cesEst} returns a list of class \code{cesEstGridRho}
+   \code{cesEstGridRho} returns a list of class \code{cesEstGridRho}
    (and \code{cesEst})
    that is the object returned by \code{\link{cesEst}}
    with the value of \eqn{\rho}{rho}
@@ -69,6 +83,9 @@ cesEstGridRho(from = -0.8, to = 4, by = 0.2, returnAll = FALSE, \dots )
    cesLandInt <- cesEstGridRho( yName = "qOutput",
       xNames = c( "land", "qVarInput" ), data = germanFarms,
       from = -0.6, to = 0.9, by = 0.3 )
+
+   # plot the rhos against the sum of squared residuals
+   plot( cesLandInt ) 
 }
 
 \keyword{models}
