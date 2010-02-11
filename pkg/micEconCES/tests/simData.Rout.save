@@ -5195,22 +5195,6 @@ $testKmenta
 Linear hypothesis test
 
 Hypothesis:
-b_1_1 + b_1_2 = 0
-b_1_2 + b_2_2 = 0
-
-Model 1: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-Model 2: restricted model
-
-  Res.Df    RSS Df Sum of Sq      F Pr(>F)  
-1    194 2.2978                             
-2    196 2.3939 -2 -0.096095 4.0565 0.0188 *
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-
-$testCrs
-Linear hypothesis test
-
-Hypothesis:
 a_1 + a_2 = 1
 b_1_1 + b_1_2 = 0
 b_1_2 + b_2_2 = 0
@@ -5360,7 +5344,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Kmenta")
 Estimation by the linear Kmenta approximation
 Test of the null hypothesis that the restrictions of the Translog
 function required by the Kmenta approximation are true:
-P-value = 0.01879826
+P-value = 6.620474e-10
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    

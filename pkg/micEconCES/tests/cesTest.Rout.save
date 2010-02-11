@@ -820,22 +820,6 @@ $testKmenta
 Linear hypothesis test
 
 Hypothesis:
-b_1_1 + b_1_2 = 0
-b_1_2 + b_2_2 = 0
-
-Model 1: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-Model 2: restricted model
-
-  Res.Df      RSS Df Sum of Sq      F   Pr(>F)   
-1     14 0.015804                                
-2     16 0.040974 -2 -0.025170 11.148 0.001270 **
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-
-$testCrs
-Linear hypothesis test
-
-Hypothesis:
 a_1 + a_2 = 1
 b_1_1 + b_1_2 = 0
 b_1_2 + b_2_2 = 0
@@ -927,7 +911,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Estimation by the linear Kmenta approximation
 Test of the null hypothesis that the restrictions of the Translog
 function required by the Kmenta approximation are true:
-P-value = 0.001270271
+P-value = 0.0006662873
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
@@ -3970,22 +3954,6 @@ $testKmenta
 Linear hypothesis test
 
 Hypothesis:
-b_1_1 + b_1_2 = 0
-b_1_2 + b_2_2 = 0
-
-Model 1: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-Model 2: restricted model
-
-  Res.Df      RSS Df Sum of Sq      F  Pr(>F)  
-1     14 0.017794                              
-2     16 0.032596 -2 -0.014802 5.8227 0.01445 *
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-
-$testCrs
-Linear hypothesis test
-
-Hypothesis:
 a_1 + a_2 = 1
 b_1_1 + b_1_2 = 0
 b_1_2 + b_2_2 = 0
@@ -4075,7 +4043,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation by the linear Kmenta approximation
 Test of the null hypothesis that the restrictions of the Translog
 function required by the Kmenta approximation are true:
-P-value = 0.01444873
+P-value = 1.019788e-05
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)

@@ -10,13 +10,10 @@ cesEstKmenta <- function( yName, xNames, data, vrs ){
 
    ## Testing restrictions implied by the Kmenta approximation - Wald test
    restrictions <- c( "b_1_2 = -b_1_1", "b_1_2 = -b_2_2" )
-   result$testKmenta <- lht( result$translog$est, restrictions )
-
-   ## Testing restrictions implied by the Kmenta approximation - Wald test
    if( !vrs ) {
       restrictions <- c( "a_1 + a_2 = 1", restrictions )
-      result$testCrs <- lht( result$translog$est, restrictions )
    }
+   result$testKmenta <- lht( result$translog$est, restrictions )
 
    ## Estimating restricted model
    result$kmenta <- systemfit( formula = formula(result$translog$est),

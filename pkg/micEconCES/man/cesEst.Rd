@@ -198,16 +198,12 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       returned by \code{\link[systemfit]{systemfit}}
       (only if argument \code{method} is \code{"Kmenta"}).}
    \item{testKmenta}{test of the restrictions implied
-      by the Kmenta approximation in the unrestricted translog model
-      returned by \code{\link[car]{linear.hypothesis}}
-      (only if argument \code{method} is \code{"Kmenta"}).}
-   \item{testCrs}{test of the restrictions of constant returns to scale
-      (these restrictions include the restrictions implied
-      by the Kmenta approximation)
+      by the Kmenta approximation
+      (including constant returns to scale
+      if argument \code{vrs} is \code{FALSE})
       in the unrestricted translog model
       returned by \code{\link[car]{linear.hypothesis}}
-      (only if argument \code{vrs} is \code{FALSE}
-      and argument \code{method} is \code{"Kmenta"}).}
+      (only if argument \code{method} is \code{"Kmenta"}).}
 }
 
 \references{
