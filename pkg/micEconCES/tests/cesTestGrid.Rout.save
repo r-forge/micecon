@@ -1684,7 +1684,8 @@ $nlm$iterations
 
 
 $coefficients
-[1] 165.423876   1.873447   0.400000
+     gamma      delta        rho 
+165.423876   1.873447   0.400000 
 
 $iter
 [1] 70
@@ -1727,10 +1728,10 @@ $rss
 [1] 153698.6
 
 $cov.unscaled
-            [,1]       [,2]        [,3]
-[1,] 25031.51527 204.318962 40.13182447
-[2,]   204.31896   1.667786  0.32759800
-[3,]    40.13182   0.327598  0.06435538
+            gamma      delta         rho
+gamma 25031.51527 204.318962 40.13182447
+delta   204.31896   1.667786  0.32759800
+rho      40.13182   0.327598  0.06435538
 
 $otherSum
    rho      rss convergence
@@ -1751,7 +1752,8 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "Newton",
     rho = sumResults$rho[i])
 
 Coefficients:
-[1] 165.424   1.873   0.400
+  gamma   delta     rho 
+165.424   1.873   0.400 
 
 > summary( cesGridNewton )
 Estimated CES function with constant returns to scale
@@ -1765,26 +1767,27 @@ and a one-dimensional grid search for coefficient 'rho'
 Convergence achieved after 70 iterations
 
 Coefficients:
-      Estimate Std. Error t value Pr(>|t|)
-[1,]   165.424  13869.588   0.012    0.990
-[2,]     1.873    113.211   0.017    0.987
-[3,]     0.400     22.239   0.018    0.986
+       Estimate Std. Error t value Pr(>|t|)
+gamma   165.424  13869.588   0.012    0.990
+delta     1.873    113.211   0.017    0.987
+rho       0.400     22.239   0.018    0.986
 
 Residual standard error: 87.66374 
 Multiple R-squared: 0.9131703 
 
 > coef( cesGridNewton )
-[1] 165.423876   1.873447   0.400000
+     gamma      delta        rho 
+165.423876   1.873447   0.400000 
 > vcov( cesGridNewton )
-            [,1]        [,2]        [,3]
-[1,] 192365467.7 1570177.129 308410.3021
-[2,]   1570177.1   12816.819   2517.5681
-[3,]    308410.3    2517.568    494.5666
+            gamma       delta         rho
+gamma 192365467.7 1570177.129 308410.3021
+delta   1570177.1   12816.819   2517.5681
+rho      308410.3    2517.568    494.5666
 > coef( summary( cesGridNewton ) )
-       Estimate  Std. Error    t value  Pr(>|t|)
-[1,] 165.423876 13869.58787 0.01192709 0.9904838
-[2,]   1.873447   113.21139 0.01654822 0.9867970
-[3,]   0.400000    22.23885 0.01798654 0.9856496
+        Estimate  Std. Error    t value  Pr(>|t|)
+gamma 165.423876 13869.58787 0.01192709 0.9904838
+delta   1.873447   113.21139 0.01654822 0.9867970
+rho     0.400000    22.23885 0.01798654 0.9856496
 > plot( cesGridNewton )
 > 
 > # using the Newton-type optimization method implemented in nlm(), VRS
@@ -1809,7 +1812,8 @@ $nlm$iterations
 
 
 $coefficients
-[1] 1.364098 0.654290 0.000000 1.555338
+   gamma    delta      rho       nu 
+1.364098 0.654290 0.000000 1.555338 
 
 $iter
 [1] 100
@@ -1852,11 +1856,11 @@ $rss
 [1] 50253.65
 
 $cov.unscaled
-              [,1]          [,2]          [,3]          [,4]
-[1,]  0.0917967086  2.757090e-02 -3.905133e-02 -1.020105e-04
-[2,]  0.0275708962  8.301569e-03 -1.176609e-02 -2.248921e-05
-[3,] -0.0390513318 -1.176609e-02  1.668029e-02  2.914592e-05
-[4,] -0.0001020105 -2.248921e-05  2.914592e-05  3.453859e-06
+              gamma         delta           rho            nu
+gamma  0.0917967086  2.757090e-02 -3.905133e-02 -1.020105e-04
+delta  0.0275708962  8.301569e-03 -1.176609e-02 -2.248921e-05
+rho   -0.0390513318 -1.176609e-02  1.668029e-02  2.914592e-05
+nu    -0.0001020105 -2.248921e-05  2.914592e-05  3.453859e-06
 
 $otherSum
    rho      rss convergence
@@ -1877,10 +1881,11 @@ cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE,
     method = "Newton", rho = sumResults$rho[i])
 
 Coefficients:
-[1] 1.3641 0.6543 0.0000 1.5553
+ gamma  delta    rho     nu 
+1.3641 0.6543 0.0000 1.5553 
 
 > summary( cesGridNewtonVrs )
-Estimated CES function with constant returns to scale
+Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
@@ -1891,11 +1896,11 @@ and a one-dimensional grid search for coefficient 'rho'
 Convergence NOT achieved after 100 iterations
 
 Coefficients:
-     Estimate Std. Error t value Pr(>|t|)    
-[1,]  1.36410   15.18736   0.090    0.928    
-[2,]  0.65429    4.56719   0.143    0.886    
-[3,]  0.00000    6.47397   0.000    1.000    
-[4,]  1.55534    0.09316  16.696   <2e-16 ***
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  1.36410   15.18736   0.090    0.928    
+delta  0.65429    4.56719   0.143    0.886    
+rho    0.00000    6.47397   0.000    1.000    
+nu     1.55534    0.09316  16.696   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -1903,19 +1908,20 @@ Residual standard error: 50.12666
 Multiple R-squared: 0.97161 
 
 > coef( cesGridNewtonVrs )
-[1] 1.364098 0.654290 0.000000 1.555338
+   gamma    delta      rho       nu 
+1.364098 0.654290 0.000000 1.555338 
 > vcov( cesGridNewtonVrs )
-            [,1]         [,2]         [,3]         [,4]
-[1,] 230.6559839  69.27690863 -98.12359826 -0.256320046
-[2,]  69.2769086  20.85920739 -29.56445163 -0.056508248
-[3,] -98.1235983 -29.56445163  41.91227369  0.073234447
-[4,]  -0.2563200  -0.05650825   0.07323445  0.008678452
+            gamma        delta          rho           nu
+gamma 230.6559839  69.27690863 -98.12359826 -0.256320046
+delta  69.2769086  20.85920739 -29.56445163 -0.056508248
+rho   -98.1235983 -29.56445163  41.91227369  0.073234447
+nu     -0.2563200  -0.05650825   0.07323445  0.008678452
 > coef( summary( cesGridNewtonVrs ) )
-     Estimate  Std. Error     t value     Pr(>|t|)
-[1,] 1.364098 15.18736264  0.08981793 9.284319e-01
-[2,] 0.654290  4.56718813  0.14325883 8.860858e-01
-[3,] 0.000000  6.47396893  0.00000000 1.000000e+00
-[4,] 1.555338  0.09315821 16.69566296 1.409449e-62
+      Estimate  Std. Error     t value     Pr(>|t|)
+gamma 1.364098 15.18736264  0.08981793 9.284319e-01
+delta 0.654290  4.56718813  0.14325883 8.860858e-01
+rho   0.000000  6.47396893  0.00000000 1.000000e+00
+nu    1.555338  0.09315821 16.69566296 1.409449e-62
 > plot( cesGridNewtonVrs )
 > 
 > # using the PORT optimization rountine implemented in nlminb(), constrained

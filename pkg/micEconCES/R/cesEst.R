@@ -165,6 +165,8 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       options( warn = warnSaved )
       # extract results
       result$coefficients <- result$nlm$estimate
+      names( result$coefficients ) <- cesCoefNames( nExog, vrs,
+         returnRho = is.null( rho ) )
       result$iter <- result$nlm$iterations
       result$convergence <- result$nlm$code <= 2
    } else if( method == "PORT" ) {
