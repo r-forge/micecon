@@ -1542,7 +1542,8 @@ $nlm$iterations
 
 
 $coefficients
-[1] 34.5395061  0.4930391  2.0000000
+     gamma      delta        rho 
+34.5395061  0.4930391  2.0000000 
 
 $iter
 [1] 4
@@ -1585,10 +1586,10 @@ $rss
 [1] 166153.1
 
 $cov.unscaled
-           [,1]      [,2]        [,3]
-[1,] 234701.753 8636.7981 -11138.5137
-[2,]   8636.798  317.8283   -409.9006
-[3,] -11138.514 -409.9006    528.6955
+           gamma     delta         rho
+gamma 234701.753 8636.7981 -11138.5137
+delta   8636.798  317.8283   -409.9006
+rho   -11138.514 -409.9006    528.6955
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1600,7 +1601,8 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "Newton", rho = 2)
 
 Coefficients:
-[1] 34.540  0.493  2.000
+ gamma  delta    rho 
+34.540  0.493  2.000 
 
 > summary( cesNewton )
 Estimated CES function with constant returns to scale
@@ -1614,26 +1616,27 @@ Coefficient 'rho' was fixed at 2
 Convergence achieved after 4 iterations
 
 Coefficients:
-      Estimate Std. Error  t value Pr(>|t|)
-[1,]    34.539  44156.786    0.001        1
-[2,]     0.493   1624.933 0.000303        1
-[3,]     2.000   2095.763    0.001        1
+       Estimate Std. Error  t value Pr(>|t|)
+gamma    34.539  44156.786    0.001        1
+delta     0.493   1624.933 0.000303        1
+rho       2.000   2095.763    0.001        1
 
 Residual standard error: 91.14635 
 Multiple R-squared: 0.9061344 
 
 > coef( cesNewton )
-[1] 34.5395061  0.4930391  2.0000000
+     gamma      delta        rho 
+34.5395061  0.4930391  2.0000000 
 > vcov( cesNewton )
-           [,1]     [,2]      [,3]
-[1,] 1949821747 71751559 -92534955
-[2,]   71751559  2640408  -3405314
-[3,]  -92534955 -3405314   4392221
+           gamma    delta       rho
+gamma 1949821747 71751559 -92534955
+delta   71751559  2640408  -3405314
+rho    -92534955 -3405314   4392221
 > coef( summary( cesNewton ) )
-       Estimate Std. Error      t value  Pr(>|t|)
-[1,] 34.5395061  44156.786 0.0007822015 0.9993759
-[2,]  0.4930391   1624.933 0.0003034211 0.9997579
-[3,]  2.0000000   2095.763 0.0009543066 0.9992386
+        Estimate Std. Error      t value  Pr(>|t|)
+gamma 34.5395061  44156.786 0.0007822015 0.9993759
+delta  0.4930391   1624.933 0.0003034211 0.9997579
+rho    2.0000000   2095.763 0.0009543066 0.9992386
 > 
 > ## Newton-type, VRS
 > cesNewtonVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "Newton",
@@ -1657,7 +1660,8 @@ $nlm$iterations
 
 
 $coefficients
-[1]  1.3515610  0.7072522 -0.1000000  1.5784289
+     gamma      delta        rho         nu 
+ 1.3515610  0.7072522 -0.1000000  1.5784289 
 
 $iter
 [1] 100
@@ -1700,11 +1704,11 @@ $rss
 [1] 50058.83
 
 $cov.unscaled
-              [,1]          [,2]          [,3]          [,4]
-[1,]  0.0786272631  2.255389e-02 -3.489772e-02 -9.576339e-05
-[2,]  0.0225538913  6.487213e-03 -1.004451e-02 -1.993729e-05
-[3,] -0.0348977230 -1.004451e-02  1.555596e-02  2.828761e-05
-[4,] -0.0000957634 -1.993729e-05  2.828761e-05  3.450516e-06
+              gamma         delta           rho            nu
+gamma  0.0786272631  2.255389e-02 -3.489772e-02 -9.576339e-05
+delta  0.0225538913  6.487213e-03 -1.004451e-02 -1.993729e-05
+rho   -0.0348977230 -1.004451e-02  1.555596e-02  2.828761e-05
+nu    -0.0000957634 -1.993729e-05  2.828761e-05  3.450516e-06
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1716,10 +1720,11 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "Newton", rho = -0.1)
 
 Coefficients:
-[1]  1.3516  0.7073 -0.1000  1.5784
+  gamma   delta     rho      nu 
+ 1.3516  0.7073 -0.1000  1.5784 
 
 > summary( cesNewtonVrs )
-Estimated CES function with constant returns to scale
+Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
@@ -1730,11 +1735,11 @@ Coefficient 'rho' was fixed at -0.1
 Convergence NOT achieved after 100 iterations
 
 Coefficients:
-     Estimate Std. Error t value Pr(>|t|)    
-[1,]  1.35156   14.02852   0.096    0.923    
-[2,]  0.70725    4.02953   0.176    0.861    
-[3,] -0.10000    6.23984  -0.016    0.987    
-[4,]  1.57843    0.09293  16.985   <2e-16 ***
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  1.35156   14.02852   0.096    0.923    
+delta  0.70725    4.02953   0.176    0.861    
+rho   -0.10000    6.23984  -0.016    0.987    
+nu     1.57843    0.09293  16.985   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -1742,19 +1747,20 @@ Residual standard error: 50.0294
 Multiple R-squared: 0.97172 
 
 > coef( cesNewtonVrs )
-[1]  1.3515610  0.7072522 -0.1000000  1.5784289
+     gamma      delta        rho         nu 
+ 1.3515610  0.7072522 -0.1000000  1.5784289 
 > vcov( cesNewtonVrs )
-            [,1]         [,2]         [,3]        [,4]
-[1,] 196.7994256  56.45106632 -87.34695272 -0.23969015
-[2,]  56.4510663  16.23711254 -25.14082312 -0.04990186
-[3,] -87.3469527 -25.14082312  38.93564306  0.07080224
-[4,]  -0.2396901  -0.04990186   0.07080224  0.00863644
+            gamma        delta          rho          nu
+gamma 196.7994256  56.45106632 -87.34695272 -0.23969015
+delta  56.4510663  16.23711254 -25.14082312 -0.04990186
+rho   -87.3469527 -25.14082312  38.93564306  0.07080224
+nu     -0.2396901  -0.04990186   0.07080224  0.00863644
 > coef( summary( cesNewtonVrs ) )
-       Estimate  Std. Error     t value     Pr(>|t|)
-[1,]  1.3515610 14.02852186  0.09634379 9.232475e-01
-[2,]  0.7072522  4.02953006  0.17551730 8.606732e-01
-[3,] -0.1000000  6.23984319 -0.01602604 9.872136e-01
-[4,]  1.5784289  0.09293245 16.98469088 1.066138e-64
+        Estimate  Std. Error     t value     Pr(>|t|)
+gamma  1.3515610 14.02852186  0.09634379 9.232475e-01
+delta  0.7072522  4.02953006  0.17551730 8.606732e-01
+rho   -0.1000000  6.23984319 -0.01602604 9.872136e-01
+nu     1.5784289  0.09293245 16.98469088 1.066138e-64
 > 
 > ## PORT, CRS
 > cesPort <- cesEst( "qOutput", xxNames, germanFarms, method = "PORT", rho = 2 )

@@ -1233,7 +1233,8 @@ $nlm$iterations
 
 
 $coefficients
-[1]  2.743530e+02  8.909107e-04 -4.078588e+00
+        gamma         delta           rho 
+ 2.743530e+02  8.909107e-04 -4.078588e+00 
 
 $iter
 [1] 100
@@ -1273,10 +1274,10 @@ $rss
 [1] 168298.4
 
 $cov.unscaled
-              [,1]          [,2]          [,3]
-[1,] 127464.641054 -4.0595028906 -1.547007e+03
-[2,]     -4.059503  0.0001293511  4.931104e-02
-[3,]  -1547.006879  0.0493110359  1.880309e+01
+              gamma         delta           rho
+gamma 127464.641054 -4.0595028906 -1.547007e+03
+delta     -4.059503  0.0001293511  4.931104e-02
+rho    -1547.006879  0.0493110359  1.880309e+01
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1288,7 +1289,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
     method = "Newton")
 
 Coefficients:
-[1]  2.744e+02  8.909e-04 -4.079e+00
+     gamma      delta        rho 
+ 2.744e+02  8.909e-04 -4.079e+00 
 
 > summary( cesLandLaborNewton )
 Estimated CES function with constant returns to scale
@@ -1301,26 +1303,27 @@ Estimation by non-linear least-squares using the 'Newton' optimizer
 Convergence NOT achieved after 100 iterations
 
 Coefficients:
-       Estimate Std. Error t value Pr(>|t|)
-[1,]  2.744e+02  3.275e+04   0.008    0.993
-[2,]  8.909e-04  1.043e+00   0.001    0.999
-[3,] -4.079e+00  3.978e+02  -0.010    0.992
+        Estimate Std. Error t value Pr(>|t|)
+gamma  2.744e+02  3.275e+04   0.008    0.993
+delta  8.909e-04  1.043e+00   0.001    0.999
+rho   -4.079e+00  3.978e+02  -0.010    0.992
 
 Residual standard error: 91.73288 
 Multiple R-squared: 0.9049224 
 
 > coef( cesLandLaborNewton )
-[1]  2.743530e+02  8.909107e-04 -4.078588e+00
+        gamma         delta           rho 
+ 2.743530e+02  8.909107e-04 -4.078588e+00 
 > vcov( cesLandLaborNewton )
-             [,1]          [,2]          [,3]
-[1,] 1072604912.1 -34160.396995 -1.301794e+07
-[2,]     -34160.4      1.088480  4.149485e+02
-[3,]  -13017941.0    414.948483  1.582265e+05
+             gamma         delta           rho
+gamma 1072604912.1 -34160.396995 -1.301794e+07
+delta     -34160.4      1.088480  4.149485e+02
+rho    -13017941.0    414.948483  1.582265e+05
 > coef( summary( cesLandLaborNewton ) )
-          Estimate   Std. Error       t value  Pr(>|t|)
-[1,]  2.743530e+02 32750.647507  0.0083770245 0.9933162
-[2,]  8.909107e-04     1.043302  0.0008539334 0.9993187
-[3,] -4.078588e+00   397.776961 -0.0102534536 0.9918191
+           Estimate   Std. Error       t value  Pr(>|t|)
+gamma  2.743530e+02 32750.647507  0.0083770245 0.9933162
+delta  8.909107e-04     1.043302  0.0008539334 0.9993187
+rho   -4.078588e+00   397.776961 -0.0102534536 0.9918191
 > fitted( cesLandLaborNewton )
  [1] 1150.916 1189.880 1213.617 1224.673 1224.673 1240.147 1273.088 1276.326
  [9] 1237.803 1281.533 1315.595 1467.805 1528.288 1580.758 1547.947 1565.280
@@ -4306,7 +4309,8 @@ $nlm$iterations
 
 
 $coefficients
-[1] 13.88019000  0.01195882  3.49913110
+      gamma       delta         rho 
+13.88019000  0.01195882  3.49913110 
 
 $iter
 [1] 100
@@ -4346,10 +4350,10 @@ $rss
 [1] 166082.8
 
 $cov.unscaled
-           [,1]       [,2]       [,3]
-[1,] 48491.5245 249.393052 -6824.5161
-[2,]   249.3931   1.282689   -35.1023
-[3,] -6824.5161 -35.102302   960.6991
+           gamma      delta        rho
+gamma 48491.5245 249.393052 -6824.5161
+delta   249.3931   1.282689   -35.1023
+rho   -6824.5161 -35.102302   960.6991
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -4361,7 +4365,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
     method = "Newton")
 
 Coefficients:
-[1] 13.88019  0.01196  3.49913
+   gamma    delta      rho 
+13.88019  0.01196  3.49913 
 
 > summary( cesLandIntNewton )
 Estimated CES function with constant returns to scale
@@ -4374,19 +4379,19 @@ Estimation by non-linear least-squares using the 'Newton' optimizer
 Convergence NOT achieved after 100 iterations
 
 Coefficients:
-      Estimate Std. Error  t value Pr(>|t|)
-[1,] 1.388e+01  2.007e+04    0.001        1
-[2,] 1.196e-02  1.032e+02 0.000116        1
-[3,] 3.499e+00  2.824e+03    0.001        1
+       Estimate Std. Error  t value Pr(>|t|)
+gamma 1.388e+01  2.007e+04    0.001        1
+delta 1.196e-02  1.032e+02 0.000116        1
+rho   3.499e+00  2.824e+03    0.001        1
 
 Residual standard error: 91.12705 
 Multiple R-squared: 0.9061741 
 
 > coef( summary( cesLandIntNewton ) )
-        Estimate Std. Error      t value  Pr(>|t|)
-[1,] 13.88019000 20066.8982 0.0006916958 0.9994481
-[2,]  0.01195882   103.2067 0.0001158725 0.9999075
-[3,]  3.49913110  2824.4964 0.0012388513 0.9990115
+         Estimate Std. Error      t value  Pr(>|t|)
+gamma 13.88019000 20066.8982 0.0006916958 0.9994481
+delta  0.01195882   103.2067 0.0001158725 0.9999075
+rho    3.49913110  2824.4964 0.0012388513 0.9990115
 > 
 > # using the PORT optimization rountine implemented in nlminb(), UNconstrained
 > cesLandIntPort <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
