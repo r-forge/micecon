@@ -1,6 +1,6 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
       method = "Nelder-Mead", startVal = NULL, lower = NULL, upper = NULL,
-      rho = NULL, ... ) {
+      rho = NULL, returnGridAll = FALSE, ... ) {
 
    # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)
    # s = 1 / ( 1 + rho )
@@ -16,10 +16,18 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # checking "rho"
    if( !is.null( rho ) ) {
-      if( !is.numeric( rho ) || length( rho ) != 1 ) {
-         stop( "argument 'rho' must be either 'NULL' or a numeric scalar" )
-      } else if( rho < -1 ) {
-         stop( "argument 'rho' must not be smaller than '-1'" )
+      if( !is.numeric( rho ) ) {
+         stop( "argument 'rho' must be either 'NULL' or numeric" )
+      } else if( min( rho ) < -1 ) {
+         stop( "the rhos specified in argument 'rho'",
+            " must not be smaller than '-1'" )
+      } else if( length( rho ) > 1 ) {
+         result <- cesEstGridRho( yName = yName, xNames = xNames,
+            data = data, vrs = vrs, method = method, startVal = startVal,
+            lower = lower, upper = upper,
+            rhoValues = rho, returnAll = returnGridAll, ... )
+         result$call <- match.call()
+         return( result )
       }
    }
 

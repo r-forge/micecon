@@ -25,7 +25,8 @@
 
 \usage{
 cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
-   startVal = NULL, lower = NULL, upper = NULL, rho = NULL, \dots )
+   startVal = NULL, lower = NULL, upper = NULL, rho = NULL,
+   returnGridAll = FALSE, \dots )
 
 \method{print}{cesEst}( x, digits = max(3, getOption("digits") - 3),
    \dots )
@@ -51,9 +52,20 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       (see section \sQuote{Details}).}
    \item{upper}{upper bounds of the parameters
       (see section \sQuote{Details}).}
-   \item{rho}{numeric scalar at which the coefficient \eqn{\rho}{rho}
+   \item{rho}{numeric scalar or vector at which the coefficient \eqn{\rho}{rho}
       should be fixed;
-      if \code{NULL} (default), \eqn{\rho}{rho} is estimated.}
+      if \code{NULL} (default), \eqn{\rho}{rho} is estimated together
+      with the other parameters;
+      if it has more than one element,
+      a one-dimensional grid search for \eqn{\rho}{rho} is performed
+      (see section \sQuote{Details}).}
+   \item{returnGridAll}{logical value that indicates
+      whether the estimates for all values of \eqn{\rho}{rho}
+      obtained during the grid search
+      (not just the estimations with the \sQuote{best} \eqn{\rho}{rho})
+      should be returned
+      (ignored if argument \code{rho} is \code{NULL}
+      or has only a single element).}
    \item{x}{an object of class \code{cesEst}.}
    \item{digits}{number of digits.}
    \item{\dots}{further arguments to \code{cesEst} are passed to
@@ -145,11 +157,23 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    by setting arguments \code{lower} and \code{upper} to numeric vectors
    that should have the same format as argument \code{startVal}
    (see above).
+
+   \bold{Grid search for \eqn{\rho}{rho}}\cr
+   If argument \code{rho} has more than one element,
+   a one-dimensional grid search for \eqn{\rho}{rho} is performed.
+   The CES ist estimated by least-squares,
+   where \eqn{\rho}{rho} is fixed consecutively at each value
+   defined in argument \code{rho}.
+   Finally the estimation with the \eqn{\rho}{rho},
+   that results in the smallest sum of squared residuals is chosen
+   (and returned).
 }
 
 \value{
    \code{cesEst} returns a list of class \code{cesEst}
-   that has following components:
+   or---if a grid search was performed---of classes
+   \code{cesEstGridRho} and \code{cesEst}.
+   The returned list has following components:
    \item{coefficients}{estimated coefficients/parameters of the CES
       (including a possible fixed \eqn{\rho}{rho}).}
    \item{iter}{number of iterations
@@ -204,6 +228,19 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       in the unrestricted translog model
       returned by \code{\link[car]{linear.hypothesis}}
       (only if argument \code{method} is \code{"Kmenta"}).}
+   \item{otherSum}{data frame with summary results of the estimations
+      with all values of \eqn{\rho}{rho} used in the grid search
+      (only if a grid search was performed);
+      this data frame has follwing columns:
+      \code{rho} = the value of \eqn{\rho}{rho},
+      \code{rss} = the corresponding sum of squared residuals, and
+      (if appropriate for the method used for the estimation)
+      \code{convergence} = logical value indicating whether the estimation
+      converged.}
+   \item{otherFull}{list of estimation results returned by \code{\link{cesEst}}
+      for all values of \eqn{\rho}{rho} used in the grid search
+      (only if a grid search was performed and
+      argument \code{returnGridAll} is set to \code{TRUE}).}
 }
 
 \references{
@@ -266,6 +303,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
 
 \seealso{
    \code{\link{summary.cesEst}} for the \code{summary} method,
+   \code{\link{plot.cesEstGridRho}} for plotting the results
+      of the grid search for \eqn{\rho}{rho},
    \code{\link{coef.cesEst}} for several further methods,
    \code{\link{cesCalc}} for calculations or simulations with the CES,
    \code{\link[micEcon]{translogEst}} for estimating translog functions, and
@@ -347,6 +386,11 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    # using the Differential Evolution optimization method
    cesLandIntDe <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
       method = "DE" )
+
+   ## estimation with a grid search for rho
+   cesLandInt <- cesEst( yName = "qOutput",
+      xNames = c( "land", "qVarInput" ), data = germanFarms,
+      rho = seq( from = -0.6, to = 0.9, by = 0.3 ) )
 }
 
 \keyword{models}
