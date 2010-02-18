@@ -55,7 +55,7 @@ Loading required package: DEoptim
 > ## CES: Land & Intermediate inputs
 > ## Nelder-Mead, CRS
 > cesGridNm <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, by = 0.4, to = 1.2 )
++    data = germanFarms, rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 > print.default( cesGridNm ) 
 $optim
 $optim$par
@@ -191,7 +191,8 @@ rho     0.400000    22.23612 0.01798875 0.9856478
 > 
 > ## Nelder-Mead, VRS
 > cesGridNmVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, vrs = TRUE, by = 0.4, to = 1.2 )
++    data = germanFarms, vrs = TRUE,
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 > print.default( cesGridNmVrs )
 $optim
 $optim$par
@@ -327,7 +328,8 @@ nu     1.5670310  0.0932491 16.80478547 2.251256e-63
 > 
 > # using the CG optimization method
 > cesGridCg <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "CG", by = 0.4, to = 1.2 )
++    data = germanFarms, method = "CG",
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 > print.default( cesGridCg )
 $optim
 $optim$par
@@ -467,7 +469,8 @@ rho    1.2000000   183.1089 0.006553476 0.9947711
 > 
 > # using the CG optimization method, VRS
 > cesGridCgVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "CG", vrs = TRUE, by = 0.4, to = 1.2 )
++    data = germanFarms, method = "CG", vrs = TRUE,
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 There were 50 or more warnings (use warnings() to see the first 50)
 > print.default( cesGridCgVrs )
 $optim
@@ -606,7 +609,8 @@ nu     1.3052536   0.1144128 11.40827978 3.801733e-30
 > # using the SANN optimization method
 > set.seed( 1 )
 > cesGridSann <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "SANN", by = 0.8, to = 0.8 )
++    data = germanFarms, method = "SANN",
++    rhoValues = seq( from = -0.8, to = 0.8, by = 0.8 ) )
 > print.default( cesGridSann )
 $optim
 $optim$par
@@ -730,7 +734,8 @@ rho    0.800000   82.21912 0.009730096 0.9922366
 > # using the SANN optimization method, VRS
 > set.seed( 21 )
 > cesGridSannVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "SANN", vrs = TRUE, by = 0.8, to = 0.8 )
++    data = germanFarms, method = "SANN", vrs = TRUE,
++    rhoValues = seq( from = -0.8, to = 0.8, by = 0.8 ) )
 > print.default( cesGridSannVrs )
 $optim
 $optim$par
@@ -859,7 +864,8 @@ nu     1.5073915  0.09498787 15.8693049 1.033794e-56
 > 
 > # using the BFGS optimization method
 > cesGridBfgs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "BFGS", by = 0.4, to = 1.2 )
++    data = germanFarms, method = "BFGS",
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 > print.default( cesGridBfgs )
 $optim
 $optim$par
@@ -990,7 +996,8 @@ rho     0.400000    22.23961 0.01798593 0.9856501
 > 
 > # using the BFGS optimization method, VRS
 > cesGridBfgsVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "BFGS", vrs = TRUE, by = 0.4, to = 1.2 )
++    data = germanFarms, method = "BFGS", vrs = TRUE,
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 There were 50 or more warnings (use warnings() to see the first 50)
 > print.default( cesGridBfgsVrs )
 $optim
@@ -1128,7 +1135,8 @@ nu     1.5670310  0.0932491 16.80478547 2.251256e-63
 > 
 > # using the L-BFGS-B optimization method with constrained parameters
 > cesGridBfgsCon <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "L-BFGS-B", by = 0.4, to = 1.2 )
++    data = germanFarms, method = "L-BFGS-B",
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 > print.default( cesGridBfgsCon )
 $optim
 $optim$par
@@ -1263,7 +1271,8 @@ rho    0.80000 2.302449e+13 3.474562e-14 1.0000000
 > 
 > # using the L-BFGS-B optimization method with constrained parameters, VRS
 > cesGridBfgsConVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "L-BFGS-B", vrs = TRUE, by = 0.4, to = 1.2 )
++    data = germanFarms, method = "L-BFGS-B", vrs = TRUE,
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 > print.default( cesGridBfgsConVrs )
 $optim
 $optim$par
@@ -1404,7 +1413,8 @@ nu    1.584593  0.09281398 17.07278230 2.366482e-65
 > 
 > # using the Levenberg-Marquardt optimization method
 > cesGridLm <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "LM", by = 0.4, to = 1.2 )
++    data = germanFarms, method = "LM",
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 Warning messages:
 1: In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
   lmder: info = -1. Number of iterations has reached `maxiter' == 50.
@@ -1532,7 +1542,8 @@ rho     0.400000    22.23885 0.01798654 0.9856496
 > 
 > # using the Levenberg-Marquardt optimization method, VRS
 > cesGridLmVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "LM", vrs = TRUE, by = 0.4, to = 1.2 )
++    data = germanFarms, method = "LM", vrs = TRUE,
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 Warning messages:
 1: In log(coef["gamma"]) : NaNs produced
 2: In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
@@ -1664,7 +1675,8 @@ nu    1.58848816 0.09200041 17.26609852 8.467703e-67
 > 
 > # using the Newton-type optimization method implemented in nlm()
 > cesGridNewton <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "Newton", by = 0.4, to = 1.2 )
++    data = germanFarms, method = "Newton",
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 > print.default( cesGridNewton )
 $nlm
 $nlm$minimum
@@ -1792,7 +1804,8 @@ rho     0.400000    22.23885 0.01798654 0.9856496
 > 
 > # using the Newton-type optimization method implemented in nlm(), VRS
 > cesGridNewtonVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "Newton", vrs = TRUE, by = 0.4, to = 1.2 )
++    data = germanFarms, method = "Newton", vrs = TRUE,
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 > print.default( cesGridNewtonVrs )
 $nlm
 $nlm$minimum
@@ -1926,7 +1939,8 @@ nu    1.555338  0.09315821 16.69566296 1.409449e-62
 > 
 > # using the PORT optimization rountine implemented in nlminb(), constrained
 > cesGridPort <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "PORT", by = 0.4, to = 1.2 )
++    data = germanFarms, method = "PORT",
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 > print.default( cesGridPort )
 $nlminb
 $nlminb$par
@@ -2065,7 +2079,8 @@ rho   -0.80000 2.631093e+13 -3.040562e-14 1.000000e+00
 > 
 > # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 > cesGridPortVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "PORT", vrs = TRUE, by = 0.4, to = 1.2 )
++    data = germanFarms, method = "PORT", vrs = TRUE,
++    rhoValues = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 > print.default( cesGridPortVrs )
 $nlminb
 $nlminb$par
@@ -2209,7 +2224,8 @@ nu    1.58766025 0.09200355 17.25651074 9.997235e-67
 > # using the DE optimization method implemented in DEoptim(), CRS
 > set.seed( 321 )
 > cesGridDe <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "DE", by = 0.8, to = 0.8 )
++    data = germanFarms, method = "DE",
++    rhoValues = seq( from = -0.8, to = 0.8, by = 0.8 ) )
 Iteration: 1 bestvalit: 1350499681399490740224.000000 bestmemit:129982747.603208    0.926056
 Iteration: 2 bestvalit: 1350499681399490740224.000000 bestmemit:129982747.603208    0.926056
 Iteration: 3 bestvalit: 422630671127088660480.000000 bestmemit:98784966.394305    0.961033
@@ -3240,7 +3256,8 @@ rho    0.00000 4.623519e+15 0.00000000 1.000000
 > # using the DE optimization method implemented in DEoptim(), VRS
 > set.seed( 4321 )
 > cesGridDeVrs <- cesEstGridRho( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "DE", vrs = TRUE, by = 0.8, to = 0.8 )
++    data = germanFarms, method = "DE", vrs = TRUE,
++    rhoValues = seq( from = -0.8, to = 0.8, by = 0.8 ) )
 Iteration: 1 bestvalit: 11823896766167237263360.000000 bestmemit:3706601476.296782    0.892650    0.429895
 Iteration: 2 bestvalit: 260404849770983161856.000000 bestmemit:4568633723.538369    0.839126    0.079927
 Iteration: 3 bestvalit: 260404849770983161856.000000 bestmemit:4568633723.538369    0.839126    0.079927

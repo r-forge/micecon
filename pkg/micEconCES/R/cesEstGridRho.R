@@ -1,20 +1,17 @@
-cesEstGridRho <- function( from = -0.8, to = 4, by = 0.2,
+cesEstGridRho <- function( rhoValues = seq( from = -0.8, to = 4, by = 0.2 ),
       returnAll = FALSE, ... )  {
 
    # some tests
-   if( from < -1 ) {
-      stop( "argument 'from' must not be smaller than '-1'" )
-   } else if( from > by ) {
-      stop( "argument 'from' must be larger than argument 'to'" )
-   } else if( by <= 0 ) {
-      stop( "argument 'by' must be positive" )
+   if( min( rhoValues ) < -1 ) {
+      stop( "the rhos specified in argument 'rhoValues'",
+         " must not be smaller than '-1'" )
    }
 
    # list that should contain each estimation result
    allResults <- list()
 
    # summary results for each estimation (with different fixed rhos)
-   sumResults <- data.frame( rho = seq( from = from, to = to, by = by ) )
+   sumResults <- data.frame( rho = rhoValues )
    sumResults$rss <- NA
    sumResults$convergence <- NA
 

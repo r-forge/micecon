@@ -14,18 +14,15 @@
 }
 
 \usage{
-cesEstGridRho(from = -0.8, to = 4, by = 0.2, returnAll = FALSE, \dots )
+cesEstGridRho( rhoValues = seq( from = -0.8, to = 4, by = 0.2 ),
+   returnAll = FALSE, \dots )
 
 \method{plot}{cesEstGridRho}( x, \dots )
 }
 
 \arguments{
-   \item{from}{first (minimal) value of \eqn{\rho}{rho}
-      used in the grid search.}
-   \item{to}{last (maximal) value of \eqn{\rho}{rho}
-      used in the grid search.}
-   \item{by}{increment of the values of \eqn{\rho}{rho}
-      used in the grid search.}
+   \item{rhoValues}{numerical vector containing the values of \eqn{\rho}{rho}
+      that are used in the grid search.}
    \item{returnAll}{logical. Return all objects returned
       by \code{\link{cesEst}} during the grid search?}
    \item{x}{object returned by \code{cesEstGridRho}.}
@@ -82,7 +79,7 @@ cesEstGridRho(from = -0.8, to = 4, by = 0.2, returnAll = FALSE, \dots )
    ## CES: Land & Intermediate Inputs
    cesLandInt <- cesEstGridRho( yName = "qOutput",
       xNames = c( "land", "qVarInput" ), data = germanFarms,
-      from = -0.6, to = 0.9, by = 0.3 )
+      rhoValues = seq( from = -0.6, to = 0.9, by = 0.3 ) )
 
    # plot the rhos against the sum of squared residuals
    plot( cesLandInt ) 
