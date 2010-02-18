@@ -1,6 +1,5 @@
 export( "cesCalc" )
 export( "cesEst" )
-export( "cesEstGridRho" )
 
 S3method( "coef", "cesEst" )
 S3method( "coef", "summary.cesEst" )

@@ -1,5 +1,4 @@
-cesEstGridRho <- function( rhoValues = seq( from = -0.8, to = 4, by = 0.2 ),
-      returnAll = FALSE, ... )  {
+cesEstGridRho <- function( rhoValues, returnAll, ... )  {
 
    # some tests
    if( min( rhoValues ) < -1 ) {
