@@ -87,7 +87,8 @@ $convergence
 [1] TRUE
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 
 $method
 [1] "Nelder-Mead"
@@ -140,7 +141,8 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 
 Coefficients:
   gamma   delta     rho 
@@ -150,7 +152,8 @@ Coefficients:
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -224,8 +227,9 @@ $convergence
 [1] FALSE
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    vrs = TRUE)
 
 $method
 [1] "Nelder-Mead"
@@ -279,8 +283,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    vrs = TRUE)
 
 Coefficients:
  gamma  delta    rho     nu 
@@ -290,8 +295,9 @@ Coefficients:
 Estimated CES function with variable returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    vrs = TRUE)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -362,8 +368,9 @@ $convergence
 [1] FALSE
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "CG", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "CG")
 
 $method
 [1] "CG"
@@ -416,8 +423,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "CG", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "CG")
 
 Coefficients:
   gamma   delta     rho 
@@ -427,8 +435,9 @@ Coefficients:
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "CG", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "CG")
 
 Estimation by non-linear least-squares using the 'CG' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -504,8 +513,9 @@ $convergence
 [1] FALSE
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "CG", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "CG", vrs = TRUE)
 
 $method
 [1] "CG"
@@ -559,8 +569,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "CG", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "CG", vrs = TRUE)
 
 Coefficients:
  gamma  delta    rho     nu 
@@ -570,8 +581,9 @@ Coefficients:
 Estimated CES function with variable returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "CG", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "CG", vrs = TRUE)
 
 Estimation by non-linear least-squares using the 'CG' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -639,8 +651,9 @@ $iter
 [1] 10000
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "SANN", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "SANN")
 
 $method
 [1] "SANN"
@@ -690,8 +703,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "SANN", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "SANN")
 
 Coefficients:
   gamma   delta     rho 
@@ -701,8 +715,9 @@ Coefficients:
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "SANN", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "SANN")
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -764,8 +779,9 @@ $iter
 [1] 10000
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "SANN", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "SANN", vrs = TRUE)
 
 $method
 [1] "SANN"
@@ -816,8 +832,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "SANN", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "SANN", vrs = TRUE)
 
 Coefficients:
   gamma   delta     rho      nu 
@@ -827,8 +844,9 @@ Coefficients:
 Estimated CES function with variable returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "SANN", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "SANN", vrs = TRUE)
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -898,8 +916,9 @@ $convergence
 [1] TRUE
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "BFGS", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "BFGS")
 
 $method
 [1] "BFGS"
@@ -952,8 +971,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "BFGS", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "BFGS")
 
 Coefficients:
   gamma   delta     rho 
@@ -963,8 +983,9 @@ Coefficients:
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "BFGS", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "BFGS")
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -1031,8 +1052,9 @@ $convergence
 [1] FALSE
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "BFGS", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "BFGS", vrs = TRUE)
 
 $method
 [1] "BFGS"
@@ -1086,8 +1108,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "BFGS", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "BFGS", vrs = TRUE)
 
 Coefficients:
  gamma  delta    rho     nu 
@@ -1097,8 +1120,9 @@ Coefficients:
 Estimated CES function with variable returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "BFGS", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "BFGS", vrs = TRUE)
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -1172,8 +1196,9 @@ $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "L-BFGS-B", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "L-BFGS-B")
 
 $method
 [1] "L-BFGS-B"
@@ -1226,8 +1251,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "L-BFGS-B", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "L-BFGS-B")
 
 Coefficients:
 gamma delta   rho 
@@ -1237,8 +1263,9 @@ gamma delta   rho
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "L-BFGS-B", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "L-BFGS-B")
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -1308,8 +1335,9 @@ $message
 [1] "NEW_X"
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "L-BFGS-B", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "L-BFGS-B", vrs = TRUE)
 
 $method
 [1] "L-BFGS-B"
@@ -1363,8 +1391,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "L-BFGS-B", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "L-BFGS-B", vrs = TRUE)
 
 Coefficients:
  gamma  delta    rho     nu 
@@ -1374,8 +1403,9 @@ Coefficients:
 Estimated CES function with variable returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "L-BFGS-B", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "L-BFGS-B", vrs = TRUE)
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -1443,8 +1473,9 @@ $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "LM", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "LM")
 
 $method
 [1] "LM"
@@ -1497,8 +1528,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "LM", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "LM")
 
 Coefficients:
   gamma   delta     rho 
@@ -1508,8 +1540,9 @@ Coefficients:
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "LM", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "LM")
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -1570,8 +1603,9 @@ $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "LM", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "LM", vrs = TRUE)
 
 $method
 [1] "LM"
@@ -1625,8 +1659,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "LM", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "LM", vrs = TRUE)
 
 Coefficients:
   gamma   delta     rho      nu 
@@ -1636,8 +1671,9 @@ Coefficients:
 Estimated CES function with variable returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "LM", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "LM", vrs = TRUE)
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -1706,8 +1742,9 @@ $convergence
 [1] TRUE
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "Newton", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Newton")
 
 $method
 [1] "Newton"
@@ -1760,8 +1797,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "Newton", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Newton")
 
 Coefficients:
   gamma   delta     rho 
@@ -1771,8 +1809,9 @@ Coefficients:
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "Newton", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Newton")
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -1835,8 +1874,9 @@ $convergence
 [1] FALSE
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "Newton", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Newton", vrs = TRUE)
 
 $method
 [1] "Newton"
@@ -1890,8 +1930,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "Newton", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Newton", vrs = TRUE)
 
 Coefficients:
  gamma  delta    rho     nu 
@@ -1901,8 +1942,9 @@ Coefficients:
 Estimated CES function with variable returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "Newton", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "Newton", vrs = TRUE)
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -1978,8 +2020,9 @@ $message
 [1] "relative convergence (4)"
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "PORT", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "PORT")
 
 $method
 [1] "PORT"
@@ -2032,8 +2075,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "PORT", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "PORT")
 
 Coefficients:
 gamma delta   rho 
@@ -2043,8 +2087,9 @@ gamma delta   rho
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "PORT", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "PORT")
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -2118,8 +2163,9 @@ $message
 [1] "function evaluation limit reached without convergence (9)"
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "PORT", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "PORT", vrs = TRUE)
 
 $method
 [1] "PORT"
@@ -2173,8 +2219,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "PORT", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "PORT", vrs = TRUE)
 
 Coefficients:
   gamma   delta     rho      nu 
@@ -2184,8 +2231,9 @@ Coefficients:
 Estimated CES function with variable returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "PORT", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 1.2, by = 0.4), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "PORT", vrs = TRUE)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -3165,8 +3213,9 @@ $iter
 [1] 200
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "DE", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "DE")
 
 $method
 [1] "DE"
@@ -3212,8 +3261,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "DE", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "DE")
 
 Coefficients:
 gamma delta   rho 
@@ -3223,8 +3273,9 @@ gamma delta   rho
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, method = "DE", 
-    rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "DE")
 
 Estimation by non-linear least-squares using the 'DE' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -4197,8 +4248,9 @@ $iter
 [1] 200
 
 $call
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "DE", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "DE", vrs = TRUE)
 
 $method
 [1] "DE"
@@ -4245,8 +4297,9 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "DE", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "DE", vrs = TRUE)
 
 Coefficients:
  gamma  delta    rho     nu 
@@ -4256,8 +4309,9 @@ Coefficients:
 Estimated CES function with variable returns to scale
 
 Call:
-cesEst(yName = "qOutput", xNames = ..2, data = ..3, vrs = TRUE, 
-    method = "DE", rho = sumResults$rho[i])
+cesEstGridRho(rhoValues = seq(from = -0.8, to = 0.8, by = 0.8), 
+    yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "DE", vrs = TRUE)
 
 Estimation by non-linear least-squares using the 'DE' optimizer
 and a one-dimensional grid search for coefficient 'rho'
