@@ -59,7 +59,7 @@ Loading required package: DEoptim
 > 
 > 
 > ## Nelder-Mead, CRS
-> cesNm <- cesEst( "qOutput", xxNames, germanFarms, rho = 2 )
+> cesNm <- cesEst( "qOutput", xxNames, germanFarms, rho = 2, method = "NM" )
 > print.default( cesNm ) 
 $optim
 $optim$par
@@ -92,7 +92,7 @@ $convergence
 
 $call
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    rho = 2)
+    method = "NM", rho = 2)
 
 $method
 [1] "Nelder-Mead"
@@ -137,7 +137,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    rho = 2)
+    method = "NM", rho = 2)
 
 Coefficients:
  gamma  delta    rho 
@@ -148,7 +148,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    rho = 2)
+    method = "NM", rho = 2)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 Coefficient 'rho' was fixed at 2 
@@ -178,7 +178,8 @@ delta  2.958593  58022.659 5.099031e-05 0.9999593
 rho    2.000000   3228.081 6.195632e-04 0.9995057
 > 
 > ## Nelder-Mead, VRS
-> cesNmVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE, rho = -0.1 )
+> cesNmVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE, rho = -0.1,
++    method = "Nelder-Mead" )
 > print.default( cesNmVrs )
 $optim
 $optim$par
@@ -211,7 +212,7 @@ $convergence
 
 $call
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    vrs = TRUE, rho = -0.1)
+    vrs = TRUE, method = "Nelder-Mead", rho = -0.1)
 
 $method
 [1] "Nelder-Mead"
@@ -257,7 +258,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    vrs = TRUE, rho = -0.1)
+    vrs = TRUE, method = "Nelder-Mead", rho = -0.1)
 
 Coefficients:
   gamma   delta     rho      nu 
@@ -268,7 +269,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    vrs = TRUE, rho = -0.1)
+    vrs = TRUE, method = "Nelder-Mead", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 Coefficient 'rho' was fixed at -0.1 
@@ -1290,7 +1291,7 @@ rho   -0.1000000  6.18431836 -0.01616993 9.870988e-01
 nu     1.5842273  0.09288816 17.05521329 3.197038e-65
 > 
 > ## Levenberg-Marquardt, CRS
-> cesLm <- cesEst( "qOutput", xxNames, germanFarms, method = "LM",
+> cesLm <- cesEst( "qOutput", xxNames, germanFarms,
 +    control = nls.lm.control( maxiter = 200 ), rho = 2 )
 Warning message:
 In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
@@ -1318,7 +1319,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    method = "LM", rho = 2, control = nls.lm.control(maxiter = 200))
+    rho = 2, control = nls.lm.control(maxiter = 200))
 
 $method
 [1] "LM"
@@ -1363,7 +1364,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    method = "LM", rho = 2, control = nls.lm.control(maxiter = 200))
+    rho = 2, control = nls.lm.control(maxiter = 200))
 
 Coefficients:
  gamma  delta    rho 
@@ -1374,7 +1375,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    method = "LM", rho = 2, control = nls.lm.control(maxiter = 200))
+    rho = 2, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 Coefficient 'rho' was fixed at 2 
@@ -1405,7 +1406,7 @@ delta  74.69235 3.846027e+07 1.942065e-06 0.9999985
 rho     2.00000 2.252637e+03 8.878482e-04 0.9992916
 > 
 > ## Levenberg-Marquardt, VRS
-> cesLmVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "LM", vrs = TRUE,
+> cesLmVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE,
 +    control = nls.lm.control( maxiter = 200 ), rho = -0.1 )
 > print.default( cesLmVrs )
 $nls.lm
@@ -1429,7 +1430,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    vrs = TRUE, method = "LM", rho = -0.1, control = nls.lm.control(maxiter = 200))
+    vrs = TRUE, rho = -0.1, control = nls.lm.control(maxiter = 200))
 
 $method
 [1] "LM"
@@ -1475,7 +1476,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    vrs = TRUE, method = "LM", rho = -0.1, control = nls.lm.control(maxiter = 200))
+    vrs = TRUE, rho = -0.1, control = nls.lm.control(maxiter = 200))
 
 Coefficients:
   gamma   delta     rho      nu 
@@ -1486,7 +1487,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    vrs = TRUE, method = "LM", rho = -0.1, control = nls.lm.control(maxiter = 200))
+    vrs = TRUE, rho = -0.1, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 Coefficient 'rho' was fixed at -0.1 

@@ -138,8 +138,7 @@ plot( cesGridBfgsConVrs )
 
 # using the Levenberg-Marquardt optimization method
 cesGridLm <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-   data = germanFarms, method = "LM",
-   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+   data = germanFarms, rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 print.default( cesGridLm )
 print( cesGridLm )
 summary( cesGridLm )
@@ -150,7 +149,7 @@ plot( cesGridLm )
 
 # using the Levenberg-Marquardt optimization method, VRS
 cesGridLmVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-   data = germanFarms, method = "LM", vrs = TRUE,
+   data = germanFarms, vrs = TRUE,
    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 print.default( cesGridLmVrs )
 print( cesGridLmVrs )

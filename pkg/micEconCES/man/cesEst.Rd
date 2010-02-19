@@ -24,7 +24,7 @@
 }
 
 \usage{
-cesEst( yName, xNames, data, vrs = FALSE, method = "NM",
+cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    startVal = NULL, lower = NULL, upper = NULL, rho = NULL,
    returnGridAll = FALSE, \dots )
 
@@ -41,8 +41,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "NM",
    \item{vrs}{logical. Allow for variable returns to scale?}
    \item{method}{character string indicationg the estimation method:
       either \code{"Kmenta"} for the Kmenta approximation
-      or \code{"NM"}, \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"},
-      \code{"L-BFGS-B"}, \code{"SANN"}, \code{"LM"},
+      or \code{"LM"}, \code{"NM"}, \code{"Nelder-Mead"}, \code{"BFGS"},
+      \code{"CG"}, \code{"L-BFGS-B"}, \code{"SANN"},
       \code{"Newton"}, \code{"PORT"}, or \code{"DE"}
       for non-linear least-squares (see section \sQuote{Details}).}
    \item{startVal}{optional numeric vector giving the starting values
@@ -83,6 +83,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "NM",
    approximation;
    otherwise, it is estimated by non-linear least-squares.
    Several different optimizers can be used for the non-linear estimation.
+   The optimization method
+   \code{LM} (Levenberg-Marquardt, see Moré 1978)
+   uses \code{\link[minpack.lm]{nls.lm}} for the optimization.
    The optimization methods
    \code{NM} or \code{Nelder-Mead} (Nelder and Mead 1965),
    \code{BFGS} (Broyden 1970, Fletcher 1970, Goldfarb 1970, Shanno 1970),
@@ -90,9 +93,6 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "NM",
    \code{L-BFGS-B} (with box-constraints, Byrd, Lu, Nocedal, and Zhu 1995), and
    \code{SANN} (Simulated Annealing, Bélisle 1992)
    use \code{\link[stats]{optim}} for the optimization.
-   The optimization method
-   \code{LM} (Levenberg-Marquardt, see Moré 1978)
-   uses \code{\link[minpack.lm]{nls.lm}} for the optimization.
    The optimization method
    \code{Newton} (Newton-type, see Dennis and Schnabel 1983
    and Schnabel, Koontz, and Weiss 1985)
@@ -103,8 +103,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "NM",
    The optimization method
    \code{DE} (Differential Evolution, see Storn and Price 1997)
    uses \code{\link[DEoptim]{DEoptim}} for the optimization.
-   Analytical gradients are used in the \code{BFGS}, \code{CG},
-   \code{L-BFGS-B}, \code{LM}, \code{Newton}, and \code{PORT} method.\cr\cr
+   Analytical gradients are used in the \code{LM}, \code{BFGS}, \code{CG},
+   \code{L-BFGS-B}, \code{Newton}, and \code{PORT} method.\cr\cr
 
 
    \bold{Starting values}\cr
@@ -201,11 +201,11 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "NM",
    \item{lower}{lower bounds of the parameters.}
    \item{upper}{upper bounds of the parameters.}
    \item{rho}{argument \code{rho}.}
+   \item{nls.lm}{object returned by \code{\link[minpack.lm]{nls.lm}}
+      (only if argument \code{method} is \code{"LM"}).}
    \item{optim}{object returned by \code{\link[stats]{optim}}
       (only if argument \code{method} is \code{"NM"}, \code{"Nelder-Mead"},
       \code{"BFGS"}, \code{"CG"}, \code{"L-BFGS-B"}, or \code{"SANN"})).}
-   \item{nls.lm}{object returned by \code{\link[minpack.lm]{nls.lm}}
-      (only if argument \code{method} is \code{"LM"}).}
    \item{nlm}{object returned by \code{\link[stats]{nlm}}
       (only if argument \code{method} is \code{"Newton"}).}
    \item{nlminb}{object returned by \code{\link[stats]{nlminb}}
@@ -318,12 +318,16 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "NM",
    germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 
 
-   ## CES: Land & Labor
+   ## CES: Land & Labor (Levenberg-Marquardt algorithm)
    cesLandLabor <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms )
 
-   # variable returns to scale
+   # variable returns to scale (Levenberg-Marquardt algorithm)
    cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
       vrs = TRUE )
+
+   # using the Nelder-Mead optimization method
+   cesLandLaborNm <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+      method = "NM" )
 
    # using the BFGS optimization method
    cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -358,12 +362,16 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "NM",
       method = "DE" )
 
 
-   ## CES: Land & Intermediate Inputs
+   ## CES: Land & Intermediate Inputs (Levenberg-Marquardt algorithm)
    cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
 
-   # variable returns to scale
+   # variable returns to scale (Levenberg-Marquardt algorithm)
    cesLandIntVrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
       vrs = TRUE )
+
+   # using the Nelder-Mead optimization method
+   cesLandIntNm <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+      method = "NM", control = nls.lm.control( maxiter = 200 ) )
 
    # using the BFGS optimization method
    cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -376,10 +384,6 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "NM",
    # using the SANN optimization method
    cesLandIntSann <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
       method = "SANN" )
-
-   # using the Levenberg-Marquardt optimization method
-   cesLandIntLm <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-      method = "LM", control = nls.lm.control( maxiter = 200 ) )
 
    # using the Differential Evolution optimization method
    cesLandIntDe <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,

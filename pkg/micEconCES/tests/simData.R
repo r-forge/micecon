@@ -142,7 +142,7 @@ fitted( cesBfgsConVrs )
 residuals( cesBfgsConVrs )
 
 ## Levenberg-Marquardt, CRS
-cesLm <- cesEst( "ys", xxNames, cesData, method = "LM",
+cesLm <- cesEst( "ys", xxNames, cesData,
    control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLm )
 print( cesLm )
@@ -154,7 +154,7 @@ fitted( cesLm )
 residuals( cesLm )
 
 ## Levenberg-Marquardt, VRS
-cesLmVrs <- cesEst( "ys", xxNames, cesData, method = "LM", vrs = TRUE,
+cesLmVrs <- cesEst( "ys", xxNames, cesData, vrs = TRUE,
    control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLmVrs )
 print( cesLmVrs )

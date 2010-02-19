@@ -1,5 +1,5 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
-      method = "NM", startVal = NULL, lower = NULL, upper = NULL,
+      method = "LM", startVal = NULL, lower = NULL, upper = NULL,
       rho = NULL, returnGridAll = FALSE, ... ) {
 
    # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)
