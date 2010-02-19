@@ -171,9 +171,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
 
 \value{
    \code{cesEst} returns a list of class \code{cesEst}
-   or---if a grid search was performed---of classes
-   \code{cesEstGridRho} and \code{cesEst}.
-   The returned list has following components:
+   that has following components:
    \item{coefficients}{estimated coefficients/parameters of the CES
       (including a possible fixed \eqn{\rho}{rho}).}
    \item{iter}{number of iterations
@@ -303,7 +301,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
 
 \seealso{
    \code{\link{summary.cesEst}} for the \code{summary} method,
-   \code{\link{plot.cesEstGridRho}} for plotting the results
+   \code{\link{plot.cesEst}} for plotting the results
       of the grid search for \eqn{\rho}{rho},
    \code{\link{coef.cesEst}} for several further methods,
    \code{\link{cesCalc}} for calculations or simulations with the CES,

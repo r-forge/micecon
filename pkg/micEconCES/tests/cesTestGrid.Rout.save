@@ -136,7 +136,7 @@ $otherSum
 6  1.2 162424.9       FALSE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridNm )
 Estimated CES function
 
@@ -277,7 +277,7 @@ $otherSum
 6  1.2  70789.74       FALSE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridNmVrs )
 Estimated CES function
 
@@ -414,7 +414,7 @@ $otherSum
 6  1.2 169812.4       FALSE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridCg )
 Estimated CES function
 
@@ -558,7 +558,7 @@ $otherSum
 6  1.2 116269.78       FALSE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridCgVrs )
 Estimated CES function
 
@@ -691,7 +691,7 @@ $otherSum
 3  0.8 175929.3          NA
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridSann )
 Estimated CES function
 
@@ -818,7 +818,7 @@ $otherSum
 3  0.8 98305.72          NA
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridSannVrs )
 Estimated CES function
 
@@ -956,7 +956,7 @@ $otherSum
 6  1.2 162512.0       FALSE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridBfgs )
 Estimated CES function
 
@@ -1091,7 +1091,7 @@ $otherSum
 6  1.2 55633.04       FALSE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridBfgsVrs )
 Estimated CES function
 
@@ -1233,7 +1233,7 @@ $otherSum
 6  1.2 165832.4        TRUE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridBfgsCon )
 Estimated CES function
 
@@ -1371,7 +1371,7 @@ $otherSum
 6  1.2 50829.32       FALSE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridBfgsConVrs )
 Estimated CES function
 
@@ -1507,7 +1507,7 @@ $otherSum
 6  1.2 162374.1       FALSE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridLm )
 Estimated CES function
 
@@ -1636,7 +1636,7 @@ $otherSum
 6  1.2 49122.99        TRUE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridLmVrs )
 Estimated CES function
 
@@ -1773,7 +1773,7 @@ $otherSum
 6  1.2 169812.9        TRUE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridNewton )
 Estimated CES function
 
@@ -1904,7 +1904,7 @@ $otherSum
 6  1.2 98745.97        TRUE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridNewtonVrs )
 Estimated CES function
 
@@ -2048,7 +2048,7 @@ $otherSum
 6  1.2 165832.4        TRUE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridPort )
 Estimated CES function
 
@@ -2190,7 +2190,7 @@ $otherSum
 6  1.2 49123.25       FALSE
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridPortVrs )
 Estimated CES function
 
@@ -3231,7 +3231,7 @@ $otherSum
 3  0.8 165832.4          NA
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridDe )
 Estimated CES function
 
@@ -4265,7 +4265,7 @@ $otherSum
 3  0.8 106063.6          NA
 
 attr(,"class")
-[1] "cesEstGridRho" "cesEst"        "list"         
+[1] "cesEst" "list"  
 > print( cesGridDeVrs )
 Estimated CES function
 
