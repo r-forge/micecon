@@ -16,7 +16,7 @@ xxNames <- c( "land", "qVarInput" )
 
 
 ## Nelder-Mead, CRS
-cesNm <- cesEst( "qOutput", xxNames, germanFarms, rho = 2 )
+cesNm <- cesEst( "qOutput", xxNames, germanFarms, rho = 2, method = "NM" )
 print.default( cesNm ) 
 print( cesNm )
 summary( cesNm )
@@ -25,7 +25,8 @@ vcov( cesNm )
 coef( summary( cesNm ) )
 
 ## Nelder-Mead, VRS
-cesNmVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE, rho = -0.1 )
+cesNmVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE, rho = -0.1,
+   method = "Nelder-Mead" )
 print.default( cesNmVrs )
 print( cesNmVrs )
 summary( cesNmVrs )
@@ -111,7 +112,7 @@ vcov( cesBfgsConVrs )
 coef( summary( cesBfgsConVrs ) )
 
 ## Levenberg-Marquardt, CRS
-cesLm <- cesEst( "qOutput", xxNames, germanFarms, method = "LM",
+cesLm <- cesEst( "qOutput", xxNames, germanFarms,
    control = nls.lm.control( maxiter = 200 ), rho = 2 )
 print.default( cesLm )
 print( cesLm )
@@ -121,7 +122,7 @@ vcov( cesLm )
 coef( summary( cesLm ) )
 
 ## Levenberg-Marquardt, VRS
-cesLmVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "LM", vrs = TRUE,
+cesLmVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE,
    control = nls.lm.control( maxiter = 200 ), rho = -0.1 )
 print.default( cesLmVrs )
 print( cesLmVrs )

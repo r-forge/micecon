@@ -1435,8 +1435,7 @@ nu    1.584593  0.09281398 17.07278230 2.366482e-65
 > 
 > # using the Levenberg-Marquardt optimization method
 > cesGridLm <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "LM",
-+    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
++    data = germanFarms, rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 Warning messages:
 1: In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
   lmder: info = -1. Number of iterations has reached `maxiter' == 50.
@@ -1466,7 +1465,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "LM", rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    rho = seq(from = -0.8, to = 1.2, by = 0.4))
 
 $method
 [1] "LM"
@@ -1520,7 +1519,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "LM", rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    rho = seq(from = -0.8, to = 1.2, by = 0.4))
 
 Coefficients:
   gamma   delta     rho 
@@ -1531,7 +1530,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "LM", rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    rho = seq(from = -0.8, to = 1.2, by = 0.4))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -1564,7 +1563,7 @@ rho     0.400000    22.23885 0.01798654 0.9856496
 > 
 > # using the Levenberg-Marquardt optimization method, VRS
 > cesGridLmVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, method = "LM", vrs = TRUE,
++    data = germanFarms, vrs = TRUE,
 +    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 Warning messages:
 1: In log(coef["gamma"]) : NaNs produced
@@ -1593,8 +1592,7 @@ $message
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, method = "LM", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+    vrs = TRUE, rho = seq(from = -0.8, to = 1.2, by = 0.4))
 
 $method
 [1] "LM"
@@ -1649,8 +1647,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, method = "LM", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+    vrs = TRUE, rho = seq(from = -0.8, to = 1.2, by = 0.4))
 
 Coefficients:
   gamma   delta     rho      nu 
@@ -1661,8 +1658,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, method = "LM", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+    vrs = TRUE, rho = seq(from = -0.8, to = 1.2, by = 0.4))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
