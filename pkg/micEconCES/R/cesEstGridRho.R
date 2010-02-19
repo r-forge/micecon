@@ -27,11 +27,11 @@ cesEstGridRho <- function( rhoValues, returnAll, ... )  {
    result <- allResults[[ which.min( sumResults$rss ) ]]
 
    # add the summary results of each estimation
-   result$otherSum <- sumResults
+   result$allRhoSum <- sumResults
 
    # add full results of each estimation
    if( returnAll ) {
-      result$otherFull <- allResults
+      result$allRhoFull <- allResults
    }
 
    result$call <- match.call()
