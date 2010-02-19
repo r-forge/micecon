@@ -1,11 +1,16 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
-      method = "Nelder-Mead", startVal = NULL, lower = NULL, upper = NULL,
+      method = "NM", startVal = NULL, lower = NULL, upper = NULL,
       rho = NULL, returnGridAll = FALSE, ... ) {
 
    # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)
    # s = 1 / ( 1 + rho )
 
    checkNames( c( yName, xNames ), names( data ) )
+
+   # abbreviated method
+   if( method == "NM" ) {
+      method <- "Nelder-Mead"
+   }
 
    # number of exogenous variables
    nExog <- length( xNames )

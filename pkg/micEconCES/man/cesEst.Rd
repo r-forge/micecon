@@ -24,7 +24,7 @@
 }
 
 \usage{
-cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
+cesEst( yName, xNames, data, vrs = FALSE, method = "NM",
    startVal = NULL, lower = NULL, upper = NULL, rho = NULL,
    returnGridAll = FALSE, \dots )
 
@@ -41,7 +41,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{vrs}{logical. Allow for variable returns to scale?}
    \item{method}{character string indicationg the estimation method:
       either \code{"Kmenta"} for the Kmenta approximation
-      or \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"},
+      or \code{"NM"}, \code{"Nelder-Mead"}, \code{"BFGS"}, \code{"CG"},
       \code{"L-BFGS-B"}, \code{"SANN"}, \code{"LM"},
       \code{"Newton"}, \code{"PORT"}, or \code{"DE"}
       for non-linear least-squares (see section \sQuote{Details}).}
@@ -84,7 +84,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    otherwise, it is estimated by non-linear least-squares.
    Several different optimizers can be used for the non-linear estimation.
    The optimization methods
-   \code{Nelder-Mead} (Nelder and Mead 1965),
+   \code{NM} or \code{Nelder-Mead} (Nelder and Mead 1965),
    \code{BFGS} (Broyden 1970, Fletcher 1970, Goldfarb 1970, Shanno 1970),
    \code{CG} (Conjugate Gradients based on Fletcher and Reeves 1964),
    \code{L-BFGS-B} (with box-constraints, Byrd, Lu, Nocedal, and Zhu 1995), and
@@ -202,8 +202,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
    \item{upper}{upper bounds of the parameters.}
    \item{rho}{argument \code{rho}.}
    \item{optim}{object returned by \code{\link[stats]{optim}}
-      (only if argument \code{method} is \code{"Nelder-Mead"}, \code{"BFGS"},
-      \code{"CG"}, \code{"L-BFGS-B"}, or \code{"SANN"})).}
+      (only if argument \code{method} is \code{"NM"}, \code{"Nelder-Mead"},
+      \code{"BFGS"}, \code{"CG"}, \code{"L-BFGS-B"}, or \code{"SANN"})).}
    \item{nls.lm}{object returned by \code{\link[minpack.lm]{nls.lm}}
       (only if argument \code{method} is \code{"LM"}).}
    \item{nlm}{object returned by \code{\link[stats]{nlm}}

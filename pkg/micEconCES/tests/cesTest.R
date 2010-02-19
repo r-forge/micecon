@@ -8,8 +8,9 @@ germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
 germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 
 
-## CES: Land & Labor
-cesLandLabor <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms )
+## CES: Land & Labor (Nelder-Mead)
+cesLandLabor <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "NM" )
 print.default( cesLandLabor ) 
 print( cesLandLabor )
 summary( cesLandLabor )
@@ -19,9 +20,9 @@ coef( summary( cesLandLabor ) )
 fitted( cesLandLabor )
 residuals( cesLandLabor )
 
-# variable returns to scale
+# variable returns to scale (Nelder-Mead)
 cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-   vrs = TRUE )
+   vrs = TRUE, method = "Nelder-Mead" )
 print.default( cesLandLaborVrs )
 print( cesLandLaborVrs )
 summary( cesLandLaborVrs )
@@ -226,16 +227,17 @@ fitted( cesLandLaborDe2 )
 residuals( cesLandLaborDe2 )
 
 
-## CES: Land & Intermediate Inputs
-cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
+## CES: Land & Intermediate Inputs (Nelder-Mead)
+cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "NM" )
 print.default( cesLandInt )
 print( cesLandInt )
 summary( cesLandInt )
 coef( summary( cesLandInt ) )
 
-# variable returns to scale
+# variable returns to scale (Nelder-Mead)
 cesLandIntVrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-   vrs = TRUE )
+   vrs = TRUE, method = "Nelder-Mead" )
 print.default( cesLandIntVrs )
 print( cesLandIntVrs )
 summary( cesLandIntVrs )
