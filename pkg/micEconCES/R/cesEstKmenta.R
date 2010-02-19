@@ -48,19 +48,19 @@ cesEstKmenta <- function( yName, xNames, data, vrs ){
 
    jacobian[ "gamma", "eq1_(Intercept)" ] <-
       exp( coef( result$kmenta )[ "eq1_(Intercept)" ] )
-   jacobian[ "nu", c( "eq1_a_1", "eq1_a_2" )] <- 1
+   jacobian[ "nu", c( "eq1_a_1", "eq1_a_2" ) ] <- 1
    jacobian[ "delta", "eq1_a_1" ] <- 1 / result$coefficients[ "nu" ] -
       coef( result$kmenta )[ "eq1_a_1" ] / result$coefficients[ "nu" ]^2
    jacobian[ "delta", "eq1_a_2" ] <-
       - coef( result$kmenta )[ "eq1_a_1" ] / result$coefficients[ "nu" ]^2
    jacobian[ "rho", "eq1_a_1" ] <- coef( result$kmenta )[ "eq1_b_1_2" ] /
-      coef( result$kmenta )[ "eq1_a_1" ] * coef( result$kmenta )[ "eq1_a_2" ] -
+      ( coef( result$kmenta )[ "eq1_a_1" ] * coef( result$kmenta )[ "eq1_a_2" ] ) -
       coef( result$kmenta )[ "eq1_b_1_2" ] * result$coefficients[ "nu" ] /
-      coef( result$kmenta )[ "eq1_a_1" ]^2 / coef( result$kmenta )[ "eq1_a_2" ]^3
+      coef( result$kmenta )[ "eq1_a_1" ]^2 / coef( result$kmenta )[ "eq1_a_2" ]
    jacobian[ "rho", "eq1_a_2" ] <- coef( result$kmenta )[ "eq1_b_1_2" ] /
-      coef( result$kmenta )[ "eq1_a_1" ] * coef( result$kmenta )[ "eq1_a_2" ] -
+      ( coef( result$kmenta )[ "eq1_a_1" ] * coef( result$kmenta )[ "eq1_a_2" ] ) -
       coef( result$kmenta )[ "eq1_b_1_2" ] * result$coefficients[ "nu" ] /
-      coef( result$kmenta )[ "eq1_a_1" ]^3 / coef( result$kmenta )[ "eq1_a_2" ]^2
+      coef( result$kmenta )[ "eq1_a_1" ] / coef( result$kmenta )[ "eq1_a_2" ]^2
    jacobian[ "rho", "eq1_b_1_2" ] <-  result$coefficients[ "nu" ] /
       coef( result$kmenta )[ "eq1_a_1" ] / coef( result$kmenta )[ "eq1_a_2" ]
    result$vcov <- jacobian %*% vcov( result$kmenta ) %*%  t( jacobian )
