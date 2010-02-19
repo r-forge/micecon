@@ -226,7 +226,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       in the unrestricted translog model
       returned by \code{\link[car]{linear.hypothesis}}
       (only if argument \code{method} is \code{"Kmenta"}).}
-   \item{otherSum}{data frame with summary results of the estimations
+   \item{allRhoSum}{data frame with summary results of the estimations
       with all values of \eqn{\rho}{rho} used in the grid search
       (only if a grid search was performed);
       this data frame has follwing columns:
@@ -235,7 +235,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "Nelder-Mead",
       (if appropriate for the method used for the estimation)
       \code{convergence} = logical value indicating whether the estimation
       converged.}
-   \item{otherFull}{list of estimation results returned by \code{\link{cesEst}}
+   \item{allRhoFull}{list of estimation results returned by \code{\link{cesEst}}
       for all values of \eqn{\rho}{rho} used in the grid search
       (only if a grid search was performed and
       argument \code{returnGridAll} is set to \code{TRUE}).}
