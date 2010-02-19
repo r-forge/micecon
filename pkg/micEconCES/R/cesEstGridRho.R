@@ -35,6 +35,5 @@ cesEstGridRho <- function( rhoValues, returnAll, ... )  {
    }
 
    result$call <- match.call()
-   class( result ) <- c( "cesEstGridRho", class( result ) )
    return( result )
 }

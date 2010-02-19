@@ -1,7 +1,7 @@
-\name{plot.cesEstGridRho}
-\alias{plot.cesEstGridRho}
+\name{plot.cesEst}
+\alias{plot.cesEst}
 \encoding{UTF-8}
-\title{Plot RSSs of a CES function Estimated by Grid Search}
+\title{Plot RSSs of a CES Function Estimated by Grid Search}
 
 \description{
    Plot a scatter plot,
@@ -10,10 +10,15 @@
    obtained by a grid search for \eqn{\rho}{rho}
    are on the y axis.
    Estimations that did not converge are marked with red.
+
+   Note that this method can be applied
+   only if the model was estimated by a grid search for \eqn{\rho}{rho},
+   i.e.\ \code{\link{cesEst}} was called with argument \code{rho}
+   set to a vector of more than one values for \eqn{\rho}{rho}.
 }
 
 \usage{
-\method{plot}{cesEstGridRho}( x, \dots )
+\method{plot}{cesEst}( x, \dots )
 }
 
 \arguments{
