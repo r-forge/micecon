@@ -105,7 +105,7 @@ Loading required package: DEoptim
 > 
 > 
 > ## Nelder-Mead, CRS
-> cesNm <- cesEst( "ys", xxNames, cesData )
+> cesNm <- cesEst( "ys", xxNames, cesData, method = "Nelder-Mead" )
 > print.default( cesNm ) 
 $optim
 $optim$par
@@ -137,7 +137,7 @@ $convergence
 [1] TRUE
 
 $call
-cesEst(yName = "ys", xNames = xxNames, data = cesData)
+cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Nelder-Mead")
 
 $method
 [1] "Nelder-Mead"
@@ -240,7 +240,7 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "ys", xNames = xxNames, data = cesData)
+cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Nelder-Mead")
 
 Coefficients:
  gamma  delta    rho 
@@ -250,7 +250,7 @@ Coefficients:
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "ys", xNames = xxNames, data = cesData)
+cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Nelder-Mead")
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 Convergence achieved after 108 iterations
@@ -352,7 +352,7 @@ rho   0.5174177 0.127337267   4.063365 4.837037e-05
 [196] -1.767554031  1.867466352 -0.592445758 -0.677279605  0.901030615
 > 
 > ## Nelder-Mead, VRS
-> cesNmVrs <- cesEst( "ys", xxNames, cesData, vrs = TRUE )
+> cesNmVrs <- cesEst( "ys", xxNames, cesData, vrs = TRUE, method = "NM" )
 > print.default( cesNmVrs )
 $optim
 $optim$par
@@ -384,7 +384,8 @@ $convergence
 [1] TRUE
 
 $call
-cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE)
+cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
+    method = "NM")
 
 $method
 [1] "Nelder-Mead"
@@ -488,7 +489,8 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE)
+cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
+    method = "NM")
 
 Coefficients:
  gamma  delta    rho     nu 
@@ -498,7 +500,8 @@ Coefficients:
 Estimated CES function with variable returns to scale
 
 Call:
-cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE)
+cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
+    method = "NM")
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 Convergence achieved after 265 iterations

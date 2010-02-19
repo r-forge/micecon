@@ -12,7 +12,8 @@ germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 ## CES: Land & Intermediate inputs
 ## Nelder-Mead, CRS
 cesGridNm <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-   data = germanFarms, rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+   data = germanFarms, rho = seq( from = -0.8, to = 1.2, by = 0.4 ),
+   method = "Nelder-Mead" )
 print.default( cesGridNm ) 
 print( cesGridNm )
 summary( cesGridNm )
@@ -25,7 +26,7 @@ plot( cesGridNm )
 
 ## Nelder-Mead, VRS
 cesGridNmVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-   data = germanFarms, vrs = TRUE,
+   data = germanFarms, method = "NM", vrs = TRUE,
    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 print.default( cesGridNmVrs )
 print( cesGridNmVrs )

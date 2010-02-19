@@ -55,7 +55,8 @@ Loading required package: DEoptim
 > ## CES: Land & Intermediate inputs
 > ## Nelder-Mead, CRS
 > cesGridNm <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
++    data = germanFarms, rho = seq( from = -0.8, to = 1.2, by = 0.4 ),
++    method = "Nelder-Mead" )
 > print.default( cesGridNm ) 
 $optim
 $optim$par
@@ -88,7 +89,8 @@ $convergence
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    method = "Nelder-Mead", rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
 
 $method
 [1] "Nelder-Mead"
@@ -142,7 +144,8 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    method = "Nelder-Mead", rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
 
 Coefficients:
   gamma   delta     rho 
@@ -153,7 +156,8 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    method = "Nelder-Mead", rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -194,7 +198,7 @@ rho     0.400000    22.23612 0.01798875 0.9856478
 > 
 > ## Nelder-Mead, VRS
 > cesGridNmVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-+    data = germanFarms, vrs = TRUE,
++    data = germanFarms, method = "NM", vrs = TRUE,
 +    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 > print.default( cesGridNmVrs )
 $optim
@@ -228,7 +232,8 @@ $convergence
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    vrs = TRUE, method = "NM", rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
 
 $method
 [1] "Nelder-Mead"
@@ -283,7 +288,8 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    vrs = TRUE, method = "NM", rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
 
 Coefficients:
  gamma  delta    rho     nu 
@@ -294,7 +300,8 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    vrs = TRUE, rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    vrs = TRUE, method = "NM", rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 and a one-dimensional grid search for coefficient 'rho'

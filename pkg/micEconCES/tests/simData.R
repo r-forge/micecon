@@ -31,7 +31,7 @@ cesData$ys <- cesData$yd + rnorm( nObs )
 
 
 ## Nelder-Mead, CRS
-cesNm <- cesEst( "ys", xxNames, cesData )
+cesNm <- cesEst( "ys", xxNames, cesData, method = "Nelder-Mead" )
 print.default( cesNm ) 
 print( cesNm )
 summary( cesNm )
@@ -42,7 +42,7 @@ fitted( cesNm )
 residuals( cesNm )
 
 ## Nelder-Mead, VRS
-cesNmVrs <- cesEst( "ys", xxNames, cesData, vrs = TRUE )
+cesNmVrs <- cesEst( "ys", xxNames, cesData, vrs = TRUE, method = "NM" )
 print.default( cesNmVrs )
 print( cesNmVrs )
 summary( cesNmVrs )
