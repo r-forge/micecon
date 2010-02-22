@@ -26,7 +26,8 @@
 \usage{
 cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    startVal = NULL, lower = NULL, upper = NULL, rho = NULL,
-   returnGridAll = FALSE, \dots )
+   returnGridAll = FALSE, rhoApprox = c( 5e-6, 5e-6, 5e-6, 1e-3, 5e-6 ),
+   \dots )
 
 \method{print}{cesEst}( x, digits = max(3, getOption("digits") - 3),
    \dots )
@@ -66,6 +67,18 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       should be returned
       (ignored if argument \code{rho} is \code{NULL}
       or has only a single element).}
+   \item{rhoApprox}{numeric vector containing 5 elements;
+      the endogenous variable (first element of this argument)
+      and the derivatives of the CES with respect to coefficients
+      \eqn{\gamma}{gamma} (second element),
+      \eqn{\delta}{delta} (third element),
+      \eqn{\rho}{rho} (fourth element), and
+      \eqn{\nu}{nu} (fifth element)
+      are calculated using a first-order Taylor series approximation
+      at \eqn{\rho=0}{rho = 0},
+      if the absolute value of the coefficient \eqn{\rho}{rho}
+      is smaller than or equal to the corresponding element of this argument
+      (see also argument \code{rhoApprox} of \code{\link{cesCalc}}).}
    \item{x}{an object of class \code{cesEst}.}
    \item{digits}{number of digits.}
    \item{\dots}{further arguments to \code{cesEst} are passed to
