@@ -1,5 +1,12 @@
 cesDerivCoef <- function( par, xNames, data, vrs, returnRho = TRUE,
-      rhoApprox = 5e-6 ) {
+      rhoApprox = c( 5e-6, 5e-6, 1e-3, 5e-6 ) ) {
+
+   # check rhoApprox
+   if( !is.vector( rhoApprox ) || length( rhoApprox ) != 4 ||
+         !is.numeric( rhoApprox ) ) {
+      stop( "argument 'rhoApprox' must be a numeric vector with exactly",
+         "4 elements" )
+   }
 
    # names of coefficients
    coefNames <- cesCoefNames( nExog = 2, vrs = vrs, returnRho = returnRho )
@@ -19,7 +26,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, returnRho = TRUE,
    }
 
    # derivatives with respect to gamma
-   if( abs( rho ) > rhoApprox ) {
+   if( abs( rho ) > rhoApprox[1] ) {
       result[ , "gamma" ] <-
          ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho )
    } else {
@@ -31,7 +38,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, returnRho = TRUE,
    }
 
    # derivatives with respect to delta
-   if( abs( rho ) > rhoApprox ) {
+   if( abs( rho ) > rhoApprox[2] ) {
       result[ , "delta" ] <- - ( gamma * nu / rho ) *
          ( data[[ xNames[ 1 ] ]]^(-rho) - data[[ xNames[ 2 ] ]]^(-rho) ) *
          ( delta * data[[ xNames[ 1 ] ]]^(-rho) +
@@ -48,7 +55,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, returnRho = TRUE,
 
    # derivatives with respect to rho
    if( returnRho ) {
-      if( abs( rho ) > rhoApprox * 200 ) {
+      if( abs( rho ) > rhoApprox[3] ) {
          result[ , "rho" ] <- ( gamma * nu / rho^2 ) *
             log( delta * data[[ xNames[ 1 ] ]]^(-rho) +
                ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) ) *
@@ -74,7 +81,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, returnRho = TRUE,
 
    # derivatives with respect to nu
    if( vrs ) {
-      if( abs( rho ) > rhoApprox ) {
+      if( abs( rho ) > rhoApprox[4] ) {
          result[ , "nu" ] <- - ( gamma / rho ) *
             log( delta * data[[ xNames[ 1 ] ]]^(-rho) +
                ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) ) *
