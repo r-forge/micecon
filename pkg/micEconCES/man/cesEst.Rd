@@ -121,24 +121,21 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
 
 
    \bold{Starting values}\cr
-   Argument \code{start} should be a numeric vector
-   of length 3 for estimations of the CES with constant returns to scale
-   (CRS, i.e. with \eqn{\nu}{nu} fixed at 1)
-   or of length 4 for estimations of the CES with variable returns to scale
-   (VRS, i.e. with \eqn{\nu}{nu} estimated).
+   Argument \code{start} should be a numeric vector.
    The order must be \eqn{\gamma}{gamma}, \eqn{\delta}{delta},
-   \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}.
+   \eqn{\rho}{rho} (only if estimated, i.e.\ argument \code{rho} is \code{NULL}),
+   and \eqn{\nu}{nu} (only in case of variable returns to scale,
+   i.e.\ argument \code{vrs} is \code{TRUE}).
    Names of the elements are ignored.
    If argument \code{start} is \code{NULL},
    the starting value of \eqn{\delta}{delta} is set to 0.5,
-   the starting value of \eqn{\rho}{rho} is set to 0.25
+   the starting value of \eqn{\rho}{rho} is (if required) set to 0.25
       (i.e.\ elasticity of substitution = 0.8),
-   the starting value of \eqn{\nu}{nu} is set to 1
-      (only if argument \code{vrs} is \code{TRUE}),
-   and \eqn{\gamma}{gamma} is set to a value
+   the starting value of \eqn{\nu}{nu} is (if required) set to 1,
+   and the starting value  of \eqn{\gamma}{gamma} is set to a value
    so that the mean of the endogenous variable
    is equal to the mean of its fitted values,
-   i.e. \eqn{\gamma}{gamma} =  mean( y ) /
+   i.e.\ \eqn{\gamma}{gamma} =  mean( y ) /
       mean( CES( X, \eqn{\gamma}{gamma} = 1, \eqn{\delta}{delta} = 0.5,
          \eqn{\rho}{rho} = 0.25, \eqn{\nu}{nu} = 1 ) ).\cr\cr
 
