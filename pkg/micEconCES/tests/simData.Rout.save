@@ -142,7 +142,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Nelder-Mead")
 $method
 [1] "Nelder-Mead"
 
-$startVal
+$start
    gamma    delta      rho 
 1.240747 0.500000 0.250000 
 
@@ -390,7 +390,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 $method
 [1] "Nelder-Mead"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 1.240747 0.500000 0.250000 1.000000 
 
@@ -644,7 +644,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "CG")
 $method
 [1] "CG"
 
-$startVal
+$start
    gamma    delta      rho 
 1.240747 0.500000 0.250000 
 
@@ -893,7 +893,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 $method
 [1] "CG"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 1.240747 0.500000 0.250000 1.000000 
 
@@ -1143,7 +1143,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "SANN")
 $method
 [1] "SANN"
 
-$startVal
+$start
    gamma    delta      rho 
 1.240747 0.500000 0.250000 
 
@@ -1387,7 +1387,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 $method
 [1] "SANN"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 1.240747 0.500000 0.250000 1.000000 
 
@@ -1640,7 +1640,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "BFGS")
 $method
 [1] "BFGS"
 
-$startVal
+$start
    gamma    delta      rho 
 1.240747 0.500000 0.250000 
 
@@ -1889,7 +1889,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 $method
 [1] "BFGS"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 1.240747 0.500000 0.250000 1.000000 
 
@@ -2146,7 +2146,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B")
 $method
 [1] "L-BFGS-B"
 
-$startVal
+$start
    gamma    delta      rho 
 1.240747 0.500000 0.250000 
 
@@ -2400,7 +2400,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 $method
 [1] "L-BFGS-B"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 1.240747 0.500000 0.250000 1.000000 
 
@@ -2633,7 +2633,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, control = nls.lm.control(
 $method
 [1] "LM"
 
-$startVal
+$start
    gamma    delta      rho 
 1.240747 0.500000 0.250000 
 
@@ -2873,7 +2873,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 $method
 [1] "LM"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 1.240747 0.500000 0.250000 1.000000 
 
@@ -3125,7 +3125,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Newton")
 $method
 [1] "Newton"
 
-$startVal
+$start
    gamma    delta      rho 
 1.240747 0.500000 0.250000 
 
@@ -3371,7 +3371,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 $method
 [1] "Newton"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 1.240747 0.500000 0.250000 1.000000 
 
@@ -3630,7 +3630,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "PORT")
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta      rho 
 1.240747 0.500000 0.250000 
 
@@ -3885,7 +3885,7 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 1.240747 0.500000 0.250000 1.000000 
 

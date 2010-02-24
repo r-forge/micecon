@@ -25,7 +25,7 @@
 
 \usage{
 cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
-   startVal = NULL, lower = NULL, upper = NULL, rho = NULL,
+   start = NULL, lower = NULL, upper = NULL, rho = NULL,
    returnGridAll = FALSE, rhoApprox = c( 5e-6, 5e-6, 5e-6, 1e-3, 5e-6 ),
    \dots )
 
@@ -46,7 +46,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       \code{"CG"}, \code{"L-BFGS-B"}, \code{"SANN"},
       \code{"Newton"}, \code{"PORT"}, or \code{"DE"}
       for non-linear least-squares (see section \sQuote{Details}).}
-   \item{startVal}{optional numeric vector giving the starting values
+   \item{start}{optional numeric vector giving the starting values
       of the parameters in the non-linear estimations
       (see section \sQuote{Details}).}
    \item{lower}{lower bounds of the parameters
@@ -121,7 +121,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
 
 
    \bold{Starting values}\cr
-   Argument \code{startVal} should be a numeric vector
+   Argument \code{start} should be a numeric vector
    of length 3 for estimations of the CES with constant returns to scale
    (CRS, i.e. with \eqn{\nu}{nu} fixed at 1)
    or of length 4 for estimations of the CES with variable returns to scale
@@ -129,7 +129,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    The order must be \eqn{\gamma}{gamma}, \eqn{\delta}{delta},
    \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}.
    Names of the elements are ignored.
-   If argument \code{startVal} is \code{NULL},
+   If argument \code{start} is \code{NULL},
    the starting value of \eqn{\delta}{delta} is set to 0.5,
    the starting value of \eqn{\rho}{rho} is set to 0.25
       (i.e.\ elasticity of substitution = 0.8),
@@ -168,7 +168,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    because these methods do not support parameter constraints.
    Of course, the user can specify own lower and upper bounds
    by setting arguments \code{lower} and \code{upper} to numeric vectors
-   that should have the same format as argument \code{startVal}
+   that should have the same format as argument \code{start}
    (see above).
 
    \bold{Grid search for \eqn{\rho}{rho}}\cr
@@ -209,7 +209,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       least-squares estimation evaluated at the estimated parameters).}
    \item{call}{the matched call.}
    \item{method}{argument \code{method}.}
-   \item{startVal}{starting values for the non-linear estimation
+   \item{start}{starting values for the non-linear estimation
       (not for the \code{Kmenta} and \code{DE} method).}
    \item{lower}{lower bounds of the parameters.}
    \item{upper}{upper bounds of the parameters.}

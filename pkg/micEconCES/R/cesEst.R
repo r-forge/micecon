@@ -1,5 +1,5 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
-      method = "LM", startVal = NULL, lower = NULL, upper = NULL,
+      method = "LM", start = NULL, lower = NULL, upper = NULL,
       rho = NULL, returnGridAll = FALSE,
       rhoApprox = c( 5e-6, 5e-6, 5e-6, 1e-3, 5e-6 ), ... ) {
 
@@ -36,7 +36,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
             " must not be smaller than '-1'" )
       } else if( length( rho ) > 1 ) {
          result <- cesEstGridRho( yName = yName, xNames = xNames,
-            data = data, vrs = vrs, method = method, startVal = startVal,
+            data = data, vrs = vrs, method = method, start = start,
             lower = lower, upper = upper,
             rhoValues = rho, returnAll = returnGridAll,
             rhoApprox = rhoApprox, ... )
@@ -50,28 +50,28 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # start values
    if( method %in% c( "Kmenta", "DE" ) ) {
-      if( !is.null( startVal ) ) {
+      if( !is.null( start ) ) {
          warning( "ignoring starting values because they are not required",
             " for method '", method, "'" )
-         startVal <- NULL
+         start <- NULL
       }
    } else {
-      if( is.null( startVal ) ) {
+      if( is.null( start ) ) {
          rhoStart <- ifelse( is.null( rho ), 0.25, rho )
-         startVal <- c( 1, 0.5, rhoStart, 1 )[ 1:( 3 + vrs ) ]
-         yTemp <- cesCalc( xNames = xNames, data = data, coef = startVal )
-         startVal[ 1 ] <- mean( data[[ yName ]], na.rm = TRUE ) /
+         start <- c( 1, 0.5, rhoStart, 1 )[ 1:( 3 + vrs ) ]
+         yTemp <- cesCalc( xNames = xNames, data = data, coef = start )
+         start[ 1 ] <- mean( data[[ yName ]], na.rm = TRUE ) /
             mean( yTemp, na.rm = TRUE )
          if( !is.null( rho ) ) {
-            startVal <- startVal[ -3 ]
+            start <- start[ -3 ]
          }
       }
-      if( length( startVal ) != nParam ) {
+      if( length( start ) != nParam ) {
          stop( "wrong number of starting values:",
-            " you provided ", length( startVal ), " values",
+            " you provided ", length( start ), " values",
             " but the model has ", nParam, " parameters" )
       }
-      names( startVal ) <- cesCoefNames( nExog, vrs, returnRho = is.null( rho ) )
+      names( start ) <- cesCoefNames( nExog, vrs, returnRho = is.null( rho ) )
    }
 
    # dertermining lower and upper bounds automatically
@@ -90,14 +90,14 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          stop( "the lower bound has ", length( lower ), " elements",
             " but the model has ", nParam, " parameters" )
       }
-      if( method != "DE" && any( startVal < lower ) ) {
+      if( method != "DE" && any( start < lower ) ) {
          stop( "at least one starting value is smaller than its lower bound" )
       }
       if( length( upper ) > 1 && length( upper ) != nParam ) {
          stop( "the upper bound has ", length( upper ), " elements",
             " but the model has ", nParam, " parameters" )
       }
-      if( method != "DE" && any( startVal > upper ) ) {
+      if( method != "DE" && any( start > upper ) ) {
          stop( "at least one starting value is greater than its upper bound" )
       }
       if( length( lower ) == length( upper ) ) {
@@ -127,11 +127,11 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          vrs = vrs )
    } else if( method %in% c( "Nelder-Mead", "SANN", "BFGS", "CG", "L-BFGS-B" ) ) {
       if( method %in% c( "Nelder-Mead", "SANN" ) ) {
-         result$optim <- optim( par = startVal, fn = cesRss, data = data,
+         result$optim <- optim( par = start, fn = cesRss, data = data,
             method = method, yName = yName, xNames = xNames, vrs = vrs,
             rho = rho, rhoApprox = rhoApprox, ... )
       } else {
-         result$optim <- optim( par = startVal, fn = cesRss, gr = cesRssDeriv,
+         result$optim <- optim( par = start, fn = cesRss, gr = cesRssDeriv,
             data = data, method = method, lower = lower, upper = upper, 
             yName = yName, xNames = xNames, vrs = vrs, rho = rho,
             rhoApprox = rhoApprox, ... )
@@ -165,7 +165,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       }
 
       # perform fit
-      result$nls.lm <- nls.lm( par = startVal, fn = residFun, data = data,
+      result$nls.lm <- nls.lm( par = start, fn = residFun, data = data,
          jac = jac, yName = yName, xNames = xNames, vrs = vrs, rho = rho,
          rhoApprox = rhoApprox, ... )
       result$coefficients <- result$nls.lm$par
@@ -185,7 +185,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       warnSaved <- options()$warn
       options( warn = -1 )
       # perform fit
-      result$nlm <- nlm( f = cesRss2, p = startVal, data = data,
+      result$nlm <- nlm( f = cesRss2, p = start, data = data,
          yName = yName, xNames = xNames, vrs = vrs, rho = rho,
          rhoApprox = rhoApprox, ... )
       # restore previous setting for warning messages
@@ -197,7 +197,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$iter <- result$nlm$iterations
       result$convergence <- result$nlm$code <= 2
    } else if( method == "PORT" ) {
-      result$nlminb <- nlminb( start = startVal, objective = cesRss,
+      result$nlminb <- nlminb( start = start, objective = cesRss,
          gradient = cesRssDeriv, data = data, yName = yName, xNames = xNames,
          vrs = vrs, rho = rho, lower = lower, upper = upper,
          rhoApprox = rhoApprox, ... )
@@ -230,7 +230,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    result$method <- method
 
    # return the starting values
-   result$startVal <- startVal
+   result$start <- start
 
    # return lower and upper bounds
    result$lower <- lower
@@ -264,7 +264,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    # nonlinear least squares
 #    result$nls <- nls(
 #       y ~ gamma * ( delta * x1^rho + ( 1 - delta ) * x2^rho )^(1/rho),
-#       data = estData, start = result$startVal, trace = TRUE,
+#       data = estData, start = result$start, trace = TRUE,
 #       algorithm = "port", lower = c( -Inf, 0.01 , -Inf ),
 #       upper = c( Inf, 0.99, Inf ) )
 

@@ -97,7 +97,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
-$startVal
+$start
   gamma   delta 
 34.5393  0.5000 
 
@@ -217,7 +217,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
-$startVal
+$start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
 
@@ -343,7 +343,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "CG"
 
-$startVal
+$start
   gamma   delta 
 34.5393  0.5000 
 
@@ -464,7 +464,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "CG"
 
-$startVal
+$start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
 
@@ -586,7 +586,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "SANN"
 
-$startVal
+$start
   gamma   delta 
 34.5393  0.5000 
 
@@ -702,7 +702,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "SANN"
 
-$startVal
+$start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
 
@@ -827,7 +827,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "BFGS"
 
-$startVal
+$start
   gamma   delta 
 34.5393  0.5000 
 
@@ -948,7 +948,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "BFGS"
 
-$startVal
+$start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
 
@@ -1078,7 +1078,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "L-BFGS-B"
 
-$startVal
+$start
   gamma   delta 
 34.5393  0.5000 
 
@@ -1203,7 +1203,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "L-BFGS-B"
 
-$startVal
+$start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
 
@@ -1294,7 +1294,7 @@ nu     1.5842276  0.09288816 17.05521624 3.196877e-65
 > cesLm <- cesEst( "qOutput", xxNames, germanFarms,
 +    control = nls.lm.control( maxiter = 200 ), rho = 2 )
 Warning message:
-In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
+In nls.lm(par = start, fn = residFun, data = data, jac = jac, yName = yName,  :
   lmder: info = -1. Number of iterations has reached `maxiter' == 200.
 
 > print.default( cesLm )
@@ -1324,7 +1324,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "LM"
 
-$startVal
+$start
   gamma   delta 
 34.5393  0.5000 
 
@@ -1435,7 +1435,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "LM"
 
-$startVal
+$start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
 
@@ -1559,7 +1559,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "Newton"
 
-$startVal
+$start
   gamma   delta 
 34.5393  0.5000 
 
@@ -1677,7 +1677,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "Newton"
 
-$startVal
+$start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
 
@@ -1808,7 +1808,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
   gamma   delta 
 34.5393  0.5000 
 
@@ -1935,7 +1935,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
 

@@ -95,7 +95,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
-$startVal
+$start
    gamma    delta 
 16.06668  0.50000 
 
@@ -238,7 +238,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
-$startVal
+$start
    gamma    delta       nu 
 6.258033 0.500000 1.000000 
 
@@ -378,7 +378,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "CG"
 
-$startVal
+$start
    gamma    delta 
 27.90554  0.50000 
 
@@ -521,7 +521,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "CG"
 
-$startVal
+$start
    gamma    delta       nu 
 10.03123  0.50000  1.00000 
 
@@ -658,7 +658,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "SANN"
 
-$startVal
+$start
    gamma    delta 
 22.58930  0.50000 
 
@@ -784,7 +784,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "SANN"
 
-$startVal
+$start
  gamma  delta     nu 
 4.4463 0.5000 1.0000 
 
@@ -920,7 +920,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "BFGS"
 
-$startVal
+$start
    gamma    delta 
 16.06668  0.50000 
 
@@ -1054,7 +1054,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "BFGS"
 
-$startVal
+$start
    gamma    delta       nu 
 10.03123  0.50000  1.00000 
 
@@ -1197,7 +1197,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "L-BFGS-B"
 
-$startVal
+$start
    gamma    delta 
 22.58930  0.50000 
 
@@ -1334,7 +1334,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "L-BFGS-B"
 
-$startVal
+$start
    gamma    delta       nu 
 10.03123  0.50000  1.00000 
 
@@ -1437,10 +1437,10 @@ nu    1.584593  0.09281398 17.07278230 2.366482e-65
 > cesGridLm <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 Warning messages:
-1: In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
+1: In nls.lm(par = start, fn = residFun, data = data, jac = jac, yName = yName,  :
   lmder: info = -1. Number of iterations has reached `maxiter' == 50.
 
-2: In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
+2: In nls.lm(par = start, fn = residFun, data = data, jac = jac, yName = yName,  :
   lmder: info = -1. Number of iterations has reached `maxiter' == 50.
 
 > print.default( cesGridLm )
@@ -1470,7 +1470,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "LM"
 
-$startVal
+$start
    gamma    delta 
 16.06668  0.50000 
 
@@ -1567,7 +1567,7 @@ rho     0.400000    22.23885 0.01798654 0.9856496
 +    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 Warning messages:
 1: In log(coef["gamma"]) : NaNs produced
-2: In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
+2: In nls.lm(par = start, fn = residFun, data = data, jac = jac, yName = yName,  :
   lmder: info = -1. Number of iterations has reached `maxiter' == 50.
 
 > print.default( cesGridLmVrs )
@@ -1597,7 +1597,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "LM"
 
-$startVal
+$start
    gamma    delta       nu 
 27.90554  0.50000  1.00000 
 
@@ -1733,7 +1733,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "Newton"
 
-$startVal
+$start
    gamma    delta 
 16.06668  0.50000 
 
@@ -1863,7 +1863,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "Newton"
 
-$startVal
+$start
    gamma    delta       nu 
 10.03123  0.50000  1.00000 
 
@@ -2008,7 +2008,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
  gamma  delta 
 4.4463 0.5000 
 
@@ -2149,7 +2149,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta       nu 
 27.90554  0.50000  1.00000 
 
