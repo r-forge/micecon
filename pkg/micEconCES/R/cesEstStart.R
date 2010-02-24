@@ -26,6 +26,30 @@ cesEstStart <- function( yName, xNames, data, vrs,
       }
       names( start ) <- cesCoefNames( nExog = length( xNames ), vrs = vrs,
          returnRho = is.null( rho ) )
+      # checking starting values
+      if( any( is.infinite( start ) ) ) {
+         stop( "all starting values must be finite" )
+      }
+      # checking gamma
+      if( start[ "gamma" ] <= 0 ) {
+         stop( "the starting value for 'gamma' must be positive" )
+      }
+      # checking delta
+      if( start[ "delta" ] < 0 || start[ "delta" ] > 1 ) {
+         stop( "the starting value for 'delta' must be between 0 and 1" )
+      }
+      # checking rho
+      if( is.null( rho ) ) {
+         if( start[ "rho" ] < -1 ) {
+            stop( "the starting value for 'rho' must be -1 or larger" )
+         }
+      }
+      # checking nu
+      if( vrs ) {
+         if( start[ "nu" ] <= 0 ) {
+            stop( "the starting value for 'nu' must be positive" )
+         }
+      }
    }
 
    return( start )
