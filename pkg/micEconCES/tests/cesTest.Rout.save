@@ -91,7 +91,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
-$startVal
+$start
    gamma    delta      rho 
 274.3737   0.5000   0.2500 
 
@@ -216,7 +216,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 274.3737   0.5000   0.2500   1.0000 
 
@@ -348,7 +348,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "CG"
 
-$startVal
+$start
    gamma    delta      rho 
 274.3737   0.5000   0.2500 
 
@@ -471,7 +471,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "SANN"
 
-$startVal
+$start
    gamma    delta      rho 
 274.3737   0.5000   0.2500 
 
@@ -596,7 +596,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "BFGS"
 
-$startVal
+$start
    gamma    delta      rho 
 274.3737   0.5000   0.2500 
 
@@ -725,7 +725,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "L-BFGS-B"
 
-$startVal
+$start
    gamma    delta      rho 
 274.3737   0.5000   0.2500 
 
@@ -1099,7 +1099,7 @@ nu     1.655682e+00 3.196346e-01  5.17992004 2.219810e-07
 > cesLandLaborLm <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
 +    method = "LM", control = nls.lm.control( maxiter = 200 ) )
 Warning message:
-In nls.lm(par = startVal, fn = residFun, data = data, jac = jac,  :
+In nls.lm(par = start, fn = residFun, data = data, jac = jac, yName = yName,  :
   lmder: info = -1. Number of iterations has reached `maxiter' == 200.
 
 > print.default( cesLandLaborLm )
@@ -1129,7 +1129,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "LM"
 
-$startVal
+$start
    gamma    delta      rho 
 274.3737   0.5000   0.2500 
 
@@ -1253,7 +1253,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "Newton"
 
-$startVal
+$start
    gamma    delta      rho 
 274.3737   0.5000   0.2500 
 
@@ -1384,7 +1384,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta      rho 
 274.3737   0.5000   0.2500 
 
@@ -1516,7 +1516,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta      rho 
 274.3737   0.5000   0.2500 
 
@@ -1649,7 +1649,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta      rho 
 274.3737   0.5000   0.2500 
 
@@ -1783,7 +1783,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 274.3737   0.5000   0.2500   1.0000 
 
@@ -1921,7 +1921,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 274.3737   0.5000   0.2500   1.0000 
 
@@ -3335,7 +3335,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
-$startVal
+$start
    gamma    delta      rho 
 13.61709  0.50000  0.25000 
 
@@ -3443,7 +3443,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 13.61709  0.50000  0.25000  1.00000 
 
@@ -3557,7 +3557,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "CG"
 
-$startVal
+$start
    gamma    delta      rho 
 13.61709  0.50000  0.25000 
 
@@ -3663,7 +3663,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "SANN"
 
-$startVal
+$start
    gamma    delta      rho 
 13.61709  0.50000  0.25000 
 
@@ -3771,7 +3771,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "BFGS"
 
-$startVal
+$start
    gamma    delta      rho 
 13.61709  0.50000  0.25000 
 
@@ -3883,7 +3883,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "L-BFGS-B"
 
-$startVal
+$start
    gamma    delta      rho 
 13.61709  0.50000  0.25000 
 
@@ -4226,7 +4226,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "LM"
 
-$startVal
+$start
    gamma    delta      rho 
 13.61709  0.50000  0.25000 
 
@@ -4333,7 +4333,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "Newton"
 
-$startVal
+$start
    gamma    delta      rho 
 13.61709  0.50000  0.25000 
 
@@ -4447,7 +4447,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta      rho 
 13.61709  0.50000  0.25000 
 
@@ -4562,7 +4562,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta      rho 
 13.61709  0.50000  0.25000 
 
@@ -4677,7 +4677,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 13.61709  0.50000  0.25000  1.00000 
 
@@ -4797,7 +4797,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "PORT"
 
-$startVal
+$start
    gamma    delta      rho       nu 
 13.61709  0.50000  0.25000  1.00000 
 
