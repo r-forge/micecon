@@ -121,7 +121,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    \code{DE} (Differential Evolution, see Storn and Price 1997)
    uses \code{\link[DEoptim]{DEoptim}} for the optimization.
    Analytical gradients are used in the \code{LM}, \code{BFGS}, \code{CG},
-   \code{L-BFGS-B}, \code{Newton}, and \code{PORT} method.\cr\cr
+   \code{L-BFGS-B}, \code{Newton}, and \code{PORT} method.\cr
 
 
    \bold{Starting values}\cr
@@ -141,7 +141,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    is equal to the mean of its fitted values,
    i.e.\ \eqn{\gamma}{gamma} =  mean( y ) /
       mean( CES( X, \eqn{\gamma}{gamma} = 1, \eqn{\delta}{delta} = 0.5,
-         \eqn{\rho}{rho} = 0.25, \eqn{\nu}{nu} = 1 ) ).\cr\cr
+         \eqn{\rho}{rho} = 0.25, \eqn{\nu}{nu} = 1 ) ).\cr
 
    \bold{Lower and upper bounds}\cr
    Arguments \code{lower} and \code{upper} can be used
