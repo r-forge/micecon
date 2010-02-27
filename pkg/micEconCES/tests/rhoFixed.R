@@ -8,9 +8,6 @@ germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
 # quantity of intermediate inputs
 germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 
-# seed for random number generation
-set.seed( 123 )
-
 # names of explanatory variables
 xxNames <- c( "land", "qVarInput" )
 
@@ -170,7 +167,6 @@ vcov( cesPortVrs )
 coef( summary( cesPortVrs ) )
 
 ## DE, CRS
-set.seed( 123 )
 cesDe <- cesEst( "qOutput", xxNames, germanFarms, method = "DE",
    control = DEoptim.control( trace = FALSE ), rho = 2 )
 print.default( cesDe )
@@ -181,9 +177,8 @@ vcov( cesDe )
 coef( summary( cesDe ) )
 
 ## DE, VRS
-set.seed( 234 )
 cesDeVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "DE", vrs = TRUE,
-   control = DEoptim.control( trace = FALSE ), rho = -0.1 )
+   control = DEoptim.control( trace = FALSE ), rho = -0.1, random.seed = 234 )
 print.default( cesDeVrs )
 print( cesDeVrs )
 summary( cesDeVrs )

@@ -26,7 +26,8 @@
 \usage{
 cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    start = NULL, lower = NULL, upper = NULL, rho = NULL,
-   returnGridAll = FALSE, rhoApprox = c( 5e-6, 5e-6, 5e-6, 1e-3, 5e-6 ),
+   returnGridAll = FALSE, random.seed = 123,
+   rhoApprox = c( 5e-6, 5e-6, 5e-6, 1e-3, 5e-6 ),
    \dots )
 
 \method{print}{cesEst}( x, digits = max(3, getOption("digits") - 3),
@@ -67,6 +68,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       should be returned
       (ignored if argument \code{rho} is \code{NULL}
       or has only a single element).}
+   \item{random.seed}{an integer used to seed R's random number generator.
+      This is to ensure replicability when the \code{"SANN"}
+      or \code{"DE"} method is used. Defaults to 123.}
    \item{rhoApprox}{numeric vector containing 5 elements;
       the endogenous variable (first element of this argument)
       and the derivatives of the CES with respect to coefficients

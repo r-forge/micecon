@@ -52,9 +52,6 @@ Loading required package: DEoptim
 > # quantity of intermediate inputs
 > germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 > 
-> # seed for random number generation
-> set.seed( 123 )
-> 
 > # names of explanatory variables
 > xxNames <- c( "land", "qVarInput" )
 > 
@@ -673,10 +670,10 @@ rho    2.0000000   2476.375 0.0008076321 0.9993556
 $optim
 $optim$par
     gamma     delta        nu 
-8.6340007 0.8777559 1.3369272 
+8.7693309 0.8783289 1.3340988 
 
 $optim$value
-[1] 70385.4
+[1] 70750.63
 
 $optim$counts
 function gradient 
@@ -691,7 +688,7 @@ NULL
 
 $coefficients
      gamma      delta        rho         nu 
- 8.6340007  0.8777559 -0.1000000  1.3369272 
+ 8.7693309  0.8783289 -0.1000000  1.3340988 
 
 $iter
 [1] 10000
@@ -717,25 +714,25 @@ $rho
 [1] -0.1
 
 $fitted.values
- [1] 1060.599 1121.965 1147.995 1177.882 1175.405 1196.046 1238.846 1231.736
- [9] 1186.646 1237.292 1288.686 1491.811 1578.902 1638.959 1573.693 1585.382
-[17] 1669.384 1755.318 1899.051 2040.871
+ [1] 1063.412 1124.750 1150.808 1180.631 1178.165 1198.808 1241.617 1234.555
+ [9] 1189.434 1240.116 1291.485 1494.589 1581.636 1641.728 1576.575 1588.316
+[17] 1672.413 1758.387 1902.093 2043.834
 
 $residuals
- [1] -114.4661247 -159.2348679  -78.4156359   -6.0851194    2.7111634
- [6]  -10.2361735    0.5118417   56.8251732   21.0602883   41.1162329
-[11]   71.9064154   48.9727369   -3.8671672   57.0000717   70.9963124
-[16]   40.6491901  -14.3439110    0.2817659  -11.6306795  -48.9774077
+ [1] -117.27868333 -162.01943218  -81.22885081   -8.83433184   -0.04859453
+ [6]  -12.99840388   -2.25907866   54.00629931   18.27206874   38.29291875
+[11]   69.10748044   46.19467942   -6.60086308   54.23119520   68.11389876
+[16]   37.71489156  -17.37266777   -2.78762559  -14.67269187  -51.93980310
 
 $rss
-[1] 70385.4
+[1] 70750.63
 
 $cov.unscaled
-             gamma         delta           rho            nu
-gamma  2.757941510  1.405889e-01 -4.194039e-01 -6.231240e-04
-delta  0.140588950  7.187180e-03 -2.145886e-02 -2.366266e-05
-rho   -0.419403852 -2.145886e-02  6.408899e-02  6.406701e-05
-nu    -0.000623124 -2.366266e-05  6.406701e-05  3.478523e-06
+              gamma         delta           rho            nu
+gamma  2.8326439396  1.424502e-01 -4.266764e-01 -6.305057e-04
+delta  0.1424502193  7.184148e-03 -2.153664e-02 -2.362488e-05
+rho   -0.4266763728 -2.153664e-02  6.458166e-02  6.422393e-05
+nu    -0.0006305057 -2.362488e-05  6.422393e-05  3.464149e-06
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -748,7 +745,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 
 Coefficients:
   gamma   delta     rho      nu 
- 8.6340  0.8778 -0.1000  1.3369 
+ 8.7693  0.8783 -0.1000  1.3341 
 
 > summary( cesSannVrs )
 Estimated CES function with variable returns to scale
@@ -762,31 +759,31 @@ Coefficient 'rho' was fixed at -0.1
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
-gamma   8.6340    98.5187   0.088    0.930    
-delta   0.8778     5.0293   0.175    0.861    
-rho    -0.1000    15.0182  -0.007    0.995    
-nu      1.3369     0.1106  12.083   <2e-16 ***
+gamma   8.7693   100.1028   0.088    0.930    
+delta   0.8783     5.0412   0.174    0.862    
+rho    -0.1000    15.1149  -0.007    0.995    
+nu      1.3341     0.1107  12.051   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Residual standard error: 59.32343 
-Multiple R-squared: 0.9602369 
+Residual standard error: 59.47715 
+Multiple R-squared: 0.9600305 
 
 > coef( cesSannVrs )
      gamma      delta        rho         nu 
- 8.6340007  0.8777559 -0.1000000  1.3369272 
+ 8.7693309  0.8783289 -0.1000000  1.3340988 
 > vcov( cesSannVrs )
              gamma        delta           rho          nu
-gamma  9705.939971 494.77043017 -1475.9952670 -2.19294142
-delta   494.770430  25.29362403   -75.5195330 -0.08327528
-rho   -1475.995267 -75.51953302   225.5464441  0.22546909
-nu       -2.192941  -0.08327528     0.2254691  0.01224186
+gamma 10020.567489 503.92215423 -1509.3811578 -2.23043400
+delta   503.922154  25.41415176   -76.1865494 -0.08357375
+rho   -1509.381158 -76.18654937   228.4596801  0.22719420
+nu       -2.230434  -0.08357375     0.2271942  0.01225454
 > coef( summary( cesSannVrs ) )
-        Estimate Std. Error      t value     Pr(>|t|)
-gamma  8.6340007 98.5187290  0.087638165 9.301643e-01
-delta  0.8777559  5.0292767  0.174529251 8.614495e-01
-rho   -0.1000000 15.0182038 -0.006658586 9.946873e-01
-nu     1.3369272  0.1106429 12.083257761 1.294858e-33
+        Estimate  Std. Error      t value     Pr(>|t|)
+gamma  8.7693309 100.1027846  0.087603267 9.301920e-01
+delta  0.8783289   5.0412451  0.174228568 8.616858e-01
+rho   -0.1000000  15.1148827 -0.006615996 9.947212e-01
+nu     1.3340988   0.1107002 12.051456311 1.905532e-33
 > 
 > ## BFGS, CRS
 > cesBfgs <- cesEst( "qOutput", xxNames, germanFarms, method = "BFGS", rho = 2 )
@@ -2024,7 +2021,6 @@ rho   -0.1000000  6.18431752 -0.01616993 9.870988e-01
 nu     1.5842274  0.09288816 17.05521422 3.196987e-65
 > 
 > ## DE, CRS
-> set.seed( 123 )
 > cesDe <- cesEst( "qOutput", xxNames, germanFarms, method = "DE",
 +    control = DEoptim.control( trace = FALSE ), rho = 2 )
 > print.default( cesDe )
@@ -2448,9 +2444,8 @@ delta  0.999999 6.650609e+03 1.503620e-04 0.999880
 rho    2.000000 2.185704e+09 9.150368e-10 1.000000
 > 
 > ## DE, VRS
-> set.seed( 234 )
 > cesDeVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "DE", vrs = TRUE,
-+    control = DEoptim.control( trace = FALSE ), rho = -0.1 )
++    control = DEoptim.control( trace = FALSE ), rho = -0.1, random.seed = 234 )
 > print.default( cesDeVrs )
 $DEoptim
 $optim
@@ -2791,7 +2786,8 @@ $iter
 
 $call
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    vrs = TRUE, method = "DE", rho = -0.1, control = DEoptim.control(trace = FALSE))
+    vrs = TRUE, method = "DE", rho = -0.1, random.seed = 234, 
+    control = DEoptim.control(trace = FALSE))
 
 $method
 [1] "DE"
@@ -2833,7 +2829,8 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    vrs = TRUE, method = "DE", rho = -0.1, control = DEoptim.control(trace = FALSE))
+    vrs = TRUE, method = "DE", rho = -0.1, random.seed = 234, 
+    control = DEoptim.control(trace = FALSE))
 
 Coefficients:
      gamma      delta        rho         nu 
@@ -2844,7 +2841,8 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms, 
-    vrs = TRUE, method = "DE", rho = -0.1, control = DEoptim.control(trace = FALSE))
+    vrs = TRUE, method = "DE", rho = -0.1, random.seed = 234, 
+    control = DEoptim.control(trace = FALSE))
 
 Estimation by non-linear least-squares using the 'DE' optimizer
 Coefficient 'rho' was fixed at -0.1 
