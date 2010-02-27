@@ -75,6 +75,9 @@ fitted( cesCgVrs )
 residuals( cesCgVrs )
 
 ## Simulated Annealing, CRS
+# check random number generation
+set.seed( 321 )
+rnorm( 3 )
 cesSann <- cesEst( "ys", xxNames, cesData, method = "SANN" )
 print.default( cesSann )
 print( cesSann )
@@ -85,11 +88,12 @@ coef( summary( cesSann ) )
 fitted( cesSann )
 residuals( cesSann )
 # check random number generation
-set.seed( 321 )
-rnorm( 3 )
 rnorm( 4 )
 
 ## Simulated Annealing, VRS
+# check random number generation
+set.seed( 4321 )
+rnorm( 4 )
 cesSannVrs <- cesEst( "ys", xxNames, cesData, method = "SANN", vrs = TRUE )
 print.default( cesSannVrs )
 print( cesSannVrs )
@@ -100,8 +104,6 @@ coef( summary( cesSannVrs ) )
 fitted( cesSannVrs )
 residuals( cesSannVrs )
 # check random number generation
-set.seed( 4321 )
-rnorm( 4 )
 rnorm( 5 )
 
 ## BFGS, CRS
@@ -218,6 +220,9 @@ fitted( cesPortVrs )
 residuals( cesPortVrs )
 
 ## DE, CRS
+# check random number generation
+set.seed( 54321 )
+rnorm( 5 )
 cesDe <- cesEst( "ys", xxNames, cesData, method = "DE",
    control = DEoptim.control( trace = FALSE ) )
 print.default( cesDe )
@@ -229,11 +234,12 @@ coef( summary( cesDe ) )
 fitted( cesDe )
 residuals( cesDe )
 # check random number generation
-set.seed( 54321 )
-rnorm( 5 )
 rnorm( 4 )
 
 ## DE, VRS
+# check random number generation
+set.seed( 654321 )
+rnorm( 4 )
 cesDeVrs <- cesEst( "ys", xxNames, cesData, method = "DE", vrs = TRUE,
    control = DEoptim.control( trace = FALSE ) )
 print.default( cesDeVrs )
@@ -245,8 +251,6 @@ coef( summary( cesDeVrs ) )
 fitted( cesDeVrs )
 residuals( cesDeVrs )
 # check random number generation
-set.seed( 654321 )
-rnorm( 4 )
 rnorm( 5 )
 
 ## Kmenta approximation, CRS
