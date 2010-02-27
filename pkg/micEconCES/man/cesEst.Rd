@@ -170,7 +170,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    Of course, the user can specify own lower and upper bounds
    by setting arguments \code{lower} and \code{upper} to numeric vectors
    that should have the same format as argument \code{start}
-   (see above).
+   (see above).\cr
 
    \bold{Grid search for \eqn{\rho}{rho}}\cr
    If argument \code{rho} has more than one element,
@@ -180,7 +180,15 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    defined in argument \code{rho}.
    Finally the estimation with the \eqn{\rho}{rho},
    that results in the smallest sum of squared residuals is chosen
-   (and returned).
+   (and returned).\cr
+
+   \bold{Random numbers}\cr
+   The \sQuote{state} (or \sQuote{seed}) of R's random number generator
+   is saved at the beginning of the \code{cesEst} function
+   and restored at the end of this function
+   so that this function does \emph{not} affect the generation of random numbers
+   although the random seed is set to argument \code{random.seed}
+   and the \sQuote{SANN} and \sQuote{DE} algorithms use random numbers.
 }
 
 \value{
