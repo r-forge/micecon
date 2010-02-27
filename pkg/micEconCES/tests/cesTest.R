@@ -45,7 +45,6 @@ fitted( cesLandLaborCg )
 residuals( cesLandLaborCg )
 
 # using the SANN optimization method
-set.seed( 123 )
 cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
    method = "SANN" )
 print.default( cesLandLaborSann )
@@ -252,9 +251,8 @@ summary( cesLandIntCg )
 coef( summary( cesLandIntCg ) )
 
 # using the SANN optimization method
-set.seed( 234 )
 cesLandIntSann <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-   method = "SANN" )
+   method = "SANN", random.seed = 234 )
 print.default( cesLandIntSann )
 print( cesLandIntSann )
 summary( cesLandIntSann )

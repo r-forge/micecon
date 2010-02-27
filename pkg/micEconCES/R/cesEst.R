@@ -1,6 +1,6 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
       method = "LM", start = NULL, lower = NULL, upper = NULL,
-      rho = NULL, returnGridAll = FALSE,
+      rho = NULL, returnGridAll = FALSE, random.seed = 123,
       rhoApprox = c( 5e-6, 5e-6, 5e-6, 1e-3, 5e-6 ), ... ) {
 
    # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)
@@ -39,7 +39,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
             data = data, vrs = vrs, method = method, start = start,
             lower = lower, upper = upper,
             rhoValues = rho, returnAll = returnGridAll,
-            rhoApprox = rhoApprox, ... )
+            random.seed = random.seed, rhoApprox = rhoApprox, ... )
          result$call <- match.call()
          return( result )
       }
@@ -105,6 +105,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          vrs = vrs )
    } else if( method %in% c( "Nelder-Mead", "SANN", "BFGS", "CG", "L-BFGS-B" ) ) {
       if( method %in% c( "Nelder-Mead", "SANN" ) ) {
+         if( method == "SANN" ) {
+            set.seed( random.seed )
+         }
          result$optim <- optim( par = start, fn = cesRss, data = data,
             method = method, yName = yName, xNames = xNames, vrs = vrs,
             rho = rho, rhoApprox = rhoApprox, ... )
@@ -184,6 +187,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$convergence <- result$nlminb$convergence == 0
       result$message <- result$nlminb$message
    } else if( method == "DE" ) {
+      set.seed( random.seed )
       result$DEoptim <- DEoptim( fn = cesRss, lower = lower,
          upper = upper, data = data, yName = yName, xNames = xNames,
          vrs = vrs, rho = rho, rhoApprox = rhoApprox, ... )

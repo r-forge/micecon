@@ -63,9 +63,8 @@ coef( summary( cesGridCgVrs ) )
 plot( cesGridCgVrs )
 
 # using the SANN optimization method
-set.seed( 1 )
 cesGridSann <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-   data = germanFarms, method = "SANN",
+   data = germanFarms, method = "SANN", random.seed = 1,
    rho = seq( from = -0.8, to = 0.8, by = 0.8 ) )
 print.default( cesGridSann )
 print( cesGridSann )
@@ -76,9 +75,8 @@ coef( summary( cesGridSann ) )
 plot( cesGridSann )
 
 # using the SANN optimization method, VRS
-set.seed( 21 )
 cesGridSannVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-   data = germanFarms, method = "SANN", vrs = TRUE,
+   data = germanFarms, method = "SANN", vrs = TRUE, random.seed = 21,
    rho = seq( from = -0.8, to = 0.8, by = 0.8 ) )
 print.default( cesGridSannVrs )
 print( cesGridSannVrs )
@@ -208,9 +206,8 @@ coef( summary( cesGridPortVrs ) )
 plot( cesGridPortVrs )
 
 # using the DE optimization method implemented in DEoptim(), CRS
-set.seed( 321 )
 cesGridDe <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-   data = germanFarms, method = "DE",
+   data = germanFarms, method = "DE", random.seed = 321,
    rho = seq( from = -0.8, to = 0.8, by = 0.8 ) )
 print.default( cesGridDe )
 print( cesGridDe )
@@ -221,9 +218,8 @@ coef( summary( cesGridDe ) )
 plot( cesGridDe )
 
 # using the DE optimization method implemented in DEoptim(), VRS
-set.seed( 4321 )
 cesGridDeVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
-   data = germanFarms, method = "DE", vrs = TRUE,
+   data = germanFarms, method = "DE", vrs = TRUE, random.seed = 4321,
    rho = seq( from = -0.8, to = 0.8, by = 0.8 ) )
 print.default( cesGridDeVrs )
 print( cesGridDeVrs )
