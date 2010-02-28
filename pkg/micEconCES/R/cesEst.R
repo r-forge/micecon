@@ -219,7 +219,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
          " 'CG', 'L-BFGS-B', 'SANN', 'LM', 'Newton', 'PORT',",
-         " 'DE', 'nlm', or 'Kmenta'" )
+         " 'DE', 'nls', or 'Kmenta'" )
    }
 
    # add the 'rho' if it is fixed
