@@ -225,6 +225,14 @@ coef( summary( cesLandLaborDe2 ) )
 fitted( cesLandLaborDe2 )
 residuals( cesLandLaborDe2 )
 
+# Land & Labor with constant returns to scale (nls)
+try( cesLandLaborNls <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "nls" ) )
+
+# Land & Labor with variable returns to scale (nls)
+try( cesLandLaborNls <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+   method = "nls", vrs = TRUE ) )
+
 
 ## CES: Land & Intermediate Inputs (Nelder-Mead)
 cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -366,6 +374,14 @@ vcov( cesLandLaborDe2 )
 coef( summary( cesLandLaborDe2 ) )
 fitted( cesLandLaborDe2 )
 residuals( cesLandLaborDe2 )
+
+# constant returns to scale (nls)
+try( cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   method = "nls" ) )
+
+# variable returns to scale (nls)
+try( cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
+   vrs = TRUE, method = "nls" ) )
 
 
 ############  cesCalc  ################

@@ -3296,6 +3296,18 @@ rho   -0.9899983  4231.5706 -0.0002339553 0.9998133
 [13]   46.160076  114.054598   95.702409   59.383026    6.853733   32.757049
 [19]   54.066079   56.378179
 > 
+> # Land & Labor with constant returns to scale (nls)
+> try( cesLandLaborNls <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    method = "nls" ) )
+Error in numericDeriv(form[[3L]], names(ind), env) : 
+  Missing value or an infinity produced when evaluating the model
+> 
+> # Land & Labor with variable returns to scale (nls)
+> try( cesLandLaborNls <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
++    method = "nls", vrs = TRUE ) )
+Error in numericDeriv(form[[3L]], names(ind), env) : 
+  Missing value or an infinity produced when evaluating the model
+> 
 > 
 > ## CES: Land & Intermediate Inputs (Nelder-Mead)
 > cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -6117,6 +6129,18 @@ rho   -0.9899983  4231.5706 -0.0002339553 0.9998133
  [7]  -33.984609   12.251077  -29.796691   -2.833377   44.969346   72.818753
 [13]   46.160076  114.054598   95.702409   59.383026    6.853733   32.757049
 [19]   54.066079   56.378179
+> 
+> # constant returns to scale (nls)
+> try( cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
++    method = "nls" ) )
+Error in numericDeriv(form[[3L]], names(ind), env) : 
+  Missing value or an infinity produced when evaluating the model
+> 
+> # variable returns to scale (nls)
+> try( cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
++    vrs = TRUE, method = "nls" ) )
+Error in numericDeriv(form[[3L]], names(ind), env) : 
+  Missing value or an infinity produced when evaluating the model
 > 
 > 
 > ############  cesCalc  ################

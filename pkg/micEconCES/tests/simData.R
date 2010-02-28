@@ -275,3 +275,25 @@ coef( summary( cesKmentaVrs ) )
 fitted( cesKmentaVrs )
 residuals( cesKmentaVrs )
 
+## nls, CRS
+cesNls <- cesEst( "ys", xxNames, cesData, method = "nls" )
+print.default( cesNls )
+print( cesNls )
+summary( cesNls )
+coef( cesNls )
+vcov( cesNls )
+coef( summary( cesNls ) )
+fitted( cesNls )
+residuals( cesNls )
+
+## nls, VRS
+cesNlsVrs <- cesEst( "ys", xxNames, cesData, method = "nls", vrs = TRUE )
+print.default( cesNlsVrs )
+print( cesNlsVrs )
+summary( cesNlsVrs )
+coef( cesNlsVrs )
+vcov( cesNlsVrs )
+coef( summary( cesNlsVrs ) )
+fitted( cesNlsVrs )
+residuals( cesNlsVrs )
+

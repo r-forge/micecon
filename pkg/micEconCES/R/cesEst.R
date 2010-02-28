@@ -199,10 +199,27 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       names( result$coefficients ) <- cesCoefNames( nExog, vrs,
          returnRho = is.null( rho ) )
       result$iter <- result$DEoptim$optim$iter
+   } else if( method == "nls" ) {
+      if( !is.null( rho ) ) {
+         warning( "ignoring argument 'rho'" )
+      }
+      nlsFormula <- as.formula( paste( yName,
+         " ~ gamma * ( delta * ", xNames[ 1 ], "^(-rho)",
+         " + ( 1 - delta ) * ", xNames[ 2 ], "^(-rho) )",
+         "^( - ", ifelse( vrs, "nu", "1" ), " / rho )",
+         sep = "" ) )
+      result$nls <- nls( formula = nlsFormula, data = data, start = start,
+         ... )
+      result$coefficients <- coef( result$nls )
+      result$iter <- result$nls$convInfo$finIter
+      result$convergence <- result$nls$convInfo$isConv
+      if( result$nls$convInfo$stopMessage != "converged" ) {
+         result$message <- result$nls$convInfo$stopMessage
+      }
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
          " 'CG', 'L-BFGS-B', 'SANN', 'LM', 'Newton', 'PORT',",
-         " 'DE', or 'Kmenta'" )
+         " 'DE', 'nlm', or 'Kmenta'" )
    }
 
    # add the 'rho' if it is fixed
@@ -253,13 +270,6 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    } else {
       rm( .Random.seed, envir = sys.frame() )
    }
-
-   # nonlinear least squares
-#    result$nls <- nls(
-#       y ~ gamma * ( delta * x1^rho + ( 1 - delta ) * x2^rho )^(1/rho),
-#       data = estData, start = result$start, trace = TRUE,
-#       algorithm = "port", lower = c( -Inf, 0.01 , -Inf ),
-#       upper = c( Inf, 0.99, Inf ) )
 
    class( result ) <- c( "cesEst", class( result ) )
    return( result )
