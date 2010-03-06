@@ -60,3 +60,38 @@ Type 'q()' to quit R.
 > all.equal( rm2, colMedians( t( Electricity ) ) )
 [1] TRUE
 > 
+> # array (3 dimensions)
+> a3 <- array( 1:24, dim = c(4,3,2),
++    dimnames = list( c("a","b","c","d"), c("A","B","C"), c("x","y") ) )
+> colMedians( a3 )
+     x    y
+A  2.5 14.5
+B  6.5 18.5
+C 10.5 22.5
+> all.equal( median( a3[ , "B", "y" ] ), colMedians( a3 )[ "B", "y" ] )
+[1] TRUE
+> 
+> # array (4 dimensions)
+> a4 <- array( 1:120, dim = c(5,4,3,2),
++    dimnames = list( c("a","b","c","d","e"), c("A","B","C","D"),
++    c("x","y","z"), c("Y","Z") ) )
+> colMedians( a4 )
+, , Y
+
+   x  y  z
+A  3 23 43
+B  8 28 48
+C 13 33 53
+D 18 38 58
+
+, , Z
+
+   x  y   z
+A 63 83 103
+B 68 88 108
+C 73 93 113
+D 78 98 118
+
+> all.equal( median( a4[ , "B", "x", "Z" ] ), colMedians( a4 )[ "B", "x", "Z" ] )
+[1] TRUE
+> 
