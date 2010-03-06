@@ -100,6 +100,14 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    # set seed for the random number generator (used by SANN and DE)
    set.seed( random.seed )
 
+   # restore seed of the random number generator on exit
+   # (end of function or error)
+   if( exists( "savedSeed" ) ) {
+      on.exit( assign( ".Random.seed", savedSeed, envir = sys.frame() ) )
+   } else {
+      on.exit( rm( .Random.seed, envir = sys.frame() ) )
+   }
+
    # prepare list that will be returned
    result <- list()
 
@@ -263,13 +271,6 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    }
    rownames( result$cov.unscaled ) <- names( result$coefficients )
    colnames( result$cov.unscaled ) <- names( result$coefficients )
-
-   # restore seed of the random number generator
-   if( exists( "savedSeed" ) ) {
-      assign( ".Random.seed", savedSeed, envir = sys.frame() )
-   } else {
-      rm( .Random.seed, envir = sys.frame() )
-   }
 
    class( result ) <- c( "cesEst", class( result ) )
    return( result )
