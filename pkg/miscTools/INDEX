@@ -1,9 +1,10 @@
 coefTable               Coefficient Table
-colMedians              Medians of Columns and Rows
+colMedians              Medians of Columns
 compPlot                Scatterplot to Compare two Variables
 insertCol               Insert Column into a Matrix
 insertRow               Insert Row into a Matrix
 quasiconcavity          Test for quasiconcavity / quasiconvexity
+rowMedians              Medians of Rows
 rSquared                Calculate R squared value
 semidefiniteness        Positive or Negative Semidefiniteness
 symMatrix               Symmetric Matrix
