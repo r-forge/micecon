@@ -1,0 +1,14 @@
+THIS IS THE CHANGELOG OF THE "miscTools" PACKAGE
+
+Please note that only the most significant changes are reported here.
+A full ChangeLog is available in the log messages of the SVN repository
+on R-Forge.
+
+
+            CHANGES IN VERSION 0.6-2
+
+* added function "logDataSet", which was formerly part of the "micEcon" package,
+  where it had the name ".micEconLogData"
+
+* function "colMedians" can return the medians of each non-row
+  of an *array* now
