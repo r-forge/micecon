@@ -28,6 +28,7 @@ all.equal( cesData$yd,
 
 # adding noise to the endogenous variable
 cesData$ys <- cesData$yd + rnorm( nObs )
+print( cesData$ys )
 
 
 ## Nelder-Mead, CRS
@@ -233,6 +234,7 @@ vcov( cesDe )
 coef( summary( cesDe ) )
 fitted( cesDe )
 residuals( cesDe )
+print( fitted( cesDe ) + residuals( cesDe ) )
 # check random number generation
 rnorm( 4 )
 
@@ -250,6 +252,7 @@ vcov( cesDeVrs )
 coef( summary( cesDeVrs ) )
 fitted( cesDeVrs )
 residuals( cesDeVrs )
+print( fitted( cesDeVrs ) + residuals( cesDeVrs ) )
 # check random number generation
 rnorm( 5 )
 
