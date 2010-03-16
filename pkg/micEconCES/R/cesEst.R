@@ -139,6 +139,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          result$convergence <- result$optim$convergence == 0
       }
       result$message <- result$optim$message
+      rss <- result$optim$value
    } else if( method == "LM" ) {
       # residual function
       residFun <- function( par, yName, xNames, data, vrs, rho, rhoApprox ) {
@@ -166,6 +167,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$iter <- result$nls.lm$niter
       result$convergence <- result$nls.lm$info > 0 && result$nls.lm$info < 5
       result$message <- result$nls.lm$message
+      rss <- result$nls.lm$deviance
    } else if( method == "Newton" ) {
       cesRss2 <- function( par, yName, xNames, data, vrs, rho, rhoApprox ) {
          result <- cesRss( par = par, yName = yName, xNames = xNames,
@@ -190,6 +192,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          returnRho = is.null( rho ) )
       result$iter <- result$nlm$iterations
       result$convergence <- result$nlm$code <= 2
+      rss <- result$nlm$minimum
    } else if( method == "PORT" ) {
       result$nlminb <- nlminb( start = start, objective = cesRss,
          gradient = cesRssDeriv, data = data, yName = yName, xNames = xNames,
@@ -199,6 +202,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       result$iter <- result$nlminb$iterations
       result$convergence <- result$nlminb$convergence == 0
       result$message <- result$nlminb$message
+      rss <- result$nlminb$objective
    } else if( method == "DE" ) {
       result$DEoptim <- DEoptim( fn = cesRss, lower = lower,
          upper = upper, data = data, yName = yName, xNames = xNames,
@@ -207,6 +211,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       names( result$coefficients ) <- cesCoefNames( nExog, vrs,
          returnRho = is.null( rho ) )
       result$iter <- result$DEoptim$optim$iter
+      rss <- result$DEoptim$optim$bestval
    } else if( method == "nls" ) {
       if( !is.null( rho ) ) {
          warning( "ignoring argument 'rho'" )
@@ -224,6 +229,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       if( result$nls$convInfo$stopMessage != "converged" ) {
          result$message <- result$nls$convInfo$stopMessage
       }
+      rss <- deviance( result$nls )
    } else {
       stop( "argument 'method' must be either 'Nelder-Mead', 'BFGS',",
          " 'CG', 'L-BFGS-B', 'SANN', 'LM', 'Newton', 'PORT',",
@@ -259,6 +265,13 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # sum of squared residuals
    result$rss <- sum( result$residuals^2 )
+   if( method != "Kmenta" ) {
+      if( !isTRUE( all.equal( rss, result$rss, tolerance = 1e-3 ) ) ) {
+         warning( "internal problem: the minimum of the objective function",
+            " returned by the solver (", rss, ") is not equal to the",
+            " RSS calculated from the residuals (", result$rss, ")" )
+      }
+   }
 
    # unscaled covariance matrix
    gradients <- cesDerivCoef( par = result$coefficients, xNames = xNames,

@@ -3888,6 +3888,9 @@ Iteration: 197 bestvalit: 119388.612461 bestmemit:   18.514414    0.652410    1.
 Iteration: 198 bestvalit: 110545.709358 bestmemit:   18.514414    0.676817    1.138988
 Iteration: 199 bestvalit: 110545.709358 bestmemit:   18.514414    0.676817    1.138988
 Iteration: 200 bestvalit: 110545.709358 bestmemit:   18.514414    0.676817    1.138988
+Warning message:
+In cesEst(rho = sumResults$rho[i], ...) :
+  internal problem: the minimum of the objective function returned by the solver (818133.909576922) is not equal to the RSS calculated from the residuals (1050252.37356212)
 > print.default( cesGridDeVrs )
 $DEoptim
 $optim
