@@ -208,7 +208,8 @@ plot( cesGridPortVrs )
 # using the DE optimization method implemented in DEoptim(), CRS
 cesGridDe <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, method = "DE", random.seed = 321,
-   rho = seq( from = -0.8, to = 0.8, by = 0.8 ) )
+   rho = seq( from = -0.8, to = 0.8, by = 0.8 ),
+   control = DEoptim.control( trace = FALSE ) )
 print.default( cesGridDe )
 print( cesGridDe )
 summary( cesGridDe )
@@ -220,7 +221,8 @@ plot( cesGridDe )
 # using the DE optimization method implemented in DEoptim(), VRS
 cesGridDeVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, method = "DE", vrs = TRUE, random.seed = 4321,
-   rho = seq( from = -0.8, to = 0.8, by = 0.8 ) )
+   rho = seq( from = -0.8, to = 0.8, by = 0.8 ),
+   control = DEoptim.control( trace = FALSE ) )
 print.default( cesGridDeVrs )
 print( cesGridDeVrs )
 summary( cesGridDeVrs )
