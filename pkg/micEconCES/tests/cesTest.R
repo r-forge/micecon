@@ -363,7 +363,7 @@ summary( cesLandIntDeVrs )
 coef( summary( cesLandIntDeVrs ) )
 
 # using the DE optimization method implemented in DEoptim(), CRS, user-specified bounds
-cesLandLaborDe2 <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
+cesLandLaborDe2 <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    method = "DE", control = DEoptim.control( trace = FALSE ),
    lower = c( 1, 0.01, -0.99 ), upper = c( 50, 0.99, 3 ) )
 print.default( cesLandLaborDe2 )
