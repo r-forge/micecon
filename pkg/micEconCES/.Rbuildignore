@@ -1,0 +1,6 @@
+tests/cesTestGrid.R
+tests/cesTestGrid.Rout.save
+tests/cesTest.R
+tests/cesTest.Rout.save
+tests/rhoFixed.R
+tests/rhoFixed.Rout.save
