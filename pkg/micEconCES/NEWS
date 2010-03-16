@@ -1,0 +1,27 @@
+THIS IS THE CHANGELOG OF THE "micEconCES" PACKAGE
+
+Please note that only the most significant changes are reported here.
+A full ChangeLog is available in the log messages of the SVN repository
+on R-Forge.
+
+
+            CHANGES IN VERSION 0.6-4
+
+* the test scripts cesTest.R, cesTestGrid.R, and rhoFixed.R as well as
+  the corresponding output files have been excluded from the R package
+  (using .Rbuildignore) to reduce the execution time of "R CMD check"
+  on CRAN (these scripts are still included in the SVN repository)
+
+
+            CHANGES IN VERSION 0.6-2
+
+* initial release of this package
+
+* the function "cesEst", its documentation, and the test script
+  have been moved from the "micEcon" package to this package
+
+* function "cesCalc" for calculating the endogenous (output) variable
+  of the CES function has been added
+
+* a lot of features (e.g. estimation methods), (S3) methods, and test scripts
+  have been added
