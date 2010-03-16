@@ -4720,6 +4720,9 @@ rho   0.5173721 0.12733469   4.063089 4.842762e-05
 [1] -1.2849391  1.4106987  0.3531135  0.3604826
 > cesDeVrs <- cesEst( "ys", xxNames, cesData, method = "DE", vrs = TRUE,
 +    control = DEoptim.control( trace = FALSE ) )
+Warning message:
+In cesEst("ys", xxNames, cesData, method = "DE", vrs = TRUE, control = DEoptim.control(trace = FALSE)) :
+  internal problem: the minimum of the objective function returned by the solver (448.775433384284) is not equal to the RSS calculated from the residuals (589.343900646353)
 > print.default( cesDeVrs )
 $DEoptim
 $optim

@@ -424,6 +424,9 @@ rho    2.0000000   2095.791 0.0009542936 0.9992386
 > ## Conjugate Gradients, VRS
 > cesCgVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "CG", vrs = TRUE,
 +    rho = -0.1 )
+Warning message:
+In cesEst("qOutput", xxNames, germanFarms, method = "CG", vrs = TRUE,  :
+  internal problem: the minimum of the objective function returned by the solver (203705.13978051) is not equal to the RSS calculated from the residuals (204528.553498924)
 > print.default( cesCgVrs )
 $optim
 $optim$par
@@ -2446,6 +2449,9 @@ rho    2.000000 2.185704e+09 9.150368e-10 1.000000
 > ## DE, VRS
 > cesDeVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "DE", vrs = TRUE,
 +    control = DEoptim.control( trace = FALSE ), rho = -0.1, random.seed = 234 )
+Warning message:
+In cesEst("qOutput", xxNames, germanFarms, method = "DE", vrs = TRUE,  :
+  internal problem: the minimum of the objective function returned by the solver (1706353.58291505) is not equal to the RSS calculated from the residuals (1745311.01380781)
 > print.default( cesDeVrs )
 $DEoptim
 $optim
