@@ -1,3 +1,5 @@
+inst/doc/CES-deriv.lyx
+inst/doc/monteCarlo/mcResults.RData
 tests/cesTestGrid.R
 tests/cesTestGrid.Rout.save
 tests/cesTest.R
