@@ -7,6 +7,10 @@ on R-Forge.
 
             CHANGES IN VERSION 0.6-4
 
+* added a "vignette" describing this package; it has the title "Estimating
+  the CES Function in R: Package micEconCES" and it was written by Geraldine
+  Henningsen and Arne Henningsen
+
 * the test scripts cesTest.R, cesTestGrid.R, and rhoFixed.R as well as
   the corresponding output files have been excluded from the R package
   (using .Rbuildignore) to reduce the execution time of "R CMD check"
