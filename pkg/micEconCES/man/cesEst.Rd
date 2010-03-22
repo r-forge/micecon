@@ -343,9 +343,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    ## CES: Land & Labor (Levenberg-Marquardt algorithm)
    cesLandLabor <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms )
 
-   # variable returns to scale (Levenberg-Marquardt algorithm)
+   # variable returns to scale, increased max. number of iter. (LM algorithm)
    cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-      vrs = TRUE )
+      vrs = TRUE, control = nls.lm.control( maxiter = 1000 ) )
 
    # using the Nelder-Mead optimization method
    cesLandLaborNm <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -364,8 +364,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       method = "CG" )
 
    # using the SANN optimization method
+   # (with decreased number of iteration to decrease execution time)
    cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-      method = "SANN" )
+      method = "SANN", control = list( maxit = 1000 ) )
 
    # using the Kmenta approximation
    cesLandLaborKmenta <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -380,41 +381,13 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       germanFarms, vrs = TRUE, method = "PORT" )
 
    # using the Differential Evolution optimization method
+   # (with decreased number of iteration to decrease execution time)
    cesLandLaborDe <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-      method = "DE" )
+      method = "DE", control = DEoptim.control( itermax = 50 ) )
 
-
-   ## CES: Land & Intermediate Inputs (Levenberg-Marquardt algorithm)
-   cesLandInt <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms )
-
-   # variable returns to scale (Levenberg-Marquardt algorithm)
-   cesLandIntVrs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-      vrs = TRUE )
-
-   # using the Nelder-Mead optimization method
-   cesLandIntNm <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-      method = "NM", control = nls.lm.control( maxiter = 200 ) )
-
-   # using the BFGS optimization method
-   cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-      method = "BFGS" )
-
-   # using the L-BFGS-B optimization method with constrained parameters, VRS
-   cesLandIntBfgsCon <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-      method = "L-BFGS-B", vrs = TRUE )
-
-   # using the SANN optimization method
-   cesLandIntSann <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-      method = "SANN" )
-
-   # using the Differential Evolution optimization method
-   cesLandIntDe <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
-      method = "DE" )
-
-   ## estimation with a grid search for rho
-   cesLandInt <- cesEst( yName = "qOutput",
-      xNames = c( "land", "qVarInput" ), data = germanFarms,
-      rho = seq( from = -0.6, to = 0.9, by = 0.3 ) )
+   ## estimation with a grid search for rho (using the LM algorithm)
+   cesLandInt <- cesEst( "qOutput", c( "land", "qLabor" ),
+      data = germanFarms, rho = seq( from = -0.6, to = 0.9, by = 0.3 ) )
 }
 
 \keyword{models}
