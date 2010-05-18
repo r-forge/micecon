@@ -14,18 +14,10 @@ translogCheckMono <- function( xNames, data, coef, increasing = TRUE,
    colnames( result$exog ) <- colnames( deriv )
 
    for( i in 1:nExog ) {
-      if( increasing ) {
-         if( strict ) {
-            result$exog[ , i ] <- deriv[ , i ] > 0
-         } else {
-            result$exog[ , i ] <- deriv[ , i ] >= - tol
-         }
+      if( strict ) {
+         result$exog[ , i ] <- deriv[ , i ] * (-1)^increasing < 0
       } else {
-         if( strict ) {
-            result$exog[ , i ] <- deriv[ , i ] < 0
-         } else {
-            result$exog[ , i ] <- deriv[ , i ] <= tol
-         }
+         result$exog[ , i ] <- deriv[ , i ] * (-1)^increasing <= tol
       }
    }
 
