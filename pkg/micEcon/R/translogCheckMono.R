@@ -1,11 +1,11 @@
 translogCheckMono <- function( xNames, data, coef, increasing = TRUE,
-   strict = FALSE, quadHalf = TRUE, dataLogged = FALSE,
+   strict = FALSE, dataLogged = FALSE,
    tol = 10 * .Machine$double.eps ) {
 
    result <- list()
 
    deriv <- translogDeriv( xNames = xNames, data = data, coef = coef,
-      quadHalf = quadHalf, dataLogged = dataLogged )$deriv
+      dataLogged = dataLogged )$deriv
 
    if( increasing ) {
       if( strict ) {
