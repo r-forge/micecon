@@ -16,32 +16,8 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEcon )
-Loading required package: systemfit
-Loading required package: Matrix
-Loading required package: lattice
-
-Attaching package: 'Matrix'
-
-The following object(s) are masked from 'package:base':
-
-    det
-
-Loading required package: car
-Loading required package: lmtest
-Loading required package: zoo
 Loading required package: np
 Loading required package: boot
-
-Attaching package: 'boot'
-
-The following object(s) are masked from 'package:car':
-
-    logit
-
-The following object(s) are masked from 'package:lattice':
-
-    melanoma
-
 Loading required package: cubature
 Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-8)
 Loading required package: miscTools
@@ -57,10 +33,19 @@ The following object(s) are masked from 'package:boot':
     aml
 
 Loading required package: nlme
+Loading required package: lattice
+
+Attaching package: 'lattice'
+
+The following object(s) are masked from 'package:boot':
+
+    melanoma
+
 [1] "kinship is loaded"
 Loading required package: Formula
 Loading required package: MASS
 Loading required package: sandwich
+Loading required package: zoo
 > 
 > ## preparing data
 > data( germanFarms )
