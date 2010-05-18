@@ -224,9 +224,6 @@ $yName
 $xNames
 [1] "qLabor"    "land"      "qVarInput" "time"     
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
               a_1      a_2      a_3       a_4      b_1_1    b_1_2    b_1_3
  [1,] 1 0.3646431 3.152736 6.321752 0.0000000 0.06648230 1.149623 2.305183
@@ -394,7 +391,7 @@ R-squared: 0.9982506     Adjusted R-squared: 0.9933521
 > estResultLog <- translogEst( "qLogOutput", 
 +    xNames = c( "qLogLabor", "qLogLand", "qLogVarInput", "logTime" ),
 +    data = germanFarms, dataLogged = TRUE )
-> all.equal( estResult[ -c(1,6,12,13,17) ], estResultLog[ -c(1,6,12,13,17) ] )
+> all.equal( estResult[ -c(1,6,12,13,16) ], estResultLog[ -c(1,6,12,13,16) ] )
 [1] TRUE
 > all.equal( estResult$fitted, exp( estResultLog$fitted ) )
 [1] TRUE
@@ -1643,9 +1640,6 @@ $xNames
 $shifterNames
 [1] "tech"
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
               a_1      a_2      a_3      b_1_1    b_1_2    b_1_3    b_2_2
  [1,] 1 0.3646431 3.152736 6.321752 0.06648230 1.149623 2.305183 4.969872
@@ -1703,8 +1697,8 @@ attr(,"class")
 > estResultShifterLog <- translogEst( "qLogOutput", 
 +    xNames = c( "qLogLabor", "qLogLand", "qLogVarInput" ),
 +    data = germanFarms, shifterNames = "time", dataLogged = TRUE )
-> all.equal( estResultShifter[ -c(1,6,12,13,14,18) ],
-+    estResultShifterLog[ -c(1,6,12,13,14,18) ] )
+> all.equal( estResultShifter[ -c(1,6,12,13,14,17) ],
++    estResultShifterLog[ -c(1,6,12,13,14,17) ] )
 [1] TRUE
 > all.equal( estResultShifter$fitted, exp( estResultShifterLog$fitted ) )
 [1] TRUE
@@ -1938,9 +1932,6 @@ $xNames
 $shifterNames
 [1] "tech"   "techSq"
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
               a_1      a_2      a_3      b_1_1    b_1_2    b_1_3    b_2_2
  [1,] 1 0.3646431 3.152736 6.321752 0.06648230 1.149623 2.305183 4.969872
@@ -2139,9 +2130,6 @@ $xNames
 $shifterNames
 [1] "reUnif"
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
               a_1      a_2      a_3      b_1_1    b_1_2    b_1_3    b_2_2
  [1,] 1 0.3646431 3.152736 6.321752 0.06648230 1.149623 2.305183 4.969872
@@ -2199,8 +2187,8 @@ attr(,"class")
 > estResultShifterLogiLog <- translogEst( "qLogOutput", 
 +    xNames = c( "qLogLabor", "qLogLand", "qLogVarInput" ),
 +    data = germanFarms, shifterNames = "reUnif", dataLogged = TRUE )
-> all.equal( estResultShifterLogi[ -c(1,6,12,13,18) ],
-+    estResultShifterLogiLog[ -c(1,6,12,13,18) ] )
+> all.equal( estResultShifterLogi[ -c(1,6,12,13,17) ],
++    estResultShifterLogiLog[ -c(1,6,12,13,17) ] )
 [1] TRUE
 > all.equal( estResultShifterLogi$fitted, exp( estResultShifterLogiLog$fitted ) )
 [1] TRUE
@@ -2358,9 +2346,6 @@ $xNames
 $shifterNames
 [1] "decade"
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
           a_1         a_2        a_3        b_1_1        b_1_2      b_1_3     
  [1,] "1" "0.3646431" "3.152736" "6.321752" "0.06648230" "1.149623" "2.305183"
@@ -2418,8 +2403,8 @@ attr(,"class")
 > estResultShifterFacLog <- translogEst( "qLogOutput", 
 +    xNames = c( "qLogLabor", "qLogLand", "qLogVarInput" ),
 +    data = germanFarms, shifterNames = "decade", dataLogged = TRUE )
-> all.equal( estResultShifterFac[ -c(1,6,12,13,18) ],
-+    estResultShifterFacLog[ -c(1,6,12,13,18) ] )
+> all.equal( estResultShifterFac[ -c(1,6,12,13,17) ],
++    estResultShifterFacLog[ -c(1,6,12,13,17) ] )
 [1] TRUE
 > all.equal( estResultShifterFac$fitted, exp( estResultShifterFacLog$fitted ) )
 [1] TRUE
@@ -2574,9 +2559,6 @@ $xNames
 
 $shifterNames
 [1] "tech"   "reUnif"
-
-$quadHalf
-[1] TRUE
 
 $model.matrix
               a_1      a_2      a_3      b_1_1    b_1_2    b_1_3    b_2_2
@@ -2789,9 +2771,6 @@ $xNames
 $shifterNames
 [1] "tech"   "decade"
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
           a_1         a_2        a_3        b_1_1        b_1_2      b_1_3     
  [1,] "1" "0.3646431" "3.152736" "6.321752" "0.06648230" "1.149623" "2.305183"
@@ -3001,9 +2980,6 @@ $yName
 $xNames
 [1] "qLabor"    "land"      "qVarInput" "time"     
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
               a_1      a_2      a_3       a_4      b_1_1    b_1_2    b_1_3
  [1,] 1 0.3646431 3.152736 6.321752 0.0000000 0.06648230 1.149623 2.305183
@@ -3180,9 +3156,6 @@ $yName
 $xNames
 [1] "value"   "capital"
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2
 1   1 8.032198  1.0296194 32.25810  8.270107  0.53005807
@@ -3299,7 +3272,7 @@ attr(,"class")
 > ggResultLog <- translogEst( "logInvest", 
 +    xNames = c( "logValue", "logCapital" ),
 +    data = ggData, dataLogged = TRUE )
-> all.equal( ggResult[ -c(1,6,10,11,15) ], ggResultLog[ -c(1,6,10,11,15) ] )
+> all.equal( ggResult[ -c(1,6,10,11,14) ], ggResultLog[ -c(1,6,10,11,14) ] )
 [1] TRUE
 > all.equal( ggResult$fitted, exp( ggResultLog$fitted ) )
 [1] TRUE
@@ -3427,9 +3400,6 @@ $yName
 $xNames
 [1] "value"   "capital"
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2
 1   1 8.032198  1.0296194 32.25810  8.270107  0.53005807
@@ -3547,7 +3517,7 @@ attr(,"class")
 +    xNames = c( "logValue", "logCapital" ),
 +    data = ggData, dataLogged = TRUE,
 +    model = "random", random.method = "amemiya" )
-> all.equal( ggResultRan[ -c(1,6,10,11,15) ], ggResultRanLog[ -c(1,6,10,11,15) ] )
+> all.equal( ggResultRan[ -c(1,6,10,11,14) ], ggResultRanLog[ -c(1,6,10,11,14) ] )
 [1] TRUE
 > all.equal( ggResultRan$fitted, exp( ggResultRanLog$fitted ) )
 [1] TRUE
@@ -4322,9 +4292,6 @@ $xNames
 $shifterNames
 [1] "tech"
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2 d_1
 1   1 8.032198  1.0296194 32.25810  8.270107  0.53005807   0
@@ -4578,9 +4545,6 @@ $xNames
 $shifterNames
 [1] "tech"
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2 d_1
 1   1 8.032198  1.0296194 32.25810  8.270107  0.53005807   0
@@ -4824,9 +4788,6 @@ $xNames
 
 $shifterNames
 [1] "war"
-
-$quadHalf
-[1] TRUE
 
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2 d_1_
@@ -5074,9 +5035,6 @@ $xNames
 
 $shifterNames
 [1] "war"
-
-$quadHalf
-[1] TRUE
 
 $model.matrix
            a_1        a_2    b_1_1     b_1_2       b_2_2 d_1_
@@ -5329,9 +5287,6 @@ $xNames
 $shifterNames
 [1] "decade"
 
-$quadHalf
-[1] TRUE
-
 $model.matrix
         a_1        a_2          b_1_1      b_1_2       b_2_2         d_1_ 
 1   "1" "8.032198" " 1.0296194" "32.25810" " 8.270107" " 0.53005807" "30s"
@@ -5581,9 +5536,6 @@ $xNames
 
 $shifterNames
 [1] "decade"
-
-$quadHalf
-[1] TRUE
 
 $model.matrix
         a_1        a_2          b_1_1      b_1_2       b_2_2         d_1_ 
@@ -5852,9 +5804,6 @@ $nObs
 
 $xNames
 [1] "qLabor"    "land"      "qVarInput"
-
-$quadHalf
-[1] TRUE
 
 $model.matrix
               a_1      a_2      a_3      a_4      b_1_1    b_1_2    b_1_3

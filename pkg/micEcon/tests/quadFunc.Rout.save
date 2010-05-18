@@ -184,9 +184,6 @@ $yName
 $xNames
 [1] "qLabor"    "land"      "qVarInput" "time"     
 
-$quadHalf
-[1] TRUE
-
 $regScale
 [1] 1
 
@@ -449,9 +446,6 @@ $xNames
 $shifterNames
 [1] "time"
 
-$quadHalf
-[1] TRUE
-
 $regScale
 [1] 1
 
@@ -695,9 +689,6 @@ $xNames
 $shifterNames
 [1] "time"   "timeSq"
 
-$quadHalf
-[1] TRUE
-
 $regScale
 [1] 1
 
@@ -824,9 +815,6 @@ $yName
 
 $shifterNames
 [1] "time"      "qLabor"    "land"      "qVarInput"
-
-$quadHalf
-[1] TRUE
 
 $regScale
 [1] 1
@@ -999,9 +987,6 @@ $yName
 $xNames
 [1] "time"      "qLabor"    "land"      "qVarInput"
 
-$quadHalf
-[1] TRUE
-
 $regScale
 [1] 1
 
@@ -1171,9 +1156,6 @@ $xNames
 
 $shifterNames
 [1] "reUnif"
-
-$quadHalf
-[1] TRUE
 
 $regScale
 [1] 1
@@ -1350,9 +1332,6 @@ $xNames
 $shifterNames
 [1] "decade"
 
-$quadHalf
-[1] TRUE
-
 $regScale
 [1] 1
 
@@ -1525,9 +1504,6 @@ $xNames
 
 $shifterNames
 [1] "time"   "reUnif"
-
-$quadHalf
-[1] TRUE
 
 $regScale
 [1] 1
@@ -1706,9 +1682,6 @@ $xNames
 
 $shifterNames
 [1] "time"   "decade"
-
-$quadHalf
-[1] TRUE
 
 $regScale
 [1] 1
@@ -1892,9 +1865,6 @@ $yName
 
 $xNames
 [1] "qLabor"    "land"      "qVarInput" "time"     
-
-$quadHalf
-[1] TRUE
 
 $regScale
 [1] 1
@@ -3013,9 +2983,6 @@ $yName
 $xNames
 [1] "value"   "capital"
 
-$quadHalf
-[1] TRUE
-
 $regScale
 [1] 1
 
@@ -3250,9 +3217,6 @@ $yName
 
 $xNames
 [1] "value"   "capital"
-
-$quadHalf
-[1] TRUE
 
 $regScale
 [1] 1
@@ -3502,9 +3466,6 @@ $xNames
 $shifterNames
 [1] "tech"
 
-$quadHalf
-[1] TRUE
-
 $regScale
 [1] 1
 
@@ -3750,9 +3711,6 @@ $xNames
 
 $shifterNames
 [1] "tech"
-
-$quadHalf
-[1] TRUE
 
 $regScale
 [1] 1
@@ -4007,9 +3965,6 @@ $xNames
 $shifterNames
 [1] "war"
 
-$quadHalf
-[1] TRUE
-
 $regScale
 [1] 1
 
@@ -4255,9 +4210,6 @@ $xNames
 
 $shifterNames
 [1] "war"
-
-$quadHalf
-[1] TRUE
 
 $regScale
 [1] 1
@@ -4511,9 +4463,6 @@ $xNames
 $shifterNames
 [1] "decade"
 
-$quadHalf
-[1] TRUE
-
 $regScale
 [1] 1
 
@@ -4763,9 +4712,6 @@ $xNames
 $shifterNames
 [1] "decade"
 
-$quadHalf
-[1] TRUE
-
 $regScale
 [1] 1
 
@@ -5010,9 +4956,6 @@ $yName
 $xNames
 [1] "value"   "capital"
 
-$quadHalf
-[1] TRUE
-
 $regScale
 [1] 1
 
@@ -5248,9 +5191,6 @@ $yName
 
 $xNames
 [1] "value"   "capital"
-
-$quadHalf
-[1] TRUE
 
 $regScale
 [1] 1
