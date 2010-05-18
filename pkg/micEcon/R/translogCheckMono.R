@@ -7,17 +7,25 @@ translogCheckMono <- function( xNames, data, coef, increasing = TRUE,
    deriv <- translogDeriv( xNames = xNames, data = data, coef = coef,
       dataLogged = dataLogged )$deriv
 
-   if( increasing ) {
-      if( strict ) {
-         result$exog <- deriv > 0
+   nExog <- ncol( deriv )
+   nObs <- nrow( deriv )
+
+   result$exog <- matrix( NA, nrow = nObs, ncol = nExog )
+   colnames( result$exog ) <- colnames( deriv )
+
+   for( i in 1:nExog ) {
+      if( increasing ) {
+         if( strict ) {
+            result$exog[ , i ] <- deriv[ , i ] > 0
+         } else {
+            result$exog[ , i ] <- deriv[ , i ] >= - tol
+         }
       } else {
-         result$exog <- deriv >= - tol
-      }
-   } else {
-      if( strict ) {
-         result$exog <- deriv < 0
-      } else {
-         result$exog <- deriv <= tol
+         if( strict ) {
+            result$exog[ , i ] <- deriv[ , i ] < 0
+         } else {
+            result$exog[ , i ] <- deriv[ , i ] <= tol
+         }
       }
    }
 
