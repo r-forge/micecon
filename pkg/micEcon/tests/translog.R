@@ -147,6 +147,22 @@ summary( test )
 class( test ) <- NULL
 print( test )
 
+test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, coef( estResult ), increasing = c( FALSE, TRUE, FALSE, FALSE ) )
+summary( test )
+print.default( test )
+
+test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, coef( estResult ), increasing = c( FALSE, TRUE, TRUE, FALSE ),
+   strict = TRUE )
+summary( test )
+print.default( test )
+
+test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
+   germanFarms, coef( estResult ), increasing = c( TRUE, TRUE, FALSE, TRUE ) )
+summary( test )
+print.default( test )
+
 
 ## testing translogCheckCurvature
 test <- translogCheckCurvature( c( "qLabor", "land", "qVarInput", "time" ),

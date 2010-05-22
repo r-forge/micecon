@@ -1216,7 +1216,7 @@ $obs
 [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 
 $increasing
-[1] TRUE
+[1] TRUE TRUE TRUE TRUE
 
 $strict
 [1] FALSE
@@ -1261,7 +1261,7 @@ $obs
 [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 
 $increasing
-[1] TRUE
+[1] TRUE TRUE TRUE TRUE
 
 $strict
 [1] TRUE
@@ -1306,7 +1306,7 @@ $obs
 [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 
 $increasing
-[1] FALSE
+[1] FALSE FALSE FALSE FALSE
 
 $strict
 [1] FALSE
@@ -1351,11 +1351,150 @@ $obs
 [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 
 $increasing
-[1] FALSE
+[1] FALSE FALSE FALSE FALSE
 
 $strict
 [1] TRUE
 
+> 
+> test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, coef( estResult ), increasing = c( FALSE, TRUE, FALSE, FALSE ) )
+> summary( test )
+This translog function is monotonically increasing in land and monotonically decreasing in qLabor, qVarInput, time at 3 out of 20 observations (15%)
+The monotonicity condition for the exogenous variable
+- 'qLabor' is fulfilled at 6 out of 20 observations (30%)
+- 'land' is fulfilled at 20 out of 20 observations (100%)
+- 'qVarInput' is fulfilled at 9 out of 20 observations (45%)
+- 'time' is fulfilled at 13 out of 20 observations (65%)
+> print.default( test )
+$exog
+      qLabor land qVarInput  time
+ [1,]  FALSE TRUE      TRUE FALSE
+ [2,]  FALSE TRUE      TRUE FALSE
+ [3,]  FALSE TRUE      TRUE FALSE
+ [4,]  FALSE TRUE      TRUE FALSE
+ [5,]  FALSE TRUE      TRUE FALSE
+ [6,]  FALSE TRUE      TRUE FALSE
+ [7,]  FALSE TRUE     FALSE FALSE
+ [8,]  FALSE TRUE     FALSE  TRUE
+ [9,]  FALSE TRUE     FALSE  TRUE
+[10,]  FALSE TRUE     FALSE  TRUE
+[11,]   TRUE TRUE     FALSE  TRUE
+[12,]   TRUE TRUE      TRUE  TRUE
+[13,]   TRUE TRUE      TRUE  TRUE
+[14,]   TRUE TRUE      TRUE  TRUE
+[15,]   TRUE TRUE     FALSE  TRUE
+[16,]   TRUE TRUE     FALSE  TRUE
+[17,]  FALSE TRUE     FALSE  TRUE
+[18,]  FALSE TRUE     FALSE  TRUE
+[19,]  FALSE TRUE     FALSE  TRUE
+[20,]  FALSE TRUE     FALSE  TRUE
+
+$obs
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+[13]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+
+$increasing
+[1] FALSE  TRUE FALSE FALSE
+
+$strict
+[1] FALSE
+
+attr(,"class")
+[1] "translogCheckMono"
+> 
+> test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, coef( estResult ), increasing = c( FALSE, TRUE, TRUE, FALSE ),
++    strict = TRUE )
+> summary( test )
+This translog function is strictly monotonically increasing in land, qVarInput and strictly monotonically decreasing in qLabor, time at 3 out of 20 observations (15%)
+The monotonicity condition for the exogenous variable
+- 'qLabor' is fulfilled at 6 out of 20 observations (30%)
+- 'land' is fulfilled at 20 out of 20 observations (100%)
+- 'qVarInput' is fulfilled at 11 out of 20 observations (55%)
+- 'time' is fulfilled at 13 out of 20 observations (65%)
+> print.default( test )
+$exog
+      qLabor land qVarInput  time
+ [1,]  FALSE TRUE     FALSE FALSE
+ [2,]  FALSE TRUE     FALSE FALSE
+ [3,]  FALSE TRUE     FALSE FALSE
+ [4,]  FALSE TRUE     FALSE FALSE
+ [5,]  FALSE TRUE     FALSE FALSE
+ [6,]  FALSE TRUE     FALSE FALSE
+ [7,]  FALSE TRUE      TRUE FALSE
+ [8,]  FALSE TRUE      TRUE  TRUE
+ [9,]  FALSE TRUE      TRUE  TRUE
+[10,]  FALSE TRUE      TRUE  TRUE
+[11,]   TRUE TRUE      TRUE  TRUE
+[12,]   TRUE TRUE     FALSE  TRUE
+[13,]   TRUE TRUE     FALSE  TRUE
+[14,]   TRUE TRUE     FALSE  TRUE
+[15,]   TRUE TRUE      TRUE  TRUE
+[16,]   TRUE TRUE      TRUE  TRUE
+[17,]  FALSE TRUE      TRUE  TRUE
+[18,]  FALSE TRUE      TRUE  TRUE
+[19,]  FALSE TRUE      TRUE  TRUE
+[20,]  FALSE TRUE      TRUE  TRUE
+
+$obs
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+[13] FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
+
+$increasing
+[1] FALSE  TRUE  TRUE FALSE
+
+$strict
+[1] TRUE
+
+attr(,"class")
+[1] "translogCheckMono"
+> 
+> test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
++    germanFarms, coef( estResult ), increasing = c( TRUE, TRUE, FALSE, TRUE ) )
+> summary( test )
+This translog function is monotonically increasing in qLabor, land, time and monotonically decreasing in qVarInput at 6 out of 20 observations (30%)
+The monotonicity condition for the exogenous variable
+- 'qLabor' is fulfilled at 14 out of 20 observations (70%)
+- 'land' is fulfilled at 20 out of 20 observations (100%)
+- 'qVarInput' is fulfilled at 9 out of 20 observations (45%)
+- 'time' is fulfilled at 7 out of 20 observations (35%)
+> print.default( test )
+$exog
+      qLabor land qVarInput  time
+ [1,]   TRUE TRUE      TRUE  TRUE
+ [2,]   TRUE TRUE      TRUE  TRUE
+ [3,]   TRUE TRUE      TRUE  TRUE
+ [4,]   TRUE TRUE      TRUE  TRUE
+ [5,]   TRUE TRUE      TRUE  TRUE
+ [6,]   TRUE TRUE      TRUE  TRUE
+ [7,]   TRUE TRUE     FALSE  TRUE
+ [8,]   TRUE TRUE     FALSE FALSE
+ [9,]   TRUE TRUE     FALSE FALSE
+[10,]   TRUE TRUE     FALSE FALSE
+[11,]  FALSE TRUE     FALSE FALSE
+[12,]  FALSE TRUE      TRUE FALSE
+[13,]  FALSE TRUE      TRUE FALSE
+[14,]  FALSE TRUE      TRUE FALSE
+[15,]  FALSE TRUE     FALSE FALSE
+[16,]  FALSE TRUE     FALSE FALSE
+[17,]   TRUE TRUE     FALSE FALSE
+[18,]   TRUE TRUE     FALSE FALSE
+[19,]   TRUE TRUE     FALSE FALSE
+[20,]   TRUE TRUE     FALSE FALSE
+
+$obs
+ [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+$increasing
+[1]  TRUE  TRUE FALSE  TRUE
+
+$strict
+[1] FALSE
+
+attr(,"class")
+[1] "translogCheckMono"
 > 
 > 
 > ## testing translogCheckCurvature
