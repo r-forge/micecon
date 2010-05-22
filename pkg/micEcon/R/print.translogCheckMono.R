@@ -10,6 +10,8 @@ print.translogCheckMono <- function( x, ... ) {
    } else {
       cat( " decreasing" )
    }
+   cat( " in " )
+   cat( colnames( x$exog ), sep = ", " )
    cat( " at", sum( x$obs, na.rm = TRUE ) )
    cat( " out of", sum( !is.na( x$obs ) ), "observations (" )
    cat( round( 100 * sum( x$obs, na.rm = TRUE ) / sum( !is.na( x$obs ) ),

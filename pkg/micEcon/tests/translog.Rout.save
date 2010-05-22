@@ -1180,7 +1180,7 @@ attr(,"class")
 > test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ) )
 > summary( test )
-This translog function is monotonically increasing at 1 out of 20 observations (5%)
+This translog function is monotonically increasing in qLabor, land, qVarInput, time at 1 out of 20 observations (5%)
 The monotonicity condition for the exogenous variable
 - 'qLabor' is fulfilled at 14 out of 20 observations (70%)
 - 'land' is fulfilled at 20 out of 20 observations (100%)
@@ -1225,7 +1225,7 @@ $strict
 > test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ), strict = TRUE )
 > summary( test )
-This translog function is strictly monotonically increasing at 1 out of 20 observations (5%)
+This translog function is strictly monotonically increasing in qLabor, land, qVarInput, time at 1 out of 20 observations (5%)
 The monotonicity condition for the exogenous variable
 - 'qLabor' is fulfilled at 14 out of 20 observations (70%)
 - 'land' is fulfilled at 20 out of 20 observations (100%)
@@ -1270,7 +1270,7 @@ $strict
 > test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ), increasing = FALSE )
 > summary( test )
-This translog function is monotonically decreasing at 0 out of 20 observations (0%)
+This translog function is monotonically decreasing in qLabor, land, qVarInput, time at 0 out of 20 observations (0%)
 The monotonicity condition for the exogenous variable
 - 'qLabor' is fulfilled at 6 out of 20 observations (30%)
 - 'land' is fulfilled at 0 out of 20 observations (0%)
@@ -1315,7 +1315,7 @@ $strict
 > test <- translogCheckMono( c( "qLabor", "land", "qVarInput", "time" ),
 +    germanFarms, coef( estResult ), increasing = FALSE, strict = TRUE )
 > summary( test )
-This translog function is strictly monotonically decreasing at 0 out of 20 observations (0%)
+This translog function is strictly monotonically decreasing in qLabor, land, qVarInput, time at 0 out of 20 observations (0%)
 The monotonicity condition for the exogenous variable
 - 'qLabor' is fulfilled at 6 out of 20 observations (30%)
 - 'land' is fulfilled at 0 out of 20 observations (0%)
