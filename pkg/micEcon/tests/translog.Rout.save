@@ -19,7 +19,7 @@ Type 'q()' to quit R.
 Loading required package: np
 Loading required package: boot
 Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-8)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.30-9)
 Loading required package: miscTools
 > library( plm )
 Loading required package: kinship
