@@ -5,6 +5,7 @@ insertCol               Insert Column into a Matrix
 insertRow               Insert Row into a Matrix
 nObs                    Return number of observations for statistical
                         models
+nParam                  Number of model parameters
 quasiconcavity          Test for quasiconcavity / quasiconvexity
 rowMedians              Medians of Rows
 rSquared                Calculate R squared value
