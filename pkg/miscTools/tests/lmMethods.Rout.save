@@ -25,4 +25,6 @@ Type 'q()' to quit R.
 > m <- lm(y~x1+x2)  # estimate it
 > nObs(m)
 [1] 100
+> nParam(m)
+[1] 3
 > 
