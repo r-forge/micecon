@@ -1,6 +1,8 @@
 coefTable               Coefficient Table
 colMedians              Medians of Columns
 compPlot                Scatterplot to Compare two Variables
+ddnorm                  Derivative of the Normal Distribution's Density
+                        Function
 insertCol               Insert Column into a Matrix
 insertRow               Insert Row into a Matrix
 nObs                    Return number of observations for statistical
