@@ -5,6 +5,18 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.6-8
+
+* reduced execution time of the examples by removing several examples and by
+decreasing the number of iterations in the (example) estimations that use the
+SANN and the DE algorithm
+
+
+            CHANGES IN VERSION 0.6-6
+
+* fixed a bug in the package vignette
+
+
             CHANGES IN VERSION 0.6-4
 
 * added a "vignette" describing this package; it has the title "Estimating
