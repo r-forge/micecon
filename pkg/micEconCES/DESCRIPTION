@@ -1,6 +1,6 @@
 Package: micEconCES
-Version: 0.6-7
-Date: 2010/03/20
+Version: 0.6-8
+Date: 2010/08/11
 Title: Analysis with the Constant Elasticity of Scale (CES) function
 Author: Arne Henningsen and Geraldine Henningsen
 Maintainer: Arne Henningsen <arne.henningsen@googlemail.com>
