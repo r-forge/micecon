@@ -5,6 +5,19 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.6-6
+
+* added generic functions nObs() and nParam() including the "default" methods
+and methods for objects of class "lm"; these generic functions and their methods
+were moved from the "maxLik" package to this package
+
+* added function ddnorm(), which calculates the derivative(s) of the density
+function of the normal (Gaussian) distribution with respect to the quantile
+
+* added function sumKeepAttr() that returns the sum of an array while keeping
+its attributes
+
+
             CHANGES IN VERSION 0.6-2
 
 * added function "logDataSet", which was formerly part of the "micEcon" package,
