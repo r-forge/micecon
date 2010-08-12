@@ -409,7 +409,7 @@ print.default( ggResult )
 ggResultLog <- translogEst( "logInvest", 
    xNames = c( "logValue", "logCapital" ),
    data = ggData, dataLogged = TRUE )
-all.equal( ggResult[ -c(1,6,10,11,14) ], ggResultLog[ -c(1,6,10,11,14) ] )
+all.equal( ggResult[ -c(1,6,12,13,16) ], ggResultLog[ -c(1,6,12,13,16) ] )
 all.equal( ggResult$fitted, exp( ggResultLog$fitted ) )
 # random effects
 ggResultRan <- translogEst( "invest", c( "value", "capital" ), ggData,
@@ -421,7 +421,7 @@ ggResultRanLog <- translogEst( "logInvest",
    xNames = c( "logValue", "logCapital" ),
    data = ggData, dataLogged = TRUE,
    model = "random", random.method = "amemiya" )
-all.equal( ggResultRan[ -c(1,6,10,11,14) ], ggResultRanLog[ -c(1,6,10,11,14) ] )
+all.equal( ggResultRan[ -c(1,6,12,13,16) ], ggResultRanLog[ -c(1,6,12,13,16) ] )
 all.equal( ggResultRan$fitted, exp( ggResultRanLog$fitted ) )
 
 ## testing translogEla with panel data
