@@ -187,8 +187,13 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    result$coefCov <- result$coefCov[ ,
       .micEconCoefOrder( colnames( result$coefCov ) ) ]
 
-   result$r2    <- summary( result$est )$r.squared
-   result$r2bar <- summary( result$est )$adj.r.squared
+   if( "plm.dim" %in% class( data ) ) {
+      result$r2    <- unname( summary( result$est )$r.squared[ "rsq" ] )
+      result$r2bar <- unname( summary( result$est )$r.squared[ "adjrsq" ] )
+   } else {
+      result$r2    <- summary( result$est )$r.squared
+      result$r2bar <- summary( result$est )$adj.r.squared
+   }
    result$nObs  <- length( result$residuals )
    result$yName        <- yName
    result$xNames       <- xNames
