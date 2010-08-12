@@ -19,7 +19,7 @@ Type 'q()' to quit R.
 Loading required package: np
 Loading required package: boot
 Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-1)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-3)
 Loading required package: miscTools
 > 
 > data( germanFarms )
