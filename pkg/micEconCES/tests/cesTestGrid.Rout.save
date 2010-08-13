@@ -27,9 +27,20 @@ The following object(s) are masked from 'package:base':
     det
 
 Loading required package: car
+Loading required package: MASS
+Loading required package: nnet
+Loading required package: survival
+Loading required package: splines
 Loading required package: lmtest
 Loading required package: zoo
 Loading required package: miscTools
+
+Attaching package: 'miscTools'
+
+The following object(s) are masked from 'package:car':
+
+    coefTable
+
 Loading required package: micEcon
 Loading required package: np
 Loading required package: boot
@@ -40,12 +51,16 @@ The following object(s) are masked from 'package:car':
 
     logit
 
+The following object(s) are masked from 'package:survival':
+
+    aml
+
 The following object(s) are masked from 'package:lattice':
 
     melanoma
 
 Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-1)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-3)
 Loading required package: minpack.lm
 Loading required package: DEoptim
 > 
