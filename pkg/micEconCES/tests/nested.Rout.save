@@ -1,0 +1,87 @@
+
+R version 2.11.1 (2010-05-31)
+Copyright (C) 2010 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library( "micEconCES" )
+Loading required package: systemfit
+Loading required package: Matrix
+Loading required package: lattice
+
+Attaching package: 'Matrix'
+
+The following object(s) are masked from 'package:base':
+
+    det
+
+Loading required package: car
+Loading required package: MASS
+Loading required package: nnet
+Loading required package: survival
+Loading required package: splines
+Loading required package: lmtest
+Loading required package: zoo
+Loading required package: miscTools
+
+Attaching package: 'miscTools'
+
+The following object(s) are masked from 'package:car':
+
+    coefTable
+
+Loading required package: micEcon
+Loading required package: np
+Loading required package: boot
+
+Attaching package: 'boot'
+
+The following object(s) are masked from 'package:car':
+
+    logit
+
+The following object(s) are masked from 'package:survival':
+
+    aml
+
+The following object(s) are masked from 'package:lattice':
+
+    melanoma
+
+Loading required package: cubature
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-3)
+Loading required package: minpack.lm
+Loading required package: DEoptim
+> 
+> data( "MishraCES" )
+> 
+> b <- c( "gamma" = 200, "delta_1" = 0.6, "delta_2" = 0.3, "rho_1" = 0.5,
++    "rho_2" = -0.17, "rho" = 0.6 )
+> 
+> MishraCES$Y2 <- cesCalc( xNames = c( "X1", "X2", "X3", "X4" ), 
++    data = MishraCES, coef = b, nested = TRUE )
+> 
+> MishraCES$Y2
+ [1] 2568.8806 1769.6854 3032.1632 3166.2899 2158.8779 3486.6684 3600.4642
+ [8] 2185.4544 1897.9213  225.0079 3793.8998 1930.1046 2720.3640 2576.2448
+[15] 2350.2216 1783.9233 1773.0890 2919.1492 2565.7156 3362.0073 2586.1524
+[22]  585.0622 1745.4600 3495.8489 4693.7705 4185.2734 5215.1572  745.0312
+[29] 2022.2339 1295.2980 2274.0014 2186.0857 1947.6375  656.9261 3103.8441
+[36] 3908.0110  438.4530 1370.1318 2040.7880 3913.0637  147.5080 1057.7514
+[43]  178.7087 1274.5901 2382.3232 4558.1732 4536.7109 1420.3603 3645.6197
+[50] 1352.6723
+> 
+> all.equal( MishraCES$Y, MishraCES$Y2 )
+[1] "Mean relative difference: 9.561409e-06"
+> 
