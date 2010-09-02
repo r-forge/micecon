@@ -5,6 +5,12 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.6-8  (2010-09-02)
+
+* moved generic function stdEr() including a default method and a method
+for objects of class "lm" from the "maxLik" package to this package
+
+
             CHANGES IN VERSION 0.6-6
 
 * added generic functions nObs() and nParam() including the "default" methods
