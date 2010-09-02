@@ -12,6 +12,7 @@ quasiconcavity          Test for quasiconcavity / quasiconvexity
 rowMedians              Medians of Rows
 rSquared                Calculate R squared value
 semidefiniteness        Positive or Negative Semidefiniteness
+stdEr                   Standard deviations
 sumKeepAttr             Sum of an Array While Keeping its Attributes
 symMatrix               Symmetric Matrix
 triang                  Upper triangular matrix from a vector
