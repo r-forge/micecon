@@ -63,6 +63,7 @@ Loading required package: cubature
 Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-3)
 Loading required package: minpack.lm
 Loading required package: DEoptim
+> library( maxLik )
 > 
 > data( "MishraCES" )
 > 
@@ -101,4 +102,25 @@ Loading required package: DEoptim
 [36] 4534.2146  456.0029 1508.5127 2292.1144 4540.3701  145.2797 1149.6120
 [43]  177.7057 1398.2588 2696.4925 5329.4067 5303.0615 1566.6318 4215.1053
 [50] 1488.3352
+> 
+> 
+> ## checking cesDerivCoef
+> cesDeriv <- micEconCES:::cesDerivCoef( par = b, xNames = xNames, 
++    data = MishraCES, vrs = FALSE, nested = TRUE )
+> f <- function( par ) {
++    return( cesCalc( xNames = xNames, data = MishraCES, coef = par, 
++       nested = TRUE ) )
++ }
+> cesDerivNum <- numericGradient( f, t0 = b )
+> all.equal( cesDeriv, cesDerivNum )
+[1] TRUE
+> 
+> # VRE
+> cesDerivVrs <- micEconCES:::cesDerivCoef( par = bVrs, xNames = xNames, 
++    data = MishraCES, vrs = TRUE, nested = TRUE )
+> cesDerivVrsNum <- numericGradient( f, t0 = bVrs )
+> 
+> all.equal( cesDerivVrs, cesDerivVrsNum )
+[1] TRUE
+> 
 > 
