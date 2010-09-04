@@ -68,8 +68,12 @@ Loading required package: DEoptim
 > 
 > b <- c( "gamma" = 200, "delta_1" = 0.6, "delta_2" = 0.3, "rho_1" = 0.5,
 +    "rho_2" = -0.17, "rho" = 0.6 )
+> bVrs <- c( b, "nu" = 1.05 )
+> xNames <- c( "X1", "X2", "X3", "X4" )
 > 
-> MishraCES$Y2 <- cesCalc( xNames = c( "X1", "X2", "X3", "X4" ), 
+> 
+> ## checking cesCalc()
+> MishraCES$Y2 <- cesCalc( xNames = xNames, 
 +    data = MishraCES, coef = b, nested = TRUE )
 > 
 > MishraCES$Y2
@@ -84,4 +88,17 @@ Loading required package: DEoptim
 > 
 > all.equal( MishraCES$Y, MishraCES$Y2 )
 [1] "Mean relative difference: 9.561409e-06"
+> 
+> # VRS
+> MishraCES$yVrs <- cesCalc( xNames = xNames, 
++    data = MishraCES, coef = bVrs, nested = TRUE )
+> MishraCES$yVrs
+ [1] 2918.6339 1973.5102 3473.6711 3635.1867 2431.5767 4022.3483 4160.3026
+ [8] 2463.0166 2123.9320  226.3373 4395.3012 2161.7646 3099.6086 2927.4196
+[15] 2658.3536 1990.1852 1977.4958 3337.8561 2914.8582 3871.4806 2939.2418
+[22]  617.3204 1945.1536 4033.4696 5495.9965 4872.5749 6138.7404  795.6676
+[29] 2270.2383 1422.1215 2567.9039 2463.7636 2182.3884  697.1735 3559.9459
+[36] 4534.2146  456.0029 1508.5127 2292.1144 4540.3701  145.2797 1149.6120
+[43]  177.7057 1398.2588 2696.4925 5329.4067 5303.0615 1566.6318 4215.1053
+[50] 1488.3352
 > 
