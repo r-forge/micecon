@@ -162,9 +162,11 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
          ( 1 - delta2 ) * log( data[[ xNames[ 4 ] ]] ) * data[[ xNames[ 4 ] ]]^(-rho2) ) )
 
       # derivatives with respect to rho
-      result[ , "rho" ] <- gamma * log( B ) * B^(-nu/rho) * ( nu / rho^2 ) +
-         gamma * ( -nu/rho ) * B^((-nu-rho)/rho) * 
-         ( log( B1 ) * B1^(rho/rho1) / rho1 + log( B2 ) * B2^(rho/rho2) / rho2 )
+      if( returnRho ) {
+         result[ , "rho" ] <- gamma * log( B ) * B^(-nu/rho) * ( nu / rho^2 ) +
+            gamma * ( -nu/rho ) * B^((-nu-rho)/rho) * 
+            ( log( B1 ) * B1^(rho/rho1) / rho1 + log( B2 ) * B2^(rho/rho2) / rho2 )
+      }
 
       # derivatives with respect to nu
       if( vrs ) {
