@@ -57,7 +57,8 @@ fitted( cesNm )
 residuals( cesNm )
 
 ## Nelder-Mead, VRS
-cesNmVrs <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE, method = "NM" )
+cesNmVrs <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE, method = "NM",
+   control = list( maxit = 1000 ) )
 print.default( cesNmVrs )
 print( cesNmVrs )
 summary( cesNmVrs )
@@ -114,7 +115,8 @@ fitted( cesSannVrs )
 residuals( cesSannVrs )
 
 ## BFGS, CRS
-cesBfgs <- cesEst( "yObs", xNames, data = MishraCES, method = "BFGS" )
+cesBfgs <- cesEst( "yObs", xNames, data = MishraCES, method = "BFGS",
+   control = list( maxit = 500 ) )
 print.default( cesBfgs )
 print( cesBfgs )
 summary( cesBfgs )
@@ -126,7 +128,7 @@ residuals( cesBfgs )
 
 ## BFGS, VRS
 cesBfgsVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "BFGS", 
-   vrs = TRUE )
+   vrs = TRUE, control = list( maxit = 500 ) )
 print.default( cesBfgsVrs )
 print( cesBfgsVrs )
 summary( cesBfgsVrs )
@@ -149,7 +151,7 @@ residuals( cesBfgsCon )
 
 ## L-BFGS-B with constrained parameters, VRS
 cesBfgsConVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "L-BFGS-B",
-   vrs = TRUE )
+   vrs = TRUE, control = list( maxit = 500 ) )
 print.default( cesBfgsConVrs )
 print( cesBfgsConVrs )
 summary( cesBfgsConVrs )
@@ -207,7 +209,8 @@ fitted( cesNewtonVrs )
 residuals( cesNewtonVrs )
 
 ## PORT, CRS
-cesPort <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT" )
+cesPort <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT",
+   control = list( eval.max = 500 ) )
 print.default( cesPort )
 print( cesPort )
 summary( cesPort )
@@ -219,7 +222,7 @@ residuals( cesPort )
 
 ## PORT, VRS
 cesPortVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
-   vrs = TRUE )
+   vrs = TRUE, control = list( eval.max = 500, iter.max = 500 ) )
 print.default( cesPortVrs )
 print( cesPortVrs )
 summary( cesPortVrs )
