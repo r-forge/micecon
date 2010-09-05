@@ -36,7 +36,7 @@
       \right]^{-\frac{\nu}{\rho}}}{%
       y = gamma * [ ( delta_1 * x_1^(-rho_1) + ( 1 - delta_1 ) * x_2^(-rho_1) )^(rho / rho_1) +
       ( delta_2 * x_3^(-\rho_2) + ( 1 - delta_2 ) * x_4^(-rho_2) )^(rho / rho_2)
-      ]^(-nu/\rho )}
+      ]^(-nu / rho)}
 }
 
 \usage{
