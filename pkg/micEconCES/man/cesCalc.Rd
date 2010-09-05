@@ -7,13 +7,13 @@
    of a \sQuote{Constant Elasticities of Scale} (CES)
    function.
 
-   The CES function with two explanatory variables is
+   The original CES function with two explanatory variables is
 
    \deqn{y = \gamma \: ( \delta \: x_1^{-\rho} + ( 1 - \delta ) \: x_2^{-\rho} )
       ^{-\frac{\nu}{\rho}}}{%
       y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)}
 
-   and the (non-nested) CES function with \eqn{N} explanatory variables is
+   and the non-nested CES function with \eqn{N} explanatory variables is
 
    \deqn{y = \gamma \: \left( \sum_{i=1}^N \delta_i \: x_i^{-\rho} \right)
       ^{-\frac{\nu}{\rho}}}{%
@@ -23,18 +23,19 @@
    \eqn{\sum_{i=1}^N \delta_i = 1}{sum(i=1 to N) delta_i = 1}.
 
    In both cases, the elesticity of substitution is
-   \eqn{s = 1 / ( 1 + \rho )}{s = 1 / ( 1 + rho )}.
+   \eqn{s = \frac{1}{ 1 + \rho }}{s = 1 / ( 1 + rho )}.
 
-   The \emph{nested} CES function with 4 inputs proposed by Sato (1967) is
+   The \emph{nested} CES function with 4 explanatory variables 
+   proposed by Sato (1967) is
 
    \deqn{y = \gamma \: \left[ 
       \left( \delta_1 \: x_1^{-\rho_1} +
-      ( 1 - \delta_1 ) x_2^{-\rho_1} \right)^{\rho / \rho_1} +
+      ( 1 - \delta_1 ) x_2^{-\rho_1} \right)^{\frac{\rho}{\rho_1}} +
       \left( \delta_2 \: x_3^{-\rho_2} +
-      ( 1 - \delta_2 ) x_4^{-\rho_1} \right)^{\rho / \rho_2}
-      \right]^{ -1/\rho }}{%
-      [ ( delta_1 x_1^(-rho_1) + ( 1 - delta_1 ) x_2^(-rho_1) )^(rho / rho_1) +
-      ( delta_2 x_3^(-\rho_2) + ( 1 - delta_2 ) x_4^(-rho_1) )^(rho / rho_2)
+      ( 1 - \delta_2 ) x_4^{-\rho_2} \right)^{\frac{\rho}{\rho_2}}
+      \right]^{-\frac{\nu}{\rho}}}{%
+      y = [ ( delta_1 * x_1^(-rho_1) + ( 1 - delta_1 ) * x_2^(-rho_1) )^(rho / rho_1) +
+      ( delta_2 * x_3^(-\rho_2) + ( 1 - delta_2 ) * x_4^(-rho_2) )^(rho / rho_2)
       ]^(-nu/\rho )}
 }
 
