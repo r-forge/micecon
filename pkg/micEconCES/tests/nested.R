@@ -40,3 +40,243 @@ cesDerivVrsNum <- numericGradient( f, t0 = bVrs )
 
 all.equal( cesDerivVrs, cesDerivVrsNum )
 
+
+## checking cesEst
+set.seed( 345 )
+MishraCES$yObs <- MishraCES$Y + 40 * rnorm( nrow( MishraCES ) )
+
+## Nelder-Mead, CRS
+cesNm <- cesEst( "yObs", xNames, data = MishraCES, method = "Nelder-Mead" )
+print.default( cesNm ) 
+print( cesNm )
+summary( cesNm )
+coef( cesNm ) 
+vcov( cesNm ) 
+coef( summary( cesNm ) )
+fitted( cesNm )
+residuals( cesNm )
+
+## Nelder-Mead, VRS
+cesNmVrs <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE, method = "NM" )
+print.default( cesNmVrs )
+print( cesNmVrs )
+summary( cesNmVrs )
+coef( cesNmVrs )
+vcov( cesNmVrs )
+coef( summary( cesNmVrs ) )
+fitted( cesNmVrs )
+residuals( cesNmVrs )
+
+## Conjugate Gradients, CRS
+cesCg <- cesEst( "yObs", xNames, data = MishraCES, method = "CG" )
+print.default( cesCg )
+print( cesCg )
+summary( cesCg )
+coef( cesCg )
+vcov( cesCg )
+coef( summary( cesCg ) )
+fitted( cesCg )
+residuals( cesCg )
+
+## Conjugate Gradients, VRS
+cesCgVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "CG", 
+   vrs = TRUE )
+print.default( cesCgVrs )
+print( cesCgVrs )
+summary( cesCgVrs )
+coef( cesCgVrs )
+vcov( cesCgVrs )
+coef( summary( cesCgVrs ) )
+fitted( cesCgVrs )
+residuals( cesCgVrs )
+
+## Simulated Annealing, CRS
+cesSann <- cesEst( "yObs", xNames, data = MishraCES, method = "SANN" )
+print.default( cesSann )
+print( cesSann )
+summary( cesSann )
+coef( cesSann )
+vcov( cesSann )
+coef( summary( cesSann ) )
+fitted( cesSann )
+residuals( cesSann )
+
+## Simulated Annealing, VRS
+cesSannVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "SANN", 
+   vrs = TRUE )
+print.default( cesSannVrs )
+print( cesSannVrs )
+summary( cesSannVrs )
+coef( cesSannVrs )
+vcov( cesSannVrs )
+coef( summary( cesSannVrs ) )
+fitted( cesSannVrs )
+residuals( cesSannVrs )
+
+## BFGS, CRS
+cesBfgs <- cesEst( "yObs", xNames, data = MishraCES, method = "BFGS" )
+print.default( cesBfgs )
+print( cesBfgs )
+summary( cesBfgs )
+coef( cesBfgs )
+vcov( cesBfgs )
+coef( summary( cesBfgs ) )
+fitted( cesBfgs )
+residuals( cesBfgs )
+
+## BFGS, VRS
+cesBfgsVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "BFGS", 
+   vrs = TRUE )
+print.default( cesBfgsVrs )
+print( cesBfgsVrs )
+summary( cesBfgsVrs )
+coef( cesBfgsVrs )
+vcov( cesBfgsVrs )
+coef( summary( cesBfgsVrs ) )
+fitted( cesBfgsVrs )
+residuals( cesBfgsVrs )
+
+## L-BFGS-B with constrained parameters, CRS
+cesBfgsCon <- cesEst( "yObs", xNames, data = MishraCES, method = "L-BFGS-B" )
+print.default( cesBfgsCon )
+print( cesBfgsCon )
+summary( cesBfgsCon )
+coef( cesBfgsCon )
+vcov( cesBfgsCon )
+coef( summary( cesBfgsCon ) )
+fitted( cesBfgsCon )
+residuals( cesBfgsCon )
+
+## L-BFGS-B with constrained parameters, VRS
+cesBfgsConVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "L-BFGS-B",
+   vrs = TRUE )
+print.default( cesBfgsConVrs )
+print( cesBfgsConVrs )
+summary( cesBfgsConVrs )
+coef( cesBfgsConVrs )
+vcov( cesBfgsConVrs )
+coef( summary( cesBfgsConVrs ) )
+fitted( cesBfgsConVrs )
+residuals( cesBfgsConVrs )
+
+## Levenberg-Marquardt, CRS
+cesLm <- cesEst( "yObs", xNames, data = MishraCES,
+   control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLm )
+print( cesLm )
+summary( cesLm )
+coef( cesLm )
+vcov( cesLm )
+coef( summary( cesLm ) )
+fitted( cesLm )
+residuals( cesLm )
+
+## Levenberg-Marquardt, VRS
+cesLmVrs <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
+   control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmVrs )
+print( cesLmVrs )
+summary( cesLmVrs )
+coef( cesLmVrs )
+vcov( cesLmVrs )
+coef( summary( cesLmVrs ) )
+fitted( cesLmVrs )
+residuals( cesLmVrs )
+
+## Newton-type, CRS
+cesNewton <- cesEst( "yObs", xNames, data = MishraCES, method = "Newton" )
+print.default( cesNewton )
+print( cesNewton )
+summary( cesNewton )
+coef( cesNewton )
+vcov( cesNewton )
+coef( summary( cesNewton ) )
+fitted( cesNewton )
+residuals( cesNewton )
+
+## Newton-type, VRS
+cesNewtonVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "Newton", 
+   vrs = TRUE )
+print.default( cesNewtonVrs )
+print( cesNewtonVrs )
+summary( cesNewtonVrs )
+coef( cesNewtonVrs )
+vcov( cesNewtonVrs )
+coef( summary( cesNewtonVrs ) )
+fitted( cesNewtonVrs )
+residuals( cesNewtonVrs )
+
+## PORT, CRS
+cesPort <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT" )
+print.default( cesPort )
+print( cesPort )
+summary( cesPort )
+coef( cesPort )
+vcov( cesPort )
+coef( summary( cesPort ) )
+fitted( cesPort )
+residuals( cesPort )
+
+## PORT, VRS
+cesPortVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
+   vrs = TRUE )
+print.default( cesPortVrs )
+print( cesPortVrs )
+summary( cesPortVrs )
+coef( cesPortVrs )
+vcov( cesPortVrs )
+coef( summary( cesPortVrs ) )
+fitted( cesPortVrs )
+residuals( cesPortVrs )
+
+## DE, CRS
+cesDe <- cesEst( "yObs", xNames, data = MishraCES, method = "DE",
+   control = DEoptim.control( trace = FALSE, NP = 60 ) )
+print.default( cesDe )
+print( cesDe )
+summary( cesDe )
+coef( cesDe )
+vcov( cesDe )
+coef( summary( cesDe ) )
+fitted( cesDe )
+residuals( cesDe )
+print( fitted( cesDe ) + residuals( cesDe ) )
+
+## DE, VRS
+cesDeVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "DE", vrs = TRUE,
+   control = DEoptim.control( trace = FALSE, NP = 70 ) )
+print.default( cesDeVrs )
+print( cesDeVrs )
+summary( cesDeVrs )
+coef( cesDeVrs )
+vcov( cesDeVrs )
+coef( summary( cesDeVrs ) )
+fitted( cesDeVrs )
+residuals( cesDeVrs )
+print( fitted( cesDeVrs ) + residuals( cesDeVrs ) )
+# check random number generation
+rnorm( 5 )
+
+## nls, CRS
+cesNls <- cesEst( "yObs", xNames, data = MishraCES, method = "nls" )
+print.default( cesNls )
+print( cesNls )
+summary( cesNls )
+coef( cesNls )
+vcov( cesNls )
+coef( summary( cesNls ) )
+fitted( cesNls )
+residuals( cesNls )
+
+## nls, VRS
+cesNlsVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "nls", 
+   vrs = TRUE )
+print.default( cesNlsVrs )
+print( cesNlsVrs )
+summary( cesNlsVrs )
+coef( cesNlsVrs )
+vcov( cesNlsVrs )
+coef( summary( cesNlsVrs ) )
+fitted( cesNlsVrs )
+residuals( cesNlsVrs )
+
