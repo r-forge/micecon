@@ -1,0 +1,104 @@
+
+R version 2.11.1 (2010-05-31)
+Copyright (C) 2010 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library( "micEconCES" )
+Loading required package: systemfit
+Loading required package: Matrix
+Loading required package: lattice
+
+Attaching package: 'Matrix'
+
+The following object(s) are masked from 'package:base':
+
+    det
+
+Loading required package: car
+Loading required package: MASS
+Loading required package: nnet
+Loading required package: survival
+Loading required package: splines
+Loading required package: lmtest
+Loading required package: zoo
+Loading required package: miscTools
+
+Attaching package: 'miscTools'
+
+The following object(s) are masked from 'package:car':
+
+    coefTable
+
+Loading required package: micEcon
+Loading required package: np
+Loading required package: boot
+
+Attaching package: 'boot'
+
+The following object(s) are masked from 'package:car':
+
+    logit
+
+The following object(s) are masked from 'package:survival':
+
+    aml
+
+The following object(s) are masked from 'package:lattice':
+
+    melanoma
+
+Loading required package: cubature
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-3)
+Loading required package: minpack.lm
+Loading required package: DEoptim
+> 
+> data( "MishraCES" )
+> 
+> b <- c( "gamma_1" = 2, "gamma_2" = 200, "delta_1" = 0.6, "delta_2" = 0.7, 
++    "rho_1" = 0.5, "rho" = 0.6 )
+> bVrs <- c( b, "nu" = 1.1 )
+> xNames <- c( "X1", "X2", "X3" )
+> 
+> 
+> ## checking cesCalc()
+> MishraCES$Y3 <- cesCalc( xNames = xNames, 
++    data = MishraCES, coef = b, nested = TRUE )
+> MishraCES$Y3
+ [1]  7902.7144  3115.0095 18038.6412 12841.3618 25618.0842 14362.8728
+ [7] 12558.9277 19647.9079  8873.7993   849.8061  7838.7631 14063.5320
+[13] 12562.2859 11840.3051  4593.1907  5997.1839 11716.3041 18021.5140
+[19] 16337.2284  8420.0520 11305.3668  3774.1896 10847.3177 18347.1065
+[25] 21691.4598 20522.1938 24609.5139  3043.1897 10593.6813  6294.5970
+[31] 11917.2396  5714.8498  6220.4375  2147.9573 11087.2036 18492.0974
+[37] 16211.5198   796.7785 17901.0063 17932.9210   583.0910  5508.7455
+[43]   710.4263  3325.9094 19155.3156 21179.0499 20744.4542  5293.2484
+[49] 15602.5981  5985.8416
+> 
+> # VRS
+> MishraCES$Y3Vrs <- cesCalc( xNames = xNames, 
++    data = MishraCES, coef = bVrs, nested = TRUE )
+> MishraCES$Y3Vrs
+ [1] 11414.3429  4099.2303 28295.7495 19470.1451 41619.6395 22022.2885
+ [7] 18999.6157 31084.5759 12966.3447   982.0844 11312.7788 21517.9476
+[13] 19005.2042 17807.2224  6283.8083  8426.3425 17602.1898 28266.1984
+[19] 25374.2503 12238.9244 16924.2770  5062.9436 16171.5480 28828.4532
+[25] 34658.8907 32609.4267 39820.8328  3995.3876 15756.0951  8887.1340
+[31] 17934.5399  7991.0216  8772.0283  2723.4864 16565.3732 29079.1555
+[37] 25159.5637   914.8889 28058.3540 28113.3850   648.9436  7674.5865
+[43]   806.4323  4405.5330 30228.4057 33759.3535 32998.1212  7344.9950
+[49] 24122.0167  8408.8140
+> 
+> 
+> 
