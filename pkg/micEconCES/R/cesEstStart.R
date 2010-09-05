@@ -1,5 +1,5 @@
 cesEstStart <- function( yName, xNames, data, vrs,
-      method, start, rho, nParam ) {
+      method, start, rho, nParam, nested = FALSE ) {
 
    # start values
    if( method %in% c( "Kmenta", "DE" ) ) {
@@ -11,12 +11,20 @@ cesEstStart <- function( yName, xNames, data, vrs,
    } else {
       if( is.null( start ) ) {
          rhoStart <- ifelse( is.null( rho ), 0.25, rho )
-         start <- c( 1, 0.5, rhoStart, 1 )[ 1:( 3 + vrs ) ]
-         yTemp <- cesCalc( xNames = xNames, data = data, coef = start )
+         if( nested ) {
+            start <- c( 1, 0.5, 0.5, 0.25, 0.25, rhoStart )
+         } else {
+            start <- c( 1, 0.5, rhoStart )
+         }
+         if( vrs ) {
+            start <- c( start, 1 )
+         }
+         yTemp <- cesCalc( xNames = xNames, data = data, coef = start,
+            nested = nested )
          start[ 1 ] <- mean( data[[ yName ]], na.rm = TRUE ) /
             mean( yTemp, na.rm = TRUE )
          if( !is.null( rho ) ) {
-            start <- start[ -3 ]
+            start <- start[ -ifelse( nested, 6, 3 ) ]
          }
       }
       if( length( start ) != nParam ) {
@@ -25,7 +33,7 @@ cesEstStart <- function( yName, xNames, data, vrs,
             " but the model has ", nParam, " parameters" )
       }
       names( start ) <- cesCoefNames( nExog = length( xNames ), vrs = vrs,
-         returnRho = is.null( rho ) )
+         returnRho = is.null( rho ), nested = nested )
       # checking starting values
       if( any( is.infinite( start ) ) ) {
          stop( "all starting values must be finite" )
@@ -35,8 +43,17 @@ cesEstStart <- function( yName, xNames, data, vrs,
          stop( "the starting value for 'gamma' must be positive" )
       }
       # checking delta
-      if( start[ "delta" ] < 0 || start[ "delta" ] > 1 ) {
-         stop( "the starting value for 'delta' must be between 0 and 1" )
+      if( nested ) {
+         if( start[ "delta_1" ] < 0 || start[ "delta_1" ] > 1 ) {
+            stop( "the starting value for 'delta_1' must be between 0 and 1" )
+         }
+         if( start[ "delta_2" ] < 0 || start[ "delta_2" ] > 1 ) {
+            stop( "the starting value for 'delta_2' must be between 0 and 1" )
+         }
+      } else {
+         if( start[ "delta" ] < 0 || start[ "delta" ] > 1 ) {
+            stop( "the starting value for 'delta' must be between 0 and 1" )
+         }
       }
       # checking rho
       if( is.null( rho ) ) {

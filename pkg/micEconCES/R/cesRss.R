@@ -1,5 +1,5 @@
 cesRss <- function( par, yName, xNames, data, vrs, rho = NULL,
-      rhoApprox = 5e-6 ) {
+      rhoApprox = 5e-6, nested = FALSE ) {
 
    # check rhoApprox
    if( !is.vector( rhoApprox ) || ! length( rhoApprox ) %in% c( 1, 5 ) ||
@@ -15,7 +15,7 @@ cesRss <- function( par, yName, xNames, data, vrs, rho = NULL,
    par <- cesCoefAddRho( coef = par, vrs = vrs, rho = rho )
 
    yHat <- cesCalc( xNames = xNames, data = data, coef = par,
-      rhoApprox = rhoApprox )
+      rhoApprox = rhoApprox, nested = nested )
 
    result <- sum( ( data[[ yName ]] - yHat )^2 )
    if( is.na( result ) ) {
