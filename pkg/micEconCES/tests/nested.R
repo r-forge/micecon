@@ -283,3 +283,28 @@ coef( summary( cesNlsVrs ) )
 fitted( cesNlsVrs )
 residuals( cesNlsVrs )
 
+
+########## Grid Search for Rho ##############
+## Levenberg-Marquardt, CRS
+cesLmGrid <- cesEst( "yObs", xNames, data = MishraCES, rho = (1:12)/6-0.4,
+   control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmGrid )
+print( cesLmGrid )
+summary( cesLmGrid )
+coef( cesLmGrid )
+vcov( cesLmGrid )
+coef( summary( cesLmGrid ) )
+fitted( cesLmGrid )
+residuals( cesLmGrid )
+
+## Levenberg-Marquardt, VRS
+cesLmVrsGrid <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
+   rho = (1:12)/6-0.4, control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmVrsGrid )
+print( cesLmVrsGrid )
+summary( cesLmVrsGrid )
+coef( cesLmVrsGrid )
+vcov( cesLmVrsGrid )
+coef( summary( cesLmVrsGrid ) )
+fitted( cesLmVrsGrid )
+residuals( cesLmVrsGrid )
