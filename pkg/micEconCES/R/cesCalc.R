@@ -7,9 +7,9 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
    }
 
    # check 
-   if( nested && nExog != 4 ) {
+   if( nested && ! nExog %in% c( 3, 4 ) ) {
       stop( "the nested CES function is currently implemented only for",
-         " 4 inputs" )
+         " 3 and 4 inputs" )
    }
 
    # check names of exogenous variables
@@ -19,7 +19,11 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
    if( nExog == 2 ) {
       vrs <- length( coef ) >= 4
    } else {
-      vrs <- length( coef ) - nExog  >= 3
+      if( nested ) {
+         vrs <- length( coef ) >= 7
+      } else {
+         vrs <- length( coef ) - nExog  >= 3
+      }
    }
 
    # check number of coefficients
@@ -33,10 +37,10 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
          ifelse( vrs, " variable", " constant" ), " returns to scale",
          " must have ", nExog + 2 + vrs, " coefficients",
          " but you provided ", length( coef ), " coefficients" )
-   } else if( nExog == 4 && nested && length( coef ) != nExog + 2 + vrs ) {
+   } else if( nExog %in% c( 3, 4 ) && nested && length( coef ) != 6 + vrs ) {
       stop( "a nested CES function with ", nExog, " exogenous variables and",
          ifelse( vrs, " variable", " constant" ), " returns to scale",
-         " must have ", nExog + 2 + vrs, " coefficients",
+         " must have ", 6 + vrs, " coefficients",
          " but you provided ", length( coef ), " coefficients" )
    }
 
@@ -110,7 +114,16 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
             result <- coef[ "gamma" ] * result
          }
       }
-   } else {
+   } else if( nExog == 3 ) {   # nested CES with 3 inputs
+      result <- 
+         coef[ "gamma_2" ] * (
+            coef[ "delta_2" ] * coef[ "gamma_1" ]^( - coef[ "rho" ] ) *
+            ( coef[ "delta_1" ] * data[[ xNames[ 1 ] ]]^( -coef[ "rho_1" ] ) +
+               ( 1 - coef[ "delta_1" ] ) * data[[ xNames[ 2 ] ]]^( -coef[ "rho_1" ] ) 
+            )^( coef[ "rho" ] / coef[ "rho_1" ] ) +
+            ( 1 - coef[ "delta_2" ] ) * data[[ xNames[ 3 ] ]]^( -coef[ "rho" ] ) 
+         )^( - coef[ "nu" ] / coef[ "rho" ] )
+   } else {                    # nested CES with 4 inputs
       result <- coef[ "gamma" ] * (
             ( coef[ "delta_1" ] * data[[ xNames[ 1 ] ]]^( -coef[ "rho_1" ] ) +
                ( 1 - coef[ "delta_1" ] ) * data[[ xNames[ 2 ] ]]^( -coef[ "rho_1" ] ) 
