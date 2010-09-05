@@ -285,7 +285,7 @@ residuals( cesNlsVrs )
 
 
 ########## Grid Search for Rho ##############
-## Levenberg-Marquardt, CRS
+## Levenberg-Marquardt, Grid Search, CRS
 cesLmGrid <- cesEst( "yObs", xNames, data = MishraCES, rho = (1:12)/6-0.4,
    control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLmGrid )
@@ -297,7 +297,7 @@ coef( summary( cesLmGrid ) )
 fitted( cesLmGrid )
 residuals( cesLmGrid )
 
-## Levenberg-Marquardt, VRS
+## Levenberg-Marquardt, Grid Search, VRS
 cesLmVrsGrid <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    rho = (1:12)/6-0.4, control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLmVrsGrid )
@@ -308,3 +308,29 @@ vcov( cesLmVrsGrid )
 coef( summary( cesLmVrsGrid ) )
 fitted( cesLmVrsGrid )
 residuals( cesLmVrsGrid )
+
+## PORT, Grid Search, CRS
+cesPortGrid <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT",
+   rho = (1:12)/6-0.4, control = list( eval.max = 500 ) )
+print.default( cesPortGrid )
+print( cesPortGrid )
+summary( cesPortGrid )
+coef( cesPortGrid )
+vcov( cesPortGrid )
+coef( summary( cesPortGrid ) )
+fitted( cesPortGrid )
+residuals( cesPortGrid )
+
+## PORT, Grid Search, VRS
+cesPortVrsGrid <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
+   vrs = TRUE, rho = (1:12)/6-0.4, 
+   control = list( eval.max = 500, iter.max = 500 ) )
+print.default( cesPortVrsGrid )
+print( cesPortVrsGrid )
+summary( cesPortVrsGrid )
+coef( cesPortVrsGrid )
+vcov( cesPortVrsGrid )
+coef( summary( cesPortVrsGrid ) )
+fitted( cesPortVrsGrid )
+residuals( cesPortVrsGrid )
+
