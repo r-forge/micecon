@@ -1,10 +1,18 @@
-cesCoefBounds <- function( vrs, returnRho, method, lower ) {
+cesCoefBounds <- function( vrs, returnRho, method, lower, nested = FALSE ) {
 
    if( method %in% c( "L-BFGS-B", "PORT" ) ) {
       if( lower ) {
-         result <- c( 0, 0 )
+         if( nested ) {
+            result <- c( 0, 0, 0, -1, -1 )
+         } else {
+            result <- c( 0, 0 )
+         }
       } else {
-         result <- c( Inf, 1 )
+         if( nested ) {
+            result <- c( Inf, 1, 1, Inf, Inf )
+         } else {
+            result <- c( Inf, 1 )
+         }
       }
       if( returnRho ) {
          result <- c( result, ifelse( lower, -1, Inf ) )
@@ -14,9 +22,17 @@ cesCoefBounds <- function( vrs, returnRho, method, lower ) {
       }
    } else if( method == "DE" ) {
       if( lower ) {
-         result <- c( 0, 0 )
+         if( nested ) {
+            result <- c( 0, 0, 0, -1, -1 )
+         } else {
+            result <- c( 0, 0 )
+         }
       } else {
-         result <- c( 1e10, 1 )
+         if( nested ) {
+            result <- c( 1e10, 1, 1, 10, 10 )
+         } else {
+            result <- c( 1e10, 1 )
+         }
       }
       if( returnRho ) {
          result <- c( result, ifelse( lower, -1, 10 ) )

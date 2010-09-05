@@ -6,12 +6,27 @@
 
 \description{
    Estimate a Constant-Elasticities-of-Scale (CES) function
-   with two exogenous variables by Least Squares.
+   with two exogenous variables
 
    \deqn{y = \gamma * ( \delta * x1^{-\rho} + ( 1 - \delta ) * x2^{-\rho} )^{-\nu/\rho}}{%
       y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)}
    where the elesticity of substitution is
    \eqn{s = 1 / ( 1 + \rho )}{s = 1 / ( 1 + rho )}
+
+   or a nested Constant-Elasticities-of-Scale (CES) function
+   proposed by Sato (1967) with four exogenous variables
+
+   \deqn{y = \gamma \: \left[ 
+      \left( \delta_1 \: x_1^{-\rho_1} +
+      ( 1 - \delta_1 ) x_2^{-\rho_1} \right)^{\rho / \rho_1} +
+      \left( \delta_2 \: x_3^{-\rho_2} +
+      ( 1 - \delta_2 ) x_4^{-\rho_1} \right)^{\rho / \rho_2}
+      \right]^{ -1/\rho }}{%
+      [ ( delta_1 x_1^(-rho_1) + ( 1 - delta_1 ) x_2^(-rho_1) )^(rho / rho_1) +
+      ( delta_2 x_3^(-\rho_2) + ( 1 - delta_2 ) x_4^(-rho_1) )^(rho / rho_2)
+      ]^(-nu/\rho )}
+
+   by Least Squares.
 
    Warning: The econometric estimation of a CES function is (almost)
    always very problematic,
@@ -72,8 +87,9 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       This is to ensure replicability when the \code{"SANN"}
       or \code{"DE"} method is used. Defaults to 123.}
    \item{rhoApprox}{numeric vector containing 5 elements;
-      the endogenous variable (first element of this argument)
-      and the derivatives of the CES with respect to coefficients
+      the endogenous variable of the non-nested CES
+      with two inputs (first element of this argument)
+      and the derivatives with respect to coefficients 
       \eqn{\gamma}{gamma} (second element),
       \eqn{\delta}{delta} (third element),
       \eqn{\rho}{rho} (fourth element), and
