@@ -5,13 +5,15 @@
 \description{
    Calculate the endogenous variable
    of a \sQuote{Constant Elasticities of Scale} (CES)
-   function with two explanatory variables
+   function.
+
+   The CES function with two explanatory variables is
 
    \deqn{y = \gamma \: ( \delta \: x_1^{-\rho} + ( 1 - \delta ) \: x_2^{-\rho} )
       ^{-\frac{\nu}{\rho}}}{%
       y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)}
 
-   and with \eqn{N} explanatory variables
+   and the (non-nested) CES function with \eqn{N} explanatory variables is
 
    \deqn{y = \gamma \: \left( \sum_{i=1}^N \delta_i \: x_i^{-\rho} \right)
       ^{-\frac{\nu}{\rho}}}{%
@@ -23,7 +25,7 @@
    In both cases, the elesticity of substitution is
    \eqn{s = 1 / ( 1 + \rho )}{s = 1 / ( 1 + rho )}.
 
-   The nested CES function for 4 inputs proposed by Sato (1967) is
+   The \emph{nested} CES function with 4 inputs proposed by Sato (1967) is
 
    \deqn{y = \gamma \: \left[ 
       \left( \delta_1 \: x_1^{-\rho_1} +
