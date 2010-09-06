@@ -32,13 +32,14 @@ f <- function( par ) {
 }
 cesDerivNum <- numericGradient( f, t0 = b )
 all.equal( cesDeriv, cesDerivNum )
+print( cesDeriv )
 
 # VRE
 cesDerivVrs <- micEconCES:::cesDerivCoef( par = bVrs, xNames = xNames, 
    data = MishraCES, vrs = TRUE, nested = TRUE )
 cesDerivVrsNum <- numericGradient( f, t0 = bVrs )
-
 all.equal( cesDerivVrs, cesDerivVrsNum )
+print( cesDerivVrs )
 
 
 ## checking cesEst
