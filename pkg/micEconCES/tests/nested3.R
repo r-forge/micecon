@@ -1,4 +1,5 @@
 library( "micEconCES" )
+library( "maxLik" )
 
 data( "MishraCES" )
 
@@ -17,5 +18,24 @@ MishraCES$Y3
 MishraCES$Y3Vrs <- cesCalc( xNames = xNames, 
    data = MishraCES, coef = bVrs, nested = TRUE )
 MishraCES$Y3Vrs
+
+
+## checking cesDerivCoef
+cesDeriv <- micEconCES:::cesDerivCoef( par = b, xNames = xNames, 
+   data = MishraCES, vrs = FALSE, nested = TRUE )
+f <- function( par ) {
+   return( cesCalc( xNames = xNames, data = MishraCES, coef = par, 
+      nested = TRUE ) )
+}
+cesDerivNum <- numericGradient( f, t0 = b )
+all.equal( cesDeriv, cesDerivNum )
+print( cesDeriv )
+
+# VRE
+cesDerivVrs <- micEconCES:::cesDerivCoef( par = bVrs, xNames = xNames, 
+   data = MishraCES, vrs = TRUE, nested = TRUE )
+cesDerivVrsNum <- numericGradient( f, t0 = bVrs )
+all.equal( cesDerivVrs, cesDerivVrsNum )
+print( cesDerivVrs )
 
 
