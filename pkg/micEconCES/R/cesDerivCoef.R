@@ -109,11 +109,62 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
                ( 1 - delta ) * log( data[[ xNames[ 2 ] ]] ) ) ) ) 
          }
       }
-   } else { # if nested == TRUE
-      if( nExog != 4 ) {
-         stop( "the derivatives of the nested CES can be calculated",
-            " only for four inputs" )
+   } else if( nExog == 3 ) { # nested CES with 3 outputs
+      gamma1 <- par[ "gamma_1" ]
+      gamma2 <- par[ "gamma_2" ]
+      delta1 <- par[ "delta_1" ]
+      delta2 <- par[ "delta_2" ]
+      rho1 <- par[ "rho_1" ]
+      rho <- par[ "rho" ]
+      if( vrs ) {
+         nu <- par[ "nu" ]
+      } else {
+         nu <- 1
       }
+
+      # main parts of the nested CES with 4 inputs
+      B1 <- delta1 * data[[ xNames[ 1 ] ]]^(-rho1) + 
+         ( 1 - delta1 ) * data[[ xNames[ 2 ] ]]^(-rho1)
+      B <- delta2 * gamma1^(-rho) * B1^( rho / rho1 ) + 
+         ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^(-rho)
+    
+      # derivatives with respect to gamma_1 and gamma_2
+      result[ , "gamma_1" ] <- gamma2 * ( nu / rho ) * B^((-nu-rho)/rho) * 
+         delta2 * rho * gamma1^(-rho-1) * B1^(rho/rho1)
+      result[ , "gamma_2" ] <- B^(-nu/rho)
+
+      # derivatives with respect to delta_1 and delta_2
+      result[ , "delta_1" ] <- - gamma2 * ( nu / rho ) * B^((-nu-rho)/rho) *
+         delta2 * gamma1^(-rho) * (rho/rho1) * B1^((rho-rho1)/rho1) * 
+         ( data[[ xNames[ 1 ] ]]^(-rho1) - data[[ xNames[ 2 ] ]]^(-rho1) )
+      result[ , "delta_2" ] <- - gamma2 * B^((-nu-rho)/rho) * ( nu / rho ) * 
+         ( gamma1^(-rho) * B1^(rho/rho1) - data[[ xNames[ 3 ] ]]^(-rho) )
+
+      # derivatives with respect to rho_1
+      result[ , "rho_1" ] <- - gamma2 * ( nu / rho ) * B^((-nu-rho)/rho) *
+         delta2 * gamma1^(-rho) * 
+         ( log( B1 ) * B1^(rho/rho1) * ( -rho/rho1^2 ) + 
+         B1^((rho-rho1)/rho1) * (rho/rho1) *
+         ( - delta1 * log( data[[ xNames[ 1 ] ]] ) * data[[ xNames[ 1 ] ]]^(-rho1) -
+         ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) * 
+            data[[ xNames[ 2 ] ]]^(-rho1) ) )
+
+      # derivatives with respect to rho
+      if( returnRho ) {
+         result[ , "rho" ] <- gamma2 * log( B ) * B^(-nu/rho) * ( nu / rho^2 ) +
+            gamma2 * ( -nu/rho ) * B^((-nu-rho)/rho) * 
+            ( - delta2 * log( gamma1 ) * gamma1^(-rho) * B1^(rho/rho1) +
+            delta2 * gamma1^(-rho) * log( B1 ) * B1^(rho/rho1) / rho1 -
+            ( 1 - delta2 ) * log( data[[ xNames[ 3 ] ]] ) * 
+            data[[ xNames[ 3 ] ]]^(-rho) )
+      }
+
+      # derivatives with respect to nu
+      if( vrs ) {
+         result[ , "nu" ] <- - gamma2 * log( B ) * B^( -nu / rho ) / rho
+      }
+
+   } else if( nExog == 4 ) { # nested CES with 4 outputs
       gamma <- par[ "gamma" ]
       delta1 <- par[ "delta_1" ]
       delta2 <- par[ "delta_2" ]
@@ -126,7 +177,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
          nu <- 1
       }
 
-      # mains part of the nested CES with 4 inputs
+      # main parts of the nested CES with 4 inputs
       B1 <- delta1 * data[[ xNames[ 1 ] ]]^(-rho1) + 
          ( 1 - delta1 ) * data[[ xNames[ 2 ] ]]^(-rho1)
       B2 <- delta2 * data[[ xNames[ 3 ] ]]^(-rho2) + 
@@ -136,15 +187,10 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
       # derivatives with respect to gamma
       result[ , "gamma" ] <- B^(-nu/rho)
 
-
       # derivatives with respect to delta_1 and delta_2
-
-
       result[ , "delta_1" ] <- gamma * ( -nu / rho ) * B^((-nu-rho)/rho) *
          (rho/rho1) * B1^((rho-rho1)/rho1) * 
          ( data[[ xNames[ 1 ] ]]^(-rho1) - data[[ xNames[ 2 ] ]]^(-rho1) )
-
-
       result[ , "delta_2" ] <- gamma * ( -nu / rho ) * B^((-nu-rho)/rho) *
          (rho/rho2) * B2^((rho-rho2)/rho2) * 
          ( data[[ xNames[ 3 ] ]]^(-rho2) - data[[ xNames[ 4 ] ]]^(-rho2) )
@@ -172,6 +218,9 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
       if( vrs ) {
          result[ , "nu" ] <- - gamma * log( B ) * B^( -nu / rho ) / rho
       }
+   } else {
+      stop( "the derivatives of the nested CES can be calculated",
+         " only for three and four inputs" )
    }
 
    return( result )
