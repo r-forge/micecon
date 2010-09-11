@@ -14,7 +14,9 @@ cesEstStart <- function( yName, xNames, data, vrs,
    } else {
       if( is.null( start ) ) {
          rhoStart <- ifelse( is.null( rho ), 0.25, rho )
-         if( nested && nExog == 4 ) {
+         if( nested && nExog == 3 ) {
+            start <- c( 1, 1, 0.5, 0.5, 0.25, rhoStart )
+         } else if( nested && nExog == 4 ) {
             start <- c( 1, 0.5, 0.5, 0.25, 0.25, rhoStart )
          } else if( !nested && nExog == 2 ) {
             start <- c( 1, 0.5, rhoStart )
@@ -28,7 +30,8 @@ cesEstStart <- function( yName, xNames, data, vrs,
          }
          yTemp <- cesCalc( xNames = xNames, data = data, coef = start,
             nested = nested )
-         start[ 1 ] <- mean( data[[ yName ]], na.rm = TRUE ) /
+         start[ 1 + ( nested && nExog == 3 ) ] <- 
+            mean( data[[ yName ]], na.rm = TRUE ) /
             mean( yTemp, na.rm = TRUE )
          if( !is.null( rho ) ) {
             start <- start[ -ifelse( nested, 6, 3 ) ]
@@ -46,8 +49,16 @@ cesEstStart <- function( yName, xNames, data, vrs,
          stop( "all starting values must be finite" )
       }
       # checking gamma
-      if( start[ "gamma" ] <= 0 ) {
-         stop( "the starting value for 'gamma' must be positive" )
+      if( nested && nExog == 3 ) {
+         if( start[ "gamma_1" ] <= 0 ) {
+            stop( "the starting value for 'gamma_1' must be positive" )
+         } else if( start[ "gamma_2" ] <= 0 ) {
+            stop( "the starting value for 'gamma_2' must be positive" )
+         }
+      } else {
+         if( start[ "gamma" ] <= 0 ) {
+            stop( "the starting value for 'gamma' must be positive" )
+         }
       }
       # checking delta
       if( nested ) {
@@ -72,8 +83,10 @@ cesEstStart <- function( yName, xNames, data, vrs,
          if( start[ "rho_1" ] < -1 ) {
             stop( "the starting value for 'rho_1' must be -1 or larger" )
          }
-         if( start[ "rho_2" ] < -1 ) {
-            stop( "the starting value for 'rho_2' must be -1 or larger" )
+         if( nExog == 4 ) {
+            if( start[ "rho_2" ] < -1 ) {
+               stop( "the starting value for 'rho_2' must be -1 or larger" )
+            }
          }
       }
       # checking nu

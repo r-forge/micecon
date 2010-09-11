@@ -24,12 +24,12 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    nExog <- length( xNames )
    if( nExog == 2 ) {
       nested <- FALSE
-   } else if( nExog == 4 ) {
+   } else if( nExog %in% c( 3, 4 ) ) {
       nested <- TRUE
    } else {
       stop( "currently, the CES can be estimated",
          " with two inputs (normal non-nested CES)",
-         " or with four inputs (nested CES) only" )
+         " or with three or four inputs (nested CES) only" )
    }
 
    # checking "rho"
@@ -51,7 +51,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    }
 
    # number of parameters
-   nParam <- 1 + nExog + vrs + nested - !is.null( rho )
+   nParam <- 1 + nExog + vrs + nested * ( 1 + ( nExog == 3 ) ) - !is.null( rho )
 
    # start values
    start <- cesEstStart( yName = yName, xNames = xNames, data = data,
@@ -229,7 +229,16 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       if( !is.null( rho ) ) {
          warning( "ignoring argument 'rho'" )
       }
-      if( nested ) {
+      if( nested && nExog == 3 ) {
+         nlsFormula <- as.formula( paste( yName,
+            " ~ gamma_2 * ( delta_2 * gamma_1^(-rho) * ",
+            "( delta_1 * ", xNames[ 1 ], "^(-rho_1)",
+            " + ( 1 - delta_1 ) * ", xNames[ 2 ], "^(-rho_1) )",
+            "^( rho / rho_1 ) +",
+            " ( 1 - delta_2 ) * ", xNames[ 3 ], "^(-rho) )",
+            "^( - ", ifelse( vrs, "nu", "1" ), " / rho )",
+            sep = "" ) )
+      } else if( nested && nExog == 4 ) {
          nlsFormula <- as.formula( paste( yName,
             " ~ gamma * ( ( delta_1 * ", xNames[ 1 ], "^(-rho_1)",
             " + ( 1 - delta_1 ) * ", xNames[ 2 ], "^(-rho_1) )",
