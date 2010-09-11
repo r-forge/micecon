@@ -1,6 +1,9 @@
 cesEstStart <- function( yName, xNames, data, vrs,
       method, start, rho, nParam, nested = FALSE ) {
 
+   # number of explanatory variables
+   nExog <- length( xNames )
+
    # start values
    if( method %in% c( "Kmenta", "DE" ) ) {
       if( !is.null( start ) ) {
@@ -11,10 +14,14 @@ cesEstStart <- function( yName, xNames, data, vrs,
    } else {
       if( is.null( start ) ) {
          rhoStart <- ifelse( is.null( rho ), 0.25, rho )
-         if( nested ) {
+         if( nested && nExog == 4 ) {
             start <- c( 1, 0.5, 0.5, 0.25, 0.25, rhoStart )
-         } else {
+         } else if( !nested && nExog == 2 ) {
             start <- c( 1, 0.5, rhoStart )
+         } else {
+            stop( "cannot create starting values for a",
+               ifelse( nested, " nested", " non-nested" ), " CES function",
+               " with ", nExog, " explanatory variables" )
          }
          if( vrs ) {
             start <- c( start, 1 )
