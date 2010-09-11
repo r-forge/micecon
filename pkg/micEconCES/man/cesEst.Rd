@@ -7,26 +7,11 @@
 \description{
    Estimate a Constant-Elasticities-of-Scale (CES) function
    with two exogenous variables
-
-   \deqn{y = \gamma * ( \delta * x1^{-\rho} + ( 1 - \delta ) * x2^{-\rho} )^{-\nu/\rho}}{%
-      y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)}
-   where the elesticity of substitution is
-   \eqn{s = 1 / ( 1 + \rho )}{s = 1 / ( 1 + rho )}
-
    or a nested Constant-Elasticities-of-Scale (CES) function
    proposed by Sato (1967) with four exogenous variables
-
-   \deqn{y = \gamma \: \left[ 
-      \left( \delta_1 \: x_1^{-\rho_1} +
-      ( 1 - \delta_1 ) x_2^{-\rho_1} \right)^{\rho / \rho_1} +
-      \left( \delta_2 \: x_3^{-\rho_2} +
-      ( 1 - \delta_2 ) x_4^{-\rho_1} \right)^{\rho / \rho_2}
-      \right]^{ -1/\rho }}{%
-      [ ( delta_1 x_1^(-rho_1) + ( 1 - delta_1 ) x_2^(-rho_1) )^(rho / rho_1) +
-      ( delta_2 x_3^(-\rho_2) + ( 1 - delta_2 ) x_4^(-rho_1) )^(rho / rho_2)
-      ]^(-nu/\rho )}
-
    by Least Squares.
+   The functional forms are shown in the documentation of
+   function \code{\link{cesCalc}}.
 
    Warning: The econometric estimation of a CES function is (almost)
    always very problematic,
@@ -142,22 +127,30 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
 
    \bold{Starting values}\cr
    Argument \code{start} should be a numeric vector.
-   The order must be \eqn{\gamma}{gamma}, \eqn{\delta}{delta},
-   \eqn{\rho}{rho} (only if estimated, i.e.\ argument \code{rho} is \code{NULL}),
-   and \eqn{\nu}{nu} (only in case of variable returns to scale,
-   i.e.\ argument \code{vrs} is \code{TRUE}).
-   Names of the elements are ignored.
+   The order must be as described in the documentation of argument \code{coef}
+   of function \code{\link{cesCalc}}.
+   However, names of the elements are ignored.
    If argument \code{start} is \code{NULL},
-   the starting value of \eqn{\delta}{delta} is set to 0.5,
-   the starting value of \eqn{\rho}{rho} is (if required) set to 0.25
-      (i.e.\ elasticity of substitution = 0.8),
-   the starting value of \eqn{\nu}{nu} is (if required) set to 1,
+   pre-defined starting values are used.
+   The starting values of \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, 
+   and \eqn{\delta_2}{delta_2} (if present) are set to 0.5,
+   the starting values of \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and
+   \eqn{\rho}{rho} (if present and required) are set to 0.25
+      (i.e.\ elasticity of substitution = 0.8 in the two-input case),
+   the starting value of \eqn{\nu}{nu} (if required) is set to 1,
    and the starting value  of \eqn{\gamma}{gamma} is set to a value
    so that the mean of the endogenous variable
-   is equal to the mean of its fitted values,
-   i.e.\ \eqn{\gamma}{gamma} =  mean( y ) /
+   is equal to the mean of its fitted values.
+   Hence, for the CES with two inputs
+   \eqn{\gamma}{gamma} =  mean( y ) /
       mean( CES( X, \eqn{\gamma}{gamma} = 1, \eqn{\delta}{delta} = 0.5,
-         \eqn{\rho}{rho} = 0.25, \eqn{\nu}{nu} = 1 ) ).\cr
+         \eqn{\rho}{rho} = fixed or 0.25, \eqn{\nu}{nu} = 1 ) ),
+   and for the nested CES with 4 inputs
+   \eqn{\gamma}{gamma} =  mean( y ) /
+      mean( CES( X, \eqn{\gamma}{gamma} = 1, \eqn{\delta_1}{delta_1} = 0.5,
+          \eqn{\delta_2}{delta_2} = 0.5, \eqn{\rho_1}{rho_1} = 0.25, 
+          \eqn{\rho_2}{rho_2} = 0.25, \eqn{\rho}{rho} = fixed or 0.25, 
+          \eqn{\nu}{nu} = 1 ) ).\cr
 
    \bold{Lower and upper bounds}\cr
    Arguments \code{lower} and \code{upper} can be used
@@ -169,16 +162,25 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    depending on the estimation method:
    In case of the \code{L-BFGS-B}, \code{PORT}, and \code{DE} method,
    the lower bound is \code{0} for \eqn{\gamma}{gamma},
-   \code{0} for \eqn{\delta}{delta}, \code{-1} for \eqn{\rho}{rho},
+   \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, 
+   and \eqn{\delta_2}{delta_2} (if present), 
+   \code{-1} for \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and \eqn{\rho}{rho}
+   (if present),
    and eventually \code{0} for \eqn{\nu}{nu}.
    In case of the \code{L-BFGS-B} and \code{PORT} method,
    the upper bound is infinity for \eqn{\gamma}{gamma},
-   \code{1} for \eqn{\delta}{delta}, infinity for \eqn{\rho}{rho},
+   \code{1} for \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, and
+   \eqn{\delta_2}{delta_2} (if present),
+   infinity for \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and \eqn{\rho}{rho}
+   (if present),
    and eventually infinity for \eqn{\nu}{nu}.
    Since the \sQuote{Differential Evulation} algorithm requires finit bounds,
    the upper bounds for the \code{DE} method are set
    to \code{1e10} for \eqn{\gamma}{gamma},
-   \code{1} for \eqn{\delta}{delta}, \code{10} for \eqn{\rho}{rho},
+   \code{1} for \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, and 
+   \eqn{\delta_2}{delta_2} (if present),
+   \code{10} for \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and \eqn{\rho}{rho}
+   (if present),
    and eventually \code{10} for \eqn{\nu}{nu}.
    In case of all other estimation methods,
    the lower and upper bounds are set to \code{-Inf} and \code{Inf}, respectively,
