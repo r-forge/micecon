@@ -61,11 +61,11 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    # dertermining lower and upper bounds automatically
    if( is.null( lower ) ) {
       lower <- cesCoefBounds( vrs = vrs, returnRho = is.null( rho ),
-         method = method, lower = TRUE, nested = nested )
+         method = method, lower = TRUE, nExog = nExog, nested = nested )
    }
    if( is.null( upper ) ) {
       upper <- cesCoefBounds( vrs = vrs, returnRho = is.null( rho ),
-         method = method, lower = FALSE, nested = nested )
+         method = method, lower = FALSE, nExog = nExog, nested = nested )
    }
 
    # checking lower and upper bounds
