@@ -76,9 +76,9 @@ cesCalc( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 )
       in case of the nested CES with 3 explanatory variables,
       and \eqn{\gamma}{gamma}, \eqn{\delta_1}{delta_1}, 
       \eqn{\delta_2}{delta_2}, \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, 
-      \eqn{\rho}{rho}, and \eqn{\nu}{nu}
+      \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}
       in case of the nested CES with 4 explanatory variables,
-      where the \eqn{\nu}{nu} is only required if the model
+      where in all cases the \eqn{\nu}{nu} is only required if the model
       has variable returns to scale.
       If the vector is named, the names must be \code{"gamma"},
       \code{"delta"}, \code{"rho"}, and eventually \code{"nu"}
