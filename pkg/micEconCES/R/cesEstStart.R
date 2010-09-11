@@ -68,6 +68,14 @@ cesEstStart <- function( yName, xNames, data, vrs,
             stop( "the starting value for 'rho' must be -1 or larger" )
          }
       }
+      if( nested ) {
+         if( start[ "rho_1" ] < -1 ) {
+            stop( "the starting value for 'rho_1' must be -1 or larger" )
+         }
+         if( start[ "rho_2" ] < -1 ) {
+            stop( "the starting value for 'rho_2' must be -1 or larger" )
+         }
+      }
       # checking nu
       if( vrs ) {
          if( start[ "nu" ] <= 0 ) {
