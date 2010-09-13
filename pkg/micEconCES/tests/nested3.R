@@ -40,6 +40,12 @@ for( i in 1:length( rhos ) ) {
 # print "raw" endogenous values
 print( yRho )
 
+# print endogenous variables for different rhos (adjusted with the y at rho=0)
+for( i in 1:nrow( MishraCES ) ) {
+   print( format( round( yRho[ , i, drop = FALSE ] - yRho[21,i], 11 ),
+      scientific = FALSE ) )
+}
+
 
 ## checking cesDerivCoef
 cesDeriv <- micEconCES:::cesDerivCoef( par = b, xNames = xNames, 
