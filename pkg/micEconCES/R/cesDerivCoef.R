@@ -122,7 +122,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
          nu <- 1
       }
 
-      # main parts of the nested CES with 4 inputs
+      # main parts of the nested CES with 3 inputs
       B1 <- delta1 * data[[ xNames[ 1 ] ]]^(-rho1) + 
          ( 1 - delta1 ) * data[[ xNames[ 2 ] ]]^(-rho1)
       B <- delta2 * gamma1^(-rho) * B1^( rho / rho1 ) + 
