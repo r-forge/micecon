@@ -66,6 +66,24 @@ all.equal( cesDerivVrs, cesDerivVrsNum )
 print( cesDerivVrs )
 
 
+## check cesDerivCoef() with rho equal to zero and close to zero
+# array for returned endogenous variables
+deriv <- array( NA, c( length( rhos ), nrow( MishraCES ), length( bVrs ) ) )
+dimnames( deriv ) <- list( rhos, 1:nrow( MishraCES ), names( bVrs ) )
+
+coefRho <- bVrs
+# calculate the derivatives
+for( i in 1:length( rhos ) ) {
+   # coefficients
+   coefRho[ "rho" ] <- rhos[ i ]
+   deriv[ i, , ] <- micEconCES:::cesDerivCoef( par = coefRho,
+      xNames = xNames, data = MishraCES, nested = TRUE, vrs = TRUE )
+}
+
+# print array of derivatives
+print( deriv )
+
+
 ## checking cesEst
 set.seed( 345 )
 MishraCES$yObs <- MishraCES$Y3 + 400 * rnorm( nrow( MishraCES ) )
