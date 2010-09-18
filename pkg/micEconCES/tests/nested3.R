@@ -83,6 +83,14 @@ for( i in 1:length( rhos ) ) {
 # print array of derivatives
 print( deriv )
 
+# print derivatives for different rhos (adjusted with the derivatives at rho=0)
+for( k in 1:dim( deriv )[3] ) {
+   for( i in 1:nrow( MishraCES ) ) {
+      print( format( round( deriv[ , i, k, drop = FALSE ] -
+       deriv[ 21, i, k ], 11 ), scientific = FALSE ) )
+   }
+}
+
 
 ## checking cesEst
 set.seed( 345 )
