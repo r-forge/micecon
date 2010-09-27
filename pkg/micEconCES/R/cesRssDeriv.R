@@ -1,5 +1,5 @@
 cesRssDeriv <- function( par, yName, xNames, data, vrs, rho = NULL,
-      rhoApprox = c( 5e-6, 5e-6, 5e-6, 1e-3, 5e-6 ), nested = FALSE ) {
+      rhoApprox, nested = FALSE ) {
 
    # check rhoApprox
    if( !is.vector( rhoApprox ) || length( rhoApprox ) != 5 ||

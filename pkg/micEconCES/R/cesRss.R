@@ -1,5 +1,5 @@
 cesRss <- function( par, yName, xNames, data, vrs, rho = NULL,
-      rhoApprox = 5e-6, nested = FALSE ) {
+      rhoApprox, nested = FALSE ) {
 
    # check rhoApprox
    if( !is.vector( rhoApprox ) || ! length( rhoApprox ) %in% c( 1, 5 ) ||
