@@ -1,7 +1,8 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
       method = "LM", start = NULL, lower = NULL, upper = NULL,
       rho = NULL, returnGridAll = FALSE, random.seed = 123,
-      rhoApprox = c( 5e-6, 5e-6, 5e-6, 1e-3, 5e-6 ), ... ) {
+      rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, rho = 1e-3, 
+         nu = 5e-6 ), ... ) {
 
    # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)
    # s = 1 / ( 1 + rho )
@@ -31,7 +32,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # check rhoApprox
    if( !nested ) {
-      cesCheckRhoApprox( rhoApprox = rhoApprox, nElem = 5 )
+      cesCheckRhoApprox( rhoApprox = rhoApprox, elemNames = c( "y", coefNames ) )
    }
 
    # checking "rho"
@@ -158,7 +159,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          # add coefficient 'rho' if it is fixed
          par <- cesCoefAddRho( coef = par, vrs = vrs, rho = rho )
          result <- data[[ yName ]] - cesCalc( xNames = xNames,
-            data = data, coef = par, rhoApprox = rhoApprox[1], 
+            data = data, coef = par, rhoApprox = rhoApprox[ "y" ], 
             nested = nested )
          return( result )
       }
@@ -169,7 +170,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          par <- cesCoefAddRho( coef = par, vrs = vrs, rho = rho )
          return( -c( cesDerivCoef( par = par, xNames = xNames, data = data,
             vrs = vrs, returnRho = is.null( rho ),
-            rhoApprox = rhoApprox[-1], nested = nested ) ) )
+            rhoApprox = rhoApprox, nested = nested ) ) )
       }
 
       # perform fit
@@ -185,7 +186,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       cesRss2 <- function( par, yName, xNames, data, vrs, rho, rhoApprox, 
             nested ) {
          result <- cesRss( par = par, yName = yName, xNames = xNames,
-            data = data, vrs = vrs, rho = rho, rhoApprox = rhoApprox[1],
+            data = data, vrs = vrs, rho = rho, rhoApprox = rhoApprox[ "y" ],
             nested = nested )
          attributes( result )$gradient <- cesRssDeriv( par = par, 
             yName = yName, xNames = xNames, data = data, vrs = vrs, rho = rho,
@@ -293,7 +294,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # fitted values
    result$fitted.values <- cesCalc( xNames = xNames, data = data,
-      coef = result$coefficients, rhoApprox = rhoApprox[1], nested = nested )
+      coef = result$coefficients, rhoApprox = rhoApprox[ "y" ], nested = nested )
 
    # residuals
    result$residuals <- data[[ yName ]] - result$fitted.values
@@ -310,7 +311,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # unscaled covariance matrix
    gradients <- cesDerivCoef( par = result$coefficients, xNames = xNames,
-      data = data, vrs = vrs, rhoApprox = rhoApprox[-1], nested = nested )
+      data = data, vrs = vrs, rhoApprox = rhoApprox, nested = nested )
    result$cov.unscaled <- try( chol2inv( chol( crossprod( gradients ) ) ),
       silent = TRUE )
    if( !is.matrix( result$cov.unscaled ) ) {
