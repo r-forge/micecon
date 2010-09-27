@@ -1,5 +1,5 @@
 cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE, 
-      returnRho = TRUE, rhoApprox = c( 5e-6, 5e-6, 1e-3, 5e-6 ) ) {
+      returnRho = TRUE, rhoApprox ) {
 
    # check rhoApprox
    cesCheckRhoApprox( rhoApprox = rhoApprox, nElem = 4 )
