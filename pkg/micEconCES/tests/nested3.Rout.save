@@ -2525,7 +2525,8 @@ Loading required package: DEoptim
 > 
 > ## checking cesDerivCoef
 > cesDeriv <- micEconCES:::cesDerivCoef( par = b, xNames = xNames, 
-+    data = MishraCES, vrs = FALSE, nested = TRUE )
++    data = MishraCES, vrs = FALSE, nested = TRUE, 
++    rhoApprox = c( 5e-6, 5e-6, 1e-3, 5e-6 ) )
 > f <- function( par ) {
 +    return( cesCalc( xNames = xNames, data = MishraCES, coef = par, 
 +       nested = TRUE ) )
@@ -2588,7 +2589,8 @@ Loading required package: DEoptim
 > 
 > # VRS
 > cesDerivVrs <- micEconCES:::cesDerivCoef( par = bVrs, xNames = xNames, 
-+    data = MishraCES, vrs = TRUE, nested = TRUE )
++    data = MishraCES, vrs = TRUE, nested = TRUE,
++    rhoApprox = c( 5e-6, 5e-6, 1e-3, 5e-6 ) )
 > cesDerivVrsNum <- numericGradient( f, t0 = bVrs )
 > all.equal( cesDerivVrs, cesDerivVrsNum )
 [1] TRUE
@@ -2708,7 +2710,8 @@ Loading required package: DEoptim
 +    # coefficients
 +    coefRho[ "rho" ] <- rhos[ i ]
 +    deriv[ i, , ] <- micEconCES:::cesDerivCoef( par = coefRho,
-+       xNames = xNames, data = MishraCES, nested = TRUE, vrs = TRUE )
++       xNames = xNames, data = MishraCES, nested = TRUE, vrs = TRUE,
++       rhoApprox = c( 5e-6, 5e-6, 1e-3, 5e-6 ) )
 + }
 > 
 > # print array of derivatives

@@ -49,7 +49,8 @@ for( i in 1:nrow( MishraCES ) ) {
 
 ## checking cesDerivCoef
 cesDeriv <- micEconCES:::cesDerivCoef( par = b, xNames = xNames, 
-   data = MishraCES, vrs = FALSE, nested = TRUE )
+   data = MishraCES, vrs = FALSE, nested = TRUE, 
+   rhoApprox = c( 5e-6, 5e-6, 1e-3, 5e-6 ) )
 f <- function( par ) {
    return( cesCalc( xNames = xNames, data = MishraCES, coef = par, 
       nested = TRUE ) )
@@ -60,7 +61,8 @@ print( cesDeriv )
 
 # VRS
 cesDerivVrs <- micEconCES:::cesDerivCoef( par = bVrs, xNames = xNames, 
-   data = MishraCES, vrs = TRUE, nested = TRUE )
+   data = MishraCES, vrs = TRUE, nested = TRUE,
+   rhoApprox = c( 5e-6, 5e-6, 1e-3, 5e-6 ) )
 cesDerivVrsNum <- numericGradient( f, t0 = bVrs )
 all.equal( cesDerivVrs, cesDerivVrsNum )
 print( cesDerivVrs )
@@ -77,7 +79,8 @@ for( i in 1:length( rhos ) ) {
    # coefficients
    coefRho[ "rho" ] <- rhos[ i ]
    deriv[ i, , ] <- micEconCES:::cesDerivCoef( par = coefRho,
-      xNames = xNames, data = MishraCES, nested = TRUE, vrs = TRUE )
+      xNames = xNames, data = MishraCES, nested = TRUE, vrs = TRUE,
+      rhoApprox = c( 5e-6, 5e-6, 1e-3, 5e-6 ) )
 }
 
 # print array of derivatives
