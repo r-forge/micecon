@@ -15,6 +15,11 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
    # check names of exogenous variables
    checkNames( xNames, names( data ) )
 
+   # check argument 'rhoApprox'
+   if( !is.numeric( rhoApprox ) || length( rhoApprox ) != 1 ) {
+      stop( "argument 'rhoApprox' must be a numeric scalar" )
+   }
+
    # check for VRS
    if( nExog == 2 ) {
       vrs <- length( coef ) >= 4
