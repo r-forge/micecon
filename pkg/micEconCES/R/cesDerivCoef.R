@@ -2,11 +2,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
       returnRho = TRUE, rhoApprox = c( 5e-6, 5e-6, 1e-3, 5e-6 ) ) {
 
    # check rhoApprox
-   if( !is.vector( rhoApprox ) || length( rhoApprox ) != 4 ||
-         !is.numeric( rhoApprox ) ) {
-      stop( "argument 'rhoApprox' must be a numeric vector with exactly",
-         "4 elements" )
-   }
+   cesCheckRhoApprox( rhoApprox = rhoApprox, nElem = 4 )
 
    # number of exogenous variables
    nExog <- length( xNames )

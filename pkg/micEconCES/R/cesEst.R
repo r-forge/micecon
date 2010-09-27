@@ -30,11 +30,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       returnRho = is.null( rho ), nested = nested )
 
    # check rhoApprox
-   if( !is.vector( rhoApprox ) || length( rhoApprox ) != 5 ||
-         !is.numeric( rhoApprox ) ) {
-      stop( "argument 'rhoApprox' must be a numeric vector with exactly",
-         "5 elements" )
-   }
+   cesCheckRhoApprox( rhoApprox = rhoApprox, nElem = 5 )
 
    # checking "rho"
    if( !is.null( rho ) ) {

@@ -2,11 +2,7 @@ cesRssDeriv <- function( par, yName, xNames, data, vrs, rho = NULL,
       rhoApprox, nested = FALSE ) {
 
    # check rhoApprox
-   if( !is.vector( rhoApprox ) || length( rhoApprox ) != 5 ||
-         !is.numeric( rhoApprox ) ) {
-      stop( "argument 'rhoApprox' must be a numeric vector with exactly",
-         "5 elements" )
-   }
+   cesCheckRhoApprox( rhoApprox = rhoApprox, nElem = 5 )
 
    # add coefficient 'rho' if it is fixed
    par <- cesCoefAddRho( coef = par, vrs = vrs, rho = rho )
