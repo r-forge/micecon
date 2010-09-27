@@ -30,7 +30,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       returnRho = is.null( rho ), nested = nested )
 
    # check rhoApprox
-   cesCheckRhoApprox( rhoApprox = rhoApprox, nElem = 5 )
+   if( !nested ) {
+      cesCheckRhoApprox( rhoApprox = rhoApprox, nElem = 5 )
+   }
 
    # checking "rho"
    if( !is.null( rho ) ) {
