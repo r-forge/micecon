@@ -1,15 +1,15 @@
 cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE, 
       returnRho = TRUE, rhoApprox ) {
 
-   # check rhoApprox
-   cesCheckRhoApprox( rhoApprox = rhoApprox, nElem = 4 )
-
    # number of exogenous variables
    nExog <- length( xNames )
 
    # names of coefficients
    coefNames <- cesCoefNames( nExog = nExog, vrs = vrs, returnRho = returnRho,
       nested = nested )
+
+   # check rhoApprox
+   cesCheckRhoApprox( rhoApprox = rhoApprox, nElem = 4 )
 
    # derivatives of the CES with respect to the coefficients/parameters
    result <- matrix( NA, nrow = nrow( data ), ncol = length( coefNames ) )
