@@ -2,13 +2,14 @@ cesRss <- function( par, yName, xNames, data, vrs, rho = NULL,
       rhoApprox, nested = FALSE ) {
 
    # check rhoApprox
-   if( !is.vector( rhoApprox ) || ! length( rhoApprox ) %in% c( 1, 5 ) ||
-         !is.numeric( rhoApprox ) ) {
+   
+   if( !is.vector( rhoApprox ) || !is.numeric( rhoApprox ) ) {
       stop( "argument 'rhoApprox' must be a numeric scalar",
-         " or a numeric vector with exactly 5 elements" )
+         " or a numeric vector" )
    }
-   if( length( rhoApprox ) == 5 ) {
-      rhoApprox <- rhoApprox[ 1 ]
+   if( length( rhoApprox ) > 1 ) {
+      cesCheckRhoApprox( rhoApprox = rhoApprox, elemNames = "y" )
+      rhoApprox <- rhoApprox[ "y" ]
    }
 
    # add coefficient 'rho' if it is fixed

@@ -10,7 +10,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
 
    # check rhoApprox
    if( !nested ) {
-      cesCheckRhoApprox( rhoApprox = rhoApprox, nElem = 4 )
+      cesCheckRhoApprox( rhoApprox = rhoApprox, elemNames = coefNames )
    }
 
    # derivatives of the CES with respect to the coefficients/parameters
@@ -34,7 +34,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
       }
 
       # derivatives with respect to gamma
-      if( abs( rho ) > rhoApprox[1] ) {
+      if( abs( rho ) > rhoApprox[ "gamma" ] ) {
          result[ , "gamma" ] <-
             ( delta * data[[ xNames[ 1 ] ]]^(-rho) + ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) )^( -nu / rho )
       } else {
@@ -46,7 +46,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
       }
 
       # derivatives with respect to delta
-      if( abs( rho ) > rhoApprox[2] ) {
+      if( abs( rho ) > rhoApprox[ "delta" ] ) {
          result[ , "delta" ] <- - ( gamma * nu / rho ) *
             ( data[[ xNames[ 1 ] ]]^(-rho) - data[[ xNames[ 2 ] ]]^(-rho) ) *
             ( delta * data[[ xNames[ 1 ] ]]^(-rho) +
@@ -63,7 +63,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
 
       # derivatives with respect to rho
       if( returnRho ) {
-         if( abs( rho ) > rhoApprox[3] ) {
+         if( abs( rho ) > rhoApprox[ "rho" ] ) {
             result[ , "rho" ] <- ( gamma * nu / rho^2 ) *
                log( delta * data[[ xNames[ 1 ] ]]^(-rho) +
                   ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) ) *
@@ -89,7 +89,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
 
       # derivatives with respect to nu
       if( vrs ) {
-         if( abs( rho ) > rhoApprox[4] ) {
+         if( abs( rho ) > rhoApprox[ "nu" ] ) {
             result[ , "nu" ] <- - ( gamma / rho ) *
                log( delta * data[[ xNames[ 1 ] ]]^(-rho) +
                   ( 1 - delta ) * data[[ xNames[ 2 ] ]]^(-rho) ) *

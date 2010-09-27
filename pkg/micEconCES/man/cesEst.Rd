@@ -27,7 +27,8 @@
 cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    start = NULL, lower = NULL, upper = NULL, rho = NULL,
    returnGridAll = FALSE, random.seed = 123,
-   rhoApprox = c( 5e-6, 5e-6, 5e-6, 1e-3, 5e-6 ),
+   rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, 
+      rho = 1e-3, nu = 5e-6 ),
    \dots )
 
 \method{print}{cesEst}( x, digits = max(3, getOption("digits") - 3),
@@ -71,14 +72,12 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    \item{random.seed}{an integer used to seed R's random number generator.
       This is to ensure replicability when the \code{"SANN"}
       or \code{"DE"} method is used. Defaults to 123.}
-   \item{rhoApprox}{numeric vector containing 5 elements;
+   \item{rhoApprox}{numeric vector containing named elements;
       the endogenous variable of the non-nested CES
-      with two inputs (first element of this argument)
-      and the derivatives with respect to coefficients 
-      \eqn{\gamma}{gamma} (second element),
-      \eqn{\delta}{delta} (third element),
-      \eqn{\rho}{rho} (fourth element), and
-      \eqn{\nu}{nu} (fifth element)
+      with two inputs (element named \code{"y"})
+      and the derivatives with respect to its coefficients
+      (named as described in the description of argument \code{coef}
+      in the documentation of function \code{\link{cesCalc}})
       are calculated using a first-order Taylor series approximation
       at \eqn{\rho=0}{rho = 0},
       if the absolute value of the coefficient \eqn{\rho}{rho}

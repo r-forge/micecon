@@ -1,9 +1,16 @@
 cesRssDeriv <- function( par, yName, xNames, data, vrs, rho = NULL,
       rhoApprox, nested = FALSE ) {
 
+   # number of exogenous variables
+   nExog <- length( xNames )
+
+   # obtain names of coefficients
+   coefNames <- cesCoefNames( nExog = nExog, vrs = vrs, 
+      returnRho = is.null( rho ), nested = nested )
+
    # check rhoApprox
    if( !nested ) {
-      cesCheckRhoApprox( rhoApprox = rhoApprox, nElem = 5 )
+      cesCheckRhoApprox( rhoApprox = rhoApprox, elemNames = c( "y", coefNames ) )
    }
 
    # add coefficient 'rho' if it is fixed
