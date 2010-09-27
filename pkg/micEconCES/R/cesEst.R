@@ -32,6 +32,10 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          " or with three or four inputs (nested CES) only" )
    }
 
+   # obtain names of coefficients
+   coefNames <- cesCoefNames( nExog = nExog, vrs = vrs, 
+      returnRho = is.null( rho ), nested = nested )
+
    # checking "rho"
    if( !is.null( rho ) ) {
       if( !is.numeric( rho ) ) {
@@ -201,8 +205,6 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       options( warn = warnSaved )
       # extract results
       result$coefficients <- result$nlm$estimate
-      names( result$coefficients ) <- cesCoefNames( nExog, vrs,
-         returnRho = is.null( rho ), nested = nested )
       result$iter <- result$nlm$iterations
       result$convergence <- result$nlm$code <= 2
       rss <- result$nlm$minimum
@@ -221,8 +223,6 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          upper = upper, data = data, yName = yName, xNames = xNames,
          vrs = vrs, rho = rho, rhoApprox = rhoApprox, nested = nested, ... )
       result$coefficients <- result$DEoptim$optim$bestmem
-      names( result$coefficients ) <- cesCoefNames( nExog, vrs,
-         returnRho = is.null( rho ), nested = nested )
       result$iter <- result$DEoptim$optim$iter
       rss <- result$DEoptim$optim$bestval
    } else if( method == "nls" ) {
@@ -269,6 +269,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          " 'CG', 'L-BFGS-B', 'SANN', 'LM', 'Newton', 'PORT',",
          " 'DE', 'nls', or 'Kmenta'" )
    }
+
+   # add names to estimated coefficients
+   names( result$coefficients ) <- coefNames
 
    # add the 'rho' if it is fixed
    result$coefficients <- cesCoefAddRho( coef = result$coefficients,
