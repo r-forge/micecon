@@ -26,7 +26,7 @@ MishraCES$yVrs
 ## checking cesDerivCoef
 cesDeriv <- micEconCES:::cesDerivCoef( par = b, xNames = xNames, 
    data = MishraCES, vrs = FALSE, nested = TRUE, 
-   rhoApprox = c( 5e-6, 5e-6, 1e-3, 5e-6 ) )
+   rhoApprox = NULL )
 f <- function( par ) {
    return( cesCalc( xNames = xNames, data = MishraCES, coef = par, 
       nested = TRUE ) )
@@ -38,7 +38,7 @@ print( cesDeriv )
 # VRE
 cesDerivVrs <- micEconCES:::cesDerivCoef( par = bVrs, xNames = xNames, 
    data = MishraCES, vrs = TRUE, nested = TRUE,
-   rhoApprox = c( 5e-6, 5e-6, 1e-3, 5e-6 ) )
+   rhoApprox = NULL )
 cesDerivVrsNum <- numericGradient( f, t0 = bVrs )
 all.equal( cesDerivVrs, cesDerivVrsNum )
 print( cesDerivVrs )
