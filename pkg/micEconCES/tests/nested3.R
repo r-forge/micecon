@@ -46,6 +46,22 @@ for( i in 1:nrow( MishraCES ) ) {
       scientific = FALSE ) )
 }
 
+## check cesCalc() with rho_1 equal to zero and close to zero
+# matrix for returned endogenous variables
+yRho1 <- matrix( NA, nrow = length( rhos ), ncol = nrow( MishraCES ) )
+rownames( yRho1 ) <- c( -(1:20), 0, (20:1) )
+
+# calculate endogenous variables
+coefRho1 <- b
+for( i in 1:length( rhos ) ) {
+   coefRho1[ "rho_1" ] <- rhos[ i ]
+   yRho1[ i, ] <- cesCalc( xNames = xNames, data = MishraCES, coef = coefRho1,
+      nested = TRUE )
+}
+
+# print "raw" endogenous values
+print( yRho1 )
+
 
 ## checking cesDerivCoef
 cesDeriv <- micEconCES:::cesDerivCoef( par = b, xNames = xNames, 
