@@ -135,6 +135,14 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
             result <- result * ( rhoApprox - abs( rho ) ) / rhoApprox +
                result2 * abs( rho ) / rhoApprox
          }
+      } else if( coef[ "rho_1" ] == 0 ) {
+         result <- coef[ "gamma_2" ] * 
+            ( coef[ "delta_2" ] * coef[ "gamma_1" ]^( -coef[ "rho" ] ) *
+               exp( coef[ "delta_1" ] * log( data[[ xNames[ 1 ] ]] ) +
+                     ( 1 - coef[ "delta_1" ] ) * log( data[[ xNames[ 2 ] ]] )
+                  )^( -coef[ "rho" ] ) +
+               ( 1 - coef[ "delta_2" ] ) * data[[ xNames[ 3 ] ]]^( -coef[ "rho" ] ) 
+            )^( - coef[ "nu" ] / coef[ "rho" ] )
       } else {
          result <- cesCalcN3( xNames = xNames, data = data, coef = coef )
       }
