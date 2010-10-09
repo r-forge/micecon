@@ -175,6 +175,43 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
                   ( 1 - delta2 ) * log( data[[ xNames[ 3 ] ]] ) ) )
          }
       } else if( rho1 == 0 ) {
+         # derivatives with respect to gamma_1 and gamma_2
+         result[ , "gamma_1" ] <- gamma2 * nu * delta2 * gamma1^( -rho - 1 ) *
+            exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+               ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) )^( -rho ) *
+            ( delta2 * gamma1^( -rho ) *
+               exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                  ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) )^( -rho ) +
+               ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho ) 
+            )^( - nu / rho - 1 )
+         result[ , "gamma_2" ] <-
+            ( delta2 * gamma1^( -rho ) *
+               exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                  ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) )^( -rho ) +
+               ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho ) 
+            )^( - nu / rho )
+
+         # derivatives with respect to delta_1 and delta_2
+         result[ , "delta_1" ] <-
+            gamma2 * nu * delta2 * gamma1^( -rho ) *
+            exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+               ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) )^( -rho ) *
+            ( log( data[[ xNames[ 1 ] ]] ) - log( data[[ xNames[ 2 ] ]] ) ) *
+            ( delta2 * gamma1^( -rho ) *
+               exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                  ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) )^( -rho ) +
+               ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho ) 
+            )^( - nu / rho - 1 )
+         result[ , "delta_2" ] <-
+            - gamma2 * ( nu / rho ) *
+            ( gamma1^( -rho ) * exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+               ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) )^( -rho ) -
+               data[[ xNames[ 3 ] ]]^( -rho ) ) *
+            ( delta2 * gamma1^( -rho ) *
+               exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                  ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) )^( -rho ) +
+               ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho ) 
+            )^( - nu / rho - 1 )
       } else {      # if rho != 0  and  rho_1 != 0
          # derivatives with respect to gamma_1 and gamma_2
          result[ , "gamma_1" ] <- gamma2 * nu * delta2 * gamma1^(-rho-1) * 
