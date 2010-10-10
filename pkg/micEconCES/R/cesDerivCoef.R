@@ -250,6 +250,16 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
                exp( - nu * ( - delta2 * ( log( gamma1 ) - log( B1 ) / rho1 ) -
                   ( 1 - delta2 ) * log( data[[ xNames[ 3 ] ]] ) ) )
          } else if( rho1 == 0 ) {
+            result[ , "nu" ] <- - gamma2 / rho *
+               ( delta2 * gamma1^( -rho ) *
+                  exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                     ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) )^( -rho ) +
+                  ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho )
+               )^( - nu / rho ) *
+               log( delta2 * gamma1^( -rho ) * 
+                  exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                     ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) )^( -rho ) +
+                  ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho ) )
          } else {
             result[ , "nu" ] <- cesDerivCoefN3Nu( coef = par, B = B )
          }
