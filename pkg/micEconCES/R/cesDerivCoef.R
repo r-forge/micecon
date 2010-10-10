@@ -124,10 +124,9 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
       nu <- par[ "nu" ]
 
       # main parts of the nested CES with 3 inputs
-      B1 <- delta1 * data[[ xNames[ 1 ] ]]^(-rho1) + 
-         ( 1 - delta1 ) * data[[ xNames[ 2 ] ]]^(-rho1)
-      B <- delta2 * gamma1^(-rho) * B1^( rho / rho1 ) + 
-         ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^(-rho)
+      B1 <- cesDerivCoefN3B1( coef = par, data = data, xNames = xNames )
+
+      B <- cesDerivCoefN3B( coef = par, data = data, xNames = xNames )
 
       # derivatives with respect to gamma_1
       if( rho == 0 ) {
@@ -145,7 +144,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
             )^( - nu / rho - 1 )
       } else {
          result[ , "gamma_1" ] <- cesDerivCoefN3Gamma1( coef = par, 
-            B1 = B1, B = B )
+            data = data, xNames = xNames )
       }
 
       # derivatives with respect to gamma_2
@@ -161,7 +160,8 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
                ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho ) 
             )^( - nu / rho )
       } else {
-         result[ , "gamma_2" ] <- cesDerivCoefN3Gamma2( coef = par, B = B )
+         result[ , "gamma_2" ] <- cesDerivCoefN3Gamma2( coef = par, 
+            data = data, xNames = xNames )
       }
 
       # derivatives with respect to delta_1
@@ -184,7 +184,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
             )^( - nu / rho - 1 )
       } else {
          result[ , "delta_1" ] <- cesDerivCoefN3Delta1( coef = par, 
-            B1 = B1, B = B, data = data, xNames = xNames )
+            data = data, xNames = xNames )
       }
       
       # derivatives with respect to delta_2
@@ -206,7 +206,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
             )^( - nu / rho - 1 )
       } else {
          result[ , "delta_2" ] <- cesDerivCoefN3Delta2( coef = par, 
-            B1 = B1, B = B, data = data, xNames = xNames )
+            data = data, xNames = xNames )
       }
 
       # derivatives with respect to rho_1
@@ -221,7 +221,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
       } else if( rho1 == 0 ) {
       } else {
          result[ , "rho_1" ] <- cesDerivCoefN3Rho1( coef = par, 
-            B1 = B1, B = B, data = data, xNames = xNames )
+            data = data, xNames = xNames )
       }
 
       # derivatives with respect to rho
@@ -237,7 +237,7 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
          } else if( rho1 == 0 ) {
          } else {
             result[ , "rho" ] <- cesDerivCoefN3Rho( coef = par, 
-               B1 = B1, B = B, data = data, xNames = xNames )
+               data = data, xNames = xNames )
          }
       }
 
@@ -261,7 +261,8 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
                      ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) )^( -rho ) +
                   ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho ) )
          } else {
-            result[ , "nu" ] <- cesDerivCoefN3Nu( coef = par, B = B )
+            result[ , "nu" ] <- cesDerivCoefN3Nu( coef = par, 
+               data = data, xNames = xNames )
          }
       }
 
