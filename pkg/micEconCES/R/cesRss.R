@@ -7,10 +7,9 @@ cesRss <- function( par, yName, xNames, data, vrs, rho = NULL,
       stop( "argument 'rhoApprox' must be a numeric scalar",
          " or a numeric vector" )
    }
-   if( length( rhoApprox ) > 1 ) {
-      cesCheckRhoApprox( rhoApprox = rhoApprox, elemNames = "y" )
-      rhoApprox <- rhoApprox[ "y" ]
-   }
+   rhoApprox <- cesCheckRhoApprox( rhoApprox = rhoApprox, withY = TRUE,
+      withDeriv = NA )
+   rhoApprox <- rhoApprox[ "y" ]
 
    # add coefficient 'rho' if it is fixed
    par <- cesCoefAddRho( coef = par, vrs = vrs, rho = rho )

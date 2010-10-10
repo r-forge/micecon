@@ -72,17 +72,33 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    \item{random.seed}{an integer used to seed R's random number generator.
       This is to ensure replicability when the \code{"SANN"}
       or \code{"DE"} method is used. Defaults to 123.}
-   \item{rhoApprox}{numeric vector containing named elements;
-      the endogenous variable of the non-nested CES
-      with two inputs (element named \code{"y"})
+   \item{rhoApprox}{numeric vector with exactly 5 elements;
+      the endogenous variable of the CES
       and the derivatives with respect to its coefficients
-      (named as described in the description of argument \code{coef}
-      in the documentation of function \code{\link{cesCalc}})
       are calculated using a first-order Taylor series approximation
-      at \eqn{\rho=0}{rho = 0},
-      if the absolute value of the coefficient \eqn{\rho}{rho}
+      at \eqn{\rho=0}{rho = 0} (non-nested CES)
+      or by interpolation between \eqn{\rho}{rho}, \eqn{\rho_1}{rho_1}, 
+      or \eqn{\rho_2}{rho_2} equal to zero 
+      and \eqn{\rho}{rho}, \eqn{\rho_1}{rho_1}, or \eqn{\rho_2}{rho_2} 
+      equal to \eqn{\pm}{+/-}\code{rhoApprox}
+      (nested CES),
+      if the absolute value of the coefficients \eqn{\rho}{rho}, 
+      \eqn{\rho_1}{rho_1}, or \eqn{\rho_2}{rho_2}
       is smaller than or equal to the corresponding element of this argument
-      (see also argument \code{rhoApprox} of \code{\link{cesCalc}}).}
+      (see also argument \code{rhoApprox} of \code{\link{cesCalc}});
+      the first element determines the threshold for calculating
+      the endogenous variable; 
+      the second element determines the threshold for calculating
+      the derivatives with respect to \eqn{\gamma}{gamma},
+      \eqn{\gamma_1}{gamma_1}, and \eqn{\gamma_2}{gamma_2};
+      the third element determines the threshold for calculating
+      the derivatives with respect to \eqn{\delta}{delta},
+      \eqn{\delta_1}{delta_1}, and \eqn{\delta_2}{delta_2};
+      the fourth element determines the threshold for calculating
+      the derivatives with respect to \eqn{\rho}{rho},
+      \eqn{\rho_1}{rho_1}, and \eqn{\rho_2}{rho_2};
+      the fifth element determines the threshold for calculating
+      the derivatives with respect to \eqn{\nu}{nu}.}
    \item{x}{an object of class \code{cesEst}.}
    \item{digits}{number of digits.}
    \item{\dots}{further arguments to \code{cesEst} are passed to
