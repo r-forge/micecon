@@ -32,7 +32,8 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # check rhoApprox
    if( !nested ) {
-      cesCheckRhoApprox( rhoApprox = rhoApprox, elemNames = c( "y", coefNames ) )
+      rhoApprox <- cesCheckRhoApprox( rhoApprox = rhoApprox, withY = TRUE,
+         withDeriv = TRUE )
    }
 
    # checking "rho"

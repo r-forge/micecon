@@ -10,7 +10,8 @@ cesRssDeriv <- function( par, yName, xNames, data, vrs, rho = NULL,
 
    # check rhoApprox
    if( !nested ) {
-      cesCheckRhoApprox( rhoApprox = rhoApprox, elemNames = c( "y", coefNames ) )
+      rhoApprox <- cesCheckRhoApprox( rhoApprox = rhoApprox, withY = TRUE,
+         withDeriv = TRUE )
    }
 
    # add coefficient 'rho' if it is fixed

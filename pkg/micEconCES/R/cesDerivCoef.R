@@ -10,7 +10,8 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
 
    # check rhoApprox
    if( !nested ) {
-      cesCheckRhoApprox( rhoApprox = rhoApprox, elemNames = coefNames )
+      rhoApprox <- cesCheckRhoApprox( rhoApprox = rhoApprox, withY = NA,
+         withDeriv = TRUE )
    }
 
    # derivatives of the CES with respect to the coefficients/parameters
