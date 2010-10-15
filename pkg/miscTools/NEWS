@@ -5,6 +5,11 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.6-10  (2010-10-15)
+
+* stdEr.default() now checks for x$std only if x is an object of S3 class
+
+
             CHANGES IN VERSION 0.6-8  (2010-09-02)
 
 * moved generic function stdEr() including a default method and a method
