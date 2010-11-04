@@ -55,7 +55,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    }
 
    # number of parameters
-   nParam <- 1 + nExog + vrs + nested * ( 1 + ( nExog == 3 ) ) - !is.null( rho )
+   nParam <- 1 + nExog + vrs + nested * 2 - !is.null( rho )
 
    # start values
    start <- cesEstStart( yName = yName, xNames = xNames, data = data,
@@ -240,10 +240,10 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
             sep = "" ) )
       } else if( nested && nExog == 4 ) {
          nlsFormula <- as.formula( paste( yName,
-            " ~ gamma * ( ( delta_1 * ", xNames[ 1 ], "^(-rho_1)",
+            " ~ gamma * ( delta_3 * ( delta_1 * ", xNames[ 1 ], "^(-rho_1)",
             " + ( 1 - delta_1 ) * ", xNames[ 2 ], "^(-rho_1) )",
             "^( rho / rho_1 ) +",
-            " ( delta_2 * ", xNames[ 3 ], "^(-rho_2)",
+            " ( 1 - delta_3 ) * ( delta_2 * ", xNames[ 3 ], "^(-rho_2)",
             " + ( 1 - delta_2 ) * ", xNames[ 4 ], "^(-rho_2) )",
             "^( rho / rho_2 ) )",
             "^( - ", ifelse( vrs, "nu", "1" ), " / rho )",

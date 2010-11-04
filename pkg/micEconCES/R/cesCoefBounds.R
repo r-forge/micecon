@@ -6,7 +6,7 @@ cesCoefBounds <- function( vrs, returnRho, method, lower, nExog,
          if( nested && nExog == 3 ) {
             result <- c( 0, 0, 0, 0, -1 )
          } else if( nested && nExog == 4 ) {
-            result <- c( 0, 0, 0, -1, -1 )
+            result <- c( 0, 0, 0, 0, -1, -1 )
          } else if( !nested && nExog == 2 ) {
             result <- c( 0, 0 )
          } else {
@@ -18,7 +18,7 @@ cesCoefBounds <- function( vrs, returnRho, method, lower, nExog,
          if( nested && nExog == 3 ) {
             result <- c( Inf, Inf, 1, 1, Inf )
          } else if( nested && nExog == 4 ) {
-            result <- c( Inf, 1, 1, Inf, Inf )
+            result <- c( Inf, 1, 1, 1, Inf, Inf )
          } else if( !nested && nExog == 2 ) {
             result <- c( Inf, 1 )
          } else {

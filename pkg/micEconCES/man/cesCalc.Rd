@@ -40,16 +40,17 @@
       ]^(-nu / rho)}
 
    and the \emph{nested} CES function with 4 explanatory variables 
-   also proposed by Sato (1967) is
+   (a generalisation of the version proposed by Sato, 1967) is
 
-   \deqn{y = \gamma \: \left[ 
+   \deqn{y = \gamma \: \left[ \delta_3 \cdot
       \left( \delta_1 \: x_1^{-\rho_1} +
       ( 1 - \delta_1 ) x_2^{-\rho_1} \right)^{\frac{\rho}{\rho_1}} +
+      ( 1 - \delta_3 ) \cdot
       \left( \delta_2 \: x_3^{-\rho_2} +
       ( 1 - \delta_2 ) x_4^{-\rho_2} \right)^{\frac{\rho}{\rho_2}}
       \right]^{-\frac{\nu}{\rho}}}{%
-      y = gamma * [ ( delta_1 * x_1^(-rho_1) + ( 1 - delta_1 ) * x_2^(-rho_1) )^(rho / rho_1) +
-      ( delta_2 * x_3^(-\rho_2) + ( 1 - delta_2 ) * x_4^(-rho_2) )^(rho / rho_2)
+      y = gamma * [ delta_3 ( delta_1 * x_1^(-rho_1) + ( 1 - delta_1 ) * x_2^(-rho_1) )^(rho / rho_1) +
+      ( 1 - delta_3 ) ( delta_2 * x_3^(-\rho_2) + ( 1 - delta_2 ) * x_4^(-rho_2) )^(rho / rho_2)
       ]^(-nu / rho)}
 }
 
@@ -74,8 +75,8 @@ cesCalc( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 )
       \eqn{\delta_1}{delta_1}, \eqn{\delta_2}{delta_2}, 
       \eqn{\rho_1}{rho_1}, \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}
       in case of the nested CES with 3 explanatory variables,
-      and \eqn{\gamma}{gamma}, \eqn{\delta_1}{delta_1}, 
-      \eqn{\delta_2}{delta_2}, \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, 
+      and \eqn{\gamma}{gamma}, \eqn{\delta_1}{delta_1}, \eqn{\delta_2}{delta_2}, 
+      \eqn{\delta_3}{delta_3}, \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, 
       \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}
       in case of the nested CES with 4 explanatory variables,
       where in all cases the \eqn{\nu}{nu} is only required if the model

@@ -17,7 +17,7 @@ cesEstStart <- function( yName, xNames, data, vrs,
          if( nested && nExog == 3 ) {
             start <- c( 1, 1, 0.5, 0.5, 0.25, rhoStart )
          } else if( nested && nExog == 4 ) {
-            start <- c( 1, 0.5, 0.5, 0.25, 0.25, rhoStart )
+            start <- c( 1, 0.5, 0.5, 0.5, 0.25, 0.25, rhoStart )
          } else if( !nested && nExog == 2 ) {
             start <- c( 1, 0.5, rhoStart )
          } else {
@@ -34,7 +34,7 @@ cesEstStart <- function( yName, xNames, data, vrs,
             mean( data[[ yName ]], na.rm = TRUE ) /
             mean( yTemp, na.rm = TRUE )
          if( !is.null( rho ) ) {
-            start <- start[ -ifelse( nested, 6, 3 ) ]
+            start <- start[ -ifelse( nested, 3 + nExog, 3 ) ]
          }
       }
       if( length( start ) != nParam ) {

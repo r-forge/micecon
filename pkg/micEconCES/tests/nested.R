@@ -3,9 +3,11 @@ library( maxLik )
 
 data( "MishraCES" )
 
-b <- c( "gamma" = 200, "delta_1" = 0.6, "delta_2" = 0.3, "rho_1" = 0.5,
+b <- c( "gamma" = 200 * 0.5^( 1 / 0.6 ), 
+   "delta_1" = 0.6, "delta_2" = 0.3, "delta_3" = 0.5, "rho_1" = 0.5,
    "rho_2" = -0.17, "rho" = 0.6 )
 bVrs <- c( b, "nu" = 1.05 )
+bVrs[ "gamma" ] <- 200 * 0.5^( 1.05 / 0.6 )
 xNames <- c( "X1", "X2", "X3", "X4" )
 
 
@@ -35,7 +37,7 @@ cesDerivNum <- numericGradient( f, t0 = b )
 all.equal( cesDeriv, cesDerivNum )
 print( cesDeriv )
 
-# VRE
+# VRS
 cesDerivVrs <- micEconCES:::cesDerivCoef( par = bVrs, xNames = xNames, 
    data = MishraCES, vrs = TRUE, nested = TRUE,
    rhoApprox = NULL )
