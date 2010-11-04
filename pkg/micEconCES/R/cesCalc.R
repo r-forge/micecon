@@ -25,7 +25,7 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
       vrs <- length( coef ) >= 4
    } else {
       if( nested ) {
-         vrs <- length( coef ) >= 7
+         vrs <- length( coef ) - nExog >= 4
       } else {
          vrs <- length( coef ) - nExog  >= 3
       }
@@ -42,10 +42,10 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
          ifelse( vrs, " variable", " constant" ), " returns to scale",
          " must have ", nExog + 2 + vrs, " coefficients",
          " but you provided ", length( coef ), " coefficients" )
-   } else if( nExog %in% c( 3, 4 ) && nested && length( coef ) != 6 + vrs ) {
+   } else if( nExog %in% c( 3, 4 ) && nested && length( coef ) != 3 + nExog + vrs ) {
       stop( "a nested CES function with ", nExog, " exogenous variables and",
          ifelse( vrs, " variable", " constant" ), " returns to scale",
-         " must have ", 6 + vrs, " coefficients",
+         " must have ", 3 + nExog + vrs, " coefficients",
          " but you provided ", length( coef ), " coefficients" )
    }
 
@@ -154,10 +154,11 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
          result <- cesCalcN3( xNames = xNames, data = data, coef = coef )
       }
    } else {                    # nested CES with 4 inputs
-      result <- coef[ "gamma" ] * (
+      result <- coef[ "gamma" ] * ( coef[ "delta_3" ] *
             ( coef[ "delta_1" ] * data[[ xNames[ 1 ] ]]^( -coef[ "rho_1" ] ) +
                ( 1 - coef[ "delta_1" ] ) * data[[ xNames[ 2 ] ]]^( -coef[ "rho_1" ] ) 
             )^( coef[ "rho" ] / coef[ "rho_1" ] ) +
+            ( 1 - coef[ "delta_3" ] ) *
             ( coef[ "delta_2" ] * data[[ xNames[ 3 ] ]]^( -coef[ "rho_2" ] ) +
                ( 1 - coef[ "delta_2" ] ) * data[[ xNames[ 4 ] ]]^( -coef[ "rho_2" ] ) 
             )^( coef[ "rho" ] / coef[ "rho_2" ] ) 
