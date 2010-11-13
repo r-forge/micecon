@@ -265,6 +265,18 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
                result2 * abs( rho ) / rhoApprox[ "rho" ]
          }
       } else if( rho1 == 0 ) {
+         result[ , "rho_1" ] <- - gamma2 * nu * delta2 * gamma1^(-rho) *
+            exp( -rho * ( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+               ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) ) ) *
+            0.5 * ( ( delta1 * ( log( data[[ xNames[ 1 ] ]] ) )^2 +
+                  ( 1 - delta1 ) * ( log( data[[ xNames[ 2 ] ]] ) )^2 ) -
+               ( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                  ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) )^2 ) *
+            ( delta2 * gamma1^(-rho) *
+               exp( -rho * ( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                  ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) ) ) +
+               ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho ) 
+            )^( -nu/rho - 1 )
       } else {
          result[ , "rho_1" ] <- cesDerivCoefN3Rho1( coef = par, 
             data = data, xNames = xNames )
@@ -290,6 +302,34 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
                   result2 * abs( rho ) / rhoApprox[ "rho" ]
             }
          } else if( rho1 == 0 ) {
+            result[ , "rho" ] <- gamma2 * ( 
+               ( nu / rho^2 ) * 
+               log( delta2 * gamma1^( -rho ) *
+                  ( exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                     ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) ) )^( -rho ) +
+                  ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho ) ) *
+               ( delta2 * gamma1^( -rho ) * 
+                  ( exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                     ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) ) )^( -rho ) +
+                  ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho ) 
+               )^( - nu / rho ) -
+               ( nu / rho ) * ( delta2 * gamma1^( -rho ) * 
+                  ( exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                     ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) ) )^( -rho ) +
+                  ( 1 - delta2 ) * data[[ xNames[ 3 ] ]]^( -rho ) 
+               )^( - nu / rho - 1 ) *
+               ( - delta2 * log( gamma1 ) * gamma1^( -rho ) *
+                  ( exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                     ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) ) 
+                  )^( -rho ) -
+                  delta2 * gamma1^( -rho ) *
+                  ( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                     ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) ) *
+                  ( exp( delta1 * log( data[[ xNames[ 1 ] ]] ) +
+                     ( 1 - delta1 ) * log( data[[ xNames[ 2 ] ]] ) ) 
+                  )^( -rho ) -
+                  ( 1 - delta2 ) * log( data[[ xNames[ 3 ] ]] ) *
+                     data[[ xNames[ 3 ] ]]^( -rho ) ) )
          } else {
             result[ , "rho" ] <- cesDerivCoefN3Rho( coef = par, 
                data = data, xNames = xNames )
