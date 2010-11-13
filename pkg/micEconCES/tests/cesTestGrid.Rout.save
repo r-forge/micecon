@@ -1,7 +1,8 @@
 
-R version 2.11.1 (2010-05-31)
+R version 2.12.0 (2010-10-15)
 Copyright (C) 2010 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: i486-pc-linux-gnu (32-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -2098,10 +2099,10 @@ Convergence achieved after 47 iterations
 Message: relative convergence (4) 
 
 Coefficients:
-        Estimate Std. Error   t value Pr(>|t|)    
-gamma  4.914e+01  7.544e+00     6.514 7.31e-11 ***
-delta  1.000e+00  1.065e-02    93.865  < 2e-16 ***
-rho   -8.000e-01  3.132e+13 -2.55e-14        1    
+        Estimate Std. Error t value Pr(>|t|)    
+gamma  4.914e+01  7.544e+00   6.514 7.31e-11 ***
+delta  1.000e+00  1.065e-02  93.865  < 2e-16 ***
+rho   -8.000e-01  3.132e+13   0.000        1    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 

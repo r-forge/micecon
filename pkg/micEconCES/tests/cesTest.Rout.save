@@ -1,7 +1,8 @@
 
-R version 2.11.1 (2010-05-31)
+R version 2.12.0 (2010-10-15)
 Copyright (C) 2010 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: i486-pc-linux-gnu (32-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -166,10 +167,10 @@ Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 Convergence NOT achieved after 501 iterations
 
 Coefficients:
-        Estimate Std. Error   t value Pr(>|t|)
-gamma  1.003e+02  6.548e+05  1.53e-04        1
-delta  6.909e-02  2.284e+03  3.03e-05        1
-rho   -3.746e+00  1.204e+04 -3.11e-04        1
+        Estimate Std. Error t value Pr(>|t|)
+gamma  1.003e+02  6.548e+05       0        1
+delta  6.909e-02  2.284e+03       0        1
+rho   -3.746e+00  1.204e+04       0        1
 
 Residual standard error: 91.08077 
 Multiple R-squared: 0.9062694 
@@ -670,10 +671,10 @@ Estimation by non-linear least-squares using the 'BFGS' optimizer
 Convergence NOT achieved after 433 function and 100 gradient calls
 
 Coefficients:
-        Estimate Std. Error   t value Pr(>|t|)
-gamma  8.947e+01  3.776e+06  2.37e-05        1
-delta  7.176e-02  1.705e+04  4.21e-06        1
-rho   -4.396e+00  8.700e+04 -5.05e-05        1
+        Estimate Std. Error t value Pr(>|t|)
+gamma  8.947e+01  3.776e+06       0        1
+delta  7.176e-02  1.705e+04       0        1
+rho   -4.396e+00  8.700e+04       0        1
 
 Residual standard error: 91.06148 
 Multiple R-squared: 0.906309 
@@ -800,10 +801,10 @@ Convergence achieved after 71 function and 71 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
-        Estimate Std. Error   t value Pr(>|t|)
-gamma  4.914e+01  1.063e+02     0.462    0.644
-delta  1.000e+00  2.284e+00     0.438    0.662
-rho   -1.000e+00  4.241e+13 -2.36e-14    1.000
+        Estimate Std. Error t value Pr(>|t|)
+gamma  4.914e+01  1.063e+02   0.462    0.644
+delta  1.000e+00  2.284e+00   0.438    0.662
+rho   -1.000e+00  4.241e+13   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
@@ -1459,10 +1460,10 @@ Convergence NOT achieved after 150 iterations
 Message: iteration limit reached without convergence (9) 
 
 Coefficients:
-        Estimate Std. Error   t value Pr(>|t|)
-gamma  7.906e+01  1.368e+08  5.78e-07        1
-delta  5.638e-02  7.124e+05  7.91e-08        1
-rho   -6.047e+00  4.575e+06 -1.32e-06        1
+        Estimate Std. Error t value Pr(>|t|)
+gamma  7.906e+01  1.368e+08       0        1
+delta  5.638e-02  7.124e+05       0        1
+rho   -6.047e+00  4.575e+06       0        1
 
 Residual standard error: 91.05836 
 Multiple R-squared: 0.9063155 
@@ -1591,10 +1592,10 @@ Convergence achieved after 65 iterations
 Message: both X-convergence and relative convergence (5) 
 
 Coefficients:
-        Estimate Std. Error   t value Pr(>|t|)
-gamma  4.914e+01  1.050e+02     0.468    0.640
-delta  1.000e+00  2.256e+00     0.443    0.658
-rho   -1.000e+00  5.781e+13 -1.73e-14    1.000
+        Estimate Std. Error t value Pr(>|t|)
+gamma  4.914e+01  1.050e+02   0.468    0.640
+delta  1.000e+00  2.256e+00   0.443    0.658
+rho   -1.000e+00  5.781e+13   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
@@ -3285,10 +3286,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Estimation by non-linear least-squares using the 'DE' optimizer
 
 Coefficients:
-      Estimate Std. Error   t value Pr(>|t|)
-gamma    49.62    4279.58     0.012    0.991
-delta     0.99     124.84     0.008    0.994
-rho      -0.99    4231.81 -0.000234    1.000
+      Estimate Std. Error t value Pr(>|t|)
+gamma    49.62    4279.58   0.012    0.991
+delta     0.99     124.84   0.008    0.994
+rho      -0.99    4231.81   0.000    1.000
 
 Residual standard error: 91.10784 
 Multiple R-squared: 0.9062137 
@@ -3423,10 +3424,10 @@ Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 Convergence NOT achieved after 502 iterations
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 3.221e+01  2.599e+06 1.24e-05        1
-delta 2.008e-01  7.426e+04 2.70e-06        1
-rho   3.800e+00  1.497e+05 2.54e-05        1
+       Estimate Std. Error t value Pr(>|t|)
+gamma 3.221e+01  2.599e+06       0        1
+delta 2.008e-01  7.426e+04       0        1
+rho   3.800e+00  1.497e+05       0        1
 
 Residual standard error: 91.05962 
 Multiple R-squared: 0.9063129 
@@ -3749,10 +3750,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation by non-linear least-squares using the 'SANN' optimizer
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 1.315e+01  6.459e+03    0.002    0.998
-delta 2.101e-02  5.342e+01 0.000393    1.000
-rho   2.925e+00  8.390e+02    0.003    0.997
+       Estimate Std. Error t value Pr(>|t|)
+gamma 1.315e+01  6.459e+03   0.002    0.998
+delta 2.101e-02  5.342e+01   0.000    1.000
+rho   2.925e+00  8.390e+02   0.003    0.997
 
 Residual standard error: 91.29195 
 Multiple R-squared: 0.9058342 
@@ -3858,10 +3859,10 @@ Estimation by non-linear least-squares using the 'BFGS' optimizer
 Convergence achieved after 352 function and 82 gradient calls
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 3.479e+01  5.633e+06 6.18e-06        1
-delta 2.558e-01  1.924e+05 1.33e-06        1
-rho   3.947e+00  3.271e+05 1.21e-05        1
+       Estimate Std. Error t value Pr(>|t|)
+gamma 3.479e+01  5.633e+06       0        1
+delta 2.558e-01  1.924e+05       0        1
+rho   3.947e+00  3.271e+05       0        1
 
 Residual standard error: 91.05892 
 Multiple R-squared: 0.9063144 
@@ -3971,10 +3972,10 @@ Convergence achieved after 24 function and 24 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 4.914e+01  6.503e+01    0.756    0.450
-delta 1.000e+00  9.892e-01    1.011    0.312
-rho   6.511e-01  2.397e+13 2.72e-14    1.000
+       Estimate Std. Error t value Pr(>|t|)
+gamma 4.914e+01  6.503e+01   0.756    0.450
+delta 1.000e+00  9.892e-01   1.011    0.312
+rho   6.511e-01  2.397e+13   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
@@ -4314,10 +4315,10 @@ Convergence achieved after 40 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 4.737e+01  3.679e+07 1.29e-06        1
-delta 8.519e-01  3.138e+06 2.71e-07        1
-rho   4.362e+00  8.057e+06 5.41e-07        1
+       Estimate Std. Error t value Pr(>|t|)
+gamma 4.737e+01  3.679e+07       0        1
+delta 8.519e-01  3.138e+06       0        1
+rho   4.362e+00  8.057e+06       0        1
 
 Residual standard error: 91.05833 
 Multiple R-squared: 0.9063156 
@@ -4420,10 +4421,10 @@ Estimation by non-linear least-squares using the 'Newton' optimizer
 Convergence NOT achieved after 100 iterations
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 1.387e+01  1.729e+04    0.001    0.999
-delta 1.342e-02  9.734e+01 0.000138    1.000
-rho   3.406e+00  2.377e+03    0.001    0.999
+       Estimate Std. Error t value Pr(>|t|)
+gamma 1.387e+01  1.729e+04   0.001    0.999
+delta 1.342e-02  9.734e+01   0.000    1.000
+rho   3.406e+00  2.377e+03   0.001    0.999
 
 Residual standard error: 91.13937 
 Multiple R-squared: 0.9061487 
@@ -4650,10 +4651,10 @@ Convergence NOT achieved after 142 iterations
 Message: function evaluation limit reached without convergence (9) 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 3.675e+01  6.493e+07 5.66e-07        1
-delta 2.391e-01  2.374e+06 1.01e-07        1
-rho   4.926e+00  4.233e+06 1.16e-06        1
+       Estimate Std. Error t value Pr(>|t|)
+gamma 3.675e+01  6.493e+07       0        1
+delta 2.391e-01  2.374e+06       0        1
+rho   4.926e+00  4.233e+06       0        1
 
 Residual standard error: 91.05835 
 Multiple R-squared: 0.9063155 
@@ -5301,10 +5302,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation by non-linear least-squares using the 'DE' optimizer
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 4.769e+01  5.363e+07 8.89e-07        1
-delta 8.755e-01  4.743e+06 1.85e-07        1
-rho   4.443e+00  1.410e+07 3.15e-07        1
+       Estimate Std. Error t value Pr(>|t|)
+gamma 4.769e+01  5.363e+07       0        1
+delta 8.755e-01  4.743e+06       0        1
+rho   4.443e+00  1.410e+07       0        1
 
 Residual standard error: 91.05834 
 Multiple R-squared: 0.9063156 
@@ -5713,11 +5714,11 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation by non-linear least-squares using the 'DE' optimizer
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)    
-gamma 3.050e+01  3.868e+07 7.89e-07        1    
-delta 9.611e-01  7.156e+06 1.34e-07        1    
-rho   6.760e+00  9.217e+08 7.33e-09        1    
-nu    1.131e+00  1.008e-01    11.23   <2e-16 ***
+       Estimate Std. Error t value Pr(>|t|)    
+gamma 3.050e+01  3.868e+07    0.00        1    
+delta 9.611e-01  7.156e+06    0.00        1    
+rho   6.760e+00  9.217e+08    0.00        1    
+nu    1.131e+00  1.008e-01   11.23   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -6117,10 +6118,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation by non-linear least-squares using the 'DE' optimizer
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 4.898e+01  2.181e+06 2.25e-05        1
-delta 9.898e-01  1.482e+05 6.68e-06        1
-rho   2.999e+00  4.755e+06 6.31e-07        1
+       Estimate Std. Error t value Pr(>|t|)
+gamma 4.898e+01  2.181e+06       0        1
+delta 9.898e-01  1.482e+05       0        1
+rho   2.999e+00  4.755e+06       0        1
 
 Residual standard error: 91.05836 
 Multiple R-squared: 0.9063155 

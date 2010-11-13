@@ -1,7 +1,8 @@
 
-R version 2.11.1 (2010-05-31)
+R version 2.12.0 (2010-10-15)
 Copyright (C) 2010 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: i486-pc-linux-gnu (32-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -24549,13 +24550,13 @@ Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 Convergence achieved after 417 iterations
 
 Coefficients:
-         Estimate Std. Error  t value Pr(>|t|)    
-gamma_1 1.085e+00  7.457e+05 1.46e-06        1    
-gamma_2 2.995e+02  1.248e+08 2.40e-06        1    
-delta_1 6.064e-01  9.474e-03   64.003   <2e-16 ***
-delta_2 6.063e-01  8.531e+04 7.11e-06        1    
-rho_1   6.037e-01  6.606e-02    9.139   <2e-16 ***
-rho     5.202e-01  6.414e-02    8.111    5e-16 ***
+         Estimate Std. Error t value Pr(>|t|)    
+gamma_1 1.085e+00  7.457e+05   0.000        1    
+gamma_2 2.995e+02  1.248e+08   0.000        1    
+delta_1 6.064e-01  9.474e-03  64.003   <2e-16 ***
+delta_2 6.063e-01  8.531e+04   0.000        1    
+rho_1   6.037e-01  6.606e-02   9.139   <2e-16 ***
+rho     5.202e-01  6.414e-02   8.111    5e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -25714,14 +25715,14 @@ Estimation by non-linear least-squares using the 'BFGS' optimizer
 Convergence achieved after 479 function and 29 gradient calls
 
 Coefficients:
-         Estimate Std. Error  t value Pr(>|t|)    
-gamma_1 8.938e-01  8.519e+05 1.05e-06        1    
-gamma_2 3.362e+02  1.865e+08 1.80e-06        1    
-delta_1 6.064e-01  9.741e-03   62.254  < 2e-16 ***
-delta_2 5.819e-01  1.206e+05 4.82e-06        1    
-rho_1   6.037e-01  7.230e-02    8.350  < 2e-16 ***
-rho     5.203e-01  7.487e-02    6.949 3.68e-12 ***
-nu      1.000e+00  1.750e-02   57.131  < 2e-16 ***
+         Estimate Std. Error t value Pr(>|t|)    
+gamma_1 8.938e-01  8.519e+05   0.000        1    
+gamma_2 3.362e+02  1.865e+08   0.000        1    
+delta_1 6.064e-01  9.741e-03  62.254  < 2e-16 ***
+delta_2 5.819e-01  1.206e+05   0.000        1    
+rho_1   6.037e-01  7.230e-02   8.350  < 2e-16 ***
+rho     5.203e-01  7.487e-02   6.949 3.68e-12 ***
+nu      1.000e+00  1.750e-02  57.131  < 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -25898,13 +25899,13 @@ Convergence achieved after 33 function and 33 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
-         Estimate Std. Error  t value Pr(>|t|)    
-gamma_1 1.102e+00  5.734e+05 1.92e-06        1    
-gamma_2 2.968e+02  9.389e+07 3.16e-06        1    
-delta_1 6.064e-01  9.474e-03   64.005  < 2e-16 ***
-delta_2 6.082e-01  6.449e+04 9.43e-06        1    
-rho_1   6.036e-01  6.605e-02    9.138  < 2e-16 ***
-rho     5.202e-01  6.414e-02    8.111 5.01e-16 ***
+         Estimate Std. Error t value Pr(>|t|)    
+gamma_1 1.102e+00  5.734e+05   0.000        1    
+gamma_2 2.968e+02  9.389e+07   0.000        1    
+delta_1 6.064e-01  9.474e-03  64.005  < 2e-16 ***
+delta_2 6.082e-01  6.449e+04   0.000        1    
+rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
+rho     5.202e-01  6.414e-02   8.111 5.01e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -26239,13 +26240,13 @@ Convergence achieved after 6 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
 Coefficients:
-         Estimate Std. Error  t value Pr(>|t|)    
-gamma_1 1.255e+00  1.100e+06 1.14e-06        1    
-gamma_2 2.740e+02  1.499e+08 1.83e-06        1    
-delta_1 6.064e-01  9.474e-03   64.004  < 2e-16 ***
-delta_2 6.241e-01  1.069e+05 5.84e-06        1    
-rho_1   6.036e-01  6.605e-02    9.138  < 2e-16 ***
-rho     5.202e-01  6.413e-02    8.111 5.02e-16 ***
+         Estimate Std. Error t value Pr(>|t|)    
+gamma_1 1.255e+00  1.100e+06   0.000        1    
+gamma_2 2.740e+02  1.499e+08   0.000        1    
+delta_1 6.064e-01  9.474e-03  64.004  < 2e-16 ***
+delta_2 6.241e-01  1.069e+05   0.000        1    
+rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
+rho     5.202e-01  6.413e-02   8.111 5.02e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -26411,14 +26412,14 @@ Convergence achieved after 6 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
 Coefficients:
-         Estimate Std. Error  t value Pr(>|t|)    
-gamma_1 1.093e+00  4.513e+05 2.42e-06        1    
-gamma_2 2.983e+02  7.478e+07 3.99e-06        1    
-delta_1 6.064e-01  9.740e-03   62.257  < 2e-16 ***
-delta_2 6.071e-01  5.123e+04 1.19e-05        1    
-rho_1   6.035e-01  7.229e-02    8.349  < 2e-16 ***
-rho     5.202e-01  7.487e-02    6.948 3.70e-12 ***
-nu      1.000e+00  1.750e-02   57.131  < 2e-16 ***
+         Estimate Std. Error t value Pr(>|t|)    
+gamma_1 1.093e+00  4.513e+05   0.000        1    
+gamma_2 2.983e+02  7.478e+07   0.000        1    
+delta_1 6.064e-01  9.740e-03  62.257  < 2e-16 ***
+delta_2 6.071e-01  5.123e+04   0.000        1    
+rho_1   6.035e-01  7.229e-02   8.349  < 2e-16 ***
+rho     5.202e-01  7.487e-02   6.948 3.70e-12 ***
+nu      1.000e+00  1.750e-02  57.131  < 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -26588,13 +26589,13 @@ Estimation by non-linear least-squares using the 'Newton' optimizer
 Convergence achieved after 21 iterations
 
 Coefficients:
-         Estimate Std. Error  t value Pr(>|t|)    
-gamma_1 1.102e+00  2.054e+06 5.37e-07        1    
-gamma_2 2.968e+02  3.364e+08 8.82e-07        1    
-delta_1 6.064e-01  9.474e-03   64.004  < 2e-16 ***
-delta_2 6.082e-01  2.310e+05 2.63e-06        1    
-rho_1   6.036e-01  6.605e-02    9.138  < 2e-16 ***
-rho     5.202e-01  6.413e-02    8.111 5.02e-16 ***
+         Estimate Std. Error t value Pr(>|t|)    
+gamma_1 1.102e+00  2.054e+06   0.000        1    
+gamma_2 2.968e+02  3.364e+08   0.000        1    
+delta_1 6.064e-01  9.474e-03  64.004  < 2e-16 ***
+delta_2 6.082e-01  2.310e+05   0.000        1    
+rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
+rho     5.202e-01  6.413e-02   8.111 5.02e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -26769,14 +26770,14 @@ Estimation by non-linear least-squares using the 'Newton' optimizer
 Convergence achieved after 51 iterations
 
 Coefficients:
-         Estimate Std. Error  t value Pr(>|t|)    
-gamma_1 1.102e+00  5.246e+05 2.10e-06        1    
-gamma_2 2.968e+02  8.591e+07 3.45e-06        1    
-delta_1 6.064e-01  9.740e-03   62.257  < 2e-16 ***
-delta_2 6.082e-01  5.900e+04 1.03e-05        1    
-rho_1   6.035e-01  7.229e-02    8.349  < 2e-16 ***
-rho     5.202e-01  7.487e-02    6.948 3.70e-12 ***
-nu      1.000e+00  1.750e-02   57.131  < 2e-16 ***
+         Estimate Std. Error t value Pr(>|t|)    
+gamma_1 1.102e+00  5.246e+05   0.000        1    
+gamma_2 2.968e+02  8.591e+07   0.000        1    
+delta_1 6.064e-01  9.740e-03  62.257  < 2e-16 ***
+delta_2 6.082e-01  5.900e+04   0.000        1    
+rho_1   6.035e-01  7.229e-02   8.349  < 2e-16 ***
+rho     5.202e-01  7.487e-02   6.948 3.70e-12 ***
+nu      1.000e+00  1.750e-02  57.131  < 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -27133,14 +27134,14 @@ Convergence achieved after 107 iterations
 Message: relative convergence (4) 
 
 Coefficients:
-         Estimate Std. Error  t value Pr(>|t|)    
-gamma_1 1.095e+00  2.499e+06 4.38e-07        1    
-gamma_2 2.979e+02  4.127e+08 7.22e-07        1    
-delta_1 6.064e-01  9.740e-03   62.257  < 2e-16 ***
-delta_2 6.074e-01  2.829e+05 2.15e-06        1    
-rho_1   6.035e-01  7.229e-02    8.349  < 2e-16 ***
-rho     5.202e-01  7.487e-02    6.948 3.70e-12 ***
-nu      1.000e+00  1.750e-02   57.131  < 2e-16 ***
+         Estimate Std. Error t value Pr(>|t|)    
+gamma_1 1.095e+00  2.499e+06   0.000        1    
+gamma_2 2.979e+02  4.127e+08   0.000        1    
+delta_1 6.064e-01  9.740e-03  62.257  < 2e-16 ***
+delta_2 6.074e-01  2.829e+05   0.000        1    
+rho_1   6.035e-01  7.229e-02   8.349  < 2e-16 ***
+rho     5.202e-01  7.487e-02   6.948 3.70e-12 ***
+nu      1.000e+00  1.750e-02  57.131  < 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -28592,13 +28593,13 @@ Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
 Coefficients:
-         Estimate Std. Error  t value Pr(>|t|)    
-gamma_1 1.179e+00  7.426e+05 1.59e-06        1    
-gamma_2 2.851e+02  1.123e+08 2.54e-06        1    
-delta_1 6.070e-01  9.357e-03   64.874   <2e-16 ***
-delta_2 6.251e-01  8.856e+04 7.06e-06        1    
-rho_1   5.647e-01  6.328e-02    8.924   <2e-16 ***
-rho     6.000e-01  6.858e-02    8.749   <2e-16 ***
+         Estimate Std. Error t value Pr(>|t|)    
+gamma_1 1.179e+00  7.426e+05   0.000        1    
+gamma_2 2.851e+02  1.123e+08   0.000        1    
+delta_1 6.070e-01  9.357e-03  64.874   <2e-16 ***
+delta_2 6.251e-01  8.856e+04   0.000        1    
+rho_1   5.647e-01  6.328e-02   8.924   <2e-16 ***
+rho     6.000e-01  6.858e-02   8.749   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -28970,13 +28971,13 @@ Convergence achieved after 88 iterations
 Message: both X-convergence and relative convergence (5) 
 
 Coefficients:
-         Estimate Std. Error  t value Pr(>|t|)    
-gamma_1 1.053e+00  2.116e+06 4.98e-07        1    
-gamma_2 3.057e+02  3.740e+08 8.17e-07        1    
-delta_1 6.070e-01  9.357e-03   64.874   <2e-16 ***
-delta_2 6.091e-01  2.870e+05 2.12e-06        1    
-rho_1   5.647e-01  6.328e-02    8.924   <2e-16 ***
-rho     6.000e-01  6.858e-02    8.749   <2e-16 ***
+         Estimate Std. Error t value Pr(>|t|)    
+gamma_1 1.053e+00  2.116e+06   0.000        1    
+gamma_2 3.057e+02  3.740e+08   0.000        1    
+delta_1 6.070e-01  9.357e-03  64.874   <2e-16 ***
+delta_2 6.091e-01  2.870e+05   0.000        1    
+rho_1   5.647e-01  6.328e-02   8.924   <2e-16 ***
+rho     6.000e-01  6.858e-02   8.749   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 

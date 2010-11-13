@@ -1,7 +1,8 @@
 
-R version 2.11.1 (2010-05-31)
+R version 2.12.0 (2010-10-15)
 Copyright (C) 2010 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: i486-pc-linux-gnu (32-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -173,10 +174,10 @@ Coefficient 'rho' was fixed at 2
 Convergence NOT achieved after 501 iterations
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 8.448e+01  7.545e+05 0.000112        1
-delta 2.959e+00  5.802e+04 0.000051        1
-rho   2.000e+00  3.228e+03    0.001        1
+       Estimate Std. Error t value Pr(>|t|)
+gamma 8.448e+01  7.545e+05   0.000        1
+delta 2.959e+00  5.802e+04   0.000        1
+rho   2.000e+00  3.228e+03   0.001        1
 
 Residual standard error: 91.00207 
 Multiple R-squared: 0.9064313 
@@ -419,10 +420,10 @@ Coefficient 'rho' was fixed at 2
 Convergence NOT achieved after 754 function and 101 gradient calls
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma    34.540  44157.320    0.001        1
-delta     0.493   1624.957 0.000303        1
-rho       2.000   2095.793    0.001        1
+       Estimate Std. Error t value Pr(>|t|)
+gamma    34.540  44157.320   0.001        1
+delta     0.493   1624.957   0.000        1
+rho       2.000   2095.793   0.001        1
 
 Residual standard error: 91.14635 
 Multiple R-squared: 0.9061344 
@@ -666,7 +667,7 @@ Coefficient 'rho' was fixed at 2
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
 gamma 3.598e+01  5.037e+04   0.001        1
-delta 5.349e-01  1.911e+03 0.00028        1
+delta 5.349e-01  1.911e+03   0.000        1
 rho   2.000e+00  2.476e+03   0.001        1
 
 Residual standard error: 91.1328 
@@ -906,10 +907,10 @@ Coefficient 'rho' was fixed at 2
 Convergence NOT achieved after 368 function and 100 gradient calls
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma     79.50  624544.63 1.27e-04        1
-delta      2.62   45526.27 5.76e-05        1
-rho        2.00    3457.04    0.001        1
+       Estimate Std. Error t value Pr(>|t|)
+gamma     79.50  624544.63   0.000        1
+delta      2.62   45526.27   0.000        1
+rho        2.00    3457.04   0.001        1
 
 Residual standard error: 91.00573 
 Multiple R-squared: 0.9064238 
@@ -1158,10 +1159,10 @@ Convergence achieved after 42 function and 42 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 4.914e+01  1.629e+03    0.030    0.976
-delta 1.000e+00  6.644e+01    0.015    0.988
-rho   2.000e+00  9.922e+13 2.02e-14    1.000
+       Estimate Std. Error t value Pr(>|t|)
+gamma 4.914e+01  1.629e+03   0.030    0.976
+delta 1.000e+00  6.644e+01   0.015    0.988
+rho   2.000e+00  9.922e+13   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
@@ -1404,10 +1405,10 @@ Convergence NOT achieved after 200 iterations
 Message: Number of iterations has reached `maxiter' == 200. 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 4.243e+02  1.031e+08 4.12e-06        1
-delta 7.469e+01  3.664e+07 2.04e-06        1
-rho   2.000e+00  2.146e+03    0.001        1
+       Estimate Std. Error t value Pr(>|t|)
+gamma 4.243e+02  1.031e+08   0.000        1
+delta 7.469e+01  3.664e+07   0.000        1
+rho   2.000e+00  2.146e+03   0.001        1
 
 Residual standard error: 90.97451 
 Multiple R-squared: 0.906488 
@@ -1638,10 +1639,10 @@ Coefficient 'rho' was fixed at 2
 Convergence achieved after 4 iterations
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma    34.539  44156.814    0.001        1
-delta     0.493   1624.934 0.000303        1
-rho       2.000   2095.764    0.001        1
+       Estimate Std. Error t value Pr(>|t|)
+gamma    34.539  44156.814   0.001        1
+delta     0.493   1624.934   0.000        1
+rho       2.000   2095.764   0.001        1
 
 Residual standard error: 91.14635 
 Multiple R-squared: 0.9061344 
@@ -1888,10 +1889,10 @@ Convergence achieved after 28 iterations
 Message: both X-convergence and relative convergence (5) 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 4.914e+01  1.629e+03    0.030    0.976
-delta 1.000e+00  6.644e+01    0.015    0.988
-rho   2.000e+00  9.922e+13 2.02e-14    1.000
+       Estimate Std. Error t value Pr(>|t|)
+gamma 4.914e+01  1.629e+03   0.030    0.976
+delta 1.000e+00  6.644e+01   0.015    0.988
+rho   2.000e+00  9.922e+13   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
@@ -2444,10 +2445,10 @@ Estimation by non-linear least-squares using the 'DE' optimizer
 Coefficient 'rho' was fixed at 2 
 
 Coefficients:
-       Estimate Std. Error  t value Pr(>|t|)
-gamma 4.914e+01  1.638e+03    0.030    0.976
-delta 1.000e+00  6.569e+01    0.015    0.988
-rho   2.000e+00  6.170e+13 3.24e-14    1.000
+       Estimate Std. Error t value Pr(>|t|)
+gamma 4.914e+01  1.638e+03   0.030    0.976
+delta 1.000e+00  6.569e+01   0.015    0.988
+rho   2.000e+00  6.170e+13   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
