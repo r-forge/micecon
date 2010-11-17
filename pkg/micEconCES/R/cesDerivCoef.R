@@ -130,38 +130,56 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
 
 
       # derivatives with respect to gamma_1
-      if( abs( rho ) <= rhoApprox[ "gamma" ] ) {
-         coef <- par
-         coef[ "rho" ] <- 0
-         result[ , "gamma_1" ] <- cesDerivCoefN3Gamma1( coef = coef,
-            data = data, xNames = xNames )
-         if( rho != 0 ) {
-            coef <- par
-            coef[ "rho" ] <- rhoApprox[ "gamma" ] * (-1)^( rho < 0 )
-            result2 <- cesDerivCoefN3Gamma1( coef = coef,
-               data = data, xNames = xNames )
-            result[ , "gamma_1" ] <- result[ , "gamma_1" ] * 
-               ( rhoApprox[ "gamma" ] - abs( rho ) ) / rhoApprox[ "gamma" ] +
-               result2 * abs( rho ) / rhoApprox[ "gamma" ]
-         }
-      } else if( abs( rho1 ) <= rhoApprox[ "gamma" ] ) {
-         coef <- par
-         coef[ "rho_1" ] <- 0
-         result[ , "gamma_1" ] <- cesDerivCoefN3Gamma1( coef = coef,
-            data = data, xNames = xNames )
-         if( rho1 != 0 ) {
-            coef <- par
-            coef[ "rho_1" ] <- rhoApprox[ "gamma" ] * (-1)^( rho1 < 0 )
-            result2 <- cesDerivCoefN3Gamma1( coef = coef,
-               data = data, xNames = xNames )
-            result[ , "gamma_1" ] <- result[ , "gamma_1" ] * 
-               ( rhoApprox[ "gamma" ] - abs( rho1 ) ) / rhoApprox[ "gamma" ] +
-               result2 * abs( rho1 ) / rhoApprox[ "gamma" ]
-         }
-      } else {
-         result[ , "gamma_1" ] <- cesDerivCoefN3Gamma1( coef = par, 
-            data = data, xNames = xNames )
+      coef00 <- par
+      coef01 <- par
+      coef10 <- par
+      coef11 <- par
+      wa <- 1
+      wb <- 1
+      if( rho == 0 ) {
+         wa <- 0
+      } else if( abs( rho ) <= rhoApprox[ "gamma" ] ) {
+         coef00[ "rho" ] <- coef01[ "rho" ] <- 0
+         coef10[ "rho" ] <- coef11[ "rho" ] <- 
+            rhoApprox[ "gamma" ] * (-1)^( rho < 0 )
+         wa <- abs( rho ) / rhoApprox[ "gamma" ]
       }
+      if( rho1 == 0 ) {
+         wb <- 0
+      } else if( abs( rho1 ) <= rhoApprox[ "gamma" ] ) {
+         coef00[ "rho_1" ] <- coef10[ "rho_1" ] <- 0
+         coef01[ "rho_1" ] <- coef11[ "rho_1" ] <- 
+            rhoApprox[ "gamma" ] * (-1)^( rho1 < 0 )
+         wb <- abs( rho1 ) / rhoApprox[ "gamma" ]
+      }
+      if( wa != 1 && wb != 1 ) {
+         result00 <- cesDerivCoefN3Gamma1( coef = coef00,
+            data = data, xNames = xNames )
+      } else {
+         result00 <- 0
+      }
+      if( wa != 1 && wb != 0 ) {
+         result01 <- cesDerivCoefN3Gamma1( coef = coef01,
+            data = data, xNames = xNames )
+      } else {
+         result01 <- 0
+      }
+      if( wa != 0 && wb != 1 ) {
+         result10 <- cesDerivCoefN3Gamma1( coef = coef10,
+            data = data, xNames = xNames )
+      } else {
+         result10 <- 0
+      }
+      if( wa != 0 && wb != 0 ) {
+         result11 <- cesDerivCoefN3Gamma1( coef = coef11,
+            data = data, xNames = xNames )
+      } else {
+         result11 <- 0
+      }
+      result[ , "gamma_1" ] <- 
+         wa * wb * result11 + ( 1 - wa ) * wb * result01 +
+         wa * ( 1 - wb ) * result10 + ( 1- wa ) * ( 1 - wb ) * result00
+
 
       # derivatives with respect to gamma_2
       if( abs( rho ) <= rhoApprox[ "gamma" ] ) {
