@@ -136,211 +136,37 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
 
 
       # derivatives with respect to gamma_2
-      if( abs( rho ) <= rhoApprox[ "gamma" ] ) {
-         coef <- par
-         coef[ "rho" ] <- 0
-         result[ , "gamma_2" ] <- cesDerivCoefN3Gamma2( coef = coef,
-            data = data, xNames = xNames )
-         if( rho != 0 ) {
-            coef <- par
-            coef[ "rho" ] <- rhoApprox[ "gamma" ] * (-1)^( rho < 0 )
-            result2 <- cesDerivCoefN3Gamma2( coef = coef,
-               data = data, xNames = xNames )
-            result[ , "gamma_2" ] <- result[ , "gamma_2" ] * 
-               ( rhoApprox[ "gamma" ] - abs( rho ) ) / rhoApprox[ "gamma" ] +
-               result2 * abs( rho ) / rhoApprox[ "gamma" ]
-         }
-      } else if( abs( rho1 ) <= rhoApprox[ "gamma" ] ) {
-         coef <- par
-         coef[ "rho_1" ] <- 0
-         result[ , "gamma_2" ] <- cesDerivCoefN3Gamma2( coef = coef,
-            data = data, xNames = xNames )
-         if( rho1 != 0 ) {
-            coef <- par
-            coef[ "rho_1" ] <- rhoApprox[ "gamma" ] * (-1)^( rho1 < 0 )
-            result2 <- cesDerivCoefN3Gamma2( coef = coef,
-               data = data, xNames = xNames )
-            result[ , "gamma_2" ] <- result[ , "gamma_2" ] * 
-               ( rhoApprox[ "gamma" ] - abs( rho1 ) ) / rhoApprox[ "gamma" ] +
-               result2 * abs( rho1 ) / rhoApprox[ "gamma" ]
-         }
-      } else {
-         result[ , "gamma_2" ] <- cesDerivCoefN3Gamma2( coef = par, 
-            data = data, xNames = xNames )
-      }
+      result[ , "gamma_2" ] <- cesDerivCoefN3Inter( 
+         funcName = "cesDerivCoefN3Gamma2", par = par, 
+         xNames = xNames, data = data, rhoApprox = rhoApprox[ "gamma" ] )
 
       # derivatives with respect to delta_1
-      if( abs( rho ) <= rhoApprox[ "delta" ] ) {
-         coef <- par
-         coef[ "rho" ] <- 0
-         result[ , "delta_1" ] <- cesDerivCoefN3Delta1( coef = coef,
-            data = data, xNames = xNames )
-         if( rho != 0 ) {
-            coef <- par
-            coef[ "rho" ] <- rhoApprox[ "delta" ] * (-1)^( rho < 0 )
-            result2 <- cesDerivCoefN3Delta1( coef = coef, 
-               data = data, xNames = xNames )
-            result[ , "delta_1" ] <- result[ , "delta_1" ] * 
-               ( rhoApprox[ "delta" ] - abs( rho ) ) / rhoApprox[ "delta" ] +
-               result2 * abs( rho ) / rhoApprox[ "delta" ]
-         }
-      } else if( abs( rho1 ) <= rhoApprox[ "delta" ] ) {
-         coef <- par
-         coef[ "rho_1" ] <- 0
-         result[ , "delta_1" ] <- cesDerivCoefN3Delta1( coef = coef,
-            data = data, xNames = xNames )
-         if( rho1 != 0 ) {
-            coef <- par
-            coef[ "rho_1" ] <- rhoApprox[ "delta" ] * (-1)^( rho1 < 0 )
-            result2 <- cesDerivCoefN3Delta1( coef = coef, 
-               data = data, xNames = xNames )
-            result[ , "delta_1" ] <- result[ , "delta_1" ] * 
-               ( rhoApprox[ "delta" ] - abs( rho1 ) ) / rhoApprox[ "delta" ] +
-               result2 * abs( rho1 ) / rhoApprox[ "delta" ]
-         }
-      } else {
-         result[ , "delta_1" ] <- cesDerivCoefN3Delta1( coef = par, 
-            data = data, xNames = xNames )
-      }
-      
+      result[ , "delta_1" ] <- cesDerivCoefN3Inter( 
+         funcName = "cesDerivCoefN3Delta1", par = par, 
+         xNames = xNames, data = data, rhoApprox = rhoApprox[ "delta" ] )
+
       # derivatives with respect to delta_2
-      if( abs( rho ) <= rhoApprox[ "delta" ] ) {
-         coef <- par
-         coef[ "rho" ] <- 0
-         result[ , "delta_2" ] <- cesDerivCoefN3Delta2( coef = coef,
-            data = data, xNames = xNames )
-         if( rho != 0 ) {
-            coef <- par
-            coef[ "rho" ] <- rhoApprox[ "delta" ] * (-1)^( rho < 0 )
-            result2 <- cesDerivCoefN3Delta2( coef = coef,
-               data = data, xNames = xNames )
-            result[ , "delta_2" ] <- result[ , "delta_2" ] * 
-               ( rhoApprox[ "delta" ] - abs( rho ) ) / rhoApprox[ "delta" ] +
-               result2 * abs( rho ) / rhoApprox[ "delta" ]
-         }
-      } else if( abs( rho1 ) <= rhoApprox[ "delta" ] ) {
-         coef <- par
-         coef[ "rho_1" ] <- 0
-         result[ , "delta_2" ] <- cesDerivCoefN3Delta2( coef = coef,
-            data = data, xNames = xNames )
-         if( rho1 != 0 ) {
-            coef <- par
-            coef[ "rho_1" ] <- rhoApprox[ "delta" ] * (-1)^( rho1 < 0 )
-            result2 <- cesDerivCoefN3Delta2( coef = coef,
-               data = data, xNames = xNames )
-            result[ , "delta_2" ] <- result[ , "delta_2" ] * 
-               ( rhoApprox[ "delta" ] - abs( rho1 ) ) / rhoApprox[ "delta" ] +
-               result2 * abs( rho1 ) / rhoApprox[ "delta" ]
-         }
-      } else {
-         result[ , "delta_2" ] <- cesDerivCoefN3Delta2( coef = par, 
-            data = data, xNames = xNames )
-      }
+      result[ , "delta_2" ] <- cesDerivCoefN3Inter( 
+         funcName = "cesDerivCoefN3Delta2", par = par, 
+         xNames = xNames, data = data, rhoApprox = rhoApprox[ "delta" ] )
 
       # derivatives with respect to rho_1
-      if( abs( rho ) <= rhoApprox[ "rho" ] ) {
-         coef <- par
-         coef[ "rho" ] <- 0
-         result[ , "rho_1" ] <- cesDerivCoefN3Rho1( coef = coef,
-            data = data, xNames = xNames )
-         if( rho != 0 ) {
-            coef <- par
-            coef[ "rho" ] <- rhoApprox[ "rho" ] * (-1)^( rho < 0 )
-            result2 <- cesDerivCoefN3Rho1( coef = coef,
-               data = data, xNames = xNames )
-            result[ , "rho_1" ] <- result[ , "rho_1" ] * 
-               ( rhoApprox[ "rho" ] - abs( rho ) ) / rhoApprox[ "rho" ] +
-               result2 * abs( rho ) / rhoApprox[ "rho" ]
-         }
-      } else if( abs( rho1 ) <= rhoApprox[ "rho" ] ) {
-         coef <- par
-         coef[ "rho_1" ] <- 0
-         result[ , "rho_1" ] <- cesDerivCoefN3Rho1( coef = coef,
-            data = data, xNames = xNames )
-         if( rho1 != 0 ) {
-            coef <- par
-            coef[ "rho_1" ] <- rhoApprox[ "rho" ] * (-1)^( rho1 < 0 )
-            result2 <- cesDerivCoefN3Rho1( coef = coef,
-               data = data, xNames = xNames )
-            result[ , "rho_1" ] <- result[ , "rho_1" ] * 
-               ( rhoApprox[ "rho" ] - abs( rho1 ) ) / rhoApprox[ "rho" ] +
-               result2 * abs( rho1 ) / rhoApprox[ "rho" ]
-         }
-      } else {
-         result[ , "rho_1" ] <- cesDerivCoefN3Rho1( coef = par, 
-            data = data, xNames = xNames )
-      }
+      result[ , "rho_1" ] <- cesDerivCoefN3Inter( 
+         funcName = "cesDerivCoefN3Rho1", par = par, 
+         xNames = xNames, data = data, rhoApprox = rhoApprox[ "rho" ] )
 
       # derivatives with respect to rho
       if( returnRho ) {
-         if( abs( rho ) <= rhoApprox[ "rho" ] ) {
-            coef <- par
-            coef[ "rho" ] <- 0
-            result[ , "rho" ] <- cesDerivCoefN3Rho( coef = coef,
-               data = data, xNames = xNames )
-            if( rho != 0 ) {
-               coef <- par
-               coef[ "rho" ] <- rhoApprox[ "rho" ] * (-1)^( rho < 0 )
-               result2 <- cesDerivCoefN3Rho( coef = coef,
-                  data = data, xNames = xNames )
-               result[ , "rho" ] <- result[ , "rho" ] * 
-                  ( rhoApprox[ "rho" ] - abs( rho ) ) / rhoApprox[ "rho" ] +
-                  result2 * abs( rho ) / rhoApprox[ "rho" ]
-            }
-         } else if( abs( rho1 ) <= rhoApprox[ "rho" ] ) {
-            coef <- par
-            coef[ "rho_1" ] <- 0
-            result[ , "rho" ] <- cesDerivCoefN3Rho( coef = coef,
-               data = data, xNames = xNames )
-            if( rho1 != 0 ) {
-               coef <- par
-               coef[ "rho_1" ] <- rhoApprox[ "rho" ] * (-1)^( rho1 < 0 )
-               result2 <- cesDerivCoefN3Rho( coef = coef,
-                  data = data, xNames = xNames )
-               result[ , "rho" ] <- result[ , "rho" ] * 
-                  ( rhoApprox[ "rho" ] - abs( rho1 ) ) / rhoApprox[ "rho" ] +
-                  result2 * abs( rho1 ) / rhoApprox[ "rho" ]
-            }
-         } else {
-            result[ , "rho" ] <- cesDerivCoefN3Rho( coef = par, 
-               data = data, xNames = xNames )
-         }
+         result[ , "rho" ] <- cesDerivCoefN3Inter( 
+            funcName = "cesDerivCoefN3Rho", par = par, 
+            xNames = xNames, data = data, rhoApprox = rhoApprox[ "rho" ] )
       }
 
       # derivatives with respect to nu
       if( vrs ) {
-         if( abs( rho ) <= rhoApprox[ "nu" ] ) {
-            coef <- par
-            coef[ "rho" ] <- 0
-            result[ , "nu" ] <- cesDerivCoefN3Nu( coef = coef,
-               data = data, xNames = xNames )
-            if( rho != 0 ) {
-               coef <- par
-               coef[ "rho" ] <- rhoApprox[ "nu" ] * (-1)^( rho < 0 )
-               result2 <- cesDerivCoefN3Nu( coef = coef,
-                  data = data, xNames = xNames )
-               result[ , "nu" ] <- result[ , "nu" ] * 
-                  ( rhoApprox[ "nu" ] - abs( rho ) ) / rhoApprox[ "nu" ] +
-                  result2 * abs( rho ) / rhoApprox[ "nu" ]
-            }
-         } else if( abs( rho1 ) <= rhoApprox[ "nu" ] ) {
-            coef <- par
-            coef[ "rho_1" ] <- 0
-            result[ , "nu" ] <- cesDerivCoefN3Nu( coef = coef,
-               data = data, xNames = xNames )
-            if( rho1 != 0 ) {
-               coef <- par
-               coef[ "rho_1" ] <- rhoApprox[ "nu" ] * (-1)^( rho1 < 0 )
-               result2 <- cesDerivCoefN3Nu( coef = coef,
-                  data = data, xNames = xNames )
-               result[ , "nu" ] <- result[ , "nu" ] * 
-                  ( rhoApprox[ "nu" ] - abs( rho1 ) ) / rhoApprox[ "nu" ] +
-                  result2 * abs( rho1 ) / rhoApprox[ "nu" ]
-            }
-         } else {
-            result[ , "nu" ] <- cesDerivCoefN3Nu( coef = par, 
-               data = data, xNames = xNames )
-         }
+         result[ , "nu" ] <- cesDerivCoefN3Inter( 
+            funcName = "cesDerivCoefN3Nu", par = par, 
+            xNames = xNames, data = data, rhoApprox = rhoApprox[ "nu" ] )
       }
 
    #######################   nested CES with 4 inputs   ########################
