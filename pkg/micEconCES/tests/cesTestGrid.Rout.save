@@ -35,13 +35,6 @@ Loading required package: splines
 Loading required package: lmtest
 Loading required package: zoo
 Loading required package: miscTools
-
-Attaching package: 'miscTools'
-
-The following object(s) are masked from 'package:car':
-
-    coefTable
-
 Loading required package: micEcon
 Loading required package: np
 Loading required package: boot
@@ -64,6 +57,10 @@ Loading required package: cubature
 Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-3)
 Loading required package: minpack.lm
 Loading required package: DEoptim
+
+DEoptim package
+Differential Evolution algorithm in R
+Authors: David Ardia and Katharine Mullen
 > 
 > # load data
 > data( germanFarms )
