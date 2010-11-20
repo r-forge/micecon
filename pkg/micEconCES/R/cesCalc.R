@@ -121,13 +121,9 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
       }
    } else if( nExog == 3 ) {   # nested CES with 3 inputs
       if( abs( coef[ "rho" ] ) <= rhoApprox ) {
-         result <- coef[ "gamma_2" ] *
-            exp( coef[ "nu" ] * ( coef[ "delta_2" ] *
-               ( log( coef[ "gamma_1" ] ) -
-                  log( coef[ "delta_1" ] * data[[ xNames[ 1 ] ]]^( -coef[ "rho_1" ] ) +
-                     ( 1 - coef[ "delta_1" ] ) * data[[ xNames[ 2 ] ]]^( -coef[ "rho_1" ] ) ) /
-                  coef[ "rho_1" ] ) +
-               ( 1 - coef[ "delta_2" ] ) * log( data[[ xNames[ 3 ] ]] ) ) )
+         coef0 <- coef
+         coef0[ "rho" ] <- 0
+         result <- cesCalcN3( xNames = xNames, data = data, coef = coef0 )
          if( coef[ "rho" ] != 0 ) {
             rho <- coef[ "rho" ]
             coef[ "rho" ] <- rhoApprox * (-1)^( rho < 0 )
@@ -136,13 +132,9 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
                result2 * abs( rho ) / rhoApprox
          }
       } else if( abs( coef[ "rho_1" ] ) <= rhoApprox ) {
-         result <- coef[ "gamma_2" ] * 
-            ( coef[ "delta_2" ] * coef[ "gamma_1" ]^( -coef[ "rho" ] ) *
-               exp( coef[ "delta_1" ] * log( data[[ xNames[ 1 ] ]] ) +
-                     ( 1 - coef[ "delta_1" ] ) * log( data[[ xNames[ 2 ] ]] )
-                  )^( -coef[ "rho" ] ) +
-               ( 1 - coef[ "delta_2" ] ) * data[[ xNames[ 3 ] ]]^( -coef[ "rho" ] ) 
-            )^( - coef[ "nu" ] / coef[ "rho" ] )
+         coef0 <- coef
+         coef0[ "rho_1" ] <- 0
+         result <- cesCalcN3( xNames = xNames, data = data, coef = coef0 )
          if( coef[ "rho_1" ] != 0 ) {
             rho1 <- coef[ "rho_1" ]
             coef[ "rho_1" ] <- rhoApprox * (-1)^( rho1 < 0 )
