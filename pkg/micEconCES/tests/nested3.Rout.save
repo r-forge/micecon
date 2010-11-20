@@ -42788,7 +42788,8 @@ nu      5.235260e-01         NA      NA       NA
 > 
 > ########## Grid Search for Rho ##############
 > ## Levenberg-Marquardt, Grid Search, CRS
-> cesLmGrid <- cesEst( "yObs", xNames, data = MishraCES, rho = (1:12)/6-0.4,
+> gridRhos <- (1:12)/6-0.4
+> cesLmGrid <- cesEst( "yObs", xNames, data = MishraCES, rho = gridRhos,
 +    control = nls.lm.control( maxiter = 200 ) )
 > print.default( cesLmGrid )
 $nls.lm
@@ -42811,8 +42812,8 @@ $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
 $call
-cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = (1:12)/6 - 
-    0.4, control = nls.lm.control(maxiter = 200))
+cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = gridRhos, 
+    control = nls.lm.control(maxiter = 200))
 
 $method
 [1] "LM"
@@ -42892,8 +42893,8 @@ attr(,"class")
 Estimated CES function
 
 Call:
-cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = (1:12)/6 - 
-    0.4, control = nls.lm.control(maxiter = 200))
+cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = gridRhos, 
+    control = nls.lm.control(maxiter = 200))
 
 Coefficients:
  gamma_1  gamma_2  delta_1  delta_2    rho_1      rho 
@@ -42903,8 +42904,8 @@ Coefficients:
 Estimated CES function with constant returns to scale
 
 Call:
-cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = (1:12)/6 - 
-    0.4, control = nls.lm.control(maxiter = 200))
+cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = gridRhos, 
+    control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -42974,7 +42975,7 @@ rho       0.6000000 6.857626e-02 8.749384e+00 2.145213e-18
 > 
 > ## Levenberg-Marquardt, Grid Search, VRS
 > cesLmVrsGrid <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
-+    rho = (1:12)/6-0.4, control = nls.lm.control( maxiter = 200 ) )
++    rho = gridRhos, control = nls.lm.control( maxiter = 200 ) )
 > print.default( cesLmVrsGrid )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
@@ -42999,7 +43000,7 @@ $message
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
-    rho = (1:12)/6 - 0.4, control = nls.lm.control(maxiter = 200))
+    rho = gridRhos, control = nls.lm.control(maxiter = 200))
 
 $method
 [1] "LM"
@@ -43074,7 +43075,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
-    rho = (1:12)/6 - 0.4, control = nls.lm.control(maxiter = 200))
+    rho = gridRhos, control = nls.lm.control(maxiter = 200))
 
 Coefficients:
  gamma_1  gamma_2  delta_1  delta_2    rho_1      rho       nu 
@@ -43085,7 +43086,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
-    rho = (1:12)/6 - 0.4, control = nls.lm.control(maxiter = 200))
+    rho = gridRhos, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -43151,7 +43152,7 @@ nu        0.9906900         NA      NA       NA
 > 
 > ## PORT, Grid Search, CRS
 > cesPortGrid <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT",
-+    rho = (1:12)/6-0.4, control = list( eval.max = 500 ) )
++    rho = gridRhos, control = list( eval.max = 500 ) )
 > print.default( cesPortGrid )
 $nlminb
 $nlminb$par
@@ -43190,7 +43191,7 @@ $message
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT", 
-    rho = (1:12)/6 - 0.4, control = list(eval.max = 500))
+    rho = gridRhos, control = list(eval.max = 500))
 
 $method
 [1] "PORT"
@@ -43271,7 +43272,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT", 
-    rho = (1:12)/6 - 0.4, control = list(eval.max = 500))
+    rho = gridRhos, control = list(eval.max = 500))
 
 Coefficients:
  gamma_1  gamma_2  delta_1  delta_2    rho_1      rho 
@@ -43282,7 +43283,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT", 
-    rho = (1:12)/6 - 0.4, control = list(eval.max = 500))
+    rho = gridRhos, control = list(eval.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -43352,7 +43353,7 @@ rho       0.6000000 6.857626e-02 8.749384e+00 2.145206e-18
 > 
 > ## PORT, Grid Search, VRS
 > cesPortVrsGrid <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
-+    vrs = TRUE, rho = (1:12)/6-0.4, 
++    vrs = TRUE, rho = gridRhos, 
 +    control = list( eval.max = 500, iter.max = 500 ) )
 > print.default( cesPortVrsGrid )
 $nlminb
@@ -43394,7 +43395,7 @@ $message
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
-    method = "PORT", rho = (1:12)/6 - 0.4, control = list(eval.max = 500, 
+    method = "PORT", rho = gridRhos, control = list(eval.max = 500, 
         iter.max = 500))
 
 $method
@@ -43470,7 +43471,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
-    method = "PORT", rho = (1:12)/6 - 0.4, control = list(eval.max = 500, 
+    method = "PORT", rho = gridRhos, control = list(eval.max = 500, 
         iter.max = 500))
 
 Coefficients:
@@ -43482,7 +43483,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
-    method = "PORT", rho = (1:12)/6 - 0.4, control = list(eval.max = 500, 
+    method = "PORT", rho = gridRhos, control = list(eval.max = 500, 
         iter.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
