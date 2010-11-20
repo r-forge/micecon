@@ -9,7 +9,7 @@ bVrs <- c( b, "nu" = 1.1 )
 xNames <- c( "X1", "X2", "X3" )
 
 
-## checking cesCalc()
+######################### checking cesCalc() ###############################
 MishraCES$Y3 <- cesCalc( xNames = xNames, 
    data = MishraCES, coef = b, nested = TRUE )
 MishraCES$Y3
@@ -63,7 +63,27 @@ for( i in 1:length( rhos ) ) {
 print( yRho1 )
 
 
-## checking cesDerivCoef
+## check cesCalc() with rho_1 and rho equal to zero and close to zero
+# array for returned endogenous variables
+yRho2 <- array( NA, c( length( rhos ), length( rhos ), 7 ) )
+dimnames( yRho2 ) <- list( -20:20, -20:20, 1:7 )
+
+# calculate endogenous variables
+coefRho2 <- bVrs
+for( i in 1:length( rhos ) ) {
+   for( j in 1:length( rhos ) ) {
+      coefRho2[ "rho" ] <- rhos[ i ]
+      coefRho2[ "rho_1" ] <- rhos[ j ]
+      yRho2[ i, j, ] <- cesCalc( xNames = xNames, data = MishraCES[ 1:7, ], 
+         coef = coefRho2, nested = TRUE )
+   }
+}
+
+# print "raw" endogenous values
+print( yRho2 )
+
+
+########################## checking cesDerivCoef ##############################
 cesDeriv <- micEconCES:::cesDerivCoef( par = b, xNames = xNames, 
    data = MishraCES, vrs = FALSE, nested = TRUE, 
    rhoApprox = c( gamma = 5e-6, delta = 5e-6, rho = 1e-3, nu = 5e-6 ) )
@@ -152,7 +172,7 @@ print( deriv2 )
 
 
 
-## checking cesEst
+########################## checking cesEst ###################################
 set.seed( 345 )
 MishraCES$yObs <- MishraCES$Y3 + 400 * rnorm( nrow( MishraCES ) )
 
