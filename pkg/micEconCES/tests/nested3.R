@@ -394,7 +394,8 @@ rnorm( 5 )
 
 ########## Grid Search for Rho ##############
 ## Levenberg-Marquardt, Grid Search, CRS
-cesLmGrid <- cesEst( "yObs", xNames, data = MishraCES, rho = (1:12)/6-0.4,
+gridRhos <- (1:12)/6-0.4
+cesLmGrid <- cesEst( "yObs", xNames, data = MishraCES, rho = gridRhos,
    control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLmGrid )
 print( cesLmGrid )
@@ -407,7 +408,7 @@ residuals( cesLmGrid )
 
 ## Levenberg-Marquardt, Grid Search, VRS
 cesLmVrsGrid <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
-   rho = (1:12)/6-0.4, control = nls.lm.control( maxiter = 200 ) )
+   rho = gridRhos, control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLmVrsGrid )
 print( cesLmVrsGrid )
 summary( cesLmVrsGrid )
@@ -419,7 +420,7 @@ residuals( cesLmVrsGrid )
 
 ## PORT, Grid Search, CRS
 cesPortGrid <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT",
-   rho = (1:12)/6-0.4, control = list( eval.max = 500 ) )
+   rho = gridRhos, control = list( eval.max = 500 ) )
 print.default( cesPortGrid )
 print( cesPortGrid )
 summary( cesPortGrid )
@@ -431,7 +432,7 @@ residuals( cesPortGrid )
 
 ## PORT, Grid Search, VRS
 cesPortVrsGrid <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
-   vrs = TRUE, rho = (1:12)/6-0.4, 
+   vrs = TRUE, rho = gridRhos, 
    control = list( eval.max = 500, iter.max = 500 ) )
 print.default( cesPortVrsGrid )
 print( cesPortVrsGrid )
