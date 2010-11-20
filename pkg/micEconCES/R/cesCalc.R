@@ -120,7 +120,7 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
          }
       }
    } else if( nExog == 3 ) {   # nested CES with 3 inputs
-         result <- cesDerivCoefN3Inter( funcName = "cesCalcN3", 
+         result <- cesInterN3( funcName = "cesCalcN3", 
             par = coef, xNames = xNames, data = data, rhoApprox = rhoApprox )
    } else {                    # nested CES with 4 inputs
       result <- coef[ "gamma" ] * ( coef[ "delta_3" ] *

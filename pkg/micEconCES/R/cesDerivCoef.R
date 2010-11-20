@@ -130,41 +130,41 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
 
 
       # derivatives with respect to gamma_1
-      result[ , "gamma_1" ] <- cesDerivCoefN3Inter( 
+      result[ , "gamma_1" ] <- cesInterN3( 
          funcName = "cesDerivCoefN3Gamma1", par = par, 
          xNames = xNames, data = data, rhoApprox = rhoApprox[ "gamma" ] )
 
 
       # derivatives with respect to gamma_2
-      result[ , "gamma_2" ] <- cesDerivCoefN3Inter( 
+      result[ , "gamma_2" ] <- cesInterN3( 
          funcName = "cesDerivCoefN3Gamma2", par = par, 
          xNames = xNames, data = data, rhoApprox = rhoApprox[ "gamma" ] )
 
       # derivatives with respect to delta_1
-      result[ , "delta_1" ] <- cesDerivCoefN3Inter( 
+      result[ , "delta_1" ] <- cesInterN3( 
          funcName = "cesDerivCoefN3Delta1", par = par, 
          xNames = xNames, data = data, rhoApprox = rhoApprox[ "delta" ] )
 
       # derivatives with respect to delta_2
-      result[ , "delta_2" ] <- cesDerivCoefN3Inter( 
+      result[ , "delta_2" ] <- cesInterN3( 
          funcName = "cesDerivCoefN3Delta2", par = par, 
          xNames = xNames, data = data, rhoApprox = rhoApprox[ "delta" ] )
 
       # derivatives with respect to rho_1
-      result[ , "rho_1" ] <- cesDerivCoefN3Inter( 
+      result[ , "rho_1" ] <- cesInterN3( 
          funcName = "cesDerivCoefN3Rho1", par = par, 
          xNames = xNames, data = data, rhoApprox = rhoApprox[ "rho" ] )
 
       # derivatives with respect to rho
       if( returnRho ) {
-         result[ , "rho" ] <- cesDerivCoefN3Inter( 
+         result[ , "rho" ] <- cesInterN3( 
             funcName = "cesDerivCoefN3Rho", par = par, 
             xNames = xNames, data = data, rhoApprox = rhoApprox[ "rho" ] )
       }
 
       # derivatives with respect to nu
       if( vrs ) {
-         result[ , "nu" ] <- cesDerivCoefN3Inter( 
+         result[ , "nu" ] <- cesInterN3( 
             funcName = "cesDerivCoefN3Nu", par = par, 
             xNames = xNames, data = data, rhoApprox = rhoApprox[ "nu" ] )
       }
