@@ -42789,6 +42789,7 @@ nu      5.235260e-01         NA      NA       NA
 > ########## Grid Search for Rho ##############
 > ## Levenberg-Marquardt, Grid Search, CRS
 > gridRhos <- (1:12)/6-0.4
+> gridRhos <- c( gridRhos[ 1:2 ], 0, gridRhos[ -c(1:2) ] )
 > cesLmGrid <- cesEst( "yObs", xNames, data = MishraCES, rho = gridRhos,
 +    control = nls.lm.control( maxiter = 200 ) )
 > print.default( cesLmGrid )
@@ -42876,16 +42877,17 @@ $allRhoSum
            rho      rss convergence
 1  -0.23333333 47377461        TRUE
 2  -0.06666667 27408002        TRUE
-3   0.10000000 16283593        TRUE
-4   0.26666667 10405420        TRUE
-5   0.43333333  7924635        TRUE
-6   0.60000000  7853679        TRUE
-7   0.76666667  9507347        TRUE
-8   0.93333333 12357084        TRUE
-9   1.10000000 15997906        TRUE
-10  1.26666667 20129320        TRUE
-11  1.43333333 24534994        TRUE
-12  1.60000000 29062873        TRUE
+3   0.00000000 22142711        TRUE
+4   0.10000000 16283593        TRUE
+5   0.26666667 10405420        TRUE
+6   0.43333333  7924635        TRUE
+7   0.60000000  7853679        TRUE
+8   0.76666667  9507347        TRUE
+9   0.93333333 12357084        TRUE
+10  1.10000000 15997906        TRUE
+11  1.26666667 20129320        TRUE
+12  1.43333333 24534994        TRUE
+13  1.60000000 29062873        TRUE
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -42976,6 +42978,13 @@ rho       0.6000000 6.857626e-02 8.749384e+00 2.145213e-18
 > ## Levenberg-Marquardt, Grid Search, VRS
 > cesLmVrsGrid <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
 +    rho = gridRhos, control = nls.lm.control( maxiter = 200 ) )
+Warning messages:
+1: In log(coef["gamma_1"]) : NaNs produced
+2: In log(coef["gamma_1"]) : NaNs produced
+3: In log(coef["gamma_1"]) : NaNs produced
+4: In log(coef["gamma_1"]) : NaNs produced
+5: In log(coef["gamma_1"]) : NaNs produced
+6: In log(coef["gamma_1"]) : NaNs produced
 > print.default( cesLmVrsGrid )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
@@ -43057,16 +43066,17 @@ $allRhoSum
            rho      rss convergence
 1  -0.23333333 37456202        TRUE
 2  -0.06666667 22891571        TRUE
-3   0.10000000 14323418        TRUE
-4   0.26666667  9745816        TRUE
-5   0.43333333  7850897        TRUE
-6   0.60000000  7794708        TRUE
-7   0.76666667  8972429        TRUE
-8   0.93333333 10936758        TRUE
-9   1.10000000 13364383        TRUE
-10  1.26666667 16030394        TRUE
-11  1.43333333 18784490        TRUE
-12  1.60000000 21530299        TRUE
+3   0.00000000 18872067        TRUE
+4   0.10000000 14323418        TRUE
+5   0.26666667  9745816        TRUE
+6   0.43333333  7850897        TRUE
+7   0.60000000  7794708        TRUE
+8   0.76666667  8972429        TRUE
+9   0.93333333 10936758        TRUE
+10  1.10000000 13364383        TRUE
+11  1.26666667 16030394        TRUE
+12  1.43333333 18784490        TRUE
+13  1.60000000 21530299        TRUE
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -43254,16 +43264,17 @@ $allRhoSum
            rho      rss convergence
 1  -0.23333333 47377461        TRUE
 2  -0.06666667 27408002        TRUE
-3   0.10000000 16283593        TRUE
-4   0.26666667 10405420        TRUE
-5   0.43333333  7924635        TRUE
-6   0.60000000  7853679        TRUE
-7   0.76666667  9507347        TRUE
-8   0.93333333 12357084        TRUE
-9   1.10000000 15997906        TRUE
-10  1.26666667 20129320        TRUE
-11  1.43333333 24534994        TRUE
-12  1.60000000 29062873        TRUE
+3   0.00000000 22142711        TRUE
+4   0.10000000 16283593        TRUE
+5   0.26666667 10405420        TRUE
+6   0.43333333  7924635        TRUE
+7   0.60000000  7853679        TRUE
+8   0.76666667  9507347        TRUE
+9   0.93333333 12357084        TRUE
+10  1.10000000 15997906        TRUE
+11  1.26666667 20129320        TRUE
+12  1.43333333 24534994        TRUE
+13  1.60000000 29062873        TRUE
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -43453,16 +43464,17 @@ $allRhoSum
            rho      rss convergence
 1  -0.23333333 37456202        TRUE
 2  -0.06666667 22891571        TRUE
-3   0.10000000 14323418        TRUE
-4   0.26666667  9745816        TRUE
-5   0.43333333  7850897        TRUE
-6   0.60000000  7794708        TRUE
-7   0.76666667  8972429        TRUE
-8   0.93333333 10936758        TRUE
-9   1.10000000 13364383        TRUE
-10  1.26666667 16030394        TRUE
-11  1.43333333 18784490        TRUE
-12  1.60000000 21530299        TRUE
+3   0.00000000 18872067        TRUE
+4   0.10000000 14323418        TRUE
+5   0.26666667  9745816        TRUE
+6   0.43333333  7850897        TRUE
+7   0.60000000  7794708        TRUE
+8   0.76666667  8972429        TRUE
+9   0.93333333 10936758        TRUE
+10  1.10000000 13364383        TRUE
+11  1.26666667 16030394        TRUE
+12  1.43333333 18784490        TRUE
+13  1.60000000 21530299        TRUE
 
 attr(,"class")
 [1] "cesEst" "list"  
