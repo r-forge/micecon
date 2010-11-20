@@ -120,31 +120,8 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
          }
       }
    } else if( nExog == 3 ) {   # nested CES with 3 inputs
-      if( abs( coef[ "rho" ] ) <= rhoApprox ) {
-         coef0 <- coef
-         coef0[ "rho" ] <- 0
-         result <- cesCalcN3( xNames = xNames, data = data, coef = coef0 )
-         if( coef[ "rho" ] != 0 ) {
-            rho <- coef[ "rho" ]
-            coef[ "rho" ] <- rhoApprox * (-1)^( rho < 0 )
-            result2 <- cesCalcN3( xNames = xNames, data = data, coef = coef )
-            result <- result * ( rhoApprox - abs( rho ) ) / rhoApprox +
-               result2 * abs( rho ) / rhoApprox
-         }
-      } else if( abs( coef[ "rho_1" ] ) <= rhoApprox ) {
-         coef0 <- coef
-         coef0[ "rho_1" ] <- 0
-         result <- cesCalcN3( xNames = xNames, data = data, coef = coef0 )
-         if( coef[ "rho_1" ] != 0 ) {
-            rho1 <- coef[ "rho_1" ]
-            coef[ "rho_1" ] <- rhoApprox * (-1)^( rho1 < 0 )
-            result2 <- cesCalcN3( xNames = xNames, data = data, coef = coef )
-            result <- result * ( rhoApprox - abs( rho1 ) ) / rhoApprox +
-               result2 * abs( rho1 ) / rhoApprox
-         }
-      } else {
-         result <- cesCalcN3( xNames = xNames, data = data, coef = coef )
-      }
+         result <- cesDerivCoefN3Inter( funcName = "cesCalcN3", 
+            par = coef, xNames = xNames, data = data, rhoApprox = rhoApprox )
    } else {                    # nested CES with 4 inputs
       result <- coef[ "gamma" ] * ( coef[ "delta_3" ] *
             ( coef[ "delta_1" ] * data[[ xNames[ 1 ] ]]^( -coef[ "rho_1" ] ) +
