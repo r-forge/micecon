@@ -1,4 +1,4 @@
-cesDerivCoefN3Inter <- function( funcName, par, xNames, data, rhoApprox ) {
+cesInterN3 <- function( funcName, par, xNames, data, rhoApprox ) {
 
       # interpolation if rho and/or rho_1 are close to zero
       rho1 <- par[ "rho_1" ]
