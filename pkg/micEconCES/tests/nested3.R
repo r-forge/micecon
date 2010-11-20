@@ -395,6 +395,7 @@ rnorm( 5 )
 ########## Grid Search for Rho ##############
 ## Levenberg-Marquardt, Grid Search, CRS
 gridRhos <- (1:12)/6-0.4
+gridRhos <- c( gridRhos[ 1:2 ], 0, gridRhos[ -c(1:2) ] )
 cesLmGrid <- cesEst( "yObs", xNames, data = MishraCES, rho = gridRhos,
    control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLmGrid )
