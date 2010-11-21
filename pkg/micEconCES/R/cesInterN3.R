@@ -23,33 +23,26 @@ cesInterN3 <- function( funcName, par, xNames, data, rhoApprox ) {
          coefArray[ "rho_1", , "rho_1 = E" ] <- rhoApprox * (-1)^( rho1 < 0 )
          wb <- abs( rho1 ) / rhoApprox
       }
+      result <- array( 0, c( nrow( data ), 2, 2 ) )
       if( wa != 1 && wb != 1 ) {
-         result00 <- do.call( funcName, 
+         result[ , 1, 1 ] <- do.call( funcName, 
             args = list( coef = coefArray[ , 1, 1 ], data = data, xNames = xNames ) )
-      } else {
-         result00 <- 0
       }
       if( wa != 1 && wb != 0 ) {
-         result01 <- do.call( funcName, 
+         result[ , 1, 2 ] <- do.call( funcName, 
             args = list( coef = coefArray[ , 1, 2 ], data = data, xNames = xNames ) )
-      } else {
-         result01 <- 0
       }
       if( wa != 0 && wb != 1 ) {
-         result10 <- do.call( funcName, 
+         result[ , 2, 1 ] <- do.call( funcName, 
             args = list( coef = coefArray[ , 2, 1 ], data = data, xNames = xNames ) )
-      } else {
-         result10 <- 0
       }
       if( wa != 0 && wb != 0 ) {
-         result11 <- do.call( funcName, 
+         result[ , 2, 2 ] <- do.call( funcName, 
             args = list( coef = coefArray[ , 2, 2 ], data = data, xNames = xNames ) )
-      } else {
-         result11 <- 0
       }
       result <- 
-         wa * wb * result11 + ( 1 - wa ) * wb * result01 +
-         wa * ( 1 - wb ) * result10 + ( 1- wa ) * ( 1 - wb ) * result00
+         wa * wb * result[ , 2, 2 ] + ( 1 - wa ) * wb * result[ , 1, 2 ] +
+         wa * ( 1 - wb ) * result[ , 2, 1 ] + ( 1- wa ) * ( 1 - wb ) * result[ , 1, 1 ]
 
    return( result )
 }
