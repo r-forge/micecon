@@ -545,10 +545,61 @@ fitted( cesPortVrsRho2 )
 residuals( cesPortVrsRho2 )
 
 
-########## Grid Search for Rho ##############
-## Levenberg-Marquardt, Grid Search, CRS
+########## Grid Search for Rho_1 ##############
+## Levenberg-Marquardt, line search for rho_1, CRS
 gridRhos <- (1:12)/6-0.4
 gridRhos <- c( gridRhos[ 1:2 ], 0, gridRhos[ -c(1:2) ] )
+cesLmGrid1 <- cesEst( "yObs", xNames, data = MishraCES, rho1 = gridRhos,
+   control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmGrid1 )
+print( cesLmGrid1 )
+summary( cesLmGrid1 )
+coef( cesLmGrid1 )
+vcov( cesLmGrid1 )
+coef( summary( cesLmGrid1 ) )
+fitted( cesLmGrid1 )
+residuals( cesLmGrid1 )
+
+## Levenberg-Marquardt, line search for rho_1, VRS
+cesLmVrsGrid1 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
+   rho1 = gridRhos, control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmVrsGrid1 )
+print( cesLmVrsGrid1 )
+summary( cesLmVrsGrid1 )
+coef( cesLmVrsGrid1 )
+vcov( cesLmVrsGrid1 )
+coef( summary( cesLmVrsGrid1 ) )
+fitted( cesLmVrsGrid1 )
+residuals( cesLmVrsGrid1 )
+
+## PORT, line search for rho_1, CRS
+cesPortGrid1 <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT",
+   rho1 = gridRhos, control = list( eval.max = 500 ) )
+print.default( cesPortGrid1 )
+print( cesPortGrid1 )
+summary( cesPortGrid1 )
+coef( cesPortGrid1 )
+vcov( cesPortGrid1 )
+coef( summary( cesPortGrid1 ) )
+fitted( cesPortGrid1 )
+residuals( cesPortGrid1 )
+
+## PORT, line search for rho_1, VRS
+cesPortVrsGrid1 <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
+   vrs = TRUE, rho1 = gridRhos, 
+   control = list( eval.max = 500, iter.max = 500 ) )
+print.default( cesPortVrsGrid1 )
+print( cesPortVrsGrid1 )
+summary( cesPortVrsGrid1 )
+coef( cesPortVrsGrid1 )
+vcov( cesPortVrsGrid1 )
+coef( summary( cesPortVrsGrid1 ) )
+fitted( cesPortVrsGrid1 )
+residuals( cesPortVrsGrid1 )
+
+
+########## Grid Search for Rho ##############
+## Levenberg-Marquardt, Grid Search, CRS
 cesLmGrid <- cesEst( "yObs", xNames, data = MishraCES, rho = gridRhos,
    control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLmGrid )
