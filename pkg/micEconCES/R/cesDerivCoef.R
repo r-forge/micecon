@@ -116,17 +116,10 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
          par <- c( par, nu = 1 )
       }
 
-      # main parts of the nested CES with 3 inputs
-      B1 <- cesDerivCoefN3B1( coef = par, data = data, xNames = xNames )
-
-      B <- cesDerivCoefN3B( coef = par, data = data, xNames = xNames )
-
-
       # derivatives with respect to gamma_1
       result[ , "gamma_1" ] <- cesInterN3( 
          funcName = "cesDerivCoefN3Gamma1", par = par, 
          xNames = xNames, data = data, rhoApprox = rhoApprox[ "gamma" ] )
-
 
       # derivatives with respect to gamma_2
       result[ , "gamma_2" ] <- cesInterN3( 
