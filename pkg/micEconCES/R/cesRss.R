@@ -1,5 +1,5 @@
-cesRss <- function( par, yName, xNames, data, vrs, rho = NULL,
-      rhoApprox, nested = FALSE ) {
+cesRss <- function( par, yName, xNames, data, vrs, rho1 = NULL, 
+      rho2 = NULL, rho = NULL, rhoApprox, nested = FALSE ) {
 
    # check rhoApprox
    
@@ -11,8 +11,8 @@ cesRss <- function( par, yName, xNames, data, vrs, rho = NULL,
       withDeriv = NA )
    rhoApprox <- rhoApprox[ "y" ]
 
-   # add coefficient 'rho' if it is fixed
-   par <- cesCoefAddRho( coef = par, vrs = vrs, rho1 = NULL, rho2 = NULL,
+   # add coefficients 'rho_1', 'rho_2', and 'rho' if they are fixed
+   par <- cesCoefAddRho( coef = par, vrs = vrs, rho1 = rho1, rho2 = rho2, 
       rho = rho, nExog = length( xNames ), nested = nested )
 
    yHat <- cesCalc( xNames = xNames, data = data, coef = par,
