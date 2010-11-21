@@ -47,14 +47,6 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       } else if( min( rho1 ) < -1 ) {
          stop( "the rho1s specified in argument 'rho1'",
             " must not be smaller than '-1'" )
-      } else if( length( rho1 ) > 1 ) {
-         result <- cesEstGridRho( yName = yName, xNames = xNames,
-            data = data, vrs = vrs, method = method, start = start,
-            lower = lower, upper = upper,
-            rho1Values = rho1, rhoValues = NULL, returnAll = returnGridAll,
-            random.seed = random.seed, rhoApprox = rhoApprox, ... )
-         result$call <- match.call()
-         return( result )
       }
    }
 
@@ -65,15 +57,18 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       } else if( min( rho ) < -1 ) {
          stop( "the rhos specified in argument 'rho'",
             " must not be smaller than '-1'" )
-      } else if( length( rho ) > 1 ) {
-         result <- cesEstGridRho( yName = yName, xNames = xNames,
-            data = data, vrs = vrs, method = method, start = start,
-            lower = lower, upper = upper,
-            rho1Values = NULL, rhoValues = rho, returnAll = returnGridAll,
-            random.seed = random.seed, rhoApprox = rhoApprox, ... )
-         result$call <- match.call()
-         return( result )
       }
+   }
+
+   # grid search for rho_1 and rho
+   if( length( rho1 ) > 1 || length( rho ) > 1 ) {
+      result <- cesEstGridRho( yName = yName, xNames = xNames,
+         data = data, vrs = vrs, method = method, start = start,
+         lower = lower, upper = upper,
+         rho1Values = rho1, rhoValues = rho, returnAll = returnGridAll,
+         random.seed = random.seed, rhoApprox = rhoApprox, ... )
+      result$call <- match.call()
+      return( result )
    }
    
    # number of parameters
