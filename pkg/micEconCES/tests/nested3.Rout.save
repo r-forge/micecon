@@ -44275,8 +44275,8 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = 1,
     rho = 1, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
-Coefficient 'rho' was fixed at 1 
 Coefficient 'rho_1' was fixed at 1 
+Coefficient 'rho' was fixed at 1 
 Convergence achieved after 6 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -44454,8 +44454,8 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     rho1 = 0, rho = 0, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
-Coefficient 'rho' was fixed at 0 
 Coefficient 'rho_1' was fixed at 0 
+Coefficient 'rho' was fixed at 0 
 Convergence achieved after 11 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -44643,8 +44643,8 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
     rho1 = 0, rho = 1, control = list(eval.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
-Coefficient 'rho' was fixed at 1 
 Coefficient 'rho_1' was fixed at 0 
+Coefficient 'rho' was fixed at 1 
 Convergence achieved after 18 iterations
 Message: relative convergence (4) 
 
@@ -44825,8 +44825,8 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
         iter.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
-Coefficient 'rho' was fixed at 0 
 Coefficient 'rho_1' was fixed at 1 
+Coefficient 'rho' was fixed at 0 
 Convergence achieved after 84 iterations
 Message: relative convergence (4) 
 
