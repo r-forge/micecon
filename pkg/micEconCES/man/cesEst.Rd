@@ -25,7 +25,7 @@
 
 \usage{
 cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
-   start = NULL, lower = NULL, upper = NULL, rho = NULL,
+   start = NULL, lower = NULL, upper = NULL, rho1 = NULL, rho = NULL,
    returnGridAll = FALSE, random.seed = 123,
    rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, 
       rho = 1e-3, nu = 5e-6 ),
@@ -55,12 +55,14 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       (see section \sQuote{Details}).}
    \item{upper}{upper bounds of the parameters
       (see section \sQuote{Details}).}
-   \item{rho}{numeric scalar or vector at which the coefficient \eqn{\rho}{rho}
+   \item{rho1,rho}{numeric scalar or vector at which the coefficients 
+      \eqn{\rho_1}{rho_1} and/or \eqn{\rho}{rho}
       should be fixed;
-      if \code{NULL} (default), \eqn{\rho}{rho} is estimated together
+      if argument \code{rho1} or \code{rho} is \code{NULL} (default), 
+      this coefficient is estimated together
       with the other parameters;
-      if it has more than one element,
-      a one-dimensional grid search for \eqn{\rho}{rho} is performed
+      if these arguments have more than one element,
+      a grid search for \eqn{\rho_1}{rho_1} and/or \eqn{\rho}{rho} is performed
       (see section \sQuote{Details}).}
    \item{returnGridAll}{logical value that indicates
       whether the estimates for all values of \eqn{\rho}{rho}
