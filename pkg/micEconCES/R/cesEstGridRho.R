@@ -61,6 +61,12 @@ cesEstGridRho <- function( rho1Values, rhoValues, returnAll, ... )  {
       result$allRhoFull <- allResults
    }
 
+   # add values used for rho_1
+   result$rho1Values <- rho1Values
+
+   # add values used for rho
+   result$rhoValues <- rhoValues
+
    result$call <- match.call()
    return( result )
 }
