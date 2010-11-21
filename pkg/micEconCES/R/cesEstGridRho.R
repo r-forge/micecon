@@ -60,17 +60,11 @@ cesEstGridRho <- function( rho1Values, rhoValues, returnAll, ... )  {
    }
    
    if( !is.null( rho1Values ) && !is.null( rhoValues ) ) {
-      result$rssMatrix <- matrix( NA, nrow = length( rho1Values ),
-         ncol = length( rhoValues ) )
+      result$rssMatrix <- matrix( result$allRhoSum$rss, 
+         nrow = length( rho1Values ), ncol = length( rhoValues ),
+         byrow  = FALSE )
       rownames( result$rssMatrix ) <- rho1Values
       colnames( result$rssMatrix ) <- rhoValues
-      for( i in 1:length( rho1Values ) ) {
-         for( j in 1:length( rhoValues ) ) {
-            result$rssMatrix[ i, j ] <- result$allRhoSum$rss[
-               result$allRhoSum$rho1 == rho1Values[ i ] &
-               result$allRhoSum$rho == rhoValues[ j ] ]
-         }
-      }
    }
 
    # add values used for rho_1
