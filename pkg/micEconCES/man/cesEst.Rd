@@ -312,6 +312,11 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       that are used in the grid search
       for the coefficients \eqn{\rho_1}{rho_1} and \eqn{\rho}{rho},
       respectively (only if a grid search was performed).}
+   \item{rssMatrix}{matrix of the RSS values obtained
+      by a two-dimensional grid search 
+      for the coefficients \eqn{\rho_1}{rho_1} (rows) 
+      and \eqn{\rho}{rho} (columns)
+      (only if a two-dimensional grid search was performed).}
 }
 
 \references{
