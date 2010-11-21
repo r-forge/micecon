@@ -112,16 +112,9 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
 
    ########################   nested CES with 3 inputs   #######################
    } else if( nExog == 3 ) { 
-      gamma1 <- par[ "gamma_1" ]
-      gamma2 <- par[ "gamma_2" ]
-      delta1 <- par[ "delta_1" ]
-      delta2 <- par[ "delta_2" ]
-      rho1 <- par[ "rho_1" ]
-      rho <- par[ "rho" ]
       if( !vrs ) {
          par <- c( par, nu = 1 )
       }
-      nu <- par[ "nu" ]
 
       # main parts of the nested CES with 3 inputs
       B1 <- cesDerivCoefN3B1( coef = par, data = data, xNames = xNames )
