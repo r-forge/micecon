@@ -1,10 +1,6 @@
 cesEstGridRho <- function( rho1Values, rhoValues, returnAll, ... )  {
 
    # some tests
-   if( !is.null( rho1Values ) && !is.null( rhoValues ) ) {
-      stop( "currently, either argument 'rho1Values' or argument 'rhoValues'",
-         " must be NULL" )
-   }
    if( is.null( rho1Values ) && is.null( rhoValues ) ) {
       stop( "either argument 'rho1Values' or argument 'rhoValues'",
          " must be non-NULL" )
@@ -32,10 +28,12 @@ cesEstGridRho <- function( rho1Values, rhoValues, returnAll, ... )  {
    allResults <- list()
 
    # summary results for each estimation (with different fixed rhos)
-   if( !is.null( rho1Values ) ) {
+   if( !is.null( rho1Values ) && is.null( rhoValues ) ) {
       sumResults <- data.frame( rho1 = rho1Values )
-   } else {
+   } else if( is.null( rho1Values ) && !is.null( rhoValues ) ) {
       sumResults <- data.frame( rho = rhoValues )
+   } else if( !is.null( rho1Values ) && !is.null( rhoValues ) ) {
+      sumResults <- expand.grid( rho1 = rho1Values, rho = rhoValues )
    }
    sumResults$rss <- NA
    sumResults$convergence <- NA

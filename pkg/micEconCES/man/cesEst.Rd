@@ -218,12 +218,14 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    (see above).\cr
 
    \bold{Grid search for \eqn{\rho}{rho}}\cr
-   If argument \code{rho} has more than one element,
-   a one-dimensional grid search for \eqn{\rho}{rho} is performed.
+   If argument \code{rho1} and/or \code{rho} have more than one element,
+   a one-dimensional or two-dimensional grid search 
+   for \eqn{\rho_1}{rho_1} and/or \eqn{\rho}{rho} is performed.
    The CES ist estimated by least-squares,
-   where \eqn{\rho}{rho} is fixed consecutively at each value
-   defined in argument \code{rho}.
-   Finally the estimation with the \eqn{\rho}{rho},
+   where \eqn{\rho}{rho} and/or \eqn{\rho}{rho} are fixed 
+   consecutively at each value defined in arguments \code{rho1}
+   and \code{rho}, respectively.
+   Finally the estimation with the \eqn{\rho_1}{rho_1} and/or \eqn{\rho}{rho}
    that results in the smallest sum of squared residuals is chosen
    (and returned).\cr
 
