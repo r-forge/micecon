@@ -156,6 +156,9 @@ $allRhoSum
 5  0.8 156353.9       FALSE
 6  1.2 162424.9       FALSE
 
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesGridNm )
@@ -300,6 +303,9 @@ $allRhoSum
 5  0.8 105470.02       FALSE
 6  1.2  70789.74       FALSE
 
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesGridNmVrs )
@@ -438,6 +444,9 @@ $allRhoSum
 4  0.4 225699.0       FALSE
 5  0.8 180872.4       FALSE
 6  1.2 169812.4       FALSE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -583,6 +592,9 @@ $allRhoSum
 5  0.8 145977.55       FALSE
 6  1.2 116269.78       FALSE
 
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesGridCgVrs )
@@ -716,6 +728,9 @@ $allRhoSum
 2  0.0 276683.0          NA
 3  0.8 176322.4          NA
 
+$rhoValues
+[1] -0.8  0.0  0.8
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesGridSann )
@@ -843,6 +858,9 @@ $allRhoSum
 1 -0.8 52703.57          NA
 2  0.0 70790.31          NA
 3  0.8 97582.46          NA
+
+$rhoValues
+[1] -0.8  0.0  0.8
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -982,6 +1000,9 @@ $allRhoSum
 5  0.8 156492.7       FALSE
 6  1.2 162512.0       FALSE
 
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesGridBfgs )
@@ -1116,6 +1137,9 @@ $allRhoSum
 4  0.4 53240.29       FALSE
 5  0.8 59147.17       FALSE
 6  1.2 55582.96       FALSE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1259,6 +1283,9 @@ $allRhoSum
 5  0.8 165832.4        TRUE
 6  1.2 165832.4        TRUE
 
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesGridBfgsCon )
@@ -1397,6 +1424,9 @@ $allRhoSum
 5  0.8 59993.67       FALSE
 6  1.2 51015.94       FALSE
 
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesGridBfgsConVrs )
@@ -1532,6 +1562,9 @@ $allRhoSum
 5  0.8 156028.7       FALSE
 6  1.2 162374.1       FALSE
 
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesGridLm )
@@ -1659,6 +1692,9 @@ $allRhoSum
 4  0.4 49665.41        TRUE
 5  0.8 49384.15       FALSE
 6  1.2 49122.99        TRUE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1795,6 +1831,9 @@ $allRhoSum
 5  0.8 180874.6        TRUE
 6  1.2 169812.9        TRUE
 
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesGridNewton )
@@ -1925,6 +1964,9 @@ $allRhoSum
 4  0.4 52195.17       FALSE
 5  0.8 98004.85        TRUE
 6  1.2 98745.97        TRUE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -2070,6 +2112,9 @@ $allRhoSum
 5  0.8 165832.4        TRUE
 6  1.2 165832.4        TRUE
 
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesGridPort )
@@ -2211,6 +2256,9 @@ $allRhoSum
 4  0.4 49678.35       FALSE
 5  0.8 49430.34       FALSE
 6  1.2 49308.94       FALSE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -2654,6 +2702,9 @@ $allRhoSum
 2  0.0 165832.4          NA
 3  0.8 165832.4          NA
 
+$rhoValues
+[1] -0.8  0.0  0.8
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesGridDe )
@@ -3092,6 +3143,9 @@ $allRhoSum
 1 -0.8 322481.8          NA
 2  0.0 153450.2          NA
 3  0.8 136170.6          NA
+
+$rhoValues
+[1] -0.8  0.0  0.8
 
 attr(,"class")
 [1] "cesEst" "list"  

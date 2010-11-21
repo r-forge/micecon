@@ -306,6 +306,10 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       for all values of \eqn{\rho}{rho} used in the grid search
       (only if a grid search was performed and
       argument \code{returnGridAll} is set to \code{TRUE}).}
+   \item{rho1Values,rhoValues}{numeric vectors giving the values
+      that are used in the grid search
+      for the coefficients \eqn{\rho_1}{rho_1} and \eqn{\rho}{rho},
+      respectively (only if a grid search was performed).}
 }
 
 \references{
