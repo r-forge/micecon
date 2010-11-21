@@ -651,8 +651,8 @@ residuals( cesPortVrsGrid )
 
 ########## Grid Search for rho_1 and rho ##############
 ## Levenberg-Marquardt, grid search for rho_1 and rho, CRS
-cesLmGrid2 <- cesEst( "yObs", xNames, data = MishraCES, rho1 = gridRhos,
-   rho = gridRhos, control = nls.lm.control( maxiter = 200 ) )
+cesLmGrid2 <- cesEst( "yObs", xNames, data = MishraCES, rho1 = gridRhos[-1],
+   rho = gridRhos[-c(12:13)], control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLmGrid2 )
 print( cesLmGrid2 )
 summary( cesLmGrid2 )
@@ -664,7 +664,8 @@ residuals( cesLmGrid2 )
 
 ## Levenberg-Marquardt, grid search for rho_1 and rho, VRS
 cesLmVrsGrid2 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
-   rho1 = gridRhos, rho = gridRhos, control = nls.lm.control( maxiter = 200 ) )
+   rho1 = gridRhos[-c(12:13)], rho = gridRhos[-1], 
+   control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLmVrsGrid2 )
 print( cesLmVrsGrid2 )
 summary( cesLmVrsGrid2 )
@@ -676,7 +677,7 @@ residuals( cesLmVrsGrid2 )
 
 ## PORT, grid search for rho_1 and rho, CRS
 cesPortGrid2 <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT",
-   rho1 = gridRhos, rho = gridRhos, control = list( eval.max = 500 ) )
+   rho1 = gridRhos[-c(12:13)], rho = gridRhos[-1], control = list( eval.max = 500 ) )
 print.default( cesPortGrid2 )
 print( cesPortGrid2 )
 summary( cesPortGrid2 )
@@ -688,7 +689,7 @@ residuals( cesPortGrid2 )
 
 ## PORT, grid search for rho_1 and rho, VRS
 cesPortVrsGrid2 <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
-   vrs = TRUE, rho1 = gridRhos, rho = gridRhos, 
+   vrs = TRUE, rho1 = gridRhos[-1], rho = gridRhos[-c(12:13)], 
    control = list( eval.max = 500, iter.max = 500 ) )
 print.default( cesPortVrsGrid2 )
 print( cesPortVrsGrid2 )
