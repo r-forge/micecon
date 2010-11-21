@@ -12,17 +12,15 @@ cesInterN3 <- function( funcName, par, xNames, data, rhoApprox ) {
       if( rho == 0 ) {
          wa <- 0
       } else if( abs( rho ) <= rhoApprox ) {
-         coefArray[ "rho", 1, 1 ] <- coefArray[ "rho", 1, 2 ] <- 0
-         coefArray[ "rho", 2, 1 ] <- coefArray[ "rho", 2, 2 ] <- 
-            rhoApprox * (-1)^( rho < 0 )
+         coefArray[ "rho", "rho = 0", ] <- 0
+         coefArray[ "rho", "rho = E", ] <- rhoApprox * (-1)^( rho < 0 )
          wa <- abs( rho ) / rhoApprox
       }
       if( rho1 == 0 ) {
          wb <- 0
       } else if( abs( rho1 ) <= rhoApprox ) {
-         coefArray[ "rho_1", 1, 1 ] <- coefArray[ "rho_1", 2, 1 ] <- 0
-         coefArray[ "rho_1", 1, 2 ] <- coefArray[ "rho_1", 2, 2 ] <- 
-            rhoApprox * (-1)^( rho1 < 0 )
+         coefArray[ "rho_1", , "rho_1 = 0" ] <- 0
+         coefArray[ "rho_1", , "rho_1 = E" ] <- rhoApprox * (-1)^( rho1 < 0 )
          wb <- abs( rho1 ) / rhoApprox
       }
       if( wa != 1 && wb != 1 ) {
