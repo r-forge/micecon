@@ -25,11 +25,11 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
       if( !is.null( x$allRhoSum ) ) {
          cat( "and a one-dimensional grid search for coefficient 'rho'\n" )
       } else {
-         if( "rho" %in% names( x ) ) {
-            cat( "Coefficient 'rho' was fixed at", x$rho, "\n" )
-         }
-         if( "rho1" %in% names( x ) ) {
+         if( !is.null( x[[ "rho1" ]] ) ) {
             cat( "Coefficient 'rho_1' was fixed at", x$rho1, "\n" )
+         }
+         if( !is.null( x[[ "rho" ]] ) ) {
+            cat( "Coefficient 'rho' was fixed at", x$rho, "\n" )
          }
       }
       if( !is.null( x$convergence ) ) {
