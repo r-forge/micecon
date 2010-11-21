@@ -15,7 +15,8 @@ cesRssDeriv <- function( par, yName, xNames, data, vrs, rho = NULL,
    }
 
    # add coefficient 'rho' if it is fixed
-   par <- cesCoefAddRho( coef = par, vrs = vrs, rho = rho )
+   par <- cesCoefAddRho( coef = par, vrs = vrs, rho1 = NULL, rho2 = NULL,
+      rho = rho, nExog = length( xNames ), nested = nested )
 
    # calculate fitted values and residuals
    yHat <- cesCalc( xNames = xNames, data = data, coef = par,

@@ -160,7 +160,8 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       residFun <- function( par, yName, xNames, data, vrs, rho, rhoApprox,
          nested ) {
          # add coefficient 'rho' if it is fixed
-         par <- cesCoefAddRho( coef = par, vrs = vrs, rho = rho )
+         par <- cesCoefAddRho( coef = par, vrs = vrs, rho1 = NULL,
+            rho2 = NULL, rho = rho, nExog = length( xNames ), nested = nested )
          result <- data[[ yName ]] - cesCalc( xNames = xNames,
             data = data, coef = par, rhoApprox = rhoApprox[ "y" ], 
             nested = nested )
@@ -170,7 +171,8 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       # jacobian function
       jac <- function( par, yName, xNames, data, vrs, rho, rhoApprox, nested ) {
          # add coefficient 'rho' if it is fixed
-         par <- cesCoefAddRho( coef = par, vrs = vrs, rho = rho )
+         par <- cesCoefAddRho( coef = par, vrs = vrs, rho1 = NULL, 
+            rho2 = NULL, rho = rho, nExog = length( xNames ), nested = nested )
          return( -c( cesDerivCoef( par = par, xNames = xNames, data = data,
             vrs = vrs, returnRho = is.null( rho ),
             rhoApprox = rhoApprox, nested = nested ) ) )
@@ -277,7 +279,8 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # add the 'rho' if it is fixed
    result$coefficients <- cesCoefAddRho( coef = result$coefficients,
-      vrs = vrs, rho = rho )
+      vrs = vrs, rho1 = NULL, rho2 = NULL, rho = rho, 
+      nExog = nExog, nested = nested )
 
    # return also the call
    result$call <- matchedCall
