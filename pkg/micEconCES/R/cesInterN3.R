@@ -24,27 +24,28 @@ cesInterN3 <- function( funcName, par, xNames, data, rhoApprox ) {
          weights[ "rho_1 = E" ] <- abs( rho1 ) / rhoApprox
       }
       result <- array( 0, c( nrow( data ), 2, 2 ) )
-      if( weights[ 1 ] != 1 && weights[ 2 ] != 1 ) {
+      weightMatrix <- cbind( 1 - weights, weights )
+      if( weightMatrix[ 1, 1 ] != 0 && weightMatrix[ 2, 1 ] != 0 ) {
          result[ , 1, 1 ] <- do.call( funcName, 
             args = list( coef = coefArray[ , 1, 1 ], data = data, xNames = xNames ) )
       }
-      if( weights[ 1 ] != 1 && weights[ 2 ] != 0 ) {
+      if( weightMatrix[ 1, 1 ] != 0 && weightMatrix[ 2, 2 ] != 0 ) {
          result[ , 1, 2 ] <- do.call( funcName, 
             args = list( coef = coefArray[ , 1, 2 ], data = data, xNames = xNames ) )
       }
-      if( weights[ 1 ] != 0 && weights[ 2 ] != 1 ) {
+      if( weightMatrix[ 1, 2 ] != 0 && weightMatrix[ 2, 1 ] != 0 ) {
          result[ , 2, 1 ] <- do.call( funcName, 
             args = list( coef = coefArray[ , 2, 1 ], data = data, xNames = xNames ) )
       }
-      if( weights[ 1 ] != 0 && weights[ 2 ] != 0 ) {
+      if( weightMatrix[ 1, 2 ] != 0 && weightMatrix[ 2, 2 ] != 0 ) {
          result[ , 2, 2 ] <- do.call( funcName, 
             args = list( coef = coefArray[ , 2, 2 ], data = data, xNames = xNames ) )
       }
       result <- 
-         weights[ 1 ] * weights[ 2 ] * result[ , 2, 2 ] + 
-         ( 1 - weights[ 1 ] ) * weights[ 2 ] * result[ , 1, 2 ] +
-         weights[ 1 ] * ( 1 - weights[ 2 ] ) * result[ , 2, 1 ] + 
-         ( 1- weights[ 1 ] ) * ( 1 - weights[ 2 ] ) * result[ , 1, 1 ]
+         weightMatrix[ 1, 2 ] * weightMatrix[ 2, 2 ] * result[ , 2, 2 ] + 
+         weightMatrix[ 1, 1 ] * weightMatrix[ 2, 2 ] * result[ , 1, 2 ] +
+         weightMatrix[ 1, 2 ] * weightMatrix[ 2, 1 ] * result[ , 2, 1 ] + 
+         weightMatrix[ 1, 1 ] * weightMatrix[ 2, 1 ] * result[ , 1, 1 ]
 
    return( result )
 }
