@@ -1,5 +1,5 @@
 cesEstStart <- function( yName, xNames, data, vrs,
-      method, start, rho, nParam, nested = FALSE ) {
+      method, start, rho1, rho2, rho, nParam, nested = FALSE ) {
 
    # number of explanatory variables
    nExog <- length( xNames )
@@ -14,10 +14,12 @@ cesEstStart <- function( yName, xNames, data, vrs,
    } else {
       if( is.null( start ) ) {
          rhoStart <- ifelse( is.null( rho ), 0.25, rho )
+         rho1Start <- ifelse( is.null( rho1 ), 0.25, rho1 )
+         rho2Start <- ifelse( is.null( rho2 ), 0.25, rho2 )
          if( nested && nExog == 3 ) {
-            start <- c( 1, 1, 0.5, 0.5, 0.25, rhoStart )
+            start <- c( 1, 1, 0.5, 0.5, rho1Start, rhoStart )
          } else if( nested && nExog == 4 ) {
-            start <- c( 1, 0.5, 0.5, 0.5, 0.25, 0.25, rhoStart )
+            start <- c( 1, 0.5, 0.5, 0.5, rho1Start, rho2Start, rhoStart )
          } else if( !nested && nExog == 2 ) {
             start <- c( 1, 0.5, rhoStart )
          } else {
@@ -36,6 +38,12 @@ cesEstStart <- function( yName, xNames, data, vrs,
          if( !is.null( rho ) ) {
             start <- start[ -ifelse( nested, 3 + nExog, 3 ) ]
          }
+         if( !is.null( rho2 ) && nested && nExog == 4 ) {
+            start <- start[ -6 ]
+         }
+         if( !is.null( rho1 ) && nested ) {
+            start <- start[ -5 ]
+         }
       }
       if( length( start ) != nParam ) {
          stop( "wrong number of starting values:",
@@ -43,7 +51,8 @@ cesEstStart <- function( yName, xNames, data, vrs,
             " but the model has ", nParam, " parameters" )
       }
       names( start ) <- cesCoefNames( nExog = length( xNames ), vrs = vrs,
-         returnRho = is.null( rho ), nested = nested )
+         returnRho = is.null( rho ), returnRho1 = is.null( rho1 ), 
+         returnRho2 = is.null( rho2 ), nested = nested )
       # checking starting values
       if( any( is.infinite( start ) ) ) {
          stop( "all starting values must be finite" )
@@ -79,14 +88,14 @@ cesEstStart <- function( yName, xNames, data, vrs,
             stop( "the starting value for 'rho' must be -1 or larger" )
          }
       }
-      if( nested ) {
+      if( is.null( rho1 ) && nested ) {
          if( start[ "rho_1" ] < -1 ) {
             stop( "the starting value for 'rho_1' must be -1 or larger" )
          }
-         if( nExog == 4 ) {
-            if( start[ "rho_2" ] < -1 ) {
-               stop( "the starting value for 'rho_2' must be -1 or larger" )
-            }
+      }
+      if( is.null( rho2 ) && nested && nExog == 4 ) {
+         if( start[ "rho_2" ] < -1 ) {
+            stop( "the starting value for 'rho_2' must be -1 or larger" )
          }
       }
       # checking nu
