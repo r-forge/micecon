@@ -22,7 +22,9 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
    } else {
       cat( "non-linear least-squares using the '", x$method, "' optimizer\n",
          sep = "" )
-      if( !is.null( x$allRhoSum ) ) {
+      if( !is.null( x$allRhoSum[[ "rho1" ]] ) ) {
+         cat( "and a one-dimensional grid search for coefficient 'rho_1'\n" )
+      } else if( !is.null( x$allRhoSum[[ "rho" ]] ) ) {
          cat( "and a one-dimensional grid search for coefficient 'rho'\n" )
       } else {
          if( !is.null( x[[ "rho1" ]] ) ) {
