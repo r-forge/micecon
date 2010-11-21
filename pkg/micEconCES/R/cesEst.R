@@ -59,8 +59,8 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # start values
    start <- cesEstStart( yName = yName, xNames = xNames, data = data,
-      vrs = vrs, method = method, start = start, rho = rho, nParam = nParam,
-      nested = nested )
+      vrs = vrs, method = method, start = start, rho1 = NULL, rho2 = NULL,
+      rho = rho, nParam = nParam, nested = nested )
 
    # dertermining lower and upper bounds automatically
    if( is.null( lower ) ) {
