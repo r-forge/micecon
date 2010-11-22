@@ -9,16 +9,12 @@ cesInterN3 <- function( funcName, par, xNames, data, rhoApprox ) {
          c( "rho = 0", "rho = E" ),  c( "rho_1 = 0", "rho_1 = E" ) )
       weights <- c( 0, 0 )
       names( weights ) <- c( "rho = 0", "rho_1 = 0" )
-      if( rho == 0 ) {
-         weights[ "rho = 0" ] <- 1
-      } else if( abs( rho ) <= rhoApprox ) {
+      if( abs( rho ) <= rhoApprox ) {
          coefArray[ "rho", "rho = 0", ] <- 0
          coefArray[ "rho", "rho = E", ] <- rhoApprox * (-1)^( rho < 0 )
          weights[ "rho = 0" ] <- 1 - abs( rho ) / rhoApprox
       }
-      if( rho1 == 0 ) {
-         weights[ "rho_1 = 0" ] <- 1
-      } else if( abs( rho1 ) <= rhoApprox ) {
+      if( abs( rho1 ) <= rhoApprox ) {
          coefArray[ "rho_1", , "rho_1 = 0" ] <- 0
          coefArray[ "rho_1", , "rho_1 = E" ] <- rhoApprox * (-1)^( rho1 < 0 )
          weights[ "rho_1 = 0" ] <- 1 - abs( rho1 ) / rhoApprox
