@@ -33,11 +33,13 @@ cesInterN3 <- function( funcName, par, xNames, data, rhoApprox ) {
             }
          }
       }
-      result <- 
-         weightMatrix[ 1, 2 ] * weightMatrix[ 2, 2 ] * result[ , 2, 2 ] + 
-         weightMatrix[ 1, 1 ] * weightMatrix[ 2, 2 ] * result[ , 1, 2 ] +
-         weightMatrix[ 1, 2 ] * weightMatrix[ 2, 1 ] * result[ , 2, 1 ] + 
-         weightMatrix[ 1, 1 ] * weightMatrix[ 2, 1 ] * result[ , 1, 1 ]
+      resultInter <- 0
+      for( i in 1:2 ) {
+         for( j in 1:2 ) {
+            resultInter <- resultInter +
+               weightMatrix[ 1, i ] * weightMatrix[ 2, j ] * result[ , i, j ]
+         }
+      }
 
-   return( result )
+   return( resultInter )
 }
