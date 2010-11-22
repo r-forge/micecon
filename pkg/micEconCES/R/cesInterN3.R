@@ -3,10 +3,10 @@ cesInterN3 <- function( funcName, par, xNames, data, rhoApprox ) {
       # interpolation if rho and/or rho_1 are close to zero
       coefArray <- array( par, c( length( par ), 2, 2 ) )
       dimnames( coefArray ) <- list( names( par ), 
-         c( "rho = 0", "rho = E" ),  c( "rho_1 = 0", "rho_1 = E" ) )
+         c( "rho_1 = 0", "rho_1 = E" ),  c( "rho = 0", "rho = E" ) )
       weights <- c( 0, 0 )
-      names( weights ) <- c( "rho = 0", "rho_1 = 0" )
-      rhoNames <- c( "rho", "rho_1" )
+      names( weights ) <- c( "rho_1 = 0", "rho = 0" )
+      rhoNames <- c( "rho_1", "rho" )
       for( i in 1:2 ) {
          if( abs( par[ rhoNames[ i ] ] ) <= rhoApprox ) {
             # permute the array so that the second dimension is for this 'i'
