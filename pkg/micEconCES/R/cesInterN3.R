@@ -6,17 +6,18 @@ cesInterN3 <- function( funcName, par, xNames, data, rhoApprox ) {
          c( "rho = 0", "rho = E" ),  c( "rho_1 = 0", "rho_1 = E" ) )
       weights <- c( 0, 0 )
       names( weights ) <- c( "rho = 0", "rho_1 = 0" )
-      if( abs( par[ "rho" ] ) <= rhoApprox ) {
-         coefArray[ "rho", 1, ] <- 0
-         coefArray[ "rho", 2, ] <- 
-            rhoApprox * (-1)^( par[ "rho" ] < 0 )
-         weights[ "rho = 0" ] <- 1 - abs( par[ "rho" ] ) / rhoApprox
-      }
-      if( abs( par[ "rho_1" ] ) <= rhoApprox ) {
-         coefArray[ "rho_1", , 1 ] <- 0
-         coefArray[ "rho_1", , 2 ] <- 
-            rhoApprox * (-1)^( par[ "rho_1" ] < 0 )
-         weights[ "rho_1 = 0" ] <- 1 - abs( par[ "rho_1" ] ) / rhoApprox
+      rhoNames <- c( "rho", "rho_1" )
+      for( i in 1:2 ) {
+         if( abs( par[ rhoNames[ i ] ] ) <= rhoApprox ) {
+            # permute the array so that the second dimension is for this 'i'
+            atemp <- aperm( coefArray, c( 1, i + 1, 4 - i ) )
+            atemp[ rhoNames[ i ], 1, ] <- 0
+            atemp[ rhoNames[ i ], 2, ] <- 
+               rhoApprox * (-1)^( par[ rhoNames[ i ] ] < 0 )
+            # permute the array back to its initial state
+            coefArray <- aperm( atemp, c( 1, i + 1, 4 - i ) )
+            weights[ i ] <- 1 - abs( par[ rhoNames[ i ] ] ) / rhoApprox
+         }
       }
       result <- 0
       weightMatrix <- cbind( weights, 1 - weights )
