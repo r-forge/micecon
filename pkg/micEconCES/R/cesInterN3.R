@@ -23,23 +23,17 @@ cesInterN3 <- function( funcName, par, xNames, data, rhoApprox ) {
          coefArray[ "rho_1", , "rho_1 = E" ] <- rhoApprox * (-1)^( rho1 < 0 )
          weights[ "rho_1 = 0" ] <- 1 - abs( rho1 ) / rhoApprox
       }
-      result <- array( 0, c( nrow( data ), 2, 2 ) )
+      result <- 0
       weightMatrix <- cbind( weights, 1 - weights )
       for( i in 1:2 ) {
          for( j in 1:2 ) {
             if( weightMatrix[ 1, i ] != 0 && weightMatrix[ 2, j ] != 0 ) {
-               result[ , i, j ] <- do.call( funcName, 
-                  args = list( coef = coefArray[ , i, j ], data = data, xNames = xNames ) )
+               result <- result + weightMatrix[ 1, i ] * weightMatrix[ 2, j ] * 
+                  do.call( funcName, args = list( coef = coefArray[ , i, j ], 
+                     data = data, xNames = xNames ) )
             }
          }
       }
-      resultInter <- 0
-      for( i in 1:2 ) {
-         for( j in 1:2 ) {
-            resultInter <- resultInter +
-               weightMatrix[ 1, i ] * weightMatrix[ 2, j ] * result[ , i, j ]
-         }
-      }
 
-   return( resultInter )
+   return( result )
 }
