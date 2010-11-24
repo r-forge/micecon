@@ -11,7 +11,7 @@ bVrs[ "gamma" ] <- 200 * 0.5^( 1.05 / 0.6 )
 xNames <- c( "X1", "X2", "X3", "X4" )
 
 
-## checking cesCalc()
+######################### checking cesCalc() ###############################
 MishraCES$Y2 <- cesCalc( xNames = xNames, 
    data = MishraCES, coef = b, nested = TRUE )
 
@@ -25,7 +25,146 @@ MishraCES$yVrs <- cesCalc( xNames = xNames,
 MishraCES$yVrs
 
 
-## checking cesDerivCoef
+## check cesCalc() with rho equal to zero and close to zero
+# vector with values around 0 for coefficient "rho"
+rhos <- c( -exp(-(1:20)),0,exp(-(20:1)) )
+
+# matrix for returned endogenous variables
+yRho <- matrix( NA, nrow = length( rhos ), ncol = nrow( MishraCES ) )
+rownames( yRho ) <- c( -20:20 )
+
+# calculate endogenous variables
+coefRho <- bVrs
+for( i in 1:length( rhos ) ) {
+   coefRho[ "rho" ] <- rhos[ i ]
+   yRho[ i, ] <- cesCalc( xNames = xNames, data = MishraCES, coef = coefRho,
+      nested = TRUE )
+}
+
+# print "raw" endogenous values
+print( yRho[ , 1:12 ] )
+
+
+## check cesCalc() with rho_1 equal to zero and close to zero
+# matrix for returned endogenous variables
+yRho1 <- matrix( NA, nrow = length( rhos ), ncol = nrow( MishraCES ) )
+rownames( yRho1 ) <- c( -20:20 )
+
+# calculate endogenous variables
+coefRho <- bVrs
+for( i in 1:length( rhos ) ) {
+   coefRho[ "rho_1" ] <- rhos[ i ]
+   yRho1[ i, ] <- cesCalc( xNames = xNames, data = MishraCES, coef = coefRho,
+      nested = TRUE )
+}
+
+# print "raw" endogenous values
+print( yRho1[ , 1:12 ] )
+
+
+## check cesCalc() with rho_2 equal to zero and close to zero
+# matrix for returned endogenous variables
+yRho2 <- matrix( NA, nrow = length( rhos ), ncol = nrow( MishraCES ) )
+rownames( yRho2 ) <- c( -20:20 )
+
+# calculate endogenous variables
+coefRho <- bVrs
+for( i in 1:length( rhos ) ) {
+   coefRho[ "rho_2" ] <- rhos[ i ]
+   yRho2[ i, ] <- cesCalc( xNames = xNames, data = MishraCES, coef = coefRho,
+      nested = TRUE )
+}
+
+# print "raw" endogenous values
+print( yRho2[ , 1:12 ] )
+
+
+## check cesCalc() with rho_1 and rho equal to zero and close to zero
+# array for returned endogenous variables
+yRho10 <- array( NA, c( length( rhos ), length( rhos ), 7 ) )
+dimnames( yRho10 ) <- list( -20:20, -20:20, 1:7 )
+
+# calculate endogenous variables
+coefRho <- bVrs
+for( i in 1:length( rhos ) ) {
+   for( j in 1:length( rhos ) ) {
+      coefRho[ "rho_1" ] <- rhos[ i ]
+      coefRho[ "rho" ] <- rhos[ j ]
+      yRho10[ i, j, ] <- cesCalc( xNames = xNames, data = MishraCES[ 1:7, ], 
+         coef = coefRho, nested = TRUE )
+   }
+}
+
+# print "raw" endogenous values
+print( yRho10 )
+
+
+## check cesCalc() with rho_2 and rho equal to zero and close to zero
+# array for returned endogenous variables
+yRho20 <- array( NA, c( length( rhos ), length( rhos ), 7 ) )
+dimnames( yRho20 ) <- list( -20:20, -20:20, 1:7 )
+
+# calculate endogenous variables
+coefRho <- bVrs
+for( i in 1:length( rhos ) ) {
+   for( j in 1:length( rhos ) ) {
+      coefRho[ "rho_2" ] <- rhos[ i ]
+      coefRho[ "rho" ] <- rhos[ j ]
+      yRho20[ i, j, ] <- cesCalc( xNames = xNames, data = MishraCES[ 1:7, ], 
+         coef = coefRho, nested = TRUE )
+   }
+}
+
+# print "raw" endogenous values
+print( yRho20 )
+
+
+## check cesCalc() with rho_1 and rho_2 equal to zero and close to zero
+# array for returned endogenous variables
+yRho12 <- array( NA, c( length( rhos ), length( rhos ), 7 ) )
+dimnames( yRho12 ) <- list( -20:20, -20:20, 1:7 )
+
+# calculate endogenous variables
+coefRho <- bVrs
+for( i in 1:length( rhos ) ) {
+   for( j in 1:length( rhos ) ) {
+      coefRho[ "rho_1" ] <- rhos[ i ]
+      coefRho[ "rho_2" ] <- rhos[ j ]
+      yRho12[ i, j, ] <- cesCalc( xNames = xNames, data = MishraCES[ 1:7, ], 
+         coef = coefRho, nested = TRUE )
+   }
+}
+
+# print "raw" endogenous values
+print( yRho12 )
+
+
+## check cesCalc() with rho_1, rho_2, and rho equal to zero and close to zero
+# array for returned endogenous variables
+yRho120 <- array( NA, c( length( rhos ), length( rhos ), length( rhos ), 7 ) )
+dimnames( yRho120 ) <- list( -20:20, -20:20, -20:20, 1:7 )
+
+# calculate endogenous variables
+coefRho <- bVrs
+for( i in 1:length( rhos ) ) {
+   for( j in 1:length( rhos ) ) {
+      for( k in 1:length( rhos ) ) {
+         coefRho[ "rho_1" ] <- rhos[ i ]
+         coefRho[ "rho_2" ] <- rhos[ j ]
+         coefRho[ "rho" ] <- rhos[ k ]
+         yRho120[ i, j, k, ] <- cesCalc( xNames = xNames, 
+            data = MishraCES[ 1:7, ], coef = coefRho, nested = TRUE )
+      }
+   }
+}
+
+# print "raw" endogenous values
+print( yRho120[ , , c( 2, 16, 21, 26, 40 ), ] )
+print( aperm( yRho120, c( 2, 3, 1, 4 ) )[ , , c( 2, 16, 21, 26, 40 ), ] )
+print( aperm( yRho120, c( 3, 1, 2, 4 ) )[ , , c( 2, 16, 21, 26, 40 ), ] )
+
+
+########################## checking cesDerivCoef ##############################
 cesDeriv <- micEconCES:::cesDerivCoef( par = b, xNames = xNames, 
    data = MishraCES, vrs = FALSE, nested = TRUE, 
    rhoApprox = NULL )
