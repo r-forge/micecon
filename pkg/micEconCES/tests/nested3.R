@@ -105,7 +105,7 @@ print( cesDerivVrs )
 
 
 ## check cesDerivCoef() with rho equal to zero and close to zero
-# array for returned endogenous variables
+# array for returned partial derivatives
 deriv <- array( NA, c( length( rhos ), nrow( MishraCES ), length( bVrs ) ) )
 dimnames( deriv ) <- list( rhos, 1:nrow( MishraCES ), names( bVrs ) )
 
@@ -131,7 +131,7 @@ for( k in 1:dim( deriv )[3] ) {
 }
 
 ## check cesDerivCoef() with rho_1 equal to zero and close to zero
-# array for returned endogenous variables
+# array for returned partial derivatives
 deriv1 <- array( NA, c( length( rhos ), nrow( MishraCES ), length( bVrs ) ) )
 dimnames( deriv1 ) <- list( rhos, 1:nrow( MishraCES ), names( bVrs ) )
 
@@ -150,7 +150,7 @@ print( deriv1 )
 
 
 ## check cesDerivCoef() with rho and rho_1 equal to zero and close to zero
-# array for returned endogenous variables
+# array for returned partial derivatives
 deriv2 <- array( NA, c( length( rhos ), length( rhos ), 7, length( bVrs ) ) )
 dimnames( deriv2 ) <- list( c(-20:20), c(-20:20), 1:7, names( bVrs ) )
 
