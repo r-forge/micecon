@@ -173,76 +173,41 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
          ( 1 - par[ "delta_3" ] ) * B2^( par[ "rho" ] / par[ "rho_2" ] )
     
       # derivatives with respect to gamma
-      result[ , "gamma" ] <- B^(-par[ "nu" ]/par[ "rho" ])
+      result[ , "gamma" ] <-
+         cesDerivCoefN4Gamma( par = par, data = data, xNames = xNames )
 
-      # derivatives with respect to delta_1 and delta_2
-      result[ , "delta_1" ] <- par[ "gamma" ] * 
-         ( -par[ "nu" ] / par[ "rho" ] ) * 
-         B^((-par[ "nu" ]-par[ "rho" ])/par[ "rho" ]) *
-         (par[ "rho" ]/par[ "rho_1" ]) * par[ "delta_3" ] * 
-         B1^((par[ "rho" ]-par[ "rho_1" ])/par[ "rho_1" ]) * 
-         ( data[[ xNames[ 1 ] ]]^(-par[ "rho_1" ]) - 
-            data[[ xNames[ 2 ] ]]^(-par[ "rho_1" ]) )
-      result[ , "delta_2" ] <- par[ "gamma" ] * 
-         ( -par[ "nu" ] / par[ "rho" ] ) * 
-         B^((-par[ "nu" ]-par[ "rho" ])/par[ "rho" ]) *
-         (par[ "rho" ]/par[ "rho_2" ]) * ( 1 - par[ "delta_3" ] ) * 
-         B2^((par[ "rho" ]-par[ "rho_2" ])/par[ "rho_2" ]) * 
-         ( data[[ xNames[ 3 ] ]]^(-par[ "rho_2" ]) - 
-            data[[ xNames[ 4 ] ]]^(-par[ "rho_2" ]) )
+      # derivatives with respect to delta_1
+      result[ , "delta_1" ] <-
+         cesDerivCoefN4Delta1( par = par, data = data, xNames = xNames )
+         
+      # derivatives with respect to delta_2
+      result[ , "delta_2" ] <-
+         cesDerivCoefN4Delta2( par = par, data = data, xNames = xNames )
 
       # derivatives with respect to delta_3
-      result[ , "delta_3" ] <- par[ "gamma" ] * 
-         ( -par[ "nu" ] / par[ "rho" ] ) * 
-         B^((-par[ "nu" ]-par[ "rho" ])/par[ "rho" ]) *
-         ( B1^(par[ "rho" ]/par[ "rho_1" ]) - 
-            B2^(par[ "rho" ]/par[ "rho_2" ]) )
+      result[ , "delta_3" ] <- 
+         cesDerivCoefN4Delta3( par = par, data = data, xNames = xNames )
 
       # derivatives with respect to rho_1 and rho_2
       if( returnRho1 ) {
-         result[ , "rho_1" ] <- par[ "gamma" ] * ( -par[ "nu" ] / par[ "rho" ] ) * 
-            B^((-par[ "nu" ]-par[ "rho" ])/par[ "rho" ]) *
-            ( par[ "delta_3" ] * log( B1 ) * B1^(par[ "rho" ]/par[ "rho_1" ]) * 
-               ( -par[ "rho" ]/par[ "rho_1" ]^2 ) + 
-               par[ "delta_3" ] * 
-               B1^((par[ "rho" ]-par[ "rho_1" ])/par[ "rho_1" ]) * 
-               (par[ "rho" ]/par[ "rho_1" ]) *
-               ( -par[ "delta_1" ] * log( data[[ xNames[ 1 ] ]] ) * 
-                  data[[ xNames[ 1 ] ]]^(-par[ "rho_1" ]) - 
-                  ( 1 - par[ "delta_1" ] ) * log( data[[ xNames[ 2 ] ]] ) * 
-                  data[[ xNames[ 2 ] ]]^(-par[ "rho_1" ]) ) )
+         result[ , "rho_1" ] <-
+            cesDerivCoefN4Rho1( par = par, data = data, xNames = xNames )
       }
       if( returnRho2 ) {
-         result[ , "rho_2" ] <- par[ "gamma" ] * ( -par[ "nu" ] / par[ "rho" ] ) * 
-            B^((-par[ "nu" ]-par[ "rho" ])/par[ "rho" ]) *
-            ( ( 1 - par[ "delta_3" ] ) * log( B2 ) * 
-               B2^(par[ "rho" ]/par[ "rho_2" ]) * 
-               ( -par[ "rho" ]/par[ "rho_2" ]^2 ) + 
-               ( 1 - par[ "delta_3" ] ) * 
-               B2^((par[ "rho" ]-par[ "rho_2" ])/par[ "rho_2" ]) * 
-               (par[ "rho" ]/par[ "rho_2" ]) *
-               ( -par[ "delta_2" ] * log( data[[ xNames[ 3 ] ]] ) * 
-                  data[[ xNames[ 3 ] ]]^(-par[ "rho_2" ]) - 
-                  ( 1 - par[ "delta_2" ] ) * log( data[[ xNames[ 4 ] ]] ) * 
-                  data[[ xNames[ 4 ] ]]^(-par[ "rho_2" ]) ) )
+         result[ , "rho_2" ] <-
+          cesDerivCoefN4Rho2( par = par, data = data, xNames = xNames )
       }
 
       # derivatives with respect to rho
       if( returnRho ) {
-         result[ , "rho" ] <- par[ "gamma" ] * log( B ) * 
-            B^(-par[ "nu" ]/par[ "rho" ]) * ( par[ "nu" ] / par[ "rho" ]^2 ) +
-            par[ "gamma" ] * ( -par[ "nu" ]/par[ "rho" ] ) * 
-            B^((-par[ "nu" ]-par[ "rho" ])/par[ "rho" ]) * 
-            ( par[ "delta_3" ] * log( B1 ) * 
-               B1^(par[ "rho" ]/par[ "rho_1" ]) / par[ "rho_1" ] + 
-               ( 1 - par[ "delta_3" ] ) * log( B2 ) * 
-               B2^(par[ "rho" ]/par[ "rho_2" ]) / par[ "rho_2" ] )
+         result[ , "rho" ] <-
+            cesDerivCoefN4Rho( par = par, data = data, xNames = xNames )
       }
 
       # derivatives with respect to nu
       if( vrs ) {
-         result[ , "nu" ] <- - par[ "gamma" ] * log( B ) * 
-            B^( -par[ "nu" ] / par[ "rho" ] ) / par[ "rho" ]
+         result[ , "nu" ] <-
+            cesDerivCoefN4Nu( par = par, data = data, xNames = xNames )
       }
    } else {
       stop( "the derivatives of the nested CES can be calculated",
