@@ -164,14 +164,6 @@ cesDerivCoef <- function( par, xNames, data, vrs, nested = FALSE,
          par <- c( par, nu = 1 )
       }
 
-      # main parts of the nested CES with 4 inputs
-      B1 <- par[ "delta_1" ] * data[[ xNames[ 1 ] ]]^(-par[ "rho_1" ]) + 
-         ( 1 - par[ "delta_1" ] ) * data[[ xNames[ 2 ] ]]^(-par[ "rho_1" ])
-      B2 <- par[ "delta_2" ] * data[[ xNames[ 3 ] ]]^(-par[ "rho_2" ]) + 
-         ( 1 - par[ "delta_2" ] ) * data[[ xNames[ 4 ] ]]^(-par[ "rho_2" ])
-      B <- par[ "delta_3" ] * B1^( par[ "rho" ] / par[ "rho_1" ] ) + 
-         ( 1 - par[ "delta_3" ] ) * B2^( par[ "rho" ] / par[ "rho_2" ] )
-    
       # derivatives with respect to gamma
       result[ , "gamma" ] <-
          cesDerivCoefN4Gamma( par = par, data = data, xNames = xNames )
