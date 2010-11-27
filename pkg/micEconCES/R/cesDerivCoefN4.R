@@ -35,9 +35,22 @@ cesDerivCoefN4B <- function( coef, data, xNames ) {
 # derivatives with respect to gamma
 cesDerivCoefN4Gamma <- function( coef, data, xNames ) {
 
+   B2 <- cesDerivCoefN4B2( coef = coef, data = data, xNames = xNames )
+
    B <- cesDerivCoefN4B( coef = coef, data = data, xNames = xNames )
 
+   if( coef[ "rho_1" ] == 0 ) {
+      result <- 
+         ( coef[ "delta_3" ] * 
+            exp( coef[ "rho" ] * 
+               ( - coef[ "delta_1" ] * log( data[[ xNames[ 1 ] ]] ) -
+               ( 1 - coef[ "delta_1" ] ) * log( data[[ xNames[ 2 ] ]] ) ) ) +
+            ( 1 - coef[ "delta_3" ] ) * 
+               B2^( coef[ "rho" ] / coef[ "rho_2" ] ) 
+         )^( - coef[ "nu" ] / coef[ "rho" ] )
+   } else {
       result <- B^(-coef[ "nu" ]/coef[ "rho" ])
+   }
 
    return( result )
 }
