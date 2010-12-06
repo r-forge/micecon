@@ -59,7 +59,7 @@ cesCalc( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 )
 }
 
 \arguments{
-   \item{xNames}{a vector of two strings containing the names of the
+   \item{xNames}{a vector of strings containing the names of the
       explanatory variables.}
    \item{data}{data frame containing the explanatory variables.}
    \item{coef}{numeric vector containing the coefficients of the CES:
@@ -95,7 +95,7 @@ cesCalc( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 )
       if \code{FALSE} (the default), the original CES for \eqn{n} inputs 
       proposed by Kmenta (1967) is used;
       if \code{TRUE}, the nested version of the CES
-      for 4 inputs proposed by Sato (1967) is used.} 
+      for 3 or 4 inputs proposed by Sato (1967) is used.} 
    \item{rhoApprox}{if the absolute value of the coefficient \eqn{\rho}{rho}
       is smaller than or equal to this argument,
       the endogenous variable of the non-nested CES is calculated 
