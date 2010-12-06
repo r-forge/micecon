@@ -34,7 +34,7 @@
    \code{\link{cesEst}}.
 }
 
-\author{Arne Henningsen}
+\author{Arne Henningsen and Geraldine Henningsen}
 
 \examples{
    data( germanFarms )
