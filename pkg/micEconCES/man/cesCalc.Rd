@@ -123,7 +123,7 @@ Review of Economic Studies 43, p. 201-218.
 
 \seealso{\code{\link{cesEst}}.}
 
-\author{Arne Henningsen}
+\author{Arne Henningsen and Geraldine Henningsen}
 
 \examples{
    data( germanFarms )
