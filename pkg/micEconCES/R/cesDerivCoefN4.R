@@ -42,10 +42,22 @@ cesDerivCoefN4Gamma <- function( coef, data, xNames ) {
    B <- cesDerivCoefN4B( coef = coef, data = data, xNames = xNames )
 
    if( coef[ "rho" ] == 0 ) {
-      result <- 
-         exp( - coef[ "nu" ] *
-            ( coef[ "delta_3" ] * log( B1 ) / coef[ "rho_1" ] +
-               ( 1 - coef[ "delta_3" ] ) * log( B2 ) / coef[ "rho_2" ] ) )
+      if( coef[ "rho_1" ] == 0 ) {
+         result <- exp( - coef[ "nu" ] * ( coef[ "delta_3" ] * 
+               ( - coef[ "delta_1" ] * log( data[[ xNames[ 1 ] ]] ) -
+                  ( 1 - coef[ "delta_1" ] ) * log( data[[ xNames[ 2 ] ]] ) ) +
+               ( 1- coef[ "delta_3" ] ) * 
+               log( coef[ "delta_2" ] * 
+                     data[[ xNames[ 3 ] ]]^( - coef[ "rho_2" ] ) +
+                  ( 1 - coef[ "delta_2" ] ) * 
+                     data[[ xNames[ 4 ] ]]^( - coef[ "rho_2" ] ) ) / 
+               coef[ "rho_2" ] ) )
+      } else {
+         result <- 
+            exp( - coef[ "nu" ] *
+               ( coef[ "delta_3" ] * log( B1 ) / coef[ "rho_1" ] +
+                  ( 1 - coef[ "delta_3" ] ) * log( B2 ) / coef[ "rho_2" ] ) )
+      }
    } else if( coef[ "rho_1" ] == 0 ) {
       if( coef[ "rho_2" ] == 0 ) {
          result <- exp( - ( coef[ "nu" ] / coef[ "rho" ] ) *
