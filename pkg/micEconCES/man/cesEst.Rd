@@ -25,7 +25,7 @@
 
 \usage{
 cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
-   start = NULL, lower = NULL, upper = NULL, rho1 = NULL, rho = NULL,
+   start = NULL, lower = NULL, upper = NULL, rho1 = NULL, rho2, rho = NULL,
    returnGridAll = FALSE, random.seed = 123,
    rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, 
       rho = 1e-3, nu = 5e-6 ),
@@ -55,14 +55,15 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       (see section \sQuote{Details}).}
    \item{upper}{upper bounds of the parameters
       (see section \sQuote{Details}).}
-   \item{rho1,rho}{numeric scalar or vector at which the coefficients 
-      \eqn{\rho_1}{rho_1} and/or \eqn{\rho}{rho}
+   \item{rho1,rho2,rho}{numeric scalar or vector at which the coefficients 
+      \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and/or \eqn{\rho}{rho}
       should be fixed;
-      if argument \code{rho1} or \code{rho} is \code{NULL} (default), 
+      if argument \code{rho1}, \code{rho2}, or \code{rho} is \code{NULL} (default), 
       this coefficient is estimated together
       with the other parameters;
       if these arguments have more than one element,
-      a grid search for \eqn{\rho_1}{rho_1} and/or \eqn{\rho}{rho} is performed
+      a grid search for \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, 
+      and/or \eqn{\rho}{rho} is performed
       (see section \sQuote{Details}).}
    \item{returnGridAll}{logical value that indicates
       whether the estimates for all values of \eqn{\rho}{rho}
@@ -218,14 +219,15 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    (see above).\cr
 
    \bold{Grid search for \eqn{\rho}{rho}}\cr
-   If argument \code{rho1} and/or \code{rho} have more than one element,
-   a one-dimensional or two-dimensional grid search 
-   for \eqn{\rho_1}{rho_1} and/or \eqn{\rho}{rho} is performed.
-   The CES ist estimated by least-squares,
-   where \eqn{\rho}{rho} and/or \eqn{\rho}{rho} are fixed 
-   consecutively at each value defined in arguments \code{rho1}
+   If arguments \code{rho1}, \code{rho2}, and/or \code{rho} have more than one element,
+   a one-dimensional, two-dimensional, or three-dimensionsl grid search 
+   for \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and/or \eqn{\rho}{rho} is performed.
+   The remaining (free) parameters of the CES are estimated by least-squares,
+   where \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and/or \eqn{\rho}{rho} are fixed 
+   consecutively at each value defined in arguments \code{rho1}, \code{rho2},
    and \code{rho}, respectively.
-   Finally the estimation with the \eqn{\rho_1}{rho_1} and/or \eqn{\rho}{rho}
+   Finally the estimation with the \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2},
+   and/or \eqn{\rho}{rho}
    that results in the smallest sum of squared residuals is chosen
    (and returned).\cr
 
