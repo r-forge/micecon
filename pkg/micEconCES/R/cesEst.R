@@ -1,8 +1,8 @@
 cesEst <- function( yName, xNames, data, vrs = FALSE,
       method = "LM", start = NULL, lower = NULL, upper = NULL,
-      rho1 = NULL, rho = NULL, returnGridAll = FALSE, random.seed = 123,
-      rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, rho = 1e-3, 
-         nu = 5e-6 ), ... ) {
+      rho1 = NULL, rho2 = NULL, rho = NULL, returnGridAll = FALSE, 
+      random.seed = 123, rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, 
+         rho = 1e-3, nu = 5e-6 ), ... ) {
 
    # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)
    # s = 1 / ( 1 + rho )
@@ -28,7 +28,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # obtain names of coefficients
    coefNames <- cesCoefNames( nExog = nExog, vrs = vrs, 
-      returnRho1 = is.null( rho1 ), returnRho2 = TRUE, 
+      returnRho1 = is.null( rho1 ), returnRho2 = is.null( rho2 ), 
       returnRho = is.null( rho ), nested = nested )
 
    # check rhoApprox
@@ -46,6 +46,19 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
          stop( "argument 'rho1' must be either 'NULL' or numeric" )
       } else if( min( rho1 ) < -1 ) {
          stop( "the rho1s specified in argument 'rho1'",
+            " must not be smaller than '-1'" )
+      }
+   }
+
+   # checking rho2
+   if( !is.null( rho2 ) ) {
+      if( !nested ) {
+         stop( "argument 'rho2' can be used only for estimating",
+            " nested CES functions" )
+      } else if( !is.numeric( rho2 ) ) {
+         stop( "argument 'rho2' must be either 'NULL' or numeric" )
+      } else if( min( rho2 ) < -1 ) {
+         stop( "the rho2s specified in argument 'rho2'",
             " must not be smaller than '-1'" )
       }
    }
@@ -73,22 +86,22 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    
    # number of parameters
    nParam <- 1 + nExog + vrs + nested * 2 - ( !is.null( rho1 ) ) - 
-      ( !is.null( rho ) )
+      ( !is.null( rho2 ) ) - ( !is.null( rho ) )
 
    # start values
    start <- cesEstStart( yName = yName, xNames = xNames, data = data,
-      vrs = vrs, method = method, start = start, rho1 = rho1, rho2 = NULL, 
+      vrs = vrs, method = method, start = start, rho1 = rho1, rho2 = rho2, 
       rho = rho, nParam = nParam, nested = nested )
 
    # dertermining lower and upper bounds automatically
    if( is.null( lower ) ) {
       lower <- cesCoefBounds( vrs = vrs, returnRho1 = is.null( rho1 ), 
-         returnRho2 = TRUE, returnRho = is.null( rho ),
+         returnRho2 = is.null( rho2 ), returnRho = is.null( rho ),
          method = method, lower = TRUE, nExog = nExog, nested = nested )
    }
    if( is.null( upper ) ) {
       upper <- cesCoefBounds( vrs = vrs, returnRho1 = is.null( rho1 ), 
-         returnRho2 = TRUE, returnRho = is.null( rho ),
+         returnRho2 = is.null( rho2 ), returnRho = is.null( rho ),
          method = method, lower = FALSE, nExog = nExog, nested = nested )
    }
 
@@ -156,13 +169,13 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       if( method %in% c( "Nelder-Mead", "SANN" ) ) {
          result$optim <- optim( par = start, fn = cesRss, data = data,
             method = method, yName = yName, xNames = xNames, vrs = vrs,
-            rho1 = rho1, rho2 = NULL, rho = rho, rhoApprox = rhoApprox, 
+            rho1 = rho1, rho2 = rho2, rho = rho, rhoApprox = rhoApprox, 
             nested = nested, ... )
       } else {
          result$optim <- optim( par = start, fn = cesRss, gr = cesRssDeriv,
             data = data, method = method, lower = lower, upper = upper, 
             yName = yName, xNames = xNames, vrs = vrs, rho1 = rho1, 
-            rho2 = NULL, rho = rho, rhoApprox = rhoApprox, 
+            rho2 = rho2, rho = rho, rhoApprox = rhoApprox, 
             nested = nested, ... )
       }
       result$coefficients <- result$optim$par
@@ -203,7 +216,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       # perform fit
       result$nls.lm <- nls.lm( par = start, fn = residFun, data = data,
          jac = jac, yName = yName, xNames = xNames, vrs = vrs, rho1 = rho1, 
-         rho2 = NULL, rho = rho, rhoApprox = rhoApprox, nested = nested, ... )
+         rho2 = rho2, rho = rho, rhoApprox = rhoApprox, nested = nested, ... )
       result$coefficients <- result$nls.lm$par
       result$iter <- result$nls.lm$niter
       result$convergence <- result$nls.lm$info > 0 && result$nls.lm$info < 5
@@ -225,7 +238,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       options( warn = -1 )
       # perform fit
       result$nlm <- nlm( f = cesRss2, p = start, data = data,
-         yName = yName, xNames = xNames, vrs = vrs, rho1 = rho1, rho2 = NULL, 
+         yName = yName, xNames = xNames, vrs = vrs, rho1 = rho1, rho2 = rho2, 
          rho = rho, rhoApprox = rhoApprox, nested = nested, ... )
       # restore previous setting for warning messages
       options( warn = warnSaved )
@@ -237,7 +250,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    } else if( method == "PORT" ) {
       result$nlminb <- nlminb( start = start, objective = cesRss,
          gradient = cesRssDeriv, data = data, yName = yName, xNames = xNames,
-         vrs = vrs, rho1 = rho1, rho2 = NULL, rho = rho, 
+         vrs = vrs, rho1 = rho1, rho2 = rho2, rho = rho, 
          lower = lower, upper = upper, 
          rhoApprox = rhoApprox, nested = nested, ... )
       result$coefficients <- result$nlminb$par
@@ -248,7 +261,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    } else if( method == "DE" ) {
       result$DEoptim <- DEoptim( fn = cesRss, lower = lower,
          upper = upper, data = data, yName = yName, xNames = xNames,
-         vrs = vrs, rho1 = rho1, rho2 = NULL, rho = rho, 
+         vrs = vrs, rho1 = rho1, rho2 = rho2, rho = rho, 
          rhoApprox = rhoApprox, nested = nested, ... )
       result$coefficients <- result$DEoptim$optim$bestmem
       result$iter <- result$DEoptim$optim$iter
@@ -256,6 +269,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    } else if( method == "nls" ) {
       if( !is.null( rho1 ) ) {
          warning( "ignoring argument 'rho1'" )
+      }
+      if( !is.null( rho2 ) ) {
+         warning( "ignoring argument 'rho2'" )
       }
       if( !is.null( rho ) ) {
          warning( "ignoring argument 'rho'" )
@@ -306,7 +322,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # add rho_1, rho_2, and rho, if they are fixed
    result$coefficients <- cesCoefAddRho( coef = result$coefficients,
-      vrs = vrs, rho1 = rho1, rho2 = NULL, rho = rho, 
+      vrs = vrs, rho1 = rho1, rho2 = rho2, rho = rho, 
       nExog = nExog, nested = nested )
 
    # return also the call
@@ -324,6 +340,9 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
 
    # return fixed rho_1
    result$rho1 <- rho1
+
+   # return fixed rho_2
+   result$rho2 <- rho2
 
    # return fixed rho
    result$rho <- rho
