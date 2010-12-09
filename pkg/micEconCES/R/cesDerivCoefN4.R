@@ -274,6 +274,26 @@ cesDerivCoefN4Rho1 <- function( coef, data, xNames ) {
          exp( - coef[ "nu" ] *
             ( coef[ "delta_3" ] * log( B1 ) / coef[ "rho_1" ] +
                ( 1 - coef[ "delta_3" ] ) * log( B2 ) / coef[ "rho_2" ] ) )
+   } else if( coef[ "rho_2" ] == 0 ) {
+      result <- coef[ "gamma" ] * ( -coef[ "nu" ] / coef[ "rho" ] ) * 
+         ( ( 1 - coef[ "delta_3" ] ) *
+            exp( coef[ "rho" ] *
+               ( - coef[ "delta_2" ] * log( data[[ xNames[ 3 ] ]] ) -
+                  ( 1 - coef[ "delta_2" ] ) * log( data[[ xNames[ 4 ] ]] ) ) ) +
+            coef[ "delta_3" ] * 
+            B1^( coef[ "rho" ] / coef[ "rho_1" ] )
+         )^( -coef[ "nu" ] / coef[ "rho" ] - 1 ) *
+         ( coef[ "delta_3" ] * log( B1 ) * 
+            B1^( coef[ "rho" ] / coef[ "rho_1" ] ) *
+            ( - coef[ "rho" ] / coef[ "rho_1" ]^2 ) +
+            coef[ "delta_3" ] * ( coef[ "rho" ] / coef[ "rho_1" ] ) *
+            B1^( coef[ "rho" ] / coef[ "rho_1" ] - 1 ) *
+            ( - coef[ "delta_1" ] * log( data[[ xNames[ 1 ] ]] ) *
+               data[[ xNames[ 1 ] ]]^( - coef[ "rho_1" ] ) -
+               ( 1 - coef[ "delta_1" ] ) * log( data[[ xNames[ 2 ] ]] ) *
+               data[[ xNames[ 2 ] ]]^( - coef[ "rho_1" ] )
+            )
+         )
    } else {
          result <- coef[ "gamma" ] * ( -coef[ "nu" ] / coef[ "rho" ] ) * 
             B^((-coef[ "nu" ]-coef[ "rho" ])/coef[ "rho" ]) *
