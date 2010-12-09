@@ -702,8 +702,8 @@ fitted( cesLmVrsRRR )
 residuals( cesLmVrsRRR )
 
 
-########## Grid Search for Rho ##############
-## Levenberg-Marquardt, Grid Search, CRS
+########## Grid Search for Rho_1, Rho_2, and Rho ##############
+## Levenberg-Marquardt, Grid Search for rho, CRS
 cesLmGrid <- cesEst( "yObs", xNames, data = MishraCES, rho = (1:12)/6-0.4,
    control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLmGrid )
@@ -715,7 +715,7 @@ coef( summary( cesLmGrid ) )
 fitted( cesLmGrid )
 residuals( cesLmGrid )
 
-## Levenberg-Marquardt, Grid Search, VRS
+## Levenberg-Marquardt, Grid Search for rho, VRS
 cesLmVrsGrid <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    rho = (1:12)/6-0.4, control = nls.lm.control( maxiter = 200 ) )
 print.default( cesLmVrsGrid )
@@ -727,7 +727,7 @@ coef( summary( cesLmVrsGrid ) )
 fitted( cesLmVrsGrid )
 residuals( cesLmVrsGrid )
 
-## PORT, Grid Search, CRS
+## PORT, Grid Search for rho, CRS
 cesPortGrid <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT",
    rho = (1:12)/6-0.4, control = list( eval.max = 500 ) )
 print.default( cesPortGrid )
@@ -739,7 +739,7 @@ coef( summary( cesPortGrid ) )
 fitted( cesPortGrid )
 residuals( cesPortGrid )
 
-## PORT, Grid Search, VRS
+## PORT, Grid Search for rho, VRS
 cesPortVrsGrid <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
    vrs = TRUE, rho = (1:12)/6-0.4, 
    control = list( eval.max = 500, iter.max = 500 ) )
@@ -751,4 +751,79 @@ vcov( cesPortVrsGrid )
 coef( summary( cesPortVrsGrid ) )
 fitted( cesPortVrsGrid )
 residuals( cesPortVrsGrid )
+
+## Levenberg-Marquardt, Grid Search for rho_1, CRS
+cesLmGrid1 <- cesEst( "yObs", xNames, data = MishraCES, rho1 = (1:8)/6,
+   control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmGrid1 )
+print( cesLmGrid1 )
+summary( cesLmGrid1 )
+coef( cesLmGrid1 )
+vcov( cesLmGrid1 )
+coef( summary( cesLmGrid1 ) )
+fitted( cesLmGrid1 )
+residuals( cesLmGrid1 )
+
+## Levenberg-Marquardt, Grid Search for rho_2, VRS
+cesLmVrsGrid2 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
+   rho2 = (0:8)/6-0.6, control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmVrsGrid2 )
+print( cesLmVrsGrid2 )
+summary( cesLmVrsGrid2 )
+coef( cesLmVrsGrid2 )
+vcov( cesLmVrsGrid2 )
+coef( summary( cesLmVrsGrid2 ) )
+fitted( cesLmVrsGrid2 )
+residuals( cesLmVrsGrid2 )
+
+## Levenberg-Marquardt, Grid Search for rho_1 and rho_2, CRS
+cesLmGrid12 <- cesEst( "yObs", xNames, data = MishraCES, rho1 = (1:8)/6,
+   rho2 = 1:6/5-0.8, control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmGrid12 )
+print( cesLmGrid12 )
+summary( cesLmGrid12 )
+coef( cesLmGrid12 )
+vcov( cesLmGrid12 )
+coef( summary( cesLmGrid12 ) )
+fitted( cesLmGrid12 )
+residuals( cesLmGrid12 )
+
+## Levenberg-Marquardt, Grid Search for rho_1 and rho, VRS
+cesLmVrsGrid10 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
+   rho1 = (0:8)/6-0.1, rho = (1:7)/4-0.5,
+   control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmVrsGrid10 )
+print( cesLmVrsGrid10 )
+summary( cesLmVrsGrid10 )
+coef( cesLmVrsGrid10 )
+vcov( cesLmVrsGrid10 )
+coef( summary( cesLmVrsGrid10 ) )
+fitted( cesLmVrsGrid10 )
+residuals( cesLmVrsGrid10 )
+
+## Levenberg-Marquardt, Grid Search for rho_2 and rho, CRS
+cesLmGrid20 <- cesEst( "yObs", xNames, data = MishraCES, rho2 = (1:8)/7-0.7,
+   rho = 1:6/7-0.1, control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmGrid20 )
+print( cesLmGrid20 )
+summary( cesLmGrid20 )
+coef( cesLmGrid20 )
+vcov( cesLmGrid20 )
+coef( summary( cesLmGrid20 ) )
+fitted( cesLmGrid20 )
+residuals( cesLmGrid20 )
+
+## Levenberg-Marquardt, Grid Search for rho_1, rho_2, and rho, VRS
+cesLmVrsGrid123 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
+   rho1 = (0:5)/5+0.3, rho2 = (0:4)/3-0.9, rho = (0:5)/5+0.1,
+   control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmVrsGrid123 )
+print( cesLmVrsGrid123 )
+summary( cesLmVrsGrid123 )
+coef( cesLmVrsGrid123 )
+vcov( cesLmVrsGrid123 )
+coef( summary( cesLmVrsGrid123 ) )
+fitted( cesLmVrsGrid123 )
+residuals( cesLmVrsGrid123 )
+
 
