@@ -10,6 +10,7 @@ plot.cesEst <- function( x, ... ) {
 
    if( length( dim( x$rssArray ) ) == 3 ) {
       # for three-dimensional grid ssearches
+      par( mfcol = c( 3, 1 ), mar = c(0,0,1.5,0) )
       for( i in 1:3 ) {
          if( i == 1 ) {
             xValues <- x$rho1Values
@@ -47,13 +48,10 @@ plot.cesEst <- function( x, ... ) {
          # Recode facet z-values into color indices
          facetcol <- cut( log( zfacet ), nbcol )
          # plot
-         if( i > 1 ) {
-            dev.new()
-         }
          persp( xValues, yValues, -zValues, 
             phi = 50, theta = -45, expand = 0.75, col = color[ facetcol ],
-            xlab = xLabel, ylab = yLabel, zlab = "- RSS", ticktype = "detailed" )
-      
+            xlab = xLabel, ylab = yLabel, zlab = "", ticktype = "detailed",
+            main = ifelse( i == 1, "negative sums of squared residuals", "" ) )
       }
    } else if( is.matrix( x$rssArray ) ) {
       # for two-dimensional grid ssearches
@@ -90,7 +88,8 @@ plot.cesEst <- function( x, ... ) {
       # plot
       persp( xValues, yValues, -x$rssArray, 
          phi = 50, theta = -45, expand = 0.75, col = color[ facetcol ],
-         xlab = xLabel, ylab = yLabel, zlab = "- RSS", ticktype = "detailed" )
+         xlab = xLabel, ylab = yLabel, zlab = "", ticktype = "detailed",
+         main = "negative sum of squared residuals" )
    } else if( is.null( x$rssArray ) ) { 
       # for one-dimensional grid searches
       if( !is.null( x$allRhoSum[[ "rho1" ]] ) ) {
