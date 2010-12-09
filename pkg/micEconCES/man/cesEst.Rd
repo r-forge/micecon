@@ -310,15 +310,15 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       for all values of \eqn{\rho}{rho} used in the grid search
       (only if a grid search was performed and
       argument \code{returnGridAll} is set to \code{TRUE}).}
-   \item{rho1Values,rhoValues}{numeric vectors giving the values
+   \item{rho1Values,rho2Values,rhoValues}{numeric vectors giving the values
       that are used in the grid search
       for the coefficients \eqn{\rho_1}{rho_1} and \eqn{\rho}{rho},
       respectively (only if a grid search was performed).}
-   \item{rssMatrix}{matrix of the RSS values obtained
-      by a two-dimensional grid search 
-      for the coefficients \eqn{\rho_1}{rho_1} (rows) 
-      and \eqn{\rho}{rho} (columns)
-      (only if a two-dimensional grid search was performed).}
+   \item{rssArray}{matrix or array of the RSS values obtained
+      by a two-dimensional or three-dimensional grid search 
+      for the coefficients \eqn{\rho_1}{rho_1} (first dimension, e.g. rows of a matrix),
+      \eqn{\rho_2}{rho_2}, and \eqn{\rho}{rho} (last dimension, e.g. columns of a matrix)
+      (only if a two-dimensional or threedimensional grid search was performed).}
 }
 
 \references{

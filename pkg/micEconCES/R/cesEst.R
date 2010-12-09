@@ -74,11 +74,12 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    }
 
    # grid search for rho_1 and rho
-   if( length( rho1 ) > 1 || length( rho ) > 1 ) {
+   if( length( rho1 ) > 1 || length( rho2 ) > 1  || length( rho ) > 1 ) {
       result <- cesEstGridRho( yName = yName, xNames = xNames,
          data = data, vrs = vrs, method = method, start = start,
          lower = lower, upper = upper,
-         rho1Values = rho1, rhoValues = rho, returnAll = returnGridAll,
+         rho1Values = rho1, rho2Values = rho2, rhoValues = rho, 
+         returnAll = returnGridAll,
          random.seed = random.seed, rhoApprox = rhoApprox, ... )
       result$call <- match.call()
       return( result )
