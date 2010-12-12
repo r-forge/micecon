@@ -316,6 +316,12 @@ cesDerivCoefN4Delta3 <- function( coef, data, xNames ) {
             exp( - coef[ "nu" ] * 
                ( coef[ "delta_3" ] * ( - BB1 ) +
                   ( 1 - coef[ "delta_3" ] ) * log( B2 ) / coef[ "rho_2" ] ) )
+      } else if( coef[ "rho_2" ] == 0 ) {
+         result <- - coef[ "gamma" ] * coef[ "nu" ] *
+            ( log( B1 ) / coef[ "rho_1" ] + BB2 ) *
+            exp( - coef[ "nu" ] * 
+               ( coef[ "delta_3" ] * log( B1 ) / coef[ "rho_1" ] +
+                  ( 1 - coef[ "delta_3" ] ) * ( - BB2 ) ) )
       } else {
          result <- coef[ "gamma" ] *
             ( - coef[ "nu" ] * 
