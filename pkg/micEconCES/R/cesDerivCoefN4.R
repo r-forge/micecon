@@ -129,14 +129,23 @@ cesDerivCoefN4Delta1 <- function( coef, data, xNames ) {
 
    if( coef[ "rho" ] == 0 ) {
       if( coef[ "rho_1" ] == 0 ) {
-         result <- coef[ "gamma" ] *
-            ( - coef[ "nu" ]* 
-            ( coef[ "delta_3" ] *
-               ( - log( data[[ xNames[ 1 ] ]] ) +
-                  log( data[[ xNames[ 2 ] ]] ) ) ) ) *
-            exp( -coef[ "nu" ] * 
-               ( coef[ "delta_3" ] * ( - BB1 ) +
-               ( 1 - coef[ "delta_3" ] ) * log( B2 ) / coef[ "rho_2" ] ) )
+         if( coef[ "rho_2" ] == 0 ) {
+            result <- - coef[ "gamma" ] * coef[ "nu" ] * coef[ "delta_3" ] *
+                  ( - log( data[[ xNames[ 1 ] ]] ) +
+                     log( data[[ xNames[ 2 ] ]] ) ) *
+               exp( -coef[ "nu" ] * 
+                  ( coef[ "delta_3" ] * ( - BB1 ) +
+                     ( 1 - coef[ "delta_3" ] ) * ( - BB2 ) ) )
+         } else {
+            result <- coef[ "gamma" ] *
+               ( - coef[ "nu" ]* 
+               ( coef[ "delta_3" ] *
+                  ( - log( data[[ xNames[ 1 ] ]] ) +
+                     log( data[[ xNames[ 2 ] ]] ) ) ) ) *
+               exp( -coef[ "nu" ] * 
+                  ( coef[ "delta_3" ] * ( - BB1 ) +
+                  ( 1 - coef[ "delta_3" ] ) * log( B2 ) / coef[ "rho_2" ] ) )
+         }
       } else if( coef[ "rho_2" ] == 0 ) {
          result <- coef[ "gamma" ] * 
             ( -coef[ "nu" ] * coef[ "delta_3" ] * 
@@ -221,14 +230,24 @@ cesDerivCoefN4Delta2 <- function( coef, data, xNames ) {
 
    if( coef[ "rho" ] == 0 ) {
       if( coef[ "rho_1" ] == 0 ) {
-         result <- coef[ "gamma" ] * 
-            ( -coef[ "nu" ] * ( 1 - coef[ "delta_3" ] ) * 
-               ( data[[ xNames[ 3 ] ]]^( - coef[ "rho_2" ] ) -
-                  data[[ xNames[ 4 ] ]]^( - coef[ "rho_2" ] ) ) ) /
-            ( coef[ "rho_2" ] * B2 ) *
-            exp( -coef[ "nu" ] *
-               ( coef[ "delta_3" ] * ( -BB1 ) +
-                  ( 1 - coef[ "delta_3" ] ) * log( B2 ) / coef[ "rho_2" ] ) )
+         if( coef[ "rho_2" ] == 0 ) {
+            result <- - coef[ "gamma" ] * coef[ "nu" ] * 
+               ( 1 - coef[ "delta_3" ] ) *
+               ( - log( data[[ xNames[ 3 ] ]] ) +
+                  log( data[[ xNames[ 4 ] ]] ) ) *
+               exp( -coef[ "nu" ] * 
+                  ( coef[ "delta_3" ] * ( - BB1 ) +
+                     ( 1 - coef[ "delta_3" ] ) * ( - BB2 ) ) )
+         } else {
+            result <- coef[ "gamma" ] * 
+               ( -coef[ "nu" ] * ( 1 - coef[ "delta_3" ] ) * 
+                  ( data[[ xNames[ 3 ] ]]^( - coef[ "rho_2" ] ) -
+                     data[[ xNames[ 4 ] ]]^( - coef[ "rho_2" ] ) ) ) /
+               ( coef[ "rho_2" ] * B2 ) *
+               exp( -coef[ "nu" ] *
+                  ( coef[ "delta_3" ] * ( -BB1 ) +
+                     ( 1 - coef[ "delta_3" ] ) * log( B2 ) / coef[ "rho_2" ] ) )
+         }
       } else if( coef[ "rho_2" ] == 0 ) {
          result <- coef[ "gamma" ] *
             ( - coef[ "nu" ]* 
