@@ -1,6 +1,0 @@
-cesCalc                 Calculate CES function
-cesEst                  Estimate a CES function
-coef.cesEst             Methods for Estimated CES Functions
-plot.cesEst             Plot RSSs of a CES Function Estimated by Grid
-                        Search
-summary.cesEst          Summarize Estimation of a CES Function
