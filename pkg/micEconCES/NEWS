@@ -5,6 +5,11 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.8-0   (2010-12-13)
+
+* added support for nested CES functions with 3 or 4 inputs
+
+
             CHANGES IN VERSION 0.6-8
 
 * reduced execution time of the examples by removing several examples and by
