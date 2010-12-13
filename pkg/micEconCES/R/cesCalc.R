@@ -123,7 +123,8 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
          result <- cesInterN3( funcName = "cesCalcN3", 
             par = coef, xNames = xNames, data = data, rhoApprox = rhoApprox )
    } else {                    # nested CES with 4 inputs
-      result <- cesCalcN4( xNames = xNames, data = data, coef = coef )
+      result <- cesInterN3( funcName = "cesCalcN4", 
+            par = coef, xNames = xNames, data = data, rhoApprox = rhoApprox )
    }
 
    return( result )
