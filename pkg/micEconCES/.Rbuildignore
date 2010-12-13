@@ -1,5 +1,9 @@
-inst/doc/CES-deriv.lyx
+inst/doc/Multiple
+inst/doc/aux2bib_micEconCES.sh
 inst/doc/monteCarlo/mcResults.RData
+inst/doc/CES-deriv.lyx
+inst/doc/CES.Rnw.backup
+inst/doc/CES_abstract.tex
 tests/cesTestGrid.R
 tests/cesTestGrid.Rout.save
 tests/cesTest.R
