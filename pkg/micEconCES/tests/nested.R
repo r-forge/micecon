@@ -169,7 +169,7 @@ print( aperm( yRho120, c( 3, 1, 2, 4 ) )[ , , c( 2, 16, 21, 26, 40 ), ] )
 ########################## checking cesDerivCoef ##############################
 cesDeriv <- micEconCES:::cesDerivCoef( par = b, xNames = xNames, 
    data = MishraCES, vrs = FALSE, nested = TRUE, 
-   rhoApprox = NULL )
+   rhoApprox = c( gamma = 5e-6, delta = 5e-6, rho = 1e-3, nu = 5e-6 ) )
 f <- function( par ) {
    return( cesCalc( xNames = xNames, data = MishraCES, coef = par, 
       nested = TRUE ) )
@@ -181,7 +181,7 @@ print( cesDeriv )
 # VRS
 cesDerivVrs <- micEconCES:::cesDerivCoef( par = bVrs, xNames = xNames, 
    data = MishraCES, vrs = TRUE, nested = TRUE,
-   rhoApprox = NULL )
+   rhoApprox = c( gamma = 5e-6, delta = 5e-6, rho = 1e-3, nu = 5e-6 ) )
 cesDerivVrsNum <- numericGradient( f, t0 = bVrs )
 all.equal( cesDerivVrs, cesDerivVrsNum )
 print( cesDerivVrs )
