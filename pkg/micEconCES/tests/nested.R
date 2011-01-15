@@ -143,17 +143,19 @@ print( yRho12 )
 
 ## check cesCalc() with rho_1, rho_2, and rho equal to zero and close to zero
 # array for returned endogenous variables
-yRho120 <- array( NA, c( length( rhos ), length( rhos ), length( rhos ), 7 ) )
-dimnames( yRho120 ) <- list( -20:20, -20:20, -20:20, 1:7 )
+rhos2 <- rhos[ seq( 1, length( rhos ), 2 ) ]
+rhos2Num <- (-20:20)[ seq( 1, length( rhos ), 2 ) ]
+yRho120 <- array( NA, c( length( rhos2 ), length( rhos2 ), length( rhos2 ), 7 ) )
+dimnames( yRho120 ) <- list( rhos2Num, rhos2Num, rhos2Num, 1:7 )
 
 # calculate endogenous variables
 coefRho <- bVrs
-for( i in seq( 1, length( rhos ), 2 ) ) {
-   for( j in seq( 1, length( rhos ), 2 ) ) {
-      for( k in seq( 1, length( rhos ), 2 ) ) {
-         coefRho[ "rho_1" ] <- rhos[ i ]
-         coefRho[ "rho_2" ] <- rhos[ j ]
-         coefRho[ "rho" ] <- rhos[ k ]
+for( i in 1:length( rhos2 ) ) {
+   for( j in 1:length( rhos2 ) ) {
+      for( k in 1:length( rhos2 ) ) {
+         coefRho[ "rho_1" ] <- rhos2[ i ]
+         coefRho[ "rho_2" ] <- rhos2[ j ]
+         coefRho[ "rho" ] <- rhos2[ k ]
          yRho120[ i, j, k, ] <- cesCalc( xNames = xNames, 
             data = MishraCES[ 1:7, ], coef = coefRho, nested = TRUE )
       }
@@ -161,9 +163,9 @@ for( i in seq( 1, length( rhos ), 2 ) ) {
 }
 
 # print "raw" endogenous values
-print( yRho120[ , , c( 3, 15, 21, 27, 39 ), ] )
-print( aperm( yRho120, c( 2, 3, 1, 4 ) )[ , , c( 3, 15, 21, 27, 39 ), ] )
-print( aperm( yRho120, c( 3, 1, 2, 4 ) )[ , , c( 3, 15, 21, 27, 39 ), ] )
+print( yRho120[ , , c( 2, 8, 11, 14, 20 ), ] )
+print( aperm( yRho120, c( 2, 3, 1, 4 ) )[ , , c( 2, 8, 11, 14, 20 ), ] )
+print( aperm( yRho120, c( 3, 1, 2, 4 ) )[ , , c( 2, 8, 11, 14, 20 ), ] )
 
 
 ########################## checking cesDerivCoef ##############################
@@ -312,18 +314,20 @@ print( deriv12 )
 
 ## check cesDerivCoef() with rho_1, rho_2, and rho equal to zero and close to zero
 # array for returned partial derivatives
+rhos3 <- rhos[ seq( 3, length( rhos ), 3 ) ]
+rhos3Nums <- (-20:20)[ seq( 3, length( rhos ), 3 ) ]
 deriv120 <- array( NA, 
-   c( length( rhos ), length( rhos ), length( rhos ), 3, length( bVrs ) ) )
-dimnames( deriv120 ) <- list( -20:20, -20:20, -20:20, 1:3, names( bVrs ) )
+   c( length( rhos3 ), length( rhos3 ), length( rhos3 ), 3, length( bVrs ) ) )
+dimnames( deriv120 ) <- list( rhos3Nums, rhos3Nums, rhos3Nums, 1:3, names( bVrs ) )
 
 # calculate endogenous variables
 coefRho <- bVrs
-for( i in seq( 3, length( rhos ), 3 ) ) {
-   for( j in seq( 3, length( rhos ), 3 ) ) {
-      for( k in seq( 3, length( rhos ), 3 ) ) {
-         coefRho[ "rho_1" ] <- rhos[ i ]
-         coefRho[ "rho_2" ] <- rhos[ j ]
-         coefRho[ "rho" ] <- rhos[ k ]
+for( i in 1:length( rhos3 ) ) {
+   for( j in 1:length( rhos3 ) ) {
+      for( k in 1:length( rhos3 ) ) {
+         coefRho[ "rho_1" ] <- rhos3[ i ]
+         coefRho[ "rho_2" ] <- rhos3[ j ]
+         coefRho[ "rho" ] <- rhos3[ k ]
          deriv120[ i, j, k, , ] <- micEconCES:::cesDerivCoef( par = coefRho,
             xNames = xNames, data = MishraCES[1:3,], nested = TRUE, vrs = TRUE,
             rhoApprox = c( gamma = 5e-6, delta = 5e-6, rho = 1e-3, nu = 5e-6 ) )
@@ -332,9 +336,9 @@ for( i in seq( 3, length( rhos ), 3 ) ) {
 }
 
 # print "raw" endogenous values
-print( deriv120[ , , c( 3, 15, 21, 27, 39 ), , ] )
-print( aperm( deriv120, c( 2, 3, 1, 4, 5 ) )[ , , c( 3, 15, 21, 27, 39 ), , ] )
-print( aperm( deriv120, c( 3, 1, 2, 4, 5 ) )[ , , c( 3, 15, 21, 27, 39 ), , ] )
+print( deriv120[ , , c( 1, 5, 7, 9, 13 ), , ] )
+print( aperm( deriv120, c( 2, 3, 1, 4, 5 ) )[ , , c( 1, 5, 7, 9, 13 ), , ] )
+print( aperm( deriv120, c( 3, 1, 2, 4, 5 ) )[ , , c( 1, 5, 7, 9, 13 ), , ] )
 
 
 ############################# checking cesEst #################################
