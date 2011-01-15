@@ -161,9 +161,9 @@ for( i in 1:length( rhos ) ) {
 }
 
 # print "raw" endogenous values
-print( yRho120[ , , c( 2, 16, 21, 26, 40 ), ] )
-print( aperm( yRho120, c( 2, 3, 1, 4 ) )[ , , c( 2, 16, 21, 26, 40 ), ] )
-print( aperm( yRho120, c( 3, 1, 2, 4 ) )[ , , c( 2, 16, 21, 26, 40 ), ] )
+print( yRho120[ , , c( 3, 15, 21, 27, 39 ), ] )
+print( aperm( yRho120, c( 2, 3, 1, 4 ) )[ , , c( 3, 15, 21, 27, 39 ), ] )
+print( aperm( yRho120, c( 3, 1, 2, 4 ) )[ , , c( 3, 15, 21, 27, 39 ), ] )
 
 
 ########################## checking cesDerivCoef ##############################
@@ -332,9 +332,9 @@ for( i in 1:length( rhos ) ) {
 }
 
 # print "raw" endogenous values
-print( deriv120[ , , c( 2, 16, 21, 26, 40 ), , ] )
-print( aperm( deriv120, c( 2, 3, 1, 4, 5 ) )[ , , c( 2, 16, 21, 26, 40 ), , ] )
-print( aperm( deriv120, c( 3, 1, 2, 4, 5 ) )[ , , c( 2, 16, 21, 26, 40 ), , ] )
+print( deriv120[ , , c( 3, 15, 21, 27, 39 ), , ] )
+print( aperm( deriv120, c( 2, 3, 1, 4, 5 ) )[ , , c( 3, 15, 21, 27, 39 ), , ] )
+print( aperm( deriv120, c( 3, 1, 2, 4, 5 ) )[ , , c( 3, 15, 21, 27, 39 ), , ] )
 
 
 ############################# checking cesEst #################################
