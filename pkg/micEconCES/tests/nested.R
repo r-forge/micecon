@@ -148,9 +148,9 @@ dimnames( yRho120 ) <- list( -20:20, -20:20, -20:20, 1:7 )
 
 # calculate endogenous variables
 coefRho <- bVrs
-for( i in 1:length( rhos ) ) {
-   for( j in 1:length( rhos ) ) {
-      for( k in 1:length( rhos ) ) {
+for( i in seq( 1, length( rhos ), 2 ) ) {
+   for( j in seq( 1, length( rhos ), 2 ) ) {
+      for( k in seq( 1, length( rhos ), 2 ) ) {
          coefRho[ "rho_1" ] <- rhos[ i ]
          coefRho[ "rho_2" ] <- rhos[ j ]
          coefRho[ "rho" ] <- rhos[ k ]
@@ -318,9 +318,9 @@ dimnames( deriv120 ) <- list( -20:20, -20:20, -20:20, 1:3, names( bVrs ) )
 
 # calculate endogenous variables
 coefRho <- bVrs
-for( i in 1:length( rhos ) ) {
-   for( j in 1:length( rhos ) ) {
-      for( k in 1:length( rhos ) ) {
+for( i in seq( 3, length( rhos ), 3 ) ) {
+   for( j in seq( 3, length( rhos ), 3 ) ) {
+      for( k in seq( 3, length( rhos ), 3 ) ) {
          coefRho[ "rho_1" ] <- rhos[ i ]
          coefRho[ "rho_2" ] <- rhos[ j ]
          coefRho[ "rho" ] <- rhos[ k ]
