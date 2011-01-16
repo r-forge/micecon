@@ -26,14 +26,14 @@ rhos <- c( -exp(-(1:20)),0,exp(-(20:1)) )
 # rhos <- c( -2^(-(1:40)),0,2^(-(40:1)) )
 
 # matrix for returned endogenous variables
-yRho <- matrix( NA, nrow = length( rhos ), ncol = nrow( MishraCES ) )
+yRho <- matrix( NA, nrow = length( rhos ), ncol = 7 )
 rownames( yRho ) <- c( -(1:20), 0, (20:1) )
 
 # calculate endogenous variables
 coefRho <- b
 for( i in 1:length( rhos ) ) {
    coefRho[ "rho" ] <- rhos[ i ]
-   yRho[ i, ] <- cesCalc( xNames = xNames, data = MishraCES, coef = coefRho,
+   yRho[ i, ] <- cesCalc( xNames = xNames, data = MishraCES[1:7,], coef = coefRho,
       nested = TRUE )
 }
 
@@ -41,21 +41,21 @@ for( i in 1:length( rhos ) ) {
 print( yRho )
 
 # print endogenous variables for different rhos (adjusted with the y at rho=0)
-for( i in 1:nrow( MishraCES ) ) {
+for( i in 1:ncol( yRho ) ) {
    print( format( round( yRho[ , i, drop = FALSE ] - yRho[21,i], 11 ),
       scientific = FALSE ) )
 }
 
 ## check cesCalc() with rho_1 equal to zero and close to zero
 # matrix for returned endogenous variables
-yRho1 <- matrix( NA, nrow = length( rhos ), ncol = nrow( MishraCES ) )
+yRho1 <- matrix( NA, nrow = length( rhos ), ncol = 7 )
 rownames( yRho1 ) <- c( -(1:20), 0, (20:1) )
 
 # calculate endogenous variables
 coefRho1 <- b
 for( i in 1:length( rhos ) ) {
    coefRho1[ "rho_1" ] <- rhos[ i ]
-   yRho1[ i, ] <- cesCalc( xNames = xNames, data = MishraCES, coef = coefRho1,
+   yRho1[ i, ] <- cesCalc( xNames = xNames, data = MishraCES[1:7,], coef = coefRho1,
       nested = TRUE )
 }
 
@@ -65,8 +65,8 @@ print( yRho1 )
 
 ## check cesCalc() with rho_1 and rho equal to zero and close to zero
 # array for returned endogenous variables
-yRho2 <- array( NA, c( length( rhos ), length( rhos ), 7 ) )
-dimnames( yRho2 ) <- list( -20:20, -20:20, 1:7 )
+yRho2 <- array( NA, c( length( rhos ), length( rhos ), 2 ) )
+dimnames( yRho2 ) <- list( -20:20, -20:20, 1:2 )
 
 # calculate endogenous variables
 coefRho2 <- bVrs
@@ -74,7 +74,7 @@ for( i in 1:length( rhos ) ) {
    for( j in 1:length( rhos ) ) {
       coefRho2[ "rho" ] <- rhos[ i ]
       coefRho2[ "rho_1" ] <- rhos[ j ]
-      yRho2[ i, j, ] <- cesCalc( xNames = xNames, data = MishraCES[ 1:7, ], 
+      yRho2[ i, j, ] <- cesCalc( xNames = xNames, data = MishraCES[ 1:2, ], 
          coef = coefRho2, nested = TRUE )
    }
 }
@@ -106,8 +106,8 @@ print( cesDerivVrs )
 
 ## check cesDerivCoef() with rho equal to zero and close to zero
 # array for returned partial derivatives
-deriv <- array( NA, c( length( rhos ), nrow( MishraCES ), length( bVrs ) ) )
-dimnames( deriv ) <- list( rhos, 1:nrow( MishraCES ), names( bVrs ) )
+deriv <- array( NA, c( length( rhos ), 5, length( bVrs ) ) )
+dimnames( deriv ) <- list( rhos, 1:5, names( bVrs ) )
 
 coefRho <- bVrs
 # calculate the derivatives
@@ -115,7 +115,7 @@ for( i in 1:length( rhos ) ) {
    # coefficients
    coefRho[ "rho" ] <- rhos[ i ]
    deriv[ i, , ] <- micEconCES:::cesDerivCoef( par = coefRho,
-      xNames = xNames, data = MishraCES, nested = TRUE, vrs = TRUE,
+      xNames = xNames, data = MishraCES[1:5,], nested = TRUE, vrs = TRUE,
       rhoApprox = c( gamma = 5e-6, delta = 5e-6, rho = 1e-3, nu = 5e-6 ) )
 }
 
@@ -124,7 +124,7 @@ print( deriv )
 
 # print derivatives for different rhos (adjusted with the derivatives at rho=0)
 for( k in 1:dim( deriv )[3] ) {
-   for( i in 1:nrow( MishraCES ) ) {
+   for( i in 1:5 ) {
       print( format( round( deriv[ , i, k, drop = FALSE ] -
        deriv[ 21, i, k ], 11 ), scientific = FALSE ) )
    }
@@ -132,8 +132,8 @@ for( k in 1:dim( deriv )[3] ) {
 
 ## check cesDerivCoef() with rho_1 equal to zero and close to zero
 # array for returned partial derivatives
-deriv1 <- array( NA, c( length( rhos ), nrow( MishraCES ), length( bVrs ) ) )
-dimnames( deriv1 ) <- list( rhos, 1:nrow( MishraCES ), names( bVrs ) )
+deriv1 <- array( NA, c( length( rhos ), 5, length( bVrs ) ) )
+dimnames( deriv1 ) <- list( rhos, 1:5, names( bVrs ) )
 
 coefRho1 <- bVrs
 # calculate the derivatives
@@ -141,7 +141,7 @@ for( i in 1:length( rhos ) ) {
    # coefficients
    coefRho1[ "rho_1" ] <- rhos[ i ]
    deriv1[ i, , ] <- micEconCES:::cesDerivCoef( par = coefRho1,
-      xNames = xNames, data = MishraCES, nested = TRUE, vrs = TRUE,
+      xNames = xNames, data = MishraCES[1:5,], nested = TRUE, vrs = TRUE,
       rhoApprox = c( gamma = 5e-6, delta = 5e-6, rho = 1e-3, nu = 5e-6 ) )
 }
 
@@ -151,8 +151,8 @@ print( deriv1 )
 
 ## check cesDerivCoef() with rho and rho_1 equal to zero and close to zero
 # array for returned partial derivatives
-deriv2 <- array( NA, c( length( rhos ), length( rhos ), 7, length( bVrs ) ) )
-dimnames( deriv2 ) <- list( c(-20:20), c(-20:20), 1:7, names( bVrs ) )
+deriv2 <- array( NA, c( length( rhos ), length( rhos ), 2, length( bVrs ) ) )
+dimnames( deriv2 ) <- list( c(-20:20), c(-20:20), 1:2, names( bVrs ) )
 
 coefRho2 <- bVrs
 # calculate the derivatives
@@ -162,7 +162,7 @@ for( i in 1:length( rhos ) ) {
       coefRho2[ "rho" ] <- rhos[ i ]
       coefRho2[ "rho_1" ] <- rhos[ j ]
       deriv2[ i, j, , ] <- micEconCES:::cesDerivCoef( par = coefRho2,
-         xNames = xNames, data = MishraCES[1:7,], nested = TRUE, vrs = TRUE,
+         xNames = xNames, data = MishraCES[1:2,], nested = TRUE, vrs = TRUE,
          rhoApprox = c( gamma = 5e-6, delta = 5e-6, rho = 1e-3, nu = 5e-6 ) )
    }
 }
