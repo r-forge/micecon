@@ -8,6 +8,23 @@ b <- c( "gamma_1" = 2, "gamma_2" = 200, "delta_1" = 0.6, "delta_2" = 0.7,
 bVrs <- c( b, "nu" = 1.1 )
 xNames <- c( "X1", "X2", "X3" )
 
+# normalize gamma_1 to 1
+b2 <- b
+b2[ "gamma_1" ] <- 1
+b2[ "gamma_2" ] <- b[ "gamma_2" ] * 
+   ( b[ "delta_2" ] * 0.5^b[ "rho" ] + ( 1 - b[ "delta_2" ] ) )^( 
+      -1 / b[ "rho" ] )
+b2[ "delta_2" ] <- b[ "delta_2" ] * 0.5^b[ "rho" ] /
+   ( b[ "delta_2" ] * 0.5^b[ "rho" ] + ( 1 - b[ "delta_2" ] ) )
+
+bVrs2 <- bVrs
+bVrs2[ "gamma_1" ] <- 1
+bVrs2[ "gamma_2" ] <- bVrs[ "gamma_2" ] * 
+   ( bVrs[ "delta_2" ] * 0.5^bVrs[ "rho" ] + ( 1 - bVrs[ "delta_2" ] ) )^( 
+      - bVrs[ "nu" ] / bVrs[ "rho" ] )
+bVrs2[ "delta_2" ] <- bVrs[ "delta_2" ] * 0.5^bVrs[ "rho" ] /
+   ( bVrs[ "delta_2" ] * 0.5^bVrs[ "rho" ] + ( 1 - bVrs[ "delta_2" ] ) )
+
 
 ######################### checking cesCalc() ###############################
 MishraCES$Y3 <- cesCalc( xNames = xNames, 
@@ -18,6 +35,15 @@ MishraCES$Y3
 MishraCES$Y3Vrs <- cesCalc( xNames = xNames, 
    data = MishraCES, coef = bVrs, nested = TRUE )
 MishraCES$Y3Vrs
+
+## showing non-identification of coefficients
+MishraCES$Y32 <- cesCalc( xNames = xNames, 
+   data = MishraCES, coef = b2, nested = TRUE )
+all.equal( MishraCES$Y3, MishraCES$Y32 )
+
+MishraCES$Y3Vrs2 <- cesCalc( xNames = xNames, 
+   data = MishraCES, coef = bVrs2, nested = TRUE )
+all.equal( MishraCES$Y3Vrs, MishraCES$Y3Vrs2 )
 
 
 ## check cesCalc() with rho equal to zero and close to zero
