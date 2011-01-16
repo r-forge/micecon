@@ -12,18 +12,18 @@ xNames <- c( "X1", "X2", "X3" )
 b <- bOld
 b[ "gamma_1" ] <- 1
 b[ "gamma_2" ] <- bOld[ "gamma_2" ] * 
-   ( bOld[ "delta_2" ] * 0.5^bOld[ "rho" ] + ( 1 - bOld[ "delta_2" ] ) )^( 
+   ( bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) + ( 1 - bOld[ "delta_2" ] ) )^( 
       -1 / bOld[ "rho" ] )
-b[ "delta_2" ] <- bOld[ "delta_2" ] * 0.5^bOld[ "rho" ] /
-   ( bOld[ "delta_2" ] * 0.5^bOld[ "rho" ] + ( 1 - bOld[ "delta_2" ] ) )
+b[ "delta_2" ] <- bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) /
+   ( bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) + ( 1 - bOld[ "delta_2" ] ) )
 
 bVrs <- bOldVrs
 bVrs[ "gamma_1" ] <- 1
 bVrs[ "gamma_2" ] <- bOldVrs[ "gamma_2" ] * 
-   ( bOldVrs[ "delta_2" ] * 0.5^bOldVrs[ "rho" ] + ( 1 - bOldVrs[ "delta_2" ] ) )^( 
+   ( bOldVrs[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta_2" ] ) )^( 
       - bOldVrs[ "nu" ] / bOldVrs[ "rho" ] )
-bVrs[ "delta_2" ] <- bOldVrs[ "delta_2" ] * 0.5^bOldVrs[ "rho" ] /
-   ( bOldVrs[ "delta_2" ] * 0.5^bOldVrs[ "rho" ] + ( 1 - bOldVrs[ "delta_2" ] ) )
+bVrs[ "delta_2" ] <- bOldVrs[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) /
+   ( bOldVrs[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta_2" ] ) )
 
 
 ######################### checking cesCalc() ###############################
