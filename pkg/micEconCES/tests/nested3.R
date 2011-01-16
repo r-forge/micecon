@@ -3,27 +3,27 @@ library( "maxLik" )
 
 data( "MishraCES" )
 
-b <- c( "gamma_1" = 2, "gamma_2" = 200, "delta_1" = 0.6, "delta_2" = 0.7, 
+bOld <- c( "gamma_1" = 2, "gamma_2" = 200, "delta_1" = 0.6, "delta_2" = 0.7, 
    "rho_1" = 0.5, "rho" = 0.6 )
-bVrs <- c( b, "nu" = 1.1 )
+bOldVrs <- c( bOld, "nu" = 1.1 )
 xNames <- c( "X1", "X2", "X3" )
 
 # normalize gamma_1 to 1
-b2 <- b
-b2[ "gamma_1" ] <- 1
-b2[ "gamma_2" ] <- b[ "gamma_2" ] * 
-   ( b[ "delta_2" ] * 0.5^b[ "rho" ] + ( 1 - b[ "delta_2" ] ) )^( 
-      -1 / b[ "rho" ] )
-b2[ "delta_2" ] <- b[ "delta_2" ] * 0.5^b[ "rho" ] /
-   ( b[ "delta_2" ] * 0.5^b[ "rho" ] + ( 1 - b[ "delta_2" ] ) )
+b <- bOld
+b[ "gamma_1" ] <- 1
+b[ "gamma_2" ] <- bOld[ "gamma_2" ] * 
+   ( bOld[ "delta_2" ] * 0.5^bOld[ "rho" ] + ( 1 - bOld[ "delta_2" ] ) )^( 
+      -1 / bOld[ "rho" ] )
+b[ "delta_2" ] <- bOld[ "delta_2" ] * 0.5^bOld[ "rho" ] /
+   ( bOld[ "delta_2" ] * 0.5^bOld[ "rho" ] + ( 1 - bOld[ "delta_2" ] ) )
 
-bVrs2 <- bVrs
-bVrs2[ "gamma_1" ] <- 1
-bVrs2[ "gamma_2" ] <- bVrs[ "gamma_2" ] * 
-   ( bVrs[ "delta_2" ] * 0.5^bVrs[ "rho" ] + ( 1 - bVrs[ "delta_2" ] ) )^( 
-      - bVrs[ "nu" ] / bVrs[ "rho" ] )
-bVrs2[ "delta_2" ] <- bVrs[ "delta_2" ] * 0.5^bVrs[ "rho" ] /
-   ( bVrs[ "delta_2" ] * 0.5^bVrs[ "rho" ] + ( 1 - bVrs[ "delta_2" ] ) )
+bVrs <- bOldVrs
+bVrs[ "gamma_1" ] <- 1
+bVrs[ "gamma_2" ] <- bOldVrs[ "gamma_2" ] * 
+   ( bOldVrs[ "delta_2" ] * 0.5^bOldVrs[ "rho" ] + ( 1 - bOldVrs[ "delta_2" ] ) )^( 
+      - bOldVrs[ "nu" ] / bOldVrs[ "rho" ] )
+bVrs[ "delta_2" ] <- bOldVrs[ "delta_2" ] * 0.5^bOldVrs[ "rho" ] /
+   ( bOldVrs[ "delta_2" ] * 0.5^bOldVrs[ "rho" ] + ( 1 - bOldVrs[ "delta_2" ] ) )
 
 
 ######################### checking cesCalc() ###############################
@@ -38,11 +38,11 @@ MishraCES$Y3Vrs
 
 ## showing non-identification of coefficients
 MishraCES$Y32 <- cesCalc( xNames = xNames, 
-   data = MishraCES, coef = b2, nested = TRUE )
+   data = MishraCES, coef = bOld, nested = TRUE )
 all.equal( MishraCES$Y3, MishraCES$Y32 )
 
 MishraCES$Y3Vrs2 <- cesCalc( xNames = xNames, 
-   data = MishraCES, coef = bVrs2, nested = TRUE )
+   data = MishraCES, coef = bOldVrs, nested = TRUE )
 all.equal( MishraCES$Y3Vrs, MishraCES$Y3Vrs2 )
 
 
