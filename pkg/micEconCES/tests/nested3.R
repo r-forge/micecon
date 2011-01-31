@@ -16,6 +16,7 @@ b[ "gamma_2" ] <- bOld[ "gamma_2" ] *
 b[ "delta_2" ] <- bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) /
    ( bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) + ( 1 - bOld[ "delta_2" ] ) )
 b <- b[ names( b ) != "gamma_1" ]
+names( b )[ names( b ) == "gamma_2" ] <- "gamma"
 rm( bOld )
 
 bVrs <- bOldVrs
@@ -25,6 +26,7 @@ bVrs[ "gamma_2" ] <- bOldVrs[ "gamma_2" ] *
 bVrs[ "delta_2" ] <- bOldVrs[ "delta_2" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) /
    ( bOldVrs[ "delta_2" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta_2" ] ) )
 bVrs <- bVrs[ names( bVrs ) != "gamma_1" ]
+names( bVrs )[ names( bVrs ) == "gamma_2" ] <- "gamma"
 rm( bOldVrs )
 
 

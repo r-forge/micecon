@@ -6,7 +6,7 @@ cesCoefNames <- function( nExog, vrs, returnRho1 = TRUE, returnRho2 = TRUE,
    } else if( !nested ) {
       result <- c( "gamma", paste( "delta", 1:nExog, sep = "_" ) )
    } else if( nested && nExog == 3 ) {
-      result <- c( "gamma_2", "delta_1", "delta_2" )
+      result <- c( "gamma", "delta_1", "delta_2" )
    } else if( nested && nExog == 4 ) {
       result <- c( "gamma", "delta_1", "delta_2", "delta_3" )
    } else {
