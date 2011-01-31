@@ -93,7 +93,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
       the endogenous variable; 
       the second element determines the threshold for calculating
       the derivatives with respect to \eqn{\gamma}{gamma},
-      \eqn{\gamma_1}{gamma_1}, and \eqn{\gamma_2}{gamma_2};
+      and \eqn{\gamma_2}{gamma_2};
       the third element determines the threshold for calculating
       the derivatives with respect to \eqn{\delta}{delta},
       \eqn{\delta_1}{delta_1}, and \eqn{\delta_2}{delta_2};
@@ -150,8 +150,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    However, names of the elements are ignored.
    If argument \code{start} is \code{NULL},
    pre-defined starting values are used.
-   The starting values of \eqn{\gamma_1}{gamma_1} (if present) is set to 1,
-   the starting values of \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, 
+   The starting values of \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, 
    and \eqn{\delta_2}{delta_2} (if present) are set to 0.5,
    the starting values of \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and
    \eqn{\rho}{rho} (if present and required) are set to 0.25
@@ -167,7 +166,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
          \eqn{\rho}{rho} = fixed or 0.25, \eqn{\nu}{nu} = 1 ) ),
    for the nested CES with 3 inputs
    \eqn{\gamma_2}{gamma_2} =  mean( y ) /
-      mean( CES( X, \eqn{\gamma_1}{gamma_1} = 1, \eqn{\gamma_2}{gamma_2} = 1,
+      mean( CES( X, \eqn{\gamma_2}{gamma_2} = 1,
          \eqn{\delta_1}{delta_1} = 0.5, \eqn{\delta_2}{delta_2} = 0.5, 
          \eqn{\rho_1}{rho_1} = 0.25, \eqn{\rho}{rho} = fixed or 0.25, 
           \eqn{\nu}{nu} = 1 ) ),
@@ -187,14 +186,14 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    which means that the bounds are set automatically
    depending on the estimation method:
    In case of the \code{L-BFGS-B}, \code{PORT}, and \code{DE} method,
-   the lower bound is \code{0} for \eqn{\gamma}{gamma}, \eqn{\gamma_1}{gamma_1}, 
+   the lower bound is \code{0} for \eqn{\gamma}{gamma},
    \eqn{\gamma_2}{gamma_2}, \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, 
    and \eqn{\delta_2}{delta_2} (if present), 
    \code{-1} for \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and \eqn{\rho}{rho}
    (if present),
    and eventually \code{0} for \eqn{\nu}{nu}.
    In case of the \code{L-BFGS-B} and \code{PORT} method,
-   the upper bound is infinity for \eqn{\gamma}{gamma}, \eqn{\gamma_1}{gamma_1}, 
+   the upper bound is infinity for \eqn{\gamma}{gamma},
    and \eqn{\gamma_2}{gamma_2} (if present),
    \code{1} for \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, and
    \eqn{\delta_2}{delta_2} (if present),
@@ -203,7 +202,7 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    and eventually infinity for \eqn{\nu}{nu}.
    Since the \sQuote{Differential Evulation} algorithm requires finit bounds,
    the upper bounds for the \code{DE} method are set
-   to \code{1e10} for \eqn{\gamma}{gamma}, \eqn{\gamma_1}{gamma_1},
+   to \code{1e10} for \eqn{\gamma}{gamma},
    and \eqn{\gamma_2}{gamma_2} (if present),
    \code{1} for \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, and 
    \eqn{\delta_2}{delta_2} (if present),

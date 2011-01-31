@@ -25,7 +25,7 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
       vrs <- length( coef ) >= 4
    } else {
       if( nested ) {
-         vrs <- length( coef ) - nExog >= 4
+         vrs <- length( coef ) >= 2 * nExog
       } else {
          vrs <- length( coef ) - nExog  >= 3
       }
@@ -42,10 +42,10 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
          ifelse( vrs, " variable", " constant" ), " returns to scale",
          " must have ", nExog + 2 + vrs, " coefficients",
          " but you provided ", length( coef ), " coefficients" )
-   } else if( nExog %in% c( 3, 4 ) && nested && length( coef ) != 3 + nExog + vrs ) {
+   } else if( nExog %in% c( 3, 4 ) && nested && length( coef ) != 2 * nExog - 1 + vrs ) {
       stop( "a nested CES function with ", nExog, " exogenous variables and",
          ifelse( vrs, " variable", " constant" ), " returns to scale",
-         " must have ", 3 + nExog + vrs, " coefficients",
+         " must have ", 2 * nExog - 1 + vrs, " coefficients",
          " but you provided ", length( coef ), " coefficients" )
    }
 
