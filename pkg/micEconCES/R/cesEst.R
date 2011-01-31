@@ -279,7 +279,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       }
       if( nested && nExog == 3 ) {
          nlsFormula <- as.formula( paste( yName,
-            " ~ gamma_2 * ( delta_2 * ",
+            " ~ gamma * ( delta_2 * ",
             "( delta_1 * ", xNames[ 1 ], "^(-rho_1)",
             " + ( 1 - delta_1 ) * ", xNames[ 2 ], "^(-rho_1) )",
             "^( rho / rho_1 ) +",

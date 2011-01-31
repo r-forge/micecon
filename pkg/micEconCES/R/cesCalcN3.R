@@ -2,14 +2,14 @@ cesCalcN3 <- function( xNames, data, coef ) {
 
    if( coef[ "rho" ] == 0 ) {
       if( coef[ "rho_1" ] == 0 ) {
-         result <- coef[ "gamma_2" ] *
+         result <- coef[ "gamma" ] *
             exp( coef[ "nu" ] * 
                ( coef[ "delta_2" ] * (
                   coef[ "delta_1" ] * log( data[[ xNames[ 1 ] ]] ) +
                   ( 1 - coef[ "delta_1" ] ) * log( data[[ xNames[ 2 ] ]] ) ) +
                ( 1 - coef[ "delta_2" ] ) * log( data[[ xNames[ 3 ] ]] ) ) )
       } else {
-         result <- coef[ "gamma_2" ] *
+         result <- coef[ "gamma" ] *
             exp( coef[ "nu" ] * ( coef[ "delta_2" ] *
                ( -
                   log( coef[ "delta_1" ] * data[[ xNames[ 1 ] ]]^( -coef[ "rho_1" ] ) +
@@ -18,7 +18,7 @@ cesCalcN3 <- function( xNames, data, coef ) {
                ( 1 - coef[ "delta_2" ] ) * log( data[[ xNames[ 3 ] ]] ) ) )
       }
    } else if( coef[ "rho_1" ] == 0 ) {
-      result <- coef[ "gamma_2" ] * 
+      result <- coef[ "gamma" ] * 
          ( coef[ "delta_2" ] *
             exp( coef[ "delta_1" ] * log( data[[ xNames[ 1 ] ]] ) +
                   ( 1 - coef[ "delta_1" ] ) * log( data[[ xNames[ 2 ] ]] )
@@ -27,7 +27,7 @@ cesCalcN3 <- function( xNames, data, coef ) {
          )^( - coef[ "nu" ] / coef[ "rho" ] )
    } else {
       result <-
-         coef[ "gamma_2" ] * (
+         coef[ "gamma" ] * (
             coef[ "delta_2" ] *
             ( coef[ "delta_1" ] * data[[ xNames[ 1 ] ]]^( -coef[ "rho_1" ] ) +
                ( 1 - coef[ "delta_1" ] ) * data[[ xNames[ 2 ] ]]^( -coef[ "rho_1" ] )

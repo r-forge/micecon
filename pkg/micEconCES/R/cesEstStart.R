@@ -59,8 +59,8 @@ cesEstStart <- function( yName, xNames, data, vrs,
       }
       # checking gamma
       if( nested && nExog == 3 ) {
-         if( start[ "gamma_2" ] <= 0 ) {
-            stop( "the starting value for 'gamma_2' must be positive" )
+         if( start[ "gamma" ] <= 0 ) {
+            stop( "the starting value for 'gamma' must be positive" )
          }
       } else {
          if( start[ "gamma" ] <= 0 ) {
