@@ -20,10 +20,10 @@ b[ "delta_2" ] <- bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) /
 bVrs <- bOldVrs
 bVrs[ "gamma_1" ] <- 1
 bVrs[ "gamma_2" ] <- bOldVrs[ "gamma_2" ] * 
-   ( bOldVrs[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta_2" ] ) )^( 
+   ( bOldVrs[ "delta_2" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta_2" ] ) )^( 
       - bOldVrs[ "nu" ] / bOldVrs[ "rho" ] )
-bVrs[ "delta_2" ] <- bOldVrs[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) /
-   ( bOldVrs[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta_2" ] ) )
+bVrs[ "delta_2" ] <- bOldVrs[ "delta_2" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) /
+   ( bOldVrs[ "delta_2" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta_2" ] ) )
 
 
 ######################### checking cesCalc() ###############################
