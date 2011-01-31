@@ -17,7 +17,7 @@ cesEstStart <- function( yName, xNames, data, vrs,
          rho1Start <- ifelse( is.null( rho1 ), 0.25, rho1 )
          rho2Start <- ifelse( is.null( rho2 ), 0.25, rho2 )
          if( nested && nExog == 3 ) {
-            start <- c( 1, 1, 0.5, 0.5, rho1Start, rhoStart )
+            start <- c( 1, 0.5, 0.5, rho1Start, rhoStart )
          } else if( nested && nExog == 4 ) {
             start <- c( 1, 0.5, 0.5, 0.5, rho1Start, rho2Start, rhoStart )
          } else if( !nested && nExog == 2 ) {
@@ -32,17 +32,17 @@ cesEstStart <- function( yName, xNames, data, vrs,
          }
          yTemp <- cesCalc( xNames = xNames, data = data, coef = start,
             nested = nested )
-         start[ 1 + ( nested && nExog == 3 ) ] <- 
+         start[ 1 ] <- 
             mean( data[[ yName ]], na.rm = TRUE ) /
             mean( yTemp, na.rm = TRUE )
          if( !is.null( rho ) ) {
-            start <- start[ -ifelse( nested, 3 + nExog, 3 ) ]
+            start <- start[ -ifelse( nested, 2 * nExog - 1, 3 ) ]
          }
          if( !is.null( rho2 ) && nested && nExog == 4 ) {
             start <- start[ -6 ]
          }
          if( !is.null( rho1 ) && nested ) {
-            start <- start[ -5 ]
+            start <- start[ -( 5 - ( nExog == 3 ) ) ]
          }
       }
       if( length( start ) != nParam ) {
@@ -59,9 +59,7 @@ cesEstStart <- function( yName, xNames, data, vrs,
       }
       # checking gamma
       if( nested && nExog == 3 ) {
-         if( start[ "gamma_1" ] <= 0 ) {
-            stop( "the starting value for 'gamma_1' must be positive" )
-         } else if( start[ "gamma_2" ] <= 0 ) {
+         if( start[ "gamma_2" ] <= 0 ) {
             stop( "the starting value for 'gamma_2' must be positive" )
          }
       } else {

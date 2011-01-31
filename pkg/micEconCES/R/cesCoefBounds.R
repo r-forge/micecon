@@ -4,7 +4,7 @@ cesCoefBounds <- function( vrs, returnRho1, returnRho2, returnRho, method,
    if( method %in% c( "L-BFGS-B", "PORT", "DE" ) ) {
       if( lower ) {
          if( nested && nExog == 3 ) {
-            result <- c( 0, 0, 0, 0 )
+            result <- c( 0, 0, 0 )
          } else if( nested && nExog == 4 ) {
             result <- c( 0, 0, 0, 0 )
          } else if( !nested && nExog == 2 ) {
@@ -16,7 +16,7 @@ cesCoefBounds <- function( vrs, returnRho1, returnRho2, returnRho, method,
          }
       } else {
          if( nested && nExog == 3 ) {
-            result <- c( Inf, Inf, 1, 1 )
+            result <- c( Inf, 1, 1 )
          } else if( nested && nExog == 4 ) {
             result <- c( Inf, 1, 1, 1 )
          } else if( !nested && nExog == 2 ) {

@@ -10,20 +10,22 @@ xNames <- c( "X1", "X2", "X3" )
 
 # normalize gamma_1 to 1
 b <- bOld
-b[ "gamma_1" ] <- 1
 b[ "gamma_2" ] <- bOld[ "gamma_2" ] * 
    ( bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) + ( 1 - bOld[ "delta_2" ] ) )^( 
       -1 / bOld[ "rho" ] )
 b[ "delta_2" ] <- bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) /
    ( bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) + ( 1 - bOld[ "delta_2" ] ) )
+b <- b[ names( b ) != "gamma_1" ]
+rm( bOld )
 
 bVrs <- bOldVrs
-bVrs[ "gamma_1" ] <- 1
 bVrs[ "gamma_2" ] <- bOldVrs[ "gamma_2" ] * 
    ( bOldVrs[ "delta_2" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta_2" ] ) )^( 
       - bOldVrs[ "nu" ] / bOldVrs[ "rho" ] )
 bVrs[ "delta_2" ] <- bOldVrs[ "delta_2" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) /
    ( bOldVrs[ "delta_2" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta_2" ] ) )
+bVrs <- bVrs[ names( bVrs ) != "gamma_1" ]
+rm( bOldVrs )
 
 
 ######################### checking cesCalc() ###############################
@@ -35,15 +37,6 @@ MishraCES$Y3
 MishraCES$Y3Vrs <- cesCalc( xNames = xNames, 
    data = MishraCES, coef = bVrs, nested = TRUE )
 MishraCES$Y3Vrs
-
-## showing non-identification of coefficients
-MishraCES$Y32 <- cesCalc( xNames = xNames, 
-   data = MishraCES, coef = bOld, nested = TRUE )
-all.equal( MishraCES$Y3, MishraCES$Y32 )
-
-MishraCES$Y3Vrs2 <- cesCalc( xNames = xNames, 
-   data = MishraCES, coef = bOldVrs, nested = TRUE )
-all.equal( MishraCES$Y3Vrs, MishraCES$Y3Vrs2 )
 
 
 ## check cesCalc() with rho equal to zero and close to zero

@@ -87,7 +87,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
    
    # number of parameters
    nParam <- 1 + nExog + vrs + nested * 2 - ( !is.null( rho1 ) ) - 
-      ( !is.null( rho2 ) ) - ( !is.null( rho ) )
+      ( !is.null( rho2 ) ) - ( !is.null( rho ) ) - ( nested && nExog == 3 )
 
    # start values
    start <- cesEstStart( yName = yName, xNames = xNames, data = data,
@@ -279,7 +279,7 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       }
       if( nested && nExog == 3 ) {
          nlsFormula <- as.formula( paste( yName,
-            " ~ gamma_2 * ( delta_2 * gamma_1^(-rho) * ",
+            " ~ gamma_2 * ( delta_2 * ",
             "( delta_1 * ", xNames[ 1 ], "^(-rho_1)",
             " + ( 1 - delta_1 ) * ", xNames[ 2 ], "^(-rho_1) )",
             "^( rho / rho_1 ) +",
@@ -326,26 +326,6 @@ cesEst <- function( yName, xNames, data, vrs = FALSE,
       vrs = vrs, rho1 = rho1, rho2 = rho2, rho = rho, 
       nExog = nExog, nested = nested )
 
-   if( nested && nExog == 3 ) {
-      oldCoef <- result$coefficients
-      if( !vrs ) {
-         oldCoef <- c( oldCoef, nu = 1 )
-      }
-      if( abs( oldCoef[ "rho" ] ) < 1e-14 ) {
-         result$coefficients[ "gamma_2" ] <- oldCoef[ "gamma_2" ] * 
-            oldCoef[ "gamma_1" ]^( oldCoef[ "nu" ] * oldCoef[ "delta_2" ] )
-      } else {
-         result$coefficients[ "gamma_2" ] <- oldCoef[ "gamma_2" ] * 
-            ( oldCoef[ "delta_2" ] * oldCoef[ "gamma_1" ]^( - oldCoef[ "rho" ] ) + 
-               ( 1 - oldCoef[ "delta_2" ] ) )^( 
-                  - oldCoef[ "nu" ] / oldCoef[ "rho" ] )
-      }
-      result$coefficients[ "delta_2" ] <- oldCoef[ "delta_2" ] * 
-         oldCoef[ "gamma_1" ]^( - oldCoef[ "rho" ] ) /
-         ( oldCoef[ "delta_2" ] * oldCoef[ "gamma_1" ]^( - oldCoef[ "rho" ] ) + 
-            ( 1 - oldCoef[ "delta_2" ] ) )
-      result$coefficients[ "gamma_1" ] <- 1
-   }
 
    # return also the call
    result$call <- matchedCall
