@@ -1,0 +1,103 @@
+
+R version 2.12.2 (2011-02-25)
+Copyright (C) 2011 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: i486-pc-linux-gnu (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library( "micEconCES" )
+Loading required package: systemfit
+Loading required package: Matrix
+Loading required package: lattice
+
+Attaching package: 'Matrix'
+
+The following object(s) are masked from 'package:base':
+
+    det
+
+Loading required package: car
+Loading required package: MASS
+Loading required package: nnet
+Loading required package: survival
+Loading required package: splines
+Loading required package: lmtest
+Loading required package: zoo
+Loading required package: miscTools
+Loading required package: micEcon
+Loading required package: np
+Loading required package: boot
+
+Attaching package: 'boot'
+
+The following object(s) are masked from 'package:car':
+
+    logit
+
+The following object(s) are masked from 'package:survival':
+
+    aml
+
+The following object(s) are masked from 'package:lattice':
+
+    melanoma
+
+Loading required package: cubature
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-3)
+Loading required package: minpack.lm
+Loading required package: DEoptim
+
+DEoptim package
+Differential Evolution algorithm in R
+Authors: David Ardia and Katharine Mullen
+> data( "GermanIndustry" )
+> 
+> print( GermanIndustry )
+   year       Y      K     A      E
+1  1960  453.50  24.25 12.50 574.80
+2  1961  476.66  25.49 12.81 560.98
+3  1962  498.56  26.66 12.92 569.11
+4  1963  508.93  27.21 12.93 569.92
+5  1964  553.86  29.62 12.99 609.76
+6  1965  586.71  31.37 13.16 639.84
+7  1966  599.24  32.04 13.02 608.94
+8  1967  581.41  31.09 12.25 601.63
+9  1968  625.86  33.47 12.32 666.67
+10 1969  685.95  36.68 12.73 690.24
+11 1970  722.27  53.65 12.99 738.21
+12 1971  734.56  54.56 12.95 717.07
+13 1972  760.72  56.51 12.75 728.46
+14 1973  801.45  59.53 12.81 776.42
+15 1974  786.65  58.43 12.40 776.42
+16 1975  747.28  55.51 11.62 682.11
+17 1976  800.94  59.49 11.41 717.89
+18 1977  815.62  60.58 11.42 715.45
+19 1978  830.80  61.71 11.41 720.33
+20 1979  871.32  64.72 11.58 748.78
+21 1980  860.04  84.57 11.72 716.26
+22 1981  845.24  83.11 11.53 687.80
+23 1982  816.53  80.29 11.18 624.39
+24 1983  828.93  81.51 10.84 615.45
+25 1984  849.70  83.55 10.79 633.33
+26 1985  868.14  85.37 10.80 634.15
+27 1986  880.18  86.55 10.91 610.57
+28 1987  868.55  85.41 10.89 609.76
+29 1988  892.43  87.75 10.86 622.76
+30 1989  924.57 121.02 11.00 633.33
+31 1990  968.44 136.00 11.31 625.20
+32 1991 1002.21 145.54 11.45 628.46
+33 1992 1002.08 141.82 11.35 613.01
+34 1993  939.47 134.46 10.82 585.37
+> 
+> 
