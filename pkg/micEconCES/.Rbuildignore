@@ -1,9 +1,13 @@
 inst/doc/Multiple
+inst/doc/slides
 inst/doc/aux2bib_micEconCES.sh
 inst/doc/monteCarlo/mcResults.RData
 inst/doc/CES-deriv.lyx
+inst/doc/CES-properties.lyx
 inst/doc/CES.Rnw.backup
 inst/doc/CES_abstract.tex
+inst/doc/CES_Symposium.Rnw
+inst/doc/CES_Symposium.pdf
 tests/cesTestGrid.R
 tests/cesTestGrid.Rout.save
 tests/cesTest.R
