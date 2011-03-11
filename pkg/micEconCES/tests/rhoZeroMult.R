@@ -20,6 +20,7 @@ xxNames <- paste( "xx", 1:nExog, sep = "." )
 for( i in 1:nExog ) {
    cesData[[ xxNames[ i ] ]] <- rchisq( nObs, 10 + i )
 }
+cesData$time <- c( 0:( nObs - 1 ) )
 
 # delta coefficients
 cesDelta <- c( 1:nExog / sum( 1:nExog ) )
@@ -35,8 +36,9 @@ rownames( y ) <- c( -(1:20), 0, (20:1) )
 # calculate endogenous variables
 for( i in 1:length( rhos ) ) {
    # coefficients
-   cesCoef <- c( gamma = 1, cesDelta, rho = rhos[ i ], nu = 1.1 )
-   y[ i, ] <- cesCalc( xNames = xxNames, data = cesData, coef = cesCoef )
+   cesCoef <- c( gamma = 1, lambda = 0.02, cesDelta, rho = rhos[ i ], nu = 1.1 )
+   y[ i, ] <- cesCalc( xNames = xxNames, tName = "time", data = cesData, 
+      coef = cesCoef )
 }
 
 # print matrix of endogenous variables
@@ -49,7 +51,7 @@ for( i in 1:nExog ) {
 }
 names( cdCoef ) <- paste( "a", 0:nExog, sep = "_" )
 yCd <- cobbDouglasCalc( xNames = xxNames, data = cesData, 
-   coef = cdCoef )
+   coef = cdCoef ) * exp( cesCoef[ "lambda" ] * cesData$time )
 
 # print endogenous variables for different rhos (adjusted with the y at rho=0)
 for( i in 1:nObs ) {

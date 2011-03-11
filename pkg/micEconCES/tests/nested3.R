@@ -85,10 +85,11 @@ yRho <- matrix( NA, nrow = length( rhos ), ncol = 7 )
 rownames( yRho ) <- c( -(1:20), 0, (20:1) )
 
 # calculate endogenous variables
-coefRho <- b
+coefRho <- bTc
 for( i in 1:length( rhos ) ) {
    coefRho[ "rho" ] <- rhos[ i ]
-   yRho[ i, ] <- cesCalc( xNames = xNames, data = MishraCES[1:7,], coef = coefRho,
+   yRho[ i, ] <- cesCalc( xNames = xNames, tName = "time",
+      data = MishraCES[1:7,], coef = coefRho,
       nested = TRUE )
 }
 
@@ -107,10 +108,11 @@ yRho1 <- matrix( NA, nrow = length( rhos ), ncol = 7 )
 rownames( yRho1 ) <- c( -(1:20), 0, (20:1) )
 
 # calculate endogenous variables
-coefRho1 <- b
+coefRho1 <- bTc
 for( i in 1:length( rhos ) ) {
    coefRho1[ "rho_1" ] <- rhos[ i ]
-   yRho1[ i, ] <- cesCalc( xNames = xNames, data = MishraCES[1:7,], coef = coefRho1,
+   yRho1[ i, ] <- cesCalc( xNames = xNames, tName = "time",
+      data = MishraCES[1:7,], coef = coefRho1,
       nested = TRUE )
 }
 
@@ -124,12 +126,13 @@ yRho2 <- array( NA, c( length( rhos ), length( rhos ), 2 ) )
 dimnames( yRho2 ) <- list( -20:20, -20:20, 1:2 )
 
 # calculate endogenous variables
-coefRho2 <- bVrs
+coefRho2 <- bTcVrs
 for( i in 1:length( rhos ) ) {
    for( j in 1:length( rhos ) ) {
       coefRho2[ "rho" ] <- rhos[ i ]
       coefRho2[ "rho_1" ] <- rhos[ j ]
-      yRho2[ i, j, ] <- cesCalc( xNames = xNames, data = MishraCES[ 1:2, ], 
+      yRho2[ i, j, ] <- cesCalc( xNames = xNames, tName = "time", 
+         data = MishraCES[ 1:2, ], 
          coef = coefRho2, nested = TRUE )
    }
 }
