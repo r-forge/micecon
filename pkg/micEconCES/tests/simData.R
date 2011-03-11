@@ -8,13 +8,15 @@ set.seed( 123 )
 nObs <- 200
 
 # create data set with explanatory variables
-cesData <- data.frame( xx1 = rchisq( nObs, 10 ), xx2 = rchisq( nObs, 10 ) )
+cesData <- data.frame( xx1 = rchisq( nObs, 10 ), xx2 = rchisq( nObs, 10 ),
+   time = c( 0:( nObs - 1 ) ) )
 
 # names of explanatory variables
 xxNames <- c( "xx1", "xx2" )
 
 # coefficients
 cesCoef <- c( gamma = 1, delta = 0.6, rho = 0.5, nu = 1.1 )
+cesCoefTc <- c( cesCoef[ 1 ], lambda = 0.03, cesCoef[ -1 ] )
 
 # calculate deterministic endogenous variable
 cesData$yd <- cesCalc( xNames = xxNames, data = cesData, coef = cesCoef )
@@ -25,6 +27,22 @@ all.equal( cesData$yd,
 # check if permuting the coefficients makes a difference
 all.equal( cesData$yd,
    cesCalc( xNames = xxNames, data = cesData, coef = sample( cesCoef, 4 ) ) )
+
+# deterministic dependent variable with technological change
+cesData$ydTc <- cesCalc( xNames = xxNames, tName = "time", data = cesData, 
+   coef = cesCoefTc )
+print( cesData$ydTc )
+all.equal( cesData$ydTc, 
+   cesData$yd * exp( cesCoefTc[ "lambda" ] * c( 0:( nObs - 1 ) ) ) )
+# check if removing the names of the coefficients makes a difference
+all.equal( cesData$ydTc,
+   cesCalc( xNames = xxNames, tName = "time", data = cesData, 
+      coef = unname( cesCoefTc ) ) )
+# check if permuting the coefficients makes a difference
+all.equal( cesData$ydTc,
+   cesCalc( xNames = xxNames, tName = "time", data = cesData, 
+      coef = cesCoefTc[ c( 4, 1, 3, 5, 2 ) ] ) )
+
 
 # adding noise to the endogenous variable
 cesData$ys <- cesData$yd + rnorm( nObs )
