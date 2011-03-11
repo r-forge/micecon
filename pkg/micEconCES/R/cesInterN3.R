@@ -1,4 +1,4 @@
-cesInterN3 <- function( funcName, par, xNames, data, rhoApprox ) {
+cesInterN3 <- function( funcName, par, xNames, tName, data, rhoApprox ) {
 
       # interpolation if rho and/or rho_1 are close to zero
       coefArray <- array( par, c( length( par ), 2, 2 ) )
@@ -26,7 +26,7 @@ cesInterN3 <- function( funcName, par, xNames, data, rhoApprox ) {
             if( weightMatrix[ 1, i ] != 0 && weightMatrix[ 2, j ] != 0 ) {
                result <- result + weightMatrix[ 1, i ] * weightMatrix[ 2, j ] * 
                   do.call( funcName, args = list( coef = coefArray[ , i, j ], 
-                     data = data, xNames = xNames ) )
+                     data = data, xNames = xNames, tName = tName ) )
             }
          }
       }
