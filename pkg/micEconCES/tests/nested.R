@@ -4,6 +4,7 @@ library( maxLik )
 options( max.print = 300000 )
 
 data( "MishraCES" )
+MishraCES$time <- c( 0:49 )
 
 b <- c( "gamma" = 200 * 0.5^( 1 / 0.6 ), 
    "delta_1" = 0.6, "delta_2" = 0.3, "delta_3" = 0.5, "rho_1" = 0.5,
@@ -11,6 +12,10 @@ b <- c( "gamma" = 200 * 0.5^( 1 / 0.6 ),
 bVrs <- c( b, "nu" = 1.05 )
 bVrs[ "gamma" ] <- 200 * 0.5^( 1.05 / 0.6 )
 xNames <- c( "X1", "X2", "X3", "X4" )
+
+# with technological change
+bTc <- c( b[ 1 ], lambda = 0.02, b[ -1 ] )
+bTcVrs <- c( bVrs[ 1 ], lambda = 0.02, bVrs[ -1 ] )
 
 
 ######################### checking cesCalc() ###############################
@@ -25,6 +30,34 @@ all.equal( MishraCES$Y, MishraCES$Y2 )
 MishraCES$yVrs <- cesCalc( xNames = xNames, 
    data = MishraCES, coef = bVrs, nested = TRUE )
 MishraCES$yVrs
+
+# with technological change
+MishraCES$yTc <- cesCalc( xNames = xNames, tName = "time",
+   data = MishraCES, coef = bTc, nested = TRUE )
+MishraCES$yTc
+all.equal( MishraCES$yTc, MishraCES$Y2 * exp( bTc[ "lambda" ] * 0:49 ) )
+# check if removing the names of the coefficients makes a difference
+all.equal( MishraCES$yTc,
+   cesCalc( xNames = xNames, tName = "time", data = MishraCES, 
+      coef = unname( bTc ), nested = TRUE ) )
+# check if permuting the coefficients makes a difference
+all.equal( MishraCES$yTc,
+   cesCalc( xNames = xNames, tName = "time", data = MishraCES, 
+      coef = sample( bTc, 8 ), nested = TRUE ) )
+
+# with technological change and VRS
+MishraCES$yTcVrs <- cesCalc( xNames = xNames, tName = "time", 
+   data = MishraCES, coef = bTcVrs, nested = TRUE )
+MishraCES$yTcVrs
+all.equal( MishraCES$yTcVrs, MishraCES$yVrs * exp( bTcVrs[ "lambda" ] * 0:49 ) )
+# check if removing the names of the coefficients makes a difference
+all.equal( MishraCES$yTcVrs,
+   cesCalc( xNames = xNames, tName = "time", data = MishraCES, 
+      coef = unname( bTcVrs ), nested = TRUE ) )
+# check if permuting the coefficients makes a difference
+all.equal( MishraCES$yTcVrs,
+   cesCalc( xNames = xNames, tName = "time", data = MishraCES, 
+      coef = sample( bTcVrs, 9 ), nested = TRUE ) )
 
 
 ## check cesCalc() with rho equal to zero and close to zero

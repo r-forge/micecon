@@ -64,6 +64,7 @@ Authors: David Ardia and Katharine Mullen
 > library( "maxLik" )
 > 
 > data( "MishraCES" )
+> MishraCES$time <- c( 0:49 )
 > 
 > bOld <- c( "gamma_1" = 2, "gamma_2" = 200, "delta_1" = 0.6, "delta_2" = 0.7, 
 +    "rho_1" = 0.5, "rho" = 0.6 )
@@ -90,6 +91,10 @@ Authors: David Ardia and Katharine Mullen
 > bVrs <- bVrs[ names( bVrs ) != "gamma_1" ]
 > names( bVrs )[ names( bVrs ) == "gamma_2" ] <- "gamma"
 > rm( bOldVrs )
+> 
+> # with technological change
+> bTc <- c( b[ 1 ], lambda = 0.02, b[ -1 ] )
+> bTcVrs <- c( bVrs[ 1 ], lambda = 0.02, bVrs[ -1 ] )
 > 
 > 
 > ######################### checking cesCalc() ###############################
@@ -119,6 +124,57 @@ Authors: David Ardia and Katharine Mullen
 [37] 25159.5637   914.8889 28058.3540 28113.3850   648.9436  7674.5865
 [43]   806.4323  4405.5330 30228.4057 33759.3535 32998.1212  7344.9950
 [49] 24122.0167  8408.8140
+> 
+> # with technological change
+> MishraCES$Y3Tc <- cesCalc( xNames = xNames, tName = "time",
++    data = MishraCES, coef = bTc, nested = TRUE )
+> MishraCES$Y3Tc
+ [1]  7902.714  3177.937 18774.812 13635.427 27751.739 15873.429 14160.151
+ [8] 22600.474 10413.500  1017.403  9574.287 17524.240 15969.795 15356.048
+[15]  6077.388  8095.352 16134.848 25319.283 23416.630 12312.512 16865.625
+[22]  5744.172 16842.708 29063.174 35055.013 33835.377 41393.883  5222.134
+[29] 18546.067 11242.392 21714.626 10623.495 11796.941  4155.851 21884.784
+[36] 37238.511 33305.485  1669.996 38277.296 39120.170  1297.693 12507.606
+[43]  1645.608  7859.658 46181.545 52092.057 52053.859 13550.618 40749.250
+[50] 15949.013
+> all.equal( MishraCES$Y3Tc, MishraCES$Y3 * exp( bTc[ "lambda" ] * 0:49 ) )
+[1] TRUE
+> # check if removing the names of the coefficients makes a difference
+> all.equal( MishraCES$Y3Tc,
++    cesCalc( xNames = xNames, tName = "time", data = MishraCES, 
++       coef = unname( bTc ), nested = TRUE ) )
+[1] TRUE
+> # check if permuting the coefficients makes a difference
+> all.equal( MishraCES$Y3Tc,
++    cesCalc( xNames = xNames, tName = "time", data = MishraCES, 
++       coef = sample( bTc, 6 ), nested = TRUE ) )
+[1] TRUE
+> 
+> # with technological change and VRS
+> MishraCES$Y3TcVrs <- cesCalc( xNames = xNames, tName = "time", 
++    data = MishraCES, coef = bTcVrs, nested = TRUE )
+> MishraCES$Y3TcVrs
+ [1] 11414.343  4182.040 29450.521 20674.112 45086.017 24338.393 21422.007
+ [8] 35755.773 15216.146  1175.768 13817.459 26813.014 24160.350 23094.722
+[15]  8314.294 11374.373 24240.464 39712.527 36369.659 17896.790 25248.054
+[22]  7705.606 25109.679 45666.403 56011.346 53763.855 66979.742  6856.113
+[29] 27583.762 15872.763 32678.862 14854.734 16635.984  5269.381 32698.021
+[36] 58558.228 51688.643  1917.548 59996.511 61328.570  1444.251 17425.147
+[43]  1867.993 10410.982 72877.654 83034.611 82801.868 18803.051 62999.386
+[50] 22404.917
+> all.equal( MishraCES$Y3TcVrs, 
++    MishraCES$Y3Vrs * exp( bTcVrs[ "lambda" ] * 0:49 ) )
+[1] TRUE
+> # check if removing the names of the coefficients makes a difference
+> all.equal( MishraCES$Y3TcVrs,
++    cesCalc( xNames = xNames, tName = "time", data = MishraCES, 
++       coef = unname( bTcVrs ), nested = TRUE ) )
+[1] TRUE
+> # check if permuting the coefficients makes a difference
+> all.equal( MishraCES$Y3TcVrs,
++    cesCalc( xNames = xNames, tName = "time", data = MishraCES, 
++       coef = sample( bTcVrs, 7 ), nested = TRUE ) )
+[1] TRUE
 > 
 > 
 > ## check cesCalc() with rho equal to zero and close to zero
