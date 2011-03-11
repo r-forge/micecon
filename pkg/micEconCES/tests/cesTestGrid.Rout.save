@@ -1619,7 +1619,7 @@ rho     0.400000    22.23885 0.01798654 0.9856496
 +    data = germanFarms, vrs = TRUE,
 +    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
 Warning messages:
-1: In log(coef["gamma"]) : NaNs produced
+1: In log(gammaStar) : NaNs produced
 2: In nls.lm(par = start, fn = residFun, data = data, jac = jac, yName = yName,  :
   lmder: info = -1. Number of iterations has reached `maxiter' == 50.
 

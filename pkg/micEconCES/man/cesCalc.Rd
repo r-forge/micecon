@@ -9,15 +9,19 @@
 
    The original CES function with two explanatory variables is
 
-   \deqn{y = \gamma \: ( \delta \: x_1^{-\rho} + ( 1 - \delta ) \: x_2^{-\rho} )
+   \deqn{y = \gamma \: \exp ( \lambda \: t ) \: 
+      ( \delta \: x_1^{-\rho} + ( 1 - \delta ) \: x_2^{-\rho} )
       ^{-\frac{\nu}{\rho}}}{%
-      y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)}
+      y = gamma * exp( lambda * t ) * 
+         ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)}
 
    and the non-nested CES function with \eqn{N} explanatory variables is
 
-   \deqn{y = \gamma \: \left( \sum_{i=1}^N \delta_i \: x_i^{-\rho} \right)
+   \deqn{y = \gamma \: \exp ( \lambda \: t ) \: 
+      \left( \sum_{i=1}^N \delta_i \: x_i^{-\rho} \right)
       ^{-\frac{\nu}{\rho}}}{%
-      y = gamma * ( sum(i=1 to N) delta_i * x_i^(-rho) )^(-nu/rho)}
+      y = gamma * exp( lambda * t ) * 
+         ( sum(i=1 to N) delta_i * x_i^(-rho) )^(-nu/rho)}
 
    where in the latter case
    \eqn{\sum_{i=1}^N \delta_i = 1}{sum(i=1 to N) delta_i = 1}.
@@ -28,13 +32,13 @@
    The \emph{nested} CES function with 3 explanatory variables 
    proposed by Sato (1967) is
 
-   \deqn{y = \gamma \: \left[
+   \deqn{y = \gamma \: \exp ( \lambda \: t ) \: \left[
       \delta_2 \:
       \left( \delta_1 \: x_1^{-\rho_1} +
       ( 1 - \delta_1 ) x_2^{-\rho_1} \right)^{\frac{\rho}{\rho_1}} +
       ( 1 - \delta_2 ) x_3^{-\rho}
       \right]^{-\frac{\nu}{\rho}}}{%
-      y = gamma * [ delta_2 *
+      y = gamma * exp( lambda * t ) * [ delta_2 *
       ( delta_1 * x_1^(-rho_1) + ( 1 - delta_1 ) * x_2^(-rho_1) )^(rho / rho_1) +
       ( 1 - delta_2 ) * x_3^(-rho)
       ]^(-nu / rho)}
@@ -42,20 +46,21 @@
    and the \emph{nested} CES function with 4 explanatory variables 
    (a generalisation of the version proposed by Sato, 1967) is
 
-   \deqn{y = \gamma \: \left[ \delta_3 \cdot
+   \deqn{y = \gamma \: \exp ( \lambda \: t ) \: \left[ \delta_3 \cdot
       \left( \delta_1 \: x_1^{-\rho_1} +
       ( 1 - \delta_1 ) x_2^{-\rho_1} \right)^{\frac{\rho}{\rho_1}} +
       ( 1 - \delta_3 ) \cdot
       \left( \delta_2 \: x_3^{-\rho_2} +
       ( 1 - \delta_2 ) x_4^{-\rho_2} \right)^{\frac{\rho}{\rho_2}}
       \right]^{-\frac{\nu}{\rho}}}{%
-      y = gamma * [ delta_3 ( delta_1 * x_1^(-rho_1) + ( 1 - delta_1 ) * x_2^(-rho_1) )^(rho / rho_1) +
+      y = gamma * exp( lambda * t ) * 
+      [ delta_3 ( delta_1 * x_1^(-rho_1) + ( 1 - delta_1 ) * x_2^(-rho_1) )^(rho / rho_1) +
       ( 1 - delta_3 ) ( delta_2 * x_3^(-\rho_2) + ( 1 - delta_2 ) * x_4^(-rho_2) )^(rho / rho_2)
       ]^(-nu / rho)}
 }
 
 \usage{
-cesCalc( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 )
+cesCalc( xNames, data, coef, tName = NULL, nested = FALSE, rhoApprox = 5e-6 )
 }
 
 \arguments{
@@ -65,17 +70,20 @@ cesCalc( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 )
    \item{coef}{numeric vector containing the coefficients of the CES:
       if the vector is unnamed,
       the order of the coefficients must be
-      \eqn{\gamma}{gamma}, \eqn{\delta}{delta}, \eqn{\rho}{rho},
+      \eqn{\gamma}{gamma}, eventuelly \eqn{\lambda}{lambda}, 
+      \eqn{\delta}{delta}, \eqn{\rho}{rho}, 
       and eventually \eqn{\nu}{nu}
       in case of two expanatory variables,
-      \eqn{\gamma}{gamma}, \eqn{\delta_1}{delta_1}, \ldots,
+      \eqn{\gamma}{gamma}, eventuelly \eqn{\lambda}{lambda}, 
+      \eqn{\delta_1}{delta_1}, \ldots,
       \eqn{\delta_N}{delta_N}, \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}
       in case of the non-nested CES with \eqn{N>2} explanatory variables,
-      \eqn{\gamma}{gamma}, 
+      \eqn{\gamma}{gamma}, eventuelly \eqn{\lambda}{lambda}, 
       \eqn{\delta_1}{delta_1}, \eqn{\delta_2}{delta_2}, 
       \eqn{\rho_1}{rho_1}, \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}
       in case of the nested CES with 3 explanatory variables,
-      and \eqn{\gamma}{gamma}, \eqn{\delta_1}{delta_1}, \eqn{\delta_2}{delta_2}, 
+      and \eqn{\gamma}{gamma}, eventuelly \eqn{\lambda}{lambda}, 
+      \eqn{\delta_1}{delta_1}, \eqn{\delta_2}{delta_2}, 
       \eqn{\delta_3}{delta_3}, \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, 
       \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}
       in case of the nested CES with 4 explanatory variables,
@@ -91,6 +99,8 @@ cesCalc( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 )
       \code{"rho_1"}, \code{"rho_2"}, \code{"rho"}, and eventually \code{"nu"}
       in case of the nested CES with 4 explanatory variables,
       where the order is irrelevant in all cases.}
+   \item{tName}{optional character string specifying the name of the 
+      time variable (\eqn{t}).}
    \item{nested}{logical. ;
       if \code{FALSE} (the default), the original CES for \eqn{n} inputs 
       proposed by Kmenta (1967) is used;

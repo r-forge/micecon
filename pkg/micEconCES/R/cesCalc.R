@@ -1,9 +1,20 @@
-cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
+cesCalc <- function( xNames, data, coef, tName = NULL,
+      nested = FALSE, rhoApprox = 5e-6 ) {
 
    # check number of exogenous variables
    nExog <- length( xNames )
    if( nExog < 2 ) {
       stop( "argument 'xNames' must include the names of at least 2 variables" )
+   }
+
+   # check time variable
+   if( is.null( tName ) ) {
+      withTime <- FALSE
+   } else {
+      withTime <- TRUE
+      if( length( tName ) != 1 || !is.character( tName[1] ) ) {
+         stop( "argument 'tName' must be a single character string" )
+      }
    }
 
    # check 
@@ -13,7 +24,7 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
    }
 
    # check names of exogenous variables
-   checkNames( xNames, names( data ) )
+   checkNames( c( xNames, tName ), names( data ) )
 
    # check argument 'rhoApprox'
    if( !is.numeric( rhoApprox ) || length( rhoApprox ) != 1 ) {
@@ -22,30 +33,34 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
 
    # check for VRS
    if( nExog == 2 ) {
-      vrs <- length( coef ) >= 4
+      vrs <- length( coef ) >= 4 + withTime
    } else {
       if( nested ) {
-         vrs <- length( coef ) >= 2 * nExog
+         vrs <- length( coef ) >= 2 * nExog + withTime
       } else {
-         vrs <- length( coef ) - nExog  >= 3
+         vrs <- length( coef ) - nExog  >= 3 + withTime
       }
    }
 
    # check number of coefficients
-   if( nExog == 2 && length( coef ) != 3 + vrs ) {
+   if( nExog == 2 && length( coef ) != 3 + vrs + withTime ) {
       stop( "a CES function with 2 exogenous variables and",
          ifelse( vrs, " variable", " constant" ), " returns to scale",
-         " must have ", 3 + vrs, " coefficients",
+         ifelse( withTime, " and time effect", "" ),
+         " must have ", 3 + vrs + withTime, " coefficients",
          " but you provided ", length( coef ), " coefficients" )
-   } else if( nExog > 2 && !nested && length( coef ) != nExog + 2 + vrs ) {
+   } else if( nExog > 2 && !nested && length( coef ) != nExog + 2 + vrs + withTime ) {
       stop( "a non-nested CES function with ", nExog, " exogenous variables and",
          ifelse( vrs, " variable", " constant" ), " returns to scale",
-         " must have ", nExog + 2 + vrs, " coefficients",
+         ifelse( withTime, " and time effect", "" ),
+         " must have ", nExog + 2 + vrs + withTime, " coefficients",
          " but you provided ", length( coef ), " coefficients" )
-   } else if( nExog %in% c( 3, 4 ) && nested && length( coef ) != 2 * nExog - 1 + vrs ) {
+   } else if( nExog %in% c( 3, 4 ) && nested && length( coef ) != 
+         2 * nExog - 1 + vrs + withTime ) {
       stop( "a nested CES function with ", nExog, " exogenous variables and",
          ifelse( vrs, " variable", " constant" ), " returns to scale",
-         " must have ", 2 * nExog - 1 + vrs, " coefficients",
+         ifelse( withTime, " and time effect", "" ),
+         " must have ", 2 * nExog - 1 + vrs + withTime, " coefficients",
          " but you provided ", length( coef ), " coefficients" )
    }
 
@@ -55,7 +70,8 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
    }
 
    # names of coefficients
-   coefNames <- cesCoefNames( nExog = nExog, vrs = vrs, nested = nested )
+   coefNames <- cesCoefNames( nExog = nExog, vrs = vrs, nested = nested,
+      withTime = withTime )
 
    # assign or check names of coefficients
    if( is.null( names( coef ) ) ) {
@@ -91,8 +107,12 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
 
    # calculate the endogenous variable
    if( !nested ) {
+      gammaStar <- coef[ "gamma" ]
+      if( withTime ) {
+         gammaStar <- gammaStar * exp( coef[ "lambda" ] * data[[ tName ]] )
+      } 
       if( abs( coef[ "rho" ] ) <= rhoApprox ) {
-         result <- log( coef[ "gamma" ] )
+         result <- log( gammaStar )
          for( i in 1:nExog ) {
             result <- result + coef[ paste( "delta", i, sep = "_" ) ] *
                coef[ "nu" ] * log( data[[ xNames[ i ] ]] )
@@ -116,15 +136,17 @@ cesCalc <- function( xNames, data, coef, nested = FALSE, rhoApprox = 5e-6 ) {
                   data[[ xNames[ i ] ]]^( -coef[ "rho" ] )
             }
             result <- result^( -coef[ "nu" ] / coef[ "rho" ] )
-            result <- coef[ "gamma" ] * result
+            result <- gammaStar * result
          }
       }
    } else if( nExog == 3 ) {   # nested CES with 3 inputs
          result <- cesInterN3( funcName = "cesCalcN3", 
-            par = coef, xNames = xNames, data = data, rhoApprox = rhoApprox )
+            par = coef, xNames = xNames, tName = tName,
+            data = data, rhoApprox = rhoApprox )
    } else {                    # nested CES with 4 inputs
       result <- cesInterN3( funcName = "cesCalcN4", 
-            par = coef, xNames = xNames, data = data, rhoApprox = rhoApprox )
+            par = coef, xNames = xNames, tName = tName,
+            data = data, rhoApprox = rhoApprox )
    }
 
    return( result )

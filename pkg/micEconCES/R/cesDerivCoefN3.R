@@ -22,7 +22,7 @@ cesDerivCoefN3B <- function( coef, data, xNames ) {
 
 
 # derivatives with respect to gamma
-cesDerivCoefN3Gamma2 <- function( coef, data, xNames ) {
+cesDerivCoefN3Gamma2 <- function( coef, data, xNames, tName ) {
 
    B1 <- cesDerivCoefN3B1( coef = coef, data = data, xNames = xNames )
 
@@ -58,7 +58,7 @@ cesDerivCoefN3Gamma2 <- function( coef, data, xNames ) {
 
 
 # derivatives with respect to delta_1
-cesDerivCoefN3Delta1 <- function( coef, data, xNames ) {
+cesDerivCoefN3Delta1 <- function( coef, data, xNames, tName ) {
 
    B1 <- cesDerivCoefN3B1( coef = coef, data = data, xNames = xNames )
 
@@ -111,7 +111,7 @@ cesDerivCoefN3Delta1 <- function( coef, data, xNames ) {
 
 
 # derivatives with respect to delta_2
-cesDerivCoefN3Delta2 <- function( coef, data, xNames ) {
+cesDerivCoefN3Delta2 <- function( coef, data, xNames, tName ) {
 
    B1 <- cesDerivCoefN3B1( coef = coef, data = data, xNames = xNames )
 
@@ -164,7 +164,7 @@ cesDerivCoefN3Delta2 <- function( coef, data, xNames ) {
 
 
 # derivatives with respect to rho_1
-cesDerivCoefN3Rho1 <- function( coef, data, xNames ) {
+cesDerivCoefN3Rho1 <- function( coef, data, xNames, tName ) {
 
    B1 <- cesDerivCoefN3B1( coef = coef, data = data, xNames = xNames )
 
@@ -226,7 +226,7 @@ cesDerivCoefN3Rho1 <- function( coef, data, xNames ) {
 
 
 # derivatives with respect to rho
-cesDerivCoefN3Rho <- function( coef, data, xNames ) {
+cesDerivCoefN3Rho <- function( coef, data, xNames, tName ) {
 
    B1 <- cesDerivCoefN3B1( coef = coef, data = data, xNames = xNames )
 
@@ -314,7 +314,7 @@ cesDerivCoefN3Rho <- function( coef, data, xNames ) {
 
 
 # derivatives with respect to nu
-cesDerivCoefN3Nu <- function( coef, data, xNames ) {
+cesDerivCoefN3Nu <- function( coef, data, xNames, tName ) {
 
    B1 <- cesDerivCoefN3B1( coef = coef, data = data, xNames = xNames )
 
