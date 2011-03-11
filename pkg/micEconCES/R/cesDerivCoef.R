@@ -7,7 +7,7 @@ cesDerivCoef <- function( par, xNames, tName = NULL, data, vrs, nested = FALSE,
    # names of coefficients
    coefNames <- cesCoefNames( nExog = nExog, vrs = vrs, 
       returnRho1 = returnRho1, returnRho2 = returnRho2, 
-      returnRho = returnRho, nested = nested )
+      returnRho = returnRho, nested = nested, withTime = !is.null( tName ) )
 
    # check rhoApprox
    if( !nested ) {
@@ -30,7 +30,7 @@ cesDerivCoef <- function( par, xNames, tName = NULL, data, vrs, nested = FALSE,
       }
       gamma <- par[ "gamma" ]
       if( !is.null( tName ) ) {
-         gamma <- gamma * exp( coef[ "lambda" ] * data[[ tName ]] )
+         gamma <- gamma * exp( par[ "lambda" ] * data[[ tName ]] )
       }
       
       delta <- par[ "delta" ]
@@ -51,6 +51,16 @@ cesDerivCoef <- function( par, xNames, tName = NULL, data, vrs, nested = FALSE,
             data[[ xNames[ 2 ] ]]^( nu * ( 1 - delta ) ) *
             exp( - 0.5 * rho * nu * delta * ( 1 - delta ) * 
             ( log( data[[ xNames[ 1 ] ]] ) - log( data[[ xNames[ 2 ] ]] ) )^2 )
+      }
+      if( !is.null( tName ) ) {
+         result[ , "gamma" ] <- result[ , "gamma" ] *
+            exp( par[ "lambda" ] * data[[ tName ]] )
+      }
+
+      # derivatives with respect to lambda
+      if( !is.null( tName ) ) {
+         result[ , "lambda" ] <- result[ , "gamma" ] *
+            par[ "gamma" ] * data[[ tName ]]
       }
 
       # derivatives with respect to delta
@@ -128,6 +138,14 @@ cesDerivCoef <- function( par, xNames, tName = NULL, data, vrs, nested = FALSE,
          xNames = xNames, tName = tName, data = data, 
          rhoApprox = rhoApprox[ "gamma" ] )
 
+      # derivatives with respect to lambda
+      if( !is.null( tName ) ) {
+         result[ , "lambda" ] <- cesInterN3( 
+            funcName = "cesDerivCoefN3Lambda", par = par, 
+            xNames = xNames, tName = tName, data = data, 
+            rhoApprox = rhoApprox[ "gamma" ] )
+      }
+
       # derivatives with respect to delta_1
       result[ , "delta_1" ] <- cesInterN3( 
          funcName = "cesDerivCoefN3Delta1", par = par, 
@@ -175,6 +193,14 @@ cesDerivCoef <- function( par, xNames, tName = NULL, data, vrs, nested = FALSE,
          funcName = "cesDerivCoefN4Gamma", par = par, 
          xNames = xNames, tName = tName, data = data, 
          rhoApprox = rhoApprox[ "gamma" ] )
+
+      # derivatives with respect to lambda
+      if( !is.null( tName ) ) {
+         result[ , "lambda" ] <- cesInterN4( 
+            funcName = "cesDerivCoefN4Lambda", par = par, 
+            xNames = xNames, tName = tName, data = data, 
+            rhoApprox = rhoApprox[ "gamma" ] )
+      }
 
       # derivatives with respect to delta_1
       result[ , "delta_1" ] <- cesInterN4( 
