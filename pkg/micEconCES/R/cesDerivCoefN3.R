@@ -22,7 +22,7 @@ cesDerivCoefN3B <- function( coef, data, xNames ) {
 
 
 # derivatives with respect to gamma
-cesDerivCoefN3Gamma2 <- function( coef, data, xNames, tName ) {
+cesDerivCoefN3Gamma <- function( coef, data, xNames, tName ) {
 
    B1 <- cesDerivCoefN3B1( coef = coef, data = data, xNames = xNames )
 
@@ -70,7 +70,7 @@ cesDerivCoefN3Lambda <- function( coef, data, xNames, tName ) {
          " if 'tName' or 'lambda' is not given" )
    }
    
-   result <- cesDerivCoefN3Gamma2( coef = coef, data = data, 
+   result <- cesDerivCoefN3Gamma( coef = coef, data = data, 
       xNames = xNames, tName = tName ) * coef[ "gamma" ] * data[[ tName ]]
 
    return( result )
