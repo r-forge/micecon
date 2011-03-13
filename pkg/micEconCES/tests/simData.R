@@ -44,8 +44,11 @@ all.equal( cesData$ydTc,
       coef = cesCoefTc[ c( 4, 1, 3, 5, 2 ) ] ) )
 
 
-# adding noise to the endogenous variable
+# adding noise to the dependent variables
 cesData$ys <- cesData$yd + rnorm( nObs )
+print( cesData$ys )
+
+cesData$ysTc <- cesData$ydTc + rnorm( nObs )
 print( cesData$ys )
 
 
@@ -70,6 +73,34 @@ vcov( cesNmVrs )
 coef( summary( cesNmVrs ) )
 fitted( cesNmVrs )
 residuals( cesNmVrs )
+
+## Nelder-Mead, TC, CRS
+cesNmTc <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "Nelder-Mead", control = list( maxit = 1000 ) )
+print.default( cesNmTc ) 
+print( cesNmTc )
+summary( cesNmTc )
+
+## Nelder-Mead, TC, CRS, Start
+cesNmTc2 <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "Nelder-Mead", start = c( 2, 0.02, 0.5, 0.25 ) )
+print.default( cesNmTc2 ) 
+print( cesNmTc2 )
+summary( cesNmTc2 )
+
+## Nelder-Mead, TC, VRS
+cesNmTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   vrs = TRUE, method = "NM", control = list( maxit = 1000 ) )
+print.default( cesNmTcVrs )
+print( cesNmTcVrs )
+summary( cesNmTcVrs )
+
+## Nelder-Mead, TC, VRS, start
+cesNmTcVrs2 <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   vrs = TRUE, method = "NM", start = c( 2, 0.02, 0.5, 0.25, 1 ) )
+print.default( cesNmTcVrs2 )
+print( cesNmTcVrs2 )
+summary( cesNmTcVrs2 )
 
 ## Conjugate Gradients, CRS
 cesCg <- cesEst( "ys", xxNames, cesData, method = "CG" )
@@ -125,6 +156,13 @@ residuals( cesSannVrs )
 # check random number generation
 rnorm( 5 )
 
+## Simulated Annealing, TC, VRS
+cesSannTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "SANN", vrs = TRUE )
+print.default( cesSannTcVrs )
+print( cesSannTcVrs )
+summary( cesSannTcVrs )
+
 ## BFGS, CRS
 cesBfgs <- cesEst( "ys", xxNames, cesData, method = "BFGS" )
 print.default( cesBfgs )
@@ -146,6 +184,20 @@ vcov( cesBfgsVrs )
 coef( summary( cesBfgsVrs ) )
 fitted( cesBfgsVrs )
 residuals( cesBfgsVrs )
+
+## BFGS, TC, CRS
+cesBfgsTc <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "BFGS" )
+print.default( cesBfgsTc )
+print( cesBfgsTc )
+summary( cesBfgsTc )
+
+## BFGS, TC, VRS
+cesBfgsTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "BFGS", vrs = TRUE )
+print.default( cesBfgsTcVrs )
+print( cesBfgsTcVrs )
+summary( cesBfgsTcVrs )
 
 ## L-BFGS-B with constrained parameters, CRS
 cesBfgsCon <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B" )
@@ -169,6 +221,20 @@ vcov( cesBfgsConVrs )
 coef( summary( cesBfgsConVrs ) )
 fitted( cesBfgsConVrs )
 residuals( cesBfgsConVrs )
+
+## L-BFGS-B with constrained parameters, TC, CRS
+cesBfgsConTc <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "L-BFGS-B", control = list( maxit = 500 ) )
+print.default( cesBfgsConTc )
+print( cesBfgsConTc )
+summary( cesBfgsConTc )
+
+## L-BFGS-B with constrained parameters, TC, VRS
+cesBfgsConTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "L-BFGS-B", vrs = TRUE )
+print.default( cesBfgsConTcVrs )
+print( cesBfgsConTcVrs )
+summary( cesBfgsConTcVrs )
 
 ## Levenberg-Marquardt, CRS
 cesLm <- cesEst( "ys", xxNames, cesData,
@@ -194,6 +260,19 @@ coef( summary( cesLmVrs ) )
 fitted( cesLmVrs )
 residuals( cesLmVrs )
 
+## Levenberg-Marquardt, TC, CRS
+cesLmTc <- cesEst( "ysTc", xxNames, tName = "time", data = cesData )
+print.default( cesLmTc )
+print( cesLmTc )
+summary( cesLmTc )
+
+## Levenberg-Marquardt, TC, VRS
+cesLmTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   vrs = TRUE )
+print.default( cesLmTcVrs )
+print( cesLmTcVrs )
+summary( cesLmTcVrs )
+
 ## Newton-type, CRS
 cesNewton <- cesEst( "ys", xxNames, cesData, method = "Newton" )
 print.default( cesNewton )
@@ -216,6 +295,20 @@ coef( summary( cesNewtonVrs ) )
 fitted( cesNewtonVrs )
 residuals( cesNewtonVrs )
 
+## Newton-type, TC, CRS
+cesNewtonTc <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "Newton" )
+print.default( cesNewtonTc )
+print( cesNewtonTc )
+summary( cesNewtonTc )
+
+## Newton-type, TC, VRS
+cesNewtonTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "Newton", vrs = TRUE, iterlim = 500 )
+print.default( cesNewtonTcVrs )
+print( cesNewtonTcVrs )
+summary( cesNewtonTcVrs )
+
 ## PORT, CRS
 cesPort <- cesEst( "ys", xxNames, cesData, method = "PORT" )
 print.default( cesPort )
@@ -237,6 +330,20 @@ vcov( cesPortVrs )
 coef( summary( cesPortVrs ) )
 fitted( cesPortVrs )
 residuals( cesPortVrs )
+
+## PORT, TC, CRS
+cesPortTc <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "PORT" )
+print.default( cesPortTc )
+print( cesPortTc )
+summary( cesPortTc )
+
+## PORT, TC, VRS
+cesPortTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "PORT", vrs = TRUE )
+print.default( cesPortTcVrs )
+print( cesPortTcVrs )
+summary( cesPortTcVrs )
 
 ## DE, CRS
 # check random number generation
@@ -273,6 +380,13 @@ residuals( cesDeVrs )
 print( fitted( cesDeVrs ) + residuals( cesDeVrs ) )
 # check random number generation
 rnorm( 5 )
+
+## DE, TC, VRS
+cesDeTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "DE", vrs = TRUE, control = DEoptim.control( trace = FALSE ) )
+print.default( cesDeTcVrs )
+print( cesDeTcVrs )
+summary( cesDeTcVrs )
 
 ## Kmenta approximation, CRS
 cesKmenta <- cesEst( "ys", xxNames, cesData, method = "Kmenta" )
@@ -317,4 +431,11 @@ vcov( cesNlsVrs )
 coef( summary( cesNlsVrs ) )
 fitted( cesNlsVrs )
 residuals( cesNlsVrs )
+
+## nls, TC, VRS
+cesNlsTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
+   method = "nls", vrs = TRUE )
+print.default( cesNlsTcVrs )
+print( cesNlsTcVrs )
+summary( cesNlsTcVrs )
 
