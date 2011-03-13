@@ -35922,6 +35922,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho2 = 0.3,
     control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho_2' was fixed at 0.3 
 Convergence achieved after 6 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -36097,6 +36098,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho2 = 0,
     control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho_2' was fixed at 0 
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -36275,6 +36277,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = 0.9,
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 Coefficient 'rho_1' was fixed at 0.9 
+Coefficient 'rho_2' was fixed at 0 
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -36630,6 +36633,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho2 = 0,
     rho = 0.2, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho_2' was fixed at 0 
 Coefficient 'rho' was fixed at 0.2 
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
@@ -36812,6 +36816,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = 0.2,
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 Coefficient 'rho_1' was fixed at 0.2 
+Coefficient 'rho_2' was fixed at 0.3 
 Coefficient 'rho' was fixed at -0.1 
 Convergence achieved after 6 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 

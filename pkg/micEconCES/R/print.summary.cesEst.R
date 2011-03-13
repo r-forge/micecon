@@ -37,6 +37,9 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
          if( !is.null( x[[ "rho1" ]] ) ) {
             cat( "Coefficient 'rho_1' was fixed at", x$rho1, "\n" )
          }
+         if( !is.null( x[[ "rho2" ]] ) ) {
+            cat( "Coefficient 'rho_2' was fixed at", x$rho2, "\n" )
+         }
          if( !is.null( x[[ "rho" ]] ) ) {
             cat( "Coefficient 'rho' was fixed at", x$rho, "\n" )
          }
