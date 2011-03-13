@@ -1,5 +1,7 @@
-cesEstStart <- function( yName, xNames, data, vrs,
+cesEstStart <- function( yName, xNames, tName, data, vrs,
       method, start, rho1, rho2, rho, nParam, nested = FALSE ) {
+
+   withTime <- !is.null( tName )
 
    # number of explanatory variables
    nExog <- length( xNames )
@@ -27,22 +29,25 @@ cesEstStart <- function( yName, xNames, data, vrs,
                ifelse( nested, " nested", " non-nested" ), " CES function",
                " with ", nExog, " explanatory variables" )
          }
+         if( withTime ) {
+            start <- c( start[ 1 ], 0.015, start[ -1 ] )
+         }
          if( vrs ) {
             start <- c( start, 1 )
          }
          yTemp <- cesCalc( xNames = xNames, data = data, coef = start,
-            nested = nested )
+            tName = tName, nested = nested )
          start[ 1 ] <- 
             mean( data[[ yName ]], na.rm = TRUE ) /
             mean( yTemp, na.rm = TRUE )
          if( !is.null( rho ) ) {
-            start <- start[ -ifelse( nested, 2 * nExog - 1, 3 ) ]
+            start <- start[ -( withTime + ifelse( nested, 2 * nExog - 1, 3 ) ) ]
          }
          if( !is.null( rho2 ) && nested && nExog == 4 ) {
-            start <- start[ -6 ]
+            start <- start[ -( 6 + withTime ) ]
          }
          if( !is.null( rho1 ) && nested ) {
-            start <- start[ -( 5 - ( nExog == 3 ) ) ]
+            start <- start[ -( 5 - ( nExog == 3 ) + withTime ) ]
          }
       }
       if( length( start ) != nParam ) {
@@ -52,7 +57,7 @@ cesEstStart <- function( yName, xNames, data, vrs,
       }
       names( start ) <- cesCoefNames( nExog = length( xNames ), vrs = vrs,
          returnRho = is.null( rho ), returnRho1 = is.null( rho1 ), 
-         returnRho2 = is.null( rho2 ), nested = nested )
+         returnRho2 = is.null( rho2 ), nested = nested, withTime = withTime )
       # checking starting values
       if( any( is.infinite( start ) ) ) {
          stop( "all starting values must be finite" )

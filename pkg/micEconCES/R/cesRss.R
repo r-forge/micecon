@@ -1,4 +1,4 @@
-cesRss <- function( par, yName, xNames, data, vrs, rho1 = NULL, 
+cesRss <- function( par, yName, xNames, tName, data, vrs, rho1 = NULL, 
       rho2 = NULL, rho = NULL, rhoApprox, nested = FALSE ) {
 
    # check rhoApprox
@@ -15,7 +15,7 @@ cesRss <- function( par, yName, xNames, data, vrs, rho1 = NULL,
    par <- cesCoefAddRho( coef = par, vrs = vrs, rho1 = rho1, rho2 = rho2, 
       rho = rho, nExog = length( xNames ), nested = nested )
 
-   yHat <- cesCalc( xNames = xNames, data = data, coef = par,
+   yHat <- cesCalc( xNames = xNames, tName = tName, data = data, coef = par,
       rhoApprox = rhoApprox, nested = nested )
 
    result <- sum( ( data[[ yName ]] - yHat )^2 )

@@ -24,7 +24,7 @@
 }
 
 \usage{
-cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
+cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
    start = NULL, lower = NULL, upper = NULL, rho1 = NULL, rho2, rho = NULL,
    returnGridAll = FALSE, random.seed = 123,
    rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, 
@@ -41,6 +41,8 @@ cesEst( yName, xNames, data, vrs = FALSE, method = "LM",
    \item{xNames}{a vector of two strings containing the names of the
       independent variables.}
    \item{data}{data frame containing the data.}
+   \item{tName}{optional character string specifying the name of the 
+      time variable (\eqn{t}).}
    \item{vrs}{logical. Allow for variable returns to scale?}
    \item{method}{character string indicationg the estimation method:
       either \code{"Kmenta"} for the Kmenta approximation
