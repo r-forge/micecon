@@ -3,7 +3,10 @@ data( "GermanIndustry" )
 
 print( GermanIndustry )
 
-GermanIndustry$time <- GermanIndustry$year - 1963
+# remove years 1973 - 1975 because of economic disruptions (see Kemfert 1998)
+GermanIndustry <- subset( GermanIndustry, year < 1973 | year > 1975, )
+
+GermanIndustry$time <- GermanIndustry$year - 1960
 
 xNames <-  c( "K", "E", "A" )
 
