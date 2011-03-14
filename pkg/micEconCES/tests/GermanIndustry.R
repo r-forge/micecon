@@ -85,3 +85,76 @@ summary( cesDe )
 try( cesNls <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
    vrs = TRUE, method = "nls" ) )
 
+
+################ estimation with rho_1 and/or rho fixed #######################
+
+## Nelder-Mead, rho_1 and rho fixed
+cesNmRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
+   method = "NM", rho1 = 0.1813, rho = 0.5300, 
+   control = list( maxit = 5000 ) )
+print.default( cesNmRho2 )
+print( cesNmRho2 )
+summary( cesNmRho2 )
+
+## BFGS, rho_1 and rho fixed
+cesBfgsRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
+   method = "BFGS", rho1 = 0.1813, rho = 0.5300, 
+   control = list( maxit = 5000 ) )
+print.default( cesBfgsRho2 )
+print( cesBfgsRho2 )
+summary( cesBfgsRho2 )
+
+## L-BFGS-B, rho_1 and rho fixed
+cesBfgsConRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
+   method = "L-BFGS-B", rho1 = 0.1813, rho = 0.5300, 
+   control = list( maxit = 5000 )  )
+print.default( cesBfgsConRho2 )
+print( cesBfgsConRho2 )
+summary( cesBfgsConRho2 )
+
+## Levenberg-Marquardt, rho fixed
+cesLmRho <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
+   rho = 0.5300, control = nls.lm.control( maxiter = 1000, maxfev = 2000 ) )
+print.default( cesLmRho )
+print( cesLmRho )
+summary( cesLmRho )
+
+## Levenberg-Marquardt, rho_1 fixed
+cesLmRho1 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
+   rho1 = 0.1813, control = nls.lm.control( maxiter = 1000, maxfev = 2000 ) )
+print.default( cesLmRho1 )
+print( cesLmRho1 )
+summary( cesLmRho1 )
+
+## Levenberg-Marquardt, rho_1 and rho fixed
+cesLmRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
+   rho1 = 0.1813, rho = 0.5300,
+   control = nls.lm.control( maxiter = 1000, maxfev = 2000 ) )
+print.default( cesLmRho2 )
+print( cesLmRho2 )
+summary( cesLmRho2 )
+
+## Newton-type, rho_1 and rho fixed
+cesNewtonRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
+   method = "Newton", rho1 = 0.1813, rho = 0.5300, iterlim = 500 )
+print.default( cesNewtonRho2 )
+print( cesNewtonRho2 )
+summary( cesNewtonRho2 )
+
+## PORT, rho_1 and rho fixed
+cesPortRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
+   method = "PORT", rho1 = 0.1813, rho = 0.5300, 
+   control = list( eval.max = 1000, iter.max = 1000 ) )
+print.default( cesPortRho2 )
+print( cesPortRho2 )
+summary( cesPortRho2 )
+
+## DE, rho_1 and rho fixed
+cesDeRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
+   method = "DE", rho1 = 0.1813, rho = 0.5300, 
+   control = DEoptim.control( trace = FALSE, NP = 90 ) )
+print.default( cesDeRho2 )
+print( cesDeRho2 )
+summary( cesDeRho2 )
+
+

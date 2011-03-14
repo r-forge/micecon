@@ -573,6 +573,13 @@ coef( summary( cesLmRho1 ) )
 fitted( cesLmRho1 )
 residuals( cesLmRho1 )
 
+## Levenberg-Marquardt, rho_1 fixed, TC, CRS
+cesLmTcRho1 <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
+   rho1 = 1, control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmTcRho1 )
+print( cesLmTcRho1 )
+summary( cesLmTcRho1 )
+
 ## Levenberg-Marquardt, rho_1 fixed, VRS
 cesLmVrsRho1 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    rho1 = 0, control = nls.lm.control( maxiter = 200 ) )
@@ -610,6 +617,14 @@ coef( summary( cesPortVrsRho1 ) )
 fitted( cesPortVrsRho1 )
 residuals( cesPortVrsRho1 )
 
+## PORT, rho_1 fixed, TC, VRS
+cesPortTcVrsRho1 <- cesEst( "yTcVrsObs", xNames, tName = "time", 
+   data = MishraCES, method = "PORT", vrs = TRUE, rho1 = 1, 
+   control = list( eval.max = 500, iter.max = 500 ) )
+print.default( cesPortTcVrsRho1 )
+print( cesPortTcVrsRho1 )
+summary( cesPortTcVrsRho1 )
+
 
 ########## Fixing Rho ##############
 ## Levenberg-Marquardt, rho fixed, CRS
@@ -636,6 +651,13 @@ coef( summary( cesLmVrsRho ) )
 fitted( cesLmVrsRho )
 residuals( cesLmVrsRho )
 
+## Levenberg-Marquardt, rho fixed, TC, VRS
+cesLmTcVrsRho <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES, 
+   vrs = TRUE, rho = 0, control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmTcVrsRho )
+print( cesLmTcVrsRho )
+summary( cesLmTcVrsRho )
+
 ## PORT, rho fixed, CRS
 cesPortRho <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT",
    rho = 0, control = list( eval.max = 500 ) )
@@ -647,6 +669,13 @@ vcov( cesPortRho )
 coef( summary( cesPortRho ) )
 fitted( cesPortRho )
 residuals( cesPortRho )
+
+## PORT, rho fixed, CRS
+cesPortTcRho <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
+   method = "PORT", rho = 0, control = list( eval.max = 500 ) )
+print.default( cesPortRho )
+print( cesPortRho )
+summary( cesPortRho )
 
 ## PORT, rho fixed, VRS
 cesPortVrsRho <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
@@ -674,6 +703,13 @@ vcov( cesLmRho2 )
 coef( summary( cesLmRho2 ) )
 fitted( cesLmRho2 )
 residuals( cesLmRho2 )
+
+## Levenberg-Marquardt, rho_1 and rho fixed, TC, CRS
+cesLmTcRho2 <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
+   rho1 = 1, rho = 1, control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmTcRho2 )
+print( cesLmTcRho2 )
+summary( cesLmTcRho2 )
 
 ## Levenberg-Marquardt, rho_1 and rho fixed, VRS
 cesLmVrsRho2 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
@@ -711,6 +747,14 @@ vcov( cesPortVrsRho2 )
 coef( summary( cesPortVrsRho2 ) )
 fitted( cesPortVrsRho2 )
 residuals( cesPortVrsRho2 )
+
+## PORT, rho_1 and rho fixed, VRS
+cesPortTcVrsRho2 <- cesEst( "yTcVrsObs", xNames, tName = "time", 
+   data = MishraCES, method = "PORT", vrs = TRUE, rho1 = 1, rho = 0,
+   control = list( eval.max = 500, iter.max = 500 ) )
+print.default( cesPortTcVrsRho2 )
+print( cesPortTcVrsRho2 )
+summary( cesPortTcVrsRho2 )
 
 
 ########## Grid Search for Rho_1 ##############
