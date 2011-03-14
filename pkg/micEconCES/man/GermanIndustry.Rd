@@ -28,6 +28,11 @@
    }
 }
 
+\note{
+   Please note that Kemfert (1998) disregards the years 1973-1975
+   in her estimations due to economic disruptions.
+}
+
 \source{
    German Federal Statistical Office (Statistisches Bundesamt), 
    data taken from Kemfert (1998).
