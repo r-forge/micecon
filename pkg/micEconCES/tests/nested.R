@@ -734,7 +734,7 @@ coef( summary( cesNlsVrs ) )
 fitted( cesNlsVrs )
 residuals( cesNlsVrs )
 
-## nls, VRS
+## nls, TC, VRS
 cesNlsTcVrs <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES, 
    method = "nls", vrs = TRUE )
 print.default( cesNlsTcVrs )
@@ -755,8 +755,8 @@ coef( summary( cesLmR ) )
 fitted( cesLmR )
 residuals( cesLmR )
 
-## Levenberg-Marquardt, Fixed rho, VRS
-cesLmVrsR <- cesEst( "yObs", xNames, data = MishraCES,
+## Levenberg-Marquardt, Fixed rho at 0, VRS
+cesLmVrsR <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    control = nls.lm.control( maxiter = 200 ), rho = 0 )
 print.default( cesLmVrsR )
 print( cesLmVrsR )
@@ -780,7 +780,7 @@ fitted( cesLmR1 )
 residuals( cesLmR1 )
 
 ## Levenberg-Marquardt, Fixed rho_1, VRS
-cesLmVrsR1 <- cesEst( "yObs", xNames, data = MishraCES,
+cesLmVrsR1 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    control = nls.lm.control( maxiter = 200 ), rho1 = -0.1 )
 print.default( cesLmVrsR1 )
 print( cesLmVrsR1 )
@@ -804,7 +804,7 @@ fitted( cesLmR2 )
 residuals( cesLmR2 )
 
 ## Levenberg-Marquardt, Fixed rho_2, VRS
-cesLmVrsR2 <- cesEst( "yObs", xNames, data = MishraCES,
+cesLmVrsR2 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    control = nls.lm.control( maxiter = 200 ), rho2 = 0 )
 print.default( cesLmVrsR2 )
 print( cesLmVrsR2 )
@@ -840,7 +840,7 @@ fitted( cesLmRR1 )
 residuals( cesLmRR1 )
 
 ## Levenberg-Marquardt, Fixed rho and rho2, VRS
-cesLmVrsRR2 <- cesEst( "yObs", xNames, data = MishraCES,
+cesLmVrsRR2 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    control = nls.lm.control( maxiter = 200 ), rho = 0.2, rho2 = 0 )
 print.default( cesLmVrsRR2 )
 print( cesLmVrsRR2 )
@@ -852,7 +852,7 @@ fitted( cesLmVrsRR2 )
 residuals( cesLmVrsRR2 )
 
 ## Levenberg-Marquardt, Fixed rho, rho1, and rho2, VRS
-cesLmVrsRRR <- cesEst( "yObs", xNames, data = MishraCES,
+cesLmVrsRRR <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    control = nls.lm.control( maxiter = 200 ), rho1 = 0.2, rho2 = 0.3, rho = -0.1 )
 print.default( cesLmVrsRRR )
 print( cesLmVrsRRR )

@@ -551,7 +551,7 @@ print( fitted( cesDeVrs ) + residuals( cesDeVrs ) )
 # check random number generation
 rnorm( 5 )
 
-## DE, TR, VRS
+## DE, TC, VRS
 cesDeTcVrs <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES, 
    method = "DE", vrs = TRUE, 
    control = DEoptim.control( trace = FALSE, NP = 90 ) )
