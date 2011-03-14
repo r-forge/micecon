@@ -755,6 +755,13 @@ coef( summary( cesLmR ) )
 fitted( cesLmR )
 residuals( cesLmR )
 
+## Levenberg-Marquardt, Fixed rho, TC, CRS
+cesLmTcR <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES,
+   control = nls.lm.control( maxiter = 200 ), rho = 0.9 )
+print.default( cesLmTcR )
+print( cesLmTcR )
+summary( cesLmTcR )
+
 ## Levenberg-Marquardt, Fixed rho at 0, VRS
 cesLmVrsR <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    control = nls.lm.control( maxiter = 200 ), rho = 0 )
@@ -791,6 +798,13 @@ coef( summary( cesLmVrsR1 ) )
 fitted( cesLmVrsR1 )
 residuals( cesLmVrsR1 )
 
+## Levenberg-Marquardt, Fixed rho_1, TC, VRS
+cesLmTcVrsR1 <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES,
+   vrs = TRUE, control = nls.lm.control( maxiter = 200 ), rho1 = -0.1 )
+print.default( cesLmTcVrsR1 )
+print( cesLmTcVrsR1 )
+summary( cesLmTcVrsR1 )
+
 ## Levenberg-Marquardt, Fixed rho_2, CRS
 cesLmR2 <- cesEst( "yObs", xNames, data = MishraCES,
    control = nls.lm.control( maxiter = 200 ), rho2 = 0.3 )
@@ -802,6 +816,13 @@ vcov( cesLmR2 )
 coef( summary( cesLmR2 ) )
 fitted( cesLmR2 )
 residuals( cesLmR2 )
+
+## Levenberg-Marquardt, Fixed rho_2, TC, CRS
+cesLmTcR2 <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES,
+   control = nls.lm.control( maxiter = 200 ), rho2 = 0.3 )
+print.default( cesLmTcR2 )
+print( cesLmTcR2 )
+summary( cesLmTcR2 )
 
 ## Levenberg-Marquardt, Fixed rho_2, VRS
 cesLmVrsR2 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
@@ -851,6 +872,13 @@ coef( summary( cesLmVrsRR2 ) )
 fitted( cesLmVrsRR2 )
 residuals( cesLmVrsRR2 )
 
+## Levenberg-Marquardt, Fixed rho and rho2, TC, VRS
+cesLmTcVrsRR2 <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES,
+   vrs = TRUE, control = nls.lm.control( maxiter = 200 ), rho = 0.2, rho2 = 0 )
+print.default( cesLmTcVrsRR2 )
+print( cesLmTcVrsRR2 )
+summary( cesLmTcVrsRR2 )
+
 ## Levenberg-Marquardt, Fixed rho, rho1, and rho2, VRS
 cesLmVrsRRR <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    control = nls.lm.control( maxiter = 200 ), rho1 = 0.2, rho2 = 0.3, rho = -0.1 )
@@ -862,6 +890,14 @@ vcov( cesLmVrsRRR )
 coef( summary( cesLmVrsRRR ) )
 fitted( cesLmVrsRRR )
 residuals( cesLmVrsRRR )
+
+## Levenberg-Marquardt, Fixed rho, rho1, and rho2, TC, VRS
+cesLmTcVrsRRR <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES,
+   vrs = TRUE, control = nls.lm.control( maxiter = 200 ), 
+   rho1 = 0.2, rho2 = 0.3, rho = -0.1 )
+print.default( cesLmTcVrsRRR )
+print( cesLmTcVrsRRR )
+summary( cesLmTcVrsRRR )
 
 
 ########## Grid Search for Rho_1, Rho_2, and Rho ##############

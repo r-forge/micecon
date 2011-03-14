@@ -35287,6 +35287,139 @@ rho      0.9000000 0.073374066  12.265914 1.380454e-34
 [43]   -5.467993   38.952637   17.970349  -16.874756   30.139120  106.597158
 [49]    2.863297   97.187618
 > 
+> ## Levenberg-Marquardt, Fixed rho, TC, CRS
+> cesLmTcR <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES,
++    control = nls.lm.control( maxiter = 200 ), rho = 0.9 )
+> print.default( cesLmTcR )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 62.6674754192093, 0.0202470596316243, 0.592057345661374, 0.309690771040706, 0.492953062281493, 0.405336546357312, -0.22674267342294 
+residual sum-of-squares: 198199
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+      gamma      lambda     delta_1     delta_2     delta_3       rho_1 
+62.66747542  0.02024706  0.59205735  0.30969077  0.49295306  0.40533655 
+      rho_2         rho 
+-0.22674267  0.90000000 
+
+$iter
+[1] 5
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
+    rho = 0.9, control = nls.lm.control(maxiter = 200))
+
+$method
+[1] "LM"
+
+$start
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2 
+76.03436  0.01500  0.50000  0.50000  0.50000  0.25000  0.25000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0.9
+
+$fitted.values
+ [1]  2586.5796  1738.0618  3141.1709  3335.8442  2197.9782  3804.0566
+ [7]  3973.7431  2511.0031  2125.5406   239.4836  4607.8300  2380.5582
+[13]  3426.6902  3357.3267  3072.4084  2410.5214  2491.2010  4122.2811
+[19]  3692.9153  4912.6342  3749.1761   899.2653  2776.1706  5603.8697
+[25]  7575.5853  6899.2734  8793.5466  1331.9246  3618.4448  2296.3210
+[31]  4191.7316  4156.4117  3691.0221  1151.3523  6164.0063  7831.2663
+[37]   929.7129  2908.2646  4294.2274  8484.6586   329.6429  2449.8999
+[43]   380.9690  2909.8713  5704.7360 11284.1338 11446.0750  3489.1892
+[49]  9487.9514  3602.4025
+
+$residuals
+ [1]  -18.37486476   50.66096285  -37.17274893  -17.47649748  120.67360881
+ [6]   90.99027239   33.21371826  -81.45182643  113.63616946   -9.77106446
+[11]    0.00879986    1.13073767   55.93068781  -64.54480210   22.62126515
+[16]  -12.67408198  -84.71938099   41.39611421  -27.99343809   -6.39051209
+[21]  136.32701610   -3.60972825  -87.96366909  -81.04338829  -34.70209520
+[26]   18.22497294  -82.41997446  -51.86861301  -64.54185637   13.24846011
+[31]    6.31336775 -129.55035258  -38.07763390   40.47980859   75.33356873
+[36]   22.41483097  -25.08618363  -22.12419599   88.68104647   78.13621944
+[41]   35.06226295  -24.31733178   78.46770958   76.49381889   21.37524953
+[46]  -39.47465681  -88.35347194  115.03826798   71.94324657  -28.88471626
+
+$rss
+[1] 198199.3
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2       delta_3
+gamma    2.882149e-05 -1.120539e-08  4.182025e-09  6.601256e-08 -1.953983e-08
+lambda  -1.120539e-08  5.519238e-12  3.217219e-12 -1.561330e-11  2.755660e-11
+delta_1  4.182025e-09  3.217219e-12  4.221305e-09 -5.475236e-11 -6.735650e-10
+delta_2  6.601256e-08 -1.561330e-11 -5.475236e-11  4.989751e-09 -1.564559e-09
+delta_3 -1.953983e-08  2.755660e-11 -6.735650e-10 -1.564559e-09  6.673593e-09
+rho_1    2.444786e-07 -9.740229e-11  1.450342e-08 -1.935611e-09 -9.951764e-09
+rho_2    4.209083e-07 -1.184770e-10  1.958721e-09 -3.313513e-09  1.051307e-08
+rho      1.842522e-07  1.865390e-10 -1.178685e-08  2.022780e-08 -1.639515e-08
+                rho_1         rho_2           rho
+gamma    2.444786e-07  4.209083e-07  1.842522e-07
+lambda  -9.740229e-11 -1.184770e-10  1.865390e-10
+delta_1  1.450342e-08  1.958721e-09 -1.178685e-08
+delta_2 -1.935611e-09 -3.313513e-09  2.022780e-08
+delta_3 -9.951764e-09  1.051307e-08 -1.639515e-08
+rho_1    1.504502e-07  1.746701e-08 -1.656878e-07
+rho_2    1.746701e-08  9.978124e-08 -1.159517e-07
+rho     -1.656878e-07 -1.159517e-07  6.830233e-07
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLmTcR )
+Estimated CES function
+
+Call:
+cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
+    rho = 0.9, control = nls.lm.control(maxiter = 200))
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+62.66748  0.02025  0.59206  0.30969  0.49295  0.40534 -0.22674  0.90000 
+
+> summary( cesLmTcR )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
+    rho = 0.9, control = nls.lm.control(maxiter = 200))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho' was fixed at 0.9 
+Convergence achieved after 5 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+          Estimate Std. Error t value Pr(>|t|)    
+gamma   62.6674754  0.3380059  185.40   <2e-16 ***
+lambda   0.0202471  0.0001479  136.88   <2e-16 ***
+delta_1  0.5920573  0.0040906  144.74   <2e-16 ***
+delta_2  0.3096908  0.0044474   69.63   <2e-16 ***
+delta_3  0.4929531  0.0051433   95.84   <2e-16 ***
+rho_1    0.4053365  0.0244209   16.60   <2e-16 ***
+rho_2   -0.2267427  0.0198880  -11.40   <2e-16 ***
+rho      0.9000000  0.0520336   17.30   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 62.9602 
+Multiple R-squared: 0.9994147 
+
+> 
 > ## Levenberg-Marquardt, Fixed rho at 0, VRS
 > cesLmVrsR <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
 +    control = nls.lm.control( maxiter = 200 ), rho = 0 )
@@ -35831,6 +35964,144 @@ nu       1.1092699 0.03478947 31.885217 4.280338e-223
 [43] -289.387188  260.098912   11.509638 -168.418354   75.653233 -109.398790
 [49]    7.705189    8.387952
 > 
+> ## Levenberg-Marquardt, Fixed rho_1, TC, VRS
+> cesLmTcVrsR1 <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES,
++    vrs = TRUE, control = nls.lm.control( maxiter = 200 ), rho1 = -0.1 )
+> print.default( cesLmTcVrsR1 )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 36.7309231344455, 0.0200255068322621, 0.549129799686808, 0.310611280791899, 0.552375834655607, -0.285606085671562, 0.86124361753856, 1.16337134501125 
+residual sum-of-squares: 5580973
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+      gamma      lambda     delta_1     delta_2     delta_3       rho_1 
+36.73092313  0.02002551  0.54912980  0.31061128  0.55237583 -0.10000000 
+      rho_2         rho          nu 
+-0.28560609  0.86124362  1.16337135 
+
+$iter
+[1] 13
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, rho1 = -0.1, control = nls.lm.control(maxiter = 200))
+
+$method
+[1] "LM"
+
+$start
+   gamma   lambda  delta_1  delta_2  delta_3    rho_2      rho       nu 
+79.81964  0.01500  0.50000  0.50000  0.50000  0.25000  0.25000  1.00000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho1
+[1] -0.1
+
+$fitted.values
+ [1]  3065.9600  1957.9538  3526.6055  3629.1454  2600.6766  4446.4374
+ [7]  4686.5205  2824.8751  1999.3542   375.8295  5473.8751  2555.5711
+[13]  3950.1661  3891.0069  3443.9429  2584.0902  2874.8535  4502.2021
+[19]  4000.6944  5650.1464  4420.3241   736.4592  3064.3297  6713.4555
+[25]  8745.8526  8077.0391 10546.4017  2353.3128  4325.2504  2197.7693
+[31]  4623.0190  4946.9097  3683.0865  1323.4573  7174.7666  8570.5260
+[37]  1065.9034  2739.9933  4799.6440  9430.6389  1370.0738  2469.0701
+[43]   981.6982  2570.8326  6448.4917 13484.5113 13205.5911  4227.9770
+[49] 10960.8958  4182.3738
+
+$residuals
+ [1]  -201.904916    36.020474   124.128073   225.120131    -5.879820
+ [6]    18.145891    -5.865665    70.520145   524.925684  -113.545163
+[11]  -122.371393    91.256589    43.566699  -100.945602    61.776644
+[16]   110.170559  -154.563041   107.602318   249.730731   -14.848023
+[21]    21.421294   208.254370     8.307828  -344.497038   114.351449
+[26]  -101.228430  -288.991606  -977.247369  -320.466670   289.949557
+[31]   -10.597881  -404.123674   448.137923    16.677679  -208.499058
+[36]   526.453872  -200.815976   462.228105    85.613243   496.676711
+[41] -1078.211432   122.412262  -619.642225   746.385596   101.424360
+[46]  -388.250321   182.034725  -263.568535    39.077190  -203.783191
+
+$rss
+[1] 5580973
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2       delta_3
+gamma    2.879597e-04  8.458478e-10 -5.056263e-08  4.027748e-08 -1.399038e-07
+lambda   8.458478e-10  4.317907e-12  3.644480e-12 -1.438540e-11  1.450655e-11
+delta_1 -5.056263e-08  3.644480e-12  1.578024e-09 -2.756303e-11 -1.311661e-10
+delta_2  4.027748e-08 -1.438540e-11 -2.756303e-11  3.735991e-09 -8.967185e-10
+delta_3 -1.399038e-07  1.450655e-11 -1.311661e-10 -8.967185e-10  3.804360e-09
+rho_1    1.122361e-06  5.492011e-12  2.569992e-09 -6.785206e-10 -2.903980e-09
+rho_2    1.168671e-06 -8.022114e-11  6.148275e-10 -1.730473e-09  7.210196e-09
+rho      5.044977e-06  2.157137e-10 -4.417371e-09  1.646492e-08 -1.211382e-08
+nu      -1.873810e-06 -3.908344e-11  3.156926e-10 -1.612469e-11  8.985023e-10
+                rho_1         rho_2           rho            nu
+gamma    1.122361e-06  1.168671e-06  5.044977e-06 -1.873810e-06
+lambda   5.492011e-12 -8.022114e-11  2.157137e-10 -3.908344e-11
+delta_1  2.569992e-09  6.148275e-10 -4.417371e-09  3.156926e-10
+delta_2 -6.785206e-10 -1.730473e-09  1.646492e-08 -1.612469e-11
+delta_3 -2.903980e-09  7.210196e-09 -1.211382e-08  8.985023e-10
+rho_1    2.730477e-08  8.617962e-09 -2.153049e-08 -7.318380e-09
+rho_2    8.617962e-09  8.617800e-08 -7.940790e-08 -6.583616e-09
+rho     -2.153049e-08 -7.940790e-08  5.648569e-07 -3.243320e-08
+nu      -7.318380e-09 -6.583616e-09 -3.243320e-08  1.252243e-08
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLmTcVrsR1 )
+Estimated CES function
+
+Call:
+cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, rho1 = -0.1, control = nls.lm.control(maxiter = 200))
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+36.73092  0.02003  0.54913  0.31061  0.55238 -0.10000 -0.28561  0.86124 
+      nu 
+ 1.16337 
+
+> summary( cesLmTcVrsR1 )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, rho1 = -0.1, control = nls.lm.control(maxiter = 200))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho_1' was fixed at -0.1 
+Convergence achieved after 13 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+          Estimate Std. Error t value Pr(>|t|)    
+gamma   36.7309231  5.6693835   6.479 9.24e-11 ***
+lambda   0.0200255  0.0006942  28.845  < 2e-16 ***
+delta_1  0.5491298  0.0132717  41.376  < 2e-16 ***
+delta_2  0.3106113  0.0204208  15.211  < 2e-16 ***
+delta_3  0.5523758  0.0206068  26.805  < 2e-16 ***
+rho_1   -0.1000000  0.0552064  -1.811 0.070081 .  
+rho_2   -0.2856061  0.0980772  -2.912 0.003591 ** 
+rho      0.8612436  0.2510956   3.430 0.000604 ***
+nu       1.1633713  0.0373864  31.117  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 334.095 
+Multiple R-squared: 0.9881233 
+
+> 
 > ## Levenberg-Marquardt, Fixed rho_2, CRS
 > cesLmR2 <- cesEst( "yObs", xNames, data = MishraCES,
 +    control = nls.lm.control( maxiter = 200 ), rho2 = 0.3 )
@@ -36006,6 +36277,139 @@ rho      0.2851998 0.07773390   3.668925 2.435729e-04
 [36]  -14.6967049  230.4794452  417.2793682   44.4711293   49.4819486
 [41]   -5.0450625   54.0545765  -69.3125480   29.5989534   22.2184788
 [46]   19.2542553   20.0741188  -40.2426204 -189.1283546   64.1578776
+> 
+> ## Levenberg-Marquardt, Fixed rho_2, TC, CRS
+> cesLmTcR2 <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES,
++    control = nls.lm.control( maxiter = 200 ), rho2 = 0.3 )
+> print.default( cesLmTcR2 )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 63.5106570816252, 0.0199598136717808, 0.602213931194453, 0.230783236476178, 0.545306376138374, 0.500626819263141, 0.325572599224409 
+residual sum-of-squares: 1474626
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+      gamma      lambda     delta_1     delta_2     delta_3       rho_1 
+63.51065708  0.01995981  0.60221393  0.23078324  0.54530638  0.50062682 
+      rho_2         rho 
+ 0.30000000  0.32557260 
+
+$iter
+[1] 7
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
+    rho2 = 0.3, control = nls.lm.control(maxiter = 200))
+
+$method
+[1] "LM"
+
+$start
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1      rho 
+73.08599  0.01500  0.50000  0.50000  0.50000  0.25000  0.25000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho2
+[1] 0.3
+
+$fitted.values
+ [1]  2585.7990  1870.2623  3149.7799  3390.8505  2319.5893  4019.2932
+ [7]  4286.9386  2319.9774  2212.3034   333.5557  4592.2682  2379.8277
+[13]  3442.5024  3321.1565  3120.7424  2470.7577  2349.5005  3961.7571
+[19]  3575.6804  4920.6829  3904.3949   787.7477  2475.6291  5426.4538
+[25]  7601.0586  7007.4581  8771.5830  1316.3098  3443.7428  2273.4549
+[31]  4050.0488  3993.9634  3689.4784  1386.2796  6125.8471  7809.8120
+[37]   463.0550  2046.7043  4282.7129  8492.9192   390.5270  2371.2904
+[43]   492.2587  2947.3090  5641.8461 11129.5732 11422.2255  3776.1125
+[49]  9921.7274  3627.0289
+
+$residuals
+ [1]  -17.5943142  -81.5395190  -45.7817552  -72.4828022   -0.9375372
+ [6] -124.2463231 -279.9817933  109.5739037   26.8733459 -103.8431337
+[11]   15.5706441    1.8612763   40.1184623  -28.3745550  -25.7127322
+[16]  -72.9103807   56.9810396  201.9201140   89.2414454  -14.4392930
+[21]  -18.8917890  107.9078950  212.5778264   96.3725139  -60.1754006
+[26]  -89.9597332  -60.4563875  -36.2538668  110.1601327   36.1145308
+[31]  147.9960939   32.8979203  -36.5339608 -194.4474709  113.4928495
+[36]   43.8691413  441.5716830  839.4360786  100.1955510   69.8756424
+[41]  -25.8218036   54.2920910  -32.8219386   39.0560845   84.2651521
+[46]  115.0859725  -64.5040461 -171.8850276 -361.8327030  -53.5111866
+
+$rss
+[1] 1474626
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2       delta_3
+gamma    2.880445e-05 -1.109137e-08  1.370899e-08  5.635262e-08 -4.610906e-08
+lambda  -1.109137e-08  5.326785e-12 -5.543834e-13 -1.380767e-11  3.192640e-11
+delta_1  1.370899e-08 -5.543834e-13  5.236488e-09 -1.724457e-10 -1.288638e-09
+delta_2  5.635262e-08 -1.380767e-11 -1.724457e-10  1.104327e-08 -2.869382e-09
+delta_3 -4.610906e-08  3.192640e-11 -1.288638e-09 -2.869382e-09  5.260106e-09
+rho_1    3.847313e-07 -1.083091e-10  2.082027e-08 -4.505398e-10 -1.634574e-08
+rho_2    3.042656e-07 -7.240605e-11  1.163558e-09 -3.607637e-08  1.507887e-08
+rho      1.646535e-07  5.053394e-11 -1.028849e-08  1.895664e-08 -1.255225e-09
+                rho_1         rho_2           rho
+gamma    3.847313e-07  3.042656e-07  1.646535e-07
+lambda  -1.083091e-10 -7.240605e-11  5.053394e-11
+delta_1  2.082027e-08  1.163558e-09 -1.028849e-08
+delta_2 -4.505398e-10 -3.607637e-08  1.895664e-08
+delta_3 -1.634574e-08  1.507887e-08 -1.255225e-09
+rho_1    2.149955e-07 -3.095512e-09 -1.098794e-07
+rho_2   -3.095512e-09  2.275917e-07 -7.865963e-08
+rho     -1.098794e-07 -7.865963e-08  2.284515e-07
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLmTcR2 )
+Estimated CES function
+
+Call:
+cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
+    rho2 = 0.3, control = nls.lm.control(maxiter = 200))
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+63.51066  0.01996  0.60221  0.23078  0.54531  0.50063  0.30000  0.32557 
+
+> summary( cesLmTcR2 )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
+    rho2 = 0.3, control = nls.lm.control(maxiter = 200))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho_2' was fixed at 0.3 
+Convergence achieved after 7 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   6.351e+01  9.217e-01  68.907  < 2e-16 ***
+lambda  1.996e-02  3.964e-04  50.358  < 2e-16 ***
+delta_1 6.022e-01  1.243e-02  48.459  < 2e-16 ***
+delta_2 2.308e-01  1.805e-02  12.788  < 2e-16 ***
+delta_3 5.453e-01  1.246e-02  43.781  < 2e-16 ***
+rho_1   5.006e-01  7.963e-02   6.287 3.24e-10 ***
+rho_2   3.000e-01  8.193e-02   3.662 0.000251 ***
+rho     3.256e-01  8.208e-02   3.966 7.30e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 171.7339 
+Multiple R-squared: 0.9956454 
+
 > 
 > ## Levenberg-Marquardt, Fixed rho_2, VRS
 > cesLmVrsR2 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
@@ -36737,6 +37141,147 @@ nu       1.0031020 0.015625156 64.197890  0.000000e+00
 [43]  -98.357171  -44.794732   -6.981456    8.150930   43.744285 -103.690893
 [49]  -86.102357   73.138780
 > 
+> ## Levenberg-Marquardt, Fixed rho and rho2, TC, VRS
+> cesLmTcVrsRR2 <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES,
++    vrs = TRUE, control = nls.lm.control( maxiter = 200 ), rho = 0.2, rho2 = 0 )
+> print.default( cesLmTcVrsRR2 )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 56.9613178130539, 0.0199306689036027, 0.619192404027524, 0.272990788339235, 0.519031859938931, 0.641460814922078, 1.06022912044978 
+residual sum-of-squares: 869184
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+      gamma      lambda     delta_1     delta_2     delta_3       rho_1 
+56.96131781  0.01993067  0.61919240  0.27299079  0.51903186  0.64146081 
+      rho_2         rho          nu 
+ 0.00000000  0.20000000  1.06022912 
+
+$iter
+[1] 6
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, rho2 = 0, rho = 0.2, control = nls.lm.control(maxiter = 200))
+
+$method
+[1] "LM"
+
+$start
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1       nu 
+81.08867  0.01500  0.50000  0.50000  0.50000  0.25000  1.00000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho2
+[1] 0
+
+$rho
+[1] 0.2
+
+$fitted.values
+ [1]  2836.2326  2090.2057  3604.8621  3875.7910  2872.7654  4512.3321
+ [7]  4839.3804  2770.6672  2602.2466   390.0444  5361.4069  2698.0099
+[13]  3967.7742  3706.1961  3550.4478  2670.0235  2569.0500  4588.4853
+[19]  4102.7081  5628.7251  4577.9398   875.7656  2833.9951  6193.3622
+[25]  8889.9668  8040.2514 10272.5399  1338.3488  3826.1992  2506.8199
+[31]  4523.9913  4419.7960  4106.9372  1610.3749  6914.3070  9177.3235
+[37]   867.2594  2829.5722  4971.1865 10005.4062   403.4072  2487.5324
+[43]   552.7144  3401.3995  6520.8703 12965.5930 13266.8893  4283.6801
+[49] 11214.4444  3999.9635
+
+$residuals
+ [1]   27.822497  -96.231407   45.871482  -21.525512 -277.968575  -47.748803
+ [7] -158.725525  124.728017  -77.966721 -127.760005   -9.903142  -51.182252
+[13]   25.958623   83.865222  -44.728274   24.237263  151.240429   21.319112
+[19]  147.717026    6.573306 -136.194394   68.948020  238.642409  175.596200
+[25]  -29.762724  -64.440669  -15.129746   37.716611  178.584538  -19.101000
+[31]   88.429779  122.990028   24.287195 -270.239895   51.960549  -80.343630
+[37]   -2.172007  372.649177  -85.929258  -78.090577 -111.544900  103.950002
+[43] -190.658493  -84.181275   29.045700  130.667987  120.736514 -319.271597
+[49] -214.471405  -21.372921
+
+$rss
+[1] 869183.9
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2       delta_3
+gamma    7.155686e-04 -7.454982e-10  2.809310e-07 -2.842026e-07 -2.985604e-07
+lambda  -7.454982e-10  4.103522e-12  1.074286e-12 -1.108262e-11  1.980737e-11
+delta_1  2.809310e-07  1.074286e-12  4.793668e-09 -1.610255e-10 -1.090660e-09
+delta_2 -2.842026e-07 -1.108262e-11 -1.610255e-10  5.799272e-09 -1.771877e-09
+delta_3 -2.985604e-07  1.980737e-11 -1.090660e-09 -1.771877e-09  3.834011e-09
+rho_1    7.089653e-06 -4.532864e-11  2.385151e-08 -2.692973e-09 -1.575576e-08
+rho_2    4.389315e-06 -1.898110e-11  2.881220e-09 -1.587385e-08  7.006665e-09
+rho      2.604090e-06  6.511628e-11 -6.463447e-09  9.923179e-09 -5.203063e-09
+nu      -2.984178e-06 -2.916037e-11 -1.124494e-09  1.328905e-09  1.149786e-09
+                rho_1         rho_2           rho            nu
+gamma    7.089653e-06  4.389315e-06  2.604090e-06 -2.984178e-06
+lambda  -4.532864e-11 -1.898110e-11  6.511628e-11 -2.916037e-11
+delta_1  2.385151e-08  2.881220e-09 -6.463447e-09 -1.124494e-09
+delta_2 -2.692973e-09 -1.587385e-08  9.923179e-09  1.328905e-09
+delta_3 -1.575576e-08  7.006665e-09 -5.203063e-09  1.149786e-09
+rho_1    2.932892e-07  4.444683e-08 -5.686557e-08 -2.860697e-08
+rho_2    4.444683e-08  1.295233e-07 -3.667879e-08 -1.775840e-08
+rho     -5.686557e-08 -3.667879e-08  1.493850e-07 -1.109870e-08
+nu      -2.860697e-08 -1.775840e-08 -1.109870e-08  1.275930e-08
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLmTcVrsRR2 )
+Estimated CES function
+
+Call:
+cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, rho2 = 0, rho = 0.2, control = nls.lm.control(maxiter = 200))
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+56.96132  0.01993  0.61919  0.27299  0.51903  0.64146  0.00000  0.20000 
+      nu 
+ 1.06023 
+
+> summary( cesLmTcVrsRR2 )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, rho2 = 0, rho = 0.2, control = nls.lm.control(maxiter = 200))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho_2' was fixed at 0 
+Coefficient 'rho' was fixed at 0.2 
+Convergence achieved after 6 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   5.696e+01  3.527e+00  16.150  < 2e-16 ***
+lambda  1.993e-02  2.671e-04  74.623  < 2e-16 ***
+delta_1 6.192e-01  9.129e-03  67.830  < 2e-16 ***
+delta_2 2.730e-01  1.004e-02  27.189  < 2e-16 ***
+delta_3 5.190e-01  8.164e-03  63.576  < 2e-16 ***
+rho_1   6.415e-01  7.140e-02   8.984  < 2e-16 ***
+rho_2   0.000e+00  4.745e-02   0.000        1    
+rho     2.000e-01  5.096e-02   3.925 8.68e-05 ***
+nu      1.060e+00  1.489e-02  71.189  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 131.8472 
+Multiple R-squared: 0.9981503 
+
+> 
 > ## Levenberg-Marquardt, Fixed rho, rho1, and rho2, VRS
 > cesLmVrsRRR <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
 +    control = nls.lm.control( maxiter = 200 ), rho1 = 0.2, rho2 = 0.3, rho = -0.1 )
@@ -36930,6 +37475,155 @@ nu       1.0729987 0.03911610 27.431128 1.166905e-165
 [36]  104.2699202  -33.6849904  488.0042877  -13.0782052  101.9300779
 [41] -203.9500429  125.8355513 -259.1163758  102.4905374   -5.3220088
 [46]  -42.6484957   87.9929043 -274.8699735 -159.7804346   -9.5609595
+> 
+> ## Levenberg-Marquardt, Fixed rho, rho1, and rho2, TC, VRS
+> cesLmTcVrsRRR <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES,
++    vrs = TRUE, control = nls.lm.control( maxiter = 200 ), 
++    rho1 = 0.2, rho2 = 0.3, rho = -0.1 )
+> print.default( cesLmTcVrsRRR )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 40.7160703642202, 0.0198542241230551, 0.586580043166201, 0.210711586952093, 0.581901072785587, 1.13838429924637 
+residual sum-of-squares: 5762845
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+      gamma      lambda     delta_1     delta_2     delta_3       rho_1 
+40.71607036  0.01985422  0.58658004  0.21071159  0.58190107  0.20000000 
+      rho_2         rho          nu 
+ 0.30000000 -0.10000000  1.13838430 
+
+$iter
+[1] 8
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, rho1 = 0.2, rho2 = 0.3, rho = -0.1, 
+    control = nls.lm.control(maxiter = 200))
+
+$method
+[1] "LM"
+
+$start
+   gamma   lambda  delta_1  delta_2  delta_3       nu 
+80.55064  0.01500  0.50000  0.50000  0.50000  1.00000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho1
+[1] 0.2
+
+$rho2
+[1] 0.3
+
+$rho
+[1] -0.1
+
+$fitted.values
+ [1]  2939.4600  2240.4714  3504.0614  3754.8764  3234.6674  4660.5535
+ [7]  5086.4359  2656.3055  2341.1675   650.0088  5452.4818  2595.7022
+[13]  4008.2784  3706.6392  3593.0800  2671.5656  2555.9138  4269.5881
+[19]  3840.5659  5643.6317  4805.6192   661.7474  2609.6362  6187.6253
+[25]  8768.9453  8079.1284 10337.3206  1806.0841  3909.7418  2246.9255
+[31]  4328.4977  4633.0434  3813.2219  1875.9143  7009.9410  8777.1877
+[37]  1112.7452  2033.5400  5011.6445  9749.3657   835.1028  2319.6660
+[43]   896.8743  3004.4410  6512.7791 13063.0743 13130.9035  4704.5286
+[49] 11516.5565  4187.6498
+
+$residuals
+ [1]  -75.40492 -246.49714  146.67210   99.38914 -639.87063 -195.97018
+ [7] -405.78110  239.08977  183.11238 -387.72442 -100.97805   51.12547
+[13]  -14.54556   83.42214  -87.36047   22.69513  164.37657  340.21635
+[19]  409.85918   -8.33330 -363.87382  282.96625  463.00136  181.33309
+[25]   91.25870 -103.31774  -79.91047 -430.01868   95.04199  240.79333
+[31]  283.92337  -90.25736  318.00244 -535.77927  -43.67345  319.79220
+[37] -247.65774 1168.68138 -126.38729  177.94995 -543.24050  271.81635
+[43] -534.81834  312.77714   37.13697   33.18671  256.72229 -740.12014
+[49] -516.58351 -209.05925
+
+$rss
+[1] 5762845
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2       delta_3
+gamma    4.078576e-04 -5.216283e-10  6.949849e-08 -4.604288e-07 -9.440861e-08
+lambda  -5.216283e-10  4.051169e-12  1.260717e-12 -1.515689e-11  1.915382e-11
+delta_1  6.949849e-08  1.260717e-12  2.821818e-09 -1.421162e-10 -6.313143e-10
+delta_2 -4.604288e-07 -1.515689e-11 -1.421162e-10  9.977287e-09 -1.866306e-09
+delta_3 -9.440861e-08  1.915382e-11 -6.313143e-10 -1.866306e-09  2.609392e-09
+rho_1    3.203610e-06 -1.249530e-11  8.916116e-09 -2.471105e-09 -7.414397e-09
+rho_2    4.878272e-06 -1.515786e-11  1.428820e-09 -4.019901e-08  9.047976e-09
+rho      1.689727e-06  4.400190e-11 -3.669361e-09  6.207202e-09  3.886961e-11
+nu      -2.384717e-06 -2.887021e-11 -3.912791e-10  2.916202e-09  4.484469e-10
+                rho_1         rho_2           rho            nu
+gamma    3.203610e-06  4.878272e-06  1.689727e-06 -2.384717e-06
+lambda  -1.249530e-11 -1.515786e-11  4.400190e-11 -2.887021e-11
+delta_1  8.916116e-09  1.428820e-09 -3.669361e-09 -3.912791e-10
+delta_2 -2.471105e-09 -4.019901e-08  6.207202e-09  2.916202e-09
+delta_3 -7.414397e-09  9.047976e-09  3.886961e-11  4.484469e-10
+rho_1    1.013154e-07  2.924013e-08 -1.855743e-08 -1.834195e-08
+rho_2    2.924013e-08  2.803061e-07 -2.041761e-08 -2.818175e-08
+rho     -1.855743e-08 -2.041761e-08  7.860265e-08 -9.830235e-09
+nu      -1.834195e-08 -2.818175e-08 -9.830235e-09  1.425331e-08
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLmTcVrsRRR )
+Estimated CES function
+
+Call:
+cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, rho1 = 0.2, rho2 = 0.3, rho = -0.1, 
+    control = nls.lm.control(maxiter = 200))
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+40.71607  0.01985  0.58658  0.21071  0.58190  0.20000  0.30000 -0.10000 
+      nu 
+ 1.13838 
+
+> summary( cesLmTcVrsRRR )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, rho1 = 0.2, rho2 = 0.3, rho = -0.1, 
+    control = nls.lm.control(maxiter = 200))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+Coefficient 'rho_1' was fixed at 0.2 
+Coefficient 'rho_2' was fixed at 0.3 
+Coefficient 'rho' was fixed at -0.1 
+Convergence achieved after 8 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+          Estimate Std. Error t value Pr(>|t|)    
+gamma   40.7160704  6.8562678   5.939 2.88e-09 ***
+lambda   0.0198542  0.0006833  29.056  < 2e-16 ***
+delta_1  0.5865800  0.0180342  32.526  < 2e-16 ***
+delta_2  0.2107116  0.0339109   6.214 5.18e-10 ***
+delta_3  0.5819011  0.0173422  33.554  < 2e-16 ***
+rho_1    0.2000000  0.1080615   1.851   0.0642 .  
+rho_2    0.3000000  0.1797421   1.669   0.0951 .  
+rho     -0.1000000  0.0951814  -1.051   0.2934    
+nu       1.1383843  0.0405314  28.086  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 339.4951 
+Multiple R-squared: 0.9877363 
+
 > 
 > 
 > ########## Grid Search for Rho_1, Rho_2, and Rho ##############
