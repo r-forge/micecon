@@ -12487,7 +12487,7 @@ nu        0.7965317  0.03252766 24.487828 1.991198e-132
 > rnorm( 5 )
 [1] -1.3379529 -0.2877371  1.4560590  0.3304016 -0.1010861
 > 
-> ## DE, TR, VRS
+> ## DE, TC, VRS
 > cesDeTcVrs <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES, 
 +    method = "DE", vrs = TRUE, 
 +    control = DEoptim.control( trace = FALSE, NP = 90 ) )
