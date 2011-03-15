@@ -6,6 +6,8 @@ data( germanFarms )
 germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
 # quantity of intermediate inputs
 germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
+# time trend
+germanFarms$time <- c( 1:nrow( germanFarms ) )
 
 
 ############  cesEstGridRho  ################
@@ -23,6 +25,14 @@ coef( summary( cesGridNm ) )
 fitted( cesGridNm )
 residuals( cesGridNm )
 plot( cesGridNm )
+
+## Nelder-Mead, TC, CRS
+cesGridNmTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
+   tName = "time", data = germanFarms, method = "Nelder-Mead", 
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+print.default( cesGridNmTc ) 
+print( cesGridNmTc )
+summary( cesGridNmTc )
 
 ## Nelder-Mead, VRS
 cesGridNmVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -62,6 +72,14 @@ vcov( cesGridCgVrs )
 coef( summary( cesGridCgVrs ) )
 plot( cesGridCgVrs )
 
+# using the CG optimization method, TC, VRS
+cesGridCgTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
+   tName = "time", data = germanFarms, method = "CG", vrs = TRUE,
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+print.default( cesGridCgTcVrs )
+print( cesGridCgTcVrs )
+summary( cesGridCgTcVrs )
+
 # using the SANN optimization method
 cesGridSann <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, method = "SANN", random.seed = 1,
@@ -73,6 +91,14 @@ coef( cesGridSann )
 vcov( cesGridSann )
 coef( summary( cesGridSann ) )
 plot( cesGridSann )
+
+# using the SANN optimization method, TC, CRS
+cesGridSannTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
+   tName = "time", data = germanFarms, method = "SANN", random.seed = 31,
+   rho = seq( from = -0.8, to = 0.8, by = 0.8 ) )
+print.default( cesGridSannTc )
+print( cesGridSannTc )
+summary( cesGridSannTc )
 
 # using the SANN optimization method, VRS
 cesGridSannVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -110,6 +136,14 @@ vcov( cesGridBfgsVrs )
 coef( summary( cesGridNmVrs ) )
 plot( cesGridBfgsVrs )
 
+# using the BFGS optimization method, TC, VRS
+cesGridBfgsTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
+   tName = "time", data = germanFarms, method = "BFGS", vrs = TRUE,
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+print.default( cesGridBfgsTcVrs )
+print( cesGridBfgsTcVrs )
+summary( cesGridBfgsTcVrs )
+
 # using the L-BFGS-B optimization method with constrained parameters
 cesGridBfgsCon <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, method = "L-BFGS-B",
@@ -121,6 +155,14 @@ coef( cesGridBfgsCon )
 vcov( cesGridBfgsCon )
 coef( summary( cesGridBfgsCon ) )
 plot( cesGridBfgsCon )
+
+# using the L-BFGS-B optimization method, TC, CRS
+cesGridBfgsConTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
+   tName = "time", data = germanFarms, method = "L-BFGS-B",
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+print.default( cesGridBfgsConTc )
+print( cesGridBfgsConTc )
+summary( cesGridBfgsConTc )
 
 # using the L-BFGS-B optimization method with constrained parameters, VRS
 cesGridBfgsConVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -157,6 +199,14 @@ vcov( cesGridLmVrs )
 coef( summary( cesGridLmVrs ) )
 plot( cesGridLmVrs )
 
+# using the Levenberg-Marquardt optimization method, TC, VRS
+cesGridLmTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
+   tName = "time", data = germanFarms, vrs = TRUE,
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+print.default( cesGridLmTcVrs )
+print( cesGridLmTcVrs )
+summary( cesGridLmTcVrs )
+
 # using the Newton-type optimization method implemented in nlm()
 cesGridNewton <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, method = "Newton",
@@ -168,6 +218,14 @@ coef( cesGridNewton )
 vcov( cesGridNewton )
 coef( summary( cesGridNewton ) )
 plot( cesGridNewton )
+
+# using the Newton-type optimization method implemented in nlm(), TC, CRS
+cesGridNewtonTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
+   tName = "time", data = germanFarms, method = "Newton",
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+print.default( cesGridNewtonTc )
+print( cesGridNewtonTc )
+summary( cesGridNewtonTc )
 
 # using the Newton-type optimization method implemented in nlm(), VRS
 cesGridNewtonVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -205,6 +263,14 @@ vcov( cesGridPortVrs )
 coef( summary( cesGridPortVrs ) )
 plot( cesGridPortVrs )
 
+# using the PORT optimization rountine implemented in nlminb(), TC, VRS
+cesGridPortTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
+   tName = "time", data = germanFarms, method = "PORT", vrs = TRUE,
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+print.default( cesGridPortTcVrs )
+print( cesGridPortTcVrs )
+summary( cesGridPortTcVrs )
+
 # using the DE optimization method implemented in DEoptim(), CRS
 cesGridDe <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, method = "DE", random.seed = 321,
@@ -217,6 +283,15 @@ coef( cesGridDe )
 vcov( cesGridDe )
 coef( summary( cesGridDe ) )
 plot( cesGridDe )
+
+# using the DE optimization method implemented in DEoptim(), TC, CRS
+cesGridDeTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
+   tName = "time", data = germanFarms, method = "DE", random.seed = 321,
+   rho = seq( from = -0.8, to = 0.8, by = 0.8 ),
+   control = DEoptim.control( trace = FALSE ) )
+print.default( cesGridDeTc )
+print( cesGridDeTc )
+summary( cesGridDeTc )
 
 # using the DE optimization method implemented in DEoptim(), VRS
 cesGridDeVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),

@@ -161,3 +161,63 @@ print( cesDeRho2 )
 summary( cesDeRho2 )
 
 
+########## Grid Search for Rho_1 and/or Rho ##############
+rhoVec <- c( -0.9, -0.4, 0, 0.5, 1 )
+rho1Vec <- c( -0.9, 0, 5, 10 )
+
+## BFGS, grid search for rho_1 and rho
+cesBfgsGridRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
+   rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+   method = "BFGS", control = list( maxit = 5000 ) )
+print.default( cesBfgsGridRho2 )
+print( cesBfgsGridRho2 )
+summary( cesBfgsGridRho2 )
+
+## Levenberg-Marquardt, grid search for rho
+cesLmGridRho <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
+   rho = rhoVec, returnGridAll = TRUE,
+   control = nls.lm.control( maxiter = 1000, maxfev = 2000 ) )
+print.default( cesLmGridRho )
+print( cesLmGridRho )
+summary( cesLmGridRho )
+
+## Levenberg-Marquardt, grid search for rho_1
+cesLmGridRho1 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
+   rho1 = rho1Vec, returnGridAll = TRUE,
+   control = nls.lm.control( maxiter = 1000, maxfev = 2000 ) )
+print.default( cesLmGridRho1 )
+print( cesLmGridRho1 )
+summary( cesLmGridRho1 )
+
+## Levenberg-Marquardt, grid search for rho_1 and rho
+cesLmGridRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
+   rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+   control = nls.lm.control( maxiter = 1000, maxfev = 2000 ) )
+print.default( cesLmGridRho2 )
+print( cesLmGridRho2 )
+summary( cesLmGridRho2 )
+
+## Newton-type, grid search for rho_1 and rho
+cesNewtonGridRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
+   rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+   method = "Newton", iterlim = 500 )
+print.default( cesNewtonGridRho2 )
+print( cesNewtonGridRho2 )
+summary( cesNewtonGridRho2 )
+
+## PORT, grid search for rho
+cesPortGridRho <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
+   rho = rhoVec, returnGridAll = TRUE, method = "PORT",
+   control = list( eval.max = 1000, iter.max = 1000 ) )
+print.default( cesPortGridRho )
+print( cesPortGridRho )
+summary( cesPortGridRho )
+
+## PORT, grid search for rho_1 and rho
+cesPortGridRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
+   rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, method = "PORT",
+   control = list( eval.max = 1000, iter.max = 1000 ) )
+print.default( cesPortGridRho2 )
+print( cesPortGridRho2 )
+summary( cesPortGridRho2 )
+

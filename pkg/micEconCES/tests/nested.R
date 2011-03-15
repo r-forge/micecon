@@ -913,6 +913,13 @@ coef( summary( cesLmGrid ) )
 fitted( cesLmGrid )
 residuals( cesLmGrid )
 
+## Levenberg-Marquardt, Grid Search for rho, TC, CRS
+cesLmGridTc <- cesEst( "yObs", xNames, tName = "time", data = MishraCES, 
+   rho = (1:6)/3-0.5, control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmGridTc )
+print( cesLmGridTc )
+summary( cesLmGridTc )
+
 ## Levenberg-Marquardt, Grid Search for rho, VRS
 cesLmVrsGrid <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    rho = (1:12)/6-0.4, control = nls.lm.control( maxiter = 200 ) )
@@ -962,6 +969,14 @@ coef( summary( cesLmGrid1 ) )
 fitted( cesLmGrid1 )
 residuals( cesLmGrid1 )
 
+## PORT, Grid Search for rho, TC, VRS
+cesPortTcVrsGrid1 <- cesEst( "yObs", xNames, tName = "time", data = MishraCES, 
+   method = "PORT", vrs = TRUE, rho1 = (1:6)/3-0.5, 
+   control = list( eval.max = 500, iter.max = 500 ) )
+print.default( cesPortTcVrsGrid1 )
+print( cesPortTcVrsGrid1 )
+summary( cesPortTcVrsGrid1 )
+
 ## Levenberg-Marquardt, Grid Search for rho_2, VRS
 cesLmVrsGrid2 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
    rho2 = (0:8)/6-0.6, control = nls.lm.control( maxiter = 200 ) )
@@ -973,6 +988,13 @@ vcov( cesLmVrsGrid2 )
 coef( summary( cesLmVrsGrid2 ) )
 fitted( cesLmVrsGrid2 )
 residuals( cesLmVrsGrid2 )
+
+## BFGS, Grid Search for rho_2, TC, VRS
+cesBfgsVrsGrid2 <- cesEst( "yObs", xNames, tName = "time", data = MishraCES, 
+   vrs = TRUE, rho2 = (0:4)/3-0.6, control = list( maxit = 5000 ) )
+print.default( cesBfgsVrsGrid2 )
+print( cesBfgsVrsGrid2 )
+summary( cesBfgsVrsGrid2 )
 
 ## Levenberg-Marquardt, Grid Search for rho_1 and rho_2, CRS
 cesLmGrid12 <- cesEst( "yObs", xNames, data = MishraCES, rho1 = (1:8)/6,
@@ -1024,4 +1046,11 @@ coef( summary( cesLmVrsGrid123 ) )
 fitted( cesLmVrsGrid123 )
 residuals( cesLmVrsGrid123 )
 
+## Levenberg-Marquardt, Grid Search for rho_1, rho_2, and rho, TC, VRS
+cesLmTcVrsGrid123 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
+   rho1 = (0:2)/2+0.3, rho2 = (0:2)/1.5-0.9, rho = (0:2)/2+0.1,
+   control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmTcVrsGrid123 )
+print( cesLmTcVrsGrid123 )
+summary( cesLmTcVrsGrid123 )
 

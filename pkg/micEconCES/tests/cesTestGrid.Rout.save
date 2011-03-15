@@ -68,6 +68,8 @@ Authors: David Ardia and Katharine Mullen
 > germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
 > # quantity of intermediate inputs
 > germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
+> # time trend
+> germanFarms$time <- c( 1:nrow( germanFarms ) )
 > 
 > 
 > ############  cesEstGridRho  ################
@@ -217,6 +219,133 @@ rho     0.400000    22.23612 0.01798875 0.9856478
 [13]   70.099403  129.956124   97.796473   52.706943  -20.216796   -7.752477
 [19]    4.388877    3.096481
 > plot( cesGridNm )
+> 
+> ## Nelder-Mead, TC, CRS
+> cesGridNmTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    tName = "time", data = germanFarms, method = "Nelder-Mead", 
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+> print.default( cesGridNmTc ) 
+$optim
+$optim$par
+      gamma      lambda       delta 
+16.05752577  0.01708075  0.90663651 
+
+$optim$value
+[1] 17440.55
+
+$optim$counts
+function gradient 
+     502       NA 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+      gamma      lambda       delta         rho 
+16.05752577  0.01708075  0.90663651 -0.80000000 
+
+$iter
+[1] 502
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "Nelder-Mead", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+$method
+[1] "Nelder-Mead"
+
+$start
+   gamma   lambda    delta 
+3.758571 0.015000 0.500000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.8
+
+$fitted.values
+ [1]  957.510 1037.958 1066.186 1135.558 1148.580 1184.472 1236.029 1230.696
+ [9] 1226.885 1276.200 1351.966 1534.008 1635.540 1683.704 1622.515 1635.766
+[17] 1679.088 1745.023 1868.065 2003.652
+
+$residuals
+ [1] -11.377061 -75.227833   3.393028  36.238702  29.536233   1.338019
+ [7]   3.329136  57.864531 -19.178555   2.208703   8.626375   6.776351
+[13] -60.505113  12.254972  22.173752  -9.735324 -24.047970  10.576812
+[19]  19.354909 -11.757906
+
+$rss
+[1] 17440.55
+
+$cov.unscaled
+               gamma        lambda         delta           rho
+gamma   4.778795e+00  4.843946e-06  1.054703e-01 -4.003109e-01
+lambda  4.843946e-06  2.325925e-09  1.634902e-07 -7.417957e-07
+delta   1.054703e-01  1.634902e-07  2.329639e-03 -8.846328e-03
+rho    -4.003109e-01 -7.417957e-07 -8.846328e-03  3.360177e-02
+
+$allRhoSum
+   rho      rss convergence
+1 -0.8 17440.55       FALSE
+2 -0.4 17480.87        TRUE
+3  0.0 17530.81        TRUE
+4  0.4 17590.31        TRUE
+5  0.8 17659.34        TRUE
+6  1.2 17737.79        TRUE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridNmTc )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "Nelder-Mead", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Coefficients:
+   gamma   lambda    delta      rho 
+16.05753  0.01708  0.90664 -0.80000 
+
+> summary( cesGridNmTc )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "Nelder-Mead", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+Convergence NOT achieved after 502 iterations
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma  16.057526  64.554180   0.249    0.804    
+lambda  0.017081   0.001424  11.993   <2e-16 ***
+delta   0.906637   1.425310   0.636    0.525    
+rho    -0.800000   5.413102  -0.148    0.883    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 29.53012 
+Multiple R-squared: 0.9901472 
+
 > 
 > ## Nelder-Mead, VRS
 > cesGridNmVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -650,6 +779,137 @@ rho    0.0000000  18.4175732  0.00000000 1.000000e+00
 nu     1.3052536   0.1144128 11.40827978 3.801733e-30
 > plot( cesGridCgVrs )
 > 
+> # using the CG optimization method, TC, VRS
+> cesGridCgTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    tName = "time", data = germanFarms, method = "CG", vrs = TRUE,
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+There were 12 warnings (use warnings() to see them)
+> print.default( cesGridCgTcVrs )
+$optim
+$optim$par
+     gamma     lambda      delta         nu 
+8.45548323 0.01622336 0.50070992 0.99758868 
+
+$optim$value
+[1] 18039.39
+
+$optim$counts
+function gradient 
+     575      101 
+
+$optim$convergence
+[1] 1
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma     lambda      delta        rho         nu 
+8.45548323 0.01622336 0.50070992 0.00000000 0.99758868 
+
+$iter
+function gradient 
+     575      101 
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "CG", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+$method
+[1] "CG"
+
+$start
+   gamma   lambda    delta       nu 
+8.455537 0.015000 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0
+
+$fitted.values
+ [1]  967.403 1043.730 1072.598 1135.535 1148.527 1183.207 1233.763 1231.433
+ [9] 1224.877 1275.051 1346.926 1526.646 1624.688 1676.037 1620.364 1635.724
+[17] 1683.671 1750.877 1873.660 2007.805
+
+$residuals
+ [1] -21.269933 -80.999863  -3.019171  36.261248  29.589251   2.603230
+ [7]   5.595177  57.127649 -17.170717   3.357243  13.666239  14.137925
+[13] -49.653292  19.922212  24.325476  -9.692627 -28.630895   4.722364
+[19]  13.759897 -15.911024
+
+$rss
+[1] 18039.85
+
+$cov.unscaled
+               gamma        lambda         delta           rho            nu
+gamma   4.2907318726  1.015937e-04  3.153817e-01 -4.063347e-01 -4.221089e-03
+lambda  0.0001015937  1.297322e-08  6.559874e-06 -8.667005e-06 -4.617773e-07
+delta   0.3153817486  6.559874e-06  2.331562e-02 -3.003619e-02 -2.655037e-04
+rho    -0.4063347436 -8.667005e-06 -3.003619e-02  3.870444e-02  3.462822e-04
+nu     -0.0042210888 -4.617773e-07 -2.655037e-04  3.462822e-04  2.000294e-05
+
+$allRhoSum
+   rho      rss convergence
+1 -0.8 40126.17       FALSE
+2 -0.4 25451.65       FALSE
+3  0.0 18039.85       FALSE
+4  0.4 36458.51       FALSE
+5  0.8 56510.71       FALSE
+6  1.2 68514.33       FALSE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridCgTcVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "CG", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Coefficients:
+  gamma  lambda   delta     rho      nu 
+8.45548 0.01622 0.50071 0.00000 0.99759 
+
+> summary( cesGridCgTcVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "CG", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Estimation by non-linear least-squares using the 'CG' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+Convergence NOT achieved after 575 function and 101 gradient calls
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma   8.455483  62.210998   0.136    0.892    
+lambda  0.016223   0.003421   4.743 2.11e-06 ***
+delta   0.500710   4.585904   0.109    0.913    
+rho     0.000000   5.908563   0.000    1.000    
+nu      0.997589   0.134322   7.427 1.11e-13 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 30.03319 
+Multiple R-squared: 0.9898087 
+
+> 
 > # using the SANN optimization method
 > cesGridSann <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, method = "SANN", random.seed = 1,
@@ -779,6 +1039,126 @@ gamma 26.6456166 1861.66093 0.014312819 0.9885804
 delta  0.5784538   60.54744 0.009553727 0.9923773
 rho    0.8000000   79.82512 0.010021908 0.9920038
 > plot( cesGridSann )
+> 
+> # using the SANN optimization method, TC, CRS
+> cesGridSannTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    tName = "time", data = germanFarms, method = "SANN", random.seed = 31,
++    rho = seq( from = -0.8, to = 0.8, by = 0.8 ) )
+> print.default( cesGridSannTc )
+$optim
+$optim$par
+     gamma     lambda      delta 
+8.42160926 0.01650105 0.50458611 
+
+$optim$value
+[1] 18331.96
+
+$optim$counts
+function gradient 
+   10000       NA 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma     lambda      delta        rho 
+8.42160926 0.01650105 0.50458611 0.00000000 
+
+$iter
+[1] 10000
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "SANN", rho = seq(from = -0.8, to = 0.8, 
+        by = 0.8), random.seed = 31)
+
+$method
+[1] "SANN"
+
+$start
+   gamma   lambda    delta 
+8.455537 0.015000 0.500000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0
+
+$fitted.values
+ [1]  962.9606 1039.1643 1068.3055 1131.1349 1144.4236 1179.3384 1230.1555
+ [8] 1228.3153 1221.9632 1272.5513 1344.6568 1524.9023 1623.3946 1675.4781
+[15] 1620.4431 1636.4621 1685.4481 1753.6003 1877.4827 2012.7359
+
+$residuals
+ [1] -16.827584 -76.433825   1.273704  40.661593  33.692432   6.471575
+ [7]   9.202352  60.245592 -14.256987   5.857226  15.935770  15.881824
+[13] -48.359927  20.481340  24.246040 -10.431000 -30.408279   1.999499
+[19]   9.937614 -20.841914
+
+$rss
+[1] 18331.96
+
+$cov.unscaled
+               gamma        lambda         delta           rho
+gamma   3.376121e+00  4.238424e-06  2.579570e-01 -3.315052e-01
+lambda  4.238424e-06  2.326753e-09  4.383472e-07 -6.832522e-07
+delta   2.579570e-01  4.383472e-07  1.971725e-02 -2.534747e-02
+rho    -3.315052e-01 -6.832522e-07 -2.534747e-02  3.259481e-02
+
+$allRhoSum
+   rho      rss convergence
+1 -0.8 42086.50          NA
+2  0.0 18331.96          NA
+3  0.8 58372.28          NA
+
+$rhoValues
+[1] -0.8  0.0  0.8
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridSannTc )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "SANN", rho = seq(from = -0.8, to = 0.8, 
+        by = 0.8), random.seed = 31)
+
+Coefficients:
+ gamma lambda  delta    rho 
+8.4216 0.0165 0.5046 0.0000 
+
+> summary( cesGridSannTc )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "SANN", rho = seq(from = -0.8, to = 0.8, 
+        by = 0.8), random.seed = 31)
+
+Estimation by non-linear least-squares using the 'SANN' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)    
+gamma   8.42161   55.62864   0.151    0.880    
+lambda  0.01650    0.00146  11.299   <2e-16 ***
+delta   0.50459    4.25121   0.119    0.906    
+rho     0.00000    5.46592   0.000    1.000    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 30.27537 
+Multiple R-squared: 0.9896436 
+
 > 
 > # using the SANN optimization method, VRS
 > cesGridSannVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1196,6 +1576,146 @@ rho   -0.4000000  6.3780980 -0.06271462 9.499938e-01
 nu     1.5670310  0.0932491 16.80478547 2.251256e-63
 > plot( cesGridBfgsVrs )
 > 
+> # using the BFGS optimization method, TC, VRS
+> cesGridBfgsTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    tName = "time", data = germanFarms, method = "BFGS", vrs = TRUE,
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+Warning messages:
+1: In log(gammaStar) : NaNs produced
+2: In log(gammaStar) : NaNs produced
+3: In log(gammaStar) : NaNs produced
+4: In log(gammaStar) : NaNs produced
+5: In log(gammaStar) : NaNs produced
+6: In log(gammaStar) : NaNs produced
+7: In log(gammaStar) : NaNs produced
+8: In log(gammaStar) : NaNs produced
+9: In log(gammaStar) : NaNs produced
+> print.default( cesGridBfgsTcVrs )
+$optim
+$optim$par
+      gamma      lambda       delta          nu 
+15.23730625  0.01902593  0.71799934  0.91415071 
+
+$optim$value
+[1] 17026.61
+
+$optim$counts
+function gradient 
+     606       94 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+      gamma      lambda       delta         rho          nu 
+15.23730625  0.01902593  0.71799934 -0.40000000  0.91415071 
+
+$iter
+function gradient 
+     606       94 
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "BFGS", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+$method
+[1] "BFGS"
+
+$start
+   gamma   lambda    delta       nu 
+5.284923 0.015000 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.4
+
+$fitted.values
+ [1]  957.1373 1034.6487 1063.7367 1131.4010 1147.0798 1183.8508 1235.0587
+ [8] 1233.8992 1234.8562 1284.2276 1358.7341 1530.2612 1628.3017 1677.1233
+[15] 1625.4566 1642.0430 1684.3828 1748.4858 1865.9297 1995.9954
+
+$residuals
+ [1] -11.004259 -71.918185   5.842426  40.395463  31.036274   1.959211
+ [7]   4.299147  54.661696 -27.149983  -5.819089   1.858495  10.522865
+[13] -53.267026  18.836076  19.232509 -16.011852 -29.342889   7.114018
+[19]  21.490549  -4.101358
+
+$rss
+[1] 17026.61
+
+$cov.unscaled
+               gamma        lambda         delta           rho            nu
+gamma  12.4401303269  1.754550e-04  4.886806e-01 -7.783367e-01 -7.242974e-03
+lambda  0.0001754550  1.298587e-08  6.108029e-06 -1.001055e-05 -4.604104e-07
+delta   0.4886806344  6.108029e-06  1.930174e-02 -3.073543e-02 -2.453345e-04
+rho    -0.7783366583 -1.001055e-05 -3.073543e-02  4.895647e-02  3.972359e-04
+nu     -0.0072429743 -4.604104e-07 -2.453345e-04  3.972359e-04  1.990237e-05
+
+$allRhoSum
+   rho      rss convergence
+1 -0.8 17333.26       FALSE
+2 -0.4 17026.61        TRUE
+3  0.0 17104.64        TRUE
+4  0.4 17189.91        TRUE
+5  0.8 17650.61       FALSE
+6  1.2 22229.63       FALSE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridBfgsTcVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "BFGS", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Coefficients:
+   gamma   lambda    delta      rho       nu 
+15.23731  0.01903  0.71800 -0.40000  0.91415 
+
+> summary( cesGridBfgsTcVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "BFGS", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+Convergence achieved after 606 function and 94 gradient calls
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   15.237306 102.910940   0.148    0.882    
+lambda   0.019026   0.003325   5.722 1.05e-08 ***
+delta    0.717999   4.053660   0.177    0.859    
+rho     -0.400000   6.455860  -0.062    0.951    
+nu       0.914151   0.130167   7.023 2.17e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 29.17757 
+Multiple R-squared: 0.990381 
+
+> 
 > # using the L-BFGS-B optimization method with constrained parameters
 > cesGridBfgsCon <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, method = "L-BFGS-B",
@@ -1334,6 +1854,138 @@ gamma 49.14295 8.834772e+01 5.562447e-01 0.5780436
 delta  1.00000 1.565451e+00 6.387937e-01 0.5229571
 rho    0.80000 3.577249e+13 2.236355e-14 1.0000000
 > plot( cesGridBfgsCon )
+> 
+> # using the L-BFGS-B optimization method, TC, CRS
+> cesGridBfgsConTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    tName = "time", data = germanFarms, method = "L-BFGS-B",
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+> print.default( cesGridBfgsConTc )
+$optim
+$optim$par
+      gamma      lambda       delta 
+16.06509129  0.01707746  0.90669741 
+
+$optim$value
+[1] 17440.55
+
+$optim$counts
+function gradient 
+     108      108 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+
+$coefficients
+      gamma      lambda       delta         rho 
+16.06509129  0.01707746  0.90669741 -0.80000000 
+
+$iter
+function gradient 
+     108      108 
+
+$convergence
+[1] TRUE
+
+$message
+[1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "L-BFGS-B", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+$method
+[1] "L-BFGS-B"
+
+$start
+   gamma   lambda    delta 
+3.758571 0.015000 0.500000 
+
+$lower
+[1]    0 -Inf    0
+
+$upper
+[1] Inf Inf   1
+
+$rho
+[1] -0.8
+
+$fitted.values
+ [1]  957.5516 1037.9903 1066.2188 1135.5760 1148.5965 1184.4849 1236.0385
+ [8] 1230.7110 1226.8912 1276.2072 1351.9638 1534.0001 1635.5231 1683.6930
+[15] 1622.5157 1635.7720 1679.1108 1745.0545 1868.1000 2003.6833
+
+$residuals
+ [1] -11.418572 -75.259786   3.360351  36.220428  29.519579   1.325078
+ [7]   3.319309  57.849946 -19.185043   2.201328   8.628830   6.784039
+[13] -60.488391  12.266362  22.173374  -9.740875 -24.070963  10.545309
+[19]  19.320280 -11.789306
+
+$rss
+[1] 17440.55
+
+$cov.unscaled
+               gamma        lambda         delta           rho
+gamma   4.778813e+00  4.840845e-06  1.053990e-01 -4.002742e-01
+lambda  4.840845e-06  2.325833e-09  1.633247e-07 -7.415169e-07
+delta   1.053990e-01  1.633247e-07  2.326484e-03 -8.839512e-03
+rho    -4.002742e-01 -7.415169e-07 -8.839512e-03  3.359551e-02
+
+$allRhoSum
+   rho      rss convergence
+1 -0.8 17440.55        TRUE
+2 -0.4 17480.87        TRUE
+3  0.0 17530.81        TRUE
+4  0.4 17590.31        TRUE
+5  0.8 17659.34        TRUE
+6  1.2 66746.14        TRUE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridBfgsConTc )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "L-BFGS-B", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Coefficients:
+   gamma   lambda    delta      rho 
+16.06509  0.01708  0.90670 -0.80000 
+
+> summary( cesGridBfgsConTc )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "L-BFGS-B", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+Convergence achieved after 108 function and 108 gradient calls
+Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma  16.065091  64.554283   0.249    0.803    
+lambda  0.017077   0.001424  11.991   <2e-16 ***
+delta   0.906697   1.424344   0.637    0.524    
+rho    -0.800000   5.412597  -0.148    0.882    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 29.53011 
+Multiple R-squared: 0.9901472 
+
 > 
 > # using the L-BFGS-B optimization method with constrained parameters, VRS
 > cesGridBfgsConVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1750,6 +2402,126 @@ rho   1.20000000 6.12826004  0.19581414 8.447556e-01
 nu    1.58848816 0.09200041 17.26609852 8.467703e-67
 > plot( cesGridLmVrs )
 > 
+> # using the Levenberg-Marquardt optimization method, TC, VRS
+> cesGridLmTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    tName = "time", data = germanFarms, vrs = TRUE,
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+> print.default( cesGridLmTcVrs )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 21.8438390266117, 0.0191050223701434, 0.898105762683758, 0.910705640121149 
+residual sum-of-squares: 16956
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+      gamma      lambda       delta         rho          nu 
+21.84383903  0.01910502  0.89810576 -0.80000000  0.91070564 
+
+$iter
+[1] 45
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
+
+$method
+[1] "LM"
+
+$start
+   gamma   lambda    delta       nu 
+3.758571 0.015000 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.8
+
+$fitted.values
+ [1]  956.6652 1034.4259 1063.3754 1131.7597 1147.4022 1184.2468 1235.4303
+ [8] 1233.8714 1235.2562 1284.3555 1359.1406 1530.2538 1628.3747 1676.5573
+[15] 1624.7047 1641.3131 1684.0363 1748.7234 1866.4258 1996.3762
+
+$residuals
+ [1] -10.532149 -71.695410   6.203764  40.036728  30.713814   1.563244
+ [7]   3.927526  54.689487 -27.549984  -5.946964   1.452055  10.530253
+[13] -53.340031  19.402126  19.984434 -15.281984 -28.996428   6.876438
+[19]  20.994429  -4.482173
+
+$rss
+[1] 16955.55
+
+$cov.unscaled
+              gamma        lambda         delta           rho            nu
+gamma  13.128728428  1.895820e-04  2.290744e-01 -8.074909e-01 -7.867202e-03
+lambda  0.000189582  1.299507e-08  2.861489e-06 -1.036820e-05 -4.607286e-07
+delta   0.229074351  2.861489e-06  4.032596e-03 -1.421091e-02 -1.148355e-04
+rho    -0.807490885 -1.036820e-05 -1.421091e-02  5.009393e-02  4.112287e-04
+nu     -0.007867202 -4.607286e-07 -1.148355e-04  4.112287e-04  1.991461e-05
+
+$allRhoSum
+   rho      rss convergence
+1 -0.8 16955.55        TRUE
+2 -0.4 17026.54        TRUE
+3  0.0 17104.64        TRUE
+4  0.4 17189.91        TRUE
+5  0.8 17282.39        TRUE
+6  1.2 17382.09        TRUE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridLmTcVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
+
+Coefficients:
+   gamma   lambda    delta      rho       nu 
+21.84384  0.01911  0.89811 -0.80000  0.91071 
+
+> summary( cesGridLmTcVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+Convergence achieved after 45 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   21.843839 105.499945   0.207    0.836    
+lambda   0.019105   0.003319   5.756 8.62e-09 ***
+delta    0.898106   1.848984   0.486    0.627    
+rho     -0.800000   6.516786  -0.123    0.902    
+nu       0.910706   0.129935   7.009 2.40e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 29.11662 
+Multiple R-squared: 0.9904212 
+
+> 
 > # using the Newton-type optimization method implemented in nlm()
 > cesGridNewton <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, method = "Newton",
@@ -1881,6 +2653,131 @@ gamma 165.423876 13869.58790 0.01192709 0.9904838
 delta   1.873447   113.21139 0.01654822 0.9867970
 rho     0.400000    22.23885 0.01798654 0.9856496
 > plot( cesGridNewton )
+> 
+> # using the Newton-type optimization method implemented in nlm(), TC, CRS
+> cesGridNewtonTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    tName = "time", data = germanFarms, method = "Newton",
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+> print.default( cesGridNewtonTc )
+$nlm
+$nlm$minimum
+[1] 17440.55
+
+$nlm$estimate
+[1] 16.06509524  0.01707746  0.90669745
+
+$nlm$gradient
+[1]  0.02217432  7.09283977 -2.25008595
+
+$nlm$code
+[1] 2
+
+$nlm$iterations
+[1] 93
+
+
+$coefficients
+      gamma      lambda       delta         rho 
+16.06509524  0.01707746  0.90669745 -0.80000000 
+
+$iter
+[1] 93
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "Newton", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+$method
+[1] "Newton"
+
+$start
+   gamma   lambda    delta 
+3.758571 0.015000 0.500000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] -0.8
+
+$fitted.values
+ [1]  957.5516 1037.9903 1066.2188 1135.5760 1148.5965 1184.4849 1236.0385
+ [8] 1230.7110 1226.8912 1276.2072 1351.9638 1534.0000 1635.5230 1683.6930
+[15] 1622.5157 1635.7720 1679.1108 1745.0545 1868.1000 2003.6834
+
+$residuals
+ [1] -11.418582 -75.259791   3.360346  36.220430  29.519581   1.325081
+ [7]   3.319312  57.849946 -19.185041   2.201329   8.628835   6.784046
+[13] -60.488381  12.266367  22.173371  -9.740883 -24.070982  10.545282
+[19]  19.320250 -11.789338
+
+$rss
+[1] 17440.55
+
+$cov.unscaled
+               gamma        lambda         delta           rho
+gamma   4.778813e+00  4.840843e-06  1.053989e-01 -4.002742e-01
+lambda  4.840843e-06  2.325833e-09  1.633246e-07 -7.415168e-07
+delta   1.053989e-01  1.633246e-07  2.326482e-03 -8.839508e-03
+rho    -4.002742e-01 -7.415168e-07 -8.839508e-03  3.359551e-02
+
+$allRhoSum
+   rho      rss convergence
+1 -0.8 17440.55        TRUE
+2 -0.4 25053.25        TRUE
+3  0.0 18121.65        TRUE
+4  0.4 35849.66        TRUE
+5  0.8 56559.90        TRUE
+6  1.2 66746.14        TRUE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridNewtonTc )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "Newton", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Coefficients:
+   gamma   lambda    delta      rho 
+16.06510  0.01708  0.90670 -0.80000 
+
+> summary( cesGridNewtonTc )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "Newton", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+Convergence achieved after 93 iterations
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma  16.065095  64.554282   0.249    0.803    
+lambda  0.017077   0.001424  11.991   <2e-16 ***
+delta   0.906697   1.424344   0.637    0.524    
+rho    -0.800000   5.412597  -0.148    0.882    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 29.53011 
+Multiple R-squared: 0.9901472 
+
 > 
 > # using the Newton-type optimization method implemented in nlm(), VRS
 > cesGridNewtonVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -2315,6 +3212,142 @@ delta 0.04069031 0.76005720  0.05353586 9.573050e-01
 rho   1.20000000 6.24929734  0.19202159 8.477253e-01
 nu    1.57430648 0.09209848 17.09372892 1.652601e-65
 > plot( cesGridPortVrs )
+> 
+> # using the PORT optimization rountine implemented in nlminb(), TC, VRS
+> cesGridPortTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    tName = "time", data = germanFarms, method = "PORT", vrs = TRUE,
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+> print.default( cesGridPortTcVrs )
+$nlminb
+$nlminb$par
+      gamma      lambda       delta          nu 
+21.84384077  0.01910502  0.89810578  0.91070565 
+
+$nlminb$objective
+[1] 16955.55
+
+$nlminb$convergence
+[1] 0
+
+$nlminb$message
+[1] "relative convergence (4)"
+
+$nlminb$iterations
+[1] 115
+
+$nlminb$evaluations
+function gradient 
+     160      116 
+
+
+$coefficients
+      gamma      lambda       delta         rho          nu 
+21.84384077  0.01910502  0.89810578 -0.80000000  0.91070565 
+
+$iter
+[1] 115
+
+$convergence
+[1] TRUE
+
+$message
+[1] "relative convergence (4)"
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "PORT", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+$method
+[1] "PORT"
+
+$start
+   gamma   lambda    delta       nu 
+3.758571 0.015000 0.500000 1.000000 
+
+$lower
+[1]    0 -Inf    0    0
+
+$upper
+[1] Inf Inf   1 Inf
+
+$rho
+[1] -0.8
+
+$fitted.values
+ [1]  956.6652 1034.4259 1063.3754 1131.7598 1147.4022 1184.2468 1235.4303
+ [8] 1233.8714 1235.2562 1284.3555 1359.1406 1530.2538 1628.3747 1676.5573
+[15] 1624.7047 1641.3131 1684.0363 1748.7234 1866.4258 1996.3762
+
+$residuals
+ [1] -10.532158 -71.695417   6.203757  40.036724  30.713810   1.563242
+ [7]   3.927525  54.689485 -27.549984  -5.946963   1.452057  10.530255
+[13] -53.340027  19.402128  19.984435 -15.281985 -28.996432   6.876431
+[19]  20.994420  -4.482182
+
+$rss
+[1] 16955.55
+
+$cov.unscaled
+               gamma        lambda         delta           rho            nu
+gamma  13.1287269366  1.895820e-04  2.290743e-01 -8.074908e-01 -7.867202e-03
+lambda  0.0001895820  1.299507e-08  2.861488e-06 -1.036819e-05 -4.607286e-07
+delta   0.2290742874  2.861488e-06  4.032594e-03 -1.421090e-02 -1.148355e-04
+rho    -0.8074907964 -1.036819e-05 -1.421090e-02  5.009393e-02  4.112287e-04
+nu     -0.0078672021 -4.607286e-07 -1.148355e-04  4.112287e-04  1.991461e-05
+
+$allRhoSum
+   rho      rss convergence
+1 -0.8 16955.55        TRUE
+2 -0.4 17026.54        TRUE
+3  0.0 17104.64        TRUE
+4  0.4 17189.91        TRUE
+5  0.8 17296.45       FALSE
+6  1.2 19295.06       FALSE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridPortTcVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "PORT", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Coefficients:
+   gamma   lambda    delta      rho       nu 
+21.84384  0.01911  0.89811 -0.80000  0.91071 
+
+> summary( cesGridPortTcVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "PORT", rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+Convergence achieved after 115 iterations
+Message: relative convergence (4) 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   21.843841 105.499939   0.207    0.836    
+lambda   0.019105   0.003319   5.756 8.62e-09 ***
+delta    0.898106   1.848984   0.486    0.627    
+rho     -0.800000   6.516786  -0.123    0.902    
+nu       0.910706   0.129935   7.009 2.40e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 29.11662 
+Multiple R-squared: 0.9904212 
+
 > 
 > # using the DE optimization method implemented in DEoptim(), CRS
 > cesGridDe <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -2756,6 +3789,434 @@ rho    0.00000 4.623519e+15 0.00000000 1.000000
 Warning message:
 In plot.window(...) :
   relative range of values =  28 * EPS, is small (axis 2)
+> 
+> # using the DE optimization method implemented in DEoptim(), TC, CRS
+> cesGridDeTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    tName = "time", data = germanFarms, method = "DE", random.seed = 321,
++    rho = seq( from = -0.8, to = 0.8, by = 0.8 ),
++    control = DEoptim.control( trace = FALSE ) )
+> print.default( cesGridDeTc )
+$DEoptim
+$optim
+$optim$bestmem
+       par1        par2        par3 
+15.91636105  0.01711406  0.90542165 
+
+$optim$bestval
+[1] 17443.87
+
+$optim$nfeval
+[1] 10050
+
+$optim$iter
+[1] 200
+
+
+$member
+$member$lower
+par1 par2 par3 
+ 0.0 -0.5  0.0 
+
+$member$upper
+ par1  par2  par3 
+1e+10 5e-01 1e+00 
+
+$member$bestmemit
+            par1         par2      par3
+1   6.295737e+08 -0.435552443 0.6611907
+2   1.299827e+08 -0.302456930 0.1208166
+3   5.326745e+07 -0.302600771 0.4620809
+4   5.326745e+07 -0.302600771 0.4620809
+5   5.912446e+07 -0.271295837 0.6616508
+6   5.912446e+07 -0.271295837 0.6616508
+7   5.912446e+07 -0.271295837 0.6897436
+8   1.299827e+08 -0.302456930 0.9743637
+9   5.912446e+07 -0.271295837 0.9478970
+10  5.912446e+07 -0.271295837 0.9478970
+11  5.912446e+07 -0.271295837 0.9478970
+12  2.853912e+07 -0.497708558 0.8406913
+13  2.853912e+07 -0.497708558 0.8406913
+14  1.658364e+07 -0.271295837 0.9478970
+15  1.658364e+07 -0.271295837 0.9478970
+16  1.658364e+07 -0.271295837 0.9478970
+17  1.658364e+07 -0.271295837 0.9740426
+18  4.819026e+06 -0.133662880 0.9477922
+19  4.819026e+06 -0.133662880 0.9477922
+20  2.448648e+06 -0.240743161 0.9745292
+21  2.448648e+06 -0.240743161 0.9745292
+22  2.448648e+06 -0.240743161 0.9745292
+23  1.783326e+06 -0.277472850 0.9712175
+24  1.783326e+06 -0.277472850 0.9712175
+25  6.141255e+05 -0.357535003 0.9615353
+26  5.992816e+05 -0.412170147 0.9550418
+27  5.992816e+05 -0.412170147 0.9727429
+28  5.992816e+05 -0.412170147 0.9727429
+29  2.659571e+05 -0.383374530 0.9627752
+30  2.441930e+05 -0.475219696 0.9815175
+31  2.441930e+05 -0.475219696 0.9815175
+32  1.109330e+05 -0.428234052 0.9626468
+33  5.902716e+04 -0.417976521 0.9637941
+34  5.902716e+04 -0.417976521 0.9637941
+35  2.949850e+04 -0.473567630 0.9767751
+36  2.949850e+04 -0.473567630 0.9767751
+37  1.602944e+04 -0.360113517 0.9908422
+38  1.602944e+04 -0.360113517 0.9918259
+39  1.602944e+04 -0.360113517 0.9918259
+40  1.602944e+04 -0.360113517 0.9918259
+41  1.238251e+04 -0.435830454 0.9848613
+42  9.427345e+02 -0.332411909 0.7838474
+43  9.427345e+02 -0.332411909 0.7838474
+44  9.427345e+02 -0.332411909 0.7838474
+45  9.816444e+02 -0.471893157 0.9752492
+46  9.816444e+02 -0.471893157 0.9769928
+47  9.816444e+02 -0.471893157 0.9769928
+48  9.816444e+02 -0.471893157 0.9769928
+49  9.816444e+02 -0.480701346 0.9769928
+50  3.619757e+02 -0.473801405 0.8580911
+51  3.619757e+02 -0.473801405 0.8580911
+52  3.619757e+02 -0.473801405 0.8708941
+53  3.619757e+02 -0.473801405 0.8708941
+54  3.619757e+02 -0.473801405 0.9012516
+55  3.619757e+02 -0.473801405 0.9012516
+56  3.619757e+02 -0.473801405 0.9012516
+57  3.619757e+02 -0.473801405 0.9012516
+58  3.619757e+02 -0.473801405 0.9012516
+59  3.619757e+02 -0.473801405 0.9012516
+60  2.191646e+02 -0.399796217 0.8829351
+61  4.165740e+02 -0.491037413 0.9753904
+62  4.165740e+02 -0.491037413 0.9753904
+63  6.033249e+01 -0.491253137 0.8960631
+64  1.025151e+02 -0.484412089 0.9938529
+65  1.025151e+02 -0.484412089 0.9938529
+66  1.025151e+02 -0.484412089 0.9938529
+67  1.025151e+02 -0.484412089 0.9938529
+68  1.031721e+02 -0.460863918 0.9921710
+69  1.025151e+02 -0.449812958 0.9927621
+70  8.188125e+01 -0.075722521 0.9975753
+71  8.188125e+01 -0.066658009 0.9975753
+72  1.900979e+01  0.067714781 0.9971641
+73  4.188324e+01 -0.006377196 0.9957478
+74  4.188324e+01 -0.006377196 0.9957478
+75  4.430423e+01 -0.006119643 0.9910193
+76  4.430423e+01 -0.006119643 0.9910193
+77  4.430423e+01 -0.006119643 0.9910193
+78  4.430423e+01 -0.006119643 0.9910193
+79  2.729101e+01  0.012050962 0.9599888
+80  2.729101e+01  0.012050962 0.9599888
+81  2.729101e+01  0.012050962 0.9599888
+82  2.729101e+01  0.012050962 0.9599888
+83  2.729101e+01  0.012050962 0.9599888
+84  2.729101e+01  0.012050962 0.9599888
+85  2.729101e+01  0.012050962 0.9599888
+86  2.729101e+01  0.010282887 0.9599888
+87  2.729101e+01  0.010282887 0.9599888
+88  2.729101e+01  0.010282887 0.9599888
+89  2.729101e+01  0.010282887 0.9599888
+90  2.729101e+01  0.010282887 0.9599888
+91  2.729101e+01  0.010282887 0.9599888
+92  2.729101e+01  0.010282887 0.9599888
+93  2.729101e+01  0.010282887 0.9599888
+94  2.729101e+01  0.010282887 0.9599888
+95  2.729101e+01  0.010282887 0.9599888
+96  2.729101e+01  0.010282887 0.9599888
+97  2.729101e+01  0.010282887 0.9599888
+98  2.729101e+01  0.010282887 0.9599888
+99  2.729101e+01  0.010282887 0.9599888
+100 2.729101e+01  0.010282887 0.9599888
+101 2.729101e+01  0.010282887 0.9599888
+102 2.729101e+01  0.010282887 0.9599888
+103 2.729101e+01  0.010282887 0.9599888
+104 2.729101e+01  0.010282887 0.9599888
+105 2.729101e+01  0.010282887 0.9599888
+106 2.729101e+01  0.010282887 0.9599888
+107 2.729101e+01  0.010282887 0.9599888
+108 2.729101e+01  0.010282887 0.9599888
+109 2.190646e+01  0.017081215 0.9455099
+110 2.190646e+01  0.017081215 0.9455099
+111 2.190646e+01  0.017081215 0.9455099
+112 2.190646e+01  0.017081215 0.9455099
+113 2.190646e+01  0.017081215 0.9455099
+114 2.113682e+01  0.013136582 0.9364239
+115 2.113682e+01  0.013136582 0.9364239
+116 2.113682e+01  0.013136582 0.9364239
+117 2.113682e+01  0.013136582 0.9364239
+118 2.113682e+01  0.013136582 0.9364239
+119 2.113682e+01  0.013136582 0.9364239
+120 1.825731e+01  0.015520892 0.9224721
+121 1.825731e+01  0.015520892 0.9224721
+122 1.825731e+01  0.015520892 0.9224721
+123 1.825731e+01  0.015520892 0.9224721
+124 1.825731e+01  0.015520892 0.9224721
+125 1.825731e+01  0.015520892 0.9224721
+126 1.546228e+01  0.016993778 0.9014320
+127 1.546228e+01  0.016993778 0.9014320
+128 1.546228e+01  0.016993778 0.9014320
+129 1.597373e+01  0.016636458 0.9051951
+130 1.597373e+01  0.016636458 0.9051951
+131 1.597373e+01  0.016636458 0.9051951
+132 1.597373e+01  0.016636458 0.9051951
+133 1.597373e+01  0.016636458 0.9051951
+134 1.597373e+01  0.016636458 0.9051951
+135 1.597373e+01  0.016636458 0.9051951
+136 1.597373e+01  0.016636458 0.9051951
+137 1.597373e+01  0.016636458 0.9051951
+138 1.597373e+01  0.016636458 0.9051951
+139 1.597373e+01  0.016636458 0.9051951
+140 1.597373e+01  0.016636458 0.9051951
+141 1.597373e+01  0.016636458 0.9051951
+142 1.597373e+01  0.016636458 0.9051951
+143 1.597373e+01  0.016636458 0.9051951
+144 1.597373e+01  0.016636458 0.9051951
+145 1.546228e+01  0.017185168 0.9014320
+146 1.546228e+01  0.017185168 0.9014320
+147 1.546228e+01  0.017185168 0.9014320
+148 1.546228e+01  0.017185168 0.9014320
+149 1.546228e+01  0.017185168 0.9014320
+150 1.546228e+01  0.017185168 0.9014320
+151 1.546228e+01  0.017185168 0.9014320
+152 1.546228e+01  0.017185168 0.9014320
+153 1.546228e+01  0.017185168 0.9014320
+154 1.595947e+01  0.016965958 0.9056115
+155 1.595947e+01  0.016965958 0.9056115
+156 1.595947e+01  0.016965958 0.9056115
+157 1.595947e+01  0.016965958 0.9056115
+158 1.546228e+01  0.017275653 0.9014320
+159 1.546228e+01  0.017275653 0.9014320
+160 1.546228e+01  0.017275653 0.9014320
+161 1.546228e+01  0.017275653 0.9014320
+162 1.546228e+01  0.017275653 0.9014320
+163 1.546228e+01  0.017275653 0.9014320
+164 1.546228e+01  0.017275653 0.9014320
+165 1.546228e+01  0.017275653 0.9014320
+166 1.546228e+01  0.017275653 0.9014320
+167 1.546228e+01  0.017275653 0.9014320
+168 1.546228e+01  0.017275653 0.9014320
+169 1.546228e+01  0.017275653 0.9014320
+170 1.546228e+01  0.017275653 0.9014320
+171 1.546228e+01  0.017275653 0.9014320
+172 1.546228e+01  0.017275653 0.9014320
+173 1.546228e+01  0.017275653 0.9014320
+174 1.630125e+01  0.016994575 0.9087399
+175 1.630125e+01  0.016994575 0.9087399
+176 1.630125e+01  0.016994575 0.9087399
+177 1.630125e+01  0.016994575 0.9087399
+178 1.630125e+01  0.016994575 0.9087399
+179 1.630125e+01  0.016994575 0.9087399
+180 1.630125e+01  0.016994575 0.9087399
+181 1.630125e+01  0.016994575 0.9087399
+182 1.630125e+01  0.016994575 0.9087399
+183 1.630125e+01  0.016994575 0.9087399
+184 1.630125e+01  0.016994575 0.9087399
+185 1.630125e+01  0.016994575 0.9087399
+186 1.630125e+01  0.016994575 0.9087399
+187 1.567917e+01  0.017203985 0.9034054
+188 1.567917e+01  0.017203985 0.9034054
+189 1.586286e+01  0.017174673 0.9049530
+190 1.630829e+01  0.016911153 0.9085891
+191 1.630829e+01  0.016911153 0.9085891
+192 1.630829e+01  0.016911153 0.9085891
+193 1.630829e+01  0.016911153 0.9085891
+194 1.630829e+01  0.016911153 0.9085891
+195 1.630829e+01  0.016911153 0.9085891
+196 1.630829e+01  0.016911153 0.9085891
+197 1.630829e+01  0.016911153 0.9085891
+198 1.630829e+01  0.016911153 0.9085891
+199 1.630829e+01  0.016911153 0.9085891
+200 1.591636e+01  0.017114055 0.9054216
+
+$member$bestvalit
+  [1] 9.182180e+21 5.319773e+21 2.988485e+20 2.988485e+20 1.631926e+20
+  [6] 1.631926e+20 1.373490e+20 2.299901e+19 9.530026e+18 9.530026e+18
+ [11] 9.530026e+18 3.823096e+18 3.823096e+18 7.497508e+17 7.497508e+17
+ [16] 7.497508e+17 4.384610e+17 1.601155e+17 1.601155e+17 1.111400e+16
+ [21] 1.111400e+16 1.111400e+16 5.239400e+15 5.239400e+15 5.329265e+14
+ [26] 4.665430e+14 3.226223e+14 3.226223e+14 8.783208e+13 3.491718e+13
+ [31] 3.491718e+13 1.293441e+13 3.708422e+12 3.708422e+12 5.706470e+11
+ [36] 5.706470e+11 1.789974e+11 1.742743e+11 1.742743e+11 1.742743e+11
+ [41] 9.342566e+10 1.259704e+10 1.259704e+10 1.259704e+10 5.906405e+08
+ [46] 5.667902e+08 5.667902e+08 5.667902e+08 5.510355e+08 4.915804e+08
+ [51] 4.915804e+08 4.238548e+08 4.238548e+08 2.882858e+08 2.882858e+08
+ [56] 2.882858e+08 2.882858e+08 2.882858e+08 2.882858e+08 1.710808e+08
+ [61] 1.078388e+08 1.078388e+08 3.778384e+07 3.705715e+07 3.705715e+07
+ [66] 3.705715e+07 3.705715e+07 3.676005e+07 3.661347e+07 9.408042e+06
+ [71] 7.670797e+06 4.084595e+06 1.451150e+06 1.451150e+06 5.117009e+05
+ [76] 5.117009e+05 5.117009e+05 5.117009e+05 6.969713e+04 6.969713e+04
+ [81] 6.969713e+04 6.969713e+04 6.969713e+04 6.969713e+04 6.969713e+04
+ [86] 4.297475e+04 4.297475e+04 4.297475e+04 4.297475e+04 4.297475e+04
+ [91] 4.297475e+04 4.297475e+04 4.297475e+04 4.297475e+04 4.297475e+04
+ [96] 4.297475e+04 4.297475e+04 4.297475e+04 4.297475e+04 4.297475e+04
+[101] 4.297475e+04 4.297475e+04 4.297475e+04 4.297475e+04 4.297475e+04
+[106] 4.297475e+04 4.297475e+04 4.297475e+04 3.180900e+04 3.180900e+04
+[111] 3.180900e+04 3.180900e+04 3.180900e+04 2.594921e+04 2.594921e+04
+[116] 2.594921e+04 2.594921e+04 2.594921e+04 2.594921e+04 1.994901e+04
+[121] 1.994901e+04 1.994901e+04 1.994901e+04 1.994901e+04 1.994901e+04
+[126] 1.813347e+04 1.813347e+04 1.813347e+04 1.781719e+04 1.781719e+04
+[131] 1.781719e+04 1.781719e+04 1.781719e+04 1.781719e+04 1.781719e+04
+[136] 1.781719e+04 1.781719e+04 1.781719e+04 1.781719e+04 1.781719e+04
+[141] 1.781719e+04 1.781719e+04 1.781719e+04 1.781719e+04 1.755254e+04
+[146] 1.755254e+04 1.755254e+04 1.755254e+04 1.755254e+04 1.755254e+04
+[151] 1.755254e+04 1.755254e+04 1.755254e+04 1.748867e+04 1.748867e+04
+[156] 1.748867e+04 1.748867e+04 1.748288e+04 1.748288e+04 1.748288e+04
+[161] 1.748288e+04 1.748288e+04 1.748288e+04 1.748288e+04 1.748288e+04
+[166] 1.748288e+04 1.748288e+04 1.748288e+04 1.748288e+04 1.748288e+04
+[171] 1.748288e+04 1.748288e+04 1.748288e+04 1.746361e+04 1.746361e+04
+[176] 1.746361e+04 1.746361e+04 1.746361e+04 1.746361e+04 1.746361e+04
+[181] 1.746361e+04 1.746361e+04 1.746361e+04 1.746361e+04 1.746361e+04
+[186] 1.746361e+04 1.745910e+04 1.745910e+04 1.745762e+04 1.745516e+04
+[191] 1.745516e+04 1.745516e+04 1.745516e+04 1.745516e+04 1.745516e+04
+[196] 1.745516e+04 1.745516e+04 1.745516e+04 1.745516e+04 1.744387e+04
+
+$member$pop
+          [,1]        [,2]      [,3]
+ [1,] 15.86286 0.017174673 0.9049530
+ [2,] 15.77495 0.017347363 0.9045415
+ [3,] 16.83644 0.017220648 0.9135651
+ [4,] 16.20190 0.017061900 0.9079814
+ [5,] 15.46228 0.017279709 0.9014320
+ [6,] 16.02514 0.017218598 0.9064697
+ [7,] 17.04995 0.016497239 0.9141323
+ [8,] 15.99411 0.017317526 0.9063724
+ [9,] 16.15047 0.017477480 0.9082032
+[10,] 16.57703 0.016773238 0.9107345
+[11,] 15.11250 0.017251647 0.8980028
+[12,] 15.65105 0.017262169 0.9031066
+[13,] 16.22070 0.017406889 0.9088606
+[14,] 15.49759 0.017620881 0.9025060
+[15,] 15.95150 0.017203067 0.9058859
+[16,] 15.49553 0.017161882 0.9016530
+[17,] 17.09905 0.016680399 0.9150024
+[18,] 16.45026 0.016635271 0.9092375
+[19,] 15.91636 0.017114055 0.9054216
+[20,] 15.65771 0.017388891 0.9031428
+[21,] 16.30125 0.016994575 0.9087399
+[22,] 18.85672 0.015685066 0.9262658
+[23,] 16.12928 0.016993053 0.9070403
+[24,] 31.37418 0.009158596 0.9714668
+[25,] 16.66780 0.017037176 0.9119607
+[26,] 15.67917 0.017203985 0.9034054
+[27,] 15.16390 0.017714792 0.8992264
+[28,] 17.26068 0.016631551 0.9162202
+[29,] 16.57528 0.016927654 0.9108382
+[30,] 15.95947 0.017066665 0.9056115
+[31,] 16.21875 0.017321383 0.9087083
+[32,] 16.48199 0.016999772 0.9101375
+[33,] 16.03068 0.017354134 0.9069210
+[34,] 15.56130 0.017410448 0.9025375
+[35,] 16.28340 0.017101783 0.9087333
+[36,] 15.66716 0.016964706 0.9026874
+[37,] 16.71544 0.016529542 0.9114875
+[38,] 16.51586 0.016618879 0.9096780
+[39,] 15.72414 0.016945848 0.9031208
+[40,] 16.30829 0.016911153 0.9085891
+[41,] 16.69596 0.016645372 0.9116367
+[42,] 17.32434 0.017069454 0.9174688
+[43,] 17.41992 0.016636458 0.9175221
+[44,] 15.77993 0.017225558 0.9041871
+[45,] 15.50813 0.017072746 0.9014712
+[46,] 15.30316 0.017442435 0.9002469
+[47,] 18.23024 0.016306572 0.9227686
+[48,] 16.31670 0.017037399 0.9089693
+[49,] 15.69712 0.017356808 0.9037898
+[50,] 15.48116 0.017233405 0.9018221
+
+$member$storepop
+list()
+
+
+attr(,"class")
+[1] "DEoptim"
+
+$coefficients
+      gamma      lambda       delta         rho 
+15.91636105  0.01711406  0.90542165 -0.80000000 
+
+$iter
+[1] 200
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "DE", rho = seq(from = -0.8, to = 0.8, 
+        by = 0.8), random.seed = 321, control = DEoptim.control(trace = FALSE))
+
+$method
+[1] "DE"
+
+$lower
+[1]  0.0 -0.5  0.0
+
+$upper
+[1] 1e+10 5e-01 1e+00
+
+$rho
+[1] -0.8
+
+$fitted.values
+ [1]  957.1636 1037.8079 1066.0004 1135.6509 1148.6736 1184.6146 1236.2109
+ [8] 1230.7434 1227.0518 1276.3204 1352.2541 1534.3825 1636.0559 1684.0665
+[15] 1622.5875 1635.6845 1678.6075 1744.3172 1867.2322 2002.8079
+
+$residuals
+ [1] -11.030617 -75.077380   3.578756  36.145543  29.442472   1.195356
+ [7]   3.146958  57.817518 -19.345639   2.088098   8.338474   6.401624
+[13] -61.021205  11.892864  22.101571  -9.653370 -23.567610  11.282563
+[19]  20.188088 -10.913867
+
+$rss
+[1] 17443.87
+
+$cov.unscaled
+               gamma        lambda         delta           rho
+gamma   4.782468e+00  4.895222e-06  1.069298e-01 -4.011815e-01
+lambda  4.895222e-06  2.326208e-09  1.664878e-07 -7.460975e-07
+delta   1.069298e-01  1.664878e-07  2.392705e-03 -8.981257e-03
+rho    -4.011815e-01 -7.460975e-07 -8.981257e-03  3.372173e-02
+
+$allRhoSum
+   rho      rss convergence
+1 -0.8 17443.87          NA
+2  0.0 18684.53          NA
+3  0.8 17701.36          NA
+
+$rhoValues
+[1] -0.8  0.0  0.8
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridDeTc )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "DE", rho = seq(from = -0.8, to = 0.8, 
+        by = 0.8), random.seed = 321, control = DEoptim.control(trace = FALSE))
+
+Coefficients:
+   gamma   lambda    delta      rho 
+15.91636  0.01711  0.90542 -0.80000 
+
+> summary( cesGridDeTc )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "DE", rho = seq(from = -0.8, to = 0.8, 
+        by = 0.8), random.seed = 321, control = DEoptim.control(trace = FALSE))
+
+Estimation by non-linear least-squares using the 'DE' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma  15.916361  64.585120   0.246    0.805    
+lambda  0.017114   0.001424  12.015   <2e-16 ***
+delta   0.905422   1.444611   0.627    0.531    
+rho    -0.800000   5.423271  -0.148    0.883    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 29.53292 
+Multiple R-squared: 0.9901454 
+
 > 
 > # using the DE optimization method implemented in DEoptim(), VRS
 > cesGridDeVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
