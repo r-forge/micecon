@@ -85,7 +85,7 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
 
    # grid search for rho_1 and rho
    if( length( rho1 ) > 1 || length( rho2 ) > 1  || length( rho ) > 1 ) {
-      result <- cesEstGridRho( yName = yName, xNames = xNames,
+      result <- cesEstGridRho( yName = yName, xNames = xNames, tName = tName,
          data = data, vrs = vrs, method = method, start = start,
          lower = lower, upper = upper,
          rho1Values = rho1, rho2Values = rho2, rhoValues = rho, 
