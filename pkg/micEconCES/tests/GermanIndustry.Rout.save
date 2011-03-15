@@ -3077,4 +3077,2428 @@ Multiple R-squared: 0.9627277
 
 > 
 > 
+> ########## Grid Search for Rho_1 and/or Rho ##############
+> rhoVec <- c( -0.9, -0.4, 0, 0.5, 1 )
+> rho1Vec <- c( -0.9, 0, 5, 10 )
+> 
+> ## BFGS, grid search for rho_1 and rho
+> cesBfgsGridRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
++    rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
++    method = "BFGS", control = list( maxit = 5000 ) )
+There were 50 or more warnings (use warnings() to see the first 50)
+> print.default( cesBfgsGridRho2 )
+$optim
+$optim$par
+       gamma       lambda      delta_1      delta_2 
+1.618224e+00 2.038669e-02 1.228138e-07 9.389594e-01 
+
+$optim$value
+[1] 3781.415
+
+$optim$counts
+function gradient 
+    1467      231 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+       gamma       lambda      delta_1      delta_2        rho_1          rho 
+1.618224e+00 2.038669e-02 1.228138e-07 9.389594e-01 5.000000e+00 5.000000e-01 
+
+$iter
+function gradient 
+    1467      231 
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "BFGS", rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+    control = list(maxit = 5000))
+
+$method
+[1] "BFGS"
+
+$start
+   gamma   lambda  delta_1  delta_2 
+24.67731  0.01500  0.50000  0.50000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho1
+[1] 5
+
+$rho
+[1] 0.5
+
+$fitted.values
+ [1] 463.8258 479.4127 499.5122 512.7782 551.7206 585.7783 583.3193 577.7443
+ [9] 630.6250 672.4543 742.3670 743.4016 763.3516 791.5708 806.6308 826.8725
+[17] 870.2208 868.2820 857.9577 812.5430 813.0575 844.5667 863.0059 861.6413
+[25] 878.0596 908.1134 941.5150 961.3557 988.5630 989.2759 963.6009
+
+$residuals
+ [1] -10.3257510  -2.7527221  -0.9521548  -3.8482082   2.1393552   0.9317054
+ [7]  15.9206965   3.6656736  -4.7649875  13.4956781 -20.0969932  -8.8415800
+[13]  -2.6315886   9.3691947   8.9892416   3.9274699   1.0991837  -8.2420404
+[19] -12.7176777   3.9870308  15.8724915   5.1332741   5.1340643  18.5387190
+[25]  -9.5096303 -15.6833591 -16.9449837   7.0842571  13.6470101  12.8041034
+[31] -24.1309074
+
+$rss
+[1] 3781.415
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2         rho_1
+gamma    7.237689e-02  6.146314e-06 -1.319585e-08 -1.230891e-02  4.000008e-02
+lambda   6.146314e-06  5.599976e-09 -5.802576e-12 -1.153619e-06  1.576584e-05
+delta_1 -1.319585e-08 -5.802576e-12  1.118335e-14  2.306203e-09 -3.179536e-08
+delta_2 -1.230891e-02 -1.153619e-06  2.306203e-09  2.098821e-03 -6.941903e-03
+rho_1    4.000008e-02  1.576584e-05 -3.179536e-08 -6.941903e-03  9.078566e-02
+rho     -5.336839e-02 -5.196685e-06  1.006632e-08  9.112873e-03 -3.020625e-02
+                  rho
+gamma   -5.336839e-02
+lambda  -5.196685e-06
+delta_1  1.006632e-08
+delta_2  9.112873e-03
+rho_1   -3.020625e-02
+rho      3.959877e-02
+
+$allRhoSum
+   rho1  rho        rss convergence
+1  -0.9 -0.9   4992.875        TRUE
+2   0.0 -0.9   4968.322        TRUE
+3   5.0 -0.9   3889.872        TRUE
+4  10.0 -0.9 175431.570        TRUE
+5  -0.9 -0.4   4949.735        TRUE
+6   0.0 -0.4   4922.505        TRUE
+7   5.0 -0.4   3829.640        TRUE
+8  10.0 -0.4   4008.578        TRUE
+9  -0.9  0.0   4919.926        TRUE
+10  0.0  0.0   4890.580        TRUE
+11  5.0  0.0   3798.850        TRUE
+12 10.0  0.0  72725.445        TRUE
+13 -0.9  0.5   4888.542        TRUE
+14  0.0  0.5   4856.616        TRUE
+15  5.0  0.5   3781.415        TRUE
+16 10.0  0.5  46211.976        TRUE
+17 -0.9  1.0   4863.593        TRUE
+18  0.0  1.0  19715.021        TRUE
+19  5.0  1.0  29187.695        TRUE
+20 10.0  1.0  29186.823        TRUE
+
+$allRhoFull
+$allRhoFull[[1]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 8.78228  0.02197 -0.03614  0.08811 -0.90000 -0.90000 
+
+
+$allRhoFull[[2]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
+
+
+$allRhoFull[[3]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
+
+
+$allRhoFull[[4]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+17.460750 -0.028429  0.001995  0.579139 10.000000 -0.900000 
+
+
+$allRhoFull[[5]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 3.68666  0.02193 -0.03502  0.42041 -0.90000 -0.40000 
+
+
+$allRhoFull[[6]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 3.55730  0.02090  0.01753  0.45134  0.00000 -0.40000 
+
+
+$allRhoFull[[7]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 6.427e+00  2.046e-02  1.276e-07  3.010e-01  5.000e+00 -4.000e-01 
+
+
+$allRhoFull[[8]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 9.814e+00  2.032e-02  1.884e-13  2.161e-01  1.000e+01 -4.000e-01 
+
+
+$allRhoFull[[9]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 1.85273  0.02191 -0.03530  0.78405 -0.90000  0.00000 
+
+
+$allRhoFull[[10]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+  gamma  lambda delta_1 delta_2   rho_1     rho 
+1.88147 0.02086 0.01805 0.79973 0.00000 0.00000 
+
+
+$allRhoFull[[11]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
+
+
+$allRhoFull[[12]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+33.83924  0.01243  0.03842  0.21451 10.00000  0.00000 
+
+
+$allRhoFull[[13]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 1.17598  0.02186 -0.03390  0.96466 -0.90000  0.50000 
+
+
+$allRhoFull[[14]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+  gamma  lambda delta_1 delta_2   rho_1     rho 
+1.24891 0.02080 0.01866 0.96642 0.00000 0.50000 
+
+
+$allRhoFull[[15]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
+
+
+$allRhoFull[[16]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+28.263328  0.007024  0.358920  0.515693 10.000000  0.500000 
+
+
+$allRhoFull[[17]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 0.98864  0.02182 -0.03171  0.99516 -0.90000  1.00000 
+
+
+$allRhoFull[[18]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+54.824830  0.014973  3.306796  0.000751  0.000000  1.000000 
+
+
+$allRhoFull[[19]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+26.995131  0.007491  1.302886  0.674564  5.000000  1.000000 
+
+
+$allRhoFull[[20]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+26.754689  0.007489  1.489258  0.677505 10.000000  1.000000 
+
+
+
+$rssArray
+           -0.9     -0.4         0       0.5         1
+-0.9   4992.875 4949.735  4919.926  4888.542  4863.593
+0      4968.322 4922.505  4890.580  4856.616 19715.021
+5      3889.872 3829.640  3798.850  3781.415 29187.695
+10   175431.570 4008.578 72725.445 46211.976 29186.823
+
+$rho1Values
+[1] -0.9  0.0  5.0 10.0
+
+$rhoValues
+[1] -0.9 -0.4  0.0  0.5  1.0
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesBfgsGridRho2 )
+Estimated CES function
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "BFGS", rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+    control = list(maxit = 5000))
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
+
+> summary( cesBfgsGridRho2 )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "BFGS", rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+    control = list(maxit = 5000))
+
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+and a two-dimensional grid search for coefficients 'rho_1', 'rho'
+Convergence achieved after 1467 function and 231 gradient calls
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   1.618e+00  2.971e+00   0.545   0.5860    
+lambda  2.039e-02  8.265e-04  24.666   <2e-16 ***
+delta_1 1.228e-07  1.168e-06   0.105   0.9163    
+delta_2 9.390e-01  5.060e-01   1.856   0.0635 .  
+rho_1   5.000e+00  3.328e+00   1.503   0.1330    
+rho     5.000e-01  2.198e+00   0.228   0.8200    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 11.04451 
+Multiple R-squared: 0.9952258 
+
+> 
+> ## Levenberg-Marquardt, grid search for rho
+> cesLmGridRho <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
++    rho = rhoVec, returnGridAll = TRUE,
++    control = nls.lm.control( maxiter = 1000, maxfev = 2000 ) )
+> print.default( cesLmGridRho )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 2.93794419767809, 0.0208433701001649, 8.08418023647365e-18, 0.6828715835315, 13.0288716878477 
+residual sum-of-squares: 3474
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+       gamma       lambda      delta_1      delta_2        rho_1          rho 
+2.937944e+00 2.084337e-02 8.084180e-18 6.828716e-01 1.302887e+01 0.000000e+00 
+
+$iter
+[1] 237
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    rho = rhoVec, returnGridAll = TRUE, control = nls.lm.control(maxiter = 1000, 
+        maxfev = 2000))
+
+$method
+[1] "LM"
+
+$start
+   gamma   lambda  delta_1  delta_2    rho_1 
+12.91136  0.01500  0.50000  0.50000  0.25000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0
+
+$fitted.values
+ [1] 450.9451 475.2472 498.3084 513.3942 553.2904 588.0870 589.0422 582.9682
+ [9] 635.0694 679.4023 741.6438 741.7583 761.8333 791.5375 806.5665 827.1610
+[17] 871.3016 866.4041 856.0464 810.2501 811.2242 843.4306 862.2096 860.6429
+[25] 877.4629 908.1494 941.8136 961.6415 989.2410 990.2942 965.0445
+
+$residuals
+ [1]   2.55486389   1.41277165   0.25155453  -4.46418209   0.56960488
+ [6]  -1.37697223  10.19775072  -1.55818193  -9.20941151   6.54774417
+[11] -19.37380730  -7.19828881  -1.11334176   9.40253565   9.05354903
+[16]   3.63896597   0.01843107  -6.36410034 -10.80635353   6.27986016
+[21]  17.70584946   6.26939658   5.93042274  19.53707359  -8.91288207
+[26] -15.71939463 -17.24362553   6.79851581  12.96898792  11.78579970
+[31] -25.57445109
+
+$rss
+[1] 3474.499
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2         rho_1
+gamma    1.497625e+00  1.440117e-05 -1.392227e-17 -2.533682e-01  6.076896e-01
+lambda   1.440117e-05  2.129680e-09 -3.975172e-22 -2.571737e-06  1.615553e-05
+delta_1 -1.392227e-17 -3.975172e-22  3.456986e-34  2.378659e-18 -1.464333e-17
+delta_2 -2.533682e-01 -2.571737e-06  2.378659e-18  4.289298e-02 -1.036794e-01
+rho_1    6.076896e-01  1.615553e-05 -1.464333e-17 -1.036794e-01  6.211016e-01
+rho     -2.905028e-01 -3.075041e-06  2.749729e-18  4.920948e-02 -1.197066e-01
+                  rho
+gamma   -2.905028e-01
+lambda  -3.075041e-06
+delta_1  2.749729e-18
+delta_2  4.920948e-02
+rho_1   -1.197066e-01
+rho      5.648829e-02
+
+$allRhoSum
+   rho       rss convergence
+1 -0.9  4985.911        TRUE
+2 -0.4  4942.204        TRUE
+3  0.0  3474.499        TRUE
+4  0.5  3516.695        TRUE
+5  1.0 29186.825        TRUE
+
+$allRhoFull
+$allRhoFull[[1]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 8.85360  0.02199 -0.24131  0.08039 -1.71949 -0.90000 
+
+
+$allRhoFull[[2]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 3.61888  0.02196 -0.25925  0.40544 -1.74522 -0.40000 
+
+
+$allRhoFull[[3]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+2.938e+00 2.084e-02 8.084e-18 6.829e-01 1.303e+01 0.000e+00 
+
+
+$allRhoFull[[4]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+1.551e+00 2.083e-02 1.575e-16 9.421e-01 1.197e+01 5.000e-01 
+
+
+$allRhoFull[[5]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+26.188734  0.007489  1.069242  0.684328  7.943003  1.000000 
+
+
+
+$rhoValues
+[1] -0.9 -0.4  0.0  0.5  1.0
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLmGridRho )
+Estimated CES function
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    rho = rhoVec, returnGridAll = TRUE, control = nls.lm.control(maxiter = 1000, 
+        maxfev = 2000))
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+2.938e+00 2.084e-02 8.084e-18 6.829e-01 1.303e+01 0.000e+00 
+
+> summary( cesLmGridRho )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    rho = rhoVec, returnGridAll = TRUE, control = nls.lm.control(maxiter = 1000, 
+        maxfev = 2000))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+Convergence achieved after 237 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   2.938e+00  1.296e+01   0.227    0.821    
+lambda  2.084e-02  4.886e-04  42.662   <2e-16 ***
+delta_1 8.084e-18  1.968e-16   0.041    0.967    
+delta_2 6.829e-01  2.193e+00   0.311    0.755    
+rho_1   1.303e+01  8.343e+00   1.562    0.118    
+rho     0.000e+00  2.516e+00   0.000    1.000    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 10.58681 
+Multiple R-squared: 0.9956133 
+
+> 
+> ## Levenberg-Marquardt, grid search for rho_1
+> cesLmGridRho1 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
++    rho1 = rho1Vec, returnGridAll = TRUE,
++    control = nls.lm.control( maxiter = 1000, maxfev = 2000 ) )
+> print.default( cesLmGridRho1 )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 1.45178467952707, 0.0203792607460114, 1.21304763118353e-07, 0.96555150206717, 0.650201369113664 
+residual sum-of-squares: 3780
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+       gamma       lambda      delta_1      delta_2        rho_1          rho 
+1.451785e+00 2.037926e-02 1.213048e-07 9.655515e-01 5.000000e+00 6.502014e-01 
+
+$iter
+[1] 597
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    rho1 = rho1Vec, returnGridAll = TRUE, control = nls.lm.control(maxiter = 1000, 
+        maxfev = 2000))
+
+$method
+[1] "LM"
+
+$start
+   gamma   lambda  delta_1  delta_2      rho 
+21.94963  0.01500  0.50000  0.50000  0.25000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho1
+[1] 5
+
+$fitted.values
+ [1] 463.6920 479.1199 499.2510 512.5195 551.7153 585.8972 583.2940 577.8762
+ [9] 630.9943 672.8031 742.5554 743.5840 763.5065 791.4519 806.5136 826.7126
+[17] 869.9321 868.1812 857.9237 812.6100 813.1020 844.5502 862.9813 861.6830
+[25] 878.0954 908.1132 941.4975 961.3797 988.5835 989.2904 963.6081
+
+$residuals
+ [1] -10.1920391  -2.4599140  -0.6909621  -3.5895204   2.1447083   0.8127578
+ [7]  15.9459641   3.5338385  -5.1342719  13.1468576 -20.2854004  -9.0239748
+[13]  -2.7864786   9.4881006   9.1064404   4.0873685   1.3878628  -8.1411746
+[19] -12.6837062   3.9199671  15.8279504   5.1497891   5.1587149  18.4970023
+[25]  -9.5453932 -15.6832439 -16.9275236   7.0602823  13.6265390  12.7896257
+[31] -24.1381132
+
+$rss
+[1] 3780.482
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2         rho_1
+gamma    3.503820e-02  3.936909e-06 -8.719883e-09 -5.030890e-03  2.690129e-02
+lambda   3.936909e-06  5.566354e-09 -5.704387e-12 -6.441035e-07  1.567414e-05
+delta_1 -8.719883e-09 -5.704387e-12  1.086675e-14  1.300812e-09 -3.124705e-08
+delta_2 -5.030890e-03 -6.441035e-07  1.300812e-09  7.250358e-04 -3.977132e-03
+rho_1    2.690129e-02  1.567414e-05 -3.124705e-08 -3.977132e-03  9.024087e-02
+rho     -3.755826e-02 -5.010389e-06  9.792249e-09  5.421813e-03 -2.984174e-02
+                  rho
+gamma   -3.755826e-02
+lambda  -5.010389e-06
+delta_1  9.792249e-09
+delta_2  5.421813e-03
+rho_1   -2.984174e-02
+rho      4.057607e-02
+
+$allRhoSum
+  rho1       rss convergence
+1 -0.9  4823.882        TRUE
+2  0.0  4781.811        TRUE
+3  5.0  3780.482        TRUE
+4 10.0 14968.632        TRUE
+
+$allRhoFull
+$allRhoFull[[1]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 0.85989  0.02162 -0.01949  1.00000 -0.90000  2.88217 
+
+
+$allRhoFull[[2]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+  gamma  lambda delta_1 delta_2   rho_1     rho 
+0.92866 0.02055 0.02049 1.00000 0.00000 3.03009 
+
+
+$allRhoFull[[3]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+1.452e+00 2.038e-02 1.213e-07 9.656e-01 5.000e+00 6.502e-01 
+
+
+$allRhoFull[[4]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+15.07421  0.01501  0.05205  0.98406 10.00000  3.20802 
+
+
+
+$rho1Values
+[1] -0.9  0.0  5.0 10.0
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLmGridRho1 )
+Estimated CES function
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    rho1 = rho1Vec, returnGridAll = TRUE, control = nls.lm.control(maxiter = 1000, 
+        maxfev = 2000))
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+1.452e+00 2.038e-02 1.213e-07 9.656e-01 5.000e+00 6.502e-01 
+
+> summary( cesLmGridRho1 )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    rho1 = rho1Vec, returnGridAll = TRUE, control = nls.lm.control(maxiter = 1000, 
+        maxfev = 2000))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+and a one-dimensional grid search for coefficient 'rho_1'
+Convergence achieved after 597 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   1.452e+00  2.067e+00   0.702  0.48248    
+lambda  2.038e-02  8.239e-04  24.735  < 2e-16 ***
+delta_1 1.213e-07  1.151e-06   0.105  0.91608    
+delta_2 9.656e-01  2.974e-01   3.247  0.00117 ** 
+rho_1   5.000e+00  3.317e+00   1.507  0.13176    
+rho     6.502e-01  2.224e+00   0.292  0.77006    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 11.04314 
+Multiple R-squared: 0.995227 
+
+> 
+> ## Levenberg-Marquardt, grid search for rho_1 and rho
+> cesLmGridRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
++    rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
++    control = nls.lm.control( maxiter = 1000, maxfev = 2000 ) )
+There were 22 warnings (use warnings() to see them)
+> print.default( cesLmGridRho2 )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 6.42908513280758, 0.0207793928595606, 6.51072710385735e-14, 0.298917441489288 
+residual sum-of-squares: 3495
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+        gamma        lambda       delta_1       delta_2         rho_1 
+ 6.429085e+00  2.077939e-02  6.510727e-14  2.989174e-01  1.000000e+01 
+          rho 
+-4.000000e-01 
+
+$iter
+[1] 69
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, control = nls.lm.control(maxiter = 1000, 
+        maxfev = 2000))
+
+$method
+[1] "LM"
+
+$start
+   gamma   lambda  delta_1  delta_2 
+16.34281  0.01500  0.50000  0.50000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho1
+[1] 10
+
+$rho
+[1] -0.4
+
+$fitted.values
+ [1] 455.1723 477.5293 499.5123 514.0274 552.5760 586.6516 587.4879 580.8444
+ [9] 632.0635 676.1137 741.8624 742.1621 762.2219 792.1895 807.1878 827.8128
+[17] 872.1390 866.9277 856.4173 810.5197 811.4222 843.5997 862.3283 860.7069
+[25] 877.4709 908.0781 941.6815 961.4991 989.0556 990.1166 964.8014
+
+$residuals
+ [1]  -1.67227514  -0.86931217  -0.95230966  -5.09736219   1.28401536
+ [6]   0.05836876  11.75212522   0.56556694  -6.20352524   9.83628856
+[11] -19.59237947  -7.60206034  -1.50187430   8.75053029   8.43218369
+[16]   2.98721223  -0.81897452  -6.88766153 -11.17726369   6.01029608
+[21]  17.50776799   6.10029701   5.81165692  19.47307011  -8.92093820
+[26] -15.64810526 -17.11149037   6.94087068  13.15440420  11.96339906
+[31] -25.33136162
+
+$rss
+[1] 3495.409
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2         rho_1
+gamma    7.017618e+00  4.412256e-05 -1.900171e-13 -4.837686e-01  1.034612e+00
+lambda   4.412256e-05  2.477210e-09 -2.865975e-18 -3.181912e-06  1.455063e-05
+delta_1 -1.900171e-13 -2.865975e-18  1.274657e-26  1.320588e-14 -6.758031e-14
+delta_2 -4.837686e-01 -3.181912e-06  1.320588e-14  3.337586e-02 -7.178728e-02
+rho_1    1.034612e+00  1.455063e-05 -6.758031e-14 -7.178728e-02  3.588944e-01
+rho     -5.748566e-01 -3.915611e-06  1.579256e-14  3.968911e-02 -8.572879e-02
+                  rho
+gamma   -5.748566e-01
+lambda  -3.915611e-06
+delta_1  1.579256e-14
+delta_2  3.968911e-02
+rho_1   -8.572879e-02
+rho      4.722824e-02
+
+$allRhoSum
+   rho1  rho       rss convergence
+1  -0.9 -0.9  4992.875        TRUE
+2   0.0 -0.9  4968.322        TRUE
+3   5.0 -0.9  3889.872        TRUE
+4  10.0 -0.9  3504.655        TRUE
+5  -0.9 -0.4  4949.729        TRUE
+6   0.0 -0.4  4922.505        TRUE
+7   5.0 -0.4  3829.640        TRUE
+8  10.0 -0.4  3495.409        TRUE
+9  -0.9  0.0  4919.926        TRUE
+10  0.0  0.0  4890.579        TRUE
+11  5.0  0.0  3798.850        TRUE
+12 10.0  0.0  3503.803        TRUE
+13 -0.9  0.5  4888.542        TRUE
+14  0.0  0.5  4856.616        TRUE
+15  5.0  0.5  3781.415        TRUE
+16 10.0  0.5  3530.319        TRUE
+17 -0.9  1.0 20445.615        TRUE
+18  0.0  1.0 19671.073        TRUE
+19  5.0  1.0  3785.384        TRUE
+20 10.0  1.0 29186.824        TRUE
+
+$allRhoFull
+$allRhoFull[[1]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 8.78233  0.02197 -0.03614  0.08811 -0.90000 -0.90000 
+
+
+$allRhoFull[[2]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
+
+
+$allRhoFull[[3]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
+
+
+$allRhoFull[[4]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 1.357e+01  2.081e-02  6.899e-14  5.479e-02  1.000e+01 -9.000e-01 
+
+
+$allRhoFull[[5]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 3.69131  0.02193 -0.03595  0.41986 -0.90000 -0.40000 
+
+
+$allRhoFull[[6]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 3.55706  0.02090  0.01753  0.45136  0.00000 -0.40000 
+
+
+$allRhoFull[[7]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 6.427e+00  2.046e-02  1.276e-07  3.010e-01  5.000e+00 -4.000e-01 
+
+
+$allRhoFull[[8]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 6.429e+00  2.078e-02  6.511e-14  2.989e-01  1.000e+01 -4.000e-01 
+
+
+$allRhoFull[[9]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 1.85272  0.02191 -0.03530  0.78405 -0.90000  0.00000 
+
+
+$allRhoFull[[10]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+  gamma  lambda delta_1 delta_2   rho_1     rho 
+1.88165 0.02085 0.01808 0.79973 0.00000 0.00000 
+
+
+$allRhoFull[[11]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+3.038e+00 2.042e-02 1.264e-07 6.776e-01 5.000e+00 0.000e+00 
+
+
+$allRhoFull[[12]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+2.981e+00 2.077e-02 6.093e-14 6.798e-01 1.000e+01 0.000e+00 
+
+
+$allRhoFull[[13]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 1.17596  0.02186 -0.03391  0.96466 -0.90000  0.50000 
+
+
+$allRhoFull[[14]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+  gamma  lambda delta_1 delta_2   rho_1     rho 
+1.24894 0.02080 0.01869 0.96642 0.00000 0.50000 
+
+
+$allRhoFull[[15]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
+
+
+$allRhoFull[[16]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+1.571e+00 2.076e-02 5.500e-14 9.410e-01 1.000e+01 5.000e-01 
+
+
+$allRhoFull[[17]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+43.99303  0.01287  1.04316  0.27618 -0.90000  1.00000 
+
+
+$allRhoFull[[18]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+5.412e+01 1.539e-02 3.524e+00 3.713e-04 0.000e+00 1.000e+00 
+
+
+$allRhoFull[[19]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+1.230e+00 2.037e-02 1.172e-07 9.913e-01 5.000e+00 1.000e+00 
+
+
+$allRhoFull[[20]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+28.579027  0.007488  4.006684  0.655524 10.000000  1.000000 
+
+
+
+$rssArray
+         -0.9     -0.4        0      0.5         1
+-0.9 4992.875 4949.729 4919.926 4888.542 20445.615
+0    4968.322 4922.505 4890.579 4856.616 19671.073
+5    3889.872 3829.640 3798.850 3781.415  3785.384
+10   3504.655 3495.409 3503.803 3530.319 29186.824
+
+$rho1Values
+[1] -0.9  0.0  5.0 10.0
+
+$rhoValues
+[1] -0.9 -0.4  0.0  0.5  1.0
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLmGridRho2 )
+Estimated CES function
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, control = nls.lm.control(maxiter = 1000, 
+        maxfev = 2000))
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 6.429e+00  2.078e-02  6.511e-14  2.989e-01  1.000e+01 -4.000e-01 
+
+> summary( cesLmGridRho2 )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, control = nls.lm.control(maxiter = 1000, 
+        maxfev = 2000))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+and a two-dimensional grid search for coefficients 'rho_1', 'rho'
+Convergence achieved after 69 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+          Estimate Std. Error t value Pr(>|t|)    
+gamma    6.429e+00  2.813e+01   0.229    0.819    
+lambda   2.078e-02  5.285e-04  39.317   <2e-16 ***
+delta_1  6.511e-14  1.199e-12   0.054    0.957    
+delta_2  2.989e-01  1.940e+00   0.154    0.878    
+rho_1    1.000e+01  6.361e+00   1.572    0.116    
+rho     -4.000e-01  2.308e+00  -0.173    0.862    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 10.61862 
+Multiple R-squared: 0.9955869 
+
+> 
+> ## Newton-type, grid search for rho_1 and rho
+> cesNewtonGridRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
++    rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
++    method = "Newton", iterlim = 500 )
+> print.default( cesNewtonGridRho2 )
+$nlm
+$nlm$minimum
+[1] 3798.85
+
+$nlm$estimate
+[1] 3.038249e+00 2.042190e-02 1.264514e-07 6.775677e-01
+
+$nlm$gradient
+[1]  6.855110e-03  1.074366e-01 -5.990396e+03  8.047853e-02
+
+$nlm$code
+[1] 2
+
+$nlm$iterations
+[1] 164
+
+
+$coefficients
+       gamma       lambda      delta_1      delta_2        rho_1          rho 
+3.038249e+00 2.042190e-02 1.264514e-07 6.775677e-01 5.000000e+00 0.000000e+00 
+
+$iter
+[1] 164
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "Newton", rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+    iterlim = 500)
+
+$method
+[1] "Newton"
+
+$start
+   gamma   lambda  delta_1  delta_2 
+19.26802  0.01500  0.50000  0.50000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho1
+[1] 5
+
+$rho
+[1] 0
+
+$fitted.values
+ [1] 464.3820 480.4260 500.3907 513.6327 551.7254 585.3774 583.3247 577.2703
+ [9] 629.4509 671.3126 741.6576 742.6828 762.7591 792.0099 807.0666 827.4666
+[17] 871.2792 868.6458 858.0792 812.2595 812.8763 844.6362 863.1120 861.4758
+[25] 877.9235 908.1367 941.6103 961.2671 988.4858 989.2056 963.5679
+
+$residuals
+ [1] -10.88204322  -3.76604777  -1.83069613  -4.70274245   2.13455005
+ [6]   1.33261651  15.91528058   4.13967404  -3.59093318  14.63737748
+[11] -19.38756532  -8.12281270  -2.03913198   8.93012642   8.55344243
+[16]   3.33339190   0.04076159  -8.60581998 -12.83923981   4.27054879
+[21]  16.05367272   5.06377965   5.02796675  18.70419292  -9.37345469
+[26] -15.70670049 -17.04029521   7.17289786  13.72423043  12.87438440
+[31] -24.09789768
+
+$rss
+[1] 3798.85
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2         rho_1
+gamma    1.051231e+00  2.865920e-05 -5.731073e-08 -1.727694e-01  1.665848e-01
+lambda   2.865920e-05  5.704003e-09 -6.097573e-12 -4.930205e-06  1.614606e-05
+delta_1 -5.731073e-08 -6.097573e-12  1.214036e-14  9.505201e-09 -3.362372e-08
+delta_2 -1.727694e-01 -4.930205e-06  9.505201e-09  2.842429e-02 -2.752878e-02
+rho_1    1.665848e-01  1.614606e-05 -3.362372e-08 -2.752878e-02  9.350676e-02
+rho     -1.969390e-01 -5.792054e-06  1.085658e-08  3.243069e-02 -3.135554e-02
+                  rho
+gamma   -1.969390e-01
+lambda  -5.792054e-06
+delta_1  1.085658e-08
+delta_2  3.243069e-02
+rho_1   -3.135554e-02
+rho      3.703283e-02
+
+$allRhoSum
+   rho1  rho       rss convergence
+1  -0.9 -0.9  6287.665        TRUE
+2   0.0 -0.9  4968.322        TRUE
+3   5.0 -0.9  3889.872        TRUE
+4  10.0 -0.9 35632.050       FALSE
+5  -0.9 -0.4  4949.729        TRUE
+6   0.0 -0.4  4922.505        TRUE
+7   5.0 -0.4  7054.132        TRUE
+8  10.0 -0.4 12617.399       FALSE
+9  -0.9  0.0  4919.926       FALSE
+10  0.0  0.0  4890.579        TRUE
+11  5.0  0.0  3798.850        TRUE
+12 10.0  0.0 20735.826        TRUE
+13 -0.9  0.5  4888.542        TRUE
+14  0.0  0.5 42690.252        TRUE
+15  5.0  0.5 46167.063        TRUE
+16 10.0  0.5 46211.918        TRUE
+17 -0.9  1.0 20445.615        TRUE
+18  0.0  1.0 29133.113        TRUE
+19  5.0  1.0 29188.998        TRUE
+20 10.0  1.0 39181.040        TRUE
+
+$allRhoFull
+$allRhoFull[[1]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 3.45006  0.01906  0.23750  0.33004 -0.90000 -0.90000 
+
+
+$allRhoFull[[2]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
+
+
+$allRhoFull[[3]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
+
+
+$allRhoFull[[4]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 2.734e+01  8.481e-03  1.979e-10  3.184e-02  1.000e+01 -9.000e-01 
+
+
+$allRhoFull[[5]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 3.69131  0.02193 -0.03595  0.41986 -0.90000 -0.40000 
+
+
+$allRhoFull[[6]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 3.55706  0.02090  0.01753  0.45136  0.00000 -0.40000 
+
+
+$allRhoFull[[7]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 1.562e+01  1.866e-02  9.670e-07  1.449e-01  5.000e+00 -4.000e-01 
+
+
+$allRhoFull[[8]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 1.643e+01  1.585e-02  6.542e-12  1.468e-01  1.000e+01 -4.000e-01 
+
+
+$allRhoFull[[9]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 1.85272  0.02191 -0.03530  0.78405 -0.90000  0.00000 
+
+
+$allRhoFull[[10]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+  gamma  lambda delta_1 delta_2   rho_1     rho 
+1.88165 0.02085 0.01808 0.79973 0.00000 0.00000 
+
+
+$allRhoFull[[11]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
+
+
+$allRhoFull[[12]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+2.006e+01 1.913e-02 3.260e-11 2.202e-01 1.000e+01 0.000e+00 
+
+
+$allRhoFull[[13]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 1.17596  0.02186 -0.03391  0.96466 -0.90000  0.50000 
+
+
+$allRhoFull[[14]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+19.292449  0.008101  0.776768  0.626872  0.000000  0.500000 
+
+
+$allRhoFull[[15]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+24.728657  0.007068  0.168950  0.546337  5.000000  0.500000 
+
+
+$allRhoFull[[16]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+25.301753  0.007024  0.044238  0.541767 10.000000  0.500000 
+
+
+$allRhoFull[[17]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+43.99265  0.01287  1.04316  0.27619 -0.90000  1.00000 
+
+
+$allRhoFull[[18]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+26.506087  0.007352  1.009424  0.681427  0.000000  1.000000 
+
+
+$allRhoFull[[19]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+29.26930  0.00749  2.40371  0.64718  5.00000  1.00000 
+
+
+$allRhoFull[[20]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, iterlim = 500)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+29.91143  0.01521  0.50000  0.50001 10.00000  1.00000 
+
+
+
+$rssArray
+          -0.9      -0.4         0       0.5        1
+-0.9  6287.665  4949.729  4919.926  4888.542 20445.61
+0     4968.322  4922.505  4890.579 42690.252 29133.11
+5     3889.872  7054.132  3798.850 46167.063 29189.00
+10   35632.050 12617.399 20735.826 46211.918 39181.04
+
+$rho1Values
+[1] -0.9  0.0  5.0 10.0
+
+$rhoValues
+[1] -0.9 -0.4  0.0  0.5  1.0
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesNewtonGridRho2 )
+Estimated CES function
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "Newton", rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+    iterlim = 500)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
+
+> summary( cesNewtonGridRho2 )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "Newton", rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+    iterlim = 500)
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+and a two-dimensional grid search for coefficients 'rho_1', 'rho'
+Convergence achieved after 164 iterations
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   3.038e+00  1.135e+01   0.268    0.789    
+lambda  2.042e-02  8.361e-04  24.426   <2e-16 ***
+delta_1 1.265e-07  1.220e-06   0.104    0.917    
+delta_2 6.776e-01  1.866e+00   0.363    0.717    
+rho_1   5.000e+00  3.385e+00   1.477    0.140    
+rho     0.000e+00  2.130e+00   0.000    1.000    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 11.06994 
+Multiple R-squared: 0.9952038 
+
+> 
+> ## PORT, grid search for rho
+> cesPortGridRho <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
++    rho = rhoVec, returnGridAll = TRUE, method = "PORT",
++    control = list( eval.max = 1000, iter.max = 1000 ) )
+> print.default( cesPortGridRho )
+$nlminb
+$nlminb$par
+       gamma       lambda      delta_1      delta_2        rho_1 
+6.412528e+00 2.085586e-02 1.743150e-19 2.990110e-01 1.437594e+01 
+
+$nlminb$objective
+[1] 3443.514
+
+$nlminb$convergence
+[1] 0
+
+$nlminb$message
+[1] "relative convergence (4)"
+
+$nlminb$iterations
+[1] 651
+
+$nlminb$evaluations
+function gradient 
+     939      652 
+
+
+$coefficients
+        gamma        lambda       delta_1       delta_2         rho_1 
+ 6.412528e+00  2.085586e-02  1.743150e-19  2.990110e-01  1.437594e+01 
+          rho 
+-4.000000e-01 
+
+$iter
+[1] 651
+
+$convergence
+[1] TRUE
+
+$message
+[1] "relative convergence (4)"
+
+$call
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "PORT", rho = rhoVec, returnGridAll = TRUE, control = list(eval.max = 1000, 
+        iter.max = 1000))
+
+$method
+[1] "PORT"
+
+$start
+   gamma   lambda  delta_1  delta_2    rho_1 
+8.920066 0.015000 0.500000 0.500000 0.250000 
+
+$lower
+[1]    0 -Inf    0    0   -1
+
+$upper
+[1] Inf Inf   1   1 Inf
+
+$rho
+[1] -0.4
+
+$fitted.values
+ [1] 450.0639 475.3602 498.6430 513.9653 553.2542 587.7743 590.0387 583.2902
+ [9] 634.2461 679.3289 741.4860 741.6170 761.6521 791.6719 806.6822 827.3395
+[17] 871.6957 866.4021 855.9601 810.1413 811.1060 843.3382 862.1266 860.5666
+[25] 877.3951 908.0711 941.7453 961.6340 989.2693 990.4047 965.1561
+
+$residuals
+ [1]   3.43608703   1.29983872  -0.08295711  -5.03533968   0.60576047
+ [6]  -1.06429816   9.20132807  -1.88017611  -8.38606522   6.62111050
+[11] -19.21603538  -7.05697515  -0.93207888   9.26809201   8.93781282
+[16]   3.46053894  -0.37569941  -6.36212333 -10.72008216   6.38867306
+[21]  17.82397602   6.36175334   6.01339975  19.61341308  -8.84514175
+[26] -15.64112164 -17.17534376   6.80598488  12.94070152  11.67529225
+[31] -25.68606023
+
+$rss
+[1] 3443.514
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2         rho_1
+gamma    8.255586e+00  3.805017e-05 -1.014593e-18 -5.694231e-01  2.035105e+00
+lambda   3.805017e-05  2.090084e-09 -9.678070e-24 -2.746159e-06  1.834891e-05
+delta_1 -1.014593e-18 -9.678070e-24  2.511553e-37  7.032262e-20 -4.951676e-19
+delta_2 -5.694231e-01 -2.746159e-06  7.032262e-20  3.930123e-02 -1.409269e-01
+rho_1    2.035105e+00  1.834891e-05 -4.951676e-19 -1.409269e-01  9.771153e-01
+rho     -6.752986e-01 -3.374066e-06  8.372481e-20  4.663685e-02 -1.676508e-01
+                  rho
+gamma   -6.752986e-01
+lambda  -3.374066e-06
+delta_1  8.372481e-20
+delta_2  4.663685e-02
+rho_1   -1.676508e-01
+rho      5.537272e-02
+
+$allRhoSum
+   rho      rss convergence
+1 -0.9 3444.913       FALSE
+2 -0.4 3443.514        TRUE
+3  0.0 3524.830       FALSE
+4  0.5 3546.167       FALSE
+5  1.0 4867.661        TRUE
+
+$allRhoFull
+$allRhoFull[[1]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 1.365e+01  2.084e-02  1.298e-16  5.428e-02  1.215e+01 -9.000e-01 
+
+
+$allRhoFull[[2]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 6.413e+00  2.086e-02  1.743e-19  2.990e-01  1.438e+01 -4.000e-01 
+
+
+$allRhoFull[[3]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+3.011e+00 2.074e-02 6.043e-13 6.775e-01 9.217e+00 0.000e+00 
+
+
+$allRhoFull[[4]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+1.586e+00 2.071e-02 6.276e-13 9.401e-01 9.180e+00 5.000e-01 
+
+
+$allRhoFull[[5]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 1.01521  0.02161  0.00000  0.99517 -0.64355  1.00000 
+
+
+
+$rhoValues
+[1] -0.9 -0.4  0.0  0.5  1.0
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesPortGridRho )
+Estimated CES function
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "PORT", rho = rhoVec, returnGridAll = TRUE, control = list(eval.max = 1000, 
+        iter.max = 1000))
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 6.413e+00  2.086e-02  1.743e-19  2.990e-01  1.438e+01 -4.000e-01 
+
+> summary( cesPortGridRho )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "PORT", rho = rhoVec, returnGridAll = TRUE, control = list(eval.max = 1000, 
+        iter.max = 1000))
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+Convergence achieved after 651 iterations
+Message: relative convergence (4) 
+
+Coefficients:
+          Estimate Std. Error t value Pr(>|t|)    
+gamma    6.413e+00  3.028e+01   0.212    0.832    
+lambda   2.086e-02  4.818e-04  43.284   <2e-16 ***
+delta_1  1.743e-19  5.282e-18   0.033    0.974    
+delta_2  2.990e-01  2.089e+00   0.143    0.886    
+rho_1    1.438e+01  1.042e+01   1.380    0.168    
+rho     -4.000e-01  2.480e+00  -0.161    0.872    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 10.53950 
+Multiple R-squared: 0.9956524 
+
+> 
+> ## PORT, grid search for rho_1 and rho
+> cesPortGridRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
++    rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, method = "PORT",
++    control = list( eval.max = 1000, iter.max = 1000 ) )
+> print.default( cesPortGridRho2 )
+$nlminb
+$nlminb$par
+       gamma       lambda      delta_1      delta_2 
+6.428977e+00 2.077942e-02 6.510373e-14 2.989209e-01 
+
+$nlminb$objective
+[1] 3495.409
+
+$nlminb$convergence
+[1] 0
+
+$nlminb$message
+[1] "relative convergence (4)"
+
+$nlminb$iterations
+[1] 213
+
+$nlminb$evaluations
+function gradient 
+     531      214 
+
+
+$coefficients
+        gamma        lambda       delta_1       delta_2         rho_1 
+ 6.428977e+00  2.077942e-02  6.510373e-14  2.989209e-01  1.000000e+01 
+          rho 
+-4.000000e-01 
+
+$iter
+[1] 213
+
+$convergence
+[1] TRUE
+
+$message
+[1] "relative convergence (4)"
+
+$call
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "PORT", rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+    control = list(eval.max = 1000, iter.max = 1000))
+
+$method
+[1] "PORT"
+
+$start
+   gamma   lambda  delta_1  delta_2 
+16.34281  0.01500  0.50000  0.50000 
+
+$lower
+[1]    0 -Inf    0    0
+
+$upper
+[1] Inf Inf   1   1
+
+$rho1
+[1] 10
+
+$rho
+[1] -0.4
+
+$fitted.values
+ [1] 455.1726 477.5294 499.5123 514.0273 552.5760 586.6517 587.4876 580.8444
+ [9] 632.0639 676.1138 741.8621 742.1617 762.2216 792.1895 807.1879 827.8129
+[17] 872.1392 866.9277 856.4173 810.5196 811.4222 843.5998 862.3284 860.7069
+[25] 877.4709 908.0782 941.6816 961.4992 989.0556 990.1166 964.8014
+
+$residuals
+ [1]  -1.67255680  -0.86937705  -0.95231279  -5.09731777   1.28397293
+ [6]   0.05826247  11.75237352   0.56561695  -6.20385432   9.83617034
+[11] -19.59205693  -7.60167623  -1.50158554   8.75046893   8.43211105
+[16]   2.98709075  -0.81920286  -6.88773252 -11.17728551   6.01044391
+[21]  17.50784268   6.10024735   5.81157864  19.47311530  -8.92092062
+[26] -15.64819342 -17.11162427   6.94084657  13.15437469  11.96339742
+[31] -25.33139870
+
+$rss
+[1] 3495.409
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2         rho_1
+gamma    7.017554e+00  4.412102e-05 -1.899985e-13 -4.837743e-01  1.034568e+00
+lambda   4.412102e-05  2.477193e-09 -2.865810e-18 -3.181871e-06  1.455055e-05
+delta_1 -1.899985e-13 -2.865810e-18  1.274496e-26  1.320488e-14 -6.757533e-14
+delta_2 -4.837743e-01 -3.181871e-06  1.320488e-14  3.337695e-02 -7.178580e-02
+rho_1    1.034568e+00  1.455055e-05 -6.757533e-14 -7.178580e-02  3.588868e-01
+rho     -5.748594e-01 -3.915537e-06  1.579128e-14  3.969014e-02 -8.572650e-02
+                  rho
+gamma   -5.748594e-01
+lambda  -3.915537e-06
+delta_1  1.579128e-14
+delta_2  3.969014e-02
+rho_1   -8.572650e-02
+rho      4.722913e-02
+
+$allRhoSum
+   rho1  rho       rss convergence
+1  -0.9 -0.9  4997.765        TRUE
+2   0.0 -0.9  4968.322        TRUE
+3   5.0 -0.9  3889.872        TRUE
+4  10.0 -0.9  3504.655        TRUE
+5  -0.9 -0.4  4954.644        TRUE
+6   0.0 -0.4  4922.505        TRUE
+7   5.0 -0.4 80705.357        TRUE
+8  10.0 -0.4  3495.409        TRUE
+9  -0.9  0.0  4924.728        TRUE
+10  0.0  0.0  4890.579        TRUE
+11  5.0  0.0  3798.850        TRUE
+12 10.0  0.0  3503.803        TRUE
+13 -0.9  0.5  4893.052        TRUE
+14  0.0  0.5  4856.616        TRUE
+15  5.0  0.5  3781.415        TRUE
+16 10.0  0.5 46211.947        TRUE
+17 -0.9  1.0 29186.823        TRUE
+18  0.0  1.0 29186.823        TRUE
+19  5.0  1.0  3785.384        TRUE
+20 10.0  1.0 29186.823        TRUE
+
+$allRhoFull
+$allRhoFull[[1]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 8.56517  0.02173  0.00000  0.09410 -0.90000 -0.90000 
+
+
+$allRhoFull[[2]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
+
+
+$allRhoFull[[3]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
+
+
+$allRhoFull[[4]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 1.357e+01  2.081e-02  6.898e-14  5.479e-02  1.000e+01 -9.000e-01 
+
+
+$allRhoFull[[5]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+  gamma  lambda delta_1 delta_2   rho_1     rho 
+ 3.6263  0.0217  0.0000  0.4330 -0.9000 -0.4000 
+
+
+$allRhoFull[[6]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 3.55706  0.02090  0.01753  0.45136  0.00000 -0.40000 
+
+
+$allRhoFull[[7]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+41.63453  0.02504  0.96422  0.00000  5.00000 -0.40000 
+
+
+$allRhoFull[[8]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 6.429e+00  2.078e-02  6.510e-14  2.989e-01  1.000e+01 -4.000e-01 
+
+
+$allRhoFull[[9]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 1.86057  0.02168  0.00000  0.79052 -0.90000  0.00000 
+
+
+$allRhoFull[[10]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+  gamma  lambda delta_1 delta_2   rho_1     rho 
+1.88165 0.02085 0.01808 0.79973 0.00000 0.00000 
+
+
+$allRhoFull[[11]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
+
+
+$allRhoFull[[12]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+2.981e+00 2.077e-02 6.092e-14 6.798e-01 1.000e+01 0.000e+00 
+
+
+$allRhoFull[[13]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2    rho_1      rho 
+ 1.20195  0.02164  0.00000  0.96535 -0.90000  0.50000 
+
+
+$allRhoFull[[14]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+  gamma  lambda delta_1 delta_2   rho_1     rho 
+1.24894 0.02080 0.01869 0.96642 0.00000 0.50000 
+
+
+$allRhoFull[[15]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
+
+
+$allRhoFull[[16]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+26.101049  0.007024  0.078847  0.534587 10.000000  0.500000 
+
+
+$allRhoFull[[17]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+26.037916  0.007489  1.000000  0.686145 -0.900000  1.000000 
+
+
+$allRhoFull[[18]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+26.037916  0.007489  1.000000  0.686145  0.000000  1.000000 
+
+
+$allRhoFull[[19]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+1.230e+00 2.037e-02 1.172e-07 9.913e-01 5.000e+00 1.000e+00 
+
+
+$allRhoFull[[20]]
+Estimated CES function
+
+Call:
+cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
+    method = ..6, start = ..7, lower = ..8, upper = ..9, rho1 = sumResults[["rho1"]][i], 
+    rho2 = sumResults[["rho2"]][i], rho = sumResults[["rho"]][i], 
+    random.seed = ..10, rhoApprox = ..11, control = ..12)
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+26.037883  0.007489  0.999982  0.686145 10.000000  1.000000 
+
+
+
+$rssArray
+         -0.9      -0.4        0       0.5         1
+-0.9 4997.765  4954.644 4924.728  4893.052 29186.823
+0    4968.322  4922.505 4890.579  4856.616 29186.823
+5    3889.872 80705.357 3798.850  3781.415  3785.384
+10   3504.655  3495.409 3503.803 46211.947 29186.823
+
+$rho1Values
+[1] -0.9  0.0  5.0 10.0
+
+$rhoValues
+[1] -0.9 -0.4  0.0  0.5  1.0
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesPortGridRho2 )
+Estimated CES function
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "PORT", rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+    control = list(eval.max = 1000, iter.max = 1000))
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2      rho_1        rho 
+ 6.429e+00  2.078e-02  6.510e-14  2.989e-01  1.000e+01 -4.000e-01 
+
+> summary( cesPortGridRho2 )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
+    method = "PORT", rho1 = rho1Vec, rho = rhoVec, returnGridAll = TRUE, 
+    control = list(eval.max = 1000, iter.max = 1000))
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+and a two-dimensional grid search for coefficients 'rho_1', 'rho'
+Convergence achieved after 213 iterations
+Message: relative convergence (4) 
+
+Coefficients:
+          Estimate Std. Error t value Pr(>|t|)    
+gamma    6.429e+00  2.813e+01   0.229    0.819    
+lambda   2.078e-02  5.285e-04  39.317   <2e-16 ***
+delta_1  6.510e-14  1.199e-12   0.054    0.957    
+delta_2  2.989e-01  1.940e+00   0.154    0.878    
+rho_1    1.000e+01  6.361e+00   1.572    0.116    
+rho     -4.000e-01  2.308e+00  -0.173    0.862    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 10.61862 
+Multiple R-squared: 0.9955869 
+
+> 
 > 
