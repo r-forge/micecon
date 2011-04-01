@@ -49,7 +49,7 @@ cesData$ys <- cesData$yd + rnorm( nObs )
 print( cesData$ys )
 
 cesData$ysTc <- cesData$ydTc + rnorm( nObs )
-print( cesData$ys )
+print( cesData$ysTc )
 
 
 ## Nelder-Mead, CRS
