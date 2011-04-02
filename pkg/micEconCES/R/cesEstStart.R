@@ -1,5 +1,6 @@
 cesEstStart <- function( yName, xNames, tName, data, vrs,
-      method, start, rho1, rho2, rho, nParam, nested = FALSE ) {
+      method, start, rho1, rho2, rho, nParam, nested = FALSE,
+      multErr ) {
 
    withTime <- !is.null( tName )
 
@@ -37,9 +38,15 @@ cesEstStart <- function( yName, xNames, tName, data, vrs,
          }
          yTemp <- cesCalc( xNames = xNames, data = data, coef = start,
             tName = tName, nested = nested )
-         start[ 1 ] <- 
-            mean( data[[ yName ]], na.rm = TRUE ) /
-            mean( yTemp, na.rm = TRUE )
+         if( multErr ) {
+            start[ 1 ] <- 
+               mean( log( data[[ yName ]] ), na.rm = TRUE ) -
+               mean( log( yTemp ), na.rm = TRUE )
+         } else {
+            start[ 1 ] <- 
+               mean( data[[ yName ]], na.rm = TRUE ) /
+               mean( yTemp, na.rm = TRUE )
+         }
          if( !is.null( rho ) ) {
             start <- start[ -( withTime + ifelse( nested, 2 * nExog - 1, 3 ) ) ]
          }

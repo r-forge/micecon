@@ -33,7 +33,11 @@
       of the random error
       (calculated without correcting for degrees of freedom).}
    \item{r.squared}{\eqn{R^2}-value, i.e. the
-      \sQuote{fraction of variance explained by the model}.}
+      \sQuote{fraction of variance explained by the model}.
+      If the model was estimated 
+      with argument \code{multErr} equal to \code{TRUE},
+      the \eqn{R^2}-value measures the fraction of the explained
+      variance of the \emph{logarithmized} dependent variable.}
    \item{vcov}{covariance matrix of the estimated parameters
       (including a possible fixed \eqn{\rho}{rho}).}
 }

@@ -1,5 +1,6 @@
 cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
       method = "LM", start = NULL, lower = NULL, upper = NULL,
+      multErr = FALSE,
       rho1 = NULL, rho2 = NULL, rho = NULL, returnGridAll = FALSE, 
       random.seed = 123, rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, 
          rho = 1e-3, nu = 5e-6 ), ... ) {
@@ -15,6 +16,11 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
       if( length( tName ) != 1 || !is.character( tName[1] ) ) {
          stop( "argument 'tName' must be a single character string" )
       }
+   }
+
+   # check multErr
+   if( length( multErr ) != 1 || !is.logical( multErr )[ 1 ] ) {
+      stop( "argument 'multErr' must be a single logical value" )
    }
 
    checkNames( c( yName, xNames, tName ), names( data ) )
@@ -87,7 +93,7 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
    if( length( rho1 ) > 1 || length( rho2 ) > 1  || length( rho ) > 1 ) {
       result <- cesEstGridRho( yName = yName, xNames = xNames, tName = tName,
          data = data, vrs = vrs, method = method, start = start,
-         lower = lower, upper = upper,
+         lower = lower, upper = upper, multErr = multErr,
          rho1Values = rho1, rho2Values = rho2, rhoValues = rho, 
          returnAll = returnGridAll,
          random.seed = random.seed, rhoApprox = rhoApprox, ... )
@@ -103,7 +109,8 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
    # start values
    start <- cesEstStart( yName = yName, xNames = xNames, data = data,
       tName = tName, vrs = vrs, method = method, start = start, 
-      rho1 = rho1, rho2 = rho2, rho = rho, nParam = nParam, nested = nested )
+      rho1 = rho1, rho2 = rho2, rho = rho, nParam = nParam, nested = nested,
+      multErr = multErr )
 
    # dertermining lower and upper bounds automatically
    if( is.null( lower ) ) {
@@ -181,6 +188,9 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
          stop( "fixing 'rho' is currently not supported for the",
             " Kmenta approximation" )
       }
+      if( multErr ) {
+         warning( "method 'Kmenta' ignores argument 'multErr'" )
+      }
       result <- cesEstKmenta( yName = yName, xNames = xNames, data = data,
          vrs = vrs )
    } else if( method %in% c( "Nelder-Mead", "SANN", "BFGS", "CG", "L-BFGS-B" ) ) {
@@ -188,13 +198,13 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
          result$optim <- optim( par = start, fn = cesRss, data = data,
             method = method, yName = yName, xNames = xNames, vrs = vrs,
             rho1 = rho1, rho2 = rho2, rho = rho, rhoApprox = rhoApprox, 
-            nested = nested, tName = tName, ... )
+            nested = nested, tName = tName, multErr = multErr, ... )
       } else {
          result$optim <- optim( par = start, fn = cesRss, gr = cesRssDeriv,
             data = data, method = method, lower = lower, upper = upper, 
             yName = yName, xNames = xNames, vrs = vrs, rho1 = rho1, 
             rho2 = rho2, rho = rho, rhoApprox = rhoApprox, 
-            nested = nested, tName = tName, ... )
+            nested = nested, tName = tName, multErr = multErr, ... )
       }
       result$coefficients <- result$optim$par
       result$iter <- result$optim$counts[ !is.na( result$optim$counts ) ]
@@ -209,33 +219,52 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
    } else if( method == "LM" ) {
       # residual function
       residFun <- function( par, yName, xNames, data, vrs, rho1, rho2, rho,
-            rhoApprox, nested, tName ) {
+            rhoApprox, nested, tName, multErr ) {
          # add coefficients rho_1, rho_2, and rho, if they are fixed
          par <- cesCoefAddRho( coef = par, vrs = vrs, rho1 = rho1,
             rho2 = rho2, rho = rho, nExog = length( xNames ), nested = nested )
-         result <- data[[ yName ]] - cesCalc( xNames = xNames, tName = tName,
-            data = data, coef = par, rhoApprox = rhoApprox[ "y" ], 
-            nested = nested )
+         if( multErr ) {
+            result <- log( data[[ yName ]] ) - 
+               log( cesCalc( xNames = xNames, tName = tName,
+                  data = data, coef = par, rhoApprox = rhoApprox[ "y" ], 
+                  nested = nested ) )
+         } else {
+            result <- data[[ yName ]] - cesCalc( xNames = xNames, tName = tName,
+               data = data, coef = par, rhoApprox = rhoApprox[ "y" ], 
+               nested = nested )
+         }
          return( result )
       }
 
       # jacobian function
       jac <- function( par, yName, xNames, data, vrs, rho1, rho2, rho,
-            rhoApprox, nested, tName ) {
+            rhoApprox, nested, tName, multErr ) {
          # add coefficients rho_1, rho_2, and rho, if they are fixed
+         nPar <- length( par )
          par <- cesCoefAddRho( coef = par, vrs = vrs, rho1 = rho1, 
             rho2 = rho2, rho = rho, nExog = length( xNames ), nested = nested )
-         return( -c( cesDerivCoef( par = par, xNames = xNames, data = data,
-            tName = tName, vrs = vrs, returnRho1 = is.null( rho1 ), 
-            returnRho2 = is.null( rho2 ), returnRho = is.null( rho ),
-            rhoApprox = rhoApprox, nested = nested ) ) )
+         if( multErr ) {
+            yHat <- cesCalc( xNames = xNames, tName = tName,
+               data = data, coef = par, rhoApprox = rhoApprox[ "y" ], 
+               nested = nested )
+            return( -c( cesDerivCoef( par = par, xNames = xNames, data = data,
+               tName = tName, vrs = vrs, returnRho1 = is.null( rho1 ), 
+               returnRho2 = is.null( rho2 ), returnRho = is.null( rho ),
+               rhoApprox = rhoApprox, nested = nested ) ) /
+               rep( yHat, nPar ) )
+         } else {
+            return( -c( cesDerivCoef( par = par, xNames = xNames, data = data,
+               tName = tName, vrs = vrs, returnRho1 = is.null( rho1 ), 
+               returnRho2 = is.null( rho2 ), returnRho = is.null( rho ),
+               rhoApprox = rhoApprox, nested = nested ) ) )
+         }
       }
 
       # perform fit
       result$nls.lm <- nls.lm( par = start, fn = residFun, data = data,
          jac = jac, yName = yName, xNames = xNames, vrs = vrs, rho1 = rho1, 
          rho2 = rho2, rho = rho, rhoApprox = rhoApprox, nested = nested,
-         tName = tName, ... )
+         tName = tName, multErr = multErr, ... )
       result$coefficients <- result$nls.lm$par
       result$iter <- result$nls.lm$niter
       result$convergence <- result$nls.lm$info > 0 && result$nls.lm$info < 5
@@ -243,14 +272,14 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
       rss <- result$nls.lm$deviance
    } else if( method == "Newton" ) {
       cesRss2 <- function( par, yName, xNames, data, vrs, rho1, rho2, rho, 
-            rhoApprox, nested, tName ) {
+            rhoApprox, nested, tName, multErr ) {
          result <- cesRss( par = par, yName = yName, xNames = xNames,
-            data = data, tName = tName, vrs = vrs, 
+            data = data, tName = tName, vrs = vrs, multErr = multErr,
             rho1 = rho1, rho2 = rho2, rho = rho, 
             rhoApprox = rhoApprox[ "y" ], nested = nested )
          attributes( result )$gradient <- cesRssDeriv( par = par, 
             yName = yName, xNames = xNames, tName = tName, data = data, 
-            vrs = vrs, rho1 = rho1, rho2 = rho2, rho = rho, 
+            vrs = vrs, multErr = multErr, rho1 = rho1, rho2 = rho2, rho = rho, 
             rhoApprox = rhoApprox, nested = nested )
          return( result )
       }
@@ -260,7 +289,7 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
       # perform fit
       result$nlm <- nlm( f = cesRss2, p = start, data = data,
          yName = yName, xNames = xNames, tName = tName, vrs = vrs, 
-         rho1 = rho1, rho2 = rho2, rho = rho, 
+         multErr = multErr, rho1 = rho1, rho2 = rho2, rho = rho, 
          rhoApprox = rhoApprox, nested = nested, ... )
       # restore previous setting for warning messages
       options( warn = warnSaved )
@@ -273,7 +302,7 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
       result$nlminb <- nlminb( start = start, objective = cesRss,
          gradient = cesRssDeriv, data = data, yName = yName, xNames = xNames,
          tName = tName, vrs = vrs, rho1 = rho1, rho2 = rho2, rho = rho, 
-         lower = lower, upper = upper, 
+         multErr = multErr, lower = lower, upper = upper, 
          rhoApprox = rhoApprox, nested = nested, ... )
       result$coefficients <- result$nlminb$par
       result$iter <- result$nlminb$iterations
@@ -284,7 +313,7 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
       result$DEoptim <- DEoptim( fn = cesRss, lower = lower,
          upper = upper, data = data, yName = yName, xNames = xNames,
          tName = tName, vrs = vrs, rho1 = rho1, rho2 = rho2, rho = rho, 
-         rhoApprox = rhoApprox, nested = nested, ... )
+         rhoApprox = rhoApprox, nested = nested, multErr = multErr, ... )
       result$coefficients <- result$DEoptim$optim$bestmem
       result$iter <- result$DEoptim$optim$iter
       rss <- result$DEoptim$optim$bestval
@@ -299,19 +328,22 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
          warning( "ignoring argument 'rho'" )
       }
       if( nested && nExog == 3 ) {
-         nlsFormula <- as.formula( paste( yName,
-            " ~ gamma *", 
+         nlsFormula <- as.formula( paste( 
+            ifelse( multErr, "log( ", "" ), yName, ifelse( multErr, " )", "" ),
+            " ~ ", ifelse( multErr, "log( ", "" ), "gamma *", 
             ifelse( withTime, paste( " exp( lambda *", tName, ") *" ), "" ),
             " ( delta_2 * ",
             "( delta_1 * ", xNames[ 1 ], "^(-rho_1)",
             " + ( 1 - delta_1 ) * ", xNames[ 2 ], "^(-rho_1) )",
             "^( rho / rho_1 ) +",
             " ( 1 - delta_2 ) * ", xNames[ 3 ], "^(-rho) )",
-            "^( - ", ifelse( vrs, "nu", "1" ), " / rho )",
+            "^( - ", ifelse( vrs, "nu", "1" ), " / rho )", 
+            ifelse( multErr, " )", "" ),
             sep = "" ) )
       } else if( nested && nExog == 4 ) {
-         nlsFormula <- as.formula( paste( yName,
-            " ~ gamma *",
+         nlsFormula <- as.formula( paste(
+            ifelse( multErr, "log( ", "" ), yName, ifelse( multErr, " )", "" ),
+            " ~ ", ifelse( multErr, "log( ", "" ), "gamma *",
             ifelse( withTime, paste( " exp( lambda *", tName, ") *" ), "" ),
             " ( delta_3 * ( delta_1 * ", xNames[ 1 ], "^(-rho_1)",
             " + ( 1 - delta_1 ) * ", xNames[ 2 ], "^(-rho_1) )",
@@ -320,14 +352,17 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
             " + ( 1 - delta_2 ) * ", xNames[ 4 ], "^(-rho_2) )",
             "^( rho / rho_2 ) )",
             "^( - ", ifelse( vrs, "nu", "1" ), " / rho )",
+            ifelse( multErr, " )", "" ),
             sep = "" ) )
       } else {
-         nlsFormula <- as.formula( paste( yName,
-            " ~ gamma *",
+         nlsFormula <- as.formula( paste(
+            ifelse( multErr, "log( ", "" ), yName, ifelse( multErr, " )", "" ),
+            " ~ ", ifelse( multErr, "log( ", "" ), "gamma *",
             ifelse( withTime, paste( " exp( lambda *", tName, ") *" ), "" ),
             " ( delta * ", xNames[ 1 ], "^(-rho)",
             " + ( 1 - delta ) * ", xNames[ 2 ], "^(-rho) )",
             "^( - ", ifelse( vrs, "nu", "1" ), " / rho )",
+            ifelse( multErr, " )", "" ),
             sep = "" ) )
       }
       result$nls <- nls( formula = nlsFormula, data = data, start = start,
@@ -360,6 +395,9 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
    # return the method used for the estimation
    result$method <- method
 
+   # return whether the error term is multiplicative
+   result$multErr <- multErr
+
    # return the starting values
    result$start <- start
 
@@ -381,7 +419,11 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
       coef = result$coefficients, rhoApprox = rhoApprox[ "y" ], nested = nested )
 
    # residuals
-   result$residuals <- data[[ yName ]] - result$fitted.values
+   if( multErr ) {
+      result$residuals <- log( data[[ yName ]] ) - log( result$fitted.values )
+   } else {
+      result$residuals <- data[[ yName ]] - result$fitted.values
+   }
 
    # sum of squared residuals
    result$rss <- sum( result$residuals^2 )
@@ -397,6 +439,11 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
    gradients <- cesDerivCoef( par = result$coefficients, xNames = xNames,
       tName = tName, data = data, vrs = vrs, rhoApprox = rhoApprox, 
       nested = nested )
+   if( multErr ) {
+      gradients <- gradients / 
+         matrix( rep( result$fitted.values, length( result$coefficients ) ),
+            nrow = nrow( gradients ), ncol = ncol( gradients ) )
+   }
    result$cov.unscaled <- try( chol2inv( chol( crossprod( gradients ) ) ),
       silent = TRUE )
    if( !is.matrix( result$cov.unscaled ) ) {

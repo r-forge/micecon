@@ -7,8 +7,14 @@ summary.cesEst <- function( object, ... ) {
    object$sigma <- sqrt( object$rss / nObs )
 
    # R-squared value
-   object$r.squared <- rSquared( y = fitted( object ) + residuals( object ),
-      resid = residuals( object ) )
+   if( object$multErr ) {
+      object$r.squared <- rSquared( 
+         y = log( fitted( object ) ) + residuals( object ),
+         resid = residuals( object ) )
+   } else {
+      object$r.squared <- rSquared( y = fitted( object ) + residuals( object ),
+         resid = residuals( object ) )
+   }
 
    # covariance matrix of the estimated coefficients/parameters
    if( is.null( object$vcov ) ) {

@@ -1,5 +1,5 @@
 cesRssDeriv <- function( par, yName, xNames, tName, data, vrs, rho1 = NULL,
-      rho2 = NULL, rho = NULL, rhoApprox, nested = FALSE ) {
+      rho2 = NULL, rho = NULL, rhoApprox, nested = FALSE, multErr ) {
 
    # number of exogenous variables
    nExog <- length( xNames )
@@ -24,7 +24,11 @@ cesRssDeriv <- function( par, yName, xNames, tName, data, vrs, rho1 = NULL,
    # calculate fitted values and residuals
    yHat <- cesCalc( xNames = xNames, tName = tName, data = data, coef = par,
       rhoApprox = rhoApprox[1], nested = nested )
-   resid <- data[[ yName ]] - yHat
+   if( multErr ) {
+      resid <- log( data[[ yName ]] ) - log( yHat )
+   } else {
+      resid <- data[[ yName ]] - yHat
+   }
 
    # obtain derivatives of the CES with respect to coefficients
    derivCoef <- cesDerivCoef( par = par, xNames = xNames, data = data, 
@@ -36,7 +40,11 @@ cesRssDeriv <- function( par, yName, xNames, tName, data, vrs, rho1 = NULL,
    result <- numeric( ncol( derivCoef ) )
    names( result ) <- colnames( derivCoef )
    for( coefName in colnames( derivCoef ) ) {
-      result[ coefName ] <- sum( - 2 * resid * derivCoef[ , coefName ] )
+      if( multErr ) {
+         result[ coefName ] <- sum( - 2 * resid * derivCoef[ , coefName ] / yHat )
+      } else {
+         result[ coefName ] <- sum( - 2 * resid * derivCoef[ , coefName ] )
+      }
    }
    return( result )
 }

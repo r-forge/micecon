@@ -116,6 +116,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta 
 16.06668  0.50000 
@@ -185,6 +188,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 253 iterations
 
 Coefficients:
@@ -262,6 +266,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta 
 3.758571 0.015000 0.500000 
@@ -332,6 +339,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence NOT achieved after 502 iterations
 
 Coefficients:
@@ -388,6 +396,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "Nelder-Mead"
+
+$multErr
+[1] FALSE
 
 $start
    gamma    delta       nu 
@@ -459,6 +470,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence NOT achieved after 502 iterations
 
 Coefficients:
@@ -532,6 +544,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "CG"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta 
 27.90554  0.50000 
@@ -599,6 +614,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'CG' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence NOT achieved after 764 function and 101 gradient calls
 
 Coefficients:
@@ -678,6 +694,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "CG"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta       nu 
 10.03123  0.50000  1.00000 
@@ -748,6 +767,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'CG' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence NOT achieved after 658 function and 101 gradient calls
 
 Coefficients:
@@ -823,6 +843,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "CG"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta       nu 
 8.455537 0.015000 0.500000 1.000000 
@@ -894,6 +917,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'CG' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence NOT achieved after 575 function and 101 gradient calls
 
 Coefficients:
@@ -948,6 +972,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "SANN"
+
+$multErr
+[1] FALSE
 
 $start
    gamma    delta 
@@ -1015,6 +1042,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
@@ -1078,6 +1106,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "SANN"
+
+$multErr
+[1] FALSE
 
 $start
    gamma   lambda    delta 
@@ -1146,6 +1177,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)    
@@ -1198,6 +1230,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "SANN"
+
+$multErr
+[1] FALSE
 
 $start
  gamma  delta     nu 
@@ -1266,6 +1301,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
@@ -1338,6 +1374,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "BFGS"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta 
 16.06668  0.50000 
@@ -1405,6 +1444,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 311 function and 73 gradient calls
 
 Coefficients:
@@ -1474,6 +1514,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "BFGS"
+
+$multErr
+[1] FALSE
 
 $start
    gamma    delta       nu 
@@ -1545,6 +1588,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence NOT achieved after 545 function and 100 gradient calls
 
 Coefficients:
@@ -1629,6 +1673,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "BFGS"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta       nu 
 5.284923 0.015000 0.500000 1.000000 
@@ -1700,6 +1747,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 606 function and 94 gradient calls
 
 Coefficients:
@@ -1760,6 +1808,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "L-BFGS-B"
+
+$multErr
+[1] FALSE
 
 $start
    gamma    delta 
@@ -1828,6 +1879,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 25 function and 25 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
@@ -1901,6 +1953,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "L-BFGS-B"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta 
 3.758571 0.015000 0.500000 
@@ -1971,6 +2026,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 108 function and 108 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
@@ -2032,6 +2088,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "L-BFGS-B"
+
+$multErr
+[1] FALSE
 
 $start
    gamma    delta       nu 
@@ -2103,6 +2162,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence NOT achieved after 137 function and 137 gradient calls
 Message: NEW_X 
 
@@ -2172,6 +2232,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta 
 16.06668  0.50000 
@@ -2239,6 +2302,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 22 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -2301,6 +2365,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma    delta       nu 
@@ -2370,6 +2437,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 47 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -2433,6 +2501,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma   lambda    delta       nu 
@@ -2505,6 +2576,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 45 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -2560,6 +2632,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "Newton"
+
+$multErr
+[1] FALSE
 
 $start
    gamma    delta 
@@ -2628,6 +2703,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 70 iterations
 
 Coefficients:
@@ -2693,6 +2769,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "Newton"
+
+$multErr
+[1] FALSE
 
 $start
    gamma   lambda    delta 
@@ -2764,6 +2843,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 93 iterations
 
 Coefficients:
@@ -2818,6 +2898,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 $method
 [1] "Newton"
+
+$multErr
+[1] FALSE
 
 $start
    gamma    delta       nu 
@@ -2889,6 +2972,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence NOT achieved after 100 iterations
 
 Coefficients:
@@ -2967,6 +3051,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
  gamma  delta 
 4.4463 0.5000 
@@ -3034,6 +3121,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 47 iterations
 Message: relative convergence (4) 
 
@@ -3111,6 +3199,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta       nu 
 27.90554  0.50000  1.00000 
@@ -3181,6 +3272,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence NOT achieved after 128 iterations
 Message: function evaluation limit reached without convergence (9) 
 
@@ -3261,6 +3353,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta       nu 
 3.758571 0.015000 0.500000 1.000000 
@@ -3332,6 +3427,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 115 iterations
 Message: relative convergence (4) 
 
@@ -3700,6 +3796,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "DE"
 
+$multErr
+[1] FALSE
+
 $lower
 [1] 0 0
 
@@ -3762,6 +3861,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'DE' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
@@ -4141,6 +4241,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "DE"
 
+$multErr
+[1] FALSE
+
 $lower
 [1]  0.0 -0.5  0.0
 
@@ -4204,6 +4307,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'DE' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
@@ -4569,6 +4673,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 $method
 [1] "DE"
 
+$multErr
+[1] FALSE
+
 $lower
 [1] 0 0 0
 
@@ -4632,6 +4739,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Estimation by non-linear least-squares using the 'DE' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)    

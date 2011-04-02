@@ -115,6 +115,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
+$multErr
+[1] FALSE
+
 $start
   gamma   delta 
 34.5393  0.5000 
@@ -169,6 +172,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "NM", rho = 2)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 2 
 Convergence NOT achieved after 501 iterations
 
@@ -235,6 +239,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
@@ -290,6 +297,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "Nelder-Mead", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at -0.1 
 Convergence NOT achieved after 502 iterations
 
@@ -361,6 +369,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "Nelder-Mead"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta       nu 
 5.284923 0.015000 0.500000 1.000000 
@@ -417,6 +428,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     tName = "time", vrs = TRUE, method = "Nelder-Mead", rho = -0.4)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at -0.4 
 Convergence NOT achieved after 501 iterations
 
@@ -474,6 +486,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "CG"
 
+$multErr
+[1] FALSE
+
 $start
   gamma   delta 
 34.5393  0.5000 
@@ -528,6 +543,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "CG", rho = 2)
 
 Estimation by non-linear least-squares using the 'CG' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 2 
 Convergence NOT achieved after 754 function and 101 gradient calls
 
@@ -595,6 +611,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "CG"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta 
 10.81051  0.01500  0.50000 
@@ -650,6 +669,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     tName = "time", method = "CG", rho = 0.2)
 
 Estimation by non-linear least-squares using the 'CG' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 0.2 
 Convergence NOT achieved after 709 function and 101 gradient calls
 
@@ -710,6 +730,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "CG"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
@@ -765,6 +788,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "CG", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'CG' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at -0.1 
 Convergence NOT achieved after 658 function and 101 gradient calls
 
@@ -832,6 +856,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "SANN"
 
+$multErr
+[1] FALSE
+
 $start
   gamma   delta 
 34.5393  0.5000 
@@ -886,6 +913,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "SANN", rho = 2)
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 2 
 
 Coefficients:
@@ -948,6 +976,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "SANN"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta 
 8.455537 0.015000 0.500000 
@@ -1003,6 +1034,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     tName = "time", method = "SANN", rho = 0)
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 0 
 
 Coefficients:
@@ -1054,6 +1086,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 
 $method
 [1] "SANN"
+
+$multErr
+[1] FALSE
 
 $start
    gamma    delta       nu 
@@ -1110,6 +1145,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "SANN", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at -0.1 
 
 Coefficients:
@@ -1180,6 +1216,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "BFGS"
 
+$multErr
+[1] FALSE
+
 $start
   gamma   delta 
 34.5393  0.5000 
@@ -1234,6 +1273,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "BFGS", rho = 2)
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 2 
 Convergence NOT achieved after 368 function and 100 gradient calls
 
@@ -1301,6 +1341,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "BFGS"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
@@ -1356,6 +1399,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "BFGS", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at -0.1 
 Convergence NOT achieved after 565 function and 100 gradient calls
 
@@ -1428,6 +1472,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "BFGS"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta       nu 
 5.284923 0.015000 0.500000 1.000000 
@@ -1484,6 +1531,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     tName = "time", vrs = TRUE, method = "BFGS", rho = -0.4)
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at -0.4 
 Convergence achieved after 606 function and 94 gradient calls
 
@@ -1545,6 +1593,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "L-BFGS-B"
 
+$multErr
+[1] FALSE
+
 $start
   gamma   delta 
 34.5393  0.5000 
@@ -1599,6 +1650,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "L-BFGS-B", rho = 2)
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 2 
 Convergence achieved after 55 function and 55 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
@@ -1670,6 +1722,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "L-BFGS-B"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta 
 23.44378  0.01500  0.50000 
@@ -1725,6 +1780,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     tName = "time", method = "L-BFGS-B", rho = 1.2)
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 1.2 
 Convergence achieved after 15 function and 15 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
@@ -1786,6 +1842,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "L-BFGS-B"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
@@ -1841,6 +1900,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "L-BFGS-B", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at -0.1 
 Convergence achieved after 140 function and 140 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
@@ -1907,6 +1967,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
   gamma   delta 
 34.5393  0.5000 
@@ -1961,6 +2024,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     rho = 2, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 2 
 Convergence NOT achieved after 200 iterations
 Message: Number of iterations has reached `maxiter' == 200. 
@@ -2018,6 +2082,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
@@ -2073,6 +2140,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, rho = -0.1, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at -0.1 
 Convergence achieved after 32 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
@@ -2135,6 +2203,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta       nu 
 17.68019  0.01500  0.50000  1.00000 
@@ -2191,6 +2262,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     tName = "time", vrs = TRUE, rho = 0.7, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 0.7 
 Convergence achieved after 17 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
@@ -2246,6 +2318,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "Newton"
 
+$multErr
+[1] FALSE
+
 $start
   gamma   delta 
 34.5393  0.5000 
@@ -2300,6 +2375,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "Newton", rho = 2)
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 2 
 Convergence achieved after 4 iterations
 
@@ -2364,6 +2440,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "Newton"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta 
 18.98474  0.01500  0.50000 
@@ -2419,6 +2498,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     tName = "time", method = "Newton", rho = 0.8)
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 0.8 
 Convergence achieved after 13 iterations
 
@@ -2472,6 +2552,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 
 $method
 [1] "Newton"
+
+$multErr
+[1] FALSE
 
 $start
    gamma    delta       nu 
@@ -2528,6 +2611,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "Newton", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at -0.1 
 Convergence NOT achieved after 100 iterations
 
@@ -2604,6 +2688,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
   gamma   delta 
 34.5393  0.5000 
@@ -2658,6 +2745,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "PORT", rho = 2)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 2 
 Convergence achieved after 28 iterations
 Message: both X-convergence and relative convergence (5) 
@@ -2731,6 +2819,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma    delta       nu 
 8.852626 0.500000 1.000000 
@@ -2786,6 +2877,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "PORT", rho = -0.1)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at -0.1 
 Convergence achieved after 92 iterations
 Message: relative convergence (4) 
@@ -2864,6 +2956,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda    delta       nu 
 8.455537 0.015000 0.500000 1.000000 
@@ -2920,6 +3015,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     tName = "time", vrs = TRUE, method = "PORT", rho = 0)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 0 
 Convergence achieved after 49 iterations
 Message: relative convergence (4) 
@@ -3286,6 +3382,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "DE"
 
+$multErr
+[1] FALSE
+
 $lower
 [1] 0 0
 
@@ -3336,6 +3435,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "DE", rho = 2, control = DEoptim.control(trace = FALSE))
 
 Estimation by non-linear least-squares using the 'DE' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 2 
 
 Coefficients:
@@ -3709,6 +3809,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "DE"
 
+$multErr
+[1] FALSE
+
 $lower
 [1]  0.0 -0.5  0.0
 
@@ -3760,6 +3863,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     tName = "time", method = "DE", rho = 0.5, control = DEoptim.control(trace = FALSE))
 
 Estimation by non-linear least-squares using the 'DE' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 0.5 
 
 Coefficients:
@@ -4124,6 +4228,9 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 $method
 [1] "DE"
 
+$multErr
+[1] FALSE
+
 $lower
 [1] 0 0 0
 
@@ -4177,6 +4284,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     control = DEoptim.control(trace = FALSE))
 
 Estimation by non-linear least-squares using the 'DE' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at -0.1 
 
 Coefficients:
