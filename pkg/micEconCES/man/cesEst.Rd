@@ -151,32 +151,26 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
    However, names of the elements are ignored.
    If argument \code{start} is \code{NULL},
    pre-defined starting values are used.
-   The starting values of \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, 
+   The starting value of \eqn{\lambda}{lambda} (if present) is set to 0.015;
+   the starting values of \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, 
    and \eqn{\delta_2}{delta_2} (if present) are set to 0.5,
    the starting values of \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and
    \eqn{\rho}{rho} (if present and required) are set to 0.25
       (i.e.\ elasticity of substitution = 0.8 in the two-input case),
-   the starting value of \eqn{\nu}{nu} (if required) is set to 1,
+   the starting value of \eqn{\nu}{nu} (if present) is set to 1,
    and the starting value of \eqn{\gamma}{gamma}
    is set to a value
-   so that the mean of the endogenous variable
+   so that the mean of the dependent variable
    is equal to the mean of its fitted values.
-   Hence, for the CES with two inputs
-   \eqn{\gamma}{gamma} =  mean( y ) /
-      mean( CES( X, \eqn{\gamma}{gamma} = 1, \eqn{\delta}{delta} = 0.5,
-         \eqn{\rho}{rho} = fixed or 0.25, \eqn{\nu}{nu} = 1 ) ),
-   for the nested CES with 3 inputs
-   \eqn{\gamma}{gamma} =  mean( y ) /
-      mean( CES( X, \eqn{\gamma}{gamma} = 1,
-         \eqn{\delta_1}{delta_1} = 0.5, \eqn{\delta_2}{delta_2} = 0.5, 
-         \eqn{\rho_1}{rho_1} = 0.25, \eqn{\rho}{rho} = fixed or 0.25, 
-          \eqn{\nu}{nu} = 1 ) ),
-   and for the nested CES with 4 inputs
-   \eqn{\gamma}{gamma} =  mean( y ) /
-      mean( CES( X, \eqn{\gamma}{gamma} = 1, \eqn{\delta_1}{delta_1} = 0.5,
-          \eqn{\delta_2}{delta_2} = 0.5, \eqn{\rho_1}{rho_1} = 0.25, 
-          \eqn{\rho_2}{rho_2} = 0.25, \eqn{\rho}{rho} = fixed or 0.25, 
-          \eqn{\nu}{nu} = 1 ) ).\cr
+   Hence, \eqn{\gamma}{gamma} is set to 
+   \code{mean( y ) / mean( CES( X, start1 ) )},
+   where \code{y} is the dependent variable (defined by argument \code{yName}),
+   \code{X} is the set of covariates 
+   (defined by arguments \code{xNames} and \code{tName}),
+   \code{CES()} defines the (nested) CES function,
+   and \code{start1} is a coefficient vector 
+   with \eqn{\gamma = 1}{gamma = 1} and all other coefficients 
+   having the starting values described above.\cr
 
    \bold{Lower and upper bounds}\cr
    Arguments \code{lower} and \code{upper} can be used
