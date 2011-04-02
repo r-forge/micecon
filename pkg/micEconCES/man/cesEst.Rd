@@ -25,8 +25,8 @@
 
 \usage{
 cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
-   start = NULL, lower = NULL, upper = NULL, rho1 = NULL, rho2, rho = NULL,
-   returnGridAll = FALSE, random.seed = 123,
+   start = NULL, lower = NULL, upper = NULL, multErr = FALSE,
+   rho1 = NULL, rho2, rho = NULL, returnGridAll = FALSE, random.seed = 123,
    rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, 
       rho = 1e-3, nu = 5e-6 ),
    \dots )
@@ -57,6 +57,12 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
       (see section \sQuote{Details}).}
    \item{upper}{upper bounds of the parameters
       (see section \sQuote{Details}).}
+   \item{multErr}{logical. If \code{TRUE}, 
+      the error term is assumed to be multiplicative, 
+      i.e. \eqn{y = \hat{y} \cdot exp( \epsilon )}{y = yHat * exp( epsilon )}.
+      If \code{FALSE} (the default), 
+      the error term is assumed to be additive, 
+      i.e. \eqn{y = \hat{y} + \epsilon}{y = yHat + epsilon}.}
    \item{rho1,rho2,rho}{numeric scalar or vector at which the coefficients 
       \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and/or \eqn{\rho}{rho}
       should be fixed;
@@ -160,10 +166,15 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
    the starting value of \eqn{\nu}{nu} (if present) is set to 1,
    and the starting value of \eqn{\gamma}{gamma}
    is set to a value
-   so that the mean of the dependent variable
-   is equal to the mean of its fitted values.
-   Hence, \eqn{\gamma}{gamma} is set to 
-   \code{mean( y ) / mean( CES( X, start1 ) )},
+   so that the mean of the error term is zero.
+   Hence, in case of an additive error term
+   (i.e. argument \code{multErr} is set to \code{FALSE}, the default) 
+   \eqn{\gamma}{gamma} is set to 
+   \code{mean( y ) / mean( CES( X, start1 ) )}
+   and in case of a multiplicative error term
+   (i.e. argument \code{multErr} is set to \code{TRUE}) 
+   \eqn{\gamma}{gamma} is set to 
+   \code{mean( log( y ) ) - mean( log( CES( X, start1 ) ) )},
    where \code{y} is the dependent variable (defined by argument \code{yName}),
    \code{X} is the set of covariates 
    (defined by arguments \code{xNames} and \code{tName}),
@@ -252,13 +263,18 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
       (including a possible fixed \eqn{\rho}{rho}),
       i.e. the inverse of the cross-product of the gradient matrix
       evaluated at the estimated parameters.}
-   \item{fitted.values}{the fitted values.}
-   \item{residuals}{the residuals.}
+   \item{fitted.values}{the fitted values (\eqn{\hat{y}}{yHat}).}
+   \item{residuals}{the residuals 
+      (i.e. \eqn{y - \hat{y}}{y - yHat} 
+      if argument \code{multErr} is \code{FALSE} (the default),
+      and \eqn{log( y ) - log( \hat{y} )}{log( y ) - log( yHat )}
+      if argument \code{multErr} is \code{TRUE}).}
    \item{rss}{the sum of the squared residuals 
       (i.e. the value of the objective function of the non-linear 
       least-squares estimation evaluated at the estimated parameters).}
    \item{call}{the matched call.}
    \item{method}{argument \code{method}.}
+   \item{multErr}{argument \code{multErr}.}
    \item{start}{starting values for the non-linear estimation
       (not for the \code{Kmenta} and \code{DE} method).}
    \item{lower}{lower bounds of the parameters.}

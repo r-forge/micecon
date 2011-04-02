@@ -33,7 +33,11 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
                paste( "'",sub( "([12])$", "_\\1", gridCoef ), "'", sep = "" ), 
                collapse = ", " ),
             "\n", sep = "" )
-      } else {
+      }
+      cat( "assuming",
+         ifelse( x$multErr, "a multiplicative", "an additive" ),
+         "error term\n" )
+      if( is.null( x$allRhoSum ) ) {
          if( !is.null( x[[ "rho1" ]] ) ) {
             cat( "Coefficient 'rho_1' was fixed at", x$rho1, "\n" )
          }

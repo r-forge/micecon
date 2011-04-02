@@ -7027,6 +7027,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "Nelder-Mead"
 $method
 [1] "Nelder-Mead"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1      rho 
 296.7527   0.5000   0.5000   0.2500   0.2500 
@@ -7089,6 +7092,7 @@ Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "Nelder-Mead")
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+assuming an additive error term
 Convergence NOT achieved after 501 iterations
 
 Coefficients:
@@ -7182,6 +7186,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "Nelder-Mead"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1      rho       nu 
 296.7527   0.5000   0.5000   0.2500   0.2500   1.0000 
@@ -7255,6 +7262,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     method = "NM", control = list(maxit = 1000))
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+assuming an additive error term
 Convergence achieved after 419 iterations
 
 Coefficients:
@@ -7359,6 +7367,9 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
 $method
 [1] "Nelder-Mead"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 337.7184   0.0150   0.5000   0.5000   0.2500   0.2500 
@@ -7430,6 +7441,7 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
     method = "Nelder-Mead", control = list(maxit = 5000))
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+assuming an additive error term
 Convergence achieved after 2359 iterations
 
 Coefficients:
@@ -7490,6 +7502,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 
 $method
 [1] "Nelder-Mead"
+
+$multErr
+[1] FALSE
 
 $start
   gamma  lambda delta_1 delta_2   rho_1     rho      nu 
@@ -7564,6 +7579,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
     tName = "time", vrs = TRUE, method = "NM", control = list(maxit = 5000))
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+assuming an additive error term
 Convergence achieved after 1608 iterations
 
 Coefficients:
@@ -7620,6 +7636,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "CG")
 
 $method
 [1] "CG"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2    rho_1      rho 
@@ -7683,6 +7702,7 @@ Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "CG")
 
 Estimation by non-linear least-squares using the 'CG' optimizer
+assuming an additive error term
 Convergence NOT achieved after 489 function and 101 gradient calls
 
 Coefficients:
@@ -7780,6 +7800,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "CG"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1      rho       nu 
 296.7527   0.5000   0.5000   0.2500   0.2500   1.0000 
@@ -7852,6 +7875,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     method = "CG")
 
 Estimation by non-linear least-squares using the 'CG' optimizer
+assuming an additive error term
 Convergence NOT achieved after 498 function and 101 gradient calls
 
 Coefficients:
@@ -7960,6 +7984,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 $method
 [1] "CG"
 
+$multErr
+[1] FALSE
+
 $start
   gamma  lambda delta_1 delta_2   rho_1     rho      nu 
 517.995   0.015   0.500   0.500   0.250   0.250   1.000 
@@ -8033,6 +8060,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
     tName = "time", vrs = TRUE, method = "CG")
 
 Estimation by non-linear least-squares using the 'CG' optimizer
+assuming an additive error term
 Convergence NOT achieved after 551 function and 101 gradient calls
 
 Coefficients:
@@ -8085,6 +8113,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "SANN")
 
 $method
 [1] "SANN"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2    rho_1      rho 
@@ -8148,6 +8179,7 @@ Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "SANN")
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
+assuming an additive error term
 
 Coefficients:
          Estimate Std. Error t value Pr(>|t|)    
@@ -8237,6 +8269,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "SANN"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1      rho       nu 
 296.7527   0.5000   0.5000   0.2500   0.2500   1.0000 
@@ -8310,6 +8345,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     method = "SANN")
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
+assuming an additive error term
 
 Coefficients:
          Estimate Std. Error t value Pr(>|t|)    
@@ -8414,6 +8450,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 $method
 [1] "SANN"
 
+$multErr
+[1] FALSE
+
 $start
   gamma  lambda delta_1 delta_2   rho_1     rho      nu 
 517.995   0.015   0.500   0.500   0.250   0.250   1.000 
@@ -8487,6 +8526,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
     tName = "time", vrs = TRUE, method = "SANN")
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
+assuming an additive error term
 
 Coefficients:
          Estimate Std. Error t value Pr(>|t|)    
@@ -8544,6 +8584,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "BFGS",
 
 $method
 [1] "BFGS"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2    rho_1      rho 
@@ -8610,6 +8653,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "BFGS",
     control = list(maxit = 500))
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
+assuming an additive error term
 Convergence achieved after 87 function and 11 gradient calls
 
 Coefficients:
@@ -8705,6 +8749,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "BFGS"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1      rho       nu 
 296.7527   0.5000   0.5000   0.2500   0.2500   1.0000 
@@ -8778,6 +8825,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     method = "BFGS", control = list(maxit = 500))
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
+assuming an additive error term
 Convergence achieved after 273 function and 30 gradient calls
 
 Coefficients:
@@ -8883,6 +8931,9 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
 $method
 [1] "BFGS"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 337.7184   0.0150   0.5000   0.5000   0.2500   0.2500 
@@ -8954,6 +9005,7 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
     method = "BFGS", control = list(maxit = 500))
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
+assuming an additive error term
 Convergence achieved after 117 function and 14 gradient calls
 
 Coefficients:
@@ -9015,6 +9067,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 
 $method
 [1] "BFGS"
+
+$multErr
+[1] FALSE
 
 $start
   gamma  lambda delta_1 delta_2   rho_1     rho      nu 
@@ -9089,6 +9144,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
     tName = "time", vrs = TRUE, method = "BFGS", control = list(maxit = 500))
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
+assuming an additive error term
 Convergence achieved after 564 function and 48 gradient calls
 
 Coefficients:
@@ -9148,6 +9204,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "L-BFGS-B")
 
 $method
 [1] "L-BFGS-B"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2    rho_1      rho 
@@ -9212,6 +9271,7 @@ Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "L-BFGS-B")
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+assuming an additive error term
 Convergence achieved after 67 function and 67 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
@@ -9311,6 +9371,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "L-BFGS-B"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1      rho       nu 
 296.7527   0.5000   0.5000   0.2500   0.2500   1.0000 
@@ -9384,6 +9447,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     method = "L-BFGS-B", control = list(maxit = 500))
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+assuming an additive error term
 Convergence achieved after 40 function and 40 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
@@ -9493,6 +9557,9 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
 $method
 [1] "L-BFGS-B"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 337.7184   0.0150   0.5000   0.5000   0.2500   0.2500 
@@ -9564,6 +9631,7 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
     method = "L-BFGS-B", control = list(maxit = 2000))
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+assuming an additive error term
 Convergence achieved after 464 function and 464 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
@@ -9629,6 +9697,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 
 $method
 [1] "L-BFGS-B"
+
+$multErr
+[1] FALSE
 
 $start
   gamma  lambda delta_1 delta_2   rho_1     rho      nu 
@@ -9703,6 +9774,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
     tName = "time", vrs = TRUE, method = "L-BFGS-B", control = list(maxit = 1000))
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+assuming an additive error term
 Convergence achieved after 418 function and 418 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
@@ -9750,6 +9822,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, control = nls.lm.contr
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2    rho_1      rho 
@@ -9814,6 +9889,7 @@ Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -9899,6 +9975,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1      rho       nu 
 296.7527   0.5000   0.5000   0.2500   0.2500   1.0000 
@@ -9972,6 +10051,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -10067,6 +10147,9 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 337.7184   0.0150   0.5000   0.5000   0.2500   0.2500 
@@ -10138,6 +10221,7 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
     control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -10187,6 +10271,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
   gamma  lambda delta_1 delta_2   rho_1     rho      nu 
@@ -10261,6 +10348,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
     tName = "time", vrs = TRUE, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Convergence achieved after 6 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -10315,6 +10403,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "Newton")
 
 $method
 [1] "Newton"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2    rho_1      rho 
@@ -10379,6 +10470,7 @@ Call:
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "Newton")
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
+assuming an additive error term
 Convergence achieved after 37 iterations
 
 Coefficients:
@@ -10471,6 +10563,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "Newton"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1      rho       nu 
 296.7527   0.5000   0.5000   0.2500   0.2500   1.0000 
@@ -10544,6 +10639,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     method = "Newton")
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
+assuming an additive error term
 Convergence achieved after 61 iterations
 
 Coefficients:
@@ -10648,6 +10744,9 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
 $method
 [1] "Newton"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 337.7184   0.0150   0.5000   0.5000   0.2500   0.2500 
@@ -10719,6 +10818,7 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
     method = "Newton", iterlim = 500)
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
+assuming an additive error term
 Convergence achieved after 90 iterations
 
 Coefficients:
@@ -10777,6 +10877,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 
 $method
 [1] "Newton"
+
+$multErr
+[1] FALSE
 
 $start
   gamma  lambda delta_1 delta_2   rho_1     rho      nu 
@@ -10851,6 +10954,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
     tName = "time", vrs = TRUE, method = "Newton", iterlim = 500)
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
+assuming an additive error term
 Convergence achieved after 76 iterations
 
 Coefficients:
@@ -10914,6 +11018,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 
 $method
 [1] "PORT"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2    rho_1      rho 
@@ -10980,6 +11087,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
     control = list(eval.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Convergence achieved after 81 iterations
 Message: X-convergence (3) 
 
@@ -11081,6 +11189,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1      rho       nu 
 296.7527   0.5000   0.5000   0.2500   0.2500   1.0000 
@@ -11154,6 +11265,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     method = "PORT", control = list(eval.max = 500, iter.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Convergence achieved after 104 iterations
 Message: both X-convergence and relative convergence (5) 
 
@@ -11265,6 +11377,9 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 337.7184   0.0150   0.5000   0.5000   0.2500   0.2500 
@@ -11336,6 +11451,7 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
     method = "PORT", control = list(eval.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Convergence achieved after 62 iterations
 Message: both X-convergence and relative convergence (5) 
 
@@ -11405,6 +11521,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 
 $method
 [1] "PORT"
+
+$multErr
+[1] FALSE
 
 $start
   gamma  lambda delta_1 delta_2   rho_1     rho      nu 
@@ -11481,6 +11600,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
         iter.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Convergence achieved after 117 iterations
 Message: relative convergence (4) 
 
@@ -11858,6 +11978,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "DE",
 $method
 [1] "DE"
 
+$multErr
+[1] FALSE
+
 $lower
 [1]  0  0  0 -1 -1
 
@@ -11919,6 +12042,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "DE",
     control = DEoptim.control(trace = FALSE, NP = 60))
 
 Estimation by non-linear least-squares using the 'DE' optimizer
+assuming an additive error term
 
 Coefficients:
          Estimate Std. Error t value Pr(>|t|)    
@@ -12350,6 +12474,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "DE"
 
+$multErr
+[1] FALSE
+
 $lower
 [1]  0  0  0 -1 -1  0
 
@@ -12418,6 +12545,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     method = "DE", control = DEoptim.control(trace = FALSE, NP = 70))
 
 Estimation by non-linear least-squares using the 'DE' optimizer
+assuming an additive error term
 
 Coefficients:
          Estimate Std. Error t value Pr(>|t|)    
@@ -13179,6 +13307,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 $method
 [1] "DE"
 
+$multErr
+[1] FALSE
+
 $lower
 [1]  0.0 -0.5  0.0  0.0 -1.0 -1.0  0.0
 
@@ -13250,6 +13381,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
         NP = 90))
 
 Estimation by non-linear least-squares using the 'DE' optimizer
+assuming an additive error term
 
 Coefficients:
          Estimate Std. Error t value Pr(>|t|)    
@@ -13298,6 +13430,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = 1,
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2      rho 
@@ -13366,6 +13501,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = 1,
     control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 1 
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
@@ -13451,6 +13587,9 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
   gamma  lambda delta_1 delta_2     rho 
 356.093   0.015   0.500   0.500   0.250 
@@ -13525,6 +13664,7 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
     rho1 = 1, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 1 
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
@@ -13573,6 +13713,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2      rho       nu 
@@ -13648,6 +13791,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     rho1 = 0, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 0 
 Convergence achieved after 6 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
@@ -13758,6 +13902,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2      rho 
 289.2102   0.5000   0.5000   0.2500 
@@ -13825,6 +13972,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
     rho1 = 0, control = list(eval.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 0 
 Convergence achieved after 48 iterations
 Message: both X-convergence and relative convergence (5) 
@@ -13928,6 +14076,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2      rho       nu 
 312.3684   0.5000   0.5000   0.2500   1.0000 
@@ -14005,6 +14156,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
         iter.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 1 
 Convergence achieved after 86 iterations
 Message: relative convergence (4) 
@@ -14120,6 +14272,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda  delta_1  delta_2      rho       nu 
 546.1783   0.0150   0.5000   0.5000   0.2500   1.0000 
@@ -14199,6 +14354,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
         iter.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 1 
 Convergence achieved after 90 iterations
 Message: relative convergence (4) 
@@ -14250,6 +14406,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = 1,
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2    rho_1 
@@ -14318,6 +14477,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = 1,
     control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 1 
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
@@ -14403,6 +14563,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1       nu 
 289.4106   0.5000   0.5000   0.2500   1.0000 
@@ -14479,6 +14642,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     rho = 0, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 0 
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
@@ -14577,6 +14741,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
   gamma  lambda delta_1 delta_2   rho_1      nu 
 505.724   0.015   0.500   0.500   0.250   1.000 
@@ -14653,6 +14820,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
     tName = "time", vrs = TRUE, rho = 0, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 0 
 Convergence achieved after 12 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
@@ -14718,6 +14886,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 
 $method
 [1] "PORT"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2    rho_1 
@@ -14786,6 +14957,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
     rho = 0, control = list(eval.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 0 
 Convergence achieved after 56 iterations
 Message: relative convergence (4) 
@@ -14887,6 +15059,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1 
 289.4106   0.5000   0.5000   0.2500 
@@ -14954,6 +15129,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
     rho = 0, control = list(eval.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 0 
 Convergence achieved after 56 iterations
 Message: relative convergence (4) 
@@ -15019,6 +15195,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 $method
 [1] "PORT"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2    rho_1       nu 
@@ -15097,6 +15276,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
         iter.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho' was fixed at 1 
 Convergence achieved after 74 iterations
 Message: both X-convergence and relative convergence (5) 
@@ -15194,6 +15374,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = 1,
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2 
 332.2465   0.5000   0.5000 
@@ -15265,6 +15448,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = 1,
     rho = 1, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 1 
 Coefficient 'rho' was fixed at 1 
 Convergence achieved after 6 iterations
@@ -15352,6 +15536,9 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda  delta_1  delta_2 
 377.6142   0.0150   0.5000   0.5000 
@@ -15430,6 +15617,7 @@ cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time",
     rho1 = 1, rho = 1, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 1 
 Coefficient 'rho' was fixed at 1 
 Convergence achieved after 6 iterations
@@ -15479,6 +15667,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2       nu 
@@ -15558,6 +15749,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
     rho1 = 0, rho = 0, control = nls.lm.control(maxiter = 200))
 
 Estimation by non-linear least-squares using the 'LM' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 0 
 Coefficient 'rho' was fixed at 0 
 Convergence achieved after 11 iterations
@@ -15670,6 +15862,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2 
 305.4246   0.5000   0.5000 
@@ -15740,6 +15935,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
     rho1 = 0, rho = 1, control = list(eval.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 0 
 Coefficient 'rho' was fixed at 1 
 Convergence achieved after 20 iterations
@@ -15844,6 +16040,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2       nu 
 303.6871   0.5000   0.5000   1.0000 
@@ -15925,6 +16124,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
         iter.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 1 
 Coefficient 'rho' was fixed at 0 
 Convergence achieved after 54 iterations
@@ -16042,6 +16242,9 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda  delta_1  delta_2       nu 
 531.5322   0.0150   0.5000   0.5000   1.0000 
@@ -16123,6 +16326,7 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
     control = list(eval.max = 500, iter.max = 500))
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
 Coefficient 'rho_1' was fixed at 1 
 Coefficient 'rho' was fixed at 0 
 Convergence achieved after 84 iterations
@@ -16177,6 +16381,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = gridRhos,
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2      rho 
@@ -16268,6 +16475,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = gridRhos,
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho_1'
+assuming an additive error term
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -16352,6 +16560,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2      rho       nu 
@@ -16451,6 +16662,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho_1'
+assuming an additive error term
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -16549,6 +16761,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, tName = "time",
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
    gamma   lambda  delta_1  delta_2      rho       nu 
 206.0845   0.0150   0.5000   0.5000   0.2500   1.0000 
@@ -16638,6 +16853,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, tName = "time",
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho_1'
+assuming an additive error term
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -16702,6 +16918,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 
 $method
 [1] "PORT"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2      rho 
@@ -16793,6 +17012,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho_1'
+assuming an additive error term
 Convergence achieved after 45 iterations
 Message: both X-convergence and relative convergence (5) 
 
@@ -16896,6 +17116,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2      rho       nu 
 305.0797   0.5000   0.5000   0.2500   1.0000 
@@ -16996,6 +17219,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho_1'
+assuming an additive error term
 Convergence achieved after 92 iterations
 Message: relative convergence (4) 
 
@@ -17093,6 +17317,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = gridRhos,
 $method
 [1] "LM"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1 
 305.6519   0.5000   0.5000   0.2500 
@@ -17182,6 +17409,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = gridRhos,
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -17265,6 +17493,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, tName = "time",
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma   lambda  delta_1  delta_2    rho_1 
@@ -17353,6 +17584,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, tName = "time",
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -17400,6 +17632,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2    rho_1       nu 
@@ -17498,6 +17733,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 5 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -17608,6 +17844,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1 
 305.6519   0.5000   0.5000   0.2500 
@@ -17697,6 +17936,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 46 iterations
 Message: relative convergence (4) 
 
@@ -17799,6 +18039,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 $method
 [1] "PORT"
 
+$multErr
+[1] FALSE
+
 $start
    gamma  delta_1  delta_2    rho_1       nu 
 305.6519   0.5000   0.5000   0.2500   1.0000 
@@ -17898,6 +18141,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
+assuming an additive error term
 Convergence achieved after 80 iterations
 Message: relative convergence (4) 
 
@@ -17993,6 +18237,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = gridRhos[-1],
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2 
@@ -18262,6 +18509,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = gridRhos[-1],
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a two-dimensional grid search for coefficients 'rho_1', 'rho'
+assuming an additive error term
 Convergence achieved after 4 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -18346,6 +18594,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 $method
 [1] "LM"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2       nu 
@@ -18619,6 +18870,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 Estimation by non-linear least-squares using the 'LM' optimizer
 and a two-dimensional grid search for coefficients 'rho_1', 'rho'
+assuming an additive error term
 Convergence achieved after 4 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
@@ -18728,6 +18980,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 
 $method
 [1] "PORT"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2 
@@ -18993,6 +19248,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a two-dimensional grid search for coefficients 'rho_1', 'rho'
+assuming an additive error term
 Convergence achieved after 25 iterations
 Message: both X-convergence and relative convergence (5) 
 
@@ -19094,6 +19350,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 $method
 [1] "PORT"
+
+$multErr
+[1] FALSE
 
 $start
    gamma  delta_1  delta_2       nu 
@@ -19373,6 +19632,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a two-dimensional grid search for coefficients 'rho_1', 'rho'
+assuming an additive error term
 Convergence achieved after 73 iterations
 Message: both X-convergence and relative convergence (5) 
 
@@ -19487,6 +19747,9 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, tName = "time",
 
 $method
 [1] "PORT"
+
+$multErr
+[1] FALSE
 
 $start
    gamma   lambda  delta_1  delta_2       nu 
@@ -19609,6 +19872,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, tName = "time",
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a two-dimensional grid search for coefficients 'rho_1', 'rho'
+assuming an additive error term
 Convergence achieved after 66 iterations
 Message: relative convergence (4) 
 

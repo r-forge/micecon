@@ -1,5 +1,5 @@
 cesRss <- function( par, yName, xNames, tName, data, vrs, rho1 = NULL, 
-      rho2 = NULL, rho = NULL, rhoApprox, nested = FALSE ) {
+      rho2 = NULL, rho = NULL, rhoApprox, nested = FALSE, multErr ) {
 
    # check rhoApprox
    
@@ -18,7 +18,12 @@ cesRss <- function( par, yName, xNames, tName, data, vrs, rho1 = NULL,
    yHat <- cesCalc( xNames = xNames, tName = tName, data = data, coef = par,
       rhoApprox = rhoApprox, nested = nested )
 
-   result <- sum( ( data[[ yName ]] - yHat )^2 )
+   if( multErr ) {
+      result <- sum( ( log( data[[ yName ]] ) - log( yHat ) )^2 )
+   } else {
+      result <- sum( ( data[[ yName ]] - yHat )^2 )
+   }
+
    if( is.na( result ) ) {
       result <- Inf
    }
