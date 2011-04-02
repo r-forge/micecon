@@ -3051,17 +3051,17 @@ Multiple R-squared: 0.9063156
 > coef( cesGridPort )
    gamma    delta      rho 
 49.14295  1.00000 -0.80000 
-> vcov( cesGridNm )
-            gamma      delta         rho
-gamma 192463825.5 1570797.58 308451.2353
-delta   1570797.6   12820.40   2517.6099
-rho      308451.2    2517.61    494.4451
+> vcov( cesGridPort )
+             gamma        delta          rho
+gamma 5.691202e+01 7.997163e-02 2.283614e+13
+delta 7.997163e-02 1.134998e-04 1.968965e+10
+rho   2.283614e+13 1.968965e+10 9.811219e+26
 > coef( summary( cesGridPort ) )
       Estimate   Std. Error       t value     Pr(>|t|)
 gamma 49.14295 7.544006e+00  6.514172e+00 7.309177e-11
 delta  1.00000 1.065363e-02  9.386475e+01 0.000000e+00
 rho   -0.80000 3.132286e+13 -2.554045e-14 1.000000e+00
-> plot( cesGridNm )
+> plot( cesGridPort )
 > 
 > # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 > cesGridPortVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),

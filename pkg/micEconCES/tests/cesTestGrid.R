@@ -247,9 +247,9 @@ print.default( cesGridPort )
 print( cesGridPort )
 summary( cesGridPort )
 coef( cesGridPort )
-vcov( cesGridNm )
+vcov( cesGridPort )
 coef( summary( cesGridPort ) )
-plot( cesGridNm )
+plot( cesGridPort )
 
 # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 cesGridPortVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
