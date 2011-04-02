@@ -403,7 +403,7 @@ print( cesBfgsConTc )
 summary( cesBfgsConTc )
 
 ## L-BFGS-B with constrained parameters, TC, VRS
-cesBfgsConTcVrs <- cesEst( "yTcVrsObs", xNames, data = MishraCES, 
+cesBfgsConTcVrs <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES, 
    method = "L-BFGS-B", vrs = TRUE, control = list( maxit = 1000 ) )
 print.default( cesBfgsConTcVrs )
 print( cesBfgsConTcVrs )
@@ -748,7 +748,7 @@ coef( summary( cesPortVrsRho2 ) )
 fitted( cesPortVrsRho2 )
 residuals( cesPortVrsRho2 )
 
-## PORT, rho_1 and rho fixed, VRS
+## PORT, rho_1 and rho fixed, TC, VRS
 cesPortTcVrsRho2 <- cesEst( "yTcVrsObs", xNames, tName = "time", 
    data = MishraCES, method = "PORT", vrs = TRUE, rho1 = 1, rho = 0,
    control = list( eval.max = 500, iter.max = 500 ) )
