@@ -8,13 +8,20 @@
 }
 
 \usage{
-\method{summary}{cesEst}( object, \dots )
+\method{summary}{cesEst}( object, rSquaredLog = object$multErr, \dots )
 \method{print}{summary.cesEst}( x, digits = max(3, getOption("digits") - 3),
    \dots )
 }
 
 \arguments{
    \item{object}{an objects returned by \code{\link{cesEst}}.}
+   \item{rSquaredLog}{logical.
+      If \code{FALSE} (the default for models with additive error term),
+      the returned \eqn{R^2}-value measures the fraction of the explained
+      variance of the dependent variable in natural units.
+      If \code{TRUE} (the default for models with multiplicative error term),
+      the returned \eqn{R^2}-value measures the fraction of the explained
+      variance of the \emph{logarithmized} dependent variable.}
    \item{x}{an objects returned by \code{summary.cesEst}.}
    \item{digits}{number of digits.}
    \item{\dots}{further arguments are currently ignored.}
@@ -34,8 +41,7 @@
       (calculated without correcting for degrees of freedom).}
    \item{r.squared}{\eqn{R^2}-value, i.e. the
       \sQuote{fraction of variance explained by the model}.
-      If the model was estimated 
-      with argument \code{multErr} equal to \code{TRUE},
+      If argument \code{rSquaredLog} is \code{TRUE},
       the \eqn{R^2}-value measures the fraction of the explained
       variance of the \emph{logarithmized} dependent variable.}
    \item{vcov}{covariance matrix of the estimated parameters
