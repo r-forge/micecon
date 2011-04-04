@@ -40,6 +40,14 @@ print.default( cesNmTcVrs )
 print( cesNmTcVrs )
 summary( cesNmTcVrs )
 
+## Nelder-Mead, multErr, VRS
+cesNmMeVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE, rho = -0.1,
+   method = "Nelder-Mead", multErr = TRUE )
+print.default( cesNmMeVrs )
+print( cesNmMeVrs )
+summary( cesNmMeVrs )
+vcov( cesNmMeVrs )
+
 ## Conjugate Gradients, CRS
 cesCg <- cesEst( "qOutput", xxNames, germanFarms, method = "CG", rho = 2 )
 print.default( cesCg )
@@ -118,6 +126,14 @@ print.default( cesBfgsTcVrs )
 print( cesBfgsTcVrs )
 summary( cesBfgsTcVrs )
 
+## BFGS, TC, multErr, VRS
+cesBfgsTcMeVrs <- cesEst( "qOutput", xxNames, tName = "time", 
+   data = germanFarms, method = "BFGS", vrs = TRUE, rho = -0.4,
+   multErr = TRUE )
+print.default( cesBfgsTcMeVrs )
+print( cesBfgsTcMeVrs )
+summary( cesBfgsTcMeVrs )
+
 ## L-BFGS-B with constrained parameters, CRS
 cesBfgsCon <- cesEst( "qOutput", xxNames, germanFarms, method = "L-BFGS-B",
    rho = 2 )
@@ -144,6 +160,13 @@ summary( cesBfgsConVrs )
 coef( cesBfgsConVrs )
 vcov( cesBfgsConVrs )
 coef( summary( cesBfgsConVrs ) )
+
+## L-BFGS-B with constrained parameters, TC, multErr, CRS
+cesBfgsConTcMe <- cesEst( "qOutput", xxNames, tName = "time", data = germanFarms, 
+   method = "L-BFGS-B", rho = 0, multErr = TRUE )
+print.default( cesBfgsConTcMe )
+print( cesBfgsConTcMe )
+summary( cesBfgsConTcMe )
 
 ## Levenberg-Marquardt, CRS
 cesLm <- cesEst( "qOutput", xxNames, germanFarms,
@@ -172,6 +195,14 @@ print.default( cesLmTcVrs )
 print( cesLmTcVrs )
 summary( cesLmTcVrs )
 
+## Levenberg-Marquardt, multErr, VRS
+cesLmMeVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE,
+   control = nls.lm.control( maxiter = 200 ), rho = -0.1, multErr = TRUE )
+print.default( cesLmMeVrs )
+print( cesLmMeVrs )
+summary( cesLmMeVrs )
+vcov( cesLmMeVrs )
+
 ## Newton-type, CRS
 cesNewton <- cesEst( "qOutput", xxNames, germanFarms, method = "Newton", rho = 2 )
 print.default( cesNewton )
@@ -197,6 +228,13 @@ summary( cesNewtonVrs )
 coef( cesNewtonVrs )
 vcov( cesNewtonVrs )
 coef( summary( cesNewtonVrs ) )
+
+## Newton-type, TC, multErr, CRS
+cesNewtonTcMe <- cesEst( "qOutput", xxNames, tName = "time", data = germanFarms, 
+   method = "Newton", multErr = TRUE, rho = 0.3 )
+print.default( cesNewtonTcMe )
+print( cesNewtonTcMe )
+summary( cesNewtonTcMe )
 
 ## PORT, CRS
 cesPort <- cesEst( "qOutput", xxNames, germanFarms, method = "PORT", rho = 2 )
@@ -224,6 +262,13 @@ print.default( cesPortTcVrs )
 print( cesPortTcVrs )
 summary( cesPortTcVrs )
 
+## PORT, TC, multErr, VRS
+cesPortTcMeVrs <- cesEst( "qOutput", xxNames, tName = "time", data = germanFarms, 
+   method = "PORT", vrs = TRUE, rho = 0, multErr = TRUE )
+print.default( cesPortTcMeVrs )
+print( cesPortTcMeVrs )
+summary( cesPortTcMeVrs )
+
 ## DE, CRS
 cesDe <- cesEst( "qOutput", xxNames, germanFarms, method = "DE",
    control = DEoptim.control( trace = FALSE ), rho = 2 )
@@ -250,4 +295,12 @@ summary( cesDeVrs )
 coef( cesDeVrs )
 vcov( cesDeVrs )
 coef( summary( cesDeVrs ) )
+
+## DE, multErr, CRS
+cesDeMe <- cesEst( "qOutput", xxNames, germanFarms, method = "DE",
+   control = DEoptim.control( trace = FALSE ), multErr = TRUE, rho = -0.2 )
+print.default( cesDeMe )
+print( cesDeMe )
+summary( cesDeMe )
+vcov( cesDeMe )
 

@@ -236,6 +236,9 @@ set.seed( 345 )
 MishraCES$yObs <- MishraCES$Y3 + 400 * rnorm( nrow( MishraCES ) )
 MishraCES$yTcObs <- MishraCES$Y3Tc + 400 * rnorm( nrow( MishraCES ) )
 MishraCES$yTcVrsObs <- MishraCES$Y3TcVrs + 400 * rnorm( nrow( MishraCES ) )
+MishraCES$yMeObs <- MishraCES$Y3 * exp( 0.3 * rnorm( nrow( MishraCES ) ) )
+MishraCES$yTcMeObs <- MishraCES$Y3Tc * exp( 0.3 * rnorm( nrow( MishraCES ) ) )
+MishraCES$yTcMeVrsObs <- MishraCES$Y3TcVrs * exp( 0.3 * rnorm( nrow( MishraCES ) ) )
 
 ## Nelder-Mead, CRS
 cesNm <- cesEst( "yObs", xNames, data = MishraCES, method = "Nelder-Mead" )
@@ -273,6 +276,14 @@ cesNmTcVrs <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES,
 print.default( cesNmTcVrs )
 print( cesNmTcVrs )
 summary( cesNmTcVrs )
+
+## Nelder-Mead, multErr, VRS
+cesNmMeVrs <- cesEst( "yMeObs", xNames, data = MishraCES, vrs = TRUE, 
+   method = "NM", multErr = TRUE, control = list( maxit = 1000 ) )
+print.default( cesNmMeVrs )
+print( cesNmMeVrs )
+summary( cesNmMeVrs )
+vcov( cesNmMeVrs )
 
 ## Conjugate Gradients, CRS
 cesCg <- cesEst( "yObs", xNames, data = MishraCES, method = "CG" )
@@ -372,6 +383,13 @@ print.default( cesBfgsTcVrs )
 print( cesBfgsTcVrs )
 summary( cesBfgsTcVrs )
 
+## BFGS, TC, multErr, CRS
+cesBfgsTcMe <- cesEst( "yTcMeObs", xNames, tName = "time", data = MishraCES, 
+   method = "BFGS", multErr = TRUE, control = list( maxit = 500 ) )
+print.default( cesBfgsTcMe )
+print( cesBfgsTcMe )
+summary( cesBfgsTcMe )
+
 ## L-BFGS-B with constrained parameters, CRS
 cesBfgsCon <- cesEst( "yObs", xNames, data = MishraCES, method = "L-BFGS-B" )
 print.default( cesBfgsCon )
@@ -408,6 +426,14 @@ cesBfgsConTcVrs <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES
 print.default( cesBfgsConTcVrs )
 print( cesBfgsConTcVrs )
 summary( cesBfgsConTcVrs )
+
+## L-BFGS-B with constrained parameters, TC, multErr, VRS
+cesBfgsConTcMeVrs <- cesEst( "yTcMeVrsObs", xNames, tName = "time", 
+   data = MishraCES, method = "L-BFGS-B", multErr = TRUE, vrs = TRUE, 
+   control = list( maxit = 1000 ) )
+print.default( cesBfgsConTcMeVrs )
+print( cesBfgsConTcMeVrs )
+summary( cesBfgsConTcMeVrs )
 
 ## Levenberg-Marquardt, CRS
 cesLm <- cesEst( "yObs", xNames, data = MishraCES,
@@ -447,6 +473,14 @@ print.default( cesLmTcVrs )
 print( cesLmTcVrs )
 summary( cesLmTcVrs )
 
+## Levenberg-Marquardt, multErr, CRS
+cesLmMe <- cesEst( "yMeObs", xNames, data = MishraCES, multErr = TRUE,
+   control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmMe )
+print( cesLmMe )
+summary( cesLmMe )
+vcov( cesLmMe )
+
 ## Newton-type, CRS
 cesNewton <- cesEst( "yObs", xNames, data = MishraCES, method = "Newton" )
 print.default( cesNewton )
@@ -483,6 +517,14 @@ cesNewtonTcVrs <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES,
 print.default( cesNewtonTcVrs )
 print( cesNewtonTcVrs )
 summary( cesNewtonTcVrs )
+
+## Newton-type, multErr, VRS
+cesNewtonMeVrs <- cesEst( "yMeObs", xNames, data = MishraCES, 
+   method = "Newton", multErr = TRUE, vrs = TRUE )
+print.default( cesNewtonMeVrs )
+print( cesNewtonMeVrs )
+summary( cesNewtonMeVrs )
+vcov( cesNewtonMeVrs )
 
 ## PORT, CRS
 cesPort <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT",
@@ -523,6 +565,13 @@ print.default( cesPortTcVrs )
 print( cesPortTcVrs )
 summary( cesPortTcVrs )
 
+## PORT, TC, multErr, CRS
+cesPortTcMe <- cesEst( "yTcMeObs", xNames, tName = "time", data = MishraCES, 
+   method = "PORT", multErr = TRUE, control = list( eval.max = 500 ) )
+print.default( cesPortTcMe )
+print( cesPortTcMe )
+summary( cesPortTcMe )
+
 ## DE, CRS
 cesDe <- cesEst( "yObs", xNames, data = MishraCES, method = "DE",
    control = DEoptim.control( trace = FALSE, NP = 60 ) )
@@ -558,6 +607,14 @@ cesDeTcVrs <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES,
 print.default( cesDeTcVrs )
 print( cesDeTcVrs )
 summary( cesDeTcVrs )
+
+## DE, multErr, CRS
+cesDeMe <- cesEst( "yMeObs", xNames, data = MishraCES, method = "DE",
+   multErr = TRUE, control = DEoptim.control( trace = FALSE, NP = 60 ) )
+print.default( cesDeMe )
+print( cesDeMe )
+summary( cesDeMe )
+vcov( cesDeMe )
 
 
 ########## Fixing Rho_1 ##############
@@ -756,6 +813,14 @@ print.default( cesPortTcVrsRho2 )
 print( cesPortTcVrsRho2 )
 summary( cesPortTcVrsRho2 )
 
+## PORT, rho_1 and rho fixed, TC, multErr, VRS
+cesPortTcMeVrsRho2 <- cesEst( "yTcMeVrsObs", xNames, tName = "time", 
+   data = MishraCES, method = "PORT", vrs = TRUE, multErr = TRUE,
+   rho1 = 1, rho = 0, control = list( eval.max = 500, iter.max = 500 ) )
+print.default( cesPortTcMeVrsRho2 )
+print( cesPortTcMeVrsRho2 )
+summary( cesPortTcMeVrsRho2 )
+
 
 ########## Grid Search for Rho_1 ##############
 ## Levenberg-Marquardt, line search for rho_1, CRS
@@ -849,6 +914,14 @@ vcov( cesLmVrsGrid )
 coef( summary( cesLmVrsGrid ) )
 fitted( cesLmVrsGrid )
 residuals( cesLmVrsGrid )
+
+## Levenberg-Marquardt, Grid Search, multErr, VRS
+cesLmMeVrsGrid <- cesEst( "yMeObs", xNames, data = MishraCES, vrs = TRUE,
+   multErr = TRUE, rho = gridRhos, control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmMeVrsGrid )
+print( cesLmMeVrsGrid )
+summary( cesLmMeVrsGrid )
+vcov( cesLmMeVrsGrid )
 
 ## PORT, Grid Search, CRS
 cesPortGrid <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT",

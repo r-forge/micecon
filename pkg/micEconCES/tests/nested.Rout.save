@@ -27373,6 +27373,9 @@ Authors: David Ardia and Katharine Mullen
 > MishraCES$yObs <- MishraCES$Y + 40 * rnorm( nrow( MishraCES ) )
 > MishraCES$yTcObs <- MishraCES$yTc + 40 * rnorm( nrow( MishraCES ) )
 > MishraCES$yTcVrsObs <- MishraCES$yTcVrs + 40 * rnorm( nrow( MishraCES ) )
+> MishraCES$yMeObs <- MishraCES$Y * exp( 0.3 * rnorm( nrow( MishraCES ) ) )
+> MishraCES$yTcMeObs <- MishraCES$yTc * exp( 0.3 * rnorm( nrow( MishraCES ) ) )
+> MishraCES$yTcMeVrsObs <- MishraCES$yTcVrs * exp( 0.3 * rnorm( nrow( MishraCES ) ) )
 > 
 > ## Nelder-Mead, CRS
 > cesNm <- cesEst( "yObs", xNames, data = MishraCES, method = "Nelder-Mead" )
@@ -28039,6 +28042,138 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 336.3999 
 Multiple R-squared: 0.9879589 
+
+> 
+> ## Nelder-Mead, TC, multErr, CRS
+> cesNmTcMe <- cesEst( "yTcMeObs", xNames, tName = "time", data = MishraCES, 
++    method = "Nelder-Mead", multErr = TRUE, control = list( maxit = 2000 ) )
+> print.default( cesNmTcMe ) 
+$optim
+$optim$par
+      gamma      lambda     delta_1     delta_2     delta_3       rho_1 
+12.62372837  0.05439339  0.56374285 -0.87515707  1.00000000 -0.39226907 
+      rho_2         rho 
+ 0.08847425 -4.44320368 
+
+$optim$value
+[1] 45.3899
+
+$optim$counts
+function gradient 
+    1757       NA 
+
+$optim$convergence
+[1] 10
+
+$optim$message
+NULL
+
+
+$coefficients
+      gamma      lambda     delta_1     delta_2     delta_3       rho_1 
+12.62372837  0.05439339  0.56374285 -0.87515707  1.00000000 -0.39226907 
+      rho_2         rho 
+ 0.08847425 -4.44320368 
+
+$iter
+[1] 1757
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "yTcMeObs", xNames = xNames, data = MishraCES, 
+    tName = "time", method = "Nelder-Mead", multErr = TRUE, control = list(maxit = 2000))
+
+$method
+[1] "Nelder-Mead"
+
+$multErr
+[1] TRUE
+
+$start
+  gamma  lambda delta_1 delta_2 delta_3   rho_1   rho_2     rho 
+4.20244 0.01500 0.50000 0.50000 0.50000 0.25000 0.25000 0.25000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$fitted.values
+ [1]   618.2207   714.4214   787.2380   655.5172  1486.5854  1137.7978
+ [7]  1349.5244  1027.2035   357.4089   121.8393  1570.6261  1022.2044
+[13]   956.6665   990.9506  1442.5061  1057.0502  1259.5476  1478.3653
+[19]  1515.5674  2090.6367  1325.9789   296.9787  1297.3364  2433.9227
+[25]  3020.4447  3476.3674  3885.7845  1773.6555  2302.6581   957.4681
+[31]  2216.8813  3067.9282  1873.4613   628.7927  3574.3169  4098.1132
+[37]  4272.8255  2505.9065  5844.3385  5184.5844  2262.3648  2198.7706
+[43]  1122.6955  1647.0379  8460.4533  9069.6106  9948.6966  3097.1994
+[49] 12465.1857  4214.2291
+
+$residuals
+ [1]  1.18681457  0.89162256  1.48340298  2.15853338  0.43310082  1.20894007
+ [7]  1.15332435  0.58426721  1.66561692  0.81593017  0.65707034  0.69517441
+[13]  1.24233642  1.49621369  0.88449052  0.49634957  0.76494277  0.47134295
+[19]  1.32744325  0.93916997  1.17962547  1.07887746  0.72600561  0.81171828
+[25]  1.26673832  0.90125752  0.31677390 -0.55321195  0.62450111  0.98633094
+[31]  0.73129848 -0.17021255  0.83465123  0.53956483  0.89300108  0.44219087
+[37] -2.03361245 -0.06018343 -0.47253874  0.29333471 -1.94233570 -0.28122649
+[43] -0.87869801  0.53785134 -0.64944484  0.31379966  0.01710026 -0.03949161
+[49] -0.08199772 -0.16165923
+
+$rss
+[1] 45.3899
+
+$cov.unscaled
+        gamma lambda delta_1 delta_2 delta_3 rho_1 rho_2 rho
+gamma      NA     NA      NA      NA      NA    NA    NA  NA
+lambda     NA     NA      NA      NA      NA    NA    NA  NA
+delta_1    NA     NA      NA      NA      NA    NA    NA  NA
+delta_2    NA     NA      NA      NA      NA    NA    NA  NA
+delta_3    NA     NA      NA      NA      NA    NA    NA  NA
+rho_1      NA     NA      NA      NA      NA    NA    NA  NA
+rho_2      NA     NA      NA      NA      NA    NA    NA  NA
+rho        NA     NA      NA      NA      NA    NA    NA  NA
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesNmTcMe )
+Estimated CES function
+
+Call:
+cesEst(yName = "yTcMeObs", xNames = xNames, data = MishraCES, 
+    tName = "time", method = "Nelder-Mead", multErr = TRUE, control = list(maxit = 2000))
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+12.62373  0.05439  0.56374 -0.87516  1.00000 -0.39227  0.08847 -4.44320 
+
+> summary( cesNmTcMe )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "yTcMeObs", xNames = xNames, data = MishraCES, 
+    tName = "time", method = "Nelder-Mead", multErr = TRUE, control = list(maxit = 2000))
+
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+assuming a multiplicative error term
+Convergence NOT achieved after 1757 iterations
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)
+gamma   12.62373         NA      NA       NA
+lambda   0.05439         NA      NA       NA
+delta_1  0.56374         NA      NA       NA
+delta_2 -0.87516         NA      NA       NA
+delta_3  1.00000         NA      NA       NA
+rho_1   -0.39227         NA      NA       NA
+rho_2    0.08847         NA      NA       NA
+rho     -4.44320         NA      NA       NA
+
+Residual standard error: 0.9527843 
+Multiple R-squared: -0.2577318 
 
 > 
 > ## Conjugate Gradients, CRS
@@ -29069,6 +29204,164 @@ Residual standard error: 338.9258
 Multiple R-squared: 0.9830393 
 
 > 
+> ## Simulated Annealing, multErr, VRS
+> cesSannMeVrs <- cesEst( "yMeObs", xNames, data = MishraCES, method = "SANN", 
++    vrs = TRUE, multErr = TRUE )
+> print.default( cesSannMeVrs )
+$optim
+$optim$par
+     gamma    delta_1    delta_2    delta_3      rho_1      rho_2        rho 
+ 7.4190756  0.6054194  0.3038757  0.3413128  0.1921713 -1.7524058  0.5318552 
+        nu 
+ 1.5092622 
+
+$optim$value
+[1] 6.183308
+
+$optim$counts
+function gradient 
+   10000       NA 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma    delta_1    delta_2    delta_3      rho_1      rho_2        rho 
+ 7.4190756  0.6054194  0.3038757  0.3413128  0.1921713 -1.7524058  0.5318552 
+        nu 
+ 1.5092622 
+
+$iter
+[1] 10000
+
+$call
+cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
+    method = "SANN", multErr = TRUE)
+
+$method
+[1] "SANN"
+
+$multErr
+[1] TRUE
+
+$start
+   gamma  delta_1  delta_2  delta_3    rho_1    rho_2      rho       nu 
+4.138436 0.500000 0.500000 0.500000 0.250000 0.250000 0.250000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$fitted.values
+ [1] 2540.6512 1466.3559 2596.1243 3181.8155 2438.5708 3098.0514 3397.9562
+ [8] 2547.9798 1791.0513  246.3088 4900.5346 1431.2070 3082.5662 2402.5161
+[15] 2366.8789 1362.3354 1380.9033 2798.0226 2252.5402 3900.3102 3342.3492
+[22]  409.9354 2021.1993 3651.6050 5353.5716 4076.2856 6245.6848  767.8168
+[29] 1999.2705  896.2810 1940.2015 2566.5018 1716.4454  660.9982 3521.5147
+[36] 4366.8320 1689.0355 1823.3430 1775.2261 4655.3126  209.2039  575.1460
+[43]  160.5582 1245.8371 2100.7183 5522.1600 5042.4837 1554.6204 3287.2103
+[50] 1286.6784
+
+$residuals
+ [1] -0.390338251  0.101691064  0.592071594  0.094225613 -0.152140044
+ [6]  0.504661034 -0.597874560 -0.309808910  0.383017817 -0.458890242
+[11] -0.234544473  0.003260258 -0.195062745 -0.002052026 -0.382199353
+[16]  0.511880634 -0.074384518 -0.040812217 -0.232562784 -0.079265412
+[21]  0.231078454  0.395818021 -0.021918472  0.028853206 -0.008941957
+[26]  0.247363837 -0.173986829  0.134026361 -0.183981223  0.545596010
+[31]  0.562173874  0.014989585 -0.233579163  0.121082810 -0.445861366
+[36] -0.277185690 -0.527993360 -0.111739403  0.165198568 -0.333450380
+[41] -0.271961109  0.241417767  0.561862655  0.096407814  0.584415694
+[46]  0.298599558 -0.663062868 -0.622013491 -0.216264594  0.706661060
+
+$rss
+[1] 6.183308
+
+$cov.unscaled
+              gamma      delta_1      delta_2      delta_3       rho_1
+gamma   183.9007303  0.126681041 -0.318760394  0.704573818  1.97896972
+delta_1   0.1266810  0.017276786  0.001930388  0.007442336  0.03503663
+delta_2  -0.3187604  0.001930388  0.060931802  0.001446760  0.01060235
+delta_3   0.7045738  0.007442336  0.001446760  0.060222867  0.01694188
+rho_1     1.9789697  0.035036625  0.010602351  0.016941875  0.16466374
+rho_2    10.5147281  0.046135295  0.349638446  0.274358213  0.27194058
+rho       1.6584657 -0.063045604 -0.028605532 -0.183414419 -0.20030302
+nu       -6.0594442 -0.003843075  0.015549294 -0.015655710 -0.06325790
+              rho_2         rho           nu
+gamma   10.51472807  1.65846569 -6.059444242
+delta_1  0.04613530 -0.06304560 -0.003843075
+delta_2  0.34963845 -0.02860553  0.015549294
+delta_3  0.27435821 -0.18341442 -0.015655710
+rho_1    0.27194058 -0.20030302 -0.063257899
+rho_2    6.13119657 -0.79562202 -0.239364832
+rho     -0.79562202  0.99698843 -0.075417560
+nu      -0.23936483 -0.07541756  0.203627987
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesSannMeVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
+    method = "SANN", multErr = TRUE)
+
+Coefficients:
+  gamma delta_1 delta_2 delta_3   rho_1   rho_2     rho      nu 
+ 7.4191  0.6054  0.3039  0.3413  0.1922 -1.7524  0.5319  1.5093 
+
+> summary( cesSannMeVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
+    method = "SANN", multErr = TRUE)
+
+Estimation by non-linear least-squares using the 'SANN' optimizer
+assuming a multiplicative error term
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma    7.41908    4.76889   1.556 0.119774    
+delta_1  0.60542    0.04622  13.098  < 2e-16 ***
+delta_2  0.30388    0.08681   3.501 0.000464 ***
+delta_3  0.34131    0.08630   3.955 7.65e-05 ***
+rho_1    0.19217    0.14270   1.347 0.178084    
+rho_2   -1.75241    0.87076  -2.013 0.044167 *  
+rho      0.53186    0.35113   1.515 0.129852    
+nu       1.50926    0.15869   9.511  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.351662 
+Multiple R-squared: 0.8118108 
+
+> vcov( cesSannMeVrs )
+              gamma       delta_1       delta_2       delta_3        rho_1
+gamma   22.74229575  0.0156661569 -0.0394198714  0.0871319332  0.244731572
+delta_1  0.01566616  0.0021365536  0.0002387236  0.0009203650  0.004332845
+delta_2 -0.03941987  0.0002387236  0.0075352015  0.0001789152  0.001311152
+delta_3  0.08713193  0.0009203650  0.0001789152  0.0074475302  0.002095137
+rho_1    0.24473157  0.0043328446  0.0013111520  0.0020951366  0.020363331
+rho_2    1.30031596  0.0057053744  0.0432384413  0.0339288246  0.033629846
+rho      0.20509607 -0.0077966073 -0.0035375361 -0.0226821555 -0.024770704
+nu      -0.74934816 -0.0004752583  0.0019229213 -0.0019360814 -0.007822861
+               rho_2          rho            nu
+gamma    1.300315964  0.205096071 -0.7493481553
+delta_1  0.005705374 -0.007796607 -0.0004752583
+delta_2  0.043238441 -0.003537536  0.0019229213
+delta_3  0.033928825 -0.022682156 -0.0019360814
+rho_1    0.033629846 -0.024770704 -0.0078228610
+rho_2    0.758221489 -0.098391514 -0.0296013278
+rho     -0.098391514  0.123293723 -0.0093265994
+nu      -0.029601328 -0.009326599  0.0251818897
+> 
 > ## BFGS, CRS
 > cesBfgs <- cesEst( "yObs", xNames, data = MishraCES, method = "BFGS",
 +    control = list( maxit = 500 ) )
@@ -29743,6 +30036,160 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 35.18371 
 Multiple R-squared: 0.9998683 
 
+> 
+> ## BFGS, CRS, multErr
+> cesBfgsMe <- cesEst( "yMeObs", xNames, data = MishraCES, method = "BFGS",
++    multErr = TRUE, control = list( maxit = 500 ) )
+> print.default( cesBfgsMe )
+$optim
+$optim$par
+     gamma    delta_1    delta_2    delta_3      rho_1      rho_2        rho 
+59.8145239  0.5844007  0.3843097  0.3637227  0.4378728 -0.4920346  0.9270757 
+
+$optim$value
+[1] 4.343229
+
+$optim$counts
+function gradient 
+     478      162 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma    delta_1    delta_2    delta_3      rho_1      rho_2        rho 
+59.8145239  0.5844007  0.3843097  0.3637227  0.4378728 -0.4920346  0.9270757 
+
+$iter
+function gradient 
+     478      162 
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, method = "BFGS", 
+    multErr = TRUE, control = list(maxit = 500))
+
+$method
+[1] "BFGS"
+
+$multErr
+[1] TRUE
+
+$start
+   gamma  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+4.138436 0.500000 0.500000 0.500000 0.250000 0.250000 0.250000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$fitted.values
+ [1] 2413.8257 1425.9505 2884.4915 3060.2506 2079.1873 3049.8954 3032.5767
+ [8] 2302.1819 2024.5071  233.3341 3386.2324 1835.1907 2844.4860 2644.1636
+[15] 2023.6177 1600.3398 1805.0760 2952.2158 2546.9233 3050.9567 2749.1159
+[22]  680.0355 1962.9112 3585.6892 4580.8117 3895.6282 5114.6764  816.5082
+[29] 2134.0441 1368.1157 2349.2024 2138.3645 1883.9022  718.7915 3113.4734
+[36] 3950.8716  977.9909 1537.3123 1959.2576 3986.9110  163.2837 1061.2359
+[43]  202.5619 1329.8112 2283.9920 4638.6473 4399.7055 1557.7068 3184.6869
+[50] 1442.0714
+
+$residuals
+ [1] -0.339130741  0.129632818  0.486742638  0.133180744  0.007294983
+ [6]  0.520327071 -0.484113085 -0.208365425  0.260494323 -0.404775219
+[11]  0.135081896 -0.245370001 -0.114682676 -0.097890244 -0.225514020
+[16]  0.350865096 -0.342249368 -0.094455266 -0.355390335  0.166335479
+[21]  0.426472997 -0.110327419  0.007343896  0.047069282  0.146945774
+[26]  0.292695070  0.025789839  0.072540611 -0.249217663  0.122660334
+[31]  0.370889833  0.197492097 -0.326668904  0.037262661 -0.322709107
+[36] -0.177084091  0.018419194  0.058896598  0.066560735 -0.178458082
+[41] -0.024141185 -0.371147695  0.329473497  0.031178513  0.500770229
+[46]  0.472945859 -0.526701708 -0.623996848 -0.184579299  0.592644494
+
+$rss
+[1] 4.343229
+
+$cov.unscaled
+              gamma       delta_1       delta_2      delta_3        rho_1
+gamma   127.0043136 -0.1322291320  0.3844391152  0.917407484 -0.394460073
+delta_1  -0.1322291  0.0361989069 -0.0004646508  0.007341178  0.114538699
+delta_2   0.3844391 -0.0004646508  0.0353127920 -0.003784719  0.000762071
+delta_3   0.9174075  0.0073411781 -0.0037847187  0.090553789  0.019500607
+rho_1    -0.3944601  0.1145386994  0.0007620711  0.019500607  0.703806852
+rho_2     3.5410294  0.0204683898  0.0481030728  0.093582151  0.125122528
+rho       0.9960067 -0.1969197969  0.0193239316 -0.322621781 -1.262308759
+              rho_2         rho
+gamma    3.54102944  0.99600667
+delta_1  0.02046839 -0.19691980
+delta_2  0.04810307  0.01932393
+delta_3  0.09358215 -0.32262178
+rho_1    0.12512253 -1.26230876
+rho_2    0.42995578 -0.48184277
+rho     -0.48184277  3.63839063
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesBfgsMe )
+Estimated CES function
+
+Call:
+cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, method = "BFGS", 
+    multErr = TRUE, control = list(maxit = 500))
+
+Coefficients:
+  gamma delta_1 delta_2 delta_3   rho_1   rho_2     rho 
+59.8145  0.5844  0.3843  0.3637  0.4379 -0.4920  0.9271 
+
+> summary( cesBfgsMe )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, method = "BFGS", 
+    multErr = TRUE, control = list(maxit = 500))
+
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+assuming a multiplicative error term
+Convergence achieved after 478 function and 162 gradient calls
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma   59.81452    3.32147  18.008  < 2e-16 ***
+delta_1  0.58440    0.05607  10.422  < 2e-16 ***
+delta_2  0.38431    0.05538   6.939 3.95e-12 ***
+delta_3  0.36372    0.08869   4.101 4.11e-05 ***
+rho_1    0.43787    0.24726   1.771   0.0766 .  
+rho_2   -0.49203    0.19326  -2.546   0.0109 *  
+rho      0.92708    0.56218   1.649   0.0991 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.2947280 
+Multiple R-squared: 0.8678137 
+
+> vcov( cesBfgsMe )
+              gamma       delta_1       delta_2       delta_3         rho_1
+gamma   11.03217583 -1.148603e-02  3.339414e-02  0.0796902119 -3.426461e-02
+delta_1 -0.01148603  3.144403e-03 -4.036169e-05  0.0006376883  9.949356e-03
+delta_2  0.03339414 -4.036169e-05  3.067431e-03 -0.0003287580  6.619698e-05
+delta_3  0.07969021  6.376883e-04 -3.287580e-04  0.0078659164  1.693912e-03
+rho_1   -0.03426461  9.949356e-03  6.619698e-05  0.0016939119  6.113588e-02
+rho_2    0.30759002  1.777978e-03  4.178453e-03  0.0081289738  1.086872e-02
+rho      0.08651770 -1.710535e-02  1.678565e-03 -0.0280244041 -1.096499e-01
+               rho_2          rho
+gamma    0.307590020  0.086517697
+delta_1  0.001777978 -0.017105355
+delta_2  0.004178453  0.001678565
+delta_3  0.008128974 -0.028024404
+rho_1    0.010868715 -0.109649915
+rho_2    0.037347927 -0.041855068
+rho     -0.041855068  0.316047259
 > 
 > ## L-BFGS-B with constrained parameters, CRS
 > cesBfgsCon <- cesEst( "yObs", xNames, data = MishraCES, method = "L-BFGS-B" )
@@ -31057,6 +31504,145 @@ Residual standard error: 35.18371
 Multiple R-squared: 0.9998683 
 
 > 
+> ## Levenberg-Marquardt, TC, multErr, VRS
+> cesLmTcMeVrs <- cesEst( "yTcMeVrsObs", xNames, tName = "time", data = MishraCES, 
++    vrs = TRUE, multErr = TRUE, control = nls.lm.control( maxiter = 200 ) )
+> print.default( cesLmTcMeVrs )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 86.5398084953786, 0.0252552025156497, 0.677336805246124, 0.382322363383916, 0.472523921607696, 0.571775238936837, -0.23624851229991, 1.11342570748903, 0.919917624623057 
+residual sum-of-squares: 4.306
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+     gamma     lambda    delta_1    delta_2    delta_3      rho_1      rho_2 
+86.5398085  0.0252552  0.6773368  0.3823224  0.4725239  0.5717752 -0.2362485 
+       rho         nu 
+ 1.1134257  0.9199176 
+
+$iter
+[1] 30
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, multErr = TRUE, control = nls.lm.control(maxiter = 200))
+
+$method
+[1] "LM"
+
+$multErr
+[1] TRUE
+
+$start
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+4.390308 0.015000 0.500000 0.500000 0.500000 0.250000 0.250000 0.250000 
+      nu 
+1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$fitted.values
+ [1]  2401.0105  1581.4122  3327.6229  3460.9839  2464.2751  3732.4395
+ [7]  3847.6615  2946.1567  2385.3841   303.8866  4390.9170  2765.3669
+[13]  3957.9444  3417.9268  3107.3192  2700.9693  2774.0524  4742.0018
+[19]  4357.1184  5025.9205  4513.3002  1250.1707  3621.3117  6028.0149
+[25]  8358.2643  7632.1822  9541.2869  1735.1312  4685.9049  2770.1088
+[31]  4849.1749  5040.3542  4403.6143  1210.3797  6799.3318  9500.5030
+[37]  1697.7923  3538.6588  5629.5376 10690.8508   459.3496  3145.0734
+[43]   378.8459  3893.5460  7563.7038 13268.3878 13990.4203  3898.6054
+[49] 11836.4427  5275.8486
+
+$residuals
+ [1]  0.31716286 -0.15431743 -0.35203166 -0.38670751  0.11613673 -0.10165405
+ [7] -0.21292367  0.10775416 -0.12278910  0.06049737  0.30623185  0.58338281
+[13]  0.37536233 -0.03276739 -0.04306149  0.21116437  0.46003804 -0.66165282
+[19] -0.59458198  0.31163676  0.27173760  0.18504785 -0.35961000 -0.43587092
+[25] -0.17925594 -0.15011672 -0.11530385  0.20324500  0.48214318 -0.07995176
+[31] -0.03779700  0.06580176  0.02346754  0.05485786  0.56771416 -0.17213731
+[37]  0.03416880 -0.32719505  0.17782568  0.12435154 -0.33369347  0.21280850
+[43] -0.19757895 -0.35564815 -0.50432472 -0.11561146  0.10617234  0.39300105
+[49]  0.15210838  0.12334879
+
+$rss
+[1] 4.305991
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2       delta_3
+gamma   16429.2216971 -0.1569287010  7.9914551824  3.0282256773  3.5058182248
+lambda     -0.1569287  0.0001258421  0.0007022052 -0.0002970596  0.0015371886
+delta_1     7.9914552  0.0007022052  0.0709398947 -0.0038064448  0.0073157942
+delta_2     3.0282257 -0.0002970596 -0.0038064448  0.0404814200 -0.0065876233
+delta_3     3.5058182  0.0015371886  0.0073157942 -0.0065876233  0.1209094925
+rho_1      46.9363640  0.0021657989  0.2484919994 -0.0138568896 -0.0003859925
+rho_2      24.7376213  0.0015574693  0.0513377565  0.0434049485  0.1099307428
+rho       166.6353171 -0.0052374811 -0.3108550280  0.1055000283 -0.2803707746
+nu        -47.0251018 -0.0002655664 -0.0297643801 -0.0049191697 -0.0172895005
+                rho_1        rho_2           rho            nu
+gamma   46.9363639750 24.737621252 166.635317135 -4.702510e+01
+lambda   0.0021657989  0.001557469  -0.005237481 -2.655664e-04
+delta_1  0.2484919994  0.051337757  -0.310855028 -2.976438e-02
+delta_2 -0.0138568896  0.043404948   0.105500028 -4.919170e-03
+delta_3 -0.0003859925  0.109930743  -0.280370775 -1.728950e-02
+rho_1    1.1576730115  0.237323952  -1.420566213 -1.587524e-01
+rho_2    0.2373239519  0.357108211  -0.422942991 -7.502594e-02
+rho     -1.4205662126 -0.422942991   7.610863996 -4.290480e-01
+nu      -0.1587523819 -0.075025935  -0.429048011  1.409487e-01
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLmTcMeVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, multErr = TRUE, control = nls.lm.control(maxiter = 200))
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+86.53981  0.02526  0.67734  0.38232  0.47252  0.57178 -0.23625  1.11343 
+      nu 
+ 0.91992 
+
+> summary( cesLmTcMeVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, multErr = TRUE, control = nls.lm.control(maxiter = 200))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+assuming a multiplicative error term
+Convergence achieved after 30 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   86.539808  37.614912   2.301   0.0214 *  
+lambda   0.025255   0.003292   7.672 1.70e-14 ***
+delta_1  0.677337   0.078162   8.666  < 2e-16 ***
+delta_2  0.382322   0.059044   6.475 9.47e-11 ***
+delta_3  0.472524   0.102043   4.631 3.65e-06 ***
+rho_1    0.571775   0.315751   1.811   0.0702 .  
+rho_2   -0.236249   0.175368  -1.347   0.1779    
+rho      1.113426   0.809596   1.375   0.1690    
+nu       0.919918   0.110175   8.350  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.2934618 
+Multiple R-squared: 0.8810155 
+
+> 
 > ## Newton-type, CRS
 > cesNewton <- cesEst( "yObs", xNames, data = MishraCES, method = "Newton" )
 > print.default( cesNewton )
@@ -31715,6 +32301,157 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 35.18371 
 Multiple R-squared: 0.9998683 
+
+> 
+> ## Newton-type, TC, multErr, VRS
+> cesNewtonTcMeVrs <- cesEst( "yTcMeVrsObs", xNames, tName = "time", data = MishraCES, 
++    method = "Newton", vrs = TRUE, multErr = TRUE, iterlim = 200 )
+> print.default( cesNewtonTcMeVrs )
+$nlm
+$nlm$minimum
+[1] 6.460308
+
+$nlm$estimate
+[1]  2.693544e+01  2.531196e-02  6.370224e-01  1.372838e-12  2.560805e-01
+[6]  3.813521e-01 -7.487154e+01  1.051437e+00  1.146413e+00
+
+$nlm$gradient
+[1] -1.037641e-01 -4.319522e+01 -2.289778e-02  2.238564e+09 -1.774452e+00
+[6] -7.408841e-01 -1.102546e-03 -9.159624e-01 -9.250696e+00
+
+$nlm$code
+[1] 3
+
+$nlm$iterations
+[1] 151
+
+
+$coefficients
+        gamma        lambda       delta_1       delta_2       delta_3 
+ 2.693544e+01  2.531196e-02  6.370224e-01  1.372838e-12  2.560805e-01 
+        rho_1         rho_2           rho            nu 
+ 3.813521e-01 -7.487154e+01  1.051437e+00  1.146413e+00 
+
+$iter
+[1] 151
+
+$convergence
+[1] FALSE
+
+$call
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, method = "Newton", multErr = TRUE, 
+    iterlim = 200)
+
+$method
+[1] "Newton"
+
+$multErr
+[1] TRUE
+
+$start
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+4.390308 0.015000 0.500000 0.500000 0.500000 0.250000 0.250000 0.250000 
+      nu 
+1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$fitted.values
+ [1]  2596.5804  1717.2028  2273.8399  3309.6139  2815.9015  3256.9353
+ [7]  3674.9206  3353.5102  2056.2629   287.0150  5692.1176  2096.2024
+[13]  3599.0761  3097.7076  3587.1090  2375.3809  2303.8496  4074.0733
+[19]  3514.6755  5999.5698  4651.6137  1152.7987  3935.8110  4895.0469
+[25]  7818.9412  6198.0802  9043.9158  1673.0646  3816.4136  2050.0854
+[31]  3681.2890  5836.9438  4458.4650  1347.5713  7739.4279  8620.1542
+[37]  5238.5341  4905.7865  5165.6772 10208.1890   466.5847  1904.0058
+[43]   369.1638  4275.8980  6705.9690 13211.2758 13102.9825  4629.0484
+[49] 10013.0865  4635.8500
+
+$residuals
+ [1]  0.23885719 -0.23669586  0.02875653 -0.34198614 -0.01724806  0.03462135
+ [7] -0.16698962 -0.02175197  0.02568084  0.11761742  0.04668761  0.86042880
+[13]  0.47040996  0.06560442 -0.18664771  0.33961729  0.64576579 -0.50983676
+[19] -0.37971826  0.13455761  0.24155205  0.26613524 -0.44289066 -0.22767701
+[25] -0.11255430  0.05801748 -0.06176772  0.23967094  0.68739110  0.22105337
+[31]  0.23774859 -0.08092921  0.01108863 -0.05251201  0.43821073 -0.07489553
+[37] -1.09254417 -0.65386269  0.26381678  0.17054960 -0.34932135  0.71468574
+[43] -0.17168967 -0.44932198 -0.38396175 -0.11129780  0.17170529  0.22126863
+[49]  0.31939863  0.25266875
+
+$rss
+[1] 6.460308
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2       delta_3
+gamma    2.295641e+03 -4.735455e-02  1.347216e+00 -1.120641e-08  7.208274e-01
+lambda  -4.735455e-02  1.209766e-04  5.443303e-04  1.231544e-11  1.462054e-03
+delta_1  1.347216e+00  5.443303e-04  3.599085e-02  1.397841e-10  2.847200e-02
+delta_2 -1.120641e-08  1.231544e-11  1.397841e-10  3.999605e-17  6.525944e-10
+delta_3  7.208274e-01  1.462054e-03  2.847200e-02  6.525944e-10  1.531585e-01
+rho_1    1.100736e+01  1.269763e-03  9.264386e-02  2.417868e-10  6.944105e-02
+rho_2   -2.074851e+04  2.465766e+01  2.815530e+02  7.996579e-05  1.318469e+03
+rho      2.325618e+01 -5.280673e-03 -1.934481e-01 -2.678160e-09 -6.292038e-01
+nu      -2.028953e+01 -1.500488e-04 -1.423684e-02  5.592068e-11 -5.739548e-05
+                rho_1         rho_2           rho            nu
+gamma    1.100736e+01 -2.074851e+04  2.325618e+01 -2.028953e+01
+lambda   1.269763e-03  2.465766e+01 -5.280673e-03 -1.500488e-04
+delta_1  9.264386e-02  2.815530e+02 -1.934481e-01 -1.423684e-02
+delta_2  2.417868e-10  7.996579e-05 -2.678160e-09  5.592068e-11
+delta_3  6.944105e-02  1.318469e+03 -6.292038e-01 -5.739548e-05
+rho_1    3.848951e-01  4.918151e+02 -5.831472e-01 -1.051502e-01
+rho_2    4.918151e+02  1.598877e+08 -5.381456e+03  1.003010e+02
+rho     -5.831472e-01 -5.381456e+03  3.759890e+00 -2.242671e-01
+nu      -1.051502e-01  1.003010e+02 -2.242671e-01  1.857927e-01
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesNewtonTcMeVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, method = "Newton", multErr = TRUE, 
+    iterlim = 200)
+
+Coefficients:
+     gamma     lambda    delta_1    delta_2    delta_3      rho_1      rho_2 
+ 2.694e+01  2.531e-02  6.370e-01  1.373e-12  2.561e-01  3.814e-01 -7.487e+01 
+       rho         nu 
+ 1.051e+00  1.146e+00 
+
+> summary( cesNewtonTcMeVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, method = "Newton", multErr = TRUE, 
+    iterlim = 200)
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+assuming a multiplicative error term
+Convergence NOT achieved after 151 iterations
+
+Coefficients:
+          Estimate Std. Error t value Pr(>|t|)    
+gamma    2.694e+01  1.722e+01   1.564   0.1178    
+lambda   2.531e-02  3.954e-03   6.402 1.53e-10 ***
+delta_1  6.370e-01  6.819e-02   9.342  < 2e-16 ***
+delta_2  1.373e-12  2.273e-09   0.001   0.9995    
+delta_3  2.561e-01  1.407e-01   1.820   0.0687 .  
+rho_1    3.814e-01  2.230e-01   1.710   0.0873 .  
+rho_2   -7.487e+01  4.545e+03  -0.016   0.9869    
+rho      1.051e+00  6.970e-01   1.509   0.1314    
+nu       1.146e+00  1.549e-01   7.399 1.37e-13 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.3594526 
+Multiple R-squared: 0.8214867 
 
 > 
 > ## PORT, CRS
@@ -32418,6 +33155,167 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 35.18371 
 Multiple R-squared: 0.9998683 
+
+> 
+> ## PORT, TC, multErr, VRS
+> cesPortTcMeVrs <- cesEst( "yTcMeVrsObs", xNames, tName = "time", data = MishraCES, 
++    method = "PORT", vrs = TRUE, multErr = TRUE,
++    control = list( eval.max = 500, iter.max = 500 ) )
+> print.default( cesPortTcMeVrs )
+$nlminb
+$nlminb$par
+      gamma      lambda     delta_1     delta_2     delta_3       rho_1 
+86.61510749  0.02525378  0.67736534  0.38234482  0.47255102  0.57194606 
+      rho_2         rho          nu 
+-0.23610710  1.11406731  0.91970534 
+
+$nlminb$objective
+[1] 4.30599
+
+$nlminb$convergence
+[1] 0
+
+$nlminb$message
+[1] "relative convergence (4)"
+
+$nlminb$iterations
+[1] 60
+
+$nlminb$evaluations
+function gradient 
+      80       61 
+
+
+$coefficients
+      gamma      lambda     delta_1     delta_2     delta_3       rho_1 
+86.61510749  0.02525378  0.67736534  0.38234482  0.47255102  0.57194606 
+      rho_2         rho          nu 
+-0.23610710  1.11406731  0.91970534 
+
+$iter
+[1] 60
+
+$convergence
+[1] TRUE
+
+$message
+[1] "relative convergence (4)"
+
+$call
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, method = "PORT", multErr = TRUE, 
+    control = list(eval.max = 500, iter.max = 500))
+
+$method
+[1] "PORT"
+
+$multErr
+[1] TRUE
+
+$start
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+4.390308 0.015000 0.500000 0.500000 0.500000 0.250000 0.250000 0.250000 
+      nu 
+1.000000 
+
+$lower
+[1]    0 -Inf    0    0    0   -1   -1   -1    0
+
+$upper
+[1] Inf Inf   1   1   1 Inf Inf Inf Inf
+
+$fitted.values
+ [1]  2401.1246  1581.5029  3327.7768  3461.0474  2464.3203  3732.4596
+ [7]  3847.5892  2946.3548  2385.4480   303.9217  4390.6164  2765.6869
+[13]  3957.7986  3417.9122  3107.3366  2701.2777  2774.3654  4742.1210
+[19]  4357.3566  5025.7401  4512.8476  1250.5477  3621.5333  6027.6526
+[25]  8357.4945  7631.7630  9540.1200  1735.1594  4685.9765  2770.3997
+[31]  4849.2581  5040.3880  4403.9156  1210.3932  6798.8739  9499.6739
+[37]  1697.6731  3538.7262  5629.7844 10689.7019   459.3703  3145.6325
+[43]   378.9045  3893.8162  7563.8214 13266.3459 13988.8057  3898.2092
+[49] 11835.6716  5275.7987
+
+$residuals
+ [1]  0.31711535 -0.15437476 -0.35207794 -0.38672586  0.11611840 -0.10165942
+ [7] -0.21290487  0.10768690 -0.12281589  0.06038185  0.30630032  0.58326711
+[13]  0.37539916 -0.03276313 -0.04306707  0.21105021  0.45992519 -0.66167795
+[19] -0.59463665  0.31167266  0.27183787  0.18474627 -0.35967119 -0.43581081
+[25] -0.17916383 -0.15006180 -0.11518153  0.20322870  0.48212790 -0.08005677
+[31] -0.03781417  0.06579507  0.02339911  0.05484670  0.56778151 -0.17205003
+[37]  0.03423899 -0.32721409  0.17778183  0.12445900 -0.33373841  0.21263075
+[43] -0.19773367 -0.35571752 -0.50434027 -0.11545755  0.10628775  0.39310269
+[49]  0.15217353  0.12335824
+
+$rss
+[1] 4.30599
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2      delta_3
+gamma   16455.0450448 -0.1570907123  8.0061274623  3.0341902583  3.507939637
+lambda     -0.1570907  0.0001258396  0.0007022263 -0.0002970327  0.001537551
+delta_1     8.0061275  0.0007022263  0.0709767977 -0.0038059065  0.007310304
+delta_2     3.0341903 -0.0002970327 -0.0038059065  0.0404901142 -0.006581368
+delta_3     3.5079396  0.0015375510  0.0073103036 -0.0065813676  0.120983033
+rho_1      47.0149324  0.0021658978  0.2486552511 -0.0138590325 -0.000430141
+rho_2      24.7581465  0.0015572945  0.0513589121  0.0434161252  0.109962096
+rho       166.9358283 -0.0052385647 -0.3110290178  0.1056409922 -0.280502728
+nu        -47.0565237 -0.0002654910 -0.0297886627 -0.0049279144 -0.017289071
+               rho_1        rho_2           rho            nu
+gamma   47.014932416 24.758146521 166.935828251 -47.056523697
+lambda   0.002165898  0.001557295  -0.005238565  -0.000265491
+delta_1  0.248655251  0.051358912  -0.311029018  -0.029788663
+delta_2 -0.013859032  0.043416125   0.105640992  -0.004927914
+delta_3 -0.000430141  0.109962096  -0.280502728  -0.017289071
+rho_1    1.158548421  0.237444333  -1.421640008  -0.158871457
+rho_2    0.237444333  0.357128418  -0.423194835  -0.075024355
+rho     -1.421640008 -0.423194835   7.623477992  -0.429427193
+nu      -0.158871457 -0.075024355  -0.429427193   0.140917322
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesPortTcMeVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, method = "PORT", multErr = TRUE, 
+    control = list(eval.max = 500, iter.max = 500))
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+86.61511  0.02525  0.67737  0.38234  0.47255  0.57195 -0.23611  1.11407 
+      nu 
+ 0.91971 
+
+> summary( cesPortTcMeVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, method = "PORT", multErr = TRUE, 
+    control = list(eval.max = 500, iter.max = 500))
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming a multiplicative error term
+Convergence achieved after 60 iterations
+Message: relative convergence (4) 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   86.615107  37.644459   2.301   0.0214 *  
+lambda   0.025254   0.003292   7.671 1.70e-14 ***
+delta_1  0.677365   0.078183   8.664  < 2e-16 ***
+delta_2  0.382345   0.059051   6.475 9.49e-11 ***
+delta_3  0.472551   0.102074   4.630 3.67e-06 ***
+rho_1    0.571946   0.315870   1.811   0.0702 .  
+rho_2   -0.236107   0.175373  -1.346   0.1782    
+rho      1.114067   0.810267   1.375   0.1692    
+nu       0.919705   0.110162   8.349  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.2934618 
+Multiple R-squared: 0.8810155 
 
 > 
 > ## DE, CRS
@@ -33997,7 +34895,7 @@ nu        0.7288137  0.05216544 13.971200 2.336574e-44
 [50] 1436.8130
 > # check random number generation
 > rnorm( 5 )
-[1] -1.3379529 -0.2877371  1.4560590  0.3304016 -0.1010861
+[1] -1.6954105 -0.1762817 -0.2733376 -1.3236322  0.5155847
 > 
 > ## DE, TC, CRS
 > cesDeTc <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
@@ -35253,6 +36151,148 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 35.18371 
 Multiple R-squared: 0.9998683 
+
+> 
+> ## nls, TC, multErr, VRS
+> cesNlsTcMeVrs <- cesEst( "yTcMeVrsObs", xNames, tName = "time", data = MishraCES, 
++    method = "nls", vrs = TRUE, multErr = TRUE )
+> print.default( cesNlsTcMeVrs )
+$nls
+Nonlinear regression model
+  model:  log(yTcMeVrsObs) ~ log(gamma * exp(lambda * time) * (delta_3 *      (delta_1 * X1^(-rho_1) + (1 - delta_1) * X2^(-rho_1))^(rho/rho_1) +      (1 - delta_3) * (delta_2 * X3^(-rho_2) + (1 - delta_2) *          X4^(-rho_2))^(rho/rho_2))^(-nu/rho)) 
+   data:  data 
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+86.61556  0.02525  0.67736  0.38235  0.47255  0.57194 -0.23610  1.11407 
+      nu 
+ 0.91970 
+ residual sum-of-squares: 4.306
+
+Number of iterations to convergence: 18 
+Achieved convergence tolerance: 6.983e-06 
+
+$coefficients
+      gamma      lambda     delta_1     delta_2     delta_3       rho_1 
+86.61555705  0.02525380  0.67736494  0.38234773  0.47255331  0.57194457 
+      rho_2         rho          nu 
+-0.23609825  1.11407229  0.91970424 
+
+$iter
+[1] 18
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, method = "nls", multErr = TRUE)
+
+$method
+[1] "nls"
+
+$multErr
+[1] TRUE
+
+$start
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+4.390308 0.015000 0.500000 0.500000 0.500000 0.250000 0.250000 0.250000 
+      nu 
+1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$fitted.values
+ [1]  2401.1212  1581.4950  3327.7836  3461.0451  2464.3310  3732.4608
+ [7]  3847.5865  2946.3652  2385.4448   303.9213  4390.5968  2765.6973
+[13]  3957.7952  3417.9126  3107.3227  2701.2768  2774.3740  4742.1302
+[19]  4357.3677  5025.7260  4512.8399  1250.5502  3621.5379  6027.6574
+[25]  8357.4952  7631.7720  9540.1215  1735.1596  4685.9811  2770.4017
+[31]  4849.2642  5040.3764  4403.9119  1210.3917  6798.8685  9499.6740
+[37]  1697.6636  3538.6936  5629.8115 10689.6985   459.3707  3145.6413
+[43]   378.9050  3893.8073  7563.8555 13266.3476 13988.8142  3898.2054
+[49] 11835.6870  5275.7985
+
+$residuals
+ [1]  0.31711676 -0.15436979 -0.35207998 -0.38672521  0.11611404 -0.10165976
+ [7] -0.21290417  0.10768339 -0.12281455  0.06038313  0.30630478  0.58326334
+[13]  0.37540002 -0.03276323 -0.04306262  0.21105052  0.45992209 -0.66167991
+[19] -0.59463918  0.31167546  0.27183959  0.18474431 -0.35967247 -0.43581161
+[25] -0.17916392 -0.15006298 -0.11518170  0.20322860  0.48212693 -0.08005749
+[31] -0.03781543  0.06579736  0.02339997  0.05484790  0.56778229 -0.17205004
+[37]  0.03424456 -0.32720488  0.17777703  0.12445932 -0.33373930  0.21262796
+[43] -0.19773476 -0.35571524 -0.50434478 -0.11545768  0.10628714  0.39310367
+[49]  0.15217223  0.12335828
+
+$rss
+[1] 4.30599
+
+$cov.unscaled
+                gamma        lambda       delta_1       delta_2       delta_3
+gamma   16455.1952687 -0.1570925607  8.0062066711  3.0343870668  3.5081490336
+lambda     -0.1570926  0.0001258397  0.0007022278 -0.0002970273  0.0015375518
+delta_1     8.0062067  0.0007022278  0.0709762650 -0.0038058430  0.0073100621
+delta_2     3.0343871 -0.0002970273 -0.0038058430  0.0404896403 -0.0065809439
+delta_3     3.5081490  0.0015375518  0.0073100621 -0.0065809439  0.1209831009
+rho_1      47.0152815  0.0021659075  0.2486530953 -0.0138588746 -0.0004312111
+rho_2      24.7584462  0.0015573111  0.0513588703  0.0434150431  0.1099623167
+rho       166.9379676 -0.0052386386 -0.3110277030  0.1056442814 -0.2804961793
+nu        -47.0566880 -0.0002654895 -0.0297887914 -0.0049284706 -0.0172896711
+                rho_1        rho_2           rho            nu
+gamma   47.0152814776 24.758446188 166.937967609 -4.705669e+01
+lambda   0.0021659075  0.001557311  -0.005238639 -2.654895e-04
+delta_1  0.2486530953  0.051358870  -0.311027703 -2.978879e-02
+delta_2 -0.0138588746  0.043415043   0.105644281 -4.928471e-03
+delta_3 -0.0004312111  0.109962317  -0.280496179 -1.728967e-02
+rho_1    1.1585391202  0.237444099  -1.421637113 -1.588719e-01
+rho_2    0.2374440987  0.357124666  -0.423193875 -7.502512e-02
+rho     -1.4216371125 -0.423193875   7.623579790 -4.294295e-01
+nu      -0.1588718710 -0.075025120  -0.429429485  1.409170e-01
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesNlsTcMeVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, method = "nls", multErr = TRUE)
+
+Coefficients:
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2      rho 
+86.61556  0.02525  0.67736  0.38235  0.47255  0.57194 -0.23610  1.11407 
+      nu 
+ 0.91970 
+
+> summary( cesNlsTcMeVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, method = "nls", multErr = TRUE)
+
+Estimation by non-linear least-squares using the 'nls' optimizer
+assuming a multiplicative error term
+Convergence achieved after 18 iterations
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   86.615557  37.644631   2.301   0.0214 *  
+lambda   0.025254   0.003292   7.671 1.70e-14 ***
+delta_1  0.677365   0.078182   8.664  < 2e-16 ***
+delta_2  0.382348   0.059050   6.475 9.49e-11 ***
+delta_3  0.472553   0.102074   4.630 3.66e-06 ***
+rho_1    0.571945   0.315869   1.811   0.0702 .  
+rho_2   -0.236098   0.175372  -1.346   0.1782    
+rho      1.114072   0.810272   1.375   0.1692    
+nu       0.919704   0.110162   8.349  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.2934618 
+Multiple R-squared: 0.8810155 
 
 > 
 > 
@@ -37829,6 +38869,170 @@ Residual standard error: 339.4951
 Multiple R-squared: 0.9877363 
 
 > 
+> ## Levenberg-Marquardt, Fixed rho, rho1, and rho2, multErr, VRS
+> cesLmMeVrsRRR <- cesEst( "yMeObs", xNames, data = MishraCES, vrs = TRUE,
++    multErr = TRUE, control = nls.lm.control( maxiter = 200 ), 
++    rho1 = 0.2, rho2 = 0.3, rho = -0.1 )
+> print.default( cesLmMeVrsRRR )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 46.0078012535143, 0.570861136584465, 0.200988498057325, 0.689645983266154, 1.07081389049432 
+residual sum-of-squares: 6.643
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+     gamma    delta_1    delta_2    delta_3      rho_1      rho_2        rho 
+46.0078013  0.5708611  0.2009885  0.6896460  0.2000000  0.3000000 -0.1000000 
+        nu 
+ 1.0708139 
+
+$iter
+[1] 6
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
+    multErr = TRUE, rho1 = 0.2, rho2 = 0.3, rho = -0.1, control = nls.lm.control(maxiter = 200))
+
+$method
+[1] "LM"
+
+$multErr
+[1] TRUE
+
+$start
+   gamma  delta_1  delta_2  delta_3       nu 
+4.072919 0.500000 0.500000 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho1
+[1] 0.2
+
+$rho2
+[1] 0.3
+
+$rho
+[1] -0.1
+
+$fitted.values
+ [1] 2619.4069 2246.8995 3004.6736 2919.3290 3248.9853 3785.3244 4102.0792
+ [8] 2285.5992 1546.4478  342.5249 4021.1727 2017.4905 2445.9082 2397.8522
+[15] 2562.6026 1792.5937 1784.6492 2687.0149 2420.9399 3432.0720 2372.1983
+[22]  413.0339 1461.4869 3310.2460 4442.5045 4238.6653 5038.0015  828.6098
+[29] 1849.9923 1073.9655 2059.1112 2114.4581 1736.2427  702.4782 2939.0723
+[36] 3494.8960  829.7672  922.8392 2403.0423 3505.4470  262.2831  958.0739
+[43]  279.4563 1028.7848 2685.6811 4295.6543 4339.4616 1394.5086 3929.9103
+[50] 1231.5060
+
+$residuals
+ [1] -0.4208657266 -0.3250798461  0.4459223490  0.1803237537 -0.4390706512
+ [6]  0.3043027831 -0.7861943951 -0.2011363308  0.5298599868 -0.7886485895
+[11] -0.0367737475 -0.3400760038  0.0362831814 -0.0001088760 -0.4616505913
+[16]  0.2374174738 -0.3308685352 -0.0003301394 -0.3046601014  0.0486265350
+[21]  0.5739352885  0.3882879240  0.3023181927  0.1269974878  0.1776036834
+[26]  0.2083015792  0.0408944905  0.0578281259 -0.1063803211  0.3647368388
+[31]  0.5026913022  0.2087348164 -0.2450470779  0.0602196098 -0.2650641477
+[36] -0.0544514912  0.1827743731  0.5692324570 -0.1376092407 -0.0497593764
+[41] -0.4980763228 -0.2688831834  0.0076731050  0.2878371727  0.3387606500
+[46]  0.5497647620 -0.5129143970 -0.5133242061 -0.3948419229  0.7504873051
+
+$rss
+[1] 6.643298
+
+$cov.unscaled
+               gamma      delta_1       delta_2      delta_3        rho_1
+gamma   5186.0242516  0.771991090 -16.873016128  6.771361617 14.237372737
+delta_1    0.7719911  0.023508007  -0.001312704 -0.004801167  0.047036448
+delta_2  -16.8730161 -0.001312704   0.292720030 -0.065365173 -0.007530088
+delta_3    6.7713616 -0.004801167  -0.065365173  0.038736521 -0.034814384
+rho_1     14.2373727  0.047036448  -0.007530088 -0.034814384  0.288868000
+rho_2     89.0461808  0.017970284  -0.959676153  0.253186225  0.173610805
+rho       13.9703450 -0.023412064   0.046375814  0.020620125 -0.094487093
+nu       -28.9074574 -0.004354065   0.095213572 -0.038103446 -0.076054058
+              rho_2         rho            nu
+gamma   89.04618077 13.97034504 -28.907457425
+delta_1  0.01797028 -0.02341206  -0.004354065
+delta_2 -0.95967615  0.04637581   0.095213572
+delta_3  0.25318623  0.02062012  -0.038103446
+rho_1    0.17361081 -0.09448709  -0.076054058
+rho_2    4.58387556 -0.11512830  -0.483437593
+rho     -0.11512830  0.31207043  -0.075587325
+nu      -0.48343759 -0.07558732   0.163183868
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesLmMeVrsRRR )
+Estimated CES function
+
+Call:
+cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
+    multErr = TRUE, rho1 = 0.2, rho2 = 0.3, rho = -0.1, control = nls.lm.control(maxiter = 200))
+
+Coefficients:
+  gamma delta_1 delta_2 delta_3   rho_1   rho_2     rho      nu 
+46.0078  0.5709  0.2010  0.6896  0.2000  0.3000 -0.1000  1.0708 
+
+> summary( cesLmMeVrsRRR )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
+    multErr = TRUE, rho1 = 0.2, rho2 = 0.3, rho = -0.1, control = nls.lm.control(maxiter = 200))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+assuming a multiplicative error term
+Coefficient 'rho_1' was fixed at 0.2 
+Coefficient 'rho_2' was fixed at 0.3 
+Coefficient 'rho' was fixed at -0.1 
+Convergence achieved after 6 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma   46.00780   26.24969   1.753   0.0797 .  
+delta_1  0.57086    0.05589  10.214  < 2e-16 ***
+delta_2  0.20099    0.19721   1.019   0.3081    
+delta_3  0.68965    0.07174   9.613  < 2e-16 ***
+rho_1    0.20000    0.19591   1.021   0.3073    
+rho_2    0.30000    0.78041   0.384   0.7007    
+rho     -0.10000    0.20363  -0.491   0.6234    
+nu       1.07081    0.14725   7.272 3.54e-13 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.3645078 
+Multiple R-squared: 0.797811 
+
+> vcov( cesLmMeVrsRRR )
+              gamma       delta_1       delta_2       delta_3        rho_1
+gamma   689.0461155  0.1025713409 -2.2418495663  0.8996834940  1.891662264
+delta_1   0.1025713  0.0031234140 -0.0001744137 -0.0006379117  0.006249543
+delta_2  -2.2418496 -0.0001744137  0.0388925292 -0.0086848068 -0.001000492
+delta_3   0.8996835 -0.0006379117 -0.0086848068  0.0051467652 -0.004625647
+rho_1     1.8916623  0.0062495430 -0.0010004925 -0.0046256467  0.038380726
+rho_2    11.8312067  0.0023876391 -0.1275082979  0.0336398321  0.023066967
+rho       1.8561834 -0.0031106665  0.0061617672  0.0027397128 -0.012554119
+nu       -3.8408172 -0.0005785070  0.0126506431 -0.0050626511 -0.010104996
+               rho_2          rho           nu
+gamma   11.831206717  1.856183371 -3.840817220
+delta_1  0.002387639 -0.003110667 -0.000578507
+delta_2 -0.127508298  0.006161767  0.012650643
+delta_3  0.033639832  0.002739713 -0.005062651
+rho_1    0.023066967 -0.012554119 -0.010104996
+rho_2    0.609041048 -0.015296632 -0.064232402
+rho     -0.015296632  0.041463539 -0.010042983
+nu      -0.064232402 -0.010042983  0.021681582
+> 
 > 
 > ########## Grid Search for Rho_1, Rho_2, and Rho ##############
 > ## Levenberg-Marquardt, Grid Search for rho, CRS
@@ -39196,6 +40400,203 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 37.86169 
 Multiple R-squared: 0.99908 
 
+> 
+> ## PORT, Grid Search for rho, TC, multErr CRS
+> cesPortTcMeGrid <- cesEst( "yTcMeObs", xNames, tName = "time", data = MishraCES, 
++    method = "PORT", multErr = TRUE, rho = (1:12)/6-0.4, 
++    control = list( eval.max = 500 ) )
+> print.default( cesPortTcMeGrid )
+$nlminb
+$nlminb$par
+       gamma       lambda      delta_1      delta_2      delta_3        rho_1 
+64.787155398  0.017905913  0.587400418  0.306370134  0.469186589  0.530220106 
+       rho_2 
+-0.003067366 
+
+$nlminb$objective
+[1] 2.586992
+
+$nlminb$convergence
+[1] 0
+
+$nlminb$message
+[1] "relative convergence (4)"
+
+$nlminb$iterations
+[1] 62
+
+$nlminb$evaluations
+function gradient 
+      83       63 
+
+
+$coefficients
+       gamma       lambda      delta_1      delta_2      delta_3        rho_1 
+64.787155398  0.017905913  0.587400418  0.306370134  0.469186589  0.530220106 
+       rho_2          rho 
+-0.003067366  0.600000000 
+
+$iter
+[1] 62
+
+$convergence
+[1] TRUE
+
+$message
+[1] "relative convergence (4)"
+
+$call
+cesEst(yName = "yTcMeObs", xNames = xNames, data = MishraCES, 
+    tName = "time", method = "PORT", multErr = TRUE, rho = (1:12)/6 - 
+        0.4, control = list(eval.max = 500))
+
+$method
+[1] "PORT"
+
+$multErr
+[1] TRUE
+
+$start
+   gamma   lambda  delta_1  delta_2  delta_3    rho_1    rho_2 
+4.258442 0.015000 0.500000 0.500000 0.500000 0.250000 0.250000 
+
+$lower
+[1]    0 -Inf    0    0    0   -1   -1
+
+$upper
+[1] Inf Inf   1   1   1 Inf Inf
+
+$rho
+[1] 0.6
+
+$fitted.values
+ [1]  2597.6943  1676.9755  3190.6681  3433.2416  2183.6292  3854.0619
+ [7]  3984.5204  2400.1455  2326.0321   272.5671  4368.0332  2342.6157
+[13]  3489.2636  3421.7401  2855.6688  2317.7288  2407.8376  4045.9490
+[19]  3592.6878  4652.1694  3850.8759   865.0123  2607.1532  5513.4907
+[25]  7474.7824  6713.9750  8630.1089  1215.1511  3401.8245  2305.1153
+[31]  4071.8072  3740.2062  3522.1210  1301.3418  5935.3489  7622.1764
+[37]   530.4135  2334.9646  3951.2135  8180.2211   300.8777  2293.4199
+[43]   423.3399  2824.5995  5191.2112 10713.9792 10706.6811  3578.9657
+[49]  8667.9369  3352.7613
+
+$residuals
+ [1] -0.248719488  0.038348329  0.083948021  0.502697708  0.048594368
+ [6] -0.011092967  0.070659626 -0.264422062 -0.207421599  0.010748480
+[11] -0.365768137 -0.134132290 -0.051654724  0.256973817  0.201566402
+[16] -0.288756001  0.116966321 -0.535436244  0.464332520  0.139305000
+[21]  0.113475857  0.009794323  0.028059957 -0.005975423  0.360607406
+[26]  0.243054251 -0.481158328 -0.175037654  0.234253335  0.107737347
+[31]  0.123312950 -0.368350815  0.203375526 -0.187784720  0.385849346
+[36] -0.178344402  0.052761274  0.010470387 -0.081088063 -0.162694780
+[41]  0.075126173 -0.323372230  0.096614209 -0.001536797 -0.161009117
+[46]  0.147179631 -0.056326132 -0.184067178  0.281311092  0.067023194
+
+$rss
+[1] 2.586992
+
+$cov.unscaled
+              gamma        lambda       delta_1       delta_2      delta_3
+gamma   381.8118041 -0.1791070227 -0.8377985244  0.9974552849 -1.319529716
+lambda   -0.1791070  0.0001265772  0.0006257033 -0.0005128151  0.001208354
+delta_1  -0.8377985  0.0006257033  0.0482561978 -0.0087040647  0.000451122
+delta_2   0.9974553 -0.0005128151 -0.0087040647  0.0367541958 -0.021131875
+delta_3  -1.3195297  0.0012083543  0.0004511220 -0.0211318748  0.078699026
+rho_1    -1.8892500  0.0021945411  0.1810694560 -0.0483228801 -0.049634713
+rho_2    -0.8993027  0.0022037307  0.0427859164 -0.0151781349  0.093087186
+rho       5.9968580 -0.0042001970 -0.1742356393  0.1207570386 -0.133409094
+               rho_1        rho_2          rho
+gamma   -1.889250011 -0.899302652  5.996858027
+lambda   0.002194541  0.002203731 -0.004200197
+delta_1  0.181069456  0.042785916 -0.174235639
+delta_2 -0.048322880 -0.015178135  0.120757039
+delta_3 -0.049634713  0.093087186 -0.133409094
+rho_1    1.235527239  0.259580708 -1.208091776
+rho_2    0.259580708  0.363388417 -0.530927364
+rho     -1.208091776 -0.530927364  1.912290373
+
+$allRhoSum
+           rho      rss convergence
+1  -0.23333333 5.149946       FALSE
+2  -0.06666667 3.560468        TRUE
+3   0.10000000 2.839648        TRUE
+4   0.26666667 2.631524        TRUE
+5   0.43333333 2.590154        TRUE
+6   0.60000000 2.586992        TRUE
+7   0.76666667 2.596929        TRUE
+8   0.93333333 2.614892        TRUE
+9   1.10000000 2.638084        TRUE
+10  1.26666667 2.664539        TRUE
+11  1.43333333 2.692868        TRUE
+12  1.60000000 4.910573       FALSE
+
+$rhoValues
+ [1] -0.23333333 -0.06666667  0.10000000  0.26666667  0.43333333  0.60000000
+ [7]  0.76666667  0.93333333  1.10000000  1.26666667  1.43333333  1.60000000
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesPortTcMeGrid )
+Estimated CES function
+
+Call:
+cesEst(yName = "yTcMeObs", xNames = xNames, data = MishraCES, 
+    tName = "time", method = "PORT", multErr = TRUE, rho = (1:12)/6 - 
+        0.4, control = list(eval.max = 500))
+
+Coefficients:
+    gamma    lambda   delta_1   delta_2   delta_3     rho_1     rho_2       rho 
+64.787155  0.017906  0.587400  0.306370  0.469187  0.530220 -0.003067  0.600000 
+
+> summary( cesPortTcMeGrid )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "yTcMeObs", xNames = xNames, data = MishraCES, 
+    tName = "time", method = "PORT", multErr = TRUE, rho = (1:12)/6 - 
+        0.4, control = list(eval.max = 500))
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+assuming a multiplicative error term
+Convergence achieved after 62 iterations
+Message: relative convergence (4) 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   64.787155   4.444646  14.576  < 2e-16 ***
+lambda   0.017906   0.002559   6.997 2.62e-12 ***
+delta_1  0.587400   0.049968  11.756  < 2e-16 ***
+delta_2  0.306370   0.043608   7.026 2.13e-12 ***
+delta_3  0.469187   0.063811   7.353 1.94e-13 ***
+rho_1    0.530220   0.252836   2.097   0.0360 *  
+rho_2   -0.003067   0.137119  -0.022   0.9822    
+rho      0.600000   0.314550   1.907   0.0565 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.2274639 
+Multiple R-squared: 0.9283157 
+
+> vcov( cesPortTcMeGrid )
+               gamma        lambda       delta_1       delta_2       delta_3
+gamma   19.754878020 -9.266967e-03 -4.334755e-02  5.160817e-02 -6.827224e-02
+lambda  -0.009266967  6.549082e-06  3.237378e-05 -2.653297e-05  6.252005e-05
+delta_1 -0.043347554  3.237378e-05  2.496767e-03 -4.503468e-04  2.334097e-05
+delta_2  0.051608167 -2.653297e-05 -4.503468e-04  1.901656e-03 -1.093360e-03
+delta_3 -0.068272244  6.252005e-05  2.334097e-05 -1.093360e-03  4.071874e-03
+rho_1   -0.097749475  1.135452e-04  9.368503e-03 -2.500218e-03 -2.568092e-03
+rho_2   -0.046529767  1.140207e-04  2.213736e-03 -7.853141e-04  4.816315e-03
+rho      0.310276418 -2.173175e-04 -9.014922e-03  6.247949e-03 -6.902564e-03
+                rho_1         rho_2           rho
+gamma   -0.0977494753 -0.0465297667  0.3102764177
+lambda   0.0001135452  0.0001140207 -0.0002173175
+delta_1  0.0093685030  0.0022137361 -0.0090149224
+delta_2 -0.0025002176 -0.0007853141  0.0062479487
+delta_3 -0.0025680916  0.0048163152 -0.0069025639
+rho_1    0.0639259699  0.0134306618 -0.0625064637
+rho_2    0.0134306618  0.0188016551 -0.0274700918
+rho     -0.0625064637 -0.0274700918  0.0989415797
 > 
 > ## Levenberg-Marquardt, Grid Search for rho_2, VRS
 > cesLmVrsGrid2 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
