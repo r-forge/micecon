@@ -1,4 +1,4 @@
-summary.cesEst <- function( object, ... ) {
+summary.cesEst <- function( object, rSquaredLog = object$multErr, ... ) {
 
    # number of observations
    nObs <- length( residuals( object ) )
@@ -7,7 +7,7 @@ summary.cesEst <- function( object, ... ) {
    object$sigma <- sqrt( object$rss / nObs )
 
    # R-squared value
-   if( object$multErr ) {
+   if( rSquaredLog ) {
       object$r.squared <- rSquared( 
          y = log( fitted( object ) ) + residuals( object ),
          resid = residuals( object ) )
