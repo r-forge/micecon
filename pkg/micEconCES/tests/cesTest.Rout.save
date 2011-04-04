@@ -2,7 +2,7 @@
 R version 2.12.2 (2011-02-25)
 Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
-Platform: i486-pc-linux-gnu (32-bit)
+Platform: i686-pc-linux-gnu (32-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -530,7 +530,7 @@ $rss
 
 $cov.unscaled
              gamma         delta          rho
-gamma 11108.427498 -2.1880051887 -92.89635405
+gamma 11108.427490 -2.1880051870 -92.89635398
 delta    -2.188005  0.0004311784   0.01831334
 rho     -92.896354  0.0183133367   0.77803366
 
@@ -571,12 +571,12 @@ Multiple R-squared: 0.899718
 273.558495721   0.008014374  -2.790216743 
 > vcov( cesLandLaborSann )
             gamma         delta          rho
-gamma 98593373.54 -19419.743516 -824505.9831
+gamma 98593373.47 -19419.743501 -824505.9825
 delta   -19419.74      3.826944     162.5409
 rho    -824505.98    162.540886    6905.4745
 > coef( summary( cesLandLaborSann ) )
            Estimate  Std. Error      t value  Pr(>|t|)
-gamma 273.558495721 9929.419597  0.027550301 0.9780208
+gamma 273.558495721 9929.419594  0.027550301 0.9780208
 delta   0.008014374    1.956258  0.004096788 0.9967312
 rho    -2.790216743   83.099185 -0.033576945 0.9732145
 > fitted( cesLandLaborSann )
@@ -3804,10 +3804,10 @@ $rss
 [1] 166684.4
 
 $cov.unscaled
-           gamma      delta        rho
-gamma 5004.97903 41.3989754 -650.11586
-delta   41.39898  0.3424519   -5.37812
-rho   -650.11586 -5.3781200   84.46960
+           gamma      delta         rho
+gamma 5004.97673 41.3989564 -650.115558
+delta   41.39896  0.3424517   -5.378117
+rho   -650.11556 -5.3781175   84.469565
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -3842,10 +3842,10 @@ Residual standard error: 91.29195
 Multiple R-squared: 0.9058342 
 
 > coef( summary( cesLandIntSann ) )
-         Estimate Std. Error      t value  Pr(>|t|)
-gamma 13.14842134 6458.52914 0.0020358229 0.9983756
-delta  0.02100585   53.42349 0.0003931949 0.9996863
-rho    2.92470954  839.04011 0.0034857804 0.9972188
+         Estimate Std. Error     t value  Pr(>|t|)
+gamma 13.14842134 6458.52765 0.002035823 0.9983756
+delta  0.02100585   53.42348 0.000393195 0.9996863
+rho    2.92470954  839.03992 0.003485781 0.9972188
 > 
 > # using the BFGS optimization method
 > cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
