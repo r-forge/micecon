@@ -1764,6 +1764,142 @@ Residual standard error: 29.17757
 Multiple R-squared: 0.990381 
 
 > 
+> # using the BFGS optimization method, TC, multErr, VRS
+> cesGridBfgsTcMeVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    tName = "time", data = germanFarms, method = "BFGS", vrs = TRUE,
++    multErr = TRUE, rho = seq( from = -0.4, to = 1.2, by = 0.4 ),
++    control = list( maxit = 1000 ) )
+Warning message:
+In log(yHat) : NaNs produced
+> print.default( cesGridBfgsTcMeVrs )
+$optim
+$optim$par
+     gamma     lambda      delta         nu 
+4.73284495 0.01992050 0.04606613 0.91286988 
+
+$optim$value
+[1] 0.01163430
+
+$optim$counts
+function gradient 
+     697      309 
+
+$optim$convergence
+[1] 0
+
+$optim$message
+NULL
+
+
+$coefficients
+     gamma     lambda      delta        rho         nu 
+4.73284495 0.01992050 0.04606613 0.80000000 0.91286988 
+
+$iter
+function gradient 
+     697      309 
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "BFGS", multErr = TRUE, 
+    rho = seq(from = -0.4, to = 1.2, by = 0.4), control = list(maxit = 1000))
+
+$method
+[1] "BFGS"
+
+$multErr
+[1] TRUE
+
+$start
+  gamma  lambda   delta      nu 
+2.94879 0.01500 0.50000 1.00000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0.8
+
+$fitted.values
+ [1]  949.7599 1029.0542 1058.4615 1128.0338 1144.5767 1182.3264 1234.5047
+ [8] 1233.5932 1236.1584 1286.1158 1362.5633 1535.7171 1635.7579 1685.0111
+[15] 1631.6026 1647.0707 1683.4223 1743.4456 1858.8558 1989.6643
+
+$residuals
+ [1] -0.003826040 -0.066621950  0.010448832  0.038061870  0.028881736
+ [6]  0.002942099  0.003923508  0.043594836 -0.023285614 -0.006010752
+[11] -0.001447350  0.003294026 -0.037828987  0.006476462  0.007988637
+[16] -0.012856247 -0.017003719  0.006947176  0.015249843  0.001120042
+
+$rss
+[1] 0.01163430
+
+$cov.unscaled
+               gamma      lambda         delta           rho            nu
+gamma   522590.21474  39.9938538  31644.538400 -231080.32702 -2154.9997706
+lambda      39.99385   0.0200709      1.366575     -10.48902    -0.8049285
+delta    31644.53840   1.3665752   2009.955565  -14660.90955   -78.0818172
+rho    -231080.32702 -10.4890177 -14660.909546  106971.22569   583.7711652
+nu       -2154.99977  -0.8049285    -78.081817     583.77117    38.8213011
+
+$allRhoSum
+   rho        rss convergence
+1 -0.4 0.01180744       FALSE
+2  0.0 0.01183440       FALSE
+3  0.4 0.01163804       FALSE
+4  0.8 0.01163430        TRUE
+5  1.2 0.01170308        TRUE
+
+$rhoValues
+[1] -0.4  0.0  0.4  0.8  1.2
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridBfgsTcMeVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "BFGS", multErr = TRUE, 
+    rho = seq(from = -0.4, to = 1.2, by = 0.4), control = list(maxit = 1000))
+
+Coefficients:
+  gamma  lambda   delta     rho      nu 
+4.73284 0.01992 0.04607 0.80000 0.91287 
+
+> summary( cesGridBfgsTcMeVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", vrs = TRUE, method = "BFGS", multErr = TRUE, 
+    rho = seq(from = -0.4, to = 1.2, by = 0.4), control = list(maxit = 1000))
+
+Estimation by non-linear least-squares using the 'BFGS' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+assuming a multiplicative error term
+Convergence achieved after 697 function and 309 gradient calls
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma   4.732845  17.435551   0.271    0.786    
+lambda  0.019921   0.003417   5.830 5.55e-09 ***
+delta   0.046066   1.081305   0.043    0.966    
+rho     0.800000   7.888393   0.101    0.919    
+nu      0.912870   0.150276   6.075 1.24e-09 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.02411876 
+Multiple R-squared: 0.9871504 
+
+> 
 > # using the L-BFGS-B optimization method with constrained parameters
 > cesGridBfgsCon <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, method = "L-BFGS-B",
@@ -2594,6 +2730,143 @@ Residual standard error: 29.11662
 Multiple R-squared: 0.9904212 
 
 > 
+> # using the Levenberg-Marquardt optimization method, multErr, VRS
+> cesGridLmMeVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, vrs = TRUE, multErr = TRUE,
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+Warning messages:
+1: In log(gammaStar) : NaNs produced
+2: In log(gammaStar) : NaNs produced
+3: In log(cesCalc(xNames = xNames, tName = tName, data = data, coef = par,  :
+  NaNs produced
+4: In log(cesCalc(xNames = xNames, tName = tName, data = data, coef = par,  :
+  NaNs produced
+5: In log(cesCalc(xNames = xNames, tName = tName, data = data, coef = par,  :
+  NaNs produced
+> print.default( cesGridLmMeVrs )
+$nls.lm
+Nonlinear regression via the Levenberg-Marquardt algorithm
+parameter estimates: 0.0751174685337367, 0.0318841911577494, 1.694598877961 
+residual sum-of-squares: 0.03264
+reason terminated: Relative error in the sum of squares is at most `ftol'.
+
+$coefficients
+     gamma      delta        rho         nu 
+0.07511747 0.03188419 1.20000000 1.69459888 
+
+$iter
+[1] 36
+
+$convergence
+[1] TRUE
+
+$message
+[1] "Relative error in the sum of squares is at most `ftol'."
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    vrs = TRUE, multErr = TRUE, rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
+
+$method
+[1] "LM"
+
+$multErr
+[1] TRUE
+
+$start
+   gamma    delta       nu 
+3.318307 0.500000 1.000000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 1.2
+
+$fitted.values
+ [1]  981.768 1076.661 1100.688 1165.073 1157.852 1184.375 1237.517 1209.648
+ [9] 1162.044 1215.171 1291.553 1554.504 1677.271 1732.934 1607.439 1597.380
+[17] 1646.686 1718.415 1878.484 2055.508
+
+$residuals
+ [1] -0.036971796 -0.111846133 -0.028669913  0.005754156  0.017350372
+ [6]  0.001211242  0.001486639  0.063196477  0.038542149  0.050730803
+[11]  0.052074792 -0.008865100 -0.062890723 -0.021567350  0.022909258
+[16]  0.017777466  0.005060552  0.021408260  0.004746117 -0.031437266
+
+$rss
+[1] 0.03263555
+
+$cov.unscaled
+            gamma        delta         rho        nu
+gamma   117.69062   171.676466 -1776.46036 -8.629780
+delta   171.67647   254.203288 -2634.31779 -7.936837
+rho   -1776.46036 -2634.317794 27305.67340 77.955958
+nu       -8.62978    -7.936837    77.95596  6.538979
+
+$allRhoSum
+   rho        rss convergence
+1 -0.8 0.03293881        TRUE
+2 -0.4 0.03285591        TRUE
+3  0.0 0.03278399        TRUE
+4  0.4 0.03272322        TRUE
+5  0.8 0.03267372        TRUE
+6  1.2 0.03263555        TRUE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridLmMeVrs )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    vrs = TRUE, multErr = TRUE, rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
+
+Coefficients:
+  gamma   delta     rho      nu 
+0.07512 0.03188 1.20000 1.69460 
+
+> summary( cesGridLmMeVrs )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    vrs = TRUE, multErr = TRUE, rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+assuming a multiplicative error term
+Convergence achieved after 36 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  0.07512    0.43823   0.171    0.864    
+delta  0.03188    0.64405   0.050    0.961    
+rho    1.20000    6.67509   0.180    0.857    
+nu     1.69460    0.10330  16.405   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.04039527 
+Multiple R-squared: 0.9639554 
+
+> vcov( cesGridLmMeVrs )
+            gamma       delta        rho          nu
+gamma  0.19204493  0.28013783 -2.8987884 -0.01408188
+delta  0.28013783  0.41480326 -4.2986211 -0.01295115
+rho   -2.89878845 -4.29862110 44.5567896  0.12720680
+nu    -0.01408188 -0.01295115  0.1272068  0.01067016
+> 
 > # using the Newton-type optimization method implemented in nlm()
 > cesGridNewton <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, method = "Newton",
@@ -3003,6 +3276,135 @@ delta 0.654290  4.56718813  0.14325883 8.860858e-01
 rho   0.000000  6.47396893  0.00000000 1.000000e+00
 nu    1.555338  0.09315821 16.69566296 1.409449e-62
 > plot( cesGridNewtonVrs )
+> 
+> # using the Newton-type optimization method implemented in nlm(), TC, multErr, CRS
+> cesGridNewtonTcMe <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    tName = "time", data = germanFarms, method = "Newton", multErr = TRUE,
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+> print.default( cesGridNewtonTcMe )
+$nlm
+$nlm$minimum
+[1] 0.01181493
+
+$nlm$estimate
+[1] 3.89764222 0.01806541 0.15742424
+
+$nlm$gradient
+[1]  6.052524e-09  1.924563e-07 -1.042997e-07
+
+$nlm$code
+[1] 1
+
+$nlm$iterations
+[1] 39
+
+
+$coefficients
+     gamma     lambda      delta        rho 
+3.89764222 0.01806541 0.15742424 0.40000000 
+
+$iter
+[1] 39
+
+$convergence
+[1] TRUE
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "Newton", multErr = TRUE, rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+$method
+[1] "Newton"
+
+$multErr
+[1] TRUE
+
+$start
+   gamma   lambda    delta 
+2.606375 0.015000 0.500000 
+
+$lower
+[1] -Inf
+
+$upper
+[1] Inf
+
+$rho
+[1] 0.4
+
+$fitted.values
+ [1]  949.3677 1031.6773 1060.3367 1131.6352 1145.6446 1182.6272 1235.2972
+ [8] 1230.3721 1228.2096 1278.2939 1356.1580 1540.2660 1644.0867 1692.9788
+[15] 1629.9778 1642.1427 1679.2381 1740.9149 1861.9837 1998.6501
+
+$residuals
+ [1] -0.0034129947 -0.0691677124  0.0086788119  0.0348743655  0.0279491628
+ [6]  0.0026876835  0.0032817458  0.0462093673 -0.0168346718  0.0000896785
+[11]  0.0032646218  0.0003363077 -0.0429077566  0.0017590023  0.0089849622
+[16] -0.0098597371 -0.0145150845  0.0083997636  0.0135685099 -0.0033860376
+
+$rss
+[1] 0.01181493
+
+$cov.unscaled
+               gamma       lambda         delta           rho
+gamma   8.281836e+05 -6.008577792  1.052554e+05 -2.538060e+05
+lambda -6.008578e+00  0.003380888 -6.430806e-01  1.353308e+00
+delta   1.052554e+05 -0.643080648  1.338409e+04 -3.228565e+04
+rho    -2.538060e+05  1.353307594 -3.228565e+04  7.790197e+04
+
+$allRhoSum
+   rho        rss convergence
+1 -0.8 0.02517619        TRUE
+2 -0.4 0.02389291        TRUE
+3  0.0 0.01923221        TRUE
+4  0.4 0.01181493        TRUE
+5  0.8 0.01187131        TRUE
+6  1.2 0.01348975        TRUE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridNewtonTcMe )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "Newton", multErr = TRUE, rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Coefficients:
+  gamma  lambda   delta     rho 
+3.89764 0.01807 0.15742 0.40000 
+
+> summary( cesGridNewtonTcMe )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    tName = "time", method = "Newton", multErr = TRUE, rho = seq(from = -0.8, 
+        to = 1.2, by = 0.4))
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+assuming a multiplicative error term
+Convergence achieved after 39 iterations
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma   3.897642  22.118920   0.176    0.860    
+lambda  0.018065   0.001413  12.783   <2e-16 ***
+delta   0.157424   2.811869   0.056    0.955    
+rho     0.400000   6.783828   0.059    0.953    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.02430528 
+Multiple R-squared: 0.9869509 
+
 > 
 > # using the PORT optimization rountine implemented in nlminb(), constrained
 > cesGridPort <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -3444,6 +3846,147 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.11662 
 Multiple R-squared: 0.9904212 
 
+> 
+> # using the PORT optimization rountine implemented in nlminb(), multErr
+> cesGridPortMe <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
++    data = germanFarms, method = "PORT", multErr = TRUE,
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+> print.default( cesGridPortMe )
+$nlminb
+$nlminb$par
+   gamma    delta 
+48.30514  1.00000 
+
+$nlminb$objective
+[1] 0.1157039
+
+$nlminb$convergence
+[1] 0
+
+$nlminb$message
+[1] "relative convergence (4)"
+
+$nlminb$iterations
+[1] 58
+
+$nlminb$evaluations
+function gradient 
+      69       59 
+
+
+$coefficients
+   gamma    delta      rho 
+48.30514  1.00000 -0.40000 
+
+$iter
+[1] 58
+
+$convergence
+[1] TRUE
+
+$message
+[1] "relative convergence (4)"
+
+$call
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "PORT", multErr = TRUE, rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
+
+$method
+[1] "PORT"
+
+$multErr
+[1] TRUE
+
+$start
+   gamma    delta 
+1.816679 0.500000 
+
+$lower
+[1] 0 0
+
+$upper
+[1] Inf   1
+
+$rho
+[1] -0.4
+
+$fitted.values
+ [1] 1130.340 1168.984 1192.654 1203.281 1203.281 1218.739 1251.586 1254.484
+ [9] 1216.323 1259.315 1293.129 1442.874 1502.773 1554.942 1522.578 1539.968
+[17] 1620.154 1693.578 1802.265 1902.739
+
+$residuals
+ [1] -0.177890779 -0.194117041 -0.108915660 -0.026513940 -0.021135372
+ [6] -0.027390308 -0.009818258  0.026801371 -0.007109802  0.015048092
+[11]  0.050855860  0.065654175  0.046965342  0.086810119  0.077146481
+[16]  0.054380669  0.021303707  0.035967059  0.046166940  0.045791345
+
+$rss
+[1] 0.1157039
+
+$cov.unscaled
+             gamma         delta           rho
+gamma 4.184394e+04  1.346693e+02  5.434294e+14
+delta 1.346693e+02  4.367434e-01 -5.670810e+12
+rho   5.434294e+14 -5.670810e+12  2.606183e+28
+
+$allRhoSum
+   rho       rss convergence
+1 -0.8 0.1157039        TRUE
+2 -0.4 0.1157039        TRUE
+3  0.0 0.1157039        TRUE
+4  0.4 0.1157039        TRUE
+5  0.8 0.1157039        TRUE
+6  1.2 0.1157039        TRUE
+
+$rhoValues
+[1] -0.8 -0.4  0.0  0.4  0.8  1.2
+
+attr(,"class")
+[1] "cesEst" "list"  
+> print( cesGridPortMe )
+Estimated CES function
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "PORT", multErr = TRUE, rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
+
+Coefficients:
+gamma delta   rho 
+48.31  1.00 -0.40 
+
+> summary( cesGridPortMe )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
+    method = "PORT", multErr = TRUE, rho = seq(from = -0.8, to = 1.2, 
+        by = 0.4))
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+and a one-dimensional grid search for coefficient 'rho'
+assuming a multiplicative error term
+Convergence achieved after 58 iterations
+Message: relative convergence (4) 
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)    
+gamma  4.831e+01  1.556e+01   3.105  0.00190 ** 
+delta  1.000e+00  5.027e-02  19.894  < 2e-16 ***
+rho   -4.000e-01  1.228e+13   0.000  1.00000    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.07606046 
+Multiple R-squared: 0.8722098 
+
+> vcov( cesGridPortMe )
+             gamma         delta           rho
+gamma 2.420753e+02  7.790882e-01  3.143844e+12
+delta 7.790882e-01  2.526645e-03 -3.280673e+10
+rho   3.143844e+12 -3.280673e+10  1.507727e+26
 > 
 > # using the DE optimization method implemented in DEoptim(), CRS
 > cesGridDe <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),

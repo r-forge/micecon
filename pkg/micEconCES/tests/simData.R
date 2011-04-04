@@ -51,6 +51,12 @@ print( cesData$ys )
 cesData$ysTc <- cesData$ydTc + rnorm( nObs )
 print( cesData$ysTc )
 
+cesData$ysMe <- cesData$yd * exp( rnorm( nObs ) )
+print( cesData$ysMe )
+
+cesData$ysTcMe <- cesData$ydTc * exp( rnorm( nObs ) )
+print( cesData$ysTcMe )
+
 
 ## Nelder-Mead, CRS
 cesNm <- cesEst( "ys", xxNames, cesData, method = "Nelder-Mead" )
@@ -102,6 +108,13 @@ print.default( cesNmTcVrs2 )
 print( cesNmTcVrs2 )
 summary( cesNmTcVrs2 )
 
+## Nelder-Mead, TC, multErr, VRS
+cesNmTcMeVrs <- cesEst( "ysTcMe", xxNames, tName = "time", data = cesData, 
+   vrs = TRUE, method = "NM", control = list( maxit = 1000 ), multErr = TRUE )
+print.default( cesNmTcMeVrs )
+print( cesNmTcMeVrs )
+summary( cesNmTcMeVrs )
+
 ## Conjugate Gradients, CRS
 cesCg <- cesEst( "ys", xxNames, cesData, method = "CG" )
 print.default( cesCg )
@@ -123,6 +136,13 @@ vcov( cesCgVrs )
 coef( summary( cesCgVrs ) )
 fitted( cesCgVrs )
 residuals( cesCgVrs )
+
+## Conjugate Gradients, CRS, multErr
+cesCgMe <- cesEst( "ysMe", xxNames, cesData, method = "CG", multErr = TRUE )
+print.default( cesCgMe )
+print( cesCgMe )
+summary( cesCgMe )
+vcov( cesCgMe )
 
 ## Simulated Annealing, CRS
 # check random number generation
@@ -163,6 +183,14 @@ print.default( cesSannTcVrs )
 print( cesSannTcVrs )
 summary( cesSannTcVrs )
 
+## Simulated Annealing, TC, multErr
+cesSannTcMe <- cesEst( "ysTcMe", xxNames, tName = "time", data = cesData, 
+   method = "SANN", multErr = TRUE )
+print.default( cesSannTcMe )
+print( cesSannTcMe )
+summary( cesSannTcMe )
+vcov( cesSannTcMe )
+
 ## BFGS, CRS
 cesBfgs <- cesEst( "ys", xxNames, cesData, method = "BFGS" )
 print.default( cesBfgs )
@@ -198,6 +226,14 @@ cesBfgsTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData,
 print.default( cesBfgsTcVrs )
 print( cesBfgsTcVrs )
 summary( cesBfgsTcVrs )
+
+## BFGS, multErr, VRS
+cesBfgsMeVrs <- cesEst( "ysMe", xxNames, cesData, method = "BFGS", vrs = TRUE,
+   multErr = TRUE )
+print.default( cesBfgsMeVrs )
+print( cesBfgsMeVrs )
+summary( cesBfgsMeVrs )
+vcov( cesBfgsMeVrs )
 
 ## L-BFGS-B with constrained parameters, CRS
 cesBfgsCon <- cesEst( "ys", xxNames, cesData, method = "L-BFGS-B" )
@@ -236,6 +272,13 @@ print.default( cesBfgsConTcVrs )
 print( cesBfgsConTcVrs )
 summary( cesBfgsConTcVrs )
 
+## L-BFGS-B with constrained parameters, TC, multErr, VRS
+cesBfgsConTcMeVrs <- cesEst( "ysTcMe", xxNames, tName = "time", data = cesData, 
+   method = "L-BFGS-B", vrs = TRUE, multErr = TRUE )
+print.default( cesBfgsConTcMeVrs )
+print( cesBfgsConTcMeVrs )
+summary( cesBfgsConTcMeVrs )
+
 ## Levenberg-Marquardt, CRS
 cesLm <- cesEst( "ys", xxNames, cesData,
    control = nls.lm.control( maxiter = 200 ) )
@@ -273,6 +316,14 @@ print.default( cesLmTcVrs )
 print( cesLmTcVrs )
 summary( cesLmTcVrs )
 
+## Levenberg-Marquardt, CRS, multErr
+cesLmMe <- cesEst( "ysMe", xxNames, cesData, multErr = TRUE,
+   control = nls.lm.control( maxiter = 200 ) )
+print.default( cesLmMe )
+print( cesLmMe )
+summary( cesLmMe )
+vcov( cesLmMe )
+
 ## Newton-type, CRS
 cesNewton <- cesEst( "ys", xxNames, cesData, method = "Newton" )
 print.default( cesNewton )
@@ -309,6 +360,14 @@ print.default( cesNewtonTcVrs )
 print( cesNewtonTcVrs )
 summary( cesNewtonTcVrs )
 
+## Newton-type, TC, multErr, VRS
+cesNewtonTcMeVrs <- cesEst( "ysTcMe", xxNames, tName = "time", data = cesData, 
+   method = "Newton", vrs = TRUE, multErr = TRUE, iterlim = 500 )
+print.default( cesNewtonTcMeVrs )
+print( cesNewtonTcMeVrs )
+summary( cesNewtonTcMeVrs )
+vcov( cesNewtonTcMeVrs )
+
 ## PORT, CRS
 cesPort <- cesEst( "ys", xxNames, cesData, method = "PORT" )
 print.default( cesPort )
@@ -344,6 +403,14 @@ cesPortTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData,
 print.default( cesPortTcVrs )
 print( cesPortTcVrs )
 summary( cesPortTcVrs )
+
+## PORT, multErr, VRS
+cesPortMeVrs <- cesEst( "ysMe", xxNames, cesData, method = "PORT", vrs = TRUE,
+   multErr = TRUE )
+print.default( cesPortMeVrs )
+print( cesPortMeVrs )
+summary( cesPortMeVrs )
+vcov( cesPortMeVrs )
 
 ## DE, CRS
 # check random number generation
@@ -387,6 +454,13 @@ cesDeTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData,
 print.default( cesDeTcVrs )
 print( cesDeTcVrs )
 summary( cesDeTcVrs )
+
+## DE, TC, multErr
+cesDeTcMe <- cesEst( "ysMe", xxNames, tName = "time", data = cesData, 
+   method = "DE", multErr = TRUE, control = DEoptim.control( trace = FALSE ) )
+print.default( cesDeTcMe )
+print( cesDeTcMe )
+summary( cesDeTcMe )
 
 ## Kmenta approximation, CRS
 cesKmenta <- cesEst( "ys", xxNames, cesData, method = "Kmenta" )
@@ -438,4 +512,23 @@ cesNlsTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData,
 print.default( cesNlsTcVrs )
 print( cesNlsTcVrs )
 summary( cesNlsTcVrs )
+
+## nls, multErr, VRS
+cesNlsMeVrs <- cesEst( "ysMe", xxNames, cesData, method = "nls", vrs = TRUE,
+   multErr = TRUE )
+print.default( cesNlsMeVrs )
+print( cesNlsMeVrs )
+summary( cesNlsMeVrs )
+
+## nls, TC, multErr
+cesNlsTcMe <- cesEst( "ysTcMe", xxNames, tName = "time", data = cesData, 
+   method = "nls", multErr = TRUE )
+print.default( cesNlsTcMe )
+print( cesNlsTcMe )
+summary( cesNlsTcMe )
+
+## nls, TC, multErr, VRS
+cesNlsTcMeVrs <- try( cesEst( "ysTcMe", xxNames, tName = "time", data = cesData, 
+   method = "nls", vrs = TRUE, multErr = TRUE ) )
+print( cesNlsTcMeVrs )
 
