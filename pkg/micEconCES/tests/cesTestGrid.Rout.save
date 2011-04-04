@@ -2,7 +2,7 @@
 R version 2.12.2 (2011-02-25)
 Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
-Platform: i486-pc-linux-gnu (32-bit)
+Platform: i686-pc-linux-gnu (32-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -2257,7 +2257,7 @@ $rss
 
 $cov.unscaled
               gamma         delta           rho            nu
-gamma  0.0579392389  2.148633e-02 -2.968736e-02 -8.034451e-05
+gamma  0.0579392390  2.148633e-02 -2.968736e-02 -8.034451e-05
 delta  0.0214863331  7.988170e-03 -1.104432e-02 -2.176766e-05
 rho   -0.0296873631 -1.104432e-02  1.527309e-02  2.755062e-05
 nu    -0.0000803445 -2.176766e-05  2.755062e-05  3.448088e-06
@@ -2267,7 +2267,7 @@ $allRhoSum
 1 -0.8 50626.23        TRUE
 2 -0.4 50286.89        TRUE
 3  0.0 49966.45       FALSE
-4  0.4 50252.44       FALSE
+4  0.4 50685.78       FALSE
 5  0.8 56767.62       FALSE
 6  1.2 50579.58       FALSE
 
@@ -2319,9 +2319,9 @@ Multiple R-squared: 0.9717722
 1.084423 0.634565 0.000000 1.584593 
 > vcov( cesGridBfgsConVrs )
             gamma        delta          rho           nu
-gamma 144.7509106  53.67979185 -74.16861032 -0.200726495
-delta  53.6797919  19.95702684 -27.59226361 -0.054382625
-rho   -74.1686103 -27.59226361  38.15710415  0.068830343
+gamma 144.7509106  53.67979188 -74.16861035 -0.200726495
+delta  53.6797919  19.95702685 -27.59226363 -0.054382625
+rho   -74.1686104 -27.59226363  38.15710417  0.068830343
 nu     -0.2007265  -0.05438262   0.06883034  0.008614435
 > coef( summary( cesGridBfgsConVrs ) )
       Estimate  Std. Error     t value     Pr(>|t|)
