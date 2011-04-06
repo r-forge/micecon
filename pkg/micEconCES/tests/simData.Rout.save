@@ -357,6 +357,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+E_1_2 (all) 
+  0.6590143 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Nelder-Mead")
 
@@ -469,6 +473,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Nelder-Mead")
 Coefficients:
  gamma  delta    rho 
 1.2696 0.5991 0.5174 
+
+Elasticity of Substitution: 0.659 
 
 > summary( cesNm )
 Estimated CES function with constant returns to scale
@@ -608,6 +614,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+E_1_2 (all) 
+   0.745091 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "NM")
@@ -723,6 +733,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.9548 0.5887 0.3421 1.1170 
+
+Elasticity of Substitution: 0.7451 
 
 > summary( cesNmVrs )
 Estimated CES function with variable returns to scale
@@ -867,6 +879,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+E_1_2 (all) 
+  0.0493993 
+
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
     method = "Nelder-Mead", control = list(maxit = 1000))
@@ -988,6 +1004,8 @@ Coefficients:
   gamma  lambda   delta     rho 
  1.2247  0.0304  0.9996 19.2432 
 
+Elasticity of Substitution: 0.0494 
+
 > summary( cesNmTc )
 Estimated CES function with constant returns to scale
 
@@ -1044,6 +1062,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+E_1_2 (all) 
+   0.633379 
 
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
@@ -1166,6 +1188,8 @@ Coefficients:
   gamma  lambda   delta     rho 
 1.36444 0.02958 0.61195 0.57883 
 
+Elasticity of Substitution: 0.6334 
+
 > summary( cesNmTc2 )
 Estimated CES function with constant returns to scale
 
@@ -1222,6 +1246,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+E_1_2 (all) 
+  0.6094563 
 
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
@@ -1345,6 +1373,8 @@ Coefficients:
   gamma  lambda   delta     rho      nu 
 1.14141 0.02980 0.62851 0.64081 1.06123 
 
+Elasticity of Substitution: 0.6095 
+
 > summary( cesNmTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -1402,6 +1432,10 @@ $iter
 
 $convergence
 [1] FALSE
+
+$ela
+E_1_2 (all) 
+  0.6238866 
 
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
@@ -1527,6 +1561,8 @@ Coefficients:
   gamma  lambda   delta     rho      nu 
 1.07583 0.02975 0.60278 0.60286 1.09063 
 
+Elasticity of Substitution: 0.6239 
+
 > summary( cesNmTcVrs2 )
 Estimated CES function with variable returns to scale
 
@@ -1585,6 +1621,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+E_1_2 (all) 
+  0.4934246 
 
 $call
 cesEst(yName = "ysTcMe", xNames = xxNames, data = cesData, tName = "time", 
@@ -1708,6 +1748,8 @@ Coefficients:
   gamma  lambda   delta     rho      nu 
 0.79937 0.02882 0.48399 1.02665 1.26602 
 
+Elasticity of Substitution: 0.4934 
+
 > summary( cesNmTcMeVrs )
 Estimated CES function with variable returns to scale
 
@@ -1765,6 +1807,10 @@ function gradient
 
 $convergence
 [1] FALSE
+
+$ela
+E_1_2 (all) 
+  0.6616417 
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "CG")
@@ -1878,6 +1924,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "CG")
 Coefficients:
  gamma  delta    rho 
 1.2693 0.5989 0.5114 
+
+Elasticity of Substitution: 0.6616 
 
 > summary( cesCg )
 Estimated CES function with constant returns to scale
@@ -2018,6 +2066,10 @@ function gradient
 $convergence
 [1] FALSE
 
+$ela
+E_1_2 (all) 
+  0.7532551 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "CG")
@@ -2133,6 +2185,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.9495 0.5882 0.3276 1.1191 
+
+Elasticity of Substitution: 0.7533 
 
 > summary( cesCgVrs )
 Estimated CES function with variable returns to scale
@@ -2282,6 +2336,10 @@ function gradient
 $convergence
 [1] FALSE
 
+$ela
+E_1_2 (all) 
+  0.5697339 
+
 $call
 cesEst(yName = "ysMe", xNames = xxNames, data = cesData, method = "CG", 
     multErr = TRUE)
@@ -2391,6 +2449,8 @@ Coefficients:
  gamma  delta    rho 
 1.1393 0.7194 0.7552 
 
+Elasticity of Substitution: 0.5697 
+
 > summary( cesCgMe )
 Estimated CES function with constant returns to scale
 
@@ -2451,6 +2511,10 @@ $coefficients
 
 $iter
 [1] 10000
+
+$ela
+E_1_2 (all) 
+  0.6756215 
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "SANN")
@@ -2564,6 +2628,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "SANN")
 Coefficients:
  gamma  delta    rho 
 1.2694 0.5983 0.4801 
+
+Elasticity of Substitution: 0.6756 
 
 > summary( cesSann )
 Estimated CES function with constant returns to scale
@@ -2706,6 +2772,10 @@ $coefficients
 $iter
 [1] 10000
 
+$ela
+E_1_2 (all) 
+   0.721085 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "SANN")
@@ -2821,6 +2891,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.9995 0.5865 0.3868 1.1006 
+
+Elasticity of Substitution: 0.7211 
 
 > summary( cesSannVrs )
 Estimated CES function with variable returns to scale
@@ -2964,6 +3036,10 @@ $coefficients
 $iter
 [1] 10000
 
+$ela
+E_1_2 (all) 
+   0.959704 
+
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
     vrs = TRUE, method = "SANN")
@@ -3080,6 +3156,8 @@ Coefficients:
    gamma   lambda    delta      rho       nu 
 12.65822  0.02206  0.63998  0.04199  0.61119 
 
+Elasticity of Substitution: 0.9597 
+
 > summary( cesSannTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -3133,6 +3211,10 @@ $coefficients
 
 $iter
 [1] 10000
+
+$ela
+E_1_2 (all) 
+  0.5341831 
 
 $call
 cesEst(yName = "ysTcMe", xNames = xxNames, data = cesData, tName = "time", 
@@ -3249,6 +3331,8 @@ Coefficients:
  gamma lambda  delta    rho 
 1.4186 0.0284 0.5043 0.8720 
 
+Elasticity of Substitution: 0.5342 
+
 > summary( cesSannTcMe )
 Estimated CES function with constant returns to scale
 
@@ -3310,6 +3394,10 @@ function gradient
 
 $convergence
 [1] TRUE
+
+$ela
+E_1_2 (all) 
+  0.6590368 
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "BFGS")
@@ -3423,6 +3511,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "BFGS")
 Coefficients:
  gamma  delta    rho 
 1.2696 0.5991 0.5174 
+
+Elasticity of Substitution: 0.659 
 
 > summary( cesBfgs )
 Estimated CES function with constant returns to scale
@@ -3563,6 +3653,10 @@ function gradient
 $convergence
 [1] TRUE
 
+$ela
+E_1_2 (all) 
+  0.7450762 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "BFGS")
@@ -3678,6 +3772,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.9548 0.5887 0.3421 1.1170 
+
+Elasticity of Substitution: 0.7451 
 
 > summary( cesBfgsVrs )
 Estimated CES function with variable returns to scale
@@ -3823,6 +3919,10 @@ function gradient
 $convergence
 [1] TRUE
 
+$ela
+E_1_2 (all) 
+  0.6336471 
+
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
     method = "BFGS")
@@ -3944,6 +4044,8 @@ Coefficients:
   gamma  lambda   delta     rho 
 1.36481 0.02957 0.61195 0.57817 
 
+Elasticity of Substitution: 0.6336 
+
 > summary( cesBfgsTc )
 Estimated CES function with constant returns to scale
 
@@ -4001,6 +4103,10 @@ function gradient
 
 $convergence
 [1] TRUE
+
+$ela
+E_1_2 (all) 
+  0.6670854 
 
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
@@ -4124,6 +4230,8 @@ Coefficients:
  gamma lambda  delta    rho     nu 
 1.0008 0.0300 0.5998 0.4991 1.0997 
 
+Elasticity of Substitution: 0.6671 
+
 > summary( cesBfgsTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -4190,6 +4298,10 @@ function gradient
 
 $convergence
 [1] TRUE
+
+$ela
+E_1_2 (all) 
+  0.7431734 
 
 $call
 cesEst(yName = "ysMe", xNames = xxNames, data = cesData, vrs = TRUE, 
@@ -4307,6 +4419,8 @@ Coefficients:
  gamma  delta    rho     nu 
 0.5310 0.6669 0.3456 1.3490 
 
+Elasticity of Substitution: 0.7432 
+
 > summary( cesBfgsMeVrs )
 Estimated CES function with variable returns to scale
 
@@ -4372,6 +4486,10 @@ $convergence
 
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$ela
+E_1_2 (all) 
+   0.659034 
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B")
@@ -4485,6 +4603,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "L-BFGS-B")
 Coefficients:
  gamma  delta    rho 
 1.2696 0.5991 0.5174 
+
+Elasticity of Substitution: 0.659 
 
 > summary( cesBfgsCon )
 Estimated CES function with constant returns to scale
@@ -4630,6 +4750,10 @@ $convergence
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
+$ela
+E_1_2 (all) 
+  0.7450731 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "L-BFGS-B")
@@ -4739,6 +4863,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.9548 0.5887 0.3422 1.1170 
+
+Elasticity of Substitution: 0.745 
 
 > summary( cesBfgsConVrs )
 Estimated CES function with variable returns to scale
@@ -4882,6 +5008,10 @@ $convergence
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
+$ela
+E_1_2 (all) 
+  0.6336476 
+
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
     method = "L-BFGS-B", control = list(maxit = 500))
@@ -5003,6 +5133,8 @@ Coefficients:
   gamma  lambda   delta     rho 
 1.36481 0.02957 0.61195 0.57816 
 
+Elasticity of Substitution: 0.6336 
+
 > summary( cesBfgsConTc )
 Estimated CES function with constant returns to scale
 
@@ -5064,6 +5196,10 @@ $convergence
 
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$ela
+E_1_2 (all) 
+ 0.07331357 
 
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
@@ -5187,6 +5323,8 @@ Coefficients:
    gamma   lambda    delta      rho       nu 
  1.88411  0.02959  0.99256 12.64004  0.87797 
 
+Elasticity of Substitution: 0.07331 
+
 > summary( cesBfgsConTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -5249,6 +5387,10 @@ $convergence
 
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$ela
+E_1_2 (all) 
+  0.5561611 
 
 $call
 cesEst(yName = "ysTcMe", xNames = xxNames, data = cesData, tName = "time", 
@@ -5372,6 +5514,8 @@ Coefficients:
   gamma  lambda   delta     rho      nu 
 0.75548 0.02883 0.48598 0.79804 1.28679 
 
+Elasticity of Substitution: 0.5562 
+
 > summary( cesBfgsConTcMeVrs )
 Estimated CES function with variable returns to scale
 
@@ -5420,6 +5564,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+E_1_2 (all) 
+  0.6590347 
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, control = nls.lm.control(maxiter = 200))
@@ -5533,6 +5681,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, control = nls.lm.control(
 Coefficients:
  gamma  delta    rho 
 1.2696 0.5991 0.5174 
+
+Elasticity of Substitution: 0.659 
 
 > summary( cesLm )
 Estimated CES function with constant returns to scale
@@ -5664,6 +5814,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+E_1_2 (all) 
+    0.74508 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     control = nls.lm.control(maxiter = 200))
@@ -5779,6 +5933,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.9548 0.5887 0.3421 1.1170 
+
+Elasticity of Substitution: 0.7451 
 
 > summary( cesLmVrs )
 Estimated CES function with variable returns to scale
@@ -5913,6 +6069,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+E_1_2 (all) 
+  0.6336471 
+
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time")
 
@@ -6032,6 +6192,8 @@ Coefficients:
   gamma  lambda   delta     rho 
 1.36481 0.02957 0.61195 0.57817 
 
+Elasticity of Substitution: 0.6336 
+
 > summary( cesLmTc )
 Estimated CES function with constant returns to scale
 
@@ -6078,6 +6240,10 @@ $convergence
 
 $message
 [1] "Conditions for `info = 1' and `info = 2' both hold."
+
+$ela
+E_1_2 (all) 
+  0.6670854 
 
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
@@ -6201,6 +6367,8 @@ Coefficients:
  gamma lambda  delta    rho     nu 
 1.0008 0.0300 0.5998 0.4991 1.0997 
 
+Elasticity of Substitution: 0.6671 
+
 > summary( cesLmTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -6249,6 +6417,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+E_1_2 (all) 
+  0.5447793 
 
 $call
 cesEst(yName = "ysMe", xNames = xxNames, data = cesData, multErr = TRUE, 
@@ -6359,6 +6531,8 @@ Coefficients:
  gamma  delta    rho 
 1.1411 0.7211 0.8356 
 
+Elasticity of Substitution: 0.5448 
+
 > summary( cesLmMe )
 Estimated CES function with constant returns to scale
 
@@ -6417,6 +6591,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+E_1_2 (all) 
+  0.6590341 
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Newton")
@@ -6530,6 +6708,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Newton")
 Coefficients:
  gamma  delta    rho 
 1.2696 0.5991 0.5174 
+
+Elasticity of Substitution: 0.659 
 
 > summary( cesNewton )
 Estimated CES function with constant returns to scale
@@ -6667,6 +6847,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+E_1_2 (all) 
+  0.7450761 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "Newton")
@@ -6782,6 +6966,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.9548 0.5887 0.3421 1.1170 
+
+Elasticity of Substitution: 0.7451 
 
 > summary( cesNewtonVrs )
 Estimated CES function with variable returns to scale
@@ -6924,6 +7110,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+E_1_2 (all) 
+  0.6336471 
+
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
     method = "Newton")
@@ -7045,6 +7235,8 @@ Coefficients:
   gamma  lambda   delta     rho 
 1.36481 0.02957 0.61195 0.57817 
 
+Elasticity of Substitution: 0.6336 
+
 > summary( cesNewtonTc )
 Estimated CES function with constant returns to scale
 
@@ -7099,6 +7291,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+E_1_2 (all) 
+  0.6670854 
 
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
@@ -7222,6 +7418,8 @@ Coefficients:
  gamma lambda  delta    rho     nu 
 1.0008 0.0300 0.5998 0.4991 1.0997 
 
+Elasticity of Substitution: 0.6671 
+
 > summary( cesNewtonTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -7277,6 +7475,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+E_1_2 (all) 
+  0.4867828 
 
 $call
 cesEst(yName = "ysTcMe", xNames = xxNames, data = cesData, tName = "time", 
@@ -7400,6 +7602,8 @@ Coefficients:
   gamma  lambda   delta     rho      nu 
 0.80839 0.02881 0.48417 1.05430 1.26168 
 
+Elasticity of Substitution: 0.4868 
+
 > summary( cesNewtonTcMeVrs )
 Estimated CES function with variable returns to scale
 
@@ -7469,6 +7673,10 @@ $convergence
 
 $message
 [1] "relative convergence (4)"
+
+$ela
+E_1_2 (all) 
+  0.6590342 
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "PORT")
@@ -7582,6 +7790,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "PORT")
 Coefficients:
  gamma  delta    rho 
 1.2696 0.5991 0.5174 
+
+Elasticity of Substitution: 0.659 
 
 > summary( cesPort )
 Estimated CES function with constant returns to scale
@@ -7728,6 +7938,10 @@ $convergence
 $message
 [1] "relative convergence (4)"
 
+$ela
+E_1_2 (all) 
+  0.7450761 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "PORT")
@@ -7837,6 +8051,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.9548 0.5887 0.3421 1.1170 
+
+Elasticity of Substitution: 0.7451 
 
 > summary( cesPortVrs )
 Estimated CES function with variable returns to scale
@@ -7982,6 +8198,10 @@ $convergence
 $message
 [1] "relative convergence (4)"
 
+$ela
+E_1_2 (all) 
+  0.6336471 
+
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
     method = "PORT")
@@ -8103,6 +8323,8 @@ Coefficients:
   gamma  lambda   delta     rho 
 1.36481 0.02957 0.61195 0.57817 
 
+Elasticity of Substitution: 0.6336 
+
 > summary( cesPortTc )
 Estimated CES function with constant returns to scale
 
@@ -8166,6 +8388,10 @@ $convergence
 
 $message
 [1] "both X-convergence and relative convergence (5)"
+
+$ela
+E_1_2 (all) 
+  0.6670854 
 
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
@@ -8289,6 +8515,8 @@ Coefficients:
  gamma lambda  delta    rho     nu 
 1.0008 0.0300 0.5998 0.4991 1.0997 
 
+Elasticity of Substitution: 0.6671 
+
 > summary( cesPortTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -8353,6 +8581,10 @@ $convergence
 
 $message
 [1] "relative convergence (4)"
+
+$ela
+E_1_2 (all) 
+  0.7432132 
 
 $call
 cesEst(yName = "ysMe", xNames = xxNames, data = cesData, vrs = TRUE, 
@@ -8469,6 +8701,8 @@ cesEst(yName = "ysMe", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.5310 0.6670 0.3455 1.3490 
+
+Elasticity of Substitution: 0.7432 
 
 > summary( cesPortMeVrs )
 Estimated CES function with variable returns to scale
@@ -8846,6 +9080,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+E_1_2 (all) 
+  0.6590341 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "DE", 
     control = DEoptim.control(trace = FALSE))
@@ -8956,6 +9194,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "DE",
 Coefficients:
  gamma  delta    rho 
 1.2696 0.5991 0.5174 
+
+Elasticity of Substitution: 0.659 
 
 > summary( cesDe )
 Estimated CES function with constant returns to scale
@@ -9441,6 +9681,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+E_1_2 (all) 
+  0.7384437 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "DE", control = DEoptim.control(trace = FALSE))
@@ -9552,6 +9796,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.9648 0.5879 0.3542 1.1129 
+
+Elasticity of Substitution: 0.7384 
 
 > summary( cesDeVrs )
 Estimated CES function with variable returns to scale
@@ -10036,6 +10282,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+E_1_2 (all) 
+  0.1205756 
+
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
     vrs = TRUE, method = "DE", control = DEoptim.control(trace = FALSE))
@@ -10147,6 +10397,8 @@ cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time",
 Coefficients:
   gamma  lambda   delta     rho      nu 
 6.51322 0.02455 0.90710 7.29355 0.73275 
+
+Elasticity of Substitution: 0.1206 
 
 > summary( cesDeTcVrs )
 Estimated CES function with variable returns to scale
@@ -10507,6 +10759,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+E_1_2 (all) 
+   0.563145 
+
 $call
 cesEst(yName = "ysMe", xNames = xxNames, data = cesData, tName = "time", 
     method = "DE", multErr = TRUE, control = DEoptim.control(trace = FALSE))
@@ -10613,6 +10869,8 @@ Coefficients:
     gamma    lambda     delta       rho 
  1.242561 -0.000872  0.721025  0.775742 
 
+Elasticity of Substitution: 0.5631 
+
 > summary( cesDeTcMe )
 Estimated CES function with constant returns to scale
 
@@ -10681,6 +10939,10 @@ $vcov
 gamma 1.555143e-04 6.837003e-06 8.709913e-04
 delta 6.837003e-06 2.177025e-04 6.782191e-05
 rho   8.709913e-04 6.782191e-05 1.715662e-02
+
+$ela
+E_1_2 (all) 
+  0.6584265 
 
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Kmenta")
@@ -10790,6 +11052,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "Kmenta")
 Coefficients:
  gamma  delta    rho 
 1.2281 0.5826 0.5188 
+
+Elasticity of Substitution: 0.6584 
 
 > summary( cesKmenta )
 Estimated CES function with constant returns to scale
@@ -10944,6 +11208,10 @@ delta  4.772242e-05  1.394008e-04  4.791237e-05 -2.227038e-05
 rho    1.509851e-03  4.791237e-05  1.137869e-02 -5.302298e-04
 nu    -9.431200e-04 -2.227038e-05 -5.302298e-04  4.763964e-04
 
+$ela
+E_1_2 (all) 
+  0.7472485 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "Kmenta")
@@ -11055,6 +11323,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.8998 0.5750 0.3382 1.1414 
+
+Elasticity of Substitution: 0.7472 
 
 > summary( cesKmentaVrs )
 Estimated CES function with variable returns to scale
@@ -11191,6 +11461,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+E_1_2 (all) 
+  0.6590346 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "nls")
 
@@ -11303,6 +11577,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, method = "nls")
 Coefficients:
  gamma  delta    rho 
 1.2696 0.5991 0.5174 
+
+Elasticity of Substitution: 0.659 
 
 > summary( cesNls )
 Estimated CES function with constant returns to scale
@@ -11434,6 +11710,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+E_1_2 (all) 
+    0.74508 
+
 $call
 cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE, 
     method = "nls")
@@ -11543,6 +11823,8 @@ cesEst(yName = "ys", xNames = xxNames, data = cesData, vrs = TRUE,
 Coefficients:
  gamma  delta    rho     nu 
 0.9548 0.5887 0.3421 1.1170 
+
+Elasticity of Substitution: 0.7451 
 
 > summary( cesNlsVrs )
 Estimated CES function with variable returns to scale
@@ -11673,6 +11955,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+E_1_2 (all) 
+  0.6670854 
+
 $call
 cesEst(yName = "ysTc", xNames = xxNames, data = cesData, tName = "time", 
     vrs = TRUE, method = "nls")
@@ -11795,6 +12081,8 @@ Coefficients:
  gamma lambda  delta    rho     nu 
 1.0008 0.0300 0.5998 0.4991 1.0997 
 
+Elasticity of Substitution: 0.6671 
+
 > summary( cesNlsTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -11844,6 +12132,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+E_1_2 (all) 
+  0.7432096 
 
 $call
 cesEst(yName = "ysMe", xNames = xxNames, data = cesData, vrs = TRUE, 
@@ -11961,6 +12253,8 @@ Coefficients:
  gamma  delta    rho     nu 
 0.5310 0.6670 0.3455 1.3490 
 
+Elasticity of Substitution: 0.7432 
+
 > summary( cesNlsMeVrs )
 Estimated CES function with variable returns to scale
 
@@ -12009,6 +12303,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+E_1_2 (all) 
+  0.3979267 
 
 $call
 cesEst(yName = "ysTcMe", xNames = xxNames, data = cesData, tName = "time", 
@@ -12131,6 +12429,8 @@ Coefficients:
   gamma  lambda   delta     rho 
 1.43483 0.02878 0.47197 1.51303 
 
+Elasticity of Substitution: 0.3979 
+
 > summary( cesNlsTcMe )
 Estimated CES function with constant returns to scale
 
@@ -12168,6 +12468,8 @@ cesEst(yName = "ysTcMe", xNames = xxNames, data = cesData, tName = "time",
 Coefficients:
   gamma  lambda   delta     rho      nu 
 0.80840 0.02881 0.48417 1.05438 1.26167 
+
+Elasticity of Substitution: 0.4868 
 
 > 
 > 

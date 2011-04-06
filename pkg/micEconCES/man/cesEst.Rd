@@ -248,6 +248,7 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
    that has following components:
    \item{coefficients}{estimated coefficients/parameters of the CES
       (including a possible fixed \eqn{\rho}{rho}).}
+   \item{ela}{constant elasticity/elasticities of substitution.}
    \item{iter}{number of iterations
       (only for non-linear least-squares estimations).}
    \item{convergence}{logical value indicating if the non-linear estimation

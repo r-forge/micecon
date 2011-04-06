@@ -7024,6 +7024,10 @@ $iter
 $convergence
 [1] FALSE
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6735927      0.7011246 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "Nelder-Mead")
 
@@ -7087,6 +7091,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "Nelder-Mead"
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 311.4732   0.6222   0.6004   0.4846   0.4263 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6736         0.7011 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesNm )
 Estimated CES function with constant returns to scale
@@ -7182,6 +7192,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6321690      0.6695767 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "NM", control = list(maxit = 1000))
@@ -7256,6 +7270,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 299.3554   0.6047   0.5970   0.5819   0.4935   1.0120 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6322         0.6696 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesNmVrs )
 Estimated CES function with variable returns to scale
@@ -7363,6 +7383,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6693501      0.6274241 
+
 $call
 cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
     method = "Nelder-Mead", control = list(maxit = 5000))
@@ -7436,6 +7460,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 310.59294   0.02034   0.59858   0.60520   0.49399   0.59382 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6694         0.6274 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesNmTc )
 Estimated CES function with constant returns to scale
 
@@ -7498,6 +7528,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.5876739      0.5091411 
 
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
@@ -7574,6 +7608,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho       nu 
 536.4368   0.0199   0.6265   0.5924   0.7016   0.9641   0.9840 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5877         0.5091 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesNmTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -7633,6 +7673,10 @@ $iter
 
 $convergence
 [1] FALSE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+      0.848262       1.163395 
 
 $call
 cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
@@ -7709,6 +7753,12 @@ Coefficients:
   gamma delta_1 delta_2   rho_1     rho      nu 
 21.2570  0.5544  0.5761  0.1789 -0.1404  1.6903 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.8483         1.1634 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesNmMeVrs )
 Estimated CES function with variable returns to scale
 
@@ -7783,6 +7833,10 @@ function gradient
 $convergence
 [1] FALSE
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6794819      0.7721867 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "CG")
 
@@ -7846,6 +7900,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "CG")
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 297.2379   0.5859   0.5815   0.4717   0.2950 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6795         0.7722 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesCg )
 Estimated CES function with constant returns to scale
@@ -7945,6 +8005,10 @@ function gradient
 $convergence
 [1] FALSE
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6871302      0.7063530 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "CG")
@@ -8018,6 +8082,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 296.7523   0.5878   0.6021   0.4553   0.4157   1.0118 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6871         0.7064 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesCgVrs )
 Estimated CES function with variable returns to scale
@@ -8129,6 +8199,10 @@ function gradient
 $convergence
 [1] FALSE
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.7935293      0.7958695 
+
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
     tName = "time", vrs = TRUE, method = "CG")
@@ -8204,6 +8278,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 517.99502   0.01914   0.50903   0.53807   0.26019   0.25649   0.98382 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.7935         0.7959 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesCgTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -8259,6 +8339,10 @@ $coefficients
 
 $iter
 [1] 10000
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.7249229      0.7354721 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "SANN")
@@ -8323,6 +8407,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "SANN")
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 298.0594   0.5783   0.5995   0.3795   0.3597 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.7249         0.7355 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesSann )
 Estimated CES function with constant returns to scale
@@ -8414,6 +8504,10 @@ $coefficients
 $iter
 [1] 10000
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6112366      0.6872222 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "SANN")
@@ -8488,6 +8582,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 296.9033   0.6065   0.5867   0.6360   0.4551   1.0120 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6112         0.6872 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesSannVrs )
 Estimated CES function with variable returns to scale
@@ -8595,6 +8695,10 @@ $coefficients
 $iter
 [1] 10000
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.5871216      0.6040116 
+
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
     tName = "time", vrs = TRUE, method = "SANN")
@@ -8670,6 +8774,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 517.79650   0.02171   0.56753   0.54453   0.70322   0.65560   0.96923 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5871         0.6040 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesSannTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -8729,6 +8839,10 @@ function gradient
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6236042      0.6578076 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "BFGS", 
@@ -8796,6 +8910,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "BFGS",
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 314.6800   0.6064   0.5961   0.6036   0.5202 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6236         0.6578 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesBfgs )
 Estimated CES function with constant returns to scale
@@ -8894,6 +9014,10 @@ function gradient
 $convergence
 [1] TRUE
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6236171      0.6578253 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "BFGS", control = list(maxit = 500))
@@ -8968,6 +9092,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 314.6557   0.6064   0.5961   0.6035   0.5202   1.0000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6236         0.6578 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesBfgsVrs )
 Estimated CES function with variable returns to scale
@@ -9076,6 +9206,10 @@ function gradient
 $convergence
 [1] TRUE
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6691829      0.6276322 
+
 $call
 cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
     method = "BFGS", control = list(maxit = 500))
@@ -9149,6 +9283,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 310.59710   0.02034   0.59855   0.60511   0.49436   0.59329 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6692         0.6276 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesBfgsTc )
 Estimated CES function with constant returns to scale
 
@@ -9212,6 +9352,10 @@ function gradient
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6662579      0.6246465 
 
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
@@ -9288,6 +9432,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 318.00545   0.02016   0.60953   0.60458   0.50092   0.60091   1.10698 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6663         0.6246 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesBfgsTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -9348,6 +9498,10 @@ function gradient
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6820792      0.6157230 
 
 $call
 cesEst(yName = "yTcMeObs", xNames = xNames, data = MishraCES, 
@@ -9423,6 +9577,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 319.36509   0.01747   0.58306   0.58403   0.46611   0.62411 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6821         0.6157 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesBfgsTcMe )
 Estimated CES function with constant returns to scale
 
@@ -9484,6 +9644,10 @@ $convergence
 
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6236043      0.6578084 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "L-BFGS-B")
@@ -9549,6 +9713,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "L-BFGS-B")
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 314.6800   0.6064   0.5961   0.6036   0.5202 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6236         0.6578 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesBfgsCon )
 Estimated CES function with constant returns to scale
@@ -9650,6 +9820,10 @@ $convergence
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6332813      0.6717628 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "L-BFGS-B", control = list(maxit = 500))
@@ -9724,6 +9898,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 296.7523   0.6045   0.5971   0.5791   0.4886   1.0140 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6333         0.6718 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesBfgsConVrs )
 Estimated CES function with variable returns to scale
@@ -9836,6 +10016,10 @@ $convergence
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6690462      0.6277997 
+
 $call
 cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
     method = "L-BFGS-B", control = list(maxit = 2000))
@@ -9909,6 +10093,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 310.60629   0.02034   0.59855   0.60507   0.49467   0.59286 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6690         0.6278 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesBfgsConTc )
 Estimated CES function with constant returns to scale
 
@@ -9976,6 +10166,10 @@ $convergence
 
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.5921381      0.5181477 
 
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
@@ -10052,6 +10246,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 517.99046   0.01991   0.62498   0.59300   0.68880   0.92995   0.99230 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5921         0.5181 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesBfgsConTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -10121,6 +10321,10 @@ $convergence
 
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6316382      0.4735992 
 
 $call
 cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
@@ -10199,6 +10403,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 435.94284   0.02515   0.67944   0.59337   0.58318   1.11149   1.00624 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6316         0.4736 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesBfgsConTcMeVrs )
 Estimated CES function with variable returns to scale
 
@@ -10250,6 +10460,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6236049      0.6578074 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, control = nls.lm.control(maxiter = 200))
@@ -10315,6 +10529,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, control = nls.lm.contr
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 314.6800   0.6064   0.5961   0.6036   0.5202 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6236         0.6578 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLm )
 Estimated CES function with constant returns to scale
@@ -10402,6 +10622,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6236174      0.6578252 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     control = nls.lm.control(maxiter = 200))
@@ -10476,6 +10700,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 314.6556   0.6064   0.5961   0.6035   0.5202   1.0000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6236         0.6578 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLmVrs )
 Estimated CES function with variable returns to scale
@@ -10574,6 +10804,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6691763      0.6276604 
+
 $call
 cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
     control = nls.lm.control(maxiter = 200))
@@ -10647,6 +10881,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 310.59619   0.02034   0.59855   0.60510   0.49437   0.59322 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6692         0.6277 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmTc )
 Estimated CES function with constant returns to scale
 
@@ -10698,6 +10938,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6662579      0.6246465 
 
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
@@ -10774,6 +11018,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 318.00544   0.02016   0.60953   0.60458   0.50092   0.60091   1.10698 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6663         0.6246 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -10824,6 +11074,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.5855314      0.6943483 
 
 $call
 cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, multErr = TRUE, 
@@ -10892,6 +11146,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 314.6375   0.6200   0.5255   0.7079   0.4402 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5855         0.6943 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmMe )
 Estimated CES function with constant returns to scale
 
@@ -10954,6 +11214,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6236047      0.6578075 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "Newton")
@@ -11019,6 +11283,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "Newton")
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 314.6800   0.6064   0.5961   0.6036   0.5202 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6236         0.6578 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesNewton )
 Estimated CES function with constant returns to scale
@@ -11113,6 +11383,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6236171      0.6578252 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "Newton")
@@ -11187,6 +11461,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 314.6557   0.6064   0.5961   0.6035   0.5202   1.0000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6236         0.6578 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesNewtonVrs )
 Estimated CES function with variable returns to scale
@@ -11294,6 +11574,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6691764      0.6276603 
+
 $call
 cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
     method = "Newton", iterlim = 500)
@@ -11367,6 +11651,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 310.59620   0.02034   0.59855   0.60510   0.49437   0.59322 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6692         0.6277 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesNewtonTc )
 Estimated CES function with constant returns to scale
 
@@ -11427,6 +11717,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.5921901      0.5180978 
 
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
@@ -11503,6 +11797,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 517.99166   0.01991   0.62497   0.59301   0.68865   0.93014   0.99230 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5922         0.5181 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesNewtonTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -11561,6 +11861,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6015287      0.7119882 
 
 $call
 cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
@@ -11636,6 +11940,12 @@ cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 286.4002   0.6149   0.5315   0.6624   0.4045   1.0246 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6015         0.7120 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesNewtonMeVrs )
 Estimated CES function with variable returns to scale
@@ -11717,6 +12027,10 @@ $convergence
 $message
 [1] "X-convergence (3)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6236047      0.6578075 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT", 
     control = list(eval.max = 500))
@@ -11783,6 +12097,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 314.6800   0.6064   0.5961   0.6036   0.5202 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6236         0.6578 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPort )
 Estimated CES function with constant returns to scale
@@ -11887,6 +12207,10 @@ $convergence
 $message
 [1] "both X-convergence and relative convergence (5)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6236171      0.6578252 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "PORT", control = list(eval.max = 500, iter.max = 500))
@@ -11961,6 +12285,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 314.6557   0.6064   0.5961   0.6035   0.5202   1.0000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6236         0.6578 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortVrs )
 Estimated CES function with variable returns to scale
@@ -12075,6 +12405,10 @@ $convergence
 $message
 [1] "both X-convergence and relative convergence (5)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6691764      0.6276603 
+
 $call
 cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
     method = "PORT", control = list(eval.max = 500))
@@ -12148,6 +12482,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 310.59620   0.02034   0.59855   0.60510   0.49437   0.59322 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6692         0.6277 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesPortTc )
 Estimated CES function with constant returns to scale
 
@@ -12218,6 +12558,10 @@ $convergence
 
 $message
 [1] "relative convergence (4)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6662579      0.6246465 
 
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
@@ -12296,6 +12640,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 318.00544   0.02016   0.60953   0.60458   0.50092   0.60091   1.10698 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6663         0.6246 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesPortTcVrs )
 Estimated CES function with variable returns to scale
 
@@ -12363,6 +12713,10 @@ $convergence
 
 $message
 [1] "relative convergence (4)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.2526689      0.7817788 
 
 $call
 cesEst(yName = "yTcMeObs", xNames = xNames, data = MishraCES, 
@@ -12437,6 +12791,12 @@ cesEst(yName = "yTcMeObs", xNames = xNames, data = MishraCES,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 314.89819   0.01907   0.87761   0.49521   2.95775   0.27913 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.2527         0.7818 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortTcMe )
 Estimated CES function with constant returns to scale
@@ -12816,6 +13176,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6247280      0.6571825 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "DE", 
     control = DEoptim.control(trace = FALSE, NP = 60))
@@ -12878,6 +13242,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "DE",
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 314.6700   0.6063   0.5959   0.6007   0.5216 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6247         0.6572 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesDe )
 Estimated CES function with constant returns to scale
@@ -13312,6 +13682,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.4723355      0.4005746 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "DE", control = DEoptim.control(trace = FALSE, NP = 70))
@@ -13381,6 +13755,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 732.5587   0.6423   0.5438   1.1171   1.4964   0.7965 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.4723         0.4006 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesDeVrs )
 Estimated CES function with variable returns to scale
@@ -14144,6 +14524,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.2983425      0.1302776 
+
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
     tName = "time", vrs = TRUE, method = "DE", control = DEoptim.control(trace = FALSE, 
@@ -14216,6 +14600,12 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 1.700e+03 1.755e-02 7.222e-01 3.231e-01 2.352e+00 6.676e+00 7.337e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.2983         0.1303 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesDeTcVrs )
 Estimated CES function with variable returns to scale
@@ -14589,6 +14979,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.5834444      0.6944405 
+
 $call
 cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, method = "DE", 
     multErr = TRUE, control = DEoptim.control(trace = FALSE, 
@@ -14654,6 +15048,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 315.0280   0.6202   0.5258   0.7140   0.4400 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5834         0.6944 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesDeMe )
 Estimated CES function with constant returns to scale
 
@@ -14710,6 +15110,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.5000000      0.7375849 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = 1, 
@@ -14779,6 +15183,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = 1,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 315.9288   0.6284   0.5685   1.0000   0.3558 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5000         0.7376 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLmRho1 )
 Estimated CES function with constant returns to scale
@@ -14867,6 +15277,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.5000000      0.7692155 
+
 $call
 cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
     rho1 = 1, control = nls.lm.control(maxiter = 200))
@@ -14943,6 +15357,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 309.11865   0.02057   0.62603   0.56613   1.00000   0.30003 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5000         0.7692 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmTcRho1 )
 Estimated CES function with constant returns to scale
 
@@ -14993,6 +15413,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     1.0000000      0.6411915 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
@@ -15069,6 +15493,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 207.8640   0.5577   0.6442   0.0000   0.5596   1.0967 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        1.0000         0.6412 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLmVrsRho1 )
 Estimated CES function with variable returns to scale
@@ -15182,6 +15612,10 @@ $convergence
 $message
 [1] "both X-convergence and relative convergence (5)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     1.0000000      0.5369915 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT", 
     rho1 = 0, control = list(eval.max = 500))
@@ -15250,6 +15684,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 309.8984   0.5542   0.6542   0.0000   0.8622 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         1.000          0.537 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortRho1 )
 Estimated CES function with constant returns to scale
@@ -15355,6 +15795,10 @@ $convergence
 $message
 [1] "relative convergence (4)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+      0.500000       0.695246 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "PORT", rho1 = 1, control = list(eval.max = 500, 
@@ -15433,6 +15877,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 356.9196   0.6296   0.5694   1.0000   0.4383   0.9704 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5000         0.6952 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortVrsRho1 )
 Estimated CES function with variable returns to scale
@@ -15551,6 +16001,10 @@ $convergence
 $message
 [1] "relative convergence (4)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.5000000      0.6983014 
+
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
     tName = "time", vrs = TRUE, method = "PORT", rho1 = 1, control = list(eval.max = 500, 
@@ -15632,6 +16086,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 381.85948   0.02036   0.63956   0.56758   1.00000   0.43205   1.06188 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5000         0.6983 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesPortTcVrsRho1 )
 Estimated CES function with variable returns to scale
 
@@ -15686,6 +16146,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6999061      0.5000000 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = 1, 
@@ -15755,6 +16219,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = 1,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 319.0307   0.6098   0.6279   0.4288   1.0000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6999         0.5000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLmRho )
 Estimated CES function with constant returns to scale
@@ -15843,6 +16313,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.5685398      1.0000000 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     rho = 0, control = nls.lm.control(maxiter = 200))
@@ -15920,6 +16394,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 230.2495   0.5944   0.5747   0.7589   0.0000   1.0722 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5685         1.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLmVrsRho )
 Estimated CES function with variable returns to scale
@@ -16021,6 +16501,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6000023      1.0000000 
+
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
     tName = "time", vrs = TRUE, rho = 0, control = nls.lm.control(maxiter = 200))
@@ -16099,6 +16583,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 237.12174   0.02056   0.60110   0.58882   0.66666   0.00000   1.17115 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           0.6            1.0 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmTcVrsRho )
 Estimated CES function with variable returns to scale
 
@@ -16166,6 +16656,10 @@ $convergence
 
 $message
 [1] "relative convergence (4)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.4841267      1.0000000 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT", 
@@ -16235,6 +16729,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 310.0164   0.6020   0.5604   1.0656   0.0000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.4841         1.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortRho )
 Estimated CES function with constant returns to scale
@@ -16339,6 +16839,10 @@ $convergence
 $message
 [1] "relative convergence (4)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.4841267      1.0000000 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT", 
     rho = 0, control = list(eval.max = 500))
@@ -16408,6 +16912,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 310.0164   0.6020   0.5604   1.0656   0.0000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.4841         1.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesPortRho )
 Estimated CES function with constant returns to scale
 
@@ -16474,6 +16984,10 @@ $convergence
 
 $message
 [1] "both X-convergence and relative convergence (5)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6458042      0.5000000 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
@@ -16553,6 +17067,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 392.1751   0.6153   0.6149   0.5485   1.0000   0.9493 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6458         0.5000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortVrsRho )
 Estimated CES function with variable returns to scale
@@ -16654,6 +17174,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           0.5            0.5 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = 1, 
     rho = 1, control = nls.lm.control(maxiter = 200))
@@ -16726,6 +17250,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = 1,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 324.7829   0.6670   0.5832   1.0000   1.0000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           0.5            0.5 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLmRho2 )
 Estimated CES function with constant returns to scale
@@ -16816,6 +17346,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           0.5            0.5 
+
 $call
 cesEst(yName = "yTcObs", xNames = xNames, data = MishraCES, tName = "time", 
     rho1 = 1, rho = 1, control = nls.lm.control(maxiter = 200))
@@ -16896,6 +17430,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 319.86009   0.02033   0.66647   0.56652   1.00000   1.00000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           0.5            0.5 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmTcRho2 )
 Estimated CES function with constant returns to scale
 
@@ -16947,6 +17487,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+             1              1 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
@@ -17027,6 +17571,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 137.0003   0.5481   0.6203   0.0000   0.0000   1.1925 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+             1              1 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLmVrsRho2 )
 Estimated CES function with variable returns to scale
@@ -17142,6 +17692,10 @@ $convergence
 $message
 [1] "both X-convergence and relative convergence (5)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           1.0            0.5 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT", 
     rho1 = 0, rho = 1, control = list(eval.max = 500))
@@ -17213,6 +17767,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 Coefficients:
   gamma delta_1 delta_2   rho_1     rho 
 311.575   0.558   0.662   0.000   1.000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           1.0            0.5 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortRho2 )
 Estimated CES function with constant returns to scale
@@ -17319,6 +17879,10 @@ $convergence
 $message
 [1] "relative convergence (4)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           0.5            1.0 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "PORT", rho1 = 1, rho = 0, control = list(eval.max = 500, 
@@ -17401,6 +17965,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 253.6976   0.6065   0.5638   1.0000   0.0000   1.0498 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           0.5            1.0 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortVrsRho2 )
 Estimated CES function with variable returns to scale
@@ -17521,6 +18091,10 @@ $convergence
 $message
 [1] "relative convergence (4)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           0.5            1.0 
+
 $call
 cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES, 
     tName = "time", vrs = TRUE, method = "PORT", rho1 = 1, rho = 0, 
@@ -17604,6 +18178,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 278.74746   0.02061   0.61933   0.57149   1.00000   0.00000   1.13316 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           0.5            1.0 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesPortTcVrsRho2 )
 Estimated CES function with variable returns to scale
 
@@ -17676,6 +18256,10 @@ $convergence
 
 $message
 [1] "relative convergence (4)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           0.5            1.0 
 
 $call
 cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
@@ -17761,6 +18345,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 142.31797   0.02831   0.75617   0.57833   1.00000   0.00000   1.26055 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           0.5            1.0 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesPortTcMeVrsRho2 )
 Estimated CES function with variable returns to scale
 
@@ -17818,6 +18408,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6250000      0.6570566 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = gridRhos, 
@@ -17910,6 +18504,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 314.6651   0.6062   0.5964   0.6000   0.5219 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         0.625          0.657 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmGrid1 )
 Estimated CES function with constant returns to scale
 
@@ -17997,6 +18597,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6250000      0.6575358 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
@@ -18096,6 +18700,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 314.1905   0.6061   0.5963   0.6000   0.5208   1.0004 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6250         0.6575 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLmVrsGrid1 )
 Estimated CES function with variable returns to scale
@@ -18198,6 +18808,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6666667      0.6511073 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, tName = "time", 
     vrs = TRUE, rho1 = seq(-0.5, 1.5, 0.5), control = nls.lm.control(maxiter = 200))
@@ -18288,6 +18902,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 2.986e+02 1.865e-04 6.004e-01 6.051e-01 5.000e-01 5.358e-01 1.011e+00 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6667         0.6511 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmTcVrsGrid1 )
 Estimated CES function with variable returns to scale
 
@@ -18355,6 +18975,10 @@ $convergence
 
 $message
 [1] "both X-convergence and relative convergence (5)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6250000      0.6570566 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT", 
@@ -18446,6 +19070,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 314.6651   0.6062   0.5964   0.6000   0.5219 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         0.625          0.657 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortGrid1 )
 Estimated CES function with constant returns to scale
@@ -18552,6 +19182,10 @@ $convergence
 $message
 [1] "relative convergence (4)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6250000      0.6575358 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "PORT", rho1 = gridRhos, control = list(eval.max = 500, 
@@ -18652,6 +19286,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE,
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 314.1905   0.6061   0.5963   0.6000   0.5208   1.0004 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6250         0.6575 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortVrsGrid1 )
 Estimated CES function with variable returns to scale
@@ -18754,6 +19394,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+      0.639094       0.625000 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho = gridRhos, 
     control = nls.lm.control(maxiter = 200))
@@ -18844,6 +19488,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 315.4265   0.6070   0.6017   0.5647   0.6000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6391         0.6250 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmGrid )
 Estimated CES function with constant returns to scale
 
@@ -18930,6 +19580,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6562406      0.5882353 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, tName = "time", 
@@ -19019,6 +19673,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 3.152e+02 1.614e-04 6.090e-01 6.095e-01 5.238e-01 7.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6562         0.5882 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmTcGrid )
 Estimated CES function with constant returns to scale
 
@@ -19069,6 +19729,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+      0.628811       0.625000 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
@@ -19168,6 +19832,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 327.6540   0.6081   0.5995   0.5903   0.6000   0.9907 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6288         0.6250 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmVrsGrid )
 Estimated CES function with variable returns to scale
 
@@ -19264,6 +19934,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6076089      0.6976744 
 
 $call
 cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
@@ -19364,6 +20038,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 294.2676   0.6123   0.5323   0.6458   0.4333   1.0177 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6076         0.6977 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmMeVrsGrid )
 Estimated CES function with variable returns to scale
 
@@ -19445,6 +20125,10 @@ $convergence
 
 $message
 [1] "relative convergence (4)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6390939      0.6250000 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT", 
@@ -19535,6 +20219,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 315.4265   0.6070   0.6017   0.5647   0.6000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6391         0.6250 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortGrid )
 Estimated CES function with constant returns to scale
@@ -19640,6 +20330,10 @@ $convergence
 $message
 [1] "relative convergence (4)"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.6288109      0.6250000 
+
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
     method = "PORT", rho = gridRhos, control = list(eval.max = 500, 
@@ -19740,6 +20434,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 327.6541   0.6081   0.5995   0.5903   0.6000   0.9907 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.6288         0.6250 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesPortVrsGrid )
 Estimated CES function with variable returns to scale
 
@@ -19839,6 +20539,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         0.625          0.625 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, rho1 = gridRhos[-1], 
@@ -20109,6 +20813,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 315.8436   0.6104   0.5994   0.6000   0.6000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         0.625          0.625 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmGrid2 )
 Estimated CES function with constant returns to scale
 
@@ -20196,6 +20906,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         0.625          0.625 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
@@ -20470,6 +21184,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 329.3627   0.6088   0.5988   0.6000   0.6000   0.9895 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         0.625          0.625 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmVrsGrid2 )
 Estimated CES function with variable returns to scale
 
@@ -20582,6 +21302,10 @@ $convergence
 
 $message
 [1] "both X-convergence and relative convergence (5)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         0.625          0.625 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT", 
@@ -20848,6 +21572,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho 
 315.8436   0.6104   0.5994   0.6000   0.6000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         0.625          0.625 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesPortGrid2 )
 Estimated CES function with constant returns to scale
 
@@ -20951,6 +21681,10 @@ $convergence
 
 $message
 [1] "both X-convergence and relative convergence (5)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         0.625          0.625 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
@@ -21231,6 +21965,12 @@ Coefficients:
    gamma  delta_1  delta_2    rho_1      rho       nu 
 329.3627   0.6088   0.5988   0.6000   0.6000   0.9895 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         0.625          0.625 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesPortVrsGrid2 )
 Estimated CES function with variable returns to scale
 
@@ -21347,6 +22087,10 @@ $convergence
 
 $message
 [1] "relative convergence (4)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.5882353      0.5882353 
 
 $call
 cesEst(yName = "yObs", xNames = xNames, data = MishraCES, tName = "time", 
@@ -21469,6 +22213,12 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, tName = "time",
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho        nu 
 3.650e+02 1.950e-04 6.209e-01 5.957e-01 7.000e-01 7.000e-01 9.645e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.5882         0.5882 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortTcVrsGrid2 )
 Estimated CES function with variable returns to scale
