@@ -27,16 +27,16 @@ data( "GrowthDJ", package = "AER" )
 GrowthDJ <- subset( GrowthDJ, oil == "no" )
 
 # calculate "input" variables for the Solow growth model
-GrowthDJ$x1 <- ( GrowthDJ$popgrowth + 5 ) / GrowthDJ$invest
-GrowthDJ$x2 <- 1
+GrowthDJ$x1 <- 1
+GrowthDJ$x2 <- ( GrowthDJ$popgrowth + 5 ) / GrowthDJ$invest
 
 # CES: non-linear least-squares estimation (NLLS)
 cesNls <- cesEst( "gdp85", c( "x1", "x2"), data = GrowthDJ )
 summary(cesNls)
 cesNlsCoef <- coef( cesNls )
-theta <- -cesNlsCoef[2]
-rho <- cesNlsCoef[3]
-print( alpha <- theta / ( 1 + theta ) )
+delta <- cesNlsCoef[ "delta" ]
+rho <- cesNlsCoef[ "rho" ]
+print( alpha <- ( delta - 1 ) / delta )
 print( sigma <- 1 / ( 1 - rho ) )
 cesNlsVar <- vcov(cesNls)
 # deltamethod(~-x2/(1-x2), cesNlsCoef, cesNlsVar)
@@ -46,13 +46,13 @@ cesNlsVar <- vcov(cesNls)
 cdNls <- cesEst( "gdp85", c( "x1", "x2"), data = GrowthDJ, rho = 0 )
 summary(cdNls)
 cdNlsCoef <- coef( cdNls )
-theta <- -cdNlsCoef[2]
-print( alpha <- theta / ( 1 + theta ) )
+delta <- cdNlsCoef[ "delta" ]
+print( alpha <- ( delta - 1 ) / delta )
 
 # Cobb-Douglas: estimation with logs
 cdLog <- cesEst( "gdp85", c( "x1", "x2"), data = GrowthDJ, rho = 0, multErr = TRUE )
 summary(cdLog)
 cdLogCoef <- coef( cdLog )
-theta <- -cdLogCoef[2]
-print( alpha <- theta / ( 1 + theta ) )
+delta <- cdLogCoef[ "delta" ]
+print( alpha <- ( delta - 1 ) / delta )
 
