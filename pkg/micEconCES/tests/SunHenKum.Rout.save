@@ -89,8 +89,8 @@ Authors: David Ardia and Katharine Mullen
 > GrowthDJ <- subset( GrowthDJ, oil == "no" )
 > 
 > # calculate "input" variables for the Solow growth model
-> GrowthDJ$x1 <- ( GrowthDJ$popgrowth + 5 ) / GrowthDJ$invest
-> GrowthDJ$x2 <- 1
+> GrowthDJ$x1 <- 1
+> GrowthDJ$x2 <- ( GrowthDJ$popgrowth + 5 ) / GrowthDJ$invest
 > 
 > # CES: non-linear least-squares estimation (NLLS)
 > cesNls <- cesEst( "gdp85", c( "x1", "x2"), data = GrowthDJ )
@@ -106,18 +106,20 @@ Convergence achieved after 23 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
 Coefficients:
-      Estimate Std. Error t value Pr(>|t|)
-gamma  646.141    549.993   1.175    0.240
-delta   -2.977      2.239  -1.330    0.184
-rho     -0.197      0.166  -1.187    0.235
+      Estimate Std. Error t value Pr(>|t|)  
+gamma  646.141    549.993   1.175   0.2401  
+delta    3.977      2.239   1.776   0.0757 .
+rho     -0.197      0.166  -1.187   0.2354  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 3313.748 
 Multiple R-squared: 0.6016277 
 
 > cesNlsCoef <- coef( cesNls )
-> theta <- -cesNlsCoef[2]
-> rho <- cesNlsCoef[3]
-> print( alpha <- theta / ( 1 + theta ) )
+> delta <- cesNlsCoef[ "delta" ]
+> rho <- cesNlsCoef[ "rho" ]
+> print( alpha <- ( delta - 1 ) / delta )
     delta 
 0.7485641 
 > print( sigma <- 1 / ( 1 - rho ) )
@@ -143,10 +145,10 @@ Convergence achieved after 7 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
 Coefficients:
-       Estimate Std. Error t value Pr(>|t|)  
-gamma 1288.0797   543.1772   2.371   0.0177 *
-delta   -1.4425     0.6955  -2.074   0.0381 *
-rho      0.0000     0.1609   0.000   1.0000  
+       Estimate Std. Error t value Pr(>|t|)    
+gamma 1288.0797   543.1772   2.371 0.017722 *  
+delta    2.4425     0.6955   3.512 0.000445 ***
+rho      0.0000     0.1609   0.000 1.000000    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -154,8 +156,8 @@ Residual standard error: 3342.308
 Multiple R-squared: 0.5947313 
 
 > cdNlsCoef <- coef( cdNls )
-> theta <- -cdNlsCoef[2]
-> print( alpha <- theta / ( 1 + theta ) )
+> delta <- cdNlsCoef[ "delta" ]
+> print( alpha <- ( delta - 1 ) / delta )
    delta 
 0.590591 
 > 
@@ -177,7 +179,7 @@ Message: Relative error in the sum of squares is at most `ftol'.
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
 gamma 965.2337   120.4003   8.017 1.08e-15 ***
-delta  -1.4880     0.3036  -4.901 9.53e-07 ***
+delta   2.4880     0.3036   8.195 2.51e-16 ***
 rho     0.0000     0.1056   0.000        1    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
@@ -186,8 +188,8 @@ Residual standard error: 0.6814132
 Multiple R-squared: 0.5973597 
 
 > cdLogCoef <- coef( cdLog )
-> theta <- -cdLogCoef[2]
-> print( alpha <- theta / ( 1 + theta ) )
+> delta <- cdLogCoef[ "delta" ]
+> print( alpha <- ( delta - 1 ) / delta )
     delta 
 0.5980698 
 > 
