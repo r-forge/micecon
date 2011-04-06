@@ -160,6 +160,10 @@ $iter
 $convergence
 [1] TRUE
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+      0.222804       1.140612 
+
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
     method = "NM", control = list(maxit = 5000))
@@ -226,6 +230,12 @@ Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  3.384e+00  2.034e-02  7.508e-06  5.940e-01  3.488e+00 -1.233e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.2228         1.1406 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesNm )
 Estimated CES function with constant returns to scale
 
@@ -285,6 +295,10 @@ function gradient
 
 $convergence
 [1] FALSE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.7910249      0.7986603 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -353,6 +367,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 16.30578  0.01104  0.47958  0.52492  0.26418  0.25210 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.7910         0.7987 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesCg )
 Estimated CES function with constant returns to scale
 
@@ -408,6 +428,10 @@ $coefficients
 
 $iter
 [1] 20000
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     1.0868245      0.6689631 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -476,6 +500,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 16.37373  0.01118  0.67674  0.62982 -0.07989  0.49485 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         1.087          0.669 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesSann )
 Estimated CES function with constant returns to scale
 
@@ -534,6 +564,10 @@ function gradient
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.1209128      0.8302262 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -601,6 +635,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 2.219e+00 2.062e-02 1.792e-10 8.245e-01 7.270e+00 2.045e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1209         0.8302 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesBfgs )
 Estimated CES function with constant returns to scale
 
@@ -664,6 +704,10 @@ $convergence
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+    0.08847067     0.23765547 
+
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
     method = "L-BFGS-B", control = list(maxit = 5000))
@@ -724,6 +768,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 14.15024  0.01501  0.02456  0.98698 10.30318  3.20777 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.08847        0.23766 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesBfgsCon )
 Estimated CES function with constant returns to scale
 
@@ -777,6 +827,10 @@ $convergence
 
 $message
 [1] "Number of iterations has reached `maxiter' == 1000."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+    0.01887328             NA 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -844,6 +898,12 @@ Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  2.897e+01  2.100e-02  4.161e-67  7.848e-05  5.198e+01 -2.542e+00 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.01887             NA 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLm )
 Estimated CES function with constant returns to scale
 
@@ -902,6 +962,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.0860554      0.2376553 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -970,6 +1034,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 14.09202  0.01501  0.02096  0.98716 10.62042  3.20777 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.08606        0.23766 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesNewton )
 Estimated CES function with constant returns to scale
 
@@ -1034,6 +1104,10 @@ $convergence
 
 $message
 [1] "false convergence (8)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.1012888      0.5874715 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -1100,6 +1174,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.372e+00 2.071e-02 1.454e-12 9.728e-01 8.873e+00 7.022e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1013         0.5875 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPort )
 Estimated CES function with constant returns to scale
@@ -1509,6 +1589,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.1374346      0.3658812 
+
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
     method = "DE", control = DEoptim.control(trace = FALSE, NP = 90))
@@ -1571,6 +1655,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 22.21328  0.01470  0.61891  0.81828  6.27619  1.73313 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1374         0.3659 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesDe )
 Estimated CES function with constant returns to scale
@@ -1639,6 +1729,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.8465250      0.6535948 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -1712,6 +1806,12 @@ Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.25197 0.02045 0.01788 0.96974 0.18130 0.53000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.8465         0.6536 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesNmRho2 )
 Estimated CES function with constant returns to scale
 
@@ -1774,6 +1874,10 @@ function gradient
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.8465250      0.6535948 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -1847,6 +1951,12 @@ Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.25201 0.02045 0.01787 0.96974 0.18130 0.53000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.8465         0.6536 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesBfgsRho2 )
 Estimated CES function with constant returns to scale
 
@@ -1912,6 +2022,10 @@ $convergence
 
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.8465250      0.6535948 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -1985,6 +2099,12 @@ Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.25202 0.02045 0.01787 0.96974 0.18130 0.53000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.8465         0.6536 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesBfgsConRho2 )
 Estimated CES function with constant returns to scale
 
@@ -2036,6 +2156,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+    0.07736183     0.65359477 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -2106,6 +2230,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.515e+00 2.083e-02 1.802e-16 9.484e-01 1.193e+01 5.300e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.07736        0.65359 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmRho )
 Estimated CES function with constant returns to scale
 
@@ -2156,6 +2286,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.8465250      0.2531240 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -2227,6 +2361,12 @@ Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 0.94454 0.02021 0.01900 1.00000 0.18130 2.95063 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.8465         0.2531 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmRho1 )
 Estimated CES function with constant returns to scale
 
@@ -2278,6 +2418,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.8465250      0.6535948 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -2353,6 +2497,12 @@ Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.25201 0.02045 0.01787 0.96974 0.18130 0.53000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.8465         0.6536 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesLmRho2 )
 Estimated CES function with constant returns to scale
 
@@ -2413,6 +2563,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.8465250      0.6535948 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -2486,6 +2640,12 @@ Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.25201 0.02045 0.01787 0.96974 0.18130 0.53000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.8465         0.6536 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesNewtonRho2 )
 Estimated CES function with constant returns to scale
 
@@ -2553,6 +2713,10 @@ $convergence
 
 $message
 [1] "both X-convergence and relative convergence (5)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.8465250      0.6535948 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -2627,6 +2791,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.25201 0.02045 0.01787 0.96974 0.18130 0.53000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.8465         0.6536 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortRho2 )
 Estimated CES function with constant returns to scale
@@ -3040,6 +3210,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.8465250      0.6535948 
+
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
     method = "DE", rho1 = 0.1813, rho = 0.53, control = DEoptim.control(trace = FALSE, 
@@ -3111,6 +3285,12 @@ Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 8.20948 0.01187 0.37257 0.78729 0.18130 0.53000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.8465         0.6536 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 > summary( cesDeRho2 )
 Estimated CES function with constant returns to scale
 
@@ -3179,6 +3359,10 @@ function gradient
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.1666667      0.6666667 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -3278,6 +3462,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  8.78228  0.02197 -0.03614  0.08811 -0.90000 -0.90000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+            10             10 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[2]]
 Estimated CES function
@@ -3292,6 +3482,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+             1             10 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[3]]
@@ -3308,6 +3504,12 @@ Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667        10.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[4]]
 Estimated CES function
@@ -3322,6 +3524,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 17.460750 -0.028429  0.001995  0.579139 10.000000 -0.900000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091       10.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[5]]
@@ -3338,6 +3546,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  3.68666  0.02193 -0.03502  0.42041 -0.90000 -0.40000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        10.000          1.667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[6]]
 Estimated CES function
@@ -3352,6 +3566,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  3.55730  0.02090  0.01753  0.45134  0.00000 -0.40000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         1.000          1.667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[7]]
@@ -3368,6 +3588,12 @@ Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  6.427e+00  2.046e-02  1.276e-07  3.010e-01  5.000e+00 -4.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         1.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[8]]
 Estimated CES function
@@ -3382,6 +3608,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  9.814e+00  2.032e-02  1.884e-13  2.161e-01  1.000e+01 -4.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        1.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[9]]
@@ -3398,6 +3630,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  1.85273  0.02191 -0.03530  0.78405 -0.90000  0.00000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+            10              1 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[10]]
 Estimated CES function
@@ -3412,6 +3650,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.88147 0.02086 0.01805 0.79973 0.00000 0.00000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+             1              1 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[11]]
@@ -3428,6 +3672,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         1.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[12]]
 Estimated CES function
@@ -3442,6 +3692,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 33.83924  0.01243  0.03842  0.21451 10.00000  0.00000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        1.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[13]]
@@ -3458,6 +3714,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  1.17598  0.02186 -0.03390  0.96466 -0.90000  0.50000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       10.0000         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[14]]
 Estimated CES function
@@ -3472,6 +3734,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.24891 0.02080 0.01866 0.96642 0.00000 0.50000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        1.0000         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[15]]
@@ -3488,6 +3756,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[16]]
 Estimated CES function
@@ -3502,6 +3776,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 28.263328  0.007024  0.358920  0.515693 10.000000  0.500000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        0.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[17]]
@@ -3518,6 +3798,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  0.98864  0.02182 -0.03171  0.99516 -0.90000  1.00000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+          10.0            0.5 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[18]]
 Estimated CES function
@@ -3532,6 +3818,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 54.824830  0.014973  3.306796  0.000751  0.000000  1.000000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           1.0            0.5 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[19]]
@@ -3548,6 +3840,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 26.995131  0.007491  1.302886  0.674564  5.000000  1.000000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         0.5000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[20]]
 Estimated CES function
@@ -3562,6 +3860,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 26.754689  0.007489  1.489258  0.677505 10.000000  1.000000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        0.50000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 
@@ -3591,6 +3895,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesBfgsGridRho2 )
 Estimated CES function with constant returns to scale
@@ -3643,6 +3953,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+    0.07128157     1.00000000 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -3725,6 +4039,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  8.85360  0.02199 -0.24131  0.08039 -1.71949 -0.90000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+            NA             10 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[2]]
 Estimated CES function
@@ -3739,6 +4059,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  3.61888  0.02196 -0.25925  0.40544 -1.74522 -0.40000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+            NA          1.667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[3]]
@@ -3755,6 +4081,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 2.938e+00 2.084e-02 8.084e-18 6.829e-01 1.303e+01 0.000e+00 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.07128        1.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[4]]
 Estimated CES function
@@ -3770,6 +4102,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.551e+00 2.083e-02 1.575e-16 9.421e-01 1.197e+01 5.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.07707        0.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[5]]
 Estimated CES function
@@ -3784,6 +4122,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 26.188734  0.007489  1.069242  0.684328  7.943003  1.000000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1118         0.5000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 
@@ -3803,6 +4147,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 2.938e+00 2.084e-02 8.084e-18 6.829e-01 1.303e+01 0.000e+00 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.07128        1.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLmGridRho )
 Estimated CES function with constant returns to scale
@@ -3856,6 +4206,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.1666667      0.6059867 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -3936,6 +4290,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  0.85989  0.02162 -0.01949  1.00000 -0.90000  2.88217 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       10.0000         0.2576 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[2]]
 Estimated CES function
@@ -3950,6 +4310,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 0.92866 0.02055 0.02049 1.00000 0.00000 3.03009 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        1.0000         0.2481 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[3]]
@@ -3966,6 +4332,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.452e+00 2.038e-02 1.213e-07 9.656e-01 5.000e+00 6.502e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         0.6060 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[4]]
 Estimated CES function
@@ -3980,6 +4352,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 15.07421  0.01501  0.05205  0.98406 10.00000  3.20802 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        0.23764 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 
@@ -3999,6 +4377,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.452e+00 2.038e-02 1.213e-07 9.656e-01 5.000e+00 6.502e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         0.6060 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLmGridRho1 )
 Estimated CES function with constant returns to scale
@@ -4055,6 +4439,10 @@ $convergence
 
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.0909091      1.6666667 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -4155,6 +4543,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  8.78233  0.02197 -0.03614  0.08811 -0.90000 -0.90000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+            10             10 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[2]]
 Estimated CES function
@@ -4169,6 +4563,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+             1             10 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[3]]
@@ -4185,6 +4585,12 @@ Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667        10.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[4]]
 Estimated CES function
@@ -4199,6 +4605,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  1.357e+01  2.081e-02  6.899e-14  5.479e-02  1.000e+01 -9.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091       10.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[5]]
@@ -4215,6 +4627,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  3.69131  0.02193 -0.03595  0.41986 -0.90000 -0.40000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        10.000          1.667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[6]]
 Estimated CES function
@@ -4229,6 +4647,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  3.55706  0.02090  0.01753  0.45136  0.00000 -0.40000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         1.000          1.667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[7]]
@@ -4245,6 +4669,12 @@ Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  6.427e+00  2.046e-02  1.276e-07  3.010e-01  5.000e+00 -4.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         1.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[8]]
 Estimated CES function
@@ -4259,6 +4689,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  6.429e+00  2.078e-02  6.511e-14  2.989e-01  1.000e+01 -4.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        1.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[9]]
@@ -4275,6 +4711,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  1.85272  0.02191 -0.03530  0.78405 -0.90000  0.00000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+            10              1 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[10]]
 Estimated CES function
@@ -4289,6 +4731,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.88165 0.02085 0.01808 0.79973 0.00000 0.00000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+             1              1 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[11]]
@@ -4305,6 +4753,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 3.038e+00 2.042e-02 1.264e-07 6.776e-01 5.000e+00 0.000e+00 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         1.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[12]]
 Estimated CES function
@@ -4319,6 +4773,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 2.981e+00 2.077e-02 6.093e-14 6.798e-01 1.000e+01 0.000e+00 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        1.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[13]]
@@ -4335,6 +4795,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  1.17596  0.02186 -0.03391  0.96466 -0.90000  0.50000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       10.0000         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[14]]
 Estimated CES function
@@ -4349,6 +4815,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.24894 0.02080 0.01869 0.96642 0.00000 0.50000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        1.0000         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[15]]
@@ -4365,6 +4837,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[16]]
 Estimated CES function
@@ -4379,6 +4857,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.571e+00 2.076e-02 5.500e-14 9.410e-01 1.000e+01 5.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        0.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[17]]
@@ -4395,6 +4879,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 43.99303  0.01287  1.04316  0.27618 -0.90000  1.00000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+          10.0            0.5 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[18]]
 Estimated CES function
@@ -4409,6 +4899,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 5.412e+01 1.539e-02 3.524e+00 3.713e-04 0.000e+00 1.000e+00 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           1.0            0.5 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[19]]
@@ -4425,6 +4921,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.230e+00 2.037e-02 1.172e-07 9.913e-01 5.000e+00 1.000e+00 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         0.5000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[20]]
 Estimated CES function
@@ -4439,6 +4941,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 28.579027  0.007488  4.006684  0.655524 10.000000  1.000000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        0.50000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 
@@ -4468,6 +4976,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  6.429e+00  2.078e-02  6.511e-14  2.989e-01  1.000e+01 -4.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        1.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesLmGridRho2 )
 Estimated CES function with constant returns to scale
@@ -4529,6 +5043,10 @@ $iter
 
 $convergence
 [1] TRUE
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.1666667      1.0000000 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -4629,6 +5147,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  3.45006  0.01906  0.23750  0.33004 -0.90000 -0.90000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+            10             10 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[2]]
 Estimated CES function
@@ -4643,6 +5167,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+             1             10 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[3]]
@@ -4659,6 +5189,12 @@ Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667        10.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[4]]
 Estimated CES function
@@ -4673,6 +5209,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  2.734e+01  8.481e-03  1.979e-10  3.184e-02  1.000e+01 -9.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091       10.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[5]]
@@ -4689,6 +5231,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  3.69131  0.02193 -0.03595  0.41986 -0.90000 -0.40000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        10.000          1.667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[6]]
 Estimated CES function
@@ -4703,6 +5251,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  3.55706  0.02090  0.01753  0.45136  0.00000 -0.40000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         1.000          1.667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[7]]
@@ -4719,6 +5273,12 @@ Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  1.562e+01  1.866e-02  9.670e-07  1.449e-01  5.000e+00 -4.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         1.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[8]]
 Estimated CES function
@@ -4733,6 +5293,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  1.643e+01  1.585e-02  6.542e-12  1.468e-01  1.000e+01 -4.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        1.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[9]]
@@ -4749,6 +5315,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  1.85272  0.02191 -0.03530  0.78405 -0.90000  0.00000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+            10              1 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[10]]
 Estimated CES function
@@ -4763,6 +5335,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.88165 0.02085 0.01808 0.79973 0.00000 0.00000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+             1              1 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[11]]
@@ -4779,6 +5357,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         1.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[12]]
 Estimated CES function
@@ -4793,6 +5377,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 2.006e+01 1.913e-02 3.260e-11 2.202e-01 1.000e+01 0.000e+00 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        1.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[13]]
@@ -4809,6 +5399,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  1.17596  0.02186 -0.03391  0.96466 -0.90000  0.50000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       10.0000         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[14]]
 Estimated CES function
@@ -4823,6 +5419,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 19.292449  0.008101  0.776768  0.626872  0.000000  0.500000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        1.0000         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[15]]
@@ -4839,6 +5441,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 24.728657  0.007068  0.168950  0.546337  5.000000  0.500000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[16]]
 Estimated CES function
@@ -4853,6 +5461,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 25.301753  0.007024  0.044238  0.541767 10.000000  0.500000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        0.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[17]]
@@ -4869,6 +5483,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 43.99265  0.01287  1.04316  0.27619 -0.90000  1.00000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+          10.0            0.5 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[18]]
 Estimated CES function
@@ -4883,6 +5503,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 26.506087  0.007352  1.009424  0.681427  0.000000  1.000000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           1.0            0.5 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[19]]
@@ -4899,6 +5525,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 29.26930  0.00749  2.40371  0.64718  5.00000  1.00000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         0.5000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[20]]
 Estimated CES function
@@ -4913,6 +5545,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 29.91143  0.01521  0.50000  0.50001 10.00000  1.00000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        0.50000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 
@@ -4942,6 +5580,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         1.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesNewtonGridRho2 )
 Estimated CES function with constant returns to scale
@@ -5012,6 +5656,10 @@ $convergence
 
 $message
 [1] "relative convergence (4)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+    0.06503666     1.66666667 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -5094,6 +5742,12 @@ Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  1.365e+01  2.084e-02  1.298e-16  5.428e-02  1.215e+01 -9.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.07602       10.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[2]]
 Estimated CES function
@@ -5108,6 +5762,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  6.413e+00  2.086e-02  1.743e-19  2.990e-01  1.438e+01 -4.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.06504        1.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[3]]
@@ -5124,6 +5784,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 3.011e+00 2.074e-02 6.043e-13 6.775e-01 9.217e+00 0.000e+00 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09787        1.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[4]]
 Estimated CES function
@@ -5139,6 +5805,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.586e+00 2.071e-02 6.276e-13 9.401e-01 9.180e+00 5.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09823        0.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[5]]
 Estimated CES function
@@ -5153,6 +5825,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  1.01521  0.02161  0.00000  0.99517 -0.64355  1.00000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         2.805          0.500 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 
@@ -5172,6 +5850,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  6.413e+00  2.086e-02  1.743e-19  2.990e-01  1.438e+01 -4.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.06504        1.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortGridRho )
 Estimated CES function with constant returns to scale
@@ -5243,6 +5927,10 @@ $convergence
 
 $message
 [1] "relative convergence (4)"
+
+$ela
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+     0.0909091      1.6666667 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -5343,6 +6031,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  8.56517  0.02173  0.00000  0.09410 -0.90000 -0.90000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+            10             10 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[2]]
 Estimated CES function
@@ -5357,6 +6051,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+             1             10 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[3]]
@@ -5373,6 +6073,12 @@ Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667        10.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[4]]
 Estimated CES function
@@ -5387,6 +6093,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  1.357e+01  2.081e-02  6.898e-14  5.479e-02  1.000e+01 -9.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091       10.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[5]]
@@ -5403,6 +6115,12 @@ Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
  3.6263  0.0217  0.0000  0.4330 -0.9000 -0.4000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        10.000          1.667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[6]]
 Estimated CES function
@@ -5417,6 +6135,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  3.55706  0.02090  0.01753  0.45136  0.00000 -0.40000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+         1.000          1.667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[7]]
@@ -5433,6 +6157,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
 41.63453  0.02504  0.96422  0.00000  5.00000 -0.40000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         1.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[8]]
 Estimated CES function
@@ -5447,6 +6177,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  6.429e+00  2.078e-02  6.510e-14  2.989e-01  1.000e+01 -4.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        1.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[9]]
@@ -5463,6 +6199,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  1.86057  0.02168  0.00000  0.79052 -0.90000  0.00000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+            10              1 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[10]]
 Estimated CES function
@@ -5477,6 +6219,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.88165 0.02085 0.01808 0.79973 0.00000 0.00000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+             1              1 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[11]]
@@ -5493,6 +6241,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         1.0000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[12]]
 Estimated CES function
@@ -5507,6 +6261,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 2.981e+00 2.077e-02 6.092e-14 6.798e-01 1.000e+01 0.000e+00 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        1.00000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[13]]
@@ -5523,6 +6283,12 @@ Coefficients:
    gamma   lambda  delta_1  delta_2    rho_1      rho 
  1.20195  0.02164  0.00000  0.96535 -0.90000  0.50000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       10.0000         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[14]]
 Estimated CES function
@@ -5537,6 +6303,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
   gamma  lambda delta_1 delta_2   rho_1     rho 
 1.24894 0.02080 0.01869 0.96642 0.00000 0.50000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        1.0000         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[15]]
@@ -5553,6 +6325,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         0.6667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[16]]
 Estimated CES function
@@ -5567,6 +6345,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 26.101049  0.007024  0.078847  0.534587 10.000000  0.500000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        0.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[17]]
@@ -5583,6 +6367,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 26.037916  0.007489  1.000000  0.686145 -0.900000  1.000000 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+          10.0            0.5 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[18]]
 Estimated CES function
@@ -5597,6 +6387,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 26.037916  0.007489  1.000000  0.686145  0.000000  1.000000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+           1.0            0.5 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $allRhoFull[[19]]
@@ -5613,6 +6409,12 @@ Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 1.230e+00 2.037e-02 1.172e-07 9.913e-01 5.000e+00 1.000e+00 
 
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+        0.1667         0.5000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
+
 
 $allRhoFull[[20]]
 Estimated CES function
@@ -5627,6 +6429,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 Coefficients:
     gamma    lambda   delta_1   delta_2     rho_1       rho 
 26.037883  0.007489  0.999982  0.686145 10.000000  1.000000 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        0.50000 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 
@@ -5656,6 +6464,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Coefficients:
      gamma     lambda    delta_1    delta_2      rho_1        rho 
  6.429e+00  2.078e-02  6.510e-14  2.989e-01  1.000e+01 -4.000e-01 
+
+Elasticities of Substitution:
+    E_1_2 (HM) E_(1,2)_3 (AU) 
+       0.09091        1.66667 
+AU = Allen-Uzawa (partial) elasticity of substitution
+HM = Hicks-McFadden (direct) elasticity of substitution
 
 > summary( cesPortGridRho2 )
 Estimated CES function with constant returns to scale

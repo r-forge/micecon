@@ -103,6 +103,10 @@ $iter
 $convergence
 [1] FALSE
 
+$ela
+E_1_2 (all) 
+         NA 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "NM")
@@ -155,6 +159,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
     gamma     delta       rho 
 100.25014   0.06909  -3.74631 
+
+Elasticity of Substitution: NA 
 
 > summary( cesLandLabor )
 Estimated CES function with constant returns to scale
@@ -232,6 +238,10 @@ $iter
 $convergence
 [1] FALSE
 
+$ela
+E_1_2 (all) 
+         NA 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE, method = "Nelder-Mead")
@@ -285,6 +295,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
     gamma     delta       rho        nu 
 233.84853   0.01535  -1.86100   1.43203 
+
+Elasticity of Substitution: NA 
 
 > summary( cesLandLaborVrs )
 Estimated CES function with variable returns to scale
@@ -368,6 +380,10 @@ function gradient
 $convergence
 [1] FALSE
 
+$ela
+E_1_2 (all) 
+  0.8904487 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "CG")
@@ -420,6 +436,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
    gamma    delta      rho 
 274.3732   0.4588   0.1230 
+
+Elasticity of Substitution: 0.8904 
 
 > summary( cesLandLaborCg )
 Estimated CES function with constant returns to scale
@@ -494,6 +512,10 @@ $coefficients
 $iter
 [1] 10000
 
+$ela
+E_1_2 (all) 
+         NA 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "SANN")
@@ -546,6 +568,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
      gamma      delta        rho 
 273.558496   0.008014  -2.790217 
+
+Elasticity of Substitution: NA 
 
 > summary( cesLandLaborSann )
 Estimated CES function with constant returns to scale
@@ -623,6 +647,10 @@ function gradient
 $convergence
 [1] FALSE
 
+$ela
+E_1_2 (all) 
+         NA 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "BFGS")
@@ -675,6 +703,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
    gamma    delta      rho 
 89.47345  0.07176 -4.39599 
+
+Elasticity of Substitution: NA 
 
 > summary( cesLandLaborBfgs )
 Estimated CES function with constant returns to scale
@@ -756,6 +786,10 @@ $convergence
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
+$ela
+E_1_2 (all) 
+   12853.01 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "L-BFGS-B")
@@ -808,6 +842,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
 gamma delta   rho 
 49.14  1.00 -1.00 
+
+Elasticity of Substitution: 12853 
 
 > summary( cesLandLaborBfgsCon )
 Estimated CES function with constant returns to scale
@@ -900,6 +936,10 @@ gamma  4.833165e-22 -1.366604e-10 -9.778817e-14
 delta -1.366604e-10  3.865291e+01  2.764912e-02
 rho   -9.778817e-14  2.764912e-02  1.978536e-05
 
+$ela
+E_1_2 (all) 
+   1.015751 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "Kmenta")
@@ -949,6 +989,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
      gamma      delta        rho 
  2.378e-12  2.127e+01 -1.551e-02 
+
+Elasticity of Substitution: 1.016 
 
 > summary( cesLandLaborKmentaCrs )
 Estimated CES function with constant returns to scale
@@ -1044,6 +1086,10 @@ delta -7.277789e-05  2.834394e+01  1.929965e-01 -1.297656e+00
 rho   -4.929840e-07  1.929965e-01  1.315084e-03 -9.017468e-03
 nu     2.708347e-06 -1.297656e+00 -9.017468e-03  1.021663e-01
 
+$ela
+E_1_2 (all) 
+   1.049335 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE, method = "Kmenta")
@@ -1093,6 +1139,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
      gamma      delta        rho         nu 
  1.315e-06  7.481e+00 -4.702e-02  1.656e+00 
+
+Elasticity of Substitution: 1.049 
 
 > summary( cesLandLaborKmenta )
 Estimated CES function with variable returns to scale
@@ -1170,6 +1218,10 @@ $convergence
 $message
 [1] "Number of iterations has reached `maxiter' == 200."
 
+$ela
+E_1_2 (all) 
+   1.856294 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "LM", control = nls.lm.control(maxiter = 200))
@@ -1222,6 +1274,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
   gamma   delta     rho 
  2.6197  4.8556 -0.4613 
+
+Elasticity of Substitution: 1.856 
 
 > summary( cesLandLaborLm )
 Estimated CES function with constant returns to scale
@@ -1298,6 +1352,10 @@ $iter
 $convergence
 [1] FALSE
 
+$ela
+E_1_2 (all) 
+         NA 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "Newton")
@@ -1350,6 +1408,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
      gamma      delta        rho 
 274.353182   0.000952  -4.038093 
+
+Elasticity of Substitution: NA 
 
 > summary( cesLandLaborNewton )
 Estimated CES function with constant returns to scale
@@ -1433,6 +1493,10 @@ $convergence
 $message
 [1] "function evaluation limit reached without convergence (9)"
 
+$ela
+E_1_2 (all) 
+         NA 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "PORT", lower = -Inf, upper = Inf)
@@ -1485,6 +1549,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
    gamma    delta      rho 
 79.48771  0.06072 -5.82585 
+
+Elasticity of Substitution: NA 
 
 > summary( cesLandLaborPort )
 Estimated CES function with constant returns to scale
@@ -1569,6 +1635,10 @@ $convergence
 $message
 [1] "both X-convergence and relative convergence (5)"
 
+$ela
+E_1_2 (all) 
+    93.9011 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "PORT")
@@ -1621,6 +1691,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
   gamma   delta     rho 
 49.1430  1.0000 -0.9894 
+
+Elasticity of Substitution: 93.9 
 
 > summary( cesLandLaborPortCon )
 Estimated CES function with constant returns to scale
@@ -1705,6 +1777,10 @@ $convergence
 $message
 [1] "relative convergence (4)"
 
+$ela
+E_1_2 (all) 
+          2 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "PORT", lower = c(0.1, 0.1, -0.5), upper = c(300, 
@@ -1759,6 +1835,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
 gamma delta   rho 
 57.69  0.90 -0.50 
+
+Elasticity of Substitution: 2 
 
 > summary( cesLandLaborPortCon2 )
 Estimated CES function with constant returns to scale
@@ -1844,6 +1922,10 @@ $convergence
 $message
 [1] "function evaluation limit reached without convergence (9)"
 
+$ela
+E_1_2 (all) 
+   1.929961 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE, method = "PORT", lower = -Inf, upper = Inf)
@@ -1897,6 +1979,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
   gamma   delta     rho      nu 
 80.2774  0.2176 -0.4819  1.8959 
+
+Elasticity of Substitution: 1.93 
 
 > summary( cesLandLaborPortVrs )
 Estimated CES function with variable returns to scale
@@ -1986,6 +2070,10 @@ $convergence
 $message
 [1] "function evaluation limit reached without convergence (9)"
 
+$ela
+E_1_2 (all) 
+   1.206722 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE, method = "PORT")
@@ -2039,6 +2127,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
   gamma   delta     rho      nu 
 43.9654  0.4155 -0.1713  1.8854 
+
+Elasticity of Substitution: 1.207 
 
 > summary( cesLandLaborPortVrsCon )
 Estimated CES function with variable returns to scale
@@ -2430,6 +2520,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+E_1_2 (all) 
+   13.87408 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "DE", control = DEoptim.control(trace = FALSE))
@@ -2478,6 +2572,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
    gamma    delta      rho 
 154.2711   0.2976  -0.9279 
+
+Elasticity of Substitution: 13.87 
 
 > summary( cesLandLaborDe )
 Estimated CES function with constant returns to scale
@@ -2862,6 +2958,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+E_1_2 (all) 
+   1.756444 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     vrs = TRUE, method = "DE", control = DEoptim.control(trace = FALSE))
@@ -2911,6 +3011,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
   gamma   delta     rho      nu 
 59.8246  0.5413 -0.4307  1.3066 
+
+Elasticity of Substitution: 1.756 
 
 > summary( cesLandLaborDeVrs )
 Estimated CES function with variable returns to scale
@@ -3290,6 +3392,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+E_1_2 (all) 
+        100 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
     method = "DE", lower = c(1, 0.01, -0.99), upper = c(50, 0.99, 
@@ -3340,6 +3446,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 Coefficients:
 gamma delta   rho 
 49.62  0.99 -0.99 
+
+Elasticity of Substitution: 100 
 
 > summary( cesLandLaborDe2 )
 Estimated CES function with constant returns to scale
@@ -3430,6 +3538,10 @@ $iter
 $convergence
 [1] FALSE
 
+$ela
+E_1_2 (all) 
+   0.208324 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "NM")
@@ -3482,6 +3594,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho 
 32.2112  0.2008  3.8002 
+
+Elasticity of Substitution: 0.2083 
 
 > summary( cesLandInt )
 Estimated CES function with constant returns to scale
@@ -3542,6 +3656,10 @@ $iter
 $convergence
 [1] FALSE
 
+$ela
+E_1_2 (all) 
+  0.3725843 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "Nelder-Mead")
@@ -3595,6 +3713,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho      nu 
 1.00222 0.02173 1.68396 1.31339 
+
+Elasticity of Substitution: 0.3726 
 
 > summary( cesLandIntVrs )
 Estimated CES function with variable returns to scale
@@ -3660,6 +3780,10 @@ function gradient
 $convergence
 [1] FALSE
 
+$ela
+E_1_2 (all) 
+  0.7749583 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "CG")
@@ -3712,6 +3836,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho 
 13.6205  0.4822  0.2904 
+
+Elasticity of Substitution: 0.775 
 
 > summary( cesLandIntCg )
 Estimated CES function with constant returns to scale
@@ -3769,6 +3895,10 @@ $coefficients
 $iter
 [1] 10000
 
+$ela
+E_1_2 (all) 
+  0.2547959 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "SANN", random.seed = 234)
@@ -3821,6 +3951,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
    gamma    delta      rho 
 13.14842  0.02101  2.92471 
+
+Elasticity of Substitution: 0.2548 
 
 > summary( cesLandIntSann )
 Estimated CES function with constant returns to scale
@@ -3881,6 +4013,10 @@ function gradient
 $convergence
 [1] TRUE
 
+$ela
+E_1_2 (all) 
+  0.2021491 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "BFGS")
@@ -3933,6 +4069,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho 
 34.7896  0.2558  3.9468 
+
+Elasticity of Substitution: 0.2021 
 
 > summary( cesLandIntBfgs )
 Estimated CES function with constant returns to scale
@@ -3997,6 +4135,10 @@ $convergence
 $message
 [1] "CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH"
 
+$ela
+E_1_2 (all) 
+  0.6056703 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "L-BFGS-B")
@@ -4049,6 +4191,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
  gamma  delta    rho 
 49.143  1.000  0.651 
+
+Elasticity of Substitution: 0.6057 
 
 > summary( cesLandIntBfgsCon )
 Estimated CES function with constant returns to scale
@@ -4124,6 +4268,10 @@ gamma  3.667607e+18  3.152675e+10 -9.754074e+07
 delta  3.152675e+10  2.710399e+02 -8.384470e-01
 rho   -9.754074e+07 -8.384470e-01  2.594122e-03
 
+$ela
+E_1_2 (all) 
+  0.9694348 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "Kmenta")
@@ -4171,6 +4319,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
     gamma     delta       rho 
 7.463e+07 9.946e+00 3.153e-02 
+
+Elasticity of Substitution: 0.9694 
 
 > summary( cesLandIntKmentaCrs )
 Estimated CES function with constant returns to scale
@@ -4246,6 +4396,10 @@ delta  0.444729932 31.5957949 -5.54483736 -0.124590619
 rho   -0.078094527 -5.5448374  0.97320590  0.022743063
 nu    -0.002344101 -0.1245906  0.02274306  0.013322562
 
+$ela
+E_1_2 (all) 
+   1.294771 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "Kmenta")
@@ -4295,6 +4449,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
     gamma     delta       rho        nu 
  0.005251 -1.130309 -0.227663  1.697680 
+
+Elasticity of Substitution: 1.295 
 
 > summary( cesLandIntKmenta )
 Estimated CES function with variable returns to scale
@@ -4350,6 +4506,10 @@ $convergence
 $message
 [1] "Relative error in the sum of squares is at most `ftol'."
 
+$ela
+E_1_2 (all) 
+  0.1865044 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "LM", control = nls.lm.control(maxiter = 200))
@@ -4402,6 +4562,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho 
 47.3694  0.8519  4.3618 
+
+Elasticity of Substitution: 0.1865 
 
 > summary( cesLandIntLm )
 Estimated CES function with constant returns to scale
@@ -4461,6 +4623,10 @@ $iter
 $convergence
 [1] FALSE
 
+$ela
+E_1_2 (all) 
+  0.2224387 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "Newton")
@@ -4513,6 +4679,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
    gamma    delta      rho 
 13.87994  0.01201  3.49562 
+
+Elasticity of Substitution: 0.2224 
 
 > summary( cesLandIntNewton )
 Estimated CES function with constant returns to scale
@@ -4579,6 +4747,10 @@ $convergence
 $message
 [1] "function evaluation limit reached without convergence (9)"
 
+$ela
+E_1_2 (all) 
+  0.1474008 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "PORT", lower = -Inf, upper = Inf)
@@ -4631,6 +4803,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho 
 42.0293  0.4048  5.7842 
+
+Elasticity of Substitution: 0.1474 
 
 > summary( cesLandIntPort )
 Estimated CES function with constant returns to scale
@@ -4698,6 +4872,10 @@ $convergence
 $message
 [1] "function evaluation limit reached without convergence (9)"
 
+$ela
+E_1_2 (all) 
+  0.1710545 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "PORT")
@@ -4750,6 +4928,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho 
 36.9415  0.2508  4.8461 
+
+Elasticity of Substitution: 0.1711 
 
 > summary( cesLandIntPortCon )
 Estimated CES function with constant returns to scale
@@ -4817,6 +4997,10 @@ $convergence
 $message
 [1] "function evaluation limit reached without convergence (9)"
 
+$ela
+E_1_2 (all) 
+    1.82344 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "PORT", lower = -Inf, upper = Inf)
@@ -4870,6 +5054,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho      nu 
  2.1742  0.8777 -0.4516  1.5808 
+
+Elasticity of Substitution: 1.823 
 
 > summary( cesLandIntPortVrs )
 Estimated CES function with variable returns to scale
@@ -4941,6 +5127,10 @@ $convergence
 $message
 [1] "function evaluation limit reached without convergence (9)"
 
+$ela
+E_1_2 (all) 
+    1.31622 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "PORT")
@@ -4994,6 +5184,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho      nu 
  1.6414  0.7873 -0.2402  1.5814 
+
+Elasticity of Substitution: 1.316 
 
 > summary( cesLandIntPortVrsCon )
 Estimated CES function with variable returns to scale
@@ -5367,6 +5559,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+E_1_2 (all) 
+  0.1837365 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "DE", control = DEoptim.control(trace = FALSE))
@@ -5415,6 +5611,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho 
 47.6946  0.8755  4.4426 
+
+Elasticity of Substitution: 0.1837 
 
 > summary( cesLandIntDe )
 Estimated CES function with constant returns to scale
@@ -5782,6 +5980,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+E_1_2 (all) 
+  0.1288657 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "DE", control = DEoptim.control(trace = FALSE))
@@ -5831,6 +6033,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho      nu 
 30.5004  0.9611  6.7600  1.1314 
+
+Elasticity of Substitution: 0.1289 
 
 > summary( cesLandIntDeVrs )
 Estimated CES function with variable returns to scale
@@ -6188,6 +6392,10 @@ $coefficients
 $iter
 [1] 200
 
+$ela
+E_1_2 (all) 
+  0.2500355 
+
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "DE", lower = c(1, 0.01, -0.99), upper = c(50, 0.99, 
@@ -6238,6 +6446,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Coefficients:
   gamma   delta     rho 
 48.9762  0.9898  2.9994 
+
+Elasticity of Substitution: 0.2500 
 
 > summary( cesLandLaborDe2 )
 Estimated CES function with constant returns to scale
