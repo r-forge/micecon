@@ -486,6 +486,9 @@ cesNewton <- cesEst( "yObs", xNames, data = MishraCES, method = "Newton" )
 print.default( cesNewton )
 print( cesNewton )
 summary( cesNewton )
+summary( cesNewton, ela = FALSE )
+print( summary( cesNewton ), ela = FALSE )
+summary( cesNewton )$elaCov
 coef( cesNewton )
 vcov( cesNewton )
 coef( summary( cesNewton ) )
@@ -591,6 +594,9 @@ cesDeVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "DE", vrs = TRUE,
 print.default( cesDeVrs )
 print( cesDeVrs )
 summary( cesDeVrs )
+summary( cesDeVrs, ela = FALSE )
+print( summary( cesDeVrs ), ela = FALSE )
+summary( cesDeVrs )$elaCov
 coef( cesDeVrs )
 vcov( cesDeVrs )
 coef( summary( cesDeVrs ) )
@@ -820,6 +826,9 @@ cesPortTcMeVrsRho2 <- cesEst( "yTcMeVrsObs", xNames, tName = "time",
 print.default( cesPortTcMeVrsRho2 )
 print( cesPortTcMeVrsRho2 )
 summary( cesPortTcMeVrsRho2 )
+summary( cesPortTcMeVrsRho2, ela = FALSE )
+print( summary( cesPortTcMeVrsRho2 ), ela = FALSE )
+summary( cesPortTcMeVrsRho2 )$elaCov
 
 
 ########## Grid Search for Rho_1 ##############

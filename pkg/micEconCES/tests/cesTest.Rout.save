@@ -186,6 +186,49 @@ Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
 E_1_2 (all)       NA         NA      NA       NA
 
+> summary( cesLandLabor, ela = FALSE )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "NM")
+
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+assuming an additive error term
+Convergence NOT achieved after 501 iterations
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)
+gamma  1.003e+02  6.548e+05       0        1
+delta  6.909e-02  2.284e+03       0        1
+rho   -3.746e+00  1.204e+04       0        1
+
+Residual standard error: 91.08077 
+Multiple R-squared: 0.9062694 
+
+> print( summary( cesLandLabor ), ela = FALSE )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "NM")
+
+Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
+assuming an additive error term
+Convergence NOT achieved after 501 iterations
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)
+gamma  1.003e+02  6.548e+05       0        1
+delta  6.909e-02  2.284e+03       0        1
+rho   -3.746e+00  1.204e+04       0        1
+
+Residual standard error: 91.08077 
+Multiple R-squared: 0.9062694 
+
+> summary( cesLandLabor )$elaCov
+            E_1_2 (all)
+E_1_2 (all)          NA
 > coef( cesLandLabor ) 
        gamma        delta          rho 
 100.25014078   0.06909165  -3.74630543 
@@ -1621,6 +1664,51 @@ Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
 E_1_2 (all)       NA         NA      NA       NA
 
+> summary( cesLandLaborPort, ela = FALSE )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "PORT", lower = -Inf, upper = Inf)
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
+Convergence NOT achieved after 144 iterations
+Message: function evaluation limit reached without convergence (9) 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma 79.48771         NA      NA       NA
+delta  0.06072         NA      NA       NA
+rho   -5.82585         NA      NA       NA
+
+Residual standard error: 91.05838 
+Multiple R-squared: 0.9063155 
+
+> print( summary( cesLandLaborPort ), ela = FALSE )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
+    method = "PORT", lower = -Inf, upper = Inf)
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming an additive error term
+Convergence NOT achieved after 144 iterations
+Message: function evaluation limit reached without convergence (9) 
+
+Coefficients:
+      Estimate Std. Error t value Pr(>|t|)
+gamma 79.48771         NA      NA       NA
+delta  0.06072         NA      NA       NA
+rho   -5.82585         NA      NA       NA
+
+Residual standard error: 91.05838 
+Multiple R-squared: 0.9063155 
+
+> summary( cesLandLaborPort )$elaCov
+            E_1_2 (all)
+E_1_2 (all)          NA
 > coef( cesLandLaborPort )
       gamma       delta         rho 
 79.48771167  0.06071902 -5.82585076 

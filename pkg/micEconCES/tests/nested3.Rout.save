@@ -11556,6 +11556,56 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
+> summary( cesNewton, ela = FALSE )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "Newton")
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+assuming an additive error term
+Convergence achieved after 37 iterations
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   3.147e+02  1.625e+00 193.624  < 2e-16 ***
+delta_1 6.064e-01  9.474e-03  64.004  < 2e-16 ***
+delta_2 5.961e-01  9.183e-03  64.911  < 2e-16 ***
+rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
+rho     5.202e-01  6.413e-02   8.111 5.02e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 390.7599 
+Multiple R-squared: 0.996736 
+
+> print( summary( cesNewton ), ela = FALSE )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "Newton")
+
+Estimation by non-linear least-squares using the 'Newton' optimizer
+assuming an additive error term
+Convergence achieved after 37 iterations
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   3.147e+02  1.625e+00 193.624  < 2e-16 ***
+delta_1 6.064e-01  9.474e-03  64.004  < 2e-16 ***
+delta_2 5.961e-01  9.183e-03  64.911  < 2e-16 ***
+rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
+rho     5.202e-01  6.413e-02   8.111 5.02e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 390.7599 
+Multiple R-squared: 0.996736 
+
+> summary( cesNewton )$elaCov
+                  E_1_2 (HM) E_(1,2)_3 (AU)
+E_1_2 (HM)      0.0006597539  -0.0003546322
+E_(1,2)_3 (AU) -0.0003546322   0.0007701686
 > coef( cesNewton )
       gamma     delta_1     delta_2       rho_1         rho 
 314.6800002   0.6063839   0.5960640   0.6035801   0.5202017 
@@ -14128,6 +14178,58 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
+> summary( cesDeVrs, ela = FALSE )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
+    method = "DE", control = DEoptim.control(trace = FALSE, NP = 70))
+
+Estimation by non-linear least-squares using the 'DE' optimizer
+assuming an additive error term
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   732.55871   99.35651   7.373 1.67e-13 ***
+delta_1   0.64228    0.02724  23.578  < 2e-16 ***
+delta_2   0.54379    0.02997  18.142  < 2e-16 ***
+rho_1     1.11714    0.24395   4.579 4.66e-06 ***
+rho       1.49641    0.36910   4.054 5.03e-05 ***
+nu        0.79653    0.03253  24.488  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 826.8667 
+Multiple R-squared: 0.9853848 
+
+> print( summary( cesDeVrs ), ela = FALSE )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
+    method = "DE", control = DEoptim.control(trace = FALSE, NP = 70))
+
+Estimation by non-linear least-squares using the 'DE' optimizer
+assuming an additive error term
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   732.55871   99.35651   7.373 1.67e-13 ***
+delta_1   0.64228    0.02724  23.578  < 2e-16 ***
+delta_2   0.54379    0.02997  18.142  < 2e-16 ***
+rho_1     1.11714    0.24395   4.579 4.66e-06 ***
+rho       1.49641    0.36910   4.054 5.03e-05 ***
+nu        0.79653    0.03253  24.488  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 826.8667 
+Multiple R-squared: 0.9853848 
+
+> summary( cesDeVrs )$elaCov
+                  E_1_2 (HM) E_(1,2)_3 (AU)
+E_1_2 (HM)      0.0029620855  -0.0008087907
+E_(1,2)_3 (AU) -0.0008087907   0.0035077334
 > coef( cesDeVrs )
       gamma     delta_1     delta_2       rho_1         rho          nu 
 732.5587070   0.6422777   0.5437875   1.1171391   1.4964139   0.7965317 
@@ -18912,6 +19014,70 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
+> summary( cesPortTcMeVrsRho2, ela = FALSE )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, method = "PORT", multErr = TRUE, 
+    rho1 = 1, rho = 0, control = list(eval.max = 500, iter.max = 500))
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming a multiplicative error term
+Coefficient 'rho_1' was fixed at 1 
+Coefficient 'rho' was fixed at 0 
+Convergence achieved after 49 iterations
+Message: relative convergence (4) 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   1.423e+02  7.084e+01   2.009   0.0445 *  
+lambda  2.831e-02  4.079e-03   6.941 3.90e-12 ***
+delta_1 7.562e-01  1.211e-01   6.244 4.27e-10 ***
+delta_2 5.783e-01  4.381e-02  13.202  < 2e-16 ***
+rho_1   1.000e+00  6.836e-01   1.463   0.1435    
+rho     0.000e+00  1.327e-01   0.000   1.0000    
+nu      1.261e+00  1.217e-01  10.358  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.3893374 
+Multiple R-squared: 0.8713814 
+
+> print( summary( cesPortTcMeVrsRho2 ), ela = FALSE )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
+    tName = "time", vrs = TRUE, method = "PORT", multErr = TRUE, 
+    rho1 = 1, rho = 0, control = list(eval.max = 500, iter.max = 500))
+
+Estimation by non-linear least-squares using the 'PORT' optimizer
+assuming a multiplicative error term
+Coefficient 'rho_1' was fixed at 1 
+Coefficient 'rho' was fixed at 0 
+Convergence achieved after 49 iterations
+Message: relative convergence (4) 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   1.423e+02  7.084e+01   2.009   0.0445 *  
+lambda  2.831e-02  4.079e-03   6.941 3.90e-12 ***
+delta_1 7.562e-01  1.211e-01   6.244 4.27e-10 ***
+delta_2 5.783e-01  4.381e-02  13.202  < 2e-16 ***
+rho_1   1.000e+00  6.836e-01   1.463   0.1435    
+rho     0.000e+00  1.327e-01   0.000   1.0000    
+nu      1.261e+00  1.217e-01  10.358  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.3893374 
+Multiple R-squared: 0.8713814 
+
+> summary( cesPortTcMeVrsRho2 )$elaCov
+                 E_1_2 (HM) E_(1,2)_3 (AU)
+E_1_2 (HM)     0.0292081014   0.0009844682
+E_(1,2)_3 (AU) 0.0009844682   0.0176218666
 > 
 > 
 > ########## Grid Search for Rho_1 ##############

@@ -30684,6 +30684,63 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
+> summary( cesBfgsCon, ela = FALSE )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "L-BFGS-B")
+
+Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+assuming an additive error term
+Convergence NOT achieved after 111 function and 111 gradient calls
+Message: NEW_X 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   62.864501   0.165867 379.005   <2e-16 ***
+delta_1  0.606850   0.005037 120.474   <2e-16 ***
+delta_2  0.299526   0.004254  70.407   <2e-16 ***
+delta_3  0.494717   0.005084  97.303   <2e-16 ***
+rho_1    0.548489   0.031896  17.196   <2e-16 ***
+rho_2   -0.202415   0.022677  -8.926   <2e-16 ***
+rho      0.567029   0.040226  14.096   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 37.81706 
+Multiple R-squared: 0.9990823 
+
+> print( summary( cesBfgsCon ), ela = FALSE )
+Estimated CES function with constant returns to scale
+
+Call:
+cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "L-BFGS-B")
+
+Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
+assuming an additive error term
+Convergence NOT achieved after 111 function and 111 gradient calls
+Message: NEW_X 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   62.864501   0.165867 379.005   <2e-16 ***
+delta_1  0.606850   0.005037 120.474   <2e-16 ***
+delta_2  0.299526   0.004254  70.407   <2e-16 ***
+delta_3  0.494717   0.005084  97.303   <2e-16 ***
+rho_1    0.548489   0.031896  17.196   <2e-16 ***
+rho_2   -0.202415   0.022677  -8.926   <2e-16 ***
+rho      0.567029   0.040226  14.096   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 37.81706 
+Multiple R-squared: 0.9990823 
+
+> summary( cesBfgsCon )$elaCov
+                      E_1_2 (HM)    E_3_4 (HM) E_(1,2)_(3,4) (AU)
+E_1_2 (HM)          1.769498e-04  2.444228e-05      -9.330053e-05
+E_3_4 (HM)          2.444228e-05  1.270726e-03      -2.644588e-04
+E_(1,2)_(3,4) (AU) -9.330053e-05 -2.644588e-04       2.683464e-04
 > coef( cesBfgsCon )
      gamma    delta_1    delta_2    delta_3      rho_1      rho_2        rho 
 62.8645011  0.6068503  0.2995261  0.4947170  0.5484888 -0.2024149  0.5670295 
@@ -42107,6 +42164,69 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
+> summary( cesLmVrsGrid2, ela = FALSE )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
+    rho2 = (0:8)/6 - 0.6, control = nls.lm.control(maxiter = 200))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+and a one-dimensional grid search for coefficient 'rho_2'
+assuming an additive error term
+Convergence achieved after 5 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   59.421783   2.053179   28.94   <2e-16 ***
+delta_1  0.605114   0.005208  116.18   <2e-16 ***
+delta_2  0.303027   0.004316   70.21   <2e-16 ***
+delta_3  0.490228   0.005408   90.65   <2e-16 ***
+rho_1    0.519182   0.035491   14.63   <2e-16 ***
+rho_2   -0.266667   0.024152  -11.04   <2e-16 ***
+rho      0.597204   0.044228   13.50   <2e-16 ***
+nu       1.013204   0.008351  121.33   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 39.71464 
+Multiple R-squared: 0.9989878 
+
+> print( summary( cesLmVrsGrid2 ), ela = FALSE )
+Estimated CES function with variable returns to scale
+
+Call:
+cesEst(yName = "yObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
+    rho2 = (0:8)/6 - 0.6, control = nls.lm.control(maxiter = 200))
+
+Estimation by non-linear least-squares using the 'LM' optimizer
+and a one-dimensional grid search for coefficient 'rho_2'
+assuming an additive error term
+Convergence achieved after 5 iterations
+Message: Relative error in the sum of squares is at most `ftol'. 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+gamma   59.421783   2.053179   28.94   <2e-16 ***
+delta_1  0.605114   0.005208  116.18   <2e-16 ***
+delta_2  0.303027   0.004316   70.21   <2e-16 ***
+delta_3  0.490228   0.005408   90.65   <2e-16 ***
+rho_1    0.519182   0.035491   14.63   <2e-16 ***
+rho_2   -0.266667   0.024152  -11.04   <2e-16 ***
+rho      0.597204   0.044228   13.50   <2e-16 ***
+nu       1.013204   0.008351  121.33   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 39.71464 
+Multiple R-squared: 0.9989878 
+
+> summary( cesLmVrsGrid2 )$elaCov
+                      E_1_2 (HM)    E_3_4 (HM) E_(1,2)_(3,4) (AU)
+E_1_2 (HM)          2.364848e-04  0.0001291194      -7.703252e-05
+E_3_4 (HM)          1.291194e-04  0.0020170256      -2.710128e-04
+E_(1,2)_(3,4) (AU) -7.703252e-05 -0.0002710128       3.005721e-04
 > coef( cesLmVrsGrid2 )
      gamma    delta_1    delta_2    delta_3      rho_1      rho_2        rho 
 59.4217825  0.6051139  0.3030270  0.4902278  0.5191824 -0.2666667  0.5972041 

@@ -14,6 +14,9 @@ cesLandLabor <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
 print.default( cesLandLabor ) 
 print( cesLandLabor )
 summary( cesLandLabor )
+summary( cesLandLabor, ela = FALSE )
+print( summary( cesLandLabor ), ela = FALSE )
+summary( cesLandLabor )$elaCov
 coef( cesLandLabor ) 
 vcov( cesLandLabor ) 
 coef( summary( cesLandLabor ) )
@@ -134,6 +137,9 @@ cesLandLaborPort <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
 print.default( cesLandLaborPort )
 print( cesLandLaborPort )
 summary( cesLandLaborPort )
+summary( cesLandLaborPort, ela = FALSE )
+print( summary( cesLandLaborPort ), ela = FALSE )
+summary( cesLandLaborPort )$elaCov
 coef( cesLandLaborPort )
 vcov( cesLandLaborPort )
 coef( summary( cesLandLaborPort ) )
