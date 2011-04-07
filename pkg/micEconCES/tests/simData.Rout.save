@@ -497,6 +497,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 1.063507 
 Multiple R-squared: 0.9469736 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)   0.6590     0.0553   11.92   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > coef( cesNm ) 
     gamma     delta       rho 
 1.2696077 0.5990770 0.5174177 
@@ -758,6 +764,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.964597 
 Multiple R-squared: 0.9563783 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.74509    0.05647   13.19   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesNmVrs )
     gamma     delta       rho        nu 
@@ -1029,6 +1041,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 177.4948 
 Multiple R-squared: 0.972669 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)  0.04940    0.06357   0.777    0.437
+
 > 
 > ## Nelder-Mead, TC, CRS, Start
 > cesNmTc2 <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
@@ -1212,6 +1228,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 37.74511 
 Multiple R-squared: 0.998764 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.63338    0.01445   43.82   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > 
 > ## Nelder-Mead, TC, VRS
@@ -1398,6 +1420,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 23.29994 
 Multiple R-squared: 0.999529 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all) 0.609456   0.008179   74.52   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > 
 > ## Nelder-Mead, TC, VRS, start
@@ -1588,6 +1616,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 10.34570 
 Multiple R-squared: 0.9999071 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all) 0.623887   0.003654   170.7   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## Nelder-Mead, TC, multErr, VRS
 > cesNmTcMeVrs <- cesEst( "ysTcMe", xxNames, tName = "time", data = cesData, 
@@ -1774,6 +1808,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.9896203 
 Multiple R-squared: 0.7512879 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (all)   0.4934     0.2780   1.775   0.0759 .
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## Conjugate Gradients, CRS
 > cesCg <- cesEst( "ys", xxNames, cesData, method = "CG" )
@@ -1947,6 +1987,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.063513 
 Multiple R-squared: 0.946973 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.66164    0.05561   11.90   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesCg )
     gamma     delta       rho 
@@ -2211,6 +2257,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.9646633 
 Multiple R-squared: 0.9563723 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.75326    0.05731   13.14   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > coef( cesCgVrs )
     gamma     delta       rho        nu 
 0.9494620 0.5881974 0.3275715 1.1190656 
@@ -2473,6 +2525,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.9960536 
 Multiple R-squared: 0.1961921 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.5697     0.4632    1.23    0.219
+
 > vcov( cesCgMe )
             gamma      delta        rho
 gamma 0.009145077 0.00207108 0.07405754
@@ -2650,6 +2706,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.063793 
 Multiple R-squared: 0.9469452 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.67562    0.05722   11.81   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesSann )
     gamma     delta       rho 
@@ -2916,6 +2978,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.9688476 
 Multiple R-squared: 0.955993 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.72109    0.05441   13.25   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > coef( cesSannVrs )
     gamma     delta       rho        nu 
 0.9995264 0.5865358 0.3867990 1.1005608 
@@ -3181,6 +3249,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 260.2672 
 Multiple R-squared: 0.9412344 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)   
+E_1_2 (all)   0.9597     0.3178    3.02  0.00253 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## Simulated Annealing, TC, multErr
 > cesSannTcMe <- cesEst( "ysTcMe", xxNames, tName = "time", data = cesData, 
@@ -3354,6 +3428,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.9957286 
 Multiple R-squared: 0.7482081 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.5342     0.3650   1.463    0.143
 
 > vcov( cesSannTcMe )
                gamma        lambda         delta          rho
@@ -3534,6 +3612,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.063507 
 Multiple R-squared: 0.9469736 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.65904    0.05531   11.92   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesBfgs )
     gamma     delta       rho 
@@ -3797,6 +3881,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.964597 
 Multiple R-squared: 0.9563783 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.74508    0.05647   13.19   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesBfgsVrs )
     gamma     delta       rho        nu 
@@ -4069,6 +4159,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 37.74500 
 Multiple R-squared: 0.998764 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.63365    0.01446   43.81   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## BFGS, TC, VRS
 > cesBfgsTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
@@ -4255,6 +4351,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.031962 
 Multiple R-squared: 0.999999 
+
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all) 0.6670854  0.0003969    1681   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > 
 > ## BFGS, multErr, VRS
@@ -4444,6 +4546,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.9880612 
 Multiple R-squared: 0.2090399 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.7432     0.5031   1.477    0.140
+
 > vcov( cesBfgsMeVrs )
              gamma        delta         rho           nu
 gamma  0.053669641  0.005537811  0.06764070 -0.044305695
@@ -4627,6 +4733,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.063507 
 Multiple R-squared: 0.9469736 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)   0.6590     0.0553   11.92   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesBfgsCon )
     gamma     delta       rho 
@@ -4889,6 +5001,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.964597 
 Multiple R-squared: 0.9563783 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.74507    0.05647   13.19   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesBfgsConVrs )
     gamma     delta       rho        nu 
@@ -5159,6 +5277,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 37.74500 
 Multiple R-squared: 0.998764 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.63365    0.01446   43.81   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## L-BFGS-B with constrained parameters, TC, VRS
 > cesBfgsConTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
@@ -5349,6 +5473,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 165.6442 
 Multiple R-squared: 0.9761967 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)  0.07331    0.04794   1.529    0.126
 
 > 
 > ## L-BFGS-B with constrained parameters, TC, multErr, VRS
@@ -5541,6 +5669,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.9898259 
 Multiple R-squared: 0.7511846 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (all)   0.5562     0.3121   1.782   0.0748 .
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## Levenberg-Marquardt, CRS
 > cesLm <- cesEst( "ys", xxNames, cesData,
@@ -5705,6 +5839,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.063507 
 Multiple R-squared: 0.9469736 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)   0.6590     0.0553   11.92   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesLm )
     gamma     delta       rho 
@@ -5959,6 +6099,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.964597 
 Multiple R-squared: 0.9563783 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.74508    0.05647   13.19   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesLmVrs )
     gamma     delta       rho        nu 
@@ -6217,6 +6363,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 37.74500 
 Multiple R-squared: 0.998764 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.63365    0.01446   43.81   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## Levenberg-Marquardt, TC, VRS
 > cesLmTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
@@ -6394,6 +6546,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 1.031962 
 Multiple R-squared: 0.999999 
 
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all) 0.6670854  0.0003969    1681   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## Levenberg-Marquardt, CRS, multErr
 > cesLmMe <- cesEst( "ysMe", xxNames, cesData, multErr = TRUE,
@@ -6555,6 +6713,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.9960455 
 Multiple R-squared: 0.1962051 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.5448     0.4340   1.255    0.209
 
 > vcov( cesLmMe )
             gamma       delta        rho
@@ -6731,6 +6893,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.063507 
 Multiple R-squared: 0.9469736 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)   0.6590     0.0553   11.92   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesNewton )
     gamma     delta       rho 
@@ -6991,6 +7159,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.964597 
 Multiple R-squared: 0.9563783 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.74508    0.05647   13.19   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesNewtonVrs )
     gamma     delta       rho        nu 
@@ -7260,6 +7434,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 37.74500 
 Multiple R-squared: 0.998764 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.63365    0.01446   43.81   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## Newton-type, TC, VRS
 > cesNewtonTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
@@ -7444,6 +7624,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 1.031962 
 Multiple R-squared: 0.999999 
 
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all) 0.6670854  0.0003969    1681   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## Newton-type, TC, multErr, VRS
 > cesNewtonTcMeVrs <- cesEst( "ysTcMe", xxNames, tName = "time", data = cesData, 
@@ -7627,6 +7813,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.9896176 
 Multiple R-squared: 0.7512893 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (all)   0.4868     0.2752   1.769   0.0769 .
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > vcov( cesNewtonTcMeVrs )
                gamma        lambda         delta           rho            nu
@@ -7814,6 +8006,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.063507 
 Multiple R-squared: 0.9469736 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)   0.6590     0.0553   11.92   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesPort )
     gamma     delta       rho 
@@ -8077,6 +8275,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.964597 
 Multiple R-squared: 0.9563783 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.74508    0.05647   13.19   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesPortVrs )
     gamma     delta       rho        nu 
@@ -8349,6 +8553,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 37.74500 
 Multiple R-squared: 0.998764 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.63365    0.01446   43.81   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## PORT, TC, VRS
 > cesPortTcVrs <- cesEst( "ysTc", xxNames, tName = "time", data = cesData, 
@@ -8542,6 +8752,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 1.031962 
 Multiple R-squared: 0.999999 
 
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all) 0.6670854  0.0003969    1681   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## PORT, multErr, VRS
 > cesPortMeVrs <- cesEst( "ysMe", xxNames, cesData, method = "PORT", vrs = TRUE,
@@ -8727,6 +8943,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.9880612 
 Multiple R-squared: 0.2090399 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.7432     0.5031   1.477    0.140
 
 > vcov( cesPortMeVrs )
              gamma        delta         rho           nu
@@ -9217,6 +9437,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.063507 
 Multiple R-squared: 0.9469736 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)   0.6590     0.0553   11.92   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesDe )
     gamma     delta       rho 
@@ -9821,6 +10047,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.9647745 
 Multiple R-squared: 0.9563622 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.73844    0.05588   13.22   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > coef( cesDeVrs )
     gamma     delta       rho        nu 
 0.9648126 0.5878867 0.3541994 1.1129085 
@@ -10423,6 +10655,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 205.4161 
 Multiple R-squared: 0.963394 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (all)  0.12058    0.05368   2.246   0.0247 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## DE, TC, multErr
 > cesDeTcMe <- cesEst( "ysMe", xxNames, tName = "time", data = cesData, 
@@ -10893,6 +11131,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.9947693 
 Multiple R-squared: 0.1982636 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.5631     0.4561   1.235    0.217
+
 > 
 > ## Kmenta approximation, CRS
 > cesKmenta <- cesEst( "ys", xxNames, cesData, method = "Kmenta" )
@@ -11076,6 +11318,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1.142371 
 Multiple R-squared: 0.9388177 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.65843    0.05678   11.60   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesKmenta )
     gamma     delta       rho 
@@ -11350,6 +11598,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.9732643 
 Multiple R-squared: 0.9555908 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.74725    0.05956   12.55   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > coef( cesKmentaVrs )
     gamma     delta       rho        nu 
 0.8998095 0.5750297 0.3382429 1.1413586 
@@ -11601,6 +11855,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 1.063507 
 Multiple R-squared: 0.9469736 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)   0.6590     0.0553   11.92   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > coef( cesNls )
     gamma     delta       rho 
 1.2696092 0.5990816 0.5173710 
@@ -11848,6 +12108,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.964597 
 Multiple R-squared: 0.9563783 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)  0.74508    0.05647   13.19   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > coef( cesNlsVrs )
     gamma     delta       rho        nu 
@@ -12107,6 +12373,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 1.031962 
 Multiple R-squared: 0.999999 
 
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all) 0.6670854  0.0003969    1681   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > 
 > ## nls, multErr, VRS
 > cesNlsMeVrs <- cesEst( "ysMe", xxNames, cesData, method = "nls", vrs = TRUE,
@@ -12277,6 +12549,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.9880612 
 Multiple R-squared: 0.2090399 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.7432     0.5031   1.477    0.140
 
 > 
 > ## nls, TC, multErr
@@ -12453,6 +12729,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.9942191 
 Multiple R-squared: 0.748971 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.3979     0.2717   1.464    0.143
 
 > 
 > ## nls, TC, multErr, VRS

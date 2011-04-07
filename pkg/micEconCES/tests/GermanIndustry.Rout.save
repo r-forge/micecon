@@ -261,6 +261,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 11.41985 
 Multiple R-squared: 0.9948957 
 
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)       0.2228     0.1490   1.495    0.135
+E_(1,2)_3 (AU)   1.1406     2.9583   0.386    0.700
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
+
 > 
 > ## Conjugate Gradients
 > cesCg <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
@@ -398,6 +405,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 36.64243 
 Multiple R-squared: 0.9474492 
 
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)       0.7910     1.4526   0.545    0.586
+E_(1,2)_3 (AU)   0.7987     1.2476   0.640    0.522
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
+
 > 
 > ## Simulated Annealing
 > cesSann <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
@@ -529,6 +543,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 37.40931 
 Multiple R-squared: 0.9452265 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)        1.087      4.102   0.265    0.791
+E_(1,2)_3 (AU)    0.669      1.075   0.622    0.534
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## BFGS
@@ -666,6 +687,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 10.78895 
 Multiple R-squared: 0.9954442 
 
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (HM)      0.12091    0.06549   1.846   0.0649 .
+E_(1,2)_3 (AU)  0.83023    1.54752   0.536   0.5916  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
+
 > 
 > ## L-BFGS-B
 > cesBfgsCon <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
@@ -798,6 +828,13 @@ rho      3.20777         NA      NA       NA
 Residual standard error: 21.97405 
 Multiple R-squared: 0.9811013 
 
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)      0.08847         NA      NA       NA
+E_(1,2)_3 (AU)  0.23766         NA      NA       NA
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
+
 > 
 > ## Levenberg-Marquardt
 > cesLm <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
@@ -929,6 +966,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 10.2605 
 Multiple R-squared: 0.9958795 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)      0.01887    0.03249   0.581    0.561
+E_(1,2)_3 (AU)       NA    0.58000      NA       NA
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## Newton-type
@@ -1064,6 +1108,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 21.97405 
 Multiple R-squared: 0.9811013 
+
+Elasticities of Substitution:
+                Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (HM)     8.606e-02  3.999e+04   0.000        1    
+E_(1,2)_3 (AU) 2.377e-01  5.503e-02   4.319 1.57e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## PORT
@@ -1206,6 +1259,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 10.72543 
 Multiple R-squared: 0.9954976 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (HM)      0.10129    0.05254   1.928   0.0539 .
+E_(1,2)_3 (AU)  0.58747    0.84257   0.697   0.4857  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## DE
@@ -1686,6 +1748,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 31.56327 
 Multiple R-squared: 0.961008 
 
+Elasticities of Substitution:
+                Estimate Std. Error t value Pr(>|t|)   
+E_1_2 (HM)     1.374e-01  2.789e+04   0.000  1.00000   
+E_(1,2)_3 (AU) 3.659e-01  1.404e-01   2.606  0.00917 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
+
 > 
 > ## nls
 > try( cesNls <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
@@ -1839,6 +1910,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 12.46782 
 Multiple R-squared: 0.993916 
 
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)       0.8465     1.3460   0.629    0.529
+E_(1,2)_3 (AU)   0.6536     1.5716   0.416    0.678
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
+
 > 
 > ## BFGS, rho_1 and rho fixed
 > cesBfgsRho2 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
@@ -1983,6 +2061,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 12.46782 
 Multiple R-squared: 0.993916 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)       0.8465     1.3468   0.629    0.530
+E_(1,2)_3 (AU)   0.6536     1.5715   0.416    0.677
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## L-BFGS-B, rho_1 and rho fixed
@@ -2133,6 +2218,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 12.46782 
 Multiple R-squared: 0.993916 
 
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)       0.8465     1.3468   0.629    0.530
+E_(1,2)_3 (AU)   0.6536     1.5715   0.416    0.677
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
+
 > 
 > ## Levenberg-Marquardt, rho fixed
 > cesLmRho <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
@@ -2262,6 +2354,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 10.65498 
 Multiple R-squared: 0.9955566 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (HM)      0.07736    0.04176   1.853   0.0639 .
+E_(1,2)_3 (AU)  0.65359    1.10350   0.592   0.5537  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## Levenberg-Marquardt, rho_1 fixed
@@ -2393,6 +2494,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 12.37149 
 Multiple R-squared: 0.9940096 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)       0.8465     1.2908   0.656    0.512
+E_(1,2)_3 (AU)   0.2531     0.2776   0.912    0.362
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## Levenberg-Marquardt, rho_1 and rho fixed
@@ -2531,6 +2639,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 12.46782 
 Multiple R-squared: 0.993916 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)       0.8465     1.3468   0.629    0.530
+E_(1,2)_3 (AU)   0.6536     1.5715   0.416    0.677
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## Newton-type, rho_1 and rho fixed
@@ -2672,6 +2787,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 12.46782 
 Multiple R-squared: 0.993916 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)       0.8465     1.3468   0.629    0.530
+E_(1,2)_3 (AU)   0.6536     1.5715   0.416    0.677
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## PORT, rho_1 and rho fixed
@@ -2826,6 +2948,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 12.46782 
 Multiple R-squared: 0.993916 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)       0.8465     1.3468   0.629    0.530
+E_(1,2)_3 (AU)   0.6536     1.5715   0.416    0.677
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## DE, rho_1 and rho fixed
@@ -3317,6 +3446,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 30.85943 
 Multiple R-squared: 0.9627277 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)       0.8465     0.9690   0.874    0.382
+E_(1,2)_3 (AU)   0.6536     0.8675   0.753    0.451
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > 
@@ -3929,6 +4065,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 11.04451 
 Multiple R-squared: 0.9952258 
 
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (HM)      0.16667    0.09244   1.803   0.0714 .
+E_(1,2)_3 (AU)  0.66667    0.97680   0.683   0.4949  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
+
 > 
 > ## Levenberg-Marquardt, grid search for rho
 > cesLmGridRho <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
@@ -4182,6 +4327,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 10.58681 
 Multiple R-squared: 0.9956133 
 
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (HM)      0.07128    0.04239   1.681   0.0927 .
+E_(1,2)_3 (AU)  1.00000    2.51620   0.397   0.6911  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
+
 > 
 > ## Levenberg-Marquardt, grid search for rho_1
 > cesLmGridRho1 <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
@@ -4411,6 +4565,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 11.04314 
 Multiple R-squared: 0.995227 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (HM)      0.16667    0.09215   1.809   0.0705 .
+E_(1,2)_3 (AU)  0.60599    0.81687   0.742   0.4582  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## Levenberg-Marquardt, grid search for rho_1 and rho
@@ -5010,6 +5173,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 10.61862 
 Multiple R-squared: 0.9955869 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (HM)      0.09091    0.05257   1.729   0.0838 .
+E_(1,2)_3 (AU)  1.66667    6.41013   0.260   0.7949  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## Newton-type, grid search for rho_1 and rho
@@ -5614,6 +5786,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 11.06994 
 Multiple R-squared: 0.9952038 
 
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (HM)      0.16667    0.09403   1.772   0.0763 .
+E_(1,2)_3 (AU)  1.00000    2.13029   0.469   0.6388  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
+
 > 
 > ## PORT, grid search for rho
 > cesPortGridRho <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry, 
@@ -5884,6 +6065,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 10.53950 
 Multiple R-squared: 0.9956524 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)      0.06504    0.04407   1.476    0.140
+E_(1,2)_3 (AU)  1.66667    6.88915   0.242    0.809
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## PORT, grid search for rho_1 and rho
@@ -6498,6 +6686,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 10.61862 
 Multiple R-squared: 0.9955869 
+
+Elasticities of Substitution:
+               Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (HM)      0.09091    0.05257   1.729   0.0838 .
+E_(1,2)_3 (AU)  1.66667    6.41019   0.260   0.7949  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+HM = Hicks-McFadden (direct) elasticity of substitution
+AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > 

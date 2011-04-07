@@ -191,6 +191,10 @@ rho   2.000e+00  3.228e+03   0.001        1
 Residual standard error: 91.00207 
 Multiple R-squared: 0.9064313 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.3333   358.6774   0.001        1
+
 > coef( cesNm ) 
     gamma     delta       rho 
 84.481925  2.958593  2.000000 
@@ -324,6 +328,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.1017 
 Multiple R-squared: 0.9716383 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.111      7.904   0.141    0.888
 
 > coef( cesNmVrs )
      gamma      delta        rho         nu 
@@ -463,6 +471,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 30.9489 
 Multiple R-squared: 0.9891777 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.667     20.900    0.08    0.936
+
 > 
 > ## Nelder-Mead, multErr, VRS
 > cesNmMeVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE, rho = -0.1,
@@ -583,6 +595,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.04049844 
 Multiple R-squared: 0.963771 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.111      8.282   0.134    0.893
 
 > vcov( cesNmMeVrs )
             gamma       delta         rho          nu
@@ -706,6 +722,10 @@ rho       2.000   2095.791   0.001        1
 
 Residual standard error: 91.14635 
 Multiple R-squared: 0.9061344 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.3333   232.8657   0.001    0.999
 
 > coef( cesCg )
      gamma      delta        rho 
@@ -842,6 +862,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 35.16336 
 Multiple R-squared: 0.9860296 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.8333     4.8266   0.173    0.863
+
 > 
 > ## Conjugate Gradients, VRS
 > cesCgVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "CG", vrs = TRUE,
@@ -966,6 +990,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 101.1258 
 Multiple R-squared: 0.8844548 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.111     21.141   0.053    0.958
 
 > coef( cesCgVrs )
      gamma      delta        rho         nu 
@@ -1093,6 +1121,10 @@ rho   2.000e+00  2.476e+03   0.001        1
 
 Residual standard error: 91.1328 
 Multiple R-squared: 0.9061623 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.3333   275.1528   0.001        1
 
 > coef( cesSann )
      gamma      delta        rho 
@@ -1224,6 +1256,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 30.92595 
 Multiple R-squared: 0.9891938 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)      1.0        5.6   0.179    0.858
+
 > 
 > ## Simulated Annealing, VRS
 > cesSannVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "SANN", vrs = TRUE,
@@ -1340,6 +1376,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 59.47715 
 Multiple R-squared: 0.9600305 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.111     18.660    0.06    0.953
 
 > coef( cesSannVrs )
      gamma      delta        rho         nu 
@@ -1472,6 +1512,10 @@ rho        2.00    3457.11   0.001        1
 
 Residual standard error: 91.00573 
 Multiple R-squared: 0.9064238 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.3333   384.1229   0.001        1
 
 > coef( cesBfgs )
    gamma    delta      rho 
@@ -1607,6 +1651,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.02755 
 Multiple R-squared: 0.9717221 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.111      7.698   0.144    0.885
 
 > coef( cesBfgsVrs )
      gamma      delta        rho         nu 
@@ -1747,6 +1795,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.17757 
 Multiple R-squared: 0.990381 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.667     17.933   0.093    0.926
+
 > 
 > ## BFGS, TC, multErr, VRS
 > cesBfgsTcMeVrs <- cesEst( "qOutput", xxNames, tName = "time", 
@@ -1877,6 +1929,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.02686391 
 Multiple R-squared: 0.984059 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.667     18.863   0.088     0.93
+
 > 
 > ## L-BFGS-B with constrained parameters, CRS
 > cesBfgsCon <- cesEst( "qOutput", xxNames, germanFarms, method = "L-BFGS-B",
@@ -1998,6 +2054,10 @@ rho   2.000e+00  1.118e+14   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
+
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all) 3.333e-01  1.243e+13       0        1
 
 > coef( cesBfgsCon )
    gamma    delta      rho 
@@ -2138,6 +2198,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 57.76943 
 Multiple R-squared: 0.9622928 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.4545    20.2802   0.022    0.982
+
 > 
 > ## L-BFGS-B with constrained parameters, VRS
 > cesBfgsConVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "L-BFGS-B",
@@ -2263,6 +2327,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.02238 
 Multiple R-squared: 0.971728 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.111      7.635   0.146    0.884
 
 > coef( cesBfgsConVrs )
      gamma      delta        rho         nu 
@@ -2405,6 +2473,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.02425177 
 Multiple R-squared: 0.9870083 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.000      6.769   0.148    0.883
+
 > 
 > ## Levenberg-Marquardt, CRS
 > cesLm <- cesEst( "qOutput", xxNames, germanFarms,
@@ -2516,6 +2588,10 @@ rho   2.000e+00  2.126e+03   0.001        1
 
 Residual standard error: 90.97451 
 Multiple R-squared: 0.906488 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.3333   236.2141   0.001    0.999
 
 > coef( cesLm )
     gamma     delta       rho 
@@ -2641,6 +2717,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.02238 
 Multiple R-squared: 0.971728 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.111      7.635   0.146    0.884
 
 > coef( cesLmVrs )
      gamma      delta        rho         nu 
@@ -2771,6 +2851,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.37566 
 Multiple R-squared: 0.99025 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.5882     2.2015   0.267     0.79
+
 > 
 > ## Levenberg-Marquardt, multErr, VRS
 > cesLmMeVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE,
@@ -2887,6 +2971,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.04049749 
 Multiple R-squared: 0.9637727 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.111      8.267   0.134    0.893
 
 > vcov( cesLmMeVrs )
             gamma       delta         rho          nu
@@ -3007,6 +3095,10 @@ rho       2.000   2095.763   0.001        1
 
 Residual standard error: 91.14635 
 Multiple R-squared: 0.9061344 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.3333   232.8625   0.001    0.999
 
 > coef( cesNewton )
      gamma      delta        rho 
@@ -3140,6 +3232,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 53.1789 
 Multiple R-squared: 0.9680474 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.5556     9.5688   0.058    0.954
+
 > 
 > ## Newton-type, VRS
 > cesNewtonVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "Newton",
@@ -3258,6 +3354,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.02243 
 Multiple R-squared: 0.971728 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.111      7.641   0.145    0.884
 
 > coef( cesNewtonVrs )
      gamma      delta        rho         nu 
@@ -3393,6 +3493,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.02731608 
 Multiple R-squared: 0.9835177 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.7692     6.6630   0.115    0.908
+
 > 
 > ## PORT, CRS
 > cesPort <- cesEst( "qOutput", xxNames, germanFarms, method = "PORT", rho = 2 )
@@ -3515,6 +3619,10 @@ rho   2.000e+00  9.922e+13   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
+
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all) 3.333e-01  1.102e+13       0        1
 
 > coef( cesPort )
    gamma    delta      rho 
@@ -3656,6 +3764,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.02238 
 Multiple R-squared: 0.971728 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.111      7.635   0.146    0.884
 
 > coef( cesPortVrs )
      gamma      delta        rho         nu 
@@ -3802,6 +3914,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.24435 
 Multiple R-squared: 0.990337 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.000      6.418   0.156    0.876
+
 > 
 > ## PORT, TC, multErr, VRS
 > cesPortTcMeVrs <- cesEst( "qOutput", xxNames, tName = "time", data = germanFarms, 
@@ -3934,6 +4050,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.02399399 
 Multiple R-squared: 0.987283 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.000      7.954   0.126      0.9
 
 > 
 > ## DE, CRS
@@ -4354,6 +4474,10 @@ rho   2.000e+00  6.170e+13   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
+
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all) 3.333e-01  6.855e+12       0        1
 
 > coef( cesDe )
    gamma    delta      rho 
@@ -4792,6 +4916,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.99593 
 Multiple R-squared: 0.989834 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.6667     2.4523   0.272    0.786
+
 > 
 > ## DE, VRS
 > cesDeVrs <- cesEst( "qOutput", xxNames, germanFarms, method = "DE", vrs = TRUE,
@@ -5218,6 +5346,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 86.6316 
 Multiple R-squared: 0.915203 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.111     90.131   0.012     0.99
 
 > coef( cesDeVrs )
      gamma      delta        rho         nu 
@@ -5655,6 +5787,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.07606046 
 Multiple R-squared: 0.8722098 
+
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all) 1.250e+00  6.339e+12       0        1
 
 > vcov( cesDeMe )
               gamma         delta           rho

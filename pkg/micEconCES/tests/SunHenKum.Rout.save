@@ -116,6 +116,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 3313.748 
 Multiple R-squared: 0.6016277 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)   1.2453     0.2574   4.837 1.32e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > cesNlsCoef <- coef( cesNls )
 > delta <- cesNlsCoef[ "delta" ]
 > rho <- cesNlsCoef[ "rho" ]
@@ -155,6 +161,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 3342.308 
 Multiple R-squared: 0.5947313 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)   1.0000     0.1609   6.216 5.09e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
 > cdNlsCoef <- coef( cdNls )
 > delta <- cdNlsCoef[ "delta" ]
 > print( alpha <- ( delta - 1 ) / delta )
@@ -186,6 +198,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.6814132 
 Multiple R-squared: 0.5973597 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)    
+E_1_2 (all)   1.0000     0.1056   9.467   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 > cdLogCoef <- coef( cdLog )
 > delta <- cdLogCoef[ "delta" ]
