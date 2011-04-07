@@ -29573,7 +29573,7 @@ Multiple R-squared: 0.8118108
 Elasticities of Substitution:
                    Estimate Std. Error t value Pr(>|t|)    
 E_1_2 (HM)           0.8388     0.1004   8.354  < 2e-16 ***
-E_3_4 (HM)               NA     1.5381      NA       NA    
+E_3_4 (HM)               NA         NA      NA       NA    
 E_(1,2)_(3,4) (AU)   0.6528     0.1496   4.363 1.29e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
@@ -33064,7 +33064,7 @@ Multiple R-squared: 0.8214867
 Elasticities of Substitution:
                    Estimate Std. Error t value Pr(>|t|)    
 E_1_2 (HM)           0.7239     0.1169   6.194 5.85e-10 ***
-E_3_4 (HM)               NA     0.8329      NA       NA    
+E_3_4 (HM)               NA         NA      NA       NA    
 E_(1,2)_(3,4) (AU)   0.4875     0.1656   2.943  0.00325 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
