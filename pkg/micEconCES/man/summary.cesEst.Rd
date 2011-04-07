@@ -14,7 +14,7 @@
 }
 
 \arguments{
-   \item{object}{an objects returned by \code{\link{cesEst}}.}
+   \item{object}{an object returned by \code{\link{cesEst}}.}
    \item{rSquaredLog}{logical.
       If \code{FALSE} (the default for models with additive error term),
       the returned \eqn{R^2}-value measures the fraction of the explained
@@ -22,7 +22,7 @@
       If \code{TRUE} (the default for models with multiplicative error term),
       the returned \eqn{R^2}-value measures the fraction of the explained
       variance of the \emph{logarithmized} dependent variable.}
-   \item{x}{an objects returned by \code{summary.cesEst}.}
+   \item{x}{an object returned by \code{summary.cesEst}.}
    \item{digits}{number of digits.}
    \item{\dots}{further arguments are currently ignored.}
 }
