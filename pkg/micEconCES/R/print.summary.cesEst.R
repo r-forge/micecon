@@ -72,5 +72,19 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
    cat( "Multiple R-squared:", x$r.squared, "\n" )
    cat( "\n" )
 
+   if( is.matrix( x$ela ) ) {
+      if( nrow( x$ela ) == 1 ) {
+         cat( "Elasticity of Substitution:\n" )
+      } else {
+         cat( "Elasticities of Substitution:\n" )
+      }
+      printCoefmat( x$ela, digits = digits )
+      if( nrow( x$ela ) > 1 ) {
+         cat( "HM = Hicks-McFadden (direct) elasticity of substitution\n" )
+         cat( "AU = Allen-Uzawa (partial) elasticity of substitution\n" )
+      }
+      cat( "\n" )
+   }
+
    invisible( x )
 }

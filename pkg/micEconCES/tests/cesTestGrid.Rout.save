@@ -206,6 +206,10 @@ rho       0.400     22.236   0.018    0.986
 Residual standard error: 87.66374 
 Multiple R-squared: 0.9131703 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.7143    11.3450   0.063     0.95
+
 > coef( cesGridNm )
      gamma      delta        rho 
 165.451976   1.873604   0.400000 
@@ -366,6 +370,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.53012 
 Multiple R-squared: 0.9901472 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)      5.0      135.3   0.037     0.97
+
 > 
 > ## Nelder-Mead, VRS
 > cesGridNmVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -502,6 +510,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.19198 
 Multiple R-squared: 0.971536 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.667     17.717   0.094    0.925
 
 > coef( cesGridNmVrs )
      gamma      delta        rho         nu 
@@ -649,6 +661,10 @@ rho      1.2000   183.1089   0.007    0.995
 
 Residual standard error: 92.14457 
 Multiple R-squared: 0.9040671 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.4545    37.8324   0.012     0.99
 
 > coef( cesGridCg )
      gamma      delta        rho 
@@ -812,6 +828,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 61.38372 
 Multiple R-squared: 0.957427 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)     1.00      18.42   0.054    0.957
+
 > coef( cesGridCgVrs )
      gamma      delta        rho         nu 
 10.0279173  0.8660399  0.0000000  1.3052536 
@@ -969,6 +989,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 30.03319 
 Multiple R-squared: 0.9898087 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.000      5.909   0.169    0.866
+
 > 
 > # using the SANN optimization method
 > cesGridSann <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1094,6 +1118,10 @@ rho      0.8000    79.8251   0.010    0.992
 
 Residual standard error: 93.8942 
 Multiple R-squared: 0.9003894 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.5556    24.6374   0.023    0.982
 
 > coef( cesGridSann )
      gamma      delta        rho 
@@ -1239,6 +1267,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 30.27537 
 Multiple R-squared: 0.9896436 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.000      5.466   0.183    0.855
+
 > 
 > # using the SANN optimization method, VRS
 > cesGridSannVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1368,6 +1400,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 51.33399 
 Multiple R-squared: 0.970226 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)      5.0      173.8   0.029    0.977
 
 > coef( cesGridSannVrs )
      gamma      delta        rho         nu 
@@ -1515,6 +1551,10 @@ rho       0.400     22.240   0.018    0.986
 
 Residual standard error: 87.66374 
 Multiple R-squared: 0.9131703 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.7143    11.3467   0.063     0.95
 
 > coef( cesGridBfgs )
      gamma      delta        rho 
@@ -1668,6 +1708,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.03523 
 Multiple R-squared: 0.9717135 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.000      6.348   0.158    0.875
 
 > coef( cesGridBfgsVrs )
     gamma     delta       rho        nu 
@@ -1835,6 +1879,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.17757 
 Multiple R-squared: 0.990381 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.667     17.933   0.093    0.926
+
 > 
 > # using the BFGS optimization method, TC, multErr, VRS
 > cesGridBfgsTcMeVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1977,6 +2025,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.02411876 
 Multiple R-squared: 0.9871504 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.5556     2.4347   0.228     0.82
+
 > 
 > # using the L-BFGS-B optimization method with constrained parameters
 > cesGridBfgsCon <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -2111,6 +2163,10 @@ rho   8.000e-01  3.577e+13   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
+
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all) 5.556e-01  1.104e+13       0        1
 
 > coef( cesGridBfgsCon )
    gamma    delta      rho 
@@ -2268,6 +2324,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.53011 
 Multiple R-squared: 0.9901472 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)      5.0      135.3   0.037     0.97
+
 > 
 > # using the L-BFGS-B optimization method with constrained parameters, VRS
 > cesGridBfgsConVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -2409,6 +2469,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 49.98322 
 Multiple R-squared: 0.9717722 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.000      6.177   0.162    0.871
 
 > coef( cesGridBfgsConVrs )
    gamma    delta      rho       nu 
@@ -2553,6 +2617,10 @@ rho       0.400     22.239   0.018    0.986
 Residual standard error: 87.66374 
 Multiple R-squared: 0.9131703 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.7143    11.3464   0.063     0.95
+
 > coef( cesGridLm )
      gamma      delta        rho 
 165.423876   1.873447   0.400000 
@@ -2696,6 +2764,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 49.55955 
 Multiple R-squared: 0.9722487 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.4545     1.2662   0.359     0.72
 
 > coef( cesGridLmVrs )
      gamma      delta        rho         nu 
@@ -2843,6 +2915,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.11662 
 Multiple R-squared: 0.9904212 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)      5.0      162.9   0.031    0.976
+
 > 
 > # using the Levenberg-Marquardt optimization method, multErr, VRS
 > cesGridLmMeVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -2980,6 +3056,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.04039527 
 Multiple R-squared: 0.9639554 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.4545     1.3792    0.33    0.742
+
 > vcov( cesGridLmMeVrs )
             gamma       delta        rho          nu
 gamma  0.19204493  0.28013783 -2.8987884 -0.01408188
@@ -3113,6 +3193,10 @@ rho       0.400     22.239   0.018    0.986
 
 Residual standard error: 87.66374 
 Multiple R-squared: 0.9131703 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.7143    11.3464   0.063     0.95
 
 > coef( cesGridNewton )
      gamma      delta        rho 
@@ -3263,6 +3347,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.53011 
 Multiple R-squared: 0.9901472 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)      5.0      135.3   0.037     0.97
+
 > 
 > # using the Newton-type optimization method implemented in nlm(), VRS
 > cesGridNewtonVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -3397,6 +3485,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.12666 
 Multiple R-squared: 0.97161 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)    1.000      6.474   0.154    0.877
 
 > coef( cesGridNewtonVrs )
    gamma    delta      rho       nu 
@@ -3549,6 +3641,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 0.02430528 
 Multiple R-squared: 0.9869509 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.7143     3.4611   0.206    0.836
+
 > 
 > # using the PORT optimization rountine implemented in nlminb(), constrained
 > cesGridPort <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -3687,6 +3783,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all) 5.00e+00   7.83e+14       0        1
 
 > coef( cesGridPort )
    gamma    delta      rho 
@@ -3845,6 +3945,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 49.5933 
 Multiple R-squared: 0.972211 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.4545     1.2912   0.352    0.725
 
 > coef( cesGridPortVrs )
      gamma      delta        rho         nu 
@@ -4008,6 +4112,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.11662 
 Multiple R-squared: 0.9904212 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)      5.0      162.9   0.031    0.976
+
 > 
 > # using the PORT optimization rountine implemented in nlminb(), multErr
 > cesGridPortMe <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -4149,6 +4257,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.07606046 
 Multiple R-squared: 0.8722098 
+
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all) 1.667e+00  3.411e+13       0        1
 
 > vcov( cesGridPortMe )
              gamma         delta           rho
@@ -4588,6 +4700,10 @@ rho   0.000e+00  4.624e+15   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
+
+Elasticity of Substitution:
+             Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all) 1.000e+00  4.624e+15       0        1
 
 > coef( cesGridDe )
    gamma    delta      rho 
@@ -5044,6 +5160,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 29.53292 
 Multiple R-squared: 0.9901454 
 
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)      5.0      135.6   0.037     0.97
+
 > 
 > # using the DE optimization method implemented in DEoptim(), VRS
 > cesGridDeVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -5481,6 +5601,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 82.51381 
 Multiple R-squared: 0.9230725 
+
+Elasticity of Substitution:
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)   0.5556    47.2759   0.012     0.99
 
 > coef( cesGridDeVrs )
      gamma      delta        rho         nu 

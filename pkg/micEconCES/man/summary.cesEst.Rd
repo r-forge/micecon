@@ -46,6 +46,12 @@
       variance of the \emph{logarithmized} dependent variable.}
    \item{vcov}{covariance matrix of the estimated parameters
       (including a possible fixed \eqn{\rho}{rho}).}
+   \item{ela}{a matrix with four columns:
+      the estimated elasticities of substitution,
+      their standard errors, the t-statistic,
+      and corresponding (two-sided) P-values.}
+   \item{elaCov}{covariance matrix of the estimated 
+      elasticities of substitution.}
 }
 
 \seealso{\code{\link{cesEst}} and \code{\link{cesCalc}}.}
