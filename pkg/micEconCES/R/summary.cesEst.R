@@ -35,17 +35,16 @@ summary.cesEst <- function( object, rSquaredLog = object$multErr, ... ) {
    elaGrad <- matrix( 0, nrow = length( object$ela ), 
       ncol = length( coef( object ) ),
       dimnames = list( names( object$ela ), names( coef( object ) ) ) )
-   if( nrow( elaGrad ) == 1 ) {
-      elaGrad[ 1, "rho" ] <- - 1 / ( 1 + coef( object )[ "rho" ] )^2
-   } else if( nrow( elaGrad ) == 2 ) {
+   elaGrad[ nrow( elaGrad ), "rho" ] <- - 1 / ( 1 + coef( object )[ "rho" ] )^2
+   if( nrow( elaGrad ) >= 2 ) {
       elaGrad[ 1, "rho_1" ] <- - 1 / ( 1 + coef( object )[ "rho_1" ] )^2
-      elaGrad[ 2, "rho" ] <- - 1 / ( 1 + coef( object )[ "rho" ] )^2
-   } else if( nrow( elaGrad ) == 3 ) {
-      elaGrad[ 1, "rho_1" ] <- - 1 / ( 1 + coef( object )[ "rho_1" ] )^2
+   }
+   if( nrow( elaGrad ) == 3 ) {
       elaGrad[ 2, "rho_2" ] <- - 1 / ( 1 + coef( object )[ "rho_2" ] )^2
-      elaGrad[ 3, "rho" ] <- - 1 / ( 1 + coef( object )[ "rho" ] )^2
    }
    object$elaCov <- elaGrad %*% object$vcov %*% t( elaGrad )
+   object$elaCov[ is.na( object$ela ), ] <- NA
+   object$elaCov[ , is.na( object$ela ) ] <- NA
 
 
    object$coefficients <- coefTable( coef( object ),

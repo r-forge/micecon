@@ -970,7 +970,7 @@ Multiple R-squared: 0.9958795
 Elasticities of Substitution:
                Estimate Std. Error t value Pr(>|t|)
 E_1_2 (HM)      0.01887    0.03249   0.581    0.561
-E_(1,2)_3 (AU)       NA    0.58000      NA       NA
+E_(1,2)_3 (AU)       NA         NA      NA       NA
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
