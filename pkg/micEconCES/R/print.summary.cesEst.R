@@ -1,5 +1,5 @@
-print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 ),
-      ... ) {
+print.summary.cesEst <- function( x, ela = TRUE,
+      digits = max( 3, getOption( "digits" ) - 3 ), ... ) {
 
    cat( "Estimated CES function with " )
    if( "nu" %in% rownames( coef( x ) ) ){
@@ -72,7 +72,7 @@ print.summary.cesEst <- function( x, digits = max( 3, getOption( "digits" ) - 3 
    cat( "Multiple R-squared:", x$r.squared, "\n" )
    cat( "\n" )
 
-   if( is.matrix( x$ela ) ) {
+   if( ela && is.matrix( x$ela ) ) {
       if( nrow( x$ela ) == 1 ) {
          cat( "Elasticity of Substitution:\n" )
       } else {
