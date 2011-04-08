@@ -1,6 +1,11 @@
 cesRssDeriv <- function( par, yName, xNames, tName, data, vrs, rho1 = NULL,
       rho2 = NULL, rho = NULL, rhoApprox, nested = FALSE, multErr ) {
 
+   # check if coefficients contain NAs
+   if( any( is.na( par ) ) ) {
+      return( NA )
+   }
+
    # number of exogenous variables
    nExog <- length( xNames )
 
