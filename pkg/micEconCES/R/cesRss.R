@@ -1,8 +1,12 @@
 cesRss <- function( par, yName, xNames, tName, data, vrs, rho1 = NULL, 
       rho2 = NULL, rho = NULL, rhoApprox, nested = FALSE, multErr ) {
 
+   # check if coefficients contain NAs
+   if( any( is.na( par ) ) ) {
+      return( NA )
+   }
+
    # check rhoApprox
-   
    if( !is.vector( rhoApprox ) || !is.numeric( rhoApprox ) ) {
       stop( "argument 'rhoApprox' must be a numeric scalar",
          " or a numeric vector" )
