@@ -31,7 +31,7 @@ summary.cesEst <- function( object, rSquaredLog = object$multErr,
       object$vcov <- object$sigma^2 * object$cov.unscaled
    }
 
-   if( ela ) {
+   if( ela && !is.null( object$ela ) ) {
       # (co)variances of the elasticities of substitution
       elaGrad <- matrix( 0, nrow = length( object$ela ), 
          ncol = length( coef( object ) ),
@@ -51,7 +51,7 @@ summary.cesEst <- function( object, rSquaredLog = object$multErr,
    object$coefficients <- coefTable( coef( object ),
       diag( object$vcov )^0.5, df = Inf )
 
-   if( ela ) {
+   if( ela && !is.null( object$elaCov ) ) {
       object$ela <- coefTable( object$ela, diag( object$elaCov )^0.5, df = Inf )
    } else {
       object$ela <- NULL
