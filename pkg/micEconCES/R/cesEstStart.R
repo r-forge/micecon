@@ -47,6 +47,7 @@ cesEstStart <- function( yName, xNames, tName, data, vrs,
                mean( data[[ yName ]], na.rm = TRUE ) /
                mean( yTemp, na.rm = TRUE )
          }
+         start[ 1 ] <- max( start[ 1 ], 1e-8 )
          if( !is.null( rho ) ) {
             start <- start[ -( withTime + ifelse( nested, 2 * nExog - 1, 3 ) ) ]
          }
