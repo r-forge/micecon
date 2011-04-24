@@ -10,7 +10,7 @@ plot.cesEst <- function( x, ... ) {
 
    if( length( dim( x$rssArray ) ) == 3 ) {
       # for three-dimensional grid ssearches
-      par( mfcol = c( 3, 1 ), mar = c(0,0,1.5,0) )
+      par( mfcol = c( 3, 1 ), mar = c(1,0,1.5,0) )
       for( i in 1:3 ) {
          if( i == 1 ) {
             xValues <- x$rho1Values
