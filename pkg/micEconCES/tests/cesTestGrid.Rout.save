@@ -1,5 +1,5 @@
 
-R version 2.12.2 (2011-02-25)
+R version 2.13.0 (2011-04-13)
 Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 Platform: i686-pc-linux-gnu (32-bit)
@@ -297,9 +297,9 @@ $rho
 [1] -0.8
 
 $fitted.values
- [1]  957.510 1037.958 1066.186 1135.558 1148.580 1184.472 1236.029 1230.696
- [9] 1226.885 1276.200 1351.966 1534.008 1635.540 1683.704 1622.515 1635.766
-[17] 1679.088 1745.023 1868.065 2003.652
+ [1]  957.5101 1037.9583 1066.1861 1135.5578 1148.5798 1184.4720 1236.0287
+ [8] 1230.6964 1226.8848 1276.1998 1351.9662 1534.0077 1635.5398 1683.7044
+[15] 1622.5154 1635.7665 1679.0878 1745.0230 1868.0654 2003.6519
 
 $residuals
  [1] -11.377061 -75.227833   3.393028  36.238702  29.536233   1.338019
@@ -372,7 +372,7 @@ Multiple R-squared: 0.9901472
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)      5.0      135.3   0.037     0.97
+E_1_2 (all)      5.0      135.3   0.037    0.971
 
 > 
 > ## Nelder-Mead, VRS
@@ -509,7 +509,7 @@ nu     1.56703    0.09325  16.805   <2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 50.19198 
-Multiple R-squared: 0.971536 
+Multiple R-squared: 0.9715359 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -525,11 +525,11 @@ delta   39.7633905   5.40274419  -14.8234473 -0.030216762
 rho   -109.0044001 -14.82344731   40.6801337  0.076209303
 nu      -0.3249632  -0.03021676    0.0762093  0.008695393
 > coef( summary( cesGridNmVrs ) )
-        Estimate Std. Error     t value     Pr(>|t|)
-gamma  2.2576334 17.1444548  0.13168301 8.952350e-01
-delta  0.8649508  2.3243804  0.37212100 7.098028e-01
-rho   -0.4000000  6.3780980 -0.06271462 9.499938e-01
-nu     1.5670310  0.0932491 16.80478547 2.251256e-63
+        Estimate  Std. Error     t value     Pr(>|t|)
+gamma  2.2576334 17.14445477  0.13168301 8.952350e-01
+delta  0.8649508  2.32438039  0.37212100 7.098028e-01
+rho   -0.4000000  6.37809797 -0.06271462 9.499938e-01
+nu     1.5670310  0.09324909 16.80478547 2.251256e-63
 > plot( cesGridNmVrs )
 > 
 > # using the CG optimization method
@@ -836,11 +836,11 @@ E_1_2 (all)     1.00      18.42   0.054    0.957
      gamma      delta        rho         nu 
 10.0279173  0.8660399  0.0000000  1.3052536 
 > vcov( cesGridCgVrs )
-             gamma        delta           rho          nu
-gamma 18720.645013  911.2841059 -2514.7899310 -3.03752088
-delta   911.284106   44.4597279  -122.7861380 -0.11313419
-rho   -2514.789931 -122.7861380   339.2070044  0.28230606
-nu       -3.037521   -0.1131342     0.2823061  0.01309030
+             gamma        delta           rho         nu
+gamma 18720.645013  911.2841059 -2514.7899310 -3.0375209
+delta   911.284106   44.4597279  -122.7861380 -0.1131342
+rho   -2514.789931 -122.7861380   339.2070044  0.2823061
+nu       -3.037521   -0.1131342     0.2823061  0.0130903
 > coef( summary( cesGridCgVrs ) )
         Estimate  Std. Error     t value     Pr(>|t|)
 gamma 10.0279173 136.8234081  0.07329095 9.415746e-01
@@ -914,9 +914,9 @@ $rho
 [1] 0
 
 $fitted.values
- [1]  967.403 1043.730 1072.598 1135.535 1148.527 1183.207 1233.763 1231.433
- [9] 1224.877 1275.051 1346.926 1526.646 1624.688 1676.037 1620.364 1635.724
-[17] 1683.671 1750.877 1873.660 2007.805
+ [1]  967.4029 1043.7303 1072.5983 1135.5352 1148.5268 1183.2068 1233.7627
+ [8] 1231.4333 1224.8769 1275.0513 1346.9264 1526.6462 1624.6880 1676.0372
+[15] 1620.3636 1635.7238 1683.6708 1750.8774 1873.6604 2007.8050
 
 $residuals
  [1] -21.269933 -80.999863  -3.019171  36.261248  29.589251   2.603230
@@ -1041,8 +1041,8 @@ $multErr
 [1] FALSE
 
 $start
-   gamma    delta 
-22.58930  0.50000 
+  gamma   delta 
+22.5893  0.5000 
 
 $lower
 [1] -Inf
@@ -1399,7 +1399,7 @@ nu     1.50739    0.09499  15.869   <2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 51.33399 
-Multiple R-squared: 0.970226 
+Multiple R-squared: 0.9702259 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -1651,10 +1651,10 @@ $rss
 
 $cov.unscaled
               gamma         delta           rho            nu
-gamma  7.690092e-02  2.503990e-02 -3.510931e-02 -9.302903e-05
-delta  2.503990e-02  8.173779e-03 -1.146827e-02 -2.219424e-05
-rho   -3.510931e-02 -1.146827e-02  1.609427e-02  2.848650e-05
-nu    -9.302903e-05 -2.219424e-05  2.848650e-05  3.449553e-06
+gamma  7.690092e-02  2.503990e-02 -0.0351093134 -9.302903e-05
+delta  2.503990e-02  8.173779e-03 -0.0114682693 -2.219424e-05
+rho   -3.510931e-02 -1.146827e-02  0.0160942655  2.848650e-05
+nu    -9.302903e-05 -2.219424e-05  0.0000284865  3.449553e-06
 
 $allRhoSum
    rho      rss convergence
@@ -1723,11 +1723,11 @@ delta  62.6879867  20.46325415 -28.71109101 -0.05556382
 rho   -87.8970196 -28.71109101  40.29238485  0.07131666
 nu     -0.2329004  -0.05556382   0.07131666  0.00863604
 > coef( summary( cesGridNmVrs ) )
-        Estimate Std. Error     t value     Pr(>|t|)
-gamma  2.2576334 17.1444548  0.13168301 8.952350e-01
-delta  0.8649508  2.3243804  0.37212100 7.098028e-01
-rho   -0.4000000  6.3780980 -0.06271462 9.499938e-01
-nu     1.5670310  0.0932491 16.80478547 2.251256e-63
+        Estimate  Std. Error     t value     Pr(>|t|)
+gamma  2.2576334 17.14445477  0.13168301 8.952350e-01
+delta  0.8649508  2.32438039  0.37212100 7.098028e-01
+rho   -0.4000000  6.37809797 -0.06271462 9.499938e-01
+nu     1.5670310  0.09324909 16.80478547 2.251256e-63
 > plot( cesGridBfgsVrs )
 > 
 > # using the BFGS optimization method, TC, VRS
@@ -1818,12 +1818,12 @@ $rss
 [1] 17026.61
 
 $cov.unscaled
-               gamma        lambda         delta           rho            nu
-gamma  12.4401303269  1.754550e-04  4.886806e-01 -7.783367e-01 -7.242974e-03
-lambda  0.0001754550  1.298587e-08  6.108029e-06 -1.001055e-05 -4.604104e-07
-delta   0.4886806344  6.108029e-06  1.930174e-02 -3.073543e-02 -2.453345e-04
-rho    -0.7783366583 -1.001055e-05 -3.073543e-02  4.895647e-02  3.972359e-04
-nu     -0.0072429743 -4.604104e-07 -2.453345e-04  3.972359e-04  1.990237e-05
+              gamma        lambda         delta           rho            nu
+gamma  12.440130327  1.754550e-04  4.886806e-01 -7.783367e-01 -7.242974e-03
+lambda  0.000175455  1.298587e-08  6.108029e-06 -1.001055e-05 -4.604104e-07
+delta   0.488680634  6.108029e-06  1.930174e-02 -3.073543e-02 -2.453345e-04
+rho    -0.778336658 -1.001055e-05 -3.073543e-02  4.895647e-02  3.972359e-04
+nu     -0.007242974 -4.604104e-07 -2.453345e-04  3.972359e-04  1.990237e-05
 
 $allRhoSum
    rho      rss convergence
@@ -1877,7 +1877,7 @@ nu       0.914151   0.130167   7.023 2.17e-12 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 29.17757 
-Multiple R-squared: 0.990381 
+Multiple R-squared: 0.9903811 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -1898,7 +1898,7 @@ $optim$par
 4.73284495 0.01992050 0.04606613 0.91286988 
 
 $optim$value
-[1] 0.01163430
+[1] 0.0116343
 
 $optim$counts
 function gradient 
@@ -1962,7 +1962,7 @@ $residuals
 [16] -0.012856247 -0.017003719  0.006947176  0.015249843  0.001120042
 
 $rss
-[1] 0.01163430
+[1] 0.0116343
 
 $cov.unscaled
                gamma      lambda         delta           rho            nu
@@ -2083,8 +2083,8 @@ $multErr
 [1] FALSE
 
 $start
-   gamma    delta 
-22.58930  0.50000 
+  gamma   delta 
+22.5893  0.5000 
 
 $lower
 [1] 0 0
@@ -2326,7 +2326,7 @@ Multiple R-squared: 0.9901472
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)      5.0      135.3   0.037     0.97
+E_1_2 (all)      5.0      135.3   0.037    0.971
 
 > 
 > # using the L-BFGS-B optimization method with constrained parameters, VRS
@@ -2336,8 +2336,8 @@ E_1_2 (all)      5.0      135.3   0.037     0.97
 > print.default( cesGridBfgsConVrs )
 $optim
 $optim$par
-   gamma    delta       nu 
-1.084423 0.634565 1.584593 
+    gamma     delta        nu 
+1.0844227 0.6345651 1.5845929 
 
 $optim$value
 [1] 49966.45
@@ -2354,8 +2354,8 @@ $optim$message
 
 
 $coefficients
-   gamma    delta      rho       nu 
-1.084423 0.634565 0.000000 1.584593 
+    gamma     delta       rho        nu 
+1.0844227 0.6345651 0.0000000 1.5845929 
 
 $iter
 function gradient 
@@ -2411,10 +2411,10 @@ $rss
 
 $cov.unscaled
               gamma         delta           rho            nu
-gamma  0.0579392390  2.148633e-02 -2.968736e-02 -8.034451e-05
-delta  0.0214863331  7.988170e-03 -1.104432e-02 -2.176766e-05
-rho   -0.0296873631 -1.104432e-02  1.527309e-02  2.755062e-05
-nu    -0.0000803445 -2.176766e-05  2.755062e-05  3.448088e-06
+gamma  5.793924e-02  2.148633e-02 -2.968736e-02 -8.034451e-05
+delta  2.148633e-02  7.988170e-03 -1.104432e-02 -2.176766e-05
+rho   -2.968736e-02 -1.104432e-02  1.527309e-02  2.755062e-05
+nu    -8.034451e-05 -2.176766e-05  2.755062e-05  3.448088e-06
 
 $allRhoSum
    rho      rss convergence
@@ -2475,8 +2475,8 @@ Elasticity of Substitution:
 E_1_2 (all)    1.000      6.177   0.162    0.871
 
 > coef( cesGridBfgsConVrs )
-   gamma    delta      rho       nu 
-1.084423 0.634565 0.000000 1.584593 
+    gamma     delta       rho        nu 
+1.0844227 0.6345651 0.0000000 1.5845929 
 > vcov( cesGridBfgsConVrs )
             gamma        delta          rho           nu
 gamma 144.7509106  53.67979188 -74.16861035 -0.200726495
@@ -2484,11 +2484,11 @@ delta  53.6797919  19.95702685 -27.59226363 -0.054382625
 rho   -74.1686104 -27.59226363  38.15710417  0.068830343
 nu     -0.2007265  -0.05438262   0.06883034  0.008614435
 > coef( summary( cesGridBfgsConVrs ) )
-      Estimate  Std. Error     t value     Pr(>|t|)
-gamma 1.084423 12.03124726  0.09013386 9.281808e-01
-delta 0.634565  4.46732883  0.14204575 8.870439e-01
-rho   0.000000  6.17714369  0.00000000 1.000000e+00
-nu    1.584593  0.09281398 17.07278230 2.366482e-65
+       Estimate  Std. Error     t value     Pr(>|t|)
+gamma 1.0844227 12.03124726  0.09013386 9.281808e-01
+delta 0.6345651  4.46732883  0.14204575 8.870439e-01
+rho   0.0000000  6.17714369  0.00000000 1.000000e+00
+nu    1.5845929  0.09281398 17.07278230 2.366482e-65
 > plot( cesGridBfgsConVrs )
 > 
 > # using the Levenberg-Marquardt optimization method
@@ -2773,11 +2773,11 @@ E_1_2 (all)   0.4545     1.2662   0.359     0.72
      gamma      delta        rho         nu 
 0.16506932 0.03937586 1.20000000 1.58848816 
 > vcov( cesGridLmVrs )
-            gamma        delta         rho           nu
-gamma  0.85104899  0.661923533 -5.60756034 -0.018851897
-delta  0.66192353  0.521668349 -4.42574530 -0.007329388
-rho   -5.60756034 -4.425745298 37.55557112  0.055933363
-nu    -0.01885190 -0.007329388  0.05593336  0.008464076
+           gamma        delta         rho           nu
+gamma  0.8510490  0.661923533 -5.60756034 -0.018851897
+delta  0.6619235  0.521668349 -4.42574530 -0.007329388
+rho   -5.6075603 -4.425745298 37.55557112  0.055933363
+nu    -0.0188519 -0.007329388  0.05593336  0.008464076
 > coef( summary( cesGridLmVrs ) )
         Estimate Std. Error     t value     Pr(>|t|)
 gamma 0.16506932 0.92252316  0.17893244 8.579907e-01
@@ -2854,11 +2854,11 @@ $rss
 
 $cov.unscaled
               gamma        lambda         delta           rho            nu
-gamma  13.128728428  1.895820e-04  2.290744e-01 -8.074909e-01 -7.867202e-03
-lambda  0.000189582  1.299507e-08  2.861489e-06 -1.036820e-05 -4.607286e-07
-delta   0.229074351  2.861489e-06  4.032596e-03 -1.421091e-02 -1.148355e-04
-rho    -0.807490885 -1.036820e-05 -1.421091e-02  5.009393e-02  4.112287e-04
-nu     -0.007867202 -4.607286e-07 -1.148355e-04  4.112287e-04  1.991461e-05
+gamma  13.128728428  1.895820e-04  2.290744e-01 -0.8074908846 -7.867202e-03
+lambda  0.000189582  1.299507e-08  2.861489e-06 -0.0000103682 -4.607286e-07
+delta   0.229074351  2.861489e-06  4.032596e-03 -0.0142109078 -1.148355e-04
+rho    -0.807490885 -1.036820e-05 -1.421091e-02  0.0500939316  4.112287e-04
+nu     -0.007867202 -4.607286e-07 -1.148355e-04  0.0004112287  1.991461e-05
 
 $allRhoSum
    rho      rss convergence
@@ -2982,9 +2982,9 @@ $rho
 [1] 1.2
 
 $fitted.values
- [1]  981.768 1076.661 1100.688 1165.073 1157.852 1184.375 1237.517 1209.648
- [9] 1162.044 1215.171 1291.553 1554.504 1677.271 1732.934 1607.439 1597.380
-[17] 1646.686 1718.415 1878.484 2055.508
+ [1]  981.7679 1076.6608 1100.6877 1165.0731 1157.8516 1184.3746 1237.5167
+ [8] 1209.6482 1162.0442 1215.1714 1291.5532 1554.5040 1677.2709 1732.9340
+[15] 1607.4388 1597.3798 1646.6856 1718.4149 1878.4836 2055.5084
 
 $residuals
  [1] -0.036971796 -0.111846133 -0.028669913  0.005754156  0.017350372
@@ -3349,7 +3349,7 @@ Multiple R-squared: 0.9901472
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)      5.0      135.3   0.037     0.97
+E_1_2 (all)      5.0      135.3   0.037    0.971
 
 > 
 > # using the Newton-type optimization method implemented in nlm(), VRS
@@ -3494,11 +3494,11 @@ E_1_2 (all)    1.000      6.474   0.154    0.877
    gamma    delta      rho       nu 
 1.364098 0.654290 0.000000 1.555338 
 > vcov( cesGridNewtonVrs )
-            gamma        delta          rho           nu
-gamma 230.6559839  69.27690863 -98.12359826 -0.256320046
-delta  69.2769086  20.85920739 -29.56445163 -0.056508248
-rho   -98.1235983 -29.56445163  41.91227369  0.073234447
-nu     -0.2563200  -0.05650825   0.07323445  0.008678452
+          gamma        delta          rho           nu
+gamma 230.65598  69.27690863 -98.12359826 -0.256320046
+delta  69.27691  20.85920739 -29.56445163 -0.056508248
+rho   -98.12360 -29.56445163  41.91227369  0.073234447
+nu     -0.25632  -0.05650825   0.07323445  0.008678452
 > coef( summary( cesGridNewtonVrs ) )
       Estimate  Std. Error     t value     Pr(>|t|)
 gamma 1.364098 15.18736264  0.08981793 9.284319e-01
@@ -3573,10 +3573,10 @@ $fitted.values
 [15] 1629.9778 1642.1427 1679.2381 1740.9149 1861.9837 1998.6501
 
 $residuals
- [1] -0.0034129947 -0.0691677124  0.0086788119  0.0348743655  0.0279491628
- [6]  0.0026876835  0.0032817458  0.0462093673 -0.0168346718  0.0000896785
-[11]  0.0032646218  0.0003363077 -0.0429077566  0.0017590023  0.0089849622
-[16] -0.0098597371 -0.0145150845  0.0083997636  0.0135685099 -0.0033860376
+ [1] -3.412995e-03 -6.916771e-02  8.678812e-03  3.487437e-02  2.794916e-02
+ [6]  2.687684e-03  3.281746e-03  4.620937e-02 -1.683467e-02  8.967851e-05
+[11]  3.264622e-03  3.363077e-04 -4.290776e-02  1.759002e-03  8.984962e-03
+[16] -9.859737e-03 -1.451508e-02  8.399764e-03  1.356851e-02 -3.386038e-03
 
 $rss
 [1] 0.01181493
@@ -3662,15 +3662,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "relative convergence (4)"
-
 $nlminb$iterations
 [1] 47
 
 $nlminb$evaluations
 function gradient 
       71       48 
+
+$nlminb$message
+[1] "relative convergence (4)"
 
 
 $coefficients
@@ -3785,8 +3785,8 @@ Residual standard error: 91.05832
 Multiple R-squared: 0.9063156 
 
 Elasticity of Substitution:
-            Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all) 5.00e+00   7.83e+14       0        1
+             Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all) 5.000e+00  7.831e+14       0        1
 
 > coef( cesGridPort )
    gamma    delta      rho 
@@ -3819,15 +3819,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 1
 
-$nlminb$message
-[1] "function evaluation limit reached without convergence (9)"
-
 $nlminb$iterations
 [1] 128
 
 $nlminb$evaluations
 function gradient 
      200      128 
+
+$nlminb$message
+[1] "function evaluation limit reached without convergence (9)"
 
 
 $coefficients
@@ -3944,7 +3944,7 @@ nu     1.57431    0.09210  17.094   <2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 49.5933 
-Multiple R-squared: 0.972211 
+Multiple R-squared: 0.9722109 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -3983,15 +3983,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "relative convergence (4)"
-
 $nlminb$iterations
 [1] 115
 
 $nlminb$evaluations
 function gradient 
      160      116 
+
+$nlminb$message
+[1] "relative convergence (4)"
 
 
 $coefficients
@@ -4050,12 +4050,12 @@ $rss
 [1] 16955.55
 
 $cov.unscaled
-               gamma        lambda         delta           rho            nu
-gamma  13.1287269366  1.895820e-04  2.290743e-01 -8.074908e-01 -7.867202e-03
-lambda  0.0001895820  1.299507e-08  2.861488e-06 -1.036819e-05 -4.607286e-07
-delta   0.2290742874  2.861488e-06  4.032594e-03 -1.421090e-02 -1.148355e-04
-rho    -0.8074907964 -1.036819e-05 -1.421090e-02  5.009393e-02  4.112287e-04
-nu     -0.0078672021 -4.607286e-07 -1.148355e-04  4.112287e-04  1.991461e-05
+              gamma        lambda         delta           rho            nu
+gamma  13.128726937  1.895820e-04  2.290743e-01 -8.074908e-01 -7.867202e-03
+lambda  0.000189582  1.299507e-08  2.861488e-06 -1.036819e-05 -4.607286e-07
+delta   0.229074287  2.861488e-06  4.032594e-03 -1.421090e-02 -1.148355e-04
+rho    -0.807490796 -1.036819e-05 -1.421090e-02  5.009393e-02  4.112287e-04
+nu     -0.007867202 -4.607286e-07 -1.148355e-04  4.112287e-04  1.991461e-05
 
 $allRhoSum
    rho      rss convergence
@@ -4133,15 +4133,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "relative convergence (4)"
-
 $nlminb$iterations
 [1] 58
 
 $nlminb$evaluations
 function gradient 
       69       59 
+
+$nlminb$message
+[1] "relative convergence (4)"
 
 
 $coefficients
@@ -4249,9 +4249,9 @@ Message: relative convergence (4)
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
-gamma  4.831e+01  1.556e+01   3.105  0.00190 ** 
-delta  1.000e+00  5.027e-02  19.894  < 2e-16 ***
-rho   -4.000e-01  1.228e+13   0.000  1.00000    
+gamma  4.831e+01  1.556e+01   3.105   0.0019 ** 
+delta  1.000e+00  5.027e-02  19.894   <2e-16 ***
+rho   -4.000e-01  1.228e+13   0.000   1.0000    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -4714,10 +4714,10 @@ gamma  9.563178e+05  1.250888e+04 -4.520470e+18
 delta  1.250888e+04  1.636369e+02 -5.914135e+16
 rho   -4.520470e+18 -5.914135e+16  2.137693e+31
 > coef( summary( cesGridDe ) )
-      Estimate   Std. Error    t value Pr(>|t|)
-gamma 49.14295 9.779150e+02 0.05025278 0.959921
-delta  1.00000 1.279206e+01 0.07817347 0.937690
-rho    0.00000 4.623519e+15 0.00000000 1.000000
+      Estimate   Std. Error    t value  Pr(>|t|)
+gamma 49.14295 9.779150e+02 0.05025278 0.9599210
+delta  1.00000 1.279206e+01 0.07817347 0.9376901
+rho    0.00000 4.623519e+15 0.00000000 1.0000000
 > plot( cesGridDe )
 Warning message:
 In plot.window(...) :
@@ -5162,7 +5162,7 @@ Multiple R-squared: 0.9901454
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)      5.0      135.6   0.037     0.97
+E_1_2 (all)      5.0      135.6   0.037    0.971
 
 > 
 > # using the DE optimization method implemented in DEoptim(), VRS
@@ -5604,7 +5604,7 @@ Multiple R-squared: 0.9230725
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)   0.5556    47.2759   0.012     0.99
+E_1_2 (all)   0.5556    47.2759   0.012    0.991
 
 > coef( cesGridDeVrs )
      gamma      delta        rho         nu 

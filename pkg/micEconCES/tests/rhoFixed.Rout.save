@@ -1,5 +1,5 @@
 
-R version 2.12.2 (2011-02-25)
+R version 2.13.0 (2011-04-13)
 Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 Platform: i686-pc-linux-gnu (32-bit)
@@ -193,7 +193,7 @@ Multiple R-squared: 0.9064313
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)   0.3333   358.6774   0.001        1
+E_1_2 (all)   0.3333   358.6774   0.001    0.999
 
 > coef( cesNm ) 
     gamma     delta       rho 
@@ -285,10 +285,10 @@ $rss
 
 $cov.unscaled
               gamma         delta           rho            nu
-gamma  0.0998602669  2.549692e-02 -4.029273e-02 -1.085427e-04
-delta  0.0254969174  6.527913e-03 -1.032316e-02 -2.014954e-05
-rho   -0.0402927323 -1.032316e-02  1.632862e-02  2.918040e-05
-nu    -0.0001085427 -2.014954e-05  2.918040e-05  3.450127e-06
+gamma  0.0998602669  2.549692e-02 -0.0402927323 -1.085427e-04
+delta  0.0254969174  6.527913e-03 -0.0103231583 -2.014954e-05
+rho   -0.0402927323 -1.032316e-02  0.0163286238  2.918040e-05
+nu    -0.0001085427 -2.014954e-05  0.0000291804  3.450127e-06
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -461,10 +461,10 @@ Convergence NOT achieved after 501 iterations
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
 gamma   9.462731  81.207980   0.117    0.907    
-lambda  0.020249   0.003543   5.714  1.1e-08 ***
+lambda  0.020249   0.003543   5.714 1.10e-08 ***
 delta   0.617057   5.505053   0.112    0.911    
 rho    -0.400000   7.524079  -0.053    0.958    
-nu      0.942308   0.137936   6.831  8.4e-12 ***
+nu      0.942308   0.137936   6.831 8.41e-12 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -542,10 +542,10 @@ $fitted.values
 [15] 1601.5476 1591.4764 1644.0091 1719.8211 1882.5106 2059.6606
 
 $residuals
- [1] -0.0353536573 -0.1116830178 -0.0276528541  0.0034383653  0.0156865804
- [6] -0.0004772690  0.0000803577  0.0640042020  0.0382719439  0.0516867928
-[11]  0.0520244976 -0.0082119872 -0.0626079380 -0.0191700512  0.0265809740
-[16]  0.0214800371  0.0066872621  0.0205902803  0.0026046203 -0.0334552491
+ [1] -3.535366e-02 -1.116830e-01 -2.765285e-02  3.438365e-03  1.568658e-02
+ [6] -4.772690e-04  8.035769e-05  6.400420e-02  3.827194e-02  5.168679e-02
+[11]  5.202450e-02 -8.211987e-03 -6.260794e-02 -1.917005e-02  2.658097e-02
+[16]  2.148004e-02  6.687262e-03  2.059028e-02  2.604620e-03 -3.345525e-02
 
 $rss
 [1] 0.03280247
@@ -716,9 +716,9 @@ Convergence NOT achieved after 754 function and 101 gradient calls
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
-gamma    34.540  44157.276   0.001        1
-delta     0.493   1624.956   0.000        1
-rho       2.000   2095.791   0.001        1
+gamma    34.540  44157.276   0.001    0.999
+delta     0.493   1624.956   0.000    1.000
+rho       2.000   2095.791   0.001    0.999
 
 Residual standard error: 91.14635 
 Multiple R-squared: 0.9061344 
@@ -999,11 +999,11 @@ E_1_2 (all)    1.111     21.141   0.053    0.958
      gamma      delta        rho         nu 
  8.8515065  0.6795295 -0.1000000  1.1311791 
 > vcov( cesCgVrs )
-             gamma        delta           rho          nu
-gamma 35805.193280 2199.4579639 -3233.6009115 -6.76142814
-delta  2199.457964  135.4599782  -199.2795894 -0.31110311
-rho   -3233.600912 -199.2795894   293.2311184  0.42399932
-nu       -6.761428   -0.3111031     0.4239993  0.03370560
+             gamma        delta           rho         nu
+gamma 35805.193280 2199.4579639 -3233.6009115 -6.7614281
+delta  2199.457964  135.4599782  -199.2795894 -0.3111031
+rho   -3233.600912 -199.2795894   293.2311184  0.4239993
+nu       -6.761428   -0.3111031     0.4239993  0.0337056
 > coef( summary( cesCgVrs ) )
         Estimate  Std. Error     t value     Pr(>|t|)
 gamma  8.8515065 189.2226025  0.04677827 9.626899e-01
@@ -1082,10 +1082,10 @@ $rss
 [1] 166103.7
 
 $cov.unscaled
-          gamma      delta        rho
-gamma 305442.43 11589.3086 -15016.660
-delta  11589.31   439.7326   -569.791
-rho   -15016.66  -569.7910    738.386
+          gamma      delta         rho
+gamma 305442.43 11589.3086 -15016.6596
+delta  11589.31   439.7326   -569.7910
+rho   -15016.66  -569.7910    738.3859
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1115,16 +1115,16 @@ Coefficient 'rho' was fixed at 2
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
-gamma 3.598e+01  5.037e+04   0.001        1
-delta 5.349e-01  1.911e+03   0.000        1
-rho   2.000e+00  2.476e+03   0.001        1
+gamma 3.598e+01  5.037e+04   0.001    0.999
+delta 5.349e-01  1.911e+03   0.000    1.000
+rho   2.000e+00  2.476e+03   0.001    0.999
 
 Residual standard error: 91.1328 
 Multiple R-squared: 0.9061623 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)   0.3333   275.1528   0.001        1
+E_1_2 (all)   0.3333   275.1528   0.001    0.999
 
 > coef( cesSann )
      gamma      delta        rho 
@@ -1487,8 +1487,8 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     method = "BFGS", rho = 2)
 
 Coefficients:
- gamma  delta    rho 
-79.500  2.620  2.000 
+gamma delta   rho 
+79.50  2.62  2.00 
 
 Elasticity of Substitution: 0.3333 
 
@@ -1515,7 +1515,7 @@ Multiple R-squared: 0.9064238
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)   0.3333   384.1229   0.001        1
+E_1_2 (all)   0.3333   384.1229   0.001    0.999
 
 > coef( cesBfgs )
    gamma    delta      rho 
@@ -1748,12 +1748,12 @@ $rss
 [1] 17026.61
 
 $cov.unscaled
-               gamma        lambda         delta           rho            nu
-gamma  12.4401303269  1.754550e-04  4.886806e-01 -7.783367e-01 -7.242974e-03
-lambda  0.0001754550  1.298587e-08  6.108029e-06 -1.001055e-05 -4.604104e-07
-delta   0.4886806344  6.108029e-06  1.930174e-02 -3.073543e-02 -2.453345e-04
-rho    -0.7783366583 -1.001055e-05 -3.073543e-02  4.895647e-02  3.972359e-04
-nu     -0.0072429743 -4.604104e-07 -2.453345e-04  3.972359e-04  1.990237e-05
+              gamma        lambda         delta           rho            nu
+gamma  12.440130327  1.754550e-04  4.886806e-01 -7.783367e-01 -7.242974e-03
+lambda  0.000175455  1.298587e-08  6.108029e-06 -1.001055e-05 -4.604104e-07
+delta   0.488680634  6.108029e-06  1.930174e-02 -3.073543e-02 -2.453345e-04
+rho    -0.778336658 -1.001055e-05 -3.073543e-02  4.895647e-02  3.972359e-04
+nu     -0.007242974 -4.604104e-07 -2.453345e-04  3.972359e-04  1.990237e-05
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1793,7 +1793,7 @@ nu       0.914151   0.130167   7.023 2.17e-12 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 29.17757 
-Multiple R-squared: 0.990381 
+Multiple R-squared: 0.9903811 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -1927,7 +1927,7 @@ nu      1.197965   0.167495   7.152 8.54e-13 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 0.02686391 
-Multiple R-squared: 0.984059 
+Multiple R-squared: 0.9840589 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -2068,10 +2068,10 @@ gamma  2.695496e+06  1.099014e+05 -4.889464e+16
 delta  1.099014e+05  4.480923e+03 -1.991860e+15
 rho   -4.889464e+16 -1.991860e+15  1.250563e+28
 > coef( summary( cesBfgsCon ) )
-      Estimate   Std. Error      t value Pr(>|t|)
-gamma 49.14295 1.641797e+03 2.993242e-02 0.976121
-delta  1.00000 6.693970e+01 1.493882e-02 0.988081
-rho    2.00000 1.118286e+14 1.788452e-14 1.000000
+      Estimate   Std. Error      t value  Pr(>|t|)
+gamma 49.14295 1.641797e+03 2.993242e-02 0.9761209
+delta  1.00000 6.693970e+01 1.493882e-02 0.9880810
+rho    2.00000 1.118286e+14 1.788452e-14 1.0000000
 > 
 > ## L-BFGS-B with constrained parameters, TC, CRS
 > cesBfgsConTc <- cesEst( "qOutput", xxNames, tName = "time", data = germanFarms, 
@@ -2413,9 +2413,9 @@ $rho
 [1] 0
 
 $fitted.values
- [1]  949.008 1031.631 1060.122 1132.153 1146.012 1183.018 1235.664 1230.190
- [9] 1228.233 1278.047 1356.198 1540.286 1644.292 1692.533 1629.039 1641.141
-[17] 1678.800 1741.215 1862.811 1999.587
+ [1]  949.0079 1031.6314 1060.1223 1132.1532 1146.0116 1183.0179 1235.6641
+ [8] 1230.1903 1228.2329 1278.0470 1356.1980 1540.2864 1644.2924 1692.5329
+[15] 1629.0393 1641.1413 1678.8005 1741.2151 1862.8111 1999.5874
 
 $residuals
  [1] -0.0030339779 -0.0691231633  0.0088810160  0.0344166990  0.0276288514
@@ -2538,10 +2538,10 @@ $fitted.values
 [17] 1648.616 1723.504 1834.208 1936.476
 
 $residuals
- [1] -203.76652 -226.37818 -143.64134  -52.11434  -45.81202  -53.83807
- [7]  -33.70469   12.47061  -29.52997   -2.60154   45.23658   73.10689
-[13]   46.45461  114.21971   95.71762   59.26146    6.42405   32.09601
-[19]   53.21195   55.41819
+ [1] -203.766520 -226.378181 -143.641344  -52.114341  -45.812017  -53.838066
+ [7]  -33.704692   12.470611  -29.529971   -2.601540   45.236582   73.106893
+[13]   46.454608  114.219710   95.717623   59.261457    6.424049   32.096011
+[19]   53.211949   55.418191
 
 $rss
 [1] 165527.2
@@ -2582,9 +2582,9 @@ Message: Number of iterations has reached `maxiter' == 200.
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
-gamma 4.243e+02  1.021e+08   0.000        1
-delta 7.469e+01  3.630e+07   0.000        1
-rho   2.000e+00  2.126e+03   0.001        1
+gamma 4.243e+02  1.021e+08   0.000    1.000
+delta 7.469e+01  3.630e+07   0.000    1.000
+rho   2.000e+00  2.126e+03   0.001    0.999
 
 Residual standard error: 90.97451 
 Multiple R-squared: 0.906488 
@@ -2673,10 +2673,10 @@ $rss
 
 $cov.unscaled
               gamma         delta           rho            nu
-gamma  0.0720415683  2.155693e-02 -3.311186e-02 -9.144059e-05
-delta  0.0215569284  6.468114e-03 -9.941868e-03 -1.984659e-05
-rho   -0.0331118610 -9.941868e-03  1.528463e-02  2.795986e-05
-nu    -0.0000914406 -1.984659e-05  2.795986e-05  3.448197e-06
+gamma  7.204157e-02  2.155693e-02 -3.311186e-02 -9.144059e-05
+delta  2.155693e-02  6.468114e-03 -9.941868e-03 -1.984659e-05
+rho   -3.311186e-02 -9.941868e-03  1.528463e-02  2.795986e-05
+nu    -9.144059e-05 -1.984659e-05  2.795986e-05  3.448197e-06
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -2853,7 +2853,7 @@ Multiple R-squared: 0.99025
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)   0.5882     2.2015   0.267     0.79
+E_1_2 (all)   0.5882     2.2015   0.267    0.789
 
 > 
 > ## Levenberg-Marquardt, multErr, VRS
@@ -2977,11 +2977,11 @@ Elasticity of Substitution:
 E_1_2 (all)    1.111      8.267   0.134    0.893
 
 > vcov( cesLmMeVrs )
-            gamma       delta         rho          nu
-gamma  65.0954683  38.0074614 -53.9255379 -0.21598291
-delta  38.0074614  22.2425002 -31.5770958 -0.10418461
-rho   -53.9255379 -31.5770958  44.8392584  0.14090295
-nu     -0.2159829  -0.1041846   0.1409030  0.01072515
+            gamma       delta        rho          nu
+gamma  65.0954683  38.0074614 -53.925538 -0.21598291
+delta  38.0074614  22.2425002 -31.577096 -0.10418461
+rho   -53.9255379 -31.5770958  44.839258  0.14090295
+nu     -0.2159829  -0.1041846   0.140903  0.01072515
 > 
 > ## Newton-type, CRS
 > cesNewton <- cesEst( "qOutput", xxNames, germanFarms, method = "Newton", rho = 2 )
@@ -3089,9 +3089,9 @@ Convergence achieved after 4 iterations
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
-gamma    34.539  44156.785   0.001        1
-delta     0.493   1624.933   0.000        1
-rho       2.000   2095.763   0.001        1
+gamma    34.539  44156.785   0.001    0.999
+delta     0.493   1624.933   0.000    1.000
+rho       2.000   2095.763   0.001    0.999
 
 Residual standard error: 91.14635 
 Multiple R-squared: 0.9061344 
@@ -3353,7 +3353,7 @@ nu     1.58375    0.09289  17.050   <2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 50.02243 
-Multiple R-squared: 0.971728 
+Multiple R-squared: 0.9717279 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -3512,15 +3512,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "both X-convergence and relative convergence (5)"
-
 $nlminb$iterations
 [1] 28
 
 $nlminb$evaluations
 function gradient 
       37       28 
+
+$nlminb$message
+[1] "both X-convergence and relative convergence (5)"
 
 
 $coefficients
@@ -3653,15 +3653,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "relative convergence (4)"
-
 $nlminb$iterations
 [1] 92
 
 $nlminb$evaluations
 function gradient 
      141       93 
+
+$nlminb$message
+[1] "relative convergence (4)"
 
 
 $coefficients
@@ -3800,15 +3800,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "relative convergence (4)"
-
 $nlminb$iterations
 [1] 49
 
 $nlminb$evaluations
 function gradient 
       97       50 
+
+$nlminb$message
+[1] "relative convergence (4)"
 
 
 $coefficients
@@ -3934,15 +3934,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "relative convergence (4)"
-
 $nlminb$iterations
 [1] 97
 
 $nlminb$evaluations
 function gradient 
      122       98 
+
+$nlminb$message
+[1] "relative convergence (4)"
 
 
 $coefficients
@@ -4914,7 +4914,7 @@ rho     0.50000    5.51770   0.091    0.928
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 29.99593 
-Multiple R-squared: 0.989834 
+Multiple R-squared: 0.9898339 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -5344,8 +5344,8 @@ nu      1.0478     0.1590   6.591 4.37e-11 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Residual standard error: 86.6316 
-Multiple R-squared: 0.915203 
+Residual standard error: 86.63161 
+Multiple R-squared: 0.9152029 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)

@@ -1,5 +1,5 @@
 
-R version 2.12.2 (2011-02-25)
+R version 2.13.0 (2011-04-13)
 Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 Platform: i686-pc-linux-gnu (32-bit)
@@ -315,10 +315,10 @@ $fitted.values
 [17] 1684.522 1774.567 1911.509 2041.838
 
 $residuals
- [1] -140.733127 -166.510342  -81.412584   -1.601221    4.718346   -0.978531
- [7]   23.275689   58.183365   20.628176   31.455745   77.266741   44.553521
-[13]    7.017105   75.491644   68.089122   40.293243  -29.482085  -18.966718
-[19]  -24.089171  -49.944180
+ [1] -140.7331268 -166.5103418  -81.4125842   -1.6012208    4.7183461
+ [6]   -0.9785309   23.2756885   58.1833652   20.6281759   31.4557445
+[11]   77.2667406   44.5535212    7.0171050   75.4916439   68.0891216
+[16]   40.2932432  -29.4820846  -18.9667179  -24.0891708  -49.9441803
 
 $rss
 [1] 83794.05
@@ -392,10 +392,10 @@ nu      1.43203442    0.2903800  4.93158744 8.156404e-07
  [9] 1187.078 1246.953 1283.326 1496.231 1568.018 1620.468 1576.600 1585.738
 [17] 1684.522 1774.567 1911.509 2041.838
 > residuals( cesLandLaborVrs )
- [1] -140.733127 -166.510342  -81.412584   -1.601221    4.718346   -0.978531
- [7]   23.275689   58.183365   20.628176   31.455745   77.266741   44.553521
-[13]    7.017105   75.491644   68.089122   40.293243  -29.482085  -18.966718
-[19]  -24.089171  -49.944180
+ [1] -140.7331268 -166.5103418  -81.4125842   -1.6012208    4.7183461
+ [6]   -0.9785309   23.2756885   58.1833652   20.6281759   31.4557445
+[11]   77.2667406   44.5535212    7.0171050   75.4916439   68.0891216
+[16]   40.2932432  -29.4820846  -18.9667179  -24.0891708  -49.9441803
 > 
 > # using the CG optimization method
 > cesLandLaborCg <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -643,7 +643,7 @@ delta  8.014e-03  1.956e+00   0.004    0.997
 rho   -2.790e+00  8.310e+01  -0.034    0.973
 
 Residual standard error: 94.21012 
-Multiple R-squared: 0.899718 
+Multiple R-squared: 0.8997179 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -783,7 +783,7 @@ delta  7.176e-02  1.703e+04       0        1
 rho   -4.396e+00  8.685e+04       0        1
 
 Residual standard error: 91.06148 
-Multiple R-squared: 0.906309 
+Multiple R-squared: 0.9063091 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -903,8 +903,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
     method = "L-BFGS-B")
 
 Coefficients:
-gamma delta   rho 
-49.14  1.00 -1.00 
+  gamma   delta     rho 
+49.1430  1.0000 -0.9999 
 
 Elasticity of Substitution: 12853 
 
@@ -1131,9 +1131,9 @@ b_1_2 + b_2_2 = 0
 Model 1: restricted model
 Model 2: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
 
-  Res.Df      RSS Df Sum of Sq      F   Pr(>F)   
-1     16 0.040974                                
-2     14 0.015804  2  0.025170 11.148 0.001270 **
+  Res.Df      RSS Df Sum of Sq      F  Pr(>F)   
+1     16 0.040974                               
+2     14 0.015804  2   0.02517 11.148 0.00127 **
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -1490,7 +1490,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms,
 
 Coefficients:
      gamma      delta        rho 
-274.353182   0.000952  -4.038093 
+ 2.744e+02  9.521e-04 -4.038e+00 
 
 Elasticity of Substitution: NA 
 
@@ -1527,10 +1527,10 @@ gamma 984664868.80 -33195.719333 -11836604.964
 delta    -33195.72      1.119672       399.384
 rho   -11836604.96    399.383986    142495.827
 > coef( summary( cesLandLaborNewton ) )
-           Estimate   Std. Error       t value Pr(>|t|)
-gamma 274.353181715 31379.370115  0.0087431067 0.993024
-delta   0.000952076     1.058145  0.0008997592 0.999282
-rho    -4.038093245   377.486195 -0.0106973270 0.991465
+           Estimate   Std. Error       t value  Pr(>|t|)
+gamma 274.353181715 31379.370115  0.0087431067 0.9930241
+delta   0.000952076     1.058145  0.0008997592 0.9992821
+rho    -4.038093245   377.486195 -0.0106973270 0.9914649
 > fitted( cesLandLaborNewton )
  [1] 1150.177 1189.098 1212.802 1223.862 1223.862 1239.314 1272.208 1275.459
  [9] 1236.976 1280.676 1314.698 1466.798 1527.216 1579.618 1546.836 1564.137
@@ -1556,15 +1556,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 1
 
-$nlminb$message
-[1] "function evaluation limit reached without convergence (9)"
-
 $nlminb$iterations
 [1] 144
 
 $nlminb$evaluations
 function gradient 
      200      144 
+
+$nlminb$message
+[1] "function evaluation limit reached without convergence (9)"
 
 
 $coefficients
@@ -1747,15 +1747,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "both X-convergence and relative convergence (5)"
-
 $nlminb$iterations
 [1] 69
 
 $nlminb$evaluations
 function gradient 
      111       69 
+
+$nlminb$message
+[1] "both X-convergence and relative convergence (5)"
 
 
 $coefficients
@@ -1773,7 +1773,7 @@ $message
 
 $ela
 E_1_2 (all) 
-    93.9011 
+   93.90109 
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
@@ -1893,15 +1893,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "relative convergence (4)"
-
 $nlminb$iterations
 [1] 37
 
 $nlminb$evaluations
 function gradient 
       71       38 
+
+$nlminb$message
+[1] "relative convergence (4)"
 
 
 $coefficients
@@ -2042,15 +2042,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 1
 
-$nlminb$message
-[1] "function evaluation limit reached without convergence (9)"
-
 $nlminb$iterations
 [1] 112
 
 $nlminb$evaluations
 function gradient 
      200      112 
+
+$nlminb$message
+[1] "function evaluation limit reached without convergence (9)"
 
 
 $coefficients
@@ -2194,15 +2194,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 1
 
-$nlminb$message
-[1] "function evaluation limit reached without convergence (9)"
-
 $nlminb$iterations
 [1] 138
 
 $nlminb$evaluations
 function gradient 
      200      138 
+
+$nlminb$message
+[1] "function evaluation limit reached without convergence (9)"
 
 
 $coefficients
@@ -3206,11 +3206,11 @@ delta  -8069.5866    76.666661     99.976883  -1.8568906
 rho   -10525.4386    99.976883    130.624596  -2.2944159
 nu       193.1711    -1.856891     -2.294416   0.1169107
 > coef( summary( cesLandLaborDeVrs ) )
-        Estimate  Std. Error     t value     Pr(>|t|)
-gamma 59.8246404 921.7120329  0.06490600 0.9482488441
-delta  0.5412677   8.7559500  0.06181713 0.9507084639
-rho   -0.4306679  11.4291118 -0.03768166 0.9699414970
-nu     1.3065732   0.3419220  3.82126048 0.0001327713
+        Estimate Std. Error     t value     Pr(>|t|)
+gamma 59.8246404 921.712033  0.06490600 0.9482488441
+delta  0.5412677   8.755950  0.06181713 0.9507084639
+rho   -0.4306679  11.429112 -0.03768166 0.9699414970
+nu     1.3065732   0.341922  3.82126048 0.0001327713
 > fitted( cesLandLaborDeVrs )
  [1] 1138.748 1181.513 1204.331 1224.289 1224.289 1238.533 1269.025 1281.072
  [9] 1238.156 1295.132 1331.547 1532.489 1601.788 1653.000 1611.818 1621.324
@@ -3905,7 +3905,7 @@ nu     1.31339    0.11134  11.797   <2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 59.99837 
-Multiple R-squared: 0.959327 
+Multiple R-squared: 0.9593269 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -4373,8 +4373,8 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
     method = "L-BFGS-B")
 
 Coefficients:
- gamma  delta    rho 
-49.143  1.000  0.651 
+  gamma   delta     rho 
+49.1430  1.0000  0.6511 
 
 Elasticity of Substitution: 0.6057 
 
@@ -4429,9 +4429,9 @@ b_1_2 + b_2_2 = 0
 Model 1: restricted model
 Model 2: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
 
-  Res.Df      RSS Df Sum of Sq      F    Pr(>F)    
-1     17 0.107030                                  
-2     14 0.017794  3  0.089235 23.402 1.020e-05 ***
+  Res.Df      RSS Df Sum of Sq      F   Pr(>F)    
+1     17 0.107030                                 
+2     14 0.017794  3  0.089235 23.402 1.02e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -4667,7 +4667,7 @@ nu     1.697680   0.115423  14.708   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Residual standard error: 9241.72 
+Residual standard error: 9241.721 
 Multiple R-squared: -964.0144 
 
 Elasticity of Substitution:
@@ -4897,9 +4897,9 @@ Convergence NOT achieved after 100 iterations
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
-gamma 1.388e+01  1.995e+04   0.001        1
-delta 1.201e-02  1.029e+02   0.000        1
-rho   3.496e+00  2.806e+03   0.001        1
+gamma 1.388e+01  1.995e+04   0.001    0.999
+delta 1.201e-02  1.029e+02   0.000    1.000
+rho   3.496e+00  2.806e+03   0.001    0.999
 
 Residual standard error: 91.12785 
 Multiple R-squared: 0.9061725 
@@ -4929,15 +4929,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 1
 
-$nlminb$message
-[1] "function evaluation limit reached without convergence (9)"
-
 $nlminb$iterations
 [1] 146
 
 $nlminb$evaluations
 function gradient 
      200      147 
+
+$nlminb$message
+[1] "function evaluation limit reached without convergence (9)"
 
 
 $coefficients
@@ -5058,15 +5058,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 1
 
-$nlminb$message
-[1] "function evaluation limit reached without convergence (9)"
-
 $nlminb$iterations
 [1] 142
 
 $nlminb$evaluations
 function gradient 
      200      142 
+
+$nlminb$message
+[1] "function evaluation limit reached without convergence (9)"
 
 
 $coefficients
@@ -5178,17 +5178,14 @@ rho    4.8460910    2253636 2.150343e-06 0.9999983
 > print.default( cesLandIntPortVrs )
 $nlminb
 $nlminb$par
-    gamma     delta       rho        nu 
- 2.174235  0.877653 -0.451586  1.580774 
+     gamma      delta        rho         nu 
+ 2.1742354  0.8776531 -0.4515860  1.5807736 
 
 $nlminb$objective
 [1] 50332.15
 
 $nlminb$convergence
 [1] 1
-
-$nlminb$message
-[1] "function evaluation limit reached without convergence (9)"
 
 $nlminb$iterations
 [1] 124
@@ -5197,10 +5194,13 @@ $nlminb$evaluations
 function gradient 
      200      124 
 
+$nlminb$message
+[1] "function evaluation limit reached without convergence (9)"
+
 
 $coefficients
-    gamma     delta       rho        nu 
- 2.174235  0.877653 -0.451586  1.580774 
+     gamma      delta        rho         nu 
+ 2.1742354  0.8776531 -0.4515860  1.5807736 
 
 $iter
 [1] 124
@@ -5300,11 +5300,11 @@ Elasticity of Substitution:
 E_1_2 (all)    1.823     20.733   0.088     0.93
 
 > coef( summary( cesLandIntPortVrs ) )
-       Estimate  Std. Error    t value     Pr(>|t|)
-gamma  2.174235 15.72174789  0.1382948 8.900075e-01
-delta  0.877653  2.08895485  0.4201398 6.743833e-01
-rho   -0.451586  6.23567848 -0.0724197 9.422679e-01
-nu     1.580774  0.09317655 16.9653593 1.481905e-64
+        Estimate  Std. Error     t value     Pr(>|t|)
+gamma  2.1742354 15.72174789  0.13829477 8.900075e-01
+delta  0.8776531  2.08895485  0.42013980 6.743833e-01
+rho   -0.4515860  6.23567848 -0.07241971 9.422679e-01
+nu     1.5807736  0.09317655 16.96535930 1.481905e-64
 > 
 > # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 > cesLandIntPortVrsCon <- cesEst( "qOutput", c( "land", "qVarInput" ),
@@ -5321,15 +5321,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 1
 
-$nlminb$message
-[1] "function evaluation limit reached without convergence (9)"
-
 $nlminb$iterations
 [1] 136
 
 $nlminb$evaluations
 function gradient 
      200      136 
+
+$nlminb$message
+[1] "function evaluation limit reached without convergence (9)"
 
 
 $coefficients
@@ -6677,7 +6677,7 @@ Coefficients:
   gamma   delta     rho 
 48.9762  0.9898  2.9994 
 
-Elasticity of Substitution: 0.2500 
+Elasticity of Substitution: 0.25 
 
 > summary( cesLandLaborDe2 )
 Estimated CES function with constant returns to scale
