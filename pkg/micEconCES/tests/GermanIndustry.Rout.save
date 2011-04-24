@@ -1,5 +1,5 @@
 
-R version 2.12.2 (2011-02-25)
+R version 2.13.0 (2011-04-13)
 Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 Platform: i686-pc-linux-gnu (32-bit)
@@ -1204,15 +1204,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 1
 
-$nlminb$message
-[1] "false convergence (8)"
-
 $nlminb$iterations
 [1] 418
 
 $nlminb$evaluations
 function gradient 
      728      418 
+
+$nlminb$message
+[1] "false convergence (8)"
 
 
 $coefficients
@@ -1785,8 +1785,8 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "DE", control = DEoptim.control(trace = FALSE, NP = 90))
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
-22.21328  0.01470  0.61891  0.81828  6.27619  1.73313 
+  gamma  lambda delta_1 delta_2   rho_1     rho 
+22.2133  0.0147  0.6189  0.8183  6.2762  1.7331 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -1816,7 +1816,7 @@ rho     1.733e+00  1.049e+00   1.652  0.09847 .
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 31.56327 
-Multiple R-squared: 0.961008 
+Multiple R-squared: 0.9610081 
 
 Elasticities of Substitution:
                 Estimate Std. Error t value Pr(>|t|)   
@@ -2460,7 +2460,7 @@ $message
 
 $ela
     E_1_2 (HM) E_(1,2)_3 (AU) 
-     0.8465250      0.2531240 
+      0.846525       0.253124 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -2473,8 +2473,8 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2      rho 
-16.06130  0.01500  0.50000  0.50000  0.25000 
+  gamma  lambda delta_1 delta_2     rho 
+16.0613  0.0150  0.5000  0.5000  0.2500 
 
 $lower
 [1] -Inf
@@ -2580,7 +2580,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesLmRho2 )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 1.25201480677914, 0.0204468413490353, 0.0178680654518809, 0.96973614752864 
+parameter estimates: 1.25201480677914, 0.0204468413490353, 0.0178680654518809, 0.969736147528639 
 residual sum-of-squares: 4819
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -2882,15 +2882,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "both X-convergence and relative convergence (5)"
-
 $nlminb$iterations
 [1] 84
 
 $nlminb$evaluations
 function gradient 
      147       85 
+
+$nlminb$message
+[1] "both X-convergence and relative convergence (5)"
 
 
 $coefficients
@@ -2944,12 +2944,12 @@ $fitted.values
 [25] 874.1308 906.8522 946.1190 963.6554 991.2766 990.1056 964.5361
 
 $residuals
- [1] -26.275226  -6.470836  -1.549315  -2.419654   1.694642  -0.879029
- [7]  23.274575   6.213976 -12.020436  11.218671 -12.642082   1.326006
-[13]   4.964526   7.689217   7.616284   1.631414  -4.045279 -10.708008
-[19] -12.961509   9.390650  19.164657   5.110299   4.700095  22.308213
-[25]  -5.580818 -14.422206 -21.549044   4.784629  10.933433  11.974445
-[31] -25.066115
+ [1] -26.2752259  -6.4708364  -1.5493146  -2.4196542   1.6946423  -0.8790289
+ [7]  23.2745749   6.2139762 -12.0204358  11.2186715 -12.6420815   1.3260061
+[13]   4.9645262   7.6892167   7.6162840   1.6314141  -4.0452792 -10.7080084
+[19] -12.9615092   9.3906501  19.1646573   5.1102995   4.7000953  22.3082128
+[25]  -5.5808180 -14.4222057 -21.5490441   4.7846289  10.9334334  11.9744453
+[31] -25.0661148
 
 $rss
 [1] 4818.842
@@ -4152,7 +4152,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesLmGridRho )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 2.93794419767809, 0.0208433701001649, 8.08418023647365e-18, 0.6828715835315, 13.0288716878477 
+parameter estimates: 2.93794419767809, 0.0208433701001649, 8.08418023647365e-18, 0.682871583531499, 13.0288716878477 
 residual sum-of-squares: 3474
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -4634,7 +4634,7 @@ rho     6.502e-01  2.224e+00   0.292  0.77006
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Residual standard error: 11.04314 
-Multiple R-squared: 0.995227 
+Multiple R-squared: 0.9952269 
 
 Elasticities of Substitution:
                Estimate Std. Error t value Pr(>|t|)  
@@ -4675,7 +4675,7 @@ $message
 
 $ela
     E_1_2 (HM) E_(1,2)_3 (AU) 
-     0.0909091      1.6666667 
+    0.09090909     1.66666667 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -5764,8 +5764,8 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
-29.26930  0.00749  2.40371  0.64718  5.00000  1.00000 
+    gamma    lambda   delta_1   delta_2     rho_1       rho 
+29.269301  0.007489  2.403709  0.647182  5.000000  1.000000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -5882,15 +5882,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "relative convergence (4)"
-
 $nlminb$iterations
 [1] 651
 
 $nlminb$evaluations
 function gradient 
      939      652 
+
+$nlminb$message
+[1] "relative convergence (4)"
 
 
 $coefficients
@@ -6133,7 +6133,7 @@ rho     -4.000e-01  2.480e+00  -0.161    0.872
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Residual standard error: 10.53950 
+Residual standard error: 10.5395 
 Multiple R-squared: 0.9956524 
 
 Elasticities of Substitution:
@@ -6160,15 +6160,15 @@ $nlminb$objective
 $nlminb$convergence
 [1] 0
 
-$nlminb$message
-[1] "relative convergence (4)"
-
 $nlminb$iterations
 [1] 213
 
 $nlminb$evaluations
 function gradient 
      531      214 
+
+$nlminb$message
+[1] "relative convergence (4)"
 
 
 $coefficients
@@ -6188,7 +6188,7 @@ $message
 
 $ela
     E_1_2 (HM) E_(1,2)_3 (AU) 
-     0.0909091      1.6666667 
+    0.09090909     1.66666667 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
