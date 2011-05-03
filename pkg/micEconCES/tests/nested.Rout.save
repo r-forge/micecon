@@ -54,13 +54,14 @@ The following object(s) are masked from 'package:lattice':
     melanoma
 
 Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-3)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-5)
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
 DEoptim package
 Differential Evolution algorithm in R
-Authors: David Ardia and Katharine Mullen
+Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
+
 > library( maxLik )
 > 
 > options( max.print = 300000 )
