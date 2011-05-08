@@ -102,8 +102,8 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
       the second element determines the threshold for calculating
       the derivatives with respect to \eqn{\gamma}{gamma};
       the third element determines the threshold for calculating
-      the derivatives with respect to \eqn{\delta}{delta},
-      \eqn{\delta_1}{delta_1}, and \eqn{\delta_2}{delta_2};
+      the derivatives with respect to \eqn{\delta_1}{delta_1},
+      \eqn{\delta_2}{delta_2}, and \eqn{\delta}{delta};
       the fourth element determines the threshold for calculating
       the derivatives with respect to \eqn{\rho}{rho},
       \eqn{\rho_1}{rho_1}, and \eqn{\rho_2}{rho_2};
@@ -158,8 +158,8 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
    If argument \code{start} is \code{NULL},
    pre-defined starting values are used.
    The starting value of \eqn{\lambda}{lambda} (if present) is set to 0.015;
-   the starting values of \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, 
-   and \eqn{\delta_2}{delta_2} (if present) are set to 0.5,
+   the starting values of \eqn{\delta_1}{delta_1}, \eqn{\delta_2}{delta_2}, 
+   and \eqn{\delta}{delta} (if present) are set to 0.5,
    the starting values of \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and
    \eqn{\rho}{rho} (if present and required) are set to 0.25
       (i.e.\ elasticity of substitution = 0.8 in the two-input case),
@@ -193,23 +193,23 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
    depending on the estimation method:
    In case of the \code{L-BFGS-B}, \code{PORT}, and \code{DE} method,
    the lower bound is \code{0} for \eqn{\gamma}{gamma},
-   \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, 
-   and \eqn{\delta_2}{delta_2} (if present), 
+   \eqn{\delta_1}{delta_1}, \eqn{\delta_2}{delta_2}, 
+   and \eqn{\delta}{delta} (if present), 
    \code{-1} for \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and \eqn{\rho}{rho}
    (if present),
    and eventually \code{0} for \eqn{\nu}{nu}.
    In case of the \code{L-BFGS-B} and \code{PORT} method,
    the upper bound is infinity for \eqn{\gamma}{gamma},
-   \code{1} for \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, and
-   \eqn{\delta_2}{delta_2} (if present),
+   \code{1} for \eqn{\delta_1}{delta_1}, \eqn{\delta_2}{delta_2}, and
+   \eqn{\delta}{delta} (if present),
    infinity for \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and \eqn{\rho}{rho}
    (if present),
    and eventually infinity for \eqn{\nu}{nu}.
    Since the \sQuote{Differential Evulation} algorithm requires finit bounds,
    the upper bounds for the \code{DE} method are set
    to \code{1e10} for \eqn{\gamma}{gamma},
-   \code{1} for \eqn{\delta}{delta}, \eqn{\delta_1}{delta_1}, and 
-   \eqn{\delta_2}{delta_2} (if present),
+   \code{1} for \eqn{\delta_1}{delta_1}, \eqn{\delta_2}{delta_2}, and 
+   \eqn{\delta}{delta} (if present),
    \code{10} for \eqn{\rho_1}{rho_1}, \eqn{\rho_2}{rho_2}, and \eqn{\rho}{rho}
    (if present),
    and eventually \code{10} for \eqn{\nu}{nu}.
