@@ -12,7 +12,7 @@ cesCoefNames <- function( nExog, vrs, returnRho1 = TRUE, returnRho2 = TRUE,
    } else if( nested && nExog == 3 ) {
       result <- c( result, "delta_1", "delta_2" )
    } else if( nested && nExog == 4 ) {
-      result <- c( result, "delta_1", "delta_2", "delta_3" )
+      result <- c( result, "delta_1", "delta_2", "delta" )
    } else {
       stop( "internal error: non-supported arguments to cesCoefNames()" )
    }

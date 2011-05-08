@@ -7,7 +7,7 @@ data( "MishraCES" )
 MishraCES$time <- c( 0:49 )
 
 b <- c( "gamma" = 200 * 0.5^( 1 / 0.6 ), 
-   "delta_1" = 0.6, "delta_2" = 0.3, "delta_3" = 0.5, "rho_1" = 0.5,
+   "delta_1" = 0.6, "delta_2" = 0.3, "delta" = 0.5, "rho_1" = 0.5,
    "rho_2" = -0.17, "rho" = 0.6 )
 bVrs <- c( b, "nu" = 1.05 )
 bVrs[ "gamma" ] <- 200 * 0.5^( 1.05 / 0.6 )
