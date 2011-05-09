@@ -4,7 +4,7 @@ library( "maxLik" )
 data( "MishraCES" )
 MishraCES$time <- c( 0:49 )
 
-bOld <- c( "gamma_1" = 2, "gamma_2" = 200, "delta_1" = 0.6, "delta_2" = 0.7, 
+bOld <- c( "gamma_1" = 2, "gamma_2" = 200, "delta_1" = 0.6, "delta" = 0.7, 
    "rho_1" = 0.5, "rho" = 0.6 )
 bOldVrs <- c( bOld, "nu" = 1.1 )
 xNames <- c( "X1", "X2", "X3" )
@@ -12,20 +12,20 @@ xNames <- c( "X1", "X2", "X3" )
 # normalize gamma_1 to 1
 b <- bOld
 b[ "gamma_2" ] <- bOld[ "gamma_2" ] * 
-   ( bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) + ( 1 - bOld[ "delta_2" ] ) )^( 
+   ( bOld[ "delta" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) + ( 1 - bOld[ "delta" ] ) )^( 
       -1 / bOld[ "rho" ] )
-b[ "delta_2" ] <- bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) /
-   ( bOld[ "delta_2" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) + ( 1 - bOld[ "delta_2" ] ) )
+b[ "delta" ] <- bOld[ "delta" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) /
+   ( bOld[ "delta" ] * bOld[ "gamma_1" ]^( - bOld[ "rho" ] ) + ( 1 - bOld[ "delta" ] ) )
 b <- b[ names( b ) != "gamma_1" ]
 names( b )[ names( b ) == "gamma_2" ] <- "gamma"
 rm( bOld )
 
 bVrs <- bOldVrs
 bVrs[ "gamma_2" ] <- bOldVrs[ "gamma_2" ] * 
-   ( bOldVrs[ "delta_2" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta_2" ] ) )^( 
+   ( bOldVrs[ "delta" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta" ] ) )^( 
       - bOldVrs[ "nu" ] / bOldVrs[ "rho" ] )
-bVrs[ "delta_2" ] <- bOldVrs[ "delta_2" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) /
-   ( bOldVrs[ "delta_2" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta_2" ] ) )
+bVrs[ "delta" ] <- bOldVrs[ "delta" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) /
+   ( bOldVrs[ "delta" ] * bOldVrs[ "gamma_1" ]^( - bOldVrs[ "rho" ] ) + ( 1 - bOldVrs[ "delta" ] ) )
 bVrs <- bVrs[ names( bVrs ) != "gamma_1" ]
 names( bVrs )[ names( bVrs ) == "gamma_2" ] <- "gamma"
 rm( bOldVrs )

@@ -85,13 +85,14 @@ cesEstStart <- function( yName, xNames, tName, data, vrs,
          if( start[ "delta_1" ] < 0 || start[ "delta_1" ] > 1 ) {
             stop( "the starting value for 'delta_1' must be between 0 and 1" )
          }
-         if( start[ "delta_2" ] < 0 || start[ "delta_2" ] > 1 ) {
-            stop( "the starting value for 'delta_2' must be between 0 and 1" )
+         if( nExog == 4 ) {
+            if( start[ "delta_2" ] < 0 || start[ "delta_2" ] > 1 ) {
+               stop( "the starting value for 'delta_2' must be between 0 and 1" )
+            }
          }
-      } else {
-         if( start[ "delta" ] < 0 || start[ "delta" ] > 1 ) {
+      }
+      if( start[ "delta" ] < 0 || start[ "delta" ] > 1 ) {
             stop( "the starting value for 'delta' must be between 0 and 1" )
-         }
       }
       # checking rho
       if( is.null( rho ) ) {

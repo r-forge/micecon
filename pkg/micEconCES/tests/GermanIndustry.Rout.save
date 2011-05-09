@@ -178,7 +178,7 @@ Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 > 
 > xNames <-  c( "K", "E", "A" )
 > 
-> b <- c( "gamma" = 38, "lambda" = 0.0222, "delta_1" = 0.5, "delta_2" = 0.1, 
+> b <- c( "gamma" = 38, "lambda" = 0.0222, "delta_1" = 0.5, "delta" = 0.1, 
 +    "rho_1" = 0.5300, "rho" = 0.1813 )
 > 
 > GermanIndustry$YCalc <- cesCalc( xNames = xNames, tName = "time",
@@ -200,7 +200,7 @@ Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 > print.default( cesNm )
 $optim
 $optim$par
-        gamma        lambda       delta_1       delta_2         rho_1 
+        gamma        lambda       delta_1         delta         rho_1 
  3.384147e+00  2.034319e-02  7.507906e-06  5.940367e-01  3.488250e+00 
           rho 
 -1.232779e-01 
@@ -220,7 +220,7 @@ NULL
 
 
 $coefficients
-        gamma        lambda       delta_1       delta_2         rho_1 
+        gamma        lambda       delta_1         delta         rho_1 
  3.384147e+00  2.034319e-02  7.507906e-06  5.940367e-01  3.488250e+00 
           rho 
 -1.232779e-01 
@@ -246,7 +246,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 16.30943  0.01500  0.50000  0.50000  0.25000  0.25000 
 
 $lower
@@ -273,18 +273,18 @@ $rss
 [1] 4042.806
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    1.573519e+00  4.221471e-05 -3.025688e-06 -2.416157e-01  1.512803e-01
 lambda   4.221471e-05  9.629406e-09 -4.336662e-10 -6.696903e-06  1.946912e-05
 delta_1 -3.025688e-06 -4.336662e-10  3.088937e-11  4.631008e-07 -1.456511e-06
-delta_2 -2.416157e-01 -6.696903e-06  4.631008e-07  3.713489e-02 -2.306165e-02
+delta   -2.416157e-01 -6.696903e-06  4.631008e-07  3.713489e-02 -2.306165e-02
 rho_1    1.512803e-01  1.946912e-05 -1.456511e-06 -2.306165e-02  6.909149e-02
 rho     -2.493248e-01 -6.999734e-06  4.699039e-07  3.835345e-02 -2.333668e-02
                   rho
 gamma   -2.493248e-01
 lambda  -6.999734e-06
 delta_1  4.699039e-07
-delta_2  3.835345e-02
+delta    3.835345e-02
 rho_1   -2.333668e-02
 rho      3.964703e-02
 
@@ -298,7 +298,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "NM", control = list(maxit = 5000))
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  3.384e+00  2.034e-02  7.508e-06  5.940e-01  3.488e+00 -1.233e-01 
 
 Elasticities of Substitution:
@@ -323,7 +323,7 @@ Coefficients:
 gamma    3.384e+00  1.433e+01   0.236    0.813    
 lambda   2.034e-02  1.121e-03  18.153   <2e-16 ***
 delta_1  7.508e-06  6.347e-05   0.118    0.906    
-delta_2  5.940e-01  2.201e+00   0.270    0.787    
+delta    5.940e-01  2.201e+00   0.270    0.787    
 rho_1    3.488e+00  3.002e+00   1.162    0.245    
 rho     -1.233e-01  2.274e+00  -0.054    0.957    
 ---
@@ -346,7 +346,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesCg )
 $optim
 $optim$par
-      gamma      lambda     delta_1     delta_2       rho_1         rho 
+      gamma      lambda     delta_1       delta       rho_1         rho 
 16.30577691  0.01103546  0.47958123  0.52492469  0.26418263  0.25209687 
 
 $optim$value
@@ -364,7 +364,7 @@ NULL
 
 
 $coefficients
-      gamma      lambda     delta_1     delta_2       rho_1         rho 
+      gamma      lambda     delta_1       delta       rho_1         rho 
 16.30577691  0.01103546  0.47958123  0.52492469  0.26418263  0.25209687 
 
 $iter
@@ -389,7 +389,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 16.30943  0.01500  0.50000  0.50000  0.25000  0.25000 
 
 $lower
@@ -417,18 +417,18 @@ $rss
 [1] 41622.69
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    1.369697e-01 -1.359984e-05 -7.211369e-03 -7.378756e-03  1.633889e-02
 lambda  -1.359984e-05  2.145581e-08 -6.725820e-07 -1.069601e-08 -1.601911e-07
 delta_1 -7.211369e-03 -6.725820e-07  1.500185e-03  1.069960e-03 -2.299630e-03
-delta_2 -7.378756e-03 -1.069601e-08  1.069960e-03  8.745816e-04 -1.643661e-03
+delta   -7.378756e-03 -1.069601e-08  1.069960e-03  8.745816e-04 -1.643661e-03
 rho_1    1.633889e-02 -1.601911e-07 -2.299630e-03 -1.643661e-03  4.014129e-03
 rho     -1.059202e-02  1.274167e-07  1.909945e-03  1.548169e-03 -2.737484e-03
                   rho
 gamma   -1.059202e-02
 lambda   1.274167e-07
 delta_1  1.909945e-03
-delta_2  1.548169e-03
+delta    1.548169e-03
 rho_1   -2.737484e-03
 rho      2.849297e-03
 
@@ -442,7 +442,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "CG", control = list(maxit = 1000))
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 16.30578  0.01104  0.47958  0.52492  0.26418  0.25210 
 
 Elasticities of Substitution:
@@ -467,7 +467,7 @@ Coefficients:
 gamma   16.305777  13.561150   1.202   0.2292  
 lambda   0.011035   0.005367   2.056   0.0398 *
 delta_1  0.479581   1.419243   0.338   0.7354  
-delta_2  0.524925   1.083638   0.484   0.6281  
+delta    0.524925   1.083638   0.484   0.6281  
 rho_1    0.264183   2.321560   0.114   0.9094  
 rho      0.252097   1.955929   0.129   0.8974  
 ---
@@ -490,7 +490,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesSann )
 $optim
 $optim$par
-      gamma      lambda     delta_1     delta_2       rho_1         rho 
+      gamma      lambda     delta_1       delta       rho_1         rho 
 16.37372909  0.01118408  0.67673510  0.62982209 -0.07988822  0.49485068 
 
 $optim$value
@@ -508,7 +508,7 @@ NULL
 
 
 $coefficients
-      gamma      lambda     delta_1     delta_2       rho_1         rho 
+      gamma      lambda     delta_1       delta       rho_1         rho 
 16.37372909  0.01118408  0.67673510  0.62982209 -0.07988822  0.49485068 
 
 $iter
@@ -529,7 +529,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 16.30943  0.01500  0.50000  0.50000  0.25000  0.25000 
 
 $lower
@@ -557,18 +557,18 @@ $rss
 [1] 43383.16
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    2.063997e-01 -2.421004e-05  6.123166e-03 -2.032910e-03 -1.458446e-03
 lambda  -2.421004e-05  2.170504e-08 -1.716730e-06 -1.137076e-07  1.823979e-06
 delta_1  6.123166e-03 -1.716730e-06  2.769831e-03  1.281846e-03 -4.741552e-03
-delta_2 -2.032910e-03 -1.137076e-07  1.281846e-03  7.402131e-04 -2.382008e-03
+delta   -2.032910e-03 -1.137076e-07  1.281846e-03  7.402131e-04 -2.382008e-03
 rho_1   -1.458446e-03  1.823979e-06 -4.741552e-03 -2.382008e-03  8.618057e-03
 rho      2.975895e-03 -5.155241e-07  3.240798e-03  1.679665e-03 -5.634922e-03
                   rho
 gamma    2.975895e-03
 lambda  -5.155241e-07
 delta_1  3.240798e-03
-delta_2  1.679665e-03
+delta    1.679665e-03
 rho_1   -5.634922e-03
 rho      4.127336e-03
 
@@ -582,7 +582,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "SANN", control = list(maxit = 20000))
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 16.37373  0.01118  0.67674  0.62982 -0.07989  0.49485 
 
 Elasticities of Substitution:
@@ -606,7 +606,7 @@ Coefficients:
 gamma   16.373729  16.995511   0.963   0.3353  
 lambda   0.011184   0.005511   2.029   0.0424 *
 delta_1  0.676735   1.968822   0.344   0.7311  
-delta_2  0.629822   1.017790   0.619   0.5360  
+delta    0.629822   1.017790   0.619   0.5360  
 rho_1   -0.079888   3.472837  -0.023   0.9816  
 rho      0.494851   2.403337   0.206   0.8369  
 ---
@@ -629,7 +629,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesBfgs )
 $optim
 $optim$par
-       gamma       lambda      delta_1      delta_2        rho_1          rho 
+       gamma       lambda      delta_1        delta        rho_1          rho 
 2.219197e+00 2.061856e-02 1.791957e-10 8.244662e-01 7.270425e+00 2.044910e-01 
 
 $optim$value
@@ -647,7 +647,7 @@ NULL
 
 
 $coefficients
-       gamma       lambda      delta_1      delta_2        rho_1          rho 
+       gamma       lambda      delta_1        delta        rho_1          rho 
 2.219197e+00 2.061856e-02 1.791957e-10 8.244662e-01 7.270425e+00 2.044910e-01 
 
 $iter
@@ -672,7 +672,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 16.30943  0.01500  0.50000  0.50000  0.25000  0.25000 
 
 $lower
@@ -699,18 +699,18 @@ $rss
 [1] 3608.443
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    4.022836e-01  1.202657e-05 -7.281062e-11 -7.662002e-02  1.469366e-01
 lambda   1.202657e-05  3.348843e-09 -7.798894e-15 -2.438221e-06  1.442060e-05
 delta_1 -7.281062e-11 -7.798894e-15  4.617048e-20  1.411210e-11 -8.910053e-11
-delta_2 -7.662002e-02 -2.438221e-06  1.411210e-11  1.461107e-02 -2.838520e-02
+delta   -7.662002e-02 -2.438221e-06  1.411210e-11  1.461107e-02 -2.838520e-02
 rho_1    1.469366e-01  1.442060e-05 -8.910053e-11 -2.838520e-02  1.724101e-01
 rho     -1.317326e-01 -4.362189e-06  2.452564e-11  2.514458e-02 -4.921656e-02
                   rho
 gamma   -1.317326e-01
 lambda  -4.362189e-06
 delta_1  2.452564e-11
-delta_2  2.514458e-02
+delta    2.514458e-02
 rho_1   -4.921656e-02
 rho      4.330423e-02
 
@@ -724,7 +724,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "BFGS", control = list(maxit = 5000))
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 2.219e+00 2.062e-02 1.792e-10 8.245e-01 7.270e+00 2.045e-01 
 
 Elasticities of Substitution:
@@ -749,7 +749,7 @@ Coefficients:
 gamma   2.219e+00  6.843e+00   0.324    0.746    
 lambda  2.062e-02  6.243e-04  33.024   <2e-16 ***
 delta_1 1.792e-10  2.318e-09   0.077    0.938    
-delta_2 8.245e-01  1.304e+00   0.632    0.527    
+delta   8.245e-01  1.304e+00   0.632    0.527    
 rho_1   7.270e+00  4.480e+00   1.623    0.105    
 rho     2.045e-01  2.245e+00   0.091    0.927    
 ---
@@ -774,7 +774,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesBfgsCon )
 $optim
 $optim$par
-      gamma      lambda     delta_1     delta_2       rho_1         rho 
+      gamma      lambda     delta_1       delta       rho_1         rho 
 14.15023779  0.01500628  0.02455956  0.98698444 10.30318135  3.20777179 
 
 $optim$value
@@ -792,7 +792,7 @@ $optim$message
 
 
 $coefficients
-      gamma      lambda     delta_1     delta_2       rho_1         rho 
+      gamma      lambda     delta_1       delta       rho_1         rho 
 14.15023779  0.01500628  0.02455956  0.98698444 10.30318135  3.20777179 
 
 $iter
@@ -820,7 +820,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 16.30943  0.01500  0.50000  0.50000  0.25000  0.25000 
 
 $lower
@@ -848,13 +848,13 @@ $rss
 [1] 14968.63
 
 $cov.unscaled
-        gamma lambda delta_1 delta_2 rho_1 rho
-gamma      NA     NA      NA      NA    NA  NA
-lambda     NA     NA      NA      NA    NA  NA
-delta_1    NA     NA      NA      NA    NA  NA
-delta_2    NA     NA      NA      NA    NA  NA
-rho_1      NA     NA      NA      NA    NA  NA
-rho        NA     NA      NA      NA    NA  NA
+        gamma lambda delta_1 delta rho_1 rho
+gamma      NA     NA      NA    NA    NA  NA
+lambda     NA     NA      NA    NA    NA  NA
+delta_1    NA     NA      NA    NA    NA  NA
+delta      NA     NA      NA    NA    NA  NA
+rho_1      NA     NA      NA    NA    NA  NA
+rho        NA     NA      NA    NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -866,7 +866,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "L-BFGS-B", control = list(maxit = 5000))
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 14.15024  0.01501  0.02456  0.98698 10.30318  3.20777 
 
 Elasticities of Substitution:
@@ -892,7 +892,7 @@ Coefficients:
 gamma   14.15024         NA      NA       NA
 lambda   0.01501         NA      NA       NA
 delta_1  0.02456         NA      NA       NA
-delta_2  0.98698         NA      NA       NA
+delta    0.98698         NA      NA       NA
 rho_1   10.30318         NA      NA       NA
 rho      3.20777         NA      NA       NA
 
@@ -922,7 +922,7 @@ residual sum-of-squares: 3264
 reason terminated: Number of iterations has reached `maxiter' == 1000.
 
 $coefficients
-        gamma        lambda       delta_1       delta_2         rho_1 
+        gamma        lambda       delta_1         delta         rho_1 
  2.897005e+01  2.099935e-02  4.161454e-67  7.848279e-05  5.198497e+01 
           rho 
 -2.542147e+00 
@@ -951,7 +951,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 16.30943  0.01500  0.50000  0.50000  0.25000  0.25000 
 
 $lower
@@ -978,18 +978,18 @@ $rss
 [1] 3263.614
 
 $cov.unscaled
-                gamma        lambda        delta_1       delta_2         rho_1
+                gamma        lambda        delta_1         delta         rho_1
 gamma    3.245432e-01  1.211340e-05  -3.167195e-66 -2.304446e-05  2.591411e+00
 lambda   1.211340e-05  1.993488e-09  -1.393589e-70 -1.014793e-09  1.126289e-04
 delta_1 -3.167195e-66 -1.393589e-70  1.178493e-130  2.156178e-70 -9.651539e-65
-delta_2 -2.304446e-05 -1.014793e-09   2.156178e-70  1.703377e-09 -1.760431e-04
+delta   -2.304446e-05 -1.014793e-09   2.156178e-70  1.703377e-09 -1.760431e-04
 rho_1    2.591411e+00  1.126289e-04  -9.651539e-65 -1.760431e-04  7.904634e+01
 rho     -7.459876e-02 -3.328882e-06   6.922678e-67  5.546026e-06 -5.650344e-01
                   rho
 gamma   -7.459876e-02
 lambda  -3.328882e-06
 delta_1  6.922678e-67
-delta_2  5.546026e-06
+delta    5.546026e-06
 rho_1   -5.650344e-01
 rho      1.807271e-02
 
@@ -1003,7 +1003,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     control = nls.lm.control(maxiter = 1000, maxfev = 2000))
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  2.897e+01  2.100e-02  4.161e-67  7.848e-05  5.198e+01 -2.542e+00 
 
 Elasticities of Substitution:
@@ -1029,7 +1029,7 @@ Coefficients:
 gamma    2.897e+01  5.845e+00   4.956 7.19e-07 ***
 lambda   2.100e-02  4.581e-04  45.839  < 2e-16 ***
 delta_1  4.161e-67  1.114e-64   0.004   0.9970    
-delta_2  7.848e-05  4.235e-04   0.185   0.8530    
+delta    7.848e-05  4.235e-04   0.185   0.8530    
 rho_1    5.198e+01  9.122e+01   0.570   0.5688    
 rho     -2.542e+00  1.379e+00  -1.843   0.0653 .  
 ---
@@ -1069,7 +1069,7 @@ $nlm$iterations
 
 
 $coefficients
-      gamma      lambda     delta_1     delta_2       rho_1         rho 
+      gamma      lambda     delta_1       delta       rho_1         rho 
 14.09201787  0.01500620  0.02095996  0.98715556 10.62042156  3.20777415 
 
 $iter
@@ -1093,7 +1093,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 16.30943  0.01500  0.50000  0.50000  0.25000  0.25000 
 
 $lower
@@ -1121,18 +1121,18 @@ $rss
 [1] 14968.63
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    7.602105e+10  1.248400e+00  1.617472e+09 -2.222694e+08 -5.256711e+10
 lambda   1.248400e+00  1.344324e-08  1.088047e-01 -3.650006e-03 -1.164487e+01
 delta_1  1.617472e+09  1.088047e-01  3.581387e+07 -4.729145e+06 -1.301921e+09
-delta_2 -2.222694e+08 -3.650006e-03 -4.729145e+06  6.498686e+05  1.536951e+08
+delta   -2.222694e+08 -3.650006e-03 -4.729145e+06  6.498686e+05  1.536951e+08
 rho_1   -5.256711e+10 -1.164487e+01 -1.301921e+09  1.536951e+08  6.040107e+10
 rho      3.714763e+01  3.834385e-06  8.870076e+00 -1.085826e-01 -1.084890e+03
                   rho
 gamma    3.714763e+01
 lambda   3.834385e-06
 delta_1  8.870076e+00
-delta_2 -1.085826e-01
+delta   -1.085826e-01
 rho_1   -1.084890e+03
 rho      1.966031e-03
 
@@ -1146,7 +1146,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "Newton", iterlim = 500)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 14.09202  0.01501  0.02096  0.98716 10.62042  3.20777 
 
 Elasticities of Substitution:
@@ -1171,7 +1171,7 @@ Coefficients:
 gamma   1.409e+01  6.059e+06   0.000 0.999998    
 lambda  1.501e-02  2.548e-03   5.890 3.86e-09 ***
 delta_1 2.096e-02  1.315e+05   0.000 1.000000    
-delta_2 9.872e-01  1.771e+04   0.000 0.999956    
+delta   9.872e-01  1.771e+04   0.000 0.999956    
 rho_1   1.062e+01  5.400e+06   0.000 0.999998    
 rho     3.208e+00  9.743e-01   3.292 0.000994 ***
 ---
@@ -1196,7 +1196,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesPort )
 $nlminb
 $nlminb$par
-       gamma       lambda      delta_1      delta_2        rho_1          rho 
+       gamma       lambda      delta_1        delta        rho_1          rho 
 1.371955e+00 2.070747e-02 1.453590e-12 9.728279e-01 8.872759e+00 7.022103e-01 
 
 $nlminb$objective
@@ -1217,7 +1217,7 @@ $nlminb$message
 
 
 $coefficients
-       gamma       lambda      delta_1      delta_2        rho_1          rho 
+       gamma       lambda      delta_1        delta        rho_1          rho 
 1.371955e+00 2.070747e-02 1.453590e-12 9.728279e-01 8.872759e+00 7.022103e-01 
 
 $iter
@@ -1244,7 +1244,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 16.30943  0.01500  0.50000  0.50000  0.25000  0.25000 
 
 $lower
@@ -1271,18 +1271,18 @@ $rss
 [1] 3566.078
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    3.186393e-02  1.982745e-06 -1.584806e-13 -4.316728e-03  3.980264e-02
 lambda   1.982745e-06  2.632058e-09 -5.967414e-17 -3.143011e-07  1.344045e-05
 delta_1 -1.584806e-13 -5.967414e-17  4.115063e-24  2.255520e-14 -9.673993e-13
-delta_2 -4.316728e-03 -3.143011e-07  2.255520e-14  5.866754e-04 -5.623807e-03
+delta   -4.316728e-03 -3.143011e-07  2.255520e-14  5.866754e-04 -5.623807e-03
 rho_1    3.980264e-02  1.344045e-05 -9.673993e-13 -5.623807e-03  2.279924e-01
 rho     -4.049585e-02 -3.111458e-06  2.155819e-13  5.511568e-03 -5.360024e-02
                   rho
 gamma   -4.049585e-02
 lambda  -3.111458e-06
 delta_1  2.155819e-13
-delta_2  5.511568e-03
+delta    5.511568e-03
 rho_1   -5.360024e-02
 rho      5.181262e-02
 
@@ -1296,7 +1296,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "PORT", control = list(eval.max = 1000, iter.max = 1000))
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.372e+00 2.071e-02 1.454e-12 9.728e-01 8.873e+00 7.022e-01 
 
 Elasticities of Substitution:
@@ -1322,7 +1322,7 @@ Coefficients:
 gamma   1.372e+00  1.915e+00   0.717 0.473622    
 lambda  2.071e-02  5.503e-04  37.633  < 2e-16 ***
 delta_1 1.454e-12  2.176e-11   0.067 0.946733    
-delta_2 9.728e-01  2.598e-01   3.745 0.000181 ***
+delta   9.728e-01  2.598e-01   3.745 0.000181 ***
 rho_1   8.873e+00  5.121e+00   1.733 0.083177 .  
 rho     7.022e-01  2.441e+00   0.288 0.773630    
 ---
@@ -1716,7 +1716,7 @@ attr(,"class")
 [1] "DEoptim"
 
 $coefficients
-      gamma      lambda     delta_1     delta_2       rho_1         rho 
+      gamma      lambda     delta_1       delta       rho_1         rho 
 22.21327990  0.01470153  0.61890929  0.81827913  6.27618723  1.73312735 
 
 $iter
@@ -1761,18 +1761,18 @@ $rss
 [1] 30883.45
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    4.821017e+09  2.022098e+00  1.183816e+09 -6.835377e+07 -3.245464e+09
 lambda   2.022098e+00  2.114536e-08  4.982364e-01 -2.866968e-02 -1.397252e+00
 delta_1  1.183816e+09  4.982364e-01  2.906971e+08 -1.678448e+07 -7.970909e+08
-delta_2 -6.835377e+07 -2.866968e-02 -1.678448e+07  9.691395e+05  4.601513e+07
+delta   -6.835377e+07 -2.866968e-02 -1.678448e+07  9.691395e+05  4.601513e+07
 rho_1   -3.245464e+09 -1.397252e+00 -7.970909e+08  4.601513e+07  2.188135e+09
 rho     -1.315772e+03  2.020253e-06 -3.242627e+02  1.865548e+01  9.105235e+02
                   rho
 gamma   -1.315772e+03
 lambda   2.020253e-06
 delta_1 -3.242627e+02
-delta_2  1.865548e+01
+delta    1.865548e+01
 rho_1    9.105235e+02
 rho      1.104365e-03
 
@@ -1786,7 +1786,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "DE", control = DEoptim.control(trace = FALSE, NP = 90))
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 22.2133  0.0147  0.6189  0.8183  6.2762  1.7331 
 
 Elasticities of Substitution:
@@ -1810,7 +1810,7 @@ Coefficients:
 gamma   2.221e+01  2.192e+06   0.000  0.99999   
 lambda  1.470e-02  4.590e-03   3.203  0.00136 **
 delta_1 6.189e-01  5.381e+05   0.000  1.00000   
-delta_2 8.183e-01  3.107e+04   0.000  0.99998   
+delta   8.183e-01  3.107e+04   0.000  0.99998   
 rho_1   6.276e+00  1.476e+06   0.000  1.00000   
 rho     1.733e+00  1.049e+00   1.652  0.09847 . 
 ---
@@ -1845,7 +1845,7 @@ Error in numericDeriv(form[[3L]], names(ind), env) :
 > print.default( cesNmRho2 )
 $optim
 $optim$par
-     gamma     lambda    delta_1    delta_2 
+     gamma     lambda    delta_1      delta 
 1.25197418 0.02044663 0.01787768 0.96974109 
 
 $optim$value
@@ -1863,7 +1863,7 @@ NULL
 
 
 $coefficients
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
 1.25197418 0.02044663 0.01787768 0.96974109 0.18130000 0.53000000 
 
 $iter
@@ -1887,7 +1887,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2 
+   gamma   lambda  delta_1    delta 
 20.26895  0.01500  0.50000  0.50000 
 
 $lower
@@ -1920,18 +1920,18 @@ $rss
 [1] 4818.843
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    3.011022e-02 -1.418360e-06 -9.303171e-05 -5.932956e-03  4.373948e-03
 lambda  -1.418360e-06  2.091503e-08 -3.368138e-07  4.409753e-08  9.462616e-07
 delta_1 -9.303171e-05 -3.368138e-07  3.823774e-05  2.367500e-05 -8.739101e-04
-delta_2 -5.932956e-03  4.409753e-08  2.367500e-05  1.172841e-03 -9.067859e-04
+delta   -5.932956e-03  4.409753e-08  2.367500e-05  1.172841e-03 -9.067859e-04
 rho_1    4.373948e-03  9.462616e-07 -8.739101e-04 -9.067859e-04  2.269744e-02
 rho     -5.109773e-02  5.596411e-07  1.723519e-04  1.010261e-02 -7.029222e-03
                   rho
 gamma   -5.109773e-02
 lambda   5.596411e-07
 delta_1  1.723519e-04
-delta_2  1.010261e-02
+delta    1.010261e-02
 rho_1   -7.029222e-03
 rho      8.707081e-02
 
@@ -1945,7 +1945,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "NM", rho1 = 0.1813, rho = 0.53, control = list(maxit = 5000))
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.25197 0.02045 0.01788 0.96974 0.18130 0.53000 
 
 Elasticities of Substitution:
@@ -1972,7 +1972,7 @@ Coefficients:
 gamma   1.251974   2.163453   0.579   0.5628    
 lambda  0.020447   0.001803  11.340   <2e-16 ***
 delta_1 0.017878   0.077097   0.232   0.8166    
-delta_2 0.969741   0.426982   2.271   0.0231 *  
+delta   0.969741   0.426982   2.271   0.0231 *  
 rho_1   0.181300   1.878361   0.097   0.9231    
 rho     0.530000   3.678975   0.144   0.8855    
 ---
@@ -1996,7 +1996,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesBfgsRho2 )
 $optim
 $optim$par
-     gamma     lambda    delta_1    delta_2 
+     gamma     lambda    delta_1      delta 
 1.25201480 0.02044684 0.01786806 0.96973615 
 
 $optim$value
@@ -2014,7 +2014,7 @@ NULL
 
 
 $coefficients
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
 1.25201480 0.02044684 0.01786806 0.96973615 0.18130000 0.53000000 
 
 $iter
@@ -2039,7 +2039,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2 
+   gamma   lambda  delta_1    delta 
 20.26895  0.01500  0.50000  0.50000 
 
 $lower
@@ -2072,18 +2072,18 @@ $rss
 [1] 4818.842
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    3.011770e-02 -1.418536e-06 -9.304482e-05 -5.934256e-03  4.376907e-03
 lambda  -1.418536e-06  2.091495e-08 -3.368278e-07  4.411980e-08  9.468811e-07
 delta_1 -9.304482e-05 -3.368278e-07  3.824046e-05  2.367743e-05 -8.744262e-04
-delta_2 -5.934256e-03  4.411980e-08  2.367743e-05  1.173063e-03 -9.073731e-04
+delta   -5.934256e-03  4.411980e-08  2.367743e-05  1.173063e-03 -9.073731e-04
 rho_1    4.376907e-03  9.468811e-07 -8.744262e-04 -9.073731e-04  2.272262e-02
 rho     -5.110043e-02  5.597279e-07  1.723427e-04  1.010285e-02 -7.032663e-03
                   rho
 gamma   -5.110043e-02
 lambda   5.597279e-07
 delta_1  1.723427e-04
-delta_2  1.010285e-02
+delta    1.010285e-02
 rho_1   -7.032663e-03
 rho      8.705832e-02
 
@@ -2097,7 +2097,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "BFGS", rho1 = 0.1813, rho = 0.53, control = list(maxit = 5000))
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.25201 0.02045 0.01787 0.96974 0.18130 0.53000 
 
 Elasticities of Substitution:
@@ -2124,7 +2124,7 @@ Coefficients:
 gamma   1.252015   2.163722   0.579   0.5628    
 lambda  0.020447   0.001803  11.340   <2e-16 ***
 delta_1 0.017868   0.077100   0.232   0.8167    
-delta_2 0.969736   0.427023   2.271   0.0232 *  
+delta   0.969736   0.427023   2.271   0.0232 *  
 rho_1   0.181300   1.879402   0.096   0.9231    
 rho     0.530000   3.678711   0.144   0.8854    
 ---
@@ -2148,7 +2148,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesBfgsConRho2 )
 $optim
 $optim$par
-     gamma     lambda    delta_1    delta_2 
+     gamma     lambda    delta_1      delta 
 1.25201520 0.02044684 0.01786816 0.96973614 
 
 $optim$value
@@ -2166,7 +2166,7 @@ $optim$message
 
 
 $coefficients
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
 1.25201520 0.02044684 0.01786816 0.96973614 0.18130000 0.53000000 
 
 $iter
@@ -2194,7 +2194,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2 
+   gamma   lambda  delta_1    delta 
 20.26895  0.01500  0.50000  0.50000 
 
 $lower
@@ -2227,18 +2227,18 @@ $rss
 [1] 4818.842
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    3.011769e-02 -1.418536e-06 -9.304476e-05 -5.934252e-03  4.376881e-03
 lambda  -1.418536e-06  2.091495e-08 -3.368278e-07  4.411970e-08  9.468751e-07
 delta_1 -9.304476e-05 -3.368278e-07  3.824046e-05  2.367741e-05 -8.744215e-04
-delta_2 -5.934252e-03  4.411970e-08  2.367741e-05  1.173062e-03 -9.073676e-04
+delta   -5.934252e-03  4.411970e-08  2.367741e-05  1.173062e-03 -9.073676e-04
 rho_1    4.376881e-03  9.468751e-07 -8.744215e-04 -9.073676e-04  2.272238e-02
 rho     -5.110039e-02  5.597270e-07  1.723425e-04  1.010284e-02 -7.032620e-03
                   rho
 gamma   -5.110039e-02
 lambda   5.597270e-07
 delta_1  1.723425e-04
-delta_2  1.010284e-02
+delta    1.010284e-02
 rho_1   -7.032620e-03
 rho      8.705825e-02
 
@@ -2252,7 +2252,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "L-BFGS-B", rho1 = 0.1813, rho = 0.53, control = list(maxit = 5000))
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.25202 0.02045 0.01787 0.96974 0.18130 0.53000 
 
 Elasticities of Substitution:
@@ -2280,7 +2280,7 @@ Coefficients:
 gamma   1.252015   2.163721   0.579   0.5628    
 lambda  0.020447   0.001803  11.340   <2e-16 ***
 delta_1 0.017868   0.077100   0.232   0.8167    
-delta_2 0.969736   0.427023   2.271   0.0232 *  
+delta   0.969736   0.427023   2.271   0.0232 *  
 rho_1   0.181300   1.879392   0.096   0.9231    
 rho     0.530000   3.678709   0.144   0.8854    
 ---
@@ -2308,7 +2308,7 @@ residual sum-of-squares: 3519
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
 $coefficients
-       gamma       lambda      delta_1      delta_2        rho_1          rho 
+       gamma       lambda      delta_1        delta        rho_1          rho 
 1.514792e+00 2.082702e-02 1.801977e-16 9.483731e-01 1.192627e+01 5.300000e-01 
 
 $iter
@@ -2335,7 +2335,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2    rho_1 
+   gamma   lambda  delta_1    delta    rho_1 
 20.46194  0.01500  0.50000  0.50000  0.25000 
 
 $lower
@@ -2365,18 +2365,18 @@ $rss
 [1] 3519.386
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    7.943032e-02  2.630599e-06 -4.623475e-17 -1.346916e-02  9.216125e-02
 lambda   2.630599e-06  2.178109e-09 -8.252744e-21 -5.034932e-07  1.496064e-05
 delta_1 -4.623475e-17 -8.252744e-21  1.201231e-31  8.098164e-18 -2.267422e-16
-delta_2 -1.346916e-02 -5.034932e-07  8.098164e-18  2.288122e-03 -1.607493e-02
+delta   -1.346916e-02 -5.034932e-07  8.098164e-18  2.288122e-03 -1.607493e-02
 rho_1    9.216125e-02  1.496064e-05 -2.267422e-16 -1.607493e-02  4.287812e-01
 rho     -6.817805e-02 -2.686474e-06  4.165068e-17  1.159365e-02 -8.250408e-02
                   rho
 gamma   -6.817805e-02
 lambda  -2.686474e-06
 delta_1  4.165068e-17
-delta_2  1.159365e-02
+delta    1.159365e-02
 rho_1   -8.250408e-02
 rho      5.877700e-02
 
@@ -2390,7 +2390,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     rho = 0.53, control = nls.lm.control(maxiter = 1000, maxfev = 2000))
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.515e+00 2.083e-02 1.802e-16 9.484e-01 1.193e+01 5.300e-01 
 
 Elasticities of Substitution:
@@ -2417,7 +2417,7 @@ Coefficients:
 gamma   1.515e+00  3.003e+00   0.504   0.6140    
 lambda  2.083e-02  4.973e-04  41.883   <2e-16 ***
 delta_1 1.802e-16  3.693e-15   0.049   0.9611    
-delta_2 9.484e-01  5.097e-01   1.861   0.0628 .  
+delta   9.484e-01  5.097e-01   1.861   0.0628 .  
 rho_1   1.193e+01  6.977e+00   1.709   0.0874 .  
 rho     5.300e-01  2.583e+00   0.205   0.8374    
 ---
@@ -2447,7 +2447,7 @@ residual sum-of-squares: 4745
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
 $coefficients
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
 0.94454449 0.02021211 0.01899909 0.99999779 0.18130000 2.95063343 
 
 $iter
@@ -2474,7 +2474,7 @@ $multErr
 [1] FALSE
 
 $start
-  gamma  lambda delta_1 delta_2     rho 
+  gamma  lambda delta_1   delta     rho 
 16.0613  0.0150  0.5000  0.5000  0.2500 
 
 $lower
@@ -2505,18 +2505,18 @@ $rss
 [1] 4744.667
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    1.595071e-04 -1.254135e-06  3.035510e-05 -2.623683e-08 -2.078052e-04
 lambda  -1.254135e-06  2.089409e-08 -3.209041e-07  3.822850e-11  3.923560e-07
 delta_1  3.035510e-05 -3.209041e-07  3.918995e-05  5.041666e-09 -8.544960e-04
-delta_2 -2.623683e-08  3.822850e-11  5.041666e-09  9.495378e-12 -1.645689e-07
+delta   -2.623683e-08  3.822850e-11  5.041666e-09  9.495378e-12 -1.645689e-07
 rho_1   -2.078052e-04  3.923560e-07 -8.544960e-04 -1.645689e-07  2.119875e-02
 rho     -2.952259e-03  3.881232e-06  5.756068e-04  1.079042e-06 -1.857611e-02
                   rho
 gamma   -2.952259e-03
 lambda   3.881232e-06
 delta_1  5.756068e-04
-delta_2  1.079042e-06
+delta    1.079042e-06
 rho_1   -1.857611e-02
 rho      1.226569e-01
 
@@ -2530,7 +2530,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     rho1 = 0.1813, control = nls.lm.control(maxiter = 1000, maxfev = 2000))
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 0.94454 0.02021 0.01900 1.00000 0.18130 2.95063 
 
 Elasticities of Substitution:
@@ -2557,7 +2557,7 @@ Coefficients:
 gamma   9.445e-01  1.562e-01     6.045 1.49e-09 ***
 lambda  2.021e-02  1.788e-03    11.303  < 2e-16 ***
 delta_1 1.900e-02  7.745e-02     0.245    0.806    
-delta_2 1.000e+00  3.812e-05 26231.364  < 2e-16 ***
+delta   1.000e+00  3.812e-05 26231.364  < 2e-16 ***
 rho_1   1.813e-01  1.801e+00     0.101    0.920    
 rho     2.951e+00  4.333e+00     0.681    0.496    
 ---
@@ -2586,7 +2586,7 @@ residual sum-of-squares: 4819
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
 $coefficients
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
 1.25201481 0.02044684 0.01786807 0.96973615 0.18130000 0.53000000 
 
 $iter
@@ -2614,7 +2614,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2 
+   gamma   lambda  delta_1    delta 
 20.26895  0.01500  0.50000  0.50000 
 
 $lower
@@ -2647,18 +2647,18 @@ $rss
 [1] 4818.842
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    3.011770e-02 -1.418536e-06 -9.304482e-05 -5.934256e-03  4.376907e-03
 lambda  -1.418536e-06  2.091495e-08 -3.368278e-07  4.411980e-08  9.468810e-07
 delta_1 -9.304482e-05 -3.368278e-07  3.824046e-05  2.367743e-05 -8.744262e-04
-delta_2 -5.934256e-03  4.411980e-08  2.367743e-05  1.173063e-03 -9.073730e-04
+delta   -5.934256e-03  4.411980e-08  2.367743e-05  1.173063e-03 -9.073730e-04
 rho_1    4.376907e-03  9.468810e-07 -8.744262e-04 -9.073730e-04  2.272262e-02
 rho     -5.110043e-02  5.597279e-07  1.723427e-04  1.010285e-02 -7.032662e-03
                   rho
 gamma   -5.110043e-02
 lambda   5.597279e-07
 delta_1  1.723427e-04
-delta_2  1.010285e-02
+delta    1.010285e-02
 rho_1   -7.032662e-03
 rho      8.705832e-02
 
@@ -2673,7 +2673,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
         maxfev = 2000))
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.25201 0.02045 0.01787 0.96974 0.18130 0.53000 
 
 Elasticities of Substitution:
@@ -2702,7 +2702,7 @@ Coefficients:
 gamma   1.252015   2.163722   0.579   0.5628    
 lambda  0.020447   0.001803  11.340   <2e-16 ***
 delta_1 0.017868   0.077100   0.232   0.8167    
-delta_2 0.969736   0.427023   2.271   0.0232 *  
+delta   0.969736   0.427023   2.271   0.0232 *  
 rho_1   0.181300   1.879402   0.096   0.9231    
 rho     0.530000   3.678711   0.144   0.8854    
 ---
@@ -2741,7 +2741,7 @@ $nlm$iterations
 
 
 $coefficients
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
 1.25201465 0.02044684 0.01786805 0.96973615 0.18130000 0.53000000 
 
 $iter
@@ -2765,7 +2765,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2 
+   gamma   lambda  delta_1    delta 
 20.26895  0.01500  0.50000  0.50000 
 
 $lower
@@ -2798,18 +2798,18 @@ $rss
 [1] 4818.842
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    3.011770e-02 -1.418536e-06 -9.304481e-05 -5.934255e-03  4.376910e-03
 lambda  -1.418536e-06  2.091495e-08 -3.368278e-07  4.411979e-08  9.468819e-07
 delta_1 -9.304481e-05 -3.368278e-07  3.824046e-05  2.367743e-05 -8.744268e-04
-delta_2 -5.934255e-03  4.411979e-08  2.367743e-05  1.173063e-03 -9.073737e-04
+delta   -5.934255e-03  4.411979e-08  2.367743e-05  1.173063e-03 -9.073737e-04
 rho_1    4.376910e-03  9.468819e-07 -8.744268e-04 -9.073737e-04  2.272265e-02
 rho     -5.110043e-02  5.597280e-07  1.723427e-04  1.010285e-02 -7.032670e-03
                   rho
 gamma   -5.110043e-02
 lambda   5.597280e-07
 delta_1  1.723427e-04
-delta_2  1.010285e-02
+delta    1.010285e-02
 rho_1   -7.032670e-03
 rho      8.705836e-02
 
@@ -2823,7 +2823,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "Newton", rho1 = 0.1813, rho = 0.53, iterlim = 500)
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.25201 0.02045 0.01787 0.96974 0.18130 0.53000 
 
 Elasticities of Substitution:
@@ -2850,7 +2850,7 @@ Coefficients:
 gamma   1.252015   2.163722   0.579   0.5628    
 lambda  0.020447   0.001803  11.340   <2e-16 ***
 delta_1 0.017868   0.077100   0.232   0.8167    
-delta_2 0.969736   0.427023   2.271   0.0232 *  
+delta   0.969736   0.427023   2.271   0.0232 *  
 rho_1   0.181300   1.879403   0.096   0.9231    
 rho     0.530000   3.678712   0.144   0.8854    
 ---
@@ -2874,7 +2874,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesPortRho2 )
 $nlminb
 $nlminb$par
-     gamma     lambda    delta_1    delta_2 
+     gamma     lambda    delta_1      delta 
 1.25201478 0.02044684 0.01786806 0.96973615 
 
 $nlminb$objective
@@ -2895,7 +2895,7 @@ $nlminb$message
 
 
 $coefficients
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
 1.25201478 0.02044684 0.01786806 0.96973615 0.18130000 0.53000000 
 
 $iter
@@ -2923,7 +2923,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2 
+   gamma   lambda  delta_1    delta 
 20.26895  0.01500  0.50000  0.50000 
 
 $lower
@@ -2956,18 +2956,18 @@ $rss
 [1] 4818.842
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    3.011770e-02 -1.418536e-06 -9.304481e-05 -5.934256e-03  4.376907e-03
 lambda  -1.418536e-06  2.091495e-08 -3.368278e-07  4.411979e-08  9.468810e-07
 delta_1 -9.304481e-05 -3.368278e-07  3.824046e-05  2.367743e-05 -8.744262e-04
-delta_2 -5.934256e-03  4.411979e-08  2.367743e-05  1.173063e-03 -9.073730e-04
+delta   -5.934256e-03  4.411979e-08  2.367743e-05  1.173063e-03 -9.073730e-04
 rho_1    4.376907e-03  9.468810e-07 -8.744262e-04 -9.073730e-04  2.272262e-02
 rho     -5.110043e-02  5.597279e-07  1.723427e-04  1.010285e-02 -7.032663e-03
                   rho
 gamma   -5.110043e-02
 lambda   5.597279e-07
 delta_1  1.723427e-04
-delta_2  1.010285e-02
+delta    1.010285e-02
 rho_1   -7.032663e-03
 rho      8.705833e-02
 
@@ -2982,7 +2982,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
         iter.max = 1000))
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.25201 0.02045 0.01787 0.96974 0.18130 0.53000 
 
 Elasticities of Substitution:
@@ -3011,7 +3011,7 @@ Coefficients:
 gamma   1.252015   2.163722   0.579   0.5628    
 lambda  0.020447   0.001803  11.340   <2e-16 ***
 delta_1 0.017868   0.077100   0.232   0.8167    
-delta_2 0.969736   0.427023   2.271   0.0232 *  
+delta   0.969736   0.427023   2.271   0.0232 *  
 rho_1   0.181300   1.879402   0.096   0.9231    
 rho     0.530000   3.678711   0.144   0.8854    
 ---
@@ -3404,7 +3404,7 @@ attr(,"class")
 [1] "DEoptim"
 
 $coefficients
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
 8.20948479 0.01186834 0.37257153 0.78728589 0.18130000 0.53000000 
 
 $iter
@@ -3456,18 +3456,18 @@ $rss
 [1] 29521.43
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    9.782103e-02 -1.172461e-05 -5.201503e-03 -8.113684e-03  1.058863e-02
 lambda  -1.172461e-05  2.133429e-08 -8.275527e-07  1.197589e-07  3.824432e-07
 delta_1 -5.201503e-03 -8.275527e-07  5.978086e-04  6.198394e-04 -1.010701e-03
-delta_2 -8.113684e-03  1.197589e-07  6.198394e-04  8.353018e-04 -1.056110e-03
+delta   -8.113684e-03  1.197589e-07  6.198394e-04  8.353018e-04 -1.056110e-03
 rho_1    1.058863e-02  3.824432e-07 -1.010701e-03 -1.056110e-03  1.919999e-03
 rho     -1.724652e-02  1.748993e-07  1.405905e-03  1.884120e-03 -2.284319e-03
                   rho
 gamma   -1.724652e-02
 lambda   1.748993e-07
 delta_1  1.405905e-03
-delta_2  1.884120e-03
+delta    1.884120e-03
 rho_1   -2.284319e-03
 rho      4.330042e-03
 
@@ -3482,7 +3482,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
         NP = 90))
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 8.20948 0.01187 0.37257 0.78729 0.18130 0.53000 
 
 Elasticities of Substitution:
@@ -3509,7 +3509,7 @@ Coefficients:
 gamma   8.209485   9.651703   0.851  0.39501   
 lambda  0.011868   0.004507   2.633  0.00846 **
 delta_1 0.372572   0.754517   0.494  0.62146   
-delta_2 0.787286   0.891886   0.883  0.37739   
+delta   0.787286   0.891886   0.883  0.37739   
 rho_1   0.181300   1.352192   0.134  0.89334   
 rho     0.530000   2.030644   0.261  0.79409   
 ---
@@ -3539,7 +3539,7 @@ There were 50 or more warnings (use warnings() to see the first 50)
 > print.default( cesBfgsGridRho2 )
 $optim
 $optim$par
-       gamma       lambda      delta_1      delta_2 
+       gamma       lambda      delta_1        delta 
 1.618224e+00 2.038669e-02 1.228138e-07 9.389594e-01 
 
 $optim$value
@@ -3557,7 +3557,7 @@ NULL
 
 
 $coefficients
-       gamma       lambda      delta_1      delta_2        rho_1          rho 
+       gamma       lambda      delta_1        delta        rho_1          rho 
 1.618224e+00 2.038669e-02 1.228138e-07 9.389594e-01 5.000000e+00 5.000000e-01 
 
 $iter
@@ -3583,7 +3583,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2 
+   gamma   lambda  delta_1    delta 
 24.67731  0.01500  0.50000  0.50000 
 
 $lower
@@ -3616,18 +3616,18 @@ $rss
 [1] 3781.415
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    7.237689e-02  6.146314e-06 -1.319585e-08 -1.230891e-02  4.000008e-02
 lambda   6.146314e-06  5.599976e-09 -5.802576e-12 -1.153619e-06  1.576584e-05
 delta_1 -1.319585e-08 -5.802576e-12  1.118335e-14  2.306203e-09 -3.179536e-08
-delta_2 -1.230891e-02 -1.153619e-06  2.306203e-09  2.098821e-03 -6.941903e-03
+delta   -1.230891e-02 -1.153619e-06  2.306203e-09  2.098821e-03 -6.941903e-03
 rho_1    4.000008e-02  1.576584e-05 -3.179536e-08 -6.941903e-03  9.078566e-02
 rho     -5.336839e-02 -5.196685e-06  1.006632e-08  9.112873e-03 -3.020625e-02
                   rho
 gamma   -5.336839e-02
 lambda  -5.196685e-06
 delta_1  1.006632e-08
-delta_2  9.112873e-03
+delta    9.112873e-03
 rho_1   -3.020625e-02
 rho      3.959877e-02
 
@@ -3666,7 +3666,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  8.78228  0.02197 -0.03614  0.08811 -0.90000 -0.90000 
 
 Elasticities of Substitution:
@@ -3687,7 +3687,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
 
 Elasticities of Substitution:
@@ -3708,7 +3708,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
 
 Elasticities of Substitution:
@@ -3729,7 +3729,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 17.460750 -0.028429  0.001995  0.579139 10.000000 -0.900000 
 
 Elasticities of Substitution:
@@ -3750,7 +3750,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  3.68666  0.02193 -0.03502  0.42041 -0.90000 -0.40000 
 
 Elasticities of Substitution:
@@ -3771,7 +3771,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  3.55730  0.02090  0.01753  0.45134  0.00000 -0.40000 
 
 Elasticities of Substitution:
@@ -3792,7 +3792,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  6.427e+00  2.046e-02  1.276e-07  3.010e-01  5.000e+00 -4.000e-01 
 
 Elasticities of Substitution:
@@ -3813,7 +3813,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  9.814e+00  2.032e-02  1.884e-13  2.161e-01  1.000e+01 -4.000e-01 
 
 Elasticities of Substitution:
@@ -3834,7 +3834,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  1.85273  0.02191 -0.03530  0.78405 -0.90000  0.00000 
 
 Elasticities of Substitution:
@@ -3855,7 +3855,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.88147 0.02086 0.01805 0.79973 0.00000 0.00000 
 
 Elasticities of Substitution:
@@ -3876,7 +3876,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
 
 Elasticities of Substitution:
@@ -3897,7 +3897,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 33.83924  0.01243  0.03842  0.21451 10.00000  0.00000 
 
 Elasticities of Substitution:
@@ -3918,7 +3918,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  1.17598  0.02186 -0.03390  0.96466 -0.90000  0.50000 
 
 Elasticities of Substitution:
@@ -3939,7 +3939,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.24891 0.02080 0.01866 0.96642 0.00000 0.50000 
 
 Elasticities of Substitution:
@@ -3960,7 +3960,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
 
 Elasticities of Substitution:
@@ -3981,7 +3981,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 28.263328  0.007024  0.358920  0.515693 10.000000  0.500000 
 
 Elasticities of Substitution:
@@ -4002,7 +4002,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  0.98864  0.02182 -0.03171  0.99516 -0.90000  1.00000 
 
 Elasticities of Substitution:
@@ -4023,7 +4023,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 54.824830  0.014973  3.306796  0.000751  0.000000  1.000000 
 
 Elasticities of Substitution:
@@ -4044,7 +4044,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 26.995131  0.007491  1.302886  0.674564  5.000000  1.000000 
 
 Elasticities of Substitution:
@@ -4065,7 +4065,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 26.754689  0.007489  1.489258  0.677505 10.000000  1.000000 
 
 Elasticities of Substitution:
@@ -4100,7 +4100,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     control = list(maxit = 5000))
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
 
 Elasticities of Substitution:
@@ -4127,7 +4127,7 @@ Coefficients:
 gamma   1.618e+00  2.971e+00   0.545   0.5860    
 lambda  2.039e-02  8.265e-04  24.666   <2e-16 ***
 delta_1 1.228e-07  1.168e-06   0.105   0.9163    
-delta_2 9.390e-01  5.060e-01   1.856   0.0635 .  
+delta   9.390e-01  5.060e-01   1.856   0.0635 .  
 rho_1   5.000e+00  3.328e+00   1.503   0.1330    
 rho     5.000e-01  2.198e+00   0.228   0.8200    
 ---
@@ -4158,7 +4158,7 @@ residual sum-of-squares: 3474
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
 $coefficients
-       gamma       lambda      delta_1      delta_2        rho_1          rho 
+       gamma       lambda      delta_1        delta        rho_1          rho 
 2.937944e+00 2.084337e-02 8.084180e-18 6.828716e-01 1.302887e+01 0.000000e+00 
 
 $iter
@@ -4186,7 +4186,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2    rho_1 
+   gamma   lambda  delta_1    delta    rho_1 
 12.91136  0.01500  0.50000  0.50000  0.25000 
 
 $lower
@@ -4217,18 +4217,18 @@ $rss
 [1] 3474.499
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    1.497625e+00  1.440117e-05 -1.392227e-17 -2.533682e-01  6.076896e-01
 lambda   1.440117e-05  2.129680e-09 -3.975172e-22 -2.571737e-06  1.615553e-05
 delta_1 -1.392227e-17 -3.975172e-22  3.456986e-34  2.378659e-18 -1.464333e-17
-delta_2 -2.533682e-01 -2.571737e-06  2.378659e-18  4.289298e-02 -1.036794e-01
+delta   -2.533682e-01 -2.571737e-06  2.378659e-18  4.289298e-02 -1.036794e-01
 rho_1    6.076896e-01  1.615553e-05 -1.464333e-17 -1.036794e-01  6.211016e-01
 rho     -2.905028e-01 -3.075041e-06  2.749729e-18  4.920948e-02 -1.197066e-01
                   rho
 gamma   -2.905028e-01
 lambda  -3.075041e-06
 delta_1  2.749729e-18
-delta_2  4.920948e-02
+delta    4.920948e-02
 rho_1   -1.197066e-01
 rho      5.648829e-02
 
@@ -4252,7 +4252,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  8.85360  0.02199 -0.24131  0.08039 -1.71949 -0.90000 
 
 Elasticities of Substitution:
@@ -4273,7 +4273,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  3.61888  0.02196 -0.25925  0.40544 -1.74522 -0.40000 
 
 Elasticities of Substitution:
@@ -4294,7 +4294,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 2.938e+00 2.084e-02 8.084e-18 6.829e-01 1.303e+01 0.000e+00 
 
 Elasticities of Substitution:
@@ -4315,7 +4315,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.551e+00 2.083e-02 1.575e-16 9.421e-01 1.197e+01 5.000e-01 
 
 Elasticities of Substitution:
@@ -4336,7 +4336,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 26.188734  0.007489  1.069242  0.684328  7.943003  1.000000 
 
 Elasticities of Substitution:
@@ -4361,7 +4361,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
         maxfev = 2000))
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 2.938e+00 2.084e-02 8.084e-18 6.829e-01 1.303e+01 0.000e+00 
 
 Elasticities of Substitution:
@@ -4389,7 +4389,7 @@ Coefficients:
 gamma   2.938e+00  1.296e+01   0.227    0.821    
 lambda  2.084e-02  4.886e-04  42.662   <2e-16 ***
 delta_1 8.084e-18  1.968e-16   0.041    0.967    
-delta_2 6.829e-01  2.193e+00   0.311    0.755    
+delta   6.829e-01  2.193e+00   0.311    0.755    
 rho_1   1.303e+01  8.343e+00   1.562    0.118    
 rho     0.000e+00  2.516e+00   0.000    1.000    
 ---
@@ -4420,7 +4420,7 @@ residual sum-of-squares: 3780
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
 $coefficients
-       gamma       lambda      delta_1      delta_2        rho_1          rho 
+       gamma       lambda      delta_1        delta        rho_1          rho 
 1.451785e+00 2.037926e-02 1.213048e-07 9.655515e-01 5.000000e+00 6.502014e-01 
 
 $iter
@@ -4448,7 +4448,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2      rho 
+   gamma   lambda  delta_1    delta      rho 
 21.94963  0.01500  0.50000  0.50000  0.25000 
 
 $lower
@@ -4478,18 +4478,18 @@ $rss
 [1] 3780.482
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    3.503820e-02  3.936909e-06 -8.719883e-09 -5.030890e-03  2.690129e-02
 lambda   3.936909e-06  5.566354e-09 -5.704387e-12 -6.441035e-07  1.567414e-05
 delta_1 -8.719883e-09 -5.704387e-12  1.086675e-14  1.300812e-09 -3.124705e-08
-delta_2 -5.030890e-03 -6.441035e-07  1.300812e-09  7.250358e-04 -3.977132e-03
+delta   -5.030890e-03 -6.441035e-07  1.300812e-09  7.250358e-04 -3.977132e-03
 rho_1    2.690129e-02  1.567414e-05 -3.124705e-08 -3.977132e-03  9.024087e-02
 rho     -3.755826e-02 -5.010389e-06  9.792249e-09  5.421813e-03 -2.984174e-02
                   rho
 gamma   -3.755826e-02
 lambda  -5.010389e-06
 delta_1  9.792249e-09
-delta_2  5.421813e-03
+delta    5.421813e-03
 rho_1   -2.984174e-02
 rho      4.057607e-02
 
@@ -4512,7 +4512,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  0.85989  0.02162 -0.01949  1.00000 -0.90000  2.88217 
 
 Elasticities of Substitution:
@@ -4533,7 +4533,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 0.92866 0.02055 0.02049 1.00000 0.00000 3.03009 
 
 Elasticities of Substitution:
@@ -4554,7 +4554,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.452e+00 2.038e-02 1.213e-07 9.656e-01 5.000e+00 6.502e-01 
 
 Elasticities of Substitution:
@@ -4575,7 +4575,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 15.07421  0.01501  0.05205  0.98406 10.00000  3.20802 
 
 Elasticities of Substitution:
@@ -4600,7 +4600,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
         maxfev = 2000))
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.452e+00 2.038e-02 1.213e-07 9.656e-01 5.000e+00 6.502e-01 
 
 Elasticities of Substitution:
@@ -4628,7 +4628,7 @@ Coefficients:
 gamma   1.452e+00  2.067e+00   0.702  0.48248    
 lambda  2.038e-02  8.239e-04  24.735  < 2e-16 ***
 delta_1 1.213e-07  1.151e-06   0.105  0.91608    
-delta_2 9.656e-01  2.974e-01   3.247  0.00117 ** 
+delta   9.656e-01  2.974e-01   3.247  0.00117 ** 
 rho_1   5.000e+00  3.317e+00   1.507  0.13176    
 rho     6.502e-01  2.224e+00   0.292  0.77006    
 ---
@@ -4660,7 +4660,7 @@ residual sum-of-squares: 3495
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
 $coefficients
-        gamma        lambda       delta_1       delta_2         rho_1 
+        gamma        lambda       delta_1         delta         rho_1 
  6.429085e+00  2.077939e-02  6.510727e-14  2.989174e-01  1.000000e+01 
           rho 
 -4.000000e-01 
@@ -4690,7 +4690,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2 
+   gamma   lambda  delta_1    delta 
 16.34281  0.01500  0.50000  0.50000 
 
 $lower
@@ -4724,18 +4724,18 @@ $rss
 [1] 3495.409
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    7.017618e+00  4.412256e-05 -1.900171e-13 -4.837686e-01  1.034612e+00
 lambda   4.412256e-05  2.477210e-09 -2.865975e-18 -3.181912e-06  1.455063e-05
 delta_1 -1.900171e-13 -2.865975e-18  1.274657e-26  1.320588e-14 -6.758031e-14
-delta_2 -4.837686e-01 -3.181912e-06  1.320588e-14  3.337586e-02 -7.178728e-02
+delta   -4.837686e-01 -3.181912e-06  1.320588e-14  3.337586e-02 -7.178728e-02
 rho_1    1.034612e+00  1.455063e-05 -6.758031e-14 -7.178728e-02  3.588944e-01
 rho     -5.748566e-01 -3.915611e-06  1.579256e-14  3.968911e-02 -8.572879e-02
                   rho
 gamma   -5.748566e-01
 lambda  -3.915611e-06
 delta_1  1.579256e-14
-delta_2  3.968911e-02
+delta    3.968911e-02
 rho_1   -8.572879e-02
 rho      4.722824e-02
 
@@ -4774,7 +4774,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  8.78233  0.02197 -0.03614  0.08811 -0.90000 -0.90000 
 
 Elasticities of Substitution:
@@ -4795,7 +4795,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
 
 Elasticities of Substitution:
@@ -4816,7 +4816,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
 
 Elasticities of Substitution:
@@ -4837,7 +4837,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  1.357e+01  2.081e-02  6.899e-14  5.479e-02  1.000e+01 -9.000e-01 
 
 Elasticities of Substitution:
@@ -4858,7 +4858,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  3.69131  0.02193 -0.03595  0.41986 -0.90000 -0.40000 
 
 Elasticities of Substitution:
@@ -4879,7 +4879,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  3.55706  0.02090  0.01753  0.45136  0.00000 -0.40000 
 
 Elasticities of Substitution:
@@ -4900,7 +4900,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  6.427e+00  2.046e-02  1.276e-07  3.010e-01  5.000e+00 -4.000e-01 
 
 Elasticities of Substitution:
@@ -4921,7 +4921,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  6.429e+00  2.078e-02  6.511e-14  2.989e-01  1.000e+01 -4.000e-01 
 
 Elasticities of Substitution:
@@ -4942,7 +4942,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  1.85272  0.02191 -0.03530  0.78405 -0.90000  0.00000 
 
 Elasticities of Substitution:
@@ -4963,7 +4963,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.88165 0.02085 0.01808 0.79973 0.00000 0.00000 
 
 Elasticities of Substitution:
@@ -4984,7 +4984,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 3.038e+00 2.042e-02 1.264e-07 6.776e-01 5.000e+00 0.000e+00 
 
 Elasticities of Substitution:
@@ -5005,7 +5005,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 2.981e+00 2.077e-02 6.093e-14 6.798e-01 1.000e+01 0.000e+00 
 
 Elasticities of Substitution:
@@ -5026,7 +5026,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  1.17596  0.02186 -0.03391  0.96466 -0.90000  0.50000 
 
 Elasticities of Substitution:
@@ -5047,7 +5047,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.24894 0.02080 0.01869 0.96642 0.00000 0.50000 
 
 Elasticities of Substitution:
@@ -5068,7 +5068,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
 
 Elasticities of Substitution:
@@ -5089,7 +5089,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.571e+00 2.076e-02 5.500e-14 9.410e-01 1.000e+01 5.000e-01 
 
 Elasticities of Substitution:
@@ -5110,7 +5110,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 43.99303  0.01287  1.04316  0.27618 -0.90000  1.00000 
 
 Elasticities of Substitution:
@@ -5131,7 +5131,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 5.412e+01 1.539e-02 3.524e+00 3.713e-04 0.000e+00 1.000e+00 
 
 Elasticities of Substitution:
@@ -5152,7 +5152,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.230e+00 2.037e-02 1.172e-07 9.913e-01 5.000e+00 1.000e+00 
 
 Elasticities of Substitution:
@@ -5173,7 +5173,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 28.579027  0.007488  4.006684  0.655524 10.000000  1.000000 
 
 Elasticities of Substitution:
@@ -5208,7 +5208,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
         maxfev = 2000))
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  6.429e+00  2.078e-02  6.511e-14  2.989e-01  1.000e+01 -4.000e-01 
 
 Elasticities of Substitution:
@@ -5236,7 +5236,7 @@ Coefficients:
 gamma    6.429e+00  2.813e+01   0.229    0.819    
 lambda   2.078e-02  5.285e-04  39.317   <2e-16 ***
 delta_1  6.511e-14  1.199e-12   0.054    0.957    
-delta_2  2.989e-01  1.940e+00   0.154    0.878    
+delta    2.989e-01  1.940e+00   0.154    0.878    
 rho_1    1.000e+01  6.361e+00   1.572    0.116    
 rho     -4.000e-01  2.308e+00  -0.173    0.862    
 ---
@@ -5278,7 +5278,7 @@ $nlm$iterations
 
 
 $coefficients
-       gamma       lambda      delta_1      delta_2        rho_1          rho 
+       gamma       lambda      delta_1        delta        rho_1          rho 
 3.038249e+00 2.042190e-02 1.264514e-07 6.775677e-01 5.000000e+00 0.000000e+00 
 
 $iter
@@ -5303,7 +5303,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2 
+   gamma   lambda  delta_1    delta 
 19.26802  0.01500  0.50000  0.50000 
 
 $lower
@@ -5337,18 +5337,18 @@ $rss
 [1] 3798.85
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    1.051231e+00  2.865920e-05 -5.731073e-08 -1.727694e-01  1.665848e-01
 lambda   2.865920e-05  5.704003e-09 -6.097573e-12 -4.930205e-06  1.614606e-05
 delta_1 -5.731073e-08 -6.097573e-12  1.214036e-14  9.505201e-09 -3.362372e-08
-delta_2 -1.727694e-01 -4.930205e-06  9.505201e-09  2.842429e-02 -2.752878e-02
+delta   -1.727694e-01 -4.930205e-06  9.505201e-09  2.842429e-02 -2.752878e-02
 rho_1    1.665848e-01  1.614606e-05 -3.362372e-08 -2.752878e-02  9.350676e-02
 rho     -1.969390e-01 -5.792054e-06  1.085658e-08  3.243069e-02 -3.135554e-02
                   rho
 gamma   -1.969390e-01
 lambda  -5.792054e-06
 delta_1  1.085658e-08
-delta_2  3.243069e-02
+delta    3.243069e-02
 rho_1   -3.135554e-02
 rho      3.703283e-02
 
@@ -5387,7 +5387,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  3.45006  0.01906  0.23750  0.33004 -0.90000 -0.90000 
 
 Elasticities of Substitution:
@@ -5408,7 +5408,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
 
 Elasticities of Substitution:
@@ -5429,7 +5429,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
 
 Elasticities of Substitution:
@@ -5450,7 +5450,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  2.734e+01  8.481e-03  1.979e-10  3.184e-02  1.000e+01 -9.000e-01 
 
 Elasticities of Substitution:
@@ -5471,7 +5471,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  3.69131  0.02193 -0.03595  0.41986 -0.90000 -0.40000 
 
 Elasticities of Substitution:
@@ -5492,7 +5492,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  3.55706  0.02090  0.01753  0.45136  0.00000 -0.40000 
 
 Elasticities of Substitution:
@@ -5513,7 +5513,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  1.562e+01  1.866e-02  9.670e-07  1.449e-01  5.000e+00 -4.000e-01 
 
 Elasticities of Substitution:
@@ -5534,7 +5534,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  1.643e+01  1.585e-02  6.542e-12  1.468e-01  1.000e+01 -4.000e-01 
 
 Elasticities of Substitution:
@@ -5555,7 +5555,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  1.85272  0.02191 -0.03530  0.78405 -0.90000  0.00000 
 
 Elasticities of Substitution:
@@ -5576,7 +5576,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.88165 0.02085 0.01808 0.79973 0.00000 0.00000 
 
 Elasticities of Substitution:
@@ -5597,7 +5597,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
 
 Elasticities of Substitution:
@@ -5618,7 +5618,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 2.006e+01 1.913e-02 3.260e-11 2.202e-01 1.000e+01 0.000e+00 
 
 Elasticities of Substitution:
@@ -5639,7 +5639,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  1.17596  0.02186 -0.03391  0.96466 -0.90000  0.50000 
 
 Elasticities of Substitution:
@@ -5660,7 +5660,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 19.292449  0.008101  0.776768  0.626872  0.000000  0.500000 
 
 Elasticities of Substitution:
@@ -5681,7 +5681,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 24.728657  0.007068  0.168950  0.546337  5.000000  0.500000 
 
 Elasticities of Substitution:
@@ -5702,7 +5702,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 25.301753  0.007024  0.044238  0.541767 10.000000  0.500000 
 
 Elasticities of Substitution:
@@ -5723,7 +5723,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 43.99265  0.01287  1.04316  0.27619 -0.90000  1.00000 
 
 Elasticities of Substitution:
@@ -5744,7 +5744,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 26.506087  0.007352  1.009424  0.681427  0.000000  1.000000 
 
 Elasticities of Substitution:
@@ -5765,7 +5765,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 29.269301  0.007489  2.403709  0.647182  5.000000  1.000000 
 
 Elasticities of Substitution:
@@ -5786,7 +5786,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     iterlim = 500)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 29.91143  0.01521  0.50000  0.50001 10.00000  1.00000 
 
 Elasticities of Substitution:
@@ -5821,7 +5821,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     iterlim = 500)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
 
 Elasticities of Substitution:
@@ -5848,7 +5848,7 @@ Coefficients:
 gamma   3.038e+00  1.135e+01   0.268    0.789    
 lambda  2.042e-02  8.361e-04  24.426   <2e-16 ***
 delta_1 1.265e-07  1.220e-06   0.104    0.917    
-delta_2 6.776e-01  1.866e+00   0.363    0.717    
+delta   6.776e-01  1.866e+00   0.363    0.717    
 rho_1   5.000e+00  3.385e+00   1.477    0.140    
 rho     0.000e+00  2.130e+00   0.000    1.000    
 ---
@@ -5874,7 +5874,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesPortGridRho )
 $nlminb
 $nlminb$par
-       gamma       lambda      delta_1      delta_2        rho_1 
+       gamma       lambda      delta_1        delta        rho_1 
 6.412528e+00 2.085586e-02 1.743150e-19 2.990110e-01 1.437594e+01 
 
 $nlminb$objective
@@ -5895,7 +5895,7 @@ $nlminb$message
 
 
 $coefficients
-        gamma        lambda       delta_1       delta_2         rho_1 
+        gamma        lambda       delta_1         delta         rho_1 
  6.412528e+00  2.085586e-02  1.743150e-19  2.990110e-01  1.437594e+01 
           rho 
 -4.000000e-01 
@@ -5925,7 +5925,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2    rho_1 
+   gamma   lambda  delta_1    delta    rho_1 
 8.920066 0.015000 0.500000 0.500000 0.250000 
 
 $lower
@@ -5956,18 +5956,18 @@ $rss
 [1] 3443.514
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    8.255586e+00  3.805017e-05 -1.014593e-18 -5.694231e-01  2.035105e+00
 lambda   3.805017e-05  2.090084e-09 -9.678070e-24 -2.746159e-06  1.834891e-05
 delta_1 -1.014593e-18 -9.678070e-24  2.511553e-37  7.032262e-20 -4.951676e-19
-delta_2 -5.694231e-01 -2.746159e-06  7.032262e-20  3.930123e-02 -1.409269e-01
+delta   -5.694231e-01 -2.746159e-06  7.032262e-20  3.930123e-02 -1.409269e-01
 rho_1    2.035105e+00  1.834891e-05 -4.951676e-19 -1.409269e-01  9.771153e-01
 rho     -6.752986e-01 -3.374066e-06  8.372481e-20  4.663685e-02 -1.676508e-01
                   rho
 gamma   -6.752986e-01
 lambda  -3.374066e-06
 delta_1  8.372481e-20
-delta_2  4.663685e-02
+delta    4.663685e-02
 rho_1   -1.676508e-01
 rho      5.537272e-02
 
@@ -5991,7 +5991,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  1.365e+01  2.084e-02  1.298e-16  5.428e-02  1.215e+01 -9.000e-01 
 
 Elasticities of Substitution:
@@ -6012,7 +6012,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  6.413e+00  2.086e-02  1.743e-19  2.990e-01  1.438e+01 -4.000e-01 
 
 Elasticities of Substitution:
@@ -6033,7 +6033,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 3.011e+00 2.074e-02 6.043e-13 6.775e-01 9.217e+00 0.000e+00 
 
 Elasticities of Substitution:
@@ -6054,7 +6054,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.586e+00 2.071e-02 6.276e-13 9.401e-01 9.180e+00 5.000e-01 
 
 Elasticities of Substitution:
@@ -6075,7 +6075,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  1.01521  0.02161  0.00000  0.99517 -0.64355  1.00000 
 
 Elasticities of Substitution:
@@ -6100,7 +6100,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
         iter.max = 1000))
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  6.413e+00  2.086e-02  1.743e-19  2.990e-01  1.438e+01 -4.000e-01 
 
 Elasticities of Substitution:
@@ -6128,7 +6128,7 @@ Coefficients:
 gamma    6.413e+00  3.028e+01   0.212    0.832    
 lambda   2.086e-02  4.818e-04  43.284   <2e-16 ***
 delta_1  1.743e-19  5.282e-18   0.033    0.974    
-delta_2  2.990e-01  2.089e+00   0.143    0.886    
+delta    2.990e-01  2.089e+00   0.143    0.886    
 rho_1    1.438e+01  1.042e+01   1.380    0.168    
 rho     -4.000e-01  2.480e+00  -0.161    0.872    
 ---
@@ -6152,7 +6152,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesPortGridRho2 )
 $nlminb
 $nlminb$par
-       gamma       lambda      delta_1      delta_2 
+       gamma       lambda      delta_1        delta 
 6.428977e+00 2.077942e-02 6.510373e-14 2.989209e-01 
 
 $nlminb$objective
@@ -6173,7 +6173,7 @@ $nlminb$message
 
 
 $coefficients
-        gamma        lambda       delta_1       delta_2         rho_1 
+        gamma        lambda       delta_1         delta         rho_1 
  6.428977e+00  2.077942e-02  6.510373e-14  2.989209e-01  1.000000e+01 
           rho 
 -4.000000e-01 
@@ -6203,7 +6203,7 @@ $multErr
 [1] FALSE
 
 $start
-   gamma   lambda  delta_1  delta_2 
+   gamma   lambda  delta_1    delta 
 16.34281  0.01500  0.50000  0.50000 
 
 $lower
@@ -6237,18 +6237,18 @@ $rss
 [1] 3495.409
 
 $cov.unscaled
-                gamma        lambda       delta_1       delta_2         rho_1
+                gamma        lambda       delta_1         delta         rho_1
 gamma    7.017554e+00  4.412102e-05 -1.899985e-13 -4.837743e-01  1.034568e+00
 lambda   4.412102e-05  2.477193e-09 -2.865810e-18 -3.181871e-06  1.455055e-05
 delta_1 -1.899985e-13 -2.865810e-18  1.274496e-26  1.320488e-14 -6.757533e-14
-delta_2 -4.837743e-01 -3.181871e-06  1.320488e-14  3.337695e-02 -7.178580e-02
+delta   -4.837743e-01 -3.181871e-06  1.320488e-14  3.337695e-02 -7.178580e-02
 rho_1    1.034568e+00  1.455055e-05 -6.757533e-14 -7.178580e-02  3.588868e-01
 rho     -5.748594e-01 -3.915537e-06  1.579128e-14  3.969014e-02 -8.572650e-02
                   rho
 gamma   -5.748594e-01
 lambda  -3.915537e-06
 delta_1  1.579128e-14
-delta_2  3.969014e-02
+delta    3.969014e-02
 rho_1   -8.572650e-02
 rho      4.722913e-02
 
@@ -6287,7 +6287,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  8.56517  0.02173  0.00000  0.09410 -0.90000 -0.90000 
 
 Elasticities of Substitution:
@@ -6308,7 +6308,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  8.31900  0.02097  0.01678  0.10251  0.00000 -0.90000 
 
 Elasticities of Substitution:
@@ -6329,7 +6329,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  1.337e+01  2.053e-02  1.266e-07  5.651e-02  5.000e+00 -9.000e-01 
 
 Elasticities of Substitution:
@@ -6350,7 +6350,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  1.357e+01  2.081e-02  6.898e-14  5.479e-02  1.000e+01 -9.000e-01 
 
 Elasticities of Substitution:
@@ -6371,7 +6371,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
  3.6263  0.0217  0.0000  0.4330 -0.9000 -0.4000 
 
 Elasticities of Substitution:
@@ -6392,7 +6392,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  3.55706  0.02090  0.01753  0.45136  0.00000 -0.40000 
 
 Elasticities of Substitution:
@@ -6413,7 +6413,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
 41.63453  0.02504  0.96422  0.00000  5.00000 -0.40000 
 
 Elasticities of Substitution:
@@ -6434,7 +6434,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  6.429e+00  2.078e-02  6.510e-14  2.989e-01  1.000e+01 -4.000e-01 
 
 Elasticities of Substitution:
@@ -6455,7 +6455,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  1.86057  0.02168  0.00000  0.79052 -0.90000  0.00000 
 
 Elasticities of Substitution:
@@ -6476,7 +6476,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.88165 0.02085 0.01808 0.79973 0.00000 0.00000 
 
 Elasticities of Substitution:
@@ -6497,7 +6497,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 3.038e+00 2.042e-02 1.265e-07 6.776e-01 5.000e+00 0.000e+00 
 
 Elasticities of Substitution:
@@ -6518,7 +6518,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 2.981e+00 2.077e-02 6.092e-14 6.798e-01 1.000e+01 0.000e+00 
 
 Elasticities of Substitution:
@@ -6539,7 +6539,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-   gamma   lambda  delta_1  delta_2    rho_1      rho 
+   gamma   lambda  delta_1    delta    rho_1      rho 
  1.20195  0.02164  0.00000  0.96535 -0.90000  0.50000 
 
 Elasticities of Substitution:
@@ -6560,7 +6560,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-  gamma  lambda delta_1 delta_2   rho_1     rho 
+  gamma  lambda delta_1   delta   rho_1     rho 
 1.24894 0.02080 0.01869 0.96642 0.00000 0.50000 
 
 Elasticities of Substitution:
@@ -6581,7 +6581,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.618e+00 2.039e-02 1.228e-07 9.390e-01 5.000e+00 5.000e-01 
 
 Elasticities of Substitution:
@@ -6602,7 +6602,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 26.101049  0.007024  0.078847  0.534587 10.000000  0.500000 
 
 Elasticities of Substitution:
@@ -6623,7 +6623,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 26.037916  0.007489  1.000000  0.686145 -0.900000  1.000000 
 
 Elasticities of Substitution:
@@ -6644,7 +6644,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 26.037916  0.007489  1.000000  0.686145  0.000000  1.000000 
 
 Elasticities of Substitution:
@@ -6665,7 +6665,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 1.230e+00 2.037e-02 1.172e-07 9.913e-01 5.000e+00 1.000e+00 
 
 Elasticities of Substitution:
@@ -6686,7 +6686,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     control = ..13)
 
 Coefficients:
-    gamma    lambda   delta_1   delta_2     rho_1       rho 
+    gamma    lambda   delta_1     delta     rho_1       rho 
 26.037883  0.007489  0.999982  0.686145 10.000000  1.000000 
 
 Elasticities of Substitution:
@@ -6721,7 +6721,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     control = list(eval.max = 1000, iter.max = 1000))
 
 Coefficients:
-     gamma     lambda    delta_1    delta_2      rho_1        rho 
+     gamma     lambda    delta_1      delta      rho_1        rho 
  6.429e+00  2.078e-02  6.510e-14  2.989e-01  1.000e+01 -4.000e-01 
 
 Elasticities of Substitution:
@@ -6749,7 +6749,7 @@ Coefficients:
 gamma    6.429e+00  2.813e+01   0.229    0.819    
 lambda   2.078e-02  5.285e-04  39.317   <2e-16 ***
 delta_1  6.510e-14  1.199e-12   0.054    0.957    
-delta_2  2.989e-01  1.940e+00   0.154    0.878    
+delta    2.989e-01  1.940e+00   0.154    0.878    
 rho_1    1.000e+01  6.361e+00   1.572    0.116    
 rho     -4.000e-01  2.308e+00  -0.173    0.862    
 ---
