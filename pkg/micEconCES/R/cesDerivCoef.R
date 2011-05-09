@@ -152,9 +152,9 @@ cesDerivCoef <- function( par, xNames, tName = NULL, data, vrs, nested = FALSE,
          xNames = xNames, tName = tName, data = data, 
          rhoApprox = rhoApprox[ "delta" ] )
 
-      # derivatives with respect to delta_2
-      result[ , "delta_2" ] <- cesInterN3( 
-         funcName = "cesDerivCoefN3Delta2", par = par, 
+      # derivatives with respect to delta
+      result[ , "delta" ] <- cesInterN3( 
+         funcName = "cesDerivCoefN3Delta", par = par, 
          xNames = xNames, tName = tName, data = data, 
          rhoApprox = rhoApprox[ "delta" ] )
 

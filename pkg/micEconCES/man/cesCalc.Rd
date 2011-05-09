@@ -33,14 +33,14 @@
    proposed by Sato (1967) is
 
    \deqn{y = \gamma \: \exp ( \lambda \: t ) \: \left[
-      \delta_2 \:
+      \delta \:
       \left( \delta_1 \: x_1^{-\rho_1} +
       ( 1 - \delta_1 ) x_2^{-\rho_1} \right)^{\frac{\rho}{\rho_1}} +
-      ( 1 - \delta_2 ) x_3^{-\rho}
+      ( 1 - \delta ) x_3^{-\rho}
       \right]^{-\frac{\nu}{\rho}}}{%
-      y = gamma * exp( lambda * t ) * [ delta_2 *
+      y = gamma * exp( lambda * t ) * [ delta *
       ( delta_1 * x_1^(-rho_1) + ( 1 - delta_1 ) * x_2^(-rho_1) )^(rho / rho_1) +
-      ( 1 - delta_2 ) * x_3^(-rho)
+      ( 1 - delta ) * x_3^(-rho)
       ]^(-nu / rho)}
 
    and the \emph{nested} CES function with 4 explanatory variables 
@@ -79,7 +79,7 @@ cesCalc( xNames, data, coef, tName = NULL, nested = FALSE, rhoApprox = 5e-6 )
       \eqn{\delta_N}{delta_N}, \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}
       in case of the non-nested CES with \eqn{N>2} explanatory variables,
       \eqn{\gamma}{gamma}, eventuelly \eqn{\lambda}{lambda}, 
-      \eqn{\delta_1}{delta_1}, \eqn{\delta_2}{delta_2}, 
+      \eqn{\delta_1}{delta_1}, \eqn{\delta}{delta}, 
       \eqn{\rho_1}{rho_1}, \eqn{\rho}{rho}, and eventually \eqn{\nu}{nu}
       in case of the nested CES with 3 explanatory variables,
       and \eqn{\gamma}{gamma}, eventuelly \eqn{\lambda}{lambda}, 
