@@ -5,6 +5,35 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.9-0   (2011-05-23)
+
+* cesCalc() and cesEst() can account for technological change
+
+* cesEst() can estimate CES functions by assuming that the error term is 
+multiplicative (i.e. taking the residuals from the logged model)
+
+* cestEst() additionally returns the constant elasticity/elasticities of 
+substitution and print.cesEst() additionally prints the constant 
+elasticity/elasticities of substitution
+
+* summary.cestEst() additionally returns the variance/covariance matrix, 
+standard error(s), t-value(s) and P-value(s) of the constant 
+elasticity/elasticities of substitution and print.summary.cesEst() 
+additionally prints the constant elasticity/elasticities of substitution 
+as well as the corresponding standard error(s), t-value(s), and P-value(s)
+
+* the 3-input nested CES function no longer has coefficient "gamma_1", because 
+it is obsolete and cannot be identified in econometric estimations
+
+* renamed some coefficients of the 3-input and 4-input nested CES functions
+
+* added data set "GermanIndustry"
+
+* the package vignette additionally describes the features regarding the 
+3-input and 4-input nested CES functions
+
+
+
             CHANGES IN VERSION 0.8-0   (2010-12-13)
 
 * added support for nested CES functions with 3 or 4 inputs
