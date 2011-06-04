@@ -54,7 +54,7 @@ The following object(s) are masked from 'package:lattice':
     melanoma
 
 Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-5)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-6)
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
