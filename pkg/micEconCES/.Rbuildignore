@@ -11,6 +11,7 @@ inst/doc/CES.Rnw.backup
 inst/doc/CES_abstract.tex
 inst/doc/CES_diss.Rnw
 inst/doc/CES_diss.tex
+inst/doc/CES-deriv_diss.tex
 tests/cesTestGrid.R
 tests/cesTestGrid.Rout.save
 tests/cesTest.R
