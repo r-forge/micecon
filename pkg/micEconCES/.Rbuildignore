@@ -1,3 +1,5 @@
+inst/doc/Economic*
+inst/doc/Kemfert
 inst/doc/monteCarlo
 inst/doc/Multiple
 inst/doc/slides
@@ -6,6 +8,8 @@ inst/doc/tables/mcBias.tex
 inst/doc/tables/mcGeneral.tex
 inst/doc/tables/mcRmse.tex
 inst/doc/aux2bib_micEconCES.sh
+inst/doc/CES.bbl
+inst/doc/CES.blg
 inst/doc/CES-properties.lyx
 inst/doc/CES.Rnw.backup
 inst/doc/CES_abstract.tex
