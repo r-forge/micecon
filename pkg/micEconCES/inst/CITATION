@@ -1,0 +1,19 @@
+citHeader("To cite package 'micEconCES' in publications use:")
+
+citEntry(entry="Techreport",
+   title = "Econometric Estimation of the 'Constant Elasticity of Substitution' Function in R: Package micEconCES",
+   author = personList(as.person("Arne Henningsen"),
+      as.person("Geraldine Henningsen")),
+   year = "2011",
+   institution = "Institute of Food and Resource Economics, University of Copenhagen",
+   type = "FOI Working Paper",
+   number = "2011/9",
+   url = "http://EconPapers.repec.org/RePEc:foi:wpaper:2011_9",
+   textVersion = 
+      paste( "Henningsen, Arne and Geraldine Henningsen (2011):", 
+         "Econometric Estimation of the 'Constant Elasticity of Substitution'",
+         "Function in R: Package micEconCES,",
+         "FOI Working Paper No 2011/9,",
+         "Institute of Food and Resource Economics,University of Copenhagen,",
+         "http://econpapers.repec.org/RePEc:foi:wpaper:2011_9." )
+)
