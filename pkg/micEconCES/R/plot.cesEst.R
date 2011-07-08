@@ -8,6 +8,28 @@ plot.cesEst <- function( x, ... ) {
          " with more than one element" )
    }
 
+   if( !is.null( x$rssArray ) ) {
+      argList <- list( ... )
+      if( is.null( argList$main ) ) {
+         argList$main <- "negative sums of squared residuals"
+      }
+      if( is.null( argList$phi ) ) {
+         argList$phi <- 50
+      }
+      if( is.null( argList$theta ) ) {
+         argList$theta <- -45
+      }
+      if( is.null( argList$expand ) ) {
+         argList$expand <- 0.75
+      }
+      if( is.null( argList$ticktype ) ) {
+         argList$ticktype = "detailed"
+      }
+      if( is.null( argList$zlab ) ) {
+         argList$zlab = ""
+      }
+   }
+
    if( length( dim( x$rssArray ) ) == 3 ) {
       # for three-dimensional grid ssearches
       par( mfcol = c( 3, 1 ), mar = c(1,0,1.5,0) )
@@ -48,11 +70,12 @@ plot.cesEst <- function( x, ... ) {
          # Recode facet z-values into color indices
          facetcol <- cut( log( zfacet ), nbcol )
          # plot
-         persp( xValues, yValues, -zValues, 
-            phi = 50, theta = -45, expand = 0.75, col = color[ facetcol ],
-            xlab = xLabel, ylab = yLabel, zlab = "", ticktype = "detailed",
-            main = ifelse( i == 1, "negative sums of squared residuals", "" ),
-            ... )
+         if( i > 1 ) {
+            argList$main <- NULL
+         }
+         do.call( persp, args = c( list( x = xValues, y = yValues, z = -zValues, 
+            col = color[ facetcol ], xlab = xLabel, ylab = yLabel ),
+            argList ) )
       }
    } else if( is.matrix( x$rssArray ) ) {
       # for two-dimensional grid ssearches
@@ -87,10 +110,9 @@ plot.cesEst <- function( x, ... ) {
       # Recode facet z-values into color indices
       facetcol <- cut( log( zfacet ), nbcol )
       # plot
-      persp( xValues, yValues, -x$rssArray, 
-         phi = 50, theta = -45, expand = 0.75, col = color[ facetcol ],
-         xlab = xLabel, ylab = yLabel, zlab = "", ticktype = "detailed",
-         main = "negative sum of squared residuals", ... )
+      do.call( persp, args = c( list( x = xValues, y = yValues, z = -x$rssArray, 
+         col = color[ facetcol ], xlab = xLabel, ylab = yLabel ),
+         argList ) )
    } else if( is.null( x$rssArray ) ) { 
       # for one-dimensional grid searches
       if( !is.null( x$allRhoSum[[ "rho1" ]] ) ) {
