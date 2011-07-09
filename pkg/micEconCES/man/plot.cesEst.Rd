@@ -18,7 +18,7 @@
 }
 
 \usage{
-\method{plot}{cesEst}( x, \dots )
+\method{plot}{cesEst}( x, bw = FALSE, \dots )
 }
 
 \arguments{
@@ -26,8 +26,11 @@
       if it was called with argument \code{rho} set a vector
       containing more than one value for \eqn{\rho}{rho}
       so that a grid search was performed.}
+   \item{bw}{logical. Indicates whether 3D plots should be in black-and-white
+      or colored.}
    \item{\dots}{All further arguments are passed
-      to \code{\link[graphics]{plot.default}}.}
+      to \code{\link[graphics]{plot.default}}
+      or \code{\link[graphics]{persp}}.}
 }
 
 \seealso{
