@@ -18,7 +18,7 @@
 }
 
 \usage{
-\method{plot}{cesEst}( x, bw = FALSE, \dots )
+\method{plot}{cesEst}( x, negRss = TRUE, bw = FALSE, \dots )
 }
 
 \arguments{
@@ -26,6 +26,9 @@
       if it was called with argument \code{rho} set a vector
       containing more than one value for \eqn{\rho}{rho}
       so that a grid search was performed.}
+   \item{negRss}{logical. Indicates whether the \emph{negative}
+      sum of squared residuals should be plotted in 3D plots 
+      (ignored in 2D plots).}
    \item{bw}{logical. Indicates whether 3D plots should be in black-and-white
       or colored.}
    \item{\dots}{All further arguments are passed

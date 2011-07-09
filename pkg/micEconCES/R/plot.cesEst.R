@@ -1,4 +1,4 @@
-plot.cesEst <- function( x, bw = FALSE, ... ) {
+plot.cesEst <- function( x, negRss = TRUE, bw = FALSE, ... ) {
 
    if( is.null( x$allRhoSum ) ) {
       stop( "the 'plot' method for objects of class 'cesEst' can be applied",
@@ -17,7 +17,11 @@ plot.cesEst <- function( x, bw = FALSE, ... ) {
    if( !is.null( x$rssArray ) ) {
       argList <- list( ... )
       if( is.null( argList$main ) ) {
-         argList$main <- "negative sums of squared residuals"
+         if( negRss ) {
+            argList$main <- "negative sums of squared residuals"
+         } else {
+            argList$main <- "sums of squared residuals"
+         }
       }
       if( is.null( argList$phi ) ) {
          argList$phi <- 50
@@ -79,7 +83,8 @@ plot.cesEst <- function( x, bw = FALSE, ... ) {
          if( i > 1 ) {
             argList$main <- NULL
          }
-         do.call( persp, args = c( list( x = xValues, y = yValues, z = -zValues, 
+         do.call( persp, args = c( list( x = xValues, y = yValues, 
+            z = zValues * (-1)^negRss, 
             col = color[ facetcol ], xlab = xLabel, ylab = yLabel ),
             argList ) )
       }
@@ -116,7 +121,8 @@ plot.cesEst <- function( x, bw = FALSE, ... ) {
       # Recode facet z-values into color indices
       facetcol <- cut( log( zfacet ), nbcol )
       # plot
-      do.call( persp, args = c( list( x = xValues, y = yValues, z = -x$rssArray, 
+      do.call( persp, args = c( list( x = xValues, y = yValues, 
+         z = x$rssArray * (-1)^negRss, 
          col = color[ facetcol ], xlab = xLabel, ylab = yLabel ),
          argList ) )
    } else if( is.null( x$rssArray ) ) { 
