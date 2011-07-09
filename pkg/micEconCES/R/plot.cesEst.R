@@ -1,4 +1,4 @@
-plot.cesEst <- function( x, ... ) {
+plot.cesEst <- function( x, bw = FALSE, ... ) {
 
    if( is.null( x$allRhoSum ) ) {
       stop( "the 'plot' method for objects of class 'cesEst' can be applied",
@@ -6,6 +6,12 @@ plot.cesEst <- function( x, ... ) {
          " or 'rho',",
          " i.e. 'cesEst' was called with argument 'rho1' or 'rho' set to a vector",
          " with more than one element" )
+   }
+
+   if( bw ) {
+      colors <- c( "white", "black" )
+   } else {
+      colors <- c( "green", "red" )
    }
 
    if( !is.null( x$rssArray ) ) {
@@ -58,7 +64,7 @@ plot.cesEst <- function( x, ... ) {
          }
 
          # Create a function interpolating colors in the range of specified colors
-         jet.colors <- colorRampPalette( c( "green", "red" ) ) 
+         jet.colors <- colorRampPalette( colors ) 
          # Generate the desired number of colors from this palette
          nbcol <- 100
          color <- jet.colors( nbcol )
@@ -98,7 +104,7 @@ plot.cesEst <- function( x, ... ) {
       }
 
       # Create a function interpolating colors in the range of specified colors
-      jet.colors <- colorRampPalette( c( "green", "red" ) ) 
+      jet.colors <- colorRampPalette( colors ) 
       # Generate the desired number of colors from this palette
       nbcol <- 100
       color <- jet.colors( nbcol )
