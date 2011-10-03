@@ -1,7 +1,8 @@
 
-R version 2.11.1 (2010-05-31)
-Copyright (C) 2010 The R Foundation for Statistical Computing
+R version 2.13.2 (2011-09-30)
+Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: i686-pc-linux-gnu (32-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -39,7 +40,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 15.38 on 48 degrees of freedom
 Multiple R-squared: 0.6511,	Adjusted R-squared: 0.6438 
-F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.490e-12 
+F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12 
 
 > stdEr( lmRes )
 (Intercept)       speed 
