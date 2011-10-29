@@ -1,7 +1,8 @@
 
-R version 2.11.1 (2010-05-31)
-Copyright (C) 2010 The R Foundation for Statistical Computing
+R version 2.13.2 (2011-09-30)
+Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: i686-pc-linux-gnu (32-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -19,7 +20,7 @@ Type 'q()' to quit R.
 Loading required package: np
 Loading required package: boot
 Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-3)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-9)
 Loading required package: miscTools
 > 
 > data( germanFarms )
