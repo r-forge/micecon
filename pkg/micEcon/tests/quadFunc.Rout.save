@@ -1,7 +1,8 @@
 
-R version 2.11.1 (2010-05-31)
-Copyright (C) 2010 The R Foundation for Statistical Computing
+R version 2.13.2 (2011-09-30)
+Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: i686-pc-linux-gnu (32-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -19,33 +20,22 @@ Type 'q()' to quit R.
 Loading required package: np
 Loading required package: boot
 Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-3)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-9)
 Loading required package: miscTools
 > library( plm )
-Loading required package: kinship
-Loading required package: survival
-Loading required package: splines
-
-Attaching package: 'survival'
-
-The following object(s) are masked from 'package:boot':
-
-    aml
-
+Loading required package: bdsmatrix
 Loading required package: nlme
-Loading required package: lattice
-
-Attaching package: 'lattice'
-
-The following object(s) are masked from 'package:boot':
-
-    melanoma
-
-[1] "kinship is loaded"
 Loading required package: Formula
 Loading required package: MASS
 Loading required package: sandwich
 Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following object(s) are masked from 'package:base':
+
+    as.Date
+
 > 
 > ## preparing data
 > data( germanFarms )
@@ -329,8 +319,8 @@ attr(,"class")
      qLabor     land qVarInput     time
 1 282720621 532305.4  361.3141 395950.4
 > print( attributes( margProductsMean )$stdDev )
-    qLabor     land qVarInput     time
-1 16814.30 729.5926  19.00826 629.2459
+   qLabor     land qVarInput     time
+1 16814.3 729.5926  19.00826 629.2459
 > 
 > ## estimate a quadratic production function with a shifter
 > estResultShifter <- quadFuncEst( yName = "qOutput",
@@ -1258,12 +1248,12 @@ $residuals
   4.693251  13.399213 -21.926868   2.040879  12.901448  -6.414672 
 
 $fitted
-       1        2        3        4        5        6        7        8 
- 925.711 1027.646 1060.927 1159.066 1155.006 1187.378 1245.763 1267.505 
-       9       10       11       12       13       14       15       16 
-1182.911 1305.941 1379.057 1525.190 1592.690 1690.472 1639.996 1612.632 
-      17       18       19       20 
-1676.967 1753.559 1874.519 1998.309 
+        1         2         3         4         5         6         7         8 
+ 925.7109 1027.6455 1060.9266 1159.0659 1155.0063 1187.3785 1245.7631 1267.5050 
+        9        10        11        12        13        14        15        16 
+1182.9109 1305.9410 1379.0566 1525.1905 1592.6904 1690.4715 1639.9959 1612.6319 
+       17        18        19        20 
+1676.9667 1753.5589 1874.5188 1998.3087 
 
 $coef
           a_0           a_1           a_2           a_3         b_1_1 
@@ -1764,7 +1754,8 @@ $nShifter
 $est
 
 Call:
-lm(formula = as.formula(estFormula), data = estData, x = TRUE,     y = TRUE)
+lm(formula = as.formula(estFormula), data = estData, x = TRUE, 
+    y = TRUE)
 
 Coefficients:
 (Intercept)          a_1          a_2          a_3          a_4        b_1_1  
@@ -1978,14 +1969,14 @@ attr(,"class")
 > estElaMeanFit <- elas( estResult, data = germanFarmsMeans )
 > print( estElaMeanFit )
     qLabor    land qVarInput        time
-1 0.559696 1.34958 0.1184950 -0.08982257
+1 0.559696 1.34958  0.118495 -0.08982257
 > estElaMeanObs <- elas( estResult, data = germanFarmsMeans, yObs = TRUE )
 > print( estElaMeanObs )
      qLabor     land qVarInput        time
 1 0.6162868 1.486036  0.130476 -0.09890453
 > print( estElaMeanFit - estElaMeanObs )
-       qLabor       land   qVarInput        time
-1 -0.05659083 -0.1364560 -0.01198102 0.009081956
+       qLabor      land   qVarInput        time
+1 -0.05659083 -0.136456 -0.01198102 0.009081956
 > # with a shifter
 > estElaShifterFit <- quadFuncEla( 
 +    xNames = c( "qLabor", "land", "qVarInput" ), 
@@ -2062,8 +2053,8 @@ attr(,"class")
       qLabor      land qVarInput
 1 0.06525597 0.8017064 0.5444535
 > print( estElaShifterMeanFit - estElaShifterMeanObs )
-        qLabor        land   qVarInput
-1 -0.002158641 -0.02652013 -0.01801030
+        qLabor        land  qVarInput
+1 -0.002158641 -0.02652013 -0.0180103
 > 
 > 
 > ################ imposing homogeneity #####################
@@ -2237,26 +2228,26 @@ b_4_4     0     0     0     0     0     0     0     0
 +    homWeights = c( qLabor = 0.2, land = 0.5, qVarInput = 0.3 ) )
 > print( estResultLinHomDeriv )
        time     qLabor     land qVarInput
-1  35.00369 -1178.4390 27.04124  1.912124
-2  35.00369 -1084.9966 24.64462  1.610257
-3  35.00369 -1081.5401 24.50168  1.566782
-4  35.00369 -1009.4570 22.79144  1.416388
-5  35.00369 -1018.7123 23.02246  1.442505
-6  35.00369 -1004.3502 22.62432  1.378383
-7  35.00369  -979.7844 21.93796  1.265518
-8  35.00369 -1015.7088 22.91918  1.417178
-9  35.00369 -1029.4467 23.27705  1.464841
-10 35.00369 -1014.5477 22.98394  1.469698
-11 35.00369  -965.7368 21.73324  1.312731
-12 35.00369  -865.9962 19.45889  1.159445
-13 35.00369  -823.0884 18.37840  1.032744
-14 35.00369  -824.7389 18.33428  0.986623
-15 35.00369  -889.3152 19.89781  1.140042
-16 35.00369  -909.6247 20.30333  1.136973
-17 35.00369  -928.0012 20.70432  1.154479
-18 35.00369  -923.6061 20.53430  1.106181
-19 35.00369  -885.0597 19.51752  0.964913
-20 35.00369  -840.2963 18.38134  0.827398
+1  35.00369 -1178.4390 27.04124 1.9121238
+2  35.00369 -1084.9966 24.64462 1.6102572
+3  35.00369 -1081.5401 24.50168 1.5667823
+4  35.00369 -1009.4570 22.79144 1.4163882
+5  35.00369 -1018.7123 23.02246 1.4425046
+6  35.00369 -1004.3502 22.62432 1.3783835
+7  35.00369  -979.7844 21.93796 1.2655182
+8  35.00369 -1015.7088 22.91918 1.4171780
+9  35.00369 -1029.4467 23.27705 1.4648410
+10 35.00369 -1014.5477 22.98394 1.4696977
+11 35.00369  -965.7368 21.73324 1.3127308
+12 35.00369  -865.9962 19.45889 1.1594451
+13 35.00369  -823.0884 18.37840 1.0327436
+14 35.00369  -824.7389 18.33428 0.9866229
+15 35.00369  -889.3152 19.89781 1.1400418
+16 35.00369  -909.6247 20.30333 1.1369729
+17 35.00369  -928.0012 20.70432 1.1544790
+18 35.00369  -923.6061 20.53430 1.1061814
+19 35.00369  -885.0597 19.51752 0.9649130
+20 35.00369  -840.2963 18.38134 0.8273980
 > all.equal( estResultLinHomDeriv$qLabor * germanFarms$qLabor +
 +    estResultLinHomDeriv$land * germanFarms$land,
 +    - estResultLinHomDeriv$qVarInput * germanFarms$qVarInput )
@@ -2708,27 +2699,27 @@ b_4_4 -7.218313e+13 -1.217472e+14  2.888829e+13  4.823309e+13  8.155095e+13
 > all.equal( estResultHomElaObs, elas( estResultHom, yObs = TRUE ) )
 [1] TRUE
 > print( estResultHomElaObs )
-          time     qLabor        land qVarInput
-1  0.005887932 -1.7635146  0.64467888 1.1188357
-2  0.062396631 -0.2953725 -0.20014972 0.4955223
-3  0.096473024 -0.1690759 -0.24025539 0.4093313
-4  0.144944448 -0.1198713 -0.39193439 0.5118057
-5  0.163058896 -0.5609587 -0.21642887 0.7773876
-6  0.226104110 -0.4202844 -0.32383516 0.7441195
-7  0.324772974  0.0837503 -0.58376380 0.5000135
-8  0.227115660 -1.1361653  0.03702577 1.0991395
-9  0.227676314 -1.8615582  0.25756237 1.6039959
-10 0.187274746 -2.3166814  0.49228797 1.8243934
-11 0.314465312 -1.5922671  0.13444913 1.4578180
-12 0.319301016 -1.4737641  0.12245258 1.3513115
-13 0.451524263 -1.0059307 -0.12185030 1.1277810
-14 0.518079651 -0.6872718 -0.22006576 0.9073375
-15 0.406600269 -1.5275185  0.22605551 1.3014630
-16 0.471327840 -1.4784649  0.22765834 1.2508065
-17 0.467232145 -1.5558588  0.38810053 1.1677583
-18 0.524614149 -1.2784580  0.32049860 0.9579594
-19 0.689194219 -0.6163237 -0.02318363 0.6395073
-20 0.862979947 -0.1184171 -0.34419658 0.4626136
+          time      qLabor        land qVarInput
+1  0.005887932 -1.76351463  0.64467888 1.1188357
+2  0.062396631 -0.29537253 -0.20014972 0.4955223
+3  0.096473024 -0.16907590 -0.24025539 0.4093313
+4  0.144944448 -0.11987131 -0.39193439 0.5118057
+5  0.163058896 -0.56095868 -0.21642887 0.7773876
+6  0.226104110 -0.42028438 -0.32383516 0.7441195
+7  0.324772974  0.08375031 -0.58376380 0.5000135
+8  0.227115660 -1.13616528  0.03702577 1.0991395
+9  0.227676314 -1.86155824  0.25756237 1.6039959
+10 0.187274746 -2.31668139  0.49228797 1.8243934
+11 0.314465312 -1.59226713  0.13444913 1.4578180
+12 0.319301016 -1.47376408  0.12245258 1.3513115
+13 0.451524263 -1.00593072 -0.12185030 1.1277810
+14 0.518079651 -0.68727177 -0.22006576 0.9073375
+15 0.406600269 -1.52751847  0.22605551 1.3014630
+16 0.471327840 -1.47846486  0.22765834 1.2508065
+17 0.467232145 -1.55585879  0.38810053 1.1677583
+18 0.524614149 -1.27845797  0.32049860 0.9579594
+19 0.689194219 -0.61632370 -0.02318363 0.6395073
+20 0.862979947 -0.11841705 -0.34419658 0.4626136
 > all.equal( estResultHomElaObs$qLabor + estResultHomElaObs$land,
 +    - estResultHomElaObs$qVarInput )
 [1] TRUE
@@ -2737,8 +2728,8 @@ b_4_4 -7.218313e+13 -1.217472e+14  2.888829e+13  4.823309e+13  8.155095e+13
 > # only at mean values
 > estResultHomElaMeanFit <- elas( estResultHom, data = germanFarmsMeans )
 > print( estResultHomElaMeanFit )
-       time    qLabor        land qVarInput
-1 0.3507008 -0.914567 -0.04139098  0.955958
+       time     qLabor        land qVarInput
+1 0.3507008 -0.9145669 -0.04139098 0.9559579
 > estResultHomElaMeanObs <- elas( estResultHom, data = germanFarmsMeans,
 +    yObs = TRUE )
 > print( estResultHomElaMeanObs )
@@ -2883,6 +2874,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
+<environment: 0xa6af9b4>
 
 Coefficients:
        a_1        a_2      b_1_1      b_1_2      b_2_2 
@@ -3117,6 +3109,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
+<environment: 0x9a22f4c>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3364,6 +3357,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
+<environment: 0xa788314>
 
 Coefficients:
        a_1        a_2      b_1_1      b_1_2      b_2_2        d_1 
@@ -3614,6 +3608,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
+<environment: 0xaa5bf60>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3869,6 +3864,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
+<environment: 0xa915884>
 
 Coefficients:
         a_1         a_2       b_1_1       b_1_2       b_2_2    d_1_TRUE 
@@ -4125,6 +4121,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
+<environment: 0xa324c2c>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4381,6 +4378,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
+<environment: 0xa63b2f0>
 
 Coefficients:
         a_1         a_2       b_1_1       b_1_2       b_2_2     d_1_40s 
@@ -4636,6 +4634,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
+<environment: 0xaa06090>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4898,6 +4897,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
+<environment: 0xa25ca90>
 
 Coefficients:
     a_1     a_2 
@@ -4996,7 +4996,7 @@ b_1_2   0  0.0000000000  0.0000000000     0     0     0
 b_2_2   0  0.0000000000  0.0000000000     0     0     0
 
 $r2
-[1] 0.800344
+[1] 0.8003441
 
 $r2bar
 [1] 0.74432
@@ -5146,6 +5146,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
+<environment: 0xaad7738>
 
 Coefficients:
 (Intercept)         a_1         a_2 
