@@ -11,7 +11,9 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    result <- list()
    result$call <- match.call()
 
-   if( "plm.dim" %in% class( data ) ) {
+   isPanel <- any( c( "plm.dim", "pdata.frame" ) %in% class( data ) )
+
+   if( isPanel ) {
       estData <- data[ , 1:2 ]
       estData$y <- data[[ yName ]]
    } else {
@@ -72,7 +74,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    }
    result$nExog <- nExog
    result$nShifter <- nShifter
-   if( "plm.dim" %in% class( data ) ) {
+   if( isPanel ) {
       result$est <- plm( as.formula( estFormula ), estData, ... )
       result$est$call$formula <- as.formula( estFormula )
    } else {
@@ -84,7 +86,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    # coefficients and their covariance matrix
    result$coef      <- coef( result$est )
    result$coefCov   <- vcov( result$est )
-   if( "plm.dim" %in% class( data ) ) {
+   if( isPanel ) {
       if( is.null( result$est$call$model ) ||
             result$est$call$model == "within" ) {
          result$coef <- c( mean( fixef( result$est ) ), result$coef )
@@ -187,7 +189,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    result$coefCov <- result$coefCov[ ,
       .micEconCoefOrder( colnames( result$coefCov ) ) ]
 
-   if( "plm.dim" %in% class( data ) ) {
+   if( isPanel ) {
       result$r2    <- unname( summary( result$est )$r.squared[ "rsq" ] )
       result$r2bar <- unname( summary( result$est )$r.squared[ "adjrsq" ] )
    } else {
@@ -201,7 +203,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    result$homWeights   <- homWeights
    result$regScale     <- regScale
 
-   if( "plm.dim" %in% class( data ) ) {
+   if( isPanel ) {
       result$model.matrix <- cbind( rep( 1, result$nObs ),
          as.matrix( estData[ , 4:( ncol( estData ) ) ] ) )
    } else {
