@@ -1,5 +1,5 @@
 
-R version 2.13.2 (2011-09-30)
+R version 2.14.0 (2011-10-31)
 Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 Platform: i686-pc-linux-gnu (32-bit)
@@ -20,7 +20,7 @@ Type 'q()' to quit R.
 Loading required package: np
 Loading required package: boot
 Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-9)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-11)
 Loading required package: miscTools
 > 
 > data( germanFarms )

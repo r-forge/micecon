@@ -1,5 +1,5 @@
 
-R version 2.13.2 (2011-09-30)
+R version 2.14.0 (2011-10-31)
 Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 Platform: i686-pc-linux-gnu (32-bit)
@@ -20,7 +20,7 @@ Type 'q()' to quit R.
 Loading required package: np
 Loading required package: boot
 Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-9)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-11)
 Loading required package: miscTools
 > library( plm )
 Loading required package: bdsmatrix
@@ -34,7 +34,7 @@ Attaching package: 'zoo'
 
 The following object(s) are masked from 'package:base':
 
-    as.Date
+    as.Date, as.Date.numeric
 
 > 
 > ## preparing data
@@ -1025,6 +1025,9 @@ attr(,"class")
 > sd( margProducts )
    qLabor      land qVarInput      time 
         0         0         0         0 
+Warning message:
+sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead. 
 > all.equal( margProducts[1,], coef( estResultLin )[2:5],
 +    check.attributes = FALSE )
 [1] TRUE
@@ -2874,7 +2877,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0xa6af9b4>
+<environment: 0x93bf7b0>
 
 Coefficients:
        a_1        a_2      b_1_1      b_1_2      b_2_2 
@@ -3109,7 +3112,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x9a22f4c>
+<environment: 0x9810394>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3357,7 +3360,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0xa788314>
+<environment: 0x9687f58>
 
 Coefficients:
        a_1        a_2      b_1_1      b_1_2      b_2_2        d_1 
@@ -3608,7 +3611,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0xaa5bf60>
+<environment: 0x9a1c454>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3864,7 +3867,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0xa915884>
+<environment: 0x8d9a42c>
 
 Coefficients:
         a_1         a_2       b_1_1       b_1_2       b_2_2    d_1_TRUE 
@@ -4121,7 +4124,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0xa324c2c>
+<environment: 0x8fabecc>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4378,7 +4381,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0xa63b2f0>
+<environment: 0x99faf10>
 
 Coefficients:
         a_1         a_2       b_1_1       b_1_2       b_2_2     d_1_40s 
@@ -4634,7 +4637,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0xaa06090>
+<environment: 0x98d96bc>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4897,7 +4900,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0xa25ca90>
+<environment: 0x9a3f754>
 
 Coefficients:
     a_1     a_2 
@@ -5146,7 +5149,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0xaad7738>
+<environment: 0x992a674>
 
 Coefficients:
 (Intercept)         a_1         a_2 
@@ -5369,6 +5372,9 @@ attr(,"class")
 > sd( margProducts )
   value capital 
       0       0 
+Warning message:
+sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead. 
 > all.equal( margProducts[1,], coef( ggResultLin )[2:3],
 +    check.attributes = FALSE )
 [1] TRUE
@@ -5381,6 +5387,9 @@ attr(,"class")
 > sd( margProducts )
   value capital 
       0       0 
+Warning message:
+sd(<data.frame>) is deprecated.
+ Use sapply(*, sd) instead. 
 > all.equal( margProducts[1,], coef( ggResultLinRan )[2:3],
 +    check.attributes = FALSE )
 [1] TRUE
