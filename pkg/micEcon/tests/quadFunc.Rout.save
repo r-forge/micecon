@@ -1022,12 +1022,9 @@ attr(,"class")
 +    c( "qLabor", "land", "qVarInput", "time" ),
 +    data = germanFarms, coef = coef( estResultLin ), 
 +    coefCov = vcov( estResultLin ) )
-> sd( margProducts )
+> sapply( margProducts, sd )
    qLabor      land qVarInput      time 
         0         0         0         0 
-Warning message:
-sd(<data.frame>) is deprecated.
- Use sapply(*, sd) instead. 
 > all.equal( margProducts[1,], coef( estResultLin )[2:5],
 +    check.attributes = FALSE )
 [1] TRUE
@@ -2877,7 +2874,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x93bf7b0>
+<environment: 0x96e1d34>
 
 Coefficients:
        a_1        a_2      b_1_1      b_1_2      b_2_2 
@@ -3112,7 +3109,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x9810394>
+<environment: 0x9a44f44>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3360,7 +3357,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x9687f58>
+<environment: 0x98f2924>
 
 Coefficients:
        a_1        a_2      b_1_1      b_1_2      b_2_2        d_1 
@@ -3611,7 +3608,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x9a1c454>
+<environment: 0x9bf15f8>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3867,7 +3864,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x8d9a42c>
+<environment: 0x8bd108c>
 
 Coefficients:
         a_1         a_2       b_1_1       b_1_2       b_2_2    d_1_TRUE 
@@ -4124,7 +4121,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x8fabecc>
+<environment: 0x95a5ea0>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4381,7 +4378,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x99faf10>
+<environment: 0x9b50da8>
 
 Coefficients:
         a_1         a_2       b_1_1       b_1_2       b_2_2     d_1_40s 
@@ -4637,7 +4634,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x98d96bc>
+<environment: 0x934e83c>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4900,7 +4897,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x9a3f754>
+<environment: 0x9ae0060>
 
 Coefficients:
     a_1     a_2 
@@ -5149,7 +5146,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x992a674>
+<environment: 0x9aeba38>
 
 Coefficients:
 (Intercept)         a_1         a_2 
@@ -5369,12 +5366,9 @@ attr(,"class")
 > # fixed effects
 > margProducts <- quadFuncDeriv( c( "value", "capital" ),
 +    data = ggData, coef = coef( ggResultLin ), coefCov = vcov( ggResultLin ) )
-> sd( margProducts )
+> sapply( margProducts, sd )
   value capital 
       0       0 
-Warning message:
-sd(<data.frame>) is deprecated.
- Use sapply(*, sd) instead. 
 > all.equal( margProducts[1,], coef( ggResultLin )[2:3],
 +    check.attributes = FALSE )
 [1] TRUE
@@ -5384,12 +5378,9 @@ sd(<data.frame>) is deprecated.
 > # random effects
 > margProducts <- quadFuncDeriv( c( "value", "capital" ),
 +    data = ggData, coef = coef( ggResultLinRan ), coefCov = vcov( ggResultLinRan ) )
-> sd( margProducts )
+> sapply( margProducts, sd )
   value capital 
       0       0 
-Warning message:
-sd(<data.frame>) is deprecated.
- Use sapply(*, sd) instead. 
 > all.equal( margProducts[1,], coef( ggResultLinRan )[2:3],
 +    check.attributes = FALSE )
 [1] TRUE
