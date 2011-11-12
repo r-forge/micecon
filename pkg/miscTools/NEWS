@@ -5,6 +5,11 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.6-12  (2011-11-12)
+
+* added generic function margEff() 
+
+
             CHANGES IN VERSION 0.6-10  (2010-10-15)
 
 * stdEr.default() now checks for x$std only if x is an object of S3 class
