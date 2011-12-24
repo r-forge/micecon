@@ -1,7 +1,8 @@
 
-R version 2.11.1 (2010-05-31)
-Copyright (C) 2010 The R Foundation for Statistical Computing
+R version 2.14.1 (2011-12-22)
+Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: i686-pc-linux-gnu (32-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -33,14 +34,14 @@ Loading required package: survival
 Loading required package: splines
 Loading required package: lmtest
 Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following object(s) are masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
 Loading required package: miscTools
-
-Attaching package: 'miscTools'
-
-The following object(s) are masked from 'package:car':
-
-    coefTable
-
 Loading required package: micEcon
 Loading required package: np
 Loading required package: boot
@@ -60,7 +61,7 @@ The following object(s) are masked from 'package:lattice':
     melanoma
 
 Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-3)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-12)
 > data( germanFarms )
 > options( digits = 3 )
 > 
@@ -124,7 +125,7 @@ $qMeans
 
 $fMeans
 land 
-29.0 
+  29 
 
 $est
 
@@ -161,6 +162,7 @@ eq3 -0.434  0.854  1.000
 SUR estimates for 'eq1' (equation 1)
 Model Formula: q1 ~ pr1 + pr2 + pr3 + pq1.1.1 + pq1.1.2 + pq1.1.3 + pq1.2.1 + 
     pq1.2.2 + pq1.2.3 + pq1.3.1 + pq1.3.2 + pq1.3.3 + f1 + fq1.1.1
+<environment: 0x9db1a7c>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)   -97327      37624   -2.59    0.013 *  
@@ -190,6 +192,7 @@ Multiple R-Squared: 0.975 Adjusted R-Squared: 0.966
 SUR estimates for 'eq2' (equation 2)
 Model Formula: q2 ~ pr1 + pr2 + pr3 + pq2.1.1 + pq2.1.2 + pq2.1.3 + pq2.2.1 + 
     pq2.2.2 + pq2.2.3 + pq2.3.1 + pq2.3.2 + pq2.3.3 + f1 + fq2.1.1
+<environment: 0x9db1a7c>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)   -86798      17778   -4.88  1.1e-05 ***
@@ -219,6 +222,7 @@ Multiple R-Squared: 0.449 Adjusted R-Squared: 0.252
 SUR estimates for 'eq3' (equation 3)
 Model Formula: q3 ~ pr1 + pr2 + pr3 + pq3.1.1 + pq3.1.2 + pq3.1.3 + pq3.2.1 + 
     pq3.2.2 + pq3.2.3 + pq3.3.1 + pq3.3.2 + pq3.3.3 + f1 + fq3.1.1
+<environment: 0x9db1a7c>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)   -19345       3775   -5.12  4.8e-06 ***
@@ -666,6 +670,7 @@ eq3  0.343  0.722 1.000
 SUR estimates for 'eq1' (equation 1)
 Model Formula: q1 ~ pr1 + pr2 + pr3 + pq1.1.1 + pq1.1.2 + pq1.1.3 + pq1.2.1 + 
     pq1.2.2 + pq1.2.3 + pq1.3.1 + pq1.3.2 + pq1.3.3
+<environment: 0xa7f0ef4>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)    90398       4318   20.94  < 2e-16 ***
@@ -693,6 +698,7 @@ Multiple R-Squared: 0.891 Adjusted R-Squared: 0.871
 SUR estimates for 'eq2' (equation 2)
 Model Formula: q2 ~ pr1 + pr2 + pr3 + pq2.1.1 + pq2.1.2 + pq2.1.3 + pq2.2.1 + 
     pq2.2.2 + pq2.2.3 + pq2.3.1 + pq2.3.2 + pq2.3.3
+<environment: 0xa7f0ef4>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)   -38324       2426  -15.80  < 2e-16 ***
@@ -720,6 +726,7 @@ Multiple R-Squared: 0.307 Adjusted R-Squared: 0.177
 SUR estimates for 'eq3' (equation 3)
 Model Formula: q3 ~ pr1 + pr2 + pr3 + pq3.1.1 + pq3.1.2 + pq3.1.3 + pq3.2.1 + 
     pq3.2.2 + pq3.2.3 + pq3.3.1 + pq3.3.2 + pq3.3.3
+<environment: 0xa7f0ef4>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)      952       1786    0.53    0.596    
@@ -1175,6 +1182,7 @@ SUR estimates for 'eq1' (equation 1)
 Model Formula: q1 ~ pr1 + pr2 + pr3 + pq1.1.1 + pq1.1.2 + pq1.1.3 + pq1.2.1 + 
     pq1.2.2 + pq1.2.3 + pq1.3.1 + pq1.3.2 + pq1.3.3 + f1 + f2 + 
     fq1.1.1 + fq1.1.2 + fq1.2.1 + fq1.2.2
+<environment: 0xa5de9b0>
 
             Estimate Std. Error t value Pr(>|t|)
 (Intercept)   -79970     115640   -0.69     0.49
@@ -1207,6 +1215,7 @@ SUR estimates for 'eq2' (equation 2)
 Model Formula: q2 ~ pr1 + pr2 + pr3 + pq2.1.1 + pq2.1.2 + pq2.1.3 + pq2.2.1 + 
     pq2.2.2 + pq2.2.3 + pq2.3.1 + pq2.3.2 + pq2.3.3 + f1 + f2 + 
     fq2.1.1 + fq2.1.2 + fq2.2.1 + fq2.2.2
+<environment: 0xa5de9b0>
 
             Estimate Std. Error t value Pr(>|t|)  
 (Intercept)   -85852      50775   -1.69    0.098 .
@@ -1241,6 +1250,7 @@ SUR estimates for 'eq3' (equation 3)
 Model Formula: q3 ~ pr1 + pr2 + pr3 + pq3.1.1 + pq3.1.2 + pq3.1.3 + pq3.2.1 + 
     pq3.2.2 + pq3.2.3 + pq3.3.1 + pq3.3.2 + pq3.3.3 + f1 + f2 + 
     fq3.1.1 + fq3.1.2 + fq3.2.1 + fq3.2.2
+<environment: 0xa5de9b0>
 
             Estimate Std. Error t value Pr(>|t|)  
 (Intercept)   -20576      11158   -1.84    0.072 .
@@ -1590,9 +1600,9 @@ qLabor      0.222     0.202 0.0874
 
 $tval
           pOutput pVarInput pLabor
-qOutput     0.774    -0.580  -1.07
-qVarInput   0.580    -0.423  -0.73
-qLabor      1.069    -0.731  -1.02
+qOutput     0.774    -0.580 -1.069
+qVarInput   0.580    -0.423 -0.731
+qLabor      1.069    -0.731 -1.022
 
 $pval
           pOutput pVarInput pLabor
@@ -1875,6 +1885,7 @@ SUR estimates for 'eq1' (equation 1)
 Model Formula: q1 ~ pr1 + pr2 + pr3 + pq1.1.1 + pq1.1.2 + pq1.1.3 + pq1.2.1 + 
     pq1.2.2 + pq1.2.3 + pq1.3.1 + pq1.3.2 + pq1.3.3 + f1 + f2 + 
     fq1.1.1 + fq1.1.2 + fq1.2.1 + fq1.2.2
+<environment: 0xa6d8410>
 
             Estimate Std. Error t value Pr(>|t|)
 (Intercept)   -97025     145396   -0.67     0.51
@@ -1907,6 +1918,7 @@ SUR estimates for 'eq2' (equation 2)
 Model Formula: q2 ~ pr1 + pr2 + pr3 + pq2.1.1 + pq2.1.2 + pq2.1.3 + pq2.2.1 + 
     pq2.2.2 + pq2.2.3 + pq2.3.1 + pq2.3.2 + pq2.3.3 + f1 + f2 + 
     fq2.1.1 + fq2.1.2 + fq2.2.1 + fq2.2.2
+<environment: 0xa6d8410>
 
             Estimate Std. Error t value Pr(>|t|)  
 (Intercept)   -71025      54698   -1.30    0.202  
@@ -1941,6 +1953,7 @@ SUR estimates for 'eq3' (equation 3)
 Model Formula: q3 ~ pr1 + pr2 + pr3 + pq3.1.1 + pq3.1.2 + pq3.1.3 + pq3.2.1 + 
     pq3.2.2 + pq3.2.3 + pq3.3.1 + pq3.3.2 + pq3.3.3 + f1 + f2 + 
     fq3.1.1 + fq3.1.2 + fq3.2.1 + fq3.2.2
+<environment: 0xa6d8410>
 
             Estimate Std. Error t value Pr(>|t|)  
 (Intercept)   -11871      11670   -1.02    0.315  
@@ -2451,9 +2464,9 @@ qLabor      0.113     0.106 0.0490
 
 $tval
           pOutput pVarInput pLabor
-qOutput      1.21    -0.890  -1.56
-qVarInput    0.89    -0.665  -0.96
-qLabor       1.56    -0.961  -1.51
+qOutput      1.21    -0.890 -1.556
+qVarInput    0.89    -0.665 -0.961
+qLabor       1.56    -0.961 -1.507
 
 $pval
           pOutput pVarInput pLabor
