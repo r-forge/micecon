@@ -1,5 +1,5 @@
 
-R version 2.14.0 (2011-10-31)
+R version 2.14.1 (2011-12-22)
 Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 Platform: i686-pc-linux-gnu (32-bit)
@@ -20,10 +20,17 @@ Type 'q()' to quit R.
 Loading required package: np
 Loading required package: boot
 Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-11)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-12)
 Loading required package: miscTools
 > library( plm )
 Loading required package: bdsmatrix
+
+Attaching package: 'bdsmatrix'
+
+The following object(s) are masked from 'package:base':
+
+    backsolve
+
 Loading required package: nlme
 Loading required package: Formula
 Loading required package: MASS
@@ -2874,7 +2881,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x96e1d34>
+<environment: 0x9a39438>
 
 Coefficients:
        a_1        a_2      b_1_1      b_1_2      b_2_2 
@@ -3109,7 +3116,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x9a44f44>
+<environment: 0x9922588>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3357,7 +3364,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x98f2924>
+<environment: 0x9975a58>
 
 Coefficients:
        a_1        a_2      b_1_1      b_1_2      b_2_2        d_1 
@@ -3608,7 +3615,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x9bf15f8>
+<environment: 0x9a19b28>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3864,7 +3871,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x8bd108c>
+<environment: 0x96c78c0>
 
 Coefficients:
         a_1         a_2       b_1_1       b_1_2       b_2_2    d_1_TRUE 
@@ -4121,7 +4128,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x95a5ea0>
+<environment: 0x94ae768>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4378,7 +4385,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x9b50da8>
+<environment: 0x91b99a8>
 
 Coefficients:
         a_1         a_2       b_1_1       b_1_2       b_2_2     d_1_40s 
@@ -4634,7 +4641,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x934e83c>
+<environment: 0x96d29b4>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4897,7 +4904,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x9ae0060>
+<environment: 0x988035c>
 
 Coefficients:
     a_1     a_2 
@@ -5146,7 +5153,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x9aeba38>
+<environment: 0x98a3408>
 
 Coefficients:
 (Intercept)         a_1         a_2 
