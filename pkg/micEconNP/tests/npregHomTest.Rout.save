@@ -16,12 +16,13 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> # load micEcon package
-> library( micEcon )
+> # load the micEconNP package
+> library( micEconNP )
 Loading required package: np
 Loading required package: boot
 Loading required package: cubature
 Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-12)
+Loading required package: micEcon
 Loading required package: miscTools
 > 
 > # load data
