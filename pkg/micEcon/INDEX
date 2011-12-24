@@ -8,12 +8,8 @@ cobbDouglasOpt          Optimal Values of Independent Variables of a
 coef.quadFuncEst        Coefficients of a Quadratic Function
 coef.translogEst        Coefficients of a Translog Function
 elas                    Calculating and returning elasticities
-elas.npregHom           Elasticities of a Homogeneous Nonparametric
-                        Function
 germanFarms             Output and Inputs of Farms in West-Germany
 Missong03E7.7           Meat Prices and Quantities in Germany
-npregHom                Nonparametric Regression with Homogeneity
-                        Imposed
 priceIndex              Calculate Price Indices
 quadFuncCalc            Calculate dependent variable of a quadratic
                         function

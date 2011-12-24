@@ -1,0 +1,11 @@
+THIS IS THE CHANGELOG OF THE "micEconNP" PACKAGE
+
+Please note that only the most significant changes are reported here.
+A full ChangeLog is available in the log messages of the SVN repository
+on R-Forge.
+
+
+            CHANGES IN VERSION 0.1-0 (2011-12-24)
+
+* initial release of this package: function npregHom() and the corresponding
+elas() method have been moved from the micEcon package into this new package

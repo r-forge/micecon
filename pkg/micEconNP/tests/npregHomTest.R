@@ -1,5 +1,5 @@
-# load micEcon package
-library( micEcon )
+# load the micEconNP package
+library( micEconNP )
 
 # load data
 data( germanFarms )
