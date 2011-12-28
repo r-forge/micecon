@@ -1,5 +1,5 @@
 
-R version 2.13.0 (2011-04-13)
+R version 2.14.1 (2011-12-22)
 Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 Platform: i686-pc-linux-gnu (32-bit)
@@ -30,31 +30,17 @@ The following object(s) are masked from 'package:base':
 Loading required package: car
 Loading required package: MASS
 Loading required package: nnet
-Loading required package: survival
-Loading required package: splines
 Loading required package: lmtest
 Loading required package: zoo
+
+Attaching package: 'zoo'
+
+The following object(s) are masked from 'package:base':
+
+    as.Date, as.Date.numeric
+
 Loading required package: miscTools
 Loading required package: micEcon
-Loading required package: np
-Loading required package: boot
-
-Attaching package: 'boot'
-
-The following object(s) are masked from 'package:car':
-
-    logit
-
-The following object(s) are masked from 'package:survival':
-
-    aml
-
-The following object(s) are masked from 'package:lattice':
-
-    melanoma
-
-Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.40-6)
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
@@ -608,7 +594,7 @@ $rss
 
 $cov.unscaled
              gamma         delta          rho
-gamma 11108.427498 -2.1880051887 -92.89635405
+gamma 11108.427490 -2.1880051870 -92.89635398
 delta    -2.188005  0.0004311784   0.01831334
 rho     -92.896354  0.0183133367   0.77803366
 
@@ -655,12 +641,12 @@ E_1_2 (all)       NA         NA      NA       NA
 273.558495721   0.008014374  -2.790216743 
 > vcov( cesLandLaborSann )
             gamma         delta          rho
-gamma 98593373.54 -19419.743516 -824505.9831
+gamma 98593373.47 -19419.743501 -824505.9825
 delta   -19419.74      3.826944     162.5409
 rho    -824505.98    162.540886    6905.4745
 > coef( summary( cesLandLaborSann ) )
            Estimate  Std. Error      t value  Pr(>|t|)
-gamma 273.558495721 9929.419597  0.027550301 0.9780208
+gamma 273.558495721 9929.419594  0.027550301 0.9780208
 delta   0.008014374    1.956258  0.004096788 0.9967312
 rho    -2.790216743   83.099185 -0.033576945 0.9732145
 > fitted( cesLandLaborSann )
@@ -970,9 +956,9 @@ $testKmenta
 Linear hypothesis test
 
 Hypothesis:
-a_1 + a_2 = 1
-b_1_1 + b_1_2 = 0
-b_1_2 + b_2_2 = 0
+a_1  + a_2 = 1
+b_1_1  + b_1_2 = 0
+b_1_2  + b_2_2 = 0
 
 Model 1: restricted model
 Model 2: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
@@ -1126,8 +1112,8 @@ $testKmenta
 Linear hypothesis test
 
 Hypothesis:
-b_1_1 + b_1_2 = 0
-b_1_2 + b_2_2 = 0
+b_1_1  + b_1_2 = 0
+b_1_2  + b_2_2 = 0
 
 Model 1: restricted model
 Model 2: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
@@ -4061,10 +4047,10 @@ $rss
 [1] 166684.4
 
 $cov.unscaled
-           gamma      delta        rho
-gamma 5004.97903 41.3989754 -650.11586
-delta   41.39898  0.3424519   -5.37812
-rho   -650.11586 -5.3781200   84.46960
+           gamma      delta         rho
+gamma 5004.97673 41.3989564 -650.115558
+delta   41.39896  0.3424517   -5.378117
+rho   -650.11556 -5.3781175   84.469565
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -4105,10 +4091,10 @@ Elasticity of Substitution:
 E_1_2 (all)   0.2548    54.4713   0.005    0.996
 
 > coef( summary( cesLandIntSann ) )
-         Estimate Std. Error      t value  Pr(>|t|)
-gamma 13.14842134 6458.52914 0.0020358229 0.9983756
-delta  0.02100585   53.42349 0.0003931949 0.9996863
-rho    2.92470954  839.04011 0.0034857804 0.9972188
+         Estimate Std. Error     t value  Pr(>|t|)
+gamma 13.14842134 6458.52765 0.002035823 0.9983756
+delta  0.02100585   53.42348 0.000393195 0.9996863
+rho    2.92470954  839.03992 0.003485781 0.9972188
 > 
 > # using the BFGS optimization method
 > cesLandIntBfgs <- cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
@@ -4373,9 +4359,9 @@ $testKmenta
 Linear hypothesis test
 
 Hypothesis:
-a_1 + a_2 = 1
-b_1_1 + b_1_2 = 0
-b_1_2 + b_2_2 = 0
+a_1  + a_2 = 1
+b_1_1  + b_1_2 = 0
+b_1_2  + b_2_2 = 0
 
 Model 1: restricted model
 Model 2: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
@@ -4507,8 +4493,8 @@ $testKmenta
 Linear hypothesis test
 
 Hypothesis:
-b_1_1 + b_1_2 = 0
-b_1_2 + b_2_2 = 0
+b_1_1  + b_1_2 = 0
+b_1_2  + b_2_2 = 0
 
 Model 1: restricted model
 Model 2: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
