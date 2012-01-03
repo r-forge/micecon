@@ -5,6 +5,16 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.9-6   (2012-01-03)
+
+* the user can determine further details of the graph that is
+produced by the plot() method
+
+* added CITATION file (referring to the working paper)
+
+* the source code of the vignette is in subfolder /vignettes/ now
+
+
             CHANGES IN VERSION 0.9-2   (2011-06-04)
 
 * improved the vignette
