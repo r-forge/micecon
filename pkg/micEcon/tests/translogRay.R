@@ -77,3 +77,80 @@ margCostRay3 <- translogProdFuncMargCost( yNames = c( "qCrop", "qAnimal" ),
    wNames = c( "pVarInput", "pLabor", "pLand" ),
    data = germanFarms, coef = coef( estResultRay3 ) )
 all.equal( margCostRay, margCostRay3 )
+
+
+######################################
+##   using data set appleProdFr86   ##
+######################################
+data( "appleProdFr86" )
+# quantity of the capital input
+appleProdFr86$qCap <- with( appleProdFr86, vCap / pCap )
+# quantity of the labour input
+appleProdFr86$qLab <- with( appleProdFr86, vLab / pLab )
+# quantity of the materials input
+appleProdFr86$qMat <- with( appleProdFr86, vMat / pMat )
+
+# estimate a translog ray production function
+estApple <- translogRayEst( yNames = c( "qApples", "qOtherOut" ),
+   xNames = c( "qCap", "qLab", "qMat" ), data = appleProdFr86 )
+print( estApple )
+summary( estApple )
+print.default( estApple )
+
+# different order of outputs
+estApple2 <- translogRayEst( yNames = c( "qOtherOut", "qApples" ),
+   xNames = c( "qCap", "qLab", "qMat" ), data = appleProdFr86 )
+print( estApple2 )
+summary( estApple2 )
+all.equal( abs( coef( estApple2 )[ 6:15 ] ),
+   abs( coef( estApple )[ 6:15 ] ) )
+
+# different order of inputs
+estApple3 <- translogRayEst( yNames = c( "qApples", "qOtherOut" ),
+   xNames = c( "qMat", "qCap", "qLab" ), data = appleProdFr86 )
+print( estApple3 )
+summary( estApple3 )
+all.equal( coef( estApple ), coef( estApple3 )[
+   c( 1, 3, 4, 2, 5, 10, 11, 7, 12, 13, 8, 14, 6, 9, 15 ) ],
+   check.attributes = FALSE )
+
+
+## testing translogRayDeriv
+derivApple <- translogRayDeriv( yNames = c( "qApples", "qOtherOut" ),
+   xNames = c( "qCap", "qLab", "qMat" ), data = appleProdFr86,
+   coef = coef( estApple ) )
+print( derivApple )
+
+derivApple2 <- translogRayDeriv( yNames = c( "qOtherOut", "qApples" ),
+   xNames = c( "qCap", "qLab", "qMat" ), data = appleProdFr86,
+   coef = coef( estApple2 ) )
+all.equal( derivApple, derivApple2[ , c( 1:3, 5, 4 ) ] )
+
+derivApple3 <- translogRayDeriv( yNames = c( "qApples", "qOtherOut" ),
+   xNames = c( "qMat", "qCap", "qLab" ), data = appleProdFr86, 
+   coef = coef( estApple3 ) )
+all.equal( derivApple, derivApple3[ , c( 2, 3, 1, 4, 5 ) ] )
+
+
+## testing translogProdFuncMargCost with a ray function
+# compute the marginal costs of producing the output
+margCostApple <- translogProdFuncMargCost( 
+   yNames = c( "qApples", "qOtherOut" ),
+   xNames = c( "qCap", "qLab", "qMat" ),
+   wNames = c( "pCap", "pLab", "pMat" ),
+   data = appleProdFr86, coef = coef( estApple ) )
+print( margCostApple )
+
+margCostApple2 <- translogProdFuncMargCost( 
+   yNames = c( "qOtherOut", "qApples" ),
+   xNames = c( "qCap", "qLab", "qMat" ),
+   wNames = c( "pCap", "pLab", "pMat" ),
+   data = appleProdFr86, coef = coef( estApple2 ) )
+all.equal( margCostApple, margCostApple2[ , c( 2:1 ) ] )
+
+margCostApple3 <- translogProdFuncMargCost( 
+   yNames = c( "qApples", "qOtherOut" ),
+   xNames = c( "qMat", "qCap", "qLab" ),
+   wNames = c( "pMat", "pCap", "pLab" ),
+   data = appleProdFr86, coef = coef( estApple3 ) )
+all.equal( margCostApple, margCostApple3 )
