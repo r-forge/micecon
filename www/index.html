@@ -10,7 +10,7 @@
   <body background="images/RLogoLight.jpg">
     <div align="center">
       <h1>
-         micEcon 
+         The &quot;micEcon&quot; project 
       </h1>
       <h2>
          Tools for microeconomic analysis and microeconomic modelling in <a href="http://www.r-project.org">R</a>
@@ -20,18 +20,9 @@
        News
     </h3>
     <ul>
-    <li><strong>December 2008:</strong><br />
-      The functions for writing input files for and reading output files
-      of <a href="http://www.uq.edu.au/economics/cepa/frontier.htm">
-      FRONTIER 4.1</a>
-      (&quot;front41WriteInput&quot; and &quot;front41ReadOutput&quot;)
-      have been moved to the
-      <a href="http://r-forge.r-project.org/projects/frontier/">
-      frontier package</a>.
-    </li>
-    <li><strong>September 22, 2008:</strong><br />
-      The micEcon package is developed on <a href="http://R-Forge.R-Project.org/">R-Forge</a> now.
-      Its summary page is available <a href="http://r-forge.r-project.org/projects/micecon/">here</a>.</li>
+      <li><a href="https://r-forge.r-project.org/news/?group_id=257">News</a>
+        about the micEcon project are available at the
+        <a href="http://r-forge.r-project.org/projects/micecon/">project's R-Forge site</a>.</li>
     </ul>
     <h3>
        What is micEcon? 
@@ -45,11 +36,37 @@
       </li>
     </ul>
     <h3>
-       What can micEcon do? 
+      Which <a href="http://www.r-project.org">R</a> packages are developed 
+        within the micEcon project?
     </h3>
     <ul>
       <li>
-        <strong>Demand Analysis with the &quot;Almost Ideal Demand System&quot; (AIDS):</strong> The AIDS is the most popular demand system in empirical demand analysis. <strong>micEcon</strong> provides functions for: 
+        <strong>micEcon: Microeconomic Analysis and Modelling.</strong><br />
+        This is the base package.
+        It provides tools for microeconomic analysis and microeconomic modelling, e.g.
+      <ul>
+        <li>
+           analysis with <strong>Translog functions</strong>,
+           e.g. econometric estimation,
+           calculation of derivatives with respect to regressors,
+           calculation of (bordered) Hessian matrices with respect to regressors,
+           checking monotonicity (positive or negative),
+           checking curvature (quasiconcavity, concavity,
+             quasiconvexity, convexity), and
+           creating a matrix that can be used to impose monotonicity
+             using a two-step procedure.
+        </li>
+        <li>
+           analysis with <strong>quadratic functions</strong>,
+           e.g. econometric estimation and
+           calculation of derivatives with respect to regressors.
+        </li>
+      </ul>
+      </li>
+      <li>
+        <strong>micEconAids: Demand Analysis with the &quot;Almost Ideal Demand System&quot; (AIDS).</strong><br /> 
+        The AIDS is the most popular demand system in empirical demand analysis. 
+        This package provides functions for: 
       <ul>
         <li>
            econometric estimation using the popular but inaccurate &quot;Linear Approximation&quot; (LA-AIDS) and the accurate &quot;Iterated Linear Least Squares Estimator&quot; (ILLE) 
@@ -72,7 +89,22 @@
       </ul>
       </li>
       <li>
-        <strong>Production Analysis with the &quot;Symmetric Normalized Quadratic&quot; (SNQ) profit function:</strong> The SNQ profit function is often used in microeconomic production models because it allows the imposition of global convexity. <strong>micEcon</strong> provides functions for: 
+        <strong>micEconCES: Analysis with the &quot;Constant Elasticity of Scale&quot; 
+        (CES) function.</strong><br />
+        Tools for economic analysis and economic modelling with a Constant Elasticity of Scale (CES) function.
+      </li>
+      <li>
+        <strong>micEconNP: Microeconomic Analysis with Non-Parametric Methods.</strong><br />
+        Tools for microeconomic analysis and microeconomic modelling with non-parametric methods.
+      </li>
+      <li>
+        <strong>micEconSNQP: &quot;Symmetric Normalized Quadratic&quot; 
+        (SNQ) profit function.</strong><br />
+        Tools for production analysis with the Symmetric Normalized Quadratic (SNQ)
+        profit function.
+        The SNQ profit function is often used in microeconomic production models
+        because it allows for the imposition of global convexity.
+        This package provides functions for:
       <ul>
         <li>
            econometric estimation 
@@ -98,44 +130,8 @@
       </ul>
       </li>
       <li>
-        <strong>Analysis with Translog Functions:</strong>
-      <ul>
-        <li>
-           econometric estimation
-        </li>
-        <li>
-           calculation of derivatives with respect to regressors
-        </li>
-        <li>
-           calculation of (bordered) Hessian matrices with respect to regressors
-        </li>
-        <li>
-           checking monotonicity (positive or negative)
-        </li>
-        <li>
-           checking curvature (quasiconcavity, concavity,
-             quasiconvexity, convexity)
-        </li>
-        <li>
-           creating a matrix that can be used to impose monotonicity
-             using a two-step procedure
-        </li>
-      </ul>
-      </li>
-
-      <li>
-        <strong>Analysis with Quadratic Functions:</strong>
-      <ul>
-        <li>
-           econometric estimation
-        </li>
-        <li>
-           calculation of derivatives with respect to regressors
-        </li>
-      </ul>
-      </li>
-      <li>
-        <strong>Tools for Matrices:</strong>
+        <strong>miscTools: Miscellanneous Tools and Utilities.</strong><br />
+        This package provides miscellanneous small tools and utilities, e.g. for
       <ul>
         <li>
            inserting additional rows and columns into matrices
@@ -153,49 +149,58 @@
       </li>
     </ul>
     <h3>
-       Who has written micEcon? 
+       Who has written the packages in the micEcon project?
     </h3>
     <ul>
       <li>
         <a href="http://www.arne-henningsen.name">Arne Henningsen</a>
       </li>
+      <li>
+        <a href="http://www.obs.ee/~siim/">Ott Toomet</a>
+      </li>
+      <li>
+        <a href="http://www.dtu.dk/English/Service/Phonebook.aspx?lg=showcommon&type=publications&id=66311">Geraldine Henningsen</a>
+      </li>
     </ul>
+
     <h3>
-       Where can I get micEcon?
+       Where can I getthe officially released versions micEcon?
     </h3>
+    The officially released versions of these packages,
+    including documentation, source code, etc.,
+    are available from the Comprehensive R Archive Network (CRAN):
     <ul>
-      <li>The <strong>released</strong> version is available on
-        <a href="http://CRAN.R-Project.org/">CRAN</a>
-        <ul>
-          <li>You can <strong>download</strong> the source code,
-            binaries for MacOS X and MS-Windows, and the reference manual
-            from
-            <a href="http://CRAN.R-Project.org/web/packages/micEcon/index.html">
-            http://cran.r-project.org/web/packages/micEcon/index.html</a>.
-          </li>
-          <li>You can <strong>install</strong> the package by typing
-            at the R prompt (if you have internet access):
-            <pre> install.packages( "micEcon" )</pre>
-          </li>
-        </ul>
-      </li>
-      <li>The current <strong>development</strong> version is available on
-        <a href="http://R-Forge.R-Project.org/">R-Forge</a>
-        <ul>
-          <li>You can <strong>download</strong> the source code
-            and binaries for MacOS X and MS-Windows from
-            <a href="http://r-forge.r-project.org/R/?group_id=257">
-            http://r-forge.r-project.org/R/?group_id=257</a>.
-          </li>
-          <li>You can <strong>install</strong> the package by typing
-            at the R prompt (if you have internet access):
-            <pre> install.packages( "micEcon", repos="http://R-Forge.R-project.org" )</pre>
-          </li>
-        </ul>
-      </li>
+      <li><strong>micEcon</strong>: <a href="http://cran.r-project.org/package=micEcon">
+        http://cran.r-project.org/package=micEcon</a></li>
+      <li><strong>micEconAids</strong>: <a href="http://cran.r-project.org/package=micEconAids">
+        http://cran.r-project.org/package=micEconAids</a></li>
+      <li><strong>micEconCES</strong>: <a href="http://cran.r-project.org/package=micEconCES">
+        http://cran.r-project.org/package=micEconCES</a></li>
+      <li><strong>micEconNP</strong>: not yet on CRAN</li>
+      <li><strong>micEconSNQP</strong>: <a href="http://cran.r-project.org/package=micEconSNQP">
+        http://cran.r-project.org/package=micEconSNQP</a></li>
+      <li><strong>miscTools</strong>: <a href="http://cran.r-project.org/package=miscTools">
+        http://cran.r-project.org/package=miscTools</a></li>
     </ul>
+    You can install theese packages by the <a href="http://www.r-project.org">R</a>
+    command (if you have internet access):<br />
+    <pre> install.packages( "packageName" )</pre>
+
     <h3>
-       Under which license is micEcon released?
+       Where can I get the latest development versions micEcon?
+    </h3>
+    The (potentially unstable) latest development versions of these packages are available
+    from <a href="http://r-forge.r-project.org">R-Forge</a>:
+    <ul>
+      <li><a href="http://r-forge.r-project.org/R/?group_id=257">
+        https://r-forge.r-project.org/R/?group_id=257</a></li>
+    </ul>
+    You can install theese packages by the <a href="http://www.r-project.org">R</a>
+    command (if you have internet access):<br />
+    <pre> install.packages( "packageName", repos="http://R-Forge.R-project.org" )</pre>
+
+    <h3>
+       Under which license are the packages within the micEcon project released?
     </h3>
     <ul>
       <li>
@@ -204,15 +209,11 @@
       </li>
     </ul>
     <h3>
-       How can I contact you? 
+       Where can I ask questions, report bugs, or suggest new features?
     </h3>
     <ul>
-      <li>
-         Send an email to <a href="mailto:info(at)micEcon.org">info(at)micEcon.org</a>
-      </li>
-      <li>
-         Take a look at <a href="http://www.arne-henningsen.name">http://www.arne-henningsen.name</a>
-      </li>
+      <li> Please use a forum or &quot;tracker&quot; at the 
+        <a href="http://r-forge.r-project.org/projects/micecon/">project's R-Forge site</a>.</li>
     </ul>
     <p>
        &nbsp; 
@@ -224,7 +225,7 @@
        &nbsp; 
     </p>
     <div align="center">
-       Last Update: 9 January 2009
+       Last Update: 29 January 2012
     </div>
   </body>
 </html>
