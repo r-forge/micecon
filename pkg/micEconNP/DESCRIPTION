@@ -8,4 +8,4 @@ Depends: R (>= 2.4.0), np (>= 0.30-0), micEcon (>= 0.6-7)
 Description: Tools for microeconomic analysis and microeconomic modelling
    with non-parametric methods
 License: GPL (>= 2)
-URL: http://www.r-project.org, http://www.micEcon.org
+URL: http://www.micEcon.org
