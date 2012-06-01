@@ -1,8 +1,8 @@
 
-R version 2.14.1 (2011-12-22)
-Copyright (C) 2011 The R Foundation for Statistical Computing
+R version 2.15.0 (2012-03-30)
+Copyright (C) 2012 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
-Platform: i686-pc-linux-gnu (32-bit)
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -1513,7 +1513,7 @@ R-squared: 0.7133403     Adjusted R-squared: 0.6812345
 123    -94999.369   -25519.710
 124      7785.492  -142751.867
 125   -156787.785    95967.391
-126 -11282457.663 -6762597.285
+126 -11282457.662 -6762597.285
 127     66025.942  -198232.844
 128  -2595569.239  -218420.562
 129   -155935.906   225508.686
@@ -1523,7 +1523,7 @@ R-squared: 0.7133403     Adjusted R-squared: 0.6812345
 133    -36017.542  -216664.866
 134   -166264.001   107421.982
 135     49832.780   -77194.383
-136  -7986488.513  -349526.421
+136  -7986488.514  -349526.421
 137    -62346.024   104302.791
 138      8159.892  -425509.386
 139   -117050.759   138844.934
@@ -1545,3 +1545,6 @@ R-squared: 0.7133403     Adjusted R-squared: 0.6812345
 > all.equal( margCostApple, margCostApple3 )
 [1] TRUE
 > 
+> proc.time()
+   user  system elapsed 
+  0.708   0.020   0.715 

@@ -1,8 +1,8 @@
 
-R version 2.14.1 (2011-12-22)
-Copyright (C) 2011 The R Foundation for Statistical Computing
+R version 2.15.0 (2012-03-30)
+Copyright (C) 2012 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
-Platform: i686-pc-linux-gnu (32-bit)
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -708,7 +708,7 @@ a_0    88.41424209  108.2344057 -88.225788 -321.0205424 -626.264756
 a_1    45.70224609  159.5944394 -37.518814 -310.0039432 -600.467846
 a_2    -3.54025982   53.5523805  16.858344  -77.3008720 -172.553530
 a_3   -76.93531118 -231.3317067  58.659297  504.1395781  875.656664
-a_4   -33.79456385 -247.9219096   0.997877  390.8012209  972.425863
+a_4   -33.79456386 -247.9219096   0.997877  390.8012209  972.425863
 b_1_1 -20.05352566  -71.7705267  18.063482  177.6081742  357.857452
 b_1_2 -14.57900581  -44.1521019  15.403373   77.3271600  127.331307
 b_1_3  24.54429804   78.7675424 -27.056062 -172.8717014 -291.329537
@@ -857,3 +857,6 @@ Multiple R-squared: 0.9984,	Adjusted R-squared: 0.9926
 F-statistic: 170.9 on 15 and 4 DF,  p-value: 7.682e-05 
 
 > 
+> proc.time()
+   user  system elapsed 
+  0.216   0.020   0.224 

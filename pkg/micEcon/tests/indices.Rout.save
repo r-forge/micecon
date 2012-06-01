@@ -1,8 +1,8 @@
 
-R version 2.14.1 (2011-12-22)
-Copyright (C) 2011 The R Foundation for Statistical Computing
+R version 2.15.0 (2012-03-30)
+Copyright (C) 2012 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
-Platform: i686-pc-linux-gnu (32-bit)
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -3429,7 +3429,7 @@ attr(,"weights")
 attr(,"weights")
            ql        qk        qf
 1  0.32910000 0.4197000 0.2512000
-2          NA        NA        NA
+2         NaN       NaN       NaN
 3  0.10334220 0.2695935 0.6270643
 4          NA        NA        NA
 5  0.21243932 0.2036553 0.5839053
@@ -3735,7 +3735,7 @@ attr(,"weights")
 attr(,"weights")
            ql         qk        qf
 1  0.31468712 0.39326043 0.2920525
-2          NA         NA        NA
+2         NaN        NaN       NaN
 3  0.09313420 0.22973640 0.6771294
 4          NA         NA        NA
 5  0.19017100 0.17739761 0.6324314
@@ -3770,3 +3770,6 @@ attr(,"weights")
 34 0.16178991 0.21081959 0.6273905
 35 0.13834265 0.20908184 0.6525755
 > 
+> proc.time()
+   user  system elapsed 
+  0.416   0.028   0.442 
