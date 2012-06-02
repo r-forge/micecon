@@ -969,7 +969,7 @@ logLik( meatModel )
 ## LR tests
 lrtest( estResultLA, estResultLAhom, estResultLAunr, estResultLA )
 lrtest( estResultLATX, estResultLAhomTX, estResultLAunrTX, estResultLATX )
-lrtest( estResultLA, estResultLAtrend, estResultLAtrend2, estResultLA )
+lrtest( estResultLaLs, estResultLAtrend, estResultLAtrend2, estResultLaLs )
 lrtest( estResultAIDSunr, estResultAIDShom, estResultAIDS, estResultAIDSunr )
 lrtest( estResultAIDSunrTX, estResultAIDShomTX, estResultAIDSTX,
    estResultAIDSunrTX )
