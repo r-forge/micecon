@@ -80,7 +80,7 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
    } else {
       result$est <- lm( as.formula( estFormula ), estData, ... )
    }
-   result$residuals <- residuals( result$est )
+   result$residuals <- c( residuals( result$est ) )
    result$fitted    <- estData$y - result$residuals
 
    # coefficients and their covariance matrix
