@@ -5,6 +5,11 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.6-10  (2012-06-02)
+
+* internal change, not relevant for the user
+
+
             CHANGES IN VERSION 0.6-8  (2012-06-01)
 
 * separated tools for non-parametric microeconomic analysis into a new package 
