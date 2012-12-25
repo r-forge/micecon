@@ -1,8 +1,8 @@
 
-R version 2.14.1 (2011-12-22)
-Copyright (C) 2011 The R Foundation for Statistical Computing
+R version 2.15.2 (2012-10-26) -- "Trick or Treat"
+Copyright (C) 2012 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
-Platform: i686-pc-linux-gnu (32-bit)
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -64,9 +64,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 15.19 on 47 degrees of freedom
 
 Number of iterations to convergence: 7 
-Achieved convergence tolerance: 3.484e-06 
+Achieved convergence tolerance: 3.481e-06 
 
 > stdEr( nlsRes )
         b0         b1         b2 
-10.6845841  0.4846579  0.5553007 
+10.6845855  0.4846580  0.5553008 
 > 
+> proc.time()
+   user  system elapsed 
+  0.196   0.036   0.222 
