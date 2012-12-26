@@ -3,7 +3,7 @@
  <info>
   <OS>unix</OS>
   <Rver>R version 2.15.2 (2012-10-26)</Rver>
-  <date>2012-12-26 15:19:26</date>
+  <date>2012-12-26 15:39:35</date>
   <call>
    <![CDATA[
    plotExpr(expressions, path = "tests/controlPlots", prefix = "compPlot", 

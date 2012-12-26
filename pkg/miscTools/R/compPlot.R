@@ -25,8 +25,7 @@ compPlot <- function( x, y, lim = NULL, ... ) {
 
    plot( x, y, xlim = lim, ylim = lim, ... )
 
-   lines( 1.5 * lim - 0.5 * lim[c(2,1)],
-      1.5 * lim - 0.5 * lim[c(2,1)] )
+   abline( 0, 1 )
 
    invisible( xyRange )
 }
