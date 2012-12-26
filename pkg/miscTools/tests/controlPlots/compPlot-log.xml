@@ -3,10 +3,11 @@
  <info>
   <OS>unix</OS>
   <Rver>R version 2.15.2 (2012-10-26)</Rver>
-  <date>2012-12-26 14:47:44</date>
+  <date>2012-12-26 15:19:26</date>
   <call>
    <![CDATA[
-   plotExpr(expressions, path = "tests/controlPlots", prefix = "compPlot")   ]]>
+   plotExpr(expressions, path = "tests/controlPlots", prefix = "compPlot", 
+    clear = TRUE)   ]]>
   </call>
   <directory>/home/arne/Documents/Econometrics/R/micEcon/pkg2/miscTools/tests/controlPlots</directory>
   <logFilename>compPlot-log.xml</logFilename>
