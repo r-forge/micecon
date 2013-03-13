@@ -224,18 +224,13 @@ R3  3  6  9 12
 [1,]    1
 [2,]    4
 [3,]    2
-Warning message:
-In rbind(m[1:(r - 1), ], matrix(v, ncol = nc), m[r:nr, ]) :
-  number of columns of result is not a multiple of vector length (arg 3)
+[4,]    3
 > 
 > # insert a column to a single-row matrix
 > insertCol( matrix( 1:3, nrow=1 ), 2, 4 )
-     [,1] [,2] [,3]
-[1,]    1    4    2
-Warning message:
-In cbind(m[, 1:(c - 1)], matrix(v, nrow = nr), m[, c:nc]) :
-  number of rows of result is not a multiple of vector length (arg 3)
+     [,1] [,2] [,3] [,4]
+[1,]    1    4    2    3
 > 
 > proc.time()
    user  system elapsed 
-  0.128   0.020   0.133 
+  0.132   0.020   0.137 

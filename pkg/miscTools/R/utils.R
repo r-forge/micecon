@@ -47,7 +47,8 @@ insertCol <- function( m, c, v = NA, cName = "" ) {
          colnames( m2 ) <- c( cNames, cName )
       }
    } else {
-      m2 <- cbind( m[ , 1:( c - 1 ) ], matrix( v, nrow = nr ), m[ , c:nc ] )
+      m2 <- cbind( m[ , 1:( c - 1 ), drop = FALSE ], matrix( v, nrow = nr ), 
+         m[ , c:nc, drop = FALSE ] )
       if( !is.null( cNames ) ) {
          colnames( m2 ) <- c( cNames[ 1:( c - 1 ) ], cName, cNames[ c:nc ] )
       }
@@ -104,7 +105,8 @@ insertRow <- function( m, r, v = NA, rName = "" ) {
          rownames( m2 ) <- c( rNames, rName )
       }
    } else {
-      m2 <- rbind( m[ 1:( r - 1 ), ], matrix( v, ncol = nc ), m[ r:nr, ] )
+      m2 <- rbind( m[ 1:( r - 1 ), , drop = FALSE ], matrix( v, ncol = nc ), 
+         m[ r:nr, , drop = FALSE ] )
       if( !is.null( rNames ) ) {
          rownames( m2 ) <- c( rNames[ 1:( r - 1 ) ], rName, rNames[ r:nr ] )
       }
