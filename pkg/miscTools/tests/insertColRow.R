@@ -55,3 +55,9 @@ print( insertCol( m, 1, 10:12, "C0" ) )
 print( insertCol( m, 2, 10:12, "C1a" ) )
 print( insertCol( m, 3, 10:12, "C2a" ) )
 print( insertCol( m, 4, 10:12, "C4" ) )
+
+# insert a row to a single-column matrix (example provided by Max Gordon)
+insertRow( matrix( 1:3, ncol=1 ), 2, 4 )
+
+# insert a column to a single-row matrix
+insertCol( matrix( 1:3, nrow=1 ), 2, 4 )
