@@ -1,8 +1,8 @@
 
-R version 2.14.1 (2011-12-22)
-Copyright (C) 2011 The R Foundation for Statistical Computing
+R version 2.15.3 (2013-03-01) -- "Security Blanket"
+Copyright (C) 2013 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
-Platform: i686-pc-linux-gnu (32-bit)
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -20,13 +20,6 @@ Type 'q()' to quit R.
 Loading required package: systemfit
 Loading required package: Matrix
 Loading required package: lattice
-
-Attaching package: 'Matrix'
-
-The following object(s) are masked from 'package:base':
-
-    det
-
 Loading required package: car
 Loading required package: MASS
 Loading required package: nnet
@@ -139,9 +132,9 @@ $rss
 
 $cov.unscaled
             gamma       delta         rho
-gamma 25044.31400 204.3996978 40.13715081
-delta   204.39970   1.6682512  0.32760344
-rho      40.13715   0.3276034  0.06433956
+gamma 25044.31495 204.3997055 40.13715234
+delta   204.39971   1.6682512  0.32760346
+rho      40.13715   0.3276035  0.06433957
 
 $allRhoSum
    rho      rss convergence
@@ -202,13 +195,13 @@ E_1_2 (all)   0.7143    11.3450   0.063     0.95
 165.451976   1.873604   0.400000 
 > vcov( cesGridNm )
             gamma      delta         rho
-gamma 192463825.5 1570797.58 308451.2353
-delta   1570797.6   12820.40   2517.6099
+gamma 192463832.8 1570797.64 308451.2470
+delta   1570797.6   12820.40   2517.6100
 rho      308451.2    2517.61    494.4451
 > coef( summary( cesGridNm ) )
         Estimate  Std. Error    t value  Pr(>|t|)
-gamma 165.451976 13873.13323 0.01192607 0.9904846
-delta   1.873604   113.22718 0.01654730 0.9867978
+gamma 165.451976 13873.13349 0.01192607 0.9904846
+delta   1.873604   113.22719 0.01654730 0.9867978
 rho     0.400000    22.23612 0.01798875 0.9856478
 > fitted( cesGridNm )
  [1] 1145.421 1175.322 1202.310 1201.676 1203.370 1218.548 1251.723 1262.176
@@ -433,16 +426,16 @@ $residuals
  [1]  -61.137841 -130.907506  -47.566719   -3.069683    9.779173   -7.215228
  [7]   -3.132706   70.308303   34.722374   54.845794   67.336035    5.764507
 [13]  -71.227774   -3.234177   53.443505   38.529493    6.180242   28.310089
-[19]    4.563365  -55.418100
+[19]    4.563364  -55.418100
 
 $rss
 [1] 50384.7
 
 $cov.unscaled
               gamma         delta           rho            nu
-gamma  0.1166752387  1.578392e-02 -4.326885e-02 -1.289928e-04
+gamma  0.1166752386  1.578392e-02 -4.326885e-02 -1.289928e-04
 delta  0.0157839156  2.144597e-03 -5.884107e-03 -1.199442e-05
-rho   -0.0432688518 -5.884107e-03  1.614781e-02  3.025097e-05
+rho   -0.0432688517 -5.884107e-03  1.614781e-02  3.025097e-05
 nu    -0.0001289928 -1.199442e-05  3.025097e-05  3.451601e-06
 
 $allRhoSum
@@ -507,9 +500,9 @@ E_1_2 (all)    1.667     17.717   0.094    0.925
  2.2576334  0.8649508 -0.4000000  1.5670310 
 > vcov( cesGridNmVrs )
              gamma        delta          rho           nu
-gamma  293.9323295  39.76339049 -109.0044001 -0.324963176
+gamma  293.9323293  39.76339046 -109.0044000 -0.324963176
 delta   39.7633905   5.40274419  -14.8234473 -0.030216762
-rho   -109.0044001 -14.82344731   40.6801337  0.076209303
+rho   -109.0044000 -14.82344730   40.6801337  0.076209303
 nu      -0.3249632  -0.03021676    0.0762093  0.008695393
 > coef( summary( cesGridNmVrs ) )
         Estimate  Std. Error     t value     Pr(>|t|)
@@ -597,7 +590,7 @@ $rss
 
 $cov.unscaled
            gamma     delta        rho
-gamma 2146.45423 71.519690 -92.056247
+gamma 2146.45437 71.519695 -92.056253
 delta   71.51969  2.383087  -3.067528
 rho    -92.05625 -3.067528   3.948932
 
@@ -642,7 +635,7 @@ Convergence NOT achieved after 764 function and 101 gradient calls
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
-gamma   27.9069  4269.0433   0.007    0.995
+gamma   27.9069  4269.0434   0.007    0.995
 delta    0.4956   142.2459   0.003    0.997
 rho      1.2000   183.1089   0.007    0.995
 
@@ -658,12 +651,12 @@ E_1_2 (all)   0.4545    37.8324   0.012     0.99
 27.9068606  0.4955612  1.2000000 
 > vcov( cesGridCg )
            gamma     delta        rho
-gamma 18224730.8 607246.63 -781614.76
-delta   607246.6  20233.89  -26045.22
-rho    -781614.8 -26045.22   33528.88
+gamma 18224732.0 607246.67 -781614.81
+delta   607246.7  20233.89  -26045.22
+rho    -781614.8 -26045.22   33528.89
 > coef( summary( cesGridCg ) )
         Estimate Std. Error     t value  Pr(>|t|)
-gamma 27.9068606  4269.0433 0.006537029 0.9947842
+gamma 27.9068606  4269.0434 0.006537029 0.9947842
 delta  0.4955612   142.2459 0.003483835 0.9972203
 rho    1.2000000   183.1089 0.006553476 0.9947711
 > fitted( cesGridCg )
@@ -749,17 +742,17 @@ $fitted.values
 $residuals
  [1] -122.9980225 -164.6712955  -84.0846000   -8.4657483   -0.1394763
  [6]  -12.5735008   -0.9581171   53.3810213   17.4793206   37.6587043
-[11]   70.6761942   52.6872297    2.7977576   63.1204337   72.1715116
-[16]   40.1487975  -17.0366126   -2.8652052  -12.7505132  -46.8522749
+[11]   70.6761942   52.6872298    2.7977577   63.1204337   72.1715116
+[16]   40.1487975  -17.0366126   -2.8652051  -12.7505131  -46.8522747
 
 $rss
 [1] 75359.21
 
 $cov.unscaled
               gamma         delta           rho            nu
-gamma  4.9683760354  2.418508e-01 -6.674141e-01 -8.061446e-04
-delta  0.2418507541  1.179941e-02 -3.258690e-02 -3.002531e-05
-rho   -0.6674140778 -3.258690e-02  9.002403e-02  7.492278e-05
+gamma  4.9683760420  2.418508e-01 -6.674141e-01 -8.061446e-04
+delta  0.2418507544  1.179941e-02 -3.258690e-02 -3.002531e-05
+rho   -0.6674140784 -3.258690e-02  9.002403e-02  7.492278e-05
 nu    -0.0008061446 -3.002531e-05  7.492278e-05  3.474107e-06
 
 $allRhoSum
@@ -824,15 +817,15 @@ E_1_2 (all)     1.00      18.42   0.054    0.957
 10.0279173  0.8660399  0.0000000  1.3052536 
 > vcov( cesGridCgVrs )
              gamma        delta           rho         nu
-gamma 18720.645013  911.2841059 -2514.7899310 -3.0375209
-delta   911.284106   44.4597279  -122.7861380 -0.1131342
-rho   -2514.789931 -122.7861380   339.2070044  0.2823061
+gamma 18720.645038  911.2841072 -2514.7899334 -3.0375209
+delta   911.284107   44.4597280  -122.7861381 -0.1131342
+rho   -2514.789933 -122.7861381   339.2070045  0.2823061
 nu       -3.037521   -0.1131342     0.2823061  0.0130903
 > coef( summary( cesGridCgVrs ) )
         Estimate  Std. Error     t value     Pr(>|t|)
-gamma 10.0279173 136.8234081  0.07329095 9.415746e-01
+gamma 10.0279173 136.8234082  0.07329095 9.415746e-01
 delta  0.8660399   6.6678128  0.12988366 8.966585e-01
-rho    0.0000000  18.4175732  0.00000000 1.000000e+00
+rho    0.0000000  18.4175733  0.00000000 1.000000e+00
 nu     1.3052536   0.1144128 11.40827978 3.801733e-30
 > plot( cesGridCgVrs )
 > 
@@ -916,10 +909,10 @@ $rss
 
 $cov.unscaled
                gamma        lambda         delta           rho            nu
-gamma   4.2907318726  1.015937e-04  3.153817e-01 -4.063347e-01 -4.221089e-03
+gamma   4.2907318709  1.015937e-04  3.153817e-01 -4.063347e-01 -4.221089e-03
 lambda  0.0001015937  1.297322e-08  6.559874e-06 -8.667005e-06 -4.617773e-07
-delta   0.3153817486  6.559874e-06  2.331562e-02 -3.003619e-02 -2.655037e-04
-rho    -0.4063347436 -8.667005e-06 -3.003619e-02  3.870444e-02  3.462822e-04
+delta   0.3153817484  6.559874e-06  2.331562e-02 -3.003619e-02 -2.655037e-04
+rho    -0.4063347435 -8.667005e-06 -3.003619e-02  3.870444e-02  3.462822e-04
 nu     -0.0042210888 -4.617773e-07 -2.655037e-04  3.462822e-04  2.000294e-05
 
 $allRhoSum
@@ -928,7 +921,7 @@ $allRhoSum
 2 -0.4 25451.65       FALSE
 3  0.0 18039.85       FALSE
 4  0.4 36458.51       FALSE
-5  0.8 56510.71       FALSE
+5  0.8 56513.23       FALSE
 6  1.2 68514.33       FALSE
 
 $rhoValues
@@ -1056,7 +1049,7 @@ $rss
 
 $cov.unscaled
           gamma      delta         rho
-gamma 393.11862 12.7852829 -16.8540897
+gamma 393.11862 12.7852830 -16.8540899
 delta  12.78528  0.4158283  -0.5481963
 rho   -16.85409 -0.5481963   0.7227724
 
@@ -1115,12 +1108,12 @@ E_1_2 (all)   0.5556    24.6374   0.023    0.982
 26.6456166  0.5784538  0.8000000 
 > vcov( cesGridSann )
           gamma      delta         rho
-gamma 3465781.4 112716.605 -148587.700
-delta  112716.6   3665.993   -4832.965
-rho   -148587.7  -4832.965    6372.049
+gamma 3465781.5 112716.607 -148587.702
+delta  112716.6   3665.993   -4832.966
+rho   -148587.7  -4832.966    6372.049
 > coef( summary( cesGridSann ) )
         Estimate Std. Error     t value  Pr(>|t|)
-gamma 26.6456166 1861.66093 0.014312819 0.9885804
+gamma 26.6456166 1861.66095 0.014312819 0.9885804
 delta  0.5784538   60.54744 0.009553727 0.9923773
 rho    0.8000000   79.82512 0.010021908 0.9920038
 > plot( cesGridSann )
@@ -1417,7 +1410,7 @@ nu     1.5073915  0.09498787 15.8693049 1.033794e-56
 $optim
 $optim$par
      gamma      delta 
-165.416166   1.873405 
+165.416146   1.873405 
 
 $optim$value
 [1] 153698.6
@@ -1435,7 +1428,7 @@ NULL
 
 $coefficients
      gamma      delta        rho 
-165.416166   1.873405   0.400000 
+165.416146   1.873405   0.400000 
 
 $iter
 function gradient 
@@ -1477,19 +1470,19 @@ $fitted.values
 [17] 1675.256 1763.350 1883.028 1988.794
 
 $residuals
- [1] -199.290790 -212.595468 -132.735016  -29.885080  -25.258865  -32.743104
- [7]  -12.370804   26.380374  -12.737239   10.813556   63.638344   93.520163
-[13]   70.093032  129.950726   97.793030   52.704670  -20.216390   -7.750328
-[19]    4.392094    3.099990
+ [1] -199.290790 -212.595468 -132.735017  -29.885082  -25.258866  -32.743105
+ [7]  -12.370805   26.380374  -12.737239   10.813555   63.638343   93.520162
+[13]   70.093031  129.950725   97.793030   52.704672  -20.216387   -7.750324
+[19]    4.392099    3.099995
 
 $rss
 [1] 153698.6
 
 $cov.unscaled
             gamma       delta         rho
-gamma 25028.06521 204.2973629 40.13042105
-delta   204.29736   1.6676631  0.32759707
-rho      40.13042   0.3275971  0.06435975
+gamma 25028.05649 204.2973092 40.13041810
+delta   204.29731   1.6676628  0.32759707
+rho      40.13042   0.3275971  0.06435976
 
 $allRhoSum
    rho      rss convergence
@@ -1532,7 +1525,7 @@ Convergence achieved after 311 function and 73 gradient calls
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)
-gamma   165.416  13868.632   0.012    0.990
+gamma   165.416  13868.630   0.012    0.990
 delta     1.873    113.207   0.017    0.987
 rho       0.400     22.240   0.018    0.986
 
@@ -1545,16 +1538,16 @@ E_1_2 (all)   0.7143    11.3467   0.063     0.95
 
 > coef( cesGridBfgs )
      gamma      delta        rho 
-165.416166   1.873405   0.400000 
+165.416146   1.873405   0.400000 
 > vcov( cesGridBfgs )
             gamma       delta         rho
-gamma 192338954.3 1570011.138 308399.5169
-delta   1570011.1   12815.876   2517.5609
-rho      308399.5    2517.561    494.6002
+gamma 192338887.3 1570010.725 308399.4942
+delta   1570010.7   12815.874   2517.5609
+rho      308399.5    2517.561    494.6003
 > coef( summary( cesGridBfgs ) )
         Estimate  Std. Error    t value  Pr(>|t|)
-gamma 165.416166 13868.63203 0.01192736 0.9904836
-delta   1.873405   113.20723 0.01654846 0.9867968
+gamma 165.416146 13868.62961 0.01192736 0.9904836
+delta   1.873405   113.20722 0.01654846 0.9867968
 rho     0.400000    22.23961 0.01798593 0.9856501
 > plot( cesGridBfgs )
 > 
@@ -1567,10 +1560,10 @@ There were 50 or more warnings (use warnings() to see the first 50)
 $optim
 $optim$par
     gamma     delta        nu 
-1.2492161 0.6466248 1.5666065 
+1.1594921 0.6404701 1.5762745 
 
 $optim$value
-[1] 50070.49
+[1] 49993.61
 
 $optim$counts
 function gradient 
@@ -1585,7 +1578,7 @@ NULL
 
 $coefficients
     gamma     delta       rho        nu 
-1.2492161 0.6466248 0.0000000 1.5666065 
+1.1594921 0.6404701 0.0000000 1.5762745 
 
 $iter
 function gradient 
@@ -1623,34 +1616,34 @@ $rho
 [1] 0
 
 $fitted.values
- [1] 1008.258 1094.162 1117.908 1174.525 1168.214 1192.858 1242.345 1218.874
- [9] 1173.299 1224.229 1293.513 1535.266 1646.207 1700.039 1592.720 1588.988
-[17] 1649.408 1726.644 1881.288 2045.450
+ [1] 1005.759 1092.558 1116.222 1173.842 1167.385 1192.184 1241.932 1217.841
+ [9] 1172.240 1223.189 1293.160 1536.463 1648.375 1701.980 1592.996 1588.680
+[17] 1648.249 1725.203 1880.328 2045.414
 
 $residuals
- [1]  -62.125376 -131.431814  -48.328480   -2.728572    9.901919   -7.048462
- [7]   -2.987034   69.686738   34.407277   54.179556   67.079861    5.518344
-[13]  -71.172296   -4.079306   51.969589   37.043396    5.632220   28.955409
-[19]    6.132260  -53.556023
+ [1]  -59.625727 -129.827108  -46.642522   -2.045052   10.730811   -6.374039
+ [7]   -2.574025   70.719847   35.466110   55.219209   67.432381    4.321432
+[13]  -73.339951   -6.020912   51.692848   37.351044    6.791167   30.397084
+[19]    7.092243  -53.520460
 
 $rss
-[1] 50070.49
+[1] 49993.61
 
 $cov.unscaled
               gamma         delta           rho            nu
-gamma  7.690092e-02  2.503990e-02 -0.0351093134 -9.302903e-05
-delta  2.503990e-02  8.173779e-03 -0.0114682693 -2.219424e-05
-rho   -3.510931e-02 -1.146827e-02  0.0160942655  2.848650e-05
-nu    -9.302903e-05 -2.219424e-05  0.0000284865  3.449553e-06
+gamma  6.628181e-02  2.310986e-02 -3.215517e-02 -8.616951e-05
+delta  2.310986e-02  8.077795e-03 -1.124683e-02 -2.197994e-05
+rho   -3.215517e-02 -1.124683e-02  1.566263e-02  2.800523e-05
+nu    -8.616951e-05 -2.197994e-05  2.800523e-05  3.450976e-06
 
 $allRhoSum
    rho      rss convergence
 1 -0.8 50626.23        TRUE
 2 -0.4 50286.89        TRUE
-3  0.0 50070.49       FALSE
-4  0.4 53240.29       FALSE
-5  0.8 59147.17       FALSE
-6  1.2 55582.96       FALSE
+3  0.0 49993.61       FALSE
+4  0.4 52014.69       FALSE
+5  0.8 59623.79       FALSE
+6  1.2 58629.06       FALSE
 
 $rhoValues
 [1] -0.8 -0.4  0.0  0.4  0.8  1.2
@@ -1667,7 +1660,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Coefficients:
  gamma  delta    rho     nu 
-1.2492 0.6466 0.0000 1.5666 
+1.1595 0.6405 0.0000 1.5763 
 
 Elasticity of Substitution: 1 
 
@@ -1686,29 +1679,29 @@ Convergence NOT achieved after 545 function and 100 gradient calls
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
-gamma  1.24922   13.87528   0.090    0.928    
-delta  0.64662    4.52363   0.143    0.886    
-rho    0.00000    6.34763   0.000    1.000    
-nu     1.56661    0.09293  16.858   <2e-16 ***
+gamma  1.15949   12.87180   0.090    0.928    
+delta  0.64047    4.49354   0.143    0.887    
+rho    0.00000    6.25712   0.000    1.000    
+nu     1.57627    0.09288  16.971   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Residual standard error: 50.03523 
-Multiple R-squared: 0.9717135 
+Residual standard error: 49.99681 
+Multiple R-squared: 0.9717569 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)    1.000      6.348   0.158    0.875
+E_1_2 (all)    1.000      6.257    0.16    0.873
 
 > coef( cesGridBfgsVrs )
     gamma     delta       rho        nu 
-1.2492161 0.6466248 0.0000000 1.5666065 
+1.1594921 0.6404701 0.0000000 1.5762745 
 > vcov( cesGridBfgsVrs )
-            gamma        delta          rho          nu
-gamma 192.5233245  62.68798669 -87.89701963 -0.23290044
-delta  62.6879867  20.46325415 -28.71109101 -0.05556382
-rho   -87.8970196 -28.71109101  40.29238485  0.07131666
-nu     -0.2329004  -0.05556382   0.07131666  0.00863604
+            gamma        delta          rho           nu
+gamma 165.6833554  57.76726697 -80.37765762 -0.215396254
+delta  57.7672670  20.19190685 -28.11347341 -0.054942841
+rho   -80.3776576 -28.11347341  39.15156157  0.070004142
+nu     -0.2153963  -0.05494284   0.07000414  0.008626337
 > coef( summary( cesGridNmVrs ) )
         Estimate  Std. Error     t value     Pr(>|t|)
 gamma  2.2576334 17.14445477  0.13168301 8.952350e-01
@@ -1735,7 +1728,7 @@ Warning messages:
 $optim
 $optim$par
       gamma      lambda       delta          nu 
-15.23730625  0.01902593  0.71799934  0.91415071 
+15.23748492  0.01902593  0.71799891  0.91414793 
 
 $optim$value
 [1] 17026.61
@@ -1753,7 +1746,7 @@ NULL
 
 $coefficients
       gamma      lambda       delta         rho          nu 
-15.23730625  0.01902593  0.71799934 -0.40000000  0.91415071 
+15.23748492  0.01902593  0.71799891 -0.40000000  0.91414793 
 
 $iter
 function gradient 
@@ -1791,35 +1784,35 @@ $rho
 [1] -0.4
 
 $fitted.values
- [1]  957.1373 1034.6487 1063.7367 1131.4010 1147.0798 1183.8508 1235.0587
- [8] 1233.8992 1234.8562 1284.2276 1358.7341 1530.2612 1628.3017 1677.1233
-[15] 1625.4566 1642.0430 1684.3828 1748.4858 1865.9297 1995.9954
+ [1]  957.1379 1034.6492 1063.7372 1131.4014 1147.0802 1183.8512 1235.0590
+ [8] 1233.8996 1234.8566 1284.2280 1358.7344 1530.2610 1628.3013 1677.1228
+[15] 1625.4563 1642.0427 1684.3824 1748.4853 1865.9289 1995.9942
 
 $residuals
- [1] -11.004259 -71.918185   5.842426  40.395463  31.036274   1.959211
- [7]   4.299147  54.661696 -27.149983  -5.819089   1.858495  10.522865
-[13] -53.267026  18.836076  19.232509 -16.011852 -29.342889   7.114018
-[19]  21.490549  -4.101358
+ [1] -11.004876 -71.918692   5.841944  40.395062  31.035856   1.958824
+ [7]   4.298834  54.661333 -27.150424  -5.819456   1.858247  10.523054
+[13] -53.266620  18.836580  19.232796 -16.011578 -29.342510   7.114545
+[19]  21.491394  -4.100157
 
 $rss
 [1] 17026.61
 
 $cov.unscaled
-              gamma        lambda         delta           rho            nu
-gamma  12.440130327  1.754550e-04  4.886806e-01 -7.783367e-01 -7.242974e-03
-lambda  0.000175455  1.298587e-08  6.108029e-06 -1.001055e-05 -4.604104e-07
-delta   0.488680634  6.108029e-06  1.930174e-02 -3.073543e-02 -2.453345e-04
-rho    -0.778336658 -1.001055e-05 -3.073543e-02  4.895647e-02  3.972359e-04
-nu     -0.007242974 -4.604104e-07 -2.453345e-04  3.972359e-04  1.990237e-05
+               gamma        lambda         delta           rho            nu
+gamma  12.4404421787  1.754571e-04  4.886889e-01 -7.783490e-01 -7.243061e-03
+lambda  0.0001754571  1.298586e-08  6.108049e-06 -1.001058e-05 -4.604103e-07
+delta   0.4886888679  6.108049e-06  1.930191e-02 -3.073567e-02 -2.453354e-04
+rho    -0.7783490387 -1.001058e-05 -3.073567e-02  4.895680e-02  3.972371e-04
+nu     -0.0072430608 -4.604103e-07 -2.453354e-04  3.972371e-04  1.990237e-05
 
 $allRhoSum
    rho      rss convergence
-1 -0.8 17333.26       FALSE
+1 -0.8 18017.81       FALSE
 2 -0.4 17026.61        TRUE
 3  0.0 17104.64        TRUE
-4  0.4 17189.91        TRUE
-5  0.8 17650.61       FALSE
-6  1.2 22229.63       FALSE
+4  0.4 17194.74        TRUE
+5  0.8 17665.48       FALSE
+6  1.2 21875.18       FALSE
 
 $rhoValues
 [1] -0.8 -0.4  0.0  0.4  0.8  1.2
@@ -1836,7 +1829,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Coefficients:
    gamma   lambda    delta      rho       nu 
-15.23731  0.01903  0.71800 -0.40000  0.91415 
+15.23748  0.01903  0.71800 -0.40000  0.91415 
 
 Elasticity of Substitution: 1.667 
 
@@ -1855,11 +1848,11 @@ Convergence achieved after 606 function and 94 gradient calls
 
 Coefficients:
          Estimate Std. Error t value Pr(>|t|)    
-gamma   15.237306 102.910940   0.148    0.882    
+gamma   15.237485 102.912229   0.148    0.882    
 lambda   0.019026   0.003325   5.722 1.05e-08 ***
-delta    0.717999   4.053660   0.177    0.859    
-rho     -0.400000   6.455860  -0.062    0.951    
-nu       0.914151   0.130167   7.023 2.17e-12 ***
+delta    0.717999   4.053678   0.177    0.859    
+rho     -0.400000   6.455882  -0.062    0.951    
+nu       0.914148   0.130167   7.023 2.17e-12 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -1882,14 +1875,14 @@ In log(yHat) : NaNs produced
 $optim
 $optim$par
      gamma     lambda      delta         nu 
-4.73284495 0.01992050 0.04606613 0.91286988 
+4.73284503 0.01992050 0.04606614 0.91286989 
 
 $optim$value
 [1] 0.0116343
 
 $optim$counts
 function gradient 
-     697      309 
+     698      309 
 
 $optim$convergence
 [1] 0
@@ -1900,11 +1893,11 @@ NULL
 
 $coefficients
      gamma     lambda      delta        rho         nu 
-4.73284495 0.01992050 0.04606613 0.80000000 0.91286988 
+4.73284503 0.01992050 0.04606614 0.80000000 0.91286989 
 
 $iter
 function gradient 
-     697      309 
+     698      309 
 
 $convergence
 [1] TRUE
@@ -1943,29 +1936,29 @@ $fitted.values
 [15] 1631.6026 1647.0707 1683.4223 1743.4456 1858.8558 1989.6643
 
 $residuals
- [1] -0.003826040 -0.066621950  0.010448832  0.038061870  0.028881736
- [6]  0.002942099  0.003923508  0.043594836 -0.023285614 -0.006010752
-[11] -0.001447350  0.003294026 -0.037828987  0.006476462  0.007988637
-[16] -0.012856247 -0.017003719  0.006947176  0.015249843  0.001120042
+ [1] -0.003826042 -0.066621951  0.010448831  0.038061871  0.028881736
+ [6]  0.002942100  0.003923509  0.043594837 -0.023285613 -0.006010751
+[11] -0.001447349  0.003294027 -0.037828986  0.006476463  0.007988637
+[16] -0.012856248 -0.017003721  0.006947173  0.015249840  0.001120039
 
 $rss
 [1] 0.0116343
 
 $cov.unscaled
                gamma      lambda         delta           rho            nu
-gamma   522590.21474  39.9938538  31644.538400 -231080.32702 -2154.9997706
-lambda      39.99385   0.0200709      1.366575     -10.48902    -0.8049285
-delta    31644.53840   1.3665752   2009.955565  -14660.90955   -78.0818172
-rho    -231080.32702 -10.4890177 -14660.909546  106971.22569   583.7711652
-nu       -2154.99977  -0.8049285    -78.081817     583.77117    38.8213011
+gamma   522590.28113  39.9938557  31644.542631 -231080.33476 -2154.9998727
+lambda      39.99386   0.0200709      1.366575     -10.48902    -0.8049285
+delta    31644.54263   1.3665753   2009.955837  -14660.91007   -78.0818231
+rho    -231080.33476 -10.4890175 -14660.910066  106971.21879   583.7711493
+nu       -2154.99987  -0.8049285    -78.081823     583.77115    38.8213011
 
 $allRhoSum
    rho        rss convergence
-1 -0.4 0.01180744       FALSE
+1 -0.4 0.01294232        TRUE
 2  0.0 0.01183440       FALSE
 3  0.4 0.01163804       FALSE
 4  0.8 0.01163430        TRUE
-5  1.2 0.01170308        TRUE
+5  1.2 0.01169934        TRUE
 
 $rhoValues
 [1] -0.4  0.0  0.4  0.8  1.2
@@ -1982,7 +1975,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Coefficients:
   gamma  lambda   delta     rho      nu 
-4.73284 0.01992 0.04607 0.80000 0.91287 
+4.73285 0.01992 0.04607 0.80000 0.91287 
 
 Elasticity of Substitution: 0.5556 
 
@@ -1997,12 +1990,12 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation by non-linear least-squares using the 'BFGS' optimizer
 and a one-dimensional grid search for coefficient 'rho'
 assuming a multiplicative error term
-Convergence achieved after 697 function and 309 gradient calls
+Convergence achieved after 698 function and 309 gradient calls
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
-gamma   4.732845  17.435551   0.271    0.786    
-lambda  0.019921   0.003417   5.830 5.55e-09 ***
+gamma   4.732845  17.435553   0.271    0.786    
+lambda  0.019920   0.003417   5.830 5.55e-09 ***
 delta   0.046066   1.081305   0.043    0.966    
 rho     0.800000   7.888393   0.101    0.919    
 nu      0.912870   0.150276   6.075 1.24e-09 ***
@@ -2032,7 +2025,7 @@ $optim$value
 
 $optim$counts
 function gradient 
-      25       25 
+      40       40 
 
 $optim$convergence
 [1] 0
@@ -2043,11 +2036,11 @@ $optim$message
 
 $coefficients
    gamma    delta      rho 
-49.14295  1.00000  0.80000 
+49.14295  1.00000  0.00000 
 
 $iter
 function gradient 
-      25       25 
+      40       40 
 
 $convergence
 [1] TRUE
@@ -2057,7 +2050,7 @@ $message
 
 $ela
 E_1_2 (all) 
-  0.5555556 
+          1 
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
@@ -2070,8 +2063,8 @@ $multErr
 [1] FALSE
 
 $start
-  gamma   delta 
-22.5893  0.5000 
+   gamma    delta 
+10.03123  0.50000 
 
 $lower
 [1] 0 0
@@ -2080,7 +2073,7 @@ $upper
 [1] Inf   1
 
 $rho
-[1] 0.8
+[1] 0
 
 $fitted.values
  [1] 1149.945 1189.259 1213.339 1224.151 1224.151 1239.877 1273.294 1276.242
@@ -2097,17 +2090,17 @@ $rss
 [1] 165832.4
 
 $cov.unscaled
-             gamma        delta          rho
-gamma 9.413506e-01 1.667939e-02 4.666695e+10
-delta 1.667939e-02 2.955558e-04 8.459843e+08
-rho   4.666695e+10 8.459843e+08 1.543331e+23
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 
 $allRhoSum
    rho      rss convergence
 1 -0.8 165832.4        TRUE
 2 -0.4 165832.4        TRUE
 3  0.0 165832.4        TRUE
-4  0.4 165832.4       FALSE
+4  0.4 165832.4        TRUE
 5  0.8 165832.4        TRUE
 6  1.2 165832.4        TRUE
 
@@ -2125,9 +2118,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Coefficients:
 gamma delta   rho 
-49.14  1.00  0.80 
+49.14  1.00  0.00 
 
-Elasticity of Substitution: 0.5556 
+Elasticity of Substitution: 1 
 
 > summary( cesGridBfgsCon )
 Estimated CES function with constant returns to scale
@@ -2139,35 +2132,35 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 and a one-dimensional grid search for coefficient 'rho'
 assuming an additive error term
-Convergence achieved after 25 function and 25 gradient calls
+Convergence achieved after 40 function and 40 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
-       Estimate Std. Error t value Pr(>|t|)
-gamma 4.914e+01  8.835e+01   0.556    0.578
-delta 1.000e+00  1.565e+00   0.639    0.523
-rho   8.000e-01  3.577e+13   0.000    1.000
+      Estimate Std. Error t value Pr(>|t|)
+gamma    49.14         NA      NA       NA
+delta     1.00         NA      NA       NA
+rho       0.00         NA      NA       NA
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
 
 Elasticity of Substitution:
-             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all) 5.556e-01  1.104e+13       0        1
+            Estimate Std. Error t value Pr(>|t|)
+E_1_2 (all)        1         NA      NA       NA
 
 > coef( cesGridBfgsCon )
    gamma    delta      rho 
-49.14295  1.00000  0.80000 
+49.14295  1.00000  0.00000 
 > vcov( cesGridBfgsCon )
-             gamma        delta          rho
-gamma 7.805320e+03 1.382992e+02 3.869446e+14
-delta 1.382992e+02 2.450636e+00 7.014579e+12
-rho   3.869446e+14 7.014579e+12 1.279671e+27
+      gamma delta rho
+gamma    NA    NA  NA
+delta    NA    NA  NA
+rho      NA    NA  NA
 > coef( summary( cesGridBfgsCon ) )
-      Estimate   Std. Error      t value  Pr(>|t|)
-gamma 49.14295 8.834772e+01 5.562447e-01 0.5780436
-delta  1.00000 1.565451e+00 6.387937e-01 0.5229571
-rho    0.80000 3.577249e+13 2.236355e-14 1.0000000
+      Estimate Std. Error t value Pr(>|t|)
+gamma 49.14295         NA      NA       NA
+delta  1.00000         NA      NA       NA
+rho    0.00000         NA      NA       NA
 > plot( cesGridBfgsCon )
 > 
 > # using the L-BFGS-B optimization method, TC, CRS
@@ -2178,14 +2171,14 @@ rho    0.80000 3.577249e+13 2.236355e-14 1.0000000
 $optim
 $optim$par
       gamma      lambda       delta 
-16.06509129  0.01707746  0.90669741 
+16.06510161  0.01707745  0.90669750 
 
 $optim$value
 [1] 17440.55
 
 $optim$counts
 function gradient 
-     108      108 
+     113      113 
 
 $optim$convergence
 [1] 0
@@ -2196,11 +2189,11 @@ $optim$message
 
 $coefficients
       gamma      lambda       delta         rho 
-16.06509129  0.01707746  0.90669741 -0.80000000 
+16.06510161  0.01707745  0.90669750 -0.80000000 
 
 $iter
 function gradient 
-     108      108 
+     113      113 
 
 $convergence
 [1] TRUE
@@ -2237,25 +2230,25 @@ $rho
 [1] -0.8
 
 $fitted.values
- [1]  957.5516 1037.9903 1066.2188 1135.5760 1148.5965 1184.4849 1236.0385
- [8] 1230.7110 1226.8912 1276.2072 1351.9638 1534.0001 1635.5231 1683.6930
+ [1]  957.5516 1037.9903 1066.2189 1135.5761 1148.5965 1184.4849 1236.0385
+ [8] 1230.7110 1226.8912 1276.2072 1351.9638 1534.0000 1635.5230 1683.6930
 [15] 1622.5157 1635.7720 1679.1108 1745.0545 1868.1000 2003.6833
 
 $residuals
- [1] -11.418572 -75.259786   3.360351  36.220428  29.519579   1.325078
- [7]   3.319309  57.849946 -19.185043   2.201328   8.628830   6.784039
-[13] -60.488391  12.266362  22.173374  -9.740875 -24.070963  10.545309
-[19]  19.320280 -11.789306
+ [1] -11.418621 -75.259821   3.360316  36.220413  29.519567   1.325072
+ [7]   3.319307  57.849938 -19.185040   2.201331   8.628847   6.784065
+[13] -60.488351  12.266395  22.173391  -9.740865 -24.070976  10.545285
+[19]  19.320253 -11.789327
 
 $rss
 [1] 17440.55
 
 $cov.unscaled
                gamma        lambda         delta           rho
-gamma   4.778813e+00  4.840845e-06  1.053990e-01 -4.002742e-01
-lambda  4.840845e-06  2.325833e-09  1.633247e-07 -7.415169e-07
-delta   1.053990e-01  1.633247e-07  2.326484e-03 -8.839512e-03
-rho    -4.002742e-01 -7.415169e-07 -8.839512e-03  3.359551e-02
+gamma   4.778813e+00  4.840840e-06  1.053989e-01 -4.002742e-01
+lambda  4.840840e-06  2.325833e-09  1.633244e-07 -7.415166e-07
+delta   1.053989e-01  1.633244e-07  2.326479e-03 -8.839503e-03
+rho    -4.002742e-01 -7.415166e-07 -8.839503e-03  3.359551e-02
 
 $allRhoSum
    rho      rss convergence
@@ -2281,7 +2274,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Coefficients:
    gamma   lambda    delta      rho 
-16.06509  0.01708  0.90670 -0.80000 
+16.06510  0.01708  0.90670 -0.80000 
 
 Elasticity of Substitution: 5 
 
@@ -2296,15 +2289,15 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 and a one-dimensional grid search for coefficient 'rho'
 assuming an additive error term
-Convergence achieved after 108 function and 108 gradient calls
+Convergence achieved after 113 function and 113 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
-gamma  16.065091  64.554283   0.249    0.803    
+gamma  16.065102  64.554283   0.249    0.803    
 lambda  0.017077   0.001424  11.991   <2e-16 ***
-delta   0.906697   1.424344   0.637    0.524    
-rho    -0.800000   5.412597  -0.148    0.882    
+delta   0.906697   1.424343   0.637    0.524    
+rho    -0.800000   5.412596  -0.148    0.882    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -2324,14 +2317,14 @@ E_1_2 (all)      5.0      135.3   0.037    0.971
 $optim
 $optim$par
     gamma     delta        nu 
-1.0844227 0.6345651 1.5845929 
+1.0844095 0.6345407 1.5845695 
 
 $optim$value
 [1] 49966.45
 
 $optim$counts
 function gradient 
-     137      137 
+     142      142 
 
 $optim$convergence
 [1] 1
@@ -2342,11 +2335,11 @@ $optim$message
 
 $coefficients
     gamma     delta       rho        nu 
-1.0844227 0.6345651 0.0000000 1.5845929 
+1.0844095 0.6345407 0.0000000 1.5845695 
 
 $iter
 function gradient 
-     137      137 
+     142      142 
 
 $convergence
 [1] FALSE
@@ -2383,34 +2376,34 @@ $rho
 [1] 0
 
 $fitted.values
- [1] 1004.172 1091.848 1115.436 1174.031 1167.433 1192.383 1242.386 1217.693
- [9] 1172.065 1223.035 1293.673 1538.463 1651.301 1704.677 1594.094 1589.211
-[17] 1647.944 1724.609 1880.164 2046.099
+ [1] 1004.182 1091.859 1115.446 1174.044 1167.446 1192.395 1242.398 1217.703
+ [9] 1172.077 1223.045 1293.684 1538.471 1651.310 1704.682 1594.097 1589.212
+[17] 1647.939 1724.600 1880.150 2046.081
 
 $residuals
- [1]  -58.039495 -129.117519  -45.856409   -2.234364   10.682838   -6.573018
- [7]   -3.027975   70.867857   35.640830   55.373431   66.919755    2.321556
-[13]  -76.266818   -8.717528   50.595357   36.820287    7.096093   30.990992
-[19]    7.256072  -54.204808
+ [1]  -58.048912 -129.128626  -45.866629   -2.247143   10.670472   -6.585348
+ [7]   -3.039980   70.857660   35.629511   55.363407   66.909004    2.312747
+[13]  -76.275244   -8.722890   50.592353   36.819456    7.100973   31.000110
+[19]    7.269945  -54.186963
 
 $rss
 [1] 49966.45
 
 $cov.unscaled
               gamma         delta           rho            nu
-gamma  5.793924e-02  2.148633e-02 -2.968736e-02 -8.034451e-05
-delta  2.148633e-02  7.988170e-03 -1.104432e-02 -2.176766e-05
-rho   -2.968736e-02 -1.104432e-02  1.527309e-02  2.755062e-05
-nu    -8.034451e-05 -2.176766e-05  2.755062e-05  3.448088e-06
+gamma  5.793759e-02  2.148630e-02 -2.968647e-02 -8.034259e-05
+delta  2.148630e-02  7.988372e-03 -1.104428e-02 -2.176767e-05
+rho   -2.968647e-02 -1.104428e-02  1.527261e-02  2.754992e-05
+nu    -8.034259e-05 -2.176767e-05  2.754992e-05  3.448046e-06
 
 $allRhoSum
    rho      rss convergence
 1 -0.8 50626.23        TRUE
 2 -0.4 50286.89        TRUE
 3  0.0 49966.45       FALSE
-4  0.4 50685.78       FALSE
-5  0.8 56767.62       FALSE
-6  1.2 50579.58       FALSE
+4  0.4 50814.01       FALSE
+5  0.8 58318.59       FALSE
+6  1.2 50839.57       FALSE
 
 $rhoValues
 [1] -0.8 -0.4  0.0  0.4  0.8  1.2
@@ -2427,7 +2420,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Coefficients:
  gamma  delta    rho     nu 
-1.0844 0.6346 0.0000 1.5846 
+1.0844 0.6345 0.0000 1.5846 
 
 Elasticity of Substitution: 1 
 
@@ -2442,15 +2435,15 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 and a one-dimensional grid search for coefficient 'rho'
 assuming an additive error term
-Convergence NOT achieved after 137 function and 137 gradient calls
+Convergence NOT achieved after 142 function and 142 gradient calls
 Message: NEW_X 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
-gamma  1.08442   12.03125   0.090    0.928    
-delta  0.63457    4.46733   0.142    0.887    
-rho    0.00000    6.17714   0.000    1.000    
-nu     1.58459    0.09281  17.073   <2e-16 ***
+gamma  1.08441   12.03108   0.090    0.928    
+delta  0.63454    4.46739   0.142    0.887    
+rho    0.00000    6.17705   0.000    1.000    
+nu     1.58457    0.09281  17.073   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -2463,19 +2456,19 @@ E_1_2 (all)    1.000      6.177   0.162    0.871
 
 > coef( cesGridBfgsConVrs )
     gamma     delta       rho        nu 
-1.0844227 0.6345651 0.0000000 1.5845929 
+1.0844095 0.6345407 0.0000000 1.5845695 
 > vcov( cesGridBfgsConVrs )
-            gamma        delta          rho           nu
-gamma 144.7509106  53.67979188 -74.16861035 -0.200726495
-delta  53.6797919  19.95702685 -27.59226363 -0.054382625
-rho   -74.1686104 -27.59226363  38.15710417  0.068830343
-nu     -0.2007265  -0.05438262   0.06883034  0.008614435
+            gamma        delta         rho           nu
+gamma 144.7467876  53.67970466 -74.1663893 -0.200721701
+delta  53.6797047  19.95753074 -27.5921784 -0.054382659
+rho   -74.1663893 -27.59217843  38.1559049  0.068828596
+nu     -0.2007217  -0.05438266   0.0688286  0.008614331
 > coef( summary( cesGridBfgsConVrs ) )
        Estimate  Std. Error     t value     Pr(>|t|)
-gamma 1.0844227 12.03124726  0.09013386 9.281808e-01
-delta 0.6345651  4.46732883  0.14204575 8.870439e-01
-rho   0.0000000  6.17714369  0.00000000 1.000000e+00
-nu    1.5845929  0.09281398 17.07278230 2.366482e-65
+gamma 1.0844095 12.03107591  0.09013404 9.281807e-01
+delta 0.6345407  4.46738522  0.14203849 8.870496e-01
+rho   0.0000000  6.17704661  0.00000000 1.000000e+00
+nu    1.5845695  0.09281342 17.07263372 2.372514e-65
 > plot( cesGridBfgsConVrs )
 > 
 > # using the Levenberg-Marquardt optimization method
@@ -2491,7 +2484,7 @@ Warning messages:
 > print.default( cesGridLm )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 165.423876366334, 1.87344744871233 
+parameter estimates: 165.423876366337, 1.87344744871235 
 residual sum-of-squares: 153699
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -2551,9 +2544,9 @@ $rss
 
 $cov.unscaled
             gamma      delta         rho
-gamma 25031.51534 204.318963 40.13182460
-delta   204.31896   1.667786  0.32759801
-rho      40.13182   0.327598  0.06435538
+gamma 25031.51564 204.318965 40.13182510
+delta   204.31897   1.667786  0.32759801
+rho      40.13183   0.327598  0.06435538
 
 $allRhoSum
    rho      rss convergence
@@ -2613,12 +2606,12 @@ E_1_2 (all)   0.7143    11.3464   0.063     0.95
 165.423876   1.873447   0.400000 
 > vcov( cesGridLm )
             gamma       delta         rho
-gamma 192365468.2 1570177.133 308410.3031
-delta   1570177.1   12816.819   2517.5681
+gamma 192365470.6 1570177.152 308410.3069
+delta   1570177.2   12816.820   2517.5681
 rho      308410.3    2517.568    494.5666
 > coef( summary( cesGridLm ) )
         Estimate  Std. Error    t value  Pr(>|t|)
-gamma 165.423876 13869.58789 0.01192709 0.9904838
+gamma 165.423876 13869.58798 0.01192709 0.9904838
 delta   1.873447   113.21139 0.01654822 0.9867970
 rho     0.400000    22.23885 0.01798654 0.9856496
 > plot( cesGridLm )
@@ -2635,7 +2628,7 @@ Warning messages:
 > print.default( cesGridLmVrs )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 0.165069324985032, 0.039375862397587, 1.58848816342804 
+parameter estimates: 0.165069324985028, 0.0393758623975867, 1.58848816342804 
 residual sum-of-squares: 49123
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -2761,15 +2754,15 @@ E_1_2 (all)   0.4545     1.2662   0.359     0.72
 0.16506932 0.03937586 1.20000000 1.58848816 
 > vcov( cesGridLmVrs )
            gamma        delta         rho           nu
-gamma  0.8510490  0.661923533 -5.60756034 -0.018851897
-delta  0.6619235  0.521668349 -4.42574530 -0.007329388
-rho   -5.6075603 -4.425745298 37.55557112  0.055933363
+gamma  0.8510490  0.661923532 -5.60756034 -0.018851897
+delta  0.6619235  0.521668348 -4.42574529 -0.007329388
+rho   -5.6075603 -4.425745293 37.55557108  0.055933363
 nu    -0.0188519 -0.007329388  0.05593336  0.008464076
 > coef( summary( cesGridLmVrs ) )
         Estimate Std. Error     t value     Pr(>|t|)
 gamma 0.16506932 0.92252316  0.17893244 8.579907e-01
 delta 0.03937586 0.72226612  0.05451711 9.565232e-01
-rho   1.20000000 6.12826004  0.19581414 8.447556e-01
+rho   1.20000000 6.12826004  0.19581415 8.447556e-01
 nu    1.58848816 0.09200041 17.26609852 8.467703e-67
 > plot( cesGridLmVrs )
 > 
@@ -2780,7 +2773,7 @@ nu    1.58848816 0.09200041 17.26609852 8.467703e-67
 > print.default( cesGridLmTcVrs )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 21.8438390266117, 0.0191050223701434, 0.898105762683758, 0.910705640121149 
+parameter estimates: 21.8438390266117, 0.0191050223701434, 0.898105762683759, 0.91070564012115 
 residual sum-of-squares: 16956
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -2841,10 +2834,10 @@ $rss
 
 $cov.unscaled
               gamma        lambda         delta           rho            nu
-gamma  13.128728428  1.895820e-04  2.290744e-01 -0.8074908846 -7.867202e-03
+gamma  13.128728398  1.895820e-04  2.290744e-01 -0.8074908828 -7.867202e-03
 lambda  0.000189582  1.299507e-08  2.861489e-06 -0.0000103682 -4.607286e-07
 delta   0.229074351  2.861489e-06  4.032596e-03 -0.0142109078 -1.148355e-04
-rho    -0.807490885 -1.036820e-05 -1.421091e-02  0.0500939316  4.112287e-04
+rho    -0.807490883 -1.036820e-05 -1.421091e-02  0.0500939315  4.112287e-04
 nu     -0.007867202 -4.607286e-07 -1.148355e-04  0.0004112287  1.991461e-05
 
 $allRhoSum
@@ -2923,7 +2916,7 @@ Warning messages:
 > print.default( cesGridLmMeVrs )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 0.0751174685337367, 0.0318841911577494, 1.694598877961 
+parameter estimates: 0.0751174685337362, 0.0318841911577493, 1.694598877961 
 residual sum-of-squares: 0.03264
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -2986,7 +2979,7 @@ $cov.unscaled
             gamma        delta         rho        nu
 gamma   117.69062   171.676466 -1776.46036 -8.629780
 delta   171.67647   254.203288 -2634.31779 -7.936837
-rho   -1776.46036 -2634.317794 27305.67340 77.955958
+rho   -1776.46036 -2634.317793 27305.67338 77.955958
 nu       -8.62978    -7.936837    77.95596  6.538979
 
 $allRhoSum
@@ -3067,7 +3060,7 @@ $nlm$estimate
 [1] 165.423876   1.873447
 
 $nlm$gradient
-[1] -9.986658e-07  1.850640e-04
+[1] -9.983239e-07  1.849962e-04
 
 $nlm$code
 [1] 1
@@ -3129,15 +3122,15 @@ $rss
 
 $cov.unscaled
             gamma      delta         rho
-gamma 25031.51537 204.318963 40.13182463
-delta   204.31896   1.667786  0.32759801
+gamma 25031.51476 204.318958 40.13182366
+delta   204.31896   1.667786  0.32759800
 rho      40.13182   0.327598  0.06435538
 
 $allRhoSum
    rho      rss convergence
 1 -0.8 153725.4        TRUE
 2 -0.4 153710.7        TRUE
-3  0.0 153701.8       FALSE
+3  0.0 153701.8        TRUE
 4  0.4 153698.6        TRUE
 5  0.8 180874.6        TRUE
 6  1.2 169812.9        TRUE
@@ -3190,12 +3183,12 @@ E_1_2 (all)   0.7143    11.3464   0.063     0.95
 165.423876   1.873447   0.400000 
 > vcov( cesGridNewton )
             gamma       delta         rho
-gamma 192365468.5 1570177.135 308410.3033
-delta   1570177.1   12816.819   2517.5681
+gamma 192365463.8 1570177.097 308410.2958
+delta   1570177.1   12816.819   2517.5680
 rho      308410.3    2517.568    494.5666
 > coef( summary( cesGridNewton ) )
         Estimate  Std. Error    t value  Pr(>|t|)
-gamma 165.423876 13869.58790 0.01192709 0.9904838
+gamma 165.423876 13869.58773 0.01192709 0.9904838
 delta   1.873447   113.21139 0.01654822 0.9867970
 rho     0.400000    22.23885 0.01798654 0.9856496
 > plot( cesGridNewton )
@@ -3210,10 +3203,10 @@ $nlm$minimum
 [1] 17440.55
 
 $nlm$estimate
-[1] 16.06509524  0.01707746  0.90669745
+[1] 16.06509309  0.01707746  0.90669743
 
 $nlm$gradient
-[1]  0.02217432  7.09283977 -2.25008595
+[1]  0.004899039  2.003598211 -0.465709684
 
 $nlm$code
 [1] 2
@@ -3224,7 +3217,7 @@ $nlm$iterations
 
 $coefficients
       gamma      lambda       delta         rho 
-16.06509524  0.01707746  0.90669745 -0.80000000 
+16.06509309  0.01707746  0.90669743 -0.80000000 
 
 $iter
 [1] 93
@@ -3262,24 +3255,24 @@ $rho
 
 $fitted.values
  [1]  957.5516 1037.9903 1066.2188 1135.5760 1148.5965 1184.4849 1236.0385
- [8] 1230.7110 1226.8912 1276.2072 1351.9638 1534.0000 1635.5230 1683.6930
-[15] 1622.5157 1635.7720 1679.1108 1745.0545 1868.1000 2003.6834
+ [8] 1230.7110 1226.8912 1276.2072 1351.9638 1534.0000 1635.5231 1683.6930
+[15] 1622.5157 1635.7720 1679.1108 1745.0545 1868.1000 2003.6833
 
 $residuals
- [1] -11.418582 -75.259791   3.360346  36.220430  29.519581   1.325081
- [7]   3.319312  57.849946 -19.185041   2.201329   8.628835   6.784046
-[13] -60.488381  12.266367  22.173371  -9.740883 -24.070982  10.545282
-[19]  19.320250 -11.789338
+ [1] -11.418577 -75.259789   3.360348  36.220429  29.519580   1.325080
+ [7]   3.319311  57.849947 -19.185041   2.201329   8.628833   6.784043
+[13] -60.488385  12.266366  22.173375  -9.740876 -24.070969  10.545300
+[19]  19.320270 -11.789317
 
 $rss
 [1] 17440.55
 
 $cov.unscaled
                gamma        lambda         delta           rho
-gamma   4.778813e+00  4.840843e-06  1.053989e-01 -4.002742e-01
-lambda  4.840843e-06  2.325833e-09  1.633246e-07 -7.415168e-07
-delta   1.053989e-01  1.633246e-07  2.326482e-03 -8.839508e-03
-rho    -4.002742e-01 -7.415168e-07 -8.839508e-03  3.359551e-02
+gamma   4.778813e+00  4.840844e-06  1.053990e-01 -4.002742e-01
+lambda  4.840844e-06  2.325833e-09  1.633246e-07 -7.415169e-07
+delta   1.053990e-01  1.633246e-07  2.326483e-03 -8.839510e-03
+rho    -4.002742e-01 -7.415169e-07 -8.839510e-03  3.359551e-02
 
 $allRhoSum
    rho      rss convergence
@@ -3305,7 +3298,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Coefficients:
    gamma   lambda    delta      rho 
-16.06510  0.01708  0.90670 -0.80000 
+16.06509  0.01708  0.90670 -0.80000 
 
 Elasticity of Substitution: 5 
 
@@ -3324,7 +3317,7 @@ Convergence achieved after 93 iterations
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
-gamma  16.065095  64.554282   0.249    0.803    
+gamma  16.065093  64.554283   0.249    0.803    
 lambda  0.017077   0.001424  11.991   <2e-16 ***
 delta   0.906697   1.424344   0.637    0.524    
 rho    -0.800000   5.412597  -0.148    0.882    
@@ -3346,13 +3339,13 @@ E_1_2 (all)      5.0      135.3   0.037    0.971
 > print.default( cesGridNewtonVrs )
 $nlm
 $nlm$minimum
-[1] 50253.65
+[1] 50320.92
 
 $nlm$estimate
-[1] 1.364098 0.654290 1.555338
+[1] 1.3990293 0.6575958 1.5532841
 
 $nlm$gradient
-[1]  -33428.09  231697.83 -218084.20
+[1]  -38704.32  278447.31 -254207.68
 
 $nlm$code
 [1] 4
@@ -3362,8 +3355,8 @@ $nlm$iterations
 
 
 $coefficients
-   gamma    delta      rho       nu 
-1.364098 0.654290 0.000000 1.555338 
+    gamma     delta       rho        nu 
+1.3990293 0.6575958 0.0000000 1.5532841 
 
 $iter
 [1] 100
@@ -3400,32 +3393,32 @@ $rho
 [1] 0
 
 $fitted.values
- [1] 1010.328 1095.077 1118.909 1174.261 1168.132 1192.573 1241.712 1219.016
- [9] 1173.497 1224.376 1292.779 1532.515 1642.219 1696.305 1591.072 1588.060
-[17] 1649.500 1727.053 1881.046 2044.015
+ [1] 1010.618 1094.980 1118.881 1173.770 1167.710 1192.100 1241.164 1218.765
+ [9] 1173.202 1224.135 1292.270 1531.572 1640.966 1695.274 1590.715 1588.003
+[17] 1650.005 1727.856 1881.911 2044.756
 
 $residuals
- [1]  -64.1949005 -132.3465370  -49.3296295   -2.4644740    9.9838110
- [6]   -6.7631602   -2.3539750   69.5450089   34.2091619   54.0326417
-[11]   67.8138176    8.2689534  -67.1845131   -0.3460493   53.6167279
-[16]   37.9713639    5.5394736   28.5464332    6.3747391  -52.1204926
+ [1]  -64.4852522 -132.2491361  -49.3013884   -1.9733260   10.4059752
+ [6]   -6.2898387   -1.8066645   69.7960881   34.5038497   54.2733285
+[11]   68.3230503    9.2122553  -65.9317693    0.6858224   53.9742386
+[16]   38.0276496    5.0348831   27.7436083    5.5089523  -52.8621027
 
 $rss
-[1] 50253.65
+[1] 50320.92
 
 $cov.unscaled
               gamma         delta           rho            nu
-gamma  0.0917967086  2.757090e-02 -3.905133e-02 -1.020105e-04
-delta  0.0275708962  8.301569e-03 -1.176609e-02 -2.248921e-05
-rho   -0.0390513318 -1.176609e-02  1.668029e-02  2.914592e-05
-nu    -0.0001020105 -2.248921e-05  2.914592e-05  3.453859e-06
+gamma  0.0965777687  2.832003e-02 -4.029580e-02 -1.047698e-04
+delta  0.0283200307  8.325195e-03 -1.185355e-02 -2.256438e-05
+rho   -0.0402957971 -1.185355e-02  1.688115e-02  2.937023e-05
+nu    -0.0001047698 -2.256438e-05  2.937023e-05  3.455972e-06
 
 $allRhoSum
    rho      rss convergence
 1 -0.8 50626.23        TRUE
 2 -0.4 59749.78        TRUE
-3  0.0 50253.65       FALSE
-4  0.4 51505.55       FALSE
+3  0.0 50320.92       FALSE
+4  0.4 52162.67       FALSE
 5  0.8 98004.85        TRUE
 6  1.2 98745.97        TRUE
 
@@ -3444,7 +3437,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Coefficients:
  gamma  delta    rho     nu 
-1.3641 0.6543 0.0000 1.5553 
+1.3990 0.6576 0.0000 1.5533 
 
 Elasticity of Substitution: 1 
 
@@ -3463,35 +3456,35 @@ Convergence NOT achieved after 100 iterations
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
-gamma  1.36410   15.18736   0.090    0.928    
-delta  0.65429    4.56719   0.143    0.886    
-rho    0.00000    6.47397   0.000    1.000    
-nu     1.55534    0.09316  16.696   <2e-16 ***
+gamma  1.39903   15.58827   0.090    0.928    
+delta  0.65760    4.57674   0.144    0.886    
+rho    0.00000    6.51719   0.000    1.000    
+nu     1.55328    0.09325  16.657   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Residual standard error: 50.12666 
-Multiple R-squared: 0.97161 
+Residual standard error: 50.1602 
+Multiple R-squared: 0.971572 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)    1.000      6.474   0.154    0.877
+E_1_2 (all)    1.000      6.517   0.153    0.878
 
 > coef( cesGridNewtonVrs )
-   gamma    delta      rho       nu 
-1.364098 0.654290 0.000000 1.555338 
+    gamma     delta       rho        nu 
+1.3990293 0.6575958 0.0000000 1.5532841 
 > vcov( cesGridNewtonVrs )
-          gamma        delta          rho           nu
-gamma 230.65598  69.27690863 -98.12359826 -0.256320046
-delta  69.27691  20.85920739 -29.56445163 -0.056508248
-rho   -98.12360 -29.56445163  41.91227369  0.073234447
-nu     -0.25632  -0.05650825   0.07323445  0.008678452
+             gamma        delta           rho           nu
+gamma  242.9941043  71.25449879 -101.38607727 -0.263605719
+delta   71.2544988  20.94657362  -29.82407047 -0.056773005
+rho   -101.3860773 -29.82407047   42.47375605  0.073896856
+nu      -0.2636057  -0.05677301    0.07389686  0.008695385
 > coef( summary( cesGridNewtonVrs ) )
-      Estimate  Std. Error     t value     Pr(>|t|)
-gamma 1.364098 15.18736264  0.08981793 9.284319e-01
-delta 0.654290  4.56718813  0.14325883 8.860858e-01
-rho   0.000000  6.47396893  0.00000000 1.000000e+00
-nu    1.555338  0.09315821 16.69566296 1.409449e-62
+       Estimate  Std. Error     t value     Pr(>|t|)
+gamma 1.3990293 15.58826816  0.08974886 9.284868e-01
+delta 0.6575958  4.57674269  0.14368206 8.857515e-01
+rho   0.0000000  6.51718928  0.00000000 1.000000e+00
+nu    1.5532841  0.09324905 16.65737177 2.675249e-62
 > plot( cesGridNewtonVrs )
 > 
 > # using the Newton-type optimization method implemented in nlm(), TC, multErr, CRS
@@ -3507,7 +3500,7 @@ $nlm$estimate
 [1] 3.89764222 0.01806541 0.15742424
 
 $nlm$gradient
-[1]  6.052524e-09  1.924563e-07 -1.042997e-07
+[1]  6.052529e-09  1.924564e-07 -1.042998e-07
 
 $nlm$code
 [1] 1
@@ -3570,10 +3563,10 @@ $rss
 
 $cov.unscaled
                gamma       lambda         delta           rho
-gamma   8.281836e+05 -6.008577792  1.052554e+05 -2.538060e+05
+gamma   8.281836e+05 -6.008577796  1.052554e+05 -2.538060e+05
 lambda -6.008578e+00  0.003380888 -6.430806e-01  1.353308e+00
-delta   1.052554e+05 -0.643080648  1.338409e+04 -3.228565e+04
-rho    -2.538060e+05  1.353307594 -3.228565e+04  7.790197e+04
+delta   1.052554e+05 -0.643080649  1.338409e+04 -3.228565e+04
+rho    -2.538060e+05  1.353307595 -3.228565e+04  7.790197e+04
 
 $allRhoSum
    rho        rss convergence
@@ -3797,32 +3790,32 @@ rho   -0.80000 3.132286e+13 -2.554045e-14 1.000000e+00
 > print.default( cesGridPortVrs )
 $nlminb
 $nlminb$par
-     gamma      delta         nu 
-0.18391577 0.04069031 1.57430648 
+    gamma     delta        nu 
+0.2748922 0.1270696 1.5815358 
 
 $nlminb$objective
-[1] 49189.91
+[1] 49396.64
 
 $nlminb$convergence
 [1] 1
 
 $nlminb$iterations
-[1] 128
+[1] 130
 
 $nlminb$evaluations
 function gradient 
-     200      128 
+     200      130 
 
 $nlminb$message
 [1] "function evaluation limit reached without convergence (9)"
 
 
 $coefficients
-     gamma      delta        rho         nu 
-0.18391577 0.04069031 1.20000000 1.57430648 
+    gamma     delta       rho        nu 
+0.2748922 0.1270696 0.8000000 1.5815358 
 
 $iter
-[1] 128
+[1] 130
 
 $convergence
 [1] FALSE
@@ -3832,7 +3825,7 @@ $message
 
 $ela
 E_1_2 (all) 
-  0.4545455 
+  0.5555556 
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
@@ -3846,8 +3839,8 @@ $multErr
 [1] FALSE
 
 $start
-   gamma    delta       nu 
-27.90554  0.50000  1.00000 
+  gamma   delta      nu 
+22.5893  0.5000  1.0000 
 
 $lower
 [1] 0 0 0
@@ -3856,37 +3849,37 @@ $upper
 [1] Inf   1 Inf
 
 $rho
-[1] 1.2
+[1] 0.8
 
 $fitted.values
- [1] 1008.422 1093.350 1117.840 1171.596 1165.871 1190.491 1240.244 1218.819
- [9] 1172.202 1224.320 1292.764 1535.707 1646.436 1703.109 1596.836 1592.993
-[17] 1650.591 1724.402 1876.994 2041.267
+ [1] 1006.253 1092.324 1116.536 1172.096 1166.058 1190.842 1240.787 1218.170
+ [9] 1171.809 1223.626 1292.993 1537.175 1648.943 1704.612 1596.464 1592.176
+[17] 1650.114 1724.965 1878.915 2044.224
 
 $residuals
- [1]  -62.2887960 -130.6192818  -48.2612166    0.2009635   12.2447484
- [6]   -4.6811880   -0.8861381   69.7420157   35.5040322   54.0881186
-[11]   67.8288597    5.0771667  -71.4018092   -7.1497656   47.8530783
-[16]   33.0378577    4.4485647   31.1977739   10.4267277  -49.3730846
+ [1]  -60.1204324 -129.5931757  -46.9570614   -0.2991464   12.0581975
+ [6]   -5.0324215   -1.4293997   70.3906419   35.8974422   54.7822806
+[11]   67.5998760    3.6091402  -73.9080911   -8.6525721   48.2250419
+[16]   33.8550183    4.9254507   30.6344659    8.5054037  -52.3302986
 
 $rss
-[1] 49189.91
+[1] 49396.64
 
 $cov.unscaled
               gamma         delta           rho            nu
-gamma  4.550174e-04  3.248733e-04 -2.667069e-03 -8.691903e-06
-delta  3.248733e-04  2.348802e-04 -1.931003e-03 -3.143046e-06
-rho   -2.667069e-03 -1.931003e-03  1.587875e-02  2.322009e-05
-nu    -8.691903e-06 -3.143046e-06  2.322009e-05  3.448727e-06
+gamma  2.308353e-03  2.064282e-03 -5.964722e-03 -1.680172e-05
+delta  2.064282e-03  1.855861e-03 -5.367492e-03 -9.391608e-06
+rho   -5.964722e-03 -5.367492e-03  1.552724e-02  2.458133e-05
+nu    -1.680172e-05 -9.391608e-06  2.458133e-05  3.448275e-06
 
 $allRhoSum
    rho      rss convergence
 1 -0.8 50626.23        TRUE
 2 -0.4 50286.89        TRUE
 3  0.0 49966.45        TRUE
-4  0.4 49695.65       FALSE
-5  0.8 49388.09       FALSE
-6  1.2 49189.91       FALSE
+4  0.4 49665.41        TRUE
+5  0.8 49396.64       FALSE
+6  1.2 49472.41       FALSE
 
 $rhoValues
 [1] -0.8 -0.4  0.0  0.4  0.8  1.2
@@ -3902,10 +3895,10 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
         by = 0.4))
 
 Coefficients:
-  gamma   delta     rho      nu 
-0.18392 0.04069 1.20000 1.57431 
+ gamma  delta    rho     nu 
+0.2749 0.1271 0.8000 1.5815 
 
-Elasticity of Substitution: 0.4545 
+Elasticity of Substitution: 0.5556 
 
 > summary( cesGridPortVrs )
 Estimated CES function with variable returns to scale
@@ -3918,40 +3911,40 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
 assuming an additive error term
-Convergence NOT achieved after 128 iterations
+Convergence NOT achieved after 130 iterations
 Message: function evaluation limit reached without convergence (9) 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
-gamma  0.18392    1.05788   0.174    0.862    
-delta  0.04069    0.76006   0.054    0.957    
-rho    1.20000    6.24930   0.192    0.848    
-nu     1.57431    0.09210  17.094   <2e-16 ***
+gamma  0.27489    2.38773   0.115    0.908    
+delta  0.12707    2.14095   0.059    0.953    
+rho    0.80000    6.19271   0.129    0.897    
+nu     1.58154    0.09229  17.137   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Residual standard error: 49.5933 
-Multiple R-squared: 0.9722109 
+Residual standard error: 49.6974 
+Multiple R-squared: 0.9720941 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)   0.4545     1.2912   0.352    0.725
+E_1_2 (all)   0.5556     1.9113   0.291    0.771
 
 > coef( cesGridPortVrs )
-     gamma      delta        rho         nu 
-0.18391577 0.04069031 1.20000000 1.57430648 
+    gamma     delta       rho        nu 
+0.2748922 0.1270696 0.8000000 1.5815358 
 > vcov( cesGridPortVrs )
-           gamma        delta         rho           nu
-gamma  1.1191134  0.799024512 -6.55964571 -0.021377698
-delta  0.7990245  0.577686943 -4.74929238 -0.007730309
-rho   -6.5596457 -4.749292385 39.05371726  0.057109711
-nu    -0.0213777 -0.007730309  0.05710971  0.008482130
+             gamma        delta          rho           nu
+gamma   5.70124341   5.09843088 -14.73186152 -0.041497436
+delta   5.09843088   4.58366515 -13.25680391 -0.023195693
+rho   -14.73186152 -13.25680391  38.34967604  0.060711764
+nu     -0.04149744  -0.02319569   0.06071176  0.008516659
 > coef( summary( cesGridPortVrs ) )
-        Estimate Std. Error     t value     Pr(>|t|)
-gamma 0.18391577 1.05788156  0.17385289 8.619811e-01
-delta 0.04069031 0.76005720  0.05353586 9.573050e-01
-rho   1.20000000 6.24929734  0.19202159 8.477253e-01
-nu    1.57430648 0.09209848 17.09372892 1.652601e-65
+       Estimate Std. Error     t value     Pr(>|t|)
+gamma 0.2748922 2.38772767  0.11512712 9.083444e-01
+delta 0.1270696 2.14094959  0.05935199 9.526718e-01
+rho   0.8000000 6.19271153  0.12918412 8.972120e-01
+nu    1.5815358 0.09228575 17.13737905 7.809228e-66
 > plot( cesGridPortVrs )
 > 
 > # using the PORT optimization rountine implemented in nlminb(), TC, VRS
@@ -3962,7 +3955,7 @@ nu    1.57430648 0.09209848 17.09372892 1.652601e-65
 $nlminb
 $nlminb$par
       gamma      lambda       delta          nu 
-21.84384077  0.01910502  0.89810578  0.91070565 
+21.84383541  0.01910503  0.89810572  0.91070562 
 
 $nlminb$objective
 [1] 16955.55
@@ -3971,11 +3964,11 @@ $nlminb$convergence
 [1] 0
 
 $nlminb$iterations
-[1] 115
+[1] 110
 
 $nlminb$evaluations
 function gradient 
-     160      116 
+     154      111 
 
 $nlminb$message
 [1] "relative convergence (4)"
@@ -3983,10 +3976,10 @@ $nlminb$message
 
 $coefficients
       gamma      lambda       delta         rho          nu 
-21.84384077  0.01910502  0.89810578 -0.80000000  0.91070565 
+21.84383541  0.01910503  0.89810572 -0.80000000  0.91070562 
 
 $iter
-[1] 115
+[1] 110
 
 $convergence
 [1] TRUE
@@ -4023,26 +4016,26 @@ $rho
 [1] -0.8
 
 $fitted.values
- [1]  956.6652 1034.4259 1063.3754 1131.7598 1147.4022 1184.2468 1235.4303
+ [1]  956.6651 1034.4259 1063.3754 1131.7597 1147.4022 1184.2467 1235.4303
  [8] 1233.8714 1235.2562 1284.3555 1359.1406 1530.2538 1628.3747 1676.5573
 [15] 1624.7047 1641.3131 1684.0363 1748.7234 1866.4258 1996.3762
 
 $residuals
- [1] -10.532158 -71.695417   6.203757  40.036724  30.713810   1.563242
- [7]   3.927525  54.689485 -27.549984  -5.946963   1.452057  10.530255
-[13] -53.340027  19.402128  19.984435 -15.281985 -28.996432   6.876431
-[19]  20.994420  -4.482182
+ [1] -10.532118 -71.695383   6.203790  40.036746  30.713830   1.563257
+ [7]   3.927537  54.689498 -27.549980  -5.946960   1.452053  10.530250
+[13] -53.340040  19.402118  19.984428 -15.281991 -28.996427   6.876441
+[19]  20.994431  -4.482173
 
 $rss
 [1] 16955.55
 
 $cov.unscaled
               gamma        lambda         delta           rho            nu
-gamma  13.128726937  1.895820e-04  2.290743e-01 -8.074908e-01 -7.867202e-03
-lambda  0.000189582  1.299507e-08  2.861488e-06 -1.036819e-05 -4.607286e-07
-delta   0.229074287  2.861488e-06  4.032594e-03 -1.421090e-02 -1.148355e-04
-rho    -0.807490796 -1.036819e-05 -1.421090e-02  5.009393e-02  4.112287e-04
-nu     -0.007867202 -4.607286e-07 -1.148355e-04  4.112287e-04  1.991461e-05
+gamma  13.128731062  1.895820e-04  2.290745e-01 -0.8074910493 -7.867203e-03
+lambda  0.000189582  1.299507e-08  2.861490e-06 -0.0000103682 -4.607286e-07
+delta   0.229074473  2.861490e-06  4.032599e-03 -0.0142109153 -1.148356e-04
+rho    -0.807491049 -1.036820e-05 -1.421092e-02  0.0500939418  4.112287e-04
+nu     -0.007867203 -4.607286e-07 -1.148356e-04  0.0004112287  1.991461e-05
 
 $allRhoSum
    rho      rss convergence
@@ -4050,8 +4043,8 @@ $allRhoSum
 2 -0.4 17026.54        TRUE
 3  0.0 17104.64        TRUE
 4  0.4 17189.91        TRUE
-5  0.8 17296.45       FALSE
-6  1.2 19295.06       FALSE
+5  0.8 17294.55       FALSE
+6  1.2 19149.31       FALSE
 
 $rhoValues
 [1] -0.8 -0.4  0.0  0.4  0.8  1.2
@@ -4083,15 +4076,15 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
 assuming an additive error term
-Convergence achieved after 115 iterations
+Convergence achieved after 110 iterations
 Message: relative convergence (4) 
 
 Coefficients:
          Estimate Std. Error t value Pr(>|t|)    
-gamma   21.843841 105.499939   0.207    0.836    
+gamma   21.843835 105.499955   0.207    0.836    
 lambda   0.019105   0.003319   5.756 8.62e-09 ***
-delta    0.898106   1.848984   0.486    0.627    
-rho     -0.800000   6.516786  -0.123    0.902    
+delta    0.898106   1.848985   0.486    0.627    
+rho     -0.800000   6.516787  -0.123    0.902    
 nu       0.910706   0.129935   7.009 2.40e-12 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
@@ -4187,10 +4180,10 @@ $rss
 [1] 0.1157039
 
 $cov.unscaled
-             gamma         delta           rho
-gamma 4.184394e+04  1.346693e+02  5.434294e+14
-delta 1.346693e+02  4.367434e-01 -5.670810e+12
-rho   5.434294e+14 -5.670810e+12  2.606183e+28
+              gamma         delta           rho
+gamma  4.184880e+04  1.350511e+02 -7.160459e+14
+delta  1.350511e+02  4.397982e-01 -1.165348e+13
+rho   -7.160459e+14 -1.165348e+13  3.166526e+28
 
 $allRhoSum
    rho       rss convergence
@@ -4236,9 +4229,9 @@ Message: relative convergence (4)
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
-gamma  4.831e+01  1.556e+01   3.105   0.0019 ** 
-delta  1.000e+00  5.027e-02  19.894   <2e-16 ***
-rho   -4.000e-01  1.228e+13   0.000   1.0000    
+gamma  4.831e+01  1.556e+01   3.105  0.00191 ** 
+delta  1.000e+00  5.044e-02  19.825  < 2e-16 ***
+rho   -4.000e-01  1.353e+13   0.000  1.00000    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
@@ -4247,13 +4240,13 @@ Multiple R-squared: 0.8722098
 
 Elasticity of Substitution:
              Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all) 1.667e+00  3.411e+13       0        1
+E_1_2 (all) 1.667e+00  3.760e+13       0        1
 
 > vcov( cesGridPortMe )
-             gamma         delta           rho
-gamma 2.420753e+02  7.790882e-01  3.143844e+12
-delta 7.790882e-01  2.526645e-03 -3.280673e+10
-rho   3.143844e+12 -3.280673e+10  1.507727e+26
+              gamma         delta           rho
+gamma  2.421035e+02  7.812968e-01 -4.142464e+12
+delta  7.812968e-01  2.544318e-03 -6.741765e+10
+rho   -4.142464e+12 -6.741765e+10  1.831897e+26
 > 
 > # using the DE optimization method implemented in DEoptim(), CRS
 > cesGridDe <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -4271,7 +4264,7 @@ $optim$bestval
 [1] 165832.4
 
 $optim$nfeval
-[1] 4020
+[1] 402
 
 $optim$iter
 [1] 200
@@ -4288,169 +4281,169 @@ $member$upper
 
 $member$bestmemit
             par1      par2
-1   1.243650e+09 0.5942603
-2   4.407279e+08 0.7512382
-3   2.558309e+08 0.9650117
-4   3.122592e+07 0.4453546
-5   3.122592e+07 0.4453546
-6   3.122592e+07 0.4453546
-7   2.087199e+07 0.3224183
-8   3.122592e+07 0.4623156
-9   2.473843e+07 0.8119128
-10  2.891482e+05 0.7715427
-11  2.891482e+05 0.7715427
-12  2.891482e+05 0.7715427
-13  2.891482e+05 0.7715427
-14  2.891482e+05 0.7715427
-15  2.891482e+05 0.8998770
-16  2.891482e+05 0.9722668
-17  2.891482e+05 0.9722668
-18  2.891482e+05 0.9722668
-19  2.891482e+05 0.9722668
-20  9.506404e+04 0.7559218
-21  9.506404e+04 0.7559218
-22  9.506404e+04 0.7559218
-23  2.302820e+04 0.8167190
-24  2.302820e+04 0.8167190
-25  2.302820e+04 0.8167190
-26  2.302820e+04 0.8426907
-27  2.302820e+04 0.8426907
-28  2.302820e+04 0.8898182
-29  2.302820e+04 0.8898182
-30  2.302820e+04 0.8898182
-31  2.302820e+04 0.8898182
-32  2.302820e+04 0.9764671
-33  2.302820e+04 0.9764671
-34  2.302820e+04 0.9764671
-35  2.302820e+04 0.9764671
-36  1.743326e+04 0.9496269
-37  1.045944e+04 0.9727675
-38  5.822985e+02 0.8959168
-39  2.151670e+02 0.9764671
-40  2.151670e+02 0.9764671
-41  2.151670e+02 0.9764671
-42  2.151670e+02 0.9764671
-43  2.151670e+02 0.9764671
-44  2.151670e+02 0.9764671
-45  2.151670e+02 0.9764671
-46  1.068316e+02 0.9529744
-47  1.068316e+02 0.9529744
-48  1.068316e+02 0.9529744
-49  1.068316e+02 0.9529744
-50  3.947492e+01 0.9529744
-51  3.947492e+01 0.9529744
-52  3.947492e+01 0.9529744
-53  3.947492e+01 0.9529744
-54  3.947492e+01 0.9529744
-55  3.357591e+01 0.8892083
-56  3.357591e+01 0.8892083
-57  3.357591e+01 0.8764437
-58  3.357591e+01 0.8764437
-59  3.357591e+01 0.8764437
-60  3.357591e+01 0.8764437
-61  3.357591e+01 0.8764437
-62  3.357591e+01 0.8764437
-63  3.357591e+01 0.8764437
-64  3.357591e+01 0.8764437
-65  4.516023e+01 0.9681272
-66  4.891418e+01 0.9992339
-67  4.891418e+01 0.9992339
-68  4.891418e+01 0.9992339
-69  4.891418e+01 0.9992339
-70  4.891418e+01 0.9992339
-71  4.891418e+01 0.9992339
-72  4.891418e+01 0.9992339
-73  4.891418e+01 0.9992339
-74  4.891418e+01 0.9992339
-75  4.891418e+01 0.9992339
-76  4.891418e+01 0.9992339
-77  4.891418e+01 0.9992339
-78  4.891418e+01 0.9992339
-79  4.891418e+01 0.9992339
-80  4.891418e+01 0.9992339
-81  4.891418e+01 0.9992339
-82  4.891418e+01 0.9992339
-83  4.891418e+01 0.9992339
-84  4.891418e+01 0.9992339
-85  4.891418e+01 0.9992339
-86  4.891418e+01 0.9992339
-87  4.891418e+01 0.9992339
-88  4.886178e+01 0.9980997
-89  4.886178e+01 0.9980997
-90  4.886178e+01 0.9980997
-91  4.911694e+01 0.9995384
-92  4.911694e+01 0.9995384
-93  4.911694e+01 0.9995384
-94  4.911694e+01 0.9995384
-95  4.913601e+01 0.9997562
-96  4.913934e+01 0.9999053
-97  4.911694e+01 0.9999858
-98  4.911694e+01 0.9999858
-99  4.911694e+01 0.9999858
-100 4.911694e+01 0.9999858
-101 4.911694e+01 0.9999858
-102 4.911694e+01 0.9999858
-103 4.911694e+01 0.9999858
-104 4.911694e+01 0.9999858
-105 4.911694e+01 0.9999858
-106 4.911694e+01 0.9999858
-107 4.912702e+01 0.9999577
-108 4.912702e+01 0.9999577
-109 4.912702e+01 0.9999577
-110 4.915304e+01 0.9999849
-111 4.914950e+01 0.9999900
-112 4.914950e+01 0.9999900
-113 4.914950e+01 0.9999900
-114 4.914950e+01 0.9999900
-115 4.914371e+01 0.9999959
-116 4.914371e+01 0.9999959
-117 4.914371e+01 0.9999959
-118 4.914371e+01 0.9999959
-119 4.914175e+01 0.9999959
-120 4.914249e+01 0.9999987
-121 4.914247e+01 0.9999999
-122 4.914247e+01 0.9999999
-123 4.914247e+01 0.9999999
-124 4.914247e+01 0.9999999
-125 4.914247e+01 0.9999999
-126 4.914247e+01 0.9999999
-127 4.914218e+01 1.0000000
-128 4.914218e+01 1.0000000
-129 4.914218e+01 1.0000000
-130 4.914218e+01 1.0000000
-131 4.914218e+01 1.0000000
-132 4.914255e+01 1.0000000
-133 4.914254e+01 1.0000000
-134 4.914285e+01 1.0000000
-135 4.914337e+01 1.0000000
-136 4.914337e+01 1.0000000
-137 4.914311e+01 1.0000000
-138 4.914311e+01 1.0000000
-139 4.914295e+01 1.0000000
-140 4.914295e+01 1.0000000
-141 4.914281e+01 1.0000000
-142 4.914281e+01 1.0000000
-143 4.914285e+01 1.0000000
-144 4.914285e+01 1.0000000
-145 4.914285e+01 1.0000000
-146 4.914299e+01 1.0000000
+1   4.508695e+08 0.9929051
+2   4.508695e+08 0.9929051
+3   6.978191e+07 0.5404825
+4   6.978191e+07 0.6406473
+5   2.132705e+07 0.6670531
+6   2.132705e+07 0.6670531
+7   2.132705e+07 0.6670531
+8   8.183601e+06 0.9635033
+9   8.183601e+06 0.9635033
+10  8.183601e+06 0.9635033
+11  8.416394e+05 0.9635033
+12  8.416394e+05 0.9635033
+13  8.416394e+05 0.9916374
+14  8.416394e+05 0.9916374
+15  5.162116e+05 0.9916374
+16  5.162116e+05 0.9916374
+17  5.162116e+05 0.9916374
+18  5.162116e+05 0.9916374
+19  7.314321e+04 0.9643400
+20  7.314321e+04 0.9643400
+21  7.314321e+04 0.9643400
+22  7.314321e+04 0.9908019
+23  1.359308e+04 0.9304794
+24  1.359308e+04 0.9304794
+25  1.359308e+04 0.9304794
+26  1.359308e+04 0.9304794
+27  1.359308e+04 0.9612287
+28  2.916991e+03 0.9627996
+29  2.916991e+03 0.9627996
+30  2.916991e+03 0.9627996
+31  2.916991e+03 0.9627996
+32  2.916991e+03 0.9627996
+33  2.916991e+03 0.9627996
+34  2.916991e+03 0.9627996
+35  2.916991e+03 0.9627996
+36  2.916991e+03 0.9627996
+37  8.173672e+02 0.9620116
+38  8.173672e+02 0.9620116
+39  4.967217e+02 0.9827550
+40  4.967217e+02 0.9827550
+41  4.967217e+02 0.9827550
+42  4.967217e+02 0.9827550
+43  4.204851e+02 0.9646613
+44  2.720937e+02 0.9512908
+45  1.208010e+02 0.9777935
+46  1.208010e+02 0.9777935
+47  7.474348e+01 0.9907837
+48  7.000945e+01 0.9916189
+49  3.189015e+01 0.9554950
+50  3.189015e+01 0.9554950
+51  3.189015e+01 0.9554950
+52  3.554541e+01 0.9351642
+53  3.428292e+01 0.9109527
+54  4.154222e+01 0.9580141
+55  4.154222e+01 0.9580141
+56  3.779066e+01 0.9109527
+57  3.779066e+01 0.9109527
+58  4.561393e+01 0.9723755
+59  4.561393e+01 0.9723755
+60  4.561393e+01 0.9723755
+61  4.561393e+01 0.9723755
+62  4.561393e+01 0.9723755
+63  4.154222e+01 0.9457920
+64  4.756537e+01 0.9901541
+65  4.900746e+01 0.9986385
+66  4.900746e+01 0.9986385
+67  4.900746e+01 0.9986385
+68  4.900746e+01 0.9986385
+69  4.900746e+01 0.9986385
+70  4.900746e+01 0.9986385
+71  4.900746e+01 0.9986385
+72  4.900746e+01 0.9986385
+73  4.900746e+01 0.9986385
+74  4.900746e+01 0.9986385
+75  4.900746e+01 0.9986385
+76  4.900746e+01 0.9986385
+77  4.914769e+01 0.9999024
+78  4.914769e+01 0.9999024
+79  4.914769e+01 0.9999024
+80  4.914769e+01 0.9999024
+81  4.914769e+01 0.9999024
+82  4.914769e+01 0.9999024
+83  4.914769e+01 0.9999024
+84  4.914769e+01 0.9999024
+85  4.914769e+01 0.9999024
+86  4.914769e+01 0.9999024
+87  4.914769e+01 0.9999024
+88  4.914769e+01 0.9999024
+89  4.914769e+01 0.9999024
+90  4.914769e+01 0.9999024
+91  4.911666e+01 0.9999507
+92  4.913199e+01 0.9999194
+93  4.913199e+01 0.9999194
+94  4.913199e+01 0.9999194
+95  4.913199e+01 0.9999194
+96  4.913199e+01 0.9999194
+97  4.912472e+01 0.9999990
+98  4.912472e+01 0.9999990
+99  4.912472e+01 0.9999990
+100 4.913951e+01 0.9999995
+101 4.913951e+01 0.9999995
+102 4.913951e+01 0.9999995
+103 4.913951e+01 0.9999995
+104 4.914571e+01 0.9999997
+105 4.914571e+01 0.9999997
+106 4.914571e+01 0.9999997
+107 4.914571e+01 0.9999997
+108 4.914571e+01 0.9999997
+109 4.914229e+01 0.9999992
+110 4.914456e+01 0.9999997
+111 4.914456e+01 0.9999997
+112 4.914456e+01 0.9999997
+113 4.914469e+01 0.9999999
+114 4.914469e+01 0.9999999
+115 4.914327e+01 0.9999998
+116 4.914327e+01 0.9999998
+117 4.914275e+01 0.9999999
+118 4.914275e+01 0.9999999
+119 4.914265e+01 1.0000000
+120 4.914265e+01 1.0000000
+121 4.914265e+01 1.0000000
+122 4.914281e+01 1.0000000
+123 4.914281e+01 1.0000000
+124 4.914302e+01 1.0000000
+125 4.914302e+01 1.0000000
+126 4.914293e+01 1.0000000
+127 4.914293e+01 1.0000000
+128 4.914289e+01 1.0000000
+129 4.914289e+01 1.0000000
+130 4.914289e+01 1.0000000
+131 4.914283e+01 1.0000000
+132 4.914282e+01 1.0000000
+133 4.914301e+01 1.0000000
+134 4.914301e+01 1.0000000
+135 4.914301e+01 1.0000000
+136 4.914297e+01 1.0000000
+137 4.914297e+01 1.0000000
+138 4.914297e+01 1.0000000
+139 4.914293e+01 1.0000000
+140 4.914293e+01 1.0000000
+141 4.914293e+01 1.0000000
+142 4.914293e+01 1.0000000
+143 4.914293e+01 1.0000000
+144 4.914296e+01 1.0000000
+145 4.914296e+01 1.0000000
+146 4.914296e+01 1.0000000
 147 4.914295e+01 1.0000000
-148 4.914292e+01 1.0000000
-149 4.914292e+01 1.0000000
-150 4.914292e+01 1.0000000
-151 4.914296e+01 1.0000000
-152 4.914296e+01 1.0000000
-153 4.914296e+01 1.0000000
-154 4.914296e+01 1.0000000
-155 4.914296e+01 1.0000000
-156 4.914296e+01 1.0000000
+148 4.914295e+01 1.0000000
+149 4.914295e+01 1.0000000
+150 4.914295e+01 1.0000000
+151 4.914295e+01 1.0000000
+152 4.914295e+01 1.0000000
+153 4.914295e+01 1.0000000
+154 4.914295e+01 1.0000000
+155 4.914295e+01 1.0000000
+156 4.914295e+01 1.0000000
 157 4.914295e+01 1.0000000
 158 4.914295e+01 1.0000000
 159 4.914295e+01 1.0000000
 160 4.914295e+01 1.0000000
 161 4.914295e+01 1.0000000
 162 4.914295e+01 1.0000000
-163 4.914294e+01 1.0000000
+163 4.914295e+01 1.0000000
 164 4.914295e+01 1.0000000
 165 4.914295e+01 1.0000000
 166 4.914295e+01 1.0000000
@@ -4490,30 +4483,30 @@ $member$bestmemit
 200 4.914295e+01 1.0000000
 
 $member$bestvalit
-  [1] 3.432710e+23 1.601258e+22 1.403099e+21 5.542714e+20 5.542714e+20
-  [6] 5.542714e+20 5.387144e+20 4.979393e+20 3.441500e+19 6.063048e+15
- [11] 6.063048e+15 6.063048e+15 6.063048e+15 6.063048e+15 2.700481e+15
- [16] 1.711800e+15 1.711800e+15 1.711800e+15 1.711800e+15 7.229683e+14
- [21] 7.229683e+14 7.229683e+14 2.886212e+13 2.886212e+13 2.886212e+13
- [26] 2.449960e+13 2.449960e+13 1.819838e+13 1.819838e+13 1.819838e+13
- [31] 1.819838e+13 1.053565e+13 1.053565e+13 1.053565e+13 1.053565e+13
- [36] 7.143531e+12 2.214325e+12 9.907333e+09 5.734664e+08 5.734664e+08
- [41] 5.734664e+08 5.734664e+08 5.734664e+08 5.734664e+08 5.734664e+08
- [46] 9.624539e+07 9.624539e+07 9.624539e+07 9.624539e+07 3.691095e+05
- [51] 3.691095e+05 3.691095e+05 3.691095e+05 3.691095e+05 2.299135e+05
- [56] 2.299135e+05 1.955066e+05 1.955066e+05 1.955066e+05 1.955066e+05
- [61] 1.955066e+05 1.955066e+05 1.955066e+05 1.955066e+05 1.819122e+05
- [66] 1.661625e+05 1.661625e+05 1.661625e+05 1.661625e+05 1.661625e+05
- [71] 1.661625e+05 1.661625e+05 1.661625e+05 1.661625e+05 1.661625e+05
- [76] 1.661625e+05 1.661625e+05 1.661625e+05 1.661625e+05 1.661625e+05
- [81] 1.661625e+05 1.661625e+05 1.661625e+05 1.661625e+05 1.661625e+05
- [86] 1.661625e+05 1.661625e+05 1.661326e+05 1.661326e+05 1.661326e+05
- [91] 1.659399e+05 1.659399e+05 1.659399e+05 1.659399e+05 1.658867e+05
- [96] 1.658492e+05 1.658443e+05 1.658443e+05 1.658443e+05 1.658443e+05
-[101] 1.658443e+05 1.658443e+05 1.658443e+05 1.658443e+05 1.658443e+05
-[106] 1.658443e+05 1.658405e+05 1.658405e+05 1.658405e+05 1.658374e+05
-[111] 1.658351e+05 1.658351e+05 1.658351e+05 1.658351e+05 1.658330e+05
-[116] 1.658330e+05 1.658330e+05 1.658330e+05 1.658330e+05 1.658326e+05
+  [1] 3.656203e+21 3.656203e+21 1.517715e+21 8.064443e+20 6.376580e+19
+  [6] 6.376580e+19 6.376580e+19 1.449408e+18 1.449408e+18 1.449408e+18
+ [11] 1.532898e+16 1.532898e+16 1.284093e+16 1.284093e+16 4.830240e+15
+ [16] 4.830240e+15 4.830240e+15 4.830240e+15 1.150390e+14 1.150390e+14
+ [21] 1.150390e+14 9.737747e+13 4.894604e+12 4.894604e+12 4.894604e+12
+ [26] 4.894604e+12 4.030674e+12 1.794681e+11 1.794681e+11 1.794681e+11
+ [31] 1.794681e+11 1.794681e+11 1.794681e+11 1.794681e+11 1.794681e+11
+ [36] 1.794681e+11 1.308006e+10 1.308006e+10 3.885607e+09 3.885607e+09
+ [41] 3.885607e+09 3.885607e+09 3.046048e+09 1.235917e+09 1.113675e+08
+ [46] 1.113675e+08 1.346128e+07 9.060279e+06 2.841172e+06 2.841172e+06
+ [51] 2.841172e+06 7.064840e+05 4.264382e+05 2.245731e+05 2.245731e+05
+ [56] 1.970740e+05 1.970740e+05 1.770565e+05 1.770565e+05 1.770565e+05
+ [61] 1.770565e+05 1.770565e+05 1.760288e+05 1.675230e+05 1.661422e+05
+ [66] 1.661422e+05 1.661422e+05 1.661422e+05 1.661422e+05 1.661422e+05
+ [71] 1.661422e+05 1.661422e+05 1.661422e+05 1.661422e+05 1.661422e+05
+ [76] 1.661422e+05 1.658543e+05 1.658543e+05 1.658543e+05 1.658543e+05
+ [81] 1.658543e+05 1.658543e+05 1.658543e+05 1.658543e+05 1.658543e+05
+ [86] 1.658543e+05 1.658543e+05 1.658543e+05 1.658543e+05 1.658543e+05
+ [91] 1.658460e+05 1.658450e+05 1.658450e+05 1.658450e+05 1.658450e+05
+ [96] 1.658450e+05 1.658381e+05 1.658381e+05 1.658381e+05 1.658326e+05
+[101] 1.658326e+05 1.658326e+05 1.658326e+05 1.658325e+05 1.658325e+05
+[106] 1.658325e+05 1.658325e+05 1.658325e+05 1.658325e+05 1.658325e+05
+[111] 1.658325e+05 1.658325e+05 1.658324e+05 1.658324e+05 1.658324e+05
+[116] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
 [121] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
 [126] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
 [131] 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05 1.658324e+05
@@ -4598,19 +4591,19 @@ $fitted.values
 [17] 1648.255 1722.952 1833.523 1935.741
 
 $residuals
- [1] -203.812029 -226.528906 -143.760264  -52.354410  -46.034843  -54.066629
- [7]  -33.936004   12.318504  -29.713282   -2.748200   45.035838   72.884176
-[13]   46.197493  114.047833   95.703328   59.353880    6.785318   32.647979
-[19]   53.896801   56.153215
+ [1] -203.812029 -226.528906 -143.760265  -52.354411  -46.034844  -54.066630
+ [7]  -33.936005   12.318503  -29.713283   -2.748201   45.035838   72.884175
+[13]   46.197492  114.047832   95.703326   59.353879    6.785317   32.647978
+[19]   53.896800   56.153213
 
 $rss
 [1] 165832.4
 
 $cov.unscaled
               gamma         delta           rho
-gamma  1.153355e+02  1.508618e+00 -3.354987e+14
-delta  1.508618e+00  1.973522e-02 -4.389334e+12
-rho   -3.354987e+14 -4.389334e+12  9.763359e+26
+gamma  1.153355e+02  1.508618e+00 -5.451855e+14
+delta  1.508618e+00  1.973522e-02 -7.132667e+12
+rho   -5.451855e+14 -7.132667e+12  2.578137e+27
 
 $allRhoSum
    rho      rss convergence
@@ -4653,29 +4646,32 @@ Coefficients:
        Estimate Std. Error t value Pr(>|t|)
 gamma 4.914e+01  9.779e+02   0.050    0.960
 delta 1.000e+00  1.279e+01   0.078    0.938
-rho   0.000e+00  2.845e+15   0.000    1.000
+rho   0.000e+00  4.624e+15   0.000    1.000
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
 
 Elasticity of Substitution:
              Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all) 1.000e+00  2.845e+15       0        1
+E_1_2 (all) 1.000e+00  4.624e+15       0        1
 
 > coef( cesGridDe )
    gamma    delta      rho 
 49.14295  1.00000  0.00000 
 > vcov( cesGridDe )
               gamma         delta           rho
-gamma  9.563178e+05  1.250888e+04 -2.781827e+18
-delta  1.250888e+04  1.636369e+02 -3.639468e+16
-rho   -2.781827e+18 -3.639468e+16  8.095405e+30
+gamma  9.563178e+05  1.250888e+04 -4.520470e+18
+delta  1.250888e+04  1.636369e+02 -5.914135e+16
+rho   -4.520470e+18 -5.914135e+16  2.137693e+31
 > coef( summary( cesGridDe ) )
       Estimate   Std. Error    t value  Pr(>|t|)
 gamma 49.14295 9.779150e+02 0.05025278 0.9599210
 delta  1.00000 1.279206e+01 0.07817347 0.9376901
-rho    0.00000 2.845242e+15 0.00000000 1.0000000
+rho    0.00000 4.623519e+15 0.00000000 1.0000000
 > plot( cesGridDe )
+Warning message:
+In plot.window(...) :
+  relative range of values =  28 * EPS, is small (axis 2)
 > 
 > # using the DE optimization method implemented in DEoptim(), TC, CRS
 > cesGridDeTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -4687,13 +4683,13 @@ $DEoptim
 $optim
 $optim$bestmem
        par1        par2        par3 
-16.06113614  0.01708461  0.90668821 
+16.11384813  0.01704673  0.90709895 
 
 $optim$bestval
-[1] 17440.95
+[1] 17441.71
 
 $optim$nfeval
-[1] 6030
+[1] 402
 
 $optim$iter
 [1] 200
@@ -4709,282 +4705,282 @@ $member$upper
 1e+10 5e-01 1e+00 
 
 $member$bestmemit
-            par1        par2      par3
-1   6.295737e+08 -0.43555244 0.6611907
-2   7.053718e+07 -0.06901528 0.6407007
-3   7.053718e+07 -0.06901528 0.9148036
-4   7.053718e+07 -0.06901528 0.9148036
-5   1.299827e+08 -0.47045374 0.9500255
-6   4.304904e+07 -0.43555244 0.8890287
-7   4.304904e+07 -0.43555244 0.9780598
-8   4.304904e+07 -0.43555244 0.9780598
-9   1.097223e+07 -0.45321124 0.9853344
-10  3.216758e+06 -0.39526690 0.9309820
-11  3.216758e+06 -0.39526690 0.9309820
-12  3.216758e+06 -0.39526690 0.9309820
-13  3.216758e+06 -0.39526690 0.9309820
-14  3.216758e+06 -0.39526690 0.9309820
-15  3.492456e+06 -0.37496165 0.9462017
-16  3.492456e+06 -0.37496165 0.9462017
-17  3.492456e+06 -0.37496165 0.9462017
-18  3.492456e+06 -0.37496165 0.9462017
-19  3.492456e+06 -0.37496165 0.9462017
-20  3.216758e+06 -0.39526690 0.9393170
-21  3.216758e+06 -0.39526690 0.9393170
-22  1.298467e+06 -0.44124497 0.9174381
-23  1.258778e+06 -0.44870314 0.9143047
-24  1.258778e+06 -0.44870314 0.9143047
-25  1.577055e+06 -0.44912059 0.9685513
-26  3.974630e+05 -0.40259133 0.9049825
-27  1.113755e+04 -0.42920063 0.9537137
-28  1.113755e+04 -0.42920063 0.9965211
-29  1.113755e+04 -0.42920063 0.9965211
-30  1.113755e+04 -0.42920063 0.9965211
-31  1.113755e+04 -0.42920063 0.9965211
-32  1.113755e+04 -0.42920063 0.9965211
-33  1.113755e+04 -0.42920063 0.9965211
-34  1.113755e+04 -0.42920063 0.9965211
-35  4.109336e+03 -0.40642725 0.9438636
-36  4.109336e+03 -0.40642725 0.9438636
-37  4.109336e+03 -0.46542506 0.9545797
-38  4.109336e+03 -0.46542506 0.9545797
-39  4.109336e+03 -0.46542506 0.9545797
-40  4.109336e+03 -0.47741097 0.9545797
-41  4.109336e+03 -0.47741097 0.9545797
-42  4.109336e+03 -0.47741097 0.9545797
-43  4.109336e+03 -0.47741097 0.9545797
-44  4.109336e+03 -0.47741097 0.9545797
-45  4.109336e+03 -0.47741097 0.9545797
-46  4.109336e+03 -0.47741097 0.9545797
-47  4.109336e+03 -0.47741097 0.9545797
-48  4.109336e+03 -0.47741097 0.9545797
-49  2.856174e+03 -0.43415978 0.9347337
-50  2.856174e+03 -0.43415978 0.9347337
-51  2.856174e+03 -0.43415978 0.9649947
-52  2.856174e+03 -0.43415978 0.9649947
-53  2.856174e+03 -0.43415978 0.9649947
-54  2.821785e+03 -0.48347129 0.9580428
-55  2.470407e+02 -0.45191160 0.9300745
-56  2.470407e+02 -0.45191160 0.9300745
-57  3.049482e+01 -0.39850893 0.9452733
-58  3.049482e+01 -0.39850893 0.9452733
-59  3.049482e+01 -0.39850893 0.9452733
-60  3.495624e+01 -0.43807777 0.9342559
-61  3.495624e+01 -0.43807777 0.9342559
-62  3.495624e+01 -0.43807777 0.9342559
-63  3.495624e+01 -0.43807777 0.9184532
-64  3.495624e+01 -0.43807777 0.9184532
-65  3.495624e+01 -0.43807777 0.9139652
-66  3.495624e+01 -0.43807777 0.8628957
-67  3.495624e+01 -0.43807777 0.8628957
-68  1.320413e+01 -0.01470014 0.8550762
-69  1.320413e+01 -0.01470014 0.8550762
-70  1.320413e+01 -0.01470014 0.8550762
-71  1.320413e+01  0.02114516 0.8815828
-72  1.320413e+01  0.02114516 0.8815828
-73  1.320413e+01  0.02114516 0.8815828
-74  1.320413e+01  0.02114516 0.8815828
-75  1.320413e+01  0.02114516 0.8815828
-76  1.320413e+01  0.02114516 0.8815828
-77  1.320413e+01  0.02114516 0.8815828
-78  1.320413e+01  0.02114516 0.8815828
-79  1.320413e+01  0.02114516 0.8815828
-80  1.320413e+01  0.02114516 0.8815828
-81  1.320413e+01  0.02114516 0.8815828
-82  1.320413e+01  0.02114516 0.8815828
-83  1.755970e+01  0.01248863 0.9111583
-84  1.755970e+01  0.01248863 0.9111583
-85  1.755970e+01  0.01248863 0.9111583
-86  1.755970e+01  0.01248863 0.9111583
-87  1.755970e+01  0.01248863 0.9111583
-88  1.755970e+01  0.01248863 0.9111583
-89  1.755970e+01  0.01248863 0.9111583
-90  1.755970e+01  0.01248863 0.9111583
-91  1.755970e+01  0.01248863 0.9111583
-92  1.755970e+01  0.01248863 0.9111583
-93  1.755970e+01  0.01248863 0.9111583
-94  1.755970e+01  0.01248863 0.9111583
-95  1.755970e+01  0.01248863 0.9111583
-96  1.755970e+01  0.01248863 0.9111583
-97  1.506205e+01  0.01389795 0.8908031
-98  1.594060e+01  0.01825803 0.9048181
-99  1.594060e+01  0.01825803 0.9048181
-100 1.594060e+01  0.01825803 0.9048181
-101 1.243943e+01  0.02153503 0.8773799
-102 1.243943e+01  0.02153503 0.8773799
-103 1.243943e+01  0.02153503 0.8773799
-104 1.243943e+01  0.02153503 0.8773799
-105 1.243943e+01  0.02153503 0.8773799
-106 8.515310e+00  0.01994169 0.7967409
-107 8.515310e+00  0.01994169 0.7967409
-108 8.515310e+00  0.01994169 0.7967409
-109 8.515310e+00  0.01994169 0.7967409
-110 8.515310e+00  0.01994169 0.7967409
-111 1.183001e+01  0.01724668 0.8577590
-112 1.183001e+01  0.01724668 0.8577590
-113 1.214884e+01  0.01969548 0.8682331
-114 1.214884e+01  0.01969548 0.8682331
-115 1.214884e+01  0.01969548 0.8682331
-116 1.215843e+01  0.01969548 0.8682331
-117 1.594060e+01  0.01643540 0.9048181
-118 1.594060e+01  0.01643540 0.9048181
-119 1.594060e+01  0.01643540 0.9048181
-120 1.594060e+01  0.01643540 0.9048181
-121 1.594060e+01  0.01643540 0.9048181
-122 1.594060e+01  0.01643540 0.9048181
-123 1.594060e+01  0.01643540 0.9048181
-124 1.594060e+01  0.01643540 0.9048181
-125 1.594060e+01  0.01643540 0.9048181
-126 1.594060e+01  0.01643540 0.9048181
-127 1.594060e+01  0.01643540 0.9048181
-128 1.594060e+01  0.01643540 0.9048181
-129 1.511514e+01  0.01675040 0.8969768
-130 1.511514e+01  0.01675040 0.8969768
-131 1.511514e+01  0.01675040 0.8969768
-132 1.511514e+01  0.01675040 0.8969768
-133 1.594060e+01  0.01658266 0.9048181
-134 1.594060e+01  0.01658266 0.9048181
-135 1.594060e+01  0.01658266 0.9048181
-136 1.594060e+01  0.01658266 0.9048181
-137 1.594060e+01  0.01658266 0.9048181
-138 1.594060e+01  0.01658266 0.9048181
-139 1.594060e+01  0.01658266 0.9048181
-140 1.594060e+01  0.01658266 0.9048181
-141 1.594060e+01  0.01658266 0.9048181
-142 1.594060e+01  0.01658266 0.9048181
-143 1.594060e+01  0.01658266 0.9048181
-144 1.594060e+01  0.01658266 0.9048181
-145 1.594060e+01  0.01658266 0.9048181
-146 1.594060e+01  0.01658266 0.9048181
-147 1.594060e+01  0.01658266 0.9048181
-148 1.594060e+01  0.01658266 0.9048181
-149 1.583757e+01  0.01662787 0.9039306
-150 1.583757e+01  0.01662787 0.9039306
-151 1.636184e+01  0.01717236 0.9093813
-152 1.636184e+01  0.01717236 0.9093813
-153 1.661823e+01  0.01691090 0.9112919
-154 1.661823e+01  0.01691090 0.9112919
-155 1.661823e+01  0.01691090 0.9112919
-156 1.661823e+01  0.01691090 0.9112919
-157 1.661823e+01  0.01691090 0.9112919
-158 1.661823e+01  0.01691090 0.9112919
-159 1.661823e+01  0.01691090 0.9112919
-160 1.661823e+01  0.01691090 0.9112919
-161 1.661823e+01  0.01691090 0.9112919
-162 1.661823e+01  0.01691090 0.9112919
-163 1.580883e+01  0.01713153 0.9043469
-164 1.580883e+01  0.01713153 0.9043469
-165 1.619182e+01  0.01693534 0.9076666
-166 1.619182e+01  0.01693534 0.9076666
-167 1.619182e+01  0.01693534 0.9076666
-168 1.619182e+01  0.01693534 0.9076666
-169 1.619182e+01  0.01693534 0.9076666
-170 1.619182e+01  0.01700175 0.9076666
-171 1.619182e+01  0.01700175 0.9076666
-172 1.619182e+01  0.01700175 0.9076666
-173 1.619182e+01  0.01700175 0.9076666
-174 1.619182e+01  0.01700175 0.9076666
-175 1.619182e+01  0.01700175 0.9076666
-176 1.619182e+01  0.01700175 0.9076666
-177 1.619182e+01  0.01700175 0.9076666
-178 1.619182e+01  0.01700175 0.9076666
-179 1.619182e+01  0.01700175 0.9076666
-180 1.619182e+01  0.01700175 0.9076666
-181 1.619182e+01  0.01700175 0.9076666
-182 1.619182e+01  0.01700175 0.9076666
-183 1.619182e+01  0.01700175 0.9076666
-184 1.619182e+01  0.01700175 0.9076666
-185 1.619182e+01  0.01700175 0.9076666
-186 1.619182e+01  0.01700175 0.9076666
-187 1.619182e+01  0.01700175 0.9076666
-188 1.619182e+01  0.01700175 0.9076666
-189 1.619182e+01  0.01700175 0.9076666
-190 1.619182e+01  0.01700175 0.9076666
-191 1.601267e+01  0.01713412 0.9062976
-192 1.601267e+01  0.01713412 0.9062976
-193 1.601267e+01  0.01713412 0.9062976
-194 1.601267e+01  0.01713412 0.9062976
-195 1.601267e+01  0.01713412 0.9062976
-196 1.594795e+01  0.01710981 0.9057145
-197 1.594795e+01  0.01710981 0.9057145
-198 1.606114e+01  0.01708461 0.9066882
-199 1.606114e+01  0.01708461 0.9066882
-200 1.606114e+01  0.01708461 0.9066882
+            par1          par2      par3
+1   4.855048e+09 -4.031923e-01 0.9785594
+2   1.243650e+09 -1.824941e-01 0.9244266
+3   1.243650e+09 -1.824941e-01 0.9244266
+4   1.729081e+08 -4.485835e-01 0.9416653
+5   1.729081e+08 -4.485835e-01 0.9416653
+6   1.729081e+08 -4.485835e-01 0.9416653
+7   1.729081e+08 -4.485835e-01 0.9416653
+8   1.729081e+08 -4.485835e-01 0.9416653
+9   4.304904e+07 -3.220277e-01 0.9461465
+10  4.304904e+07 -3.220277e-01 0.9461465
+11  4.304904e+07 -3.220277e-01 0.9461465
+12  4.304904e+07 -3.220277e-01 0.9461465
+13  5.333441e+07 -3.119563e-01 0.9750163
+14  7.947378e+06 -3.749715e-01 0.8883301
+15  7.947378e+06 -3.749715e-01 0.8883301
+16  9.614463e+06 -3.681951e-01 0.9270240
+17  9.614463e+06 -3.681951e-01 0.9270240
+18  5.414487e+06 -3.119563e-01 0.8933607
+19  6.604776e+06 -4.772294e-01 0.9313706
+20  5.645601e+06 -3.662300e-01 0.9398011
+21  1.677286e+06 -4.073919e-01 0.9386863
+22  8.640084e+05 -3.451833e-01 0.9699500
+23  8.640084e+05 -3.451833e-01 0.9699500
+24  8.640084e+05 -3.451833e-01 0.9699500
+25  8.640084e+05 -3.451833e-01 0.9699500
+26  3.905992e+04 -2.526288e-01 0.9039270
+27  3.905992e+04 -2.526288e-01 0.9039270
+28  3.905992e+04 -2.526288e-01 0.9341113
+29  3.905992e+04 -3.196859e-01 0.9341113
+30  3.905992e+04 -3.196859e-01 0.9341113
+31  2.311642e+04 -3.876512e-01 0.9109416
+32  2.311642e+04 -3.876512e-01 0.9109416
+33  2.607759e+03 -2.518928e-01 0.9223043
+34  2.607759e+03 -2.518928e-01 0.9223043
+35  2.607759e+03 -2.518928e-01 0.9223043
+36  2.607759e+03 -2.518928e-01 0.9223043
+37  2.607759e+03 -2.518928e-01 0.9223043
+38  2.607759e+03 -2.518928e-01 0.9223043
+39  2.607759e+03 -2.518928e-01 0.9223043
+40  2.607759e+03 -2.518928e-01 0.9223043
+41  2.607759e+03 -2.518928e-01 0.9223043
+42  2.607759e+03 -2.518928e-01 0.9223043
+43  3.630680e+00 -1.931205e-01 0.8939299
+44  3.630680e+00 -1.931205e-01 0.8939299
+45  3.630680e+00 -1.931205e-01 0.8939299
+46  3.630680e+00 -1.931205e-01 0.8939299
+47  3.630680e+00 -1.931205e-01 0.8939299
+48  3.630680e+00 -1.248435e-01 0.8857504
+49  3.630680e+00 -1.248435e-01 0.8857504
+50  3.630680e+00 -1.248435e-01 0.8857504
+51  3.630680e+00 -1.248435e-01 0.8857504
+52  3.630680e+00 -1.248435e-01 0.8857504
+53  3.630680e+00 -1.248435e-01 0.8857504
+54  3.630680e+00 -1.248435e-01 0.8857504
+55  3.630680e+00 -1.248435e-01 0.8857504
+56  3.630680e+00  5.514062e-02 0.8857504
+57  3.630680e+00  5.514062e-02 0.8857504
+58  3.630680e+00  5.514062e-02 0.8857504
+59  3.630680e+00  5.514062e-02 0.8449515
+60  3.630680e+00  5.514062e-02 0.8449515
+61  3.630680e+00  5.514062e-02 0.8449515
+62  3.630680e+00  9.811590e-02 0.8449515
+63  3.630680e+00  9.811590e-02 0.8449515
+64  3.630680e+00  9.811590e-02 0.8449515
+65  3.630680e+00  9.811590e-02 0.8449515
+66  3.630680e+00  9.811590e-02 0.8449515
+67  3.630680e+00  9.811590e-02 0.8449515
+68  3.630680e+00  9.811590e-02 0.8449515
+69  3.630680e+00  9.811590e-02 0.8449515
+70  3.630680e+00  9.811590e-02 0.8449515
+71  3.630680e+00  9.811590e-02 0.8449515
+72  1.179154e+01  5.066084e-02 0.9658540
+73  1.179154e+01  5.066084e-02 0.9658540
+74  1.179154e+01  5.066084e-02 0.9658540
+75  4.036446e+01 -3.117348e-06 0.9964544
+76  4.036446e+01 -3.117348e-06 0.9964544
+77  4.036446e+01 -3.117348e-06 0.9964544
+78  4.036446e+01 -3.117348e-06 0.9964544
+79  4.036446e+01 -3.117348e-06 0.9964544
+80  4.036446e+01 -3.117348e-06 0.9964544
+81  4.036446e+01 -3.117348e-06 0.9964544
+82  4.036446e+01 -3.117348e-06 0.9964544
+83  4.036446e+01 -3.117348e-06 0.9928077
+84  4.036446e+01 -3.117348e-06 0.9928077
+85  4.036446e+01 -3.117348e-06 0.9928077
+86  2.088065e+01  7.741626e-04 0.9229984
+87  4.194568e+01 -3.117348e-06 0.9928077
+88  4.194568e+01 -3.117348e-06 0.9928077
+89  1.950576e+01  1.570720e-02 0.9253219
+90  1.950576e+01  1.570720e-02 0.9253219
+91  1.950576e+01  1.570720e-02 0.9253219
+92  1.950576e+01  1.570720e-02 0.9253219
+93  1.950576e+01  1.570720e-02 0.9253219
+94  1.950576e+01  1.570720e-02 0.9253219
+95  1.950576e+01  1.570720e-02 0.9253219
+96  1.950576e+01  1.570720e-02 0.9253219
+97  1.950576e+01  1.570720e-02 0.9253219
+98  1.950576e+01  1.570720e-02 0.9253219
+99  1.950576e+01  1.570720e-02 0.9253219
+100 1.950576e+01  1.570720e-02 0.9253219
+101 1.950576e+01  1.570720e-02 0.9253219
+102 1.950576e+01  1.570720e-02 0.9253219
+103 1.950576e+01  1.570720e-02 0.9253219
+104 1.950576e+01  1.570720e-02 0.9253219
+105 1.901283e+01  1.630726e-02 0.9295207
+106 1.901283e+01  1.630726e-02 0.9295207
+107 1.901283e+01  1.630726e-02 0.9295207
+108 1.901283e+01  1.630726e-02 0.9295207
+109 1.901283e+01  1.630726e-02 0.9295207
+110 1.901283e+01  1.630726e-02 0.9295207
+111 1.901283e+01  1.630726e-02 0.9295207
+112 1.901283e+01  1.630726e-02 0.9295207
+113 1.901283e+01  1.630726e-02 0.9295207
+114 1.901283e+01  1.630726e-02 0.9295207
+115 1.901283e+01  1.630726e-02 0.9295207
+116 1.901283e+01  1.630726e-02 0.9295207
+117 1.901283e+01  1.630726e-02 0.9295207
+118 1.901283e+01  1.630726e-02 0.9290174
+119 1.951092e+01  1.592290e-02 0.9309853
+120 1.951092e+01  1.592290e-02 0.9309853
+121 1.951092e+01  1.592290e-02 0.9309853
+122 1.951092e+01  1.592290e-02 0.9309853
+123 1.951092e+01  1.592290e-02 0.9309853
+124 1.951092e+01  1.592290e-02 0.9309853
+125 1.951092e+01  1.592290e-02 0.9309853
+126 1.951092e+01  1.592290e-02 0.9309853
+127 1.951092e+01  1.592290e-02 0.9309853
+128 1.951092e+01  1.592290e-02 0.9309853
+129 1.951092e+01  1.592290e-02 0.9309853
+130 1.951092e+01  1.592290e-02 0.9309853
+131 1.951092e+01  1.592290e-02 0.9309853
+132 1.951092e+01  1.592290e-02 0.9309853
+133 1.951092e+01  1.592290e-02 0.9309853
+134 1.951092e+01  1.592290e-02 0.9309853
+135 1.951092e+01  1.592290e-02 0.9309853
+136 1.951092e+01  1.592290e-02 0.9309853
+137 1.951092e+01  1.592290e-02 0.9309853
+138 1.951092e+01  1.592290e-02 0.9309853
+139 1.951092e+01  1.592290e-02 0.9309853
+140 1.951092e+01  1.592290e-02 0.9309853
+141 1.951092e+01  1.592290e-02 0.9309853
+142 1.951092e+01  1.592290e-02 0.9309853
+143 1.951092e+01  1.592290e-02 0.9309853
+144 1.951092e+01  1.592290e-02 0.9309853
+145 1.951092e+01  1.592290e-02 0.9309853
+146 1.951092e+01  1.592290e-02 0.9309853
+147 1.951092e+01  1.592290e-02 0.9309853
+148 1.951092e+01  1.592290e-02 0.9309853
+149 1.951092e+01  1.592290e-02 0.9309853
+150 1.951092e+01  1.592290e-02 0.9309853
+151 1.850374e+01  1.610107e-02 0.9249377
+152 1.911331e+01  1.575451e-02 0.9278499
+153 1.911331e+01  1.575451e-02 0.9278499
+154 1.911331e+01  1.575451e-02 0.9278499
+155 1.911331e+01  1.575451e-02 0.9278499
+156 1.911331e+01  1.575451e-02 0.9278499
+157 1.911331e+01  1.575451e-02 0.9278499
+158 1.911331e+01  1.575451e-02 0.9278499
+159 1.911331e+01  1.575451e-02 0.9278499
+160 1.911331e+01  1.575451e-02 0.9278499
+161 1.872398e+01  1.607277e-02 0.9262083
+162 1.872398e+01  1.607277e-02 0.9262083
+163 1.876693e+01  1.605717e-02 0.9262659
+164 1.876693e+01  1.605717e-02 0.9262659
+165 1.814576e+01  1.593590e-02 0.9214387
+166 1.814576e+01  1.593590e-02 0.9214387
+167 1.769533e+01  1.649405e-02 0.9191003
+168 1.769533e+01  1.644712e-02 0.9191003
+169 1.769533e+01  1.644712e-02 0.9191003
+170 1.769533e+01  1.644712e-02 0.9191003
+171 1.769533e+01  1.644712e-02 0.9191003
+172 1.769533e+01  1.644712e-02 0.9191003
+173 1.769533e+01  1.644712e-02 0.9191003
+174 1.769533e+01  1.644712e-02 0.9191003
+175 1.697977e+01  1.673294e-02 0.9138946
+176 1.697977e+01  1.673294e-02 0.9138946
+177 1.697977e+01  1.673294e-02 0.9138946
+178 1.697977e+01  1.673294e-02 0.9138946
+179 1.697977e+01  1.673294e-02 0.9138946
+180 1.697977e+01  1.673294e-02 0.9138946
+181 1.697977e+01  1.673294e-02 0.9138946
+182 1.655296e+01  1.689821e-02 0.9107889
+183 1.655296e+01  1.689821e-02 0.9107889
+184 1.655296e+01  1.689821e-02 0.9107889
+185 1.655296e+01  1.689821e-02 0.9107889
+186 1.655296e+01  1.689821e-02 0.9107889
+187 1.655296e+01  1.689821e-02 0.9107889
+188 1.655296e+01  1.689821e-02 0.9107889
+189 1.674501e+01  1.680320e-02 0.9121129
+190 1.674501e+01  1.680320e-02 0.9121129
+191 1.674501e+01  1.680320e-02 0.9121129
+192 1.674501e+01  1.680320e-02 0.9121129
+193 1.637154e+01  1.684962e-02 0.9090787
+194 1.619596e+01  1.689618e-02 0.9074953
+195 1.619596e+01  1.689618e-02 0.9074953
+196 1.629916e+01  1.690184e-02 0.9084577
+197 1.629916e+01  1.690184e-02 0.9084577
+198 1.629916e+01  1.690184e-02 0.9084577
+199 1.607097e+01  1.701000e-02 0.9066858
+200 1.607097e+01  1.707887e-02 0.9066858
 
 $member$bestvalit
-  [1] 9.182180e+21 1.419401e+21 1.268400e+20 1.268400e+20 1.962146e+19
-  [6] 6.206350e+18 1.353490e+18 1.353490e+18 6.919597e+16 2.197830e+16
- [11] 2.197830e+16 2.197830e+16 2.197830e+16 2.197830e+16 2.158380e+16
- [16] 2.158380e+16 2.158380e+16 2.158380e+16 2.158380e+16 1.910643e+16
- [21] 1.910643e+16 3.732889e+15 3.579085e+15 3.579085e+15 2.145190e+15
- [26] 4.829114e+14 1.535337e+11 5.640834e+10 5.640834e+10 5.640834e+10
- [31] 5.640834e+10 5.640834e+10 5.640834e+10 5.640834e+10 2.683231e+10
- [36] 2.683231e+10 1.774340e+10 1.774340e+10 1.774340e+10 1.703210e+10
- [41] 1.703210e+10 1.703210e+10 1.703210e+10 1.703210e+10 1.703210e+10
- [46] 1.703210e+10 1.703210e+10 1.703210e+10 1.358119e+10 1.358119e+10
- [51] 7.631132e+09 7.631132e+09 7.631132e+09 7.250453e+09 1.016703e+08
- [56] 1.016703e+08 3.718404e+07 3.718404e+07 3.718404e+07 3.710939e+07
- [61] 3.710939e+07 3.710939e+07 3.680500e+07 3.680500e+07 3.673104e+07
- [66] 3.632707e+07 3.632707e+07 3.276119e+06 3.276119e+06 3.276119e+06
- [71] 4.394876e+04 4.394876e+04 4.394876e+04 4.394876e+04 4.394876e+04
- [76] 4.394876e+04 4.394876e+04 4.394876e+04 4.394876e+04 4.394876e+04
- [81] 4.394876e+04 4.394876e+04 4.184584e+04 4.184584e+04 4.184584e+04
- [86] 4.184584e+04 4.184584e+04 4.184584e+04 4.184584e+04 4.184584e+04
- [91] 4.184584e+04 4.184584e+04 4.184584e+04 4.184584e+04 4.184584e+04
- [96] 4.184584e+04 3.669802e+04 3.643074e+04 3.643074e+04 3.643074e+04
-[101] 3.639284e+04 3.639284e+04 3.639284e+04 3.639284e+04 3.639284e+04
-[106] 2.611539e+04 2.611539e+04 2.611539e+04 2.611539e+04 2.611539e+04
-[111] 2.420838e+04 2.420838e+04 2.169741e+04 2.169741e+04 2.169741e+04
-[116] 2.137088e+04 1.851393e+04 1.851393e+04 1.851393e+04 1.851393e+04
-[121] 1.851393e+04 1.851393e+04 1.851393e+04 1.851393e+04 1.851393e+04
-[126] 1.851393e+04 1.851393e+04 1.851393e+04 1.830416e+04 1.830416e+04
-[131] 1.830416e+04 1.830416e+04 1.793480e+04 1.793480e+04 1.793480e+04
-[136] 1.793480e+04 1.793480e+04 1.793480e+04 1.793480e+04 1.793480e+04
-[141] 1.793480e+04 1.793480e+04 1.793480e+04 1.793480e+04 1.793480e+04
-[146] 1.793480e+04 1.793480e+04 1.793480e+04 1.792166e+04 1.792166e+04
-[151] 1.754749e+04 1.754749e+04 1.748349e+04 1.748349e+04 1.748349e+04
-[156] 1.748349e+04 1.748349e+04 1.748349e+04 1.748349e+04 1.748349e+04
-[161] 1.748349e+04 1.748349e+04 1.747363e+04 1.747363e+04 1.747168e+04
-[166] 1.747168e+04 1.747168e+04 1.747168e+04 1.747168e+04 1.744460e+04
-[171] 1.744460e+04 1.744460e+04 1.744460e+04 1.744460e+04 1.744460e+04
-[176] 1.744460e+04 1.744460e+04 1.744460e+04 1.744460e+04 1.744460e+04
-[181] 1.744460e+04 1.744460e+04 1.744460e+04 1.744460e+04 1.744460e+04
-[186] 1.744460e+04 1.744460e+04 1.744460e+04 1.744460e+04 1.744460e+04
-[191] 1.744441e+04 1.744441e+04 1.744441e+04 1.744441e+04 1.744441e+04
-[196] 1.744315e+04 1.744315e+04 1.744095e+04 1.744095e+04 1.744095e+04
+  [1] 1.915269e+22 1.069128e+22 1.069128e+22 4.356330e+19 4.356330e+19
+  [6] 4.356330e+19 4.356330e+19 4.356330e+19 4.100642e+18 4.100642e+18
+ [11] 4.100642e+18 4.100642e+18 3.652079e+18 2.686989e+17 2.686989e+17
+ [16] 2.328686e+17 2.328686e+17 1.530215e+17 6.852519e+16 6.544301e+16
+ [21] 5.014754e+15 9.291023e+14 9.291023e+14 9.291023e+14 9.291023e+14
+ [26] 9.249815e+12 9.249815e+12 5.829461e+12 4.196435e+12 4.196435e+12
+ [31] 1.584053e+12 1.584053e+12 3.052533e+10 3.052533e+10 3.052533e+10
+ [36] 3.052533e+10 3.052533e+10 3.052533e+10 3.052533e+10 3.052533e+10
+ [41] 3.052533e+10 3.052533e+10 3.903414e+07 3.903414e+07 3.903414e+07
+ [46] 3.903414e+07 3.903414e+07 3.709847e+07 3.709847e+07 3.709847e+07
+ [51] 3.709847e+07 3.709847e+07 3.709847e+07 3.709847e+07 3.709847e+07
+ [56] 1.383606e+07 1.383606e+07 1.383606e+07 9.236733e+06 9.236733e+06
+ [61] 9.236733e+06 6.143596e+06 6.143596e+06 6.143596e+06 6.143596e+06
+ [66] 6.143596e+06 6.143596e+06 6.143596e+06 6.143596e+06 6.143596e+06
+ [71] 6.143596e+06 4.521680e+06 4.521680e+06 4.521680e+06 9.493670e+05
+ [76] 9.493670e+05 9.493670e+05 9.493670e+05 9.493670e+05 9.493670e+05
+ [81] 9.493670e+05 9.493670e+05 5.414855e+05 5.414855e+05 5.414855e+05
+ [86] 4.421152e+05 3.192442e+05 3.192442e+05 9.159615e+04 9.159615e+04
+ [91] 9.159615e+04 9.159615e+04 9.159615e+04 9.159615e+04 9.159615e+04
+ [96] 9.159615e+04 9.159615e+04 9.159615e+04 9.159615e+04 9.159615e+04
+[101] 9.159615e+04 9.159615e+04 9.159615e+04 9.159615e+04 2.246925e+04
+[106] 2.246925e+04 2.246925e+04 2.246925e+04 2.246925e+04 2.246925e+04
+[111] 2.246925e+04 2.246925e+04 2.246925e+04 2.246925e+04 2.246925e+04
+[116] 2.246925e+04 2.246925e+04 1.992845e+04 1.866512e+04 1.866512e+04
+[121] 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04
+[126] 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04
+[131] 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04
+[136] 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04
+[141] 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04
+[146] 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04 1.866512e+04
+[151] 1.862246e+04 1.848660e+04 1.848660e+04 1.848660e+04 1.848660e+04
+[156] 1.848660e+04 1.848660e+04 1.848660e+04 1.848660e+04 1.848660e+04
+[161] 1.832602e+04 1.832602e+04 1.817205e+04 1.817205e+04 1.807692e+04
+[166] 1.807692e+04 1.772806e+04 1.770855e+04 1.770855e+04 1.770855e+04
+[171] 1.770855e+04 1.770855e+04 1.770855e+04 1.770855e+04 1.753066e+04
+[176] 1.753066e+04 1.753066e+04 1.753066e+04 1.753066e+04 1.753066e+04
+[181] 1.753066e+04 1.750137e+04 1.750137e+04 1.750137e+04 1.750137e+04
+[186] 1.750137e+04 1.750137e+04 1.750137e+04 1.748792e+04 1.748792e+04
+[191] 1.748792e+04 1.748792e+04 1.747785e+04 1.747069e+04 1.747069e+04
+[196] 1.745588e+04 1.745588e+04 1.745588e+04 1.745363e+04 1.744952e+04
 
 $member$pop
-           [,1]       [,2]      [,3]
- [1,] 15.947954 0.01710981 0.9057145
- [2,] 15.964594 0.01699568 0.9056253
- [3,] 16.604023 0.01693460 0.9111703
- [4,] 15.876377 0.01721509 0.9052063
- [5,] 15.852018 0.01703627 0.9046782
- [6,] 16.493297 0.01698156 0.9103871
- [7,] 16.061136 0.01708461 0.9066882
- [8,] 15.760203 0.01727796 0.9041702
- [9,] 16.191822 0.01699908 0.9076666
-[10,] 16.234017 0.01699248 0.9080126
-[11,] 15.980446 0.01706088 0.9058749
-[12,] 16.117004 0.01702396 0.9070304
-[13,] 16.128013 0.01699623 0.9071058
-[14,] 15.926042 0.01707444 0.9054252
-[15,] 15.850453 0.01722293 0.9049667
-[16,] 15.655275 0.01723700 0.9031832
-[17,] 15.666950 0.01724645 0.9033412
-[18,] 16.250762 0.01702126 0.9082488
-[19,]  8.460303 0.01873859 0.7896042
-[20,] 15.832434 0.01719693 0.9048466
-[21,] 15.916946 0.01711200 0.9054408
-[22,] 15.937693 0.01707219 0.9055911
-[23,] 16.091632 0.01711511 0.9070156
-[24,] 16.515609 0.01695054 0.9104926
-[25,] 16.165352 0.01709612 0.9076979
-[26,] 15.925362 0.01712530 0.9055436
-[27,] 15.697314 0.01728415 0.9036291
-[28,] 16.176895 0.01704501 0.9077166
-[29,] 15.763824 0.01712657 0.9039991
-[30,] 16.139455 0.01712384 0.9074032
+          [,1]       [,2]      [,3]
+ [1,] 15.97529 0.01713444 0.9061368
+ [2,] 16.94743 0.01675189 0.9137694
+ [3,] 16.31369 0.01698322 0.9086300
+ [4,] 16.10151 0.01712637 0.9070356
+ [5,] 16.11385 0.01704673 0.9070989
+ [6,] 16.97697 0.01660188 0.9138701
+ [7,] 16.59545 0.01664464 0.9105878
+ [8,] 16.44740 0.01688722 0.9097478
+ [9,] 16.75422 0.01667436 0.9119654
+[10,] 16.37154 0.01695107 0.9090787
+[11,] 16.29916 0.01690184 0.9084577
+[12,] 16.46768 0.01693717 0.9099960
+[13,] 16.89327 0.01679867 0.9134510
+[14,] 16.67366 0.01662462 0.9111698
+[15,] 16.28447 0.01701396 0.9083744
+[16,] 16.61150 0.01678890 0.9110379
+[17,] 15.94081 0.01719715 0.9056701
+[18,] 17.65972 0.01637841 0.9185576
+[19,] 16.13799 0.01704870 0.9074108
+[20,] 16.19596 0.01689618 0.9074953
+[21,] 16.74501 0.01680320 0.9121129
+[22,] 16.55224 0.01670352 0.9103234
+[23,] 27.38725 0.01282854 0.9644085
+[24,] 16.97977 0.01673294 0.9138946
+[25,] 16.07097 0.01707887 0.9066858
+[26,] 16.48293 0.01700610 0.9102738
+[27,] 16.27896 0.01704990 0.9087077
+[28,] 15.72008 0.01723293 0.9040516
+[29,] 15.94016 0.01707535 0.9055225
+[30,] 16.77256 0.01664777 0.9120410
 
 $member$storepop
 list()
@@ -4995,7 +4991,7 @@ attr(,"class")
 
 $coefficients
       gamma      lambda       delta         rho 
-16.06113614  0.01708461  0.90668821 -0.80000000 
+16.11384813  0.01704673  0.90709895 -0.80000000 
 
 $iter
 [1] 200
@@ -5025,31 +5021,31 @@ $rho
 [1] -0.8
 
 $fitted.values
- [1]  957.3841 1037.8176 1066.0485 1135.4047 1148.4311 1184.3229 1235.8782
- [8] 1230.5588 1226.7489 1276.0676 1351.8264 1533.8551 1635.3807 1683.5568
-[15] 1622.3936 1635.6589 1679.0033 1744.9532 1868.0039 2003.5944
+ [1]  957.7414 1038.1005 1066.3216 1135.5661 1148.5640 1184.4129 1235.9280
+ [8] 1230.6216 1226.7380 1276.0405 1351.7073 1533.6629 1635.0927 1683.2734
+[15] 1622.1719 1635.4449 1678.8743 1744.8433 1867.8632 2003.3735
 
 $residuals
- [1] -11.251050 -75.087067   3.530653  36.391757  29.684956   1.487103
- [7]   3.479608  58.002092 -19.042748   2.340947   8.766192   6.928951
-[13] -60.346057  12.402567  22.295551  -9.627801 -23.963451  10.646582
-[19]  19.416403 -11.700405
+ [1] -11.608400 -75.370040   3.257597  36.230400  29.552030   1.397112
+ [7]   3.429829  57.939268 -19.031822   2.367978   8.885316   7.121169
+[13] -60.057996  12.685993  22.517233  -9.413750 -23.834429  10.756463
+[19]  19.557061 -11.479484
 
 $rss
-[1] 17440.95
+[1] 17441.71
 
 $cov.unscaled
                gamma        lambda         delta           rho
-gamma   4.777974e+00  4.843743e-06  1.054099e-01 -4.002805e-01
-lambda  4.843743e-06  2.326471e-09  1.634364e-07 -7.419189e-07
-delta   1.054099e-01  1.634364e-07  2.327372e-03 -8.842114e-03
-rho    -4.002805e-01 -7.419189e-07 -8.842114e-03  3.360246e-02
+gamma   4.780055e+00  4.818601e-06  1.049626e-01 -4.001597e-01
+lambda  4.818601e-06  2.325847e-09  1.622215e-07 -7.396633e-07
+delta   1.049626e-01  1.622215e-07  2.306664e-03 -8.798135e-03
+rho    -4.001597e-01 -7.396633e-07 -8.798135e-03  3.356770e-02
 
 $allRhoSum
    rho      rss convergence
-1 -0.8 17440.95          NA
-2  0.0 19026.93          NA
-3  0.8 17663.19          NA
+1 -0.8 17441.71          NA
+2  0.0 19707.29          NA
+3  0.8 18022.39          NA
 
 $rhoValues
 [1] -0.8  0.0  0.8
@@ -5066,7 +5062,7 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Coefficients:
    gamma   lambda    delta      rho 
-16.06114  0.01708  0.90669 -0.80000 
+16.11385  0.01705  0.90710 -0.80000 
 
 Elasticity of Substitution: 5 
 
@@ -5084,15 +5080,15 @@ assuming an additive error term
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
-gamma  16.061136  64.549366   0.249    0.804    
-lambda  0.017085   0.001424  11.995   <2e-16 ***
-delta   0.906688   1.424633   0.636    0.524    
-rho    -0.800000   5.413219  -0.148    0.883    
+gamma  16.113848  64.564820   0.250    0.803    
+lambda  0.017047   0.001424  11.969   <2e-16 ***
+delta   0.907099   1.418312   0.640    0.522    
+rho    -0.800000   5.410536  -0.148    0.882    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Residual standard error: 29.53045 
-Multiple R-squared: 0.990147 
+Residual standard error: 29.53109 
+Multiple R-squared: 0.9901466 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
@@ -5109,13 +5105,13 @@ $DEoptim
 $optim
 $optim$bestmem
       par1       par2       par3 
-15.9454463  0.9315793  1.3028003 
+19.0076637  0.9497385  1.2208439 
 
 $optim$bestval
-[1] 106230.3
+[1] 93305.97
 
 $optim$nfeval
-[1] 6030
+[1] 402
 
 $optim$iter
 [1] 200
@@ -5131,282 +5127,282 @@ $member$upper
 1e+10 1e+00 1e+01 
 
 $member$bestmemit
-            par1       par2       par3
-1   3.706601e+09 0.89265025 0.64299795
-2   3.706601e+09 0.89265025 0.64299795
-3   4.055801e+09 0.78289384 0.33148322
-4   4.055801e+09 0.78289384 0.33148322
-5   6.062633e+08 0.51046237 0.43346809
-6   3.582161e+08 0.66971374 0.59127843
-7   3.582161e+08 0.66971374 0.59127843
-8   1.997830e+08 0.69321241 0.01830512
-9   1.997830e+08 0.69321241 0.01830512
-10  1.997830e+08 0.69321241 0.01830512
-11  1.997830e+08 0.69321241 0.01830512
-12  8.187155e+07 0.97623329 0.19644826
-13  8.187155e+07 0.97623329 0.19644826
-14  4.866986e+06 0.86091617 0.28297683
-15  4.866986e+06 0.86091617 0.28297683
-16  4.866986e+06 0.86091617 0.28297683
-17  4.866986e+06 0.86091617 0.28297683
-18  4.866986e+06 0.86091617 0.28297683
-19  4.866986e+06 0.86091617 0.28297683
-20  4.866986e+06 0.86091617 0.28297683
-21  4.866986e+06 0.86091617 0.28297683
-22  4.866986e+06 0.96251991 0.28297683
-23  5.893881e+06 0.77754255 0.19495127
-24  8.798369e+05 0.49675152 0.30328577
-25  8.798369e+05 0.49675152 0.30328577
-26  1.588885e+06 0.65732957 0.15878623
-27  8.798369e+05 0.98995658 0.30328577
-28  8.798369e+05 0.98995658 0.30328577
-29  8.798369e+05 0.98995658 0.30328577
-30  9.471299e+05 0.55151006 0.23464593
-31  5.313089e+05 0.24504150 0.25697458
-32  5.313089e+05 0.24504150 0.25697458
-33  5.313089e+05 0.24504150 0.25697458
-34  4.410066e+05 0.03518496 0.12550051
-35  4.410066e+05 0.03518496 0.12550051
-36  4.410066e+05 0.62615039 0.12055879
-37  4.410066e+05 0.62615039 0.12055879
-38  1.484905e+05 0.55383922 0.05619392
-39  1.484905e+05 0.55383922 0.05619392
-40  1.484905e+05 0.55383922 0.05619392
-41  1.484905e+05 0.55383922 0.05619392
-42  5.969124e+04 0.87441015 0.13156909
-43  5.969124e+04 0.87441015 0.13156909
-44  5.969124e+04 0.87441015 0.13156909
-45  4.850168e+04 0.65572448 0.03228772
-46  5.558273e+03 0.87441015 0.13156909
-47  5.558273e+03 0.87441015 0.13156909
-48  5.558273e+03 0.87441015 0.13156909
-49  5.558273e+03 0.87441015 0.13156909
-50  5.558273e+03 0.87441015 0.13156909
-51  5.558273e+03 0.87441015 0.13156909
-52  5.558273e+03 0.87441015 0.13156909
-53  5.558273e+03 0.87441015 0.13156909
-54  4.182510e+03 0.87673570 0.15896857
-55  1.186081e+03 0.84649927 0.11384492
-56  1.186081e+03 0.91093713 0.06392186
-57  1.186081e+03 0.91093713 0.05689234
-58  1.186081e+03 0.91093713 0.05689234
-59  1.186081e+03 0.91093713 0.05689234
-60  1.186081e+03 0.91093713 0.05689234
-61  1.186081e+03 0.91093713 0.05689234
-62  1.186081e+03 0.91093713 0.05689234
-63  1.186081e+03 0.91093713 0.05689234
-64  1.186081e+03 0.91093713 0.05689234
-65  1.186081e+03 0.91093713 0.05689234
-66  1.186081e+03 0.91093713 0.05689234
-67  1.186081e+03 0.91093713 0.05689234
-68  1.186081e+03 0.91093713 0.05689234
-69  1.186081e+03 0.91093713 0.05689234
-70  1.186081e+03 0.91093713 0.05689234
-71  1.186081e+03 0.91093713 0.05689234
-72  1.091692e+03 0.77859209 0.07525628
-73  1.091692e+03 0.77859209 0.07525628
-74  9.268208e+02 0.72731352 0.11697443
-75  9.268208e+02 0.72731352 0.11697443
-76  9.268208e+02 0.72731352 0.11697443
-77  8.946722e+02 0.95564883 0.14424377
-78  7.776815e+02 0.87069149 0.17661346
-79  5.733368e+02 0.98529788 0.26290648
-80  5.733368e+02 0.85982583 0.26290648
-81  5.166632e+02 0.97228564 0.29002731
-82  5.166632e+02 0.97228564 0.29002731
-83  4.916680e+02 0.97520664 0.31082902
-84  4.916680e+02 0.97520664 0.31082902
-85  4.916680e+02 0.97520664 0.31082902
-86  4.876859e+02 0.97982729 0.32143795
-87  4.155689e+02 0.91541850 0.36510287
-88  4.155689e+02 0.91541850 0.36510287
-89  3.840586e+02 0.97071419 0.39821451
-90  3.116295e+02 0.95835668 0.43730285
-91  3.116295e+02 0.95835668 0.43730285
-92  3.116295e+02 0.87780707 0.43730285
-93  2.366420e+02 0.87780707 0.50547938
-94  2.137272e+02 0.90873770 0.55234786
-95  2.137272e+02 0.90873770 0.55234786
-96  2.137272e+02 0.90873770 0.55234786
-97  2.137272e+02 0.90873770 0.55234786
-98  2.099472e+02 0.97520664 0.57388149
-99  2.099472e+02 0.97520664 0.57388149
-100 2.099472e+02 0.97520664 0.57388149
-101 1.819354e+02 0.98385560 0.60855471
-102 1.819354e+02 0.98385560 0.60855471
-103 1.819354e+02 0.98385560 0.60855471
-104 1.819354e+02 0.98385560 0.60855471
-105 1.618816e+02 0.93403217 0.63402926
-106 1.618816e+02 0.93403217 0.63402926
-107 1.618816e+02 0.93403217 0.63402926
-108 1.148194e+02 0.84331682 0.71413997
-109 1.148194e+02 0.84331682 0.71413997
-110 1.148194e+02 0.84331682 0.71413997
-111 1.148194e+02 0.84331682 0.71413997
-112 1.140847e+02 0.82180932 0.70633390
-113 1.140847e+02 0.82180932 0.70633390
-114 7.497474e+01 0.82788489 0.83522321
-115 7.497474e+01 0.82788489 0.83522321
-116 7.070324e+01 0.90763963 0.85293664
-117 7.070324e+01 0.90763963 0.85293664
-118 7.958139e+01 0.95659059 0.83976921
-119 7.958139e+01 0.95659059 0.83976921
-120 7.497474e+01 0.87261199 0.83522321
-121 7.497474e+01 0.87261199 0.83522321
-122 5.332075e+01 0.98148147 0.96803877
-123 5.332075e+01 0.98148147 0.96803877
-124 5.332075e+01 0.98148147 0.96803877
-125 5.332075e+01 0.98148147 0.96803877
-126 5.332075e+01 0.98148147 0.96803877
-127 5.332075e+01 0.98148147 0.96803877
-128 5.332075e+01 0.98148147 0.96803877
-129 3.652937e+01 0.92149034 1.05096522
-130 3.652937e+01 0.92149034 1.05096522
-131 3.652937e+01 0.92149034 1.05096522
-132 3.652937e+01 0.92149034 1.05096522
-133 3.652937e+01 0.92149034 1.05096522
-134 3.652937e+01 0.92149034 1.05537682
-135 2.746494e+01 0.97036950 1.15687800
-136 2.746494e+01 0.97036950 1.15687800
-137 2.746494e+01 0.97036950 1.15687800
-138 2.746494e+01 0.97036950 1.15687800
-139 2.746494e+01 0.97036950 1.15687800
-140 2.746494e+01 0.97036950 1.15687800
-141 2.746494e+01 0.97036950 1.15687800
-142 2.746494e+01 0.97036950 1.15687800
-143 2.746494e+01 0.97036950 1.15687800
-144 2.746494e+01 0.97036950 1.15687800
-145 2.746494e+01 0.97036950 1.15687800
-146 2.746494e+01 0.97036950 1.15687800
-147 2.746494e+01 0.97036950 1.15687800
-148 2.746494e+01 0.97036950 1.15687800
-149 1.594545e+01 0.93157928 1.30280033
-150 1.594545e+01 0.93157928 1.30280033
-151 1.594545e+01 0.93157928 1.30280033
-152 1.594545e+01 0.93157928 1.30280033
-153 1.594545e+01 0.93157928 1.30280033
-154 1.594545e+01 0.93157928 1.30280033
-155 1.594545e+01 0.93157928 1.30280033
-156 1.594545e+01 0.93157928 1.30280033
-157 1.594545e+01 0.93157928 1.30280033
-158 1.594545e+01 0.93157928 1.30280033
-159 1.594545e+01 0.93157928 1.30280033
-160 1.594545e+01 0.93157928 1.30280033
-161 1.594545e+01 0.93157928 1.30280033
-162 1.594545e+01 0.93157928 1.30280033
-163 1.594545e+01 0.93157928 1.30280033
-164 1.594545e+01 0.93157928 1.30280033
-165 1.594545e+01 0.93157928 1.30280033
-166 1.594545e+01 0.93157928 1.30280033
-167 1.594545e+01 0.93157928 1.30280033
-168 1.594545e+01 0.93157928 1.30280033
-169 1.594545e+01 0.93157928 1.30280033
-170 1.594545e+01 0.93157928 1.30280033
-171 1.594545e+01 0.93157928 1.30280033
-172 1.594545e+01 0.93157928 1.30280033
-173 1.594545e+01 0.93157928 1.30280033
-174 1.594545e+01 0.93157928 1.30280033
-175 1.594545e+01 0.93157928 1.30280033
-176 1.594545e+01 0.93157928 1.30280033
-177 1.594545e+01 0.93157928 1.30280033
-178 1.594545e+01 0.93157928 1.30280033
-179 1.594545e+01 0.93157928 1.30280033
-180 1.594545e+01 0.93157928 1.30280033
-181 1.594545e+01 0.93157928 1.30280033
-182 1.594545e+01 0.93157928 1.30280033
-183 1.594545e+01 0.93157928 1.30280033
-184 1.594545e+01 0.93157928 1.30280033
-185 1.594545e+01 0.93157928 1.30280033
-186 1.594545e+01 0.93157928 1.30280033
-187 1.594545e+01 0.93157928 1.30280033
-188 1.594545e+01 0.93157928 1.30280033
-189 1.594545e+01 0.93157928 1.30280033
-190 1.594545e+01 0.93157928 1.30280033
-191 1.594545e+01 0.93157928 1.30280033
-192 1.594545e+01 0.93157928 1.30280033
-193 1.594545e+01 0.93157928 1.30280033
-194 1.594545e+01 0.93157928 1.30280033
-195 1.594545e+01 0.93157928 1.30280033
-196 1.594545e+01 0.93157928 1.30280033
-197 1.594545e+01 0.93157928 1.30280033
-198 1.594545e+01 0.93157928 1.30280033
-199 1.594545e+01 0.93157928 1.30280033
-200 1.594545e+01 0.93157928 1.30280033
+            par1      par2       par3
+1   9.091395e+09 0.9720014 1.95862766
+2   4.875299e+09 0.7598593 0.70421318
+3   6.347149e+09 0.9328475 0.29028602
+4   4.406888e+09 0.8623137 0.04925761
+5   4.384097e+08 0.6543783 0.23766714
+6   4.384097e+08 0.6543783 0.23766714
+7   4.384097e+08 0.6543783 0.23766714
+8   2.221787e+08 0.6543783 0.23766714
+9   1.654827e+08 0.7727115 0.28820269
+10  7.427745e+06 0.8702423 0.48930499
+11  7.427745e+06 0.8702423 0.48930499
+12  7.427745e+06 0.8702423 0.48930499
+13  7.427745e+06 0.8702423 0.48930499
+14  1.205657e+07 0.8445361 0.28056272
+15  7.293771e+06 0.9532201 0.25169874
+16  7.293771e+06 0.9532201 0.25169874
+17  7.293771e+06 0.7864226 0.16774756
+18  7.293771e+06 0.7864226 0.16774756
+19  7.293771e+06 0.7864226 0.16774756
+20  7.293771e+06 0.7864226 0.16774756
+21  7.293771e+06 0.7864226 0.16774756
+22  2.221256e+06 0.2558610 0.21275006
+23  2.221256e+06 0.2558610 0.21275006
+24  2.221256e+06 0.2558610 0.21275006
+25  1.895339e+06 0.8702423 0.24113970
+26  1.895339e+06 0.8702423 0.24113970
+27  1.895339e+06 0.8702423 0.24113970
+28  1.895339e+06 0.8702423 0.24113970
+29  2.221256e+06 0.7681101 0.11173953
+30  2.221256e+06 0.7681101 0.11173953
+31  2.221256e+06 0.7681101 0.11173953
+32  1.361530e+05 0.7346280 0.18861091
+33  1.361530e+05 0.7346280 0.18861091
+34  1.361530e+05 0.8889807 0.18861091
+35  1.361530e+05 0.8889807 0.18861091
+36  3.186222e+04 0.7784639 0.27231915
+37  3.186222e+04 0.7784639 0.27231915
+38  3.186222e+04 0.7784639 0.27231915
+39  3.186222e+04 0.8590350 0.27231915
+40  3.186222e+04 0.8590350 0.27231915
+41  3.186222e+04 0.8590350 0.27231915
+42  3.186222e+04 0.8590350 0.27231915
+43  3.186222e+04 0.8590350 0.27231915
+44  3.186222e+04 0.8590350 0.27231915
+45  3.186222e+04 0.8590350 0.21082205
+46  3.055093e+04 0.9718696 0.11295534
+47  7.651917e+03 0.9706071 0.12518300
+48  7.651917e+03 0.9706071 0.12518300
+49  7.651917e+03 0.9706071 0.12518300
+50  7.651917e+03 0.9706071 0.12518300
+51  7.651917e+03 0.9706071 0.12518300
+52  7.651917e+03 0.9706071 0.12518300
+53  6.507033e+03 0.9706071 0.12518300
+54  6.507033e+03 0.9706071 0.12518300
+55  2.074361e+03 0.9966525 0.06249091
+56  2.074361e+03 0.9966525 0.06249091
+57  2.074361e+03 0.9966525 0.06249091
+58  2.074361e+03 0.9966525 0.06249091
+59  8.846360e+02 0.9889369 0.07755811
+60  8.846360e+02 0.9889369 0.07799800
+61  8.846360e+02 0.9889369 0.07799800
+62  8.846360e+02 0.9889369 0.07799800
+63  1.305871e+03 0.9888737 0.03025924
+64  1.305871e+03 0.9888737 0.03025924
+65  1.305871e+03 0.9888737 0.03025924
+66  1.305871e+03 0.9888737 0.03025924
+67  1.305871e+03 0.9888737 0.03025924
+68  1.305871e+03 0.9888737 0.03025924
+69  1.305871e+03 0.9888737 0.03025924
+70  1.305871e+03 0.9888737 0.03025924
+71  1.305871e+03 0.9888737 0.03025924
+72  1.305871e+03 0.9888737 0.03025924
+73  1.188545e+03 0.8444447 0.04469092
+74  1.188545e+03 0.8444447 0.04469092
+75  1.188545e+03 0.8444447 0.04469092
+76  1.188545e+03 0.8444447 0.04469092
+77  1.188545e+03 0.8444447 0.04469092
+78  9.697460e+02 0.9232107 0.09049151
+79  8.578783e+02 0.7874529 0.12011814
+80  8.791898e+02 0.9125580 0.12413998
+81  7.638460e+02 0.8179635 0.15232525
+82  7.638460e+02 0.8179635 0.15232525
+83  7.638460e+02 0.8179635 0.15232525
+84  4.837920e+02 0.6854278 0.23533897
+85  4.837920e+02 0.6854278 0.23533897
+86  5.006427e+02 0.6685364 0.23159659
+87  5.559667e+02 0.8033536 0.23159659
+88  5.052814e+02 0.8572261 0.26436595
+89  5.052814e+02 0.8572261 0.26436595
+90  5.052814e+02 0.8572261 0.26436595
+91  5.052814e+02 0.8572261 0.26436595
+92  4.449445e+02 0.7617553 0.28032969
+93  4.449445e+02 0.7617553 0.28032969
+94  5.629922e+02 0.9393591 0.25937365
+95  5.629922e+02 0.9393591 0.25937365
+96  4.550969e+02 0.8801587 0.29777798
+97  3.319344e+02 0.6683411 0.33388646
+98  4.774114e+02 0.9610550 0.30504896
+99  4.774114e+02 0.9610550 0.30504896
+100 4.774114e+02 0.9610550 0.30504896
+101 3.230072e+02 0.7532265 0.35793637
+102 3.230072e+02 0.7532265 0.35793637
+103 3.230072e+02 0.7532265 0.35793637
+104 3.230072e+02 0.7532265 0.35793637
+105 3.230072e+02 0.7532265 0.35793637
+106 3.230072e+02 0.7532265 0.35793637
+107 3.845159e+02 0.9544684 0.36704898
+108 2.128151e+02 0.7392835 0.44630771
+109 2.128151e+02 0.7392835 0.44630771
+110 3.053865e+02 0.9638326 0.43602301
+111 3.053865e+02 0.9638326 0.43602301
+112 3.053865e+02 0.9638326 0.43602301
+113 3.053865e+02 0.9638326 0.43602301
+114 2.787366e+02 0.9914687 0.47552481
+115 2.787366e+02 0.9914687 0.47552481
+116 2.787366e+02 0.9914687 0.47552481
+117 2.787366e+02 0.9914687 0.47552481
+118 2.787366e+02 0.9914687 0.47552481
+119 2.235093e+02 0.9867042 0.54381420
+120 2.235093e+02 0.9867042 0.54381420
+121 2.235093e+02 0.9867042 0.54381420
+122 2.235093e+02 0.9867042 0.54381420
+123 2.235093e+02 0.9867042 0.54381420
+124 2.235093e+02 0.9867042 0.54381420
+125 1.785399e+02 0.9438625 0.59071699
+126 1.785399e+02 0.9438625 0.59071699
+127 1.785399e+02 0.9438625 0.59071699
+128 1.785399e+02 0.9438625 0.59071699
+129 1.785399e+02 0.9438625 0.59071699
+130 1.603893e+02 0.9410544 0.61462068
+131 1.603893e+02 0.9410544 0.61462068
+132 1.603893e+02 0.9410544 0.61462068
+133 1.603893e+02 0.9410544 0.61462068
+134 1.603893e+02 0.9410544 0.61462068
+135 1.603893e+02 0.9410544 0.61462068
+136 1.603893e+02 0.9410544 0.61462068
+137 1.685970e+02 0.9598941 0.61488486
+138 1.685970e+02 0.9598941 0.61488486
+139 1.685970e+02 0.9598941 0.61488486
+140 1.685970e+02 0.9598941 0.61488486
+141 1.545564e+02 0.9438790 0.62840021
+142 1.545564e+02 0.9438790 0.62840021
+143 1.307379e+02 0.9174637 0.66019944
+144 1.307379e+02 0.9174637 0.66019944
+145 1.111065e+02 0.9396550 0.71001733
+146 1.269086e+02 0.9435936 0.68578011
+147 1.143822e+02 0.9245236 0.69776837
+148 9.982021e+01 0.9067078 0.72274785
+149 1.110970e+02 0.9290921 0.71211037
+150 1.085648e+02 0.9310998 0.72397379
+151 1.085648e+02 0.9310998 0.72397379
+152 9.667306e+01 0.9519502 0.76868612
+153 1.084690e+02 0.9972526 0.76391292
+154 9.580315e+01 0.9771132 0.78806296
+155 9.549856e+01 0.9970783 0.79943297
+156 9.549856e+01 0.9970783 0.79943297
+157 7.000479e+01 0.9384294 0.85304634
+158 6.796596e+01 0.9461337 0.85938890
+159 6.796596e+01 0.9461337 0.85938890
+160 6.796596e+01 0.9461337 0.85938890
+161 6.796596e+01 0.9461337 0.85938890
+162 5.689366e+01 0.9621768 0.91882324
+163 5.937542e+01 0.9649106 0.91815561
+164 5.937542e+01 0.9649106 0.91815561
+165 4.918615e+01 0.9484396 0.96102882
+166 4.918615e+01 0.9484396 0.96102882
+167 5.463157e+01 0.9897562 0.95618371
+168 5.463157e+01 0.9897562 0.95618371
+169 5.463157e+01 0.9897562 0.95618371
+170 5.463157e+01 0.9897562 0.95618371
+171 5.463157e+01 0.9897562 0.95618371
+172 5.075101e+01 0.9887714 0.97850378
+173 5.075101e+01 0.9887714 0.97850378
+174 5.075101e+01 0.9887714 0.97850378
+175 5.075101e+01 0.9887714 0.97850378
+176 5.075101e+01 0.9887714 0.97850378
+177 3.404196e+01 0.9484396 1.05433585
+178 3.461367e+01 0.9589882 1.06382870
+179 3.311681e+01 0.9533748 1.07239779
+180 3.549255e+01 0.9995669 1.09444105
+181 2.546894e+01 0.9998179 1.19803191
+182 2.062641e+01 0.9964148 1.24616980
+183 2.062641e+01 0.9964148 1.24616980
+184 2.062641e+01 0.9964148 1.24616980
+185 2.182682e+01 0.9669889 1.20414935
+186 2.182682e+01 0.9669889 1.20414935
+187 2.182682e+01 0.9669889 1.20414935
+188 2.182682e+01 0.9669889 1.20414935
+189 2.182682e+01 0.9669889 1.20414935
+190 2.182682e+01 0.9669889 1.20414935
+191 2.182682e+01 0.9669889 1.20414935
+192 2.182682e+01 0.9669889 1.20414935
+193 2.182682e+01 0.9669889 1.20414935
+194 2.182682e+01 0.9669889 1.20414935
+195 1.900766e+01 0.9497385 1.22084387
+196 1.900766e+01 0.9497385 1.22084387
+197 1.900766e+01 0.9497385 1.22084387
+198 1.900766e+01 0.9497385 1.22084387
+199 1.900766e+01 0.9497385 1.22084387
+200 1.900766e+01 0.9497385 1.22084387
 
 $member$bestvalit
-  [1] 2.473668e+22 2.473668e+22 3.675192e+21 3.675192e+21 2.598378e+20
-  [6] 2.352652e+20 2.352652e+20 9.163611e+17 9.163611e+17 9.163611e+17
- [11] 9.163611e+17 5.070354e+17 5.070354e+17 3.495369e+15 3.495369e+15
- [16] 3.495369e+15 3.495369e+15 3.495369e+15 3.495369e+15 3.495369e+15
- [21] 3.495369e+15 3.252298e+15 2.876666e+15 1.903890e+14 1.903890e+14
- [26] 1.702872e+14 1.196042e+14 1.196042e+14 1.196042e+14 1.184762e+14
- [31] 6.795593e+13 6.795593e+13 6.795593e+13 1.792298e+13 1.792298e+13
- [36] 9.882476e+12 9.882476e+12 6.820605e+11 6.820605e+11 6.820605e+11
- [41] 6.820605e+11 1.741417e+11 1.741417e+11 1.741417e+11 5.718951e+10
- [46] 1.097326e+09 1.097326e+09 1.097326e+09 1.097326e+09 1.097326e+09
- [51] 1.097326e+09 1.097326e+09 1.097326e+09 6.941006e+08 4.057774e+06
- [56] 1.692883e+06 1.644623e+06 1.644623e+06 1.644623e+06 1.644623e+06
- [61] 1.644623e+06 1.644623e+06 1.644623e+06 1.644623e+06 1.644623e+06
- [66] 1.644623e+06 1.644623e+06 1.644623e+06 1.644623e+06 1.644623e+06
- [71] 1.644623e+06 1.592287e+06 1.592287e+06 1.490696e+06 1.490696e+06
- [76] 1.490696e+06 1.458308e+06 1.362218e+06 1.177701e+06 1.177050e+06
- [81] 1.139475e+06 1.139475e+06 1.065741e+06 1.065741e+06 1.065741e+06
- [86] 1.049195e+06 9.965576e+05 9.965576e+05 9.592932e+05 8.617686e+05
- [91] 8.617686e+05 8.337321e+05 7.336469e+05 6.499900e+05 6.499900e+05
- [96] 6.499900e+05 6.499900e+05 6.358453e+05 6.358453e+05 6.358453e+05
-[101] 5.527038e+05 5.527038e+05 5.527038e+05 5.527038e+05 5.192573e+05
-[106] 5.192573e+05 5.192573e+05 4.365519e+05 4.365519e+05 4.365519e+05
-[111] 4.365519e+05 4.321285e+05 4.321285e+05 3.747419e+05 3.747419e+05
-[116] 3.389353e+05 3.389353e+05 2.984438e+05 2.984438e+05 2.927253e+05
-[121] 2.927253e+05 1.865773e+05 1.865773e+05 1.865773e+05 1.865773e+05
-[126] 1.865773e+05 1.865773e+05 1.865773e+05 1.664691e+05 1.664691e+05
-[131] 1.664691e+05 1.664691e+05 1.664691e+05 1.429821e+05 1.090030e+05
-[136] 1.090030e+05 1.090030e+05 1.090030e+05 1.090030e+05 1.090030e+05
-[141] 1.090030e+05 1.090030e+05 1.090030e+05 1.090030e+05 1.090030e+05
-[146] 1.090030e+05 1.090030e+05 1.090030e+05 1.062303e+05 1.062303e+05
-[151] 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05
-[156] 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05
-[161] 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05
-[166] 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05
-[171] 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05
-[176] 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05
-[181] 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05
-[186] 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05
-[191] 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05
-[196] 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05 1.062303e+05
+  [1] 1.435314e+27 1.594855e+23 6.414258e+21 5.643105e+20 3.194401e+19
+  [6] 3.194401e+19 3.194401e+19 8.204140e+18 5.754542e+18 4.440873e+16
+ [11] 4.440873e+16 4.440873e+16 4.440873e+16 2.525507e+16 6.219510e+15
+ [16] 6.219510e+15 4.118396e+15 4.118396e+15 4.118396e+15 4.118396e+15
+ [21] 4.118396e+15 1.123908e+15 1.123908e+15 1.123908e+15 4.424699e+14
+ [26] 4.424699e+14 4.424699e+14 4.424699e+14 2.460405e+14 2.460405e+14
+ [31] 2.460405e+14 1.790350e+12 1.790350e+12 1.487187e+12 1.487187e+12
+ [36] 1.800749e+11 1.800749e+11 1.800749e+11 1.563597e+11 1.563597e+11
+ [41] 1.563597e+11 1.563597e+11 1.563597e+11 1.563597e+11 9.702415e+10
+ [46] 3.814020e+10 2.150702e+09 2.150702e+09 2.150702e+09 2.150702e+09
+ [51] 2.150702e+09 2.150702e+09 1.481745e+09 1.481745e+09 2.779353e+07
+ [56] 2.779353e+07 2.779353e+07 2.779353e+07 2.990539e+06 2.971469e+06
+ [61] 2.971469e+06 2.971469e+06 1.715190e+06 1.715190e+06 1.715190e+06
+ [66] 1.715190e+06 1.715190e+06 1.715190e+06 1.715190e+06 1.715190e+06
+ [71] 1.715190e+06 1.715190e+06 1.666033e+06 1.666033e+06 1.666033e+06
+ [76] 1.666033e+06 1.666033e+06 1.662704e+06 1.517086e+06 1.506835e+06
+ [81] 1.446831e+06 1.446831e+06 1.446831e+06 1.398921e+06 1.398921e+06
+ [86] 1.323308e+06 1.282394e+06 1.223008e+06 1.223008e+06 1.223008e+06
+ [91] 1.223008e+06 1.191339e+06 1.191339e+06 1.182953e+06 1.182953e+06
+ [96] 1.150176e+06 1.130945e+06 1.120534e+06 1.120534e+06 1.120534e+06
+[101] 1.049374e+06 1.049374e+06 1.049374e+06 1.049374e+06 1.049374e+06
+[106] 1.049374e+06 9.893603e+05 9.505987e+05 9.505987e+05 8.662139e+05
+[111] 8.662139e+05 8.662139e+05 8.662139e+05 7.807804e+05 7.807804e+05
+[116] 7.807804e+05 7.807804e+05 7.807804e+05 6.527934e+05 6.527934e+05
+[121] 6.527934e+05 6.527934e+05 6.527934e+05 6.527934e+05 6.040302e+05
+[126] 6.040302e+05 6.040302e+05 6.040302e+05 6.040302e+05 5.674617e+05
+[131] 5.674617e+05 5.674617e+05 5.674617e+05 5.674617e+05 5.674617e+05
+[136] 5.674617e+05 5.610739e+05 5.610739e+05 5.610739e+05 5.610739e+05
+[141] 5.458767e+05 5.458767e+05 5.139190e+05 5.139190e+05 4.799649e+05
+[146] 4.729713e+05 4.689712e+05 4.518943e+05 4.439569e+05 4.391092e+05
+[151] 4.391092e+05 3.741814e+05 3.596961e+05 3.425905e+05 3.254452e+05
+[156] 3.254452e+05 3.094418e+05 2.839615e+05 2.839615e+05 2.839615e+05
+[161] 2.839615e+05 2.432428e+05 2.345492e+05 2.345492e+05 2.264166e+05
+[166] 2.264166e+05 2.003524e+05 2.003524e+05 2.003524e+05 2.003524e+05
+[171] 2.003524e+05 1.819322e+05 1.819322e+05 1.819322e+05 1.819322e+05
+[176] 1.819322e+05 1.504590e+05 1.398168e+05 1.392477e+05 1.238022e+05
+[181] 1.136314e+05 1.065872e+05 1.065872e+05 1.065872e+05 9.913573e+04
+[186] 9.913573e+04 9.913573e+04 9.913573e+04 9.913573e+04 9.913573e+04
+[191] 9.913573e+04 9.913573e+04 9.913573e+04 9.913573e+04 9.330597e+04
+[196] 9.330597e+04 9.330597e+04 9.330597e+04 9.330597e+04 9.330597e+04
 
 $member$pop
            [,1]      [,2]      [,3]
- [1,]  53.32075 0.9718256 0.9680388
- [2,]  27.46494 0.9703695 1.1568780
- [3,]  54.93186 0.9983118 0.9610684
- [4,] 254.39329 0.7943712 0.4804322
- [5,]  36.52937 0.9214903 1.0558073
- [6,] 167.54491 0.9632185 0.6332120
- [7,]  44.09548 0.9331950 1.0099069
- [8,]  12.53948 0.9997174 1.3944026
- [9,]  20.93741 0.9257930 1.2083623
-[10,]  62.48422 0.9825950 0.9233798
-[11,] 175.04168 0.8000136 0.5776650
-[12,] 157.92648 0.9239496 0.6300552
-[13,] 212.92799 0.9162534 0.5482948
-[14,] 214.27500 0.9164817 0.5480549
-[15,] 186.67972 0.8196555 0.5691775
-[16,]  29.31718 0.9056904 1.1168236
-[17,]  72.57688 0.8385832 0.8254187
-[18,] 235.40485 0.8368232 0.5054794
-[19,]  15.94545 0.9315793 1.3028003
-[20,] 158.76565 0.9490712 0.6410303
-[21,] 170.01163 0.9817801 0.6371343
-[22,]  79.58139 0.9565906 0.8464915
-[23,]  11.77127 0.6622278 1.2434792
-[24,] 573.33675 0.9204101 0.2629065
-[25,]  48.38153 0.9304789 0.9799230
-[26,] 151.47453 0.9832242 0.6652097
-[27,] 174.20098 0.9810668 0.6224347
-[28,]  70.70324 0.8757472 0.8529366
-[29,]  74.97474 0.8700378 0.8352232
-[30,]  44.76664 0.8575578 0.9792861
+ [1,]  69.97557 0.9726171 0.8730678
+ [2,]  24.68723 0.9851165 1.1821215
+ [3,] 101.55900 0.9839422 0.7739480
+ [4,]  54.63157 0.9873575 0.9561837
+ [5,]  28.66823 0.9878058 1.1360737
+ [6,]  35.45082 0.9687778 1.0715058
+ [7,]  50.75101 0.9887714 0.9785038
+ [8,] 113.82498 0.9593746 0.7228463
+ [9,]  23.38165 0.9274582 1.1414583
+[10,]  73.17126 0.9878008 0.8732442
+[11,]  71.98841 0.9724644 0.8652518
+[12,]  23.87507 0.9873762 1.1949311
+[13,]  52.79791 0.9057693 0.8980094
+[14,]  58.28371 0.9874012 0.9427592
+[15,]  47.55098 0.9519302 0.9688663
+[16,]  76.56829 0.9257368 0.8069148
+[17,]  65.51206 0.9738515 0.8917043
+[18,]  34.61367 0.9589882 1.0638287
+[19,]  57.46660 0.9991709 0.9533336
+[20,]  21.82682 0.9669889 1.2041493
+[21,]  33.11681 0.9533748 1.0723978
+[22,]  59.37542 0.9649106 0.9181556
+[23,]  78.46572 0.9758000 0.8441568
+[24,]  35.49255 0.9995669 1.0944410
+[25,] 165.49022 0.9859935 0.6326759
+[26,]  22.34817 0.9591905 1.1951003
+[27,]  30.64088 0.9733697 1.1018011
+[28,]  19.00766 0.9497385 1.2208439
+[29,]  85.47365 0.9716954 0.8126001
+[30,]  25.46894 0.9998179 1.1980319
 
 $member$storepop
 list()
@@ -5417,14 +5413,14 @@ attr(,"class")
 
 $coefficients
      gamma      delta        rho         nu 
-15.9454463  0.9315793  0.8000000  1.3028003 
+19.0076637  0.9497385  0.0000000  1.2208439 
 
 $iter
 [1] 200
 
 $ela
 E_1_2 (all) 
-  0.5555556 
+          1 
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
@@ -5444,34 +5440,34 @@ $upper
 [1] 1e+10 1e+00 1e+01
 
 $rho
-[1] 0.8
+[1] 0
 
 $fitted.values
- [1] 1077.637 1126.319 1155.970 1169.944 1169.864 1189.494 1231.414 1234.769
- [9] 1186.220 1240.941 1284.752 1481.882 1562.648 1633.239 1588.401 1611.622
-[17] 1720.737 1822.360 1975.820 2120.475
+ [1] 1083.873 1132.930 1159.720 1176.971 1176.268 1194.859 1234.152 1234.532
+ [9] 1190.196 1240.113 1282.808 1466.367 1542.055 1603.870 1557.630 1575.855
+[17] 1668.776 1756.946 1893.110 2022.441
 
 $residuals
- [1] -131.504440 -163.588672  -86.390773    1.852877    8.252098   -3.684126
- [7]    7.943335   53.791584   21.486004   37.467939   75.840689   58.901914
-[13]   12.386913   62.719916   56.288202   14.409113  -65.697617  -66.760142
-[19]  -88.399577 -128.580718
+ [1] -137.740027 -170.199210  -90.140686   -5.174667    1.847544   -9.048774
+ [7]    5.205956   54.028689   17.510094   38.295367   77.784243   74.416980
+[13]   32.979715   92.088908   87.058724   50.175631  -13.736330   -1.346315
+[19]   -5.689924  -30.547326
 
 $rss
-[1] 106230.3
+[1] 93305.97
 
 $cov.unscaled
-              gamma         delta           rho            nu
-gamma  3.923249e+02 22.6951802956 -1.142956e+02 -4.797812e-03
-delta  2.269518e+01  1.3131158695 -6.614692e+00 -2.502118e-04
-rho   -1.142956e+02 -6.6146921931  3.333286e+01  1.086332e-03
-nu    -4.797812e-03 -0.0002502118  1.086332e-03  3.464849e-06
+             gamma         delta           rho            nu
+gamma 18.060789140  4.958905e-01 -3.3249010141 -1.580819e-03
+delta  0.495890524  1.364498e-02 -0.0915623279 -3.366746e-05
+rho   -3.324901014 -9.156233e-02  0.6146227761  2.032283e-04
+nu    -0.001580819 -3.366746e-05  0.0002032283  3.515921e-06
 
 $allRhoSum
-   rho      rss convergence
-1 -0.8 212123.6          NA
-2  0.0 108668.1          NA
-3  0.8 106230.3          NA
+   rho       rss convergence
+1 -0.8 158946.91          NA
+2  0.0  93305.97          NA
+3  0.8 109532.71          NA
 
 $rhoValues
 [1] -0.8  0.0  0.8
@@ -5488,9 +5484,9 @@ cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms,
 
 Coefficients:
   gamma   delta     rho      nu 
-15.9454  0.9316  0.8000  1.3028 
+19.0077  0.9497  0.0000  1.2208 
 
-Elasticity of Substitution: 0.5556 
+Elasticity of Substitution: 1 
 
 > summary( cesGridDeVrs )
 Estimated CES function with variable returns to scale
@@ -5505,35 +5501,38 @@ and a one-dimensional grid search for coefficient 'rho'
 assuming an additive error term
 
 Coefficients:
-       Estimate Std. Error t value Pr(>|t|)    
-gamma   15.9454  1443.5511   0.011    0.991    
-delta    0.9316    83.5143   0.011    0.991    
-rho      0.8000   420.7707   0.002    0.998    
-nu       1.3028     0.1357   9.603   <2e-16 ***
+      Estimate Std. Error t value Pr(>|t|)    
+gamma  19.0077   290.2740   0.065    0.948    
+delta   0.9497     7.9786   0.119    0.905    
+rho     0.0000    53.5481   0.000    1.000    
+nu      1.2208     0.1281   9.532   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
-Residual standard error: 72.88014 
-Multiple R-squared: 0.9399868 
+Residual standard error: 68.30299 
+Multiple R-squared: 0.9472882 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)   0.5556   129.8675   0.004    0.997
+E_1_2 (all)     1.00      53.55   0.019    0.985
 
 > coef( cesGridDeVrs )
      gamma      delta        rho         nu 
-15.9454463  0.9315793  0.8000000  1.3028003 
+19.0076637  0.9497385  0.0000000  1.2208439 
 > vcov( cesGridDeVrs )
-              gamma         delta           rho          nu
-gamma 2083839.78439 120545.789374 -6.070826e+05 -25.4836518
-delta  120545.78937   6974.634568 -3.513404e+04  -1.3290036
-rho   -607082.55576 -35134.036456  1.770480e+05   5.7700667
-nu        -25.48365     -1.329004  5.770067e+00   0.0184036
+              gamma        delta           rho          nu
+gamma  84258.975342 2313.4773970 -1.551166e+04 -7.37499387
+delta   2313.477397   63.6579292 -4.271656e+02 -0.15706876
+rho   -15511.656240 -427.1656054  2.867399e+03  0.94812053
+nu        -7.374994   -0.1570688  9.481205e-01  0.01640282
 > coef( summary( cesGridDeVrs ) )
-        Estimate   Std. Error     t value     Pr(>|t|)
-gamma 15.9454463 1443.5511021 0.011045987 9.911868e-01
-delta  0.9315793   83.5142776 0.011154731 9.911000e-01
-rho    0.8000000  420.7706843 0.001901273 9.984830e-01
-nu     1.3028003    0.1356599 9.603432081 7.732581e-22
+        Estimate  Std. Error    t value     Pr(>|t|)
+gamma 19.0076637 290.2739660 0.06548181 9.477904e-01
+delta  0.9497385   7.9785919 0.11903585 9.052469e-01
+rho    0.0000000  53.5480981 0.00000000 1.000000e+00
+nu     1.2208439   0.1280735 9.53236909 1.537341e-21
 > plot( cesGridDeVrs )
 > 
+> proc.time()
+   user  system elapsed 
+ 49.247   0.044  49.331 
