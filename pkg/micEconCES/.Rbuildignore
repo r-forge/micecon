@@ -27,3 +27,5 @@ tests/nested3.R
 tests/nested3.Rout.save
 tests/rhoFixed.R
 tests/rhoFixed.Rout.save
+^.*\.Rproj$
+^\.Rproj\.user$
