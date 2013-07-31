@@ -38,8 +38,8 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
 \arguments{
    \item{yName}{a string containing the name of the dependent
       variable.}
-   \item{xNames}{a vector of two strings containing the names of the
-      independent variables.}
+   \item{xNames}{a vector of two, three or four character strings containing 
+      the names of the independent variables.}
    \item{data}{data frame containing the data.}
    \item{tName}{optional character string specifying the name of the 
       time variable (\eqn{t}).}
