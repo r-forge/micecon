@@ -1,5 +1,6 @@
 # load the micEconNP package
 library( micEconNP )
+options( digits = 4 )
 
 # load data
 data( germanFarms )
