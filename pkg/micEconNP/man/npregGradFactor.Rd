@@ -9,13 +9,18 @@
 }
 
 \usage{
-   npregGradFactor( x, varName )
+   npregGradFactor( x, varName, onlyOwnLevels = TRUE )
 }
 
 \arguments{
    \item{x}{an object of class \code{npregression}
       (returned by \code{\link[np]{npreg}}).}
    \item{varName}{name of the categorical variable.}
+   \item{onlyOwnLevels}{logical. If \code{TRUE} (default),
+      the gradients with respect to a specific level
+      are only retured for observations
+      that are of this level.
+      All other gradients are \code{NA}.}
 }
 
 
@@ -38,8 +43,17 @@
       regtype = "ll", gradients = TRUE, data = oecdpanel )
    round( gradients( npModel ), 3 )
    yearGrad <- npregGradFactor( npModel, "yearFactor" )
+   round( yearGrad, 3 )
    colMeans( yearGrad, na.rm = TRUE )
    colMedians( yearGrad, na.rm = TRUE )
+   all.equal( gradients( npModel )[ , 1 ], rowSums( yearGrad, na.rm = TRUE ) )
+
+   yearGradAll <- npregGradFactor( npModel, "yearFactor", onlyOwnLevels = FALSE )
+   round( yearGradAll, 3 )
+   colMeans( yearGradAll )
+   colMedians( yearGradAll )
+
+   all.equal( yearGradAll[ !is.na( yearGrad ) ], yearGrad[ !is.na( yearGrad ) ] )
 }
 
 \keyword{models}
