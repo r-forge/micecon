@@ -649,7 +649,7 @@ Loading required package: miscTools
 [615,] -0.035  0.047
 [616,] -0.020  0.034
 > 
-> yearGrad <- npregGradFactor( npModel, "yearFactor", oecdpanel )
+> yearGrad <- npregGradFactor( npModel, "yearFactor" )
 > 
 > round( yearGrad, 3 )
        yearFactor: 1965 -> 1970 yearFactor: 1965 -> 1975
@@ -2519,4 +2519,4 @@ yearFactor: 1965 -> 1985 yearFactor: 1965 -> 1990 yearFactor: 1965 -> 1995
 > 
 > proc.time()
    user  system elapsed 
- 11.532   0.036  11.570 
+  8.040   0.028   8.072 

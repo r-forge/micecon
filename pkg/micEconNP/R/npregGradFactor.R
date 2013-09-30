@@ -1,11 +1,8 @@
-npregGradFactor <- function( x, varName, data ) {
+npregGradFactor <- function( x, varName ) {
+   data <- x$eval
    grad <- gradients( x )
    if( is.null( grad ) ) {
       stop( "the model specified by argument 'x' does not include gradients" )
-   }
-   if( ! varName %in% names( data ) ) {
-      stop( "the data set specified by argument 'data'",
-         " does not include a variable '", varName, "'" )
    }
    if( ! varName %in% x$xnames ) {
       stop( "the model specified by argument 'x'",
@@ -14,8 +11,12 @@ npregGradFactor <- function( x, varName, data ) {
    if( !is.factor( data[[ varName ]] ) ) {
       stop( "variable '", varName, "' is not a factor variable" )
    }
+   if( ! varName %in% names( data ) ) {
+      stop( "internal error: the data set in x$eval",
+         " does not include a variable '", varName, "'" )
+   }
    if( nrow( grad ) != length( data[[ varName ]] ) ) {
-      stop( "gradients have a different number of observations",
+      stop( "internal error: gradients have a different number of observations",
          " than variable '", varName, "'" )
    }
    colnames( grad ) <- x$xnames
