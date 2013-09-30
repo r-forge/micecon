@@ -1,3 +1,4 @@
+export( "npregGradFactor" )
 export( "npregHom" )
 export( "npscoefGrad" )
 
