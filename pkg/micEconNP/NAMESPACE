@@ -5,3 +5,5 @@ S3method( "elas", "npregHom" )
 importFrom( "micEcon", "elas" )
 importFrom( "micEcon", ".quadFuncCheckHomWeights" )
 importFrom( "micEcon", ".quadFuncVarHom" )
+
+importFrom( "np", "npreg" )
