@@ -27,3 +27,34 @@ round( colMeans( yearGradAll ), 4 )
 round( colMedians( yearGradAll ), 4 )
 
 all.equal( yearGradAll[ !is.na( yearGrad ) ], yearGrad[ !is.na( yearGrad ) ] )
+
+##############  ordered factor  ###################
+oecdpanel$yearOrdered <- ordered( oecdpanel$year )
+
+npModelOrdered <- npreg( growth ~ yearOrdered + initgdp, 
+   regtype = "ll", gradients = TRUE, data = oecdpanel )
+
+round( gradients( npModelOrdered ), 3 )
+
+yearGradOrdered <- npregGradFactor( npModelOrdered, "yearOrdered" )
+
+round( yearGradOrdered, 3 )
+
+round( colMeans( yearGradOrdered, na.rm = TRUE ), 4 )
+
+round( colMedians( yearGrad, na.rm = TRUE ), 4 )
+
+all.equal( gradients( npModelOrdered )[ oecdpanel$year != 1965, 1 ], 
+   rowSums( yearGradOrdered, na.rm = TRUE )[ oecdpanel$year != 1965 ] )
+
+yearGradOrderedAll <- npregGradFactor( npModelOrdered, "yearOrdered", 
+   onlyOwnLevels = FALSE )
+
+round( yearGradOrderedAll, 3 )
+
+round( colMeans( yearGradOrderedAll ), 4 )
+
+round( colMedians( yearGradOrderedAll ), 4 )
+
+all.equal( yearGradOrderedAll[ !is.na( yearGradOrdered ) ], 
+   yearGradOrdered[ !is.na( yearGradOrdered ) ] )
