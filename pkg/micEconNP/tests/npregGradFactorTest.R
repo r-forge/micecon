@@ -8,7 +8,7 @@ npModel <- npreg( growth ~ yearFactor + initgdp,
 
 round( gradients( npModel ), 3 )
 
-yearGrad <- npregGradFactor( npModel, "yearFactor", oecdpanel )
+yearGrad <- npregGradFactor( npModel, "yearFactor" )
 
 round( yearGrad, 3 )
 

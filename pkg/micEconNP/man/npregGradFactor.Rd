@@ -9,14 +9,13 @@
 }
 
 \usage{
-   npregGradFactor( x, varName, data )
+   npregGradFactor( x, varName )
 }
 
 \arguments{
    \item{x}{an object of class \code{npregression}
       (returned by \code{\link[np]{npreg}}).}
    \item{varName}{name of the categorical variable.}
-   \item{data}{the data set that was used for the nonparametric kernel regression.}
 }
 
 
@@ -38,7 +37,7 @@
    npModel <- npreg( growth ~ yearFactor + initgdp, 
       regtype = "ll", gradients = TRUE, data = oecdpanel )
    round( gradients( npModel ), 3 )
-   yearGrad <- npregGradFactor( npModel, "yearFactor", oecdpanel )
+   yearGrad <- npregGradFactor( npModel, "yearFactor" )
    colMeans( yearGrad, na.rm = TRUE )
    colMedians( yearGrad, na.rm = TRUE )
 }
