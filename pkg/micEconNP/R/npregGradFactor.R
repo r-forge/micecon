@@ -28,15 +28,21 @@ npregGradFactor <- function( x, varName, onlyOwnLevels = TRUE ) {
       stop( "the factor variable '", varName, "' has must have at least two levels" )
    }
    gradFac <- matrix( NA, nrow = nrow( grad ), ncol = nLevels - 1 )
-   colnames( gradFac ) <- paste( varName, ": ", allLevels[1], " -> ",
-      allLevels[-1], sep = "" )
+   if( is.ordered( xDat[[ varName ]] ) ) {
+      colnames( gradFac ) <- paste( varName, ": ", 
+         allLevels[ - length( allLevels ) ], " -> ", allLevels[-1], sep = "" )
+   } else {
+      colnames( gradFac ) <- paste( varName, ": ", allLevels[1], " -> ",
+         allLevels[-1], sep = "" )
+   }
    for( i in 2:nLevels ) {
       if( onlyOwnLevels ) {
          obsSelect <-  xDat[[ varName ]] == allLevels[ i ]
          gradFac[ obsSelect, i - 1 ] <- grad[ obsSelect, varName ]
       } else {
          xDatBase <- xDatNew <- xDat
-         xDatBase[[ varName ]][] <- levels( xDat[[ varName ]] )[1]
+         xDatBase[[ varName ]][] <- levels( xDat[[ varName ]] )[
+            ifelse( is.ordered( xDat[[ varName ]] ), i - 1, 1 ) ]
          xDatNew[[ varName ]][] <- levels( xDat[[ varName ]] )[i]
          modelBase <- npreg( bws = x$bws, tydat = yDat, txdat = xDat, 
             exdat = xDatBase )
