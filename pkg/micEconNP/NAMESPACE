@@ -1,4 +1,5 @@
 export( "npregHom" )
+export( "npscoefGrad" )
 
 S3method( "elas", "npregHom" )
 
