@@ -106,3 +106,14 @@ print( estResultHessian )
 
 estResultShadowprices <- snqProfitShadowPrices( pNamesT, fNamesT, estResult )
 print( estResultShadowprices )
+
+########### without scaling prices ########################
+estResultNoScale <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms,
+   scalingFactors = rep( 1, 3 ) )
+print( estResultNoScale )
+estResultNoScale2 <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms,
+   base = NULL, weights = snqProfitWeights( pNamesT, qNamesT, germanFarms ) )
+print( estResultNoScale2 )
+all.equal( estResultNoScale[-20], estResultNoScale2[] )
+
+
