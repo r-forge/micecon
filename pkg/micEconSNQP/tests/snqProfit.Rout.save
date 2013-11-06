@@ -132,7 +132,7 @@ eq3 -0.434  0.854  1.000
 SUR estimates for 'eq1' (equation 1)
 Model Formula: q1 ~ pr1 + pr2 + pr3 + pq1.1.1 + pq1.1.2 + pq1.1.3 + pq1.2.1 + 
     pq1.2.2 + pq1.2.3 + pq1.3.1 + pq1.3.2 + pq1.3.3 + f1 + fq1.1.1
-<environment: 0x73bd800>
+<environment: 0x6c6f800>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)   -97327      37624   -2.59    0.013 *  
@@ -162,7 +162,7 @@ Multiple R-Squared: 0.975 Adjusted R-Squared: 0.966
 SUR estimates for 'eq2' (equation 2)
 Model Formula: q2 ~ pr1 + pr2 + pr3 + pq2.1.1 + pq2.1.2 + pq2.1.3 + pq2.2.1 + 
     pq2.2.2 + pq2.2.3 + pq2.3.1 + pq2.3.2 + pq2.3.3 + f1 + fq2.1.1
-<environment: 0x73bd800>
+<environment: 0x6c6f800>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)   -86798      17778   -4.88  1.1e-05 ***
@@ -192,7 +192,7 @@ Multiple R-Squared: 0.449 Adjusted R-Squared: 0.252
 SUR estimates for 'eq3' (equation 3)
 Model Formula: q3 ~ pr1 + pr2 + pr3 + pq3.1.1 + pq3.1.2 + pq3.1.3 + pq3.2.1 + 
     pq3.2.2 + pq3.2.3 + pq3.3.1 + pq3.3.2 + pq3.3.3 + f1 + fq3.1.1
-<environment: 0x73bd800>
+<environment: 0x6c6f800>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)   -19345       3775   -5.12  4.8e-06 ***
@@ -640,7 +640,7 @@ eq3  0.343  0.722 1.000
 SUR estimates for 'eq1' (equation 1)
 Model Formula: q1 ~ pr1 + pr2 + pr3 + pq1.1.1 + pq1.1.2 + pq1.1.3 + pq1.2.1 + 
     pq1.2.2 + pq1.2.3 + pq1.3.1 + pq1.3.2 + pq1.3.3
-<environment: 0x7e8ed78>
+<environment: 0x7740d78>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)    90398       4318   20.94  < 2e-16 ***
@@ -668,7 +668,7 @@ Multiple R-Squared: 0.891 Adjusted R-Squared: 0.871
 SUR estimates for 'eq2' (equation 2)
 Model Formula: q2 ~ pr1 + pr2 + pr3 + pq2.1.1 + pq2.1.2 + pq2.1.3 + pq2.2.1 + 
     pq2.2.2 + pq2.2.3 + pq2.3.1 + pq2.3.2 + pq2.3.3
-<environment: 0x7e8ed78>
+<environment: 0x7740d78>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)   -38324       2426  -15.80  < 2e-16 ***
@@ -696,7 +696,7 @@ Multiple R-Squared: 0.307 Adjusted R-Squared: 0.177
 SUR estimates for 'eq3' (equation 3)
 Model Formula: q3 ~ pr1 + pr2 + pr3 + pq3.1.1 + pq3.1.2 + pq3.1.3 + pq3.2.1 + 
     pq3.2.2 + pq3.2.3 + pq3.3.1 + pq3.3.2 + pq3.3.3
-<environment: 0x7e8ed78>
+<environment: 0x7740d78>
 
             Estimate Std. Error t value Pr(>|t|)    
 (Intercept)      952       1786    0.53    0.596    
@@ -1152,7 +1152,7 @@ SUR estimates for 'eq1' (equation 1)
 Model Formula: q1 ~ pr1 + pr2 + pr3 + pq1.1.1 + pq1.1.2 + pq1.1.3 + pq1.2.1 + 
     pq1.2.2 + pq1.2.3 + pq1.3.1 + pq1.3.2 + pq1.3.3 + f1 + f2 + 
     fq1.1.1 + fq1.1.2 + fq1.2.1 + fq1.2.2
-<environment: 0x7bb94a0>
+<environment: 0x746b4a0>
 
             Estimate Std. Error t value Pr(>|t|)
 (Intercept)   -79970     115640   -0.69     0.49
@@ -1185,7 +1185,7 @@ SUR estimates for 'eq2' (equation 2)
 Model Formula: q2 ~ pr1 + pr2 + pr3 + pq2.1.1 + pq2.1.2 + pq2.1.3 + pq2.2.1 + 
     pq2.2.2 + pq2.2.3 + pq2.3.1 + pq2.3.2 + pq2.3.3 + f1 + f2 + 
     fq2.1.1 + fq2.1.2 + fq2.2.1 + fq2.2.2
-<environment: 0x7bb94a0>
+<environment: 0x746b4a0>
 
             Estimate Std. Error t value Pr(>|t|)  
 (Intercept)   -85852      50775   -1.69    0.098 .
@@ -1220,7 +1220,7 @@ SUR estimates for 'eq3' (equation 3)
 Model Formula: q3 ~ pr1 + pr2 + pr3 + pq3.1.1 + pq3.1.2 + pq3.1.3 + pq3.2.1 + 
     pq3.2.2 + pq3.2.3 + pq3.3.1 + pq3.3.2 + pq3.3.3 + f1 + f2 + 
     fq3.1.1 + fq3.1.2 + fq3.2.1 + fq3.2.2
-<environment: 0x7bb94a0>
+<environment: 0x746b4a0>
 
             Estimate Std. Error t value Pr(>|t|)  
 (Intercept)   -20576      11158   -1.84    0.072 .
@@ -1855,7 +1855,7 @@ SUR estimates for 'eq1' (equation 1)
 Model Formula: q1 ~ pr1 + pr2 + pr3 + pq1.1.1 + pq1.1.2 + pq1.1.3 + pq1.2.1 + 
     pq1.2.2 + pq1.2.3 + pq1.3.1 + pq1.3.2 + pq1.3.3 + f1 + f2 + 
     fq1.1.1 + fq1.1.2 + fq1.2.1 + fq1.2.2
-<environment: 0x7ba78a0>
+<environment: 0x74598a0>
 
             Estimate Std. Error t value Pr(>|t|)
 (Intercept)   -97025     145396   -0.67     0.51
@@ -1888,7 +1888,7 @@ SUR estimates for 'eq2' (equation 2)
 Model Formula: q2 ~ pr1 + pr2 + pr3 + pq2.1.1 + pq2.1.2 + pq2.1.3 + pq2.2.1 + 
     pq2.2.2 + pq2.2.3 + pq2.3.1 + pq2.3.2 + pq2.3.3 + f1 + f2 + 
     fq2.1.1 + fq2.1.2 + fq2.2.1 + fq2.2.2
-<environment: 0x7ba78a0>
+<environment: 0x74598a0>
 
             Estimate Std. Error t value Pr(>|t|)  
 (Intercept)   -71025      54698   -1.30    0.202  
@@ -1923,7 +1923,7 @@ SUR estimates for 'eq3' (equation 3)
 Model Formula: q3 ~ pr1 + pr2 + pr3 + pq3.1.1 + pq3.1.2 + pq3.1.3 + pq3.2.1 + 
     pq3.2.2 + pq3.2.3 + pq3.3.1 + pq3.3.2 + pq3.3.3 + f1 + f2 + 
     fq3.1.1 + fq3.1.2 + fq3.2.1 + fq3.2.2
-<environment: 0x7ba78a0>
+<environment: 0x74598a0>
 
             Estimate Std. Error t value Pr(>|t|)  
 (Intercept)   -11871      11670   -1.02    0.315  
@@ -2705,8 +2705,103 @@ warning: this profit function is not convex in netput prices.
 > all.equal( estResultNoScale[-20], estResultNoScale2[] )
 [1] TRUE
 > 
+> ########### with manually chosen scaling factors ###################
+> estResultNoScale10 <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms,
++    scalingFactors = rep( 10, 3 ) )
+> print( estResultNoScale10 )
+
+Estimation results of the SNQ profit function:
+Functional form: default (0)
+Estimation method: SUR
+
+Estimated coefficients:
+             value std.err t-value  prob
+alpha 1   -25.6249 112.247 -0.2283 0.820
+alpha 2   -33.5541  93.839 -0.3576 0.722
+alpha 3    -3.9247   7.931 -0.4948 0.623
+beta 1 1    5.7359 451.677  0.0127 0.990
+beta 1 2   -7.7228 456.363 -0.0169 0.987
+beta 1 3    1.9870   6.178  0.3216 0.749
+beta 2 1   -7.7228 456.363 -0.0169 0.987
+beta 2 2    9.8338 461.146  0.0213 0.983
+beta 2 3   -2.1109   6.276 -0.3364 0.738
+beta 3 1    1.9870   6.178  0.3216 0.749
+beta 3 2   -2.1109   6.276 -0.3364 0.738
+beta 3 3    0.1240   0.307  0.4035 0.689
+delta 1 1   4.2033   8.235  0.5104 0.612
+delta 1 2   3.2628   7.988  0.4084 0.685
+delta 2 1   0.1707   3.696  0.0462 0.963
+delta 2 2  -0.2811   3.793 -0.0741 0.941
+delta 3 1   0.0943   0.783  0.1204 0.905
+delta 3 2   0.0673   0.769  0.0875 0.931
+gamma 1 1   0.0210   0.643  0.0326 0.974
+gamma 1 2  -0.0107   0.593 -0.0180 0.986
+gamma 2 1  -0.0107   0.593 -0.0180 0.986
+gamma 2 2  -0.2454   0.484 -0.5068 0.615
+
+R-squared values of the netput equations:
+  qOutput qVarInput    qLabor    profit 
+    0.987     0.556  -211.249   -20.680 
+
+Price elasticities of the netputs:
+          pOutput pVarInput   pLabor
+qOutput   -0.0107   0.00517  0.00556
+qVarInput -0.0101  -0.03164  0.04176
+qLabor    -0.0241   0.09247 -0.06838
+
+warning: this profit function is not convex in netput prices.
+
+> all.equal( estResultNoScale[-c(1,2,4,5,6,7,9,14,22)], 
++    estResultNoScale10[-c(1,2,4,5,6,7,9,14,22)], tol = 1e-4 )
+[1] TRUE
+> 
+> estResultNoScale123 <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms,
++    scalingFactors = c( 1, 2, 3 ) )
+> print( estResultNoScale123 )
+
+Estimation results of the SNQ profit function:
+Functional form: default (0)
+Estimation method: SUR
+
+Estimated coefficients:
+             value std.err  t-value  prob
+alpha 1   -531.522 3991.83 -0.13315 0.895
+alpha 2    -16.623 2929.83 -0.00567 0.995
+alpha 3    -46.372  122.06 -0.37990 0.706
+beta 1 1  -286.097 5438.85 -0.05260 0.958
+beta 1 2   260.594 5247.39  0.04966 0.961
+beta 1 3    25.503  198.38  0.12856 0.898
+beta 2 1   260.594 5247.39  0.04966 0.961
+beta 2 2  -234.313 5063.38 -0.04628 0.963
+beta 2 3   -26.280  190.73 -0.13779 0.891
+beta 3 1    25.503  198.38  0.12856 0.898
+beta 3 2   -26.280  190.73 -0.13779 0.891
+beta 3 3     0.777    9.37  0.08293 0.934
+delta 1 1   46.472   97.55  0.47642 0.636
+delta 1 2   36.279   95.12  0.38142 0.705
+delta 2 1    4.471   41.86  0.10681 0.915
+delta 2 2    1.794   42.06  0.04265 0.966
+delta 3 1    1.343    9.29  0.14461 0.886
+delta 3 2    1.008    9.16  0.11003 0.913
+gamma 1 1    0.297    7.63  0.03897 0.969
+gamma 1 2   -0.214    7.07 -0.03027 0.976
+gamma 2 1   -0.214    7.07 -0.03027 0.976
+gamma 2 2   -3.305    5.82 -0.56809 0.573
+
+R-squared values of the netput equations:
+  qOutput qVarInput    qLabor    profit 
+    0.989     0.348 -3488.487  -322.352 
+
+Price elasticities of the netputs:
+          pOutput pVarInput  pLabor
+qOutput   -0.0130  0.016575 -0.0036
+qVarInput -0.0324 -0.000896  0.0333
+qLabor     0.0156  0.073759 -0.0893
+
+warning: this profit function is not convex in netput prices.
+
 > 
 > 
 > proc.time()
    user  system elapsed 
-  2.932   0.072   3.007 
+  3.108   0.072   3.173 
