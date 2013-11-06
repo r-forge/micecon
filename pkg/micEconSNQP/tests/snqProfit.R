@@ -116,4 +116,14 @@ estResultNoScale2 <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms,
 print( estResultNoScale2 )
 all.equal( estResultNoScale[-20], estResultNoScale2[] )
 
+########### with manually chosen scaling factors ###################
+estResultNoScale10 <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms,
+   scalingFactors = rep( 10, 3 ) )
+print( estResultNoScale10 )
+all.equal( estResultNoScale[-c(1,2,4,5,6,7,9,14,22)], 
+   estResultNoScale10[-c(1,2,4,5,6,7,9,14,22)], tol = 1e-4 )
+
+estResultNoScale123 <- snqProfitEst( pNamesT, qNamesT, fNamesT, data=germanFarms,
+   scalingFactors = c( 1, 2, 3 ) )
+print( estResultNoScale123 )
 
