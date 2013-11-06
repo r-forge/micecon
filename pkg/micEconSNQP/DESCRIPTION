@@ -1,6 +1,6 @@
 Package: micEconSNQP
-Version: 0.6-3
-Date: 2010/03/15
+Version: 0.6-4
+Date: 2013/11/06
 Title: Symmetric Normalized Quadratic Profit Function
 Author: Arne Henningsen
 Maintainer: Arne Henningsen <arne.henningsen@gmail.com>
