@@ -58,7 +58,6 @@
          }
       }
    } else if( stErMethod == "coefSim" ) {
-      library( MASS )
       fakeResult <- list()
       class( fakeResult )  <- "snqProfitEst"
       fakeResult$qMeans    <- estResult$qMeans
