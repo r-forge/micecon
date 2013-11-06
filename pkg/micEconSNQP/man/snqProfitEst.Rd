@@ -21,9 +21,12 @@
       instrumental variables (for 3SLS estimation).}
    \item{data}{a data frame containing the data.}
    \item{form}{the functional form to be estimated (see details).}
-   \item{base}{the base period(s) for scaling prices (see details).}
-   \item{scalingFactors}{factors to scale prices (see details).}
-   \item{weights}{vector of weights of the prices for normalization.}
+   \item{base}{the base period(s) for scaling prices (see details).
+      If argument \code{weights} is not specified,
+      argument \code{base} is also used to obtain the weights
+      for normalizing prices (see \code{\link{snqProfitWeights}}).}
+   \item{scalingFactors}{a vector of factors to scale prices (see details).}
+   \item{weights}{a vector of weights for normalizing prices.}
    \item{method}{the estimation method (passed to
       \code{\link[systemfit]{systemfit}}).}
    \item{\dots}{arguments passed to \code{\link[systemfit]{systemfit}}}
@@ -74,18 +77,40 @@
       \frac{1}{2} \sum_{j=1}^{m} \sum_{k=1}^{m} \gamma_{ijk} z_{j} z_{k}
    }
 
-   The prices are scaled that they are unity in the base period or - if there
+   Argument \code{scalingFactors} can be used to scale prices,
+   e.g. for improving the numerical stability of the estimation
+   (e.g. if prices are very large or very small numbers)
+   or for assessing the robustness of the results
+   when changing the units of measurement.
+   The prices are multiplied by the scaling factors,
+   while the quantities are divided my the scaling factors
+   so that the monetary values of the inputs and outputs
+   and thus, the profit, remains unchanged.
+   If argument \code{scalingFactors} is \code{NULL},
+   argument \code{base} is used to automatically obtain scaling factors
+   so that the scaled prices are unity in the base period or - if there
    is more than one base period - that the
-   means of the prices over the base periods are unity.
-   The argument \code{base} can be either \cr
+   means of the scaled prices over the base periods are unity.
+   Argument \code{base} can be either \cr
    (a) a single number: the row number of the base prices, \cr
    (b) a vector indicating several observations: The means of these
    observations are used as base prices, \cr
-   (c) a logical vector with the same length as the \code{data}: The
+   (c) a logical vector with length equal to the number of rows 
+   of the data set that is specified by argument \code{data}: The
    means of the observations indicated as 'TRUE' are used as base prices, or\cr
-   (d) \code{NULL}: prices are not scaled.\cr
-   If the scaling factors are explicitly specified (argument 'scalingFactors'),
-   the argument 'base' is ignored.
+   (d) \code{NULL}: prices are not scaled. 
+   If argument \code{base} is \code{NULL},
+   argument \code{weights} must be specified,
+   because the weights cannot be calculated
+   if the base period is not specified.
+   An alternative way to use unscaled prices
+   is to set argument \code{scalingFactors} equal to a vector of ones
+   (see examples below).\cr
+   If the scaling factors are explicitly specified
+   by argument \code{scalingFactors},
+   argument \code{base} is not used for obtaining scaling factors
+   (but it is used for obtaining weights
+   if argument \code{weights} is not specified).
 }
 
 \value{
@@ -166,8 +191,25 @@
 
    # it it reasonable to account for technological progress
    germanFarms$time <- c( 0:19 )
-   estResult2 <- snqProfitEst( priceNames, quantNames, c("land","time"), data=germanFarms )
-   estResult2$ela   # Ah, that looks good!
+   estResult2 <- snqProfitEst( priceNames, quantNames, c("land","time"), 
+      data = germanFarms )
+   estResult2$ela   # Ah, that looks better!
+   
+   # estimation with unscaled prices
+   estResultNoScale <- snqProfitEst( priceNames, quantNames, c("land","time"), 
+    data = germanFarms, scalingFactors = rep( 1, 3 ) )
+   print( estResultNoScale )
+   
+   # alternative way of estimation with unscaled prices
+   estResultNoScale2 <- snqProfitEst( priceNames, quantNames, c("land","time"), 
+      data = germanFarms, base = NULL, 
+      weights = snqProfitWeights( priceNames, quantNames, germanFarms ) )
+   all.equal( estResultNoScale[-20], estResultNoScale2[] )
+
+   # please note that the SNQ Profit function is not invariant
+   # to units of measurement so that different scaling factors 
+   # result in different estimates of elasticities:
+   all.equal( estResult2$ela, estResultNoScale$ela )
 }
 
 \keyword{models}
