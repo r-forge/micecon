@@ -1,0 +1,12 @@
+THIS IS THE CHANGELOG OF THE "micEconSNQP" PACKAGE
+
+Please note that only the most recent and the most significant changes are
+reported here. A full ChangeLog is available in the log messages of the SVN
+repository on R-Forge.
+
+
+   CHANGES IN VERSION 0.6-4 (2013/11/06)
+
+* improved documentation of snqProfitEst(), particularly the description of
+arguments 'scalingFactors' and 'base'
+
