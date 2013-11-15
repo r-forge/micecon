@@ -1,8 +1,12 @@
+export( "crsGradFactor" )
 export( "npregGradFactor" )
 export( "npregHom" )
 export( "npscoefGrad" )
 
 S3method( "elas", "npregHom" )
+
+importFrom( "crs", "crs" )
+# importFrom( "crs", "predict.crs" )  # does not work
 
 importFrom( "micEcon", "elas" )
 importFrom( "micEcon", ".quadFuncCheckHomWeights" )

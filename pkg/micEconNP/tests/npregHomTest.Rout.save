@@ -1,5 +1,5 @@
 
-R version 3.0.1 (2013-05-16) -- "Good Sport"
+R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
 Copyright (C) 2013 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -22,6 +22,9 @@ Loading required package: boot
 Loading required package: cubature
 Nonparametric Kernel Methods for Mixed Datatypes (version 0.50-1)
 [vignette("np_faq",package="np") provides answers to frequently asked questions]
+Loading required package: crs
+Categorical Regression Splines (version 0.15-18)
+[vignette("crs_faq") provides answers to frequently asked questions]
 Loading required package: micEcon
 Loading required package: miscTools
 > options( digits = 4 )
@@ -1763,4 +1766,4 @@ attr(,"class")
 > 
 > proc.time()
    user  system elapsed 
-  2.652   0.032   2.674 
+  2.704   0.028   2.721 
