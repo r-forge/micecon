@@ -21,6 +21,9 @@ Loading required package: boot
 Loading required package: cubature
 Nonparametric Kernel Methods for Mixed Datatypes (version 0.50-1)
 [vignette("np_faq",package="np") provides answers to frequently asked questions]
+Loading required package: crs
+Categorical Regression Splines (version 0.15-18)
+[vignette("crs_faq") provides answers to frequently asked questions]
 Loading required package: micEcon
 Loading required package: miscTools
 > data( "oecdpanel" )
@@ -8759,4 +8762,4 @@ yearOrdered: 1980 -> 1985 yearOrdered: 1985 -> 1990 yearOrdered: 1990 -> 1995
 > 
 > proc.time()
    user  system elapsed 
- 21.380   0.116  21.503 
+ 21.736   0.048  21.785 

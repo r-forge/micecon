@@ -21,6 +21,9 @@ Loading required package: boot
 Loading required package: cubature
 Nonparametric Kernel Methods for Mixed Datatypes (version 0.50-1)
 [vignette("np_faq",package="np") provides answers to frequently asked questions]
+Loading required package: crs
+Categorical Regression Splines (version 0.15-18)
+[vignette("crs_faq") provides answers to frequently asked questions]
 Loading required package: micEcon
 Loading required package: miscTools
 > 
@@ -845,4 +848,4 @@ No. Continuous Explanatory Vars.: 2
 > 
 > proc.time()
    user  system elapsed 
-  5.396   0.032   5.420 
+  5.196   0.048   5.246 

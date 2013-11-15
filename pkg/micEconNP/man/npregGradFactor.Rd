@@ -1,21 +1,27 @@
 \name{npregGradFactor}
 \alias{npregGradFactor}
+\alias{crsGradFactor}
 
-\title{Gradients of Factor Variables in Kernel Regression Models}
+\title{Gradients of Factor Variables in Nonparametric Models}
 
 \description{
    Obtain gradients of an ordered or unordered categorical 
    (\sQuote{factor}) variable
-   in nonparametric kernel regression models.
+   in nonparametric kernel regression models
+   or categorical regression splines.
 }
 
 \usage{
    npregGradFactor( x, varName, onlyOwnLevels = TRUE )
+
+   crsGradFactor( x, varName, onlyOwnLevels = TRUE )
 }
 
 \arguments{
    \item{x}{an object of class \code{npregression}
-      (returned by \code{\link[np]{npreg}}).}
+      (returned by \code{\link[np]{npreg}}),
+      or an object of class \code{crs}
+      (returned by \code{\link[crs]{crs}}).}
    \item{varName}{name of the categorical variable.}
    \item{onlyOwnLevels}{logical. If \code{TRUE} (default),
       the gradients with respect to a specific level
@@ -36,7 +42,7 @@
    while each column corresponds to a level.
 }
 
-\seealso{\code{\link[np]{npreg}}.}
+\seealso{\code{\link[np]{npreg}}, \code{\link[crs]{crs}}.}
 
 \author{Arne Henningsen}
 
