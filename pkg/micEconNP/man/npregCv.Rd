@@ -1,5 +1,6 @@
 \name{npregCv}
 \alias{npregCv}
+\alias{npplregCv}
 
 \title{Cross-Validation Nonparametric Models}
 
@@ -10,11 +11,15 @@
 
 \usage{
    npregCv( x )
+
+   npplregCv( x )
 }
 
 \arguments{
    \item{x}{an object of class \code{npregression}
-      (returned by \code{\link[np]{npreg}}).}
+      (returned by \code{\link[np]{npreg}})
+      or an object of class \code{plregression}
+      (returned by \code{\link[np]{npplreg}}).}
 }
 
 
@@ -27,7 +32,7 @@
    that is the vector of the prediction errors of all observations.
 }
 
-\seealso{\code{\link[np]{npreg}}.}
+\seealso{\code{\link[np]{npreg}}, \code{\link[np]{npplreg}}.}
 
 \author{Arne Henningsen}
 
@@ -42,6 +47,20 @@ model <- npreg( y ~ x1 + x2, regtype="ll" )
 
 cv <- npregCv( model )
 all.equal( cv, model$bws$fval )
+
+# partially linear model
+set.seed(42)
+n <- 250
+x1 <- rnorm(n)
+x2 <- rbinom(n, 1, .5)
+z1 <- rbinom(n, 1, .5)
+z2 <- rnorm(n)
+y <- 1 + x1 + x2 + z1 + sin(z2) + rnorm(n)
+
+model <- npplreg( y ~ x1 + factor(x2) | factor(z1) + z2, regtype="ll" )
+
+cv <- npplregCv( model )
+cv
 }
 
 \keyword{models}
