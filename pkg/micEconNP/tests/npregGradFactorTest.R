@@ -58,3 +58,13 @@ round( colMedians( yearGradOrderedAll ), 4 )
 
 all.equal( yearGradOrderedAll[ !is.na( yearGradOrdered ) ], 
    yearGradOrdered[ !is.na( yearGradOrdered ) ] )
+
+
+# test npregCv()
+cv <- npregCv( npModel )
+round( cv, 6 )
+all.equal( cv, npModel$bws$fval )
+
+cvOrdered <- npregCv( npModelOrdered )
+round( cvOrdered, 6 )
+all.equal( cvOrdered, npModelOrdered$bws$fval )
