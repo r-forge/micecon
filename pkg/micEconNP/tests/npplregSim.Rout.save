@@ -1,0 +1,72 @@
+
+R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library( "micEconNP" )
+Loading required package: np
+Loading required package: boot
+Loading required package: cubature
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.50-1)
+[vignette("np_faq",package="np") provides answers to frequently asked questions]
+Loading required package: crs
+Categorical Regression Splines (version 0.15-18)
+[vignette("crs_faq") provides answers to frequently asked questions]
+Loading required package: micEcon
+Loading required package: miscTools
+> options( np.messages = FALSE )
+> set.seed(42)
+> n <- 250
+> x1 <- rnorm(n)
+> x2 <- rbinom(n, 1, .5)
+> z1 <- rbinom(n, 1, .5)
+> z2 <- rnorm(n)
+> y <- 1 + x1 + x2 + z1 + sin(z2) + rnorm(n)
+> 
+> model <- npplreg( y ~ x1 + factor(x2) | factor(z1) + z2, regtype="ll" )
+> 
+> cv <- npplregCv( model )
+> round( c( cv ), 3 )
+[1] 1.217
+> round( attr( cv, "err" ), 3 )
+  [1] -1.316 -1.762 -0.251  0.306 -2.226  0.341  0.272  1.378  0.105  0.153
+ [11]  0.611 -0.214 -0.125  0.254 -0.247 -1.340 -0.375 -0.933 -0.941  0.142
+ [21]  1.790 -1.058 -0.050 -0.794 -1.081 -0.169  0.065 -0.061 -1.145  0.131
+ [31] -0.054  0.598 -1.172 -1.084  0.589 -0.512 -0.559 -0.243 -0.295  1.972
+ [41] -0.021  0.178  0.847  0.120 -0.182 -0.902 -2.220 -1.073 -0.064 -0.773
+ [51]  0.729  0.594  0.366 -0.226 -1.448 -0.098 -0.787  0.734  1.399  0.543
+ [61] -1.019  1.557  1.333  0.149 -2.269 -0.575 -0.199  0.985 -1.149  3.008
+ [71] -2.674 -0.447 -0.254 -0.866 -0.219  0.648 -0.744 -1.927  0.114  0.119
+ [81]  0.238  0.717 -0.023  0.764 -2.223 -1.119  0.532 -0.498  0.808 -0.903
+ [91]  0.643 -0.932 -0.863 -0.557 -0.311 -1.112 -0.819 -1.170  1.622  1.048
+[101] -1.207  0.544 -0.135 -0.792  0.078 -0.092  0.925 -0.264  1.318 -0.293
+[111]  0.495  0.180  0.291  0.376  0.082 -0.249  1.448  1.386 -0.489  1.613
+[121] -0.020 -0.884  0.266 -0.391  0.164 -1.160 -0.759  1.522  0.738 -1.108
+[131] -0.966  1.674  1.730 -0.867 -1.580  2.625  0.299  0.398 -0.226  1.110
+[141]  0.055  1.534 -0.016  0.670 -1.168  0.120  2.136  0.067  1.145  2.575
+[151]  1.217 -0.267  0.140 -0.310  2.014 -3.127  0.170  0.194  0.121 -1.281
+[161]  0.216  0.323  1.128  0.384  0.892 -1.106 -0.362  0.093  0.263 -0.493
+[171]  1.453 -0.736 -1.974  0.571  0.676  0.763 -1.051  0.017 -1.314  1.050
+[181]  0.523  0.776  0.462 -0.921  0.031 -2.008  0.644  1.172 -0.905 -2.600
+[191] -1.569 -1.265  1.430 -0.083 -1.367  0.644 -2.226  0.269  0.942 -0.156
+[201]  1.354  1.971 -1.086 -1.394 -1.056  0.160  0.718  1.050  1.239  0.782
+[211]  0.939 -0.164 -0.740 -1.063  0.608  1.398  2.029 -1.779 -1.096  1.363
+[221] -0.855 -1.525  0.355  1.599  2.193  0.732  1.004  0.610 -0.284 -3.413
+[231]  0.938 -0.272  1.091 -0.980 -1.560  1.498  0.067  3.563  1.134  0.764
+[241]  0.464 -0.413 -0.514  1.346  1.128  0.961 -1.189  1.752 -1.241 -0.390
+> 
+> proc.time()
+   user  system elapsed 
+ 13.020   0.016  13.038 
