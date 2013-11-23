@@ -14,8 +14,8 @@ z <- factor(z)
 y <- dgp + rnorm( n, sd = 0.5 )
 
 ## Estimate a model with specified degree and bandwidth
-model <- crs( y ~ x1 + x2 + z, degree = c(5,5), lambda = c(0.1),
-   cv = "none", kernel = TRUE, deriv = 1 )
+model <- crs( y ~ x1 + x2 + z, degree = c(5,5), segments= c(1,1), lambda = c(0.1),
+   cv = "none", kernel = TRUE, deriv = 1, basis = "additive" )
 summary( model )
 
 zGrad <- crsGradFactor( model, "z" )
