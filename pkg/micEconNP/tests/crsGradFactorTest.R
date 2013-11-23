@@ -4,12 +4,12 @@ library( "micEconNP" )
 
 set.seed(42)
 ## Example - simulated data
-n <- 1000
+n <- 250
 num.eval <- 50
 x1 <- runif(n)
 x2 <- runif(n)
 z <- round( runif( n, min = 0, max = 3 ) )
-dgp <- cos( 2 * pi * x1 ) + sin( 2 * pi * x2 ) + z
+dgp <- cos( 2 * pi * x1 ) + sin( 2 * pi * x2 ) + z/5
 z <- factor(z)
 y <- dgp + rnorm( n, sd = 0.5 )
 
