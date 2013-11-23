@@ -25,3 +25,14 @@ round( zGrad, 2 )
 all.equal( rowSums( zGrad, na.rm = TRUE )[ z != 0 ], 
    model$deriv.mat[ z != 0 , 3 ] )
 
+
+## Estimate a model with data-driven degree, segments, and bandwidth
+model2 <- crs( y ~ x1 + x2 + z, deriv = 1, basis = "additive", nmulti = 1 )
+summary( model2 )
+
+zGrad2 <- crsGradFactor( model2, "z" )
+
+round( zGrad2, 2 )
+
+all.equal( rowSums( zGrad2, na.rm = TRUE )[ z != 0 ], 
+   model2$deriv.mat[ z != 0 , 3 ] )
