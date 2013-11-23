@@ -1,0 +1,47 @@
+\name{npregCv}
+\alias{npregCv}
+
+\title{Cross-Validation Nonparametric Models}
+
+\description{
+   Leave-one-out cross-validation
+   of nonparametric kernel regression models.
+}
+
+\usage{
+   npregCv( x )
+}
+
+\arguments{
+   \item{x}{an object of class \code{npregression}
+      (returned by \code{\link[np]{npreg}}).}
+}
+
+
+\value{
+   A single numeric value:
+   the mean squared prediction error over all observations,
+   where the predicted values are obtained
+   based on models that are estimated without the respective observation.
+}
+
+\seealso{\code{\link[np]{npreg}}.}
+
+\author{Arne Henningsen}
+
+\examples{
+set.seed(42)
+n <- 250
+x1 <- rnorm(n)
+x2 <- rnorm(n)
+y <- 1 + x1 + x2^2 + rnorm(n)
+
+model <- npreg( y ~ x1 + x2, regtype="ll" )
+
+cv <- npregCv( model )
+all.equal( cv, model$bws$fval )
+}
+
+\keyword{models}
+\keyword{nonparametric}
+\keyword{regression}
