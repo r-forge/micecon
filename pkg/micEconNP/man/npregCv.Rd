@@ -23,6 +23,8 @@
    the mean squared prediction error over all observations,
    where the predicted values are obtained
    based on models that are estimated without the respective observation.
+   This value has an attribute \code{err}
+   that is the vector of the prediction errors of all observations.
 }
 
 \seealso{\code{\link[np]{npreg}}.}
