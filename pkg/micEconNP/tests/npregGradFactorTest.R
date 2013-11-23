@@ -62,9 +62,11 @@ all.equal( yearGradOrderedAll[ !is.na( yearGradOrdered ) ],
 
 # test npregCv()
 cv <- npregCv( npModel )
-round( cv, 6 )
-all.equal( cv, npModel$bws$fval )
+round( c( cv ), 6 )
+round( attr( cv, "err" ), 3 )
+all.equal( cv, npModel$bws$fval, check.attributes = FALSE )
 
 cvOrdered <- npregCv( npModelOrdered )
-round( cvOrdered, 6 )
-all.equal( cvOrdered, npModelOrdered$bws$fval )
+round( c( cvOrdered ), 6 )
+round( attr( cvOrdered, "err" ), 3 )
+all.equal( cvOrdered, npModelOrdered$bws$fval, check.attributes = FALSE )

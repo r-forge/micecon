@@ -9,5 +9,6 @@ y <- 1 + x1 + x2^2 + rnorm(n)
 model <- npreg( y ~ x1 + x2, regtype="ll" )
 
 cv <- npregCv( model )
-round( cv, 3 )
-all.equal( cv, model$bws$fval )
+round( c( cv ), 3 )
+round( attr( cv, "err" ), 3 )
+all.equal( cv, model$bws$fval, check.attributes = FALSE )

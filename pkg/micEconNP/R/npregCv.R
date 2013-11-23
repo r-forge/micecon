@@ -10,5 +10,6 @@ npregCv <- function( x ) {
       res[ i ] <- yDat[ i ] - fitted( tmp )
    }
    cv <- mean( res^2 )
+   attr( cv, "err" ) <- res
    return( cv )
 }
