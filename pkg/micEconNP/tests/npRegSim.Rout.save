@@ -1,0 +1,46 @@
+
+R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library( "micEconNP" )
+Loading required package: np
+Loading required package: boot
+Loading required package: cubature
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.50-1)
+[vignette("np_faq",package="np") provides answers to frequently asked questions]
+Loading required package: crs
+Categorical Regression Splines (version 0.15-18)
+[vignette("crs_faq") provides answers to frequently asked questions]
+Loading required package: micEcon
+Loading required package: miscTools
+> options( np.messages = FALSE )
+> set.seed(42)
+> n <- 250
+> x1 <- rnorm(n)
+> x2 <- rnorm(n)
+> y <- 1 + x1 + x2^2 + rnorm(n)
+> 
+> model <- npreg( y ~ x1 + x2, regtype="ll" )
+> 
+> cv <- npregCv( model )
+> round( cv, 3 )
+[1] 1.014
+> all.equal( cv, model$bws$fval )
+[1] TRUE
+> 
+> proc.time()
+   user  system elapsed 
+  2.856   0.016   2.865 
