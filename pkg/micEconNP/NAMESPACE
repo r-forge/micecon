@@ -1,3 +1,4 @@
+export( "crsCv" )
 export( "crsGradFactor" )
 export( "npplregCv" )
 export( "npregCv" )
