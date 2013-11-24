@@ -36,3 +36,11 @@ round( zGrad2, 2 )
 
 all.equal( rowSums( zGrad2, na.rm = TRUE )[ z != 0 ], 
    model2$deriv.mat[ z != 0 , 3 ] )
+
+
+## test crsCv()
+cv2 <- crsCv( model2 )
+round( c( cv2 ), 3 )
+round( attr( cv2, "err" ), 3 )
+all.equal( cv2, model2$cv.min, check.attributes = FALSE )
+
