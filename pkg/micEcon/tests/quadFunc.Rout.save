@@ -1,7 +1,6 @@
 
-R version 2.15.0 (2012-03-30)
-Copyright (C) 2012 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -17,28 +16,8 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEcon )
-Loading required package: miscTools
 > library( plm )
-Loading required package: bdsmatrix
-
-Attaching package: 'bdsmatrix'
-
-The following object(s) are masked from 'package:base':
-
-    backsolve
-
-Loading required package: nlme
 Loading required package: Formula
-Loading required package: MASS
-Loading required package: sandwich
-Loading required package: zoo
-
-Attaching package: 'zoo'
-
-The following object(s) are masked from 'package:base':
-
-    as.Date, as.Date.numeric
-
 > 
 > ## preparing data
 > data( germanFarms )
@@ -2877,7 +2856,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x2ef7ab8>
+<environment: 0x326b4b0>
 
 Coefficients:
        a_1        a_2      b_1_1      b_1_2      b_2_2 
@@ -3112,7 +3091,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x3e85ce8>
+<environment: 0x3ad4600>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3360,7 +3339,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x3605188>
+<environment: 0x3b73078>
 
 Coefficients:
        a_1        a_2      b_1_1      b_1_2      b_2_2        d_1 
@@ -3611,7 +3590,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x39e7340>
+<environment: 0x30ea618>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3867,7 +3846,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x3ca7690>
+<environment: 0x44e3620>
 
 Coefficients:
         a_1         a_2       b_1_1       b_1_2       b_2_2    d_1_TRUE 
@@ -4124,7 +4103,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x245fce8>
+<environment: 0x4096970>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4381,7 +4360,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x3d55f08>
+<environment: 0x400dd98>
 
 Coefficients:
         a_1         a_2       b_1_1       b_1_2       b_2_2     d_1_40s 
@@ -4637,7 +4616,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x3384e48>
+<environment: 0x2dc1998>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4900,7 +4879,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x31c0128>
+<environment: 0x4167e68>
 
 Coefficients:
     a_1     a_2 
@@ -5149,7 +5128,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x2840ea0>
+<environment: 0x3c017a0>
 
 Coefficients:
 (Intercept)         a_1         a_2 
@@ -5900,14 +5879,15 @@ b_2_2  NA  -8152.917   8152.917  3859.879 -3859.879  3859.879
 +    testData[[ xName ]] <- rnorm( nObs )
 +    testData$y <- testData$y + log( i + 1 ) * testData[[ xName ]]
 + }
+> testData$y <- testData$y + 0.1 * rnorm( nObs )
 > testResult <- quadFuncEst( yName = "y",
 +    xNames = paste( "x", 1:15, sep = "_" ),
 +    data = testData, linear = TRUE )
 > coef( testResult )
       a_0       a_1       a_2       a_3       a_4       a_5       a_6       a_7 
-3.0000000 0.6931472 1.0986123 1.3862944 1.6094379 1.7917595 1.9459101 2.0794415 
+2.9884700 0.6873182 1.0948306 1.3785714 1.6051601 1.7950779 1.9452042 2.0767235 
       a_8       a_9      a_10      a_11      a_12      a_13      a_14      a_15 
-2.1972246 2.3025851 2.3978953 2.4849066 2.5649494 2.6390573 2.7080502 2.7725887 
+2.2003702 2.2988836 2.4075054 2.4880929 2.5576253 2.6430346 2.6985745 2.7739760 
     b_1_1     b_1_2     b_1_3     b_1_4     b_1_5     b_1_6     b_1_7     b_1_8 
 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 
     b_1_9    b_1_10    b_1_11    b_1_12    b_1_13    b_1_14    b_1_15     b_2_2 
@@ -6078,4 +6058,4 @@ b_3_4 b_4_4
 > 
 > proc.time()
    user  system elapsed 
-  3.004   0.068   3.062 
+  2.484   0.076   2.537 
