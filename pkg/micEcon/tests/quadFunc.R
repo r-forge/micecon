@@ -725,6 +725,7 @@ for( i in 1:15 ) {
    testData[[ xName ]] <- rnorm( nObs )
    testData$y <- testData$y + log( i + 1 ) * testData[[ xName ]]
 }
+testData$y <- testData$y + 0.1 * rnorm( nObs )
 testResult <- quadFuncEst( yName = "y",
    xNames = paste( "x", 1:15, sep = "_" ),
    data = testData, linear = TRUE )
