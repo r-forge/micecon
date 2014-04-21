@@ -1,7 +1,6 @@
 
-R version 2.15.0 (2012-03-30)
-Copyright (C) 2012 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -17,7 +16,6 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEcon )
-Loading required package: miscTools
 > 
 > ## preparing data
 > data( germanFarms )
@@ -65,7 +63,7 @@ b_3_3   16.5827     7.1232  2.3280  0.06738 .
 b_3_t  -13.6576    12.3866 -1.1026  0.32042  
 b_t_t -133.8304    65.3549 -2.0477  0.09592 .
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.9978144     Adjusted R-squared: 0.9916946 
 > print.default( estResultRay )
 $call
@@ -280,7 +278,7 @@ b_3_3   16.5827     7.1232  2.3280  0.06738 .
 b_3_t   13.6576    12.3866  1.1026  0.32042  
 b_t_t -133.8304    65.3549 -2.0477  0.09592 .
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.9978144     Adjusted R-squared: 0.9916946 
 > all.equal( abs( coef( estResultRay2 )[ 6:15 ] ),
 +    abs( coef( estResultRay )[ 6:15 ] ) )
@@ -319,7 +317,7 @@ b_3_3   -6.7136     3.4957 -1.9205  0.11285
 b_3_t  -35.7049    14.8411 -2.4058  0.06118 .
 b_t_t -133.8304    65.3549 -2.0477  0.09592 .
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.9978144     Adjusted R-squared: 0.9916946 
 > all.equal( coef( estResultRay ), coef( estResultRay3 )[
 +    c( 1, 3, 4, 2, 5, 10, 11, 7, 12, 13, 8, 14, 6, 9, 15 ) ],
@@ -454,7 +452,7 @@ b_3_3  -0.217264   0.411956 -0.5274 0.598853
 b_3_t  -0.401959   0.282549 -1.4226 0.157338   
 b_t_t   1.691408   0.561035  3.0148 0.003115 **
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.7133403     Adjusted R-squared: 0.6812345 
 > print.default( estApple )
 $call
@@ -1173,7 +1171,7 @@ b_3_3  -0.217264   0.411956 -0.5274 0.598853
 b_3_t   0.401959   0.282549  1.4226 0.157338   
 b_t_t   1.691408   0.561035  3.0148 0.003115 **
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.7133403     Adjusted R-squared: 0.6812345 
 > all.equal( abs( coef( estApple2 )[ 6:15 ] ),
 +    abs( coef( estApple )[ 6:15 ] ) )
@@ -1211,7 +1209,7 @@ b_3_3  -1.261678   0.675654 -1.8673 0.064196 .
 b_3_t  -0.013336   0.377037 -0.0354 0.971841   
 b_t_t   1.691408   0.561035  3.0148 0.003115 **
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.7133403     Adjusted R-squared: 0.6812345 
 > all.equal( coef( estApple ), coef( estApple3 )[
 +    c( 1, 3, 4, 2, 5, 10, 11, 7, 12, 13, 8, 14, 6, 9, 15 ) ],
@@ -1547,4 +1545,4 @@ R-squared: 0.7133403     Adjusted R-squared: 0.6812345
 > 
 > proc.time()
    user  system elapsed 
-  0.708   0.020   0.715 
+  0.549   0.060   0.587 

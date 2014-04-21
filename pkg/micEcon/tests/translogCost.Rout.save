@@ -1,7 +1,6 @@
 
-R version 2.15.0 (2012-03-30)
-Copyright (C) 2012 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -17,7 +16,6 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEcon )
-Loading required package: miscTools
 > 
 > data( germanFarms )
 > # output quantity:
@@ -200,11 +198,11 @@ b_2_2         0.2397     0.5411   0.443   0.6672
 b_2_3         1.4632     2.1408   0.684   0.5098  
 b_3_3        -3.5803     3.6105  -0.992   0.3448  
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.01923 on 10 degrees of freedom
-Multiple R-squared: 0.9948,	Adjusted R-squared: 0.9902 
-F-statistic: 214.4 on 9 and 10 DF,  p-value: 3.066e-10 
+Multiple R-squared:  0.9948,	Adjusted R-squared:  0.9902 
+F-statistic: 214.4 on 9 and 10 DF,  p-value: 3.066e-10
 
 > 
 > # non-hom in prices, without land, with trend
@@ -387,11 +385,11 @@ b_2_3         1.460828   2.260393   0.646   0.5342
 b_3_3        -3.576967   3.810271  -0.939   0.3724  
 d_1          -0.001371   0.076243  -0.018   0.9860  
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.02027 on 9 degrees of freedom
-Multiple R-squared: 0.9948,	Adjusted R-squared: 0.9891 
-F-statistic: 173.7 on 10 and 9 DF,  p-value: 4.735e-09 
+Multiple R-squared:  0.9948,	Adjusted R-squared:  0.9891 
+F-statistic: 173.7 on 10 and 9 DF,  p-value: 4.735e-09
 
 > 
 > # non-hom in prices, with land, without trend
@@ -608,8 +606,8 @@ b_3_4       -10.5537    16.7699  -0.629    0.557
 b_4_4        -2.1606    29.5516  -0.073    0.945
 
 Residual standard error: 0.01704 on 5 degrees of freedom
-Multiple R-squared: 0.998,	Adjusted R-squared: 0.9923 
-F-statistic: 176.1 on 14 and 5 DF,  p-value: 9.109e-06 
+Multiple R-squared:  0.998,	Adjusted R-squared:  0.9923 
+F-statistic: 176.1 on 14 and 5 DF,  p-value: 9.109e-06
 
 > 
 > # non-hom in prices, with land + trend
@@ -850,13 +848,13 @@ b_3_4       -15.73352   17.11595  -0.919   0.4100
 b_4_4       -16.94460   31.97920  -0.530   0.6243  
 d_1          -0.08959    0.08187  -1.094   0.3353  
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.01671 on 4 degrees of freedom
-Multiple R-squared: 0.9984,	Adjusted R-squared: 0.9926 
-F-statistic: 170.9 on 15 and 4 DF,  p-value: 7.682e-05 
+Multiple R-squared:  0.9984,	Adjusted R-squared:  0.9926 
+F-statistic: 170.9 on 15 and 4 DF,  p-value: 7.682e-05
 
 > 
 > proc.time()
    user  system elapsed 
-  0.216   0.020   0.224 
+  0.225   0.018   0.219 

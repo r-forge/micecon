@@ -1,7 +1,6 @@
 
-R version 2.15.0 (2012-03-30)
-Copyright (C) 2012 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -17,7 +16,6 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEcon )
-Loading required package: miscTools
 > 
 > ## function for printIndexing indices
 > printIndices <- function( what, ... ) {
@@ -3772,4 +3770,4 @@ attr(,"weights")
 > 
 > proc.time()
    user  system elapsed 
-  0.416   0.028   0.442 
+  0.403   0.031   0.427 

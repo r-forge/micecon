@@ -1,7 +1,6 @@
 
-R version 2.15.0 (2012-03-30)
-Copyright (C) 2012 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -17,28 +16,8 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEcon )
-Loading required package: miscTools
 > library( plm )
-Loading required package: bdsmatrix
-
-Attaching package: 'bdsmatrix'
-
-The following object(s) are masked from 'package:base':
-
-    backsolve
-
-Loading required package: nlme
 Loading required package: Formula
-Loading required package: MASS
-Loading required package: sandwich
-Loading required package: zoo
-
-Attaching package: 'zoo'
-
-The following object(s) are masked from 'package:base':
-
-    as.Date, as.Date.numeric
-
 > 
 > ## preparing data
 > data( germanFarms )
@@ -88,7 +67,7 @@ b_3_3   -3.90964    9.32307 -0.4194  0.69237
 b_3_4    2.79333    0.74993  3.7248  0.01364 *
 b_4_4   -0.24565    0.15974 -1.5378  0.18471  
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.9982506     Adjusted R-squared: 0.9933521 
 > 
 > residuals( estResult )
@@ -302,7 +281,7 @@ b_3_3    0.26450    4.82223  0.0548  0.95838
 b_3_4   -1.16332    1.54187 -0.7545  0.48456  
 b_4_4   -0.24565    0.15974 -1.5378  0.18471  
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.9982506     Adjusted R-squared: 0.9933521 
 > all.equal( residuals( estResult ), residuals( estResultOrder ) )
 [1] TRUE
@@ -338,7 +317,7 @@ b_3_3  -16.86474   19.10077 -0.8829  0.41769
 b_3_4   -3.57340    1.89984 -1.8809  0.11874  
 b_4_4   -0.24565    0.15974 -1.5378  0.18471  
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.9982506     Adjusted R-squared: 0.9933521 
 > all.equal( residuals( estResult ), residuals( estResultOrder2 ) )
 [1] TRUE
@@ -374,7 +353,7 @@ b_3_3   -0.24565    0.15974 -1.5378  0.18471
 b_3_4   -3.57340    1.89984 -1.8809  0.11874  
 b_4_4  -16.86474   19.10077 -0.8829  0.41769  
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.9982506     Adjusted R-squared: 0.9933521 
 > all.equal( residuals( estResult ), residuals( estResultOrder3 ) )
 [1] TRUE
@@ -1945,7 +1924,7 @@ b_3_3   4.4920670   7.1604770  0.6273  0.54792
 d_1     0.0370709   0.0160729  2.3064  0.04997 *
 d_2    -0.0024315   0.0011743 -2.0706  0.07216 .
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.9940234     Adjusted R-squared: 0.9858055 
 > residuals( estResultShifter2 )
            1            2            3            4            5            6 
@@ -3278,7 +3257,7 @@ b_3_3   -3.90964    9.32307 -0.4194  0.69237
 b_3_4    2.79333    0.74993  3.7248  0.01364 *
 b_4_4   -0.24565    0.15974 -1.5378  0.18471  
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 R-squared: 0.9982506     Adjusted R-squared: 0.9933521 
 > print.default( estResult2 )
 $call
@@ -3477,7 +3456,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x1a99210>
+<environment: 0x44a5c28>
 
 Coefficients:
      a_1      a_2    b_1_1    b_1_2    b_2_2 
@@ -3721,7 +3700,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x2526080>
+<environment: 0x460c410>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4613,7 +4592,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x2d30ea0>
+<environment: 0x42c43f0>
 
 Coefficients:
       a_1       a_2     b_1_1     b_1_2     b_2_2       d_1 
@@ -4865,7 +4844,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x2942088>
+<environment: 0x389a5f8>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -5128,7 +5107,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x3332368>
+<environment: 0x426e0e0>
 
 Coefficients:
       a_1       a_2     b_1_1     b_1_2     b_2_2  d_1_TRUE 
@@ -5380,7 +5359,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x33666f8>
+<environment: 0x4b13cd0>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -5638,7 +5617,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x311d4c8>
+<environment: 0x44eed70>
 
 Coefficients:
       a_1       a_2     b_1_1     b_1_2     b_2_2   d_1_40s   d_1_50s 
@@ -5893,7 +5872,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x34f9730>
+<environment: 0x46ba0e8>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -6129,4 +6108,4 @@ attr(,"class")
 > 
 > proc.time()
    user  system elapsed 
-  2.768   0.064   2.832 
+  2.341   0.069   2.392 
