@@ -5,6 +5,11 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.6-12  (2014-04-21)
+
+* 'micEcon' no loger depends on package 'miscTools' but imports this package
+
+
             CHANGES IN VERSION 0.6-10  (2012-06-02)
 
 * internal change, not relevant for the user
