@@ -1,5 +1,6 @@
 library( micEcon )
 library( plm )
+options( digits = 3 )
 
 ## preparing data
 data( germanFarms )
