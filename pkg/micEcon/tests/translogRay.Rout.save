@@ -16,6 +16,9 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEcon )
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 > options( digits = 3 )
 > 
 > ## preparing data
@@ -1313,4 +1316,4 @@ R-squared: 0.713     Adjusted R-squared: 0.681
 > 
 > proc.time()
    user  system elapsed 
-  0.582   0.020   0.578 
+  0.569   0.040   0.587 

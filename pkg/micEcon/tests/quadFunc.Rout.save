@@ -16,6 +16,9 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEcon )
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 > library( plm )
 Loading required package: Formula
 > options( digits = 3 )
@@ -2661,7 +2664,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x28b94b0>
+<environment: 0x3b84608>
 
 Coefficients:
      a_1      a_2    b_1_1    b_1_2    b_2_2 
@@ -2874,7 +2877,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x197f740>
+<environment: 0x2d2dfd8>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3097,7 +3100,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x1b4ec70>
+<environment: 0x2e97b68>
 
 Coefficients:
      a_1      a_2    b_1_1    b_1_2    b_2_2      d_1 
@@ -3314,7 +3317,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x2616418>
+<environment: 0x3c92bb8>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3542,7 +3545,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x2a4b998>
+<environment: 0x3934130>
 
 Coefficients:
       a_1       a_2     b_1_1     b_1_2     b_2_2  d_1_TRUE 
@@ -3759,7 +3762,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x25117c0>
+<environment: 0x2ee9f28>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3982,7 +3985,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x2425078>
+<environment: 0x2d471c8>
 
 Coefficients:
       a_1       a_2     b_1_1     b_1_2     b_2_2   d_1_40s   d_1_50s 
@@ -4210,7 +4213,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x2e35c70>
+<environment: 0x3cdf5d8>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4443,7 +4446,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x25040f0>
+<environment: 0x2f56c20>
 
 Coefficients:
   a_1   a_2 
@@ -4664,7 +4667,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x17d2008>
+<environment: 0x41391f8>
 
 Coefficients:
 (Intercept)         a_1         a_2 
@@ -5566,4 +5569,4 @@ b_3_4 b_4_4
 > 
 > proc.time()
    user  system elapsed 
-  2.470   0.095   2.562 
+  2.490   0.046   2.521 
