@@ -208,8 +208,6 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
          as.matrix( estData[ , 4:( ncol( estData ) ) ] ) )
    } else {
       result$model.matrix <- model.matrix( result$est )
-      rownames( result$model.matrix ) <- NULL
-      colnames( result$model.matrix )[1] <- ""
    }
    class( result ) <- "quadFuncEst"
    return( result )
