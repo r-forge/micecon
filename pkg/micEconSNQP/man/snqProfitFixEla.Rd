@@ -41,7 +41,7 @@
       c(0.4,0.3,0.3) )
 
    # now with real data
-   data( germanFarms )
+   data( germanFarms, package = "micEcon" )
    germanFarms$qOutput   <- germanFarms$vOutput   / germanFarms$pOutput
    germanFarms$qVarInput <- -germanFarms$vVarInput / germanFarms$pVarInput
    germanFarms$qLabor    <- -germanFarms$qLabor
