@@ -1,7 +1,6 @@
 
-R version 2.15.3 (2013-03-01) -- "Security Blanket"
-Copyright (C) 2013 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -19,21 +18,21 @@ Type 'q()' to quit R.
 > library( "micEconCES" )
 Loading required package: systemfit
 Loading required package: Matrix
-Loading required package: lattice
 Loading required package: car
-Loading required package: MASS
-Loading required package: nnet
 Loading required package: lmtest
 Loading required package: zoo
 
 Attaching package: 'zoo'
 
-The following object(s) are masked from 'package:base':
+The following objects are masked from 'package:base':
 
     as.Date, as.Date.numeric
 
 Loading required package: miscTools
 Loading required package: micEcon
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
@@ -42,6 +41,12 @@ Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
 > library( "maxLik" )
+
+Please cite the 'maxLik' package as:
+Henningsen, Arne and Toomet, Ott (2011). maxLik: A package for maximum likelihood estimation in R. Computational Statistics 26(3), 443-458. DOI 10.1007/s00180-010-0217-1.
+
+If you have questions, suggestions, or comments regarding the 'maxLik' package, please use a forum or 'tracker' at maxLik's R-Forge site:
+https://r-forge.r-project.org/projects/maxlik/
 > 
 > data( "MishraCES" )
 > MishraCES$time <- c( 0:49 )
@@ -7138,7 +7143,7 @@ delta     0.60044    0.01115  53.833  < 2e-16 ***
 rho_1     0.48458    0.07340   6.602 4.06e-11 ***
 rho       0.42628    0.07576   5.627 1.83e-08 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 497.0224 
 Multiple R-squared: 0.9947194 
@@ -7148,7 +7153,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.67359    0.03330   20.23   <2e-16 ***
 E_(1,2)_3 (AU)  0.70112    0.03724   18.83   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -7328,7 +7333,7 @@ rho_1   5.819e-01  7.113e-02   8.180 2.84e-16 ***
 rho     4.935e-01  7.348e-02   6.715 1.87e-11 ***
 nu      1.012e+00  1.770e-02  57.163  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 392.5584 
 Multiple R-squared: 0.9967059 
@@ -7338,7 +7343,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.63217    0.02843   22.24   <2e-16 ***
 E_(1,2)_3 (AU)  0.66958    0.03295   20.32   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -7526,7 +7531,7 @@ delta   6.052e-01  5.334e-03  113.46   <2e-16 ***
 rho_1   4.940e-01  3.241e-02   15.24   <2e-16 ***
 rho     5.938e-01  4.532e-02   13.10   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 363.7366 
 Multiple R-squared: 0.9992801 
@@ -7536,7 +7541,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.66935    0.01452   46.10   <2e-16 ***
 E_(1,2)_3 (AU)  0.62742    0.01784   35.17   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -7684,7 +7689,7 @@ rho_1   7.016e-01  8.040e-02   8.726  < 2e-16 ***
 rho     9.641e-01  1.231e-01   7.831 4.85e-15 ***
 nu      9.840e-01  1.781e-02  55.254  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1064.083 
 Multiple R-squared: 0.9976424 
@@ -7694,7 +7699,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.58767    0.02777   21.16   <2e-16 ***
 E_(1,2)_3 (AU)  0.50914    0.03191   15.95   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -7837,7 +7842,7 @@ rho_1    0.17888    0.19558   0.915   0.3604
 rho     -0.14045    0.16431  -0.855   0.3927    
 nu       1.69026    0.13844  12.209   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.4524434 
 Multiple R-squared: 0.7908702 
@@ -7847,7 +7852,7 @@ Elasticities of Substitution:
 E_1_2 (HM)       0.8483     0.1407   6.028 1.66e-09 ***
 E_(1,2)_3 (AU)   1.1634     0.2224   5.231 1.68e-07 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -7995,7 +8000,7 @@ delta     0.58168    0.01618  35.944  < 2e-16 ***
 rho_1     0.46981    0.11670   4.026 5.68e-05 ***
 rho       0.29230    0.10386   2.814  0.00489 ** 
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 717.3508 
 Multiple R-squared: 0.9889999 
@@ -8005,7 +8010,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.68036    0.05402   12.60   <2e-16 ***
 E_(1,2)_3 (AU)  0.77382    0.06219   12.44   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -8185,7 +8190,7 @@ rho_1   4.554e-01  7.044e-02   6.464 1.02e-10 ***
 rho     4.158e-01  7.640e-02   5.442 5.27e-08 ***
 nu      1.012e+00  1.958e-02  51.663  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 433.7632 
 Multiple R-squared: 0.995978 
@@ -8195,7 +8200,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.68711    0.03326   20.66   <2e-16 ***
 E_(1,2)_3 (AU)  0.70634    0.03812   18.53   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -8390,7 +8395,7 @@ rho_1   2.602e-01  1.799e-01   1.447    0.148
 rho     2.565e-01  2.115e-01   1.213    0.225    
 nu      9.838e-01  4.996e-02  19.690  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 3248.616 
 Multiple R-squared: 0.9780255 
@@ -8400,7 +8405,7 @@ Elasticities of Substitution:
 E_1_2 (HM)       0.7935     0.1133   7.007 2.44e-12 ***
 E_(1,2)_3 (AU)   0.7959     0.1339   5.942 2.82e-09 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -8525,7 +8530,7 @@ delta     0.59948    0.01613  37.170  < 2e-16 ***
 rho_1     0.37946    0.10017   3.788 0.000152 ***
 rho       0.35967    0.10637   3.381 0.000721 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 703.9793 
 Multiple R-squared: 0.9894062 
@@ -8535,7 +8540,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.72492    0.05264   13.77   <2e-16 ***
 E_(1,2)_3 (AU)  0.73547    0.05754   12.78   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -8711,7 +8716,7 @@ rho_1   6.360e-01  8.003e-02   7.947 1.91e-15 ***
 rho     4.551e-01  7.532e-02   6.042 1.52e-09 ***
 nu      1.012e+00  1.859e-02  54.423  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 410.1439 
 Multiple R-squared: 0.9964041 
@@ -8721,7 +8726,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.61124    0.02990   20.44   <2e-16 ***
 E_(1,2)_3 (AU)  0.68722    0.03557   19.32   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -8912,7 +8917,7 @@ rho_1   7.032e-01  1.764e-01   3.985 6.73e-05 ***
 rho     6.556e-01  1.956e-01   3.351 0.000805 ***
 nu      9.692e-01  3.268e-02  29.654  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1949.61 
 Multiple R-squared: 0.9920856 
@@ -8922,7 +8927,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.58712    0.06082   9.653   <2e-16 ***
 E_(1,2)_3 (AU)  0.60401    0.07138   8.462   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -9057,7 +9062,7 @@ delta   5.961e-01  9.183e-03  64.911  < 2e-16 ***
 rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
 rho     5.202e-01  6.413e-02   8.111 5.02e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7599 
 Multiple R-squared: 0.996736 
@@ -9067,7 +9072,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62360    0.02569   24.28   <2e-16 ***
 E_(1,2)_3 (AU)  0.65781    0.02775   23.70   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -9249,7 +9254,7 @@ rho_1   6.035e-01  7.229e-02   8.349  < 2e-16 ***
 rho     5.202e-01  7.487e-02   6.948  3.7e-12 ***
 nu      1.000e+00  1.750e-02  57.131  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7599 
 Multiple R-squared: 0.996736 
@@ -9259,7 +9264,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62362    0.02811   22.18   <2e-16 ***
 E_(1,2)_3 (AU)  0.65783    0.03240   20.30   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -9448,7 +9453,7 @@ delta   6.051e-01  5.333e-03  113.46   <2e-16 ***
 rho_1   4.944e-01  3.243e-02   15.24   <2e-16 ***
 rho     5.933e-01  4.530e-02   13.10   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 363.7335 
 Multiple R-squared: 0.9992802 
@@ -9458,7 +9463,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.66918    0.01452   46.08   <2e-16 ***
 E_(1,2)_3 (AU)  0.62763    0.01784   35.17   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -9607,7 +9612,7 @@ rho_1   5.009e-01  2.109e-02   23.75   <2e-16 ***
 rho     6.009e-01  2.941e-02   20.43   <2e-16 ***
 nu      1.107e+00  6.127e-03  180.67   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 337.4159 
 Multiple R-squared: 0.9997629 
@@ -9617,7 +9622,7 @@ Elasticities of Substitution:
 E_1_2 (HM)     0.666258   0.009364   71.15   <2e-16 ***
 E_(1,2)_3 (AU) 0.624646   0.011474   54.44   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -9760,7 +9765,7 @@ delta     0.58311    0.04546  12.825  < 2e-16 ***
 rho_1     0.46939    0.16221   2.894  0.00381 ** 
 rho       0.62130    0.20891   2.974  0.00294 ** 
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.2379344 
 Multiple R-squared: 0.9401291 
@@ -9770,7 +9775,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.68055    0.07513   9.058  < 2e-16 ***
 E_(1,2)_3 (AU)  0.61679    0.07947   7.761 8.44e-15 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -9905,7 +9910,7 @@ delta   5.961e-01  9.183e-03  64.911  < 2e-16 ***
 rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
 rho     5.202e-01  6.413e-02   8.111 5.02e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7599 
 Multiple R-squared: 0.996736 
@@ -9915,7 +9920,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62360    0.02569   24.28   <2e-16 ***
 E_(1,2)_3 (AU)  0.65781    0.02775   23.70   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -10101,7 +10106,7 @@ rho_1   5.791e-01  7.108e-02   8.147 3.72e-16 ***
 rho     4.886e-01  7.331e-02   6.665 2.64e-11 ***
 nu      1.014e+00  1.775e-02  57.118  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 393.2376 
 Multiple R-squared: 0.9966945 
@@ -10111,7 +10116,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.63328    0.02851   22.22   <2e-16 ***
 E_(1,2)_3 (AU)  0.67176    0.03308   20.31   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -10304,7 +10309,7 @@ delta   6.051e-01  5.333e-03  113.46   <2e-16 ***
 rho_1   4.944e-01  3.243e-02   15.24   <2e-16 ***
 rho     5.932e-01  4.530e-02   13.10   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 363.7335 
 Multiple R-squared: 0.9992802 
@@ -10314,7 +10319,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.66917    0.01452   46.08   <2e-16 ***
 E_(1,2)_3 (AU)  0.62766    0.01785   35.17   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -10467,7 +10472,7 @@ rho_1   6.888e-01  7.459e-02   9.234   <2e-16 ***
 rho     9.296e-01  1.125e-01   8.264   <2e-16 ***
 nu      9.923e-01  1.680e-02  59.076   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 997.7933 
 Multiple R-squared: 0.997927 
@@ -10477,7 +10482,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.59214    0.02615   22.64   <2e-16 ***
 E_(1,2)_3 (AU)  0.51825    0.03021   17.15   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -10635,7 +10640,7 @@ rho_1   5.824e-01  2.336e-01   2.493   0.0127 *
 rho     1.097e+00  6.513e-01   1.685   0.0920 .  
 nu      1.008e+00  1.031e-01   9.777  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.3040769 
 Multiple R-squared: 0.9215455 
@@ -10645,7 +10650,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.63193    0.09329   6.774 1.25e-11 ***
 E_(1,2)_3 (AU)  0.47676    0.14805   3.220  0.00128 ** 
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -10767,7 +10772,7 @@ delta   5.961e-01  9.183e-03  64.911  < 2e-16 ***
 rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
 rho     5.202e-01  6.413e-02   8.111 5.02e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7599 
 Multiple R-squared: 0.996736 
@@ -10777,7 +10782,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62360    0.02569   24.28   <2e-16 ***
 E_(1,2)_3 (AU)  0.65781    0.02775   23.70   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -10949,7 +10954,7 @@ rho_1   6.035e-01  7.229e-02   8.349  < 2e-16 ***
 rho     5.202e-01  7.487e-02   6.948  3.7e-12 ***
 nu      1.000e+00  1.750e-02  57.131  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7599 
 Multiple R-squared: 0.996736 
@@ -10959,7 +10964,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62362    0.02811   22.18   <2e-16 ***
 E_(1,2)_3 (AU)  0.65783    0.03240   20.30   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -11138,7 +11143,7 @@ delta   6.051e-01  5.333e-03  113.46   <2e-16 ***
 rho_1   4.944e-01  3.243e-02   15.24   <2e-16 ***
 rho     5.932e-01  4.530e-02   13.10   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 363.7335 
 Multiple R-squared: 0.9992802 
@@ -11148,7 +11153,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.66918    0.01452   46.08   <2e-16 ***
 E_(1,2)_3 (AU)  0.62766    0.01785   35.17   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -11285,7 +11290,7 @@ rho_1   5.009e-01  2.109e-02   23.75   <2e-16 ***
 rho     6.009e-01  2.941e-02   20.43   <2e-16 ***
 nu      1.107e+00  6.127e-03  180.67   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 337.4159 
 Multiple R-squared: 0.9997629 
@@ -11295,7 +11300,7 @@ Elasticities of Substitution:
 E_1_2 (HM)     0.666258   0.009364   71.15   <2e-16 ***
 E_(1,2)_3 (AU) 0.624646   0.011474   54.44   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -11420,7 +11425,7 @@ delta     0.52551    0.05491   9.570   <2e-16 ***
 rho_1     0.70785    0.40848   1.733   0.0831 .  
 rho       0.44020    0.20427   2.155   0.0312 *  
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.3182029 
 Multiple R-squared: 0.8965583 
@@ -11430,7 +11435,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.58553    0.14005   4.181 2.90e-05 ***
 E_(1,2)_3 (AU)  0.69435    0.09848   7.050 1.78e-12 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -11565,7 +11570,7 @@ delta   5.961e-01  9.183e-03  64.911  < 2e-16 ***
 rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
 rho     5.202e-01  6.413e-02   8.111 5.02e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7599 
 Multiple R-squared: 0.996736 
@@ -11575,7 +11580,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62360    0.02569   24.28   <2e-16 ***
 E_(1,2)_3 (AU)  0.65781    0.02775   23.70   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -11597,7 +11602,7 @@ delta   5.961e-01  9.183e-03  64.911  < 2e-16 ***
 rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
 rho     5.202e-01  6.413e-02   8.111 5.02e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7599 
 Multiple R-squared: 0.996736 
@@ -11620,7 +11625,7 @@ delta   5.961e-01  9.183e-03  64.911  < 2e-16 ***
 rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
 rho     5.202e-01  6.413e-02   8.111 5.02e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7599 
 Multiple R-squared: 0.996736 
@@ -11804,7 +11809,7 @@ rho_1   6.035e-01  7.229e-02   8.349  < 2e-16 ***
 rho     5.202e-01  7.487e-02   6.948  3.7e-12 ***
 nu      1.000e+00  1.750e-02  57.131  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7599 
 Multiple R-squared: 0.996736 
@@ -11814,7 +11819,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62362    0.02811   22.18   <2e-16 ***
 E_(1,2)_3 (AU)  0.65783    0.03240   20.30   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -12002,7 +12007,7 @@ delta   6.051e-01  5.333e-03  113.46   <2e-16 ***
 rho_1   4.944e-01  3.243e-02   15.24   <2e-16 ***
 rho     5.932e-01  4.530e-02   13.10   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 363.7335 
 Multiple R-squared: 0.9992802 
@@ -12012,7 +12017,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.66918    0.01452   46.08   <2e-16 ***
 E_(1,2)_3 (AU)  0.62766    0.01785   35.17   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -12158,7 +12163,7 @@ rho_1   6.886e-01  7.457e-02   9.234   <2e-16 ***
 rho     9.301e-01  1.125e-01   8.266   <2e-16 ***
 nu      9.923e-01  1.680e-02  59.075   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 997.795 
 Multiple R-squared: 0.997927 
@@ -12168,7 +12173,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.59219    0.02615   22.64   <2e-16 ***
 E_(1,2)_3 (AU)  0.51810    0.03020   17.15   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -12310,7 +12315,7 @@ rho_1     0.66243    0.40246   1.646  0.09977 .
 rho       0.40452    0.24001   1.685  0.09191 .  
 nu        1.02455    0.09806  10.448  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.3180183 
 Multiple R-squared: 0.8966783 
@@ -12320,7 +12325,7 @@ Elasticities of Substitution:
 E_1_2 (HM)       0.6015     0.1456   4.131 3.62e-05 ***
 E_(1,2)_3 (AU)   0.7120     0.1217   5.852 4.86e-09 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -12476,7 +12481,7 @@ delta   5.961e-01  9.183e-03  64.911  < 2e-16 ***
 rho_1   6.036e-01  6.605e-02   9.138  < 2e-16 ***
 rho     5.202e-01  6.413e-02   8.111 5.02e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7599 
 Multiple R-squared: 0.996736 
@@ -12486,7 +12491,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62360    0.02569   24.28   <2e-16 ***
 E_(1,2)_3 (AU)  0.65781    0.02775   23.70   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -12674,7 +12679,7 @@ rho_1   6.035e-01  7.229e-02   8.349  < 2e-16 ***
 rho     5.202e-01  7.487e-02   6.948  3.7e-12 ***
 nu      1.000e+00  1.750e-02  57.131  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7599 
 Multiple R-squared: 0.996736 
@@ -12684,7 +12689,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62362    0.02811   22.18   <2e-16 ***
 E_(1,2)_3 (AU)  0.65783    0.03240   20.30   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -12879,7 +12884,7 @@ delta   6.051e-01  5.333e-03  113.46   <2e-16 ***
 rho_1   4.944e-01  3.243e-02   15.24   <2e-16 ***
 rho     5.932e-01  4.530e-02   13.10   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 363.7335 
 Multiple R-squared: 0.9992802 
@@ -12889,7 +12894,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.66918    0.01452   46.08   <2e-16 ***
 E_(1,2)_3 (AU)  0.62766    0.01785   35.17   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -13048,7 +13053,7 @@ rho_1   5.009e-01  2.109e-02   23.75   <2e-16 ***
 rho     6.009e-01  2.941e-02   20.43   <2e-16 ***
 nu      1.107e+00  6.127e-03  180.67   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 337.4159 
 Multiple R-squared: 0.9997629 
@@ -13058,7 +13063,7 @@ Elasticities of Substitution:
 E_1_2 (HM)     0.666258   0.009364   71.15   <2e-16 ***
 E_(1,2)_3 (AU) 0.624646   0.011474   54.44   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -13206,7 +13211,7 @@ delta   4.952e-01  3.424e-02  14.463  < 2e-16 ***
 rho_1   2.958e+00  2.730e+00   1.083 0.278620    
 rho     2.791e-01  8.034e-02   3.474 0.000512 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.2597922 
 Multiple R-squared: 0.9286237 
@@ -13216,7 +13221,7 @@ Elasticities of Substitution:
 E_1_2 (HM)       0.2527     0.1743    1.45    0.147    
 E_(1,2)_3 (AU)   0.7818     0.0491   15.92   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -13663,7 +13668,7 @@ delta   5.956e-01  9.172e-03  64.940  < 2e-16 ***
 rho_1   6.034e-01  6.612e-02   9.127  < 2e-16 ***
 rho     5.164e-01  6.397e-02   8.072  6.9e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.7884 
 Multiple R-squared: 0.9967355 
@@ -13673,7 +13678,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62367    0.02572   24.25   <2e-16 ***
 E_(1,2)_3 (AU)  0.65946    0.02782   23.70   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -14186,7 +14191,7 @@ rho_1     0.57406    0.16071   3.572 0.000354 ***
 rho       1.85176    0.52953   3.497 0.000471 ***
 nu        0.76724    0.03800  20.191  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 965.201 
 Multiple R-squared: 0.9800855 
@@ -14196,7 +14201,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.63530    0.06486   9.794  < 2e-16 ***
 E_(1,2)_3 (AU)  0.35066    0.06511   5.385 7.23e-08 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -14219,7 +14224,7 @@ rho_1     0.57406    0.16071   3.572 0.000354 ***
 rho       1.85176    0.52953   3.497 0.000471 ***
 nu        0.76724    0.03800  20.191  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 965.201 
 Multiple R-squared: 0.9800855 
@@ -14243,7 +14248,7 @@ rho_1     0.57406    0.16071   3.572 0.000354 ***
 rho       1.85176    0.52953   3.497 0.000471 ***
 nu        0.76724    0.03800  20.191  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 965.201 
 Multiple R-squared: 0.9800855 
@@ -15095,7 +15100,7 @@ rho_1   2.498e+00  1.218e+00   2.050   0.0403 *
 rho     3.880e+00  2.096e+00   1.851   0.0642 .  
 nu      6.943e-01  4.522e-02  15.354  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 4002.88 
 Multiple R-squared: 0.9666369 
@@ -15105,7 +15110,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.28592    0.09957   2.871  0.00409 **
 E_(1,2)_3 (AU)  0.20492    0.08802   2.328  0.01991 * 
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -15549,7 +15554,7 @@ delta     0.52657    0.05505   9.565   <2e-16 ***
 rho_1     0.69610    0.39933   1.743   0.0813 .  
 rho       0.44294    0.20623   2.148   0.0317 *  
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.3182063 
 Multiple R-squared: 0.8965561 
@@ -15559,7 +15564,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.58959    0.13881   4.247 2.16e-05 ***
 E_(1,2)_3 (AU)  0.69303    0.09905   6.997 2.62e-12 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -15696,7 +15701,7 @@ delta     0.56854    0.01061  53.567  < 2e-16 ***
 rho_1     1.00000    0.12079   8.279  < 2e-16 ***
 rho       0.35578    0.06875   5.175 2.28e-07 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 471.2543 
 Multiple R-squared: 0.9952527 
@@ -15706,7 +15711,7 @@ Elasticities of Substitution:
 E_1_2 (HM)       0.5000     0.0302   16.56   <2e-16 ***
 E_(1,2)_3 (AU)   0.7376     0.0374   19.72   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -15879,7 +15884,7 @@ delta   5.661e-01  9.595e-03  59.002  < 2e-16 ***
 rho_1   1.000e+00  1.128e-01   8.861  < 2e-16 ***
 rho     3.000e-01  6.871e-02   4.366 1.26e-05 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 691.4456 
 Multiple R-squared: 0.9973987 
@@ -15889,7 +15894,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.50000    0.02821   17.72   <2e-16 ***
 E_(1,2)_3 (AU)  0.76922    0.04066   18.92   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -16025,7 +16030,7 @@ rho_1     0.00000    0.06398   0.000 1.000000
 rho       0.55960    0.14521   3.854 0.000116 ***
 nu        1.09669    0.03593  30.521  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 773.1119 
 Multiple R-squared: 0.9872233 
@@ -16035,7 +16040,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      1.00000    0.06398   15.63   <2e-16 ***
 E_(1,2)_3 (AU)  0.64119    0.05970   10.74   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -16224,7 +16229,7 @@ delta     0.65423    0.02082  31.429  < 2e-16 ***
 rho_1     0.00000    0.06139   0.000        1    
 rho       0.86223    0.16615   5.189 2.11e-07 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 842.2721 
 Multiple R-squared: 0.9848352 
@@ -16234,7 +16239,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      1.00000    0.06139   16.29   <2e-16 ***
 E_(1,2)_3 (AU)  0.53699    0.04791   11.21   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -16428,7 +16433,7 @@ rho_1     1.00000    0.12700   7.874 3.44e-15 ***
 rho       0.43834    0.08308   5.276 1.32e-07 ***
 nu        0.97043    0.01996  48.618  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 459.8982 
 Multiple R-squared: 0.9954788 
@@ -16438,7 +16443,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.50000    0.03175   15.75   <2e-16 ***
 E_(1,2)_3 (AU)  0.69525    0.04016   17.31   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -16646,7 +16651,7 @@ rho_1   1.000e+00  1.005e-01   9.954  < 2e-16 ***
 rho     4.320e-01  7.325e-02   5.898 3.67e-09 ***
 nu      1.062e+00  1.616e-02  65.715  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 930.0534 
 Multiple R-squared: 0.9981989 
@@ -16656,7 +16661,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.50000    0.02512   19.91   <2e-16 ***
 E_(1,2)_3 (AU)  0.69830    0.03572   19.55   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -16786,7 +16791,7 @@ delta     0.62790    0.01393  45.063  < 2e-16 ***
 rho_1     0.42876    0.06769   6.334 2.39e-10 ***
 rho       1.00000    0.11762   8.502  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 524.1648 
 Multiple R-squared: 0.9941269 
@@ -16796,7 +16801,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.69991    0.03316   21.11   <2e-16 ***
 E_(1,2)_3 (AU)  0.50000    0.02940   17.00   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -16971,7 +16976,7 @@ rho_1     0.75889    0.14878   5.101 3.38e-07 ***
 rho       0.00000    0.07423   0.000        1    
 nu        1.07217    0.02826  37.940  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 614.3625 
 Multiple R-squared: 0.9919317 
@@ -16981,7 +16986,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.56854    0.04809   11.82   <2e-16 ***
 E_(1,2)_3 (AU)  1.00000    0.07423   13.47   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -17169,7 +17174,7 @@ rho_1   6.667e-01  1.076e-01   6.194 5.85e-10 ***
 rho     0.000e+00  6.616e-02   0.000        1    
 nu      1.171e+00  2.369e-02  49.432  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1275.467 
 Multiple R-squared: 0.9966126 
@@ -17179,7 +17184,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.60000    0.03874   15.49   <2e-16 ***
 E_(1,2)_3 (AU)  1.00000    0.06616   15.11   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -17323,7 +17328,7 @@ delta     0.56044    0.01297  43.200  < 2e-16 ***
 rho_1     1.06557    0.19701   5.409 6.35e-08 ***
 rho       0.00000    0.06805   0.000        1    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 665.4729 
 Multiple R-squared: 0.9905334 
@@ -17333,7 +17338,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.48413    0.04617   10.48   <2e-16 ***
 E_(1,2)_3 (AU)  1.00000    0.06805   14.70   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -17514,7 +17519,7 @@ delta     0.56044    0.01297  43.200  < 2e-16 ***
 rho_1     1.06557    0.19701   5.409 6.35e-08 ***
 rho       0.00000    0.06805   0.000        1    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 665.4729 
 Multiple R-squared: 0.9905334 
@@ -17524,7 +17529,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.48413    0.04617   10.48   <2e-16 ***
 E_(1,2)_3 (AU)  1.00000    0.06805   14.70   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -17681,7 +17686,7 @@ rho_1     0.54846    0.07974   6.878 6.08e-12 ***
 rho       1.00000    0.13568   7.370 1.70e-13 ***
 nu        0.94927    0.02138  44.407  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 487.1703 
 Multiple R-squared: 0.9949267 
@@ -17691,7 +17696,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.64580    0.03326   19.42   <2e-16 ***
 E_(1,2)_3 (AU)  0.50000    0.03392   14.74   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -17872,7 +17877,7 @@ delta     0.58321    0.02027  28.766  < 2e-16 ***
 rho_1     1.00000    0.17040   5.869 4.40e-09 ***
 rho       1.00000    0.17400   5.747 9.07e-09 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 756.728 
 Multiple R-squared: 0.9877591 
@@ -17882,7 +17887,7 @@ Elasticities of Substitution:
 E_1_2 (HM)       0.5000     0.0426   11.74   <2e-16 ***
 E_(1,2)_3 (AU)   0.5000     0.0435   11.49   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -18061,7 +18066,7 @@ delta   5.665e-01  1.932e-02  29.317  < 2e-16 ***
 rho_1   1.000e+00  1.681e-01   5.949 2.70e-09 ***
 rho     1.000e+00  1.940e-01   5.155 2.53e-07 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1184.371 
 Multiple R-squared: 0.9923678 
@@ -18071,7 +18076,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.50000    0.04202   11.90   <2e-16 ***
 E_(1,2)_3 (AU)  0.50000    0.04849   10.31   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -18212,7 +18217,7 @@ rho_1     0.00000    0.08743   0.000        1
 rho       0.00000    0.12008   0.000        1    
 nu        1.19251    0.04540  26.265  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 944.624 
 Multiple R-squared: 0.9809256 
@@ -18222,7 +18227,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      1.00000    0.08743  11.437   <2e-16 ***
 E_(1,2)_3 (AU)  1.00000    0.12008   8.328   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -18416,7 +18421,7 @@ delta     0.66197    0.02179  30.373  < 2e-16 ***
 rho_1     0.00000    0.06112   0.000        1    
 rho       1.00000    0.18317   5.459 4.78e-08 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 848.1126 
 Multiple R-squared: 0.9846241 
@@ -18426,7 +18431,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      1.00000    0.06112   16.36   <2e-16 ***
 E_(1,2)_3 (AU)  0.50000    0.04579   10.92   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -18625,7 +18630,7 @@ rho_1     1.00000    0.19005   5.262 1.43e-07 ***
 rho       0.00000    0.07375   0.000        1    
 nu        1.04976    0.02838  36.993  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 627.4135 
 Multiple R-squared: 0.9915853 
@@ -18635,7 +18640,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.50000    0.04751   10.52   <2e-16 ***
 E_(1,2)_3 (AU)  1.00000    0.07375   13.56   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -18847,7 +18852,7 @@ rho_1   1.000e+00  1.584e-01   6.315 2.71e-10 ***
 rho     0.000e+00  6.756e-02   0.000        1    
 nu      1.133e+00  2.471e-02  45.857  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1371.787 
 Multiple R-squared: 0.9960817 
@@ -18857,7 +18862,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.50000    0.03959   12.63   <2e-16 ***
 E_(1,2)_3 (AU)  1.00000    0.06756   14.80   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -19023,7 +19028,7 @@ rho_1   1.000e+00  6.836e-01   1.463   0.1435
 rho     0.000e+00  1.327e-01   0.000   1.0000    
 nu      1.261e+00  1.217e-01  10.358  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.3893374 
 Multiple R-squared: 0.8713814 
@@ -19033,7 +19038,7 @@ Elasticities of Substitution:
 E_1_2 (HM)       0.5000     0.1709   2.926  0.00344 ** 
 E_(1,2)_3 (AU)   1.0000     0.1327   7.533 4.95e-14 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -19062,7 +19067,7 @@ rho_1   1.000e+00  6.836e-01   1.463   0.1435
 rho     0.000e+00  1.327e-01   0.000   1.0000    
 nu      1.261e+00  1.217e-01  10.358  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.3893374 
 Multiple R-squared: 0.8713814 
@@ -19092,7 +19097,7 @@ rho_1   1.000e+00  6.836e-01   1.463   0.1435
 rho     0.000e+00  1.327e-01   0.000   1.0000    
 nu      1.261e+00  1.217e-01  10.358  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.3893374 
 Multiple R-squared: 0.8713814 
@@ -19251,7 +19256,7 @@ delta   5.964e-01  9.186e-03  64.918  < 2e-16 ***
 rho_1   6.000e-01  6.579e-02   9.120  < 2e-16 ***
 rho     5.219e-01  6.421e-02   8.129 4.32e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.771 
 Multiple R-squared: 0.9967358 
@@ -19261,7 +19266,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62500    0.02570   24.32   <2e-16 ***
 E_(1,2)_3 (AU)  0.65706    0.02772   23.70   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -19458,7 +19463,7 @@ rho_1   6.000e-01  7.202e-02   8.331  < 2e-16 ***
 rho     5.208e-01  7.489e-02   6.954 3.55e-12 ***
 nu      1.000e+00  1.751e-02  57.132  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.769 
 Multiple R-squared: 0.9967358 
@@ -19468,7 +19473,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62500    0.02813   22.22   <2e-16 ***
 E_(1,2)_3 (AU)  0.65754    0.03238   20.31   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -19669,7 +19674,7 @@ rho_1   5.000e-01  6.574e-02   7.606 2.82e-14 ***
 rho     5.358e-01  7.699e-02   6.960 3.39e-12 ***
 nu      1.011e+00  1.799e-02  56.221  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 397.8239 
 Multiple R-squared: 0.9966169 
@@ -19679,7 +19684,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.66667    0.02922   22.82   <2e-16 ***
 E_(1,2)_3 (AU)  0.65111    0.03264   19.95   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -19845,7 +19850,7 @@ delta   5.964e-01  9.186e-03  64.918  < 2e-16 ***
 rho_1   6.000e-01  6.579e-02   9.120  < 2e-16 ***
 rho     5.219e-01  6.421e-02   8.129 4.32e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.771 
 Multiple R-squared: 0.9967358 
@@ -19855,7 +19860,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62500    0.02570   24.32   <2e-16 ***
 E_(1,2)_3 (AU)  0.65706    0.02772   23.70   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -20072,7 +20077,7 @@ rho_1   6.000e-01  7.202e-02   8.331  < 2e-16 ***
 rho     5.208e-01  7.489e-02   6.954 3.55e-12 ***
 nu      1.000e+00  1.751e-02  57.132  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 390.769 
 Multiple R-squared: 0.9967358 
@@ -20082,7 +20087,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62500    0.02813   22.22   <2e-16 ***
 E_(1,2)_3 (AU)  0.65754    0.03238   20.31   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -20280,7 +20285,7 @@ delta   6.017e-01  9.510e-03  63.265   <2e-16 ***
 rho_1   5.647e-01  6.328e-02   8.924   <2e-16 ***
 rho     6.000e-01  6.858e-02   8.749   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 396.3251 
 Multiple R-squared: 0.9966423 
@@ -20290,7 +20295,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.63909    0.02585   24.73   <2e-16 ***
 E_(1,2)_3 (AU)  0.62500    0.02679   23.33   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -20475,7 +20480,7 @@ delta   6.095e-01  1.035e-02  58.868   <2e-16 ***
 rho_1   5.238e-01  6.241e-02   8.393   <2e-16 ***
 rho     7.000e-01  7.699e-02   9.092   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 415.4762 
 Multiple R-squared: 0.99631 
@@ -20485,7 +20490,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.65624    0.02688   24.42   <2e-16 ***
 E_(1,2)_3 (AU)  0.58824    0.02664   22.08   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -20643,7 +20648,7 @@ rho_1   5.903e-01  7.110e-02   8.302  < 2e-16 ***
 rho     6.000e-01  8.053e-02   7.451  9.3e-14 ***
 nu      9.907e-01  1.762e-02  56.210  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 394.8344 
 Multiple R-squared: 0.9966676 
@@ -20653,7 +20658,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62881    0.02811   22.37   <2e-16 ***
 E_(1,2)_3 (AU)  0.62500    0.03146   19.87   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -20858,7 +20863,7 @@ rho_1     0.64580    0.38500   1.677  0.09347 .
 rho       0.43333    0.25435   1.704  0.08845 .  
 nu        1.01774    0.09824  10.360  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.3180607 
 Multiple R-squared: 0.8966508 
@@ -20868,7 +20873,7 @@ Elasticities of Substitution:
 E_1_2 (HM)       0.6076     0.1421   4.275 1.91e-05 ***
 E_(1,2)_3 (AU)   0.6977     0.1238   5.635 1.75e-08 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -21048,7 +21053,7 @@ delta   6.017e-01  9.510e-03  63.265   <2e-16 ***
 rho_1   5.647e-01  6.328e-02   8.924   <2e-16 ***
 rho     6.000e-01  6.858e-02   8.749   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 396.3251 
 Multiple R-squared: 0.9966423 
@@ -21058,7 +21063,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.63909    0.02585   24.73   <2e-16 ***
 E_(1,2)_3 (AU)  0.62500    0.02679   23.33   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -21273,7 +21278,7 @@ rho_1   5.903e-01  7.110e-02   8.302  < 2e-16 ***
 rho     6.000e-01  8.053e-02   7.451  9.3e-14 ***
 nu      9.907e-01  1.762e-02  56.210  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 394.8344 
 Multiple R-squared: 0.9966676 
@@ -21283,7 +21288,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62881    0.02811   22.37   <2e-16 ***
 E_(1,2)_3 (AU)  0.62500    0.03146   19.87   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -21659,7 +21664,7 @@ delta   5.994e-01  9.561e-03  62.685   <2e-16 ***
 rho_1   6.000e-01  6.587e-02   9.109   <2e-16 ***
 rho     6.000e-01  6.894e-02   8.703   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 397.8478 
 Multiple R-squared: 0.9966165 
@@ -21669,7 +21674,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62500    0.02573   24.29   <2e-16 ***
 E_(1,2)_3 (AU)  0.62500    0.02693   23.21   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -22040,7 +22045,7 @@ rho_1   6.000e-01  7.184e-02   8.352  < 2e-16 ***
 rho     6.000e-01  8.059e-02   7.445 9.67e-14 ***
 nu      9.895e-01  1.761e-02  56.185  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 394.9069 
 Multiple R-squared: 0.9966663 
@@ -22050,7 +22055,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62500    0.02806   22.27   <2e-16 ***
 E_(1,2)_3 (AU)  0.62500    0.03148   19.85   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -22436,7 +22441,7 @@ delta   5.994e-01  9.561e-03  62.685   <2e-16 ***
 rho_1   6.000e-01  6.587e-02   9.109   <2e-16 ***
 rho     6.000e-01  6.894e-02   8.703   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 397.8478 
 Multiple R-squared: 0.9966165 
@@ -22446,7 +22451,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62500    0.02573   24.29   <2e-16 ***
 E_(1,2)_3 (AU)  0.62500    0.02693   23.21   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -22840,7 +22845,7 @@ rho_1   6.000e-01  7.184e-02   8.352  < 2e-16 ***
 rho     6.000e-01  8.059e-02   7.445 9.67e-14 ***
 nu      9.895e-01  1.761e-02  56.185  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 394.9069 
 Multiple R-squared: 0.9966663 
@@ -22850,7 +22855,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.62500    0.02806   22.27   <2e-16 ***
 E_(1,2)_3 (AU)  0.62500    0.03148   19.85   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -23100,7 +23105,7 @@ rho_1   7.000e-01  8.313e-02   8.421  < 2e-16 ***
 rho     7.000e-01  9.323e-02   7.509 5.98e-14 ***
 nu      9.645e-01  1.838e-02  52.486  < 2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 418.6033 
 Multiple R-squared: 0.9962543 
@@ -23110,7 +23115,7 @@ Elasticities of Substitution:
 E_1_2 (HM)      0.58824    0.02876   20.45   <2e-16 ***
 E_(1,2)_3 (AU)  0.58824    0.03226   18.23   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -23118,4 +23123,4 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > 
 > proc.time()
    user  system elapsed 
- 91.353   0.180  91.632 
+ 69.592   0.395  70.039 

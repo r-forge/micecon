@@ -1,7 +1,6 @@
 
-R version 2.15.3 (2013-03-01) -- "Security Blanket"
-Copyright (C) 2013 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -19,21 +18,21 @@ Type 'q()' to quit R.
 > library( micEconCES )
 Loading required package: systemfit
 Loading required package: Matrix
-Loading required package: lattice
 Loading required package: car
-Loading required package: MASS
-Loading required package: nnet
 Loading required package: lmtest
 Loading required package: zoo
 
 Attaching package: 'zoo'
 
-The following object(s) are masked from 'package:base':
+The following objects are masked from 'package:base':
 
     as.Date, as.Date.numeric
 
 Loading required package: miscTools
 Loading required package: micEcon
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
@@ -345,7 +344,7 @@ lambda  0.017081   0.001424  11.993   <2e-16 ***
 delta   0.906637   1.425310   0.636    0.525    
 rho    -0.800000   5.413102  -0.148    0.883    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 29.53012 
 Multiple R-squared: 0.9901472 
@@ -486,7 +485,7 @@ delta  0.86495    2.32438   0.372    0.710
 rho   -0.40000    6.37810  -0.063    0.950    
 nu     1.56703    0.09325  16.805   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.19198 
 Multiple R-squared: 0.9715359 
@@ -803,7 +802,7 @@ delta   0.8660     6.6678   0.130    0.897
 rho     0.0000    18.4176   0.000    1.000    
 nu      1.3053     0.1144  11.408   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 61.38372 
 Multiple R-squared: 0.957427 
@@ -964,7 +963,7 @@ delta   0.500710   4.585904   0.109    0.913
 rho     0.000000   5.908563   0.000    1.000    
 nu      0.997589   0.134322   7.427 1.11e-13 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 30.03319 
 Multiple R-squared: 0.9898087 
@@ -1242,7 +1241,7 @@ lambda  0.01650    0.00146  11.299   <2e-16 ***
 delta   0.50459    4.25121   0.119    0.906    
 rho     0.00000    5.46592   0.000    1.000    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 30.27537 
 Multiple R-squared: 0.9896436 
@@ -1376,7 +1375,7 @@ delta  0.96036    0.82593   1.163    0.245
 rho   -0.80000    6.95024  -0.115    0.908    
 nu     1.50739    0.09499  15.869   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 51.33399 
 Multiple R-squared: 0.9702259 
@@ -1684,7 +1683,7 @@ delta  0.64047    4.49354   0.143    0.887
 rho    0.00000    6.25712   0.000    1.000    
 nu     1.57627    0.09288  16.971   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 49.99681 
 Multiple R-squared: 0.9717569 
@@ -1854,7 +1853,7 @@ delta    0.717999   4.053678   0.177    0.859
 rho     -0.400000   6.455882  -0.062    0.951    
 nu       0.914148   0.130167   7.023 2.17e-12 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 29.17757 
 Multiple R-squared: 0.9903811 
@@ -2000,7 +1999,7 @@ delta   0.046066   1.081305   0.043    0.966
 rho     0.800000   7.888393   0.101    0.919    
 nu      0.912870   0.150276   6.075 1.24e-09 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.02411876 
 Multiple R-squared: 0.9871504 
@@ -2299,7 +2298,7 @@ lambda  0.017077   0.001424  11.991   <2e-16 ***
 delta   0.906697   1.424343   0.637    0.524    
 rho    -0.800000   5.412596  -0.148    0.882    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 29.53011 
 Multiple R-squared: 0.9901472 
@@ -2445,7 +2444,7 @@ delta  0.63454    4.46739   0.142    0.887
 rho    0.00000    6.17705   0.000    1.000    
 nu     1.58457    0.09281  17.073   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 49.98322 
 Multiple R-squared: 0.9717722 
@@ -2740,7 +2739,7 @@ delta  0.03938    0.72227   0.055    0.957
 rho    1.20000    6.12826   0.196    0.845    
 nu     1.58849    0.09200  17.266   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 49.55955 
 Multiple R-squared: 0.9722487 
@@ -2890,7 +2889,7 @@ delta    0.898106   1.848984   0.486    0.627
 rho     -0.800000   6.516786  -0.123    0.902    
 nu       0.910706   0.129935   7.009 2.40e-12 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 29.11662 
 Multiple R-squared: 0.9904212 
@@ -3031,7 +3030,7 @@ delta  0.03188    0.64405   0.050    0.961
 rho    1.20000    6.67509   0.180    0.857    
 nu     1.69460    0.10330  16.405   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.04039527 
 Multiple R-squared: 0.9639554 
@@ -3322,7 +3321,7 @@ lambda  0.017077   0.001424  11.991   <2e-16 ***
 delta   0.906697   1.424344   0.637    0.524    
 rho    -0.800000   5.412597  -0.148    0.882    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 29.53011 
 Multiple R-squared: 0.9901472 
@@ -3461,7 +3460,7 @@ delta  0.65760    4.57674   0.144    0.886
 rho    0.00000    6.51719   0.000    1.000    
 nu     1.55328    0.09325  16.657   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.1602 
 Multiple R-squared: 0.971572 
@@ -3616,7 +3615,7 @@ lambda  0.018065   0.001413  12.783   <2e-16 ***
 delta   0.157424   2.811869   0.056    0.955    
 rho     0.400000   6.783828   0.059    0.953    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.02430528 
 Multiple R-squared: 0.9869509 
@@ -3759,7 +3758,7 @@ gamma  4.914e+01  7.544e+00   6.514 7.31e-11 ***
 delta  1.000e+00  1.065e-02  93.865  < 2e-16 ***
 rho   -8.000e-01  3.132e+13   0.000        1    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 91.05832 
 Multiple R-squared: 0.9063156 
@@ -3921,7 +3920,7 @@ delta  0.12707    2.14095   0.059    0.953
 rho    0.80000    6.19271   0.129    0.897    
 nu     1.58154    0.09229  17.137   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 49.6974 
 Multiple R-squared: 0.9720941 
@@ -4087,7 +4086,7 @@ delta    0.898106   1.848985   0.486    0.627
 rho     -0.800000   6.516787  -0.123    0.902    
 nu       0.910706   0.129935   7.009 2.40e-12 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 29.11662 
 Multiple R-squared: 0.9904212 
@@ -4233,7 +4232,7 @@ gamma  4.831e+01  1.556e+01   3.105  0.00191 **
 delta  1.000e+00  5.044e-02  19.825  < 2e-16 ***
 rho   -4.000e-01  1.353e+13   0.000  1.00000    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.07606046 
 Multiple R-squared: 0.8722098 
@@ -5085,7 +5084,7 @@ lambda  0.017047   0.001424  11.969   <2e-16 ***
 delta   0.907099   1.418312   0.640    0.522    
 rho    -0.800000   5.410536  -0.148    0.882    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 29.53109 
 Multiple R-squared: 0.9901466 
@@ -5507,7 +5506,7 @@ delta   0.9497     7.9786   0.119    0.905
 rho     0.0000    53.5481   0.000    1.000    
 nu      1.2208     0.1281   9.532   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 68.30299 
 Multiple R-squared: 0.9472882 
@@ -5535,4 +5534,4 @@ nu     1.2208439   0.1280735 9.53236909 1.537341e-21
 > 
 > proc.time()
    user  system elapsed 
- 49.247   0.044  49.331 
+ 40.924   0.077  41.023 
