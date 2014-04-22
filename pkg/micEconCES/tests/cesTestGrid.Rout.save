@@ -17,10 +17,6 @@ Type 'q()' to quit R.
 
 > library( micEconCES )
 Loading required package: miscTools
-Loading required package: micEcon
-
-If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
-https://r-forge.r-project.org/projects/micecon/
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
@@ -28,9 +24,12 @@ DEoptim package
 Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 > 
 > # load data
-> data( germanFarms )
+> data( germanFarms, package = "micEcon" )
 > # output quantity:
 > germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
 > # quantity of intermediate inputs
@@ -5522,4 +5521,4 @@ nu     1.2208439   0.1280735 9.53236909 1.537341e-21
 > 
 > proc.time()
    user  system elapsed 
- 41.000   0.077  41.117 
+ 39.640   0.118  39.775 

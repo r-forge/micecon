@@ -16,12 +16,8 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > # load the micEconCES package
-> library( micEconCES )
+> library( "micEconCES" )
 Loading required package: miscTools
-Loading required package: micEcon
-
-If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
-https://r-forge.r-project.org/projects/micecon/
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
@@ -29,6 +25,15 @@ DEoptim package
 Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
+> 
+> # load the micEcon package in order to be able to use function cobbDouglasCalc()
+> library( "micEcon" )
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 > 
 > # seed for random number generation
 > set.seed( 123 )
@@ -1056,4 +1061,4 @@ Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 > 
 > proc.time()
    user  system elapsed 
-  1.812   0.038   1.828 
+  1.717   0.040   1.739 

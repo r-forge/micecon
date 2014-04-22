@@ -17,10 +17,6 @@ Type 'q()' to quit R.
 
 > library( "micEconCES" )
 Loading required package: miscTools
-Loading required package: micEcon
-
-If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
-https://r-forge.r-project.org/projects/micecon/
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
@@ -28,6 +24,9 @@ DEoptim package
 Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 > library( maxLik )
 
 Please cite the 'maxLik' package as:
@@ -43989,4 +43988,4 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > 
 > proc.time()
    user  system elapsed 
-130.400   0.417 130.940 
+127.029   0.456 127.592 
