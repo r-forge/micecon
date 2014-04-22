@@ -1,5 +1,8 @@
 # load the micEconCES package
-library( micEconCES )
+library( "micEconCES" )
+
+# load the micEcon package in order to be able to use function cobbDouglasCalc()
+library( "micEcon" )
 
 # seed for random number generation
 set.seed( 123 )

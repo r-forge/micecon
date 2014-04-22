@@ -2,7 +2,7 @@
 library( micEconCES )
 
 # load data
-data( germanFarms )
+data( germanFarms, package = "micEcon" )
 # output quantity:
 germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
 # quantity of intermediate inputs

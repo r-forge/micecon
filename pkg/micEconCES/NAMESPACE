@@ -13,4 +13,6 @@ S3method( "vcov", "cesEst" )
 
 importFrom( "car", "lht" )
 
+importFrom( "micEcon", "translogEst" )
+
 importFrom( "systemfit", "systemfit" )

@@ -45,7 +45,7 @@ Methods for Objects of Class \code{cesEst} and \code{cesEst}.
 \author{Arne Henningsen and Geraldine Henningsen}
 
 \examples{
-   data( germanFarms )
+   data( germanFarms, package = "micEcon" )
    # output quantity:
    germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
    # quantity of intermediate inputs

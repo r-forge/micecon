@@ -18,10 +18,6 @@ Type 'q()' to quit R.
 > # load the micEconCES package
 > library( micEconCES )
 Loading required package: miscTools
-Loading required package: micEcon
-
-If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
-https://r-forge.r-project.org/projects/micecon/
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
@@ -29,6 +25,9 @@ DEoptim package
 Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 > 
 > # seed for random number generation
 > set.seed( 123 )
@@ -12674,4 +12673,4 @@ Elasticity of Substitution: 0.4868
 > 
 > proc.time()
    user  system elapsed 
- 21.759   0.134  21.895 
+ 21.546   0.134  21.700 
