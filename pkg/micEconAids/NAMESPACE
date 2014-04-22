@@ -41,3 +41,4 @@ importFrom( "miscTools", "semidefiniteness" )
 
 importFrom( "stats", "nobs" )
 
+importFrom( "systemfit", "systemfit" )
