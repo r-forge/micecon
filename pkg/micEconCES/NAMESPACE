@@ -17,6 +17,10 @@ importFrom( "DEoptim", "DEoptim" )
 
 importFrom( "micEcon", "translogEst" )
 
+importFrom( "miscTools", "checkNames" )
+importFrom( "miscTools", "coefTable" )
+importFrom( "miscTools", "rSquared" )
+
 importFrom( "minpack.lm", "nls.lm" )
 
 importFrom( "systemfit", "systemfit" )
