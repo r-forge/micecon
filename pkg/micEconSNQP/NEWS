@@ -5,6 +5,13 @@ reported here. A full ChangeLog is available in the log messages of the SVN
 repository on R-Forge.
 
 
+   CHANGES IN VERSION 0.6-6 (2014/04/22)
+
+* 'micEconSNQP' no longer depends on packages 'miscTools", 'systemfit', 'MASS',
+and 'micEcon' but it imports packages 'miscTools", 'systemfit', and 'MASS'
+and it suggests package 'micEcon'
+
+
    CHANGES IN VERSION 0.6-4 (2013/11/06)
 
 * improved documentation of snqProfitEst(), particularly the description of
