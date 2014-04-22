@@ -1,7 +1,6 @@
 
-R version 2.15.3 (2013-03-01) -- "Security Blanket"
-Copyright (C) 2013 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -19,21 +18,21 @@ Type 'q()' to quit R.
 > library( micEconCES )
 Loading required package: systemfit
 Loading required package: Matrix
-Loading required package: lattice
 Loading required package: car
-Loading required package: MASS
-Loading required package: nnet
 Loading required package: lmtest
 Loading required package: zoo
 
 Attaching package: 'zoo'
 
-The following object(s) are masked from 'package:base':
+The following objects are masked from 'package:base':
 
     as.Date, as.Date.numeric
 
 Loading required package: miscTools
 Loading required package: micEcon
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
@@ -343,7 +342,7 @@ delta    0.01535    0.36555   0.042    0.967
 rho     -1.86100    7.88571  -0.236    0.813    
 nu       1.43203    0.29038   4.932 8.16e-07 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 64.72791 
 Multiple R-squared: 0.9526618 
@@ -960,7 +959,7 @@ Model 2: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
 1     17 0.051750                                  
 2     14 0.015804  3  0.035946 10.614 0.0006663 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 $kmenta
 
@@ -1057,7 +1056,7 @@ gamma  2.378e-12  2.198e-11   0.108 0.913849
 delta  2.127e+01  6.217e+00   3.421 0.000624 ***
 rho   -1.551e-02  4.448e-03  -3.486 0.000490 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 326237150 
 Multiple R-squared: -1.202527e+12 
@@ -1066,7 +1065,7 @@ Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)    
 E_1_2 (all) 1.015751   0.004589   221.3   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 > coef( cesLandLaborKmentaCrs )
         gamma         delta           rho 
@@ -1115,7 +1114,7 @@ Model 2: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
 1     16 0.040974                               
 2     14 0.015804  2   0.02517 11.148 0.00127 **
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 $kmenta
 
@@ -1214,7 +1213,7 @@ delta  7.481e+00  5.324e+00   1.405    0.160
 rho   -4.702e-02  3.626e-02  -1.296    0.195    
 nu     1.656e+00  3.196e-01   5.180 2.22e-07 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 1291888 
 Multiple R-squared: -18857212 
@@ -1223,7 +1222,7 @@ Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)    
 E_1_2 (all)  1.04934    0.03993   26.28   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 > coef( cesLandLaborKmenta )
         gamma         delta           rho            nu 
@@ -2125,7 +2124,7 @@ delta   0.1936     1.7088   0.113    0.910
 rho    -0.5284     3.5734  -0.148    0.882    
 nu      1.8974     0.2447   7.754 8.87e-15 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 56.23794 
 Multiple R-squared: 0.9642656 
@@ -2277,7 +2276,7 @@ delta   0.4239     2.7012   0.157    0.875
 rho    -0.1619     3.6102  -0.045    0.964    
 nu      1.8839     0.2429   7.755 8.87e-15 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 55.84589 
 Multiple R-squared: 0.9647621 
@@ -3137,7 +3136,7 @@ delta   0.7514     1.9476   0.386    0.700
 rho     0.3929     3.4097   0.115    0.908    
 nu      2.0901     0.2518   8.302   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 58.59999 
 Multiple R-squared: 0.9612008 
@@ -3832,7 +3831,7 @@ delta  0.02173    0.89720   0.024    0.981
 rho    1.68396   13.56682   0.124    0.901    
 nu     1.31339    0.11134  11.797   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 59.99837 
 Multiple R-squared: 0.9593269 
@@ -4363,7 +4362,7 @@ Model 2: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
 1     17 0.107030                                 
 2     14 0.017794  3  0.089235 23.402 1.02e-05 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 $kmenta
 
@@ -4465,7 +4464,7 @@ Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)    
 E_1_2 (all)  0.96943    0.04787   20.25   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 > coef( summary( cesLandIntKmentaCrs ) )
           Estimate   Std. Error    t value  Pr(>|t|)
@@ -4496,7 +4495,7 @@ Model 2: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
 1     16 0.032596                              
 2     14 0.017794  2  0.014802 5.8227 0.01445 *
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 $kmenta
 
@@ -4595,7 +4594,7 @@ delta -1.130309   5.621014  -0.201    0.841
 rho   -0.227663   0.986512  -0.231    0.817    
 nu     1.697680   0.115423  14.708   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 9241.72 
 Multiple R-squared: -964.0143 
@@ -5220,7 +5219,7 @@ delta  0.84663    2.52281   0.336    0.737
 rho   -0.36828    6.22791  -0.059    0.953    
 nu     1.58055    0.09311  16.975   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.13201 
 Multiple R-squared: 0.9716039 
@@ -5354,7 +5353,7 @@ delta  0.83067    2.73131   0.304    0.761
 rho   -0.32998    6.22479  -0.053    0.958    
 nu     1.58114    0.09307  16.988   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 50.11558 
 Multiple R-squared: 0.9716225 
@@ -6646,4 +6645,4 @@ Error in numericDeriv(form[[3L]], names(ind), env) :
 > 
 > proc.time()
    user  system elapsed 
- 16.917   0.088  17.008 
+ 14.167   0.074  14.231 

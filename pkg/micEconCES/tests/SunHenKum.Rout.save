@@ -1,7 +1,6 @@
 
-R version 2.15.3 (2013-03-01) -- "Security Blanket"
-Copyright (C) 2013 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -37,21 +36,21 @@ Type 'q()' to quit R.
 > library( "micEconCES" )
 Loading required package: systemfit
 Loading required package: Matrix
-Loading required package: lattice
 Loading required package: car
-Loading required package: MASS
-Loading required package: nnet
 Loading required package: lmtest
 Loading required package: zoo
 
 Attaching package: 'zoo'
 
-The following object(s) are masked from 'package:base':
+The following objects are masked from 'package:base':
 
     as.Date, as.Date.numeric
 
 Loading required package: miscTools
 Loading required package: micEcon
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
@@ -91,7 +90,7 @@ gamma  646.141    549.993   1.175   0.2401
 delta    3.977      2.239   1.776   0.0757 .
 rho     -0.197      0.166  -1.187   0.2354  
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 3313.748 
 Multiple R-squared: 0.6016277 
@@ -100,7 +99,7 @@ Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)    
 E_1_2 (all)   1.2453     0.2574   4.837 1.32e-06 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 > cesNlsCoef <- coef( cesNls )
 > delta <- cesNlsCoef[ "delta" ]
@@ -136,7 +135,7 @@ gamma 1288.0797   543.1772   2.371 0.017722 *
 delta    2.4425     0.6955   3.512 0.000445 ***
 rho      0.0000     0.1609   0.000 1.000000    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 3342.308 
 Multiple R-squared: 0.5947313 
@@ -145,7 +144,7 @@ Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)    
 E_1_2 (all)   1.0000     0.1609   6.216 5.09e-10 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 > cdNlsCoef <- coef( cdNls )
 > delta <- cdNlsCoef[ "delta" ]
@@ -174,7 +173,7 @@ gamma 965.2337   120.4003   8.017 1.08e-15 ***
 delta   2.4880     0.3036   8.195 2.51e-16 ***
 rho     0.0000     0.1056   0.000        1    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.6814132 
 Multiple R-squared: 0.5973597 
@@ -183,7 +182,7 @@ Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)    
 E_1_2 (all)   1.0000     0.1056   9.467   <2e-16 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 > cdLogCoef <- coef( cdLog )
 > delta <- cdLogCoef[ "delta" ]
@@ -194,4 +193,4 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > 
 > proc.time()
    user  system elapsed 
-  1.900   0.064   1.981 
+  1.804   0.078   1.858 
