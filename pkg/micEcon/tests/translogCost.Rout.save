@@ -16,6 +16,9 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEcon )
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 > options( digits = 3 )
 > 
 > data( germanFarms )
@@ -750,4 +753,4 @@ F-statistic:  171 on 15 and 4 DF,  p-value: 7.68e-05
 > 
 > proc.time()
    user  system elapsed 
-  0.205   0.029   0.216 
+  0.215   0.022   0.212 

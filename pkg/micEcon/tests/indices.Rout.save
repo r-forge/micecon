@@ -16,6 +16,9 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEcon )
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 > options( digits = 4 )
 > 
 > ## function for printIndexing indices
@@ -3637,4 +3640,4 @@ attr(,"weights")
 > 
 > proc.time()
    user  system elapsed 
-  0.405   0.018   0.414 
+  0.372   0.039   0.405 
