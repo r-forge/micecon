@@ -207,8 +207,9 @@ quadFuncEst <- function( yName, xNames, data, shifterNames = NULL,
       result$model.matrix <- cbind( rep( 1, result$nObs ),
          as.matrix( estData[ , 4:( ncol( estData ) ) ] ) )
    } else {
-      result$model.matrix <- cbind( rep( 1, result$nObs ),
-         as.matrix( estData[ , 2:( ncol( estData ) ) ] ) )
+      result$model.matrix <- model.matrix( result$est )
+      rownames( result$model.matrix ) <- NULL
+      colnames( result$model.matrix )[1] <- ""
    }
    class( result ) <- "quadFuncEst"
    return( result )
