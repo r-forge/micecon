@@ -4,6 +4,11 @@ Please note that only the most significant changes are reported here.
 A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
+            CHANGES IN VERSION 0.9-8   (2014-04-23)
+
+* 'micEconCES' no longer depends on packages 'systemfit', 'miscTools',
+and 'micEcon' but it imports these packages
+
 
             CHANGES IN VERSION 0.9-6   (2012-01-03)
 
