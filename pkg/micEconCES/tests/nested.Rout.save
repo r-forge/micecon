@@ -16,18 +16,6 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( "micEconCES" )
-Loading required package: systemfit
-Loading required package: Matrix
-Loading required package: car
-Loading required package: lmtest
-Loading required package: zoo
-
-Attaching package: 'zoo'
-
-The following objects are masked from 'package:base':
-
-    as.Date, as.Date.numeric
-
 Loading required package: miscTools
 Loading required package: micEcon
 
@@ -44001,4 +43989,4 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > 
 > proc.time()
    user  system elapsed 
-131.556   0.416 132.084 
+130.400   0.417 130.940 

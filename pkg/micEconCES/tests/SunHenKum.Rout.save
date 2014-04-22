@@ -34,18 +34,6 @@ Type 'q()' to quit R.
 > 
 > # load the "micEconCES" package
 > library( "micEconCES" )
-Loading required package: systemfit
-Loading required package: Matrix
-Loading required package: car
-Loading required package: lmtest
-Loading required package: zoo
-
-Attaching package: 'zoo'
-
-The following objects are masked from 'package:base':
-
-    as.Date, as.Date.numeric
-
 Loading required package: miscTools
 Loading required package: micEcon
 
@@ -193,4 +181,4 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > 
 > proc.time()
    user  system elapsed 
-  1.804   0.078   1.858 
+  1.814   0.047   1.850 

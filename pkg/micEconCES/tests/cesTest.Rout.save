@@ -16,18 +16,6 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEconCES )
-Loading required package: systemfit
-Loading required package: Matrix
-Loading required package: car
-Loading required package: lmtest
-Loading required package: zoo
-
-Attaching package: 'zoo'
-
-The following objects are masked from 'package:base':
-
-    as.Date, as.Date.numeric
-
 Loading required package: miscTools
 Loading required package: micEcon
 
@@ -6645,4 +6633,4 @@ Error in numericDeriv(form[[3L]], names(ind), env) :
 > 
 > proc.time()
    user  system elapsed 
- 14.167   0.074  14.231 
+ 14.016   0.093  14.095 
