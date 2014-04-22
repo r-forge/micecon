@@ -16,18 +16,6 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library( micEconCES )
-Loading required package: systemfit
-Loading required package: Matrix
-Loading required package: car
-Loading required package: lmtest
-Loading required package: zoo
-
-Attaching package: 'zoo'
-
-The following objects are masked from 'package:base':
-
-    as.Date, as.Date.numeric
-
 Loading required package: miscTools
 Loading required package: micEcon
 
@@ -5534,4 +5522,4 @@ nu     1.2208439   0.1280735 9.53236909 1.537341e-21
 > 
 > proc.time()
    user  system elapsed 
- 40.924   0.077  41.023 
+ 41.000   0.077  41.117 

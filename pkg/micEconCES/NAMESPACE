@@ -11,3 +11,6 @@ S3method( "residuals", "cesEst" )
 S3method( "summary", "cesEst" )
 S3method( "vcov", "cesEst" )
 
+importFrom( "car", "lht" )
+
+importFrom( "systemfit", "systemfit" )
