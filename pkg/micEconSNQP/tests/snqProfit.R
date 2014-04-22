@@ -1,5 +1,5 @@
 library( micEconSNQP )
-data( germanFarms )
+data( germanFarms, package = "micEcon" )
 options( digits = 3 )
 
 germanFarms$qOutput   <- germanFarms$vOutput / germanFarms$pOutput

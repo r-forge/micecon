@@ -34,7 +34,7 @@
 \author{Arne Henningsen}
 
 \examples{
-   data( germanFarms )
+   data( germanFarms, package = "micEcon" )
    germanFarms$qOutput   <- germanFarms$vOutput   / germanFarms$pOutput
    germanFarms$qVarInput <- -germanFarms$vVarInput / germanFarms$pVarInput
    germanFarms$qLabor    <- -germanFarms$qLabor
