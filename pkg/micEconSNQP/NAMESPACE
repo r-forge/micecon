@@ -15,6 +15,8 @@ S3method( "print", "snqProfitImposeConvexity" )
 S3method( "residuals", "snqProfitEst" )
 S3method( "residuals", "snqProfitImposeConvexity" )
 
+importFrom( "MASS", "mvrnorm" )
+
 importFrom( "miscTools", "checkNames" )
 importFrom( "miscTools", "insertCol" )
 importFrom( "miscTools", "insertRow" )
