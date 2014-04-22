@@ -13,6 +13,8 @@ S3method( "vcov", "cesEst" )
 
 importFrom( "car", "lht" )
 
+importFrom( "DEoptim", "DEoptim" )
+
 importFrom( "micEcon", "translogEst" )
 
 importFrom( "minpack.lm", "nls.lm" )
