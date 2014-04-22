@@ -15,4 +15,6 @@ importFrom( "car", "lht" )
 
 importFrom( "micEcon", "translogEst" )
 
+importFrom( "minpack.lm", "nls.lm" )
+
 importFrom( "systemfit", "systemfit" )
