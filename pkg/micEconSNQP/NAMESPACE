@@ -23,3 +23,5 @@ importFrom( "miscTools", "semidefiniteness" )
 importFrom( "miscTools", "triang" )
 importFrom( "miscTools", "vecli" )
 importFrom( "miscTools", "veclipos" )
+
+importFrom( "systemfit", "systemfit" )
