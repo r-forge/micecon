@@ -386,6 +386,7 @@ print( aperm( deriv120, c( 3, 1, 2, 4, 5 ) )[ , , c( 1, 5, 7, 9, 13 ), , ] )
 
 ############################# checking cesEst #################################
 set.seed( 345 )
+options( digits = 3 )
 MishraCES$yObs <- MishraCES$Y + 40 * rnorm( nrow( MishraCES ) )
 MishraCES$yTcObs <- MishraCES$yTc + 40 * rnorm( nrow( MishraCES ) )
 MishraCES$yTcVrsObs <- MishraCES$yTcVrs + 40 * rnorm( nrow( MishraCES ) )

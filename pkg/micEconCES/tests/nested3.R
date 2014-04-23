@@ -233,6 +233,7 @@ print( deriv2 )
 
 ########################## checking cesEst ###################################
 set.seed( 345 )
+options( digits = 3 )
 MishraCES$yObs <- MishraCES$Y3 + 400 * rnorm( nrow( MishraCES ) )
 MishraCES$yTcObs <- MishraCES$Y3Tc + 400 * rnorm( nrow( MishraCES ) )
 MishraCES$yTcVrsObs <- MishraCES$Y3TcVrs + 400 * rnorm( nrow( MishraCES ) )

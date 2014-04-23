@@ -1,4 +1,5 @@
-library( micEconCES )
+library( "micEconCES" )
+options( digits = 3 )
 
 # load data
 data( germanFarms, package = "micEcon" )

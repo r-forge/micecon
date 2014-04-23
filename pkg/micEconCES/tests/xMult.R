@@ -1,5 +1,6 @@
 # load the micEconCES package
-library( micEconCES )
+library( "micEconCES" )
+options( digits = 3 )
 
 # seed for random number generation
 set.seed( 123 )
