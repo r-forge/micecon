@@ -1,4 +1,7 @@
 library( "micEconCES" )
+options( digits = 3 )
+
+# load data set
 data( "GermanIndustry" )
 
 print( GermanIndustry )

@@ -34,7 +34,6 @@ Type 'q()' to quit R.
 > 
 > # load the "micEconCES" package
 > library( "micEconCES" )
-Loading required package: miscTools
 Loading required package: minpack.lm
 Loading required package: DEoptim
 
@@ -45,6 +44,7 @@ Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
 If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
 https://r-forge.r-project.org/projects/micecon/
+> options( digits = 3 )
 > 
 > # load data (included in the "AER" package)
 > data( "GrowthDJ", package = "AER" )
@@ -73,18 +73,18 @@ Message: Relative error in the sum of squares is at most `ftol'.
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)  
-gamma  646.141    549.993   1.175   0.2401  
-delta    3.977      2.239   1.776   0.0757 .
-rho     -0.197      0.166  -1.187   0.2354  
+gamma  646.141    549.993    1.17    0.240  
+delta    3.977      2.239    1.78    0.076 .
+rho     -0.197      0.166   -1.19    0.235  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 3313.748 
-Multiple R-squared: 0.6016277 
+Residual standard error: 3314 
+Multiple R-squared: 0.602 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)    
-E_1_2 (all)   1.2453     0.2574   4.837 1.32e-06 ***
+E_1_2 (all)    1.245      0.257    4.84  1.3e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -92,11 +92,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 > delta <- cesNlsCoef[ "delta" ]
 > rho <- cesNlsCoef[ "rho" ]
 > print( alpha <- ( delta - 1 ) / delta )
-    delta 
-0.7485641 
+delta 
+0.749 
 > print( sigma <- 1 / ( 1 - rho ) )
-     rho 
-0.835429 
+  rho 
+0.835 
 > cesNlsVar <- vcov(cesNls)
 > # deltamethod(~-x2/(1-x2), cesNlsCoef, cesNlsVar)
 > # deltamethod(~1/(1-x3), cesNlsCoef, cesNlsVar)
@@ -117,27 +117,27 @@ Convergence achieved after 7 iterations
 Message: Relative error in the sum of squares is at most `ftol'. 
 
 Coefficients:
-       Estimate Std. Error t value Pr(>|t|)    
-gamma 1288.0797   543.1772   2.371 0.017722 *  
-delta    2.4425     0.6955   3.512 0.000445 ***
-rho      0.0000     0.1609   0.000 1.000000    
+      Estimate Std. Error t value Pr(>|t|)    
+gamma 1288.080    543.177    2.37  0.01772 *  
+delta    2.443      0.695    3.51  0.00044 ***
+rho      0.000      0.161    0.00  1.00000    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 3342.308 
-Multiple R-squared: 0.5947313 
+Residual standard error: 3342 
+Multiple R-squared: 0.595 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)    
-E_1_2 (all)   1.0000     0.1609   6.216 5.09e-10 ***
+E_1_2 (all)    1.000      0.161    6.22  5.1e-10 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 > cdNlsCoef <- coef( cdNls )
 > delta <- cdNlsCoef[ "delta" ]
 > print( alpha <- ( delta - 1 ) / delta )
-   delta 
-0.590591 
+delta 
+0.591 
 > 
 > # Cobb-Douglas: estimation with logs
 > cdLog <- cesEst( "gdp85", c( "x1", "x2"), data = GrowthDJ, rho = 0, multErr = TRUE )
@@ -156,28 +156,28 @@ Message: Relative error in the sum of squares is at most `ftol'.
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
-gamma 965.2337   120.4003   8.017 1.08e-15 ***
-delta   2.4880     0.3036   8.195 2.51e-16 ***
-rho     0.0000     0.1056   0.000        1    
+gamma  965.234    120.400    8.02  1.1e-15 ***
+delta    2.488      0.304    8.19  2.5e-16 ***
+rho      0.000      0.106    0.00        1    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.6814132 
-Multiple R-squared: 0.5973597 
+Residual standard error: 0.681 
+Multiple R-squared: 0.597 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)    
-E_1_2 (all)   1.0000     0.1056   9.467   <2e-16 ***
+E_1_2 (all)    1.000      0.106    9.47   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 > cdLogCoef <- coef( cdLog )
 > delta <- cdLogCoef[ "delta" ]
 > print( alpha <- ( delta - 1 ) / delta )
-    delta 
-0.5980698 
+delta 
+0.598 
 > 
 > 
 > proc.time()
    user  system elapsed 
-  1.748   0.056   1.780 
+   1.76    0.06    1.80 

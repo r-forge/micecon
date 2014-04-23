@@ -17,6 +17,7 @@
 
 # load the "micEconCES" package
 library( "micEconCES" )
+options( digits = 3 )
 
 # load data (included in the "AER" package)
 data( "GrowthDJ", package = "AER" )
