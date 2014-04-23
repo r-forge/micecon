@@ -9,6 +9,6 @@ Suggests: maxLik (>= 0.8-0), xtable (>= 1.5-6), AER (>= 1.1-9)
 Imports: systemfit (>= 1.0-0), car (>= 2.0-0), micEcon (>= 0.6-1),
    miscTools (>= 0.6-1)
 Description: Tools for economic analysis and economic modelling
-with a Constant Elasticity of Substitution (CES) function
+   with a Constant Elasticity of Substitution (CES) function
 License: GPL (>= 2)
 URL: http://www.micEcon.org
