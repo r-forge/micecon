@@ -4,7 +4,7 @@
 
 \description{
    Calculate the endogenous variable
-   of a \sQuote{Constant Elasticities of Scale} (CES)
+   of a \sQuote{Constant Elasticity of Substitution} (CES)
    function.
 
    The original CES function with two explanatory variables is

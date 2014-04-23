@@ -5,9 +5,9 @@
 \title{Estimate a CES function}
 
 \description{
-   Estimate a Constant-Elasticities-of-Scale (CES) function
+   Estimate a Constant-Elasticity-of-Substitution (CES) function
    with two exogenous variables
-   or a nested Constant-Elasticities-of-Scale (CES) function
+   or a nested Constant-Elasticity-of-Substitution (CES) function
    proposed by Sato (1967) with three or four exogenous variables
    by Least Squares.
    The functional forms are shown in the documentation of
