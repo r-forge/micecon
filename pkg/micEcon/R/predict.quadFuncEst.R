@@ -1,5 +1,9 @@
 predict.quadFuncEst <- function( object, newdata = NULL, ... ) {
    
+   if( class( object$est )[1] != "lm" ) {
+      warning( "predictions with panel data models might return wrong results" )
+   }
+   
    if( is.null( newdata ) ) {
       result <- predict( object$est )
    } else {
