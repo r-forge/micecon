@@ -230,6 +230,19 @@ $dataLogged
 attr(,"class")
 [1] "translogEst"
 > 
+> fitted( estResult )
+   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
+ 944  976 1061 1145 1188 1206 1237 1293 1197 1281 1362 1543 1576 1700 1633 1619 
+  17   18   19   20 
+1678 1742 1888 1993 
+> all.equal( fitted( estResult ), predict( estResult ) )
+[1] TRUE
+> all.equal( log( fitted( estResult ) ), predict( estResult, dataLogged = TRUE ) )
+[1] TRUE
+> all.equal( fitted( estResult ), predict( estResult, newdata = germanFarms ) )
+[1] TRUE
+> 
+> 
 > # estimate the translog production function with a different order of inputs
 > estResultOrder <- translogEst( yName = "qOutput",
 +    xNames = c( "qLabor", "qVarInput", "land", "time" ),
@@ -341,6 +354,20 @@ R-squared: 0.998     Adjusted R-squared: 0.993
 [1] TRUE
 > all.equal( estResult$fitted, exp( estResultLog$fitted ) )
 [1] TRUE
+> fitted( estResultLog )
+   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
+6.85 6.88 6.97 7.04 7.08 7.10 7.12 7.16 7.09 7.16 7.22 7.34 7.36 7.44 7.40 7.39 
+  17   18   19   20 
+7.43 7.46 7.54 7.60 
+> all.equal( fitted( estResultLog ), predict( estResultLog ) )
+[1] TRUE
+> all.equal( exp( fitted( estResultLog ) ),
++    predict( estResultLog, dataLogged = FALSE ) )
+[1] TRUE
+> all.equal( fitted( estResultLog ),
++    predict( estResultLog, newdata = germanFarms ) )
+[1] TRUE
+> 
 > 
 > ## testing translogCalc
 > fitted <- translogCalc( c( "qLabor", "land", "qVarInput", "time" ),
@@ -3240,7 +3267,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x37f0bc8>
+<environment: 0x2e5f0e0>
 
 Coefficients:
    a_1    a_2  b_1_1  b_1_2  b_2_2 
@@ -3363,7 +3390,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x37ddfb8>
+<environment: 0x2f20ab0>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4125,7 +4152,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x3c1fb10>
+<environment: 0x2acc7b0>
 
 Coefficients:
     a_1     a_2   b_1_1   b_1_2   b_2_2     d_1 
@@ -4244,7 +4271,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x38f7bb0>
+<environment: 0x2077998>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4368,7 +4395,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x3a46d48>
+<environment: 0x252ca30>
 
 Coefficients:
      a_1      a_2    b_1_1    b_1_2    b_2_2 d_1_TRUE 
@@ -4487,7 +4514,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x360f728>
+<environment: 0x32d1010>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4612,7 +4639,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x25d6be0>
+<environment: 0x2a702b0>
 
 Coefficients:
     a_1     a_2   b_1_1   b_1_2   b_2_2 d_1_40s d_1_50s 
@@ -4733,7 +4760,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x30a1858>
+<environment: 0x2e08200>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4846,4 +4873,4 @@ attr(,"class")
 > 
 > proc.time()
    user  system elapsed 
-  2.314   0.072   2.364 
+   2.35    0.07    2.40 

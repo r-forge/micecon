@@ -30,6 +30,12 @@ residuals( estResult )
 
 print.default( estResult )
 
+fitted( estResult )
+all.equal( fitted( estResult ), predict( estResult ) )
+all.equal( log( fitted( estResult ) ), predict( estResult, dataLogged = TRUE ) )
+all.equal( fitted( estResult ), predict( estResult, newdata = germanFarms ) )
+
+
 # estimate the translog production function with a different order of inputs
 estResultOrder <- translogEst( yName = "qOutput",
    xNames = c( "qLabor", "qVarInput", "land", "time" ),
@@ -61,6 +67,13 @@ estResultLog <- translogEst( "qLogOutput",
    data = germanFarms, dataLogged = TRUE )
 all.equal( estResult[ -c(1,6,12,13,16) ], estResultLog[ -c(1,6,12,13,16) ] )
 all.equal( estResult$fitted, exp( estResultLog$fitted ) )
+fitted( estResultLog )
+all.equal( fitted( estResultLog ), predict( estResultLog ) )
+all.equal( exp( fitted( estResultLog ) ),
+   predict( estResultLog, dataLogged = FALSE ) )
+all.equal( fitted( estResultLog ),
+   predict( estResultLog, newdata = germanFarms ) )
+
 
 ## testing translogCalc
 fitted <- translogCalc( c( "qLabor", "land", "qVarInput", "time" ),
