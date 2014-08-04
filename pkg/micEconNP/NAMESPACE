@@ -15,4 +15,6 @@ importFrom( "micEcon", "elas" )
 importFrom( "micEcon", ".quadFuncCheckHomWeights" )
 importFrom( "micEcon", ".quadFuncVarHom" )
 
+importFrom( "miscTools", "checkNames" )
+
 importFrom( "np", "npreg" )

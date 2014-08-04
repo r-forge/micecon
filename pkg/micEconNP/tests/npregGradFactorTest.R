@@ -1,4 +1,5 @@
 library( "micEconNP" )
+library( "miscTools" )
 data( "oecdpanel" )
 
 oecdpanel$yearFactor <- factor( oecdpanel$year )
