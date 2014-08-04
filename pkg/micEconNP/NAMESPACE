@@ -5,6 +5,7 @@ export( "npregCv" )
 export( "npregGradFactor" )
 export( "npregHom" )
 export( "npscoefGrad" )
+export( "plotCrs" )
 
 S3method( "elas", "npregHom" )
 
