@@ -48,6 +48,7 @@
 
 \examples{
    data( "oecdpanel" )
+   library( "miscTools" )
 
    ##############  unordered factor  ###################
    oecdpanel$yearFactor <- factor( oecdpanel$year )

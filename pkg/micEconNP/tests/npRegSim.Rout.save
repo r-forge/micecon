@@ -1,6 +1,6 @@
 
-R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
-Copyright (C) 2013 The R Foundation for Statistical Computing
+R version 3.1.1 (2014-07-10) -- "Sock it to Me"
+Copyright (C) 2014 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -17,15 +17,15 @@ Type 'q()' to quit R.
 
 > library( "micEconNP" )
 Loading required package: np
-Loading required package: boot
-Loading required package: cubature
-Nonparametric Kernel Methods for Mixed Datatypes (version 0.50-1)
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.60-2)
 [vignette("np_faq",package="np") provides answers to frequently asked questions]
 Loading required package: crs
-Categorical Regression Splines (version 0.15-18)
+Categorical Regression Splines (version 0.15-22)
 [vignette("crs_faq") provides answers to frequently asked questions]
 Loading required package: micEcon
-Loading required package: miscTools
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
 > options( np.messages = FALSE )
 > set.seed(42)
 > n <- 250
@@ -69,4 +69,4 @@ Loading required package: miscTools
 > 
 > proc.time()
    user  system elapsed 
-  2.808   0.020   2.818 
+  1.881   0.024   1.905 
