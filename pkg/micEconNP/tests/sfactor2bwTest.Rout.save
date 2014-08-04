@@ -1,0 +1,84 @@
+
+R version 3.1.1 (2014-07-10) -- "Sock it to Me"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library( "micEconNP" )
+Loading required package: np
+Nonparametric Kernel Methods for Mixed Datatypes (version 0.60-2)
+[vignette("np_faq",package="np") provides answers to frequently asked questions]
+Loading required package: crs
+Categorical Regression Splines (version 0.15-22)
+[vignette("crs_faq") provides answers to frequently asked questions]
+Loading required package: micEcon
+
+If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
+https://r-forge.r-project.org/projects/micecon/
+> data( "oecdpanel" )
+> 
+> oecdpanel$yearFactor <- factor( oecdpanel$year )
+> npModel <- npreg( growth ~ yearFactor + initgdp, 
++    regtype = "ll", gradients = TRUE, data = oecdpanel )
+Multistart 1 of 2 |Multistart 1 of 2 |Multistart 1 of 2 |Multistart 1 of 2 /Multistart 1 of 2 -Multistart 1 of 2 |Multistart 1 of 2 |Multistart 2 of 2 |Multistart 2 of 2 |Multistart 2 of 2 /Multistart 2 of 2 -Multistart 2 of 2 |Multistart 2 of 2 |                   > 
+> summary( npModel )
+
+Regression Data: 616 training points, in 2 variable(s)
+              yearFactor   initgdp
+Bandwidth(s):  0.1007641 0.6165226
+
+Kernel Regression Estimator: Local-Linear
+Bandwidth Type: Fixed
+Residual standard error: 0.02658752
+R-squared: 0.2369719
+
+Continuous Kernel Type: Second-Order Gaussian
+No. Continuous Explanatory Vars.: 1
+
+Unordered Categorical Kernel Type: Aitchison and Aitken
+No. Unordered Categorical Explanatory Vars.: 1
+
+> 
+> summary( npModel$bws )
+
+Regression Data (616 observations, 2 variable(s)):
+
+Regression Type: Local-Linear
+Bandwidth Selection Method: Least Squares Cross-Validation
+Formula: growth ~ yearFactor + initgdp
+Bandwidth Type: Fixed
+Objective Function Value: 0.000762054 (achieved on multistart 1)
+
+Exp. Var. Name: yearFactor Bandwidth: 0.1007641   Lambda Max: 0.8571429
+Exp. Var. Name: initgdp    Bandwidth: 0.6165226 Scale Factor: 2.197515 
+
+Continuous Kernel Type: Second-Order Gaussian
+No. Continuous Explanatory Vars.: 1
+
+Unordered Categorical Kernel Type: Aitchison and Aitken
+No. Unordered Categorical Explanatory Vars.: 1
+Estimation Time: 3.676 seconds
+
+> 
+> bw <- sfactor2bw( npModel$bws$sfactor$x, c( "yearFactor", "initgdp" ),
++    data = oecdpanel )
+> bw
+[1] 0.1007641 0.6165226
+> 
+> all.equal( npModel$bws$bw, bw )
+[1] TRUE
+> 
+> proc.time()
+   user  system elapsed 
+  3.982   0.023   4.002 
