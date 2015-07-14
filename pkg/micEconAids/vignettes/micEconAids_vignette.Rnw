@@ -1980,7 +1980,8 @@ for their comments and suggestions.
 Of course, any remaining errors are the author's.
 
 
-\bibliography{agrarpol}
+% \bibliography{agrarpol}
+\bibliography{references}
 
 %%%%%%%%%%% Appendix %%%%%%%%%%%%%
 \clearpage
