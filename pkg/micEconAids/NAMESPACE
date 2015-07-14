@@ -31,6 +31,7 @@ S3method( "summary", "aidsEst" )
 S3method( "vcov", "aidsEst" )
 
 importFrom( "lmtest", "lrtest" )
+importFrom( "lmtest", "lrtest.default" )
 importFrom( "micEcon", "checkConsist" )
 importFrom( "micEcon", "elas" )
 
