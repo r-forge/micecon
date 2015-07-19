@@ -1,6 +1,6 @@
 
-R version 3.1.0 (2014-04-10) -- "Spring Dance"
-Copyright (C) 2014 The R Foundation for Statistical Computing
+R version 3.2.1 (2015-06-18) -- "World-Famous Astronaut"
+Copyright (C) 2015 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -343,7 +343,7 @@ R-squared: 0.998     Adjusted R-squared: 0.992
 > 
 > ## testing translogProdFuncMargCost with a ray function
 > # compute the marginal costs of producing the output
-> margCostRay <- translogProdFuncMargCost( yNames = c( "qCrop", "qAnimal" ),
+> margCostRay <- translogRayMargCost( yNames = c( "qCrop", "qAnimal" ),
 +    xNames = c( "qLabor", "land", "qVarInput" ),
 +    wNames = c( "pLabor", "pLand", "pVarInput" ),
 +    data = germanFarms, coef = coef( estResultRay ) )
@@ -370,14 +370,14 @@ R-squared: 0.998     Adjusted R-squared: 0.992
 19   24.1   14.67
 20  276.8  -42.64
 > 
-> margCostRay2 <- translogProdFuncMargCost( yNames = c( "qAnimal", "qCrop" ),
+> margCostRay2 <- translogRayMargCost( yNames = c( "qAnimal", "qCrop" ),
 +    xNames = c( "qLabor", "land", "qVarInput" ),
 +    wNames = c( "pLabor", "pLand", "pVarInput" ),
 +    data = germanFarms, coef = coef( estResultRay2 ) )
 > all.equal( margCostRay, margCostRay2[ , c( 2:1 ) ] )
 [1] TRUE
 > 
-> margCostRay3 <- translogProdFuncMargCost( yNames = c( "qCrop", "qAnimal" ),
+> margCostRay3 <- translogRayMargCost( yNames = c( "qCrop", "qAnimal" ),
 +    xNames = c( "qVarInput", "qLabor", "land" ),
 +    wNames = c( "pVarInput", "pLabor", "pLand" ),
 +    data = germanFarms, coef = coef( estResultRay3 ) )
@@ -1150,7 +1150,7 @@ R-squared: 0.713     Adjusted R-squared: 0.681
 > 
 > ## testing translogProdFuncMargCost with a ray function
 > # compute the marginal costs of producing the output
-> margCostApple <- translogProdFuncMargCost( 
+> margCostApple <- translogRayMargCost( 
 +    yNames = c( "qApples", "qOtherOut" ),
 +    xNames = c( "qCap", "qLab", "qMat" ),
 +    wNames = c( "pCap", "pLab", "pMat" ),
@@ -1298,7 +1298,7 @@ R-squared: 0.713     Adjusted R-squared: 0.681
 139   -117051    138845
 140   -162977     12737
 > 
-> margCostApple2 <- translogProdFuncMargCost( 
+> margCostApple2 <- translogRayMargCost( 
 +    yNames = c( "qOtherOut", "qApples" ),
 +    xNames = c( "qCap", "qLab", "qMat" ),
 +    wNames = c( "pCap", "pLab", "pMat" ),
@@ -1306,7 +1306,7 @@ R-squared: 0.713     Adjusted R-squared: 0.681
 > all.equal( margCostApple, margCostApple2[ , c( 2:1 ) ] )
 [1] TRUE
 > 
-> margCostApple3 <- translogProdFuncMargCost( 
+> margCostApple3 <- translogRayMargCost( 
 +    yNames = c( "qApples", "qOtherOut" ),
 +    xNames = c( "qMat", "qCap", "qLab" ),
 +    wNames = c( "pMat", "pCap", "pLab" ),
@@ -1316,4 +1316,4 @@ R-squared: 0.713     Adjusted R-squared: 0.681
 > 
 > proc.time()
    user  system elapsed 
-  0.569   0.040   0.587 
+  0.896   0.024   0.917 

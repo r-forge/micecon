@@ -210,28 +210,28 @@ germanFarms$pLand <- 200 + 15 * germanFarms$time
 germanFarms$pTime <- 1
 
 # compute the marginal costs of producing the output
-margCost <- translogProdFuncMargCost( yNames = "qOutput",
+margCost <- translogProdFuncMargCost( yName = "qOutput",
    xNames = c( "qLabor", "land", "qVarInput", "time" ),
    wNames = c( "pLabor", "pLand", "pVarInput", "pTime" ),
    data = germanFarms, coef = coef( estResult ) )
 print( margCost )
 
 # compute the marginal costs again with different order of inputs
-margCostOrder <- translogProdFuncMargCost( yNames = "qOutput",
+margCostOrder <- translogProdFuncMargCost( yName = "qOutput",
    xNames = c( "qLabor", "qVarInput", "land", "time" ),
    wNames = c( "pLabor", "pVarInput", "pLand", "pTime" ),
    data = germanFarms, coef = coef( estResultOrder ) )
 all.equal( margCost, margCostOrder )
 
 # compute the marginal costs again with different order of inputs
-margCostOrder2 <- translogProdFuncMargCost( yNames = "qOutput",
+margCostOrder2 <- translogProdFuncMargCost( yName = "qOutput",
    xNames = c( "land", "qVarInput", "qLabor", "time" ),
    wNames = c( "pLand", "pVarInput", "pLabor", "pTime" ),
    data = germanFarms, coef = coef( estResultOrder2 ) )
 all.equal( margCost, margCostOrder2 )
 
 # compute the marginal costs again with different order of inputs
-margCostOrder3 <- translogProdFuncMargCost( yNames = "qOutput",
+margCostOrder3 <- translogProdFuncMargCost( yName = "qOutput",
    xNames = c( "land", "qVarInput", "time", "qLabor" ),
    wNames = c( "pLand", "pVarInput", "pTime", "pLabor" ),
    data = germanFarms, coef = coef( estResultOrder3 ) )

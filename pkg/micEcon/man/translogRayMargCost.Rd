@@ -1,20 +1,20 @@
-\name{translogProdFuncMargCost}
-\alias{translogProdFuncMargCost}
-\title{Marginal Costs of Translog Production Function}
+\name{translogRayMargCost}
+\alias{translogRayMargCost}
+\title{Marginal Costs of Translog Ray Production Function}
 
 \description{
-   Calculate the marginal costs of the output
-   from a translog production function.
+   Calculate the marginal costs of the outputs
+   from a multiple-output translog ray production function.
 }
 
 \usage{
-translogProdFuncMargCost( yName, xNames, wNames, data, coef,
+translogRayMargCost( yNames, xNames, wNames, data, coef,
    dataLogged = FALSE )
 }
 
 \arguments{
-   \item{yName}{a single character string
-      containing the name of the output quantity.}
+   \item{yNames}{a vector of two character strings
+      containing the names of the output quantities.}
    \item{xNames}{a vector of strings containing the names of the
       input quantities.}
    \item{wNames}{a vector of strings containing the names of the
@@ -34,21 +34,22 @@ translogProdFuncMargCost( yName, xNames, wNames, data, coef,
 }
 
 \value{
-   A vector containing the marginal costs of producing the output.
+   A data frame containing the marginal costs of producing the outputs.
 }
 
 \seealso{
-   \code{\link{translogEst}}, \code{\link{translogCalc}},
-   \code{\link{translogDeriv}}, \code{\link{translogEla}} and
-   \code{\link{translogCostEst}}.
+   \code{\link{translogRayEst}}, \code{\link{translogProdFuncMargCost}},
+   and \code{\link{translogCostEst}}.
 }
 
 \author{Arne Henningsen and Geraldine Henningsen}
 
 \examples{
    data( germanFarms )
-   # output quantity:
-   germanFarms$qOutput <- germanFarms$vOutput / germanFarms$pOutput
+   # quantity of crop outputs:
+   germanFarms$qCrop <- germanFarms$vCrop / germanFarms$pOutput
+   # quantity of animal outputs:
+   germanFarms$qAnimal <- germanFarms$vAnimal / germanFarms$pOutput
    # quantity of variable inputs
    germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
    # a time trend to account for technical progress:
@@ -58,15 +59,16 @@ translogProdFuncMargCost( yName, xNames, wNames, data, coef,
    germanFarms$pLand <- 200 + 15 * germanFarms$time
    germanFarms$pTime <- 1
 
-   # estimate a single-output translog production function
-   estResult <- translogEst( "qOutput", c( "qLabor", "land", "qVarInput", "time" ),
-      germanFarms )
+   # estimate a two-output translog ray production function
+   estResultRay <- translogRayEst( yNames = c( "qCrop", "qAnimal" ),
+      xNames = c( "qLabor", "land", "qVarInput" ),
+      data = germanFarms )
 
-   # compute the marginal costs of producing the output
-   margCost <- translogProdFuncMargCost( yName = "qOutput",
-      xNames = c( "qLabor", "land", "qVarInput", "time" ),
-      wNames = c( "pLabor", "pLand", "pVarInput", "pTime" ),
-      data = germanFarms, coef = coef( estResult ) )
+   # compute the marginal costs of producing the two outputs
+   margCostRay <- translogRayMargCost( yNames = c( "qCrop", "qAnimal" ),
+      xNames = c( "qLabor", "land", "qVarInput" ),
+      wNames = c( "pLabor", "pLand", "pVarInput" ),
+      data = germanFarms, coef = coef( estResultRay ) )
 }
 
 \keyword{models}

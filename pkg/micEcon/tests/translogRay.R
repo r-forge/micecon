@@ -61,19 +61,19 @@ all.equal( tlRayDeriv, tlRayDeriv3[ , c( 2, 3, 1, 4, 5 ) ] )
 
 ## testing translogProdFuncMargCost with a ray function
 # compute the marginal costs of producing the output
-margCostRay <- translogProdFuncMargCost( yNames = c( "qCrop", "qAnimal" ),
+margCostRay <- translogRayMargCost( yNames = c( "qCrop", "qAnimal" ),
    xNames = c( "qLabor", "land", "qVarInput" ),
    wNames = c( "pLabor", "pLand", "pVarInput" ),
    data = germanFarms, coef = coef( estResultRay ) )
 print( margCostRay )
 
-margCostRay2 <- translogProdFuncMargCost( yNames = c( "qAnimal", "qCrop" ),
+margCostRay2 <- translogRayMargCost( yNames = c( "qAnimal", "qCrop" ),
    xNames = c( "qLabor", "land", "qVarInput" ),
    wNames = c( "pLabor", "pLand", "pVarInput" ),
    data = germanFarms, coef = coef( estResultRay2 ) )
 all.equal( margCostRay, margCostRay2[ , c( 2:1 ) ] )
 
-margCostRay3 <- translogProdFuncMargCost( yNames = c( "qCrop", "qAnimal" ),
+margCostRay3 <- translogRayMargCost( yNames = c( "qCrop", "qAnimal" ),
    xNames = c( "qVarInput", "qLabor", "land" ),
    wNames = c( "pVarInput", "pLabor", "pLand" ),
    data = germanFarms, coef = coef( estResultRay3 ) )
@@ -135,21 +135,21 @@ all.equal( derivApple, derivApple3[ , c( 2, 3, 1, 4, 5 ) ] )
 
 ## testing translogProdFuncMargCost with a ray function
 # compute the marginal costs of producing the output
-margCostApple <- translogProdFuncMargCost( 
+margCostApple <- translogRayMargCost( 
    yNames = c( "qApples", "qOtherOut" ),
    xNames = c( "qCap", "qLab", "qMat" ),
    wNames = c( "pCap", "pLab", "pMat" ),
    data = appleProdFr86, coef = coef( estApple ) )
 print( margCostApple )
 
-margCostApple2 <- translogProdFuncMargCost( 
+margCostApple2 <- translogRayMargCost( 
    yNames = c( "qOtherOut", "qApples" ),
    xNames = c( "qCap", "qLab", "qMat" ),
    wNames = c( "pCap", "pLab", "pMat" ),
    data = appleProdFr86, coef = coef( estApple2 ) )
 all.equal( margCostApple, margCostApple2[ , c( 2:1 ) ] )
 
-margCostApple3 <- translogProdFuncMargCost( 
+margCostApple3 <- translogRayMargCost( 
    yNames = c( "qApples", "qOtherOut" ),
    xNames = c( "qMat", "qCap", "qLab" ),
    wNames = c( "pMat", "pCap", "pLab" ),
