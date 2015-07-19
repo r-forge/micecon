@@ -1,0 +1,14 @@
+export( "translogRayDeriv" )
+export( "translogRayEst" )
+export( "translogRayMargCost" )
+
+S3method( "print", "summary.translogRayEst" )
+S3method( "print", "translogRayEst" )
+S3method( "summary", "translogRayEst" )
+
+importFrom( "micEcon", "translogEla" )
+importFrom( "micEcon", "translogEst" )
+importFrom( "miscTools", "checkNames" )
+importFrom( "miscTools", "coefTable" )
+importFrom( "miscTools", "logDataSet" )
+

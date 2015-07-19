@@ -1,8 +1,8 @@
-library( micEcon )
+library( "micEconDist" )
 options( digits = 3 )
 
 ## preparing data
-data( germanFarms )
+data( "germanFarms", package = "micEcon" )
 # quantity of variable inputs
 germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 # quantity of crop outputs
@@ -83,7 +83,7 @@ all.equal( margCostRay, margCostRay3 )
 ######################################
 ##   using data set appleProdFr86   ##
 ######################################
-data( "appleProdFr86" )
+data( "appleProdFr86", package = "micEcon" )
 # quantity of the capital input
 appleProdFr86$qCap <- with( appleProdFr86, vCap / pCap )
 # quantity of the labour input

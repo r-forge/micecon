@@ -45,7 +45,7 @@ translogRayMargCost( yNames, xNames, wNames, data, coef,
 \author{Arne Henningsen and Geraldine Henningsen}
 
 \examples{
-   data( germanFarms )
+   data( germanFarms, package = "micEcon" )
    # quantity of crop outputs:
    germanFarms$qCrop <- germanFarms$vCrop / germanFarms$pOutput
    # quantity of animal outputs:
