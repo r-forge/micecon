@@ -15,14 +15,14 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> library( micEcon )
+> library( "micEconDist" )
 
 If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
 https://r-forge.r-project.org/projects/micecon/
 > options( digits = 3 )
 > 
 > ## preparing data
-> data( germanFarms )
+> data( "germanFarms", package = "micEcon" )
 > # quantity of variable inputs
 > germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 > # quantity of crop outputs
@@ -388,7 +388,7 @@ R-squared: 0.998     Adjusted R-squared: 0.992
 > ######################################
 > ##   using data set appleProdFr86   ##
 > ######################################
-> data( "appleProdFr86" )
+> data( "appleProdFr86", package = "micEcon" )
 > # quantity of the capital input
 > appleProdFr86$qCap <- with( appleProdFr86, vCap / pCap )
 > # quantity of the labour input
@@ -1316,4 +1316,4 @@ R-squared: 0.713     Adjusted R-squared: 0.681
 > 
 > proc.time()
    user  system elapsed 
-  0.896   0.024   0.917 
+  0.504   0.040   0.539 
