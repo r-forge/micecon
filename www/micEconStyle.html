@@ -14,18 +14,21 @@
 in <a href="http://www.r-project.org/">R</a></h2>
 
 <p>This style guide is based on
+<a href="http://www.aroma-project.org/developers/RCC">Henrik Bengtsson's
+&quot;R Coding Conventions&quot;</a>,
 <a href="http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">
-	Google's R Style Guide</a>
+	Google's &quot;R Style Guide&quot;</a>
 and <a href="http://adv-r.had.co.nz/Style.html">
 	Hadley Wickham's &quot;Advanced R&quot; style guide</a>.
-The coding conventions described below should be followed,
+All R code that is part of the <a href="http://www.micEcon.org/">micEcon</a> project
+should follow these coding conventions,
 unless there is good reason to do otherwise
 (e.g. much better readability for humans). 	
 </p>
 
 <p>Comments and suggestions regarding this style guide are highly welcome.
 Please post your feedback via the
-&quot;<a href="https://r-forge.r-project.org/forum/forum.php?forum_id=840&group_id=257">Open-Discussion</a>&quot;
+&quot;<a href="https://r-forge.r-project.org/forum/forum.php?forum_id=840&amp;group_id=257">Open-Discussion</a>&quot;
 forum at the <a href="https://r-forge.r-project.org/projects/micecon/">R-Forge site of the micEcon project</a>.</p>
 
 <h3>File names</h3>
@@ -48,19 +51,21 @@ all-stuff.r
 
 <h3>Object names</h3>
 
-<p>Variable and function names should be meaningful and concise,
+<p>Names of variables, functions and arguments should be meaningful and concise,
 start with a lower-case letter,
 continue in <a href="https://en.wikipedia.org/wiki/CamelCase">camelCase</a>,
 and not contain symbols such as underscores, hyphens, or dots.
 Meaningful names of variables are usually nouns and
 meaningful names of functions usually contain verbs.
+Names of boolean variables could start with <code>is</code>. 
 It often takes some time to find concise and meaningful names&mdash;take
 the time!</p>
 	
 <pre>
 # Good
 dayOne
-fitModel()
+fitModel( formula )
+isFinished &lt;- TRUE
 
 # Bad
 first_day_of_the_month
@@ -68,8 +73,10 @@ day.one
 DayOne
 dayone
 d1
-model_result()
-model.result()
+fin &lt;- TRUE
+isNotFinished &lt;- FALSE
+fit_model( x )
+model.result( estimatedModelSpec )
 </pre>
 
 <p>Where possible, avoid using names of existing functions and variables,
