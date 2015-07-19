@@ -2,3 +2,4 @@
 ^tests/compPlotTest.R$
 ^tests/compPlotTest.Rout.save$
 ^tests/controlPlots
+^.*\.Rproj$
