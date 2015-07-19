@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Style Guide for the micEcon project</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Arne Henningsen" />
+</head>
+<body>
+
+<h1>Style Guide for the <a href="http://www.micEcon.org/">micEcon</a> project:</h1>
+
+<h2>Tools for microeconomic analysis and microeconomic modelling
+in <a href="http://www.r-project.org/">R</a></h2>
+
+<p>This style guide is based on
+<a href="http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">
+	Google's R Style Guide</a>
+and <a href="http://adv-r.had.co.nz/Style.html">
+	Hadley Wickham's &quot;Advanced R&quot; style guide</a>.
+The coding conventions described below should be followed,
+unless there is good reason to do otherwise
+(e.g. much better readability for humans). 	
+</p>
+
+
+<h3>File names</h3>
+
+<p>File names should be meaningful,
+start with a lower-case letter,
+continue in <a href="https://en.wikipedia.org/wiki/CamelCase">camelCase</a>,
+contain no blanks or symbols, 
+and end in <code>.R</code>.</p>
+
+<pre>
+# Good
+fitModels.R
+utilityFunctions.R
+
+# Bad
+my_functions.r
+all-stuff.r
+</pre>
+
+<h3>Object names</h3>
+
+<p>Variable and function names should be meaningful and concise,
+start with a lower-case letter,
+continue in <a href="https://en.wikipedia.org/wiki/CamelCase">camelCase</a>,
+and not contain symbols such as underscores, hyphens, or dots.
+Meaningful names of variables are usually nouns and
+meaningful names of functions usually contain verbs.
+It often takes some time to find concise and meaningful names&mdash;take
+the time!</p>
+	
+<pre>
+# Good
+dayOne
+fitModel()
+
+# Bad
+first_day_of_the_month
+day.one
+DayOne
+dayone
+d1
+model_result()
+model.result()
+</pre>
+
+<p>Where possible, avoid using names of existing functions and variables,
+because this will cause confusion for the readers and users of your code.</p>
+
+<pre>
+# Bad
+T &lt;- FALSE
+c &lt;- 10
+mean &lt;- function(x) sum(x)
+</pre>
+
+
+<h3>Spacing</h3>
+
+<p>Place spaces around operators
+(<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>,
+<code>^</code>, <code>&lt;-</code>, etc.).
+Also place spaces also around <code>=</code> in function calls.</p>
+
+<pre>
+# Good
+totalInches &lt;- 12 * feet + inches
+plot( a + b, type = "l" )
+
+# Bad
+totalInches&lt;-12*feet+inches
+plot( a+b, type="l" )
+</pre>
+
+<p>There's a small exception to this rule:
+<code>:</code>, <code>::</code> and <code>:::</code> do not need spaces around them.</p>
+
+<pre>
+# Good
+x &lt;- 1:10
+base::get
+
+# Bad
+x &lt;- 1 : 10
+base :: get
+</pre>
+
+<p>Never place a space before left (opening) parentheses/brackets.
+Place a space after left (opening) parenthesis/brackets
+and before right (closing) parentheses/brackets,
+unless the part within the parentheses/brackets is small.
+Always put a space after a comma, and usually not before a comma
+(just like in regular English).</p>
+
+<pre>
+# Good
+myVector[3]
+myMatrix[ 2, 5 ]
+total &lt;- sum( x[ , 1 ] )
+total &lt;- sum( x[ 1, ] )
+if( TRUE )
+if(TRUE)
+plot(x)
+
+# Bad
+myVector [3]
+myMatrix[ 2 ,5 ]
+total &lt;- sum(x[ ,1 ])
+total &lt;- sum(x[1,])
+if (TRUE)
+plot (x )
+</pre>
+
+
+<p>Extra spacing (i.e., more than one space in a row) is ok
+if it improves alignment of equal signs or assignments
+(<code>&lt;-</code>).</p>
+
+<pre>
+# Good
+list(
+  total = a + b + c, 
+  mean  = ( a + b + c ) / n
+)
+</pre>
+
+
+<h3>Curly braces</h3>
+
+<p>An opening curly brace should never go on its own line
+and should always be followed by a new line.
+A closing curly brace should always go on its own line,
+unless it's followed by <code>else</code>.
+Always surround the command <code>else</code> by braces.
+The code inside curly braces should be indented.</p>
+
+<pre>
+# Good
+if( y &lt; 0 &amp;&amp; debug ) {
+  message( &quot;Y is negative&quot; )
+}
+
+if( y == 0 ) {
+  log(x)
+} else {
+  y ^ x
+}
+
+# Bad
+if( y &lt; 0 &amp;&amp; debug ) message( &quot;Y is negative&quot; )
+
+if( y &lt; 0 &amp;&amp; debug )
+  message( &quot;Y is negative&quot; )
+
+if( y == 0 ) {
+  log(x)
+} 
+else {
+  y ^ x }
+</pre>
+
+
+<h3>Line length</h3>
+
+<p>Strive to limit your code to 80 characters per line.
+This fits comfortably on a printed page with a reasonably sized font
+and facilitates comparisons of different versions of the files
+(e.g. when using version control systems
+such as <code>git</code> or <code>subversion</code>).
+If you find yourself running out of room,
+this is a good indication that you should encapsulate some of the work
+in a separate function.
+If you use RStudio, you can enable the option &quot;Show margin&quot;
+and set the option &quot;Margin column&quot; to &quot;80&quot;.</p>
+
+
+<h3>Indentation</h3>
+
+<p>When indenting your code, use two spaces.
+Never use tabs or mix tabs and spaces.
+If you use RStudio, you should disable the option
+&quot;Vertically align arguments in auto indent&quot;.
+</p>
+
+<pre>
+# Good
+longObjectName &lt;- longFunctionName(
+  x = &quot;a long argument&quot;, 
+  y = &quot;another argument&quot;
+  z = &quot;another long argument&quot; )
+
+# Bad
+longObjectName &lt;- longFunctionName( x = &quot;a long argument&quot;, 
+   y = &quot;another argument&quot;
+ z = &quot;another long argument&quot; )
+
+longObjectName &lt;- longFunctionName( x = &quot;a long argument&quot;, 
+                                    y = &quot;another argument&quot;
+                                    z = &quot;another long argument&quot; )
+</pre>
+
+
+<h3>Function Definitions and Calls</h3>
+
+Function definitions should first list arguments without default values,
+followed by those with default values.
+In both function definitions and function calls,
+multiple arguments per line are allowed;
+line breaks are only allowed between assignments.
+
+<pre>
+# Good
+predictWeather &lt;- function( location, period,
+  frequency = "hourly", showUncertainty = FALSE)
+
+# Bad
+predictWeather &lt;- function( location,
+  frequency = "hourly", period, showUncertainty = FALSE )
+
+predictWeather &lt;- function( location, period, frequency =
+ "hourly", showUncertainty = FALSE)
+</pre>
+
+
+<h3>Errors and warnings</h3>
+
+Errors should be raised
+with meaningful and helpful error messages
+using <code>stop()</code>.
+Potential problems should be raised
+with meaningful and helpful warning messages
+using <code>warning()</code>.
+
+
+<h3>Assignment</h3>
+
+<p>Use <code>&lt;-</code>, not <code>=</code>, for assignment.</p>
+
+<pre>
+# Good
+x &lt;- 5
+
+# Bad
+x = 5
+</pre>
+
+
+<h3>Attach</h3>
+
+The possibilities for creating errors when using <code>attach()</code> are numerous.
+Do not use it.
+
+<pre>
+# Good
+mean( myData$x1 + myData$x2 + myData$x3 )
+mean( with( myData, x1 + x2 + x3 ))
+
+# Bad
+attach( myData )
+mean( x1 + x2 + x3 )
+</pre>
+
+
+<h3>Semicolons</h3>
+
+Do not terminate your lines with semicolons
+or use semicolons to put more than one command on the same line.
+
+<pre>
+# Bad
+x &lt;- 5;
+y &lt;- 6; z &lt;- 8
+</pre>
+
+
+<h3>Comments</h3>
+
+Comment your code.
+Comments should usually explain the why, not the what. 
+Entire commented lines should begin with # and one space.
+Short comments can be placed after code
+preceded by two spaces, #, and then one space.
+
+<pre>
+# Good
+
+# correlation between weight and height
+corWeightHeight &lt;- cor( myData$weight, myData$height,
+  use = "complete.obs",  # remove observations with NAs
+  method = "pearson" )
+
+# Bad
+
+#correlation between weight and height
+corWeightHeight &lt;- cor( myData$weight, myData$height,
+  use = "complete.obs",#    remove observations with NAs
+  method = "pearson" )
+</pre>
+
+<div align="center">
+<p>
+<a href="http://validator.w3.org/check/referer"> <img src="images/vxhtml10.png" alt="Valid XHTML 1.0!" height="31" width="88" border="0"/></a>
+</p>
+
+<p>Last Update: 19 July 2015</p>
+</div>
+
+</body>
+</html>
