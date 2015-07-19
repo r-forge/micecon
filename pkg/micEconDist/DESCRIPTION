@@ -1,0 +1,13 @@
+Package: micEconDist
+Version: 0.5-0
+Date: 2015-07-19
+Title: Microeconomic Production Analysis with Distance Functions
+Author: Arne Henningsen
+Maintainer: Arne Henningsen <arne.henningsen@googlemail.com>
+Depends: R (>= 2.4.0), micEcon (>= 0.6-12)
+Description: Tools for microeconomic production analysis 
+   and microeconomic modelling 
+   of multiple-outputs production technologies
+   with output distance functions and ray production functions.
+License: GPL (>= 2)
+URL: http://www.micEcon.org
