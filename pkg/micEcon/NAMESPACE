@@ -56,3 +56,6 @@ importFrom( "miscTools", "semidefiniteness" )
 importFrom( "miscTools", "vecli" )
 importFrom( "miscTools", "vecli2m" )
 importFrom( "miscTools", "veclipos" )
+
+importFrom( "plm", "plm" )
+importFrom( "plm", "fixef" )
