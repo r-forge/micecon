@@ -1,6 +1,6 @@
 
-R version 3.1.0 (2014-04-10) -- "Spring Dance"
-Copyright (C) 2014 The R Foundation for Statistical Computing
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -15,10 +15,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
 
-> library( micEcon )
-
-If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
-https://r-forge.r-project.org/projects/micecon/
+> library( "micEconIndex" )
 > options( digits = 4 )
 > 
 > ## function for printIndexing indices
@@ -41,7 +38,7 @@ https://r-forge.r-project.org/projects/micecon/
 + }
 > 
 > ## Missong03E7.7
-> data( Missong03E7.7 )
+> data( Missong03E7.7, package = "micEcon" )
 > ## price indices for Missong03E7.7
 > printIndices( "p",  c( "p.beef", "p.veal", "p.pork" ),
 +    c( "q.beef", "q.veal", "q.pork" ), 1, Missong03E7.7 )
@@ -112,7 +109,7 @@ attr(,"weights")
 > 
 > 
 > ## Bleymueller79E25.1
-> data( Bleymueller79E25.1 )
+> data( Bleymueller79E25.1, package = "micEcon" )
 > ## price indices for Bleymueller79E25.1
 > printIndices( "p",  c( "p.A", "p.B", "p.C", "p.D" ),
 +    c( "q.A", "q.B", "q.C", "q.D" ),  1, Bleymueller79E25.1 )
@@ -3640,4 +3637,4 @@ attr(,"weights")
 > 
 > proc.time()
    user  system elapsed 
-  0.372   0.039   0.405 
+  0.424   0.068   0.491 
