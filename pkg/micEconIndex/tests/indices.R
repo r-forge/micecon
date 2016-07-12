@@ -1,4 +1,4 @@
-library( micEcon )
+library( "micEconIndex" )
 options( digits = 4 )
 
 ## function for printIndexing indices
@@ -21,7 +21,7 @@ printIndices <- function( what, ... ) {
 }
 
 ## Missong03E7.7
-data( Missong03E7.7 )
+data( Missong03E7.7, package = "micEcon" )
 ## price indices for Missong03E7.7
 printIndices( "p",  c( "p.beef", "p.veal", "p.pork" ),
    c( "q.beef", "q.veal", "q.pork" ), 1, Missong03E7.7 )
@@ -32,7 +32,7 @@ printIndices( "q",  c( "p.beef", "p.veal", "p.pork" ),
 
 
 ## Bleymueller79E25.1
-data( Bleymueller79E25.1 )
+data( Bleymueller79E25.1, package = "micEcon" )
 ## price indices for Bleymueller79E25.1
 printIndices( "p",  c( "p.A", "p.B", "p.C", "p.D" ),
    c( "q.A", "q.B", "q.C", "q.D" ),  1, Bleymueller79E25.1 )
