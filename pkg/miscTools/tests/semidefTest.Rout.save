@@ -31,7 +31,7 @@ Error in min(eigen(m)$values) : invalid 'type' (complex) of argument
 > try( semidefiniteness( m1, positive = FALSE ) )
 [1] FALSE
 > try( semidefiniteness( m1, positive = FALSE, method = "eigen" ) )
-Error in max(eigen(m)$values) : invalid 'type' (complex) of argument
+Error in min(eigen(m)$values) : invalid 'type' (complex) of argument
 > 
 > m2 <- crossprod( m1 )
 > print( m2 )
@@ -157,4 +157,4 @@ Error in max(eigen(m)$values) : invalid 'type' (complex) of argument
 > 
 > proc.time()
    user  system elapsed 
-  0.144   0.024   0.162 
+  0.152   0.020   0.166 
