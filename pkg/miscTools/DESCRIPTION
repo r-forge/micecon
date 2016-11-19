@@ -5,7 +5,7 @@ Title: Miscellaneous Tools and Utilities
 Author: Arne Henningsen, Ott Toomet
 Maintainer: Arne Henningsen <arne.henningsen@gmail.com>
 Depends: R (>= 2.14.0)
-Suggests: Ecdat (>= 0.1-5), graphicsQC
+Suggests: Ecdat (>= 0.1-5)
 Description: Miscellaneous small tools and utilities.
 License: GPL (>= 2)
 URL: http://www.micEcon.org
