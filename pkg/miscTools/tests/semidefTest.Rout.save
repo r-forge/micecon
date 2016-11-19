@@ -29,13 +29,13 @@ Type 'q()' to quit R.
 > try( semidefiniteness( m1 ) )
 [1] FALSE
 > try( semidefiniteness( m1, method = "eigen" ) )
-Error in min(eigen(m, only.values = TRUE)$values) : 
-  invalid 'type' (complex) of argument
+Error in semidefiniteness(m1, method = "eigen") : 
+  complex (non-real) eigenvalues, which could be caused by a non-symmetric matrix
 > try( semidefiniteness( m1, positive = FALSE ) )
 [1] FALSE
 > try( semidefiniteness( m1, positive = FALSE, method = "eigen" ) )
-Error in min(eigen(m, only.values = TRUE)$values) : 
-  invalid 'type' (complex) of argument
+Error in semidefiniteness(m1, positive = FALSE, method = "eigen") : 
+  complex (non-real) eigenvalues, which could be caused by a non-symmetric matrix
 > 
 > # positive semidefinite
 > m2 <- crossprod( m1 )
@@ -249,4 +249,4 @@ Error in min(eigen(m, only.values = TRUE)$values) :
 > 
 > proc.time()
    user  system elapsed 
-  0.156   0.016   0.167 
+  0.128   0.020   0.145 
