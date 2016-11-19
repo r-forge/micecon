@@ -22,10 +22,12 @@ semidefiniteness <- function( m, positive = TRUE, tol = .Machine$double.eps,
          m <- -m
       }
       if( method == "det" ) {
-         result <- ( min( diag( m ) ) >= -tol )
-         if( n > 1 ) {
-            for( i in 2:n ) {
-               result <- result && ( det( m[ 1:i, 1:i ] ) >= -tol )
+         result <- TRUE
+         for( i in 1:n ) {
+            comb <- combn( n, i )
+            for( j in 1:ncol( comb ) ) {
+               princMin <-  det( m[ comb[ , j ], comb[ , j ], drop = FALSE ] )
+               result <- result && ( princMin >= -tol )
             }
          }
       } else if( method == "eigen" ) {
