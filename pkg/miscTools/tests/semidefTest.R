@@ -68,3 +68,18 @@ semidefiniteness( m9 )
 semidefiniteness( m9, method = "eigen" )
 semidefiniteness( m9, positive = FALSE )
 semidefiniteness( m9, positive = FALSE, method = "eigen" )
+
+m10 <- matrix( 0, 3, 3 )
+print( m10 )
+semidefiniteness( m10 )
+semidefiniteness( m10, method = "eigen" )
+semidefiniteness( m10, positive = FALSE )
+semidefiniteness( m10, positive = FALSE, method = "eigen" )
+
+m11 <- symMatrix( 1:6 )
+print( m11 )
+semidefiniteness( m11 )
+semidefiniteness( m11, method = "eigen" )
+semidefiniteness( m11, positive = FALSE )
+semidefiniteness( m11, positive = FALSE, method = "eigen" )
+
