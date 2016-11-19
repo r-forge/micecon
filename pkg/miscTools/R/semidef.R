@@ -27,7 +27,12 @@ semidefiniteness <- function( m, positive = TRUE, tol = .Machine$double.eps,
             }
          }
       } else if( method == "eigen" ) {
-         result <- ( min( eigen( m, only.values = TRUE )$values ) > -tol )
+         ev <- eigen( m, only.values = TRUE )$values
+         if( is.complex( ev ) ) {
+            stop( "complex (non-real) eigenvalues,",
+               " which could be caused by a non-symmetric matrix" )
+         }
+         result <- min( ev ) > -tol
       } else {
          stop( "argument 'method' must be either 'det' or 'eigen'" )
       }
