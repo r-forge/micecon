@@ -1,0 +1,88 @@
+
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library( "miscTools" )
+> 
+> set.seed( 123 )
+> m1 <- matrix( rnorm( 9 ), ncol = 3 )
+> print( m1 )
+           [,1]       [,2]       [,3]
+[1,] -0.5604756 0.07050839  0.4609162
+[2,] -0.2301775 0.12928774 -1.2650612
+[3,]  1.5587083 1.71506499 -0.6868529
+> semidefiniteness( m1 )
+[1] FALSE
+> semidefiniteness( m1, positive = FALSE )
+[1] FALSE
+> 
+> m2 <- crossprod( m1 )
+> print( m2 )
+          [,1]      [,2]      [,3]
+[1,]  2.796686  2.604009 -1.037747
+[2,]  2.604009  2.963135 -1.309056
+[3,] -1.037747 -1.309056  2.284591
+> semidefiniteness( m2 )
+[1] TRUE
+> semidefiniteness( m2, positive = FALSE )
+[1] FALSE
+> semidefiniteness( -m2 )
+[1] FALSE
+> semidefiniteness( -m2, positive = FALSE )
+[1] TRUE
+> 
+> m3 <- cbind( m2, - rowSums( m2 ) )
+> m3 <- rbind( m3, - colSums( m3 ) )
+> print( m3 )
+          [,1]      [,2]        [,3]        [,4]
+[1,]  2.796686  2.604009 -1.03774694 -4.36294799
+[2,]  2.604009  2.963135 -1.30905572 -4.25808763
+[3,] -1.037747 -1.309056  2.28459052  0.06221214
+[4,] -4.362948 -4.258088  0.06221214  8.55882348
+> semidefiniteness( m3 )
+[1] TRUE
+> semidefiniteness( m3, positive = FALSE )
+[1] FALSE
+> 
+> m4 <- m3 * 1e6
+> print( m4 )
+         [,1]     [,2]        [,3]        [,4]
+[1,]  2796686  2604009 -1037746.94 -4362947.99
+[2,]  2604009  2963135 -1309055.72 -4258087.63
+[3,] -1037747 -1309056  2284590.52    62212.14
+[4,] -4362948 -4258088    62212.14  8558823.48
+> # rcond(m4)
+> # det(m4)
+> semidefiniteness( m4 )
+[1] FALSE
+> semidefiniteness( m4, positive = FALSE )
+[1] FALSE
+> 
+> m5 <- diag( -1, 4, 4 )
+> semidefiniteness( m5 )
+[1] FALSE
+> semidefiniteness( m5, positive = FALSE )
+[1] TRUE
+> 
+> m6 <- matrix( -1, 4, 4 )
+> semidefiniteness( m6 )
+[1] FALSE
+> semidefiniteness( m6, positive = FALSE )
+[1] TRUE
+> 
+> proc.time()
+   user  system elapsed 
+  0.120   0.020   0.139 
