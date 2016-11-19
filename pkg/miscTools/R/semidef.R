@@ -2,7 +2,6 @@
 semidefiniteness <- function( m, positive = TRUE, tol = .Machine$double.eps,
       method = "det" ) {
 
-   result <- list ()
    if( is.list( m ) ) {
       result <- logical( length( m ) )
       for( t in 1:length( m ) ) {
@@ -26,7 +25,8 @@ semidefiniteness <- function( m, positive = TRUE, tol = .Machine$double.eps,
          for( i in 1:n ) {
             comb <- combn( n, i )
             for( j in 1:ncol( comb ) ) {
-               princMin <-  det( m[ comb[ , j ], comb[ , j ], drop = FALSE ] )
+               mat <- m[ comb[ , j ], comb[ , j ], drop = FALSE ]
+               princMin <-  det( mat )
                result <- result && ( princMin >= -tol )
             }
          }
