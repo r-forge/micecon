@@ -75,7 +75,7 @@ Error in semidefiniteness(m1, positive = FALSE, method = "eigen") :
 > semidefiniteness( m3 )
 [1] TRUE
 > semidefiniteness( m3, method = "eigen" )
-[1] FALSE
+[1] TRUE
 > semidefiniteness( m3, positive = FALSE )
 [1] FALSE
 > semidefiniteness( m3, positive = FALSE, method = "eigen" )
@@ -132,7 +132,7 @@ Error in semidefiniteness(m1, positive = FALSE, method = "eigen") :
 > semidefiniteness( m6, positive = FALSE )
 [1] TRUE
 > semidefiniteness( m6, positive = FALSE, method = "eigen" )
-[1] FALSE
+[1] TRUE
 > 
 > # negative semidefinite, diagonal
 > m7 <- diag( c( -1, -3 ) )
@@ -250,4 +250,4 @@ Error in semidefiniteness(m1, positive = FALSE, method = "eigen") :
 > 
 > proc.time()
    user  system elapsed 
-  0.152   0.016   0.165 
+  0.152   0.020   0.168 

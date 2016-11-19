@@ -1,6 +1,6 @@
 ## ----- test positive / negative semidefiniteness
-semidefiniteness <- function( m, positive = TRUE, tol = .Machine$double.eps,
-      method = "det" ) {
+semidefiniteness <- function( m, positive = TRUE,
+   tol = 100 * .Machine$double.eps, method = "det" ) {
 
    if( is.list( m ) ) {
       result <- logical( length( m ) )
