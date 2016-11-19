@@ -29,11 +29,13 @@ Type 'q()' to quit R.
 > try( semidefiniteness( m1 ) )
 [1] FALSE
 > try( semidefiniteness( m1, method = "eigen" ) )
-Error in min(eigen(m)$values) : invalid 'type' (complex) of argument
+Error in min(eigen(m, only.values = TRUE)$values) : 
+  invalid 'type' (complex) of argument
 > try( semidefiniteness( m1, positive = FALSE ) )
 [1] FALSE
 > try( semidefiniteness( m1, positive = FALSE, method = "eigen" ) )
-Error in min(eigen(m)$values) : invalid 'type' (complex) of argument
+Error in min(eigen(m, only.values = TRUE)$values) : 
+  invalid 'type' (complex) of argument
 > 
 > # positive semidefinite
 > m2 <- crossprod( m1 )
@@ -72,7 +74,7 @@ Error in min(eigen(m)$values) : invalid 'type' (complex) of argument
 > semidefiniteness( m3 )
 [1] TRUE
 > semidefiniteness( m3, method = "eigen" )
-[1] TRUE
+[1] FALSE
 > semidefiniteness( m3, positive = FALSE )
 [1] FALSE
 > semidefiniteness( m3, positive = FALSE, method = "eigen" )
@@ -91,7 +93,7 @@ Error in min(eigen(m)$values) : invalid 'type' (complex) of argument
 > semidefiniteness( m4 )
 [1] FALSE
 > semidefiniteness( m4, method = "eigen" )
-[1] FALSE
+[1] TRUE
 > semidefiniteness( m4, positive = FALSE )
 [1] FALSE
 > semidefiniteness( m4, positive = FALSE, method = "eigen" )
@@ -247,4 +249,4 @@ Error in min(eigen(m)$values) : invalid 'type' (complex) of argument
 > 
 > proc.time()
    user  system elapsed 
-  0.124   0.012   0.132 
+  0.156   0.016   0.167 

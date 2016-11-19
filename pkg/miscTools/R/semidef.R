@@ -27,7 +27,7 @@ semidefiniteness <- function( m, positive = TRUE, tol = .Machine$double.eps,
             }
          }
       } else if( method == "eigen" ) {
-         result <- ( min( eigen( m )$values ) > -tol )
+         result <- ( min( eigen( m, only.values = TRUE )$values ) > -tol )
       } else {
          stop( "argument 'method' must be either 'det' or 'eigen'" )
       }
