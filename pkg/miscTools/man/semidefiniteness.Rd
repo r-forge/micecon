@@ -6,8 +6,8 @@
    Check whether a symmetric matrix is positive or negative semidefinite.
 }
 
-\usage{semidefiniteness( m, positive = TRUE, tol = .Machine$double.eps,
-   method = "det" )}
+\usage{semidefiniteness( m, positive = TRUE,
+   tol = 100 * .Machine$double.eps, method = "det" )}
 
 \arguments{
    \item{m}{a symmetric quadratic matrix or a list containing
