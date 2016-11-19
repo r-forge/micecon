@@ -5,6 +5,15 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.6-18  (2016-11-19)
+
+* improved function semidefiniteness() and its documentation
+
+* added function isSemidefinite(), which is currently just an additional
+(identical) user interface to semidefiniteness(), but which may replace
+semidefiniteness() in the (not so near) future
+
+
             CHANGES IN VERSION 0.6-16  (2013-03-13)
 
 * fixed bugs in insertCol() and insertRwo() that occurred when inserting a 
