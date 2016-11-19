@@ -10,7 +10,8 @@
    method = "det" )}
 
 \arguments{
-   \item{m}{a quadratic matrix or a list containing quadratic matrices.}
+   \item{m}{a symmetric quadratic matrix or a list containing
+      symmetric quadratic matrices.}
    \item{positive}{logical. Check for positive semidefiniteness
       (if \code{TRUE}, default)
       or for negative semidefiniteness (if \code{FALSE}).}
@@ -18,7 +19,7 @@
       are considered to be zero).}
    \item{method}{method to test for semidefiniteness, either
       checking the signs of the principal minors (if \code{"det"})
-      or checking the signs of the eigen values (if \code{"eigen"}).}
+      or checking the signs of the eigenvalues (if \code{"eigen"}).}
 }
 
 \details{

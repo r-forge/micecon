@@ -27,15 +27,16 @@ Type 'q()' to quit R.
 [2,] -0.2301775 0.12928774 -1.2650612
 [3,]  1.5587083 1.71506499 -0.6868529
 > try( semidefiniteness( m1 ) )
-[1] FALSE
+Error in semidefiniteness(m1) : argument 'm' must be a symmetric matrix
 > try( semidefiniteness( m1, method = "eigen" ) )
 Error in semidefiniteness(m1, method = "eigen") : 
-  complex (non-real) eigenvalues, which could be caused by a non-symmetric matrix
+  argument 'm' must be a symmetric matrix
 > try( semidefiniteness( m1, positive = FALSE ) )
-[1] FALSE
+Error in semidefiniteness(m1, positive = FALSE) : 
+  argument 'm' must be a symmetric matrix
 > try( semidefiniteness( m1, positive = FALSE, method = "eigen" ) )
 Error in semidefiniteness(m1, positive = FALSE, method = "eigen") : 
-  complex (non-real) eigenvalues, which could be caused by a non-symmetric matrix
+  argument 'm' must be a symmetric matrix
 > 
 > # positive semidefinite
 > m2 <- crossprod( m1 )
@@ -249,4 +250,4 @@ Error in semidefiniteness(m1, positive = FALSE, method = "eigen") :
 > 
 > proc.time()
    user  system elapsed 
-  0.128   0.020   0.145 
+  0.164   0.012   0.167 
