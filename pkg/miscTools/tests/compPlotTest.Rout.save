@@ -1,7 +1,6 @@
 
-R version 2.15.3 (2013-03-01) -- "Security Blanket"
-Copyright (C) 2013 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -18,7 +17,6 @@ Type 'q()' to quit R.
 
 > library( "miscTools" )
 > library( "graphicsQC" )
-Loading required package: XML
 > 
 > set.seed( 123 )
 > x <- 1000 * runif( 25 )
@@ -45,7 +43,7 @@ qcCompareExpr Result:
 Call:
  compare("testPlots", "controlPlots") 
                         Test                        Control             Results 
-R version: R version 2.15.3 (2013-03-01) R version 2.15.2 (2012-10-26)          
+R version: R version 3.3.1 (2016-06-21)  R version 2.15.2 (2012-10-26)          
 Directory: ...ols.Rcheck/tests/testPlots ...scTools/tests/controlPlots          
 Filename:  compPlot-log.xml              compPlot-log.xml                       
 Format:                                                                         
@@ -64,8 +62,12 @@ ps         ...ts/testPlots/compPlot-1.ps ...controlPlots/compPlot-1.ps identical
            ...ts/testPlots/compPlot-3.ps ...controlPlots/compPlot-3.ps identical
            ...ts/testPlots/compPlot-4.ps ...controlPlots/compPlot-4.ps identical
            ...ts/testPlots/compPlot-5.ps ...controlPlots/compPlot-5.ps identical
+Warning messages:
+1: running command 'identify -list Format 2>/dev/null' had status 1 
+2: running command 'identify -list Format 2>/dev/null' had status 1 
+3: running command 'identify -list Format 2>/dev/null' had status 1 
 > 
 > 
 > proc.time()
    user  system elapsed 
-  0.892   0.160   2.294 
+  0.728   0.092   0.975 
