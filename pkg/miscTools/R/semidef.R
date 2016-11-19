@@ -26,7 +26,11 @@ semidefiniteness <- function( m, positive = TRUE, tol = .Machine$double.eps,
             comb <- combn( n, i )
             for( j in 1:ncol( comb ) ) {
                mat <- m[ comb[ , j ], comb[ , j ], drop = FALSE ]
-               princMin <-  det( mat )
+               if( rcond( mat ) >= tol ) {
+                  princMin <-  det( mat )
+               } else {
+                  princMin <- 0
+               }
                result <- result && ( princMin >= -tol )
             }
          }
