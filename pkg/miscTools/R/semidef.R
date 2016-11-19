@@ -14,6 +14,8 @@ semidefiniteness <- function( m, positive = TRUE, tol = .Machine$double.eps,
    } else {
       if( nrow( m ) != ncol( m ) ) {
          stop( "argument 'm' or each of its elements must be a _quadratic_ matrix" )
+      } else if( !isSymmetric( m ) ) {
+         stop( "argument 'm' must be a symmetric matrix" )
       }
       n <- nrow( m )
       if( !positive ) {
