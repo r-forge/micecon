@@ -23,6 +23,24 @@
 }
 
 \details{
+   If argument \code{positive} is set to \code{FALSE},
+   negative semidefiniteness is checked
+   by checking for potitive semidefiniteness
+   of the negative of argument \code{m}, i.e. \code{-m}.
+
+   If method \code{"det"} is used (the default),
+   it is checked whether all principal minors
+   (not only the leading principal minors)
+   are larger than \code{-tol}.
+   If the reciprocal condition number of a sub-matrix
+   is smaller than argument \code{tol},
+   \code{semidefiniteness()} does not calculate its determinant
+   but sets the corresponding principal minor to zero.
+
+   If method \code{"eigen"} is used (the default),
+   it is checked whether all eigenvalues
+   are larger than \code{-tol}.
+
    Please note that a matrix can be
    neither positive semidefinite nor negative semidefinite.
 }
