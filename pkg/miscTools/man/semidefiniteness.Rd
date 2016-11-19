@@ -11,20 +11,19 @@
 
 \arguments{
    \item{m}{a quadratic matrix or a list containing quadratic matrices.}
-   \item{positive}{logical. Check for positive (\code{TRUE}, default)
-      or negative (\code{FALSE}) semidefiniteness.}
+   \item{positive}{logical. Check for positive semidefiniteness
+      (if \code{TRUE}, default)
+      or for negative semidefiniteness (if \code{FALSE}).}
    \item{tol}{tolerance level (values between \code{-tol} and \code{tol}
       are considered to be zero).}
-   \item{method}{method to test for semidefiniteness, either "det"
-      (the textbook method: checking for the signs of the determinants
-      of sub-matrices) or "eigen" (checking for the signs of the eigen values).}
+   \item{method}{method to test for semidefiniteness, either
+      checking the signs of the principal minors (if \code{"det"})
+      or checking the signs of the eigen values (if \code{"eigen"}).}
 }
 
 \details{
    Please note that a matrix can be
-   neither positive nor negative semidefinite
-   or positive and negative semidefinite
-   at the same time.
+   neither positive semidefinite nor negative semidefinite.
 }
 
 \value{
@@ -36,9 +35,13 @@
 }
 
 \references{
-   Chiang, A.C. (1984)
+   Chiang, A.C. (1984):
    \emph{Fundamental Methods of Mathematical Economics},
    3rd ed., McGraw-Hill.
+   
+   Gantmacher, F.R. (1959):
+   \emph{The Theory of Matrices},
+   Chelsea Publishing.
 }
 
 \author{Arne Henningsen}
@@ -55,8 +58,8 @@
    semidefiniteness( matrix( 0, 3, 3 ), positive = FALSE )
 
    # a matrix that is neither positive nor negative semidefinite
-   semidefiniteness( matrix( 1:9, 3, 3 ))
-   semidefiniteness( matrix( 1:9, 3, 3 ), positive = FALSE )
+   semidefiniteness( symMatrix( 1:6 ) )
+   semidefiniteness( symMatrix( 1:6 ), positive = FALSE )
 }
 
 \keyword{array}
