@@ -1,4 +1,5 @@
-\name{semidefiniteness}
+\name{isSemidefinite}
+\alias{isSemidefinite}
 \alias{semidefiniteness}
 \title{Positive or Negative Semidefiniteness}
 
@@ -6,8 +7,13 @@
    Check whether a symmetric matrix is positive or negative semidefinite.
 }
 
-\usage{semidefiniteness( m, positive = TRUE,
-   tol = 100 * .Machine$double.eps, method = "det" )}
+\usage{
+isSemidefinite( m, positive = TRUE,
+   tol = 100 * .Machine$double.eps, method = "det" )
+
+semidefiniteness( m, positive = TRUE,
+   tol = 100 * .Machine$double.eps, method = "det" )
+}
 
 \arguments{
    \item{m}{a symmetric quadratic matrix or a list containing
@@ -23,6 +29,12 @@
 }
 
 \details{
+   Functions \code{isSemidefinite()} and \code{semidefiniteness()}
+   are identical
+   Function \code{semidefiniteness()} may be depreciated in the future,
+   because the name of function \code{isSemidefinite()}
+   seems to be more consistent to the names of other functions in R.
+
    If argument \code{positive} is set to \code{FALSE},
    negative semidefiniteness is checked
    by checking for potitive semidefiniteness
@@ -37,7 +49,7 @@
    \code{semidefiniteness()} does not calculate its determinant
    but sets the corresponding principal minor to zero.
 
-   If method \code{"eigen"} is used (the default),
+   If method \code{"eigen"} is used,
    it is checked whether all eigenvalues
    are larger than \code{-tol}.
 
@@ -46,7 +58,8 @@
 }
 
 \value{
-   \code{semidefiniteness} returns a locigal value
+   \code{isSemidefinite()} and \code{semidefiniteness()}
+   return a locigal value
    or a logical vector (if argument \code{m} is a list)
    indicating whether the matrix (or each of the matrices)
    is positive/negative (depending on argument \code{positive})
@@ -67,18 +80,18 @@
 
 \examples{
    # a positive semidefinite matrix
-   semidefiniteness( matrix( 1, 3, 3 ))
+   isSemidefinite( matrix( 1, 3, 3 ))
 
    # a negative semidefinite matrix
-   semidefiniteness( matrix(-1, 3, 3 ), positive = FALSE )
+   isSemidefinite( matrix(-1, 3, 3 ), positive = FALSE )
 
    # a matrix that is positive and negative semidefinite
-   semidefiniteness( matrix( 0, 3, 3 ))
-   semidefiniteness( matrix( 0, 3, 3 ), positive = FALSE )
+   isSemidefinite( matrix( 0, 3, 3 ))
+   isSemidefinite( matrix( 0, 3, 3 ), positive = FALSE )
 
    # a matrix that is neither positive nor negative semidefinite
-   semidefiniteness( symMatrix( 1:6 ) )
-   semidefiniteness( symMatrix( 1:6 ), positive = FALSE )
+   isSemidefinite( symMatrix( 1:6 ) )
+   isSemidefinite( symMatrix( 1:6 ), positive = FALSE )
 }
 
 \keyword{array}

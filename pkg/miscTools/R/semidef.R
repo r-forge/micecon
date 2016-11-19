@@ -47,3 +47,10 @@ semidefiniteness <- function( m, positive = TRUE,
    }
    return( result )
 }
+
+isSemidefinite <- function( m, positive = TRUE,
+   tol = 100 * .Machine$double.eps, method = "det" ) {
+   result <- semidefiniteness( m = m, positive = positive,
+      tol = tol, method = method )
+   return( result )
+}
