@@ -35,12 +35,21 @@ semidefiniteness <- function( m, positive = TRUE,
             }
          }
       } else if( method == "eigen" ) {
-         ev <- eigen( m, only.values = TRUE )$values
-         if( is.complex( ev ) ) {
-            stop( "complex (non-real) eigenvalues,",
-               " which could be caused by a non-symmetric matrix" )
+         if( rcond( m ) >= tol || n == 1 ) {
+            ev <- eigen( m, only.values = TRUE )$values
+            if( is.complex( ev ) ) {
+               stop( "complex (non-real) eigenvalues,",
+                  " which could be caused by a non-symmetric matrix" )
+            }
+            result <- min( ev ) > -tol
+         } else {
+            result <- TRUE
+            for( i in 1:n ) {
+               mm <- m[ -i, -i, drop = FALSE ]
+               result <- result &
+                  semidefiniteness( mm, tol = tol, method = method  )
+            }
          }
-         result <- min( ev ) > -tol
       } else {
          stop( "argument 'method' must be either 'det' or 'eigen'" )
       }
