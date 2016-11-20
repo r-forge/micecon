@@ -13,9 +13,12 @@ semidefiniteness <- function( m, positive = TRUE,
    } else {
       if( nrow( m ) != ncol( m ) ) {
          stop( "argument 'm' or each of its elements must be a _quadratic_ matrix" )
-      } else if( !isSymmetric( m ) ) {
+      } else if( !isSymmetric( unname( m ), tol = 1000 * tol ) ) {
          stop( "argument 'm' must be a symmetric matrix" )
       }
+      # make sure that the matrix is almost exactly symmetric
+      # even if it is slightly non-symmetric 
+      m <- ( m + t(m) ) / 2
       n <- nrow( m )
       if( !positive ) {
          m <- -m
