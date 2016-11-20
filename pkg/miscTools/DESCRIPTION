@@ -7,5 +7,12 @@ Maintainer: Arne Henningsen <arne.henningsen@gmail.com>
 Depends: R (>= 2.14.0)
 Suggests: Ecdat (>= 0.1-5)
 Description: Miscellaneous small tools and utilities.
+   Many of them facilitate the work with matrices,
+   e.g. inserting rows or columns, creating symmetric matrices,
+   or checking for semidefiniteness.
+   Other tools facilitate the work with regression models,
+   e.g. extracting the standard errors,
+   obtaining the number of (estimated) parameters,
+   or calculating R-squared values.
 License: GPL (>= 2)
 URL: http://www.micEcon.org
