@@ -36,22 +36,47 @@ semidefiniteness( m, positive = TRUE,
    seems to be more consistent to the names of other functions in R.
 
    If argument \code{positive} is set to \code{FALSE},
-   negative semidefiniteness is checked
-   by checking for potitive semidefiniteness
+   \code{isSemidefinite()} checks for negative semidefiniteness
+   by checking for positive semidefiniteness
    of the negative of argument \code{m}, i.e. \code{-m}.
 
    If method \code{"det"} is used (the default),
-   it is checked whether all principal minors
+   \code{isSemidefinite()} checks whether all principal minors
    (not only the leading principal minors)
+   of the matrix \code{m}
+   (or of the matrix \code{-m} if argument \code{positive} is \code{FALSE})
    are larger than \code{-tol}.
-   If the reciprocal condition number of a sub-matrix
-   is smaller than argument \code{tol},
-   \code{semidefiniteness()} does not calculate its determinant
-   but sets the corresponding principal minor to zero.
+   Due to rounding errors,
+   which are unavoidable on digital computers,
+   the calculated determinants of singular (sub-)matrices
+   (which should theoretically be zero)
+   can considerably deviate from zero.
+   In order to reduce the probability of incorrect results
+   due to rounding errors,
+   \code{isSemidefinite()} does not calculate the determinants
+   of (sub-)matrices with reciprocal condition numbers
+   smaller than argument \code{tol}
+   but sets the corresponding principal minors to (exactly) zero.
 
    If method \code{"eigen"} is used,
-   it is checked whether all eigenvalues
+   \code{isSemidefinite()} checks whether all eigenvalues
+   of the matrix \code{m}
+   (or of the matrix \code{-m} if argument \code{positive} is \code{FALSE})
    are larger than \code{-tol}.
+   Due to rounding errors,
+   which are unavoidable on digital computers,
+   those eigenvalues of a singular matrix
+   that should theoretically be zero
+   can considerably deviate from zero.
+   In order to reduce the probability of incorrect results
+   due to rounding errors,
+   \code{isSemidefinite()} does not calculate the eigenvalues
+   of an NxN matrix with reciprocal condition number
+   smaller than argument \code{tol}
+   but checks whether all N (N-1)x(N-1) submatrices
+   with row i and column i, i = 1, ..., N, removed
+   are positive semidefinite.
+   If necessary, this procedure is done recursively.
 
    Please note that a matrix can be
    neither positive semidefinite nor negative semidefinite.
