@@ -114,3 +114,23 @@ semidefiniteness( m13 )
 semidefiniteness( m13, method = "eigen" )
 semidefiniteness( m13, positive = FALSE )
 semidefiniteness( m13, positive = FALSE, method = "eigen" )
+
+# 'large' matrix
+m14 <- symMatrix( 1:( 13 * (13+1) / 2 ) )
+semidefiniteness( m14 )
+semidefiniteness( m14, method = "det" )
+
+# list, one element not a matrix
+ml1 <- list( m2, c( m1 ), m3, m4 )
+try( semidefiniteness( ml1 ) )
+
+# list of matrices, one non-symmetric
+ml2 <- list( m2, m1, m3, m4 )
+try( semidefiniteness( ml2 ) )
+
+# list of matrices, one 'large' matrix
+ml3 <- list( m2, m14, m3, m4 )
+semidefiniteness( ml3 )
+semidefiniteness( ml3, method = "eigen" )
+semidefiniteness( ml3, positive = FALSE )
+semidefiniteness( ml3, positive = FALSE, method = "eigen" )
