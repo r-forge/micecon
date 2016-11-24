@@ -7,7 +7,8 @@ isSemidefinite.default <- function( m, ... ) {
 
 ## ----- test positive / negative semidefiniteness
 isSemidefinite.matrix <- function( m, positive = TRUE,
-   tol = 100 * .Machine$double.eps, method = "det", ... ) {
+   tol = 100 * .Machine$double.eps,
+   method = ifelse( nrow( m ) < 13, "det", "eigen" ), ... ) {
 
    if( !is.matrix( m ) ) {
       stop( "argument 'm' must be a matrix" )
@@ -23,6 +24,12 @@ isSemidefinite.matrix <- function( m, positive = TRUE,
       n <- nrow( m )
       if( !positive ) {
          m <- -m
+      }
+      if( n >= 12 && method == "det" ) {
+         warning( "using method 'det' could take a very long time",
+            " for matrices with more than 12 rows and columns;",
+            " it is suggested to use method 'eigen' for larger matrices",
+            immediate. = TRUE )
       }
       if( method == "det" ) {
          result <- TRUE

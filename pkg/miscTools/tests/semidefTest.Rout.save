@@ -254,6 +254,8 @@ Error in isSemidefinite.matrix(m = m, ...) :
 > semidefiniteness( m14 )
 [1] FALSE
 > semidefiniteness( m14, method = "det" )
+Warning in isSemidefinite.matrix(m = m, ...) :
+  using method 'det' could take a very long time for matrices with more than 12 rows and columns; it is suggested to use method 'eigen' for larger matrices
 [1] FALSE
 > 
 > # list, one element not a matrix
@@ -281,4 +283,4 @@ Error in isSemidefinite.matrix(m[[t]], ...) :
 > 
 > proc.time()
    user  system elapsed 
-  1.884   0.008   1.891 
+  0.636   0.020   0.648 
