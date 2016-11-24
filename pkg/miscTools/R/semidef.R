@@ -1,15 +1,16 @@
-## ----- test positive / negative semidefiniteness
-semidefiniteness <- function( m, positive = TRUE,
-   tol = 100 * .Machine$double.eps, method = "det" ) {
+isSemidefinite <- function( m, ... )
+   UseMethod( "isSemidefinite" )
 
-   if( is.list( m ) ) {
-      result <- logical( length( m ) )
-      for( t in 1:length( m ) ) {
-         result[ t ] <- semidefiniteness( m[[ t ]], positive = positive,
-            tol = tol, method = method )
-      }
-   } else if( !is.matrix( m ) ) {
-      stop( "argument 'm' must be a matrix or a list of matrices" )
+isSemidefinite.default <- function( m, ... ) {
+   stop( "there is currently no default method available" )
+}
+
+## ----- test positive / negative semidefiniteness
+isSemidefinite.matrix <- function( m, positive = TRUE,
+   tol = 100 * .Machine$double.eps, method = "det", ... ) {
+
+   if( !is.matrix( m ) ) {
+      stop( "argument 'm' must be a matrix" )
    } else {
       if( nrow( m ) != ncol( m ) ) {
          stop( "argument 'm' or each of its elements must be a _quadratic_ matrix" )
@@ -60,9 +61,23 @@ semidefiniteness <- function( m, positive = TRUE,
    return( result )
 }
 
-isSemidefinite <- function( m, positive = TRUE,
-   tol = 100 * .Machine$double.eps, method = "det" ) {
-   result <- semidefiniteness( m = m, positive = positive,
-      tol = tol, method = method )
+isSemidefinite.list <- function( m, ... ) {
+   
+   if( !is.list( m ) ) {
+      stop( "argument 'm' must be a matrix or a list of matrices" )
+   } else if( !all( sapply( m, is.matrix ) ) ) {
+      stop( "all components of the list specified by argument 'm'",
+         " must be a matrices" )
+   }
+      
+   result <- logical( length( m ) )
+   for( t in 1:length( m ) ) {
+      result[ t ] <- isSemidefinite( m[[ t ]], ... )
+   }
+   return( result )
+}
+
+semidefiniteness <- function( m, ... ) {
+   result <- isSemidefinite( m = m, ... )
    return( result )
 }

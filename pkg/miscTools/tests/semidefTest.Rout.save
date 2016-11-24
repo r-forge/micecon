@@ -27,15 +27,16 @@ Type 'q()' to quit R.
 [2,] -0.2301775 0.12928774 -1.2650612
 [3,]  1.5587083 1.71506499 -0.6868529
 > try( semidefiniteness( m1 ) )
-Error in semidefiniteness(m1) : argument 'm' must be a symmetric matrix
+Error in isSemidefinite.matrix(m = m, ...) : 
+  argument 'm' must be a symmetric matrix
 > try( semidefiniteness( m1, method = "eigen" ) )
-Error in semidefiniteness(m1, method = "eigen") : 
+Error in isSemidefinite.matrix(m = m, ...) : 
   argument 'm' must be a symmetric matrix
 > try( semidefiniteness( m1, positive = FALSE ) )
-Error in semidefiniteness(m1, positive = FALSE) : 
+Error in isSemidefinite.matrix(m = m, ...) : 
   argument 'm' must be a symmetric matrix
 > try( semidefiniteness( m1, positive = FALSE, method = "eigen" ) )
-Error in semidefiniteness(m1, positive = FALSE, method = "eigen") : 
+Error in isSemidefinite.matrix(m = m, ...) : 
   argument 'm' must be a symmetric matrix
 > 
 > # positive semidefinite
@@ -250,4 +251,4 @@ Error in semidefiniteness(m1, positive = FALSE, method = "eigen") :
 > 
 > proc.time()
    user  system elapsed 
-  0.152   0.020   0.168 
+  0.196   0.008   0.203 
