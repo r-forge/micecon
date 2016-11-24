@@ -67,7 +67,7 @@ isSemidefinite.list <- function( m, ... ) {
       stop( "argument 'm' must be a matrix or a list of matrices" )
    } else if( !all( sapply( m, is.matrix ) ) ) {
       stop( "all components of the list specified by argument 'm'",
-         " must be a matrices" )
+         " must be matrices" )
    }
       
    result <- logical( length( m ) )

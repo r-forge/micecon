@@ -249,6 +249,36 @@ Error in isSemidefinite.matrix(m = m, ...) :
 > semidefiniteness( m13, positive = FALSE, method = "eigen" )
 [1] FALSE
 > 
+> # 'large' matrix
+> m14 <- symMatrix( 1:( 13 * (13+1) / 2 ) )
+> semidefiniteness( m14 )
+[1] FALSE
+> semidefiniteness( m14, method = "det" )
+[1] FALSE
+> 
+> # list, one element not a matrix
+> ml1 <- list( m2, c( m1 ), m3, m4 )
+> try( semidefiniteness( ml1 ) )
+Error in isSemidefinite.list(m = m, ...) : 
+  all components of the list specified by argument 'm' must be matrices
+> 
+> # list of matrices, one non-symmetric
+> ml2 <- list( m2, m1, m3, m4 )
+> try( semidefiniteness( ml2 ) )
+Error in isSemidefinite.matrix(m[[t]], ...) : 
+  argument 'm' must be a symmetric matrix
+> 
+> # list of matrices, one 'large' matrix
+> ml3 <- list( m2, m14, m3, m4 )
+> semidefiniteness( ml3 )
+[1]  TRUE FALSE  TRUE  TRUE
+> semidefiniteness( ml3, method = "eigen" )
+[1]  TRUE FALSE  TRUE  TRUE
+> semidefiniteness( ml3, positive = FALSE )
+[1] FALSE FALSE FALSE FALSE
+> semidefiniteness( ml3, positive = FALSE, method = "eigen" )
+[1] FALSE FALSE FALSE FALSE
+> 
 > proc.time()
    user  system elapsed 
-  0.196   0.008   0.203 
+  1.884   0.008   1.891 
