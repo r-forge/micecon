@@ -257,6 +257,8 @@ Error in isSemidefinite.matrix(m = m, ...) :
 Warning in isSemidefinite.matrix(m = m, ...) :
   using method 'det' could take a very long time for matrices with more than 12 rows and columns; it is suggested to use method 'eigen' for larger matrices
 [1] FALSE
+> semidefiniteness( m14, method = "eigen" )
+[1] FALSE
 > 
 > # list, one element not a matrix
 > ml1 <- list( m2, c( m1 ), m3, m4 )
@@ -274,13 +276,21 @@ Error in isSemidefinite.matrix(m[[t]], ...) :
 > ml3 <- list( m2, m14, m3, m4 )
 > semidefiniteness( ml3 )
 [1]  TRUE FALSE  TRUE  TRUE
+> semidefiniteness( ml3, method = "det" )
+Warning in isSemidefinite.matrix(m[[t]], ...) :
+  using method 'det' could take a very long time for matrices with more than 12 rows and columns; it is suggested to use method 'eigen' for larger matrices
+[1]  TRUE FALSE  TRUE  TRUE
 > semidefiniteness( ml3, method = "eigen" )
 [1]  TRUE FALSE  TRUE  TRUE
 > semidefiniteness( ml3, positive = FALSE )
+[1] FALSE FALSE FALSE FALSE
+> semidefiniteness( ml3, positive = FALSE, method = "det" )
+Warning in isSemidefinite.matrix(m[[t]], ...) :
+  using method 'det' could take a very long time for matrices with more than 12 rows and columns; it is suggested to use method 'eigen' for larger matrices
 [1] FALSE FALSE FALSE FALSE
 > semidefiniteness( ml3, positive = FALSE, method = "eigen" )
 [1] FALSE FALSE FALSE FALSE
 > 
 > proc.time()
    user  system elapsed 
-  0.636   0.020   0.648 
+  1.268   0.012   1.278 
