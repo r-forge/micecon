@@ -1,5 +1,8 @@
 \name{isSemidefinite}
 \alias{isSemidefinite}
+\alias{isSemidefinite.default}
+\alias{isSemidefinite.list}
+\alias{isSemidefinite.matrix}
 \alias{semidefiniteness}
 \title{Positive or Negative Semidefiniteness}
 
@@ -8,11 +11,16 @@
 }
 
 \usage{
-isSemidefinite( m, positive = TRUE,
-   tol = 100 * .Machine$double.eps, method = "det" )
+isSemidefinite( m, \dots )
 
-semidefiniteness( m, positive = TRUE,
-   tol = 100 * .Machine$double.eps, method = "det" )
+\method{isSemidefinite}{default}( m, \dots )
+
+\method{isSemidefinite}{matrix}( m, positive = TRUE,
+   tol = 100 * .Machine$double.eps, method = "det", \dots )
+
+\method{isSemidefinite}{list}( m, \dots )
+
+semidefiniteness( m, \dots )
 }
 
 \arguments{
@@ -26,14 +34,18 @@ semidefiniteness( m, positive = TRUE,
    \item{method}{method to test for semidefiniteness, either
       checking the signs of the principal minors (if \code{"det"})
       or checking the signs of the eigenvalues (if \code{"eigen"}).}
+   \item{\dots}{further arguments of \code{isSemidefinite.list}
+      are passed to \code{isSemidefinite.matrix};.
+      further arguments of \code{semidefiniteness}
+      are passed to \code{isSemidefinite};
+      further arguments of other functions are currently ignored.}
 }
 
 \details{
-   Functions \code{isSemidefinite()} and \code{semidefiniteness()}
-   are identical
-   Function \code{semidefiniteness()} may be depreciated in the future,
-   because the name of function \code{isSemidefinite()}
-   seems to be more consistent to the names of other functions in R.
+   Function \code{semidefiniteness()} passes all its arguments
+   to \code{isSemidefinite()}.
+   It is only kept for backward-compatibility
+   and may be removed in the future.
 
    If argument \code{positive} is set to \code{FALSE},
    \code{isSemidefinite()} checks for negative semidefiniteness
