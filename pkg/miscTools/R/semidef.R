@@ -26,13 +26,12 @@ isSemidefinite.matrix <- function( m, positive = TRUE,
          m <- -m
       }
       if( n >= 12 && method == "det" ) {
-         warning( "using method 'det' could take a very long time",
+         warning( "using method 'det' can take a very long time",
             " for matrices with more than 12 rows and columns;",
             " it is suggested to use method 'eigen' for larger matrices",
             immediate. = TRUE )
       }
       if( method == "det" ) {
-         result <- TRUE
          for( i in 1:n ) {
             comb <- combn( n, i )
             for( j in 1:ncol( comb ) ) {
@@ -42,9 +41,12 @@ isSemidefinite.matrix <- function( m, positive = TRUE,
                } else {
                   princMin <- 0
                }
-               result <- result && ( princMin >= -tol )
+               if( princMin < -tol ) {
+                  return( FALSE )
+               }
             }
          }
+         return( TRUE )
       } else if( method == "eigen" ) {
          if( rcond( m ) >= tol || n == 1 ) {
             ev <- eigen( m, only.values = TRUE )$values
@@ -52,20 +54,23 @@ isSemidefinite.matrix <- function( m, positive = TRUE,
                stop( "complex (non-real) eigenvalues,",
                   " which could be caused by a non-symmetric matrix" )
             }
-            result <- min( ev ) > -tol
+            return( min( ev ) > -tol )
          } else {
-            result <- TRUE
             for( i in 1:n ) {
                mm <- m[ -i, -i, drop = FALSE ]
-               result <- result &
-                  semidefiniteness( mm, tol = tol, method = method  )
+               if( !semidefiniteness( mm, tol = tol, method = method  ) ) {
+                  return( FALSE )
+               }
             }
+            return( TRUE )
          }
       } else {
          stop( "argument 'method' must be either 'det' or 'eigen'" )
       }
    }
-   return( result )
+   stop( "internal error: please inform the maintainer",
+      " of the 'miscTools' package",
+      " (preferably with a reproducible example)" )
 }
 
 isSemidefinite.list <- function( m, ... ) {

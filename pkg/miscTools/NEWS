@@ -5,14 +5,19 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
-            CHANGES IN VERSION 0.6-22  (2016-11-24)
+            CHANGES IN VERSION 0.6-22  (2016-11-25)
 
 * function isSemidefinite() is a 'generic' function now, currently with
 methods for objects of class 'matrix' and 'list'
 
+* isSemidefinite.matrix() now immediately returns 'FALSE' as soon as a condition
+for positive semidefiniteness (or for negative semidefiniteness if argument
+'positive' is 'FALSE') is violated, because in this case checking further
+conditions is irrelevant
+
 * isSemidefinite.matrix(): the default method for checking semidefiniteness of
 matrices with 13 or more rows/coulmns is "eigen" instead of "det" now, because
-method "det" is very slow for larger matrices
+method "det" can be very slow for larger matrices
 
 
             CHANGES IN VERSION 0.6-20  (2016-11-20)
