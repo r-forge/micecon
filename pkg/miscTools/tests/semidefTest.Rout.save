@@ -255,7 +255,7 @@ Error in isSemidefinite.matrix(m = m, ...) :
 [1] FALSE
 > semidefiniteness( m14, method = "det" )
 Warning in isSemidefinite.matrix(m = m, ...) :
-  using method 'det' could take a very long time for matrices with more than 12 rows and columns; it is suggested to use method 'eigen' for larger matrices
+  using method 'det' can take a very long time for matrices with more than 12 rows and columns; it is suggested to use method 'eigen' for larger matrices
 [1] FALSE
 > semidefiniteness( m14, method = "eigen" )
 [1] FALSE
@@ -278,7 +278,7 @@ Error in isSemidefinite.matrix(m[[t]], ...) :
 [1]  TRUE FALSE  TRUE  TRUE
 > semidefiniteness( ml3, method = "det" )
 Warning in isSemidefinite.matrix(m[[t]], ...) :
-  using method 'det' could take a very long time for matrices with more than 12 rows and columns; it is suggested to use method 'eigen' for larger matrices
+  using method 'det' can take a very long time for matrices with more than 12 rows and columns; it is suggested to use method 'eigen' for larger matrices
 [1]  TRUE FALSE  TRUE  TRUE
 > semidefiniteness( ml3, method = "eigen" )
 [1]  TRUE FALSE  TRUE  TRUE
@@ -286,11 +286,11 @@ Warning in isSemidefinite.matrix(m[[t]], ...) :
 [1] FALSE FALSE FALSE FALSE
 > semidefiniteness( ml3, positive = FALSE, method = "det" )
 Warning in isSemidefinite.matrix(m[[t]], ...) :
-  using method 'det' could take a very long time for matrices with more than 12 rows and columns; it is suggested to use method 'eigen' for larger matrices
+  using method 'det' can take a very long time for matrices with more than 12 rows and columns; it is suggested to use method 'eigen' for larger matrices
 [1] FALSE FALSE FALSE FALSE
 > semidefiniteness( ml3, positive = FALSE, method = "eigen" )
 [1] FALSE FALSE FALSE FALSE
 > 
 > proc.time()
    user  system elapsed 
-  1.268   0.012   1.278 
+  0.268   0.020   0.312 
