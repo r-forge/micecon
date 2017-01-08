@@ -48,21 +48,27 @@ isSemidefinite.matrix <- function( m, positive = TRUE,
          }
          return( TRUE )
       } else if( method == "eigen" ) {
-         if( rcond( m ) >= tol || n == 1 ) {
-            ev <- eigen( m, only.values = TRUE )$values
-            if( is.complex( ev ) ) {
-               stop( "complex (non-real) eigenvalues,",
-                  " which could be caused by a non-symmetric matrix" )
-            }
-            return( min( ev ) > -tol )
-         } else {
-            for( i in 1:n ) {
-               mm <- m[ -i, -i, drop = FALSE ]
-               if( !semidefiniteness( mm, tol = tol, method = method  ) ) {
-                  return( FALSE )
-               }
-            }
+         ev <- eigen( m, only.values = TRUE )$values
+         if( is.complex( ev ) ) {
+            stop( "complex (non-real) eigenvalues,",
+               " which could be caused by a non-symmetric matrix" )
+         }
+         if( all( ev > -tol ) ) {
             return( TRUE )
+         } else {
+            if( rcond( m ) >= tol || n == 1 ) {
+               return( FALSE )
+            } else {
+               k <- max( 1, min( sum( abs( ev ) <= tol ), n - 1 ) )
+               comb <- combn( n, n-k )
+               for( j in 1:ncol( comb ) ) {
+                  mm <- m[ comb[ , j ], comb[ , j ], drop = FALSE ]
+                  if( !semidefiniteness( mm, tol = tol, method = method  ) ) {
+                     return( FALSE )
+                  }
+               }
+               return( TRUE )
+            }
          }
       } else {
          stop( "argument 'method' must be either 'det' or 'eigen'" )
