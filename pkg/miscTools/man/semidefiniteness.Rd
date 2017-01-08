@@ -85,20 +85,25 @@ semidefiniteness( m, \dots )
    of the matrix \code{m}
    (or of the matrix \code{-m} if argument \code{positive} is \code{FALSE})
    are larger than \code{-tol}.
-   Due to rounding errors,
-   which are unavoidable on digital computers,
-   those eigenvalues of a singular matrix
-   that should theoretically be zero
-   can considerably deviate from zero.
-   In order to reduce the probability of incorrect results
+   In case of a singular or nearly singular matrix,
+   some eigenvalues
+   that theoretically should be zero
+   can considerably deviate from zero
    due to rounding errors,
-   \code{isSemidefinite()} does not calculate the eigenvalues
-   of an \eqn{N \times N}{NxN} matrix with reciprocal condition number
-   smaller than argument \code{tol}
-   but checks whether all \eqn{N}
-   \eqn{(N-1) \times (N-1)}{(N-1)x(N-1)} submatrices
-   with row \eqn{i} and column \eqn{i}, \eqn{i = 1, ..., N}, removed
-   are positive semidefinite.
+   which are unavoidable on digital computers.
+   \code{isSemidefinite()} uses the following procedure
+   to reduce the probability of incorrectly returning \code{FALSE}
+   due to rounding errors in the calculation of eigenvalues
+   of singular or nearly singular matrices:
+   if the reciprocal condition number of an \eqn{N \times N}{NxN} matrix
+   is smaller than argument \code{tol}
+   and not all of the eigenvalues of this matrix are larger than \code{-tol},
+   \code{isSemidefinite()} checks
+   whether all \eqn{( N} choose \eqn{ (N-k) )}
+   \eqn{(N-k) \times (N-k)}{(N-k) x (N-k)} submatrices
+   are positive semidefinite,
+   where \eqn{k} with \eqn{0 < k < N} is the number of eigenvalues
+   in the interval \code{-tol} and \code{tol}.
    If necessary, this procedure is done recursively.
 
    Please note that a matrix can be
