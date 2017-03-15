@@ -52,3 +52,13 @@ importFrom( "miscTools", "veclipos" )
 
 importFrom( "plm", "plm" )
 importFrom( "plm", "fixef" )
+
+importFrom( "stats", "as.formula" )
+importFrom( "stats", "coef" )
+importFrom( "stats", "df.residual" )
+importFrom( "stats", "lm" )
+importFrom( "stats", "model.matrix" )
+importFrom( "stats", "predict" )
+importFrom( "stats", "printCoefmat" )
+importFrom( "stats", "residuals" )
+importFrom( "stats", "vcov" )
