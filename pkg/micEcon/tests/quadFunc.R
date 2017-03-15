@@ -627,20 +627,21 @@ max( abs( estResultHom4Ela - estResultHom4ElaObs ) )
 
 ################ panel data #####################
 data( "GrunfeldGreene", package = "systemfit" )
-ggData <- plm.data( GrunfeldGreene, c( "firm", "year" ) )
+ggData <- pdata.frame( GrunfeldGreene, c( "firm", "year" ),
+   row.names = FALSE )
 # fixed effects
 ggResult <- quadFuncEst( "invest", c( "value", "capital" ), ggData )
 coef( ggResult )
 print( ggResult )
 round( fitted( ggResult ), 2 )
 round( predict( ggResult ), 2 )
-all.equal( c( predict( ggResult ) ),
+all.equal( predict( ggResult ),
    fitted( ggResult ), check.attributes = FALSE )
 round( predict( ggResult, newdata = ggData ), 2 )
 all.equal( predict( ggResult, newdata = ggData ),
    fitted( ggResult ), check.attributes = FALSE )
 all.equal( predict( ggResult, newdata = ggData ),
-   c( predict( ggResult ) ), check.attributes = FALSE )
+   predict( ggResult ), check.attributes = FALSE )
 
 # random effects
 ggResultRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
@@ -649,13 +650,13 @@ coef( ggResultRan )
 print( ggResultRan )
 round( fitted( ggResultRan ), 2 )
 round( predict( ggResultRan ), 2 )
-all.equal( c( predict( ggResultRan ) ),
+all.equal( predict( ggResultRan ),
    fitted( ggResultRan ), check.attributes = FALSE )
 round( predict( ggResultRan, newdata = ggData ), 2 )
 all.equal( predict( ggResultRan, newdata = ggData ),
    fitted( ggResultRan ), check.attributes = FALSE )
 all.equal( predict( ggResultRan, newdata = ggData ),
-   c( predict( ggResultRan ) ), check.attributes = FALSE )
+   predict( ggResultRan ), check.attributes = FALSE )
 
 ## panel data with a shifter
 ggData$yearInt <- as.numeric( as.character( ggData$year ) )
@@ -667,13 +668,13 @@ coef( ggResShifter )
 printQuadFuncEst( ggResShifter )
 round( fitted( ggResShifter ), 2 )
 round( predict( ggResShifter ), 2 )
-all.equal( c( predict( ggResShifter ) ),
+all.equal( predict( ggResShifter ),
    fitted( ggResShifter ), check.attributes = FALSE )
 round( predict( ggResShifter, newdata = ggData ), 2 )
 all.equal( predict( ggResShifter, newdata = ggData ),
    fitted( ggResShifter ), check.attributes = FALSE )
 all.equal( predict( ggResShifter, newdata = ggData ),
-   c( predict( ggResShifter ) ), check.attributes = FALSE )
+   predict( ggResShifter ), check.attributes = FALSE )
 
 # random effects
 ggResShifterRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
@@ -682,13 +683,13 @@ coef( ggResShifterRan )
 printQuadFuncEst( ggResShifterRan )
 round( fitted( ggResShifterRan ), 2 )
 round( predict( ggResShifterRan ), 2 )
-all.equal( c( predict( ggResShifterRan ) ),
+all.equal( predict( ggResShifterRan ),
    fitted( ggResShifterRan ), check.attributes = FALSE )
 round( predict( ggResShifterRan, newdata = ggData ), 2 )
 all.equal( predict( ggResShifterRan, newdata = ggData ),
    fitted( ggResShifterRan ), check.attributes = FALSE )
 all.equal( predict( ggResShifterRan, newdata = ggData ),
-   c( predict( ggResShifterRan ) ), check.attributes = FALSE )
+   predict( ggResShifterRan ), check.attributes = FALSE )
 
 ## panel data with a logical variable as shifter
 ggData$war <- ggData$yearInt >= 1939 & ggData$yearInt <= 1945
@@ -699,13 +700,13 @@ coef( ggResShifterLogi )
 printQuadFuncEst( ggResShifterLogi )
 round( fitted( ggResShifterLogi ), 2 )
 round( predict( ggResShifterLogi ), 2 )
-all.equal( c( predict( ggResShifterLogi ) ),
+all.equal( predict( ggResShifterLogi ),
    fitted( ggResShifterLogi ), check.attributes = FALSE )
 round( predict( ggResShifterLogi, newdata = ggData ), 2 )
 all.equal( predict( ggResShifterLogi, newdata = ggData ),
    fitted( ggResShifterLogi ), check.attributes = FALSE )
 all.equal( predict( ggResShifterLogi, newdata = ggData ),
-   c( predict( ggResShifterLogi ) ), check.attributes = FALSE )
+   predict( ggResShifterLogi ), check.attributes = FALSE )
 
 # random effects
 ggResShifterLogiRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
@@ -714,13 +715,13 @@ coef( ggResShifterLogiRan )
 printQuadFuncEst( ggResShifterLogiRan )
 round( fitted( ggResShifterLogiRan ), 2 )
 round( predict( ggResShifterLogiRan ), 2 )
-all.equal( c( predict( ggResShifterLogiRan ) ),
+all.equal( predict( ggResShifterLogiRan ),
    fitted( ggResShifterLogiRan ), check.attributes = FALSE )
 round( predict( ggResShifterLogiRan, newdata = ggData ), 2 )
 all.equal( predict( ggResShifterLogiRan, newdata = ggData ),
    fitted( ggResShifterLogiRan ), check.attributes = FALSE )
 all.equal( predict( ggResShifterLogiRan, newdata = ggData ),
-   c( predict( ggResShifterLogiRan ) ), check.attributes = FALSE )
+   predict( ggResShifterLogiRan ), check.attributes = FALSE )
 
 ## panel data with a factor as shifter
 ggData$decade <- as.factor( ifelse( ggData$yearInt <= 1939, "30s",
@@ -732,13 +733,13 @@ coef( ggResShifterFac )
 printQuadFuncEst( ggResShifterFac )
 round( fitted( ggResShifterFac ), 2 )
 round( predict( ggResShifterFac ), 2 )
-all.equal( c( predict( ggResShifterFac ) ),
+all.equal( predict( ggResShifterFac ),
    fitted( ggResShifterFac ), check.attributes = FALSE )
 round( predict( ggResShifterFac, newdata = ggData ), 2 )
 all.equal( predict( ggResShifterFac, newdata = ggData ),
    fitted( ggResShifterFac ), check.attributes = FALSE )
 all.equal( predict( ggResShifterFac, newdata = ggData ),
-   c( predict( ggResShifterFac ) ), check.attributes = FALSE )
+   predict( ggResShifterFac ), check.attributes = FALSE )
 
 # random effects
 ggResShifterFacRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
@@ -747,13 +748,13 @@ coef( ggResShifterFacRan )
 printQuadFuncEst( ggResShifterFacRan )
 round( fitted( ggResShifterFacRan ), 2 )
 round( predict( ggResShifterFacRan ), 2 )
-all.equal( c( predict( ggResShifterFacRan ) ),
+all.equal( predict( ggResShifterFacRan ),
    fitted( ggResShifterFacRan ), check.attributes = FALSE )
 round( predict( ggResShifterFacRan, newdata = ggData ), 2 )
 all.equal( predict( ggResShifterFacRan, newdata = ggData ),
    fitted( ggResShifterFacRan ), check.attributes = FALSE )
 all.equal( predict( ggResShifterFacRan, newdata = ggData ),
-   c( predict( ggResShifterFacRan ) ), check.attributes = FALSE )
+   predict( ggResShifterFacRan ), check.attributes = FALSE )
 
 ## linear estimations with panel data
 # fixed effects
@@ -764,13 +765,13 @@ vcov( ggResultLin )
 print( ggResultLin )
 round( fitted( ggResultLin ), 2 )
 round( predict( ggResultLin ), 2 )
-all.equal( c( predict( ggResultLin ) ),
+all.equal( predict( ggResultLin ),
    fitted( ggResultLin ), check.attributes = FALSE )
 round( predict( ggResultLin, newdata = ggData ), 2 )
 all.equal( predict( ggResultLin, newdata = ggData ),
    fitted( ggResultLin ), check.attributes = FALSE )
 all.equal( predict( ggResultLin, newdata = ggData ),
-   c( predict( ggResultLin ) ), check.attributes = FALSE )
+   predict( ggResultLin ), check.attributes = FALSE )
 # random effects
 ggResultLinRan <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
    linear = TRUE, model = "random", random.method = "amemiya" )
@@ -779,13 +780,13 @@ vcov( ggResultLinRan )
 print( ggResultLinRan )
 round( fitted( ggResultLinRan ), 2 )
 round( predict( ggResultLinRan ), 2 )
-all.equal( c( predict( ggResultLinRan ) ),
+all.equal( predict( ggResultLinRan ),
    fitted( ggResultLinRan ), check.attributes = FALSE )
 round( predict( ggResultLinRan, newdata = ggData ), 2 )
 all.equal( predict( ggResultLinRan, newdata = ggData ),
    fitted( ggResultLinRan ), check.attributes = FALSE )
 all.equal( predict( ggResultLinRan, newdata = ggData ),
-   c( predict( ggResultLinRan ) ), check.attributes = FALSE )
+   predict( ggResultLinRan ), check.attributes = FALSE )
 
 ## compute partial derivatives of linear estimation results with panel data
 # fixed effects
