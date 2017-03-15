@@ -1,6 +1,8 @@
 logDataSet <- function( data, varNames, varNamesNum = NULL ) {
 
-   if( "plm.dim" %in% class( data ) ) {
+   if( inherits( data, "pdata.frame" ) ) {
+      logData <- pdata.frame( index( data ), row.names = FALSE ) 
+   } else if( inherits( data, "plm.dim" ) ) {
       logData <- data[ , 1:2 ]
    } else {
       logData <- data.frame( no = c( 1:nrow( data ) ) )
