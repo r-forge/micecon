@@ -8,7 +8,7 @@ quadFuncModel <- function( yName, xNames, data, shifterNames,
 
    result <- list()
 
-   result$isPanel <- any( c( "plm.dim", "pdata.frame" ) %in% class( data ) )
+   result$isPanel <- inherits( data, c( "pdata.frame", "plm.dim" ) )
 
    if( result$isPanel ) {
       estData <- data[ , 1:2 ]
