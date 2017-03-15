@@ -7,6 +7,9 @@ Maintainer: Arne Henningsen <arne.henningsen@gmail.com>
 Depends: R (>= 2.4.0)
 Suggests: micEcon (>= 0.6-1)
 Imports: miscTools (>= 0.6-1), systemfit (>= 1.0-0), MASS
-Description: Production analysis with the Symmetric Normalized Quadratic (SNQ) profit function
+Description: Tools for econometric production analysis
+   with the Symmetric Normalized Quadratic (SNQ) profit function,
+   e.g. estimation, imposing convexity in prices,
+   and calculating elasticities and shadow prices.
 License: GPL (>= 2)
 URL: http://www.micEcon.org
