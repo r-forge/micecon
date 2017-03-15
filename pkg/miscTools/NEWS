@@ -10,8 +10,7 @@ on R-Forge.
 * significantly reduced the computation time of isSemidefinite.matrix( ,
 method = "eigen" ) if the matrix is (nearly) singular
 
-* logDataSet() now also works for (panel) data sets that were created by
-pdata.frame()
+* moved function logDataSet() to package "micEcon"
 
 
             CHANGES IN VERSION 0.6-22  (2016-11-25)

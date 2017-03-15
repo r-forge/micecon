@@ -1,6 +1,5 @@
 \name{miscTools-internal}
 \alias{checkNames}
-\alias{logDataSet}
 % Document the following:
 
 %%%%
