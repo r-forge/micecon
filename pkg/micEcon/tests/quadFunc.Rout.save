@@ -2717,7 +2717,8 @@ b_4_4  8.16e+13
 > 
 > ################ panel data #####################
 > data( "GrunfeldGreene", package = "systemfit" )
-> ggData <- plm.data( GrunfeldGreene, c( "firm", "year" ) )
+> ggData <- pdata.frame( GrunfeldGreene, c( "firm", "year" ),
++    row.names = FALSE )
 > # fixed effects
 > ggResult <- quadFuncEst( "invest", c( "value", "capital" ), ggData )
 > coef( ggResult )
@@ -2737,7 +2738,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x8ae92f0>
+<environment: 0x8b37460>
 
 Coefficients:
      a_1      a_2    b_1_1    b_1_2    b_2_2 
@@ -2864,7 +2865,7 @@ attr(,"class")
 Warning message:
 In predict.quadFuncEst(ggResult) :
   predictions with panel data models might return wrong results
-> all.equal( c( predict( ggResult ) ),
+> all.equal( predict( ggResult ),
 +    fitted( ggResult ), check.attributes = FALSE )
 [1] "Mean relative difference: 3.83"
 Warning message:
@@ -2901,7 +2902,7 @@ Warning message:
 In predict.quadFuncEst(ggResult, newdata = ggData) :
   predictions with panel data models might return wrong results
 > all.equal( predict( ggResult, newdata = ggData ),
-+    c( predict( ggResult ) ), check.attributes = FALSE )
++    predict( ggResult ), check.attributes = FALSE )
 [1] "Mean relative difference: 1"
 Warning messages:
 1: In predict.quadFuncEst(ggResult, newdata = ggData) :
@@ -2929,7 +2930,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x8c92400>
+<environment: 0x8cbe828>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3062,7 +3063,7 @@ attr(,"class")
 Warning message:
 In predict.quadFuncEst(ggResultRan) :
   predictions with panel data models might return wrong results
-> all.equal( c( predict( ggResultRan ) ),
+> all.equal( predict( ggResultRan ),
 +    fitted( ggResultRan ), check.attributes = FALSE )
 [1] "Mean relative difference: 3.47"
 Warning message:
@@ -3099,7 +3100,7 @@ Warning message:
 In predict.quadFuncEst(ggResultRan, newdata = ggData) :
   predictions with panel data models might return wrong results
 > all.equal( predict( ggResultRan, newdata = ggData ),
-+    c( predict( ggResultRan ) ), check.attributes = FALSE )
++    predict( ggResultRan ), check.attributes = FALSE )
 [1] "Mean relative difference: 0.875"
 Warning messages:
 1: In predict.quadFuncEst(ggResultRan, newdata = ggData) :
@@ -3130,7 +3131,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x748ca30>
+<environment: 0x748a1a0>
 
 Coefficients:
      a_1      a_2    b_1_1    b_1_2    b_2_2      d_1 
@@ -3261,7 +3262,7 @@ attr(,"class")
 Warning message:
 In predict.quadFuncEst(ggResShifter) :
   predictions with panel data models might return wrong results
-> all.equal( c( predict( ggResShifter ) ),
+> all.equal( predict( ggResShifter ),
 +    fitted( ggResShifter ), check.attributes = FALSE )
 [1] "Mean relative difference: 3.83"
 Warning message:
@@ -3298,7 +3299,7 @@ Warning message:
 In predict.quadFuncEst(ggResShifter, newdata = ggData) :
   predictions with panel data models might return wrong results
 > all.equal( predict( ggResShifter, newdata = ggData ),
-+    c( predict( ggResShifter ) ), check.attributes = FALSE )
++    predict( ggResShifter ), check.attributes = FALSE )
 [1] "Mean relative difference: 1"
 Warning messages:
 1: In predict.quadFuncEst(ggResShifter, newdata = ggData) :
@@ -3326,7 +3327,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x7010f60>
+<environment: 0x6fd0970>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3459,7 +3460,7 @@ attr(,"class")
 Warning message:
 In predict.quadFuncEst(ggResShifterRan) :
   predictions with panel data models might return wrong results
-> all.equal( c( predict( ggResShifterRan ) ),
+> all.equal( predict( ggResShifterRan ),
 +    fitted( ggResShifterRan ), check.attributes = FALSE )
 [1] "Mean relative difference: 3.47"
 Warning message:
@@ -3496,7 +3497,7 @@ Warning message:
 In predict.quadFuncEst(ggResShifterRan, newdata = ggData) :
   predictions with panel data models might return wrong results
 > all.equal( predict( ggResShifterRan, newdata = ggData ),
-+    c( predict( ggResShifterRan ) ), check.attributes = FALSE )
++    predict( ggResShifterRan ), check.attributes = FALSE )
 [1] "Mean relative difference: 0.875"
 Warning messages:
 1: In predict.quadFuncEst(ggResShifterRan, newdata = ggData) :
@@ -3526,7 +3527,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x8a7b7b8>
+<environment: 0x8b28fe8>
 
 Coefficients:
       a_1       a_2     b_1_1     b_1_2     b_2_2  d_1_TRUE 
@@ -3657,7 +3658,7 @@ attr(,"class")
 Warning message:
 In predict.quadFuncEst(ggResShifterLogi) :
   predictions with panel data models might return wrong results
-> all.equal( c( predict( ggResShifterLogi ) ),
+> all.equal( predict( ggResShifterLogi ),
 +    fitted( ggResShifterLogi ), check.attributes = FALSE )
 [1] "Mean relative difference: 3.72"
 Warning message:
@@ -3694,7 +3695,7 @@ Warning message:
 In predict.quadFuncEst(ggResShifterLogi, newdata = ggData) :
   predictions with panel data models might return wrong results
 > all.equal( predict( ggResShifterLogi, newdata = ggData ),
-+    c( predict( ggResShifterLogi ) ), check.attributes = FALSE )
++    predict( ggResShifterLogi ), check.attributes = FALSE )
 [1] "Mean relative difference: 1"
 Warning messages:
 1: In predict.quadFuncEst(ggResShifterLogi, newdata = ggData) :
@@ -3722,7 +3723,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x8eb9218>
+<environment: 0x8fa06c8>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3855,7 +3856,7 @@ attr(,"class")
 Warning message:
 In predict.quadFuncEst(ggResShifterLogiRan) :
   predictions with panel data models might return wrong results
-> all.equal( c( predict( ggResShifterLogiRan ) ),
+> all.equal( predict( ggResShifterLogiRan ),
 +    fitted( ggResShifterLogiRan ), check.attributes = FALSE )
 [1] "Mean relative difference: 3.39"
 Warning message:
@@ -3892,7 +3893,7 @@ Warning message:
 In predict.quadFuncEst(ggResShifterLogiRan, newdata = ggData) :
   predictions with panel data models might return wrong results
 > all.equal( predict( ggResShifterLogiRan, newdata = ggData ),
-+    c( predict( ggResShifterLogiRan ) ), check.attributes = FALSE )
++    predict( ggResShifterLogiRan ), check.attributes = FALSE )
 [1] "Mean relative difference: 0.875"
 Warning messages:
 1: In predict.quadFuncEst(ggResShifterLogiRan, newdata = ggData) :
@@ -3923,7 +3924,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x633bda8>
+<environment: 0x83356b8>
 
 Coefficients:
       a_1       a_2     b_1_1     b_1_2     b_2_2   d_1_40s   d_1_50s 
@@ -4064,7 +4065,7 @@ attr(,"class")
 Warning message:
 In predict.quadFuncEst(ggResShifterFac) :
   predictions with panel data models might return wrong results
-> all.equal( c( predict( ggResShifterFac ) ),
+> all.equal( predict( ggResShifterFac ),
 +    fitted( ggResShifterFac ), check.attributes = FALSE )
 [1] "Mean relative difference: 3.48"
 Warning message:
@@ -4101,7 +4102,7 @@ Warning message:
 In predict.quadFuncEst(ggResShifterFac, newdata = ggData) :
   predictions with panel data models might return wrong results
 > all.equal( predict( ggResShifterFac, newdata = ggData ),
-+    c( predict( ggResShifterFac ) ), check.attributes = FALSE )
++    predict( ggResShifterFac ), check.attributes = FALSE )
 [1] "Mean relative difference: 1"
 Warning messages:
 1: In predict.quadFuncEst(ggResShifterFac, newdata = ggData) :
@@ -4130,7 +4131,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x87bac98>
+<environment: 0x891e988>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4267,7 +4268,7 @@ attr(,"class")
 Warning message:
 In predict.quadFuncEst(ggResShifterFacRan) :
   predictions with panel data models might return wrong results
-> all.equal( c( predict( ggResShifterFacRan ) ),
+> all.equal( predict( ggResShifterFacRan ),
 +    fitted( ggResShifterFacRan ), check.attributes = FALSE )
 [1] "Mean relative difference: 3.19"
 Warning message:
@@ -4304,7 +4305,7 @@ Warning message:
 In predict.quadFuncEst(ggResShifterFacRan, newdata = ggData) :
   predictions with panel data models might return wrong results
 > all.equal( predict( ggResShifterFacRan, newdata = ggData ),
-+    c( predict( ggResShifterFacRan ) ), check.attributes = FALSE )
++    predict( ggResShifterFacRan ), check.attributes = FALSE )
 [1] "Mean relative difference: 0.902"
 Warning messages:
 1: In predict.quadFuncEst(ggResShifterFacRan, newdata = ggData) :
@@ -4341,7 +4342,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x750c0e0>
+<environment: 0x731d0c0>
 
 Coefficients:
   a_1   a_2 
@@ -4468,7 +4469,7 @@ attr(,"class")
 Warning message:
 In predict.quadFuncEst(ggResultLin) :
   predictions with panel data models might return wrong results
-> all.equal( c( predict( ggResultLin ) ),
+> all.equal( predict( ggResultLin ),
 +    fitted( ggResultLin ), check.attributes = FALSE )
 [1] "Mean relative difference: 3.23"
 Warning message:
@@ -4505,7 +4506,7 @@ Warning message:
 In predict.quadFuncEst(ggResultLin, newdata = ggData) :
   predictions with panel data models might return wrong results
 > all.equal( predict( ggResultLin, newdata = ggData ),
-+    c( predict( ggResultLin ) ), check.attributes = FALSE )
++    predict( ggResultLin ), check.attributes = FALSE )
 [1] "Mean relative difference: 0.995"
 Warning messages:
 1: In predict.quadFuncEst(ggResultLin, newdata = ggData) :
@@ -4540,7 +4541,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x7576790>
+<environment: 0x73b3148>
 
 Coefficients:
 (Intercept)         a_1         a_2 
@@ -4667,7 +4668,7 @@ attr(,"class")
 Warning message:
 In predict.quadFuncEst(ggResultLinRan) :
   predictions with panel data models might return wrong results
-> all.equal( c( predict( ggResultLinRan ) ),
+> all.equal( predict( ggResultLinRan ),
 +    fitted( ggResultLinRan ), check.attributes = FALSE )
 [1] "Mean relative difference: 2.83"
 Warning message:
@@ -4704,7 +4705,7 @@ Warning message:
 In predict.quadFuncEst(ggResultLinRan, newdata = ggData) :
   predictions with panel data models might return wrong results
 > all.equal( predict( ggResultLinRan, newdata = ggData ),
-+    c( predict( ggResultLinRan ) ), check.attributes = FALSE )
++    predict( ggResultLinRan ), check.attributes = FALSE )
 [1] "Mean relative difference: 0.854"
 Warning messages:
 1: In predict.quadFuncEst(ggResultLinRan, newdata = ggData) :
@@ -5463,4 +5464,4 @@ b_3_4 b_4_4
 > 
 > proc.time()
    user  system elapsed 
-  3.236   0.164   3.391 
+  5.780   0.252   6.029 

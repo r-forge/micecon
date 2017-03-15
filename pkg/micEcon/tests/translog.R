@@ -411,7 +411,8 @@ print.default( estResult2 )
 
 ## panel data
 data( "GrunfeldGreene", package = "systemfit" )
-ggData <- plm.data( GrunfeldGreene, c( "firm", "year" ) )
+ggData <- pdata.frame( GrunfeldGreene, c( "firm", "year" ),
+   row.names = FALSE )
 ggData$logInvest <- log( ggData$invest )
 ggData$logValue <- log( ggData$value )
 ggData$logCapital <- log( ggData$capital )

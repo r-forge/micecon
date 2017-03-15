@@ -3226,7 +3226,8 @@ attr(,"class")
 > 
 > ## panel data
 > data( "GrunfeldGreene", package = "systemfit" )
-> ggData <- plm.data( GrunfeldGreene, c( "firm", "year" ) )
+> ggData <- pdata.frame( GrunfeldGreene, c( "firm", "year" ),
++    row.names = FALSE )
 > ggData$logInvest <- log( ggData$invest )
 > ggData$logValue <- log( ggData$value )
 > ggData$logCapital <- log( ggData$capital )
@@ -3250,7 +3251,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x8623500>
+<environment: 0x7df7298>
 
 Coefficients:
    a_1    a_2  b_1_1  b_1_2  b_2_2 
@@ -3373,7 +3374,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x80a77e8>
+<environment: 0x77f7680>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4135,7 +4136,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x70229f0>
+<environment: 0x57e68b0>
 
 Coefficients:
     a_1     a_2   b_1_1   b_1_2   b_2_2     d_1 
@@ -4254,7 +4255,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x8af9a30>
+<environment: 0x62b1f10>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4378,7 +4379,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x6f22440>
+<environment: 0x7326b68>
 
 Coefficients:
      a_1      a_2    b_1_1    b_1_2    b_2_2 d_1_TRUE 
@@ -4497,7 +4498,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x722af58>
+<environment: 0x5e98620>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4616,7 +4617,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x69f5ff8>
+<environment: 0x78995c0>
 
 Coefficients:
     a_1     a_2   b_1_1   b_1_2   b_2_2 d_1_40s d_1_50s 
@@ -4737,7 +4738,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x6d1a8f0>
+<environment: 0x76af738>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4850,4 +4851,4 @@ attr(,"class")
 > 
 > proc.time()
    user  system elapsed 
-  3.028   0.108   3.131 
+  3.872   0.176   4.043 
