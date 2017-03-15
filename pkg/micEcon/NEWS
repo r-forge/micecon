@@ -7,6 +7,15 @@ on R-Forge.
 
             CHANGES IN VERSION 0.6-14  (2017-03-15)
 
+* added predict() methods for objects returned by quadFuncEst() and
+translogEst()
+
+* moved function translogRayEst() and associated functions to a development
+version of a new package called micEconDist (not yet available on CRAN)
+
+* moved functions for calculating price and quantity indices to a development
+version of a new package called micEconIndex (not yet available on CRAN)
+
 * moved function logDataSet() from package "miscTools" to this package
 
 * logDataSet() now also works for (panel) data sets that were created by
