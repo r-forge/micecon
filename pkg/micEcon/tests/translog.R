@@ -463,7 +463,7 @@ ggElaRanLogMet <- elas( ggResultRanLog )
 all.equal( ggElaRanMet, ggElaRanLogMet, check.attributes = FALSE )
 
 ## panel data with a shifter
-ggData$yearInt <- as.integer( as.character( ggData$year ) )
+ggData$yearInt <- as.numeric( as.character( ggData$year ) )
 ggData$tech <- exp( ggData$yearInt - min( ggData$yearInt ) )
 # fixed effects
 ggResShifter <- translogEst( "invest", c( "value", "capital" ), ggData,
