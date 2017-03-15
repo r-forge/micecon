@@ -2737,7 +2737,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x6f4ea78>
+<environment: 0x8ae92f0>
 
 Coefficients:
      a_1      a_2    b_1_1    b_1_2    b_2_2 
@@ -2929,7 +2929,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x70fc080>
+<environment: 0x8c92400>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3108,7 +3108,7 @@ Warning messages:
   predictions with panel data models might return wrong results
 > 
 > ## panel data with a shifter
-> ggData$yearInt <- as.integer( as.character( ggData$year ) )
+> ggData$yearInt <- as.numeric( as.character( ggData$year ) )
 > ggData$tech <- exp( ggData$yearInt - min( ggData$yearInt ) )
 > # fixed effects
 > ggResShifter <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
@@ -3130,7 +3130,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x58e43a0>
+<environment: 0x748ca30>
 
 Coefficients:
      a_1      a_2    b_1_1    b_1_2    b_2_2      d_1 
@@ -3326,7 +3326,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x5469480>
+<environment: 0x7010f60>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3526,7 +3526,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x6ee7b70>
+<environment: 0x8a7b7b8>
 
 Coefficients:
       a_1       a_2     b_1_1     b_1_2     b_2_2  d_1_TRUE 
@@ -3722,7 +3722,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x7323688>
+<environment: 0x8eb9218>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3923,7 +3923,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x4787b90>
+<environment: 0x633bda8>
 
 Coefficients:
       a_1       a_2     b_1_1     b_1_2     b_2_2   d_1_40s   d_1_50s 
@@ -4130,7 +4130,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x6c2d6d8>
+<environment: 0x87bac98>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4341,7 +4341,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x5956f48>
+<environment: 0x750c0e0>
 
 Coefficients:
   a_1   a_2 
@@ -4540,7 +4540,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x59c3e60>
+<environment: 0x7576790>
 
 Coefficients:
 (Intercept)         a_1         a_2 
@@ -5463,4 +5463,4 @@ b_3_4 b_4_4
 > 
 > proc.time()
    user  system elapsed 
-  4.060   0.148   4.201 
+  3.236   0.164   3.391 

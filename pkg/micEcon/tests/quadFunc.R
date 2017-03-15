@@ -658,7 +658,7 @@ all.equal( predict( ggResultRan, newdata = ggData ),
    c( predict( ggResultRan ) ), check.attributes = FALSE )
 
 ## panel data with a shifter
-ggData$yearInt <- as.integer( as.character( ggData$year ) )
+ggData$yearInt <- as.numeric( as.character( ggData$year ) )
 ggData$tech <- exp( ggData$yearInt - min( ggData$yearInt ) )
 # fixed effects
 ggResShifter <- quadFuncEst( "invest", c( "value", "capital" ), ggData,
