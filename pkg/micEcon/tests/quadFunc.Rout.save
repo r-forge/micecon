@@ -2737,7 +2737,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x7e0da80>
+<environment: 0x6f4ea78>
 
 Coefficients:
      a_1      a_2    b_1_1    b_1_2    b_2_2 
@@ -2811,7 +2811,7 @@ $r2
 [1] 0.841
 
 $r2bar
-[1] 0.757
+[1] 0.825
 
 $nObs
 [1] 100
@@ -2929,7 +2929,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2
-<environment: 0x61c1fe0>
+<environment: 0x70fc080>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3009,7 +3009,7 @@ $r2
 [1] 0.838
 
 $r2bar
-[1] 0.788
+[1] 0.829
 
 $nObs
 [1] 100
@@ -3130,7 +3130,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x79bb460>
+<environment: 0x58e43a0>
 
 Coefficients:
      a_1      a_2    b_1_1    b_1_2    b_2_2      d_1 
@@ -3205,7 +3205,7 @@ $r2
 [1] 0.841
 
 $r2bar
-[1] 0.748
+[1] 0.823
 
 $nObs
 [1] 100
@@ -3326,7 +3326,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1
-<environment: 0x6665748>
+<environment: 0x5469480>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3403,7 +3403,7 @@ $r2
 [1] 0.838
 
 $r2bar
-[1] 0.779
+[1] 0.827
 
 $nObs
 [1] 100
@@ -3526,7 +3526,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x79dba88>
+<environment: 0x6ee7b70>
 
 Coefficients:
       a_1       a_2     b_1_1     b_1_2     b_2_2  d_1_TRUE 
@@ -3601,7 +3601,7 @@ $r2
 [1] 0.843
 
 $r2bar
-[1] 0.75
+[1] 0.825
 
 $nObs
 [1] 100
@@ -3722,7 +3722,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x78f2670>
+<environment: 0x7323688>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -3799,7 +3799,7 @@ $r2
 [1] 0.84
 
 $r2bar
-[1] 0.781
+[1] 0.83
 
 $nObs
 [1] 100
@@ -3923,7 +3923,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x6a89730>
+<environment: 0x4787b90>
 
 Coefficients:
       a_1       a_2     b_1_1     b_1_2     b_2_2   d_1_40s   d_1_50s 
@@ -4008,7 +4008,7 @@ $r2
 [1] 0.867
 
 $r2bar
-[1] 0.763
+[1] 0.851
 
 $nObs
 [1] 100
@@ -4130,7 +4130,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2 + b_1_1 + b_1_2 + b_2_2 + d_1_
-<environment: 0x69eef98>
+<environment: 0x6c2d6d8>
 
 Coefficients:
 (Intercept)         a_1         a_2       b_1_1       b_1_2       b_2_2 
@@ -4211,7 +4211,7 @@ $r2
 [1] 0.864
 
 $r2bar
-[1] 0.795
+[1] 0.853
 
 $nObs
 [1] 100
@@ -4341,7 +4341,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x8172b60>
+<environment: 0x5956f48>
 
 Coefficients:
   a_1   a_2 
@@ -4415,7 +4415,7 @@ $r2
 [1] 0.8
 
 $r2bar
-[1] 0.744
+[1] 0.787
 
 $nObs
 [1] 100
@@ -4540,7 +4540,7 @@ $nShifter
 $est
 
 Model Formula: y ~ 1 + a_1 + a_2
-<environment: 0x5e51850>
+<environment: 0x59c3e60>
 
 Coefficients:
 (Intercept)         a_1         a_2 
@@ -4614,7 +4614,7 @@ $r2
 [1] 0.799
 
 $r2bar
-[1] 0.775
+[1] 0.795
 
 $nObs
 [1] 100
@@ -5463,4 +5463,4 @@ b_3_4 b_4_4
 > 
 > proc.time()
    user  system elapsed 
-  5.380   0.228   5.598 
+  4.060   0.148   4.201 
