@@ -358,8 +358,7 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
    Gay, D.M. (1990):
    Usage Summary for Selected Optimization Routines,
    Computing Science Technical Report No. 153,
-   AT&T Bell Laboratories, Murray Hill NJ,
-   \url{http://netlib.bell-labs.com/cm/cs/cstr/153.pdf}.
+   AT&T Bell Laboratories, Murray Hill NJ.
 
    Goldfarb, D. (1970):
    A Family of Variable Metric Updates Derived by Variational Means,
