@@ -15,6 +15,13 @@ importFrom( "car", "lht" )
 
 importFrom( "DEoptim", "DEoptim" )
 
+importFrom( "graphics", "par" )
+importFrom( "graphics", "persp" )
+importFrom( "graphics", "plot.default" )
+importFrom( "graphics", "points" )
+
+importFrom( "grDevices", "colorRampPalette")
+
 importFrom( "micEcon", "translogEst" )
 
 importFrom( "miscTools", "checkNames" )
@@ -22,5 +29,19 @@ importFrom( "miscTools", "coefTable" )
 importFrom( "miscTools", "rSquared" )
 
 importFrom( "minpack.lm", "nls.lm" )
+
+importFrom( "stats", "as.formula" )
+importFrom( "stats", "coef" )
+importFrom( "stats", "deviance" )
+importFrom( "stats", "fitted" )
+importFrom( "stats", "formula" )
+importFrom( "stats", "model.frame" )
+importFrom( "stats", "nlm" )
+importFrom( "stats", "nlminb" )
+importFrom( "stats", "nls" )
+importFrom( "stats", "optim" )
+importFrom( "stats", "printCoefmat" )
+importFrom( "stats", "residuals" )
+importFrom( "stats", "vcov" )
 
 importFrom( "systemfit", "systemfit" )
