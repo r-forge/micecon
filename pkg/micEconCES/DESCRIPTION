@@ -8,7 +8,15 @@ Depends: R (>= 2.4.0), minpack.lm (>= 1.1-4), DEoptim (>= 2.0-4)
 Suggests: maxLik (>= 0.8-0), xtable (>= 1.5-6), AER (>= 1.1-9)
 Imports: systemfit (>= 1.0-0), car (>= 2.0-0), micEcon (>= 0.6-1),
    miscTools (>= 0.6-1)
-Description: Tools for economic analysis and economic modelling
-   with a Constant Elasticity of Substitution (CES) function
+Description: Tools for econometric analysis and economic modelling
+   with the traditional two-input Constant Elasticity of Substitution (CES) function
+   and with nested CES functions with three and four inputs.
+   The econometric estimation can be done by the Kmenta approximation,
+   or non-linear least-squares
+   using various gradient-based or global optimisation algorithms.
+   Some of these algorithms can constrain the parameters to certain ranges,
+   e.g. economically meaningful values.
+   Furthermore, the non-linear least-squares estimation
+   can be combined with a grid-search for the rho-parameter(s).
 License: GPL (>= 2)
 URL: http://www.micEcon.org
