@@ -1,6 +1,6 @@
 
-R version 3.1.0 (2014-04-10) -- "Spring Dance"
-Copyright (C) 2014 The R Foundation for Statistical Computing
+R version 3.3.3 (2017-03-06) -- "Another Canoe"
+Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -18,6 +18,7 @@ Type 'q()' to quit R.
 > library( "micEconCES" )
 Loading required package: minpack.lm
 Loading required package: DEoptim
+Loading required package: parallel
 
 DEoptim package
 Differential Evolution algorithm in R
@@ -32554,11 +32555,11 @@ $nlminb$convergence
 [1] 0
 
 $nlminb$iterations
-[1] 112
+[1] 114
 
 $nlminb$evaluations
 function gradient 
-     152      113 
+     155      115 
 
 $nlminb$message
 [1] "both X-convergence and relative convergence (5)"
@@ -32569,7 +32570,7 @@ $coefficients
  62.864   0.607   0.300   0.495   0.549  -0.202   0.567 
 
 $iter
-[1] 112
+[1] 114
 
 $convergence
 [1] TRUE
@@ -32656,7 +32657,7 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 assuming an additive error term
-Convergence achieved after 112 iterations
+Convergence achieved after 114 iterations
 Message: both X-convergence and relative convergence (5) 
 
 Coefficients:
@@ -33096,14 +33097,14 @@ $nlminb$convergence
 [1] 0
 
 $nlminb$iterations
-[1] 123
+[1] 125
 
 $nlminb$evaluations
 function gradient 
-     248      124 
+     252      126 
 
 $nlminb$message
-[1] "both X-convergence and relative convergence (5)"
+[1] "relative convergence (4)"
 
 
 $coefficients
@@ -33111,13 +33112,13 @@ $coefficients
 59.5045  0.0201  0.6070  0.3014  0.4988  0.5138 -0.1652  0.6069  1.0490 
 
 $iter
-[1] 123
+[1] 125
 
 $convergence
 [1] TRUE
 
 $message
-[1] "both X-convergence and relative convergence (5)"
+[1] "relative convergence (4)"
 
 $ela
         E_1_2 (HM)         E_3_4 (HM) E_(1,2)_(3,4) (AU) 
@@ -33214,8 +33215,8 @@ cesEst(yName = "yTcVrsObs", xNames = xNames, data = MishraCES,
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 assuming an additive error term
-Convergence achieved after 123 iterations
-Message: both X-convergence and relative convergence (5) 
+Convergence achieved after 125 iterations
+Message: relative convergence (4) 
 
 Coefficients:
          Estimate Std. Error t value Pr(>|t|)    
@@ -34877,7 +34878,7 @@ Nonlinear regression model
  residual sum-of-squares: 71506
 
 Number of iterations to convergence: 5 
-Achieved convergence tolerance: 6.85e-07
+Achieved convergence tolerance: 7.27e-07
 
 $coefficients
   gamma delta_1 delta_2   delta   rho_1   rho_2     rho 
@@ -35039,7 +35040,7 @@ Nonlinear regression model
  residual sum-of-squares: 70552
 
 Number of iterations to convergence: 5 
-Achieved convergence tolerance: 3.94e-07
+Achieved convergence tolerance: 3.44e-07
 
 $coefficients
   gamma delta_1 delta_2   delta   rho_1   rho_2     rho      nu 
@@ -35173,7 +35174,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
  61.197   0.606   0.300   0.495   0.536  -0.210   0.561   1.007 
 > vcov( cesNlsVrs )
             gamma   delta_1   delta_2     delta     rho_1     rho_2       rho
-gamma    4.029588  1.28e-03 -9.82e-04 -1.47e-03  3.09e-02  1.82e-02  1.61e-02
+gamma    4.029587  1.28e-03 -9.82e-04 -1.47e-03  3.09e-02  1.82e-02  1.61e-02
 delta_1  0.001285  2.49e-05 -1.59e-06 -3.49e-06  1.01e-04  1.27e-05 -2.68e-05
 delta_2 -0.000982 -1.59e-06  1.80e-05 -4.98e-06 -1.75e-05 -3.63e-05  6.33e-05
 delta   -0.001469 -3.49e-06 -4.98e-06  2.58e-05 -7.33e-05  5.13e-05 -4.38e-05
@@ -35226,7 +35227,7 @@ Nonlinear regression model
  residual sum-of-squares: 61895
 
 Number of iterations to convergence: 6 
-Achieved convergence tolerance: 5.71e-06
+Achieved convergence tolerance: 5.1e-06
 
 $coefficients
   gamma  lambda delta_1 delta_2   delta   rho_1   rho_2     rho      nu 
@@ -35369,15 +35370,15 @@ Nonlinear regression model
   model: log(yTcMeVrsObs) ~ log(gamma * exp(lambda * time) * (delta *     (delta_1 * X1^(-rho_1) + (1 - delta_1) * X2^(-rho_1))^(rho/rho_1) +     (1 - delta) * (delta_2 * X3^(-rho_2) + (1 - delta_2) * X4^(-rho_2))^(rho/rho_2))^(-nu/rho))
    data: data
   gamma  lambda delta_1 delta_2   delta   rho_1   rho_2     rho      nu 
-86.6156  0.0253  0.6774  0.3823  0.4726  0.5719 -0.2361  1.1141  0.9197 
+86.6155  0.0253  0.6774  0.3823  0.4726  0.5719 -0.2361  1.1141  0.9197 
  residual sum-of-squares: 4.31
 
 Number of iterations to convergence: 18 
-Achieved convergence tolerance: 6.99e-06
+Achieved convergence tolerance: 6.96e-06
 
 $coefficients
   gamma  lambda delta_1 delta_2   delta   rho_1   rho_2     rho      nu 
-86.6156  0.0253  0.6774  0.3823  0.4726  0.5719 -0.2361  1.1141  0.9197 
+86.6155  0.0253  0.6774  0.3823  0.4726  0.5719 -0.2361  1.1141  0.9197 
 
 $iter
 [1] 18
@@ -35429,24 +35430,24 @@ $rss
 
 $cov.unscaled
             gamma    lambda   delta_1   delta_2     delta     rho_1    rho_2
-gamma   16455.207 -0.157093  8.006215  3.034392  3.508152 47.015322 24.75846
+gamma   16455.191 -0.157093  8.006204  3.034385  3.508146 47.015264 24.75844
 lambda     -0.157  0.000126  0.000702 -0.000297  0.001538  0.002166  0.00156
 delta_1     8.006  0.000702  0.070976 -0.003806  0.007310  0.248653  0.05136
 delta_2     3.034 -0.000297 -0.003806  0.040490 -0.006581 -0.013859  0.04342
 delta       3.508  0.001538  0.007310 -0.006581  0.120983 -0.000431  0.10996
-rho_1      47.015  0.002166  0.248653 -0.013859 -0.000431  1.158540  0.23744
+rho_1      47.015  0.002166  0.248653 -0.013859 -0.000431  1.158538  0.23744
 rho_2      24.758  0.001557  0.051359  0.043415  0.109962  0.237444  0.35712
-rho       166.938 -0.005239 -0.311028  0.105644 -0.280496 -1.421638 -0.42319
+rho       166.938 -0.005239 -0.311028  0.105644 -0.280496 -1.421637 -0.42319
 nu        -47.057 -0.000265 -0.029789 -0.004928 -0.017290 -0.158872 -0.07503
               rho        nu
-gamma   166.93812 -4.71e+01
+gamma   166.93796 -4.71e+01
 lambda   -0.00524 -2.65e-04
 delta_1  -0.31103 -2.98e-02
 delta_2   0.10564 -4.93e-03
 delta    -0.28050 -1.73e-02
 rho_1    -1.42164 -1.59e-01
 rho_2    -0.42319 -7.50e-02
-rho       7.62359 -4.29e-01
+rho       7.62358 -4.29e-01
 nu       -0.42943  1.41e-01
 
 attr(,"class")
@@ -35460,7 +35461,7 @@ cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES,
 
 Coefficients:
   gamma  lambda delta_1 delta_2   delta   rho_1   rho_2     rho      nu 
-86.6156  0.0253  0.6774  0.3823  0.4726  0.5719 -0.2361  1.1141  0.9197 
+86.6155  0.0253  0.6774  0.3823  0.4726  0.5719 -0.2361  1.1141  0.9197 
 
 Elasticities of Substitution:
         E_1_2 (HM)         E_3_4 (HM) E_(1,2)_(3,4) (AU) 
@@ -35481,7 +35482,7 @@ Convergence achieved after 18 iterations
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
-gamma   86.61559   37.64464    2.30    0.021 *  
+gamma   86.61554   37.64463    2.30    0.021 *  
 lambda   0.02525    0.00329    7.67  1.7e-14 ***
 delta_1  0.67736    0.07818    8.66  < 2e-16 ***
 delta_2  0.38235    0.05905    6.47  9.5e-11 ***
@@ -38830,14 +38831,14 @@ $nlminb$convergence
 [1] 0
 
 $nlminb$iterations
-[1] 109
+[1] 110
 
 $nlminb$evaluations
 function gradient 
-     152      110 
+     143      111 
 
 $nlminb$message
-[1] "both X-convergence and relative convergence (5)"
+[1] "X-convergence (3)"
 
 
 $coefficients
@@ -38845,13 +38846,13 @@ $coefficients
  62.888   0.606   0.301   0.494   0.538  -0.211   0.600 
 
 $iter
-[1] 109
+[1] 110
 
 $convergence
 [1] TRUE
 
 $message
-[1] "both X-convergence and relative convergence (5)"
+[1] "X-convergence (3)"
 
 $ela
         E_1_2 (HM)         E_3_4 (HM) E_(1,2)_(3,4) (AU) 
@@ -38955,8 +38956,8 @@ cesEst(yName = "yObs", xNames = xNames, data = MishraCES, method = "PORT",
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
 assuming an additive error term
-Convergence achieved after 109 iterations
-Message: both X-convergence and relative convergence (5) 
+Convergence achieved after 110 iterations
+Message: X-convergence (3) 
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
@@ -39737,7 +39738,7 @@ $allRhoSum
 9   1.1000 2.64        TRUE
 10  1.2667 2.66        TRUE
 11  1.4333 2.69        TRUE
-12  1.6000 4.91       FALSE
+12  1.6000 4.90       FALSE
 
 $rhoValues
  [1] -0.2333 -0.0667  0.1000  0.2667  0.4333  0.6000  0.7667  0.9333  1.1000
@@ -41697,4 +41698,4 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > 
 > proc.time()
    user  system elapsed 
-129.787   0.533 130.439 
+  169.7     1.2   170.9 
