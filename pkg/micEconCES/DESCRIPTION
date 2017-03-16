@@ -1,7 +1,7 @@
 Package: micEconCES
 Version: 0.9-9
 Date: 2014/04/23
-Title: Analysis with the Constant Elasticity of Substitution (CES) function
+Title: Analysis with the Constant Elasticity of Substitution (CES) Function
 Author: Arne Henningsen and Geraldine Henningsen
 Maintainer: Arne Henningsen <arne.henningsen@gmail.com>
 Depends: R (>= 2.4.0), minpack.lm (>= 1.1-4), DEoptim (>= 2.0-4)
