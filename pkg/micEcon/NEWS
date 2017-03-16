@@ -5,7 +5,7 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
-            CHANGES IN VERSION 0.6-14  (2017-03-15)
+            CHANGES IN VERSION 0.6-14  (2017-03-16)
 
 * added predict() methods for objects returned by quadFuncEst() and
 translogEst()
