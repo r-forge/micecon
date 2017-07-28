@@ -3,7 +3,8 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
       multErr = FALSE,
       rho1 = NULL, rho2 = NULL, rho = NULL, returnGridAll = FALSE, 
       random.seed = 123, rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, 
-         rho = 1e-3, nu = 5e-6 ), ... ) {
+         rho = 1e-3, nu = 5e-6 ),
+      checkStart = TRUE, ... ) {
 
    # y = gamma * ( delta * x1^(-rho) + ( 1 - delta ) * x2^(-rho) )^(-nu/rho)
    # s = 1 / ( 1 + rho )
@@ -110,7 +111,7 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
    start <- cesEstStart( yName = yName, xNames = xNames, data = data,
       tName = tName, vrs = vrs, method = method, start = start, 
       rho1 = rho1, rho2 = rho2, rho = rho, nParam = nParam, nested = nested,
-      multErr = multErr )
+      multErr = multErr, checkStart = checkStart )
 
    # dertermining lower and upper bounds automatically
    if( is.null( lower ) ) {
