@@ -392,31 +392,19 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
    # calculate and return (constant!) elasticities of substitution
    if( !nested ) {
       result$ela <- NA
-      if( result$coefficients[ "rho" ] >= -1 ) {
-         result$ela <- 1 / ( 1 + result$coefficients[ "rho" ] )
-      }
+      result$ela <- 1 / ( 1 + result$coefficients[ "rho" ] )
       names( result$ela ) <- "E_1_2 (all)"
    } else {
       if( nExog == 3 ) {
          result$ela <- rep( NA, 2 )
-         if( result$coefficients[ "rho_1" ] >= -1 ) {
-            result$ela[1] <- 1 / ( 1 + result$coefficients[ "rho_1" ] )
-         }
-         if( result$coefficients[ "rho" ] >= -1 ) {
-            result$ela[2] <- 1 / ( 1 + result$coefficients[ "rho" ] )
-         }
+         result$ela[1] <- 1 / ( 1 + result$coefficients[ "rho_1" ] )
+         result$ela[2] <- 1 / ( 1 + result$coefficients[ "rho" ] )
          names( result$ela ) <- c( "E_1_2 (HM)", "E_(1,2)_3 (AU)" )
       } else if( nExog == 4 ) {
          result$ela <- rep( NA, 3 )
-         if( result$coefficients[ "rho_1" ] >= -1 ) {
-            result$ela[1] <- 1 / ( 1 + result$coefficients[ "rho_1" ] )
-         }
-         if( result$coefficients[ "rho_2" ] >= -1 ) {
-            result$ela[2] <- 1 / ( 1 + result$coefficients[ "rho_2" ] )
-         }
-         if( result$coefficients[ "rho" ] >= -1 ) {
-            result$ela[3] <- 1 / ( 1 + result$coefficients[ "rho" ] )
-         }
+         result$ela[1] <- 1 / ( 1 + result$coefficients[ "rho_1" ] )
+         result$ela[2] <- 1 / ( 1 + result$coefficients[ "rho_2" ] )
+         result$ela[3] <- 1 / ( 1 + result$coefficients[ "rho" ] )
          names( result$ela ) <- 
             c( "E_1_2 (HM)", "E_3_4 (HM)", "E_(1,2)_(3,4) (AU)" )
       }

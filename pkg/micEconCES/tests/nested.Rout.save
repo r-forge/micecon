@@ -1,5 +1,5 @@
 
-R version 3.3.3 (2017-03-06) -- "Another Canoe"
+R version 3.4.1 (2017-06-30) -- "Single Candle"
 Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -28063,7 +28063,7 @@ $convergence
 
 $ela
         E_1_2 (HM)         E_3_4 (HM) E_(1,2)_(3,4) (AU) 
-             1.634              0.922                 NA 
+             1.634              0.922             -0.293 
 
 $call
 cesEst(yName = "yTcMeObs", xNames = xNames, data = MishraCES, 
@@ -28130,7 +28130,7 @@ Coefficients:
 
 Elasticities of Substitution:
         E_1_2 (HM)         E_3_4 (HM) E_(1,2)_(3,4) (AU) 
-             1.634              0.922                 NA 
+             1.634              0.922             -0.293 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -28163,7 +28163,7 @@ Elasticities of Substitution:
                    Estimate Std. Error t value Pr(>|t|)
 E_1_2 (HM)            1.634         NA      NA       NA
 E_3_4 (HM)            0.922         NA      NA       NA
-E_(1,2)_(3,4) (AU)       NA         NA      NA       NA
+E_(1,2)_(3,4) (AU)   -0.293         NA      NA       NA
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -29225,7 +29225,7 @@ $iter
 
 $ela
         E_1_2 (HM)         E_3_4 (HM) E_(1,2)_(3,4) (AU) 
-             0.839                 NA              0.653 
+             0.839             -1.329              0.653 
 
 $call
 cesEst(yName = "yMeObs", xNames = xNames, data = MishraCES, vrs = TRUE, 
@@ -29291,7 +29291,7 @@ Coefficients:
 
 Elasticities of Substitution:
         E_1_2 (HM)         E_3_4 (HM) E_(1,2)_(3,4) (AU) 
-             0.839                 NA              0.653 
+             0.839             -1.329              0.653 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -29324,7 +29324,7 @@ Multiple R-squared: 0.812
 Elasticities of Substitution:
                    Estimate Std. Error t value Pr(>|t|)    
 E_1_2 (HM)            0.839      0.100    8.35  < 2e-16 ***
-E_3_4 (HM)               NA         NA      NA       NA    
+E_3_4 (HM)           -1.329      1.538   -0.86     0.39    
 E_(1,2)_(3,4) (AU)    0.653      0.150    4.36  1.3e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -32412,7 +32412,7 @@ $convergence
 
 $ela
         E_1_2 (HM)         E_3_4 (HM) E_(1,2)_(3,4) (AU) 
-             0.754                 NA              0.450 
+            0.7542            -0.0157             0.4501 
 
 $call
 cesEst(yName = "yTcMeVrsObs", xNames = xNames, data = MishraCES, 
@@ -32495,7 +32495,7 @@ Coefficients:
 
 Elasticities of Substitution:
         E_1_2 (HM)         E_3_4 (HM) E_(1,2)_(3,4) (AU) 
-             0.754                 NA              0.450 
+            0.7542            -0.0157             0.4501 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -32530,9 +32530,9 @@ Multiple R-squared: 0.822
 
 Elasticities of Substitution:
                    Estimate Std. Error t value Pr(>|t|)    
-E_1_2 (HM)            0.754      0.103    7.30  2.9e-13 ***
-E_3_4 (HM)               NA         NA      NA       NA    
-E_(1,2)_(3,4) (AU)    0.450      0.157    2.86   0.0043 ** 
+E_1_2 (HM)           0.7542     0.1033    7.30  2.9e-13 ***
+E_3_4 (HM)          -0.0157     0.5756   -0.03   0.9783    
+E_(1,2)_(3,4) (AU)   0.4501     0.1575    2.86   0.0043 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
@@ -41698,4 +41698,4 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > 
 > proc.time()
    user  system elapsed 
-  169.7     1.2   170.9 
+166.736   0.912 167.962 
