@@ -1,5 +1,5 @@
 
-R version 3.3.3 (2017-03-06) -- "Another Canoe"
+R version 3.4.1 (2017-06-30) -- "Single Candle"
 Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -72,7 +72,7 @@ $convergence
 
 $ela
 E_1_2 (all) 
-         NA 
+     -0.364 
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
@@ -125,7 +125,7 @@ Coefficients:
    gamma    delta      rho 
 100.2501   0.0691  -3.7463 
 
-Elasticity of Substitution: NA 
+Elasticity of Substitution: -0.364 
 
 > summary( cesLandLabor )
 Estimated CES function with constant returns to scale
@@ -149,7 +149,7 @@ Multiple R-squared: 0.906
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)       NA         NA      NA       NA
+E_1_2 (all)   -0.364   1596.066       0        1
 
 > summary( cesLandLabor, ela = FALSE )
 Estimated CES function with constant returns to scale
@@ -193,7 +193,7 @@ Multiple R-squared: 0.906
 
 > summary( cesLandLabor )$elaCov
             E_1_2 (all)
-E_1_2 (all)          NA
+E_1_2 (all)     2547427
 > coef( cesLandLabor ) 
    gamma    delta      rho 
 100.2501   0.0691  -3.7463 
@@ -250,7 +250,7 @@ $convergence
 
 $ela
 E_1_2 (all) 
-         NA 
+      -1.16 
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
@@ -304,7 +304,7 @@ Coefficients:
    gamma    delta      rho       nu 
 233.8485   0.0154  -1.8610   1.4320 
 
-Elasticity of Substitution: NA 
+Elasticity of Substitution: -1.16 
 
 > summary( cesLandLaborVrs )
 Estimated CES function with variable returns to scale
@@ -331,7 +331,7 @@ Multiple R-squared: 0.953
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)       NA         NA      NA       NA
+E_1_2 (all)    -1.16      10.64   -0.11     0.91
 
 > coef( cesLandLaborVrs )
    gamma    delta      rho       nu 
@@ -522,7 +522,7 @@ $iter
 
 $ela
 E_1_2 (all) 
-         NA 
+     -0.559 
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
@@ -575,7 +575,7 @@ Coefficients:
     gamma     delta       rho 
 273.55850   0.00801  -2.79022 
 
-Elasticity of Substitution: NA 
+Elasticity of Substitution: -0.559 
 
 > summary( cesLandLaborSann )
 Estimated CES function with constant returns to scale
@@ -598,7 +598,7 @@ Multiple R-squared: 0.9
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)       NA         NA      NA       NA
+E_1_2 (all)   -0.559     25.929   -0.02     0.98
 
 > coef( cesLandLaborSann )
     gamma     delta       rho 
@@ -657,7 +657,7 @@ $convergence
 
 $ela
 E_1_2 (all) 
-         NA 
+     -0.294 
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
@@ -710,7 +710,7 @@ Coefficients:
   gamma   delta     rho 
 89.4735  0.0718 -4.3960 
 
-Elasticity of Substitution: NA 
+Elasticity of Substitution: -0.294 
 
 > summary( cesLandLaborBfgs )
 Estimated CES function with constant returns to scale
@@ -734,7 +734,7 @@ Multiple R-squared: 0.906
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)       NA         NA      NA       NA
+E_1_2 (all)   -0.294   7531.995       0        1
 
 > coef( cesLandLaborBfgs )
   gamma   delta     rho 
@@ -1368,7 +1368,7 @@ $convergence
 
 $ela
 E_1_2 (all) 
-         NA 
+     -0.329 
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
@@ -1421,7 +1421,7 @@ Coefficients:
     gamma     delta       rho 
  2.74e+02  9.53e-04 -4.04e+00 
 
-Elasticity of Substitution: NA 
+Elasticity of Substitution: -0.329 
 
 > summary( cesLandLaborNewton )
 Estimated CES function with constant returns to scale
@@ -1445,7 +1445,7 @@ Multiple R-squared: 0.905
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)       NA         NA      NA       NA
+E_1_2 (all)   -0.329     40.998   -0.01     0.99
 
 > coef( cesLandLaborNewton )
     gamma     delta       rho 
@@ -1509,7 +1509,7 @@ $message
 
 $ela
 E_1_2 (all) 
-         NA 
+     -0.201 
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
@@ -1562,7 +1562,7 @@ Coefficients:
   gamma   delta     rho 
 79.6480  0.0558 -5.9752 
 
-Elasticity of Substitution: NA 
+Elasticity of Substitution: -0.201 
 
 > summary( cesLandLaborPort )
 Estimated CES function with constant returns to scale
@@ -1587,7 +1587,7 @@ Multiple R-squared: 0.906
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)       NA         NA      NA       NA
+E_1_2 (all)   -0.201         NA      NA       NA
 
 > summary( cesLandLaborPort, ela = FALSE )
 Estimated CES function with constant returns to scale
@@ -6451,4 +6451,4 @@ Error in numericDeriv(form[[3L]], names(ind), env) :
 > 
 > proc.time()
    user  system elapsed 
- 17.872   0.164  18.036 
+   18.9     0.1    19.0 
