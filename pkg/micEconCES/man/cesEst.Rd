@@ -29,7 +29,7 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
    rho1 = NULL, rho2, rho = NULL, returnGridAll = FALSE, random.seed = 123,
    rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, 
       rho = 1e-3, nu = 5e-6 ),
-   \dots )
+   checkStart = TRUE, \dots )
 
 \method{print}{cesEst}( x, digits = max(3, getOption("digits") - 3),
    \dots )
@@ -109,6 +109,9 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
       \eqn{\rho_1}{rho_1}, and \eqn{\rho_2}{rho_2};
       the fifth element determines the threshold for calculating
       the derivatives with respect to \eqn{\nu}{nu}.}
+   \item{checkStart}{logical. If \code{TRUE} (the default),
+      it is checked whether the starting values are in the expected ranges
+      for a production function.}
    \item{x}{an object of class \code{cesEst}.}
    \item{digits}{number of digits.}
    \item{\dots}{further arguments to \code{cesEst} are passed to
