@@ -395,7 +395,8 @@ MishraCES$yTcMeObs <- MishraCES$yTc * exp( 0.3 * rnorm( nrow( MishraCES ) ) )
 MishraCES$yTcMeVrsObs <- MishraCES$yTcVrs * exp( 0.3 * rnorm( nrow( MishraCES ) ) )
 
 ## Nelder-Mead, CRS
-cesNm <- cesEst( "yObs", xNames, data = MishraCES, method = "Nelder-Mead" )
+cesNm <- cesEst( "yObs", xNames, data = MishraCES, method = "Nelder-Mead", 
+   returnGrad = TRUE )
 print.default( cesNm ) 
 print( cesNm )
 summary( cesNm )
@@ -407,7 +408,7 @@ residuals( cesNm )
 
 ## Nelder-Mead, VRS
 cesNmVrs <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE, method = "NM",
-   control = list( maxit = 1000 ) )
+   control = list( maxit = 1000 ), returnGrad = TRUE )
 print.default( cesNmVrs )
 print( cesNmVrs )
 summary( cesNmVrs )
@@ -433,7 +434,8 @@ summary( cesNmTcVrs )
 
 ## Nelder-Mead, TC, multErr, CRS
 cesNmTcMe <- cesEst( "yTcMeObs", xNames, tName = "time", data = MishraCES, 
-   method = "Nelder-Mead", multErr = TRUE, control = list( maxit = 2000 ) )
+   method = "Nelder-Mead", multErr = TRUE, control = list( maxit = 2000 ), 
+   returnGrad = TRUE )
 print.default( cesNmTcMe ) 
 print( cesNmTcMe )
 summary( cesNmTcMe )
@@ -500,7 +502,7 @@ summary( cesSannTc )
 
 ## Simulated Annealing, multErr, VRS
 cesSannMeVrs <- cesEst( "yMeObs", xNames, data = MishraCES, method = "SANN", 
-   vrs = TRUE, multErr = TRUE )
+   vrs = TRUE, multErr = TRUE, returnGrad = TRUE )
 print.default( cesSannMeVrs )
 print( cesSannMeVrs )
 summary( cesSannMeVrs )
@@ -553,7 +555,8 @@ summary( cesBfgsMe )
 vcov( cesBfgsMe )
 
 ## L-BFGS-B with constrained parameters, CRS
-cesBfgsCon <- cesEst( "yObs", xNames, data = MishraCES, method = "L-BFGS-B" )
+cesBfgsCon <- cesEst( "yObs", xNames, data = MishraCES, method = "L-BFGS-B", 
+   returnGrad = TRUE )
 print.default( cesBfgsCon )
 print( cesBfgsCon )
 summary( cesBfgsCon )
@@ -568,7 +571,7 @@ residuals( cesBfgsCon )
 
 ## L-BFGS-B with constrained parameters, VRS
 cesBfgsConVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "L-BFGS-B",
-   vrs = TRUE, control = list( maxit = 500 ) )
+   vrs = TRUE, control = list( maxit = 500 ), returnGrad = TRUE )
 print.default( cesBfgsConVrs )
 print( cesBfgsConVrs )
 summary( cesBfgsConVrs )
@@ -804,7 +807,7 @@ summary( cesNlsTcMeVrs )
 ########## Estimation with Fixed Rhos ##############
 ## Levenberg-Marquardt, Fixed rho, CRS
 cesLmR <- cesEst( "yObs", xNames, data = MishraCES,
-   control = nls.lm.control( maxiter = 200 ), rho = 0.9 )
+   control = nls.lm.control( maxiter = 200 ), rho = 0.9, returnGrad = TRUE )
 print.default( cesLmR )
 print( cesLmR )
 summary( cesLmR )
@@ -823,7 +826,7 @@ summary( cesLmTcR )
 
 ## Levenberg-Marquardt, Fixed rho at 0, VRS
 cesLmVrsR <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
-   control = nls.lm.control( maxiter = 200 ), rho = 0 )
+   control = nls.lm.control( maxiter = 200 ), rho = 0, returnGrad = TRUE )
 print.default( cesLmVrsR )
 print( cesLmVrsR )
 summary( cesLmVrsR )
@@ -866,7 +869,7 @@ summary( cesLmTcVrsR1 )
 
 ## Levenberg-Marquardt, Fixed rho_2, CRS
 cesLmR2 <- cesEst( "yObs", xNames, data = MishraCES,
-   control = nls.lm.control( maxiter = 200 ), rho2 = 0.3 )
+   control = nls.lm.control( maxiter = 200 ), rho2 = 0.3, returnGrad = TRUE )
 print.default( cesLmR2 )
 print( cesLmR2 )
 summary( cesLmR2 )
@@ -909,7 +912,8 @@ residuals( cesLmRR12 )
 
 ## Levenberg-Marquardt, Fixed rho and rho1, CRS
 cesLmRR1 <- cesEst( "yObs", xNames, data = MishraCES,
-   control = nls.lm.control( maxiter = 200 ), rho = 0.9, rho1 = 0 )
+   control = nls.lm.control( maxiter = 200 ), rho = 0.9, rho1 = 0, 
+   returnGrad = TRUE )
 print.default( cesLmRR1 )
 print( cesLmRR1 )
 summary( cesLmRR1 )
@@ -940,7 +944,8 @@ summary( cesLmTcVrsRR2 )
 
 ## Levenberg-Marquardt, Fixed rho, rho1, and rho2, VRS
 cesLmVrsRRR <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
-   control = nls.lm.control( maxiter = 200 ), rho1 = 0.2, rho2 = 0.3, rho = -0.1 )
+   control = nls.lm.control( maxiter = 200 ), rho1 = 0.2, rho2 = 0.3, rho = -0.1,
+   returnGrad = TRUE )
 print.default( cesLmVrsRRR )
 print( cesLmVrsRRR )
 summary( cesLmVrsRRR )
@@ -961,7 +966,7 @@ summary( cesLmTcVrsRRR )
 ## Levenberg-Marquardt, Fixed rho, rho1, and rho2, multErr, VRS
 cesLmMeVrsRRR <- cesEst( "yMeObs", xNames, data = MishraCES, vrs = TRUE,
    multErr = TRUE, control = nls.lm.control( maxiter = 200 ), 
-   rho1 = 0.2, rho2 = 0.3, rho = -0.1 )
+   rho1 = 0.2, rho2 = 0.3, rho = -0.1, returnGrad = TRUE )
 print.default( cesLmMeVrsRRR )
 print( cesLmMeVrsRRR )
 summary( cesLmMeVrsRRR )
