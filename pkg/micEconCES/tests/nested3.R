@@ -252,6 +252,7 @@ vcov( cesNm )
 coef( summary( cesNm ) )
 fitted( cesNm )
 residuals( cesNm )
+dwt( cesNm )
 
 ## Nelder-Mead, VRS
 cesNmVrs <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE, method = "NM",
@@ -264,6 +265,7 @@ vcov( cesNmVrs )
 coef( summary( cesNmVrs ) )
 fitted( cesNmVrs )
 residuals( cesNmVrs )
+dwt( cesNmVrs )
 
 ## Nelder-Mead, TC, CRS
 cesNmTc <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
@@ -278,6 +280,7 @@ cesNmTcVrs <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES,
 print.default( cesNmTcVrs )
 print( cesNmTcVrs )
 summary( cesNmTcVrs )
+try( dwt( cesNmTcVrs ) )
 
 ## Nelder-Mead, multErr, VRS
 cesNmMeVrs <- cesEst( "yMeObs", xNames, data = MishraCES, vrs = TRUE, 
@@ -287,6 +290,7 @@ print.default( cesNmMeVrs )
 print( cesNmMeVrs )
 summary( cesNmMeVrs )
 vcov( cesNmMeVrs )
+dwt( cesNmMeVrs )
 
 ## Conjugate Gradients, CRS
 cesCg <- cesEst( "yObs", xNames, data = MishraCES, method = "CG", 
@@ -299,6 +303,7 @@ vcov( cesCg )
 coef( summary( cesCg ) )
 fitted( cesCg )
 residuals( cesCg )
+dwt( cesCg )
 
 ## Conjugate Gradients, VRS
 cesCgVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "CG", 
@@ -330,6 +335,7 @@ vcov( cesSann )
 coef( summary( cesSann ) )
 fitted( cesSann )
 residuals( cesSann )
+dwt( cesSann )
 
 ## Simulated Annealing, VRS
 cesSannVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "SANN", 
@@ -373,6 +379,7 @@ vcov( cesBfgsVrs )
 coef( summary( cesBfgsVrs ) )
 fitted( cesBfgsVrs )
 residuals( cesBfgsVrs )
+dwt( cesBfgsVrs )
 
 ## BFGS, TC, CRS
 cesBfgsTc <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
@@ -380,6 +387,7 @@ cesBfgsTc <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES,
 print.default( cesBfgsTc )
 print( cesBfgsTc )
 summary( cesBfgsTc )
+dwt( cesBfgsTc )
 
 ## BFGS, TC, VRS
 cesBfgsTcVrs <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES, 
@@ -395,6 +403,7 @@ cesBfgsTcMe <- cesEst( "yTcMeObs", xNames, tName = "time", data = MishraCES,
 print.default( cesBfgsTcMe )
 print( cesBfgsTcMe )
 summary( cesBfgsTcMe )
+dwt( cesBfgsTcMe )
 
 ## L-BFGS-B with constrained parameters, CRS
 cesBfgsCon <- cesEst( "yObs", xNames, data = MishraCES, method = "L-BFGS-B" )
@@ -440,6 +449,7 @@ cesBfgsConTcMeVrs <- cesEst( "yTcMeVrsObs", xNames, tName = "time",
 print.default( cesBfgsConTcMeVrs )
 print( cesBfgsConTcMeVrs )
 summary( cesBfgsConTcMeVrs )
+dwt( cesBfgsConTcMeVrs )
 
 ## Levenberg-Marquardt, CRS
 cesLm <- cesEst( "yObs", xNames, data = MishraCES,
@@ -628,6 +638,7 @@ print.default( cesDeMe )
 print( cesDeMe )
 summary( cesDeMe )
 vcov( cesDeMe )
+dwt( cesDeMe )
 
 
 ########## Fixing Rho_1 ##############
@@ -642,6 +653,7 @@ vcov( cesLmRho1 )
 coef( summary( cesLmRho1 ) )
 fitted( cesLmRho1 )
 residuals( cesLmRho1 )
+dwt( cesLmRho1 )
 
 ## Levenberg-Marquardt, rho_1 fixed, TC, CRS
 cesLmTcRho1 <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
@@ -649,6 +661,7 @@ cesLmTcRho1 <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES,
 print.default( cesLmTcRho1 )
 print( cesLmTcRho1 )
 summary( cesLmTcRho1 )
+dwt( cesLmTcRho1 )
 
 ## Levenberg-Marquardt, rho_1 fixed, VRS
 cesLmVrsRho1 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
@@ -673,6 +686,7 @@ vcov( cesPortRho1 )
 coef( summary( cesPortRho1 ) )
 fitted( cesPortRho1 )
 residuals( cesPortRho1 )
+dwt( cesPortRho1 )
 
 ## PORT, rho_1 fixed, VRS
 cesPortVrsRho1 <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
@@ -708,6 +722,7 @@ vcov( cesLmRho )
 coef( summary( cesLmRho ) )
 fitted( cesLmRho )
 residuals( cesLmRho )
+try( dwt( cesLmRho ) )
 
 ## Levenberg-Marquardt, rho fixed, VRS
 cesLmVrsRho <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
@@ -720,6 +735,7 @@ vcov( cesLmVrsRho )
 coef( summary( cesLmVrsRho ) )
 fitted( cesLmVrsRho )
 residuals( cesLmVrsRho )
+dwt( cesLmVrsRho )
 
 ## Levenberg-Marquardt, rho fixed, TC, VRS
 cesLmTcVrsRho <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES, 
@@ -747,6 +763,7 @@ cesPortTcRho <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES,
 print.default( cesPortTcRho )
 print( cesPortTcRho )
 summary( cesPortTcRho )
+dwt( cesPortTcRho )
 
 ## PORT, rho fixed, VRS
 cesPortVrsRho <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
@@ -774,6 +791,7 @@ vcov( cesLmRho2 )
 coef( summary( cesLmRho2 ) )
 fitted( cesLmRho2 )
 residuals( cesLmRho2 )
+dwt( cesLmRho2 )
 
 ## Levenberg-Marquardt, rho_1 and rho fixed, TC, CRS
 cesLmTcRho2 <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
@@ -805,6 +823,7 @@ vcov( cesPortRho2 )
 coef( summary( cesPortRho2 ) )
 fitted( cesPortRho2 )
 residuals( cesPortRho2 )
+dwt( cesPortRho2 )
 
 ## PORT, rho_1 and rho fixed, VRS
 cesPortVrsRho2 <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
@@ -838,6 +857,7 @@ summary( cesPortTcMeVrsRho2 )
 summary( cesPortTcMeVrsRho2, ela = FALSE )
 print( summary( cesPortTcMeVrsRho2 ), ela = FALSE )
 summary( cesPortTcMeVrsRho2 )$elaCov
+dwt( cesPortTcMeVrsRho2 )
 
 
 ########## Grid Search for Rho_1 ##############

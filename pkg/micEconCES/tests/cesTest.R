@@ -1,5 +1,6 @@
 library( "micEconCES" )
 options( digits = 3 )
+set.seed( 12345 )  # to make the bootstrapping in dwt() reproducible
 
 # load data
 data( germanFarms, package = "micEcon" )
@@ -23,6 +24,7 @@ vcov( cesLandLabor )
 coef( summary( cesLandLabor ) )
 fitted( cesLandLabor )
 residuals( cesLandLabor )
+dwt( cesLandLabor )
 
 # variable returns to scale (Nelder-Mead)
 cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -35,6 +37,7 @@ vcov( cesLandLaborVrs )
 coef( summary( cesLandLaborVrs ) )
 fitted( cesLandLaborVrs )
 residuals( cesLandLaborVrs )
+dwt( cesLandLaborVrs )
 
 # using the CG optimization method
 cesLandLaborCg <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -47,6 +50,7 @@ vcov( cesLandLaborCg )
 coef( summary( cesLandLaborCg ) )
 fitted( cesLandLaborCg )
 residuals( cesLandLaborCg )
+try( dwt( cesLandLaborCg ) )
 
 # using the SANN optimization method
 cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -59,6 +63,7 @@ vcov( cesLandLaborSann )
 coef( summary( cesLandLaborSann ) )
 fitted( cesLandLaborSann )
 residuals( cesLandLaborSann )
+dwt( cesLandLaborSann )
 
 # using the BFGS optimization method
 cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -71,6 +76,7 @@ vcov( cesLandLaborBfgs )
 coef( summary( cesLandLaborBfgs ) )
 fitted( cesLandLaborBfgs )
 residuals( cesLandLaborBfgs )
+try( dwt( cesLandLaborBfgs ) )
 
 # using the L-BFGS-B optimization method with constrained parameters
 cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
@@ -83,6 +89,7 @@ vcov( cesLandLaborBfgsCon )
 coef( summary( cesLandLaborBfgsCon ) )
 fitted( cesLandLaborBfgsCon )
 residuals( cesLandLaborBfgsCon )
+dwt( cesLandLaborBfgsCon )
 
 # Kmenta approximation with CRS
 cesLandLaborKmentaCrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -107,6 +114,7 @@ vcov( cesLandLaborKmenta )
 coef( summary( cesLandLaborKmenta ) )
 fitted( cesLandLaborKmenta )
 residuals( cesLandLaborKmenta )
+dwt( cesLandLaborKmenta )
 
 # using the Levenberg-Marquardt optimization method
 cesLandLaborLm <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -131,6 +139,7 @@ vcov( cesLandLaborNewton )
 coef( summary( cesLandLaborNewton ) )
 fitted( cesLandLaborNewton )
 residuals( cesLandLaborNewton )
+dwt( cesLandLaborNewton )
 
 # using the PORT optimization rountine implemented in nlminb(), UNconstrained
 cesLandLaborPort <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -158,6 +167,7 @@ vcov( cesLandLaborPortCon )
 coef( summary( cesLandLaborPortCon ) )
 fitted( cesLandLaborPortCon )
 residuals( cesLandLaborPortCon )
+dwt( cesLandLaborPortCon )
 
 # using the PORT optimization rountine implemented in nlminb(), constrained by hand
 cesLandLaborPortCon2 <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -207,6 +217,7 @@ vcov( cesLandLaborDe )
 coef( summary( cesLandLaborDe ) )
 fitted( cesLandLaborDe )
 residuals( cesLandLaborDe )
+dwt( cesLandLaborDe )
 
 # using the DE optimization method implemented in DEoptim(), VRS
 cesLandLaborDeVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,

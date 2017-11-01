@@ -24,6 +24,7 @@ DEoptim package
 Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
+Loading required package: car
 
 If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
 https://r-forge.r-project.org/projects/micecon/
@@ -27576,6 +27577,10 @@ rho        0.503     0.0858    5.87  4.47e-09
 [28]   27.97   40.54  -20.11  -29.20  136.34  -28.06  -31.60   10.40  -52.16
 [37]  212.31  304.00  -17.25   59.05   45.79   29.42  -23.17   55.02  -56.45
 [46]  -39.65  -31.43   52.01 -148.23  139.64
+> dwt( cesNm )
+ lag Autocorrelation D-W Statistic p-value
+   1         -0.0528          2.01   0.926
+ Alternative hypothesis: rho != 0
 > 
 > ## Nelder-Mead, VRS
 > cesNmVrs <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE, method = "NM",
@@ -27824,6 +27829,10 @@ nu         0.995    0.00808  123.08  0.00e+00
 [28]  -16.59   -7.68  -29.69  -19.67   36.26  -51.74  -58.68   -5.96  -40.80
 [37]    5.36  -27.20   22.29   40.96   33.09   38.44  -29.87  -18.27   -2.71
 [46]   -4.50   43.02   16.50  -23.50   89.06
+> dwt( cesNmVrs )
+ lag Autocorrelation D-W Statistic p-value
+   1          0.0896          1.71   0.272
+ Alternative hypothesis: rho != 0
 > 
 > ## Nelder-Mead, TC, CRS
 > cesNmTc <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
@@ -27976,6 +27985,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
+> try( dwt( cesNmTc ) )
+Error in durbinWatsonTest.cesEst(...) : 
+  the model object must have a component 'grad'; please re-estimate the model with argument 'returnGrad' set to 'TRUE'
 > 
 > ## Nelder-Mead, TC, VRS
 > cesNmTcVrs <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES, 
@@ -28334,6 +28346,10 @@ E_(1,2)_(3,4) (AU)   -0.293         NA      NA       NA
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
+> dwt( cesNmTcMe )
+ lag Autocorrelation D-W Statistic p-value
+   1          -0.125          2.25   0.278
+ Alternative hypothesis: rho != 0
 > 
 > ## Conjugate Gradients, CRS
 > cesCg <- cesEst( "yObs", xNames, data = MishraCES, method = "CG" )
@@ -29570,6 +29586,10 @@ rho_1   -0.007823
 rho_2   -0.029601
 rho     -0.009327
 nu       0.025182
+> dwt( cesSannMeVrs )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.025          1.85   0.564
+ Alternative hypothesis: rho != 0
 > 
 > ## BFGS, CRS
 > cesBfgs <- cesEst( "yObs", xNames, data = MishraCES, method = "BFGS",
@@ -30690,6 +30710,10 @@ rho        0.567    0.04022   14.10 4.03e-45
 [28]  -23.87  -11.53  -23.47  -17.04   30.23  -45.31  -58.21   -9.06  -37.47
 [37]   -4.55  -30.37   26.39   41.36   30.69   43.02  -30.76  -11.83    1.11
 [46]  -11.64   42.19   14.56  -20.12   87.11
+> dwt( cesBfgsCon )
+ lag Autocorrelation D-W Statistic p-value
+   1          0.0945           1.7   0.232
+ Alternative hypothesis: rho != 0
 > 
 > ## L-BFGS-B with constrained parameters, VRS
 > cesBfgsConVrs <- cesEst( "yObs", xNames, data = MishraCES, method = "L-BFGS-B",
@@ -30943,6 +30967,10 @@ nu         1.006    0.00793  126.99  0.00e+00
 [28]  -26.19  -11.48  -15.21  -11.46   29.69  -36.96  -55.98   -8.24  -37.44
 [37]  -10.96  -27.08   28.94   38.69   29.64   50.46  -30.46   -4.13    3.29
 [46]  -18.96   38.14   16.31  -20.36   88.39
+> dwt( cesBfgsConVrs )
+ lag Autocorrelation D-W Statistic p-value
+   1            0.09          1.71   0.286
+ Alternative hypothesis: rho != 0
 > 
 > ## L-BFGS-B with constrained parameters, TC, CRS
 > cesBfgsConTc <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
@@ -34726,7 +34754,7 @@ nu         0.557     0.0547  10.183 2.35e-24
 [46] 4533 4575 1431 3619 1437
 > # check random number generation
 > rnorm( 5 )
-[1] -1.695 -0.176 -0.273 -1.324  0.516
+[1] 1.5602 2.0439 0.0127 0.1110 0.8830
 > 
 > ## DE, TC, CRS
 > cesDeTc <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
@@ -36062,6 +36090,10 @@ rho        0.900    0.07337   12.27 1.38e-34
 [28]  -45.47  -63.88  -10.61  -40.93  -29.60  -46.19   24.98  -16.31  -20.05
 [37]  -44.47  -50.59   56.16   66.23   37.89   25.98   -5.47   38.95   17.97
 [46]  -16.87   30.14  106.60    2.86   97.19
+> dwt( cesLmR )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.114          1.67   0.268
+ Alternative hypothesis: rho != 0
 > 
 > ## Levenberg-Marquardt, Fixed rho, TC, CRS
 > cesLmTcR <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES,
@@ -36454,6 +36486,10 @@ nu        1.0348     0.0233  44.427 0.00e+00
 [28]  -20.52  107.63   13.91   83.33  143.79   -2.38 -297.68   26.17  -55.87
 [37]  -61.17   96.19  -12.82   -3.20  -50.89  123.67 -167.12  -55.85   -8.82
 [46]   -5.00   45.66 -181.74  -77.44   77.86
+> dwt( cesLmVrsR )
+ lag Autocorrelation D-W Statistic p-value
+   1          0.0074          1.92   0.742
+ Alternative hypothesis: rho != 0
 > 
 > ## Levenberg-Marquardt, Fixed rho_1, CRS
 > cesLmR1 <- cesEst( "yObs", xNames, data = MishraCES,
@@ -37188,6 +37224,10 @@ rho        0.285     0.0777    3.67 2.44e-04
 [33]  -32.439 -118.601    4.596  -14.697  230.479  417.279   44.471   49.482
 [41]   -5.045   54.055  -69.313   29.599   22.218   19.254   20.074  -40.243
 [49] -189.128   64.158
+> dwt( cesLmR2 )
+ lag Autocorrelation D-W Statistic p-value
+   1          -0.189          2.32   0.238
+ Alternative hypothesis: rho != 0
 > 
 > ## Levenberg-Marquardt, Fixed rho_2, TC, CRS
 > cesLmTcR2 <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES,
@@ -37924,6 +37964,10 @@ rho        0.900     0.1939    4.64  3.47e-06
 [28] -490.94 -201.91    2.45 -104.87 -143.58   30.26 -128.15 -119.13  196.42
 [37]    8.56   70.45   13.90  263.91 -304.25  -36.90 -258.92  145.27  -24.40
 [46]  -44.96  146.44 -151.36   15.71  -34.01
+> dwt( cesLmRR1 )
+ lag Autocorrelation D-W Statistic p-value
+   1            0.32          1.33   0.014
+ Alternative hypothesis: rho != 0
 > 
 > ## Levenberg-Marquardt, Fixed rho and rho2, VRS
 > cesLmVrsRR2 <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
@@ -38272,6 +38316,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
+> try( dwt( cesLmTcVrsRR2 ) )
+Error in durbinWatsonTest.cesEst(...) : 
+  the model object must have a component 'grad'; please re-estimate the model with argument 'returnGrad' set to 'TRUE'
 > 
 > ## Levenberg-Marquardt, Fixed rho, rho1, and rho2, VRS
 > cesLmVrsRRR <- cesEst( "yObs", xNames, data = MishraCES, vrs = TRUE,
@@ -38526,6 +38573,10 @@ nu         1.073     0.0391   27.43 1.17e-165
 [33]   98.142 -333.714  -34.234  104.270  -33.685  488.004  -13.078  101.930
 [41] -203.950  125.836 -259.116  102.491   -5.322  -42.648   87.993 -274.870
 [49] -159.780   -9.561
+> dwt( cesLmVrsRRR )
+ lag Autocorrelation D-W Statistic p-value
+   1           -0.17          2.32    0.29
+ Alternative hypothesis: rho != 0
 > 
 > ## Levenberg-Marquardt, Fixed rho, rho1, and rho2, TC, VRS
 > cesLmTcVrsRRR <- cesEst( "yTcVrsObs", xNames, tName = "time", data = MishraCES,
@@ -38911,6 +38962,10 @@ rho_1   -0.010105
 rho_2   -0.064232
 rho     -0.010043
 nu       0.021682
+> dwt( cesLmMeVrsRRR )
+ lag Autocorrelation D-W Statistic p-value
+   1          -0.114          2.13   0.696
+ Alternative hypothesis: rho != 0
 > 
 > 
 > ########## Grid Search for Rho_1, Rho_2, and Rho ##############
@@ -42353,4 +42408,4 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > 
 > proc.time()
    user  system elapsed 
-148.164   0.752 148.943 
+ 159.26    1.16  160.42 

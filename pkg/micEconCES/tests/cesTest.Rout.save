@@ -24,10 +24,12 @@ DEoptim package
 Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
+Loading required package: car
 
 If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
 https://r-forge.r-project.org/projects/micecon/
 > options( digits = 3 )
+> set.seed( 12345 )  # to make the bootstrapping in dwt() reproducible
 > 
 > # load data
 > data( germanFarms, package = "micEcon" )
@@ -237,6 +239,10 @@ rho    -3.7463      12038 -3.11e-04        1
  [1] -203.49 -226.18 -143.39  -51.99  -45.67  -53.69  -33.54   12.71  -29.34
 [10]   -2.36   45.44   73.34   46.69  114.57   96.21   59.88    7.35   33.25
 [19]   54.55   56.86
+> dwt( cesLandLabor )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.531         0.869   0.004
+ Alternative hypothesis: rho != 0
 > 
 > # variable returns to scale (Nelder-Mead)
 > cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -401,6 +407,10 @@ nu      1.4320      0.290   4.932 8.16e-07
  [1] -140.733 -166.510  -81.413   -1.601    4.718   -0.979   23.276   58.183
  [9]   20.628   31.456   77.267   44.554    7.017   75.492   68.089   40.293
 [17]  -29.482  -18.967  -24.089  -49.944
+> dwt( cesLandLaborVrs )
+ lag Autocorrelation D-W Statistic p-value
+   1            0.58         0.688       0
+ Alternative hypothesis: rho != 0
 > 
 > # using the CG optimization method
 > cesLandLaborCg <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -535,6 +545,9 @@ rho      0.123       18.8 0.00653    0.995
 > residuals( cesLandLaborCg )
  [1] -316.8 -321.8 -219.0 -143.5 -137.1 -130.1  -78.4  -53.0 -112.9  -87.5
 [11]  -19.0   11.2   16.3  134.9  107.5  106.0  100.2  175.2  270.6  342.7
+> try( dwt( cesLandLaborCg ) )
+Error in durbinWatsonTest.cesEst(...) : 
+  the model object must have a component 'grad'; please re-estimate the model with argument 'returnGrad' set to 'TRUE'
 > 
 > # using the SANN optimization method
 > cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -689,6 +702,10 @@ rho    -2.79022      83.10 -0.0336    0.973
  [1] -209.66 -231.06 -146.93  -56.55  -50.23  -57.25  -35.14    9.86  -33.36
 [10]   -6.44   42.71   70.88   46.11  116.70   97.86   63.24   12.87   40.85
 [19]   65.00   69.74
+> dwt( cesLandLaborSann )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.565         0.785       0
+ Alternative hypothesis: rho != 0
 > 
 > # using the BFGS optimization method
 > cesLandLaborBfgs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -825,6 +842,9 @@ rho    -4.3960      86865 -5.06e-05        1
  [1] -203.73 -226.44 -143.67  -52.26  -45.94  -53.97  -33.84   12.42  -29.62
 [10]   -2.65   45.14   73.00   46.32  114.17   95.83   59.48    6.92   32.79
 [19]   54.05   56.32
+> try( dwt( cesLandLaborBfgs ) )
+Error in durbinWatsonTest.cesEst(...) : 
+  the model object must have a component 'grad'; please re-estimate the model with argument 'returnGrad' set to 'TRUE'
 > 
 > # using the L-BFGS-B optimization method with constrained parameters
 > cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
@@ -988,6 +1008,10 @@ rho       -1.0   4.48e+13 -2.23e-14    1.000
  [1] -203.81 -226.53 -143.76  -52.35  -46.03  -54.07  -33.94   12.32  -29.71
 [10]   -2.75   45.04   72.88   46.20  114.05   95.70   59.35    6.79   32.65
 [19]   53.90   56.15
+> dwt( cesLandLaborBfgsCon )
+ lag Autocorrelation D-W Statistic p-value
+   1            0.66         0.495       0
+ Alternative hypothesis: rho != 0
 > 
 > # Kmenta approximation with CRS
 > cesLandLaborKmentaCrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -1319,6 +1343,10 @@ nu     1.66e+00   0.319635  5.1799 2.22e-07
  [1]  -219421  -266900  -317506  -292452  -292446  -330753  -425881  -375809
  [9]  -314935  -336214  -403127  -509380  -651846  -899132  -829578 -1014123
 [17] -1380317 -1852792 -2791719 -3979977
+> dwt( cesLandLaborKmenta )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.393          1.15   0.006
+ Alternative hypothesis: rho != 0
 > 
 > # using the Levenberg-Marquardt optimization method
 > cesLandLaborLm <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -1605,6 +1633,10 @@ rho   -4.04e+00     378.66 -0.010667    0.991
  [1] -204.80 -227.15 -144.02  -52.87  -46.55  -54.32  -33.69   12.26  -30.09
 [10]   -3.11   45.03   73.02   46.81  115.29   96.83   60.85    8.77   35.07
 [19]   56.90   59.64
+> dwt( cesLandLaborNewton )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.523         0.889   0.002
+ Alternative hypothesis: rho != 0
 > 
 > # using the PORT optimization rountine implemented in nlminb(), UNconstrained
 > cesLandLaborPort <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -1957,6 +1989,10 @@ rho       -1.0   5.78e+13 -1.73e-14    1.000
  [1] -203.81 -226.53 -143.76  -52.35  -46.03  -54.07  -33.94   12.32  -29.71
 [10]   -2.75   45.04   72.88   46.20  114.05   95.70   59.35    6.79   32.65
 [19]   53.90   56.15
+> dwt( cesLandLaborPortCon )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.647         0.496       0
+ Alternative hypothesis: rho != 0
 > 
 > # using the PORT optimization rountine implemented in nlminb(), constrained by hand
 > cesLandLaborPortCon2 <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -2825,6 +2861,10 @@ rho     -0.828       30.8 -0.0268    0.979
  [1] -240.26 -260.92 -175.51  -86.69  -80.37  -86.39  -62.06  -18.99  -63.07
 [10]  -37.08   13.27   38.90   15.94   90.40   71.27   39.73   -7.43   24.22
 [19]   54.12   64.45
+> dwt( cesLandLaborDe )
+ lag Autocorrelation D-W Statistic p-value
+   1            0.61         0.666       0
+ Alternative hypothesis: rho != 0
 > 
 > # using the DE optimization method implemented in DEoptim(), VRS
 > cesLandLaborDeVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
@@ -6636,4 +6676,4 @@ Error in numericDeriv(form[[3L]], names(ind), env) :
 > 
 > proc.time()
    user  system elapsed 
- 18.676   0.132  18.844 
+ 23.324   0.224  23.543 
