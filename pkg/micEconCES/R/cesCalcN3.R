@@ -5,8 +5,8 @@ cesCalcN3 <- function( xNames, tName, data, coef ) {
       gammaStar <- gammaStar * exp( coef[ "lambda" ] * data[[ tName ]] )
    }
 
-   if( coef[ "rho" ] == 0 ) {
-      if( coef[ "rho_1" ] == 0 ) {
+   if( coef[ "rho" ] == 0 & !is.na( coef[ "rho" ] ) ) {
+      if( coef[ "rho_1" ] == 0 & !is.na( coef[ "rho_1" ] ) ) {
          result <- gammaStar *
             exp( coef[ "nu" ] * 
                ( coef[ "delta" ] * (
@@ -22,7 +22,7 @@ cesCalcN3 <- function( xNames, tName, data, coef ) {
                   coef[ "rho_1" ] ) +
                ( 1 - coef[ "delta" ] ) * log( data[[ xNames[ 3 ] ]] ) ) )
       }
-   } else if( coef[ "rho_1" ] == 0 ) {
+   } else if( coef[ "rho_1" ] == 0 & !is.na( coef[ "rho_1" ] ) ) {
       result <- gammaStar * 
          ( coef[ "delta" ] *
             exp( coef[ "delta_1" ] * log( data[[ xNames[ 1 ] ]] ) +
