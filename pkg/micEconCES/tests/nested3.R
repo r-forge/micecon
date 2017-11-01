@@ -744,9 +744,9 @@ residuals( cesPortRho )
 cesPortTcRho <- cesEst( "yTcObs", xNames, tName = "time", data = MishraCES, 
    method = "PORT", rho = 0, control = list( eval.max = 500 ), 
    returnGrad = TRUE )
-print.default( cesPortRho )
-print( cesPortRho )
-summary( cesPortRho )
+print.default( cesPortTcRho )
+print( cesPortTcRho )
+summary( cesPortTcRho )
 
 ## PORT, rho fixed, VRS
 cesPortVrsRho <- cesEst( "yObs", xNames, data = MishraCES, method = "PORT", 
