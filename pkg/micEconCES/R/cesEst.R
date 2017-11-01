@@ -2,6 +2,7 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
       method = "LM", start = NULL, lower = NULL, upper = NULL,
       multErr = FALSE,
       rho1 = NULL, rho2 = NULL, rho = NULL, returnGridAll = FALSE, 
+      returnGrad = FALSE,
       random.seed = 123, rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, 
          rho = 1e-3, nu = 5e-6 ),
       checkStart = TRUE, ... ) {
@@ -475,6 +476,11 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
    rownames( result$cov.unscaled ) <- names( result$coefficients )
    colnames( result$cov.unscaled ) <- names( result$coefficients )
 
+   # gradient matrix evaluated at the estimated parameters
+   if( returnGrad ) {
+      result$grad <- gradients
+   }
+   
    class( result ) <- c( "cesEst", class( result ) )
    return( result )
 }

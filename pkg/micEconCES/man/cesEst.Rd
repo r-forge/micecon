@@ -26,7 +26,8 @@
 \usage{
 cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
    start = NULL, lower = NULL, upper = NULL, multErr = FALSE,
-   rho1 = NULL, rho2, rho = NULL, returnGridAll = FALSE, random.seed = 123,
+   rho1 = NULL, rho2, rho = NULL, returnGridAll = FALSE, 
+   returnGrad = FALSE, random.seed = 123,
    rhoApprox = c( y = 5e-6, gamma = 5e-6, delta = 5e-6, 
       rho = 1e-3, nu = 5e-6 ),
    checkStart = TRUE, \dots )
@@ -80,6 +81,12 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
       should be returned
       (ignored if argument \code{rho} is \code{NULL}
       or has only a single element).}
+   \item{returnGrad}{logical value that indicates
+      whether a matrix with the gradients of the dependent variable
+      (i.e., \eqn{y}{y} if argument \code{multErr} is \code{FALSE}
+      and \eqn{\log(y)}{log(y)} if argument \code{multErr} is \code{TRUE})
+      with respect to the parameters (evaluated at the estimated parameters)
+      should be returned.}
    \item{random.seed}{an integer used to seed R's random number generator.
       This is to ensure replicability when the \code{"SANN"}
       or \code{"DE"} method is used. Defaults to 123.}
@@ -331,6 +338,11 @@ cesEst( yName, xNames, data, tName = NULL, vrs = FALSE, method = "LM",
       for the coefficients \eqn{\rho_1}{rho_1} (first dimension, e.g. rows of a matrix),
       \eqn{\rho_2}{rho_2}, and \eqn{\rho}{rho} (last dimension, e.g. columns of a matrix)
       (only if a two-dimensional or threedimensional grid search was performed).}
+   \item{grad}{matrix with the gradients of the dependent variable
+      (i.e., \eqn{y}{y} if argument \code{multErr} is \code{FALSE}
+      and \eqn{\log(y)}{log(y)} if argument \code{multErr} is \code{TRUE})
+      with respect to the parameters evaluated at the estimated parameters
+      (only if argument \code{returnGrad} is set to \code{TRUE}).}
 }
 
 \references{
