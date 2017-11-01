@@ -8,7 +8,8 @@ cesInterN3 <- function( funcName, par, xNames, tName, data, rhoApprox ) {
       names( weights ) <- c( "rho_1 = 0", "rho = 0" )
       rhoNames <- c( "rho_1", "rho" )
       for( i in 1:2 ) {
-         if( abs( par[ rhoNames[ i ] ] ) <= rhoApprox ) {
+         if( abs( par[ rhoNames[ i ] ] ) <= rhoApprox &
+               !is.na( par[ rhoNames[ i ] ] ) ) {
             # permute the array so that the second dimension is for this 'i'
             atemp <- aperm( coefArray, c( 1, i + 1, 4 - i ) )
             atemp[ rhoNames[ i ], 1, ] <- 0
