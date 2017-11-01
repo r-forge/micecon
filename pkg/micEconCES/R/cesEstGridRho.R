@@ -1,4 +1,5 @@
-cesEstGridRho <- function( rho1Values, rho2Values, rhoValues, returnAll, ... )  {
+cesEstGridRho <- function( rho1Values, rho2Values, rhoValues, returnAll,
+   checkStart, ... )  {
 
    # some tests
    if( is.null( rho1Values ) && is.null( rho2Values ) && is.null( rhoValues ) ) {
@@ -9,7 +10,7 @@ cesEstGridRho <- function( rho1Values, rho2Values, rhoValues, returnAll, ... )  
       if( !is.numeric( rho1Values ) ) {
          stop( "the rho_1s specified in argument 'rho1Values'",
             " must be numeric" )
-      } else if(  min( rho1Values ) < -1 ) {
+      } else if(  min( rho1Values ) < -1 & checkStart ) {
          stop( "the rho_1s specified in argument 'rho1Values'",
             " must not be smaller than '-1'" )
       }
@@ -18,7 +19,7 @@ cesEstGridRho <- function( rho1Values, rho2Values, rhoValues, returnAll, ... )  
       if( !is.numeric( rho2Values ) ) {
          stop( "the rho_2s specified in argument 'rho2Values'",
             " must be numeric" )
-      } else if(  min( rho2Values ) < -1 ) {
+      } else if(  min( rho2Values ) < -1 & checkStart  ) {
          stop( "the rho_2s specified in argument 'rho2Values'",
             " must not be smaller than '-1'" )
       }
@@ -27,7 +28,7 @@ cesEstGridRho <- function( rho1Values, rho2Values, rhoValues, returnAll, ... )  
       if( !is.numeric( rhoValues ) ) {
          stop( "the rhos specified in argument 'rhoValues'",
             " must be numeric" )
-      } else if( min( rhoValues ) < -1 ) {
+      } else if( min( rhoValues ) < -1 & checkStart  ) {
          stop( "the rhos specified in argument 'rhoValues'",
             " must not be smaller than '-1'" )
       }
@@ -59,7 +60,8 @@ cesEstGridRho <- function( rho1Values, rho2Values, rhoValues, returnAll, ... )  
    for( i in 1:nrow( sumResults ) ) {
       allResults[[ i ]] <- cesEst( rho1 = sumResults[[ "rho1" ]][ i ], 
          rho2 = sumResults[[ "rho2" ]][ i ], 
-         rho = sumResults[[ "rho" ]][ i ], ... )
+         rho = sumResults[[ "rho" ]][ i ],
+         checkStart = checkStart, ... )
       sumResults$rss[ i ] <- allResults[[ i ]]$rss
       if( !is.null( allResults[[ i ]]$convergence ) ) {
          sumResults$convergence[ i ] <- allResults[[ i ]]$convergence
