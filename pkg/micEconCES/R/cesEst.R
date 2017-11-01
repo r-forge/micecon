@@ -61,7 +61,7 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
             " nested CES functions" )
       } else if( !is.numeric( rho1 ) ) {
          stop( "argument 'rho1' must be either 'NULL' or numeric" )
-      } else if( min( rho1 ) < -1 ) {
+      } else if( min( rho1 ) < -1 & checkStart ) {
          stop( "the rho1s specified in argument 'rho1'",
             " must not be smaller than '-1'" )
       }
@@ -74,7 +74,7 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
             " nested CES functions" )
       } else if( !is.numeric( rho2 ) ) {
          stop( "argument 'rho2' must be either 'NULL' or numeric" )
-      } else if( min( rho2 ) < -1 ) {
+      } else if( min( rho2 ) < -1 & checkStart ) {
          stop( "the rho2s specified in argument 'rho2'",
             " must not be smaller than '-1'" )
       }
@@ -84,7 +84,7 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
    if( !is.null( rho ) ) {
       if( !is.numeric( rho ) ) {
          stop( "argument 'rho' must be either 'NULL' or numeric" )
-      } else if( min( rho ) < -1 ) {
+      } else if( min( rho ) < -1 & checkStart ) {
          stop( "the rhos specified in argument 'rho'",
             " must not be smaller than '-1'" )
       }
@@ -97,7 +97,8 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
          lower = lower, upper = upper, multErr = multErr,
          rho1Values = rho1, rho2Values = rho2, rhoValues = rho, 
          returnAll = returnGridAll,
-         random.seed = random.seed, rhoApprox = rhoApprox, ... )
+         random.seed = random.seed, rhoApprox = rhoApprox, 
+         checkStart = checkStart, ... )
       result$call <- match.call()
       return( result )
    }
