@@ -11,7 +11,7 @@ germanFarms$qVarInput <- germanFarms$vVarInput / germanFarms$pVarInput
 
 ## CES: Land & Labor (Nelder-Mead)
 cesLandLabor <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-   method = "NM" )
+   method = "NM", returnGrad = TRUE )
 print.default( cesLandLabor ) 
 print( cesLandLabor )
 summary( cesLandLabor )
@@ -26,7 +26,7 @@ residuals( cesLandLabor )
 
 # variable returns to scale (Nelder-Mead)
 cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-   vrs = TRUE, method = "Nelder-Mead" )
+   vrs = TRUE, method = "Nelder-Mead", returnGrad = TRUE )
 print.default( cesLandLaborVrs )
 print( cesLandLaborVrs )
 summary( cesLandLaborVrs )
@@ -50,7 +50,7 @@ residuals( cesLandLaborCg )
 
 # using the SANN optimization method
 cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-   method = "SANN" )
+   method = "SANN", returnGrad = TRUE )
 print.default( cesLandLaborSann )
 print( cesLandLaborSann )
 summary( cesLandLaborSann )
@@ -74,7 +74,7 @@ residuals( cesLandLaborBfgs )
 
 # using the L-BFGS-B optimization method with constrained parameters
 cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
-   germanFarms, method = "L-BFGS-B" )
+   germanFarms, method = "L-BFGS-B", returnGrad = TRUE )
 print.default( cesLandLaborBfgsCon )
 print( cesLandLaborBfgsCon )
 summary( cesLandLaborBfgsCon )
@@ -98,7 +98,7 @@ residuals( cesLandLaborKmentaCrs )
 
 # Kmenta approximation with VRS
 cesLandLaborKmenta <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-   vrs = TRUE, method = "Kmenta" )
+   vrs = TRUE, method = "Kmenta", returnGrad = TRUE )
 print.default( cesLandLaborKmenta )
 print( cesLandLaborKmenta )
 summary( cesLandLaborKmenta )
@@ -122,7 +122,7 @@ residuals( cesLandLaborLm )
 
 # using the Newton-type optimization method implemented in nlm()
 cesLandLaborNewton <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-   method = "Newton" )
+   method = "Newton", returnGrad = TRUE )
 print.default( cesLandLaborNewton )
 print( cesLandLaborNewton )
 summary( cesLandLaborNewton )
@@ -149,7 +149,7 @@ residuals( cesLandLaborPort )
 
 # using the PORT optimization rountine implemented in nlminb(), constrained
 cesLandLaborPortCon <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-   method = "PORT" )
+   method = "PORT", returnGrad = TRUE )
 print.default( cesLandLaborPortCon )
 print( cesLandLaborPortCon )
 summary( cesLandLaborPortCon )
@@ -197,7 +197,8 @@ residuals( cesLandLaborPortVrsCon )
 
 # using the DE optimization method implemented in DEoptim(), CRS
 cesLandLaborDe <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-   method = "DE", control = DEoptim.control( trace = FALSE ) )
+   method = "DE", control = DEoptim.control( trace = FALSE ), 
+   returnGrad = TRUE )
 print.default( cesLandLaborDe )
 print( cesLandLaborDe )
 summary( cesLandLaborDe )

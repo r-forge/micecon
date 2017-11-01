@@ -1,5 +1,5 @@
 
-R version 3.4.1 (2017-06-30) -- "Single Candle"
+R version 3.4.2 (2017-09-28) -- "Short Summer"
 Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -39,7 +39,7 @@ https://r-forge.r-project.org/projects/micecon/
 > 
 > ## CES: Land & Labor (Nelder-Mead)
 > cesLandLabor <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-+    method = "NM" )
++    method = "NM", returnGrad = TRUE )
 > print.default( cesLandLabor ) 
 $optim
 $optim$par
@@ -76,7 +76,7 @@ E_1_2 (all)
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "NM")
+    method = "NM", returnGrad = TRUE)
 
 $method
 [1] "Nelder-Mead"
@@ -112,6 +112,29 @@ gamma 51678531 -180242 -949890
 delta  -180242     629    3313
 rho    -949890    3313   17468
 
+$grad
+      gamma delta  rho
+ [1,]  11.5  4440 -219
+ [2,]  11.9  4592 -226
+ [3,]  12.1  4685 -231
+ [4,]  12.2  4726 -233
+ [5,]  12.2  4726 -233
+ [6,]  12.4  4787 -236
+ [7,]  12.7  4916 -242
+ [8,]  12.7  4928 -243
+ [9,]  12.3  4778 -235
+[10,]  12.8  4946 -244
+[11,]  13.1  5079 -250
+[12,]  14.6  5668 -279
+[13,]  15.2  5903 -291
+[14,]  15.8  6108 -301
+[15,]  15.4  5981 -295
+[16,]  15.6  6049 -298
+[17,]  16.4  6365 -314
+[18,]  17.2  6653 -328
+[19,]  18.3  7080 -349
+[20,]  19.3  7475 -368
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLabor )
@@ -119,7 +142,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "NM")
+    method = "NM", returnGrad = TRUE)
 
 Coefficients:
    gamma    delta      rho 
@@ -132,7 +155,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "NM")
+    method = "NM", returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 assuming an additive error term
@@ -156,7 +179,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "NM")
+    method = "NM", returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 assuming an additive error term
@@ -176,7 +199,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "NM")
+    method = "NM", returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 assuming an additive error term
@@ -217,7 +240,7 @@ rho    -3.7463      12038 -3.11e-04        1
 > 
 > # variable returns to scale (Nelder-Mead)
 > cesLandLaborVrs <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-+    vrs = TRUE, method = "Nelder-Mead" )
++    vrs = TRUE, method = "Nelder-Mead", returnGrad = TRUE )
 > print.default( cesLandLaborVrs )
 $optim
 $optim$par
@@ -254,7 +277,7 @@ E_1_2 (all)
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "Nelder-Mead")
+    vrs = TRUE, method = "Nelder-Mead", returnGrad = TRUE)
 
 $method
 [1] "Nelder-Mead"
@@ -291,6 +314,29 @@ delta  -0.105  3.19e-05  0.000687 -1.32e-05
 rho    -2.249  6.87e-04  0.014842 -2.61e-04
 nu      0.045 -1.32e-05 -0.000261  2.01e-05
 
+$grad
+      gamma delta   rho   nu
+ [1,]  4.65 39898 -1125 1166
+ [2,]  4.83 42001 -1192 1242
+ [3,]  4.92 43360 -1238 1281
+ [4,]  5.02 43821 -1246 1322
+ [5,]  5.02 43821 -1246 1322
+ [6,]  5.08 44730 -1278 1346
+ [7,]  5.20 46675 -1346 1400
+ [8,]  5.26 46702 -1339 1427
+ [9,]  5.08 44558 -1270 1347
+[10,]  5.33 46839 -1336 1457
+[11,]  5.49 48797 -1400 1526
+[12,]  6.40 57150 -1644 1939
+[13,]  6.71 60803 -1762 2084
+[14,]  6.93 64181 -1881 2191
+[15,]  6.74 62223 -1820 2101
+[16,]  6.78 63459 -1870 2120
+[17,]  7.20 68516 -2037 2323
+[18,]  7.59 73276 -2196 2511
+[19,]  8.17 80485 -2439 2804
+[20,]  8.73 87318 -2669 3090
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLaborVrs )
@@ -298,7 +344,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "Nelder-Mead")
+    vrs = TRUE, method = "Nelder-Mead", returnGrad = TRUE)
 
 Coefficients:
    gamma    delta      rho       nu 
@@ -311,7 +357,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "Nelder-Mead")
+    vrs = TRUE, method = "Nelder-Mead", returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 assuming an additive error term
@@ -492,7 +538,7 @@ rho      0.123       18.8 0.00653    0.995
 > 
 > # using the SANN optimization method
 > cesLandLaborSann <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-+    method = "SANN" )
++    method = "SANN", returnGrad = TRUE )
 > print.default( cesLandLaborSann )
 $optim
 $optim$par
@@ -526,7 +572,7 @@ E_1_2 (all)
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "SANN")
+    method = "SANN", returnGrad = TRUE)
 
 $method
 [1] "SANN"
@@ -562,6 +608,29 @@ gamma 11108.43 -2.188005 -92.8964
 delta    -2.19  0.000431   0.0183
 rho     -92.90  0.018313   0.7780
 
+$grad
+      gamma delta   rho
+ [1,]  4.23 49121  -652
+ [2,]  4.36 50918  -678
+ [3,]  4.45 52061  -694
+ [4,]  4.49 52448  -699
+ [5,]  4.49 52448  -699
+ [6,]  4.54 53204  -710
+ [7,]  4.66 54799  -733
+ [8,]  4.67 54828  -732
+ [9,]  4.54 53062  -707
+[10,]  4.70 54944  -733
+[11,]  4.82 56533  -755
+[12,]  5.37 63126  -844
+[13,]  5.59 65902  -884
+[14,]  5.77 68405  -920
+[15,]  5.65 66947  -900
+[16,]  5.71 67846  -915
+[17,]  6.00 71536  -967
+[18,]  6.27 74924 -1015
+[19,]  6.66 79920 -1086
+[20,]  7.03 84524 -1151
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLaborSann )
@@ -569,7 +638,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "SANN")
+    method = "SANN", returnGrad = TRUE)
 
 Coefficients:
     gamma     delta       rho 
@@ -582,7 +651,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "SANN")
+    method = "SANN", returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'SANN' optimizer
 assuming an additive error term
@@ -759,7 +828,7 @@ rho    -4.3960      86865 -5.06e-05        1
 > 
 > # using the L-BFGS-B optimization method with constrained parameters
 > cesLandLaborBfgsCon <- cesEst( "qOutput", c( "land", "qLabor" ),
-+    germanFarms, method = "L-BFGS-B" )
++    germanFarms, method = "L-BFGS-B", returnGrad = TRUE )
 > print.default( cesLandLaborBfgsCon )
 $optim
 $optim$par
@@ -800,7 +869,7 @@ E_1_2 (all)
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "L-BFGS-B")
+    method = "L-BFGS-B", returnGrad = TRUE)
 
 $method
 [1] "L-BFGS-B"
@@ -836,6 +905,29 @@ gamma  1.33e+00 -2.85e-02 -3.44e+09
 delta -2.85e-02  6.12e-04  7.30e+07
 rho   -3.44e+09  7.30e+07  2.42e+23
 
+$grad
+      gamma delta       rho
+ [1,]  23.4  1079 -4.55e-13
+ [2,]  24.2  1118 -4.55e-13
+ [3,]  24.7  1143  4.55e-13
+ [4,]  24.9  1151  0.00e+00
+ [5,]  24.9  1151  0.00e+00
+ [6,]  25.2  1168  4.55e-13
+ [7,]  25.9  1202  0.00e+00
+ [8,]  26.0  1203  0.00e+00
+ [9,]  25.2  1165  0.00e+00
+[10,]  26.1  1206 -9.09e-13
+[11,]  26.8  1240  0.00e+00
+[12,]  29.9  1385  0.00e+00
+[13,]  31.1  1445  9.09e-13
+[14,]  32.2  1500  0.00e+00
+[15,]  31.5  1468  0.00e+00
+[16,]  31.9  1488  9.09e-13
+[17,]  33.5  1569  0.00e+00
+[18,]  35.1  1643 -9.09e-13
+[19,]  37.3  1754  0.00e+00
+[20,]  39.4  1856  0.00e+00
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLaborBfgsCon )
@@ -843,7 +935,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "L-BFGS-B")
+    method = "L-BFGS-B", returnGrad = TRUE)
 
 Coefficients:
 gamma delta   rho 
@@ -856,7 +948,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "L-BFGS-B")
+    method = "L-BFGS-B", returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 assuming an additive error term
@@ -1051,7 +1143,7 @@ rho   -1.55e-02   4.45e-03  -3.486 0.000490
 > 
 > # Kmenta approximation with VRS
 > cesLandLaborKmenta <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-+    vrs = TRUE, method = "Kmenta" )
++    vrs = TRUE, method = "Kmenta", returnGrad = TRUE )
 > print.default( cesLandLaborKmenta )
 $translog
 Estimated Translog function with 20 observations.
@@ -1102,7 +1194,7 @@ E_1_2 (all)
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "Kmenta")
+    vrs = TRUE, method = "Kmenta", returnGrad = TRUE)
 
 $method
 [1] "Kmenta"
@@ -1136,6 +1228,29 @@ delta -1.96e-13  1.06e-07 -5.76e-10 -2.11e-09
 rho    1.11e-15 -5.76e-10  3.45e-12  6.59e-12
 nu     3.21e-15 -2.11e-09  6.59e-12  1.15e-10
 
+$grad
+         gamma    delta      rho       nu
+ [1,] 1.68e+11   530783 2.82e+07  3439914
+ [2,] 2.04e+11   648386 3.47e+07  4212892
+ [3,] 2.42e+11   774955 4.18e+07  5043857
+ [4,] 2.23e+11   711847 3.82e+07  4634347
+ [5,] 2.23e+11   711847 3.82e+07  4634347
+ [6,] 2.53e+11   807610 4.36e+07  5263665
+ [7,] 3.25e+11  1046741 5.71e+07  6838044
+ [8,] 2.87e+11   920040 4.99e+07  6008819
+ [9,] 2.40e+11   767953 4.13e+07  5003878
+[10,] 2.57e+11   820040 4.42e+07  5355116
+[11,] 3.08e+11   987549 5.36e+07  6462389
+[12,] 3.89e+11  1249670 6.80e+07  8234941
+[13,] 4.97e+11  1608091 8.83e+07 10628812
+[14,] 6.85e+11  2237013 1.25e+08 14827939
+[15,] 6.32e+11  2060986 1.15e+08 13641836
+[16,] 7.73e+11  2533954 1.42e+08 16793240
+[17,] 1.05e+12  3473294 1.97e+08 23104945
+[18,] 1.41e+12  4694857 2.70e+08 31335309
+[19,] 2.13e+12  7142425 4.17e+08 47893356
+[20,] 3.03e+12 10266478 6.07e+08 69118980
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLaborKmenta )
@@ -1143,7 +1258,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "Kmenta")
+    vrs = TRUE, method = "Kmenta", returnGrad = TRUE)
 
 Coefficients:
     gamma     delta       rho        nu 
@@ -1156,7 +1271,7 @@ Estimated CES function with variable returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    vrs = TRUE, method = "Kmenta")
+    vrs = TRUE, method = "Kmenta", returnGrad = TRUE)
 
 Estimation by the linear Kmenta approximation
 Test of the null hypothesis that the restrictions of the Translog
@@ -1337,7 +1452,7 @@ rho     -0.461       6.01 -0.07672    0.939
 > 
 > # using the Newton-type optimization method implemented in nlm()
 > cesLandLaborNewton <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-+    method = "Newton" )
++    method = "Newton", returnGrad = TRUE )
 > print.default( cesLandLaborNewton )
 $nlm
 $nlm$minimum
@@ -1372,7 +1487,7 @@ E_1_2 (all)
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "Newton")
+    method = "Newton", returnGrad = TRUE)
 
 $method
 [1] "Newton"
@@ -1408,6 +1523,29 @@ gamma 117724.94 -3.971483 -1.41e+03
 delta     -3.97  0.000134  4.78e-02
 rho    -1414.77  0.047768  1.70e+01
 
+$grad
+      gamma  delta  rho
+ [1,]  4.20 295025 -479
+ [2,]  4.34 305424 -497
+ [3,]  4.42 311898 -507
+ [4,]  4.46 314480 -511
+ [5,]  4.46 314480 -511
+ [6,]  4.52 318730 -519
+ [7,]  4.64 327717 -534
+ [8,]  4.65 328238 -534
+ [9,]  4.51 318006 -517
+[10,]  4.67 329263 -536
+[11,]  4.80 338389 -551
+[12,]  5.35 377688 -615
+[13,]  5.57 393736 -642
+[14,]  5.76 407886 -666
+[15,]  5.64 399322 -651
+[16,]  5.70 404169 -660
+[17,]  6.00 425533 -695
+[18,]  6.27 445095 -728
+[19,]  6.67 473994 -775
+[20,]  7.04 500662 -820
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLaborNewton )
@@ -1415,7 +1553,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "Newton")
+    method = "Newton", returnGrad = TRUE)
 
 Coefficients:
     gamma     delta       rho 
@@ -1428,7 +1566,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "Newton")
+    method = "Newton", returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'Newton' optimizer
 assuming an additive error term
@@ -1657,7 +1795,7 @@ rho    -5.9752         NA      NA       NA
 > 
 > # using the PORT optimization rountine implemented in nlminb(), constrained
 > cesLandLaborPortCon <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-+    method = "PORT" )
++    method = "PORT", returnGrad = TRUE )
 > print.default( cesLandLaborPortCon )
 $nlminb
 $nlminb$par
@@ -1700,7 +1838,7 @@ E_1_2 (all)
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "PORT")
+    method = "PORT", returnGrad = TRUE)
 
 $method
 [1] "PORT"
@@ -1736,6 +1874,29 @@ gamma  1.33e+00 -2.86e-02  3.09e+10
 delta -2.86e-02  6.14e-04 -7.06e+08
 rho    3.09e+10 -7.06e+08  4.03e+23
 
+$grad
+      gamma delta       rho
+ [1,]  23.4  1079  0.00e+00
+ [2,]  24.2  1118 -4.55e-13
+ [3,]  24.7  1143  0.00e+00
+ [4,]  24.9  1151  0.00e+00
+ [5,]  24.9  1151  0.00e+00
+ [6,]  25.2  1168  4.55e-13
+ [7,]  25.9  1202  0.00e+00
+ [8,]  26.0  1203  9.09e-13
+ [9,]  25.2  1165  0.00e+00
+[10,]  26.1  1206  0.00e+00
+[11,]  26.8  1240  0.00e+00
+[12,]  29.9  1385  0.00e+00
+[13,]  31.1  1445  0.00e+00
+[14,]  32.2  1500  9.09e-13
+[15,]  31.5  1468  0.00e+00
+[16,]  31.9  1488  0.00e+00
+[17,]  33.5  1569  9.09e-13
+[18,]  35.1  1643  0.00e+00
+[19,]  37.3  1754  0.00e+00
+[20,]  39.4  1856  0.00e+00
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLaborPortCon )
@@ -1743,7 +1904,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "PORT")
+    method = "PORT", returnGrad = TRUE)
 
 Coefficients:
 gamma delta   rho 
@@ -1756,7 +1917,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "PORT")
+    method = "PORT", returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 assuming an additive error term
@@ -2240,7 +2401,8 @@ nu       1.887      0.244   7.749 9.28e-15
 > 
 > # using the DE optimization method implemented in DEoptim(), CRS
 > cesLandLaborDe <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
-+    method = "DE", control = DEoptim.control( trace = FALSE ) )
++    method = "DE", control = DEoptim.control( trace = FALSE ), 
++    returnGrad = TRUE )
 > print.default( cesLandLaborDe )
 $DEoptim
 $optim
@@ -2550,7 +2712,7 @@ E_1_2 (all)
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "DE", control = DEoptim.control(trace = FALSE))
+    method = "DE", returnGrad = TRUE, control = DEoptim.control(trace = FALSE))
 
 $method
 [1] "DE"
@@ -2582,6 +2744,29 @@ gamma 998.70 -7.0258 -9.4614
 delta  -7.03  0.0494  0.0666
 rho    -9.46  0.0666  0.0897
 
+$grad
+      gamma delta   rho
+ [1,]  10.6  2484  -725
+ [2,]  10.9  2574  -756
+ [3,]  11.1  2631  -778
+ [4,]  11.3  2651  -781
+ [5,]  11.3  2651  -781
+ [6,]  11.4  2688  -795
+ [7,]  11.6  2769  -827
+ [8,]  11.7  2770  -823
+ [9,]  11.4  2681  -792
+[10,]  11.8  2777  -820
+[11,]  12.1  2856  -849
+[12,]  13.4  3189  -950
+[13,]  13.9  3329 -1000
+[14,]  14.4  3457 -1050
+[15,]  14.1  3383 -1025
+[16,]  14.2  3429 -1048
+[17,]  14.9  3617 -1115
+[18,]  15.5  3791 -1180
+[19,]  16.4  4048 -1275
+[20,]  17.2  4286 -1364
+
 attr(,"class")
 [1] "cesEst" "list"  
 > print( cesLandLaborDe )
@@ -2589,7 +2774,7 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "DE", control = DEoptim.control(trace = FALSE))
+    method = "DE", returnGrad = TRUE, control = DEoptim.control(trace = FALSE))
 
 Coefficients:
   gamma   delta     rho 
@@ -2602,7 +2787,7 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qLabor"), data = germanFarms, 
-    method = "DE", control = DEoptim.control(trace = FALSE))
+    method = "DE", returnGrad = TRUE, control = DEoptim.control(trace = FALSE))
 
 Estimation by non-linear least-squares using the 'DE' optimizer
 assuming an additive error term
@@ -6451,4 +6636,4 @@ Error in numericDeriv(form[[3L]], names(ind), env) :
 > 
 > proc.time()
    user  system elapsed 
-   18.9     0.1    19.0 
+ 18.676   0.132  18.844 
