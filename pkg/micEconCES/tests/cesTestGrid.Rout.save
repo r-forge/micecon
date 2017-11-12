@@ -1,5 +1,5 @@
 
-R version 3.3.3 (2017-03-06) -- "Another Canoe"
+R version 3.4.2 (2017-09-28) -- "Short Summer"
 Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -24,6 +24,7 @@ DEoptim package
 Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
+Loading required package: car
 
 If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
 https://r-forge.r-project.org/projects/micecon/
@@ -44,7 +45,7 @@ https://r-forge.r-project.org/projects/micecon/
 > ## Nelder-Mead, CRS
 > cesGridNm <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, rho = seq( from = -0.8, to = 1.2, by = 0.4 ),
-+    method = "Nelder-Mead" )
++    method = "Nelder-Mead", returnGrad = TRUE )
 > print.default( cesGridNm ) 
 $optim
 $optim$par
@@ -82,7 +83,7 @@ E_1_2 (all)
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "Nelder-Mead", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 $method
 [1] "Nelder-Mead"
@@ -121,6 +122,29 @@ gamma 25044.3 204.400 40.1372
 delta   204.4   1.668  0.3276
 rho      40.1   0.328  0.0643
 
+$grad
+      gamma delta  rho
+ [1,]  6.92 -1264 2116
+ [2,]  7.10 -1304 2206
+ [3,]  7.27 -1331 2244
+ [4,]  7.26 -1338 2285
+ [5,]  7.27 -1339 2282
+ [6,]  7.36 -1356 2312
+ [7,]  7.57 -1393 2374
+ [8,]  7.63 -1399 2365
+ [9,]  7.38 -1355 2299
+[10,]  7.66 -1405 2373
+[11,]  7.84 -1441 2446
+[12,]  8.75 -1608 2729
+[13,]  9.10 -1673 2846
+[14,]  9.47 -1735 2929
+[15,]  9.35 -1704 2844
+[16,]  9.51 -1727 2860
+[17,] 10.13 -1825 2974
+[18,] 10.66 -1912 3088
+[19,] 11.38 -2037 3274
+[20,] 12.02 -2151 3456
+
 $allRhoSum
    rho    rss convergence
 1 -0.8 153725        TRUE
@@ -141,7 +165,7 @@ Estimated CES function
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "Nelder-Mead", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 Coefficients:
  gamma  delta    rho 
@@ -155,7 +179,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     method = "Nelder-Mead", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -196,6 +220,10 @@ rho       0.40       22.2  0.0180    0.986
 [10]   10.82   63.64   93.53   70.10  129.96   97.80   52.71  -20.22   -7.75
 [19]    4.39    3.10
 > plot( cesGridNm )
+> dwt( cesGridNm )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.748         0.245       0
+ Alternative hypothesis: rho != 0
 > 
 > ## Nelder-Mead, TC, CRS
 > cesGridNmTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -334,11 +362,14 @@ Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
 E_1_2 (all)        5        135    0.04     0.97
 
+> try( dwt( summary( cesGridNmTc ) ) )
+Error in durbinWatsonTest.cesEst(...) : 
+  the model object must have a component 'grad'; please re-estimate the model with argument 'returnGrad' set to 'TRUE'
 > 
 > ## Nelder-Mead, VRS
 > cesGridNmVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, method = "NM", vrs = TRUE,
-+    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ), returnGrad = TRUE )
 > print.default( cesGridNmVrs )
 $optim
 $optim$par
@@ -376,7 +407,7 @@ E_1_2 (all)
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "NM", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 $method
 [1] "Nelder-Mead"
@@ -416,6 +447,29 @@ delta  0.015784  0.002145 -5.88e-03 -1.20e-05
 rho   -0.043269 -0.005884  1.61e-02  3.03e-05
 nu    -0.000129 -0.000012  3.03e-05  3.45e-06
 
+$grad
+      gamma  delta   rho   nu
+ [1,]   446  -7490 -1540 3921
+ [2,]   484  -8310 -1738 4315
+ [3,]   495  -8426 -1752 4423
+ [4,]   520  -9095 -1931 4689
+ [5,]   518  -9009 -1907 4659
+ [6,]   528  -9206 -1949 4773
+ [7,]   550  -9580 -2027 5004
+ [8,]   540  -9238 -1929 4891
+ [9,]   520  -8963 -1883 4681
+[10,]   542  -9268 -1933 4915
+[11,]   573  -9893 -2080 5241
+[12,]   680 -11740 -2468 6389
+[13,]   729 -12647 -2668 6925
+[14,]   753 -12851 -2678 7182
+[15,]   705 -11749 -2402 6659
+[16,]   703 -11544 -2331 6641
+[17,]   730 -11607 -2284 6938
+[18,]   765 -11936 -2313 7319
+[19,]   834 -12892 -2480 8082
+[20,]   907 -14003 -2692 8897
+
 $allRhoSum
    rho    rss convergence
 1 -0.8  50627        TRUE
@@ -436,7 +490,7 @@ Estimated CES function
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "NM", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 Coefficients:
  gamma  delta    rho     nu 
@@ -450,7 +504,7 @@ Estimated CES function with variable returns to scale
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "NM", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'Nelder-Mead' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -489,6 +543,10 @@ delta    0.865     2.3244  0.3721 7.10e-01
 rho     -0.400     6.3781 -0.0627 9.50e-01
 nu       1.567     0.0932 16.8048 2.25e-63
 > plot( cesGridNmVrs )
+> dwt( cesGridNmVrs )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.513         0.846       0
+ Alternative hypothesis: rho != 0
 > 
 > # using the CG optimization method
 > cesGridCg <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -647,7 +705,7 @@ rho      1.200        183 0.00655    0.995
 > # using the CG optimization method, VRS
 > cesGridCgVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, method = "CG", vrs = TRUE,
-+    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ), returnGrad = TRUE )
 There were 50 or more warnings (use warnings() to see the first 50)
 > print.default( cesGridCgVrs )
 $optim
@@ -687,7 +745,7 @@ E_1_2 (all)
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "CG", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 $method
 [1] "CG"
@@ -727,6 +785,29 @@ delta  0.241851  0.01180 -3.26e-02 -3.00e-05
 rho   -0.667414 -0.03259  9.00e-02  7.49e-05
 nu    -0.000806 -0.00003  7.49e-05  3.47e-06
 
+$grad
+      gamma delta   rho   nu
+ [1,]   107 -4422  -813 3825
+ [2,]   112 -4741  -886 4079
+ [3,]   115 -4824  -896 4194
+ [4,]   118 -5034  -954 4312
+ [5,]   117 -5011  -947 4303
+ [6,]   120 -5099  -964 4392
+ [7,]   124 -5274  -997 4578
+ [8,]   123 -5186  -968 4555
+ [9,]   119 -5026  -943 4356
+[10,]   124 -5205  -970 4580
+[11,]   129 -5452 -1024 4800
+[12,]   148 -6289 -1181 5700
+[13,]   157 -6667 -1256 6089
+[14,]   163 -6842 -1274 6371
+[15,]   157 -6469 -1183 6090
+[16,]   158 -6449 -1166 6152
+[17,]   167 -6633 -1169 6554
+[18,]   175 -6878 -1196 6961
+[19,]   189 -7380 -1274 7635
+[20,]   203 -7912 -1364 8301
+
 $allRhoSum
    rho    rss convergence
 1 -0.8 620063       FALSE
@@ -747,7 +828,7 @@ Estimated CES function
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "CG", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 Coefficients:
  gamma  delta    rho     nu 
@@ -761,7 +842,7 @@ Estimated CES function with variable returns to scale
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "CG", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'CG' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -800,6 +881,10 @@ delta    0.866      6.668  0.1299 8.97e-01
 rho      0.000     18.418  0.0000 1.00e+00
 nu       1.305      0.114 11.4083 3.80e-30
 > plot( cesGridCgVrs )
+> dwt( cesGridCgVrs )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.505          0.87       0
+ Alternative hypothesis: rho != 0
 > 
 > # using the CG optimization method, TC, VRS
 > cesGridCgTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1367,7 +1452,7 @@ nu        1.51      0.095  15.869 1.03e-56
 > # using the BFGS optimization method
 > cesGridBfgs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, method = "BFGS",
-+    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ), returnGrad = TRUE )
 > print.default( cesGridBfgs )
 $optim
 $optim$par
@@ -1405,7 +1490,8 @@ E_1_2 (all)
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "BFGS", rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    method = "BFGS", rho = seq(from = -0.8, to = 1.2, by = 0.4), 
+    returnGrad = TRUE)
 
 $method
 [1] "BFGS"
@@ -1444,6 +1530,29 @@ gamma 25028.1 204.297 40.1304
 delta   204.3   1.668  0.3276
 rho      40.1   0.328  0.0644
 
+$grad
+      gamma delta  rho
+ [1,]  6.92 -1264 2116
+ [2,]  7.11 -1304 2205
+ [3,]  7.27 -1331 2244
+ [4,]  7.26 -1339 2285
+ [5,]  7.27 -1339 2282
+ [6,]  7.37 -1356 2311
+ [7,]  7.57 -1393 2373
+ [8,]  7.63 -1399 2365
+ [9,]  7.38 -1355 2299
+[10,]  7.66 -1405 2373
+[11,]  7.84 -1441 2445
+[12,]  8.75 -1608 2728
+[13,]  9.10 -1673 2846
+[14,]  9.47 -1735 2928
+[15,]  9.35 -1704 2843
+[16,]  9.51 -1727 2860
+[17,] 10.13 -1825 2973
+[18,] 10.66 -1912 3087
+[19,] 11.38 -2037 3274
+[20,] 12.02 -2151 3455
+
 $allRhoSum
    rho    rss convergence
 1 -0.8 153725        TRUE
@@ -1463,7 +1572,8 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "BFGS", rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    method = "BFGS", rho = seq(from = -0.8, to = 1.2, by = 0.4), 
+    returnGrad = TRUE)
 
 Coefficients:
  gamma  delta    rho 
@@ -1476,7 +1586,8 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "BFGS", rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    method = "BFGS", rho = seq(from = -0.8, to = 1.2, by = 0.4), 
+    returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -1510,6 +1621,10 @@ gamma   165.42    13868.6  0.0119    0.990
 delta     1.87      113.2  0.0165    0.987
 rho       0.40       22.2  0.0180    0.986
 > plot( cesGridBfgs )
+> dwt( cesGridBfgs )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.748         0.245       0
+ Alternative hypothesis: rho != 0
 > 
 > # using the BFGS optimization method, VRS
 > cesGridBfgsVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -1966,7 +2081,7 @@ E_1_2 (all)    0.556      2.435    0.23     0.82
 > # using the L-BFGS-B optimization method with constrained parameters
 > cesGridBfgsCon <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, method = "L-BFGS-B",
-+    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ), returnGrad = TRUE )
 > print.default( cesGridBfgsCon )
 $optim
 $optim$par
@@ -2007,7 +2122,8 @@ E_1_2 (all)
 
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "L-BFGS-B", rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    method = "L-BFGS-B", rho = seq(from = -0.8, to = 1.2, by = 0.4), 
+    returnGrad = TRUE)
 
 $method
 [1] "L-BFGS-B"
@@ -2046,6 +2162,29 @@ gamma    NA    NA  NA
 delta    NA    NA  NA
 rho      NA    NA  NA
 
+$grad
+      gamma delta rho
+ [1,]  23.4 -3644   0
+ [2,]  24.2 -3831   0
+ [3,]  24.7 -3887   0
+ [4,]  24.9 -4000   0
+ [5,]  24.9 -3988   0
+ [6,]  25.2 -4042   0
+ [7,]  25.9 -4148   0
+ [8,]  26.0 -4105   0
+ [9,]  25.2 -4004   0
+[10,]  26.1 -4117   0
+[11,]  26.8 -4260   0
+[12,]  29.9 -4753   0
+[13,]  31.1 -4967   0
+[14,]  32.2 -5078   0
+[15,]  31.5 -4882   0
+[16,]  31.9 -4881   0
+[17,]  33.5 -5010   0
+[18,]  35.1 -5163   0
+[19,]  37.3 -5456   0
+[20,]  39.4 -5755   0
+
 $allRhoSum
    rho    rss convergence
 1 -0.8 165832        TRUE
@@ -2065,7 +2204,8 @@ Estimated CES function
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "L-BFGS-B", rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    method = "L-BFGS-B", rho = seq(from = -0.8, to = 1.2, by = 0.4), 
+    returnGrad = TRUE)
 
 Coefficients:
 gamma delta   rho 
@@ -2078,7 +2218,8 @@ Estimated CES function with constant returns to scale
 
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
-    method = "L-BFGS-B", rho = seq(from = -0.8, to = 1.2, by = 0.4))
+    method = "L-BFGS-B", rho = seq(from = -0.8, to = 1.2, by = 0.4), 
+    returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -2113,6 +2254,10 @@ gamma     49.1         NA      NA       NA
 delta      1.0         NA      NA       NA
 rho        0.0         NA      NA       NA
 > plot( cesGridBfgsCon )
+> dwt( cesGridBfgsCon )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.747         0.246       0
+ Alternative hypothesis: rho != 0
 > 
 > # using the L-BFGS-B optimization method, TC, CRS
 > cesGridBfgsConTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -3712,7 +3857,7 @@ rho       -0.8   3.13e+13 -2.55e-14 1.00e+00
 > # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 > cesGridPortVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    data = germanFarms, method = "PORT", vrs = TRUE,
-+    rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
++    rho = seq( from = -0.8, to = 1.2, by = 0.4 ), returnGrad = TRUE )
 > print.default( cesGridPortVrs )
 $nlminb
 $nlminb$par
@@ -3756,7 +3901,7 @@ E_1_2 (all)
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "PORT", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 $method
 [1] "PORT"
@@ -3796,6 +3941,29 @@ delta  3.62e-04  2.51e-04 -2.02e-03 -3.25e-06
 rho   -2.91e-03 -2.02e-03  1.62e-02  2.35e-05
 nu    -9.30e-06 -3.25e-06  2.35e-05  3.45e-06
 
+$grad
+      gamma  delta   rho    nu
+ [1,]  5192 -20467 -1621  5509
+ [2,]  5625 -22675 -1820  6025
+ [3,]  5751 -23011 -1838  6176
+ [4,]  6023 -24744 -2008  6503
+ [5,]  5994 -24529 -1986  6468
+ [6,]  6120 -25061 -2030  6620
+ [7,]  6375 -26085 -2112  6927
+ [8,]  6268 -25217 -2021  6797
+ [9,]  6028 -24440 -1968  6508
+[10,]  6296 -25299 -2026  6832
+[11,]  6645 -26974 -2174  7255
+[12,]  7888 -32014 -2580  8780
+[13,]  8454 -34463 -2784  9482
+[14,]  8746 -35093 -2808  9847
+[15,]  8207 -32113 -2532  9175
+[16,]  8190 -31529 -2462  9154
+[17,]  8490 -31541 -2411  9528
+[18,]  8872 -32274 -2437 10004
+[19,]  9655 -34755 -2609 10989
+[20,] 10497 -37739 -2830 12056
+
 $allRhoSum
    rho   rss convergence
 1 -0.8 50626        TRUE
@@ -3816,7 +3984,7 @@ Estimated CES function
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "PORT", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 Coefficients:
  gamma  delta    rho     nu 
@@ -3830,7 +3998,7 @@ Estimated CES function with variable returns to scale
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     vrs = TRUE, method = "PORT", rho = seq(from = -0.8, to = 1.2, 
-        by = 0.4))
+        by = 0.4), returnGrad = TRUE)
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -3870,6 +4038,10 @@ delta   0.0416     0.7864   0.053 9.58e-01
 rho     1.2000     6.3248   0.190 8.50e-01
 nu      1.5679     0.0922  17.005 7.54e-65
 > plot( cesGridPortVrs )
+> dwt( cesGridPortVrs )
+ lag Autocorrelation D-W Statistic p-value
+   1           0.513         0.848   0.002
+ Alternative hypothesis: rho != 0
 > 
 > # using the PORT optimization rountine implemented in nlminb(), TC, VRS
 > cesGridPortTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -4576,7 +4748,7 @@ In plot.window(...) :
 > # using the DE optimization method implemented in DEoptim(), TC, CRS
 > cesGridDeTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 +    tName = "time", data = germanFarms, method = "DE", random.seed = 321,
-+    rho = seq( from = -0.8, to = 0.8, by = 0.8 ),
++    rho = seq( from = -0.8, to = 0.8, by = 0.8 ), returnGrad = TRUE,
 +    control = DEoptim.control( trace = FALSE ) )
 > print.default( cesGridDeTc )
 $DEoptim
@@ -4888,7 +5060,7 @@ E_1_2 (all)
 $call
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     tName = "time", method = "DE", rho = seq(from = -0.8, to = 0.8, 
-        by = 0.8), random.seed = 321, control = DEoptim.control(trace = FALSE))
+        by = 0.8), returnGrad = TRUE, random.seed = 321, control = DEoptim.control(trace = FALSE))
 
 $method
 [1] "DE"
@@ -4923,6 +5095,29 @@ lambda  4.82e-06  2.33e-09  1.62e-07 -7.40e-07
 delta   1.05e-01  1.62e-07  2.31e-03 -8.80e-03
 rho    -4.00e-01 -7.40e-07 -8.80e-03  3.36e-02
 
+$grad
+      gamma lambda  delta   rho
+ [1,]  59.4    958  -6689 -1043
+ [2,]  64.4   2076  -7409 -1174
+ [3,]  66.2   3199  -7555 -1190
+ [4,]  70.5   4542  -8257 -1325
+ [5,]  71.3   5743  -8319 -1332
+ [6,]  73.5   7106  -8584 -1375
+ [7,]  76.7   8651  -8951 -1433
+ [8,]  76.4   9845  -8767 -1387
+ [9,]  76.1  11041  -8805 -1400
+[10,]  79.2  12760  -9079 -1435
+[11,]  83.9  14869  -9713 -1546
+[12,]  95.2  18404 -11018 -1753
+[13,] 101.5  21256 -11799 -1884
+[14,] 104.5  23566 -11959 -1888
+[15,] 100.7  24333 -11249 -1746
+[16,] 101.5  26167 -11167 -1714
+[17,] 104.2  28541 -11087 -1662
+[18,] 108.3  31407 -11303 -1671
+[19,] 115.9  35489 -11983 -1760
+[20,] 124.3  40067 -12838 -1884
+
 $allRhoSum
    rho   rss convergence
 1 -0.8 17442          NA
@@ -4940,7 +5135,7 @@ Estimated CES function
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     tName = "time", method = "DE", rho = seq(from = -0.8, to = 0.8, 
-        by = 0.8), random.seed = 321, control = DEoptim.control(trace = FALSE))
+        by = 0.8), returnGrad = TRUE, random.seed = 321, control = DEoptim.control(trace = FALSE))
 
 Coefficients:
  gamma lambda  delta    rho 
@@ -4954,7 +5149,7 @@ Estimated CES function with constant returns to scale
 Call:
 cesEst(yName = "qOutput", xNames = c("land", "qVarInput"), data = germanFarms, 
     tName = "time", method = "DE", rho = seq(from = -0.8, to = 0.8, 
-        by = 0.8), random.seed = 321, control = DEoptim.control(trace = FALSE))
+        by = 0.8), returnGrad = TRUE, random.seed = 321, control = DEoptim.control(trace = FALSE))
 
 Estimation by non-linear least-squares using the 'DE' optimizer
 and a one-dimensional grid search for coefficient 'rho'
@@ -4976,6 +5171,10 @@ Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
 E_1_2 (all)        5        135    0.04     0.97
 
+> dwt( cesGridDeTc )
+ lag Autocorrelation D-W Statistic p-value
+   1         -0.0433          2.07   0.518
+ Alternative hypothesis: rho != 0
 > 
 > # using the DE optimization method implemented in DEoptim(), VRS
 > cesGridDeVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -5400,4 +5599,4 @@ nu        1.22      0.128  9.5324 1.54e-21
 > 
 > proc.time()
    user  system elapsed 
- 57.372   0.132  57.514 
+ 35.476   0.092  35.572 
