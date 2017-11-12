@@ -16,7 +16,7 @@ germanFarms$time <- c( 1:nrow( germanFarms ) )
 ## Nelder-Mead, CRS
 cesGridNm <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, rho = seq( from = -0.8, to = 1.2, by = 0.4 ),
-   method = "Nelder-Mead" )
+   method = "Nelder-Mead", returnGrad = TRUE )
 print.default( cesGridNm ) 
 print( cesGridNm )
 summary( cesGridNm )
@@ -26,6 +26,7 @@ coef( summary( cesGridNm ) )
 fitted( cesGridNm )
 residuals( cesGridNm )
 plot( cesGridNm )
+dwt( cesGridNm )
 
 ## Nelder-Mead, TC, CRS
 cesGridNmTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -34,11 +35,12 @@ cesGridNmTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
 print.default( cesGridNmTc ) 
 print( cesGridNmTc )
 summary( cesGridNmTc )
+try( dwt( summary( cesGridNmTc ) ) )
 
 ## Nelder-Mead, VRS
 cesGridNmVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, method = "NM", vrs = TRUE,
-   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ), returnGrad = TRUE )
 print.default( cesGridNmVrs )
 print( cesGridNmVrs )
 summary( cesGridNmVrs )
@@ -46,6 +48,7 @@ coef( cesGridNmVrs )
 vcov( cesGridNmVrs )
 coef( summary( cesGridNmVrs ) )
 plot( cesGridNmVrs )
+dwt( cesGridNmVrs )
 
 # using the CG optimization method
 cesGridCg <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -64,7 +67,7 @@ plot( cesGridCg )
 # using the CG optimization method, VRS
 cesGridCgVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, method = "CG", vrs = TRUE,
-   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ), returnGrad = TRUE )
 print.default( cesGridCgVrs )
 print( cesGridCgVrs )
 summary( cesGridCgVrs )
@@ -72,6 +75,7 @@ coef( cesGridCgVrs )
 vcov( cesGridCgVrs )
 coef( summary( cesGridCgVrs ) )
 plot( cesGridCgVrs )
+dwt( cesGridCgVrs )
 
 # using the CG optimization method, TC, VRS
 cesGridCgTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -116,7 +120,7 @@ plot( cesGridSannVrs )
 # using the BFGS optimization method
 cesGridBfgs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, method = "BFGS",
-   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ), returnGrad = TRUE )
 print.default( cesGridBfgs )
 print( cesGridBfgs )
 summary( cesGridBfgs )
@@ -124,6 +128,7 @@ coef( cesGridBfgs )
 vcov( cesGridBfgs )
 coef( summary( cesGridBfgs ) )
 plot( cesGridBfgs )
+dwt( cesGridBfgs )
 
 # using the BFGS optimization method, VRS
 cesGridBfgsVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -157,7 +162,7 @@ summary( cesGridBfgsTcMeVrs )
 # using the L-BFGS-B optimization method with constrained parameters
 cesGridBfgsCon <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, method = "L-BFGS-B",
-   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ), returnGrad = TRUE )
 print.default( cesGridBfgsCon )
 print( cesGridBfgsCon )
 summary( cesGridBfgsCon )
@@ -165,6 +170,7 @@ coef( cesGridBfgsCon )
 vcov( cesGridBfgsCon )
 coef( summary( cesGridBfgsCon ) )
 plot( cesGridBfgsCon )
+dwt( cesGridBfgsCon )
 
 # using the L-BFGS-B optimization method, TC, CRS
 cesGridBfgsConTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -281,7 +287,7 @@ plot( cesGridPort )
 # using the PORT optimization rountine implemented in nlminb(), VRS, constrained
 cesGridPortVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    data = germanFarms, method = "PORT", vrs = TRUE,
-   rho = seq( from = -0.8, to = 1.2, by = 0.4 ) )
+   rho = seq( from = -0.8, to = 1.2, by = 0.4 ), returnGrad = TRUE )
 print.default( cesGridPortVrs )
 print( cesGridPortVrs )
 summary( cesGridPortVrs )
@@ -289,6 +295,7 @@ coef( cesGridPortVrs )
 vcov( cesGridPortVrs )
 coef( summary( cesGridPortVrs ) )
 plot( cesGridPortVrs )
+dwt( cesGridPortVrs )
 
 # using the PORT optimization rountine implemented in nlminb(), TC, VRS
 cesGridPortTcVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
@@ -323,11 +330,12 @@ plot( cesGridDe )
 # using the DE optimization method implemented in DEoptim(), TC, CRS
 cesGridDeTc <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
    tName = "time", data = germanFarms, method = "DE", random.seed = 321,
-   rho = seq( from = -0.8, to = 0.8, by = 0.8 ),
+   rho = seq( from = -0.8, to = 0.8, by = 0.8 ), returnGrad = TRUE,
    control = DEoptim.control( trace = FALSE ) )
 print.default( cesGridDeTc )
 print( cesGridDeTc )
 summary( cesGridDeTc )
+dwt( cesGridDeTc )
 
 # using the DE optimization method implemented in DEoptim(), VRS
 cesGridDeVrs <- cesEst( yName = "qOutput", xNames = c( "land", "qVarInput" ),
