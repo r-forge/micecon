@@ -97,7 +97,7 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
          data = data, vrs = vrs, method = method, start = start,
          lower = lower, upper = upper, multErr = multErr,
          rho1Values = rho1, rho2Values = rho2, rhoValues = rho, 
-         returnAll = returnGridAll,
+         returnAll = returnGridAll, returnGrad = returnGrad,
          random.seed = random.seed, rhoApprox = rhoApprox, 
          checkStart = checkStart, ... )
       result$call <- match.call()
