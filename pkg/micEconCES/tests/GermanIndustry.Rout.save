@@ -24,6 +24,7 @@ DEoptim package
 Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
+Loading required package: car
 
 If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
 https://r-forge.r-project.org/projects/micecon/
@@ -3392,8 +3393,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -3413,8 +3414,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -3434,8 +3435,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -3455,8 +3456,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -3476,8 +3477,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -3497,8 +3498,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -3518,8 +3519,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -3539,8 +3540,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -3560,8 +3561,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -3581,8 +3582,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -3602,8 +3603,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -3623,8 +3624,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -3644,8 +3645,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -3665,8 +3666,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -3686,8 +3687,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -3707,8 +3708,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -3728,8 +3729,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -3749,8 +3750,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -3770,8 +3771,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -3791,8 +3792,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -3966,8 +3967,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -3987,8 +3988,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4008,8 +4009,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -4029,8 +4030,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -4050,8 +4051,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -4215,8 +4216,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4236,8 +4237,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4257,8 +4258,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -4278,8 +4279,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4463,8 +4464,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4484,8 +4485,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4505,8 +4506,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -4526,8 +4527,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -4547,8 +4548,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4568,8 +4569,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4589,8 +4590,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -4610,8 +4611,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -4631,8 +4632,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4652,8 +4653,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4673,8 +4674,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -4694,8 +4695,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -4715,8 +4716,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4736,8 +4737,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4757,8 +4758,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -4778,8 +4779,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -4799,8 +4800,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -4820,8 +4821,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -4841,8 +4842,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -4862,8 +4863,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -5064,8 +5065,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5085,8 +5086,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5106,8 +5107,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -5127,8 +5128,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -5148,8 +5149,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5169,8 +5170,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5190,8 +5191,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -5211,8 +5212,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -5232,8 +5233,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5253,8 +5254,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5274,8 +5275,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -5295,8 +5296,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -5316,8 +5317,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5337,8 +5338,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5358,8 +5359,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -5379,8 +5380,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -5400,8 +5401,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5421,8 +5422,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -5442,8 +5443,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -5463,8 +5464,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, iterlim = 500)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, iterlim = 500)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5654,8 +5655,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -5675,8 +5676,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -5696,8 +5697,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -5717,8 +5718,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -5738,8 +5739,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -5938,8 +5939,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5959,8 +5960,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -5980,8 +5981,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -6001,8 +6002,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -6022,8 +6023,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -6043,8 +6044,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -6064,8 +6065,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -6085,8 +6086,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
@@ -6106,8 +6107,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -6127,8 +6128,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -6148,8 +6149,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -6169,8 +6170,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -6190,8 +6191,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -6211,8 +6212,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
@@ -6232,8 +6233,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -6253,8 +6254,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -6274,8 +6275,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -6295,8 +6296,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -6316,8 +6317,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -6337,8 +6338,8 @@ Call:
 cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5, 
     method = ..6, start = ..7, lower = ..8, upper = ..9, multErr = ..10, 
     rho1 = sumResults[["rho1"]][i], rho2 = sumResults[["rho2"]][i], 
-    rho = sumResults[["rho"]][i], random.seed = ..11, rhoApprox = ..12, 
-    checkStart = checkStart, control = ..13)
+    rho = sumResults[["rho"]][i], returnGrad = ..11, random.seed = ..12, 
+    rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
@@ -6424,4 +6425,4 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > 
 > proc.time()
    user  system elapsed 
-   63.8     0.2    64.0 
+ 43.452   0.108  43.554 
