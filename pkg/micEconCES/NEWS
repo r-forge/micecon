@@ -4,6 +4,24 @@ Please note that only the most significant changes are reported here.
 A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
+            CHANGES IN VERSION 0.9-10   (201?-??-??)
+
+* added durbinWatsonTest.cesEst() for conducting Durbin-Watson tests for serial
+correlation of the residuals of CES functions estimated by cesEst() as
+suggested by White (1992)
+
+* added argument 'checkStart' (default: TRUE) to function cesEst(): if it is 
+set to 'FALSE', cesEst() does not check whether the starting values are in the 
+expected ranges for a production function
+
+* cesEst() now calculates the elasticities of substitution even if they are 
+negative (i.e. if the corresponding 'rho' is smaller than -1)
+
+* added argument 'returnGrad' (default: FALSE) to function cesEst(): if it is
+set to 'TRUE', cesEst() returns a matrix with the gradients of the dependent 
+variable with respect to the parameters
+
+
             CHANGES IN VERSION 0.9-8   (2014-04-23)
 
 * 'micEconCES' no longer depends on packages 'systemfit', 'miscTools',
