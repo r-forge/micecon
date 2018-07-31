@@ -1,6 +1,6 @@
 
-R version 3.4.2 (2017-09-28) -- "Short Summer"
-Copyright (C) 2017 The R Foundation for Statistical Computing
+R version 3.4.4 (2018-03-15) -- "Someone to Lean On"
+Copyright (C) 2018 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -25,10 +25,12 @@ Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
 Loading required package: car
+Loading required package: carData
 
 If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
 https://r-forge.r-project.org/projects/micecon/
 > options( digits = 3 )
+> set.seed( 12345 )  # to make the bootstrapping in dwt() reproducible
 > 
 > # load data
 > data( germanFarms, package = "micEcon" )
@@ -4040,7 +4042,7 @@ nu      1.5679     0.0922  17.005 7.54e-65
 > plot( cesGridPortVrs )
 > dwt( cesGridPortVrs )
  lag Autocorrelation D-W Statistic p-value
-   1           0.513         0.848   0.002
+   1           0.513         0.848       0
  Alternative hypothesis: rho != 0
 > 
 > # using the PORT optimization rountine implemented in nlminb(), TC, VRS
@@ -5173,7 +5175,7 @@ E_1_2 (all)        5        135    0.04     0.97
 
 > dwt( cesGridDeTc )
  lag Autocorrelation D-W Statistic p-value
-   1         -0.0433          2.07   0.518
+   1         -0.0433          2.07   0.492
  Alternative hypothesis: rho != 0
 > 
 > # using the DE optimization method implemented in DEoptim(), VRS
@@ -5599,4 +5601,4 @@ nu        1.22      0.128  9.5324 1.54e-21
 > 
 > proc.time()
    user  system elapsed 
- 35.476   0.092  35.572 
+   35.2     0.1    35.4 

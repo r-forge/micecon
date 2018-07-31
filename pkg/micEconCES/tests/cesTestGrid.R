@@ -1,5 +1,6 @@
 library( "micEconCES" )
 options( digits = 3 )
+set.seed( 12345 )  # to make the bootstrapping in dwt() reproducible
 
 # load data
 data( germanFarms, package = "micEcon" )
