@@ -106,14 +106,17 @@ cesCalc( xNames, data, coef, tName = NULL, nested = FALSE, rhoApprox = 5e-6 )
       proposed by Kmenta (1967) is used;
       if \code{TRUE}, the nested version of the CES
       for 3 or 4 inputs proposed by Sato (1967) is used.} 
-   \item{rhoApprox}{if the absolute value of the coefficient \eqn{\rho}{rho}
+   \item{rhoApprox}{if the absolute value of the coefficient \eqn{\rho}{rho},
+      \eqn{\rho_1}{rho_1}, or \eqn{\rho_2}{rho_2} 
       is smaller than or equal to this argument,
-      the endogenous variable of the non-nested CES is calculated 
-      using the Kmenta approximation,
-      which is more precise than the non-linear CES formula
-      for very small values of \eqn{\rho}{rho}
-      (and the CES formula cannot even be used for \eqn{\rho=0}{rho = 0}).
-      This feature is not (yet) available for the nested CES.}
+      the endogenous variable is calculated
+      using a first-order Taylor series approximation 
+      at the point \eqn{\rho}{rho} = 0 (for non-nested CES functions)
+      or a linear interpolation (for nested CES functions),
+      because this avoids large numerical inaccuracies
+      that frequently occur in calculations with non-linear CES functions
+      if \eqn{\rho}{rho}, \eqn{\rho_1}{rho_1}, or \eqn{\rho_2}{rho_2}
+      have very small values (in absolute terms).}
 }
 
 \value{
