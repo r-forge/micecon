@@ -21,6 +21,8 @@ negative (i.e. if the corresponding 'rho' is smaller than -1)
 set to 'TRUE', cesEst() returns a matrix with the gradients of the dependent 
 variable with respect to the parameters
 
+* some improvements and corrections of the documentation
+
 * removed the vignette, because an almost identical document is available at
 https://EconPapers.repec.org/RePEc:foi:wpaper:2011_9
 
