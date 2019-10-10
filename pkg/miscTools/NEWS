@@ -5,7 +5,9 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
-            CHANGES IN VERSION 0.6-24  (2017-03-15)
+            CHANGES IN VERSION 0.6-24  (2019-10-10)
+            
+* added function summarizeDF()
 
 * significantly reduced the computation time of isSemidefinite.matrix( ,
 method = "eigen" ) if the matrix is (nearly) singular
