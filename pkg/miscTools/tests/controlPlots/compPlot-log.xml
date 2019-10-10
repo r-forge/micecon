@@ -9,7 +9,7 @@
    plotExpr(expressions, path = "tests/controlPlots", prefix = "compPlot", 
     clear = TRUE)   ]]>
   </call>
-  <directory>/home/arne/Documents/Econometrics/R/micEcon/pkg/miscTools/tests/controlPlots</directory>
+  <directory>/home/gsl324/Documents/Econometrics/R/micEcon/pkg/miscTools/tests/controlPlots</directory>
   <logFilename>compPlot-log.xml</logFilename>
  </info>
  <plots type="pdf">
