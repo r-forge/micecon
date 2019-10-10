@@ -1,6 +1,6 @@
 
-R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
-Copyright (C) 2016 The R Foundation for Statistical Computing
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
+Copyright (C) 2019 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -63,12 +63,12 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 15.19 on 47 degrees of freedom
 
 Number of iterations to convergence: 7 
-Achieved convergence tolerance: 3.388e-06
+Achieved convergence tolerance: 3.481e-06
 
 > stdEr( nlsRes )
         b0         b1         b2 
-10.6845856  0.4846584  0.5553006 
+10.6845855  0.4846580  0.5553008 
 > 
 > proc.time()
    user  system elapsed 
-  0.152   0.012   0.166 
+  0.103   0.030   0.126 
