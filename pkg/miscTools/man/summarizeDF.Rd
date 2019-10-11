@@ -11,7 +11,7 @@ whether one or more variables in the data frame have changed.
 }
 
 \usage{
-summarizeDF( dat, printValues = TRUE, maxLevel = 20 )
+summarizeDF( dat, printValues = TRUE, maxLevel = 20, file = NULL, ... )
 }
 
 \arguments{
@@ -23,6 +23,10 @@ summarizeDF( dat, printValues = TRUE, maxLevel = 20 )
       is less than or equal to the number specified in this argument
       (and argument \code{printValues} is \code{TRUE}),
       a frequency table is included in the output.}
+   \item{file}{a character string or a writable connection naming 
+      the file to write to.}
+   \item{...}{further arguments forwarded to \code{sink()}
+      if argument \code{file} is not \code{NULL}.}
 }
 
 \author{Arne Henningsen}
