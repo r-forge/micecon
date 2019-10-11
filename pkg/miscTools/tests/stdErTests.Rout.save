@@ -16,8 +16,8 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > ## testing stdEr() methods
-> library( miscTools )
-> data(cars)
+> library( "miscTools" )
+> data( "cars" )
 > 
 > # lm()
 > lmRes <- lm(dist ~ speed, data=cars)
@@ -41,9 +41,9 @@ Residual standard error: 15.38 on 48 degrees of freedom
 Multiple R-squared:  0.6511,	Adjusted R-squared:  0.6438 
 F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12
 
-> stdEr( lmRes )
+> round( stdEr( lmRes ), 4 )
 (Intercept)       speed 
-  6.7584402   0.4155128 
+     6.7584      0.4155 
 > 
 > # nls()
 > nlsRes <- nls( dist ~ b0 + b1 * speed^b2, start = c( b0=0, b1=1, b2=1 ),
@@ -65,10 +65,10 @@ Residual standard error: 15.19 on 47 degrees of freedom
 Number of iterations to convergence: 7 
 Achieved convergence tolerance: 3.481e-06
 
-> stdEr( nlsRes )
-        b0         b1         b2 
-10.6845855  0.4846580  0.5553008 
+> round( stdEr( nlsRes ), 3 )
+    b0     b1     b2 
+10.685  0.485  0.555 
 > 
 > proc.time()
    user  system elapsed 
-  0.103   0.030   0.126 
+  0.117   0.024   0.135 
