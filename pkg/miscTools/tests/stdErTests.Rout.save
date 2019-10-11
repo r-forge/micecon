@@ -48,7 +48,9 @@ F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12
 > # nls()
 > nlsRes <- nls( dist ~ b0 + b1 * speed^b2, start = c( b0=0, b1=1, b2=1 ),
 +    data = cars )
-> summary( nlsRes )
+> tmp <- summary( nlsRes )
+> tmp$convInfo$finTol <- round( tmp$convInfo$finTol, 4 )
+> print( tmp )
 
 Formula: dist ~ b0 + b1 * speed^b2
 
@@ -63,7 +65,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 Residual standard error: 15.19 on 47 degrees of freedom
 
 Number of iterations to convergence: 7 
-Achieved convergence tolerance: 3.481e-06
+Achieved convergence tolerance: 0
 
 > round( stdEr( nlsRes ), 3 )
     b0     b1     b2 
@@ -71,4 +73,4 @@ Achieved convergence tolerance: 3.481e-06
 > 
 > proc.time()
    user  system elapsed 
-  0.117   0.024   0.135 
+  0.118   0.032   0.143 
