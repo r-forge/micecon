@@ -1,6 +1,10 @@
-summarizeDF <- function( dat, printValues = TRUE, maxLevel = 20 ) {
+summarizeDF <- function( dat, printValues = TRUE, maxLevel = 20,
+      file = NULL, ... ) {
    if( !inherits( dat, "data.frame" ) ) {
       stop( "argument 'dat' must be a data.frame" )
+   }
+   if( !is.null( file ) ) {
+      sink( file = file, ... )
    }
    cat( "Summary of data.frame\n" )
    cat( "number of observations:", nrow(dat), "\n" )
@@ -36,5 +40,8 @@ summarizeDF <- function( dat, printValues = TRUE, maxLevel = 20 ) {
          }
       }
       cat( "\n" )
+   }
+   if( !is.null( file ) ) {
+      sink( )
    }
 }
