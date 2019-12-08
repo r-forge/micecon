@@ -2,7 +2,7 @@
 insertCol <- function( m, c, v = NA, cName = "" ) {
 
    # checking the argument 'm'
-   if( class( m ) != "matrix" ) {
+   if( !inherits( m, "matrix" ) ) {
       stop( "argument 'm' must be a matrix" )
    }
    # checking the argument 'c'
@@ -60,7 +60,7 @@ insertCol <- function( m, c, v = NA, cName = "" ) {
 insertRow <- function( m, r, v = NA, rName = "" ) {
 
    # checking the argument 'm'
-   if( class( m ) != "matrix" ) {
+   if( !inherits( m, "matrix" ) ) {
       stop( "argument 'm' must be a matrix" )
    }
    # checking the argument 'r'
