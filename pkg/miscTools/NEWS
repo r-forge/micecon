@@ -5,6 +5,11 @@ A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
 
+            CHANGES IN VERSION 0.6-26  (2019-12-08)
+
+* internal improvements to make the miscTools package compatible with R 4.0.0            
+            
+
             CHANGES IN VERSION 0.6-24  (2019-10-11)
             
 * added function summarizeDF()
