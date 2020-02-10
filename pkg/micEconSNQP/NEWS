@@ -5,6 +5,14 @@ reported here. A full ChangeLog is available in the log messages of the SVN
 repository on R-Forge.
 
 
+   CHANGES IN VERSION 0.6-8 (2020/02/10)
+
+* removed the output file of the test script (i.e., /tests/snqProfit.Rout.save),
+because the test script gives slightly different results on different platforms
+but CRAN does not accept deviations between output file in the package and
+the results on various platforms.
+
+
    CHANGES IN VERSION 0.6-6 (2014/04/22)
 
 * 'micEconSNQP' no longer depends on packages 'miscTools", 'systemfit', 'MASS',
