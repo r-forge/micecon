@@ -49,7 +49,7 @@
    Koebel, B., M. Falk and F. Laisney (2000),
    Imposing and Testing Curvature Conditions on a Box-Cox Cost Function.
    Discussion Paper No. 00-70, ZEW, Mannheim,
-   \url{ftp://ftp.zew.de/pub/zew-docs/dp/dp0070.pdf}.
+   \url{https://madoc.bib.uni-mannheim.de/515/1/dp0070.pdf}.
 
    Koebel, B., M. Falk and F. Laisney (2003),
    Imposing and Testing Curvature Conditions on a Box-Cox Cost Function.
