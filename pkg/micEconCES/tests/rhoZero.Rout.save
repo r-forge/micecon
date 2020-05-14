@@ -1,6 +1,6 @@
 
-R version 3.1.0 (2014-04-10) -- "Spring Dance"
-Copyright (C) 2014 The R Foundation for Statistical Computing
+R version 4.0.0 (2020-04-24) -- "Arbor Day"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -17,14 +17,16 @@ Type 'q()' to quit R.
 
 > # load the micEconCES package
 > library( "micEconCES" )
-Loading required package: miscTools
 Loading required package: minpack.lm
 Loading required package: DEoptim
+Loading required package: parallel
 
 DEoptim package
 Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
+Loading required package: car
+Loading required package: carData
 
 If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
 https://r-forge.r-project.org/projects/micecon/
@@ -3674,7 +3676,7 @@ https://r-forge.r-project.org/projects/micecon/
 -0.0183156388887342   " 0.06523516363"
 -0.00673794699908547  " 0.02400302760"
 -0.00247875217666636  " 0.00883080625"
--0.000911881965554516 " 0.00324875117"
+-0.000911881965554516 " 0.00324875123"
 -0.000335462627902512 " 0.00119515950"
 -0.00012340980408668  " 0.00043967621"
 -4.53999297624849e-05 " 0.00016174748"
@@ -6374,7 +6376,7 @@ https://r-forge.r-project.org/projects/micecon/
 -0.0183156388887342   " 0.01096064731"
 -0.00673794699908547  " 0.00403279792"
 -0.00247875217666636  " 0.00148366426"
--0.000911881965554516 " 0.00054582049"
+-0.000911881965554516 " 0.00054582050"
 -0.000335462627902512 " 0.00020079762"
 -0.00012340980408668  " 0.00007386954"
 -4.53999297624849e-05 " 0.00002717502"
@@ -6503,4 +6505,4 @@ https://r-forge.r-project.org/projects/micecon/
 > 
 > proc.time()
    user  system elapsed 
-  1.823   0.061   1.853 
+  1.367   0.136   1.497 

@@ -1,6 +1,6 @@
 
-R version 3.3.3 (2017-03-06) -- "Another Canoe"
-Copyright (C) 2017 The R Foundation for Statistical Computing
+R version 4.0.0 (2020-04-24) -- "Arbor Day"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -25,6 +25,8 @@ DEoptim package
 Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
+Loading required package: car
+Loading required package: carData
 
 If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
 https://r-forge.r-project.org/projects/micecon/
@@ -116,7 +118,7 @@ $rss
 
 $cov.unscaled
          gamma   delta    rho
-gamma 68755136 5287064 294128
+gamma 68755127 5287064 294128
 delta  5287064  406560  22618
 rho     294128   22618   1258
 
@@ -170,7 +172,7 @@ delta 4.38e+10 3.37e+09 1.87e+08
 rho   2.44e+09 1.87e+08 1.04e+07
 > coef( summary( cesNm ) )
       Estimate Std. Error  t value Pr(>|t|)
-gamma    84.48     754578 0.000112        1
+gamma    84.48     754577 0.000112        1
 delta     2.96      58025 0.000051        1
 rho       2.00       3228 0.000620        1
 > 
@@ -688,7 +690,7 @@ E_1_2 (all)    0.333    232.866       0        1
 34.540  0.493  2.000 
 > vcov( cesCg )
           gamma    delta       rho
-gamma  1.95e+09 71753836 -92537871
+gamma  1.95e+09 71753838 -92537874
 delta  7.18e+07  2640499  -3405431
 rho   -9.25e+07 -3405431   4392370
 > coef( summary( cesCg ) )
@@ -1080,9 +1082,9 @@ E_1_2 (all)    0.333    275.154       0        1
 35.975  0.535  2.000 
 > vcov( cesSann )
           gamma    delta       rho
-gamma  2.54e+09 96252300 -1.25e+08
+gamma  2.54e+09 96252303 -1.25e+08
 delta  9.63e+07  3652097 -4.73e+06
-rho   -1.25e+08 -4732266  6.13e+06
+rho   -1.25e+08 -4732267  6.13e+06
 > coef( summary( cesSann ) )
       Estimate Std. Error  t value Pr(>|t|)
 gamma   35.975      50366 0.000714    0.999
@@ -1416,9 +1418,9 @@ $rss
 
 $cov.unscaled
          gamma   delta    rho
-gamma 47097269 3433160 260682
-delta  3433160  250261  19003
-rho     260682   19003   1443
+gamma 47092194 3432790 260654
+delta  3432790  250234  19001
+rho     260654   19001   1443
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1458,7 +1460,7 @@ Multiple R-squared: 0.906
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)    0.333    384.118       0        1
+E_1_2 (all)    0.333    384.098       0        1
 
 > coef( cesBfgs )
 gamma delta   rho 
@@ -1470,8 +1472,8 @@ delta 2.84e+10 2.07e+09 1.57e+08
 rho   2.16e+09 1.57e+08 1.20e+07
 > coef( summary( cesBfgs ) )
       Estimate Std. Error  t value Pr(>|t|)
-gamma    79.50     624549 1.27e-04        1
-delta     2.62      45527 5.76e-05        1
+gamma    79.50     624515 1.27e-04        1
+delta     2.62      45524 5.76e-05        1
 rho       2.00       3457 5.79e-04        1
 > 
 > ## BFGS, VRS
@@ -1540,19 +1542,19 @@ $fitted.values
 [16] 1589 1649 1726 1881 2046
 
 $residuals
- [1]  -60.34 -130.51  -47.27   -2.78   10.03   -7.05   -3.19   70.19   34.84
-[10]   54.70   66.94    4.16  -73.37   -5.83   51.72   37.29    6.39   29.68
-[19]    6.30  -54.13
+ [1]  -60.34 -130.50  -47.27   -2.78   10.03   -7.05   -3.19   70.19   34.84
+[10]   54.70   66.94    4.16  -73.37   -5.84   51.72   37.29    6.39   29.68
+[19]    6.31  -54.14
 
 $rss
 [1] 50080
 
 $cov.unscaled
           gamma    delta       rho        nu
-gamma  8.41e-02  0.02335 -3.63e-02 -9.92e-05
+gamma  8.41e-02  0.02334 -3.63e-02 -9.91e-05
 delta  2.33e-02  0.00650 -1.01e-02 -2.00e-05
 rho   -3.63e-02 -0.01012  1.58e-02  2.85e-05
-nu    -9.92e-05 -0.00002  2.85e-05  3.45e-06
+nu    -9.91e-05 -0.00002  2.85e-05  3.45e-06
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1583,10 +1585,10 @@ Convergence NOT achieved after 565 function and 100 gradient calls
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
-gamma   1.3997    14.5109    0.10     0.92    
+gamma   1.3994    14.5084    0.10     0.92    
 delta   0.7099     4.0344    0.18     0.86    
-rho    -0.1000     6.2807   -0.02     0.99    
-nu      1.5737     0.0929   16.93   <2e-16 ***
+rho    -0.1000     6.2804   -0.02     0.99    
+nu      1.5738     0.0929   16.93   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -1602,16 +1604,16 @@ gamma delta   rho    nu
  1.40  0.71 -0.10  1.57 
 > vcov( cesBfgsVrs )
         gamma    delta      rho       nu
-gamma 210.565  58.4622 -90.9410 -0.24831
-delta  58.462  16.2762 -25.3358 -0.05006
-rho   -90.941 -25.3358  39.4468  0.07140
+gamma 210.493  58.4517 -90.9221 -0.24827
+delta  58.452  16.2760 -25.3347 -0.05006
+rho   -90.922 -25.3347  39.4440  0.07140
 nu     -0.248  -0.0501   0.0714  0.00864
 > coef( summary( cesBfgsVrs ) )
       Estimate Std. Error t value Pr(>|t|)
-gamma     1.40    14.5109  0.0965 9.23e-01
+gamma     1.40    14.5084  0.0965 9.23e-01
 delta     0.71     4.0344  0.1760 8.60e-01
-rho      -0.10     6.2807 -0.0159 9.87e-01
-nu        1.57     0.0929 16.9344 2.51e-64
+rho      -0.10     6.2804 -0.0159 9.87e-01
+nu        1.57     0.0929 16.9347 2.50e-64
 > 
 > ## BFGS, TC, VRS
 > cesBfgsTcVrs <- cesEst( "qOutput", xxNames, tName = "time", 
@@ -1687,10 +1689,10 @@ $rss
 
 $cov.unscaled
            gamma    lambda     delta       rho        nu
-gamma  12.440442  1.75e-04  4.89e-01 -0.778349 -7.24e-03
+gamma  12.440049  1.75e-04  4.89e-01 -0.778333 -7.24e-03
 lambda  0.000175  1.30e-08  6.11e-06 -0.000010 -4.60e-07
-delta   0.488689  6.11e-06  1.93e-02 -0.030736 -2.45e-04
-rho    -0.778349 -1.00e-05 -3.07e-02  0.048957  3.97e-04
+delta   0.488678  6.11e-06  1.93e-02 -0.030735 -2.45e-04
+rho    -0.778333 -1.00e-05 -3.07e-02  0.048956  3.97e-04
 nu     -0.007243 -4.60e-07 -2.45e-04  0.000397  1.99e-05
 
 attr(,"class")
@@ -1722,10 +1724,10 @@ Convergence achieved after 606 function and 94 gradient calls
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
-gamma   15.23748  102.91223    0.15     0.88    
+gamma   15.23726  102.91061    0.15     0.88    
 lambda   0.01903    0.00332    5.72  1.1e-08 ***
-delta    0.71800    4.05368    0.18     0.86    
-rho     -0.40000    6.45588   -0.06     0.95    
+delta    0.71800    4.05366    0.18     0.86    
+rho     -0.40000    6.45585   -0.06     0.95    
 nu       0.91415    0.13017    7.02  2.2e-12 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -2356,7 +2358,7 @@ $rss
 
 $cov.unscaled
            gamma    lambda     delta       rho
-gamma  3624815.0 -11.78646 396646.58 -5.31e+05
+gamma  3624814.9 -11.78646 396646.57 -5.31e+05
 lambda     -11.8   0.00338     -1.11  1.29e+00
 delta   396646.6  -1.11471  43418.06 -5.82e+04
 rho    -531078.9   1.29495 -58151.12  7.79e+04
@@ -2416,7 +2418,7 @@ In nls.lm(par = start, fn = residFun, data = data, jac = jac, yName = yName,  :
 > print.default( cesLm )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 424.329313237888, 74.692348719481 
+parameter estimates: 424.329313236567, 74.6923487190224 
 residual sum-of-squares: 165527
 reason terminated: Number of iterations has reached `maxiter' == 200.
 
@@ -2474,9 +2476,9 @@ $rss
 
 $cov.unscaled
          gamma    delta      rho
-gamma 1.23e+12 4.36e+11 25511105
-delta 4.36e+11 1.55e+11  9066669
-rho   2.55e+07 9.07e+06      531
+gamma 1.23e+12 4.36e+11 25537988
+delta 4.36e+11 1.55e+11  9076223
+rho   2.55e+07 9.08e+06      532
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -2517,21 +2519,21 @@ Multiple R-squared: 0.906
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)    0.333    232.945       0        1
+E_1_2 (all)    0.333    233.067       0        1
 
 > coef( cesLm )
 gamma delta   rho 
 424.3  74.7   2.0 
 > vcov( cesLm )
          gamma    delta      rho
-gamma 1.01e+16 3.61e+15 2.11e+11
-delta 3.61e+15 1.28e+15 7.50e+10
-rho   2.11e+11 7.50e+10 4.40e+06
+gamma 1.02e+16 3.61e+15 2.11e+11
+delta 3.61e+15 1.28e+15 7.51e+10
+rho   2.11e+11 7.51e+10 4.40e+06
 > coef( summary( cesLm ) )
       Estimate Std. Error  t value Pr(>|t|)
 gamma    424.3   1.01e+08 4.21e-06    1.000
 delta     74.7   3.58e+07 2.09e-06    1.000
-rho        2.0   2.10e+03 9.54e-04    0.999
+rho        2.0   2.10e+03 9.53e-04    0.999
 > 
 > ## Levenberg-Marquardt, VRS
 > cesLmVrs <- cesEst( "qOutput", xxNames, germanFarms, vrs = TRUE,
@@ -2539,7 +2541,7 @@ rho        2.0   2.10e+03 9.54e-04    0.999
 > print.default( cesLmVrs )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 1.29196188463489, 0.703541220961598, 1.58422750324928 
+parameter estimates: 1.29196188463487, 0.703541220961596, 1.58422750324928 
 residual sum-of-squares: 50045
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -2668,7 +2670,7 @@ nu       1.584     0.0929 17.0552 3.20e-65
 > print.default( cesLmTcVrs )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 5.34979875874737, 0.0188900972833775, 0.0770802852892863, 0.91942089911595 
+parameter estimates: 5.34979875874734, 0.0188900972833775, 0.077080285289286, 0.919420899115951 
 residual sum-of-squares: 17259
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -3022,7 +3024,7 @@ E_1_2 (all)    0.333    232.862       0        1
 34.540  0.493  2.000 
 > vcov( cesNewton )
           gamma    delta       rho
-gamma  1.95e+09 71751412 -92534765
+gamma  1.95e+09 71751408 -92534760
 delta  7.18e+07  2640403  -3405307
 rho   -9.25e+07 -3405307   4392212
 > coef( summary( cesNewton ) )
@@ -3158,13 +3160,13 @@ E_1_2 (all)    0.556      9.569    0.06     0.95
 > print.default( cesNewtonVrs )
 $nlm
 $nlm$minimum
-[1] 50087
+[1] 50045
 
 $nlm$estimate
-[1] 1.39 0.71 1.57
+[1] 1.300 0.704 1.583
 
 $nlm$gradient
-[1]  -27516  208200 -172615
+[1]  -797  5828 -4923
 
 $nlm$code
 [1] 4
@@ -3174,8 +3176,8 @@ $nlm$iterations
 
 
 $coefficients
-gamma delta   rho    nu 
- 1.39  0.71 -0.10  1.57 
+ gamma  delta    rho     nu 
+ 1.300  0.704 -0.100  1.583 
 
 $iter
 [1] 100
@@ -3211,23 +3213,23 @@ $rho
 [1] -0.1
 
 $fitted.values
- [1] 1006 1092 1116 1174 1167 1192 1242 1218 1172 1223 1293 1536 1648 1701 1592
-[16] 1588 1648 1725 1881 2046
+ [1] 1004 1092 1115 1174 1168 1193 1243 1218 1172 1223 1294 1538 1651 1704 1594
+[16] 1589 1648 1725 1880 2046
 
 $residuals
- [1]  -59.58 -129.70  -46.48   -1.94   10.86   -6.23   -2.37   70.98   35.65
-[10]   55.49   67.75    4.94  -72.60   -5.12   52.41   37.94    6.95   30.17
-[19]    6.70  -53.82
+ [1]  -58.11 -129.22  -45.90   -2.48   10.48   -6.76   -3.18   70.86   35.54
+[10]   55.38   66.89    2.49  -76.06   -8.27   51.05   37.24    7.25   30.85
+[19]    6.99  -54.40
 
 $rss
-[1] 50087
+[1] 50045
 
 $cov.unscaled
-          gamma    delta       rho        nu
-gamma  8.35e-02  0.02326 -3.62e-02 -9.89e-05
-delta  2.33e-02  0.00649 -1.01e-02 -2.00e-05
-rho   -3.62e-02 -0.01012  1.58e-02  2.85e-05
-nu    -9.89e-05 -0.00002  2.85e-05  3.45e-06
+          gamma     delta       rho        nu
+gamma  0.072916  2.17e-02 -0.033351 -9.20e-05
+delta  0.021691  6.47e-03 -0.009955 -1.99e-05
+rho   -0.033351 -9.96e-03  0.015321  2.80e-05
+nu    -0.000092 -1.99e-05  0.000028  3.45e-06
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -3239,8 +3241,8 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "Newton", rho = -0.1)
 
 Coefficients:
-gamma delta   rho    nu 
- 1.39  0.71 -0.10  1.57 
+ gamma  delta    rho     nu 
+ 1.300  0.704 -0.100  1.583 
 
 Elasticity of Substitution: 1.11 
 
@@ -3258,10 +3260,10 @@ Convergence NOT achieved after 100 iterations
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
-gamma    1.395     14.465    0.10     0.92    
-delta    0.710      4.033    0.18     0.86    
-rho     -0.100      6.282   -0.02     0.99    
-nu       1.575      0.093   16.94   <2e-16 ***
+gamma   1.3001    13.5076    0.10     0.92    
+delta   0.7040     4.0238    0.17     0.86    
+rho    -0.1000     6.1916   -0.02     0.99    
+nu      1.5834     0.0929   17.05   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -3270,23 +3272,23 @@ Multiple R-squared: 0.972
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)     1.11       7.76    0.14     0.89
+E_1_2 (all)     1.11       7.64    0.15     0.88
 
 > coef( cesNewtonVrs )
-gamma delta   rho    nu 
- 1.39  0.71 -0.10  1.57 
+ gamma  delta    rho     nu 
+ 1.300  0.704 -0.100  1.583 
 > vcov( cesNewtonVrs )
-        gamma    delta      rho       nu
-gamma 209.230  58.2539 -90.6787 -0.24769
-delta  58.254  16.2636 -25.3333 -0.05007
-rho   -90.679 -25.3333  39.4699  0.07146
-nu     -0.248  -0.0501   0.0715  0.00865
+       gamma    delta      rho       nu
+gamma 182.45  54.2773 -83.4536 -0.23026
+delta  54.28  16.1908 -24.9109 -0.04969
+rho   -83.45 -24.9109  38.3360  0.07007
+nu     -0.23  -0.0497   0.0701  0.00863
 > coef( summary( cesNewtonVrs ) )
       Estimate Std. Error t value Pr(>|t|)
-gamma     1.39     14.465  0.0964 9.23e-01
-delta     0.71      4.033  0.1761 8.60e-01
-rho      -0.10      6.283 -0.0159 9.87e-01
-nu        1.57      0.093 16.9355 2.46e-64
+gamma    1.300    13.5076  0.0962 9.23e-01
+delta    0.704     4.0238  0.1750 8.61e-01
+rho     -0.100     6.1916 -0.0162 9.87e-01
+nu       1.583     0.0929 17.0461 3.73e-65
 > 
 > ## Newton-type, TC, multErr, CRS
 > cesNewtonTcMe <- cesEst( "qOutput", xxNames, tName = "time", data = germanFarms, 
@@ -3424,11 +3426,11 @@ $nlminb$convergence
 [1] 0
 
 $nlminb$iterations
-[1] 28
+[1] 31
 
 $nlminb$evaluations
 function gradient 
-      37       28 
+      45       31 
 
 $nlminb$message
 [1] "both X-convergence and relative convergence (5)"
@@ -3439,7 +3441,7 @@ gamma delta   rho
  49.1   1.0   2.0 
 
 $iter
-[1] 28
+[1] 31
 
 $convergence
 [1] TRUE
@@ -3517,7 +3519,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 Estimation by non-linear least-squares using the 'PORT' optimizer
 assuming an additive error term
 Coefficient 'rho' was fixed at 2 
-Convergence achieved after 28 iterations
+Convergence achieved after 31 iterations
 Message: both X-convergence and relative convergence (5) 
 
 Coefficients:
@@ -3554,37 +3556,37 @@ rho        2.0   9.92e+13 2.02e-14    1.000
 $nlminb
 $nlminb$par
 gamma delta    nu 
-1.292 0.704 1.584 
+ 8.35  0.84  1.30 
 
 $nlminb$objective
-[1] 50045
+[1] 75167
 
 $nlminb$convergence
-[1] 0
+[1] 1
 
 $nlminb$iterations
-[1] 95
+[1] 150
 
 $nlminb$evaluations
 function gradient 
-     142       96 
+     168      151 
 
 $nlminb$message
-[1] "relative convergence (4)"
+[1] "iteration limit reached without convergence (10)"
 
 
 $coefficients
- gamma  delta    rho     nu 
- 1.292  0.704 -0.100  1.584 
+gamma delta   rho    nu 
+ 8.35  0.84 -0.10  1.30 
 
 $iter
-[1] 95
+[1] 150
 
 $convergence
-[1] TRUE
+[1] FALSE
 
 $message
-[1] "relative convergence (4)"
+[1] "iteration limit reached without convergence (10)"
 
 $ela
 E_1_2 (all) 
@@ -3614,23 +3616,23 @@ $rho
 [1] -0.1
 
 $fitted.values
- [1] 1004 1092 1115 1174 1168 1193 1243 1218 1172 1223 1294 1538 1651 1704 1594
-[16] 1589 1648 1725 1880 2046
+ [1] 1072 1136 1161 1195 1191 1212 1254 1244 1201 1249 1301 1501 1587 1642 1573
+[16] 1581 1654 1733 1869 2004
 
 $residuals
- [1]  -57.94 -129.13  -45.80   -2.47   10.50   -6.76   -3.20   70.90   35.58
-[10]   55.42   66.87    2.32  -76.32   -8.50   50.97   37.21    7.30   30.94
-[19]    7.04  -54.43
+ [1] -126.075 -173.419  -90.961  -22.772  -13.304  -26.088  -14.594   44.706
+ [9]    6.846   29.316   59.099   40.055  -11.960   54.059   72.004   45.438
+[17]    0.558   22.702   18.895  -12.042
 
 $rss
-[1] 50045
+[1] 75167
 
 $cov.unscaled
           gamma     delta       rho        nu
-gamma  7.20e-02  2.16e-02 -0.033112 -9.14e-05
-delta  2.16e-02  6.47e-03 -0.009942 -1.98e-05
-rho   -3.31e-02 -9.94e-03  0.015285  2.80e-05
-nu    -9.14e-05 -1.98e-05  0.000028  3.45e-06
+gamma  2.672455  1.46e-01 -3.48e-01 -6.04e-04
+delta  0.145956  7.99e-03 -1.91e-02 -2.46e-05
+rho   -0.348314 -1.91e-02  4.56e-02  5.34e-05
+nu    -0.000604 -2.46e-05  5.34e-05  3.44e-06
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -3642,8 +3644,8 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
     vrs = TRUE, method = "PORT", rho = -0.1)
 
 Coefficients:
- gamma  delta    rho     nu 
- 1.292  0.704 -0.100  1.584 
+gamma delta   rho    nu 
+ 8.35  0.84 -0.10  1.30 
 
 Elasticity of Substitution: 1.11 
 
@@ -3657,40 +3659,40 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 Estimation by non-linear least-squares using the 'PORT' optimizer
 assuming an additive error term
 Coefficient 'rho' was fixed at -0.1 
-Convergence achieved after 95 iterations
-Message: relative convergence (4) 
+Convergence NOT achieved after 150 iterations
+Message: iteration limit reached without convergence (10) 
 
 Coefficients:
       Estimate Std. Error t value Pr(>|t|)    
-gamma   1.2920    13.4263    0.10     0.92    
-delta   0.7035     4.0230    0.17     0.86    
-rho    -0.1000     6.1843   -0.02     0.99    
-nu      1.5842     0.0929   17.06   <2e-16 ***
+gamma    8.350    100.220    0.08     0.93    
+delta    0.840      5.481    0.15     0.88    
+rho     -0.100     13.093   -0.01     0.99    
+nu       1.301      0.114   11.45   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 50 
-Multiple R-squared: 0.972 
+Residual standard error: 61.3 
+Multiple R-squared: 0.958 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)     1.11       7.63    0.15     0.88
+E_1_2 (all)     1.11      16.16    0.07     0.95
 
 > coef( cesPortVrs )
- gamma  delta    rho     nu 
- 1.292  0.704 -0.100  1.584 
+gamma delta   rho    nu 
+ 8.35  0.84 -0.10  1.30 
 > vcov( cesPortVrs )
-        gamma    delta    rho       nu
-gamma 180.265  53.9406 -82.85 -0.22881
-delta  53.941  16.1848 -24.88 -0.04966
-rho   -82.854 -24.8769  38.25  0.06996
-nu     -0.229  -0.0497   0.07  0.00863
+         gamma    delta       rho      nu
+gamma 10043.97 548.5514 -1309.079 -2.2693
+delta   548.55  30.0433   -71.754 -0.0923
+rho   -1309.08 -71.7539   171.421  0.2007
+nu       -2.27  -0.0923     0.201  0.0129
 > coef( summary( cesPortVrs ) )
-      Estimate Std. Error t value Pr(>|t|)
-gamma    1.292    13.4263  0.0962 9.23e-01
-delta    0.704     4.0230  0.1749 8.61e-01
-rho     -0.100     6.1843 -0.0162 9.87e-01
-nu       1.584     0.0929 17.0552 3.20e-65
+      Estimate Std. Error  t value Pr(>|t|)
+gamma     8.35    100.220  0.08332 9.34e-01
+delta     0.84      5.481  0.15332 8.78e-01
+rho      -0.10     13.093 -0.00764 9.94e-01
+nu        1.30      0.114 11.45168 2.31e-30
 > 
 > ## PORT, TC, VRS
 > cesPortTcVrs <- cesEst( "qOutput", xxNames, tName = "time", data = germanFarms, 
@@ -3699,37 +3701,37 @@ nu       1.584     0.0929 17.0552 3.20e-65
 $nlminb
 $nlminb$par
  gamma lambda  delta     nu 
- 9.843  0.019  0.424  0.916 
+8.4565 0.0176 0.4544 0.9659 
 
 $nlminb$objective
-[1] 17105
+[1] 17303
 
 $nlminb$convergence
-[1] 0
+[1] 1
 
 $nlminb$iterations
-[1] 49
+[1] 150
 
 $nlminb$evaluations
 function gradient 
-      97       50 
+     189      151 
 
 $nlminb$message
-[1] "relative convergence (4)"
+[1] "iteration limit reached without convergence (10)"
 
 
 $coefficients
  gamma lambda  delta    rho     nu 
- 9.843  0.019  0.424  0.000  0.916 
+8.4565 0.0176 0.4544 0.0000 0.9659 
 
 $iter
-[1] 49
+[1] 150
 
 $convergence
-[1] TRUE
+[1] FALSE
 
 $message
-[1] "relative convergence (4)"
+[1] "iteration limit reached without convergence (10)"
 
 $ela
 E_1_2 (all) 
@@ -3759,23 +3761,24 @@ $rho
 [1] 0
 
 $fitted.values
- [1]  958 1035 1064 1131 1147 1183 1235 1234 1235 1284 1358 1530 1628 1677 1626
-[16] 1643 1685 1748 1865 1995
+ [1]  961 1039 1067 1133 1148 1183 1235 1232 1229 1279 1353 1530 1629 1679 1624
+[16] 1639 1683 1748 1868 2001
 
 $residuals
- [1] -11.54 -72.12   5.49  40.83  31.38   2.36   4.69  54.55 -26.93  -5.87
-[11]   2.14  10.66 -52.95  18.49  18.46 -16.85 -29.83   7.22  21.97  -3.60
+ [1] -14.688 -75.775   2.135  38.406  30.527   2.391   4.807  56.221 -21.594
+[10]  -0.778   7.646  10.579 -54.063  16.778  20.737 -13.224 -28.130   7.489
+[19]  19.008  -9.422
 
 $rss
-[1] 17105
+[1] 17303
 
 $cov.unscaled
            gamma    lambda     delta       rho        nu
-gamma   5.810772  1.18e-04  3.99e-01 -5.27e-01 -4.89e-03
-lambda  0.000118  1.30e-08  7.12e-06 -9.69e-06 -4.60e-07
-delta   0.399451  7.12e-06  2.76e-02 -3.65e-02 -2.86e-04
-rho    -0.527481 -9.69e-06 -3.65e-02  4.82e-02  3.85e-04
-nu     -0.004891 -4.60e-07 -2.86e-04  3.85e-04  1.99e-05
+gamma   4.291285  1.02e-04  3.26e-01 -4.23e-01 -4.21e-03
+lambda  0.000102  1.30e-08  6.77e-06 -9.05e-06 -4.61e-07
+delta   0.325559  6.77e-06  2.48e-02 -3.23e-02 -2.73e-04
+rho    -0.423227 -9.05e-06 -3.23e-02  4.20e-02  3.60e-04
+nu     -0.004212 -4.61e-07 -2.73e-04  3.60e-04  1.99e-05
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -3788,7 +3791,7 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 
 Coefficients:
  gamma lambda  delta    rho     nu 
- 9.843  0.019  0.424  0.000  0.916 
+8.4565 0.0176 0.4544 0.0000 0.9659 
 
 Elasticity of Substitution: 1 
 
@@ -3802,25 +3805,25 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 Estimation by non-linear least-squares using the 'PORT' optimizer
 assuming an additive error term
 Coefficient 'rho' was fixed at 0 
-Convergence achieved after 49 iterations
-Message: relative convergence (4) 
+Convergence NOT achieved after 150 iterations
+Message: iteration limit reached without convergence (10) 
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)    
-gamma   9.84254   70.49510    0.14     0.89    
-lambda  0.01898    0.00333    5.70  1.2e-08 ***
-delta   0.42367    4.86075    0.09     0.93    
-rho     0.00000    6.41785    0.00     1.00    
-nu      0.91558    0.13042    7.02  2.2e-12 ***
+gamma   8.45651   60.93078    0.14     0.89    
+lambda  0.01758    0.00335    5.24  1.6e-07 ***
+delta   0.45444    4.63626    0.10     0.92    
+rho     0.00000    6.02672    0.00     1.00    
+nu      0.96593    0.13135    7.35  1.9e-13 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 29.2 
+Residual standard error: 29.4 
 Multiple R-squared: 0.99 
 
 Elasticity of Substitution:
             Estimate Std. Error t value Pr(>|t|)
-E_1_2 (all)     1.00       6.42    0.16     0.88
+E_1_2 (all)     1.00       6.03    0.17     0.87
 
 > 
 > ## PORT, TC, multErr, VRS
@@ -3839,11 +3842,11 @@ $nlminb$convergence
 [1] 0
 
 $nlminb$iterations
-[1] 97
+[1] 99
 
 $nlminb$evaluations
 function gradient 
-     125       98 
+     121      100 
 
 $nlminb$message
 [1] "relative convergence (4)"
@@ -3854,7 +3857,7 @@ $coefficients
  8.758  0.020  0.371  0.000  0.906 
 
 $iter
-[1] 97
+[1] 99
 
 $convergence
 [1] TRUE
@@ -3897,17 +3900,17 @@ $fitted.values
 $residuals
  [1] -0.003369 -0.066457  0.010840  0.037462  0.028375  0.002391  0.003480
  [8]  0.043688 -0.023732 -0.006053 -0.001738  0.003618 -0.037517  0.007438
-[15]  0.009031 -0.011938 -0.016794  0.006392  0.014416  0.000467
+[15]  0.009031 -0.011939 -0.016795  0.006392  0.014416  0.000467
 
 $rss
 [1] 0.0115
 
 $cov.unscaled
           gamma   lambda     delta       rho        nu
-gamma   9449275 131.6616 738453.26 -1.02e+06 -7200.138
+gamma   9449302 131.6618 738454.69 -1.02e+06 -7200.149
 lambda      132   0.0201      8.14 -1.17e+01    -0.806
-delta    738453   8.1389  58095.97 -7.99e+04  -451.819
-rho    -1015754 -11.7105 -79887.87  1.10e+05   635.339
+delta    738455   8.1389  58096.02 -7.99e+04  -451.819
+rho    -1015756 -11.7105 -79887.96  1.10e+05   635.339
 nu        -7200  -0.8057   -451.82  6.35e+02    38.856
 
 attr(,"class")
@@ -3937,12 +3940,12 @@ cesEst(yName = "qOutput", xNames = xxNames, data = germanFarms,
 Estimation by non-linear least-squares using the 'PORT' optimizer
 assuming a multiplicative error term
 Coefficient 'rho' was fixed at 0 
-Convergence achieved after 97 iterations
+Convergence achieved after 99 iterations
 Message: relative convergence (4) 
 
 Coefficients:
        Estimate Std. Error t value Pr(>|t|)    
-gamma    8.7584    73.7567    0.12     0.91    
+gamma    8.7584    73.7569    0.12     0.91    
 lambda   0.0200     0.0034    5.89  3.9e-09 ***
 delta    0.3706     5.7833    0.06     0.95    
 rho      0.0000     7.9538    0.00     1.00    
@@ -5535,4 +5538,4 @@ rho   -1.48e+13 -1.14e+11  2.08e+25
 > 
 > proc.time()
    user  system elapsed 
- 15.480   0.168  15.648 
+  6.390   0.124   6.507 
