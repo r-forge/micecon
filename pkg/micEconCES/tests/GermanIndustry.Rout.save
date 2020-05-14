@@ -1,6 +1,6 @@
 
-R version 3.4.2 (2017-09-28) -- "Short Summer"
-Copyright (C) 2017 The R Foundation for Statistical Computing
+R version 4.0.0 (2020-04-24) -- "Arbor Day"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -25,6 +25,7 @@ Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
 Loading required package: car
+Loading required package: carData
 
 If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
 https://r-forge.r-project.org/projects/micecon/
@@ -299,14 +300,14 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 $optim
 $optim$par
   gamma  lambda delta_1   delta   rho_1     rho 
- 16.306   0.011   0.480   0.525   0.262   0.251 
+16.2503  0.0113  0.3987  0.5535  0.5109  0.3446 
 
 $optim$value
-[1] 41642
+[1] 39854
 
 $optim$counts
 function gradient 
-    4604     1001 
+    4592     1001 
 
 $optim$convergence
 [1] 1
@@ -317,18 +318,18 @@ NULL
 
 $coefficients
   gamma  lambda delta_1   delta   rho_1     rho 
- 16.306   0.011   0.480   0.525   0.262   0.251 
+16.2503  0.0113  0.3987  0.5535  0.5109  0.3446 
 
 $iter
 function gradient 
-    4604     1001 
+    4592     1001 
 
 $convergence
 [1] FALSE
 
 $ela
     E_1_2 (HM) E_(1,2)_3 (AU) 
-         0.792          0.799 
+         0.662          0.744 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -351,27 +352,27 @@ $upper
 [1] Inf
 
 $fitted.values
- [1]  511  530  546  555  581  605  607  586  614  651  738  745  754  741  753
-[16]  765  793  852  844  820  813  827  841  854  860  875  955 1004 1038 1034
-[31]  996
+ [1]  508  528  545  555  580  604  607  586  612  650  739  747  755  741  753
+[16]  765  793  852  845  823  816  829  843  857  863  878  953 1002 1034 1032
+[31]  994
 
 $residuals
- [1] -57.230 -52.844 -47.153 -46.234 -26.989 -18.020  -7.693  -4.331  12.076
-[10]  34.808 -16.207 -10.816   6.732  59.572  62.826  66.218  78.464   8.242
-[19]   0.852  -3.409  15.434  22.214  27.026  25.964   8.432  16.942 -30.141
-[28] -35.627 -35.453 -32.235 -56.690
+ [1] -54.479 -51.476 -46.241 -45.692 -26.207 -17.111  -8.193  -4.237  13.503
+[10]  35.584 -16.956 -12.486   5.481  59.713  62.671  66.059  78.734   8.042
+[19]  -0.161  -6.143  13.254  20.786  25.554  23.183   5.293  14.380 -28.417
+[28] -33.173 -32.079 -29.892 -54.788
 
 $rss
-[1] 41642
+[1] 39854
 
 $cov.unscaled
             gamma    lambda   delta_1     delta     rho_1       rho
-gamma    1.38e-01 -1.36e-05 -7.27e-03 -7.44e-03  1.64e-02 -1.07e-02
-lambda  -1.36e-05  2.15e-08 -6.73e-07 -1.30e-08 -1.58e-07  1.24e-07
-delta_1 -7.27e-03 -6.73e-07  1.50e-03  1.07e-03 -2.29e-03  1.91e-03
-delta   -7.44e-03 -1.30e-08  1.07e-03  8.78e-04 -1.65e-03  1.55e-03
-rho_1    1.64e-02 -1.58e-07 -2.29e-03 -1.65e-03  4.00e-03 -2.74e-03
-rho     -1.07e-02  1.24e-07  1.91e-03  1.55e-03 -2.74e-03  2.86e-03
+gamma    1.19e-01 -1.78e-05 -1.62e-03 -2.84e-03  1.06e-02 -1.89e-03
+lambda  -1.78e-05  2.16e-08 -5.93e-07  2.02e-07 -4.19e-07  4.20e-07
+delta_1 -1.62e-03 -5.93e-07  1.77e-03  9.29e-04 -2.84e-03  1.82e-03
+delta   -2.84e-03  2.02e-07  9.29e-04  5.86e-04 -1.50e-03  1.12e-03
+rho_1    1.06e-02 -4.19e-07 -2.84e-03 -1.50e-03  5.37e-03 -2.63e-03
+rho     -1.89e-03  4.20e-07  1.82e-03  1.12e-03 -2.63e-03  2.29e-03
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -384,11 +385,11 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
- 16.306   0.011   0.480   0.525   0.262   0.251 
+16.2503  0.0113  0.3987  0.5535  0.5109  0.3446 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-         0.792          0.799 
+         0.662          0.744 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -401,26 +402,26 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 
 Estimation by non-linear least-squares using the 'CG' optimizer
 assuming an additive error term
-Convergence NOT achieved after 4604 function and 1001 gradient calls
+Convergence NOT achieved after 4592 function and 1001 gradient calls
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)  
-gamma   16.30630   13.59088    1.20     0.23  
-lambda   0.01104    0.00537    2.06     0.04 *
-delta_1  0.48030    1.41811    0.34     0.73  
-delta    0.52461    1.08612    0.48     0.63  
-rho_1    0.26183    2.31911    0.11     0.91  
-rho      0.25122    1.95882    0.13     0.90  
+gamma   16.25030   12.35042    1.32    0.188  
+lambda   0.01131    0.00526    2.15    0.032 *
+delta_1  0.39872    1.50661    0.26    0.791  
+delta    0.55350    0.86763    0.64    0.524  
+rho_1    0.51086    2.62745    0.19    0.846  
+rho      0.34457    1.71745    0.20    0.841  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 36.7 
-Multiple R-squared: 0.947 
+Residual standard error: 35.9 
+Multiple R-squared: 0.95 
 
 Elasticities of Substitution:
                Estimate Std. Error t value Pr(>|t|)
-E_1_2 (HM)        0.792      1.457    0.54     0.59
-E_(1,2)_3 (AU)    0.799      1.251    0.64     0.52
+E_1_2 (HM)        0.662      1.151    0.58     0.57
+E_(1,2)_3 (AU)    0.744      0.950    0.78     0.43
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -560,14 +561,14 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 $optim
 $optim$par
    gamma   lambda  delta_1    delta    rho_1      rho 
-2.28e+00 2.06e-02 6.86e-10 8.13e-01 6.81e+00 1.84e-01 
+2.47e+00 2.07e-02 2.19e-11 7.77e-01 8.00e+00 1.32e-01 
 
 $optim$value
-[1] 3636
+[1] 3572
 
 $optim$counts
 function gradient 
-    3431      407 
+    3707      470 
 
 $optim$convergence
 [1] 0
@@ -578,18 +579,18 @@ NULL
 
 $coefficients
    gamma   lambda  delta_1    delta    rho_1      rho 
-2.28e+00 2.06e-02 6.86e-10 8.13e-01 6.81e+00 1.84e-01 
+2.47e+00 2.07e-02 2.19e-11 7.77e-01 8.00e+00 1.32e-01 
 
 $iter
 function gradient 
-    3431      407 
+    3707      470 
 
 $convergence
 [1] TRUE
 
 $ela
     E_1_2 (HM) E_(1,2)_3 (AU) 
-         0.128          0.845 
+         0.111          0.883 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -612,26 +613,26 @@ $upper
 [1] Inf
 
 $fitted.values
- [1] 460 478 499 513 552 586 585 579 631 674 742 743 763 792 807 827 871 867 857
-[20] 812 812 844 863 861 878 908 942 961 989 990 964
+ [1] 458 478 499 513 552 587 586 580 632 675 743 743 763 792 807 827 871 867 857
+[20] 811 812 844 862 861 878 908 942 962 989 990 965
 
 $residuals
- [1]  -6.489  -1.823  -0.834  -4.265   1.813   0.561  14.160   2.329  -5.412
-[10]  11.896 -20.181  -8.617  -2.410   9.055   8.697   3.483   0.295  -7.363
-[19] -11.833   4.967  16.696   5.699   5.558  18.982  -9.254 -15.657 -16.944
-[28]   7.003  13.371  12.319 -24.803
+ [1]  -4.103  -1.114  -0.673  -4.440   1.504   0.157  12.946   1.329  -6.030
+[10]  10.700 -20.355  -8.673  -2.385   9.222   8.879   3.656   0.461  -6.875
+[19] -11.419   5.236  16.949   5.958   5.774  19.079  -9.211 -15.626 -16.939
+[28]   6.874  13.161  12.010 -25.160
 
 $rss
-[1] 3636
+[1] 3572
 
 $cov.unscaled
             gamma    lambda   delta_1     delta     rho_1       rho
-gamma    4.38e-01  1.34e-05 -2.71e-10 -8.31e-02  1.43e-01 -1.36e-01
-lambda   1.34e-05  3.64e-09 -3.05e-14 -2.71e-06  1.47e-05 -4.60e-06
-delta_1 -2.71e-10 -3.05e-14  6.05e-19  5.23e-11 -3.05e-10  8.65e-11
-delta   -8.31e-02 -2.71e-06  5.23e-11  1.58e-02 -2.76e-02  2.59e-02
-rho_1    1.43e-01  1.47e-05 -3.05e-10 -2.76e-02  1.55e-01 -4.54e-02
-rho     -1.36e-01 -4.60e-06  8.65e-11  2.59e-02 -4.54e-02  4.24e-02
+gamma    6.29e-01  1.42e-05 -1.28e-11 -1.16e-01  2.09e-01 -1.67e-01
+lambda   1.42e-05  3.01e-09 -9.37e-16 -2.76e-06  1.41e-05 -4.13e-06
+delta_1 -1.28e-11 -9.37e-16  8.31e-22  2.38e-12 -1.31e-11  3.47e-12
+delta   -1.16e-01 -2.76e-06  2.38e-12  2.13e-02 -3.90e-02  3.07e-02
+rho_1    2.09e-01  1.41e-05 -1.31e-11 -3.90e-02  2.07e-01 -5.66e-02
+rho     -1.67e-01 -4.13e-06  3.47e-12  3.07e-02 -5.66e-02  4.42e-02
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -644,11 +645,11 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
-2.28e+00 2.06e-02 6.86e-10 8.13e-01 6.81e+00 1.84e-01 
+2.47e+00 2.07e-02 2.19e-11 7.77e-01 8.00e+00 1.32e-01 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-         0.128          0.845 
+         0.111          0.883 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -661,26 +662,26 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 
 Estimation by non-linear least-squares using the 'BFGS' optimizer
 assuming an additive error term
-Convergence achieved after 3431 function and 407 gradient calls
+Convergence achieved after 3707 function and 470 gradient calls
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
-gamma   2.28e+00   7.17e+00    0.32     0.75    
-lambda  2.06e-02   6.53e-04   31.51   <2e-16 ***
-delta_1 6.86e-10   8.42e-09    0.08     0.94    
-delta   8.13e-01   1.36e+00    0.60     0.55    
-rho_1   6.81e+00   4.26e+00    1.60     0.11    
-rho     1.84e-01   2.23e+00    0.08     0.93    
+gamma   2.47e+00   8.52e+00    0.29     0.77    
+lambda  2.07e-02   5.89e-04   35.08   <2e-16 ***
+delta_1 2.19e-11   3.09e-10    0.07     0.94    
+delta   7.77e-01   1.57e+00    0.50     0.62    
+rho_1   8.00e+00   4.88e+00    1.64     0.10    
+rho     1.32e-01   2.26e+00    0.06     0.95    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 10.8 
+Residual standard error: 10.7 
 Multiple R-squared: 0.995 
 
 Elasticities of Substitution:
                Estimate Std. Error t value Pr(>|t|)  
-E_1_2 (HM)       0.1281     0.0699    1.83    0.067 .
-E_(1,2)_3 (AU)   0.8448     1.5907    0.53    0.595  
+E_1_2 (HM)       0.1111     0.0603    1.84    0.065 .
+E_(1,2)_3 (AU)   0.8833     1.7619    0.50    0.616  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
@@ -694,14 +695,14 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 $optim
 $optim$par
   gamma  lambda delta_1   delta   rho_1     rho 
-14.1365  0.0150  0.0235  0.9870 10.3983  3.2078 
+14.1377  0.0150  0.0236  0.9870 10.3833  3.2078 
 
 $optim$value
 [1] 14969
 
 $optim$counts
 function gradient 
-     169      169 
+     173      173 
 
 $optim$convergence
 [1] 0
@@ -712,11 +713,11 @@ $optim$message
 
 $coefficients
   gamma  lambda delta_1   delta   rho_1     rho 
-14.1365  0.0150  0.0235  0.9870 10.3983  3.2078 
+14.1377  0.0150  0.0236  0.9870 10.3833  3.2078 
 
 $iter
 function gradient 
-     169      169 
+     173      173 
 
 $convergence
 [1] TRUE
@@ -726,7 +727,7 @@ $message
 
 $ela
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0877         0.2377 
+        0.0878         0.2377 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -754,22 +755,22 @@ $fitted.values
 [31]  970
 
 $residuals
- [1]   3.905   0.174  -2.080  -6.656  -0.495   0.885  -0.143  -1.011   9.858
-[10]  21.759 -48.336 -48.348 -28.903  33.902  34.896  37.448  51.508   4.502
-[19]  -9.116 -24.290  -0.105  11.174  15.593   5.833 -17.078  -4.911  -3.299
-[28]  -0.812   5.712  -0.530 -30.734
+ [1]   3.905   0.174  -2.081  -6.656  -0.495   0.885  -0.143  -1.011   9.858
+[10]  21.759 -48.335 -48.347 -28.902  33.902  34.897  37.449  51.508   4.503
+[19]  -9.116 -24.290  -0.105  11.174  15.593   5.833 -17.079  -4.911  -3.300
+[28]  -0.813   5.711  -0.530 -30.735
 
 $rss
 [1] 14969
 
 $cov.unscaled
-            gamma    lambda   delta_1     delta     rho_1       rho
-gamma    3.40e+10  3.96e-01  7.86e+08 -1.00e+08 -2.24e+10 -1.16e+01
-lambda   3.96e-01  1.36e-08  8.43e-02 -1.17e-03 -9.12e+00  3.85e-06
-delta_1  7.86e+08  8.43e-02  1.93e+07 -2.31e+06 -6.51e+08  7.01e+00
-delta   -1.00e+08 -1.17e-03 -2.31e+06  2.95e+05  6.61e+07  3.42e-02
-rho_1   -2.24e+10 -9.12e+00 -6.51e+08  6.61e+07  3.04e+10 -8.52e+02
-rho     -1.16e+01  3.85e-06  7.01e+00  3.42e-02 -8.52e+02  1.97e-03
+        gamma lambda delta_1 delta rho_1 rho
+gamma      NA     NA      NA    NA    NA  NA
+lambda     NA     NA      NA    NA    NA  NA
+delta_1    NA     NA      NA    NA    NA  NA
+delta      NA     NA      NA    NA    NA  NA
+rho_1      NA     NA      NA    NA    NA  NA
+rho        NA     NA      NA    NA    NA  NA
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -782,11 +783,11 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
-14.1365  0.0150  0.0235  0.9870 10.3983  3.2078 
+14.1377  0.0150  0.0236  0.9870 10.3833  3.2078 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0877         0.2377 
+        0.0878         0.2377 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -799,29 +800,25 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 
 Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 assuming an additive error term
-Convergence achieved after 169 function and 169 gradient calls
+Convergence achieved after 173 function and 173 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
-        Estimate Std. Error t value Pr(>|t|)    
-gamma   1.41e+01   4.05e+06    0.00    1.000    
-lambda  1.50e-02   2.56e-03    5.85  4.8e-09 ***
-delta_1 2.35e-02   9.65e+04    0.00    1.000    
-delta   9.87e-01   1.19e+04    0.00    1.000    
-rho_1   1.04e+01   3.83e+06    0.00    1.000    
-rho     3.21e+00   9.74e-01    3.29    0.001 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+        Estimate Std. Error t value Pr(>|t|)
+gamma    14.1377         NA      NA       NA
+lambda    0.0150         NA      NA       NA
+delta_1   0.0236         NA      NA       NA
+delta     0.9870         NA      NA       NA
+rho_1    10.3833         NA      NA       NA
+rho       3.2078         NA      NA       NA
 
 Residual standard error: 22 
 Multiple R-squared: 0.981 
 
 Elasticities of Substitution:
-               Estimate Std. Error t value Pr(>|t|)    
-E_1_2 (HM)     8.77e-02   2.95e+04    0.00        1    
-E_(1,2)_3 (AU) 2.38e-01   5.50e-02    4.32  1.6e-05 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)       0.0878         NA      NA       NA
+E_(1,2)_3 (AU)   0.2377         NA      NA       NA
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -836,13 +833,13 @@ In nls.lm(par = start, fn = residFun, data = data, jac = jac, yName = yName,  :
 > print.default( cesLm )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 28.969095065149, 0.0209992429175142, 4.66118388245596e-67, 7.85578245604616e-05, 51.9487440669939, -2.54190236007143 
+parameter estimates: 28.9619252808605, 0.0209992615630822, 8.18375447432305e-67, 7.89752539789418e-05, 51.7532835409182, -2.540598017641 
 residual sum-of-squares: 3264
 reason terminated: Number of iterations has reached `maxiter' == 1000.
 
 $coefficients
     gamma    lambda   delta_1     delta     rho_1       rho 
- 2.90e+01  2.10e-02  4.66e-67  7.86e-05  5.19e+01 -2.54e+00 
+ 2.90e+01  2.10e-02  8.18e-67  7.90e-05  5.18e+01 -2.54e+00 
 
 $iter
 [1] 1000
@@ -855,7 +852,7 @@ $message
 
 $ela
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0189        -0.6485 
+         0.019         -0.649 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -878,13 +875,13 @@ $upper
 [1] Inf
 
 $fitted.values
- [1] 451 477 500 515 550 583 596 585 628 682 739 740 760 793 808 829 875 867 856
+ [1] 451 477 500 515 550 583 596 585 629 682 739 740 760 793 808 829 875 867 856
 [20] 809 810 843 862 860 877 908 942 961 989 991 966
 
 $residuals
- [1]   2.678  -0.381  -0.959  -6.326   3.467   3.430   2.886  -3.996  -2.577
-[10]   3.627 -17.203  -4.973   0.955   8.154   7.880   1.912  -3.405  -6.817
-[19] -10.505   7.460  18.682   6.613   6.138  20.251  -8.323 -15.452 -17.177
+ [1]   2.650  -0.415  -0.999  -6.369   3.411   3.366   2.865  -4.039  -2.654
+[10]   3.606 -17.202  -4.972   0.955   8.155   7.880   1.913  -3.403  -6.817
+[19] -10.505   7.460  18.682   6.612   6.138  20.251  -8.323 -15.452 -17.177
 [28]   6.987  12.965  11.425 -26.049
 
 $rss
@@ -892,12 +889,12 @@ $rss
 
 $cov.unscaled
             gamma    lambda    delta_1     delta     rho_1       rho
-gamma    3.24e-01  1.21e-05  -3.54e-66 -2.30e-05  2.59e+00 -7.45e-02
-lambda   1.21e-05  1.99e-09  -1.55e-70 -1.02e-09  1.12e-04 -3.33e-06
-delta_1 -3.54e-66 -1.55e-70  1.48e-130  2.41e-70 -1.08e-64  7.73e-67
-delta   -2.30e-05 -1.02e-09   2.41e-70  1.70e-09 -1.76e-04  5.54e-06
-rho_1    2.59e+00  1.12e-04  -1.08e-64 -1.76e-04  7.89e+01 -5.63e-01
-rho     -7.45e-02 -3.33e-06   7.73e-67  5.54e-06 -5.63e-01  1.81e-02
+gamma    3.26e-01  1.21e-05  -6.21e-66 -2.33e-05  2.58e+00 -7.48e-02
+lambda   1.21e-05  1.99e-09  -2.73e-70 -1.02e-09  1.12e-04 -3.33e-06
+delta_1 -6.21e-66 -2.73e-70  4.48e-130  4.25e-70 -1.87e-64  1.36e-66
+delta   -2.33e-05 -1.02e-09   4.25e-70  1.73e-09 -1.76e-04  5.59e-06
+rho_1    2.58e+00  1.12e-04  -1.87e-64 -1.76e-04  7.78e+01 -5.63e-01
+rho     -7.48e-02 -3.33e-06   1.36e-66  5.59e-06 -5.63e-01  1.81e-02
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -910,11 +907,11 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
- 2.90e+01  2.10e-02  4.66e-67  7.86e-05  5.19e+01 -2.54e+00 
+ 2.90e+01  2.10e-02  8.18e-67  7.90e-05  5.18e+01 -2.54e+00 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0189        -0.6485 
+         0.019         -0.649 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -932,12 +929,12 @@ Message: Number of iterations has reached `maxiter' == 1000.
 
 Coefficients:
          Estimate Std. Error t value Pr(>|t|)    
-gamma    2.90e+01   5.84e+00    4.96  7.1e-07 ***
+gamma    2.90e+01   5.86e+00    4.94  7.7e-07 ***
 lambda   2.10e-02   4.58e-04   45.84  < 2e-16 ***
-delta_1  4.66e-67   1.25e-64    0.00    0.997    
-delta    7.86e-05   4.24e-04    0.19    0.853    
-rho_1    5.19e+01   9.12e+01    0.57    0.569    
-rho     -2.54e+00   1.38e+00   -1.84    0.065 .  
+delta_1  8.18e-67   2.17e-64    0.00    0.997    
+delta    7.90e-05   4.27e-04    0.19    0.853    
+rho_1    5.18e+01   9.05e+01    0.57    0.567    
+rho     -2.54e+00   1.38e+00   -1.84    0.066 .  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -946,8 +943,8 @@ Multiple R-squared: 0.996
 
 Elasticities of Substitution:
                Estimate Std. Error t value Pr(>|t|)
-E_1_2 (HM)       0.0189     0.0325    0.58     0.56
-E_(1,2)_3 (AU)  -0.6485     0.5798   -1.12     0.26
+E_1_2 (HM)       0.0190     0.0325    0.58     0.56
+E_(1,2)_3 (AU)  -0.6491     0.5817   -1.12     0.26
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -964,7 +961,7 @@ $nlm$estimate
 [1] 14.092  0.015  0.021  0.987 10.620  3.208
 
 $nlm$gradient
-[1]  0.000488  0.168757  0.067755  0.464352  0.000848 -0.009386
+[1] -0.002280 -3.473886 -0.170811 -1.788108 -0.000971  0.036708
 
 $nlm$code
 [1] 2
@@ -1014,7 +1011,7 @@ $fitted.values
 
 $residuals
  [1]   3.905   0.174  -2.081  -6.656  -0.495   0.885  -0.143  -1.011   9.858
-[10]  21.759 -48.335 -48.347 -28.902  33.902  34.897  37.449  51.508   4.502
+[10]  21.759 -48.335 -48.347 -28.902  33.902  34.897  37.449  51.508   4.503
 [19]  -9.116 -24.290  -0.105  11.174  15.593   5.833 -17.079  -4.911  -3.300
 [28]  -0.813   5.711  -0.530 -30.735
 
@@ -1023,12 +1020,12 @@ $rss
 
 $cov.unscaled
             gamma    lambda   delta_1     delta     rho_1       rho
-gamma    6.05e+10 -1.40e+00  1.25e+09 -1.77e+08 -3.65e+10 -2.05e+02
-lambda  -1.40e+00  1.33e-08  5.09e-02  4.09e-03 -9.61e+00  3.82e-06
-delta_1  1.25e+09  5.09e-02  2.70e+07 -3.64e+06 -9.29e+08  3.60e+00
-delta   -1.77e+08  4.09e-03 -3.64e+06  5.17e+05  1.07e+08  6.01e-01
-rho_1   -3.65e+10 -9.61e+00 -9.29e+08  1.07e+08  4.53e+10 -9.03e+02
-rho     -2.05e+02  3.82e-06  3.60e+00  6.01e-01 -9.03e+02  1.97e-03
+gamma    2.55e+12 -4.74e+01  5.27e+10 -7.46e+09 -1.56e+12 -7.53e+03
+lambda  -4.74e+01  1.44e-08 -8.97e-01  1.39e-01  1.82e+01  3.98e-06
+delta_1  5.27e+10 -8.97e-01  1.09e+09 -1.54e+08 -3.25e+10 -1.47e+02
+delta   -7.46e+09  1.39e-01 -1.54e+08  2.18e+07  4.57e+09  2.20e+01
+rho_1   -1.56e+12  1.82e+01 -3.25e+10  4.57e+09  9.84e+11  3.54e+03
+rho     -7.53e+03  3.98e-06 -1.47e+02  2.20e+01  3.54e+03  1.99e-03
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1062,12 +1059,12 @@ Convergence achieved after 138 iterations
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
-gamma   1.41e+01   5.40e+06    0.00  1.00000    
-lambda  1.50e-02   2.54e-03    5.92  3.2e-09 ***
-delta_1 2.10e-02   1.14e+05    0.00  1.00000    
-delta   9.87e-01   1.58e+04    0.00  0.99995    
-rho_1   1.06e+01   4.68e+06    0.00  1.00000    
-rho     3.21e+00   9.74e-01    3.29  0.00099 ***
+gamma   1.41e+01   3.51e+07    0.00   1.0000    
+lambda  1.50e-02   2.63e-03    5.70  1.2e-08 ***
+delta_1 2.10e-02   7.26e+05    0.00   1.0000    
+delta   9.87e-01   1.03e+05    0.00   1.0000    
+rho_1   1.06e+01   2.18e+07    0.00   1.0000    
+rho     3.21e+00   9.80e-01    3.27   0.0011 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -1076,8 +1073,8 @@ Multiple R-squared: 0.981
 
 Elasticities of Substitution:
                Estimate Std. Error t value Pr(>|t|)    
-E_1_2 (HM)     8.61e-02   3.46e+04    0.00        1    
-E_(1,2)_3 (AU) 2.38e-01   5.50e-02    4.32  1.6e-05 ***
+E_1_2 (HM)     8.61e-02   1.61e+05    0.00        1    
+E_(1,2)_3 (AU) 2.38e-01   5.53e-02    4.29  1.8e-05 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
@@ -1090,42 +1087,42 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesPort )
 $nlminb
 $nlminb$par
-   gamma   lambda  delta_1    delta    rho_1      rho 
-1.62e+00 2.08e-02 9.01e-15 9.32e-01 1.06e+01 4.60e-01 
+  gamma  lambda delta_1   delta   rho_1     rho 
+7.18337 0.00505 0.32292 0.89411 0.54188 0.71126 
 
 $nlminb$objective
-[1] 3520
+[1] 26131
 
 $nlminb$convergence
 [1] 1
 
 $nlminb$iterations
-[1] 490
+[1] 958
 
 $nlminb$evaluations
 function gradient 
-     803      490 
+    1000      958 
 
 $nlminb$message
-[1] "false convergence (8)"
+[1] "function evaluation limit reached without convergence (9)"
 
 
 $coefficients
-   gamma   lambda  delta_1    delta    rho_1      rho 
-1.62e+00 2.08e-02 9.01e-15 9.32e-01 1.06e+01 4.60e-01 
+  gamma  lambda delta_1   delta   rho_1     rho 
+7.18337 0.00505 0.32292 0.89411 0.54188 0.71126 
 
 $iter
-[1] 490
+[1] 958
 
 $convergence
 [1] FALSE
 
 $message
-[1] "false convergence (8)"
+[1] "function evaluation limit reached without convergence (9)"
 
 $ela
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0861         0.6849 
+         0.649          0.584 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -1148,26 +1145,27 @@ $upper
 [1] Inf Inf   1   1 Inf Inf
 
 $fitted.values
- [1] 454 476 498 513 553 588 588 582 635 679 742 742 762 791 807 827 871 866 856
-[20] 811 812 844 862 861 878 908 942 962 989 990 965
+ [1]  491  508  524  532  563  588  589  569  603  642  763  766  777  763  771
+[16]  780  808  879  865  832  824  836  846  852  852  865  953  997 1026 1015
+[31]  971
 
 $residuals
- [1]  -0.0148   1.0065   0.4845  -3.7765   0.8743  -1.2095  11.6972  -0.6248
- [9]  -9.1972   7.2966 -19.9947  -7.9046  -1.7779   9.4733   9.1164   3.8332
-[17]   0.5826  -6.4531 -11.0254   5.8847  17.3909   6.1249   5.8418  19.3478
-[25]  -9.0468 -15.7402 -17.1878   6.8328  13.0712  11.9751 -25.3292
+ [1] -37.79 -30.92 -25.19 -22.68  -9.05  -1.51  10.33  12.02  23.08  44.15
+[11] -40.84 -31.86 -15.93  38.01  44.37  50.31  63.20 -19.35 -20.00 -15.07
+[21]   5.23  13.44  21.99  28.34  16.57  27.42 -28.68 -28.76 -23.59 -12.60
+[31] -31.89
 
 $rss
-[1] 3520
+[1] 26131
 
 $cov.unscaled
             gamma    lambda   delta_1     delta     rho_1       rho
-gamma    1.10e-01  3.61e-06 -2.51e-15 -1.98e-02  1.00e-01 -7.71e-02
-lambda   3.61e-06  2.32e-09 -3.83e-19 -7.20e-07  1.39e-05 -2.95e-06
-delta_1 -2.51e-15 -3.83e-19  2.33e-28  4.64e-16 -8.82e-15  1.83e-15
-delta   -1.98e-02 -7.20e-07  4.64e-16  3.57e-03 -1.84e-02  1.39e-02
-rho_1    1.00e-01  1.39e-05 -8.82e-15 -1.84e-02  3.35e-01 -7.27e-02
-rho     -7.71e-02 -2.95e-06  1.83e-15  1.39e-02 -7.27e-02  5.42e-02
+gamma    2.38e-02 -9.34e-06  8.71e-04 -1.60e-04  5.18e-04  9.75e-04
+lambda  -9.34e-06  2.15e-08 -5.83e-07  8.70e-08  2.73e-07  2.85e-07
+delta_1  8.71e-04 -5.83e-07  5.97e-04  2.34e-04 -1.07e-03  1.12e-03
+delta   -1.60e-04  8.70e-08  2.34e-04  1.14e-04 -4.46e-04  5.12e-04
+rho_1    5.18e-04  2.73e-07 -1.07e-03 -4.46e-04  2.16e-03 -1.95e-03
+rho      9.75e-04  2.85e-07  1.12e-03  5.12e-04 -1.95e-03  2.45e-03
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1179,12 +1177,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     method = "PORT", control = list(eval.max = 1000, iter.max = 1000))
 
 Coefficients:
-   gamma   lambda  delta_1    delta    rho_1      rho 
-1.62e+00 2.08e-02 9.01e-15 9.32e-01 1.06e+01 4.60e-01 
+  gamma  lambda delta_1   delta   rho_1     rho 
+7.18337 0.00505 0.32292 0.89411 0.54188 0.71126 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0861         0.6849 
+         0.649          0.584 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -1197,29 +1195,27 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 
 Estimation by non-linear least-squares using the 'PORT' optimizer
 assuming an additive error term
-Convergence NOT achieved after 490 iterations
-Message: false convergence (8) 
+Convergence NOT achieved after 958 iterations
+Message: function evaluation limit reached without convergence (9) 
 
 Coefficients:
-        Estimate Std. Error t value Pr(>|t|)    
-gamma   1.62e+00   3.54e+00    0.46    0.647    
-lambda  2.08e-02   5.13e-04   40.47   <2e-16 ***
-delta_1 9.01e-15   1.63e-13    0.06    0.956    
-delta   9.32e-01   6.36e-01    1.46    0.143    
-rho_1   1.06e+01   6.17e+00    1.72    0.085 .  
-rho     4.60e-01   2.48e+00    0.19    0.853    
+        Estimate Std. Error t value Pr(>|t|)   
+gamma    7.18337    4.47847    1.60   0.1087   
+lambda   0.00505    0.00426    1.18   0.2363   
+delta_1  0.32292    0.70926    0.46   0.6489   
+delta    0.89411    0.30978    2.89   0.0039 **
+rho_1    0.54188    1.34889    0.40   0.6879   
+rho      0.71126    1.43743    0.49   0.6207   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 10.7 
-Multiple R-squared: 0.996 
+Residual standard error: 29 
+Multiple R-squared: 0.967 
 
 Elasticities of Substitution:
-               Estimate Std. Error t value Pr(>|t|)  
-E_1_2 (HM)       0.0861     0.0457    1.88     0.06 .
-E_(1,2)_3 (AU)   0.6849     1.1639    0.59     0.56  
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)        0.649      0.567    1.14     0.25
+E_(1,2)_3 (AU)    0.584      0.491    1.19     0.23
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -1626,12 +1622,12 @@ $rss
 
 $cov.unscaled
             gamma    lambda   delta_1     delta     rho_1       rho
-gamma    2.13e+08  1.12e-01  2.59e+07 -1.98e+06 -9.04e+07 -2.55e+02
-lambda   1.12e-01  2.18e-08  1.36e-02 -1.04e-03 -4.59e-02  1.34e-06
-delta_1  2.59e+07  1.36e-02  3.15e+06 -2.41e+05 -1.10e+07 -3.12e+01
-delta   -1.98e+06 -1.04e-03 -2.41e+05  1.84e+04  8.40e+05  2.37e+00
-rho_1   -9.04e+07 -4.59e-02 -1.10e+07  8.40e+05  3.85e+07  1.12e+02
-rho     -2.55e+02  1.34e-06 -3.12e+01  2.37e+00  1.12e+02  6.49e-04
+gamma    2.12e+08  1.12e-01  2.59e+07 -1.97e+06 -9.03e+07 -2.54e+02
+lambda   1.12e-01  2.18e-08  1.36e-02 -1.04e-03 -4.58e-02  1.34e-06
+delta_1  2.59e+07  1.36e-02  3.15e+06 -2.40e+05 -1.10e+07 -3.12e+01
+delta   -1.97e+06 -1.04e-03 -2.40e+05  1.83e+04  8.39e+05  2.37e+00
+rho_1   -9.03e+07 -4.58e-02 -1.10e+07  8.39e+05  3.85e+07  1.12e+02
+rho     -2.54e+02  1.34e-06 -3.12e+01  2.37e+00  1.12e+02  6.48e-04
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -1669,7 +1665,7 @@ lambda  8.40e-03   4.90e-03    1.71    0.086 .
 delta_1 2.46e-01   5.89e+04    0.00    1.000  
 delta   8.93e-01   4.49e+03    0.00    1.000  
 rho_1   6.41e+00   2.06e+05    0.00    1.000  
-rho     1.56e+00   8.45e-01    1.85    0.065 .
+rho     1.56e+00   8.44e-01    1.85    0.065 .
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -1678,7 +1674,7 @@ Multiple R-squared: 0.957
 
 Elasticities of Substitution:
                Estimate Std. Error t value Pr(>|t|)   
-E_1_2 (HM)        0.135   3745.193    0.00   1.0000   
+E_1_2 (HM)        0.135   3742.417    0.00   1.0000   
 E_(1,2)_3 (AU)    0.391      0.129    3.03   0.0024 **
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -1850,7 +1846,7 @@ $optim$value
 
 $optim$counts
 function gradient 
-     581       86 
+     577       86 
 
 $optim$convergence
 [1] 0
@@ -1865,7 +1861,7 @@ $coefficients
 
 $iter
 function gradient 
-     581       86 
+     577       86 
 
 $convergence
 [1] TRUE
@@ -1952,7 +1948,7 @@ Estimation by non-linear least-squares using the 'BFGS' optimizer
 assuming an additive error term
 Coefficient 'rho_1' was fixed at 0.181 
 Coefficient 'rho' was fixed at 0.53 
-Convergence achieved after 581 function and 86 gradient calls
+Convergence achieved after 577 function and 86 gradient calls
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
@@ -1991,7 +1987,7 @@ $optim$value
 
 $optim$counts
 function gradient 
-     157      157 
+     189      189 
 
 $optim$convergence
 [1] 0
@@ -2006,7 +2002,7 @@ $coefficients
 
 $iter
 function gradient 
-     157      157 
+     189      189 
 
 $convergence
 [1] TRUE
@@ -2049,10 +2045,10 @@ $fitted.values
 [20] 807 810 845 863 858 874 907 946 964 991 990 965
 
 $residuals
- [1] -26.275  -6.471  -1.549  -2.420   1.695  -0.879  23.275   6.214 -12.020
-[10]  11.219 -12.642   1.326   4.965   7.689   7.616   1.631  -4.045 -10.708
-[19] -12.962   9.391  19.165   5.110   4.700  22.308  -5.581 -14.422 -21.549
-[28]   4.785  10.933  11.974 -25.066
+ [1] -26.275  -6.471  -1.549  -2.419   1.695  -0.879  23.275   6.214 -12.020
+[10]  11.219 -12.642   1.326   4.964   7.689   7.616   1.631  -4.045 -10.708
+[19] -12.962   9.391  19.165   5.110   4.700  22.309  -5.580 -14.422 -21.549
+[28]   4.785  10.934  11.975 -25.065
 
 $rss
 [1] 4819
@@ -2096,7 +2092,7 @@ Estimation by non-linear least-squares using the 'L-BFGS-B' optimizer
 assuming an additive error term
 Coefficient 'rho_1' was fixed at 0.181 
 Coefficient 'rho' was fixed at 0.53 
-Convergence achieved after 157 function and 157 gradient calls
+Convergence achieved after 189 function and 189 gradient calls
 Message: CONVERGENCE: REL_REDUCTION_OF_F <= FACTR*EPSMCH 
 
 Coefficients:
@@ -2105,7 +2101,7 @@ gamma     1.2520     2.1637    0.58    0.563
 lambda    0.0204     0.0018   11.34   <2e-16 ***
 delta_1   0.0179     0.0771    0.23    0.817    
 delta     0.9697     0.4270    2.27    0.023 *  
-rho_1     0.1813     1.8794    0.10    0.923    
+rho_1     0.1813     1.8792    0.10    0.923    
 rho       0.5300     3.6787    0.14    0.885    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -2116,7 +2112,7 @@ Multiple R-squared: 0.994
 Elasticities of Substitution:
                Estimate Std. Error t value Pr(>|t|)
 E_1_2 (HM)        0.847      1.347    0.63     0.53
-E_(1,2)_3 (AU)    0.654      1.571    0.42     0.68
+E_(1,2)_3 (AU)    0.654      1.572    0.42     0.68
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -2127,7 +2123,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesLmRho )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 1.51479182457689, 0.0208270249959783, 1.80197703135486e-16, 0.948373139101641, 11.9262707519664 
+parameter estimates: 1.51479182457687, 0.0208270249959783, 1.80197703135431e-16, 0.948373139101642, 11.9262707519664 
 residual sum-of-squares: 3519
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -2255,7 +2251,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesLmRho1 )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 0.944544493672914, 0.0202121091003392, 0.0189990866374896, 0.999997787263243, 2.95063342476465 
+parameter estimates: 0.944544493467381, 0.0202121090999886, 0.0189990866342319, 0.999997787263316, 2.95063343306371 
 residual sum-of-squares: 4745
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -2382,7 +2378,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesLmRho2 )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 1.25201480677913, 0.0204468413490354, 0.0178680654518804, 0.969736147528639 
+parameter estimates: 1.25201480677914, 0.0204468413490353, 0.0178680654518808, 0.969736147528639 
 residual sum-of-squares: 4819
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -2521,7 +2517,7 @@ $nlm$estimate
 [1] 1.2520 0.0204 0.0179 0.9697
 
 $nlm$gradient
-[1] -0.00646 -0.11011  0.01998 -0.08685
+[1]  0.0126  0.2539 -0.0415  0.1744
 
 $nlm$code
 [1] 2
@@ -2654,37 +2650,37 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 $nlminb
 $nlminb$par
   gamma  lambda delta_1   delta 
- 1.2520  0.0204  0.0179  0.9697 
+20.0019  0.0102  0.7183  0.5963 
 
 $nlminb$objective
-[1] 4819
+[1] 41681
 
 $nlminb$convergence
-[1] 0
+[1] 1
 
 $nlminb$iterations
-[1] 83
+[1] 982
 
 $nlminb$evaluations
 function gradient 
-     145       84 
+    1000      982 
 
 $nlminb$message
-[1] "relative convergence (4)"
+[1] "function evaluation limit reached without convergence (9)"
 
 
 $coefficients
   gamma  lambda delta_1   delta   rho_1     rho 
- 1.2520  0.0204  0.0179  0.9697  0.1813  0.5300 
+20.0019  0.0102  0.7183  0.5963  0.1813  0.5300 
 
 $iter
-[1] 83
+[1] 982
 
 $convergence
-[1] TRUE
+[1] FALSE
 
 $message
-[1] "relative convergence (4)"
+[1] "function evaluation limit reached without convergence (9)"
 
 $ela
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -2718,26 +2714,27 @@ $rho
 [1] 0.53
 
 $fitted.values
- [1] 480 483 500 511 552 588 576 575 638 675 735 733 756 793 808 829 875 871 858
-[20] 807 810 845 863 858 874 907 946 964 991 990 965
+ [1]  504  524  541  551  577  600  604  582  608  646  740  748  756  739  750
+[16]  761  788  852  845  824  816  828  841  856  861  875  953 1005 1038 1035
+[31]  996
 
 $residuals
- [1] -26.275  -6.471  -1.549  -2.420   1.695  -0.879  23.275   6.214 -12.020
-[10]  11.219 -12.642   1.326   4.965   7.689   7.616   1.631  -4.045 -10.708
-[19] -12.962   9.391  19.165   5.110   4.700  22.308  -5.581 -14.422 -21.549
-[28]   4.785  10.933  11.974 -25.066
+ [1] -50.581 -47.788 -42.609 -41.828 -22.718 -13.426  -4.994  -0.583  17.779
+[10]  39.664 -18.145 -13.850   4.723  61.914  65.363  69.545  83.382   8.035
+[19]  -0.125  -7.623  12.556  21.830  27.234  23.776   7.064  17.667 -28.911
+[28] -36.574 -35.919 -33.322 -56.784
 
 $rss
-[1] 4819
+[1] 41681
 
 $cov.unscaled
             gamma    lambda   delta_1     delta     rho_1       rho
-gamma    3.01e-02 -1.42e-06 -9.30e-05 -5.93e-03  4.38e-03 -5.11e-02
-lambda  -1.42e-06  2.09e-08 -3.37e-07  4.41e-08  9.47e-07  5.60e-07
-delta_1 -9.30e-05 -3.37e-07  3.82e-05  2.37e-05 -8.74e-04  1.72e-04
-delta   -5.93e-03  4.41e-08  2.37e-05  1.17e-03 -9.07e-04  1.01e-02
-rho_1    4.38e-03  9.47e-07 -8.74e-04 -9.07e-04  2.27e-02 -7.03e-03
-rho     -5.11e-02  5.60e-07  1.72e-04  1.01e-02 -7.03e-03  8.71e-02
+gamma    9.71e-01 -3.58e-05  6.92e-02  1.95e-03 -1.05e-01  3.74e-02
+lambda  -3.58e-05  2.17e-08 -1.99e-06  1.69e-07  2.20e-06 -7.19e-08
+delta_1  6.92e-02 -1.99e-06  7.19e-03  8.30e-04 -1.31e-02  4.23e-03
+delta    1.95e-03  1.69e-07  8.30e-04  2.26e-04 -1.92e-03  5.91e-04
+rho_1   -1.05e-01  2.20e-06 -1.31e-02 -1.92e-03  2.56e-02 -7.90e-03
+rho      3.74e-02 -7.19e-08  4.23e-03  5.91e-04 -7.90e-03  2.67e-03
 
 attr(,"class")
 [1] "cesEst" "list"  
@@ -2751,7 +2748,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
- 1.2520  0.0204  0.0179  0.9697  0.1813  0.5300 
+20.0019  0.0102  0.7183  0.5963  0.1813  0.5300 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -2771,27 +2768,27 @@ Estimation by non-linear least-squares using the 'PORT' optimizer
 assuming an additive error term
 Coefficient 'rho_1' was fixed at 0.181 
 Coefficient 'rho' was fixed at 0.53 
-Convergence achieved after 83 iterations
-Message: relative convergence (4) 
+Convergence NOT achieved after 982 iterations
+Message: function evaluation limit reached without convergence (9) 
 
 Coefficients:
-        Estimate Std. Error t value Pr(>|t|)    
-gamma     1.2520     2.1637    0.58    0.563    
-lambda    0.0204     0.0018   11.34   <2e-16 ***
-delta_1   0.0179     0.0771    0.23    0.817    
-delta     0.9697     0.4270    2.27    0.023 *  
-rho_1     0.1813     1.8794    0.10    0.923    
-rho       0.5300     3.6787    0.14    0.885    
+        Estimate Std. Error t value Pr(>|t|)  
+gamma    20.0019    36.1379    0.55    0.580  
+lambda    0.0102     0.0054    1.89    0.059 .
+delta_1   0.7183     3.1103    0.23    0.817  
+delta     0.5963     0.5517    1.08    0.280  
+rho_1     0.1813     5.8709    0.03    0.975  
+rho       0.5300     1.8948    0.28    0.780  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 12.5 
-Multiple R-squared: 0.994 
+Residual standard error: 36.7 
+Multiple R-squared: 0.947 
 
 Elasticities of Substitution:
                Estimate Std. Error t value Pr(>|t|)
-E_1_2 (HM)        0.847      1.347    0.63     0.53
-E_(1,2)_3 (AU)    0.654      1.571    0.42     0.68
+E_1_2 (HM)        0.847      4.207    0.20     0.84
+E_(1,2)_3 (AU)    0.654      0.809    0.81     0.42
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -3289,7 +3286,7 @@ $optim$value
 
 $optim$counts
 function gradient 
-    1660      245 
+    1697      241 
 
 $optim$convergence
 [1] 0
@@ -3304,7 +3301,7 @@ $coefficients
 
 $iter
 function gradient 
-    1660      245 
+    1697      241 
 
 $convergence
 [1] TRUE
@@ -3345,10 +3342,10 @@ $fitted.values
 [20] 813 813 845 863 862 878 908 942 961 989 989 964
 
 $residuals
- [1] -10.325  -2.753  -0.953  -3.849   2.139   0.931  15.919   3.665  -4.764
-[10]  13.496 -20.098  -8.843  -2.632   9.371   8.991   3.929   1.102  -8.241
-[19] -12.717   3.987  15.873   5.134   5.135  18.539  -9.509 -15.682 -16.943
-[28]   7.085  13.648  12.805 -24.130
+ [1] -10.327  -2.753  -0.952  -3.847   2.140   0.932  15.922   3.666  -4.765
+[10]  13.496 -20.095  -8.839  -2.629   9.370   8.990   3.929   1.100  -8.240
+[19] -12.716   3.990  15.875   5.135   5.136  18.541  -9.508 -15.682 -16.943
+[28]   7.086  13.649  12.806 -24.129
 
 $rss
 [1] 3781
@@ -3371,7 +3368,7 @@ $allRhoSum
 5  -0.9 -0.4   4950        TRUE
 6   0.0 -0.4   4923        TRUE
 7   5.0 -0.4   3830        TRUE
-8  10.0 -0.4   4656        TRUE
+8  10.0 -0.4   3788        TRUE
 9  -0.9  0.0   4920        TRUE
 10  0.0  0.0   4891        TRUE
 11  5.0  0.0   3799        TRUE
@@ -3381,7 +3378,7 @@ $allRhoSum
 15  5.0  0.5   3781        TRUE
 16 10.0  0.5  46212        TRUE
 17 -0.9  1.0   4864        TRUE
-18  0.0  1.0  19763        TRUE
+18  0.0  1.0  19890        TRUE
 19  5.0  1.0  29188        TRUE
 20 10.0  1.0  29187        TRUE
 
@@ -3398,7 +3395,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
- 8.7820  0.0220 -0.0361  0.0881 -0.9000 -0.9000 
+ 8.7822  0.0220 -0.0361  0.0881 -0.9000 -0.9000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -3419,7 +3416,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
- 8.3190  0.0210  0.0168  0.1025  0.0000 -0.9000 
+ 8.3189  0.0210  0.0168  0.1025  0.0000 -0.9000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -3460,8 +3457,8 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
-   gamma   lambda  delta_1    delta    rho_1      rho 
-17.46200 -0.02842  0.00199  0.57900 10.00000 -0.90000 
+  gamma  lambda delta_1   delta   rho_1     rho 
+17.4568 -0.0284  0.0020  0.5796 10.0000 -0.9000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -3482,7 +3479,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
- 3.6866  0.0219 -0.0350  0.4204 -0.9000 -0.4000 
+ 3.6865  0.0219 -0.0350  0.4204 -0.9000 -0.4000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -3524,7 +3521,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
- 6.43e+00  2.05e-02  1.28e-07  3.01e-01  5.00e+00 -4.00e-01 
+ 6.47e+00  2.05e-02  1.29e-07  3.00e-01  5.00e+00 -4.00e-01 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -3545,7 +3542,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
- 1.17e+01  2.01e-02  3.01e-13  1.86e-01  1.00e+01 -4.00e-01 
+ 8.92e+00  2.04e-02  1.46e-13  2.34e-01  1.00e+01 -4.00e-01 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -3608,7 +3605,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
-3.04e+00 2.04e-02 1.27e-07 6.77e-01 5.00e+00 0.00e+00 
+3.04e+00 2.04e-02 1.26e-07 6.78e-01 5.00e+00 0.00e+00 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -3671,7 +3668,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
- 1.2492  0.0208  0.0187  0.9664  0.0000  0.5000 
+ 1.2491  0.0208  0.0187  0.9664  0.0000  0.5000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -3755,7 +3752,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
-55.09309  0.01482  3.20902  0.00103  0.00000  1.00000 
+55.68956  0.01447  3.04462  0.00175  0.00000  1.00000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -3810,9 +3807,9 @@ HM = Hicks-McFadden (direct) elasticity of substitution
 $rssArray
        -0.9 -0.4     0   0.5     1
 -0.9   4993 4950  4920  4889  4864
-0      4968 4923  4891  4857 19763
+0      4968 4923  4891  4857 19890
 5      3890 3830  3799  3781 29188
-10   175432 4656 72725 46212 29187
+10   175432 3788 72725 46212 29187
 
 $rho1Values
 [1] -0.9  0.0  5.0 10.0
@@ -3851,12 +3848,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Estimation by non-linear least-squares using the 'BFGS' optimizer
 and a two-dimensional grid search for coefficients 'rho_1', 'rho'
 assuming an additive error term
-Convergence achieved after 1660 function and 245 gradient calls
+Convergence achieved after 1697 function and 241 gradient calls
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
 gamma   1.62e+00   2.97e+00    0.54    0.586    
-lambda  2.04e-02   8.27e-04   24.67   <2e-16 ***
+lambda  2.04e-02   8.26e-04   24.67   <2e-16 ***
 delta_1 1.23e-07   1.17e-06    0.11    0.916    
 delta   9.39e-01   5.06e-01    1.86    0.063 .  
 rho_1   5.00e+00   3.33e+00    1.50    0.133    
@@ -3870,7 +3867,7 @@ Multiple R-squared: 0.995
 Elasticities of Substitution:
                Estimate Std. Error t value Pr(>|t|)  
 E_1_2 (HM)       0.1667     0.0924    1.80    0.071 .
-E_(1,2)_3 (AU)   0.6667     0.9767    0.68    0.495  
+E_(1,2)_3 (AU)   0.6667     0.9769    0.68    0.495  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
@@ -3884,7 +3881,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesLmGridRho )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 2.93794451411234, 0.0208433697769288, 8.0844257027315e-18, 0.682871559047622, 13.0288615747527 
+parameter estimates: 2.93794449978587, 0.0208433697915634, 8.08441458220423e-18, 0.682871560156119, 13.028862032967 
 residual sum-of-squares: 3474
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -4134,7 +4131,7 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > print.default( cesLmGridRho1 )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 1.45178283604187, 0.0203792606559993, 1.21304741332414e-07, 0.965551769364575, 0.650203377931065 
+parameter estimates: 1.45178262933336, 0.0203792606459071, 1.21304738889466e-07, 0.965551799336349, 0.650203603178479 
 residual sum-of-squares: 3780
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -4363,7 +4360,7 @@ There were 22 warnings (use warnings() to see them)
 > print.default( cesLmGridRho2 )
 $nls.lm
 Nonlinear regression via the Levenberg-Marquardt algorithm
-parameter estimates: 6.42908513463528, 0.0207793928590797, 6.51072710980114e-14, 0.29891744142987 
+parameter estimates: 6.42908513380168, 0.020779392859299, 6.51072710709021e-14, 0.29891744145697 
 residual sum-of-squares: 3495
 reason terminated: Relative error in the sum of squares is at most `ftol'.
 
@@ -4962,13 +4959,13 @@ $nlm$estimate
 [1] 1.34e+01 2.05e-02 1.27e-07 5.65e-02
 
 $nlm$gradient
-[1] -4.12e-04 -8.06e-02  6.69e+02 -7.11e-02
+[1]  2.14e-04  7.89e-02 -2.12e+02  3.64e-02
 
 $nlm$code
 [1] 2
 
 $nlm$iterations
-[1] 179
+[1] 171
 
 
 $coefficients
@@ -4976,7 +4973,7 @@ $coefficients
  1.34e+01  2.05e-02  1.27e-07  5.65e-02  5.00e+00 -9.00e-01 
 
 $iter
-[1] 179
+[1] 171
 
 $convergence
 [1] TRUE
@@ -5039,11 +5036,11 @@ $allRhoSum
 1  -0.9 -0.9  6288        TRUE
 2   0.0 -0.9  4968        TRUE
 3   5.0 -0.9  3890        TRUE
-4  10.0 -0.9 26752       FALSE
+4  10.0 -0.9 91012        TRUE
 5  -0.9 -0.4  4950        TRUE
 6   0.0 -0.4  4923        TRUE
 7   5.0 -0.4  7054        TRUE
-8  10.0 -0.4  6936       FALSE
+8  10.0 -0.4  6932        TRUE
 9  -0.9  0.0  4920        TRUE
 10  0.0  0.0  4891        TRUE
 11  5.0  0.0 23280        TRUE
@@ -5133,7 +5130,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
- 2.83e+01  1.08e-02  1.12e-10  2.68e-02  1.00e+01 -9.00e-01 
+ 1.33e+01 -1.71e-02  2.50e-08  2.17e-01  1.00e+01 -9.00e-01 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -5217,7 +5214,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
- 1.64e+01  1.94e-02  1.23e-12  1.34e-01  1.00e+01 -4.00e-01 
+ 1.64e+01  1.95e-02  1.20e-12  1.33e-01  1.00e+01 -4.00e-01 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -5484,7 +5481,7 @@ $rssArray
 -0.9  6288 4950  4920  4889 20446
 0     4968 4923  4891 42690 29133
 5     3890 7054 23280 46167 29189
-10   26752 6936 20736 46212 39181
+10   91012 6932 20736 46212 39181
 
 $rho1Values
 [1] -0.9  0.0  5.0 10.0
@@ -5523,7 +5520,7 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Estimation by non-linear least-squares using the 'Newton' optimizer
 and a two-dimensional grid search for coefficients 'rho_1', 'rho'
 assuming an additive error term
-Convergence achieved after 179 iterations
+Convergence achieved after 171 iterations
 
 Coefficients:
          Estimate Std. Error t value Pr(>|t|)    
@@ -5557,41 +5554,41 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 $nlminb
 $nlminb$par
    gamma   lambda  delta_1    delta    rho_1 
-2.96e+00 2.08e-02 5.39e-14 6.81e-01 1.00e+01 
+2.92e+00 1.99e-02 6.24e-05 6.92e-01 2.80e+00 
 
 $nlminb$objective
-[1] 3505
+[1] 4165
 
 $nlminb$convergence
 [1] 1
 
 $nlminb$iterations
-[1] 360
+[1] 897
 
 $nlminb$evaluations
 function gradient 
-     709      360 
+    1000      897 
 
 $nlminb$message
-[1] "false convergence (8)"
+[1] "function evaluation limit reached without convergence (9)"
 
 
 $coefficients
    gamma   lambda  delta_1    delta    rho_1      rho 
-2.96e+00 2.08e-02 5.39e-14 6.81e-01 1.00e+01 0.00e+00 
+2.92e+00 1.99e-02 6.24e-05 6.92e-01 2.80e+00 0.00e+00 
 
 $iter
-[1] 360
+[1] 897
 
 $convergence
 [1] FALSE
 
 $message
-[1] "false convergence (8)"
+[1] "function evaluation limit reached without convergence (9)"
 
 $ela
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0907         1.0000 
+         0.263          1.000 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -5618,34 +5615,34 @@ $rho
 [1] 0
 
 $fitted.values
- [1] 455 477 499 514 553 588 588 582 634 677 742 742 762 792 807 827 872 867 856
-[20] 811 812 844 862 861 878 908 942 962 989 990 965
+ [1] 471 483 502 514 552 585 581 575 629 669 740 741 761 791 806 826 870 871 860
+[20] 813 814 846 864 862 878 908 942 961 988 988 962
 
 $residuals
- [1]  -1.751  -0.522  -0.697  -4.823   0.768  -0.850  11.644  -0.124  -7.866
-[10]   8.547 -19.849  -7.815  -1.704   9.015   8.683   3.316  -0.233  -6.746
-[19] -11.156   5.918  17.425   6.086   5.807  19.408  -8.979 -15.685 -17.133
-[28]   6.917  13.152  12.016 -25.277
+ [1] -17.63  -6.49  -3.24  -5.22   1.96   1.46  18.36   6.13  -2.69  17.28
+[11] -17.63  -6.43  -0.57   9.87   9.60   4.54   1.30 -10.89 -14.60   3.20
+[21]  14.97   4.01   4.22  18.53  -9.01 -15.21 -17.85   6.97  13.97  13.86
+[31] -22.64
 
 $rss
-[1] 3505
+[1] 4165
 
 $cov.unscaled
             gamma    lambda   delta_1     delta     rho_1       rho
-gamma    1.34e+00  1.64e-05 -5.85e-14 -2.25e-01  3.87e-01 -2.58e-01
-lambda   1.64e-05  2.43e-09 -2.31e-18 -2.90e-06  1.40e-05 -3.46e-06
-delta_1 -5.85e-14 -2.31e-18  8.00e-27  9.96e-15 -5.09e-14  1.15e-14
-delta   -2.25e-01 -2.90e-06  9.96e-15  3.79e-02 -6.57e-02  4.34e-02
-rho_1    3.87e-01  1.40e-05 -5.09e-14 -6.57e-02  3.25e-01 -7.59e-02
-rho     -2.58e-01 -3.46e-06  1.15e-14  4.34e-02 -7.59e-02  4.98e-02
+gamma    8.26e-01  3.70e-05 -1.44e-05 -1.42e-01  8.79e-02 -1.65e-01
+lambda   3.70e-05  1.45e-08 -3.68e-09 -6.50e-06  2.02e-05 -7.53e-06
+delta_1 -1.44e-05 -3.68e-09  1.36e-09  2.43e-06 -7.85e-06  2.73e-06
+delta   -1.42e-01 -6.50e-06  2.43e-06  2.43e-02 -1.48e-02  2.84e-02
+rho_1    8.79e-02  2.02e-05 -7.85e-06 -1.48e-02  4.56e-02 -1.66e-02
+rho     -1.65e-01 -7.53e-06  2.73e-06  2.84e-02 -1.66e-02  3.32e-02
 
 $allRhoSum
-   rho  rss convergence
-1 -0.9 3509       FALSE
-2 -0.4 3511       FALSE
-3  0.0 3505       FALSE
-4  0.5 3556       FALSE
-5  1.0 3570       FALSE
+   rho   rss convergence
+1 -0.9 12570       FALSE
+2 -0.4  4441       FALSE
+3  0.0  4165       FALSE
+4  0.5 40655       FALSE
+5  1.0 36902       FALSE
 
 $allRhoFull
 $allRhoFull[[1]]
@@ -5659,12 +5656,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
-    gamma    lambda   delta_1     delta     rho_1       rho 
- 1.39e+01  2.08e-02  7.91e-14  5.33e-02  9.97e+00 -9.00e-01 
+   gamma   lambda  delta_1    delta    rho_1      rho 
+ 6.16408  0.00803  0.12727  0.27048  0.41011 -0.90000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0911        10.0000 
+         0.709         10.000 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -5681,11 +5678,11 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
- 6.82e+00  2.07e-02  1.44e-13  2.86e-01  9.77e+00 -4.00e-01 
+ 4.922513  0.019747  0.000671  0.369663  1.847743 -0.400000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0928         1.6667 
+         0.351          1.667 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -5702,11 +5699,11 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
-2.96e+00 2.08e-02 5.39e-14 6.81e-01 1.00e+01 0.00e+00 
+2.92e+00 1.99e-02 6.24e-05 6.92e-01 2.80e+00 0.00e+00 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0907         1.0000 
+         0.263          1.000 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -5723,11 +5720,11 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
-1.59e+00 2.07e-02 1.83e-12 9.40e-01 8.81e+00 5.00e-01 
+19.91855  0.00864  0.60410  0.59814  0.57014  0.50000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-         0.102          0.667 
+         0.637          0.667 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -5743,12 +5740,12 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
-   gamma   lambda  delta_1    delta    rho_1      rho 
-1.19e+00 2.08e-02 3.73e-14 9.92e-01 1.01e+01 1.00e+00 
+  gamma  lambda delta_1   delta   rho_1     rho 
+26.3815  0.0126  1.0000  0.6165  0.8129  1.0000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0902         0.5000 
+         0.552          0.500 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -5769,11 +5766,11 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
-2.96e+00 2.08e-02 5.39e-14 6.81e-01 1.00e+01 0.00e+00 
+2.92e+00 1.99e-02 6.24e-05 6.92e-01 2.80e+00 0.00e+00 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0907         1.0000 
+         0.263          1.000 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -5788,29 +5785,27 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a one-dimensional grid search for coefficient 'rho'
 assuming an additive error term
-Convergence NOT achieved after 360 iterations
-Message: false convergence (8) 
+Convergence NOT achieved after 897 iterations
+Message: function evaluation limit reached without convergence (9) 
 
 Coefficients:
         Estimate Std. Error t value Pr(>|t|)    
-gamma   2.96e+00   1.23e+01    0.24    0.810    
-lambda  2.08e-02   5.24e-04   39.62   <2e-16 ***
-delta_1 5.39e-14   9.51e-13    0.06    0.955    
-delta   6.81e-01   2.07e+00    0.33    0.742    
-rho_1   1.00e+01   6.06e+00    1.65    0.098 .  
-rho     0.00e+00   2.37e+00    0.00    1.000    
+gamma   2.92e+00   1.05e+01    0.28     0.78    
+lambda  1.99e-02   1.40e-03   14.26   <2e-16 ***
+delta_1 6.24e-05   4.28e-04    0.15     0.88    
+delta   6.92e-01   1.81e+00    0.38     0.70    
+rho_1   2.80e+00   2.47e+00    1.13     0.26    
+rho     0.00e+00   2.11e+00    0.00     1.00    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 10.6 
-Multiple R-squared: 0.996 
+Residual standard error: 11.6 
+Multiple R-squared: 0.995 
 
 Elasticities of Substitution:
-               Estimate Std. Error t value Pr(>|t|)  
-E_1_2 (HM)       0.0907     0.0498    1.82    0.069 .
-E_(1,2)_3 (AU)   1.0000     2.3718    0.42    0.673  
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+               Estimate Std. Error t value Pr(>|t|)
+E_1_2 (HM)        0.263      0.171    1.54     0.12
+E_(1,2)_3 (AU)    1.000      2.112    0.47     0.64
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -5823,31 +5818,31 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 $nlminb
 $nlminb$par
    gamma   lambda  delta_1    delta 
-1.36e+01 2.08e-02 6.90e-14 5.48e-02 
+1.23e+00 2.04e-02 1.17e-07 9.91e-01 
 
 $nlminb$objective
-[1] 3505
+[1] 3785
 
 $nlminb$convergence
 [1] 0
 
 $nlminb$iterations
-[1] 342
+[1] 782
 
 $nlminb$evaluations
 function gradient 
-     671      343 
+     923      783 
 
 $nlminb$message
 [1] "relative convergence (4)"
 
 
 $coefficients
-    gamma    lambda   delta_1     delta     rho_1       rho 
- 1.36e+01  2.08e-02  6.90e-14  5.48e-02  1.00e+01 -9.00e-01 
+   gamma   lambda  delta_1    delta    rho_1      rho 
+1.23e+00 2.04e-02 1.17e-07 9.91e-01 5.00e+00 1.00e+00 
 
 $iter
-[1] 342
+[1] 782
 
 $convergence
 [1] TRUE
@@ -5857,7 +5852,7 @@ $message
 
 $ela
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0909        10.0000 
+         0.167          0.500 
 
 $call
 cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time", 
@@ -5872,7 +5867,7 @@ $multErr
 
 $start
   gamma  lambda delta_1   delta 
- 13.249   0.015   0.500   0.500 
+ 29.597   0.015   0.500   0.500 
 
 $lower
 [1]    0 -Inf    0    0
@@ -5881,55 +5876,55 @@ $upper
 [1] Inf Inf   1   1
 
 $rho1
-[1] 10
+[1] 5
 
 $rho
-[1] -0.9
+[1] 1
 
 $fitted.values
- [1] 456 479 500 515 552 586 587 580 631 675 741 742 762 793 808 828 873 867 857
-[20] 810 811 844 862 861 877 908 942 961 989 990 965
+ [1] 463 478 499 512 552 586 583 578 632 674 743 744 764 791 806 826 869 868 858
+[20] 813 813 845 863 862 878 908 941 961 989 989 964
 
 $residuals
- [1]  -2.521  -1.952  -1.801  -5.887   1.450   0.667  11.835   1.171  -4.816
-[10]  11.037 -19.091  -7.069  -1.082   8.244   7.942   2.357  -1.875  -7.205
-[19] -11.275   6.265  17.680   6.057   5.739  19.632  -8.788 -15.646 -17.163
-[28]   7.036  13.236  12.026 -25.300
+ [1]  -9.9427  -1.8045  -0.0925  -2.9883   2.1652   0.5427  16.0468   3.2499
+ [9]  -6.0110  12.3354 -20.6792  -9.3894  -3.1059   9.7428   9.3559   4.4278
+[17]   2.0092  -7.9222 -12.6097   3.7951  15.7414   5.1808   5.2040  18.4146
+[25]  -9.6186 -15.6935 -16.9047   7.0110  13.5859  12.7700 -24.1474
 
 $rss
-[1] 3505
+[1] 3785
 
 $cov.unscaled
             gamma    lambda   delta_1     delta     rho_1       rho
-gamma    1.01e+01  5.99e-05 -2.76e-13 -1.40e-01  1.41e+00 -6.77e-01
-lambda   5.99e-05  2.52e-09 -3.22e-18 -8.88e-07  1.55e-05 -4.40e-06
-delta_1 -2.76e-13 -3.22e-18  1.62e-26  3.88e-15 -8.13e-14  1.88e-14
-delta   -1.40e-01 -8.88e-07  3.88e-15  1.97e-03 -1.98e-02  9.47e-03
-rho_1    1.41e+00  1.55e-05 -8.13e-14 -1.98e-02  4.09e-01 -9.57e-02
-rho     -6.77e-01 -4.40e-06  1.88e-14  9.47e-03 -9.57e-02  4.57e-02
+gamma    8.22e-03  1.48e-06 -3.64e-09 -6.52e-04  1.18e-02 -1.87e-02
+lambda   1.48e-06  5.49e-09 -5.47e-12 -1.51e-07  1.55e-05 -4.56e-06
+delta_1 -3.64e-09 -5.47e-12  1.01e-14  3.13e-10 -3.00e-08  9.10e-09
+delta   -6.52e-04 -1.51e-07  3.13e-10  5.22e-05 -1.00e-03  1.50e-03
+rho_1    1.18e-02  1.55e-05 -3.00e-08 -1.00e-03  8.95e-02 -2.89e-02
+rho     -1.87e-02 -4.56e-06  9.10e-09  1.50e-03 -2.89e-02  4.32e-02
 
 $allRhoSum
-   rho1  rho   rss convergence
-1  -0.9 -0.9  4998        TRUE
-2   0.0 -0.9  4968        TRUE
-3   5.0 -0.9  3890        TRUE
-4  10.0 -0.9  3505        TRUE
-5  -0.9 -0.4  4955        TRUE
-6   0.0 -0.4  4923        TRUE
-7   5.0 -0.4 80705        TRUE
-8  10.0 -0.4  6979       FALSE
-9  -0.9  0.0  4925        TRUE
-10  0.0  0.0  4891        TRUE
-11  5.0  0.0  3799        TRUE
-12 10.0  0.0  8323       FALSE
-13 -0.9  0.5  4893        TRUE
-14  0.0  0.5  4857        TRUE
-15  5.0  0.5  3781        TRUE
-16 10.0  0.5 46212        TRUE
-17 -0.9  1.0 29187        TRUE
-18  0.0  1.0 29187        TRUE
-19  5.0  1.0  3785        TRUE
-20 10.0  1.0 29187        TRUE
+   rho1  rho    rss convergence
+1  -0.9 -0.9   4998        TRUE
+2   0.0 -0.9  12096       FALSE
+3   5.0 -0.9  46687       FALSE
+4  10.0 -0.9 175100       FALSE
+5  -0.9 -0.4   4955        TRUE
+6   0.0 -0.4   4923        TRUE
+7   5.0 -0.4  80705        TRUE
+8  10.0 -0.4 116543       FALSE
+9  -0.9  0.0   4925        TRUE
+10  0.0  0.0  31694       FALSE
+11  5.0  0.0 109537       FALSE
+12 10.0  0.0  75660       FALSE
+13 -0.9  0.5   4893        TRUE
+14  0.0  0.5  47604       FALSE
+15  5.0  0.5  46170       FALSE
+16 10.0  0.5  46212        TRUE
+17 -0.9  1.0  70591       FALSE
+18  0.0  1.0  43154       FALSE
+19  5.0  1.0   3785        TRUE
+20 10.0  1.0  39098       FALSE
 
 $allRhoFull
 $allRhoFull[[1]]
@@ -5964,8 +5959,8 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
-  gamma  lambda delta_1   delta   rho_1     rho 
- 8.3190  0.0210  0.0168  0.1025  0.0000 -0.9000 
+   gamma   lambda  delta_1    delta    rho_1      rho 
+ 4.82878  0.00942  0.23818  0.36912  0.00000 -0.90000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -5986,7 +5981,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
- 1.34e+01  2.05e-02  1.27e-07  5.65e-02  5.00e+00 -9.00e-01 
+ 2.02e+01  4.92e-03  9.83e-06  5.71e-02  5.00e+00 -9.00e-01 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6007,7 +6002,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
- 1.36e+01  2.08e-02  6.90e-14  5.48e-02  1.00e+01 -9.00e-01 
+ 1.30e+01 -2.97e-02  4.98e-05  5.68e-01  1.00e+01 -9.00e-01 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6070,7 +6065,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
- 41.635   0.025   0.964   0.000   5.000  -0.400 
+ 41.635   0.025   0.891   0.000   5.000  -0.400 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6091,7 +6086,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
     gamma    lambda   delta_1     delta     rho_1       rho 
- 1.59e+01  2.02e-02  8.21e-13  1.35e-01  1.00e+01 -4.00e-01 
+27.169750 -0.000788  0.000064  0.218631 10.000000 -0.400000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6133,7 +6128,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
- 1.8817  0.0209  0.0181  0.7997  0.0000  0.0000 
+11.7324  0.0137  0.3665  0.4652  0.0000  0.0000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6153,8 +6148,8 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
-   gamma   lambda  delta_1    delta    rho_1      rho 
-3.04e+00 2.04e-02 1.26e-07 6.78e-01 5.00e+00 0.00e+00 
+  gamma  lambda delta_1   delta   rho_1     rho 
+19.3832 -0.0151  0.0858  0.6786  5.0000  0.0000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6175,7 +6170,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
-1.08e+01 1.89e-02 2.89e-12 3.72e-01 1.00e+01 0.00e+00 
+27.67457  0.00480  0.00444  0.34482 10.00000  0.00000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6217,7 +6212,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
   gamma  lambda delta_1   delta   rho_1     rho 
- 1.2489  0.0208  0.0187  0.9664  0.0000  0.5000 
+19.1106  0.0156  0.6286  0.5278  0.0000  0.5000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6238,7 +6233,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
-1.62e+00 2.04e-02 1.23e-07 9.39e-01 5.00e+00 5.00e-01 
+24.62179  0.00702  0.16715  0.54851  5.00000  0.50000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6259,7 +6254,7 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
 
 Coefficients:
    gamma   lambda  delta_1    delta    rho_1      rho 
-26.10105  0.00702  0.07885  0.53459 10.00000  0.50000 
+26.12824  0.00702  0.08040  0.53434 10.00000  0.50000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6279,8 +6274,8 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
-   gamma   lambda  delta_1    delta    rho_1      rho 
-26.03792  0.00749  1.00000  0.68614 -0.90000  1.00000 
+  gamma  lambda delta_1   delta   rho_1     rho 
+25.8436  0.0233  0.8684  0.4373 -0.9000  1.0000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6300,8 +6295,8 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
-   gamma   lambda  delta_1    delta    rho_1      rho 
-26.03792  0.00749  1.00000  0.68614  0.00000  1.00000 
+  gamma  lambda delta_1   delta   rho_1     rho 
+26.3171  0.0174  0.9072  0.5358  0.0000  1.0000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6342,8 +6337,8 @@ cesEst(yName = ..1, xNames = ..2, data = ..4, tName = ..3, vrs = ..5,
     rhoApprox = ..13, checkStart = checkStart, control = ..14)
 
 Coefficients:
-   gamma   lambda  delta_1    delta    rho_1      rho 
-26.03788  0.00749  0.99998  0.68615 10.00000  1.00000 
+  gamma  lambda delta_1   delta   rho_1     rho 
+ 29.909   0.015   0.509   0.504  10.000   1.000 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
@@ -6354,11 +6349,11 @@ HM = Hicks-McFadden (direct) elasticity of substitution
 
 
 $rssArray
-     -0.9  -0.4    0   0.5     1
--0.9 4998  4955 4925  4893 29187
-0    4968  4923 4891  4857 29187
-5    3890 80705 3799  3781  3785
-10   3505  6979 8323 46212 29187
+       -0.9   -0.4      0   0.5     1
+-0.9   4998   4955   4925  4893 70591
+0     12096   4923  31694 47604 43154
+5     46687  80705 109537 46170  3785
+10   175100 116543  75660 46212 39098
 
 $rho1Values
 [1] -0.9  0.0  5.0 10.0
@@ -6377,12 +6372,12 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
     control = list(eval.max = 1000, iter.max = 1000))
 
 Coefficients:
-    gamma    lambda   delta_1     delta     rho_1       rho 
- 1.36e+01  2.08e-02  6.90e-14  5.48e-02  1.00e+01 -9.00e-01 
+   gamma   lambda  delta_1    delta    rho_1      rho 
+1.23e+00 2.04e-02 1.17e-07 9.91e-01 5.00e+00 1.00e+00 
 
 Elasticities of Substitution:
     E_1_2 (HM) E_(1,2)_3 (AU) 
-        0.0909        10.0000 
+         0.167          0.500 
 AU = Allen-Uzawa (partial) elasticity of substitution
 HM = Hicks-McFadden (direct) elasticity of substitution
 
@@ -6397,27 +6392,29 @@ cesEst(yName = "Y", xNames = xNames, data = GermanIndustry, tName = "time",
 Estimation by non-linear least-squares using the 'PORT' optimizer
 and a two-dimensional grid search for coefficients 'rho_1', 'rho'
 assuming an additive error term
-Convergence achieved after 342 iterations
+Convergence achieved after 782 iterations
 Message: relative convergence (4) 
 
 Coefficients:
-         Estimate Std. Error t value Pr(>|t|)    
-gamma    1.36e+01   3.37e+01    0.40     0.69    
-lambda   2.08e-02   5.33e-04   39.02   <2e-16 ***
-delta_1  6.90e-14   1.35e-12    0.05     0.96    
-delta    5.48e-02   4.71e-01    0.12     0.91    
-rho_1    1.00e+01   6.80e+00    1.47     0.14    
-rho     -9.00e-01   2.27e+00   -0.40     0.69    
+        Estimate Std. Error t value Pr(>|t|)    
+gamma   1.23e+00   1.00e+00    1.23     0.22    
+lambda  2.04e-02   8.18e-04   24.88   <2e-16 ***
+delta_1 1.17e-07   1.11e-06    0.11     0.92    
+delta   9.91e-01   7.99e-02   12.41   <2e-16 ***
+rho_1   5.00e+00   3.31e+00    1.51     0.13    
+rho     1.00e+00   2.30e+00    0.44     0.66    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 10.6 
-Multiple R-squared: 0.996 
+Residual standard error: 11.1 
+Multiple R-squared: 0.995 
 
 Elasticities of Substitution:
-               Estimate Std. Error t value Pr(>|t|)
-E_1_2 (HM)       0.0909     0.0562    1.62     0.11
-E_(1,2)_3 (AU)  10.0000   227.2955    0.04     0.96
+               Estimate Std. Error t value Pr(>|t|)  
+E_1_2 (HM)       0.1667     0.0918    1.82    0.069 .
+E_(1,2)_3 (AU)   0.5000     0.5744    0.87    0.384  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 HM = Hicks-McFadden (direct) elasticity of substitution
 AU = Allen-Uzawa (partial) elasticity of substitution
 
@@ -6425,4 +6422,4 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > 
 > proc.time()
    user  system elapsed 
- 43.452   0.108  43.554 
+ 35.070   0.119  35.183 
