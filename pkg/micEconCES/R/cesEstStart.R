@@ -40,8 +40,8 @@ cesEstStart <- function( yName, xNames, tName, data, vrs,
             tName = tName, nested = nested )
          if( multErr ) {
             start[ 1 ] <- 
-               mean( log( data[[ yName ]] ), na.rm = TRUE ) -
-               mean( log( yTemp ), na.rm = TRUE )
+               exp( mean( log( data[[ yName ]] ), na.rm = TRUE ) ) /
+               exp( mean( log( yTemp ), na.rm = TRUE ) )
          } else {
             start[ 1 ] <- 
                mean( data[[ yName ]], na.rm = TRUE ) /
