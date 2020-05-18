@@ -42,6 +42,9 @@ cesEstStart <- function( yName, xNames, tName, data, vrs,
             start[ 1 ] <- 
                exp( mean( log( data[[ yName ]] ), na.rm = TRUE ) ) /
                exp( mean( log( yTemp ), na.rm = TRUE ) )
+            if( method %in% c( "PORT", "nls" ) ) {
+               start[1] <- start[1] / 10
+            }
          } else {
             start[ 1 ] <- 
                mean( data[[ yName ]], na.rm = TRUE ) /
