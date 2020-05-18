@@ -1,6 +1,6 @@
 
-R version 3.1.0 (2014-04-10) -- "Spring Dance"
-Copyright (C) 2014 The R Foundation for Statistical Computing
+R version 4.0.0 (2020-04-24) -- "Arbor Day"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -36,11 +36,14 @@ Type 'q()' to quit R.
 > library( "micEconCES" )
 Loading required package: minpack.lm
 Loading required package: DEoptim
+Loading required package: parallel
 
 DEoptim package
 Differential Evolution algorithm in R
 Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
 
+Loading required package: car
+Loading required package: carData
 
 If you have questions, suggestions, or comments regarding one of the 'micEcon' packages, please use a forum or 'tracker' at micEcon's R-Forge site:
 https://r-forge.r-project.org/projects/micecon/
@@ -141,6 +144,8 @@ delta
 > 
 > # Cobb-Douglas: estimation with logs
 > cdLog <- cesEst( "gdp85", c( "x1", "x2"), data = GrowthDJ, rho = 0, multErr = TRUE )
+Warning message:
+In log(gammaStar) : NaNs produced
 > summary(cdLog)
 Estimated CES function with constant returns to scale
 
@@ -180,4 +185,4 @@ delta
 > 
 > proc.time()
    user  system elapsed 
-   1.76    0.06    1.80 
+  1.391   0.069   1.461 
