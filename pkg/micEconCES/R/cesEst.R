@@ -114,9 +114,6 @@ cesEst <- function( yName, xNames, data, tName = NULL, vrs = FALSE,
       tName = tName, vrs = vrs, method = method, start = start, 
       rho1 = rho1, rho2 = rho2, rho = rho, nParam = nParam, nested = nested,
       multErr = multErr, checkStart = checkStart )
-   if( multErr && method %in% c( "PORT", "nls" ) ) {
-      start[1] <- start[1] / 10
-   }
 
    # dertermining lower and upper bounds automatically
    if( is.null( lower ) ) {
