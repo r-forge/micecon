@@ -23,13 +23,22 @@
       \item{year}{last two digits of the year (86-96).}
       \item{y}{net steam electric power generation in MWh.}
       \item{regu}{a dummy variable indicating whether the firm is regulated.}
-      \item{k}{capital input quantity.}
-      \item{labor}{labor and maintenance input quantity.}
-      \item{fuel}{fuel input quantity.}
-      \item{wl}{price of the labour and maintenance input.}
-      \item{wf}{price of the fuel input.}
+      \item{k}{capital input quantity (estimate of capital cost).}
+      \item{labor}{quantity index of labor and maintenance input
+         (costs of labor and maintenance divided by \code{wl}).}
+      \item{fuel}{quantity index of fuel input.
+         (costs of fuel divided by \code{wf}).}
+      \item{wl}{cost-share weighted price of labor and maintenance.}
+      \item{wf}{average price of fuel (coal, oil and gas) in USD per BTU.}
       \item{wk}{price of the capital input.}
    }
+}
+
+\details{
+   This data set is a revised version of the data set
+   that is used in Kumbhakar and Wang (2006).
+   A detailed description of the data set and the variables
+   can be found in Section 4 of Kumbhakar and Wang (2006).
 }
 
 \source{
@@ -38,6 +47,11 @@
 }
 
 \references{
+   Kumbhakar, Subal C. and Hung-Jen Wang (2006):
+   Estimation of Technical and Allocative Inefficiency: A Primal System Approach,
+   Journal of Econometrics 134(2), p. 419-440.
+   (\href{http://doi.org/10.1016/j.jeconom.2005.07.001}{doi:10.1016/j.jeconom.2005.07.001})
+
    Kumbhakar, Subal C., Hung-Jen Wang, and Alan P. Horncastle (2015): 
    A Practitioner's Guide to Stochastic Frontier Analysis Using Stata. 
    Cambridge University Press. 
