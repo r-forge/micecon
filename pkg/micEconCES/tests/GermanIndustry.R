@@ -88,9 +88,10 @@ print( cesDe )
 summary( cesDe )
 
 ## nls
+## IGNORE_RDIFF_BEGIN
 try( cesNls <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
    vrs = TRUE, method = "nls" ) )
-
+## IGNORE_RDIFF_END
 
 ################ estimation with rho_1 and/or rho fixed #######################
 

@@ -1,5 +1,5 @@
 
-R version 4.0.0 (2020-04-24) -- "Arbor Day"
+R version 4.0.3 (2020-10-10) -- "Bunny-Wunnies Freak Out"
 Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -3692,16 +3692,20 @@ rho      -0.99       4232 -0.000234    1.000
 [19]   54.08   56.39
 > 
 > # Land & Labor with constant returns to scale (nls)
+> ## IGNORE_RDIFF_BEGIN
 > try( cesLandLaborNls <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
 +    method = "nls" ) )
 Error in numericDeriv(form[[3L]], names(ind), env) : 
   Missing value or an infinity produced when evaluating the model
+> ## IGNORE_RDIFF_END
 > 
 > # Land & Labor with variable returns to scale (nls)
+> ## IGNORE_RDIFF_BEGIN
 > try( cesLandLaborNls <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
 +    method = "nls", vrs = TRUE ) )
 Error in numericDeriv(form[[3L]], names(ind), env) : 
   Missing value or an infinity produced when evaluating the model
+> ## IGNORE_RDIFF_END
 > 
 > 
 > ## CES: Land & Intermediate Inputs (Nelder-Mead)
@@ -6638,16 +6642,20 @@ rho       2.99    4677184 6.39e-07        1
 [19]   53.92   56.17
 > 
 > # constant returns to scale (nls)
+> ## IGNORE_RDIFF_BEGIN
 > try( cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
 +    method = "nls" ) )
 Error in numericDeriv(form[[3L]], names(ind), env) : 
   Missing value or an infinity produced when evaluating the model
+> ## IGNORE_RDIFF_END
 > 
 > # variable returns to scale (nls)
+> ## IGNORE_RDIFF_BEGIN
 > try( cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
 +    vrs = TRUE, method = "nls" ) )
 Error in numericDeriv(form[[3L]], names(ind), env) : 
   Missing value or an infinity produced when evaluating the model
+> ## IGNORE_RDIFF_END
 > 
 > 
 > ############  cesCalc  ################
@@ -6677,4 +6685,4 @@ Error in numericDeriv(form[[3L]], names(ind), env) :
 > 
 > proc.time()
    user  system elapsed 
-  7.748   0.156   7.905 
+  7.929   0.177   8.096 
