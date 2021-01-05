@@ -245,12 +245,16 @@ fitted( cesLandLaborDe2 )
 residuals( cesLandLaborDe2 )
 
 # Land & Labor with constant returns to scale (nls)
+## IGNORE_RDIFF_BEGIN
 try( cesLandLaborNls <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
    method = "nls" ) )
+## IGNORE_RDIFF_END
 
 # Land & Labor with variable returns to scale (nls)
+## IGNORE_RDIFF_BEGIN
 try( cesLandLaborNls <- cesEst( "qOutput", c( "land", "qLabor" ), germanFarms,
    method = "nls", vrs = TRUE ) )
+## IGNORE_RDIFF_END
 
 
 ## CES: Land & Intermediate Inputs (Nelder-Mead)
@@ -395,12 +399,16 @@ fitted( cesLandLaborDe2 )
 residuals( cesLandLaborDe2 )
 
 # constant returns to scale (nls)
+## IGNORE_RDIFF_BEGIN
 try( cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    method = "nls" ) )
+## IGNORE_RDIFF_END
 
 # variable returns to scale (nls)
+## IGNORE_RDIFF_BEGIN
 try( cesEst( "qOutput", c( "land", "qVarInput" ), germanFarms,
    vrs = TRUE, method = "nls" ) )
+## IGNORE_RDIFF_END
 
 
 ############  cesCalc  ################

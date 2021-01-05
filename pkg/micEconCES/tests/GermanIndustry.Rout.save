@@ -1,5 +1,5 @@
 
-R version 4.0.0 (2020-04-24) -- "Arbor Day"
+R version 4.0.3 (2020-10-10) -- "Bunny-Wunnies Freak Out"
 Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -1683,11 +1683,12 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 
 > 
 > ## nls
+> ## IGNORE_RDIFF_BEGIN
 > try( cesNls <- cesEst( "Y", xNames, tName = "time", data = GermanIndustry,
 +    vrs = TRUE, method = "nls" ) )
 Error in numericDeriv(form[[3L]], names(ind), env) : 
   Missing value or an infinity produced when evaluating the model
-> 
+> ## IGNORE_RDIFF_END
 > 
 > ################ estimation with rho_1 and/or rho fixed #######################
 > 
@@ -6422,4 +6423,4 @@ AU = Allen-Uzawa (partial) elasticity of substitution
 > 
 > proc.time()
    user  system elapsed 
- 35.070   0.119  35.183 
+ 38.766   0.154  38.921 
