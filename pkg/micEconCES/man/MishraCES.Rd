@@ -27,7 +27,7 @@
    Mishra, SK (2006):
    A Note on Numerical Estimation of Sato's Two-Level CES Production Function
    MPRA Working Paper No. 1019,
-   \url{http://mpra.ub.uni-muenchen.de/1019/}.
+   \url{https://mpra.ub.uni-muenchen.de/1019/}.
 }
 
 \examples{
