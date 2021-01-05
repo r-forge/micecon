@@ -50,12 +50,12 @@
    Kumbhakar, Subal C. and Hung-Jen Wang (2006):
    Estimation of Technical and Allocative Inefficiency: A Primal System Approach,
    Journal of Econometrics 134(2), p. 419-440.
-   (\href{http://doi.org/10.1016/j.jeconom.2005.07.001}{doi:10.1016/j.jeconom.2005.07.001})
+   (\href{https://doi.org/10.1016/j.jeconom.2005.07.001}{doi:10.1016/j.jeconom.2005.07.001})
 
    Kumbhakar, Subal C., Hung-Jen Wang, and Alan P. Horncastle (2015): 
    A Practitioner's Guide to Stochastic Frontier Analysis Using Stata. 
    Cambridge University Press. 
-   (\href{http://doi.org/10.1017/CBO9781139342070}{doi:10.1017/CBO9781139342070})
+   (\href{https://doi.org/10.1017/CBO9781139342070}{doi:10.1017/CBO9781139342070})
 }
 
 \keyword{datasets}
