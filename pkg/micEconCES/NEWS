@@ -4,7 +4,7 @@ Please note that only the most significant changes are reported here.
 A full ChangeLog is available in the log messages of the SVN repository
 on R-Forge.
 
-            CHANGES IN VERSION 0.9-10   (201?-??-??)
+            CHANGES IN VERSION 1.0-0   (2021-01-05)
 
 * added durbinWatsonTest.cesEst() for conducting Durbin-Watson tests for serial
 correlation of the residuals of CES functions estimated by cesEst() as
