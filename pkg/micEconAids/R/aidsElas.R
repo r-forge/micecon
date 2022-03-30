@@ -1,10 +1,26 @@
 aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
    method = "AIDS", priceIndex = "TL", basePrices = NULL, baseShares = NULL,
-   quantNames = NULL, priceNames = NULL, coefCov = NULL, df = NULL ) {
+   quantNames = NULL, priceNames = NULL, shifterValues = NULL, 
+   coefCov = NULL, df = NULL ) {
 
    if( !is.null( coef$delta ) ) {
-      stop( "calculating demand elasticities for models with demand shifters",
-         " has not been implemented yet" )
+      if( is.null( shifterValues ) ) {
+         stop( "as the model was estimated with demand shifters",
+            " argument 'shifterValues' must be specified" )
+      }
+      if( length( shifterValues ) != ncol( coef$delta ) ) {
+         stop( "the number of demand shifters specified by argument",
+            " 'shifterValues' must be equal to the number of demand shifters",
+            " used in the estimation (", ncol( coef$delta ), ")" )
+      }
+      if( length( coef$alpha ) != nrow( coef$delta ) ) {
+         stop( "length of 'coef$alpha' must be the same as number of rows",
+            " of 'coef$delta'" )
+      }
+      for( i in 1:length( coef$alpha ) ) {
+         coef$alpha[i] <- coef$alpha[i] + 
+            crossprod( coef$delta[i,], shifterValues )
+      }
    }
 
    nGoods <- length( coef$alpha )
@@ -44,6 +60,10 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
          tempPriceIndex <- "S"
       } else {
          tempPriceIndex <- priceIndex
+      }
+      if( !is.null( coef$delta ) ) {
+         stop( "currently, argument 'shares' must be specified if the model",
+            " was estimated with demand shifters" )
       }
       shares <- as.numeric( aidsCalc( priceNames = tempPriceNames,
          totExpName = "totExp", coef = coef, data = tempData,
