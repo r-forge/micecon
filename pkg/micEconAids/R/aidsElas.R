@@ -21,6 +21,9 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
          coef$alpha[i] <- coef$alpha[i] + 
             crossprod( coef$delta[i,], shifterValues )
       }
+      nShifter <- ncol( coef$delta )
+   } else {
+      nShifter <- 0
    }
 
    nGoods <- length( coef$alpha )
@@ -61,15 +64,19 @@ aidsElas <- function( coef, prices = NULL, shares = NULL, totExp = NULL,
       } else {
          tempPriceIndex <- priceIndex
       }
-      if( !is.null( coef$delta ) ) {
-         stop( "currently, argument 'shares' must be specified if the model",
-            " was estimated with demand shifters" )
+      if( nShifter > 0 ) {
+         tempShifterNames <- paste ( "s", c( 1:nShifter ), sep = "" )
+         for( i in 1:nShifter ) {
+            tempData[[ tempShifterNames[ i ] ]] <- shifterValues[ i ]
+         }
+      } else {
+         tempShifterNames <- NULL
       }
       shares <- as.numeric( aidsCalc( priceNames = tempPriceNames,
          totExpName = "totExp", coef = coef, data = tempData,
          priceIndex = tempPriceIndex, basePrices = basePrices,
-         baseShares = baseShares )$shares )
-      rm( tempData, tempPriceNames, tempPriceIndex )
+         baseShares = baseShares, shifterNames = tempShifterNames )$shares )
+      rm( tempData, tempPriceNames, tempPriceIndex, tempShifterNames )
    }
 
    if( is.null( quantNames ) ) {
